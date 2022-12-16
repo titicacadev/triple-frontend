@@ -49,9 +49,8 @@ export const ChatContainer = ({
   onImageBubbleClick = defaultOnImageBubbleClick,
   onTextBubbleClick,
 }: PropsWithChildren<ChatContainerProps>) => {
-  const [postMessage, setPostMessage] = useState<PostMessageActionType | null>(
-    null,
-  )
+  const [postMessage, setPostMessage] =
+    useState<PostMessageActionType | null>(null)
 
   return (
     <ChatContext.Provider

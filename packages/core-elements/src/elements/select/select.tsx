@@ -59,7 +59,7 @@ export type SelectProps = SelectOwnProps &
   SelectHTMLAttributes<HTMLSelectElement>
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  (
+  function Select(
     {
       value,
       placeholder,
@@ -72,7 +72,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
       ...props
     },
     ref,
-  ) => {
+  ) {
     const formFieldState = useFormFieldState({ onBlur, onFocus })
 
     const hasHelp = !!help

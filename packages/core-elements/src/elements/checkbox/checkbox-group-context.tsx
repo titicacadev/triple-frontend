@@ -6,9 +6,8 @@ export interface CheckboxGroupContextValue {
   onChange?: (value: string[]) => void
 }
 
-export const CheckboxGroupContext = createContext<
-  CheckboxGroupContextValue | undefined
->(undefined)
+export const CheckboxGroupContext =
+  createContext<CheckboxGroupContextValue | undefined>(undefined)
 
 export function useCheckboxGroup() {
   const context = useContext(CheckboxGroupContext)

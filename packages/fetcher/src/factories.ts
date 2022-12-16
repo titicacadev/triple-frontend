@@ -68,6 +68,7 @@ export function ssrFetcherize<Fetcher extends BaseFetcher>(
       withApiUriBase: false,
       headers: {
         ...headers,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'x-triple-from-ssr': 'true',
       },
     })

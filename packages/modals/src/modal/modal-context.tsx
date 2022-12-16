@@ -7,9 +7,8 @@ export interface ModalContextValue {
   onClose?: () => void
 }
 
-export const ModalContext = createContext<ModalContextValue | undefined>(
-  undefined,
-)
+export const ModalContext =
+  createContext<ModalContextValue | undefined>(undefined)
 
 export function useModal() {
   const context = useContext(ModalContext)

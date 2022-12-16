@@ -41,9 +41,8 @@ export default function ReviewsList({
   showToast: AppNativeActionProps['showToast']
   isMorePage: boolean
 }) {
-  const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
-    undefined,
-  )
+  const [selectedReview, setSelectedReview] =
+    useState<ReviewData | undefined>(undefined)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()

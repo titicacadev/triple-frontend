@@ -11,9 +11,8 @@ interface EventMetadataContext {
   [key: string]: string
 }
 
-const EventMetadataContext = createContext<EventMetadataContext | undefined>(
-  undefined,
-)
+const EventMetadataContext =
+  createContext<EventMetadataContext | undefined>(undefined)
 
 export function EventMetadataProvider({
   children,

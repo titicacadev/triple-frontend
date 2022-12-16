@@ -28,9 +28,8 @@ export interface ChatContextValue {
   setPostMessage?: Dispatch<SetStateAction<PostMessageActionType | null>>
 }
 
-export const ChatContext = createContext<ChatContextValue | undefined>(
-  undefined,
-)
+export const ChatContext =
+  createContext<ChatContextValue | undefined>(undefined)
 
 export function useChat() {
   const context = useContext(ChatContext)

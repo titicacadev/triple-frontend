@@ -105,9 +105,8 @@ export function CouponDownloadButton({
 }) {
   const [couponFetched, setCouponFetched] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined,
-  )
+  const [errorMessage, setErrorMessage] =
+    useState<string | undefined>(undefined)
   const { push } = useHistoryFunctions()
   const { initiateVerification } = useUserVerification({
     verificationType,
@@ -263,9 +262,8 @@ export function CouponGroupDownloadButton({
   onClick?: () => void
 }) {
   const [coupons, setCoupons] = useState<CouponData[]>([])
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
-    undefined,
-  )
+  const [errorMessage, setErrorMessage] =
+    useState<string | undefined>(undefined)
   const { push } = useHistoryFunctions()
   const { initiateVerification } = useUserVerification({
     verificationType,

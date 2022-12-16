@@ -123,6 +123,7 @@ function RangePicker({
       saturday: (day) => day.getDay() === 6,
       from,
       to,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'included-range': from && to ? generatePaddedRange(from, to) : [],
     }),
     [from, to, publicHolidays],
