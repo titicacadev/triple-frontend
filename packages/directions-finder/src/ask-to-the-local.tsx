@@ -16,13 +16,6 @@ const DrawerContentContainer = styled(Container)`
   ${safeAreaInsetMixin}
 `
 
-const CallButton = styled(Button)`
-  font-size: 14px;
-  line-height: 17px;
-  padding-top: 16px;
-  padding-bottom: 15px;
-`
-
 const IconContainer = styled.div`
   display: inline-block;
   height: 17px;
@@ -36,6 +29,13 @@ const Icon = styled.svg`
   display: block;
   width: 20px;
   height: 20px;
+`
+
+const CallButton = styled(Button)`
+  font-size: 14px;
+  line-height: 17px;
+  padding-top: 16px;
+  padding-bottom: 15px;
 `
 
 export default function AskToTheLocal({
