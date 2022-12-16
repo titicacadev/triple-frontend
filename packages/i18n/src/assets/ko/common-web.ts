@@ -34,7 +34,7 @@ export const koCommonWeb = {
   gongyuhagi: '공유하기',
   'geunceoyi-cuceon-jangso': '근처의 추천 장소',
   'jangsoga-eobsseubnida.': '장소가 없습니다.',
-  'deo-manheun-jangso-bogi': "'더 많은 장소 보기",
+  'deo-manheun-jangso-bogi': '더 많은 장소 보기',
   gwangwangmyeongso: '관광명소',
   eumsigjeom: '음식점',
   hotel: '호텔',
