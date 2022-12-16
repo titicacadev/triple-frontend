@@ -60,6 +60,12 @@ const OpenIcon = styled.img`
   margin-left: 4px;
 `
 
+const CloseIcon = styled.img`
+  position: absolute;
+  top: 17px;
+  right: 15px;
+`
+
 export default function RecentCheckBox({
   isRecentReview,
   onRecentReviewChange,
@@ -108,6 +114,12 @@ function ToolTip() {
             color="gray800"
             padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
           >
+            <CloseIcon
+              width={10}
+              height={10}
+              src="https://assets.triple.guide/images/ico_tooltip_delete.png"
+              onClick={() => setVisible(false)}
+            />
             {t(
               'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.',
             )}
