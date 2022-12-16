@@ -1,4 +1,4 @@
-import { getTranslation, i18n } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import { PoiListElementType } from './types'
@@ -12,9 +12,6 @@ const TYPE_NAMES: {
 }
 
 export function getTypeNames(type: PoiListElementType['type']) {
-  if (!i18n) {
-    return
-  }
   const t = getTranslation('common-web')
 
   return t(TYPE_NAMES[type])
