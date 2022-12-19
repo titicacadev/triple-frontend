@@ -21,7 +21,7 @@ export type TextProps = PropsWithChildren<{
   alpha?: number
   bold?: boolean
   center?: boolean
-  color?: Color
+  color?: Color | string
   cursor?: Property.Cursor
   ellipsis?: boolean
   floated?: Property.Float
