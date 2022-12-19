@@ -114,15 +114,15 @@ function ToolTip() {
             color="gray800"
             padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
           >
+            {t(
+              'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.',
+            )}
             <CloseIcon
               width={10}
               height={10}
               src="https://assets.triple.guide/images/ico_tooltip_delete.png"
               onClick={() => setVisible(false)}
             />
-            {t(
-              'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.',
-            )}
           </TooltipText>
         </TooltipContainer>
       ) : null}
