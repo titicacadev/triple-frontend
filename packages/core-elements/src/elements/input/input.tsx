@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef } from 'react'
+import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
 import styled from 'styled-components'
 import InputMask, { MaskOptions } from 'react-input-mask'
 
@@ -38,7 +38,7 @@ export interface InputProps
     MaskOptions {
   label?: string
   error?: string | boolean
-  help?: string
+  help?: string | ReactNode
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
