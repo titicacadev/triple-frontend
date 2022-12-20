@@ -5,6 +5,8 @@ import {
 } from '@storybook/react'
 import { useState } from 'react'
 
+import { Text } from '../text'
+
 import { NumericSpinner } from './numeric-spinner'
 
 export default {
@@ -35,6 +37,17 @@ export const Size: ComponentStory<typeof NumericSpinner> = () => {
       <NumericSpinner {...Default.args} size="big" />
     </>
   )
+}
+
+export const CustomLabel: ComponentStoryObj<typeof NumericSpinner> = {
+  args: {
+    label: '성인',
+    customLabel: (
+      <Text size="mini" alpha={0.5} margin={{ top: 3 }}>
+        만 12세 이상 (국내선 만 13세 이상)
+      </Text>
+    ),
+  },
 }
 
 export const Controlled: ComponentStory<typeof NumericSpinner> = () => {

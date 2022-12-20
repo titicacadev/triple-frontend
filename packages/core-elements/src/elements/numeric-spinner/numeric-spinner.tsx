@@ -1,4 +1,4 @@
-import { useId } from 'react'
+import { ReactNode, useId } from 'react'
 
 import { FlexBox, FlexBoxItem } from '../flex-box'
 import { Text } from '../text'
@@ -12,12 +12,14 @@ export interface NumericSpinnerProps extends NumericSpinnerBaseProps {
   label?: string
   sublabel?: string
   strikeLabel?: string
+  customLabel?: ReactNode
 }
 
 export const NumericSpinner = ({
   label,
   sublabel,
   strikeLabel,
+  customLabel,
   disabled,
   max,
   min,
@@ -54,6 +56,8 @@ export const NumericSpinner = ({
             {strikeLabel}
           </Text>
         ) : null}
+
+        {customLabel}
       </FlexBoxItem>
 
       <NumericSpinnerBase
