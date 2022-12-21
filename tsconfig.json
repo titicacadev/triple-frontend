@@ -84,6 +84,7 @@
       "@titicaca/triple-fallback-action": [
         "./packages/triple-fallback-action/src"
       ],
+      "@titicaca/triple-header": ["./packages/triple-header/src"],
       "@titicaca/triple-media": ["./packages/triple-media/src"],
       "@titicaca/type-definitions": ["./packages/type-definitions/src"],
       "@titicaca/ui-flow": ["./packages/ui-flow/src"],
