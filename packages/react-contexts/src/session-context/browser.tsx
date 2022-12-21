@@ -49,17 +49,10 @@ export function InBrowserSessionContextProvider({
   }, [])
 
   const logout = useCallback<SessionControllers['logout']>(async () => {
-    const response = await authGuardedFetchers.put('/api/users/logout')
+    await authGuardedFetchers.put('/api/users/logout')
 
-    if (response === 'NEED_LOGIN') {
-      return
-    }
-
-    if (response.ok === true) {
-      clearUserState()
-
-      window.location.reload()
-    }
+    clearUserState()
+    window.location.reload()
   }, [clearUserState])
 
   const controllers = useMemo(() => ({ login, logout }), [login, logout])
