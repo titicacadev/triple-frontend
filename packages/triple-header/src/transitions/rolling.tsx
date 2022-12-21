@@ -28,7 +28,6 @@ export default function Rolling({
   transitionSpeed = 500,
 }: {
   children: ReactNode[]
-  zIndex: number
   speed?: number
   transitionSpeed?: number
   slideWidth?: number
