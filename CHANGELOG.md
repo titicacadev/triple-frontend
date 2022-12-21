@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 11.0.0
+
+### common
+
+- TF에 국제화를 도입합니다. [#2232](https://github.com/titicacadev/triple-frontend/pull/2232)
+
 ## 10.4.0
 
 ### triple-document
