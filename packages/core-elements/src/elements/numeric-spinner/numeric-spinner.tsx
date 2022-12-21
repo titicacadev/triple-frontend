@@ -30,7 +30,7 @@ export const NumericSpinner = ({
   const labelId = useId()
 
   return (
-    <FlexBox flex {...props}>
+    <FlexBox flex alignItems="center" {...props}>
       <FlexBoxItem flex="1">
         <Text id={labelId} size={size || 'small'}>
           {label}
