@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "10.4.0",
+  "version": "11.0.0",
   "description": "TripleDocument: Formatted Content System",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-document",
@@ -21,28 +21,28 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^10.4.0",
+    "@titicaca/color-palette": "^11.0.0",
     "@titicaca/content-type-definitions": "^5.1.0",
-    "@titicaca/core-elements": "^10.4.0",
-    "@titicaca/fetcher": "^10.4.0",
-    "@titicaca/intersection-observer": "^10.4.0",
-    "@titicaca/map": "^10.4.0",
-    "@titicaca/modals": "^10.4.0",
-    "@titicaca/poi-list-elements": "^10.4.0",
-    "@titicaca/router": "^10.4.0",
-    "@titicaca/scrap-button": "^10.4.0",
-    "@titicaca/standard-action-handler": "^10.4.0",
-    "@titicaca/triple-media": "^10.4.0",
-    "@titicaca/type-definitions": "^10.4.0",
-    "@titicaca/ui-flow": "^10.4.0",
-    "@titicaca/user-verification": "^10.4.0",
-    "@titicaca/view-utilities": "^10.4.0"
+    "@titicaca/core-elements": "^11.0.0",
+    "@titicaca/fetcher": "^11.0.0",
+    "@titicaca/intersection-observer": "^11.0.0",
+    "@titicaca/map": "^11.0.0",
+    "@titicaca/modals": "^11.0.0",
+    "@titicaca/poi-list-elements": "^11.0.0",
+    "@titicaca/router": "^11.0.0",
+    "@titicaca/scrap-button": "^11.0.0",
+    "@titicaca/standard-action-handler": "^11.0.0",
+    "@titicaca/triple-media": "^11.0.0",
+    "@titicaca/type-definitions": "^11.0.0",
+    "@titicaca/ui-flow": "^11.0.0",
+    "@titicaca/user-verification": "^11.0.0",
+    "@titicaca/view-utilities": "^11.0.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.4.0"
+    "@titicaca/i18n": "^11.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/date-picker",
-  "version": "10.4.0",
+  "version": "11.0.0",
   "description": "Triple - Date Picker",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/date-picker",
@@ -21,8 +21,8 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^10.4.0",
-    "@titicaca/fetcher": "^10.4.0",
+    "@titicaca/color-palette": "^11.0.0",
+    "@titicaca/fetcher": "^11.0.0",
     "moment": "^2.24.0",
     "react-day-picker": "^7.4.10"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/content-sharing",
-  "version": "10.4.0",
+  "version": "11.0.0",
   "description": "Content Sharing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/content-sharing",
@@ -21,6 +21,6 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^10.4.0"
+    "@titicaca/core-elements": "^11.0.0"
   }
 }

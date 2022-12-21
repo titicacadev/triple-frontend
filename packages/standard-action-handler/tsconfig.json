@@ -26,10 +26,10 @@
       "path": "../view-utilities"
     },
     {
-      "path": "../react-triple-client-interfaces"
+      "path": "../i18n"
     },
     {
-      "path": "../i18n"
+      "path": "../react-triple-client-interfaces"
     }
   ]
 }
