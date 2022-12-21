@@ -39,3 +39,22 @@ export const Air: ComponentStory<typeof HubForm> = () => {
     </>
   )
 }
+
+export const Shadow: ComponentStory<typeof HubForm> = () => {
+  return (
+    <>
+      <HubForm shadow="small">
+        <Cell type="ORIGIN" placeholder="shadow=small" value="" />
+      </HubForm>
+      <HubForm shadow="medium">
+        <Cell type="ORIGIN" placeholder="shadow=medium" value="" />
+      </HubForm>
+      <HubForm shadow="large">
+        <Cell type="ORIGIN" placeholder="shadow=large" value="" />
+      </HubForm>
+      <HubForm shadow="none">
+        <Cell type="ORIGIN" placeholder="shadow=none" value="" />
+      </HubForm>
+    </>
+  )
+}

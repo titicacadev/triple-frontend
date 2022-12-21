@@ -2,10 +2,11 @@ import { ThemedStyledProps } from 'styled-components'
 
 import { BaseSizes } from '../commons'
 
-const ShadowSizeMap: { [key in BaseSizes]: string } = {
+const ShadowSizeMap: { [key in BaseSizes | 'none']: string } = {
   small: '0 0 10px 0 rgba(0, 0, 0, 0.07)',
   medium: '0 0 20px 0 rgba(0, 0, 0, 0.07)',
   large: '0 0 30px 0 rgba(0, 0, 0, 0.1)',
+  none: '',
 }
 
 export type ShadowMixinProps = ThemedStyledProps<
