@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "10.4.0",
+  "version": "11.0.0",
   "description": "Triple Web Application Meta tag modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/meta-tags",
@@ -26,6 +26,6 @@
     "next": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.4.0"
+    "@titicaca/i18n": "^11.0.0"
   }
 }

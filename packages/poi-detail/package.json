@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-detail",
-  "version": "10.4.0",
+  "version": "11.0.0",
   "description": "Components for POI detail page",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-detail",
@@ -21,18 +21,18 @@
     "build:ci": "BABEL_ENV=build babel --root-mode upward src --out-dir lib --source-maps --extensions .ts,.tsx,.js --no-comments"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^10.4.0",
-    "@titicaca/app-installation-cta": "^10.4.0",
-    "@titicaca/carousel": "^10.4.0",
-    "@titicaca/core-elements": "^10.4.0",
-    "@titicaca/fetcher": "^10.4.0",
-    "@titicaca/image-carousel": "^10.4.0",
-    "@titicaca/intersection-observer": "^10.4.0",
-    "@titicaca/modals": "^10.4.0",
-    "@titicaca/react-triple-client-interfaces": "^10.4.0",
-    "@titicaca/type-definitions": "^10.4.0",
-    "@titicaca/view-utilities": "^10.4.0",
-    "@titicaca/web-storage": "^10.4.0",
+    "@titicaca/action-sheet": "^11.0.0",
+    "@titicaca/app-installation-cta": "^11.0.0",
+    "@titicaca/carousel": "^11.0.0",
+    "@titicaca/core-elements": "^11.0.0",
+    "@titicaca/fetcher": "^11.0.0",
+    "@titicaca/image-carousel": "^11.0.0",
+    "@titicaca/intersection-observer": "^11.0.0",
+    "@titicaca/modals": "^11.0.0",
+    "@titicaca/react-triple-client-interfaces": "^11.0.0",
+    "@titicaca/type-definitions": "^11.0.0",
+    "@titicaca/view-utilities": "^11.0.0",
+    "@titicaca/web-storage": "^11.0.0",
     "qs": "^6.10.1"
   },
   "peerDependencies": {
@@ -40,6 +40,6 @@
     "@titicaca/react-contexts": "*"
   },
   "devDependencies": {
-    "@titicaca/i18n": "10.4.0"
+    "@titicaca/i18n": "^11.0.0"
   }
 }
