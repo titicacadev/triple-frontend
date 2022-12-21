@@ -18,5 +18,15 @@
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "dependencies": {
+    "@titicaca/core-elements": "^10.4.0",
+    "@titicaca/type-definitions": "^10.4.0",
+    "framer-motion": "^7.10.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": ">=4.4.1 < 6"
   }
 }
