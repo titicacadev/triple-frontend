@@ -15,8 +15,6 @@ export default {
 export const Default: ComponentStoryObj<typeof NumericSpinner> = {
   args: {
     label: '성인',
-    sublabel: '10,000원',
-    strikeLabel: '20,000원',
   },
 }
 
@@ -25,6 +23,21 @@ export const Disabled: ComponentStoryObj<typeof NumericSpinner> = {
     ...Default.args,
     disabled: true,
   },
+}
+
+export const Label: ComponentStory<typeof NumericSpinner> = () => {
+  return (
+    <>
+      <NumericSpinner {...Default.args} />
+      <NumericSpinner {...Default.args} sublabel="10,000원" />
+      <NumericSpinner {...Default.args} strikeLabel="20,000원" />
+      <NumericSpinner
+        {...Default.args}
+        sublabel="10,000원"
+        strikeLabel="20,000원"
+      />
+    </>
+  )
 }
 
 export const Size: ComponentStory<typeof NumericSpinner> = () => {
