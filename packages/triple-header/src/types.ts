@@ -17,7 +17,7 @@ interface Layer {
   id: number
   opacity?: number
   frames: FrameData[]
-  transition: {
+  transition?: {
     type: 'slide' | 'rolling' | 'marquee'
     duration?: number
   }
