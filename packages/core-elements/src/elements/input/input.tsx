@@ -38,7 +38,7 @@ type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
 export interface InputProps extends HtmlInputElementProps {
   label?: string
   error?: string | boolean
-  help?: string | ReactNode
+  help?: ReactNode
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
