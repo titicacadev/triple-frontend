@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
@@ -29,7 +29,15 @@ export default function Marquee({ children }: FlowLoop) {
   const [offsetX, setOffsetX] = useState(0)
 
   const trackRef = useRef<HTMLDivElement>(null)
-  const frames = [...children, ...children]
+
+  const frames = [
+    ...children.map((child, index) => (
+      <Fragment key={`${index}_1`}>{child}</Fragment>
+    )),
+    ...children.map((child, index) => (
+      <Fragment key={`${index}_2`}>{child}</Fragment>
+    )),
+  ]
 
   useEffect(() => {
     if (trackRef.current) {

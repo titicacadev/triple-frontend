@@ -1,4 +1,4 @@
-import { ComponentType, Fragment } from 'react'
+import { ComponentType } from 'react'
 import { Container, MarginPadding } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
@@ -72,13 +72,12 @@ export default function TripleHeader({
                 >
 
                 return (
-                  <Fragment key={index}>
-                    <FrameElement
-                      value={value}
-                      {...layout}
-                      canvasX={canvas.width}
-                    />
-                  </Fragment>
+                  <FrameElement
+                    key={index}
+                    value={value}
+                    {...layout}
+                    canvasX={canvas.width}
+                  />
                 )
               })}
             </LayerElement>
