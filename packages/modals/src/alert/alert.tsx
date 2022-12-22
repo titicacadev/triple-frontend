@@ -31,7 +31,7 @@ export const Alert = ({
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={handleConfirm}>
+        <Modal.Action color="blue" onClick={handleConfirm}>
           {confirmText}
         </Modal.Action>
       </Modal.Actions>
