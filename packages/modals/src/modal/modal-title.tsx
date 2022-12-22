@@ -10,6 +10,7 @@ export const ModalTitle = ({ children, ...props }: PropsWithChildren) => {
     <Text
       id={titleId}
       bold
+      center
       size="big"
       color="gray"
       css={{ marginBottom: 10 }}

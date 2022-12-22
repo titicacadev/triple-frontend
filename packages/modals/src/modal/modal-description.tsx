@@ -9,7 +9,7 @@ export const ModalDescription = ({ children }: Props) => {
   const { descriptionId } = useModal()
 
   return (
-    <Text id={descriptionId} size="large" lineHeight={1.38} color="gray">
+    <Text id={descriptionId} center size="large" lineHeight={1.38} color="gray">
       {children}
     </Text>
   )
