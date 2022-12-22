@@ -18,8 +18,8 @@ export default function Rotate({
   const options = initialOptions
     ? {
         degree: 0,
-        ...(initialOptions?.infinity && { repeat: initialOptions?.infinity }),
-        ...(initialOptions?.repeatType && {
+        ...(initialOptions.infinity && { repeat: Infinity }),
+        ...(initialOptions.repeatType && {
           repeatType: initialOptions.repeatType,
         }),
       }

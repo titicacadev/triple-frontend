@@ -28,7 +28,7 @@ export default function FadeInOut({
 }: FadeInOutProps) {
   const options = initialOptions
     ? {
-        ...(initialOptions.infinity && { infinity: initialOptions.infinity }),
+        ...(initialOptions.infinity && { repeat: Infinity }),
         ...(initialOptions.repeatType && {
           repeatType: initialOptions.repeatType,
         }),
