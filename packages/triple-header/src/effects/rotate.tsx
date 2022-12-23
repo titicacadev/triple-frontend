@@ -17,7 +17,7 @@ export default function Rotate({
 }: RotateProps) {
   const options = initialOptions
     ? {
-        degree: 0,
+        degree: initialOptions.degree,
         ...(initialOptions.infinity && { repeat: Infinity }),
         ...(initialOptions.repeatType && {
           repeatType: initialOptions.repeatType,

@@ -17,7 +17,6 @@ export default function Flying({
 }: FlyingProps) {
   const options = initialOptions
     ? {
-        degree: 0,
         ...(initialOptions.infinity && { repeat: Infinity }),
         ...(initialOptions.repeatType && {
           repeatType: initialOptions.repeatType,
