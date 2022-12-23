@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 11.1.0
+
+### react-contexts
+
+- 웹 로그아웃 시 401 응답도 정상적으로 처리하도록 합니다. [#2313](https://github.com/titicacadev/triple-frontend/pull/2313)
+
 ## 11.0.0
 
 ### common
