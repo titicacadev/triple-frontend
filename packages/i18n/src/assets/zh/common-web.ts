@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const zhCommonWeb = {
   'aebeseo-bogi': '在App裡查看',
   dadgi: '關閉',
