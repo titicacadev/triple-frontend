@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const jaCommonWeb = {
   'aebeseo-bogi': 'アプリで見る',
   dadgi: '閉じる',
