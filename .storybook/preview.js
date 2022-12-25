@@ -7,6 +7,7 @@ import {
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
+import { I18nDecorator } from './i18n'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -22,7 +23,24 @@ export const decorators = [
   historyProviderDecorator,
   sessionContextProviderDecorator,
   envProviderDecorator,
+  I18nDecorator,
 ]
+
+export const globalTypes = {
+  locale: {
+    name: 'Locale',
+    description: 'i18n locale',
+    defaultValue: 'ko',
+    toolbar: {
+      icon: 'globe',
+      items: [
+        { value: 'ko', right: '🇰🇷', title: '한국어' },
+        { value: 'ja', right: '🇯🇵', title: '일본어' },
+        { value: 'zh', right: '🇨🇳', title: '중국어(번체)' },
+      ],
+    },
+  },
+}
 
 export function globalStyleDecorator(Story) {
   return (
