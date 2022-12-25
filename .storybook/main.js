@@ -41,6 +41,9 @@ module.exports = {
   },
   webpackFinal: async (config) => {
     config.resolve.plugins = [new TsconfigPathsPlugin()]
+    config.resolve.fallback ||= {}
+    config.resolve.fallback.fs = false
+
     return config
   },
 }
