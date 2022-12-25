@@ -24,7 +24,7 @@ export type ButtonProps = ButtonOwnProps &
   PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button = styled(ButtonBase)<ButtonOwnProps>((props) => {
+export const Button = styled(ButtonBase)<ButtonProps>((props) => {
   if (props.basic) {
     return basicButtonMixin({
       ...props,

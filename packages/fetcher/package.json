@@ -31,7 +31,6 @@
     "node-fetch": "^2.6.7"
   },
   "peerDependencies": {
-    "@sentry/nextjs": "^7.17.1",
     "@titicaca/view-utilities": "*",
     "next": "^13.0",
     "ts-custom-error": "^3.2.0",
