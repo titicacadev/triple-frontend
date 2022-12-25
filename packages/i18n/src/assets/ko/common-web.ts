@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const koCommonWeb = {
   'aebeseo-bogi': '앱에서 보기',
   dadgi: '닫기',

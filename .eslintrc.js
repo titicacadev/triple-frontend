@@ -71,6 +71,9 @@ const { overrides, ...rest } = createConfig({
     '_css',
     'filter_name',
     'image_url',
+    'common-web',
+    'x-triple-user-lang',
+    'x-triple-user-country',
   ],
 })
 

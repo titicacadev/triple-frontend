@@ -118,11 +118,7 @@ function LocationProperties({
         open={isActionSheetOpen}
         onClose={back}
       >
-        <ActionSheetItem
-          buttonLabel={t('bogsa')}
-          onClick={handleClick}
-        >
-        </ActionSheetItem>
+        <ActionSheetItem buttonLabel={t('bogsa')} onClick={handleClick} />
       </ActionSheet>
     </>
   )

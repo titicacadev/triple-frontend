@@ -488,11 +488,17 @@ function FeatureActionSheet({
     >
       {isMine ? (
         <>
-          <ActionSheetItem onClick={onEditClick}>{t('sujeonghagi')}</ActionSheetItem>
-          <ActionSheetItem onClick={onDeleteClick}>{t('sagjehagi')}</ActionSheetItem>
+          <ActionSheetItem onClick={onEditClick}>
+            {t('sujeonghagi')}
+          </ActionSheetItem>
+          <ActionSheetItem onClick={onDeleteClick}>
+            {t('sagjehagi')}
+          </ActionSheetItem>
         </>
       ) : (
-        <ActionSheetItem onClick={onReportClick}>{t('singohagi')}</ActionSheetItem>
+        <ActionSheetItem onClick={onReportClick}>
+          {t('singohagi')}
+        </ActionSheetItem>
       )}
     </ActionSheet>
   )
