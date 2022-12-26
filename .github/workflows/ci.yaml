@@ -71,7 +71,7 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
-      - run: npm i
+      - run: npm ci
 
       - name: Install @titicaca/eslint-config-triple
         run: npm i -E @titicaca/eslint-config-triple
@@ -103,7 +103,7 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
-      - run: npm i
+      - run: npm ci
 
       - name: Turbo Cache
         id: turbo-cache
@@ -165,7 +165,7 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
-      - run: npm i
+      - run: npm ci
 
       - name: Generate coverage report
         id: test
