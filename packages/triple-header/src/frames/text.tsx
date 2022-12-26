@@ -34,7 +34,7 @@ const ImageContainer = styled(Container)<{
     canvasX &&
     height &&
     css`
-      padding: ${(height / canvasX) * 100}% 0 0 0; // height
+      padding: ${(height / canvasX) * 100}% 0 0 0;
       position: relative;
     `}
 
