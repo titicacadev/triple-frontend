@@ -342,7 +342,7 @@ function ReviewContainer({
               <Trans i18nKey="ribyu-totalreviewscount" ns="common-web">
                 <Text bold size="huge" color="gray" alpha={1} inline />
                 <Text bold size="huge" color="blue" alpha={1} inline>
-                  {{ totalReviewsCount: formatNumber(totalReviewsCount) }}
+                  <>{{ totalReviewsCount: formatNumber(totalReviewsCount) }}</>
                 </Text>
               </Trans>
             ) : null}
@@ -350,7 +350,7 @@ function ReviewContainer({
         ) : (
           <Trans i18nKey="totalreviewscount-gaeyi-ribyu" ns="common-web">
             <Text bold size="huge" color="blue" alpha={1} inline>
-              {{ totalReviewsCount: formatNumber(totalReviewsCount) }}
+              <>{{ totalReviewsCount: formatNumber(totalReviewsCount) }}</>
             </Text>
             <Text bold size="huge" color="gray" alpha={1} inline />
           </Trans>
