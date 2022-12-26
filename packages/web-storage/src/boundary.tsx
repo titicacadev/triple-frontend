@@ -1,7 +1,5 @@
 import { Component, ReactNode } from 'react'
 import { withTranslation, WithTranslation } from '@titicaca/next-i18next'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import { Alert } from '@titicaca/modals'
 
 import { WebStorageError } from './error'
