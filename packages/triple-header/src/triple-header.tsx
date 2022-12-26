@@ -56,7 +56,7 @@ export default function TripleHeader({
 
   return (
     <Canvas width={canvas.width} height={canvas.height}>
-      {layers.map(({ id, frames, transition, positioning }) => {
+      {layers.map(({ frames, transition, positioning }, index) => {
         const LayerElement = transition
           ? TRANSITIONS[transition.type]
           : Container
@@ -64,7 +64,11 @@ export default function TripleHeader({
         const pos = (Number(positioning?.bottom || 0) / canvas.height) * 100
 
         return (
-          <Layer key={id} zIndex={id} positioning={{ top: 0, bottom: pos }}>
+          <Layer
+            key={index}
+            zIndex={index + 1}
+            positioning={{ top: 0, bottom: pos }}
+          >
             <LayerElement>
               {frames.map(({ type, value, ...layout }, index) => {
                 const FrameElement = FRAMES[type] as ComponentType<
