@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Accordion, Text, Container, FlexBox } from '@titicaca/core-elements'
+import {
+  Accordion,
+  Text,
+  Container,
+  FlexBox,
+  MarginPadding,
+} from '@titicaca/core-elements'
 import {
   useSessionAvailability,
   useSessionControllers,
@@ -92,10 +98,12 @@ const ButtonContainer = styled(FlexBox)`
 
 interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
+  padding?: MarginPadding
 }
 
 export default function DefaultFooter({
   hideAppDownloadButton,
+  padding,
 }: DefaultFooterProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
@@ -108,7 +116,7 @@ export default function DefaultFooter({
         minWidth={280}
         maxWidth={768}
         centered
-        padding={{ top: 30, left: 30, right: 30, bottom: 40 }}
+        padding={{ top: 30, left: 30, right: 30, bottom: 40, ...padding }}
       >
         <Accordion>
           <AccordionHeader
