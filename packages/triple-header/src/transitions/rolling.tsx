@@ -10,8 +10,9 @@ import { Container } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
 const Slides = styled(Container)<{ isTransition: boolean }>`
-  position: relative;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
+  position: relative;
   width: 100%;
   height: 100%;
 
@@ -30,9 +31,6 @@ export default function Rolling({
   children: ReactNode[]
   speed?: number
   transitionSpeed?: number
-  slideWidth?: number
-  slideHeight?: number
-  autoScroll?: boolean
 }) {
   const [visibleSlide, setVisibleSlide] = useState(1)
   const [slides, setSlide] = useState(children)

@@ -21,6 +21,7 @@ const marqueeVariants = {
 }
 
 const Track = styled(motion.div)`
+  /* stylelint-disable-next-line value-no-vendor-prefix */
   display: -webkit-box;
   height: 100%;
 `
