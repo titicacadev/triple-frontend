@@ -9,6 +9,8 @@ export function convertPriceInThousands(price: number) {
   if (flooredPrice === 0) {
     return t('weon')
   } else {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return ` ${t('flooredprice-ceonweon', { flooredPrice })}`
   }
 }
