@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "declarationMap": true,
     "resolveJsonModule": true,
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "@titicaca/ab-experiments": ["./packages/ab-experiments/src"],

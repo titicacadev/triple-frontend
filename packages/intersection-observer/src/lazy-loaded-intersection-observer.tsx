@@ -2,6 +2,8 @@ import { FC } from 'react'
 import dynamic from 'next/dynamic'
 import { ReactIntersectionObserverProps } from '@titicaca/react-intersection-observer'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 interface IntersectionObserverProps extends ReactIntersectionObserverProps {
   safe?: boolean
 }
@@ -23,6 +25,8 @@ async function importReactIntersectionObserver() {
   } catch (e) {
     return Promise.resolve(
       (({ children }) =>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         children || null) as FC<ReactIntersectionObserverProps>,
     )
   }
