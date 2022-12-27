@@ -1,5 +1,121 @@
 # CHANGELOG
 
+## 12.0.0 (ui-renewal)
+
+### common
+
+- Storybook을 root에서 빌드 [#2189](https://github.com/titicacadev/triple-frontend/pull/2189)
+- css prop 추가 [#2153](https://github.com/titicacadev/triple-frontend/pull/2153)
+- Global css prop 사용 [#2284](https://github.com/titicacadev/triple-frontend/pull/2284)
+- global-style 개선 [#2194](https://github.com/titicacadev/triple-frontend/pull/2194)
+- color-palette 대신 css variable 사용 [#2280](https://github.com/titicacadev/triple-frontend/pull/2280)
+- Compounded 컴포넌트(Subcomponent)를 고유의 컴포넌트로 분리 [#2303](https://github.com/titicacadev/triple-frontend/pull/2303)
+- build:ci 스크립트 제거 [#2276](https://github.com/titicacadev/triple-frontend/pull/2276)
+- peer dependencies 수정 [#2286](https://github.com/titicacadev/triple-frontend/pull/2286)
+
+### action-sheet
+
+ActionSheet
+
+- ActionSheet 컴포넌트 접근성 개선 [#2229](https://github.com/titicacadev/triple-frontend/pull/2229)
+  - Portal에 렌더합니다.
+- ESC 버튼을 누르면 액션시트를 닫습니다.
+- 외부의 오버레이를 누르면 액션시트를 닫습니다.
+- 키보드를 사용한 포커스는 액션시트 내부에서만 이동합니다. 액션시트가 닫히면 이전의 포커스로 되돌아 갑니다.
+- (Breaking Change) 액션시트 내에서 발생한 이벤트가 버블링 되도록 변경되었습니다.
+- (Breaking Change) export default가 제거되었습니다. [#2281](https://github.com/titicacadev/triple-frontend/pull/2281)
+
+### chat
+
+- triple-chat-frontend를 기반으로 chat widget component를 생성합니다. [#2246](https://github.com/titicacadev/triple-frontend/pull/2246)
+
+### core-elements
+
+Accordion
+
+- 접근성을 개선합니다. [#2217](https://github.com/titicacadev/triple-frontend/pull/2217)
+- (Breaking Change) Context를 사용해서 active prop을 각자 서브 컴포넌트마다 전달하지 않고 상위 Accordion 컴포넌트에만 전달할 수 있도록 변경합니다.
+
+Button
+
+- 리팩토링 [#2264](https://github.com/titicacadev/triple-frontend/pull/2264)
+
+Checkbox
+
+- Checkbox, CheckboxGroup 컴포넌트가 새로 추가되었습니다. [#2239](https://github.com/titicacadev/triple-frontend/pull/2239)
+- 선택된 모양을 이미지 대신 svg로 그리도록 변경합니다.
+- `variant?: 'square' | 'rounded'` prop을 추가합니다. (기본값 'square')
+
+ConfirmSelector
+
+- 리팩토링 [#2251](https://github.com/titicacadev/triple-frontend/pull/2251)
+  - 기존의 prop중에 안 쓰이거나 사실상 필요 없는 것들을 제거했습니다. `placeholder, textAlign, borderless, fillType, error, padding`
+
+FormField
+
+- withField hoc를 대체할 FormField 컴포넌트 추가 [#2257](https://github.com/titicacadev/triple-frontend/pull/2257)
+
+GenderSelector
+
+- 리팩토링 [#2253](https://github.com/titicacadev/triple-frontend/pull/2253)
+
+Input
+
+- 접근성을 개선합니다. [#2274](https://github.com/titicacadev/triple-frontend/pull/2274)
+- (Breaking Change) onChange 두번째 파라미터 value를 제거합니다.
+
+NumericSpinner
+
+- 접근성을 개선합니다. [#2250](https://github.com/titicacadev/triple-frontend/pull/2250)
+
+Portal
+
+- Portal 컴포넌트를 추가합니다. [#2228](https://github.com/titicacadev/triple-frontend/pull/2228)
+
+Radio
+
+- 접근성을 개선합니다. [#2235](https://github.com/titicacadev/triple-frontend/pull/2235)
+- RadioGroup 컴포넌트가 새로 추가되었습니다.
+- 선택된 모양을 이미지 대신 css로 그리도록 변경합니다.
+
+Select
+
+- Select 컴포넌트 접근성 개선 [#2259](https://github.com/titicacadev/triple-frontend/pull/2259)
+
+Tabs
+
+- Tabs 컴포넌트 접근성 개선 [#2270](https://github.com/titicacadev/triple-frontend/pull/2270)
+- (Breaking Change) 접근성 지원을 위해 Tabs 컴포넌트 사용 방법이 변경되었습니다.
+- `TabList`, `Tab`, `TabPanel` 서브 컴포넌트를 추가했습니다. 이 서브 컴포넌트들로 탭을 구성해야 합니다.
+- `options` prop을 제거하고 children을 사용하도록 합니다.
+- prop 이름을 변경합니다. `type` -> `variant`
+- onChange prop의 첫번쨰 파라미터 `event`를 제거합니다.
+- 키보드 포커스를 지원합니다.
+- table 대신 flex css를 사용하도록 변경합니다.
+
+TextArea
+
+- 접근성을 개선합니다. [#2268](https://github.com/titicacadev/triple-frontend/pull/2268)
+
+Tooltip
+
+- [core-elements] Tooltip 컴포넌트에 role="tooltip" 추가 [#2271](https://github.com/titicacadev/triple-frontend/pull/2271)
+
+### modals
+
+- Modal 컴포넌트 접근성 개선 [#2228](https://github.com/titicacadev/triple-frontend/pull/2228)
+  - Portal에 렌더합니다.
+- Body, Title, Description 서브 컴포넌트를 추가합니다.
+- ESC 버튼을 누르면 모달을 닫습니다.
+- 외부의 오버레이를 누르면 모달을 닫습니다.
+- 키보드를 사용한 포커스는 모달 내부에서만 이동합니다. 모달이 닫히면 이전의 포커스로 되돌아 갑니다.
+
+### slider
+
+SingleSlider, RangeSlider
+
+- 접근성 개선 [#2273](https://github.com/titicacadev/triple-frontend/pull/2273)
+
 ## 11.1.0
 
 ### react-contexts
