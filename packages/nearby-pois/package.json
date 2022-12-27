@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/nearby-pois",
-  "version": "11.1.0",
+  "version": "12.0.0",
   "description": "Nearby POIs list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/nearby-pois",
@@ -20,22 +20,22 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^11.1.0",
-    "@titicaca/fetcher": "^11.1.0",
-    "@titicaca/intersection-observer": "^11.1.0",
-    "@titicaca/poi-list-elements": "^11.1.0",
-    "@titicaca/router": "^11.1.0",
-    "@titicaca/type-definitions": "^11.1.0",
-    "@titicaca/view-utilities": "^11.1.0"
+    "@titicaca/core-elements": "^12.0.0",
+    "@titicaca/fetcher": "^12.0.0",
+    "@titicaca/intersection-observer": "^12.0.0",
+    "@titicaca/poi-list-elements": "^12.0.0",
+    "@titicaca/router": "^12.0.0",
+    "@titicaca/type-definitions": "^12.0.0",
+    "@titicaca/view-utilities": "^12.0.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
     "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^11.1.0"
+    "@titicaca/i18n": "^12.0.0"
   }
 }

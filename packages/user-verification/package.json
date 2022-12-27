@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "11.1.0",
+  "version": "12.0.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -26,21 +26,21 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^11.1.0",
-    "@titicaca/fetcher": "^11.1.0",
-    "@titicaca/modals": "^11.1.0",
-    "@titicaca/react-hooks": "^11.1.0",
-    "@titicaca/router": "^11.1.0"
+    "@titicaca/core-elements": "^12.0.0",
+    "@titicaca/fetcher": "^12.0.0",
+    "@titicaca/modals": "^12.0.0",
+    "@titicaca/react-hooks": "^12.0.0",
+    "@titicaca/router": "^12.0.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
     "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*",
     "@titicaca/react-triple-client-interfaces": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^11.1.0"
+    "@titicaca/i18n": "^12.0.0"
   }
 }

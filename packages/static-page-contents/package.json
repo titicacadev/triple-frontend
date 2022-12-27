@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-page-contents",
-  "version": "11.1.0",
+  "version": "12.0.0",
   "description": "Static page pomponent",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/static-page-contents",
@@ -20,15 +20,15 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^11.1.0"
+    "@titicaca/color-palette": "^12.0.0"
   },
   "peerDependencies": {
+    "@titicaca/next-i18next": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
-    "styled-components": "^5.3.1",
-    "@titicaca/next-i18next": "*"
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^11.1.0"
+    "@titicaca/i18n": "^12.0.0"
   }
 }
