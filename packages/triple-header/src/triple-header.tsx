@@ -54,7 +54,7 @@ export default function TripleHeader({
 }) {
   const { canvas, layers } = children
 
-  return (
+  return canvas && layers ? (
     <Canvas width={canvas.width} height={canvas.height}>
       {layers.map(({ frames, transition, positioning }, index) => {
         const LayerElement = transition
@@ -89,5 +89,5 @@ export default function TripleHeader({
         )
       })}
     </Canvas>
-  )
+  ) : null
 }

@@ -66,7 +66,7 @@ export default function ImageFrame({
     ? (IMAGE_EFFECTS[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
     : IMAGE_EFFECTS.none
 
-  return Object.keys(image).length >= 0 ? (
+  return Object.keys(image).length > 0 ? (
     <ImageContainer
       onClick={onFrameClick}
       width={width}
