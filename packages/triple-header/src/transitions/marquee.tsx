@@ -44,7 +44,15 @@ export default function Marquee({ children }: FlowLoop) {
     if (trackRef.current) {
       setOffsetX(trackRef.current.clientWidth)
     }
-  }, [trackRef])
+  }, [])
+
+  useEffect(() => {
+    addEventListener('resize', () => {
+      if (trackRef.current) {
+        setOffsetX(trackRef.current.clientWidth)
+      }
+    })
+  }, [])
 
   return (
     <Track
