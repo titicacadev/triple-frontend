@@ -27,7 +27,7 @@
     "@sentry/nextjs": "^7.26.0",
     "@types/node-fetch": "^2.5.12",
     "isomorphic-fetch": "^2.2.1",
-    "next": "13.0.5",
+    "next": "13.1.1",
     "node-fetch": "^2.6.7"
   },
   "peerDependencies": {
