@@ -1,5 +1,19 @@
 # 마이그레이션 가이드
 
+## ~v11 to v12
+
+### ui renewal
+
+- 컴포넌트의 접근성, 스타일 관련 코드가 개편되었습니다.
+- [TF renewal-ui(v12.0.0) 업그레이드 가이드](https://titicaca.atlassian.net/wiki/spaces/dev/pages/3232759922/TF+renewal-ui+v12.0.0)
+
+## v10 to v11
+
+### i18n
+
+- TF에 국제화를 도입합니다.
+- [국제화(i18n) 적용 가이드](https://titicaca.atlassian.net/wiki/spaces/dev/pages/3241280391/i18n)
+
 ## v9 to v10
 
 ### react-contexts
