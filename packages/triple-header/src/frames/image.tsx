@@ -58,11 +58,11 @@ export default function ImageFrame({
     ? (EFFECTES[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
     : EFFECTES.none
 
-  return (
+  return Object.keys(image).length >= 0 ? (
     <ImageContainer width={width} height={height} canvasX={canvasX}>
       <EffectElement options={effect?.options}>
         <Image src={image.sizes.full.url} />
       </EffectElement>
     </ImageContainer>
-  )
+  ) : null
 }
