@@ -3,7 +3,7 @@ import { Container } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled, { css } from 'styled-components'
 
-import { IMAGE_EFFECTS, EffectData } from '../effects'
+import { EFFECTES, EffectData } from '../effects'
 
 export interface ImageFrame {
   type: 'image'
@@ -55,8 +55,8 @@ export default function ImageFrame({
   effect,
 }: Omit<ImageFrame, 'type'>) {
   const EffectElement = effect
-    ? (IMAGE_EFFECTS[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
-    : IMAGE_EFFECTS.none
+    ? (EFFECTES[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
+    : EFFECTES.none
 
   return (
     <ImageContainer width={width} height={height} canvasX={canvasX}>
