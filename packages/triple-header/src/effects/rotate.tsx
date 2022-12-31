@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
+import { InitialEffectOptions } from './types'
+
+type ExtendedEffectOptions = InitialEffectOptions & {
+  degree: number
+}
+
 export interface RotateProps {
   type: 'rotate'
-  options?: {
-    degree: number
-    infinity?: boolean
-    repeatType?: 'loop' | 'reverse' | 'mirror'
-  }
+  options?: ExtendedEffectOptions
   children: ReactNode
 }
 
