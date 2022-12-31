@@ -1,14 +1,7 @@
 import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
-export interface FadeInOutProps {
-  type: 'fadeInOut'
-  options?: {
-    infinity?: boolean
-    repeatType?: 'loop' | 'reverse' | 'mirror'
-  }
-  children: ReactNode
-}
+import { InitialEffectOptions } from './types'
 
 const variants = {
   enter: () => ({
@@ -20,6 +13,12 @@ const variants = {
   exit: () => ({
     opacity: 0,
   }),
+}
+
+export interface FadeInOutProps {
+  type: 'fadeInOut'
+  options?: InitialEffectOptions
+  children: ReactNode
 }
 
 export default function FadeInOut({
