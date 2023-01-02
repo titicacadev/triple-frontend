@@ -62,7 +62,7 @@ export default function TripleHeader({
     if (previewRef.current) {
       setClientWidth(previewRef.current.children[0].clientWidth)
     }
-  }, [])
+  }, [previewRef])
 
   useEffect(() => {
     addEventListener('resize', () => {
