@@ -58,7 +58,7 @@ export default function ImageFrame({
     ? (EFFECTES[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
     : EFFECTES.none
 
-  return Object.keys(image).length >= 0 ? (
+  return Object.keys(image).length > 0 ? (
     <ImageContainer width={width} height={height} canvasX={canvasX}>
       <EffectElement options={effect?.options}>
         <Image src={image.sizes.full.url} />
