@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ComponentType, Fragment } from 'react'
+import { useState, useEffect, useRef, ComponentType } from 'react'
 import { Container, MarginPadding } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
@@ -50,6 +50,28 @@ const Layer = styled(Container).attrs({
     `}
 `
 
+const FrameContainer = styled(Container)<{
+  widthRatio: number
+  heightRatio: number
+}>`
+  width: 100%;
+  height: 0;
+  margin: 0 auto;
+
+  ${({ heightRatio }) =>
+    heightRatio &&
+    css`
+      padding: ${heightRatio}% 0 0 0;
+      position: relative;
+    `}
+
+  ${({ widthRatio }) =>
+    widthRatio &&
+    css`
+      max-width: ${widthRatio}%;
+    `}
+`
+
 export default function TripleHeader({
   children,
 }: {
@@ -98,19 +120,22 @@ export default function TripleHeader({
             positioning={{ top: position.top, left: position.left }}
           >
             <LayerElement>
-              {frames.map(({ type, value, ...layout }, index) => {
+              {frames.map(({ type, width, height, value, effect }, index) => {
                 const FrameElement = FRAMES[type] as ComponentType<
                   Omit<FrameData, 'type'>
                 >
 
+                const widthRatio = width ? (width / canvas.width) * 100 : 0
+                const heightRatio = height ? (height / canvas.width) * 100 : 0
+
                 return (
-                  <Fragment key={index}>
-                    <FrameElement
-                      value={value}
-                      {...layout}
-                      canvasX={canvas.width}
-                    />
-                  </Fragment>
+                  <FrameContainer
+                    key={index}
+                    widthRatio={widthRatio}
+                    heightRatio={heightRatio}
+                  >
+                    <FrameElement value={value} effect={effect} />
+                  </FrameContainer>
                 )
               })}
             </LayerElement>

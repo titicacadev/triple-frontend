@@ -1,7 +1,6 @@
 import { ComponentType } from 'react'
-import { Container } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { EFFECTES, EffectData } from '../effects'
 
@@ -10,36 +9,10 @@ export interface ImageFrame {
   value: {
     image: ImageMeta
   }
-  canvasX: number
-  width: number
-  height: number
+  width?: number
+  height?: number
   effect?: Omit<EffectData, 'children'>
 }
-
-const ImageContainer = styled(Container)<{
-  canvasX: number
-  width: number
-  height: number
-}>`
-  width: 100%;
-  height: 0;
-  margin: 0 auto;
-
-  ${({ canvasX, height }) =>
-    canvasX &&
-    height &&
-    css`
-      padding: ${(height / canvasX) * 100}% 0 0 0;
-      position: relative;
-    `}
-
-  ${({ width, canvasX }) =>
-    width &&
-    canvasX &&
-    css`
-      max-width: ${(width / canvasX) * 100}%;
-    `}
-`
 
 const Image = styled.img`
   width: 100%;
@@ -49,9 +22,6 @@ const Image = styled.img`
 
 export default function ImageFrame({
   value: { image },
-  canvasX,
-  width,
-  height,
   effect,
 }: Omit<ImageFrame, 'type'>) {
   const EffectElement = effect
@@ -59,10 +29,8 @@ export default function ImageFrame({
     : EFFECTES.none
 
   return Object.keys(image).length > 0 ? (
-    <ImageContainer width={width} height={height} canvasX={canvasX}>
-      <EffectElement options={effect?.options}>
-        <Image src={image.sizes.full.url} />
-      </EffectElement>
-    </ImageContainer>
+    <EffectElement options={effect?.options}>
+      <Image src={image.sizes.full.url} />
+    </EffectElement>
   ) : null
 }
