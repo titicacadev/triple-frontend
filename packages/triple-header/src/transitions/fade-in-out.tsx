@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, Transition } from 'framer-motion'
 
 import { wrap } from '../utils'
 
