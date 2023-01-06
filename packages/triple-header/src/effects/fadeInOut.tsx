@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 
 import { InitialEffectOptions } from './types'
+import { stringifyTransition } from './common'
 
 const variants = {
   enter: () => ({
@@ -42,7 +43,7 @@ export default function FadeInOut({
 
   return (
     <motion.div
-      key={`fade_in_out_${initialOptions?.infinity || ''}`}
+      key={`fade_in_out_${stringifyTransition(transition)}`}
       variants={variants}
       style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       initial="enter"
