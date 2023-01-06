@@ -34,6 +34,7 @@ export default function Flying({
 
   return (
     <motion.div
+      key={`flying_${initialOptions?.infinity || ''}`}
       style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       initial={{ x: '150%', rotate: 0 }}
       animate={{ x: 0, rotate: initialOptions?.degree || 0 }}
