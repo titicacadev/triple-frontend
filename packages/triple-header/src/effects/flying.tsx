@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { motion } from 'framer-motion'
 
 import { InitialEffectOptions } from './types'
@@ -11,13 +11,12 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 export interface FlyingProps {
   type: 'rotate'
   options?: ExtendedEffectOptions
-  children: ReactNode
 }
 
 export default function Flying({
   children,
   options: initialOptions,
-}: FlyingProps) {
+}: PropsWithChildren<FlyingProps>) {
   const options = initialOptions
     ? {
         ...(initialOptions?.infinity && { repeat: Infinity }),

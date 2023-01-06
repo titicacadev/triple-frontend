@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
-export default function None({ children }: { children: ReactNode }) {
+export default function None({ children }: PropsWithChildren<unknown>) {
   return (
     <motion.div
       style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}

@@ -10,7 +10,7 @@ export interface TextFrame {
   }
   width?: number
   height?: number
-  effect?: Omit<EffectData, 'children'>
+  effect?: EffectData
 }
 
 export default function TextFrame({
