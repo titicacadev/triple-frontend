@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
 import { InitialEffectOptions } from './types'
+import { stringifyTransition } from './common'
 
 type ExtendedEffectOptions = InitialEffectOptions & {
   degree: number
@@ -33,6 +34,7 @@ export default function Rotate({
 
   return (
     <motion.div
+      key={`rotate_${stringifyTransition(transition)}`}
       animate={{ rotate: initialOptions?.degree || 0 }}
       style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       transition={transition}
