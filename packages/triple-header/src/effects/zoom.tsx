@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 import { motion } from 'framer-motion'
 
 import { InitialEffectOptions } from './types'
@@ -6,10 +6,12 @@ import { InitialEffectOptions } from './types'
 export interface ZoomProps {
   type: 'zoom'
   options?: InitialEffectOptions
-  children: ReactNode
 }
 
-export default function Zoom({ children, options: initialOptions }: ZoomProps) {
+export default function Zoom({
+  children,
+  options: initialOptions,
+}: PropsWithChildren<ZoomProps>) {
   const options = initialOptions
     ? {
         ...(initialOptions.infinity && { repeat: Infinity }),

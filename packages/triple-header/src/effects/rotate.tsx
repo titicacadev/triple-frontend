@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { InitialEffectOptions } from './types'
 
@@ -10,13 +10,12 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 export interface RotateProps {
   type: 'rotate'
   options?: ExtendedEffectOptions
-  children: ReactNode
 }
 
 export default function Rotate({
   children,
   options: initialOptions,
-}: RotateProps) {
+}: PropsWithChildren<RotateProps>) {
   const options = initialOptions
     ? {
         ...(initialOptions?.infinity && { repeat: Infinity }),

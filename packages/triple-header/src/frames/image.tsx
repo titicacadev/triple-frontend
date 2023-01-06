@@ -11,7 +11,7 @@ export interface ImageFrame {
   }
   width?: number
   height?: number
-  effect?: Omit<EffectData, 'children'>
+  effect?: EffectData
 }
 
 const Image = styled.img`
