@@ -24,7 +24,7 @@ export default function Zoom({
 
   const transition = {
     ease: 'linear',
-    duration: 1,
+    duration: 3,
     ...options,
   }
 
