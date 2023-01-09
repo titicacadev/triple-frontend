@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ComponentType } from 'react'
+import { useState, ComponentType, useCallback } from 'react'
 import { Container, MarginPadding } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
@@ -78,20 +78,11 @@ export default function TripleHeader({
   children: TripleHeaderProps
 }) {
   const [clientWidth, setClientWidth] = useState<number | undefined>(undefined)
-  const previewRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (previewRef.current) {
-      setClientWidth(previewRef.current.children[0].clientWidth)
+  const previewRef = useCallback((node: HTMLDivElement) => {
+    if (node !== null) {
+      setClientWidth(node.children[0].clientWidth)
     }
-  }, [previewRef])
-
-  useEffect(() => {
-    addEventListener('resize', () => {
-      if (previewRef.current) {
-        setClientWidth(previewRef.current.clientWidth)
-      }
-    })
   }, [])
 
   const { canvas, layers } = children
