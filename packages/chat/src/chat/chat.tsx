@@ -38,6 +38,10 @@ export interface ChatProps {
    * me(sender), others(receiver)에 대한 기본 정보
    */
   userInfo: UserInfoInterface
+  /**
+   * 초기 메시지들
+   */
+  messages?: MessageInterface[]
   postMessage?: PostMessageType
   getMessages: (option: {
     roomId: string
@@ -63,6 +67,7 @@ export const Chat = ({
   displayTarget,
   userInfo,
   room,
+  messages: initMessages,
 
   postMessage,
   getMessages,
@@ -139,18 +144,31 @@ export const Chat = ({
 
   useEffect(() => {
     ;(async function () {
-      const result = await getMessages({
-        roomId: room.id,
-        backward: true,
-        lastMessageId: Number(room.lastMessageId) + 1,
-      })
+      if (!room.id) {
+        return
+      }
 
-      result &&
-        dispatch({
-          action: ChatActions.INIT,
-          messages: result,
-          lastMessageId: Number(room.lastMessageId),
+      if (!initMessages) {
+        const result = await getMessages({
+          roomId: room.id,
+          backward: true,
+          lastMessageId: Number(room.lastMessageId) + 1,
         })
+
+        result &&
+          dispatch({
+            action: ChatActions.INIT,
+            messages: result,
+            lastMessageId: Number(room.lastMessageId),
+          })
+      } else {
+        initMessages.length > 0 &&
+          dispatch({
+            action: ChatActions.INIT,
+            messages: initMessages,
+            lastMessageId: Number(room.lastMessageId),
+          })
+      }
 
       await updateUnread()
 
@@ -158,7 +176,7 @@ export const Chat = ({
         scrollDown()
       }, 0)
     })()
-  }, [room.id]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [room, initMessages]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     fetchJob.add('refreshChatRoom', () => pollingFetchJob())
