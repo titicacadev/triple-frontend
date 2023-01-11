@@ -30,6 +30,7 @@ const Layer = styled(Container).attrs({
   positioning: MarginPadding
 }>`
   width: 100%;
+  overflow: hidden;
 
   ${({ zIndex }) =>
     zIndex &&
