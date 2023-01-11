@@ -84,6 +84,7 @@ export default function TripleHeader({
   const previewRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
       setNode(node)
+      setClientWidth(node.children[0].clientWidth)
     }
   }, [])
 
