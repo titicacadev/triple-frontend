@@ -241,20 +241,22 @@ function ReviewContainer({
     ),
   )
 
-  const handleFullListButtonClick = useAppCallback(
+  const trackOnFullListButtonClick = () => {
+    trackEvent({
+      ga: ['리뷰_리스트더보기_선택'],
+      fa: {
+        action: '리뷰_리스트더보기_선택',
+        item_id: resourceId,
+        tab_name: latestReview ? '최신순' : '추천순',
+      },
+    })
+  }
+
+  const fullListButtonClickCallback = useAppCallback(
     TransitionType.Review,
     useSessionCallback(
       useCallback(
         (e: SyntheticEvent) => {
-          trackEvent({
-            ga: ['리뷰_리스트더보기_선택'],
-            fa: {
-              action: '리뷰_리스트더보기_선택',
-              item_id: resourceId,
-              tab_name: latestReview ? '최신순' : '추천순',
-            },
-          })
-
           e.stopPropagation()
 
           navigateReviewList(
@@ -277,9 +279,7 @@ function ReviewContainer({
           )
         },
         [
-          trackEvent,
           resourceId,
-          latestReview,
           navigateReviewList,
           recentTrip,
           isMorePage,
@@ -291,6 +291,11 @@ function ReviewContainer({
       ),
     ),
   )
+
+  const handleFullListButtonClick = (e: SyntheticEvent) => {
+    trackOnFullListButtonClick()
+    fullListButtonClickCallback(e)
+  }
 
   const handleSortingOptionSelect: SortingOptionsProps['onSelect'] = (
     _,

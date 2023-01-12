@@ -44,9 +44,8 @@ export default function ReviewsList({
 }) {
   const { t } = useTranslation('common-web')
 
-  const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
-    undefined,
-  )
+  const [selectedReview, setSelectedReview] =
+    useState<ReviewData | undefined>(undefined)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -97,40 +96,23 @@ export default function ReviewsList({
     ),
   )
 
-  const handleReviewClick = useCallback(
-    (e: SyntheticEvent, reviewId: string, recentTrip: boolean) => {
-      e.preventDefault()
-      e.stopPropagation()
-      trackEvent({
-        ga: ['리뷰_리뷰내용_선택', reviewId],
-        fa: {
-          action: '리뷰_리뷰내용_선택',
-          item_id: reviewId,
-          resource_id: resourceId,
-          ...(recentTrip && { recent_trip: '최근여행' }),
-        },
-      })
-      navigateReviewDetail({ reviewId, regionId, resourceId })
-    },
-    [trackEvent, resourceId, navigateReviewDetail, regionId],
+  const handleReviewClick = useAppCallback(
+    TransitionType.Review,
+    useCallback(
+      (e: SyntheticEvent, reviewId: string) => {
+        e.preventDefault()
+        e.stopPropagation()
+        navigateReviewDetail({ reviewId, regionId, resourceId })
+      },
+      [resourceId, navigateReviewDetail, regionId],
+    ),
   )
 
   const handleMessageCountClick = useAppCallback(
     TransitionType.General,
     useSessionCallback(
       useCallback(
-        (e: SyntheticEvent, reviewId: string, resourceType: string) => {
-          trackEvent({
-            ga: ['리뷰_댓글_선택', reviewId],
-            fa: {
-              action: '리뷰_댓글_선택',
-              item_id: reviewId,
-              resource_id: resourceId,
-              region_id: regionId,
-              content_type: resourceType,
-            },
-          })
-
+        (e: SyntheticEvent, reviewId: string) => {
           navigateReviewDetail({
             reviewId,
             regionId,
@@ -138,7 +120,7 @@ export default function ReviewsList({
             anchor: 'reply',
           })
         },
-        [navigateReviewDetail, regionId, resourceId, trackEvent],
+        [navigateReviewDetail, regionId, resourceId],
       ),
     ),
   )
@@ -168,6 +150,7 @@ export default function ReviewsList({
             onReviewClick={handleReviewClick}
             onMessageCountClick={handleMessageCountClick}
             resourceId={resourceId}
+            regionId={regionId}
             DateFormatter={Timestamp}
             onShow={handleShow}
             isMorePage={isMorePage}

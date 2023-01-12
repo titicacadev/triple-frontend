@@ -40,20 +40,13 @@ export interface ReviewElementProps {
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onMenuClick: ReviewEventHandler
-  onReviewClick: (
-    e: SyntheticEvent,
-    reviewId: string,
-    recentTrip: boolean,
-  ) => void
-  onMessageCountClick: (
-    e: SyntheticEvent,
-    reviewId: string,
-    resourceType: string,
-  ) => void
+  onReviewClick: (e: SyntheticEvent, reviewId: string) => void
+  onMessageCountClick: (e: SyntheticEvent, reviewId: string) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
   DateFormatter?: ComponentType<{ date: string }>
   resourceId: string
+  regionId?: string
   isMorePage: boolean
 }
 
@@ -127,6 +120,7 @@ function ReviewElement({
   DateFormatter,
   reviewRateDescriptions,
   resourceId,
+  regionId,
   isMorePage,
 }: ReviewElementProps) {
   const { t } = useTranslation('common-web')
@@ -205,9 +199,18 @@ function ReviewElement({
           <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
         ) : null}
         <Content
-          onClick={(e: SyntheticEvent) =>
-            onReviewClick(e, review.id, review.recentTrip)
-          }
+          onClick={(e: SyntheticEvent) => {
+            trackEvent({
+              ga: ['리뷰_리뷰내용_선택', review.id],
+              fa: {
+                action: '리뷰_리뷰내용_선택',
+                item_id: review.id,
+                resource_id: resourceId,
+                ...(recentTrip && { recent_trip: '최근여행' }),
+              },
+            })
+            onReviewClick(e, review.id)
+          }}
         >
           {blindedAt ? (
             t([
@@ -272,9 +275,19 @@ function ReviewElement({
             display="inline-block"
             position="relative"
             isCommaVisible={!blindedAt}
-            onClick={(e: SyntheticEvent) =>
-              onMessageCountClick(e, review.id, resourceType)
-            }
+            onClick={(e: SyntheticEvent) => {
+              trackEvent({
+                ga: ['리뷰_댓글_선택', review.id],
+                fa: {
+                  action: '리뷰_댓글_선택',
+                  item_id: review.id,
+                  resource_id: resourceId,
+                  region_id: regionId,
+                  content_type: resourceType,
+                },
+              })
+              onMessageCountClick(e, review.id)
+            }}
             css={{
               height: 18,
               marginTop: 5,
