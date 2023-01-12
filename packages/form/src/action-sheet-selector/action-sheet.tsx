@@ -79,7 +79,7 @@ export default function ActionSheetWrapper({
             }
           }}
         >
-          {t('seontaegwanryo')}
+          {t(['seontaegwanryo', '선택완료'])}
         </DrawerButton>
       )}
     </>

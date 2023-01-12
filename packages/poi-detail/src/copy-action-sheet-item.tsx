@@ -14,7 +14,7 @@ export default function CopyActionSheetItem({
   const handleClick = useCallback(() => value && onCopy(value), [value, onCopy])
 
   return value ? (
-    <ActionSheetItem onClick={handleClick} buttonLabel={t('bogsa')}>
+    <ActionSheetItem onClick={handleClick} buttonLabel={t(['bogsa', '복사'])}>
       {value}
     </ActionSheetItem>
   ) : null

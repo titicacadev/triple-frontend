@@ -26,8 +26,8 @@ export default function SortingOptions({
   const { t } = useTranslation('common-web')
 
   const sortingOptions = [
-    { key: ORDER_BY_RECOMMENDATION, text: t('cuceonsun') },
-    { key: ORDER_BY_RECENCY, text: t('coesinsun') },
+    { key: ORDER_BY_RECOMMENDATION, text: t(['cuceonsun', '추천순']) },
+    { key: ORDER_BY_RECENCY, text: t(['coesinsun', '최신순']) },
   ]
 
   return (

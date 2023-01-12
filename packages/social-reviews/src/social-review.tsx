@@ -33,7 +33,7 @@ function SocialReviews({
 
   return (
     <ExternalLinks
-      title={t('sosyeol-ribyu')}
+      title={t(['sosyeol-ribyu', '소셜 리뷰'])}
       externalLinks={socialReviews.map(
         ({ imageUrl, publisher: meta, title, url }) => ({
           data: url,

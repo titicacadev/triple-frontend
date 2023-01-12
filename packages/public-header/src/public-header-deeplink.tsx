@@ -29,7 +29,7 @@ export function PublicHeaderDeeplink({ deeplinkPath }: Props) {
           })
         }
       >
-        {t('aebeseo-bogi')}
+        {t(['aebeseo-bogi', '앱에서 보기'])}
       </ExtraActionItem>
     </>
   )

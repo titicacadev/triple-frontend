@@ -125,7 +125,10 @@ function RecommendedArticles({
             textAlign: 'center',
           }}
         >
-          {t('nohcigi-aggaun-i-jiyeog-ggul-jeongbo')}
+          {t([
+            'nohcigi-aggaun-i-jiyeog-ggul-jeongbo',
+            '놓치기 아까운 이 지역 꿀 정보',
+          ])}
         </H1>
 
         <Carousel
@@ -159,7 +162,7 @@ function RecommendedArticles({
           )}
         >
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            {t('yeohaeng-jeongbo-deobogi')}
+            {t(['yeohaeng-jeongbo-deobogi', '여행 정보 더보기'])}
           </MoreButton>
         </Container>
       </Responsive>
@@ -169,7 +172,10 @@ function RecommendedArticles({
             margin: '0 0 0 30px',
           }}
         >
-          {t('nohcigi-aggaun-ni-jiyeog-ggul-jeongbo')}
+          {t([
+            'nohcigi-aggaun-ni-jiyeog-ggul-jeongbo',
+            '놓치기 아까운\n이 지역 꿀 정보',
+          ])}
         </H1>
 
         <Carousel
@@ -203,7 +209,7 @@ function RecommendedArticles({
           )}
         >
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            {t('yeohaeng-jeongbo-deobogi')}
+            {t(['yeohaeng-jeongbo-deobogi', '여행 정보 더보기'])}
           </MoreButton>
         </Container>
       </Responsive>

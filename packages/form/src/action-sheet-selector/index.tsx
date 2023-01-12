@@ -51,7 +51,7 @@ function ActionSheetSelector({
       ? []
       : [
           {
-            label: t('seontaeghagi'),
+            label: t(['seontaeghagi', '선택하기']),
             value: null,
           },
         ]),
@@ -65,7 +65,7 @@ function ActionSheetSelector({
       <Container onClick={onOpen}>
         <FieldContainer error={!!error}>
           <Text size="large" alpha={selected ? 1 : 0.5}>
-            {selected ? selected.label : t('seontaeghagi')}
+            {selected ? selected.label : t(['seontaeghagi', '선택하기'])}
           </Text>
           <ArrowDown />
         </FieldContainer>

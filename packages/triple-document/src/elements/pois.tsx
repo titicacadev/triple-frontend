@@ -98,7 +98,9 @@ function renderPoiListActionButton({
     return (
       <PoiPrice>
         <Text bold size="mini">
-          {nightlyPrice ? `₩${nightlyPrice.toLocaleString()}` : t('bogi')}
+          {nightlyPrice
+            ? `₩${nightlyPrice.toLocaleString()}`
+            : t(['bogi', '보기'])}
         </Text>
       </PoiPrice>
     )

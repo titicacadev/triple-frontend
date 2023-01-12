@@ -156,18 +156,18 @@ function NearbyPois({
           margin: '0 0 20px',
         }}
       >
-        {t('geunceoyi-cuceon-jangso')}
+        {t(['geunceoyi-cuceon-jangso', '근처의 추천 장소'])}
       </H1>
 
       <Tabs variant="basic" value={currentTab} onChange={handleTabChange}>
         <TabList>
-          <Tab value="attraction">{t('gwangwang')}</Tab>
-          <Tab value="restaurant">{t('masjib')}</Tab>
+          <Tab value="attraction">{t(['gwangwang', '관광'])}</Tab>
+          <Tab value="restaurant">{t(['masjib', '맛집'])}</Tab>
         </TabList>
         <TabPanel value={currentTab}>
           {pois.length === 0 && hasMore === false ? (
             <Paragraph center margin={{ top: 70 }}>
-              {t('jangsoga-eobsseubnida.')}
+              {t(['jangsoga-eobsseubnida.', '장소가 없습니다.'])}
             </Paragraph>
           ) : (
             <>
@@ -193,7 +193,7 @@ function NearbyPois({
                   disabled={fetching}
                   onClick={handleLoadMore}
                 >
-                  {t('deo-manheun-jangso-bogi')}
+                  {t(['deo-manheun-jangso-bogi', '더 많은 장소 보기'])}
                 </Button>
               )}
             </>

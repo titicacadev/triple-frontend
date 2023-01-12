@@ -7,9 +7,11 @@ export function convertPriceInThousands(price: number) {
 
   const flooredPrice = Math.floor(price / 1000)
   if (flooredPrice === 0) {
-    return t('weon')
+    return t(['weon', '원'])
   } else {
-    return ` ${t('flooredprice-ceonweon', { flooredPrice })}`
+    return ` ${t(['flooredprice-ceonweon', '{{flooredPrice}}천원'], {
+      flooredPrice,
+    })}`
   }
 }
 
@@ -26,19 +28,27 @@ export function convertPrice(price: number) {
 
   switch (true) {
     case price % 1000 !== 0 || price < 1000:
-      return t('formattedprice-weon', { formattedPrice })
+      return t(['formattedprice-weon', '{{formattedPrice}}원'], {
+        formattedPrice,
+      })
 
     case price < 10000:
       return convertPriceInThousands(price)
 
     case price < 10000000:
-      return t('flooredprice-man-convertedprice', {
-        flooredPrice,
-        convertedPrice,
-      })
+      return t(
+        [
+          'flooredprice-man-convertedprice',
+          '{{flooredPrice}}만{{convertedPrice}}',
+        ],
+        {
+          flooredPrice,
+          convertedPrice,
+        },
+      )
 
     default: {
-      return t('coedae-geumaeg-cogwa')
+      return t(['coedae-geumaeg-cogwa', '최대 금액 초과'])
     }
   }
 }

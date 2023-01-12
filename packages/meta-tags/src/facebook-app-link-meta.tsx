@@ -22,12 +22,12 @@ export function FacebookAppLinkMeta({
       <meta
         key="al-ios-app-name"
         property="al:ios:app_name"
-        content={appName ?? t('teuripeul')}
+        content={appName ?? t(['teuripeul', '트리플'])}
       />
       <meta
         key="al-android-app-name"
         property="al:android:app_name"
-        content={appName ?? t('teuripeul')}
+        content={appName ?? t(['teuripeul', '트리플'])}
       />
       <meta
         key="al-ios-url"

@@ -198,7 +198,7 @@ function PoiCardElement({
                   color="blue"
                   margin={{ right: 4 }}
                 >
-                  {t('distance-inae', { distance })}
+                  {t(['distance-inae', '{{distance}} 이내'], { distance })}
                 </Text>
               ) : null}
 
@@ -206,7 +206,13 @@ function PoiCardElement({
               {priceLabelOverride ||
                 (nightlyPrice !== undefined ? (
                   <Text inlineBlock size="small">
-                    {t('formattednightlyprice-weon', { formattedNightlyPrice })}
+                    {t(
+                      [
+                        'formattednightlyprice-weon',
+                        '{{formattedNightlyPrice}}원',
+                      ],
+                      { formattedNightlyPrice },
+                    )}
                   </Text>
                 ) : null)}
             </Container>

@@ -34,7 +34,12 @@ export function useDisabledLinkNotifierCreator({
   }: AllowSourceProps) => {
     if (allowSource === 'none') {
       return () => {
-        alert(t('jeobgeunhal-su-eobsneun-ringkeuibnida.'))
+        alert(
+          t([
+            'jeobgeunhal-su-eobsneun-ringkeuibnida.',
+            '접근할 수 없는 링크입니다.',
+          ]),
+        )
       }
     }
 

@@ -40,7 +40,7 @@ export function PermanentlyClosedNote({
   return (
     <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
       <Text bold size="small" color="white">
-        {t('deoisang-unyeonghaji-anhseubnida.')}
+        {t(['deoisang-unyeonghaji-anhseubnida.', '더이상 운영하지 않습니다.'])}
       </Text>
     </NoteContainer>
   )
@@ -75,10 +75,22 @@ export function BusinessHoursNote({
     >
       <Text bold size="small" color="white">
         {currentBusinessHours
-          ? t('yeongeobjung-todaybusinesshours', { todayBusinessHours })
+          ? t(
+              [
+                'yeongeobjung-todaybusinesshours',
+                '영업중 {{todayBusinessHours}}',
+              ],
+              { todayBusinessHours },
+            )
           : todayBusinessHours
-          ? t('yeongeobjunbijung-todaybusinesshours', { todayBusinessHours })
-          : t('hyumuil')}
+          ? t(
+              [
+                'yeongeobjunbijung-todaybusinesshours',
+                '영업준비중 {{todayBusinessHours}}',
+              ],
+              { todayBusinessHours },
+            )
+          : t(['hyumuil', '휴무일'])}
       </Text>
     </NoteContainer>
   )

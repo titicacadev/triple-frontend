@@ -50,7 +50,10 @@ export const WebStorageErrorBoundary = withTranslation('common-web')(
         return (
           <Alert
             open
-            title={t('munjega-balsaenghaessseubnida.')}
+            title={t([
+              'munjega-balsaenghaessseubnida.',
+              '문제가 발생했습니다.',
+            ])}
             onConfirm={onConfirm}
           >
             {error.userGuideMessage}

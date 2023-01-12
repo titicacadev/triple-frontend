@@ -115,7 +115,7 @@ function DetailHeaderV2({
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
                 <ArrowButton onClick={onReviewsRatingClick}>
-                  {t('ribyubogi')}
+                  {t(['ribyubogi', '리뷰보기'])}
                 </ArrowButton>
               </Text>
             ) : null}
@@ -127,7 +127,9 @@ function DetailHeaderV2({
           vicinity={vicinity}
           arrowAction={
             onAreaClick ? (
-              <ArrowButton onClick={onAreaClick}>{t('jidobogi')}</ArrowButton>
+              <ArrowButton onClick={onAreaClick}>
+                {t(['jidobogi', '지도보기'])}
+              </ArrowButton>
             ) : null
           }
         />

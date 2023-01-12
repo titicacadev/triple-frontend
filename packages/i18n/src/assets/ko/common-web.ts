@@ -191,4 +191,4 @@ export const koCommonWeb = {
   'selpeupaekiji-cugahalin-ganeung': '셀프패키지 추가할인 가능',
   gwangwang: '관광',
   masjib: '맛집',
-}
+} as const

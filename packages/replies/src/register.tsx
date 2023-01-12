@@ -77,8 +77,10 @@ function Register(
   })
 
   const placeholder = parentMessageId
-    ? placeholders?.childReply || t('dabgeuleul-ibryeoghaseyo.')
-    : placeholders?.reply || t('daesgeuleul-ibryeoghaseyo.')
+    ? placeholders?.childReply ||
+      t(['dabgeuleul-ibryeoghaseyo.', '답글을 입력하세요.'])
+    : placeholders?.reply ||
+      t(['daesgeuleul-ibryeoghaseyo.', '댓글을 입력하세요.'])
 
   return (
     <Container
@@ -112,7 +114,7 @@ function Register(
           }}
           active={!!plaintext}
         >
-          {t('deungrog')}
+          {t(['deungrog', '등록'])}
         </RegisterButton>
       </FlexBox>
 

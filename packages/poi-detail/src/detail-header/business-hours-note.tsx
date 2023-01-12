@@ -39,8 +39,14 @@ export default function BusinessHoursNote({
           onClick={onClick}
         >
           {todayBusinessHours
-            ? t('yeongeobjunbijung-todaybusinesshours', { todayBusinessHours })
-            : t('hyumuil')}
+            ? t(
+                [
+                  'yeongeobjunbijung-todaybusinesshours',
+                  '영업준비중 {{todayBusinessHours}}',
+                ],
+                { todayBusinessHours },
+              )
+            : t(['hyumuil', '휴무일'])}
         </Text>
 
         <IconBox>

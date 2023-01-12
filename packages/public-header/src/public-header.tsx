@@ -128,7 +128,7 @@ export function PublicHeader({
 
         <ExtraActionsContainer>
           <ExtraActionItem href={linkHref} onClick={onClick}>
-            {linkLabel ?? t('nae-yeyag')}
+            {linkLabel ?? t(['nae-yeyag', '내 예약'])}
           </ExtraActionItem>
           {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
         </ExtraActionsContainer>

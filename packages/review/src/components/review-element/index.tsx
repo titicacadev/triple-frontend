@@ -206,7 +206,10 @@ function ReviewElement({
           }
         >
           {blindedAt ? (
-            t('singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.')
+            t([
+              'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
+              '신고가 접수되어 블라인드 처리되었습니다.',
+            ])
           ) : comment ? (
             unfolded ? (
               comment
@@ -396,16 +399,22 @@ function RecentReviewInfo({
             alt="recent-trip-icon"
           />
           <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
-            {t('coegeun-yeohaeng')}
+            {t(['coegeun-yeohaeng', '최근 여행'])}
           </Text>
         </>
       ) : null}
       {visitDate ? (
         <Text size={14} color="gray700">
-          {t('visityear-nyeon-visitmonth-weol-yeohaeng', {
-            visitYear,
-            visitMonth,
-          })}
+          {t(
+            [
+              'visityear-nyeon-visitmonth-weol-yeohaeng',
+              '{{visitYear}}년 {{visitMonth}}월 여행',
+            ],
+            {
+              visitYear,
+              visitMonth,
+            },
+          )}
         </Text>
       ) : null}
     </FlexBox>

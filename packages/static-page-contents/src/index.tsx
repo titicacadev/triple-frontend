@@ -92,14 +92,23 @@ export function StaticPageContents({
         />
       )
     case !init:
-      return <NoContent>{t('keontenceureul-rodingjungibnida.')}</NoContent>
+      return (
+        <NoContent>
+          {t(['keontenceureul-rodingjungibnida.', '컨텐츠를 로딩중입니다.'])}
+        </NoContent>
+      )
     default:
       if (onFallback) {
         return onFallback()
       }
 
       return (
-        <NoContent>{t('keontenceureul-bulreool-su-eobsseubnida.')}</NoContent>
+        <NoContent>
+          {t([
+            'keontenceureul-bulreool-su-eobsseubnida.',
+            '컨텐츠를 불러올 수 없습니다.',
+          ])}
+        </NoContent>
       )
   }
 }

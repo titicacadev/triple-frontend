@@ -339,7 +339,13 @@ function ReviewContainer({
         {shortened ? (
           <>
             {(totalReviewsCount || 0) > 0 ? (
-              <Trans i18nKey="ribyu-totalreviewscount" ns="common-web">
+              <Trans
+                i18nKey={[
+                  'ribyu-totalreviewscount',
+                  '<0>리뷰</0><1> {{totalReviewsCount}}</1>',
+                ]}
+                ns="common-web"
+              >
                 <Text bold size="huge" color="gray" alpha={1} inline />
                 <Text bold size="huge" color="blue" alpha={1} inline>
                   <>{{ totalReviewsCount: formatNumber(totalReviewsCount) }}</>
@@ -348,7 +354,13 @@ function ReviewContainer({
             ) : null}
           </>
         ) : (
-          <Trans i18nKey="totalreviewscount-gaeyi-ribyu" ns="common-web">
+          <Trans
+            i18nKey={[
+              'totalreviewscount-gaeyi-ribyu',
+              '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
+            ]}
+            ns="common-web"
+          >
             <Text bold size="huge" color="blue" alpha={1} inline>
               <>{{ totalReviewsCount: formatNumber(totalReviewsCount) }}</>
             </Text>
@@ -429,7 +441,13 @@ function ReviewContainer({
                     : handleFullListButtonClick
                 }
               >
-                {t('numofrestreviews-gae-ribyu-deobogi', { numOfRestReviews })}
+                {t(
+                  [
+                    'numofrestreviews-gae-ribyu-deobogi',
+                    '{{numOfRestReviews}}개 리뷰 더보기',
+                  ],
+                  { numOfRestReviews },
+                )}
               </Button>
             </Container>
           ) : null}
@@ -453,12 +471,17 @@ function ReviewContainer({
               }}
             >
               <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-                {t('ribyu-sseumyeon-yeohaengja-keulreob-coedae-3pointeu')}
+                {t([
+                  'ribyu-sseumyeon-yeohaengja-keulreob-coedae-3pointeu',
+                  '리뷰 쓰면 여행자 클럽 최대 3포인트!',
+                ])}
               </Text>
               <Text color="blue" size="small" lineHeight={1.7}>
-                {t('pointeubyeol-hyetaeg-bogi')}
+                {t(['pointeubyeol-hyetaeg-bogi', '포인트별 혜택 보기'])}
               </Text>
-              <BulletRight alt={t('pointeubyeol-hyetaeg-bogi')} />
+              <BulletRight
+                alt={t(['pointeubyeol-hyetaeg-bogi', '포인트별 혜택 보기'])}
+              />
             </MileageButton>
           ) : null}
         </>

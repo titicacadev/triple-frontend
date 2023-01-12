@@ -34,20 +34,31 @@ export class WebStorageError extends CustomError {
   public get userGuideMessage() {
     switch (this.type) {
       case 'notBrowser':
-        return this.t('beuraujeoeseo-sayonghaejuseyo.')
+        return this.t([
+          'beuraujeoeseo-sayonghaejuseyo.',
+          '브라우저에서 사용해주세요.',
+        ])
       case 'quotaExceeded':
         if (this.storageType === 'sessionStorage') {
-          return this.t(
+          return this.t([
             'beuraujeoreul-wanjeonhi-jongryohago-dasi-jeobsoghae-juseyo.',
-          )
+            '브라우저를 완전히 종료하고 다시 접속해 주세요.',
+          ])
         }
-        return this.t('beuraujeo-kaesireul-modu-biweojuseyo.')
+        return this.t([
+          'beuraujeo-kaesireul-modu-biweojuseyo.',
+          '브라우저 캐시를 모두 비워주세요.',
+        ])
       case 'unavailable':
-        return this.t('beuraujeoyi-kuki-cadan-seoljeongeul-haejehaejuseyo.')
+        return this.t([
+          'beuraujeoyi-kuki-cadan-seoljeongeul-haejehaejuseyo.',
+          '브라우저의 쿠키 차단 설정을 해제해주세요.',
+        ])
       default:
-        return this.t(
+        return this.t([
           'al-su-eobsneun-ereoga-balsaenghaessseubnida.-jamsi-hu-dasi-sidohae-juseyo.',
-        )
+          '알 수 없는 에러가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+        ])
     }
   }
 
