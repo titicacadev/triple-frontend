@@ -30,24 +30,20 @@ const Layer = styled(Container).attrs({
   positioning: MarginPadding
 }>`
   width: 100%;
-  overflow: hidden;
 
   ${({ zIndex }) =>
     zIndex &&
     css`
       z-index: ${zIndex};
     `}
-
   ${({ positioning }) =>
-    positioning.top &&
     css`
-      top: ${positioning.top}%;
+      top: ${positioning.top || 0}%;
     `}
 
   ${({ positioning }) =>
-    positioning.left &&
     css`
-      left: ${positioning.left}%;
+      left: ${positioning.left || 0}%;
     `}
 `
 
