@@ -44,8 +44,9 @@ export default function ReviewsList({
 }) {
   const { t } = useTranslation('common-web')
 
-  const [selectedReview, setSelectedReview] =
-    useState<ReviewData | undefined>(undefined)
+  const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
+    undefined,
+  )
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -101,11 +102,11 @@ export default function ReviewsList({
       e.preventDefault()
       e.stopPropagation()
       trackEvent({
-        ga: ['리뷰_리뷰선택', resourceId],
+        ga: ['리뷰_리뷰내용_선택', reviewId],
         fa: {
-          action: '리뷰_리뷰선택',
-          item_id: resourceId,
-          review_id: reviewId,
+          action: '리뷰_리뷰내용_선택',
+          item_id: reviewId,
+          resource_id: resourceId,
           ...(recentTrip && { recent_trip: '최근여행' }),
         },
       })

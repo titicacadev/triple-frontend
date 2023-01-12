@@ -46,7 +46,7 @@ const MODAL_CONTENT: {
   },
   [TransitionType.Scrap]: {},
   [TransitionType.Review]: {
-    eventLabel: '리뷰_리뷰글더보기',
+    eventLabel: '리뷰_리뷰글더보기_선택',
   },
   [TransitionType.ReviewWrite]: {
     eventLabel: '리뷰_리뷰쓰기',
