@@ -315,8 +315,9 @@ function ReviewContainer({
     setRecentTrip((prevState) => !prevState)
 
     trackEvent({
+      ga: ['리뷰_최근여행_선택'],
       fa: {
-        action: '최근여행_선택',
+        action: '리뷰_최근여행_선택',
         selected: String(recentTrip === false),
       },
     })
