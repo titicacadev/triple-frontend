@@ -146,14 +146,14 @@ function ReviewElement({
 
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
-      const actionName = `리뷰_땡쓰${liked ? '취소' : ''}`
+      const actionName = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
       trackEvent({
-        ga: [actionName],
+        ga: [actionName, review.id],
         fa: {
           action: actionName,
-          review_id: review.id,
-          item_id: resourceId,
+          item_id: review.id,
+          resource_id: resourceId,
         },
       })
 
@@ -219,11 +219,11 @@ function ReviewElement({
                 hasImage={(media || []).length > 0}
                 onUnfoldButtonClick={(e) => {
                   trackEvent({
-                    ga: ['리뷰_리뷰글더보기'],
+                    ga: ['리뷰_리뷰글더보기_선택'],
                     fa: {
-                      action: '리뷰_리뷰글더보기',
-                      item_id: resourceId,
-                      review_id: review.id,
+                      action: '리뷰_리뷰글더보기_선택',
+                      item_id: review.id,
+                      resource_id: resourceId,
                     },
                   })
                   setUnfolded(true)
