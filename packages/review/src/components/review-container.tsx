@@ -247,9 +247,9 @@ function ReviewContainer({
       useCallback(
         (e: SyntheticEvent) => {
           trackEvent({
-            ga: ['리뷰_리뷰더보기_선택'],
+            ga: ['리뷰_리스트더보기_선택'],
             fa: {
-              action: '리뷰_리뷰더보기_선택',
+              action: '리뷰_리스트더보기_선택',
               item_id: resourceId,
               tab_name: latestReview ? '최신순' : '추천순',
             },
