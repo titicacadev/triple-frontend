@@ -121,11 +121,11 @@ export default function ReviewsList({
       useCallback(
         (e: SyntheticEvent, reviewId: string, resourceType: string) => {
           trackEvent({
-            ga: ['리뷰_댓글', regionId],
+            ga: ['리뷰_댓글_선택', reviewId],
             fa: {
-              action: '리뷰_댓글',
-              item_id: resourceId,
-              review_id: reviewId,
+              action: '리뷰_댓글_선택',
+              item_id: reviewId,
+              resource_id: resourceId,
               region_id: regionId,
               content_type: resourceType,
             },
