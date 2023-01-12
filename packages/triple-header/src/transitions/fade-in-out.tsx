@@ -13,9 +13,9 @@ const FadeInOutContainer = styled(motion.div)`
 const variants = {
   active: () => ({
     opacity: [0, 1],
-    transition: { duration: 0.5 },
+    transition: { duration: 1.5 },
   }),
-  exit: () => ({ opacity: 0, transition: { duration: 0.5 } }),
+  exit: () => ({ opacity: 0, transition: { duration: 1 } }),
 }
 
 export default function FadeInOut({ children }: { children: ReactNode[] }) {
@@ -23,7 +23,7 @@ export default function FadeInOut({ children }: { children: ReactNode[] }) {
   const index = wrap(0, children.length, page)
 
   useEffect(() => {
-    const timer = setInterval(() => setPage((prev) => prev + 1), 1200)
+    const timer = setInterval(() => setPage((prev) => prev + 1), 3000)
 
     return () => clearInterval(timer)
   }, [page])
