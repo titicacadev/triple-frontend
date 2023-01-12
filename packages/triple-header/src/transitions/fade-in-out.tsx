@@ -1,47 +1,43 @@
 import { useEffect, useState, ReactNode } from 'react'
-import { AnimatePresence, motion, Transition } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import styled from 'styled-components'
 
 import { wrap } from '../utils'
 
+const FadeInOutContainer = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+`
 const variants = {
-  enter: () => ({
-    opacity: 0,
-  }),
   active: () => ({
-    opacity: 1,
+    opacity: [0, 1],
+    transition: { duration: 0.5 },
   }),
-  exit: () => ({
-    opacity: 0,
-  }),
+  exit: () => ({ opacity: 0, transition: { duration: 0.5 } }),
 }
 
 export default function FadeInOut({ children }: { children: ReactNode[] }) {
-  const [[page, direction], setPage] = useState([0, 0])
+  const [page, setPage] = useState(0)
   const index = wrap(0, children.length, page)
 
   useEffect(() => {
-    const timer = setInterval(() => setPage((prev) => [prev[0] + 1, 0]), 3000)
+    const timer = setInterval(() => setPage((prev) => prev + 1), 1200)
 
     return () => clearInterval(timer)
   }, [page])
 
-  const transition: Transition = {
-    ease: 'linear',
-    duration: 3,
-    repeat: Infinity,
-    repeatType: 'loop',
-  }
-
   return (
-    <AnimatePresence exitBeforeEnter custom={direction}>
-      <motion.div
+    <AnimatePresence>
+      <FadeInOutContainer
+        key={index}
         variants={variants}
-        initial="enter"
         animate="active"
-        transition={transition}
+        exit="exit"
       >
         {children[index]}
-      </motion.div>
+      </FadeInOutContainer>
     </AnimatePresence>
   )
 }
