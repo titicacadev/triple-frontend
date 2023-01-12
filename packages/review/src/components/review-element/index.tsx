@@ -173,14 +173,18 @@ function ReviewElement({
   )
 
   const reviewedAt = moment(originReviewedAt).format()
+  const reviewExposureAction = `${
+    isMorePage ? '리뷰_전체보기_노출' : '리뷰_노출'
+  }`
 
   return (
     <IntersectionObserver
       onChange={({ isIntersecting }) => {
         if (isIntersecting) {
           trackEvent({
+            ga: [reviewExposureAction, review.id],
             fa: {
-              action: `${isMorePage ? '리뷰_전체보기_노출' : '리뷰_노출'}`,
+              action: reviewExposureAction,
               item_id: review.id,
               poi_id: resourceId,
               ...(review.recentTrip && { recent_trip: '최근여행' }),
