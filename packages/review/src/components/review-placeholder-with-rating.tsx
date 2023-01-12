@@ -74,7 +74,11 @@ function ReviewsPlaceholder({
       {!recentTrip ? (
         <DefaultPlaceholder
           placeholderText={
-            placeholderText ?? t('igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.')
+            placeholderText ??
+            t([
+              'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.',
+              '이곳의 첫 번째 리뷰를 올려주세요.',
+            ])
           }
         />
       ) : null}
@@ -122,10 +126,16 @@ function RecentTripPlaceholder({
         lineHeight="21px"
         textAlign="center"
       >
-        {t('seontaeghan-jogeonyi-ribyuga-eobsseubnida.')}
+        {t([
+          'seontaeghan-jogeonyi-ribyuga-eobsseubnida.',
+          '선택한 조건의 리뷰가 없습니다.',
+        ])}
       </Text>
       <Text size={14} lineHeight="19px" textAlign="center" color="gray500">
-        {t('danyeoon-yeohaengjiyi-ribyureul-namgyeoboseyo.')}
+        {t([
+          'danyeoon-yeohaengjiyi-ribyureul-namgyeoboseyo.',
+          '다녀온 여행지의\n리뷰를 남겨보세요.',
+        ])}
       </Text>
     </RecentTripContainer>
   ) : (
@@ -135,7 +145,10 @@ function RecentTripPlaceholder({
       }}
     >
       <Text size={14} color="gray500">
-        {t('seontaeghan-jogeonyi-ribyuga-eobsseubnida.')}
+        {t([
+          'seontaeghan-jogeonyi-ribyuga-eobsseubnida.',
+          '선택한 조건의 리뷰가 없습니다.',
+        ])}
       </Text>
       {hasReviews ? (
         <NavigateToReviewsListButton
@@ -144,7 +157,7 @@ function RecentTripPlaceholder({
           onClick={onClick}
         >
           <Text size={13} color="white" bold>
-            {t('jeonce-ribyu-bogi')}
+            {t(['jeonce-ribyu-bogi', '전체 리뷰 보기'])}
           </Text>
         </NavigateToReviewsListButton>
       ) : null}

@@ -25,7 +25,7 @@ export function PricePolicyCouponInfo({
       {hasOnlyExpectedApplicableCoupon ? (
         <>
           <Text bold inlineBlock size="tiny" color={emphasisColor}>
-            {t('kuponhalin')}
+            {t(['kuponhalin', '쿠폰할인'])}
           </Text>
           <Text
             bold
@@ -34,13 +34,13 @@ export function PricePolicyCouponInfo({
             color="gray700"
             margin={{ left: 5 }}
           >
-            {t('ganeung')}
+            {t(['ganeung', '가능'])}
           </Text>
         </>
       ) : hasAmountAfterUsingCouponPrice ? (
         <>
           <Text bold inlineBlock size="tiny" color="gray700">
-            {t('kuponhalinga')}
+            {t(['kuponhalinga', '쿠폰할인가'])}
           </Text>
           <Text
             bold
@@ -55,7 +55,7 @@ export function PricePolicyCouponInfo({
       ) : (
         <>
           <Text bold inlineBlock size="tiny" color="gray700">
-            {t('kuponjeogyongsi')}
+            {t(['kuponjeogyongsi', '쿠폰적용시'])}
           </Text>
           <Text
             bold
@@ -64,7 +64,7 @@ export function PricePolicyCouponInfo({
             color={emphasisColor}
             margin={{ left: 5 }}
           >
-            {t('muryo')}
+            {t(['muryo', '무료'])}
           </Text>
         </>
       )}

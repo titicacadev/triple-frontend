@@ -81,7 +81,7 @@ export function RegionListElement({
           src={style && style.backgroundImageUrl}
         />
         <Name>{nameOverride || names.ko || names.en || names.local}</Name>
-        <Action>{t('barogagi')}</Action>
+        <Action>{t(['barogagi', '바로가기'])}</Action>
       </ResourceListItem>
     )
   }

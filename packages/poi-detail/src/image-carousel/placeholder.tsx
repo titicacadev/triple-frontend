@@ -56,7 +56,10 @@ function ImagePlaceholder({
           <>
             <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
             <Text size="small" color="gray" alpha={0.3}>
-              {t('igosyi-ceos-beonjjae-sajineul-olryeojuseyo.')}
+              {t([
+                'igosyi-ceos-beonjjae-sajineul-olryeojuseyo.',
+                '이곳의 첫 번째 사진을 올려주세요.',
+              ])}
             </Text>
           </>
         )}

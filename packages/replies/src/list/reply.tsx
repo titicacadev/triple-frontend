@@ -309,7 +309,10 @@ export default function Reply({
 
             {likeReactionCount && likeReactionCount > 0 ? (
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-                {t('johayo-likereactioncount', { likeReactionCount })}
+                {t(
+                  ['johayo-likereactioncount', '좋아요 {{likeReactionCount}}'],
+                  { likeReactionCount },
+                )}
               </Text>
             ) : null}
 
@@ -320,7 +323,7 @@ export default function Reply({
               bold
               onClick={() => handleWriteReplyClick(actionReply)}
             >
-              {t('dabgeuldalgi')}
+              {t(['dabgeuldalgi', '답글달기'])}
             </Text>
           </ReactionBox>
         ) : null}
@@ -336,7 +339,7 @@ export default function Reply({
           inlineBlock
           onClick={() => fetchMoreReplies(reply)}
         >
-          {t('ijeon-dabgeul-deobogi')}
+          {t(['ijeon-dabgeul-deobogi', '이전 답글 더보기'])}
         </Text>
       ) : null}
 
@@ -359,11 +362,11 @@ export default function Reply({
         title={
           isMine
             ? parentId
-              ? t('nae-dabgeul')
-              : t('nae-daesgeul')
+              ? t(['nae-dabgeul', '내 답글'])
+              : t(['nae-daesgeul', '내 댓글'])
             : parentId
-            ? t('dabgeul')
-            : t('daesgeul')
+            ? t(['dabgeul', '답글'])
+            : t(['daesgeul', '댓글'])
         }
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onEditClick={() =>
@@ -453,7 +456,7 @@ function Content({
           cursor="pointer"
           onClick={() => setUnfolded((prevState) => !prevState)}
         >
-          {t('...deobogi')}
+          {t(['...deobogi', '…더보기'])}
         </Text>
       ) : null}
     </Container>
@@ -489,15 +492,15 @@ function FeatureActionSheet({
       {isMine ? (
         <>
           <ActionSheetItem onClick={onEditClick}>
-            {t('sujeonghagi')}
+            {t(['sujeonghagi', '수정하기'])}
           </ActionSheetItem>
           <ActionSheetItem onClick={onDeleteClick}>
-            {t('sagjehagi')}
+            {t(['sagjehagi', '삭제하기'])}
           </ActionSheetItem>
         </>
       ) : (
         <ActionSheetItem onClick={onReportClick}>
-          {t('singohagi')}
+          {t(['singohagi', '신고하기'])}
         </ActionSheetItem>
       )}
     </ActionSheet>
@@ -518,8 +521,14 @@ function deriveContent({
   const t = getTranslation('common-web')
 
   const contentText = {
-    deleted: t('jagseongjaga-sagjehan-daesgeulibnida.'),
-    blinded: t('dareun-sayongjayi-singoro-beulraindeu-doeeossseubnida.'),
+    deleted: t([
+      'jagseongjaga-sagjehan-daesgeulibnida.',
+      '작성자가 삭제한 댓글입니다.',
+    ]),
+    blinded: t([
+      'dareun-sayongjayi-singoro-beulraindeu-doeeossseubnida.',
+      '다른 사용자의 신고로 블라인드 되었습니다.',
+    ]),
   }
 
   const type =

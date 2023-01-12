@@ -79,7 +79,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating
-        ? t('starrating-seonggeub', { starRating })
+        ? t(['starrating-seonggeub', '{{starRating}}성급'], { starRating })
         : category
         ? category.name
         : null,

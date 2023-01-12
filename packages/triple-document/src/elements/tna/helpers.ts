@@ -26,9 +26,15 @@ export function generateCoupon({
   )
   const displayPricePolicy =
     applicableCoupon &&
-    t('formattedapplicableamountafterusingcoupon-weon', {
-      formattedApplicableAmountAfterUsingCoupon,
-    })
+    t(
+      [
+        'formattedapplicableamountafterusingcoupon-weon',
+        '{{formattedApplicableAmountAfterUsingCoupon}}원',
+      ],
+      {
+        formattedApplicableAmountAfterUsingCoupon,
+      },
+    )
 
   return {
     hasCoupon,

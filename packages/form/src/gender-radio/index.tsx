@@ -48,7 +48,7 @@ function GenderRadio({ name, value, onChange }: GenderRadioProps) {
         selected={value === 'MALE'}
         onClick={(e: SyntheticEvent) => onChange && onChange(e, 'MALE')}
       >
-        {t('namja')}
+        {t(['namja', '남자'])}
       </GenderContainer>
 
       <GenderContainer
@@ -57,7 +57,7 @@ function GenderRadio({ name, value, onChange }: GenderRadioProps) {
         selected={value === 'FEMALE'}
         onClick={(e: SyntheticEvent) => onChange && onChange(e, 'FEMALE')}
       >
-        {t('yeoja')}
+        {t(['yeoja', '여자'])}
       </GenderContainer>
     </Container>
   )

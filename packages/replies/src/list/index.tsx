@@ -40,8 +40,8 @@ export default function ReplyList({
   const { showToast } = useTripleClientActions()
 
   const description = mentioningUserName
-    ? t('dabgeuleul-sagjehasigessseubnigga')
-    : t('daesgeuleul-sagjehasigessseubnigga')
+    ? t(['dabgeuleul-sagjehasigessseubnigga', '답글을 삭제하시겠습니까?'])
+    : t(['daesgeuleul-sagjehasigessseubnigga', '댓글을 삭제하시겠습니까?'])
 
   const handleReplyDelete = async () => {
     const response = await deleteReply({
@@ -56,9 +56,9 @@ export default function ReplyList({
       }
 
       if (showToast) {
-        showToast(t('sagjedoeeossseubnida.'))
+        showToast(t(['sagjedoeeossseubnida.', '삭제되었습니다.']))
       } else {
-        alert(t('sagjedoeeossseubnida.'))
+        alert(t(['sagjedoeeossseubnida.', '삭제되었습니다.']))
       }
     }
   }
@@ -86,7 +86,7 @@ export default function ReplyList({
               inlineBlock
               onClick={() => fetchMoreReplies()}
             >
-              {t('ijeon-daesgeul-deobogi')}
+              {t(['ijeon-daesgeul-deobogi', '이전 댓글 더보기'])}
             </Text>
           ) : null}
 
@@ -137,9 +137,10 @@ function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
       onClose={back}
       onConfirm={onConfirm}
     >
-      {t(
+      {t([
         'sujeongeul-cwisohasigessseubnigga-n-sujeonghan-naeyongeun-jeojangdoeji-anhseubnida.',
-      )}
+        '수정을 취소하시겠습니까?\n수정한 내용은 저장되지 않습니다.',
+      ])}
     </Confirm>
   )
 }

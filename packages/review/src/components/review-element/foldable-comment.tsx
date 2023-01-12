@@ -50,7 +50,7 @@ function FoldedComment({
   return (
     <Comment>
       {`${comment} …`}
-      <Unfold onClick={onUnfoldButtonClick}>{t('deobogi')}</Unfold>
+      <Unfold onClick={onUnfoldButtonClick}>{t(['deobogi', '더보기'])}</Unfold>
     </Comment>
   )
 }

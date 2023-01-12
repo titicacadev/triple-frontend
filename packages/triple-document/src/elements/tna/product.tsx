@@ -49,7 +49,9 @@ function Pricing({
 
       <Container>
         <Text inline bold size={18} color="gray">
-          {t('formattedsaleprice-weon', { formattedSalePrice })}
+          {t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+            formattedSalePrice,
+          })}
         </Text>
 
         {basePrice ? (
@@ -60,7 +62,9 @@ function Pricing({
             strikethrough
             margin={{ left: 5 }}
           >
-            {t('formattedbaseprice-weon', { formattedBasePrice })}
+            {t(['formattedbaseprice-weon', '{{formattedBasePrice}}원'], {
+              formattedBasePrice,
+            })}
           </Text>
         ) : null}
       </Container>
@@ -140,7 +144,7 @@ export function TnaProductWithPrice({
             {heroImage ? (
               <Image.Img
                 src={heroImage}
-                alt={t('title-yi-sseomneil', { title })}
+                alt={t(['title-yi-sseomneil', '{{title}}의 썸네일'], { title })}
               />
             ) : (
               <Image.Placeholder src={PLACEHOLDER_IMAGE_URL} />
@@ -234,7 +238,10 @@ export function TnaProductWithPrice({
 
           {hasSelfPackageBenefit && (
             <Text bold size="small" color="gray700" margin={{ top: 4 }}>
-              {t('selpeupaekiji-cugahalin-ganeung')}
+              {t([
+                'selpeupaekiji-cugahalin-ganeung',
+                '셀프패키지 추가할인 가능',
+              ])}
             </Text>
           )}
         </Container>

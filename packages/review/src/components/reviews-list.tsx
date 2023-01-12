@@ -71,7 +71,7 @@ export default function ReviewsList({
         })
 
         if (unregister) {
-          showToast(t('taltoehan-sayongjaibnida.'))
+          showToast(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
         } else {
           navigateUserDetail(uid)
         }

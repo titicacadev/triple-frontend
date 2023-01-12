@@ -82,7 +82,7 @@ function ExternalLinkItem<Data>({
               <Image.FixedRatioFrame frame="big">
                 <Image.Img
                   src={imageUrl}
-                  alt={t('title-sseomneil', { title })}
+                  alt={t(['title-sseomneil', '{{title}} 썸네일'], { title })}
                 />
               </Image.FixedRatioFrame>
             </Image>

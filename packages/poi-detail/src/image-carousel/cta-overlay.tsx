@@ -26,7 +26,7 @@ export default function CtaOverlay() {
   return (
     <MoreImageOverlayLink>
       <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-      {t('teuripeul-aebeseo-deobogi')}
+      {t(['teuripeul-aebeseo-deobogi', '트리플 앱에서 더보기'])}
     </MoreImageOverlayLink>
   )
 }

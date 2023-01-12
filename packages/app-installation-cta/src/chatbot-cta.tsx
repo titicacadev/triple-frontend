@@ -143,11 +143,11 @@ export default function ChatbotCta({
             {text}
           </ChatbotAction>
           <ChatbotCloseButton onClick={handleDismiss}>
-            {t('dadgi')}
+            {t(['dadgi', '닫기'])}
           </ChatbotCloseButton>
         </ChatBalloon>
         <ChatbotIcon href={installUrl} onClick={handleClick}>
-          {t('teuripeul')}
+          {t(['teuripeul', '트리플'])}
         </ChatbotIcon>
       </ChatbotContainer>
     </CSSTransition>

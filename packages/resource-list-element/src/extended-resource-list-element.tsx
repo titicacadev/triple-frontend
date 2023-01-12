@@ -145,7 +145,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                   margin={{ right: 5 }}
                   verticalAlign="middle"
                 >
-                  {t('gwanggo')}
+                  {t(['gwanggo', '광고'])}
                 </Label>
               ) : null}
               {distance || distance === 0 ? (

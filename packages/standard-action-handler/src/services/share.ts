@@ -65,11 +65,11 @@ function shareNativeInterface({ params }: { params: SharingParams }) {
     imageUrl: image || DEFAULT_IMAGE,
     buttons: [
       {
-        title: t('webeseo-bogi'),
+        title: t(['webeseo-bogi', '웹에서 보기']),
         webUrl: webUrl as string,
       },
       {
-        title: t('teuripeuleseo-bogi'),
+        title: t(['teuripeuleseo-bogi', '트리플에서 보기']),
         webUrl: webUrl as string,
         appUrl,
       },

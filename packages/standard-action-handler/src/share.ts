@@ -10,7 +10,10 @@ export default async function share({ url: { path } = {} }: WebActionParams) {
     const params = getSharingParams()
     const shareUrl = createShareUrl()
 
-    shareUrl({ params, message: t('ringkeureul-bogsahaessseubnida.') })
+    shareUrl({
+      params,
+      message: t(['ringkeureul-bogsahaessseubnida.', '링크를 복사했습니다.']),
+    })
 
     return true
   }

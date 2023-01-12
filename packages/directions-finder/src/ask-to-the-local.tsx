@@ -100,7 +100,7 @@ export default function AskToTheLocal({
                     />
                   </Icon>
                 </IconContainer>
-                {t('jeonhwahagi')}
+                {t(['jeonhwahagi', '전화하기'])}
               </CallButton>
               {isDomestic ? null : (
                 <Text
@@ -108,7 +108,10 @@ export default function AskToTheLocal({
                   alpha={0.5}
                   padding={{ top: 6, bottom: 0 }}
                 >
-                  {t('gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.')}
+                  {t([
+                    'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.',
+                    '국제 전화 요금이 부과될 수 있습니다.',
+                  ])}
                 </Text>
               )}
             </DrawerContentContainer>

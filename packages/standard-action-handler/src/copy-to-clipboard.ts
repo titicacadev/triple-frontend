@@ -16,7 +16,10 @@ export default async function copyToClipboard({
 
       textClipboardCopier({
         text,
-        message: t('keulribbodeue-bogsadoeeossseubnida.'),
+        message: t([
+          'keulribbodeue-bogsadoeeossseubnida.',
+          '클립보드에 복사되었습니다.',
+        ]),
       })
     }
 

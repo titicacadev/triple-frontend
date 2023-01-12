@@ -42,7 +42,7 @@ function VerificationRequest({
     <Modal open={verified === false}>
       <Icon />
       <Text bold center size="big" color="gray" margin={{ bottom: 10 }}>
-        {t('injeungi-pilyohaeyo')}
+        {t(['injeungi-pilyohaeyo', '인증이 필요해요!'])}
       </Text>
       <Text
         center
@@ -52,12 +52,17 @@ function VerificationRequest({
         alpha={0.7}
         margin={{ bottom: 40 }}
       >
-        {t('yeyageul-wihaeseoneun-hyudaepon-injeungi-pilyohabnida.-coeco-1hoe')}
+        {t([
+          'yeyageul-wihaeseoneun-hyudaepon-injeungi-pilyohabnida.-coeco-1hoe',
+          '예약을 위해서는\n휴대폰 인증이 필요합니다. (최초 1회)',
+        ])}
       </Text>
       <Modal.Actions>
-        <Modal.Action onClick={() => onCancel()}>{t('dwirogagi')}</Modal.Action>
+        <Modal.Action onClick={() => onCancel()}>
+          {t(['dwirogagi', '뒤로가기'])}
+        </Modal.Action>
         <Modal.Action onClick={() => initiateVerification()} color="blue">
-          {t('injeunghagi')}
+          {t(['injeunghagi', '인증하기'])}
         </Modal.Action>
       </Modal.Actions>
     </Modal>

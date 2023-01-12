@@ -83,7 +83,7 @@ export default function RecentCheckBox({
     >
       <FlexBox flex alignItems="center" onClick={onRecentReviewChange}>
         <CheckBox readOnly type="checkbox" checked={isRecentReview} />
-        <Text size={14}>{t('coegeun-yeohaeng')}</Text>
+        <Text size={14}>{t(['coegeun-yeohaeng', '최근 여행'])}</Text>
       </FlexBox>
       <ToolTip />
     </FlexBox>
@@ -121,9 +121,10 @@ function ToolTip() {
             color="gray800"
             padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
           >
-            {t(
+            {t([
               'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.',
-            )}
+              '최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.',
+            ])}
             <CloseIcon
               width={10}
               height={10}

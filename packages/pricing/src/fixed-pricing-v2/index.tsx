@@ -179,7 +179,13 @@ function FixedPricingV2({
                       color={isSoldOut ? 'gray300' : 'gray'}
                     >
                       {priceLabelOverride ||
-                        t('formattedsaleprice-weon', { formattedSalePrice })}
+                        t(
+                          [
+                            'formattedsaleprice-weon',
+                            '{{formattedSalePrice}}원',
+                          ],
+                          { formattedSalePrice },
+                        )}
                       {discountRate}
                     </Text>
                     {pricingDescription}

@@ -33,7 +33,7 @@ export default function OthersReviewActionSheet({
       onClose={back}
     >
       <ActionSheetItem icon="report" onClick={handleReportClick}>
-        {t('singohagi')}
+        {t(['singohagi', '신고하기'])}
       </ActionSheetItem>
     </ActionSheet>
   )
