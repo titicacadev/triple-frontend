@@ -109,7 +109,7 @@ export default function ReviewsList({
   )
 
   const handleMessageCountClick = useAppCallback(
-    TransitionType.General,
+    TransitionType.ReviewCommentSelect,
     useSessionCallback(
       useCallback(
         (e: SyntheticEvent, reviewId: string) => {
