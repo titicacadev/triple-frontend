@@ -52,9 +52,9 @@ export function LoginCtaModalProvider({
         onCancel={back}
         onConfirm={() => {
           trackEvent({
-            ga: ['로그인유도팝업_선택'],
+            ga: ['로그인유도팝업_로그인선택'],
             fa: {
-              action: '로그인유도팝업_선택',
+              action: '로그인유도팝업_로그인선택',
             },
           })
 
