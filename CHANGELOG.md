@@ -4,7 +4,11 @@
 
 ### common
 
-- []()
+- i18n translation key에 한국어 fallback을 추가합니다 [#2332](https://github.com/titicacadev/triple-frontend/pull/2332)
+
+### chat
+
+- 초기 메시지가 prop으로 있을 경우 api 호출하지 않도록 수정 [#2331](https://github.com/titicacadev/triple-frontend/pull/2331)
 
 ## 12.0.0 (ui-renewal)
 
