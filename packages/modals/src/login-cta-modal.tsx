@@ -88,18 +88,27 @@ export function withLoginCtaModal<P>(Component: ComponentType<P>) {
 
 export function useLoginCtaModal() {
   const { push } = useHistoryFunctions()
+  const { trackEvent } = useEventTrackingContext()
   const contextValue = useContext(LoginCtaContext)
 
   return useMemo(
     () => ({
-      show: (returnUrl?: string) => {
+      show: (returnUrl?: string, triggeredEventAction?: string) => {
         if (contextValue?.setReturnUrl && returnUrl) {
           contextValue.setReturnUrl(returnUrl)
         }
 
+        trackEvent({
+          ga: ['로그인유도팝업_노출', triggeredEventAction],
+          fa: {
+            action: '로그인유도팝업_노출',
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            referrer_event: triggeredEventAction,
+          },
+        })
         push(LOGIN_CTA_MODAL_HASH)
       },
     }),
-    [push, contextValue],
+    [push, trackEvent, contextValue],
   )
 }
