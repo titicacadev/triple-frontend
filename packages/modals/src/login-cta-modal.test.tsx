@@ -53,7 +53,7 @@ test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog�
 
   const { getByRole } = render(<LoginCtaModalProvider />)
 
-  expect(getByRole('dialog')).toHaveTextContent(/rogeuini-pilyohabnida\./)
+  expect(getByRole('dialog')).toHaveTextContent(/로그인이 필요합니다\./)
 })
 
 test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다.', () => {

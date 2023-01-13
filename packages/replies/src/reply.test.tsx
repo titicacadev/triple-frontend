@@ -18,15 +18,15 @@ jest.mock('@titicaca/ui-flow')
 jest.mock('./replies-api-client')
 jest.mock('@titicaca/next-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string, data: I18nExpressions) => {
-      if (key === 'johayo-likereactioncount') {
+    t: (key: string[], data: I18nExpressions) => {
+      if (key.includes('johayo-likereactioncount')) {
         return `좋아요 ${data.likeReactionCount}`
       }
 
-      return key
+      return key[0]
     },
   }),
-  getTranslation: () => (key: string) => key,
+  getTranslation: () => (key: string[]) => key[0],
 }))
 
 beforeEach(() => {
