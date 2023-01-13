@@ -138,14 +138,13 @@ function ReviewElement({
   const { mutate: likeReview } = useLikeReviewMutation(graphqlClient)
   const { mutate: unlikeReview } = useUnlikeReviewMutation(graphqlClient)
 
+  const likeButtonActionName = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
-      const actionName = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
-
       trackEvent({
-        ga: [actionName, review.id],
+        ga: [likeButtonActionName, review.id],
         fa: {
-          action: actionName,
+          action: likeButtonActionName,
           item_id: review.id,
           resource_id: resourceId,
         },
@@ -163,7 +162,9 @@ function ReviewElement({
       trackEvent,
       unlikeReview,
       updateLikedStatus,
+      likeButtonActionName,
     ]),
+    { triggeredEventAction: likeButtonActionName },
   )
 
   const reviewedAt = moment(originReviewedAt).format()
