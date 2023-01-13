@@ -31,7 +31,6 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
         />
-
         <Text
           size={11}
           lineHeight="17px"
