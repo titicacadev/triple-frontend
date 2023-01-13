@@ -130,9 +130,14 @@ export function TransitionModal({
 
               trackEvent({
                 ga: [
-                  '설치유도팝업',
+                  '설치유도팝업_선택',
                   ['선택_트리플가기', eventLabel].filter((v) => v).join('_'),
                 ],
+                fa: {
+                  action: '설치유도팝업_선택',
+                  // eslint-disable-next-line @typescript-eslint/naming-convention
+                  referrer_event: eventLabel,
+                },
               })
 
               window.location.href = deepLink
