@@ -97,7 +97,7 @@ export default function ReviewsList({
   )
 
   const handleReviewClick = useAppCallback(
-    TransitionType.Review,
+    TransitionType.ReviewSelect,
     useCallback(
       (e: SyntheticEvent, reviewId: string) => {
         e.preventDefault()
