@@ -93,7 +93,7 @@ export function useLoginCtaModal() {
 
   return useMemo(
     () => ({
-      show: (returnUrl?: string, triggeredEventAction?: string) => {
+      show: (returnUrl?: string, triggeredEventAction = '') => {
         if (contextValue?.setReturnUrl && returnUrl) {
           contextValue.setReturnUrl(returnUrl)
         }

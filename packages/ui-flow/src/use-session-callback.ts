@@ -11,6 +11,7 @@ import {
  * @param fn
  * @param returnValue sessionId가 없을 때 리턴할 값
  * @param returnUrl 로그인 완료 후 복귀할 페이지 주소
+ * @param triggeredEventAction 로그인 유도 모달 팝업을 발생시킨 이벤트 액션
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useSessionCallback<T extends (...args: any[]) => any>(
@@ -23,6 +24,7 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
           returnUrl?: string
           returnValue?: boolean
           skipTransitionModal?: boolean
+          triggeredEventAction?: string
         },
       ]
     | []
@@ -35,12 +37,17 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
     (...args) => {
       if (sessionAvailable === false) {
         if (typeof options[0] === 'object') {
-          const { returnUrl, returnValue, skipTransitionModal } = options[0]
+          const {
+            returnUrl,
+            returnValue,
+            skipTransitionModal,
+            triggeredEventAction,
+          } = options[0]
 
           if (skipTransitionModal) {
             login({ returnUrl })
           } else {
-            show(returnUrl)
+            show(returnUrl, triggeredEventAction)
           }
 
           return returnValue
