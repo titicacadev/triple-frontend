@@ -154,9 +154,27 @@ export function TransitionModal({
 }
 
 export function useTransitionModal(): { show: ShowTransitionModal } {
+  const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
 
-  return useMemo(() => ({ show: (type) => push(`transition.${type}`) }), [push])
+  return useMemo(
+    () => ({
+      show: (type) => {
+        const triggeredEventLabel = MODAL_CONTENT[type].eventLabel ?? ''
+
+        trackEvent({
+          ga: ['설치유도팝업_노출', triggeredEventLabel],
+          fa: {
+            action: '설치유도팝업_노출',
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            referrer_event: triggeredEventLabel,
+          },
+        })
+        push(`transition.${type}`)
+      },
+    }),
+    [push, trackEvent],
+  )
 }
 
 export interface WithTransitionModalBaseProps {
