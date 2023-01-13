@@ -253,7 +253,7 @@ function ReviewContainer({
   }
 
   const fullListButtonClickCallback = useAppCallback(
-    TransitionType.Review,
+    TransitionType.OpenReviewList,
     useSessionCallback(
       useCallback(
         (e: SyntheticEvent) => {
