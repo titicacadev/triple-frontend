@@ -238,6 +238,7 @@ function ReviewContainer({
         },
         [trackEvent, resourceId, writeReview, resourceType, regionId],
       ),
+      { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
   )
 
@@ -289,6 +290,7 @@ function ReviewContainer({
           sortingOption,
         ],
       ),
+      { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
   )
 

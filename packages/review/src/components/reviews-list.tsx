@@ -122,6 +122,7 @@ export default function ReviewsList({
         },
         [navigateReviewDetail, regionId, resourceId],
       ),
+      { triggeredEventAction: '리뷰_댓글_선택' },
     ),
   )
 
