@@ -7,6 +7,7 @@ import {
   AccordionTitle,
 } from '@titicaca/core-elements'
 import {
+  useEventTrackingContext,
   useSessionAvailability,
   useSessionControllers,
 } from '@titicaca/react-contexts'
@@ -87,6 +88,7 @@ export function CompanyInfo({
 }: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
+  const { trackEvent } = useEventTrackingContext()
 
   return (
     <Accordion
@@ -110,12 +112,35 @@ export function CompanyInfo({
         {!hideAppDownloadButton ? (
           <ButtonContainer flex>
             <Button
-              onClick={() => (sessionAvailable === true ? logout() : login())}
+              onClick={() => {
+                if (sessionAvailable) {
+                  logout()
+                  return
+                }
+
+                trackEvent({
+                  ga: ['푸터_로그인'],
+                  fa: {
+                    action: '푸터_로그인',
+                  },
+                })
+                login()
+              }}
             >
               {sessionAvailable === true ? '로그아웃' : '로그인'}
             </Button>
 
-            <Button href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain">
+            <Button
+              href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain"
+              onClick={() => {
+                trackEvent({
+                  ga: ['푸터_트리플앱설치'],
+                  fa: {
+                    action: '푸터_트리플앱설치',
+                  },
+                })
+              }}
+            >
               <span>트리플 앱</span>
               <img
                 src="https://assets.triple.guide/images/ico_download@3x.png"
