@@ -15,6 +15,7 @@ import type {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
@@ -93,6 +94,7 @@ const SaveToItineraryButton = styled(Button)`
 `
 
 export default function ItineraryElement({ value }: Props) {
+  const { trackEvent } = useEventTrackingContext()
   const { t } = useTranslation('common-web')
 
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
@@ -118,9 +120,15 @@ export default function ItineraryElement({ value }: Props) {
   )
 
   const handleSaveToItinerary = useCallback(() => {
+    trackEvent({
+      ga: ['내일정으로담기_선택'],
+      fa: {
+        action: '내일정으로담기_선택',
+      },
+    })
     addPoisToTrip(poiIds)
     /** TODO: event tracking */
-  }, [poiIds, addPoisToTrip])
+  }, [poiIds, addPoisToTrip, trackEvent])
 
   return (
     <Container
