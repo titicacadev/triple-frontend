@@ -241,7 +241,7 @@ function ReviewContainer({
     ),
   )
 
-  const trackOnFullListButtonClick = () => {
+  const trackEventOnFullListButtonClick = () => {
     trackEvent({
       ga: ['리뷰_리스트더보기_선택'],
       fa: {
@@ -293,7 +293,7 @@ function ReviewContainer({
   )
 
   const handleFullListButtonClick = (e: SyntheticEvent) => {
-    trackOnFullListButtonClick()
+    trackEventOnFullListButtonClick()
     fullListButtonClickCallback(e)
   }
 
