@@ -68,7 +68,7 @@ export interface ActionSheetItemProps extends PropsWithChildren {
   buttonLabel?: string
   icon?: string
   checked?: boolean
-  onClick?: () => void | boolean
+  onClick?: () => unknown
 }
 
 export const ActionSheetItem = ({
