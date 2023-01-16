@@ -68,7 +68,7 @@ export interface ActionSheetItemProps extends PropsWithChildren {
   buttonLabel?: string
   icon?: string
   checked?: boolean
-  onClick?: () => void
+  onClick?: () => void | boolean
 }
 
 export const ActionSheetItem = ({
@@ -82,8 +82,7 @@ export const ActionSheetItem = ({
   const { onClose } = useActionSheet()
 
   const handleClick = () => {
-    onClick?.()
-    onClose?.()
+    onClick ? !onClick() && onClose && onClose() : onClose && onClose()
   }
 
   return (
