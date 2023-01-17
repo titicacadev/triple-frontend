@@ -5,7 +5,7 @@ on:
       - 'renovate/**'
 env:
   # Node.js
-  NODE_VERSION: '17.7.0'
+  NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
   COMMIT_USER_EMAIL: developer@triple-corp.com
@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
