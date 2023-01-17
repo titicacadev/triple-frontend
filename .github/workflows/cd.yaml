@@ -11,7 +11,7 @@ on:
 env:
   GITHUB_API_URL_BASE: https://api.github.com/repos/${{ github.repository }}
   # Node.js
-  NODE_VERSION: '17.7.0'
+  NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   # Slack notifications
   SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
