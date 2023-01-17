@@ -82,7 +82,7 @@ export const ActionSheetItem = ({
   const { onClose } = useActionSheet()
 
   const handleClick = () => {
-    onClick ? !onClick() && onClose && onClose() : onClose && onClose()
+    onClick ? !onClick() && onClose?.() : onClose?.()
   }
 
   return (
