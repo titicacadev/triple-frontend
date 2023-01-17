@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.1.1
+
+### action-sheet
+
+- 액션시트 아이템의 클릭 이벤트 조건을 수정합니다. [#2338](https://github.com/titicacadev/triple-frontend/pull/2338)
+
 ## 12.1.0
 
 ### common
