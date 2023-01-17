@@ -36,6 +36,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
 
       - name: Wait for CI
         uses: fountainhead/action-wait-for-check@v1.0.0
@@ -80,6 +81,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
 
       - name: Get release version
         run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
@@ -91,14 +93,6 @@ jobs:
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
         run: npx @titicaca/gha-tools notify
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache-
 
       - name: Install dependencies
         env:
@@ -203,6 +197,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
 
       - uses: actions/checkout@v3
         with:
@@ -228,14 +223,6 @@ jobs:
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
         run: npx @titicaca/gha-tools notify
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache-
 
       - name: Install dependencies
         env:

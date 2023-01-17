@@ -107,7 +107,7 @@ jobs:
 
       - name: Turbo Cache
         id: turbo-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules/.cache/turbo
           key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
@@ -117,6 +117,11 @@ jobs:
       - name: Build
         id: build
         run: npm run build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: packages/**/lib
 
       - name: Notify building failure
         if: failure() && steps.build.outcome == 'failure'
