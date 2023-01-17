@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/replies",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "Replies Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/replies",
@@ -20,13 +20,13 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.1.0",
-    "@titicaca/core-elements": "^12.1.0",
-    "@titicaca/fetcher": "^12.1.0",
-    "@titicaca/modals": "^12.1.0",
-    "@titicaca/router": "^12.1.0",
-    "@titicaca/ui-flow": "^12.1.0",
-    "@titicaca/view-utilities": "^12.1.0"
+    "@titicaca/action-sheet": "^12.1.1",
+    "@titicaca/core-elements": "^12.1.1",
+    "@titicaca/fetcher": "^12.1.1",
+    "@titicaca/modals": "^12.1.1",
+    "@titicaca/router": "^12.1.1",
+    "@titicaca/ui-flow": "^12.1.1",
+    "@titicaca/view-utilities": "^12.1.1"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
@@ -36,6 +36,6 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.1.0"
+    "@titicaca/i18n": "^12.1.1"
   }
 }

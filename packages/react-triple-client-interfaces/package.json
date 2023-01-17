@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-triple-client-interfaces",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "React module for Triple native client interfaces",
   "main": "lib/index.js",
   "files": [
