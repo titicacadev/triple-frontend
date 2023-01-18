@@ -24,7 +24,7 @@ const Toc = styled.div`
 // ] as const
 
 export default {
-  title: 'Core-Elements / Navbar',
+  title: 'core-elements / Navbar',
 }
 
 export function twoButtons() {

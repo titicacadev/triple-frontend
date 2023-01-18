@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { Section, SectionProps } from './section'
 
 export default {
-  title: 'Core-Elements / Section',
+  title: 'core-elements / Section',
   component: Section,
 } as Meta
 

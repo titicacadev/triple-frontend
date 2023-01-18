@@ -2,7 +2,7 @@ import { RollingSpinner } from './rolling-spinner'
 import { Spinner } from './spinner'
 
 export default {
-  title: 'Core-Elements / Spinner',
+  title: 'core-elements / Spinner',
 }
 
 export function BaseSpinner() {

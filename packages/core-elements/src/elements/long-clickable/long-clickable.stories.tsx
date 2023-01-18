@@ -4,7 +4,7 @@ import { HR1 } from '../hr'
 import { longClickable } from './long-clickable'
 
 export default {
-  title: 'Core-Elements / longClickable',
+  title: 'core-elements / longClickable',
   component: longClickable,
 }
 

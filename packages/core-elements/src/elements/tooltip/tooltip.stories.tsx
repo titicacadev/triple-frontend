@@ -6,7 +6,7 @@ import { Navbar } from '../navbar'
 import { Tooltip } from './tooltip'
 
 export default {
-  title: 'Core-Elements / Tooltip',
+  title: 'core-elements / Tooltip',
   component: Tooltip,
 } as Meta
 

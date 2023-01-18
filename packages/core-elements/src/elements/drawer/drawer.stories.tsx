@@ -7,7 +7,7 @@ import { Text } from '../text'
 import { Drawer } from './drawer'
 
 export default {
-  title: 'Core-Elements / Drawer',
+  title: 'core-elements / Drawer',
   component: Drawer,
 } as Meta
 
