@@ -35,9 +35,7 @@ export const LoungeHome: ComponentStoryObj<typeof PublicHeader> = {
     ...Basic.args,
     ...DeeplinkPath.args,
     isLoungeHome: true,
-    loungeHomeEventMetadataProps: {
-      eventCategory: '웹_메인',
-    },
+    loungeHomeEventLabel: '웹_메인',
   },
 }
 
