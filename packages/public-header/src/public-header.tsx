@@ -1,6 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -18,6 +19,7 @@ import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
 import { PublicHeaderDeeplink } from './public-header-deeplink'
+import { ExtraActionSeperator } from './extra-action-seperator'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -87,6 +89,7 @@ export interface PublicHeaderProps {
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
+  isLoungeHome?: boolean
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -95,6 +98,7 @@ export interface PublicHeaderProps {
 
 export function PublicHeader({
   category,
+  isLoungeHome,
   deeplinkPath,
   disableAutoHide,
   onClick,
@@ -105,6 +109,7 @@ export function PublicHeader({
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
+  const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   if (app) {
     return null
@@ -127,10 +132,30 @@ export function PublicHeader({
         </Logo>
 
         <ExtraActionsContainer>
+          {isLoungeHome ? (
+            <>
+              <ExtraActionItem
+                href="/trips/intro"
+                onClick={() => {
+                  trackEventWithMetadata({
+                    ga: ['헤더_라운지홈_선택'],
+                  })
+                }}
+              >
+                TOP 여행지 {/* TODO: 국제화 적용 */}
+              </ExtraActionItem>
+              <ExtraActionSeperator />
+            </>
+          ) : null}
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
           </ExtraActionItem>
-          {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
+          {deeplinkPath && (
+            <PublicHeaderDeeplink
+              deeplinkPath={deeplinkPath}
+              isLoungeHome={isLoungeHome}
+            />
+          )}
         </ExtraActionsContainer>
       </HeaderFrame>
     </Wrapper>
