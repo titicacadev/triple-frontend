@@ -118,11 +118,6 @@ jobs:
         id: build
         run: npm run build
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact
-          path: packages/**/lib
-
       - name: Notify building failure
         if: failure() && steps.build.outcome == 'failure'
         env:
@@ -130,30 +125,6 @@ jobs:
           SLACK_TITLE: ':pleading: Build FAILURE'
           SLACK_TOPIC: ''
         run: npx @titicaca/gha-tools notify
-
-      - name: Publish to Chromatic
-        if: github.ref != 'refs/heads/main'
-        id: publish-to-chromatic
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
-      - name: Notify publishing to Chromatic failure
-        if: failure() && steps.publish-to-chromatic.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
-          SLACK_TOPIC: ''
-        run: npx @titicaca/gha-tools notify
-
-      - name: Publish to Chromatic and auto accept changes
-        if: github.ref == 'refs/heads/main'
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          autoAcceptChanges: true
 
   test:
     runs-on: ubuntu-latest
@@ -198,3 +169,42 @@ jobs:
           SLACK_TITLE: ':pleading: Upload coverage FAILURE'
           SLACK_TOPIC: ''
         run: npx @titicaca/gha-tools notify
+
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/main'
+        id: publish-to-chromatic
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Notify publishing to Chromatic failure
+        if: failure() && steps.publish-to-chromatic.outcome == 'failure'
+        env:
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
+          SLACK_TOPIC: ''
+        run: npx @titicaca/gha-tools notify
+
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/main'
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true
