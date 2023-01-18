@@ -8,7 +8,7 @@ export interface AlertProps {
   open?: boolean
   confirmText?: ReactNode
   onClose?: () => void
-  onConfirm?: () => void
+  onConfirm?: () => boolean | unknown
 }
 
 export const Alert = ({
@@ -20,8 +20,7 @@ export const Alert = ({
   onConfirm,
 }: AlertProps) => {
   const handleConfirm = () => {
-    onConfirm?.()
-    onClose?.()
+    onConfirm ? !onConfirm() && onClose?.() : onClose?.()
   }
 
   return (
