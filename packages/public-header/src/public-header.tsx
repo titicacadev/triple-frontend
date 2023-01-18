@@ -2,7 +2,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import {
-  EventTrackingProvider,
+  EventMetadataProvider,
   useEventTrackingContext,
 } from '@titicaca/react-contexts'
 
@@ -93,10 +93,7 @@ export interface PublicHeaderProps {
    */
   deeplinkPath?: string
   isLoungeHome?: boolean
-  loungeHomeEventTrackingProviderProps?: {
-    label: string
-    path: string
-  }
+  loungeHomeEventMetadataProps?: { [key: string]: string }
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -106,7 +103,7 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   isLoungeHome,
-  loungeHomeEventTrackingProviderProps,
+  loungeHomeEventMetadataProps,
   deeplinkPath,
   disableAutoHide,
   onClick,
@@ -141,7 +138,9 @@ export function PublicHeader({
 
         <ExtraActionsContainer>
           {isLoungeHome ? (
-            <EventTrackingProvider page={loungeHomeEventTrackingProviderProps}>
+            <EventMetadataProvider
+              eventMetadataContext={loungeHomeEventMetadataProps}
+            >
               <ExtraActionItem
                 href="/trips/intro"
                 onClick={() => {
@@ -153,7 +152,7 @@ export function PublicHeader({
                 TOP 여행지 {/* TODO: 국제화 적용 */}
               </ExtraActionItem>
               <ExtraActionSeperator />
-            </EventTrackingProvider>
+            </EventMetadataProvider>
           ) : null}
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
