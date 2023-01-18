@@ -5,6 +5,12 @@ import Actions from './actions'
 export default {
   title: 'poi-detail / Actions',
   component: Actions,
+  decorators: [
+    (Story) => {
+      localStorage.setItem('REVIEW_TOOLTIP_EXPOSED', 'false')
+      return Story()
+    },
+  ],
 } as ComponentMeta<typeof Actions>
 
 export const Basic: ComponentStoryObj<typeof Actions> = {
