@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Stack } from './stack'
 
 export default {
-  title: 'Core-Elements / Stack',
+  title: 'core-elements / Stack',
   component: Stack,
 } as ComponentMeta<typeof Stack>
 

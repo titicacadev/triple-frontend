@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Radio } from './radio'
 
 export default {
-  title: 'Core-Elements / Radio',
+  title: 'core-elements / Radio',
   component: Radio,
 } as ComponentMeta<typeof Radio>
 

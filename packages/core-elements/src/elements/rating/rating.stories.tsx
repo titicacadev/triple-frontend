@@ -3,7 +3,7 @@ import { ComponentStoryObj, Meta } from '@storybook/react'
 import { Rating } from './rating'
 
 export default {
-  title: 'Core-Elements / Rating',
+  title: 'core-elements / Rating',
   component: Rating,
 } as Meta
 

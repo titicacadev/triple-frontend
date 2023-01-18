@@ -9,7 +9,7 @@ import { AccordionFolded } from './accordion-folded'
 import { AccordionTitle } from './accordion-title'
 
 export default {
-  title: 'Core-Elements / Accordion',
+  title: 'core-elements / Accordion',
   component: Accordion,
   subcomponents: {
     AccordionContent,

@@ -3,7 +3,7 @@ import { ComponentStoryObj, Meta } from '@storybook/react'
 import { Label } from './label'
 
 export default {
-  title: 'Core-Elements / Label',
+  title: 'core-elements / Label',
   component: Label,
 } as Meta
 

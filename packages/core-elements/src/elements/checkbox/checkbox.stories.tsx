@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Checkbox } from './checkbox'
 
 export default {
-  title: 'Core-Elements / Checkbox',
+  title: 'core-elements / Checkbox',
   component: Checkbox,
 } as ComponentMeta<typeof Checkbox>
 

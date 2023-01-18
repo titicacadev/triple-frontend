@@ -11,7 +11,7 @@ import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 
 export default {
-  title: 'Core-Elements / Button',
+  title: 'core-elements / Button',
   component: Button,
   subcomponents: {
     ButtonContainer,

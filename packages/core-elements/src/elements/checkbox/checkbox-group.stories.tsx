@@ -5,7 +5,7 @@ import { Checkbox } from './checkbox'
 import { CheckboxGroup } from './checkbox-group'
 
 export default {
-  title: 'Core-Elements / CheckboxGroup',
+  title: 'core-elements / CheckboxGroup',
   component: CheckboxGroup,
 } as ComponentMeta<typeof CheckboxGroup>
 

@@ -6,7 +6,7 @@ import { Radio } from '../radio/radio'
 import { RadioGroup } from './radio-group'
 
 export default {
-  title: 'Core-Elements / RadioGroup',
+  title: 'core-elements / RadioGroup',
   component: RadioGroup,
 } as ComponentMeta<typeof RadioGroup>
 

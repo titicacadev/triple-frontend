@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react'
 import { StickyHeader } from './sticky-header'
 
 export default {
-  title: 'Core-Elements / StickyHeader',
+  title: 'core-elements / StickyHeader',
   component: StickyHeader,
 } as Meta
 

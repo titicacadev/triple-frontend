@@ -5,7 +5,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { FlexBox, FlexBoxItem } from '../flex-box'
 
 export default {
-  title: 'Core-Elements / FlexBox',
+  title: 'core-elements / FlexBox',
   components: FlexBox,
   subcomponents: {
     FlexBoxItem,
