@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import {
   EventMetadataProvider,
-  useEventTrackingContext,
+  useEventTrackerWithMetadata,
 } from '@titicaca/react-contexts'
 
 import {
@@ -114,7 +114,7 @@ export function PublicHeader({
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
-  const { trackEvent } = useEventTrackingContext()
+  const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   if (app) {
     return null
@@ -144,7 +144,7 @@ export function PublicHeader({
               <ExtraActionItem
                 href="/trips/intro"
                 onClick={() => {
-                  trackEvent({
+                  trackEventWithMetadata({
                     ga: ['헤더_라운지홈_선택'],
                   })
                 }}
