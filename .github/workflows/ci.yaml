@@ -190,6 +190,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          zip: true
 
       - name: Notify publishing to Chromatic failure
         if: failure() && steps.publish-to-chromatic.outcome == 'failure'
