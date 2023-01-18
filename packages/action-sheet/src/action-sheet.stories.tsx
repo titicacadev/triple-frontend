@@ -4,6 +4,7 @@ import {
   ComponentStory,
   ComponentStoryObj,
 } from '@storybook/react'
+import { useState } from 'react'
 
 import { ActionSheet } from './action-sheet'
 import { ActionSheetItem } from './action-sheet-item'
@@ -155,4 +156,38 @@ WithExtendStyle.parameters = {
         '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
     },
   },
+}
+
+export const Controlled: ComponentStory<typeof ActionSheet> = () => {
+  const [open, setOpen] = useState(true)
+
+  function onClickPromise() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert('resolve')
+        resolve('resolved')
+      }, 0)
+    })
+  }
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>열기</button>
+      <ActionSheet
+        open={open}
+        onClose={() => {
+          alert('close!')
+          setOpen(false)
+        }}
+      >
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
+        {[...Array(7).keys()].map((v) => (
+          <ActionSheetItem key={v} onClick={onClickPromise}>
+            메뉴 {v + 1}
+          </ActionSheetItem>
+        ))}
+      </ActionSheet>
+    </>
+  )
 }
