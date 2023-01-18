@@ -1,7 +1,10 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import {
+  EventTrackingProvider,
+  useEventTrackingContext,
+} from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -90,6 +93,10 @@ export interface PublicHeaderProps {
    */
   deeplinkPath?: string
   isLoungeHome?: boolean
+  loungeHomeEventTrackingProviderProps?: {
+    label: string
+    path: string
+  }
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -99,6 +106,7 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   isLoungeHome,
+  loungeHomeEventTrackingProviderProps,
   deeplinkPath,
   disableAutoHide,
   onClick,
@@ -109,7 +117,7 @@ export function PublicHeader({
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const { trackEvent } = useEventTrackingContext()
 
   if (app) {
     return null
@@ -133,11 +141,11 @@ export function PublicHeader({
 
         <ExtraActionsContainer>
           {isLoungeHome ? (
-            <>
+            <EventTrackingProvider page={loungeHomeEventTrackingProviderProps}>
               <ExtraActionItem
                 href="/trips/intro"
                 onClick={() => {
-                  trackEventWithMetadata({
+                  trackEvent({
                     ga: ['헤더_라운지홈_선택'],
                   })
                 }}
@@ -145,7 +153,7 @@ export function PublicHeader({
                 TOP 여행지 {/* TODO: 국제화 적용 */}
               </ExtraActionItem>
               <ExtraActionSeperator />
-            </>
+            </EventTrackingProvider>
           ) : null}
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
