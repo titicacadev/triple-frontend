@@ -42,7 +42,7 @@ export default function Rolling({ children }: { children: ReactNode[] }) {
       setVisibleSlide((prevVisibleSlide) => {
         return prevVisibleSlide === slides.length - 1 ? 0 : prevVisibleSlide + 1
       })
-    }, 3000)
+    }, 1000)
 
     return () => clearInterval(timer)
   }, [slides, visibleSlide])
