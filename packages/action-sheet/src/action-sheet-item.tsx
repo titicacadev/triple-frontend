@@ -81,8 +81,9 @@ export const ActionSheetItem = ({
 }: ActionSheetItemProps) => {
   const { onClose } = useActionSheet()
 
-  const handleClick = () => {
-    onClick ? !onClick() && onClose?.() : onClose?.()
+  const handleClick = async () => {
+    await onClick?.()
+    onClose?.()
   }
 
   return (
