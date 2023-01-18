@@ -1,10 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import {
-  EventMetadataProvider,
-  useEventTrackerWithMetadata,
-} from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -93,7 +90,7 @@ export interface PublicHeaderProps {
    */
   deeplinkPath?: string
   isLoungeHome?: boolean
-  loungeHomeEventMetadataProps?: { [key: string]: string }
+  loungeHomeEventLabel?: string
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -103,7 +100,7 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   isLoungeHome,
-  loungeHomeEventMetadataProps,
+  loungeHomeEventLabel,
   deeplinkPath,
   disableAutoHide,
   onClick,
@@ -138,21 +135,19 @@ export function PublicHeader({
 
         <ExtraActionsContainer>
           {isLoungeHome ? (
-            <EventMetadataProvider
-              eventMetadataContext={loungeHomeEventMetadataProps}
-            >
+            <>
               <ExtraActionItem
                 href="/trips/intro"
                 onClick={() => {
                   trackEventWithMetadata({
-                    ga: ['헤더_라운지홈_선택'],
+                    ga: ['헤더_라운지홈_선택', loungeHomeEventLabel],
                   })
                 }}
               >
                 TOP 여행지 {/* TODO: 국제화 적용 */}
               </ExtraActionItem>
               <ExtraActionSeperator />
-            </EventMetadataProvider>
+            </>
           ) : null}
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
