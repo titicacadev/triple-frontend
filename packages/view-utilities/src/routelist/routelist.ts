@@ -1,8 +1,8 @@
 import { parseUrl } from '../url'
 
 const PUBLIC_ROUTELIST_REGEXES = [
-  /^\/login$/,
   /^\/redirect$/,
+  /^\/login$/,
   /^\/regions\/[^/]+\/(attractions|restaurants|articles)\/[^/]+$/,
   /^\/regions\/[^/]+\/hotels(\/.*)?$/,
   /^\/(attractions|restaurants|hotels|articles)\/[^/]+$/,
