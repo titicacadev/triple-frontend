@@ -9,8 +9,8 @@ export interface ConfirmProps {
   cancelText?: string
   confirmText?: string
   onClose?: () => void
-  onCancel?: () => boolean | unknown
-  onConfirm?: () => boolean | unknown
+  onCancel?: () => void
+  onConfirm?: () => void
 }
 
 export const Confirm = ({
@@ -23,14 +23,6 @@ export const Confirm = ({
   onCancel,
   onConfirm,
 }: ConfirmProps) => {
-  const handleCancel = () => {
-    onCancel ? !onCancel() && onClose?.() : onClose?.()
-  }
-
-  const handleConfirm = () => {
-    onConfirm ? !onConfirm() && onClose?.() : onClose?.()
-  }
-
   return (
     <Modal open={open} onClose={onClose}>
       <Modal.Body>
@@ -38,10 +30,10 @@ export const Confirm = ({
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={handleCancel}>
+        <Modal.Action color="gray" onClick={onCancel}>
           {cancelText}
         </Modal.Action>
-        <Modal.Action color="blue" onClick={handleConfirm}>
+        <Modal.Action color="blue" onClick={onConfirm}>
           {confirmText}
         </Modal.Action>
       </Modal.Actions>

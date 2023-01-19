@@ -8,7 +8,7 @@ export interface AlertProps {
   open?: boolean
   confirmText?: ReactNode
   onClose?: () => void
-  onConfirm?: () => boolean | unknown
+  onConfirm?: () => void
 }
 
 export const Alert = ({
@@ -19,10 +19,6 @@ export const Alert = ({
   onClose,
   onConfirm,
 }: AlertProps) => {
-  const handleConfirm = () => {
-    onConfirm ? !onConfirm() && onClose?.() : onClose?.()
-  }
-
   return (
     <Modal open={open} onClose={onClose}>
       <Modal.Body>
@@ -30,7 +26,7 @@ export const Alert = ({
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
       <Modal.Actions>
-        <Modal.Action color="blue" onClick={handleConfirm}>
+        <Modal.Action color="blue" onClick={onConfirm}>
           {confirmText}
         </Modal.Action>
       </Modal.Actions>

@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import { useActionSheet } from './action-sheet-context'
-
 export const ActionItemContainer = styled.div`
   display: flex;
   align-items: center;
@@ -68,7 +66,7 @@ export interface ActionSheetItemProps extends PropsWithChildren {
   buttonLabel?: string
   icon?: string
   checked?: boolean
-  onClick?: () => unknown
+  onClick?: () => void
 }
 
 export const ActionSheetItem = ({
@@ -79,21 +77,12 @@ export const ActionSheetItem = ({
   onClick,
   ...props
 }: ActionSheetItemProps) => {
-  const { onClose } = useActionSheet()
-
-  const handleClick = () => {
-    onClick ? !onClick() && onClose?.() : onClose?.()
-  }
-
   return (
-    <ActionItemContainer
-      onClick={buttonLabel ? undefined : handleClick}
-      {...props}
-    >
+    <ActionItemContainer onClick={buttonLabel ? undefined : onClick} {...props}>
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
       <ItemText checked={checked}>{children}</ItemText>
       {buttonLabel ? (
-        <ItemButton onClick={handleClick}>{buttonLabel}</ItemButton>
+        <ItemButton onClick={onClick}>{buttonLabel}</ItemButton>
       ) : null}
       {checked ? <CheckedIcon /> : null}
     </ActionItemContainer>
