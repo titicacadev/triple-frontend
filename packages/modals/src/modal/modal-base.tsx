@@ -1,4 +1,4 @@
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren, SyntheticEvent, useRef } from 'react'
 import {
   Container,
   FlexBox,
@@ -59,6 +59,7 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
               width: 295px;
               background-color: #fff;
             `}
+            onClick={(e?: SyntheticEvent) => silenceEvent(e)}
           >
             {children}
           </Container>
@@ -66,4 +67,12 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
       </FlexBox>
     </Portal>
   )
+}
+
+export function silenceEvent(e?: SyntheticEvent) {
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    e.nativeEvent && e.nativeEvent.stopImmediatePropagation()
+  }
 }
