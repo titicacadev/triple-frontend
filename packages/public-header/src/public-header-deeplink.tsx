@@ -30,6 +30,9 @@ export function PublicHeaderDeeplink({
         onClick={() =>
           trackEventWithMetadata({
             ga: ['헤더_설치유도_선택', '앱에서 보기'],
+            fa: {
+              action: '헤더_설치유도_선택',
+            },
             pixel: {
               action: '헤더_설치유도_선택',
             },
