@@ -115,7 +115,8 @@ function RecommendedArticles({
     <Section
       divider="top"
       css={{
-        margin: '50px 0',
+        marginTop: 50,
+        marginBottom: 50,
         padding: '0',
       }}
     >
