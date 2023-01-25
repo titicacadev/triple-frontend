@@ -141,15 +141,6 @@ function ReviewElement({
   const likeButtonActionName = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
   const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
     useCallback(async () => {
-      trackEvent({
-        ga: [likeButtonActionName, review.id],
-        fa: {
-          action: likeButtonActionName,
-          item_id: review.id,
-          resource_id: resourceId,
-        },
-      })
-
       liked
         ? unlikeReview({ reviewId: review.id })
         : likeReview({ reviewId: review.id })
@@ -159,10 +150,8 @@ function ReviewElement({
       liked,
       resourceId,
       review.id,
-      trackEvent,
       unlikeReview,
       updateLikedStatus,
-      likeButtonActionName,
     ]),
     { triggeredEventAction: likeButtonActionName },
   )
@@ -261,7 +250,17 @@ function ReviewElement({
             <LikeButton
               display="inline-block"
               liked={liked}
-              onClick={handleLikeButtonClick}
+              onClick={(e) => {
+                trackEvent({
+                  ga: [likeButtonActionName, review.id],
+                  fa: {
+                    action: likeButtonActionName,
+                    item_id: review.id,
+                    resource_id: resourceId,
+                  },
+                })
+                handleLikeButtonClick(e)
+              }}
               css={{
                 marginTop: 5,
                 padding: '2px 10px 2px 20px',
