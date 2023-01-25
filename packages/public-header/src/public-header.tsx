@@ -19,7 +19,6 @@ import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
 import { PublicHeaderDeeplink } from './public-header-deeplink'
-import { ExtraActionSeperator } from './extra-action-seperator'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -89,8 +88,6 @@ export interface PublicHeaderProps {
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
-  isLoungeHome?: boolean
-  loungeHomeEventLabel?: string
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -99,13 +96,12 @@ export interface PublicHeaderProps {
 
 export function PublicHeader({
   category,
-  isLoungeHome,
+  children,
   deeplinkPath,
   disableAutoHide,
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
-  children,
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('common-web')
 
@@ -133,21 +129,11 @@ export function PublicHeader({
         </Logo>
 
         <ExtraActionsContainer>
-          {isLoungeHome ? (
-            <>
-              {children}
-              <ExtraActionSeperator />
-            </>
-          ) : null}
+          {children}
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
           </ExtraActionItem>
-          {deeplinkPath && (
-            <PublicHeaderDeeplink
-              deeplinkPath={deeplinkPath}
-              isLoungeHome={isLoungeHome}
-            />
-          )}
+          {deeplinkPath && <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />}
         </ExtraActionsContainer>
       </HeaderFrame>
     </Wrapper>
