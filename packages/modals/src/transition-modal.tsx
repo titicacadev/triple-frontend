@@ -35,6 +35,7 @@ export enum TransitionType {
   Tna = 'tna',
   Hotel = 'hotel',
   View = 'view',
+  AddPoisToTripSelect = 'addPoisToTripSelect',
 }
 
 const MODAL_CONTENT: {
@@ -81,6 +82,9 @@ const MODAL_CONTENT: {
       '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
     ],
     eventLabel: '컨텐츠_연속보기',
+  },
+  [TransitionType.AddPoisToTripSelect]: {
+    eventLabel: '내일정으로담기_선택',
   },
 }
 

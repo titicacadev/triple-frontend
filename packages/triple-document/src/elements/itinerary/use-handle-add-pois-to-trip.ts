@@ -32,5 +32,8 @@ export default function useHandleAddPoiToTrip(regionId?: string) {
     [navigate, regionId, appUrlScheme],
   )
 
-  return useAppCallback(TransitionType.General, useSessionCallback(handleFn))
+  return useAppCallback(
+    TransitionType.AddPoisToTripSelect,
+    useSessionCallback(handleFn),
+  )
 }
