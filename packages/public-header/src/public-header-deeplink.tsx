@@ -8,12 +8,10 @@ import { useDeeplinkHref } from './use-deeplink-href'
 
 interface Props {
   deeplinkPath: string
-  isLoungeHome?: boolean
 }
 
 export function PublicHeaderDeeplink({
   deeplinkPath,
-  isLoungeHome,
   children,
 }: PropsWithChildren<Props>) {
   const { t } = useTranslation('common-web')
@@ -23,9 +21,7 @@ export function PublicHeaderDeeplink({
 
   return (
     <>
-      {isLoungeHome ? (
-        { children }
-      ) : (
+      {children || (
         <>
           <ExtraActionSeperator />
           <ExtraActionItem
