@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import { MotionContainer } from '../motion-container'
 
 import { InitialEffectOptions } from './types'
-import { stringifyTransition } from './common'
+import { generateTransition, stringifyTransition } from './common'
 
 type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
@@ -18,14 +18,7 @@ export default function Rotate({
   children,
   options = {},
 }: PropsWithChildren<RotateProps>) {
-  const transition = {
-    ease: 'linear',
-    duration: 3,
-    ...(options.infinity && { repeat: Infinity }),
-    ...(options.repeatType && {
-      repeatType: options.repeatType,
-    }),
-  }
+  const transition = generateTransition(options)
 
   return (
     <MotionContainer

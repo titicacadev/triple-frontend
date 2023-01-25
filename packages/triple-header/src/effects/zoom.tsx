@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import { MotionContainer } from '../motion-container'
 
 import { InitialEffectOptions } from './types'
-import { stringifyTransition } from './common'
+import { generateTransition, stringifyTransition } from './common'
 
 export interface ZoomProps {
   type: 'zoom'
@@ -14,14 +14,7 @@ export default function Zoom({
   children,
   options = {},
 }: PropsWithChildren<ZoomProps>) {
-  const transition = {
-    ease: 'linear',
-    duration: 3,
-    ...(options.infinity && { repeat: Infinity }),
-    ...(options.repeatType && {
-      repeatType: options.repeatType,
-    }),
-  }
+  const transition = generateTransition(options)
 
   return (
     <MotionContainer
