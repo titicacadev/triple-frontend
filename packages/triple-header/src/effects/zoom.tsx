@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { motion } from 'framer-motion'
+
+import { MotionContainer } from '../motion-container'
 
 import { InitialEffectOptions } from './types'
 import { stringifyTransition } from './common'
@@ -23,13 +24,12 @@ export default function Zoom({
   }
 
   return (
-    <motion.div
+    <MotionContainer
       key={`zoom_${stringifyTransition(transition)}`}
-      style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       animate={{ scale: 1.2 }}
       transition={transition}
     >
       {children}
-    </motion.div>
+    </MotionContainer>
   )
 }

@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { motion } from 'framer-motion'
+
+import { MotionContainer } from '../motion-container'
 
 import { InitialEffectOptions } from './types'
 import { stringifyTransition } from './common'
@@ -27,14 +28,13 @@ export default function Flying({
   }
 
   return (
-    <motion.div
+    <MotionContainer
       key={`flying_${stringifyTransition(transition)}`}
-      style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       initial={{ x: '150%', rotate: 0 }}
       animate={{ x: 0, rotate: options.degree || 0 }}
       transition={transition}
     >
       {children}
-    </motion.div>
+    </MotionContainer>
   )
 }
