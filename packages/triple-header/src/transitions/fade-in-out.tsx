@@ -1,15 +1,9 @@
 import { useEffect, useState, ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import styled from 'styled-components'
+import { AnimatePresence } from 'framer-motion'
 
+import { MotionContainer } from '../motion-container'
 import { wrap } from '../utils'
 
-const FadeInOutContainer = styled(motion.div)`
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 100%;
-`
 const variants = {
   active: () => ({
     opacity: [0, 1],
@@ -30,14 +24,14 @@ export default function FadeInOut({ children }: { children: ReactNode[] }) {
 
   return (
     <AnimatePresence>
-      <FadeInOutContainer
+      <MotionContainer
         key={index}
         variants={variants}
         animate="active"
         exit="exit"
       >
         {children[index]}
-      </FadeInOutContainer>
+      </MotionContainer>
     </AnimatePresence>
   )
 }

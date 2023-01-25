@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
+
+import { MotionContainer } from '../motion-container'
 
 import { InitialEffectOptions } from './types'
 import { stringifyTransition } from './common'
@@ -27,13 +28,12 @@ export default function Rotate({
   }
 
   return (
-    <motion.div
+    <MotionContainer
       key={`rotate_${stringifyTransition(transition)}`}
       animate={{ rotate: options.degree || 0 }}
-      style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       transition={transition}
     >
       {children}
-    </motion.div>
+    </MotionContainer>
   )
 }
