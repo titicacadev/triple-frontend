@@ -1,7 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { PropsWithChildren } from 'react'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -100,18 +100,17 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   isLoungeHome,
-  loungeHomeEventLabel,
   deeplinkPath,
   disableAutoHide,
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
-}: PublicHeaderProps) {
+  children,
+}: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('common-web')
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
 
   if (app) {
     return null
@@ -136,16 +135,7 @@ export function PublicHeader({
         <ExtraActionsContainer>
           {isLoungeHome ? (
             <>
-              <ExtraActionItem
-                href="/trips/intro"
-                onClick={() => {
-                  trackEventWithMetadata({
-                    ga: ['헤더_라운지홈_선택', loungeHomeEventLabel],
-                  })
-                }}
-              >
-                TOP 여행지 {/* TODO: 국제화 적용 */}
-              </ExtraActionItem>
+              {children}
               <ExtraActionSeperator />
             </>
           ) : null}
