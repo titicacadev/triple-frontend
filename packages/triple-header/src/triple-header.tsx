@@ -1,5 +1,5 @@
 import { useState, ComponentType, useCallback, useLayoutEffect } from 'react'
-import { Container, MarginPadding } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
 import { TRANSITIONS } from './transitions'
@@ -27,7 +27,6 @@ const Layer = styled(Container).attrs({
   position: 'absolute',
 })<{
   zIndex: number
-  positioning: MarginPadding
 }>`
   width: 100%;
 
@@ -35,15 +34,6 @@ const Layer = styled(Container).attrs({
     zIndex &&
     css`
       z-index: ${zIndex};
-    `}
-  ${({ positioning }) =>
-    css`
-      top: ${positioning.top || 0}%;
-    `}
-
-  ${({ positioning }) =>
-    css`
-      left: ${positioning.left || 0}%;
     `}
 `
 
@@ -121,7 +111,10 @@ export default function TripleHeader({
           <Layer
             key={index}
             zIndex={index + 1}
-            positioning={{ top: position.top, left: position.left }}
+            css={{
+              top: `${position.top}%`,
+              left: `${position.left}%`,
+            }}
           >
             <LayerElement>
               {frames.map(({ type, width, height, value, effect }, index) => {
