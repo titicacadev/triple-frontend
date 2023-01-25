@@ -5,6 +5,7 @@ import {
   useCallback,
   ReactNode,
   Fragment,
+  useMemo,
 } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
@@ -24,39 +25,34 @@ const RollingContainer = styled(Container)<{ isTransition: boolean }>`
 `
 
 export default function Rolling({ children }: { children: ReactNode[] }) {
-  const [visibleSlide, setVisibleSlide] = useState(1)
-  const [slides, setSlide] = useState(children)
+  const [visibleSlide, setVisibleSlide] = useState(0)
   const [hasTransition, setHasTransition] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    const slidesWithClones = [...children]
-    slidesWithClones.unshift(slidesWithClones[slidesWithClones.length - 1])
-    slidesWithClones.push(slidesWithClones[1])
-
-    setSlide(slidesWithClones)
-  }, [children])
+  const newChildrenNodes = useMemo(() => [...children, children[0]], [children])
 
   useEffect(() => {
     const timer = setInterval(() => {
       setVisibleSlide((prevVisibleSlide) => {
-        return prevVisibleSlide === slides.length - 1 ? 0 : prevVisibleSlide + 1
+        return prevVisibleSlide === newChildrenNodes.length - 1
+          ? 0
+          : prevVisibleSlide + 1
       })
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [slides, visibleSlide])
+  }, [newChildrenNodes, visibleSlide])
 
   useEffect(() => {
-    if (visibleSlide === slides.length - 1) {
+    if (visibleSlide === newChildrenNodes.length - 1) {
       setTimeout(() => {
         setHasTransition(false)
-        setVisibleSlide(1)
-      }, 500)
-    } else if (visibleSlide < slides.length - 1) {
+        setVisibleSlide(0)
+      }, 300)
+    } else if (visibleSlide < newChildrenNodes.length - 1) {
       setHasTransition(true)
     }
-  }, [slides, visibleSlide])
+  }, [newChildrenNodes, visibleSlide])
 
   const calculateNewX = useCallback(
     () => -visibleSlide * (containerRef.current?.clientWidth || 0),
@@ -69,7 +65,7 @@ export default function Rolling({ children }: { children: ReactNode[] }) {
       ref={containerRef}
       style={{ left: calculateNewX() }}
     >
-      {slides.map((slide, index) => {
+      {newChildrenNodes.map((slide, index) => {
         return <Fragment key={index}>{slide}</Fragment>
       })}
     </RollingContainer>
