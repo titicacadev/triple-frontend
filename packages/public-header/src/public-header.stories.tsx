@@ -30,15 +30,6 @@ export const DeeplinkPath: ComponentStoryObj<typeof PublicHeader> = {
   },
 }
 
-export const LoungeHome: ComponentStoryObj<typeof PublicHeader> = {
-  args: {
-    ...Basic.args,
-    ...DeeplinkPath.args,
-    isLoungeHome: true,
-    loungeHomeEventLabel: '웹_메인',
-  },
-}
-
 export const Categories: ComponentStory<typeof PublicHeader> = () => {
   return (
     <>
