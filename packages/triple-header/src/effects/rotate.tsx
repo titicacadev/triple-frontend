@@ -5,37 +5,31 @@ import { InitialEffectOptions } from './types'
 import { stringifyTransition } from './common'
 
 type ExtendedEffectOptions = InitialEffectOptions & {
-  degree: number
+  degree?: number
 }
 
 export interface RotateProps {
   type: 'rotate'
-  options?: ExtendedEffectOptions
+  options: ExtendedEffectOptions
 }
 
 export default function Rotate({
   children,
-  options: initialOptions,
+  options = {},
 }: PropsWithChildren<RotateProps>) {
-  const options = initialOptions
-    ? {
-        ...(initialOptions?.infinity && { repeat: Infinity }),
-        ...(initialOptions?.repeatType && {
-          repeatType: initialOptions.repeatType,
-        }),
-      }
-    : {}
-
   const transition = {
     ease: 'linear',
     duration: 3,
-    ...options,
+    ...(options.infinity && { repeat: Infinity }),
+    ...(options.repeatType && {
+      repeatType: options.repeatType,
+    }),
   }
 
   return (
     <motion.div
       key={`rotate_${stringifyTransition(transition)}`}
-      animate={{ rotate: initialOptions?.degree || 0 }}
+      animate={{ rotate: options.degree || 0 }}
       style={{ position: 'absolute', top: 0, width: '100%', height: '100%' }}
       transition={transition}
     >

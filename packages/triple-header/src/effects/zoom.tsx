@@ -11,21 +11,15 @@ export interface ZoomProps {
 
 export default function Zoom({
   children,
-  options: initialOptions,
+  options = {},
 }: PropsWithChildren<ZoomProps>) {
-  const options = initialOptions
-    ? {
-        ...(initialOptions.infinity && { repeat: Infinity }),
-        ...(initialOptions.repeatType && {
-          repeatType: initialOptions.repeatType,
-        }),
-      }
-    : {}
-
   const transition = {
     ease: 'linear',
     duration: 3,
-    ...options,
+    ...(options.infinity && { repeat: Infinity }),
+    ...(options.repeatType && {
+      repeatType: options.repeatType,
+    }),
   }
 
   return (
