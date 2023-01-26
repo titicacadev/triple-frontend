@@ -6,6 +6,7 @@ import {
   useUriHash,
   useUserAgentContext,
 } from '@titicaca/react-contexts'
+import { portalRender } from '@titicaca/frontend-integration-test/src/utils/portalRender'
 
 import {
   LoginCtaModalProvider,
@@ -51,7 +52,7 @@ test('useLoginCtaModal 훅은 history context에 해시 값을 push합니다.', 
 test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog를 렌더링합니다.', () => {
   mockUseUriHash(LOGIN_CTA_MODAL_HASH)
 
-  const { getByRole } = render(<LoginCtaModalProvider />)
+  const { getByRole } = portalRender(<LoginCtaModalProvider />)
 
   expect(getByRole('dialog')).toHaveTextContent(/로그인이 필요합니다\./)
 })
@@ -59,7 +60,7 @@ test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog�
 test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다.', () => {
   mockUseUriHash(LOGIN_CTA_MODAL_HASH)
 
-  const { getAllByRole } = render(
+  const { getAllByRole } = portalRender(
     <LoginCtaModalProvider>
       <LoginCtaModalProvider />
     </LoginCtaModalProvider>,

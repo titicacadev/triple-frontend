@@ -1,9 +1,10 @@
 import { PropsWithChildren } from 'react'
 import '@testing-library/jest-dom'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { fireEvent, waitFor } from '@testing-library/react'
 import { EnvProvider } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { portalRender } from '@titicaca/frontend-integration-test/src/utils/portalRender'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
@@ -99,7 +100,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      const { queryByText } = portalRender(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -125,7 +126,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      const { queryByText } = portalRender(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -151,7 +152,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      const { queryByText } = portalRender(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -179,7 +180,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
+      const { getByRole, findByText } = portalRender(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -213,7 +214,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
+      const { getByRole, findByText } = portalRender(
         <Reply
           reply={reply}
           focusInput={onFocusInput}

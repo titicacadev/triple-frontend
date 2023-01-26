@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import { LoginCtaModalProvider, TransitionModal } from '@titicaca/modals'
 import {
   EnvProvider,
@@ -11,6 +11,7 @@ import { ExternalLink } from '@titicaca/router'
 import { PropsWithChildren } from 'react'
 
 import { mockLocation } from './utils/location'
+import { portalRender } from './utils/portalRender'
 
 afterEach(() => {
   mockLocation.afterEach()
@@ -27,7 +28,7 @@ test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서
     isPublic: true,
   })
 
-  const { getByRole } = render(
+  const { getByRole } = portalRender(
     <ExternalLink href={href} target="new" allowSource="app">
       테스트링크
     </ExternalLink>,
@@ -69,7 +70,7 @@ test('로그인한 앱에서만 열리는 링크라면 로그인하지 않은 �
     isPublic: false,
   })
 
-  const { getByRole } = render(
+  const { getByRole } = portalRender(
     <ExternalLink href={href} target="new" allowSource="app-with-session">
       테스트링크
     </ExternalLink>,

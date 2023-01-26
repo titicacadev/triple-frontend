@@ -6,7 +6,8 @@
       "@titicaca/modals": ["../packages/modals/src"],
       "@titicaca/react-contexts": ["../packages/react-contexts/src"],
       "@titicaca/router": ["../packages/router/src"]
-    }
+    },
+    "jsx": "react"
   },
   "references": [
     {

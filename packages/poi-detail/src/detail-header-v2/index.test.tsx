@@ -1,11 +1,14 @@
 import { FC, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
 import '@titicaca/core-elements'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
+/* eslint-disable-next-line */
+import { portalRender } from '@titicaca/frontend-integration-test/src/utils/portalRender'
+import DetailHeaderV2 from '.'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('@titicaca/react-contexts')
@@ -28,9 +31,6 @@ jest.mock('@titicaca/core-elements', () => ({
       )
     },
 }))
-
-/* eslint-disable-next-line */
-import DetailHeaderV2 from '.'
 
 describe('when user is on app', () => {
   beforeEach(() => {
@@ -64,7 +64,7 @@ describe('when user is on app', () => {
       back: jest.fn(),
     }))
 
-    render(
+    portalRender(
       <DetailHeaderV2
         names={{ ko: 'test', en: 'test', local: 'test' }}
         areaName="테스트 지역"
@@ -111,7 +111,7 @@ describe('when user is on web', () => {
       back: jest.fn(),
     }))
 
-    render(
+    portalRender(
       <DetailHeaderV2
         names={{ ko: 'test', en: 'test', local: 'test' }}
         areaName="테스트 지역"
