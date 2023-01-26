@@ -1,27 +1,21 @@
-import { PropsWithChildren, useEffect, useState } from 'react'
+import { PropsWithChildren, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-export const Portal = ({ children }: PropsWithChildren) => {
-  const [container, setContainer] = useState<HTMLDivElement | null>(null)
+interface PortalProps {
+  selector?: string
+}
+
+export const Portal = ({
+  children,
+  selector = '#triple-portal',
+}: PropsWithChildren<PortalProps>) => {
+  const ref = useRef<HTMLElement | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setContainer(() => {
-      const element = document.createElement('div')
-      element.classList.add('triple-portal')
-      return element
-    })
-  }, [])
+    ref.current = document.querySelector(selector)
+    setMounted(true)
+  }, [selector])
 
-  useEffect(() => {
-    if (container === null) {
-      return
-    }
-    document.body.appendChild(container)
-
-    return () => {
-      document.body.removeChild(container)
-    }
-  }, [container])
-
-  return container ? createPortal(children, container) : null
+  return mounted ? createPortal(children, ref.current as HTMLElement) : null
 }
