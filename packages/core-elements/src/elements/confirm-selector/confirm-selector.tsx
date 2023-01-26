@@ -1,8 +1,12 @@
 import { forwardRef, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import { CheckboxBase, CheckboxBaseProps } from '../checkbox'
 import { Text } from '../text'
+
+import {
+  ConfirmSelectorBase,
+  ConfirmSelectorBaseProps,
+} from './confirm-selector-base'
 
 const ConfirmSelectorLabel = styled.label`
   display: flex;
@@ -19,7 +23,7 @@ const ConfirmSelectorText = styled(Text)`
 `
 
 export interface ConfirmSelectorProps
-  extends Omit<CheckboxBaseProps, 'variant'>,
+  extends ConfirmSelectorBaseProps,
     PropsWithChildren {}
 
 export const ConfirmSelector = forwardRef<
@@ -29,7 +33,7 @@ export const ConfirmSelector = forwardRef<
   return (
     <ConfirmSelectorLabel>
       <ConfirmSelectorText>{children}</ConfirmSelectorText>
-      <CheckboxBase {...props} ref={ref} variant="round" />
+      <ConfirmSelectorBase {...props} ref={ref} />
     </ConfirmSelectorLabel>
   )
 })
