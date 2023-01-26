@@ -23,6 +23,10 @@ export const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
   background-color: rgba(58, 58, 58, 0.7);
 
   &:not([class*='action-sheet-fade-']) {

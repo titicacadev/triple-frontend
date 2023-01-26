@@ -40,9 +40,7 @@ interface SheetProps {
 
 const Sheet = styled.div<SheetProps>`
   position: fixed;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+  width: 100%;
   max-width: 768px;
   background-color: var(--color-white);
 
