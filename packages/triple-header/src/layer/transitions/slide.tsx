@@ -4,17 +4,17 @@ import { AnimatePresence } from 'framer-motion'
 import { wrap } from '../../utils'
 
 export default function Slide({ children }: { children: ReactNode[] }) {
-  const [[page, direction], setPage] = useState([0, 0])
+  const [page, setPage] = useState(0)
   const index = wrap(0, children.length, page)
 
   useEffect(() => {
-    const timer = setInterval(() => setPage((prev) => [prev[0] + 1, 0]), 800)
+    const timer = setInterval(() => setPage((prev) => prev + 1), 3000)
 
     return () => clearInterval(timer)
   }, [page])
 
   return (
-    <AnimatePresence initial exitBeforeEnter custom={direction}>
+    <AnimatePresence initial exitBeforeEnter>
       {children[index]}
     </AnimatePresence>
   )
