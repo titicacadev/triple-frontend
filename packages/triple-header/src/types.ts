@@ -1,9 +1,9 @@
 import { MarginPadding } from '@titicaca/core-elements'
 
-import { TextFrame } from './frames/text'
-import { ImageFrame } from './frames/image'
+import { TextFrame } from './frame/text'
+import { ImageFrame } from './frame/image'
 
-type TransitionType = 'slide' | 'rolling' | 'marquee'
+export type TransitionType = 'slide' | 'rolling' | 'marquee' | 'fadeInOut'
 
 export type FrameData = ImageFrame | TextFrame
 
@@ -19,7 +19,7 @@ interface Canvas {
   height: number
 }
 
-interface Layer {
+export interface Layer {
   frames: FrameData[]
   transition?: {
     type: TransitionType

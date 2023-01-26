@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { MotionContainer } from '../motion-container'
+import { MotionContainer } from '../../motion-container'
 
 import { InitialEffectOptions } from './types'
 import { generateTransition, stringifyTransition } from './common'
@@ -9,21 +9,22 @@ type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
 }
 
-export interface RotateProps {
+export interface FlyingProps {
   type: 'rotate'
-  options: ExtendedEffectOptions
+  options?: ExtendedEffectOptions
 }
 
-export default function Rotate({
+export default function Flying({
   children,
   options = {},
-}: PropsWithChildren<RotateProps>) {
+}: PropsWithChildren<FlyingProps>) {
   const transition = generateTransition(options)
 
   return (
     <MotionContainer
-      key={`rotate_${stringifyTransition(transition)}`}
-      animate={{ rotate: options.degree || 0 }}
+      key={`flying_${stringifyTransition(transition)}`}
+      initial={{ x: '150%', rotate: 0 }}
+      animate={{ x: 0, rotate: options.degree || 0 }}
       transition={transition}
     >
       {children}
