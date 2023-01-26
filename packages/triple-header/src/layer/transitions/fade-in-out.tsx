@@ -12,29 +12,31 @@ const variants = {
 }
 
 export default function FadeInOut({ children }: { children: ReactNode[] }) {
-  const [page, setPage] = useState(0)
+  const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(
       () =>
-        setPage((prev) => {
-          return prev === children.length - 1 ? 0 : prev + 1
+        setVisibleFrameIndex((prevVisibleFrameIndex) => {
+          return prevVisibleFrameIndex === children.length - 1
+            ? 0
+            : prevVisibleFrameIndex + 1
         }),
       3000,
     )
 
     return () => clearInterval(timer)
-  }, [children, page])
+  }, [children, visibleFrameIndex])
 
   return (
     <AnimatePresence>
       <MotionContainer
-        key={page}
+        key={visibleFrameIndex}
         variants={variants}
         animate="active"
         exit="exit"
       >
-        {children[page]}
+        {children[visibleFrameIndex]}
       </MotionContainer>
     </AnimatePresence>
   )
