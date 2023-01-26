@@ -18,6 +18,7 @@ export const parameters = {
 
 export const decorators = [
   globalStyleDecorator,
+  portalDecorator,
   tripleClientMetadataDecorator,
   userAgentProviderDecorator,
   historyProviderDecorator,
@@ -48,6 +49,14 @@ export function globalStyleDecorator(Story) {
       <GlobalStyle />
       <Story />
     </>
+  )
+}
+
+export function portalDecorator(Story) {
+  return (
+    <div id="triple-portal">
+      <Story />
+    </div>
   )
 }
 
