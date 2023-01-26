@@ -1,25 +1,19 @@
-import { ComponentType } from 'react'
 import { Text } from '@titicaca/core-elements'
 
-import { EFFECTES, EffectData } from './effects'
+import { EFFECTES, Effect } from './effects'
 
-export interface TextFrame {
-  type: 'text'
+export type TextFrame = { type: 'text' } & TextFrameProps
+interface TextFrameProps {
   value: {
     text: string
   }
   width?: number
   height?: number
-  effect?: EffectData
+  effect?: Effect
 }
 
-export default function TextFrame({
-  value: { text },
-  effect,
-}: Omit<TextFrame, 'type'>) {
-  const EffectElement = effect
-    ? (EFFECTES[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
-    : EFFECTES.none
+export default function TextFrame({ value: { text }, effect }: TextFrameProps) {
+  const EffectElement = effect ? EFFECTES[effect.type] : EFFECTES.none
 
   return (
     <EffectElement options={effect?.options}>
