@@ -33,14 +33,16 @@ export default function Layer({
   transition?: { type: TransitionType }
   calculateFrameRatio: (length?: number) => number
 }) {
-  const LayerElement = transition ? TRANSITIONS[transition.type] : Container
+  const TransitionElement = transition
+    ? TRANSITIONS[transition.type]
+    : Container
 
   return (
     <LayerContainer
       zIndex={zIndex}
       css={{ top: `${position.top}%`, left: `${position.left}%` }}
     >
-      <LayerElement>
+      <TransitionElement>
         {frames.map((frame, index) => {
           return (
             <Frame
@@ -50,7 +52,7 @@ export default function Layer({
             />
           )
         })}
-      </LayerElement>
+      </TransitionElement>
     </LayerContainer>
   )
 }
