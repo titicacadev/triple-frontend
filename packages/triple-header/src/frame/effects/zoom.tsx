@@ -5,8 +5,9 @@ import { MotionContainer } from '../../motion-container'
 import { InitialEffectOptions } from './types'
 import { generateTransition, stringifyTransition } from './common'
 
-export interface ZoomProps {
-  type: 'zoom'
+export type ZoomEffect = { type: 'zoom' } & ZoomProps
+
+interface ZoomProps {
   options?: InitialEffectOptions
 }
 

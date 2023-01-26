@@ -9,8 +9,9 @@ type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
 }
 
-export interface FlyingProps {
-  type: 'rotate'
+export type FlyingEffect = { type: 'flying' } & FlyingProps
+
+interface FlyingProps {
   options?: ExtendedEffectOptions
 }
 
