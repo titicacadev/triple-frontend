@@ -1,7 +1,7 @@
 import None from './none'
-import Zoom, { ZoomProps } from './zoom'
-import Rotate, { RotateProps } from './rotate'
-import Flying, { FlyingProps } from './flying'
+import Zoom, { ZoomEffect } from './zoom'
+import Rotate, { RotateEffect } from './rotate'
+import Flying, { FlyingEffect } from './flying'
 
 export const EFFECTES = {
   none: None,
@@ -10,4 +10,4 @@ export const EFFECTES = {
   flying: Flying,
 }
 
-export type EffectData = ZoomProps | RotateProps | FlyingProps
+export type Effect = ZoomEffect | RotateEffect | FlyingEffect

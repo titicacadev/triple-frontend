@@ -9,9 +9,10 @@ type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
 }
 
-export interface RotateProps {
-  type: 'rotate'
-  options: ExtendedEffectOptions
+export type RotateEffect = { type: 'rotate' } & RotateProps
+
+interface RotateProps {
+  options?: ExtendedEffectOptions
 }
 
 export default function Rotate({
