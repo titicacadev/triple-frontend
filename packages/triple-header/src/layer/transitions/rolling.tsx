@@ -25,38 +25,38 @@ const RollingContainer = styled(Container)<{ isTransition: boolean }>`
 `
 
 export default function Rolling({ children }: { children: ReactNode[] }) {
-  const [visibleSlide, setVisibleSlide] = useState(0)
+  const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
   const [hasTransition, setHasTransition] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const newChildrenNodes = useMemo(() => [...children, children[0]], [children])
+  const newFrameNodes = useMemo(() => [...children, children[0]], [children])
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setVisibleSlide((prevVisibleSlide) => {
-        return prevVisibleSlide === newChildrenNodes.length - 1
+      setVisibleFrameIndex((prevVisibleFrameIndex) => {
+        return prevVisibleFrameIndex === newFrameNodes.length - 1
           ? 0
-          : prevVisibleSlide + 1
+          : prevVisibleFrameIndex + 1
       })
     }, 3000)
 
     return () => clearInterval(timer)
-  }, [newChildrenNodes, visibleSlide])
+  }, [newFrameNodes, visibleFrameIndex])
 
   useEffect(() => {
-    if (visibleSlide === newChildrenNodes.length - 1) {
+    if (visibleFrameIndex === newFrameNodes.length - 1) {
       setTimeout(() => {
         setHasTransition(false)
-        setVisibleSlide(0)
+        setVisibleFrameIndex(0)
       }, 300)
-    } else if (visibleSlide < newChildrenNodes.length - 1) {
+    } else if (visibleFrameIndex < newFrameNodes.length - 1) {
       setHasTransition(true)
     }
-  }, [newChildrenNodes, visibleSlide])
+  }, [newFrameNodes, visibleFrameIndex])
 
   const calculateNewX = useCallback(
-    () => -visibleSlide * (containerRef.current?.clientWidth || 0),
-    [visibleSlide],
+    () => -visibleFrameIndex * (containerRef.current?.clientWidth || 0),
+    [visibleFrameIndex],
   )
 
   return (
@@ -65,7 +65,7 @@ export default function Rolling({ children }: { children: ReactNode[] }) {
       ref={containerRef}
       style={{ left: calculateNewX() }}
     >
-      {newChildrenNodes.map((slide, index) => {
+      {newFrameNodes.map((slide, index) => {
         return <Fragment key={index}>{slide}</Fragment>
       })}
     </RollingContainer>
