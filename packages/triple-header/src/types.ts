@@ -1,18 +1,12 @@
 import { MarginPadding } from '@titicaca/core-elements'
 
-import { TextFrame } from './frame/text'
 import { ImageFrame } from './frame/image'
+import { TextFrame } from './frame/text'
 
-export type TransitionType = 'slide' | 'rolling' | 'marquee' | 'fadeInOut'
-
-export type FrameData = ImageFrame | TextFrame
-
-type FrameType = FrameData['type']
-
-export type GetValue<Key extends FrameType> = Extract<
-  FrameData,
-  { type: Key }
->['value']
+export interface TripleHeader {
+  canvas: Canvas
+  layers: Layer[]
+}
 
 interface Canvas {
   width: number
@@ -27,7 +21,6 @@ export interface Layer {
   positioning?: MarginPadding
 }
 
-export interface TripleHeader {
-  canvas: Canvas
-  layers: Layer[]
-}
+export type TransitionType = 'slide' | 'rolling' | 'marquee' | 'fadeInOut'
+
+export type FrameData = ImageFrame | TextFrame

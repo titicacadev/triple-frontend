@@ -1,17 +1,17 @@
-import { ComponentType } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
-import { EFFECTES, EffectData } from './effects'
+import { EFFECTES, Effect } from './effects'
 
-export interface ImageFrame {
-  type: 'image'
+export type ImageFrame = { type: 'image' } & ImageFrameProps
+
+interface ImageFrameProps {
   value: {
     image: ImageMeta
   }
   width?: number
   height?: number
-  effect?: EffectData
+  effect?: Effect
 }
 
 const Image = styled.img`
@@ -23,10 +23,8 @@ const Image = styled.img`
 export default function ImageFrame({
   value: { image },
   effect,
-}: Omit<ImageFrame, 'type'>) {
-  const EffectElement = effect
-    ? (EFFECTES[effect.type] as ComponentType<Omit<EffectData, 'type'>>)
-    : EFFECTES.none
+}: ImageFrameProps) {
+  const EffectElement = effect ? EFFECTES[effect.type] : EFFECTES.none
 
   return Object.keys(image).length > 0 ? (
     <EffectElement options={effect?.options}>
