@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
-import { EFFECTES, EffectData } from '../effects'
+import { EFFECTES, EffectData } from './effects'
 
 export interface ImageFrame {
   type: 'image'

@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { MotionContainer } from '../motion-container'
+import { MotionContainer } from '../../motion-container'
 
 import { InitialEffectOptions } from './types'
 import { generateTransition, stringifyTransition } from './common'

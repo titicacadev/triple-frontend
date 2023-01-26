@@ -1,8 +1,8 @@
 import { useEffect, useState, ReactNode } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
-import { MotionContainer } from '../motion-container'
-import { wrap } from '../utils'
+import { MotionContainer } from '../../motion-container'
+import { wrap } from '../../utils'
 
 const variants = {
   active: () => ({

@@ -1,7 +1,7 @@
 import { useEffect, useState, ReactNode } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
-import { wrap } from '../utils'
+import { wrap } from '../../utils'
 
 export default function Slide({ children }: { children: ReactNode[] }) {
   const [[page, direction], setPage] = useState([0, 0])

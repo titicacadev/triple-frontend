@@ -1,7 +1,7 @@
 import { ComponentType } from 'react'
 import { Text } from '@titicaca/core-elements'
 
-import { EFFECTES, EffectData } from '../effects'
+import { EFFECTES, EffectData } from './effects'
 
 export interface TextFrame {
   type: 'text'
