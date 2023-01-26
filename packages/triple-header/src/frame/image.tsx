@@ -1,6 +1,8 @@
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
+import { MotionContainer } from '../motion-container'
+
 import { EFFECTES, Effect } from './effects'
 
 export type ImageFrame = { type: 'image' } & ImageFrameProps
@@ -24,7 +26,7 @@ export default function ImageFrame({
   value: { image },
   effect,
 }: ImageFrameProps) {
-  const EffectElement = effect ? EFFECTES[effect.type] : EFFECTES.none
+  const EffectElement = effect ? EFFECTES[effect.type] : MotionContainer
 
   return Object.keys(image).length > 0 ? (
     <EffectElement options={effect?.options}>
