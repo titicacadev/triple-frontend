@@ -54,9 +54,10 @@ export function globalStyleDecorator(Story) {
 
 export function portalDecorator(Story) {
   return (
-    <div id="triple-portal">
+    <>
       <Story />
-    </div>
+      <div id="triple-portal"></div>
+    </>
   )
 }
 
