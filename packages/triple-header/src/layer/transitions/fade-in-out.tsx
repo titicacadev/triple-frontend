@@ -2,7 +2,6 @@ import { useEffect, useState, ReactNode } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 import { MotionContainer } from '../../motion-container'
-import { wrap } from '../../utils'
 
 const variants = {
   active: () => ({
@@ -14,23 +13,28 @@ const variants = {
 
 export default function FadeInOut({ children }: { children: ReactNode[] }) {
   const [page, setPage] = useState(0)
-  const index = wrap(0, children.length, page)
 
   useEffect(() => {
-    const timer = setInterval(() => setPage((prev) => prev + 1), 3000)
+    const timer = setInterval(
+      () =>
+        setPage((prev) => {
+          return prev === children.length - 1 ? 0 : prev + 1
+        }),
+      3000,
+    )
 
     return () => clearInterval(timer)
-  }, [page])
+  }, [children, page])
 
   return (
     <AnimatePresence>
       <MotionContainer
-        key={index}
+        key={page}
         variants={variants}
         animate="active"
         exit="exit"
       >
-        {children[index]}
+        {children[page]}
       </MotionContainer>
     </AnimatePresence>
   )
