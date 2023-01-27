@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { MotionContainer } from '../motion-container'
 
-import { EFFECTES, Effect } from './effects'
+import { EFFECTS, Effect } from './effects'
 
 export type ImageFrame = { type: 'image' } & ImageFrameProps
 
@@ -23,7 +23,7 @@ const Image = styled.img`
 `
 
 export function ImageFrame({ value: { image }, effect }: ImageFrameProps) {
-  const EffectElement = effect ? EFFECTES[effect.type] : MotionContainer
+  const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return Object.keys(image).length > 0 ? (
     <EffectElement options={effect?.options}>
