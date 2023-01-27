@@ -2,7 +2,7 @@ import { Text } from '@titicaca/core-elements'
 
 import { MotionContainer } from '../motion-container'
 
-import { EFFECTES, Effect } from './effects'
+import { EFFECTS, Effect } from './effects'
 
 export type TextFrame = { type: 'text' } & TextFrameProps
 interface TextFrameProps {
@@ -15,7 +15,7 @@ interface TextFrameProps {
 }
 
 export function TextFrame({ value: { text }, effect }: TextFrameProps) {
-  const EffectElement = effect ? EFFECTES[effect.type] : MotionContainer
+  const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return (
     <EffectElement options={effect?.options}>
