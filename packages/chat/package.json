@@ -32,7 +32,7 @@
     "@titicaca/intersection-observer": "^12.1.1",
     "@titicaca/react-contexts": "^12.1.1",
     "@titicaca/triple-fallback-action": "^12.1.1",
-    "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
+    "@titicaca/triple-web-to-native-interfaces": "v0.0.0-618e64b",
     "@titicaca/type-definitions": "^12.1.1",
     "@titicaca/view-utilities": "^12.1.1",
     "autolinker": "^4.0.0"
