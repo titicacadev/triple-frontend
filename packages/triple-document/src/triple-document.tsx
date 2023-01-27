@@ -77,9 +77,9 @@ export function TripleDocument({
         fa: {
           action: '링크선택',
           url: href,
-          ...linkParams,
         },
         ga: ['링크선택', href],
+        additionalMetadata: linkParams,
       })
       handleAction(href, { target })
     },
