@@ -11,6 +11,12 @@
       "path": "../core-elements/tsconfig.build.json"
     },
     {
+      "path": "../router/tsconfig.build.json"
+    },
+    {
+      "path": "../standard-action-handler/tsconfig.build.json"
+    },
+    {
       "path": "../type-definitions/tsconfig.build.json"
     }
   ]
