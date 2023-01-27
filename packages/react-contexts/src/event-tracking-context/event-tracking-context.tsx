@@ -210,13 +210,21 @@ export function EventTrackingProvider({
       try {
         if (window.ga && ga) {
           const [action, label] = ga
-          window.ga('send', 'event', pageLabel, action, label)
+          const metadata = Object.entries(additionalMetadata || {})
+            .map((data) => data.join(':'))
+            .join('_')
+
+          window.ga('send', 'event', pageLabel, action, label, metadata)
         }
 
         if (window.fbq && pixel) {
           const { type = 'trackCustom', action, payload } = pixel
 
-          window.fbq(type, action, { pageLabel, ...payload })
+          window.fbq(type, action, {
+            pageLabel,
+            ...payload,
+            ...additionalMetadata,
+          })
         }
 
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
@@ -225,6 +233,7 @@ export function EventTrackingProvider({
           logFirebaseEvent(firebaseAnalyticsWebInstance, WEB_FA_EVENT_NAME, {
             category: pageLabel,
             ...fa,
+            ...additionalMetadata,
           })
         }
 
