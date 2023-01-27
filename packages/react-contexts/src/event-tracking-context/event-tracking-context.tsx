@@ -49,6 +49,7 @@ export interface EventTrackingContextValue {
      * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
      */
     pixel?: PixelParams
+    additionalMetadata?: { [key: string]: string }
   }) => void
   /**
    * 하나의 파라미터로 GA, FA 이벤트를 기록합니다.
@@ -205,7 +206,7 @@ export function EventTrackingProvider({
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
-    ({ ga, fa, pixel }) => {
+    ({ ga, fa, pixel, additionalMetadata }) => {
       try {
         if (window.ga && ga) {
           const [action, label] = ga
@@ -234,6 +235,7 @@ export function EventTrackingProvider({
             event_name: DEFAULT_EVENT_NAME,
             ...fa,
           },
+          ...additionalMetadata,
         })
       } catch (error) {
         onErrorRef.current?.(error as Error)
