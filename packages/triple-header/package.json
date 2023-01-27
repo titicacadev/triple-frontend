@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "^12.0.0",
+    "@titicaca/router": "^12.0.0",
+    "@titicaca/standard-action-handler": "^12.0.0",
     "@titicaca/type-definitions": "^12.0.0",
     "framer-motion": "^7.10.3"
   },
