@@ -1,6 +1,7 @@
 import { ComponentMeta } from '@storybook/react'
 
 import TripleHeader from './triple-header'
+import { TripleHeader as TripleHeaderProps } from './types'
 import SAMPLE from './mocks/triple-header.sample.json'
 
 export default {
@@ -8,6 +9,5 @@ export default {
 } as ComponentMeta<typeof TripleHeader>
 
 export function Sample() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <TripleHeader>{SAMPLE as any}</TripleHeader>
+  return <TripleHeader>{SAMPLE as TripleHeaderProps}</TripleHeader>
 }
