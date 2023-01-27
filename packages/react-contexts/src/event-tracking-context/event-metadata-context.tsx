@@ -41,11 +41,13 @@ export function useEventTrackerWithMetadata() {
     ga?: GoogleAnalyticsParams
     fa?: Partial<FirebaseAnalyticsParams>
     pixel?: PixelParams
+    additionalMetadata?: { [key: string]: string }
   }) => {
     trackEvent({
       ga: getGoogleAnalyticsWithMetadata(params.ga, eventMetadata),
       fa: getFirebaseAnalyticsWithMetadata(params.fa, eventMetadata),
       pixel: getPixelWithMetadata(params.pixel, eventMetadata),
+      additionalMetadata: params.additionalMetadata,
     })
   }
 }

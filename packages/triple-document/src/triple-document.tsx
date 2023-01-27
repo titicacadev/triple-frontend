@@ -3,6 +3,7 @@ import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
+import { useRouter } from 'next/router'
 
 import {
   TripleElementData,
@@ -39,6 +40,7 @@ export function TripleDocument({
   children: TripleElementData[]
   cta?: string
 } & TripleDocumentContext) {
+  const { query } = useRouter()
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const trackResourceEvent = useEventResourceTracker()
   const navigate = useNavigate()
@@ -60,16 +62,28 @@ export function TripleDocument({
         // TODO: triple-document 에러 처리 방법 설계
         return
       }
+
+      const additionalMetadata = Object.keys(query || {})
+        .filter((key) => key.match(/^triple_link_param_/i))
+        .reduce(
+          (params, key) => ({
+            ...params,
+            [key.replace(/^triple_link_param_/i, '')]: query[key],
+          }),
+          {},
+        )
+
       trackEventWithMetadata({
         fa: {
           action: '링크선택',
           url: href,
         },
         ga: ['링크선택', href],
+        additionalMetadata,
       })
       handleAction(href, { target })
     },
-    [handleAction, trackEventWithMetadata],
+    [handleAction, trackEventWithMetadata, query],
   )
 
   const defaultHandleResourceClick: ResourceClickHandler = useCallback(
