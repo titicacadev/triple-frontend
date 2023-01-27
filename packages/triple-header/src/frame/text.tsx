@@ -14,7 +14,7 @@ interface TextFrameProps {
   effect?: Effect
 }
 
-export default function TextFrame({ value: { text }, effect }: TextFrameProps) {
+export function TextFrame({ value: { text }, effect }: TextFrameProps) {
   const EffectElement = effect ? EFFECTES[effect.type] : MotionContainer
 
   return (

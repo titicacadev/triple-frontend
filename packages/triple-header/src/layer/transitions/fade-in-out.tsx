@@ -11,7 +11,7 @@ const variants = {
   exit: () => ({ opacity: 0, transition: { duration: 1 } }),
 }
 
-export default function FadeInOut({ children }: { children: ReactNode[] }) {
+export function FadeInOut({ children }: { children: ReactNode[] }) {
   const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
 
   useEffect(() => {

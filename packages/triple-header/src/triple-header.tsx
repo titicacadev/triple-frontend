@@ -2,7 +2,7 @@ import { useState, useCallback, useLayoutEffect } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
-import Layer from './layer'
+import { Layer } from './layer'
 import { TripleHeader as TripleHeaderProps } from './types'
 
 const Canvas = styled(Container).attrs({

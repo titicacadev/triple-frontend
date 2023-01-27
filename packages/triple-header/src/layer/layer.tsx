@@ -2,7 +2,7 @@ import { Container, MarginPadding } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
 import { FrameData, TransitionType } from '../types'
-import Frame from '../frame'
+import { Frame } from '../frame'
 
 import { TRANSITIONS } from './transitions'
 
@@ -20,7 +20,7 @@ const LayerContainer = styled(Container).attrs({
     `}
 `
 
-export default function Layer({
+export function Layer({
   zIndex,
   position,
   frames,

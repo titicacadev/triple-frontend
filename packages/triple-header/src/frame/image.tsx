@@ -22,10 +22,7 @@ const Image = styled.img`
   object-fit: cover;
 `
 
-export default function ImageFrame({
-  value: { image },
-  effect,
-}: ImageFrameProps) {
+export function ImageFrame({ value: { image }, effect }: ImageFrameProps) {
   const EffectElement = effect ? EFFECTES[effect.type] : MotionContainer
 
   return Object.keys(image).length > 0 ? (

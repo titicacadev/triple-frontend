@@ -24,7 +24,7 @@ const RollingContainer = styled(Container)<{ isTransition: boolean }>`
     `}
 `
 
-export default function Rolling({ children }: { children: ReactNode[] }) {
+export function Rolling({ children }: { children: ReactNode[] }) {
   const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
   const [hasTransition, setHasTransition] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)

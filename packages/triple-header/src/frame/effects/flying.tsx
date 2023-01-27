@@ -15,7 +15,7 @@ interface FlyingProps {
   options?: ExtendedEffectOptions
 }
 
-export default function Flying({
+export function Flying({
   children,
   options = {},
 }: PropsWithChildren<FlyingProps>) {
