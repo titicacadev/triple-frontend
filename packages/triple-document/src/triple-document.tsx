@@ -63,7 +63,7 @@ export function TripleDocument({
         return
       }
 
-      const linkParams = Object.keys(query || {})
+      const additionalMetadata = Object.keys(query || {})
         .filter((key) => key.match(/^triple_link_param_/i))
         .reduce(
           (params, key) => ({
@@ -79,7 +79,7 @@ export function TripleDocument({
           url: href,
         },
         ga: ['링크선택', href],
-        additionalMetadata: linkParams,
+        additionalMetadata,
       })
       handleAction(href, { target })
     },
