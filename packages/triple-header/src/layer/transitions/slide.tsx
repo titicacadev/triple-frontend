@@ -1,7 +1,7 @@
 import { useEffect, useState, ReactNode } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
-export default function Slide({ children }: { children: ReactNode[] }) {
+export function Slide({ children }: { children: ReactNode[] }) {
   const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
 
   useEffect(() => {

@@ -11,10 +11,7 @@ interface ZoomProps {
   options?: InitialEffectOptions
 }
 
-export default function Zoom({
-  children,
-  options = {},
-}: PropsWithChildren<ZoomProps>) {
+export function Zoom({ children, options = {} }: PropsWithChildren<ZoomProps>) {
   const transition = generateTransition(options)
 
   return (

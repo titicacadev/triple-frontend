@@ -27,7 +27,7 @@ const FrameContainer = styled(Container)<{
     `}
 `
 
-export default function Frame({
+export function Frame({
   frame: { type, width, height, value, effect },
   calculateFrameRatio,
 }: {

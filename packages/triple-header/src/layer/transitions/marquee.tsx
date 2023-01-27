@@ -22,7 +22,7 @@ const MarqueeContainer = styled(motion.div)`
   height: 100%;
 `
 
-export default function Marquee({ children }: { children: ReactNode[] }) {
+export function Marquee({ children }: { children: ReactNode[] }) {
   const [offsetX, setOffsetX] = useState(0)
 
   const containerRef = useRef<HTMLDivElement>(null)

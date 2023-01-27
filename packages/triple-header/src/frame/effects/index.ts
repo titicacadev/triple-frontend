@@ -1,6 +1,6 @@
-import Zoom, { ZoomEffect } from './zoom'
-import Rotate, { RotateEffect } from './rotate'
-import Flying, { FlyingEffect } from './flying'
+import { Zoom, ZoomEffect } from './zoom'
+import { Rotate, RotateEffect } from './rotate'
+import { Flying, FlyingEffect } from './flying'
 
 export const EFFECTES = {
   zoom: Zoom,

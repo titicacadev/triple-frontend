@@ -15,7 +15,7 @@ interface RotateProps {
   options?: ExtendedEffectOptions
 }
 
-export default function Rotate({
+export function Rotate({
   children,
   options = {},
 }: PropsWithChildren<RotateProps>) {
