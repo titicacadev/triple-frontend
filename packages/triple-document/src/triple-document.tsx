@@ -62,13 +62,13 @@ export function TripleDocument({
         return
       }
 
-      const query = parse(href || '')
-      const additionalMetadata = Object.keys(query || {})
+      const parsedHref = parse(href || '')
+      const additionalMetadata = Object.keys(parsedHref || {})
         .filter((key) => key.match(/^triple_link_param_/i))
         .reduce(
           (params, key) => ({
             ...params,
-            [key.replace(/^triple_link_param_/i, '')]: query[key],
+            [key.replace(/^triple_link_param_/i, '')]: parsedHref[key],
           }),
           {},
         )
