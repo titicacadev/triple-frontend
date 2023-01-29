@@ -211,8 +211,8 @@ export function EventTrackingProvider({
         if (window.ga && ga) {
           const [action, label] = ga
           const metadata = Object.entries(additionalMetadata || {})
-            .map((data) => data.join(':'))
-            .join('_')
+            .map((data) => data.join(': '))
+            .join(', ')
 
           window.ga('send', 'event', pageLabel, action, label, metadata)
         }
