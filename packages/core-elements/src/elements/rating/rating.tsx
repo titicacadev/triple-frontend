@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import { SyntheticEvent, useMemo } from 'react'
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
@@ -44,9 +44,12 @@ const RatingStar = styled.span<{
   `};
 `
 
+/**
+ * **최솟값 0, 최댓값 5**로 설정되는 별점 컴포넌트입니다. score에 최소,최대보다 작거나 큰 값을 넣어도 동작합니다.
+ */
 export function Rating({
   size,
-  score = 0,
+  score: initScore = 0,
   verticalAlign,
   onClick,
 }: {
@@ -55,6 +58,7 @@ export function Rating({
   verticalAlign?: CSS.Property.VerticalAlign<string>
   onClick?: (event: SyntheticEvent, rating: number) => unknown
 }) {
+  const score = useMemo(() => Math.max(Math.min(initScore, 5), 0), [initScore])
   const full = Math.floor(score)
   const half = Math.floor((score - full) * 2)
   const empty = 5 - full - half
