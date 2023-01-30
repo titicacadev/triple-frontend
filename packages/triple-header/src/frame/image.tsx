@@ -37,6 +37,8 @@ export function ImageFrame({
       <Image
         src={image.sizes.full.url}
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, image.link)}
+        width="100%"
+        height="100%"
       />
     </EffectElement>
   ) : null
