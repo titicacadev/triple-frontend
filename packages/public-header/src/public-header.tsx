@@ -1,7 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactElement } from 'react'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -9,7 +9,7 @@ import {
   MIN_DESKTOP_WIDTH,
   TRANSITION_TIME,
 } from './constants'
-import type { Category, DeeplinkType } from './types'
+import type { Category } from './types'
 import {
   getCategoryHref,
   getCategoryImageProps,
@@ -84,12 +84,11 @@ const LogoCategoryImage = styled.img`
 
 export interface PublicHeaderProps {
   category?: Category
-  deeplinkType?: DeeplinkType
   /**
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
-  deeplinkEventLabel?: string
+  withDeeplinkComponent?: () => ReactElement | null
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -99,12 +98,12 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   deeplinkPath,
+  withDeeplinkComponent,
   disableAutoHide,
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
   children,
-  ...props
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('common-web')
 
@@ -137,7 +136,10 @@ export function PublicHeader({
             {linkLabel ?? t(['nae-yeyag', '내 예약'])}
           </ExtraActionItem>
           {deeplinkPath && (
-            <PublicHeaderDeeplink deeplinkPath={deeplinkPath} {...props} />
+            <PublicHeaderDeeplink
+              deeplinkPath={deeplinkPath}
+              withDeeplinkComponent={withDeeplinkComponent}
+            />
           )}
         </ExtraActionsContainer>
       </HeaderFrame>
