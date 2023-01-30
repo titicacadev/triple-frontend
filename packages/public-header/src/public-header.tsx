@@ -88,7 +88,7 @@ export interface PublicHeaderProps {
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
-  withDeeplinkComponent?: DeeplinkComponent
+  deeplinkComponent?: DeeplinkComponent
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -98,7 +98,7 @@ export interface PublicHeaderProps {
 export function PublicHeader({
   category,
   deeplinkPath,
-  withDeeplinkComponent,
+  deeplinkComponent,
   disableAutoHide,
   onClick,
   linkHref = '/my-bookings',
@@ -138,7 +138,7 @@ export function PublicHeader({
           {deeplinkPath && (
             <PublicHeaderDeeplink
               deeplinkPath={deeplinkPath}
-              withDeeplinkComponent={withDeeplinkComponent}
+              deeplinkComponent={deeplinkComponent}
             />
           )}
         </ExtraActionsContainer>
