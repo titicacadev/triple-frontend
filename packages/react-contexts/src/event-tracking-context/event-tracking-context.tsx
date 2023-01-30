@@ -49,7 +49,6 @@ export interface EventTrackingContextValue {
      * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
      */
     pixel?: PixelParams
-    additionalMetadata?: { [key: string]: string }
   }) => void
   /**
    * 하나의 파라미터로 GA, FA 이벤트를 기록합니다.
@@ -206,15 +205,11 @@ export function EventTrackingProvider({
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
-    ({ ga, fa, pixel, additionalMetadata }) => {
+    ({ ga, fa, pixel }) => {
       try {
         if (window.ga && ga) {
           const [action, label] = ga
-          const metadata = Object.entries(additionalMetadata || {})
-            .map((data) => data.join(': '))
-            .join(', ')
-
-          window.ga('send', 'event', pageLabel, action, label, metadata)
+          window.ga('send', 'event', pageLabel, action, label)
         }
 
         if (window.fbq && pixel) {
@@ -223,7 +218,6 @@ export function EventTrackingProvider({
           window.fbq(type, action, {
             pageLabel,
             ...payload,
-            ...additionalMetadata,
           })
         }
 
@@ -233,7 +227,6 @@ export function EventTrackingProvider({
           logFirebaseEvent(firebaseAnalyticsWebInstance, WEB_FA_EVENT_NAME, {
             category: pageLabel,
             ...fa,
-            ...additionalMetadata,
           })
         }
 
