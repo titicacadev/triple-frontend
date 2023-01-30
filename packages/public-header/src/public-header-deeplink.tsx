@@ -8,20 +8,20 @@ import { useDeeplinkHref } from './use-deeplink-href'
 
 interface Props {
   deeplinkPath: string
-  withDeeplinkComponent?: DeeplinkComponent
+  deeplinkComponent?: DeeplinkComponent
 }
 
 export function PublicHeaderDeeplink({
   deeplinkPath,
-  withDeeplinkComponent,
+  deeplinkComponent,
 }: Props) {
   const { t } = useTranslation('common-web')
 
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
-  return withDeeplinkComponent ? (
-    withDeeplinkComponent()
+  return deeplinkComponent ? (
+    deeplinkComponent({ deeplinkHref })
   ) : (
     <>
       <ExtraActionSeperator />
