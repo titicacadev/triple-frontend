@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "12.1.1",
+  "version": "12.2.0",
   "description": "React context modules for triple web applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-contexts",
@@ -20,10 +20,10 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/constants": "^12.1.1",
-    "@titicaca/fetcher": "^12.1.1",
-    "@titicaca/type-definitions": "^12.1.1",
-    "@titicaca/view-utilities": "^12.1.1",
+    "@titicaca/constants": "^12.2.0",
+    "@titicaca/fetcher": "^12.2.0",
+    "@titicaca/type-definitions": "^12.2.0",
+    "@titicaca/view-utilities": "^12.2.0",
     "qs": "^6.9.4",
     "ua-parser-js": "^0.7.20",
     "universal-cookie": "^4.0.4"
