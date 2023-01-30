@@ -1,14 +1,14 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
-import { ReactElement } from 'react'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'
+import { DeeplinkComponent } from './types'
 import { useDeeplinkHref } from './use-deeplink-href'
 
 interface Props {
   deeplinkPath: string
-  withDeeplinkComponent?: () => ReactElement | null
+  withDeeplinkComponent?: DeeplinkComponent
 }
 
 export function PublicHeaderDeeplink({
