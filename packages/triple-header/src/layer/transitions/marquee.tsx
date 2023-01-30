@@ -10,15 +10,14 @@ const marqueeVariants = {
         repeat: Infinity,
         repeatType: 'loop',
         ease: 'linear',
-        duration: 30,
+        duration: 10,
       },
     },
   }),
 }
 
 const MarqueeContainer = styled(motion.div)`
-  /* stylelint-disable-next-line value-no-vendor-prefix */
-  display: -webkit-box;
+  display: flex;
   height: 100%;
 `
 
@@ -54,7 +53,7 @@ export function Marquee({ children }: { children: ReactNode[] }) {
       variants={marqueeVariants}
       animate="animate"
       ref={containerRef}
-      custom={offsetX * children.length}
+      custom={offsetX * frames.length}
     >
       {frames}
     </MarqueeContainer>
