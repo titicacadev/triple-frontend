@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/fetcher",
-  "version": "12.1.1",
+  "version": "12.2.0",
   "description": "Utilities for Triple view libraries and applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/fetcher",
