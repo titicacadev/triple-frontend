@@ -12,8 +12,7 @@ import styled, { css } from 'styled-components'
 
 const RollingContainer = styled(Container)<{ isTransition: boolean }>`
   position: relative;
-  /* stylelint-disable-next-line value-no-vendor-prefix */
-  display: -webkit-box;
+  display: flex;
   width: 100%;
   height: 100%;
 
