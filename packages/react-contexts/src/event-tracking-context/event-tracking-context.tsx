@@ -215,10 +215,7 @@ export function EventTrackingProvider({
         if (window.fbq && pixel) {
           const { type = 'trackCustom', action, payload } = pixel
 
-          window.fbq(type, action, {
-            pageLabel,
-            ...payload,
-          })
+          window.fbq(type, action, { pageLabel, ...payload })
         }
 
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
