@@ -1,7 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { PropsWithChildren, ReactElement } from 'react'
+import { PropsWithChildren } from 'react'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -9,7 +9,7 @@ import {
   MIN_DESKTOP_WIDTH,
   TRANSITION_TIME,
 } from './constants'
-import type { Category } from './types'
+import type { Category, DeeplinkComponent } from './types'
 import {
   getCategoryHref,
   getCategoryImageProps,
@@ -88,7 +88,7 @@ export interface PublicHeaderProps {
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
-  withDeeplinkComponent?: () => ReactElement | null
+  withDeeplinkComponent?: DeeplinkComponent
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
