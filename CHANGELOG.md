@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 12.2.0
+
+### action-sheet
+
+- 액션시트 열고 닫히는 transition이 일부 브라우저에서 layout shift 되지 않도록 수정 [#2358](https://github.com/titicacadev/triple-frontend/pull/2358)
+
+### common
+
+- CI 속도 개선 [#2340](https://github.com/titicacadev/triple-frontend/pull/2340)
+- CD workflow 에러 수정 [#2351](https://github.com/titicacadev/triple-frontend/pull/2351)
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+
+### core-elements
+
+- story title을 소문자로 변경 [#2345](https://github.com/titicacadev/triple-frontend/pull/2345)
+- ConfirmSelector 디자인 수정 [#2359](https://github.com/titicacadev/triple-frontend/pull/2359)
+- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
+
+### modals
+
+- modal handler onClose 실행 분기문 이전 버전과 동일하게 변경 [#2347](https://github.com/titicacadev/triple-frontend/pull/2347)
+
+### poi-detail
+
+- Actions 스토리가 빌드마다 변경되는 현상 수정 [#2346](https://github.com/titicacadev/triple-frontend/pull/2346)
+
+### view-utilities
+
+- public route list에 `/redirect`를 추가합니다. [#2355](https://github.com/titicacadev/triple-frontend/pull/2355)
+
 ## 12.1.1
 
 ### action-sheet
