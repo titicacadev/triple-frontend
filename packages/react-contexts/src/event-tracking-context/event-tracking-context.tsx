@@ -243,7 +243,6 @@ export function EventTrackingProvider({
             category: pageLabel,
             event_name: DEFAULT_EVENT_NAME,
             ...fa,
-            ...additionalMetadata,
           },
         })
       } catch (error) {
