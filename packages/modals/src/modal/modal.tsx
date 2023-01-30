@@ -1,4 +1,5 @@
-import { PropsWithChildren, useId } from 'react'
+import { useDialog } from '@react-aria/dialog'
+import { PropsWithChildren, useId, useRef } from 'react'
 
 import { ModalAction } from './modal-action'
 import { ModalActions } from './modal-actions'
@@ -14,11 +15,26 @@ export interface ModalProps extends PropsWithChildren {
 }
 
 export const Modal = ({ children, open = false, onClose }: ModalProps) => {
-  const titleId = useId()
   const descriptionId = useId()
+  const ref = useRef(null)
+
+  const { dialogProps, titleProps } = useDialog(
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    { 'aria-describedby': descriptionId },
+    ref,
+  )
 
   return (
-    <ModalContext.Provider value={{ open, titleId, descriptionId, onClose }}>
+    <ModalContext.Provider
+      value={{
+        ref,
+        dialogProps,
+        titleProps,
+        open,
+        descriptionId,
+        onClose,
+      }}
+    >
       <ModalBase>{children}</ModalBase>
     </ModalContext.Provider>
   )

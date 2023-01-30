@@ -1,8 +1,11 @@
-import { createContext, useContext } from 'react'
+import { DialogAria } from '@react-aria/dialog'
+import { createContext, RefObject, useContext } from 'react'
 
 export interface ModalContextValue {
+  ref: RefObject<HTMLDivElement>
+  dialogProps: DialogAria['dialogProps']
+  titleProps: DialogAria['titleProps']
   open: boolean
-  titleId: string
   descriptionId: string
   onClose?: () => void
 }

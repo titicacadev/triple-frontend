@@ -6,7 +6,7 @@ import { useActionSheet } from './action-sheet-context'
 type ActionSheetTitleProps = PropsWithChildren
 
 export const ActionSheetTitle = ({ children }: ActionSheetTitleProps) => {
-  const { titleId } = useActionSheet()
+  const { titleProps } = useActionSheet()
 
   if (
     typeof children === 'string' ||
@@ -20,7 +20,7 @@ export const ActionSheetTitle = ({ children }: ActionSheetTitleProps) => {
           margin: '0 0 10px 27px',
         }}
       >
-        <Text id={titleId} size="tiny" bold color="gray700">
+        <Text {...titleProps} size="tiny" bold color="gray700">
           {children}
         </Text>
       </Container>

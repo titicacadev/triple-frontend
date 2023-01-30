@@ -1,9 +1,10 @@
-import { Portal } from '@titicaca/core-elements'
-import { useOverlay, usePreventScroll } from '@react-aria/overlays'
-import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { Overlay, useModalOverlay } from '@react-aria/overlays'
+import { PropsWithChildren, ReactNode } from 'react'
+import { useOverlayTriggerState } from '@react-stately/overlays'
+import { FlexBox } from '@titicaca/core-elements'
 
 import { useActionSheet } from './action-sheet-context'
-import { ActionSheetOverlay } from './action-sheet-overlay'
+import { ActionSheetUnderlay } from './action-sheet-underlay'
 import { ActionSheetBody } from './action-sheet-body'
 
 const TRANSITION_DURATION = 120
@@ -25,44 +26,55 @@ export const ActionSheetBase = ({
   title,
   ...props
 }: ActionSheetBaseProps) => {
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const sheetRef = useRef<HTMLDivElement>(null)
+  const { ref, open, onClose } = useActionSheet()
 
-  const { open, onClose } = useActionSheet()
+  const overlayTriggerState = useOverlayTriggerState({
+    isOpen: open,
+    onOpenChange: (isOpen) => (isOpen ? undefined : onClose?.()),
+  })
 
-  const { overlayProps, underlayProps } = useOverlay(
+  const { modalProps, underlayProps } = useModalOverlay(
     {
-      isOpen: open,
       isDismissable: true,
-      shouldCloseOnBlur: true,
-      onClose,
     },
-    sheetRef,
+    overlayTriggerState,
+    ref,
   )
 
-  usePreventScroll({ isDisabled: !open })
-
   return (
-    <Portal>
-      <ActionSheetOverlay
-        {...overlayProps}
-        ref={overlayRef}
-        duration={TRANSITION_DURATION}
-      >
-        <ActionSheetBody
+    <Overlay>
+      <div>
+        <ActionSheetUnderlay
           {...underlayProps}
-          ref={sheetRef}
-          borderRadius={borderRadius}
-          bottomSpacing={bottomSpacing}
           duration={TRANSITION_DURATION}
-          maxContentHeight={maxContentHeight}
-          from={from}
-          title={title}
-          {...props}
+        />
+        <FlexBox
+          flex
+          alignItems={from === 'top' ? 'flex-start' : 'flex-end'}
+          justifyContent="center"
+          css={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 9999,
+          }}
         >
-          {children}
-        </ActionSheetBody>
-      </ActionSheetOverlay>
-    </Portal>
+          <ActionSheetBody
+            {...modalProps}
+            borderRadius={borderRadius}
+            bottomSpacing={bottomSpacing}
+            duration={TRANSITION_DURATION}
+            maxContentHeight={maxContentHeight}
+            from={from}
+            title={title}
+            {...props}
+          >
+            {children}
+          </ActionSheetBody>
+        </FlexBox>
+      </div>
+    </Overlay>
   )
 }

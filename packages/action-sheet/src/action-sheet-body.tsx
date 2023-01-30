@@ -1,10 +1,9 @@
-import { FocusScope } from '@react-aria/focus'
 import {
   Container,
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import { forwardRef, PropsWithChildren, ReactNode } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled, { css } from 'styled-components'
 
@@ -39,7 +38,6 @@ interface SheetProps {
 }
 
 const Sheet = styled.div<SheetProps>`
-  position: fixed;
   width: 100%;
   max-width: 768px;
   background-color: var(--color-white);
@@ -88,12 +86,10 @@ const Sheet = styled.div<SheetProps>`
     switch (from) {
       case 'top':
         return css`
-          top: 0;
           border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
         `
       case 'bottom':
         return css`
-          bottom: 0;
           border-radius: ${borderRadius}px ${borderRadius}px 0 0;
 
           ${safeAreaInsetMixin};
@@ -119,60 +115,49 @@ export interface ActionSheetBodyProps extends PropsWithChildren {
   title?: ReactNode
 }
 
-export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
-  (
-    {
-      children,
-      borderRadius,
-      bottomSpacing,
-      duration,
-      maxContentHeight,
-      from,
-      title,
-      ...props
-    },
-    ref,
-  ) => {
-    const { open, titleId } = useActionSheet()
+export const ActionSheetBody = ({
+  children,
+  borderRadius,
+  bottomSpacing,
+  duration,
+  maxContentHeight,
+  from,
+  title,
+  ...props
+}: ActionSheetBodyProps) => {
+  const { ref, dialogProps, open } = useActionSheet()
 
-    return (
-      <CSSTransition
-        nodeRef={ref}
-        in={open}
-        appear
-        classNames="action-sheet-slide"
-        timeout={duration}
-        mountOnEnter
-        unmountOnExit
+  return (
+    <CSSTransition
+      nodeRef={ref}
+      in={open}
+      appear
+      classNames="action-sheet-slide"
+      timeout={duration}
+      mountOnEnter
+      unmountOnExit
+    >
+      <Sheet
+        {...dialogProps}
+        ref={ref}
+        borderRadius={borderRadius}
+        bottomSpacing={bottomSpacing}
+        duration={duration}
+        from={from}
+        padding={{ bottom: bottomSpacing }}
+        aria-modal
+        {...props}
       >
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <FocusScope contain restoreFocus autoFocus>
-          <Sheet
-            ref={ref}
-            borderRadius={borderRadius}
-            bottomSpacing={bottomSpacing}
-            duration={duration}
-            from={from}
-            padding={{ bottom: bottomSpacing }}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-modal
-            {...props}
-          >
-            {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
-            <Content
-              css={{
-                maxHeight: maxContentHeight,
-                padding: '0 25px',
-              }}
-            >
-              {children}
-            </Content>
-          </Sheet>
-        </FocusScope>
-      </CSSTransition>
-    )
-  },
-)
-
-ActionSheetBody.displayName = 'ActionSheetBody'
+        {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
+        <Content
+          css={{
+            maxHeight: maxContentHeight,
+            padding: '0 25px',
+          }}
+        >
+          {children}
+        </Content>
+      </Sheet>
+    </CSSTransition>
+  )
+}

@@ -1,4 +1,5 @@
-import { PropsWithChildren, ReactNode, useId } from 'react'
+import { useDialog } from '@react-aria/dialog'
+import { PropsWithChildren, ReactNode, useRef } from 'react'
 
 import { ActionSheetBase } from './action-sheet-base'
 import { ActionSheetContext } from './action-sheet-context'
@@ -24,10 +25,14 @@ export const ActionSheet = ({
   onClose,
   ...props
 }: ActionSheetProps) => {
-  const titleId = useId()
+  const ref = useRef(null)
+
+  const { dialogProps, titleProps } = useDialog({}, ref)
 
   return (
-    <ActionSheetContext.Provider value={{ open, titleId, onClose }}>
+    <ActionSheetContext.Provider
+      value={{ ref, dialogProps, titleProps, open, onClose }}
+    >
       <ActionSheetBase
         borderRadius={borderRadius}
         bottomSpacing={bottomSpacing}

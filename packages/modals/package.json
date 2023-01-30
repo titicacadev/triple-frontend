@@ -20,8 +20,10 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@react-aria/focus": "^3.9.0",
-    "@react-aria/overlays": "^3.11.0",
+    "@react-aria/dialog": "^3.4.2",
+    "@react-aria/focus": "^3.10.1",
+    "@react-aria/overlays": "^3.12.1",
+    "@react-stately/overlays": "^3.4.4",
     "@titicaca/core-elements": "^12.1.1"
   },
   "peerDependencies": {

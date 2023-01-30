@@ -4,11 +4,11 @@ import { Text } from '@titicaca/core-elements'
 import { useModal } from './modal-context'
 
 export const ModalTitle = ({ children, ...props }: PropsWithChildren) => {
-  const { titleId } = useModal()
+  const { titleProps } = useModal()
 
   return (
     <Text
-      id={titleId}
+      {...titleProps}
       bold
       center
       size="big"
