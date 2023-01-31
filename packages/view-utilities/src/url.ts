@@ -175,3 +175,23 @@ export function generateUrl(
     .filter((v) => v)
     .join('')
 }
+
+export function getRegQuery({
+  parsedHref,
+  targetQuery = 'triple_link_param_',
+}: {
+  parsedHref: ParsedQuery
+  targetQuery?: string
+}) {
+  const regex = new RegExp(`^${targetQuery}`, 'i')
+
+  return Object.keys(parsedHref || {})
+    .filter((key) => key.match(regex))
+    .reduce(
+      (params, key) => ({
+        ...params,
+        [key.replace(regex, '')]: parsedHref[key],
+      }),
+      {},
+    )
+}
