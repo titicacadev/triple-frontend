@@ -103,11 +103,30 @@ export default function ItineraryElement({ value }: Props) {
   const navigate = useNavigate()
 
   const generatePoiClickHandler = useCallback(
-    (regionId: string, type: ItineraryItemType['poi']['type'], id: string) =>
+    ({
+        regionId,
+        type,
+        id,
+        name,
+      }: {
+        regionId: string
+        type: ItineraryItemType['poi']['type']
+        id: string
+        name: string
+      }) =>
       () => {
+        trackEvent({
+          ga: ['POI_선택', `${type}_${id}_${name}`],
+          fa: {
+            action: 'POI_선택',
+            item_id: id,
+            item_name: name,
+            type,
+          },
+        })
         navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
       },
-    [navigate],
+    [navigate, trackEvent],
   )
 
   const handleMarkerClick = useCallback(
@@ -205,7 +224,12 @@ export default function ItineraryElement({ value }: Props) {
                 <CardWrapper
                   flexGrow={1}
                   as="a"
-                  onClick={generatePoiClickHandler(regionId, type, id)}
+                  onClick={generatePoiClickHandler({
+                    regionId,
+                    type,
+                    id,
+                    name,
+                  })}
                 >
                   <PoiCard
                     shadow="medium"
