@@ -3,7 +3,6 @@ import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
-import { parse } from 'qs'
 
 import {
   TripleElementData,
@@ -61,23 +60,10 @@ export function TripleDocument({
         // TODO: triple-document 에러 처리 방법 설계
         return
       }
-
-      const parsedHref = parse(href || '')
-      const additionalMetadata = Object.keys(parsedHref || {})
-        .filter((key) => key.match(/^triple_link_param_/i))
-        .reduce(
-          (params, key) => ({
-            ...params,
-            [key.replace(/^triple_link_param_/i, '')]: parsedHref[key],
-          }),
-          {},
-        )
-
       trackEventWithMetadata({
         fa: {
           action: '링크선택',
           url: href,
-          ...additionalMetadata,
         },
         ga: ['링크선택', href],
       })
