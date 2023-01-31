@@ -1,3 +1,5 @@
+import { ParsedQs } from 'qs'
+
 export interface UrlElements {
   href?: string
   scheme?: string
@@ -180,7 +182,7 @@ export function getRegQuery({
   parsedQuery,
   targetQuery = 'triple_link_param_',
 }: {
-  parsedQuery: ParsedQuery
+  parsedQuery: ParsedQs
   targetQuery?: string
 }) {
   const regex = new RegExp(`^${targetQuery}`, 'i')
