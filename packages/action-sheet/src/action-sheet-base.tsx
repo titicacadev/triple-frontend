@@ -1,10 +1,10 @@
 import { Portal } from '@titicaca/core-elements'
-import { useOverlay, usePreventScroll } from '@react-aria/overlays'
 import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { useOverlay } from '@react-aria/overlays'
 
-import { useActionSheet } from './action-sheet-context'
 import { ActionSheetOverlay } from './action-sheet-overlay'
 import { ActionSheetBody } from './action-sheet-body'
+import { useActionSheet } from './action-sheet-context'
 
 const TRANSITION_DURATION = 120
 
@@ -27,7 +27,6 @@ export const ActionSheetBase = ({
 }: ActionSheetBaseProps) => {
   const overlayRef = useRef<HTMLDivElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
-
   const { open, onClose } = useActionSheet()
 
   const { overlayProps, underlayProps } = useOverlay(
@@ -39,8 +38,6 @@ export const ActionSheetBase = ({
     },
     sheetRef,
   )
-
-  usePreventScroll({ isDisabled: !open })
 
   return (
     <Portal>
