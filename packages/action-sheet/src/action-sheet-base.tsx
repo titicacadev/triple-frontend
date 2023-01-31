@@ -1,5 +1,6 @@
 import { Portal } from '@titicaca/core-elements'
 import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { FocusScope } from '@react-aria/focus'
 import { useOverlay } from '@react-aria/overlays'
 
 import { ActionSheetOverlay } from './action-sheet-overlay'
@@ -41,25 +42,28 @@ export const ActionSheetBase = ({
 
   return (
     <Portal>
-      <ActionSheetOverlay
-        {...underlayProps}
-        ref={overlayRef}
-        duration={TRANSITION_DURATION}
-      >
-        <ActionSheetBody
-          {...overlayProps}
-          ref={sheetRef}
-          borderRadius={borderRadius}
-          bottomSpacing={bottomSpacing}
+      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+      <FocusScope contain restoreFocus autoFocus>
+        <ActionSheetOverlay
+          {...underlayProps}
+          ref={overlayRef}
           duration={TRANSITION_DURATION}
-          maxContentHeight={maxContentHeight}
-          from={from}
-          title={title}
-          {...props}
         >
-          {children}
-        </ActionSheetBody>
-      </ActionSheetOverlay>
+          <ActionSheetBody
+            {...overlayProps}
+            ref={sheetRef}
+            borderRadius={borderRadius}
+            bottomSpacing={bottomSpacing}
+            duration={TRANSITION_DURATION}
+            maxContentHeight={maxContentHeight}
+            from={from}
+            title={title}
+            {...props}
+          >
+            {children}
+          </ActionSheetBody>
+        </ActionSheetOverlay>
+      </FocusScope>
     </Portal>
   )
 }

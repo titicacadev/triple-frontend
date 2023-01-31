@@ -1,4 +1,3 @@
-import { FocusScope } from '@react-aria/focus'
 import {
   Container,
   MarginPadding,
@@ -164,10 +163,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
               padding: '0 25px',
             }}
           >
-            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-            <FocusScope contain restoreFocus autoFocus>
-              {children}
-            </FocusScope>
+            {children}
           </Content>
         </Sheet>
       </CSSTransition>
