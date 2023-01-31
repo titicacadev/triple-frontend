@@ -145,31 +145,31 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
         mountOnEnter
         unmountOnExit
       >
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <FocusScope contain restoreFocus autoFocus>
-          <Sheet
-            ref={ref}
-            borderRadius={borderRadius}
-            bottomSpacing={bottomSpacing}
-            duration={duration}
-            from={from}
-            padding={{ bottom: bottomSpacing }}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-modal
-            {...props}
+        <Sheet
+          ref={ref}
+          borderRadius={borderRadius}
+          bottomSpacing={bottomSpacing}
+          duration={duration}
+          from={from}
+          padding={{ bottom: bottomSpacing }}
+          role="dialog"
+          aria-labelledby={titleId}
+          aria-modal
+          {...props}
+        >
+          {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
+          <Content
+            css={{
+              maxHeight: maxContentHeight,
+              padding: '0 25px',
+            }}
           >
-            {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
-            <Content
-              css={{
-                maxHeight: maxContentHeight,
-                padding: '0 25px',
-              }}
-            >
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+            <FocusScope contain restoreFocus autoFocus>
               {children}
-            </Content>
-          </Sheet>
-        </FocusScope>
+            </FocusScope>
+          </Content>
+        </Sheet>
       </CSSTransition>
     )
   },

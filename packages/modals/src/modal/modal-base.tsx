@@ -29,7 +29,7 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
   return (
     <Portal>
       <FlexBox
-        {...overlayProps}
+        {...underlayProps}
         flex
         alignItems="center"
         justifyContent="center"
@@ -44,24 +44,24 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
           ${layeringMixin(99)}
         `}
       >
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <FocusScope autoFocus contain restoreFocus>
-          <Container
-            {...underlayProps}
-            ref={ref}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-describedby={descriptionId}
-            aria-modal
-            borderRadius={6}
-            css={css`
-              width: 295px;
-              background-color: #fff;
-            `}
-          >
+        <Container
+          {...overlayProps}
+          ref={ref}
+          role="dialog"
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+          aria-modal
+          borderRadius={6}
+          css={css`
+            width: 295px;
+            background-color: #fff;
+          `}
+        >
+          {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+          <FocusScope autoFocus contain restoreFocus>
             {children}
-          </Container>
-        </FocusScope>
+          </FocusScope>
+        </Container>
       </FlexBox>
     </Portal>
   )
