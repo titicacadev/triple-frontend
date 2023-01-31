@@ -2,7 +2,7 @@ import assert from 'assert'
 
 import qs from 'qs'
 
-import { parseUrl, generateUrl, getRegQuery } from './url'
+import { parseUrl, generateUrl, getTripleUtmQuery } from './url'
 
 describe('parseUrl', function () {
   it('should parse http url', function () {
@@ -359,7 +359,7 @@ describe('generateUrl', function () {
   })
 })
 
-describe('getRegQuery', function () {
+describe('getTripleUtmQuery', function () {
   it('should get parsedQuery without targetQuery', function () {
     const parsedQuery = {
       _web_expand: 'true',
@@ -374,6 +374,8 @@ describe('getRegQuery', function () {
       button_name: 'japan-low-price-air-ticket',
     }
 
-    expect(getRegQuery({ parsedQuery, targetQuery })).toStrictEqual(result)
+    expect(getTripleUtmQuery({ parsedQuery, targetQuery })).toStrictEqual(
+      result,
+    )
   })
 })

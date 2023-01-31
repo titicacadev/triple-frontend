@@ -178,7 +178,7 @@ export function generateUrl(
     .join('')
 }
 
-export function getRegQuery({
+export function getTripleUtmQuery({
   parsedQuery,
   targetQuery = 'triple_link_param_',
 }: {
