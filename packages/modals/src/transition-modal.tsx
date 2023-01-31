@@ -58,7 +58,7 @@ const MODAL_CONTENT: {
     eventLabel: '리뷰_리뷰쓰기',
   },
   [TransitionType.ReviewThumbnail]: {
-    eventLabel: '리뷰_리뷰사진썸네일',
+    eventLabel: '리뷰_리뷰썸네일_클릭',
   },
   [TransitionType.ReviewSelect]: {
     eventLabel: '리뷰_리뷰내용_선택',

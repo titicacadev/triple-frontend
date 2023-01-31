@@ -1,5 +1,7 @@
+import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'
 
 import { useClientActions } from '../../../services'
@@ -29,6 +31,16 @@ function Media({ media, reviewId }: Props) {
   const length = Math.min(sortedMedia.length, limit)
   const restLength = sortedMedia.length - length
 
+  const onMediumClick = useAppCallback(
+    TransitionType.ReviewThumbnail,
+    (medium: ImageMeta) => {
+      const originalIndex = media.findIndex(
+        (originalMedium) => originalMedium.id === medium.id,
+      )
+      navigateImages(media, originalIndex)
+    },
+  )
+
   if (sortedMedia.length === 0) {
     return null
   }
@@ -43,9 +55,9 @@ function Media({ media, reviewId }: Props) {
             key={medium.id}
             onClick={() => {
               trackEvent({
-                ga: ['리뷰썸네일_클릭', thumbnailType],
+                ga: ['리뷰_리뷰썸네일_클릭', thumbnailType],
                 fa: {
-                  action: '리뷰썸네일_클릭',
+                  action: '리뷰_리뷰썸네일_클릭',
                   // eslint-disable-next-line @typescript-eslint/naming-convention
                   media_id: medium.id,
                   type: thumbnailType,
@@ -53,10 +65,7 @@ function Media({ media, reviewId }: Props) {
                 },
               })
 
-              const originalIndex = media.findIndex(
-                (originalMedium) => originalMedium.id === medium.id,
-              )
-              navigateImages(media, originalIndex)
+              onMediumClick(medium)
             }}
           >
             <Medium medium={medium} />
