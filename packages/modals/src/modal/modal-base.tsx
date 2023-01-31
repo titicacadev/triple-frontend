@@ -30,38 +30,40 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
     <Portal>
       {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
       <FocusScope autoFocus contain restoreFocus>
-        <FlexBox
-          {...underlayProps}
-          flex
-          alignItems="center"
-          justifyContent="center"
-          css={css`
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(58, 58, 58, 0.5);
-
-            ${layeringMixin(99)}
-          `}
-        >
-          <Container
-            {...overlayProps}
-            ref={ref}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-describedby={descriptionId}
-            aria-modal
-            borderRadius={6}
+        <div>
+          <FlexBox
+            {...underlayProps}
+            flex
+            alignItems="center"
+            justifyContent="center"
             css={css`
-              width: 295px;
-              background-color: #fff;
+              position: fixed;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background-color: rgba(58, 58, 58, 0.5);
+
+              ${layeringMixin(99)}
             `}
           >
-            {children}
-          </Container>
-        </FlexBox>
+            <Container
+              {...overlayProps}
+              ref={ref}
+              role="dialog"
+              aria-labelledby={titleId}
+              aria-describedby={descriptionId}
+              aria-modal
+              borderRadius={6}
+              css={css`
+                width: 295px;
+                background-color: #fff;
+              `}
+            >
+              {children}
+            </Container>
+          </FlexBox>
+        </div>
       </FocusScope>
     </Portal>
   )

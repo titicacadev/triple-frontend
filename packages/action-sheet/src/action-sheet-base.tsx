@@ -44,25 +44,27 @@ export const ActionSheetBase = ({
     <Portal>
       {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
       <FocusScope contain restoreFocus autoFocus>
-        <ActionSheetOverlay
-          {...underlayProps}
-          ref={overlayRef}
-          duration={TRANSITION_DURATION}
-        >
-          <ActionSheetBody
-            {...overlayProps}
-            ref={sheetRef}
-            borderRadius={borderRadius}
-            bottomSpacing={bottomSpacing}
+        <div>
+          <ActionSheetOverlay
+            {...underlayProps}
+            ref={overlayRef}
             duration={TRANSITION_DURATION}
-            maxContentHeight={maxContentHeight}
-            from={from}
-            title={title}
-            {...props}
           >
-            {children}
-          </ActionSheetBody>
-        </ActionSheetOverlay>
+            <ActionSheetBody
+              {...overlayProps}
+              ref={sheetRef}
+              borderRadius={borderRadius}
+              bottomSpacing={bottomSpacing}
+              duration={TRANSITION_DURATION}
+              maxContentHeight={maxContentHeight}
+              from={from}
+              title={title}
+              {...props}
+            >
+              {children}
+            </ActionSheetBody>
+          </ActionSheetOverlay>
+        </div>
       </FocusScope>
     </Portal>
   )
