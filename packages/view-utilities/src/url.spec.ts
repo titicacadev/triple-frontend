@@ -2,7 +2,7 @@ import assert from 'assert'
 
 import qs from 'qs'
 
-import { parseUrl, generateUrl } from './url'
+import { parseUrl, generateUrl, getRegQuery } from './url'
 
 describe('parseUrl', function () {
   it('should parse http url', function () {
@@ -356,5 +356,24 @@ describe('generateUrl', function () {
   it('should preserve array format comma', () => {
     const query = qs.stringify({ places: ['a', 'b'] }, { arrayFormat: 'comma' })
     expect(generateUrl({ query })).toBe(`?${query}`)
+  })
+})
+
+describe('getRegQuery', function () {
+  it('should get parsedQuery without targetQuery', function () {
+    const parsedHref = {
+      _web_expand: 'true',
+      triple_link_param_item_id: '123-1234',
+      triple_link_param_content_type: 'air',
+      triple_link_param_button_name: 'japan-low-price-air-ticket',
+    }
+    const targetQuery = 'triple_link_param_'
+    const result = {
+      item_id: '123-1234',
+      content_type: 'air',
+      button_name: 'japan-low-price-air-ticket',
+    }
+
+    expect(getRegQuery({ parsedHref, targetQuery })).toStrictEqual(result)
   })
 })
