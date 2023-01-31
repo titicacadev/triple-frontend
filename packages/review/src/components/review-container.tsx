@@ -321,11 +321,11 @@ function ReviewContainer({
   const handleRecentTripChange = useCallback(() => {
     setRecentTrip((prevState) => !prevState)
 
+    const action = recentTrip ? '리뷰_최근여행_해제' : '리뷰_최근여행_선택'
     trackEvent({
-      ga: ['리뷰_최근여행_선택'],
+      ga: [action],
       fa: {
-        action: '리뷰_최근여행_선택',
-        selected: String(recentTrip === false),
+        action,
       },
     })
   }, [recentTrip, trackEvent])
