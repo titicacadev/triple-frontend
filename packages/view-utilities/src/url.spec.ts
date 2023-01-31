@@ -360,18 +360,20 @@ describe('generateUrl', function () {
 })
 
 describe('getTripleUtmQuery', function () {
-  it('should get parsedQuery without targetQuery', function () {
+  it('should only get targetQuery', function () {
     const parsedQuery = {
       _web_expand: 'true',
       triple_link_param_item_id: '123-1234',
+      skipInitialCache: 'true',
       triple_link_param_content_type: 'air',
+      _triple_no_navbar: '',
       triple_link_param_button_name: 'japan-low-price-air-ticket',
     }
     const targetQuery = 'triple_link_param_'
     const result = {
-      item_id: '123-1234',
-      content_type: 'air',
-      button_name: 'japan-low-price-air-ticket',
+      triple_link_param_item_id: '123-1234',
+      triple_link_param_content_type: 'air',
+      triple_link_param_button_name: 'japan-low-price-air-ticket',
     }
 
     expect(getTripleUtmQuery({ parsedQuery, targetQuery })).toStrictEqual(
