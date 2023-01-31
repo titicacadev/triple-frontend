@@ -35,39 +35,44 @@ function Media({ media, reviewId }: Props) {
 
   return (
     <MediaWrapper length={length}>
-      {sortedMedia.slice(0, limit).map((medium, index) => (
-        <MediumWrapper
-          key={medium.id}
-          onClick={() => {
-            trackEvent({
-              fa: {
-                action: '리뷰썸네일_클릭',
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                media_id: medium.id,
-                type: medium.type === 'video' ? '비디오' : '사진',
-                review_id: reviewId,
-              },
-            })
+      {sortedMedia.slice(0, limit).map((medium, index) => {
+        const thumbnailType = medium.type === 'video' ? '비디오' : '사진'
 
-            const originalIndex = media.findIndex(
-              (originalMedium) => originalMedium.id === medium.id,
-            )
-            navigateImages(media, originalIndex)
-          }}
-        >
-          <Medium medium={medium} />
-          {restLength > 0 && index === limit - 1 ? (
-            <Dimmer
-              flex
-              alignItems="center"
-              justifyContent="center"
-              backgroundColor="gray500"
-            >
-              +{restLength}
-            </Dimmer>
-          ) : null}
-        </MediumWrapper>
-      ))}
+        return (
+          <MediumWrapper
+            key={medium.id}
+            onClick={() => {
+              trackEvent({
+                ga: ['리뷰썸네일_클릭', thumbnailType],
+                fa: {
+                  action: '리뷰썸네일_클릭',
+                  // eslint-disable-next-line @typescript-eslint/naming-convention
+                  media_id: medium.id,
+                  type: thumbnailType,
+                  review_id: reviewId,
+                },
+              })
+
+              const originalIndex = media.findIndex(
+                (originalMedium) => originalMedium.id === medium.id,
+              )
+              navigateImages(media, originalIndex)
+            }}
+          >
+            <Medium medium={medium} />
+            {restLength > 0 && index === limit - 1 ? (
+              <Dimmer
+                flex
+                alignItems="center"
+                justifyContent="center"
+                backgroundColor="gray500"
+              >
+                +{restLength}
+              </Dimmer>
+            ) : null}
+          </MediumWrapper>
+        )
+      })}
     </MediaWrapper>
   )
 }
