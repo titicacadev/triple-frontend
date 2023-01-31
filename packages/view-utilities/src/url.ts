@@ -187,12 +187,12 @@ export function getTripleUtmQuery({
 }) {
   const regex = new RegExp(`^${targetQuery}`, 'i')
 
-  return Object.keys(parsedQuery || {})
+  return Object.keys(parsedQuery)
     .filter((key) => key.match(regex))
     .reduce(
       (params, key) => ({
         ...params,
-        [key.replace(regex, '')]: parsedQuery[key],
+        [key]: parsedQuery[key],
       }),
       {},
     )
