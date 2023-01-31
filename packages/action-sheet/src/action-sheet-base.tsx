@@ -42,12 +42,12 @@ export const ActionSheetBase = ({
   return (
     <Portal>
       <ActionSheetOverlay
-        {...overlayProps}
+        {...underlayProps}
         ref={overlayRef}
         duration={TRANSITION_DURATION}
       >
         <ActionSheetBody
-          {...underlayProps}
+          {...overlayProps}
           ref={sheetRef}
           borderRadius={borderRadius}
           bottomSpacing={bottomSpacing}
