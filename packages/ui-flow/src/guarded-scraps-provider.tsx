@@ -34,7 +34,7 @@ export function GuardedScrapsProvider({
         }
 
         if (sessionAvailable === false) {
-          showLoginCta()
+          showLoginCta(undefined, 'POI저장')
           return false
         }
 
