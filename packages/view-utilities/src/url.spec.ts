@@ -361,7 +361,7 @@ describe('generateUrl', function () {
 
 describe('getRegQuery', function () {
   it('should get parsedQuery without targetQuery', function () {
-    const parsedHref = {
+    const parsedQuery = {
       _web_expand: 'true',
       triple_link_param_item_id: '123-1234',
       triple_link_param_content_type: 'air',
@@ -374,6 +374,6 @@ describe('getRegQuery', function () {
       button_name: 'japan-low-price-air-ticket',
     }
 
-    expect(getRegQuery({ parsedHref, targetQuery })).toStrictEqual(result)
+    expect(getRegQuery({ parsedQuery, targetQuery })).toStrictEqual(result)
   })
 })
