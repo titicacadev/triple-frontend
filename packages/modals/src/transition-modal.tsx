@@ -48,7 +48,9 @@ const MODAL_CONTENT: {
   [TransitionType.Gallery]: {
     eventLabel: '대표사진_선택',
   },
-  [TransitionType.Scrap]: {},
+  [TransitionType.Scrap]: {
+    eventLabel: 'POI저장',
+  },
   [TransitionType.Review]: {
     eventLabel: '리뷰_리뷰글더보기_선택',
   },
