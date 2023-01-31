@@ -74,6 +74,9 @@ const { overrides, ...rest } = createConfig({
     'common-web',
     'x-triple-user-lang',
     'x-triple-user-country',
+    'triple_link_param_item_id',
+    'triple_link_param_content_type',
+    'triple_link_param_button_name',
   ],
 })
 
