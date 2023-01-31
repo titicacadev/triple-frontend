@@ -6,8 +6,8 @@ import {
   Portal,
 } from '@titicaca/core-elements'
 import { FocusScope } from '@react-aria/focus'
-import { useOverlay, usePreventScroll } from '@react-aria/overlays'
 import { css } from 'styled-components'
+import { useOverlay } from '@react-aria/overlays'
 
 import { useModal } from './modal-context'
 
@@ -16,12 +16,11 @@ export type ModalBaseProps = PropsWithChildren
 export const ModalBase = ({ children }: ModalBaseProps) => {
   const ref = useRef(null)
   const { open, titleId, descriptionId, onClose } = useModal()
+
   const { overlayProps, underlayProps } = useOverlay(
     { isDismissable: true, isOpen: open, onClose },
     ref,
   )
-
-  usePreventScroll({ isDisabled: !open })
 
   if (!open) {
     return null
