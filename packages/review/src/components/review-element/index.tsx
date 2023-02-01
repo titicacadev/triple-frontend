@@ -278,7 +278,9 @@ function ReviewElement({
             }}
           >
             {replyBoard
-              ? replyBoard.rootMessagesCount + replyBoard.childMessagesCount
+              ? replyBoard.rootMessagesCount +
+                replyBoard.childMessagesCount +
+                replyBoard.pinnedMessagesCount
               : 0}
           </MessageCount>
 

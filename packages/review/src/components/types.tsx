@@ -46,6 +46,7 @@ export interface ReviewData {
     resourceId: string
     resourceType: string
     rootMessagesCount: number
+    pinnedMessagesCount: number
   }
 }
 
