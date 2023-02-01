@@ -75,7 +75,12 @@ export const ActionSheetOverlay = forwardRef<
   HTMLDivElement,
   ActionSheetOverlayProps
 >(({ children, duration }, ref) => {
-  const { open } = useActionSheet()
+  const { open, onClose } = useActionSheet()
+
+  const onOverlayClick = (e) => {
+    silenceEvent(e)
+    onClose?.()
+  }
 
   return (
     <CSSTransition
@@ -87,7 +92,7 @@ export const ActionSheetOverlay = forwardRef<
       mountOnEnter
       unmountOnExit
     >
-      <Overlay ref={ref} duration={duration} onClick={silenceEvent}>
+      <Overlay ref={ref} duration={duration} onClick={onOverlayClick}>
         {children}
       </Overlay>
     </CSSTransition>

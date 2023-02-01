@@ -166,7 +166,10 @@ export const Controlled: ComponentStory<typeof ActionSheet> = () => {
       <button onClick={() => setOpen(true)}>열기</button>
       <ActionSheet
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => {
+          alert('onClose')
+          setOpen(false)
+        }}
         title="샘플 액션 시트"
       >
         <ActionSheetItem>메뉴 1</ActionSheetItem>
