@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group'
 import styled, { css } from 'styled-components'
 
 import { useActionSheet } from './action-sheet-context'
+import { silenceEvent } from './utils/event'
 
 const inactiveOverlayFadeStyle = css`
   opacity: 0;
@@ -86,7 +87,7 @@ export const ActionSheetOverlay = forwardRef<
       mountOnEnter
       unmountOnExit
     >
-      <Overlay ref={ref} duration={duration}>
+      <Overlay ref={ref} duration={duration} onClick={silenceEvent}>
         {children}
       </Overlay>
     </CSSTransition>

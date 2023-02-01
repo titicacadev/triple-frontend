@@ -10,6 +10,7 @@ import styled, { css } from 'styled-components'
 
 import { useActionSheet } from './action-sheet-context'
 import { ActionSheetTitle } from './action-sheet-title'
+import { silenceEvent } from './utils/event'
 
 const inactiveSheetSlideStyle = css<{ from: 'top' | 'bottom' }>`
   ${({ from }) => {
@@ -157,6 +158,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
             role="dialog"
             aria-labelledby={titleId}
             aria-modal
+            onClick={silenceEvent}
             {...props}
           >
             {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
