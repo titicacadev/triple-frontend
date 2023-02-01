@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.2.1
+
+### action-sheet, modals
+
+- @react/aria에서 리랜더를 유발하는 usePreventScroll 제거 [#2363](https://github.com/titicacadev/triple-frontend/pull/2363)
+
 ## 12.2.0
 
 ### action-sheet
