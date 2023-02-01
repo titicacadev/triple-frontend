@@ -9,6 +9,8 @@ import { FocusScope } from '@react-aria/focus'
 import { css } from 'styled-components'
 import { useOverlay } from '@react-aria/overlays'
 
+import { silenceEvent } from '../utils/event'
+
 import { useModal } from './modal-context'
 
 export type ModalBaseProps = PropsWithChildren
@@ -33,6 +35,7 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
         flex
         alignItems="center"
         justifyContent="center"
+        onClick={onClose}
         css={css`
           position: fixed;
           top: 0;
@@ -54,6 +57,7 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
             aria-describedby={descriptionId}
             aria-modal
             borderRadius={6}
+            onClick={silenceEvent}
             css={css`
               width: 295px;
               background-color: #fff;
