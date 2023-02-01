@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren } from 'react'
+import { forwardRef, PropsWithChildren, SyntheticEvent } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled, { css } from 'styled-components'
 
@@ -77,7 +77,7 @@ export const ActionSheetOverlay = forwardRef<
 >(({ children, duration }, ref) => {
   const { open, onClose } = useActionSheet()
 
-  const onOverlayClick = (e) => {
+  const onOverlayClick = (e: SyntheticEvent) => {
     silenceEvent(e)
     onClose?.()
   }
