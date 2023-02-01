@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import styled from 'styled-components'
 import {
   Accordion,
@@ -12,6 +12,8 @@ import {
   useSessionAvailability,
   useSessionControllers,
 } from '@titicaca/react-contexts'
+
+import { GroupLink } from './group-link'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -68,23 +70,6 @@ const AccordionArrow = styled.img`
   height: 15px;
 `
 
-const LinksContainer = styled(Container)`
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  color: var(--color-gray);
-
-  a {
-    color: var(--color-gray);
-    text-decoration: none;
-    margin: 6px;
-  }
-
-  a:first-child {
-    margin-left: 0;
-  }
-`
-
 const ButtonContainer = styled(FlexBox)`
   a:first-child {
     margin-right: 6px;
@@ -100,7 +85,10 @@ interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
 }
 
-function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
+function DefaultFooter({
+  hideAppDownloadButton = false,
+  children,
+}: PropsWithChildren<DefaultFooterProps>) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
 
@@ -176,29 +164,21 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
           </AccordionContent>
         </Accordion>
 
-        <Text
-          size={11}
-          lineHeight="17px"
-          color="gray500"
-          margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
-        >
-          주식회사 인터파크는 통신판매중개로서 통신판매의 당사자가 아니며 상품
-          거래정보 및 거래등에 대해 책임을 지지 않습니다.
-        </Text>
+        {children || (
+          <>
+            <Text
+              size={11}
+              lineHeight="17px"
+              color="gray500"
+              margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
+            >
+              주식회사 인터파크는 통신판매중개로서 통신판매의 당사자가 아니며
+              상품 거래정보 및 거래등에 대해 책임을 지지 않습니다.
+            </Text>
 
-        <LinksContainer>
-          <a href="/pages/tos.html" target="_blank" rel="noreferrer">
-            서비스 이용약관
-          </a>
-          |
-          <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
-            개인정보 처리방침
-          </a>
-          |
-          <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
-            고객센터
-          </a>
-        </LinksContainer>
+            <GroupLink />
+          </>
+        )}
       </Container>
     </FooterFrame>
   )
