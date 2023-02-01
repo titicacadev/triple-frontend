@@ -5,9 +5,7 @@ import {
   layeringMixin,
   Portal,
 } from '@titicaca/core-elements'
-import { FocusScope } from '@react-aria/focus'
 import { css } from 'styled-components'
-import { useOverlay } from '@react-aria/overlays'
 
 import { silenceEvent } from '../utils/event'
 
@@ -19,11 +17,6 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
   const ref = useRef(null)
   const { open, titleId, descriptionId, onClose } = useModal()
 
-  const { overlayProps, underlayProps } = useOverlay(
-    { isDismissable: true, isOpen: open, onClose },
-    ref,
-  )
-
   if (!open) {
     return null
   }
@@ -31,7 +24,6 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
   return (
     <Portal>
       <FlexBox
-        {...overlayProps}
         flex
         alignItems="center"
         justifyContent="center"
@@ -47,25 +39,21 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
           ${layeringMixin(99)}
         `}
       >
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <FocusScope autoFocus contain restoreFocus>
-          <Container
-            {...underlayProps}
-            ref={ref}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-describedby={descriptionId}
-            aria-modal
-            borderRadius={6}
-            onClick={silenceEvent}
-            css={css`
-              width: 295px;
-              background-color: #fff;
-            `}
-          >
-            {children}
-          </Container>
-        </FocusScope>
+        <Container
+          ref={ref}
+          role="dialog"
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+          aria-modal
+          borderRadius={6}
+          onClick={silenceEvent}
+          css={css`
+            width: 295px;
+            background-color: #fff;
+          `}
+        >
+          {children}
+        </Container>
       </FlexBox>
     </Portal>
   )
