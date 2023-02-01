@@ -36,6 +36,7 @@ export enum TransitionType {
   Hotel = 'hotel',
   View = 'view',
   AddPoisToTripSelect = 'addPoisToTripSelect',
+  Link = 'link',
 }
 
 const MODAL_CONTENT: {
@@ -87,6 +88,9 @@ const MODAL_CONTENT: {
   },
   [TransitionType.AddPoisToTripSelect]: {
     eventLabel: '내일정으로담기_선택',
+  },
+  [TransitionType.Link]: {
+    eventLabel: '링크선택',
   },
 }
 
