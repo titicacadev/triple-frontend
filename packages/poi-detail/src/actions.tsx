@@ -116,7 +116,7 @@ function Actions({
           {t(['gongyuhagi', '공유하기'])}
         </ActionButton>
       </ButtonGroup>
-      {!noDivider && <HR1 css={{ marginTop: 8, marginBottom: 0 }} />}
+      {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}
     </Section>
   )
 }
