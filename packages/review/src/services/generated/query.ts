@@ -1036,6 +1036,7 @@ export const BaseReviewFragmentDoc = `
     id
     rootMessagesCount
     childMessagesCount
+    pinnedMessagesCount
   }
   liked
 }
