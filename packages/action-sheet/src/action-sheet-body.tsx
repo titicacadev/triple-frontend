@@ -1,4 +1,3 @@
-import { FocusScope } from '@react-aria/focus'
 import {
   Container,
   MarginPadding,
@@ -143,35 +142,30 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
         appear
         classNames="action-sheet-slide"
         timeout={duration}
-        mountOnEnter
-        unmountOnExit
       >
-        {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-        <FocusScope contain restoreFocus autoFocus>
-          <Sheet
-            ref={ref}
-            borderRadius={borderRadius}
-            bottomSpacing={bottomSpacing}
-            duration={duration}
-            from={from}
-            padding={{ bottom: bottomSpacing }}
-            role="dialog"
-            aria-labelledby={titleId}
-            aria-modal
-            onClick={silenceEvent}
-            {...props}
+        <Sheet
+          ref={ref}
+          borderRadius={borderRadius}
+          bottomSpacing={bottomSpacing}
+          duration={duration}
+          from={from}
+          padding={{ bottom: bottomSpacing }}
+          role="dialog"
+          aria-labelledby={titleId}
+          aria-modal
+          onClick={silenceEvent}
+          {...props}
+        >
+          {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
+          <Content
+            css={{
+              maxHeight: maxContentHeight,
+              padding: '0 25px',
+            }}
           >
-            {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
-            <Content
-              css={{
-                maxHeight: maxContentHeight,
-                padding: '0 25px',
-              }}
-            >
-              {children}
-            </Content>
-          </Sheet>
-        </FocusScope>
+            {children}
+          </Content>
+        </Sheet>
       </CSSTransition>
     )
   },

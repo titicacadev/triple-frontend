@@ -89,8 +89,6 @@ export const ActionSheetOverlay = forwardRef<
       appear
       classNames="action-sheet-fade"
       timeout={duration}
-      mountOnEnter
-      unmountOnExit
     >
       <Overlay ref={ref} duration={duration} onClick={onOverlayClick}>
         {children}
