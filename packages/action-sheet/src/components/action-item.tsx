@@ -1,16 +1,24 @@
-import { PropsWithChildren } from 'react'
+import { SyntheticEvent, PropsWithChildren } from 'react'
 import styled from 'styled-components'
+import * as CSS from 'csstype'
 
-import { useActionSheet } from './action-sheet-context'
-
-export const ActionItemContainer = styled.div`
-  display: flex;
-  align-items: center;
+const ActionItemContainer = styled.div`
+  width: 100%;
   height: 54px;
+
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 `
 
-const ItemText = styled.div<{ checked?: boolean }>`
-  flex: 1;
+const ItemText = styled.div<{
+  width?: CSS.Property.Width<string | number>
+  checked?: boolean
+}>`
+  display: inline-block;
+  width: ${({ width }) => width || '100%'};
   height: 54px;
   line-height: 54px;
   font-size: 16px;
@@ -22,9 +30,10 @@ const ItemText = styled.div<{ checked?: boolean }>`
 `
 
 const ItemButton = styled.a`
-  display: block;
+  float: right;
   height: 30px;
   line-height: 30px;
+  margin-top: 11px;
   padding: 0 17px;
   border-radius: 15px;
   background-color: #fafafa;
@@ -49,13 +58,16 @@ const URL_BY_NAMES: { [key: string]: string } = {
 const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
 
 const ItemIcon = styled.img`
-  display: block;
+  float: left;
+  margin-top: 12px;
   width: 30px;
   height: 30px;
   margin-right: 9px;
 `
 
 const CheckedIcon = styled.div`
+  float: right;
+  margin-top: 9px;
   margin-right: -5px;
   width: 36px;
   height: 36px;
@@ -64,36 +76,51 @@ const CheckedIcon = styled.div`
   background-repeat: none;
 `
 
-export interface ActionSheetItemProps extends PropsWithChildren {
-  buttonLabel?: string
-  icon?: string
-  checked?: boolean
-  onClick?: () => unknown
-}
-
-export const ActionSheetItem = ({
-  children,
+export default function ActionItem({
   buttonLabel,
   icon,
   checked,
   onClick,
-  ...props
-}: ActionSheetItemProps) => {
-  const { onClose } = useActionSheet()
-
-  const handleClick = () => {
-    onClick ? !onClick() && onClose?.() : onClose?.()
+  onClose,
+  children,
+}: PropsWithChildren<{
+  buttonLabel?: string
+  icon?: string
+  checked?: boolean
+  onClick?: (e?: SyntheticEvent) => unknown
+  onClose?: () => void
+}>) {
+  let textWidth = '100%'
+  if (buttonLabel && icon) {
+    textWidth = 'calc(100% - 100px)'
+  } else if (buttonLabel || checked) {
+    textWidth = 'calc(100% - 60px)'
+  } else if (icon) {
+    textWidth = 'calc(100% - 40px)'
   }
-
   return (
     <ActionItemContainer
-      onClick={buttonLabel ? undefined : handleClick}
-      {...props}
+      onClick={
+        buttonLabel
+          ? undefined
+          : () =>
+              onClick
+                ? !onClick() && onClose && onClose()
+                : onClose && onClose()
+      }
     >
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-      <ItemText checked={checked}>{children}</ItemText>
+      <ItemText width={textWidth} checked={checked}>
+        {children}
+      </ItemText>
       {buttonLabel ? (
-        <ItemButton onClick={handleClick}>{buttonLabel}</ItemButton>
+        <ItemButton
+          onClick={() =>
+            onClick ? !onClick() && onClose && onClose() : onClose && onClose()
+          }
+        >
+          {buttonLabel}
+        </ItemButton>
       ) : null}
       {checked ? <CheckedIcon /> : null}
     </ActionItemContainer>

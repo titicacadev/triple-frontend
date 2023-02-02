@@ -1,5 +1,4 @@
-export * from './alert'
-export * from './confirm'
-export * from './modal'
-export * from './login-cta-modal'
+export { default as Modal } from './modal-base'
+export * from './modals'
 export * from './transition-modal'
+export * from './login-cta-modal'
