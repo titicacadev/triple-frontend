@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
-export const LinksContainer = styled(Container)`
+const LinksContainer = styled(Container)`
   font-size: 11px;
   font-weight: bold;
   line-height: 20px;
