@@ -17,7 +17,7 @@ export const LinksContainer = styled(Container)`
     margin-left: 0;
   }
 `
-export function GroupLink() {
+export function LinkGroup() {
   return (
     <LinksContainer>
       <a href="/pages/tos.html" target="_blank" rel="noreferrer">
