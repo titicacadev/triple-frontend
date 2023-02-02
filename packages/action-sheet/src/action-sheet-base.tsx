@@ -1,4 +1,3 @@
-import { Portal } from '@titicaca/core-elements'
 import { PropsWithChildren, ReactNode, useRef } from 'react'
 
 import { ActionSheetOverlay } from './action-sheet-overlay'
@@ -27,21 +26,19 @@ export const ActionSheetBase = ({
   const sheetRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Portal>
-      <ActionSheetOverlay ref={overlayRef} duration={TRANSITION_DURATION}>
-        <ActionSheetBody
-          ref={sheetRef}
-          borderRadius={borderRadius}
-          bottomSpacing={bottomSpacing}
-          duration={TRANSITION_DURATION}
-          maxContentHeight={maxContentHeight}
-          from={from}
-          title={title}
-          {...props}
-        >
-          {children}
-        </ActionSheetBody>
-      </ActionSheetOverlay>
-    </Portal>
+    <ActionSheetOverlay ref={overlayRef} duration={TRANSITION_DURATION}>
+      <ActionSheetBody
+        ref={sheetRef}
+        borderRadius={borderRadius}
+        bottomSpacing={bottomSpacing}
+        duration={TRANSITION_DURATION}
+        maxContentHeight={maxContentHeight}
+        from={from}
+        title={title}
+        {...props}
+      >
+        {children}
+      </ActionSheetBody>
+    </ActionSheetOverlay>
   )
 }
