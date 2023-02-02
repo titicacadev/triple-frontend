@@ -83,7 +83,7 @@ const ButtonContainer = styled(FlexBox)`
 
 interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  CertificateMarkComponent?: ({
+  ExtraComponent?: ({
     businessExpanded,
   }: {
     businessExpanded: boolean
@@ -92,7 +92,7 @@ interface DefaultFooterProps {
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  CertificateMarkComponent,
+  ExtraComponent,
 }: DefaultFooterProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
@@ -169,8 +169,8 @@ function DefaultFooter({
           </AccordionContent>
         </Accordion>
 
-        {CertificateMarkComponent ? (
-          <CertificateMarkComponent businessExpanded={businessExpanded} />
+        {ExtraComponent ? (
+          <ExtraComponent businessExpanded={businessExpanded} />
         ) : (
           <>
             <Text
