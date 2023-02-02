@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react'
+import { ReactElement, useState } from 'react'
 import styled from 'styled-components'
 import {
   Accordion,
@@ -13,7 +13,7 @@ import {
   useSessionControllers,
 } from '@titicaca/react-contexts'
 
-import { GroupLink } from './group-link'
+import { LinkGroup } from './link-group'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -83,12 +83,17 @@ const ButtonContainer = styled(FlexBox)`
 
 interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
+  CertificateMarkComponent?: ({
+    businessExpanded,
+  }: {
+    businessExpanded: boolean
+  }) => ReactElement
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  children,
-}: PropsWithChildren<DefaultFooterProps>) {
+  CertificateMarkComponent,
+}: DefaultFooterProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
 
@@ -164,7 +169,9 @@ function DefaultFooter({
           </AccordionContent>
         </Accordion>
 
-        {children || (
+        {CertificateMarkComponent ? (
+          <CertificateMarkComponent businessExpanded={businessExpanded} />
+        ) : (
           <>
             <Text
               size={11}
@@ -176,7 +183,7 @@ function DefaultFooter({
               상품 거래정보 및 거래등에 대해 책임을 지지 않습니다.
             </Text>
 
-            <GroupLink />
+            <LinkGroup />
           </>
         )}
       </Container>
