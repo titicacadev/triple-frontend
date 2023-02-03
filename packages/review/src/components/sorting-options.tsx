@@ -17,6 +17,10 @@ const OptionsContainer = styled(FlexBox)`
   div:not(:first-child) {
     margin-left: 12px;
   }
+
+  span {
+    font-weight: bold;
+  }
 `
 
 export default function SortingOptions({
