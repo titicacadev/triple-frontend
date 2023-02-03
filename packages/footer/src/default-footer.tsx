@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text, Container } from '@titicaca/core-elements'
 
 import { LinkGroup } from './link-group'
-import { AccordionGroup } from './accordion-group'
+import { CompanyInfo } from './company-info'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -33,7 +33,7 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
           padding: '30px 30px 40px',
         }}
       >
-        <AccordionGroup
+        <CompanyInfo
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           onActiveChange={onActiveChange}

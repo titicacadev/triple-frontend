@@ -7,7 +7,7 @@ import {
   DefaultFooterProps as AwardFooterProps,
   FooterFrame,
 } from './default-footer'
-import { AccordionGroup } from './accordion-group'
+import { CompanyInfo } from './company-info'
 
 const AWARD_INFO = [
   {
@@ -82,7 +82,7 @@ export function AwardFooter({
           padding: '30px 30px 40px',
         }}
       >
-        <AccordionGroup
+        <CompanyInfo
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           onActiveChange={onActiveChange}
