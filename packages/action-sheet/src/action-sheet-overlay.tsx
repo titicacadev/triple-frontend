@@ -5,10 +5,12 @@ import styled, { css } from 'styled-components'
 import { useActionSheet } from './action-sheet-context'
 
 const inactiveOverlayFadeStyle = css`
+  pointer-events: none;
   opacity: 0;
 `
 
 const activeOverlayFadeStyle = css`
+  pointer-events: auto;
   opacity: 1;
   z-index: 9999;
 `
