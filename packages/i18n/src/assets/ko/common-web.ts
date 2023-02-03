@@ -24,8 +24,6 @@ export const koCommonWeb = {
   hwagin: '확인',
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
-  'teuripeul-aebeseo-deoug-dayanghan-gineungeul-pyeonrihage-iyonghaeboseyo.':
-    '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
   'teuripeul-gagi': '트리플 가기',
   jeojangcwiso: '저장취소',
   jeojanghagi: '저장하기',
@@ -191,4 +189,7 @@ export const koCommonWeb = {
   'selpeupaekiji-cugahalin-ganeung': '셀프패키지 추가할인 가능',
   gwangwang: '관광',
   masjib: '맛집',
+  'soljighan-ribyu-110mangaewa-coesin-yeohaeng-sosigdeulggaji-aebeseo-pyeonhage-hwaginhaseyo':
+    '솔직한 리뷰 110만개와 최신 여행 소식들까지 앱에서 편하게 확인하세요!',
+  'yeogineun-teuripeul-aebi-pilyohaeyo': '여기는 트리플 앱이 필요해요',
 } as const
