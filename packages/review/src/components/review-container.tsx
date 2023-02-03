@@ -338,15 +338,11 @@ function ReviewContainer({
 
         {shortened ? (
           <>
+            <Text bold size="huge" color="gray" alpha={1} inline>
+              {t(['ribyu', '리뷰'])}
+            </Text>
             {(totalReviewsCount || 0) > 0 ? (
-              <Trans
-                i18nKey={[
-                  'ribyu-totalreviewscount',
-                  '<0>리뷰</0><1> {{totalReviewsCount}}</1>',
-                ]}
-                ns="common-web"
-              >
-                <Text bold size="huge" color="gray" alpha={1} inline />
+              <Trans i18nKey={['totalreviewscount']} ns="common-web">
                 <Text bold size="huge" color="blue" alpha={1} inline>
                   <>{{ totalReviewsCount: formatNumber(totalReviewsCount) }}</>
                 </Text>

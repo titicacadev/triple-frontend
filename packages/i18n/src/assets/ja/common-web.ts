@@ -180,7 +180,8 @@ export const jaCommonWeb = {
   'ijeon-dabgeul-deobogi': '以前のコメントを見る',
   '...deobogi': '…もっと見る',
   'pointeubyeol-hyetaeg-bogi': 'ポイント別特典を見る',
-  'ribyu-totalreviewscount': '<0>レビュー</0><1> {{totalReviewsCount}}</1>',
+  ribyu: 'レビュー',
+  totalreviewscount: '<0> {{totalReviewsCount}}</0>',
   'totalreviewscount-gaeyi-ribyu':
     '<0> {{totalReviewsCount}}</0><1>個のレビュー</1>',
   'numofrestreviews-gae-ribyu-deobogi':
