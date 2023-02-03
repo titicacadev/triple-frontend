@@ -90,7 +90,7 @@ export function TransitionModal({
     const {
       description = [
         'soljighan-ribyu-110mangaewa-coesin-yeohaeng-sosigdeulggaji-aebeseo-pyeonhage-hwaginhaseyo',
-        '솔직한 리뷰 110만개와 최신 여행 소식들까지 앱에서 편하게 확인하세요!',
+        '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
       ],
       eventLabel = '',
     } = MODAL_CONTENT[matchData[1]] || {}
