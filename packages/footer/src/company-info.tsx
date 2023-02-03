@@ -73,17 +73,17 @@ const ButtonContainer = styled(FlexBox)`
   }
 `
 
-interface AccordionGroupProps {
+interface CompanyInfoProps {
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
   onActiveChange: ({ businessExpanded }: { businessExpanded: boolean }) => void
 }
 
-export function AccordionGroup({
+export function CompanyInfo({
   hideAppDownloadButton = false,
   businessExpanded,
   onActiveChange,
-}: AccordionGroupProps) {
+}: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
 
