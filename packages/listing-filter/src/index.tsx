@@ -5,6 +5,7 @@ import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   display: inline-block;
   font-size: 13px;
+  font-weight: ${({ active }) => (active ? 'bold' : 'inherit')};
   line-height: 15px;
   border: 1px solid
     ${({ active }) => (active ? 'var(--color-blue)' : 'var(--color-gray200)')};
