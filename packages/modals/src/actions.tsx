@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 
-import Modal, { silenceEvent } from './modal-base'
+import { ModalBase as Modal, silenceEvent } from './modal-base'
 
 export default function ModalActions({
   negative: { text: negativeText, onClick: onNegativeClick },

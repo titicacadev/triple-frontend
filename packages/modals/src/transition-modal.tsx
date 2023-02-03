@@ -11,7 +11,7 @@ import { DeepPartial } from 'utility-types'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import Actions from './actions'
-import Modal from './modal-base'
+import { ModalBase as Modal } from './modal-base'
 
 type ShowTransitionModal = (type: TransitionType) => void
 

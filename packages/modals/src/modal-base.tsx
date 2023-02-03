@@ -77,7 +77,7 @@ const Action = styled.a<{ color?: GlobalColors }>`
   cursor: pointer;
 `
 
-export default function ModalBase({
+export function ModalBase({
   open,
   onClose,
   children,
