@@ -1,4 +1,4 @@
-import { useState } from '@storybook/addons'
+import { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { Checkbox } from './checkbox'
