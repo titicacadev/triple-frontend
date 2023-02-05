@@ -1,16 +1,8 @@
 import { Autolinker } from 'autolinker'
-import React from 'react'
 
-import {
-  ImageBubble,
-  ImagePayload,
-  MessageType,
-  RichBubble,
-  RichPayload,
-  TextBubble,
-  TextPayload,
-  useChat,
-} from '@titicaca/chat'
+import { ImageBubble, RichBubble, TextBubble } from '../bubbles'
+import { useChat } from '../chat'
+import { ImagePayload, MessageType, RichPayload, TextPayload } from '../types'
 
 interface BubblePayloadProps {
   payload: TextPayload | ImagePayload | RichPayload
