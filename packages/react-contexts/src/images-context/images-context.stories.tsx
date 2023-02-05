@@ -1,6 +1,5 @@
 import { useState, memo } from 'react'
 import styled from 'styled-components'
-import { Button } from '@titicaca/core-elements'
 
 import { ImagesProvider, useImagesContext } from '.'
 
@@ -40,7 +39,7 @@ function ImagesContextMonitor({ onFetched }: { onFetched?: () => void }) {
       <Section>
         <h2>actions</h2>
         <SectionBody>
-          <Button onClick={() => actions.fetch(onFetched)}>fetch()</Button>
+          <button onClick={() => actions.fetch(onFetched)}>fetch()</button>
 
           <div>
             indexOf(
