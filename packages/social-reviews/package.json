@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/social-reviews",
-  "version": "12.2.1",
+  "version": "12.3.0",
   "description": "Social reviews section for Triple contents",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/social-reviews",
@@ -20,8 +20,8 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.2.1",
-    "@titicaca/router": "^12.2.1",
+    "@titicaca/core-elements": "^12.3.0",
+    "@titicaca/router": "^12.3.0",
     "i18next": "^19.3.3",
     "react-i18next": "^11.3.3"
   },
@@ -33,6 +33,6 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.2.1"
+    "@titicaca/i18n": "^12.3.0"
   }
 }
