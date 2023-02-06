@@ -145,7 +145,6 @@ export function TransitionModal({
                 ],
                 fa: {
                   action: '설치유도팝업_선택',
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
                   referrer_event: eventLabel,
                 },
               })
@@ -176,7 +175,6 @@ export function useTransitionModal(): { show: ShowTransitionModal } {
           ga: ['설치유도팝업_노출', triggeredEventLabel],
           fa: {
             action: '설치유도팝업_노출',
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             referrer_event: triggeredEventLabel,
           },
         })

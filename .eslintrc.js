@@ -77,6 +77,8 @@ const { overrides, ...rest } = createConfig({
     'triple_link_param_item_id',
     'triple_link_param_content_type',
     'triple_link_param_button_name',
+    'referrer_event',
+    'media_id',
   ],
 })
 

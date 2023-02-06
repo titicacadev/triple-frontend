@@ -58,7 +58,6 @@ function Media({ media, reviewId }: Props) {
                 ga: ['리뷰_리뷰썸네일_클릭', thumbnailType],
                 fa: {
                   action: '리뷰_리뷰썸네일_클릭',
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
                   media_id: medium.id,
                   type: thumbnailType,
                   review_id: reviewId,
