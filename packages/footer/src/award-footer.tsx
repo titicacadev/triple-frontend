@@ -26,7 +26,11 @@ const AWARD_INFO = [
   },
 ]
 
-const LinkGroupWrapper = styled(Container)`
+const InfoFlexBox = styled(FlexBox).attrs({
+  flex: true,
+  justifyContent: 'space-between',
+  alignItems: 'flex-end',
+})`
   > div {
     line-height: inherit;
   }
@@ -99,12 +103,10 @@ export function AwardFooter({
 
 function Info() {
   return (
-    <FlexBox flex justifyContent="space-between" alignItems="flex-end">
-      <LinkGroupWrapper>
-        <LinkGroupBase />
-      </LinkGroupWrapper>
+    <InfoFlexBox>
+      <LinkGroupBase />
       <AwardGroup />
-    </FlexBox>
+    </InfoFlexBox>
   )
 }
 
