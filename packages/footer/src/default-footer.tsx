@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { Text, Container } from '@titicaca/core-elements'
 
@@ -16,13 +16,6 @@ export interface DefaultFooterProps {
 function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
-  const onActiveChange = useCallback(
-    ({ businessExpanded }: { businessExpanded: boolean }) => {
-      setBusinessExpanded(businessExpanded)
-    },
-    [],
-  )
-
   return (
     <FooterFrame>
       <Container
@@ -36,7 +29,7 @@ function DefaultFooter({ hideAppDownloadButton = false }: DefaultFooterProps) {
         <CompanyInfo
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
-          onActiveChange={onActiveChange}
+          setBusinessExpanded={setBusinessExpanded}
         />
 
         <Text

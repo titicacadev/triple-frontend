@@ -10,6 +10,7 @@ import {
   useSessionAvailability,
   useSessionControllers,
 } from '@titicaca/react-contexts'
+import { Dispatch, SetStateAction } from 'react'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -76,13 +77,13 @@ const ButtonContainer = styled(FlexBox)`
 interface CompanyInfoProps {
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
-  onActiveChange: ({ businessExpanded }: { businessExpanded: boolean }) => void
+  setBusinessExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export function CompanyInfo({
   hideAppDownloadButton = false,
   businessExpanded,
-  onActiveChange,
+  setBusinessExpanded,
 }: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
@@ -91,7 +92,7 @@ export function CompanyInfo({
     <Accordion
       active={businessExpanded}
       onActiveChange={() =>
-        onActiveChange({ businessExpanded: !businessExpanded })
+        setBusinessExpanded((businessExpanded) => !businessExpanded)
       }
     >
       <AccordionHeader flex alignItems="center" justifyContent="space-between">
