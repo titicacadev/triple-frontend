@@ -20,13 +20,18 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/fetcher": "^12.4.0",
-    "@titicaca/intersection-observer": "^12.4.0",
-    "@titicaca/poi-list-elements": "^12.4.0",
-    "@titicaca/router": "^12.4.0",
-    "@titicaca/type-definitions": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/fetcher": "*",
+    "@titicaca/intersection-observer": "*",
+    "@titicaca/poi-list-elements": "*",
+    "@titicaca/router": "*",
+    "@titicaca/type-definitions": "*",
+    "@titicaca/view-utilities": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/react-contexts": "*"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
@@ -34,8 +39,5 @@
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "@titicaca/i18n": "^12.4.0"
   }
 }

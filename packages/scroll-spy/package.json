@@ -20,8 +20,8 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/intersection-observer": "^12.4.0",
-    "@titicaca/react-hooks": "^12.4.0",
+    "@titicaca/intersection-observer": "*",
+    "@titicaca/react-hooks": "*",
     "react-use": "^17.2.1"
   },
   "peerDependencies": {

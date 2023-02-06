@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@sentry/nextjs": "7.36.0",
+    "@titicaca/view-utilities": "*",
     "@types/node-fetch": "^2.5.12",
     "isomorphic-fetch": "^2.2.1",
     "next": "13.1.6",

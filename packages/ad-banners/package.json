@@ -22,10 +22,13 @@
   "dependencies": {
     "@egjs/flicking": "^3.8.1",
     "@egjs/react-flicking": "^3.7.0",
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/fetcher": "^12.4.0",
-    "@titicaca/intersection-observer": "^12.4.0",
-    "@titicaca/router": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/fetcher": "*",
+    "@titicaca/intersection-observer": "*",
+    "@titicaca/router": "*"
+  },
+  "devDependencies": {
+    "@titicaca/react-contexts": "*"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

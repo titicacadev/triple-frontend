@@ -20,8 +20,14 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0"
+    "@titicaca/color-palette": "*",
+    "@titicaca/view-utilities": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
@@ -30,8 +36,5 @@
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "@titicaca/i18n": "^12.4.0"
   }
 }

@@ -22,7 +22,12 @@
   "dependencies": {
     "@react-aria/focus": "^3.9.0",
     "@react-aria/overlays": "^3.11.0",
-    "@titicaca/core-elements": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/i18n": "*"
+  },
+  "devDependencies": {
+    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/react-contexts": "*"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

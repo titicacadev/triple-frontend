@@ -26,8 +26,15 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/modals": "^12.4.0",
+    "@titicaca/fetcher": "*",
+    "@titicaca/modals": "*",
+    "@titicaca/react-contexts": "*",
+    "@titicaca/view-utilities": "*",
     "qs": "^6.9.0"
+  },
+  "devDependencies": {
+    "@titicaca/react-triple-client-interfaces": "*",
+    "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
     "@titicaca/fetcher": "*",

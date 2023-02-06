@@ -20,8 +20,8 @@
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/type-definitions": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/type-definitions": "*"
   },
   "peerDependencies": {
     "react": "^18.0",

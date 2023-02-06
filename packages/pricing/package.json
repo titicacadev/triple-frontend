@@ -20,9 +20,13 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/type-definitions": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/type-definitions": "*",
+    "@titicaca/view-utilities": "*"
+  },
+  "devDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "^13.8.4"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

@@ -19,6 +19,12 @@
     "build": "npm run build:cjs",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
+  "dependencies": {
+    "@titicaca/fetcher": "*"
+  },
+  "devDependencies": {
+    "@titicaca/react-contexts": "*"
+  },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "next": "^13.0",

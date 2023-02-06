@@ -20,7 +20,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.4.0",
+    "@titicaca/fetcher": "*",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
     "scroll-to-element": "^2.0.3"

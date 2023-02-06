@@ -23,14 +23,16 @@
     "ts-custom-error": "^3.2.0",
     "universal-cookie": "^4.0.4"
   },
+  "devDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/modals": "*",
+    "@titicaca/next-i18next": "^13.8.4"
+  },
   "peerDependencies": {
     "@titicaca/modals": "*",
     "@titicaca/next-i18next": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "@titicaca/i18n": "^12.4.0"
   }
 }
