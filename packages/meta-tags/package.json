@@ -19,14 +19,16 @@
     "build": "npm run build:cjs",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
+  "devDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/react-contexts": "*"
+  },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
-  },
-  "devDependencies": {
-    "@titicaca/i18n": "^12.4.0"
   }
 }

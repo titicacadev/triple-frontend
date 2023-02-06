@@ -20,10 +20,11 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/constants": "^12.4.0",
-    "@titicaca/fetcher": "^12.4.0",
-    "@titicaca/type-definitions": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0",
+    "@titicaca/constants": "*",
+    "@titicaca/fetcher": "*",
+    "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
+    "@titicaca/type-definitions": "*",
+    "@titicaca/view-utilities": "*",
     "qs": "^6.9.4",
     "ua-parser-js": "^0.7.20",
     "universal-cookie": "^4.0.4"
@@ -34,7 +35,6 @@
     "firebase": "^9.11.0"
   },
   "peerDependencies": {
-    "@titicaca/triple-web-to-native-interfaces": "*",
     "firebase": "^9.11.0",
     "next": "^13.0",
     "react": "^18.0",

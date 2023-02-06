@@ -22,9 +22,9 @@
   "dependencies": {
     "@react-aria/focus": "^3.9.0",
     "@react-aria/overlays": "^3.11.0",
-    "@titicaca/app-installation-cta": "^12.4.0",
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/popup": "^12.4.0",
+    "@titicaca/app-installation-cta": "*",
+    "@titicaca/core-elements": "*",
+    "@titicaca/popup": "*",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {

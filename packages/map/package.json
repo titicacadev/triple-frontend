@@ -21,8 +21,9 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.13.1",
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/router": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/router": "*",
+    "@titicaca/type-definitions": "*"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.43.3",

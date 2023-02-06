@@ -20,18 +20,20 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/router": "^12.4.0",
-    "@titicaca/scroll-to-element": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0",
+    "@titicaca/router": "*",
+    "@titicaca/scroll-to-element": "*",
+    "@titicaca/triple-web-to-native-interfaces": "1.7.0",
+    "@titicaca/view-utilities": "*",
     "qs": "^6.9.4"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.4.0",
-    "@titicaca/react-triple-client-interfaces": "^12.4.0",
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/react-triple-client-interfaces": "*",
     "@types/qs": "^6.9.2"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
-    "@titicaca/triple-web-to-native-interfaces": "*"
+    "@titicaca/react-triple-client-interfaces": "*"
   }
 }

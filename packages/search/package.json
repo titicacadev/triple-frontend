@@ -23,13 +23,16 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.4.0",
-    "@titicaca/react-hooks": "^12.4.0",
-    "@titicaca/view-utilities": "^12.4.0"
+    "@titicaca/core-elements": "*",
+    "@titicaca/react-hooks": "*",
+    "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
+    "@titicaca/view-utilities": "*"
+  },
+  "devDependencies": {
+    "@titicaca/react-contexts": "*"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
-    "@titicaca/triple-web-to-native-interfaces": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.1"
