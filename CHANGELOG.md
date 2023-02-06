@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 12.3.0
+
+### action-sheet
+
+- pointer-events css 추가 [#2380](https://github.com/titicacadev/triple-frontend/pull/2380)
+
+### action-sheet, modals
+
+- underlayProps, overlayProps, FocusScope 위치 변경 [#2370](https://github.com/titicacadev/triple-frontend/pull/2370)
+
+### poi-detail
+
+- POI 상세페이지에서 사용되는 Actions 컴포넌트 하단 HR1 너비를 수정합니다. [#2372](https://github.com/titicacadev/triple-frontend/pull/2372)
+
+### review
+
+- 댓글 개수를 표시할 때 pinned message도 포함하여 표시합니다. [#2373](https://github.com/titicacadev/triple-frontend/pull/2373)
+
+### triple-header
+
+- 트리플헤더를 추가합니다. [#2329](https://github.com/titicacadev/triple-frontend/pull/2329)
+
+### view-utilities
+
+- parsedQuery의 특정 key 값을 추출하는 함수를 생성합니다. [#2368](https://github.com/titicacadev/triple-frontend/pull/2368)
+
 ## 12.2.1
 
 ### action-sheet, modals
