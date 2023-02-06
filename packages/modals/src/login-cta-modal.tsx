@@ -102,7 +102,6 @@ export function useLoginCtaModal() {
           ga: ['로그인유도팝업_노출', triggeredEventAction],
           fa: {
             action: '로그인유도팝업_노출',
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             referrer_event: triggeredEventAction,
           },
         })
