@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Container, FlexBox, Text } from '@titicaca/core-elements'
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { LinkGroup as LinkGroupBase } from './link-group'
 import {
@@ -66,12 +66,6 @@ export function AwardFooter({
 }: AwardFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
-  const onActiveChange = useCallback(
-    ({ businessExpanded }: { businessExpanded: boolean }) => {
-      setBusinessExpanded(businessExpanded)
-    },
-    [],
-  )
   return (
     <FooterFrame>
       <Container
@@ -85,7 +79,7 @@ export function AwardFooter({
         <CompanyInfo
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
-          onActiveChange={onActiveChange}
+          setBusinessExpanded={setBusinessExpanded}
         />
 
         <Text
