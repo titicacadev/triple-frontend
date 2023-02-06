@@ -20,11 +20,11 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.2.1",
-    "@titicaca/react-contexts": "^12.2.1",
-    "@titicaca/router": "^12.2.1",
-    "@titicaca/standard-action-handler": "^12.2.1",
-    "@titicaca/type-definitions": "^12.2.1",
+    "@titicaca/core-elements": "^12.3.0",
+    "@titicaca/react-contexts": "^12.3.0",
+    "@titicaca/router": "^12.3.0",
+    "@titicaca/standard-action-handler": "^12.3.0",
+    "@titicaca/type-definitions": "^12.3.0",
     "framer-motion": "^7.10.3"
   },
   "peerDependencies": {
