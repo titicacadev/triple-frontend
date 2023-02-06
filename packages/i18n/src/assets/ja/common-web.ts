@@ -183,7 +183,6 @@ export const jaCommonWeb = {
   '...deobogi': '…もっと見る',
   'pointeubyeol-hyetaeg-bogi': 'ポイント別特典を見る',
   ribyu: 'レビュー',
-  totalreviewscount: '<0> {{totalReviewsCount}}</0>',
   'totalreviewscount-gaeyi-ribyu':
     '<0> {{totalReviewsCount}}</0><1>個のレビュー</1>',
   'numofrestreviews-gae-ribyu-deobogi':

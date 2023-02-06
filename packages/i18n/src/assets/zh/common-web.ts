@@ -174,7 +174,6 @@ export const zhCommonWeb = {
   '...deobogi': '...查看更多',
   'pointeubyeol-hyetaeg-bogi': '查看點數優惠',
   ribyu: '評論',
-  totalreviewscount: '<0> {{totalReviewsCount}}</0>',
   'totalreviewscount-gaeyi-ribyu': '<0> {{totalReviewsCount}}</0><1>個評論</1>',
   'numofrestreviews-gae-ribyu-deobogi': '查看剩餘{{numOfRestReviews}}個評論',
   'ribyu-sseumyeon-yeohaengja-keulreob-coedae-3pointeu':

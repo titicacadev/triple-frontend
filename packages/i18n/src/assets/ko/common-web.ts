@@ -179,7 +179,6 @@ export const koCommonWeb = {
   '...deobogi': '…더보기',
   'pointeubyeol-hyetaeg-bogi': '포인트별 혜택 보기',
   ribyu: '리뷰',
-  totalreviewscount: '<0> {{totalReviewsCount}}</0>',
   'totalreviewscount-gaeyi-ribyu':
     '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
   'numofrestreviews-gae-ribyu-deobogi': '{{numOfRestReviews}}개 리뷰 더보기',
