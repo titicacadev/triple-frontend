@@ -134,7 +134,7 @@ function ReviewContainer({
 
   const sessionAvailable = useSessionAvailability()
 
-  const [recentTrip, setRecentTrip] = useState(initialRecentTrip)
+  const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTrip)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
@@ -153,7 +153,7 @@ function ReviewContainer({
   const { reviewsData, isLoaded, moreFetcher } = useReviews({
     resourceId,
     resourceType,
-    recentTrip,
+    recentTrip: isRecentTrip,
     latestReview,
     perPage: shortened
       ? SHORTENED_REVIEWS_COUNT_PER_PAGE + 1
@@ -261,7 +261,7 @@ function ReviewContainer({
           e.stopPropagation()
 
           navigateReviewList(
-            recentTrip === true &&
+            isRecentTrip === true &&
               isMorePage === false &&
               reviewsData.length === 0
               ? {
@@ -274,7 +274,7 @@ function ReviewContainer({
                   regionId,
                   resourceId,
                   resourceType,
-                  recentTrip,
+                  recentTrip: isRecentTrip,
                   sortingOption,
                 },
           )
@@ -282,7 +282,7 @@ function ReviewContainer({
         [
           resourceId,
           navigateReviewList,
-          recentTrip,
+          isRecentTrip,
           isMorePage,
           reviewsData.length,
           resourceType,
@@ -311,7 +311,7 @@ function ReviewContainer({
         action: '리뷰_리뷰정렬',
         sort_order: eventLabel,
         item_id: resourceId,
-        ...(recentTrip && { filter_name: '최근여행' }),
+        ...(isRecentTrip && { filter_name: '최근여행' }),
       },
     })
 
@@ -319,19 +319,19 @@ function ReviewContainer({
   }
 
   const handleRecentTripChange = useCallback(() => {
-    setRecentTrip((prevState) => !prevState)
+    setIsRecentTrip((prevState) => !prevState)
 
-    const action = recentTrip ? '리뷰_최근여행_해제' : '리뷰_최근여행_선택'
+    const action = isRecentTrip ? '리뷰_최근여행_해제' : '리뷰_최근여행_선택'
     trackEvent({
       ga: [action],
       fa: {
         action,
       },
     })
-  }, [recentTrip, trackEvent])
+  }, [isRecentTrip, trackEvent])
 
   const recentReviewsCount = reviewsData.length
-  const reviewsCount = recentTrip ? recentReviewsCount : totalReviewsCount
+  const reviewsCount = isRecentTrip ? recentReviewsCount : totalReviewsCount
   const numOfRestReviews = reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE
 
   return (
@@ -384,7 +384,7 @@ function ReviewContainer({
           onSelect={handleSortingOptionSelect}
         />
         <RecentCheckBox
-          isRecentReview={recentTrip}
+          isRecentReview={isRecentTrip}
           onRecentReviewChange={handleRecentTripChange}
         />
       </FlexBox>
@@ -396,10 +396,10 @@ function ReviewContainer({
               maxLength={
                 shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
               }
-              recentTrip={recentTrip}
+              recentTrip={isRecentTrip}
               myReview={myReview}
               reviews={
-                recentTrip
+                isRecentTrip
                   ? reviewsData
                   : reviewsData.filter((review) => !myReviewIds.has(review.id))
               }
@@ -412,13 +412,13 @@ function ReviewContainer({
             />
           ) : (
             <ReviewsPlaceholder
-              recentTrip={recentTrip}
+              recentTrip={isRecentTrip}
               placeholderText={placeholderText}
               resourceType={resourceType}
               hasReviews={!!(totalReviewsCount > 0)}
               isMorePage={isMorePage}
               onClick={
-                recentTrip
+                isRecentTrip
                   ? handleFullListButtonClick
                   : onReviewWrite || handleWriteButtonClick
               }
