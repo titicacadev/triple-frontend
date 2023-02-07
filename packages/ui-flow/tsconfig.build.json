@@ -8,13 +8,16 @@
   "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
   "references": [
     {
-      "path": "../modals/tsconfig.build.json"
-    },
-    {
       "path": "../fetcher/tsconfig.build.json"
     },
     {
+      "path": "../modals/tsconfig.build.json"
+    },
+    {
       "path": "../react-contexts/tsconfig.build.json"
+    },
+    {
+      "path": "../view-utilities/tsconfig.build.json"
     },
     {
       "path": "../react-triple-client-interfaces/tsconfig.build.json"
