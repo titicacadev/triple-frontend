@@ -31,16 +31,14 @@ function dependenciesToReferences(deps) {
     .map((path) => ({ path }))
 }
 
-const {
-  dependencies,
-  devDependencies,
-  peerDependencies,
-} = require(path.resolve(process.cwd(), './package.json'))
+const { dependencies, devDependencies } = require(path.resolve(
+  process.cwd(),
+  './package.json',
+))
 
 const references = [
   ...dependenciesToReferences(dependencies),
   ...dependenciesToReferences(devDependencies),
-  ...dependenciesToReferences(peerDependencies),
 ].sort()
 
 async function main() {
