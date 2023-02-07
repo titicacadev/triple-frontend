@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-list-elements",
-  "version": "12.3.0",
+  "version": "12.4.0",
   "description": "Triple POI UI Elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-list-elements",
@@ -20,11 +20,11 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.3.0",
-    "@titicaca/resource-list-element": "^12.3.0",
-    "@titicaca/scrap-button": "^12.3.0",
-    "@titicaca/type-definitions": "^12.3.0",
-    "@titicaca/view-utilities": "^12.3.0"
+    "@titicaca/core-elements": "^12.4.0",
+    "@titicaca/resource-list-element": "^12.4.0",
+    "@titicaca/scrap-button": "^12.4.0",
+    "@titicaca/type-definitions": "^12.4.0",
+    "@titicaca/view-utilities": "^12.4.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
@@ -34,6 +34,6 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.3.0"
+    "@titicaca/i18n": "^12.4.0"
   }
 }
