@@ -146,7 +146,6 @@ export default function ItineraryElement({ value }: Props) {
       },
     })
     addPoisToTrip(poiIds)
-    /** TODO: event tracking */
   }, [poiIds, addPoisToTrip, trackEvent])
 
   return (
