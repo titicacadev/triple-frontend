@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 12.4.0
+
+### common
+
+- 리뷰, 푸터, 설치/로그인 유도 팝업에 적용된 이벤트 로깅 로직을 수정합니다. [#2354](https://github.com/titicacadev/triple-frontend/pull/2354)
+
+### footer
+
+- Award 푸터를 추가합니다. [#2375](https://github.com/titicacadev/triple-frontend/pull/2375)
+
+### listing-filter, review
+
+- ui-renewal 디자인 개선사항을 수정합니다. [#2378](https://github.com/titicacadev/triple-frontend/pull/2378)
+
+### public-header
+
+- 라운지 홈 공통헤더를 추가합니다. [#2342](https://github.com/titicacadev/triple-frontend/pull/2342)
+
 ## 12.3.0
 
 ### action-sheet
