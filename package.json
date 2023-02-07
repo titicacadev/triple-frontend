@@ -61,6 +61,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@titicaca/eslint-config-triple": "4.2.0",
+    "@titicaca/next-i18next": "^13.8.5",
     "@types/jest": "^27.0.2",
     "@types/node": "^12.12.47",
     "@types/react": "^18.0.21",
