@@ -17,9 +17,6 @@
       "path": "../intersection-observer/tsconfig.build.json"
     },
     {
-      "path": "../react-contexts/tsconfig.build.json"
-    },
-    {
       "path": "../triple-fallback-action/tsconfig.build.json"
     },
     {
@@ -27,6 +24,9 @@
     },
     {
       "path": "../view-utilities/tsconfig.build.json"
+    },
+    {
+      "path": "../react-contexts/tsconfig.build.json"
     }
   ]
 }

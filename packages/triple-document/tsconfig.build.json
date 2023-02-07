@@ -29,6 +29,9 @@
       "path": "../poi-list-elements/tsconfig.build.json"
     },
     {
+      "path": "../react-hooks/tsconfig.build.json"
+    },
+    {
       "path": "../router/tsconfig.build.json"
     },
     {

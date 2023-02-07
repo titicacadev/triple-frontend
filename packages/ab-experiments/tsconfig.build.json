@@ -8,6 +8,9 @@
   "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
   "references": [
     {
+      "path": "../fetcher/tsconfig.build.json"
+    },
+    {
       "path": "../react-contexts/tsconfig.build.json"
     }
   ]
