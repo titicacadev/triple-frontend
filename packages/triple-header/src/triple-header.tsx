@@ -5,20 +5,22 @@ import styled, { css } from 'styled-components'
 import { Layer } from './layer'
 import { TripleHeader as TripleHeaderProps } from './types'
 
+const MAX_WIDTH = 768
+
 const Canvas = styled(Container).attrs({
   position: 'relative',
   centered: true,
 })<{ clientWidth?: number; width: number; height: number }>`
   overflow: hidden;
-  max-width: 768px;
+  max-width: ${MAX_WIDTH}px;
 
   ${({ clientWidth, width, height }) =>
     width &&
     height &&
     css`
       width: 100%;
-      height: calc(${clientWidth}px * ${height / width});
-      max-height: ${768 * (height / width)}px;
+      height: calc(${clientWidth || MAX_WIDTH}px * ${height / width});
+      max-height: ${MAX_WIDTH * (height / width)}px;
     `}
 `
 
