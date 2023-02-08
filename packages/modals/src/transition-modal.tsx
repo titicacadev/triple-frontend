@@ -37,6 +37,7 @@ export enum TransitionType {
   View = 'view',
   AddPoisToTripSelect = 'addPoisToTripSelect',
   Link = 'link',
+  LoungeHome = 'loungeHome',
 }
 
 const MODAL_CONTENT: {
@@ -91,6 +92,9 @@ const MODAL_CONTENT: {
   },
   [TransitionType.Link]: {
     eventLabel: '링크선택',
+  },
+  [TransitionType.LoungeHome]: {
+    eventLabel: '라운지홈',
   },
 }
 
