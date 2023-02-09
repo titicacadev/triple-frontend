@@ -19,7 +19,7 @@ export function Flying({
   children,
   options = {},
 }: PropsWithChildren<FlyingProps>) {
-  const transition = generateTransition(options)
+  const transition = generateTransition({ ...options, duration: 0.3 })
 
   return (
     <MotionContainer
