@@ -3,6 +3,7 @@ import { parseUrl } from '../url'
 const PUBLIC_ROUTELIST_REGEXES = [
   /^\/login$/,
   /^\/redirect\/?$/,
+  /^\/benefit\/nolcard\/bridge?$/,
   /^\/regions\/[^/]+\/(attractions|restaurants|articles)\/[^/]+$/,
   /^\/regions\/[^/]+\/hotels(\/.*)?$/,
   /^\/(attractions|restaurants|hotels|articles)\/[^/]+$/,
