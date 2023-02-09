@@ -19,6 +19,10 @@
 
 - layout shift 를 개선합니다. [#2391](https://github.com/titicacadev/triple-frontend/pull/2391)
 
+### view-utilities
+
+- public route list에 /redirect를 제거하고 /benefit을 추가합니다. [#2396](https://github.com/titicacadev/triple-frontend/pull/2396)
+
 ## 12.4.0
 
 ### common
