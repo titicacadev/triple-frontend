@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 12.5.0
+
+### common
+
+- @titicaca/next-i18next 추가 [#2388](https://github.com/titicacadev/triple-frontend/pull/2388)
+- 의존성 버전을 wildcard로 변경 [#2390](https://github.com/titicacadev/triple-frontend/pull/2390)
+
+### chat, core-elements, react-contexts
+
+- 더 적절한 의존성 사용 [#2389](https://github.com/titicacadev/triple-frontend/pull/2389)
+
+### modal
+
+- 설치유도팝업 TransitionType에 loungeHome을 추가합니다. [#2392](https://github.com/titicacadev/triple-frontend/pull/2392)
+
+### triple-header
+
+- layout shift 를 개선합니다. [#2391](https://github.com/titicacadev/triple-frontend/pull/2391)
+
 ## 12.4.0
 
 ### common
