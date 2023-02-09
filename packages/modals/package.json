@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/modals",
-  "version": "12.4.0",
+  "version": "12.5.0",
   "description": "Triple modal dialog components",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/modals",
@@ -22,12 +22,12 @@
   "dependencies": {
     "@react-aria/focus": "^3.9.0",
     "@react-aria/overlays": "^3.11.0",
-    "@titicaca/core-elements": "*",
-    "@titicaca/i18n": "*"
+    "@titicaca/core-elements": "^12.5.0",
+    "@titicaca/i18n": "^12.5.0"
   },
   "devDependencies": {
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "*"
+    "@titicaca/react-contexts": "^12.5.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
