@@ -13,12 +13,17 @@ const COMMON_TRANSITION = {
   duration: 3,
 }
 
-export function generateTransition<T>(options: T & InitialEffectOptions) {
+export function generateTransition<T>(
+  initialOptions: T & InitialEffectOptions,
+) {
+  const { infinity, repeatType, ...options } = initialOptions
+
   const transition = {
     ...COMMON_TRANSITION,
-    ...(options.infinity && { repeat: Infinity }),
-    ...(options.repeatType && {
-      repeatType: options.repeatType,
+    ...options,
+    ...(infinity && { repeat: Infinity }),
+    ...(repeatType && {
+      repeatType,
     }),
   }
 
