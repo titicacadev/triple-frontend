@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "12.5.0",
+  "version": "12.5.1",
   "description": "Triple Popup",
   "keywords": [
     "triple",
@@ -24,7 +24,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.5.0",
+    "@titicaca/core-elements": "^12.5.1",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
