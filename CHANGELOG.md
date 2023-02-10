@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.5.1
+
+### public-header
+
+- PublicHeader의 일부 css 속성을 수정합니다 [#2397](https://github.com/titicacadev/triple-frontend/pull/2397)
+
 ## 12.5.0
 
 ### common
