@@ -1,16 +1,6 @@
 import Head from 'next/head'
 
-export interface ArticleAuthor {
-  type?: 'Person' | 'Organization'
-  name: string
-  url?: string
-}
-
-export interface ArticlePublisher {
-  name: string
-}
-
-export interface ArticleScript {
+interface ArticleScript {
   headline: string
   image?: string[]
   datePublished?: string
@@ -19,11 +9,17 @@ export interface ArticleScript {
   publisher?: ArticlePublisher[]
 }
 
-export function BreadcrumbListScript({
-  articleInfo,
-}: {
-  articleInfo: ArticleScript
-}) {
+interface ArticleAuthor {
+  type?: 'Person' | 'Organization'
+  name: string
+  url?: string
+}
+
+interface ArticlePublisher {
+  name: string
+}
+
+export function ArticleScript({ articleInfo }: { articleInfo: ArticleScript }) {
   const articleScript = {
     '@context': 'https://schema.org',
     '@type': 'Article',

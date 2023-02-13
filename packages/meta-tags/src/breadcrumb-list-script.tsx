@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export interface BreadcrumbListItem {
+interface BreadcrumbListItem {
   position: number
   name: string
   item?: string
