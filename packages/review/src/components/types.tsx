@@ -27,6 +27,18 @@ export interface UserData {
   unregister?: boolean | null
 }
 
+export interface PinnedMessageData {
+  writer: {
+    name: string
+    profileImage?: string
+  }
+  content: {
+    markdownText?: string
+  }
+  createAt: string
+  updatedAt: string
+}
+
 export interface ReviewData {
   id: string
   liked: boolean
@@ -42,7 +54,7 @@ export interface ReviewData {
   visitDate?: string
   replyBoard?: {
     childMessagesCount: number
-    pinnedMessages: []
+    pinnedMessages: PinnedMessageData[]
     resourceId: string
     resourceType: string
     rootMessagesCount: number
