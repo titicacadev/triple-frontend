@@ -82,6 +82,8 @@ const { overrides, ...rest } = createConfig({
     'RGB',
     'RGBA',
     'HEX',
+    '@context',
+    '@type',
   ],
 })
 
