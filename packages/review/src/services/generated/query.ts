@@ -1038,6 +1038,17 @@ export const BaseReviewFragmentDoc = `
     rootMessagesCount
     childMessagesCount
     pinnedMessagesCount
+    pinnedMessages {
+      writer {
+        name
+        profileImage
+      }
+      content {
+        markdownText
+      }
+      createdAt
+      updatedAt
+    }
   }
   liked
 }
