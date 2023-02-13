@@ -988,6 +988,7 @@ export type GetReviewSpecificationQuery = {
 export type GetReviewsCountQueryVariables = Exact<{
   resourceType: Scalars['String']
   resourceId: Scalars['String']
+  recentTrip: Scalars['Boolean']
 }>
 
 export type GetReviewsCountQuery = {
@@ -1261,10 +1262,11 @@ export const useGetReviewSpecificationQuery = <
     options,
   )
 export const GetReviewsCountDocument = `
-    query GetReviewsCount($resourceType: String!, $resourceId: String!) {
+    query GetReviewsCount($resourceType: String!, $resourceId: String!, $recentTrip: Boolean) {
   reviewsCount: getReviewsCount(
     resourceType: $resourceType
     resourceId: $resourceId
+    recentTrip: $recentTrip
   )
 }
     `

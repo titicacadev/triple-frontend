@@ -161,7 +161,11 @@ function ReviewContainer({
   })
   const descriptionsData = useDescriptions({ resourceId, resourceType })
   const myReviewData = useMyReview({ resourceId, resourceType })
-  const reviewsCountData = useReviewCount({ resourceId, resourceType })
+  const reviewsCountData = useReviewCount({
+    resourceId,
+    resourceType,
+    recentTrip: isRecentTrip,
+  })
 
   const setMyReview = useCallback(
     (review: ReviewData | undefined) =>
@@ -330,9 +334,7 @@ function ReviewContainer({
     })
   }, [isRecentTrip, trackEvent])
 
-  const recentReviewsCount = reviewsData.length
-  const reviewsCount = isRecentTrip ? recentReviewsCount : totalReviewsCount
-  const numOfRestReviews = reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE
+  const numOfRestReviews = totalReviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -391,7 +393,7 @@ function ReviewContainer({
 
       {isLoaded ? (
         <>
-          {reviewsCount > 0 ? (
+          {totalReviewsCount > 0 ? (
             <ReviewsList
               maxLength={
                 shortened ? SHORTENED_REVIEWS_COUNT_PER_PAGE : undefined
@@ -425,7 +427,7 @@ function ReviewContainer({
             />
           )}
 
-          {reviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
+          {totalReviewsCount > SHORTENED_REVIEWS_COUNT_PER_PAGE && shortened ? (
             <Container
               css={{
                 margin: '40px 0 0',

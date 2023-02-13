@@ -122,12 +122,14 @@ export function useReviews({
 export function useReviewCount({
   resourceType,
   resourceId,
-}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
+  recentTrip,
+}: Pick<UseReviewsProps, 'resourceType' | 'resourceId' | 'recentTrip'>) {
   const { data: reviewsCountData } = useGetReviewsCountQuery(
     graphqlClient,
     {
       resourceType,
       resourceId,
+      recentTrip,
     },
     {
       refetchOnReconnect: false,
