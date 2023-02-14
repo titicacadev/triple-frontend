@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.5.2
+
+### review
+
+- 최근여행 리뷰 개수 표시 오류를 수정합니다. [#2401](https://github.com/titicacadev/triple-frontend/pull/2401)
+
 ## 12.5.1
 
 ### public-header
