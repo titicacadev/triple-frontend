@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/replies",
-  "version": "12.5.1",
+  "version": "12.5.2",
   "description": "Replies Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/replies",
@@ -20,20 +20,20 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.5.1",
-    "@titicaca/core-elements": "^12.5.1",
-    "@titicaca/fetcher": "^12.5.1",
-    "@titicaca/modals": "^12.5.1",
-    "@titicaca/router": "^12.5.1",
-    "@titicaca/ui-flow": "^12.5.1",
-    "@titicaca/view-utilities": "^12.5.1",
+    "@titicaca/action-sheet": "^12.5.2",
+    "@titicaca/core-elements": "^12.5.2",
+    "@titicaca/fetcher": "^12.5.2",
+    "@titicaca/modals": "^12.5.2",
+    "@titicaca/router": "^12.5.2",
+    "@titicaca/ui-flow": "^12.5.2",
+    "@titicaca/view-utilities": "^12.5.2",
     "qs": "^6.11.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.5.1",
+    "@titicaca/i18n": "^12.5.2",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.5.1",
-    "@titicaca/react-triple-client-interfaces": "^12.5.1",
+    "@titicaca/react-contexts": "^12.5.2",
+    "@titicaca/react-triple-client-interfaces": "^12.5.2",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
