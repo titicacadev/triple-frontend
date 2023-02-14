@@ -27,6 +27,7 @@ import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
+import { PinnedMessage } from './pinned-message'
 
 type ReviewEventHandler<T = Element, E = Event> = (
   e: SyntheticEvent<T, E>,
@@ -244,6 +245,14 @@ function ReviewElement({
           >
             <Media media={media} reviewId={review.id} />
           </Container>
+        ) : null}
+        {replyBoard?.pinnedMessages[0] ? (
+          <PinnedMessage
+            pinnedMessage={replyBoard?.pinnedMessages[0]}
+            onShowMoreClick={(e) => {
+              onReviewClick(e, review.id)
+            }}
+          />
         ) : null}
         <Meta>
           {!blindedAt ? (
