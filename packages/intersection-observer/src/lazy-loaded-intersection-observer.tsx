@@ -34,6 +34,9 @@ const SafeObserver = dynamic(importReactIntersectionObserver, {
   ssr: false,
 })
 
+/**
+ * @deprecated StaticIntersectionObserver를 사용해 주세요.
+ */
 export default function IntersectionObserver({
   safe,
   ...props
