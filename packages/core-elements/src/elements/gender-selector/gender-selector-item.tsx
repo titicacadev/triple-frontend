@@ -42,7 +42,7 @@ export const GenderSelectorItem = ({
   const checked = group.value === value
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    group.onChange?.(event.target.value)
+    group.onChange?.(event)
   }
 
   return (

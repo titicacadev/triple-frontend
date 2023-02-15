@@ -1,9 +1,9 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, ChangeEventHandler } from 'react'
 
 export interface RadioGroupContextValue {
   name?: string
   value?: string
-  onChange?: (value: string) => void
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 export const RadioGroupContext =
