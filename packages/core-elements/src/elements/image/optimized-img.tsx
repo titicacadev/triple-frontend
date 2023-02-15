@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import IntersectionObserver from '@titicaca/intersection-observer'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
@@ -119,7 +119,7 @@ export function ImageOptimizedImg({
   )
 
   return (
-    <IntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
+    <StaticIntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
       {!isLoad ? (
         <Placeholder absolute={absolute} />
       ) : (
@@ -130,6 +130,6 @@ export function ImageOptimizedImg({
           absolute={absolute}
         />
       )}
-    </IntersectionObserver>
+    </StaticIntersectionObserver>
   )
 }

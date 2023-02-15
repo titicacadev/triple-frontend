@@ -5,7 +5,7 @@ import {
   PropsWithChildren,
   createContext,
 } from 'react'
-import IntersectionObserver from '@titicaca/intersection-observer'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useWindowSize } from 'react-use'
 import { useScrollToElement } from '@titicaca/react-hooks'
 
@@ -104,11 +104,11 @@ export function ScrollSpyEntity({
   }px 0px`
 
   return (
-    <IntersectionObserver
+    <StaticIntersectionObserver
       rootMargin={rootMargin}
       onChange={generateScrollSpyIntersectionChangeHandler(id)}
     >
       <div id={id}>{children}</div>
-    </IntersectionObserver>
+    </StaticIntersectionObserver>
   )
 }
