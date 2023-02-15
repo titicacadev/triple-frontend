@@ -1,12 +1,7 @@
 import { PropsWithChildren, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
-import {
-  Navbar,
-  layeringMixin,
-  LayeringMixinProps,
-  Portal,
-} from '@titicaca/core-elements'
+import { Navbar, Portal } from '@titicaca/core-elements'
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 import { FocusScope } from '@react-aria/focus'
 import { useOverlay } from '@react-aria/overlays'
@@ -17,17 +12,20 @@ const TRANSITION_DURATION = 300
 
 const inactivePopupContainerStyle = `
   transform: translateY(100%);
+  pointer-events: none;
 `
 
 const activePopupContainerStyle = `
   transform: translateY(0);
+  pointer-events: auto;
+  z-index: 9999;
 `
 
 const popupContainerTransitionConfig = `
   transition: transform ${TRANSITION_DURATION}ms ease-out;
 `
 
-const PopupContainer = styled.div<LayeringMixinProps>`
+const PopupContainer = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -82,8 +80,6 @@ const PopupContainer = styled.div<LayeringMixinProps>`
 
     display: none;
   }
-
-  ${layeringMixin(2)}
 `
 
 /**
@@ -97,8 +93,6 @@ function Popup({
   title,
   noNavbar,
   children,
-  zTier,
-  zIndex,
   unmountOnExit,
   ...restProps
 }: PropsWithChildren<
@@ -123,8 +117,7 @@ function Popup({
      */
     noNavbar?: boolean
     unmountOnExit?: boolean
-  } & LayeringMixinProps &
-    Partial<CSSTransitionProps<HTMLDivElement>>
+  } & Partial<CSSTransitionProps<HTMLDivElement>>
 >) {
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -158,12 +151,7 @@ function Popup({
             unmountOnExit={unmountOnExit}
             {...restProps}
           >
-            <PopupContainer
-              {...overlayProps}
-              ref={popupRef}
-              zTier={zTier}
-              zIndex={zIndex}
-            >
+            <PopupContainer {...overlayProps} ref={popupRef}>
               {noNavbar ? null : (
                 <Navbar borderless={borderless} title={title}>
                   <Navbar.Item floated="left" icon={icon} onClick={onClose} />
