@@ -24,6 +24,8 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
+    "@react-aria/focus": "^3.10.1",
+    "@react-aria/overlays": "^3.12.1",
     "@titicaca/core-elements": "^12.6.0",
     "react-transition-group": "^4.4.2"
   },

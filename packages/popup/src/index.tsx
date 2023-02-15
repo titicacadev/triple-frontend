@@ -5,8 +5,11 @@ import {
   Navbar,
   layeringMixin,
   LayeringMixinProps,
+  Portal,
 } from '@titicaca/core-elements'
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
+import { FocusScope } from '@react-aria/focus'
+import { useOverlay } from '@react-aria/overlays'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -125,6 +128,15 @@ function Popup({
 >) {
   const popupRef = useRef<HTMLDivElement>(null)
 
+  const { overlayProps, underlayProps } = useOverlay(
+    {
+      isOpen: open,
+      isDismissable: true,
+      shouldCloseOnBlur: true,
+    },
+    popupRef,
+  )
+
   useEffect(() => {
     if (open && popupRef.current && popupRef.current.scrollTop > 0) {
       popupRef.current.scrollTop = 0
@@ -132,26 +144,37 @@ function Popup({
   }, [open])
 
   return (
-    <CSSTransition
-      nodeRef={popupRef}
-      timeout={TRANSITION_DURATION}
-      in={open}
-      classNames="popup-slide"
-      appear
-      mountOnEnter={unmountOnExit}
-      unmountOnExit={unmountOnExit}
-      {...restProps}
-    >
-      <PopupContainer ref={popupRef} zTier={zTier} zIndex={zIndex}>
-        {noNavbar ? null : (
-          <Navbar borderless={borderless} title={title}>
-            <Navbar.Item floated="left" icon={icon} onClick={onClose} />
-          </Navbar>
-        )}
+    <Portal>
+      <FocusScope>
+        <div {...underlayProps}>
+          <CSSTransition
+            nodeRef={popupRef}
+            timeout={TRANSITION_DURATION}
+            in={open}
+            classNames="popup-slide"
+            appear
+            mountOnEnter={unmountOnExit}
+            unmountOnExit={unmountOnExit}
+            {...restProps}
+          >
+            <PopupContainer
+              {...overlayProps}
+              ref={popupRef}
+              zTier={zTier}
+              zIndex={zIndex}
+            >
+              {noNavbar ? null : (
+                <Navbar borderless={borderless} title={title}>
+                  <Navbar.Item floated="left" icon={icon} onClick={onClose} />
+                </Navbar>
+              )}
 
-        {children}
-      </PopupContainer>
-    </CSSTransition>
+              {children}
+            </PopupContainer>
+          </CSSTransition>
+        </div>
+      </FocusScope>
+    </Portal>
   )
 }
 
