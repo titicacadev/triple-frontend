@@ -1,4 +1,4 @@
-import { SyntheticEvent, PropsWithChildren, useRef, useEffect } from 'react'
+import { PropsWithChildren, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 import {
@@ -110,7 +110,7 @@ function Popup({
     /**
      * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
      */
-    onClose: (e: SyntheticEvent) => void
+    onClose: () => void
     /**
      * Navbar의 border를 그릴지 결정합니다.
      */
@@ -133,6 +133,7 @@ function Popup({
       isOpen: open,
       isDismissable: true,
       shouldCloseOnBlur: true,
+      onClose,
     },
     popupRef,
   )
