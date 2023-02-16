@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import { ReactNode, useRef } from 'react'
 
-import { layeringMixin, LayeringMixinProps } from '../../mixins'
+import { LayeringMixinProps } from '../../mixins'
 import { Container } from '../container'
+import { Portal } from '../portal'
 
 const TRANSITION_DURATION = 300
 
@@ -25,12 +26,12 @@ const drawerTransitionConfig = `
 `
 
 const DrawerContainer = styled.div<DrawerContainerProps & LayeringMixinProps>`
-  ${layeringMixin(1)}
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
+  z-index: 9999;
 
   &:not([class*='drawer-slide-']) {
     ${inactiveDrawerStyle}
@@ -73,43 +74,41 @@ export function Drawer({
   active,
   overflow,
   children,
-  zTier,
-  zIndex,
   unmountOnExit,
 }: {
   active?: boolean
   overflow?: string
   unmountOnExit?: boolean
   children?: ReactNode
-} & LayeringMixinProps) {
+}) {
   const drawerContainerRef = useRef<HTMLDivElement>(null)
 
   return (
-    <CSSTransition
-      nodeRef={drawerContainerRef}
-      in={active}
-      appear
-      classNames="drawer-slide"
-      timeout={TRANSITION_DURATION}
-      mountOnEnter={unmountOnExit}
-      unmountOnExit={unmountOnExit}
-    >
-      <DrawerContainer
-        ref={drawerContainerRef}
-        duration={TRANSITION_DURATION}
-        overflow={overflow}
-        zTier={zTier}
-        zIndex={zIndex}
+    <Portal>
+      <CSSTransition
+        nodeRef={drawerContainerRef}
+        in={active}
+        appear
+        classNames="drawer-slide"
+        timeout={TRANSITION_DURATION}
+        mountOnEnter={unmountOnExit}
+        unmountOnExit={unmountOnExit}
       >
-        <Container
-          centered
-          css={{
-            maxWidth: 768,
-          }}
+        <DrawerContainer
+          ref={drawerContainerRef}
+          duration={TRANSITION_DURATION}
+          overflow={overflow}
         >
-          {children}
-        </Container>
-      </DrawerContainer>
-    </CSSTransition>
+          <Container
+            centered
+            css={{
+              maxWidth: 768,
+            }}
+          >
+            {children}
+          </Container>
+        </DrawerContainer>
+      </CSSTransition>
+    </Portal>
   )
 }
