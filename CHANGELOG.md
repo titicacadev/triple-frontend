@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.6.0
+
+### intersection-observer
+
+- Lazy loaded IntersectionObserver를 deprecate 합니다. [#2407](https://github.com/titicacadev/triple-frontend/pull/2407)
+
 ## 12.5.2
 
 ### review
