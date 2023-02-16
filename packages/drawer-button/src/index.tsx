@@ -7,7 +7,6 @@ import {
   safeAreaInsetMixin,
   ButtonProps,
   paddingMixin,
-  LayeringMixinProps,
 } from '@titicaca/core-elements'
 
 const ButtonWithSafeAreaInset = styled(Button)`
@@ -17,13 +16,11 @@ const ButtonWithSafeAreaInset = styled(Button)`
 
 function DrawerButton({
   active = false,
-  zTier = 99,
-  zIndex = 99,
   children,
   ...props
-}: PropsWithChildren<{ active?: boolean } & ButtonProps & LayeringMixinProps>) {
+}: PropsWithChildren<{ active?: boolean } & ButtonProps>) {
   return (
-    <Drawer active={active} overflow="hidden" zTier={zTier} zIndex={zIndex}>
+    <Drawer active={active} overflow="hidden">
       <Container backgroundColor="white">
         <ButtonWithSafeAreaInset
           size="large"
