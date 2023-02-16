@@ -124,8 +124,6 @@ function Popup({
   const { overlayProps, underlayProps } = useOverlay(
     {
       isOpen: open,
-      isDismissable: true,
-      shouldCloseOnBlur: true,
       onClose,
     },
     popupRef,
@@ -139,7 +137,8 @@ function Popup({
 
   return (
     <Portal>
-      <FocusScope>
+      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+      <FocusScope autoFocus contain restoreFocus>
         <div {...underlayProps}>
           <CSSTransition
             nodeRef={popupRef}
