@@ -18,6 +18,7 @@ export interface RadioGroupProps
     RadioGroupContextValue,
     Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   required?: boolean
+  disabled?: boolean
   label?: string
   error?: string
   help?: string
@@ -28,6 +29,7 @@ export const RadioGroup = ({
   name,
   value,
   required = false,
+  disabled = false,
   label,
   error,
   help,
@@ -54,7 +56,7 @@ export const RadioGroup = ({
         value={{
           ...formFieldState,
           isError,
-          isDisabled: false,
+          isDisabled: disabled,
           isRequired: required,
         }}
       >
