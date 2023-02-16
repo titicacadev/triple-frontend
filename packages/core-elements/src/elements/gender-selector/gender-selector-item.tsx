@@ -27,11 +27,13 @@ const Label = styled.label<{ checked: boolean }>`
 
 export interface GenderSelectorItemProps extends PropsWithChildren {
   value?: string
+  disabled?: boolean
 }
 
 export const GenderSelectorItem = ({
   children,
   value,
+  disabled,
 }: GenderSelectorItemProps) => {
   const { visuallyHiddenProps } = useVisuallyHidden()
   const group = useRadioGroup()
@@ -52,6 +54,7 @@ export const GenderSelectorItem = ({
         type="radio"
         name={group.name}
         checked={checked}
+        disabled={disabled}
         value={value}
         onChange={handleChange}
       />

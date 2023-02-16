@@ -7,8 +7,12 @@ export type GenderSelectorProps = Omit<RadioGroupProps, 'children'>
 export const GenderSelector = ({ ...props }: GenderSelectorProps) => {
   return (
     <RadioGroup {...props}>
-      <GenderSelectorItem value="MALE">남자</GenderSelectorItem>
-      <GenderSelectorItem value="FEMALE">여자</GenderSelectorItem>
+      <GenderSelectorItem disabled={props.disabled} value="MALE">
+        남자
+      </GenderSelectorItem>
+      <GenderSelectorItem disabled={props.disabled} value="FEMALE">
+        여자
+      </GenderSelectorItem>
     </RadioGroup>
   )
 }
