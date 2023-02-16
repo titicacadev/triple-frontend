@@ -1,10 +1,5 @@
 import { PropsWithChildren, useRef } from 'react'
-import {
-  Container,
-  FlexBox,
-  layeringMixin,
-  Portal,
-} from '@titicaca/core-elements'
+import { Container, FlexBox, Portal } from '@titicaca/core-elements'
 import { FocusScope } from '@react-aria/focus'
 import { css } from 'styled-components'
 import { useOverlay } from '@react-aria/overlays'
@@ -43,8 +38,7 @@ export const ModalBase = ({ children }: ModalBaseProps) => {
               left: 0;
               right: 0;
               background-color: rgba(58, 58, 58, 0.5);
-
-              ${layeringMixin(99)}
+              z-index: 9999;
             `}
           >
             <Container
