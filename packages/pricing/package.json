@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/pricing",
-  "version": "12.5.2",
+  "version": "12.6.0",
   "description": "Triple - pricing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/pricing",
@@ -20,12 +20,12 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.5.2",
-    "@titicaca/type-definitions": "^12.5.2",
-    "@titicaca/view-utilities": "^12.5.2"
+    "@titicaca/core-elements": "^12.6.0",
+    "@titicaca/type-definitions": "^12.6.0",
+    "@titicaca/view-utilities": "^12.6.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.5.2",
+    "@titicaca/i18n": "^12.6.0",
     "@titicaca/next-i18next": "^13.8.4"
   },
   "peerDependencies": {
