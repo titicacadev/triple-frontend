@@ -106,13 +106,24 @@ export const InstallDescription = styled(Text)`
 export const InstallAnchor = styled.a`
   display: inline-block;
   text-decoration: none;
-  margin-top: 4px;
 
   &:visited,
   &:hover,
   &:active {
     color: inherit;
   }
+`
+
+export const InstallButton = styled.a`
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  background: var(--color-white);
+  border-radius: 25px;
+  color: var(--color-gray);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
 `
 
 export const GoAppButton = styled.img`
@@ -214,19 +225,8 @@ export const ContentContainer = styled(FlexBox).attrs({
 })`
   overflow: hidden;
   max-width: 768px;
-  padding: 24px 20px;
+  padding: 24px 0 16px;
   position: relative;
-`
-
-export const FloatingButton = styled.div`
-  display: flex;
-  border-radius: 42px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
-  background-color: var(--color-blue980);
-  overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 768px;
 `
 
 // ChatbotCTA

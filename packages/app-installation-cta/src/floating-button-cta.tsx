@@ -19,7 +19,7 @@ import { CtaProps } from './interfaces'
 import {
   FloatingButtonContainer,
   InstallAnchor,
-  GoAppButton,
+  InstallButton,
   CloseButton,
   ContentContainer,
 } from './elements'
@@ -171,6 +171,7 @@ function FloatingButtonCta({
         margin={margin}
         zTier={zTier}
         zIndex={zIndex}
+        css={{ padding: '0 20px 20px' }}
       >
         <ContentContainer>
           <img
@@ -179,35 +180,30 @@ function FloatingButtonCta({
             width={42}
             height={42}
           />
-          <InstallAnchor href={appInstallLink} onClick={handleClick}>
-            <Text
-              size={16}
-              bold
-              lineHeight="19px"
-              color="white"
-              letterSpacing={-0.5}
-            >
-              {title}
-            </Text>
-
-            <Text
-              inlineBlock
-              size={13}
-              lineHeight="16px"
-              color="white"
-              alpha={0.8}
-              letterSpacing={-0.5}
-            >
-              {description}
-            </Text>
-
-            <GoAppButton
-              src="https://assets.triple.guide/images/img_arrow_right_12@4x.png"
-              alt="icon-right-arrow"
-              width={6}
-              height={12}
-            />
-          </InstallAnchor>
+          <Container>
+            <InstallAnchor href={appInstallLink} onClick={handleClick}>
+              <Text
+                size={16}
+                bold
+                lineHeight="19px"
+                color="white"
+                letterSpacing={-0.5}
+                margin={{ bottom: 4 }}
+              >
+                {title}
+              </Text>
+              <Text
+                inlineBlock
+                size={13}
+                lineHeight="16px"
+                color="white"
+                alpha={0.8}
+                letterSpacing={-0.5}
+              >
+                {description}
+              </Text>
+            </InstallAnchor>
+          </Container>
           <Container
             css={{
               position: 'absolute',
@@ -226,6 +222,9 @@ function FloatingButtonCta({
             />
           </Container>
         </ContentContainer>
+        <InstallButton href={appInstallLink} onClick={handleClick}>
+          트리플 앱 이용하기
+        </InstallButton>
       </FloatingButtonContainer>
     </CSSTransition>
   )
