@@ -25,8 +25,6 @@ export const jaCommonWeb = {
   hwagin: '確認',
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '日程の管理からホテル・ツアー。チケットの予約まで！\nTRIPLEならワンストップで準備完了',
-  'teuripeul-aebeseo-deoug-dayanghan-gineungeul-pyeonrihage-iyonghaeboseyo.':
-    'TRIPLEアプリでもっと多様な機能を便利にご利用できます。',
   'teuripeul-gagi': 'TRIPLEに移動',
   jeojangcwiso: '保存を取り消す',
   jeojanghagi: '保存する',
