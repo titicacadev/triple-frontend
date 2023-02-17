@@ -7,14 +7,14 @@ interface BreadcrumbListItem {
 }
 
 export function BreadcrumbListScript({
-  breadcrumbList,
+  breadcrumbs,
 }: {
-  breadcrumbList: BreadcrumbListItem[][]
+  breadcrumbs: BreadcrumbListItem[][]
 }) {
-  const breadcrumbScript = breadcrumbList.map((breadcrumb) => ({
+  const breadcrumbScript = breadcrumbs.map((breadcrumbList) => ({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: breadcrumb.map((breadcrumbListItem) => ({
+    itemListElement: breadcrumbList.map((breadcrumbListItem) => ({
       '@type': 'ListItem',
       ...breadcrumbListItem,
     })),
