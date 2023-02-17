@@ -208,7 +208,7 @@ function FloatingButtonCta({
             css={{
               position: 'absolute',
               top: 4,
-              right: 4,
+              right: -16,
               width: 32,
               height: 32,
             }}
