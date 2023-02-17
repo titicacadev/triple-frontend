@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/*",
-    "integration-test"
-  ],
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useWorkspaces": true,
   "version": "12.6.0"
 }
