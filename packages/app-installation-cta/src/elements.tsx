@@ -117,6 +117,8 @@ export const InstallAnchor = styled.a`
 export const InstallButton = styled.a`
   display: block;
   width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
   padding: 14px 0;
   background: var(--color-white);
   border-radius: 25px;
