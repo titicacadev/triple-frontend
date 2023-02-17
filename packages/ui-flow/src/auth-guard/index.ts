@@ -56,7 +56,7 @@ export function authGuard<Props>(
 
       if (status === 401) {
         if (userAgentString && parseTripleClientUserAgent(userAgentString)) {
-          return refreshInAppSession({ resolvedUrl, returnUrl })
+          return refreshInAppSession<Props>({ resolvedUrl, returnUrl })
         }
 
         return redirectToLogin({ returnUrl, authType: options?.authType })
@@ -77,7 +77,7 @@ export function authGuard<Props>(
   }
 }
 
-function refreshInAppSession({
+function refreshInAppSession<Props>({
   resolvedUrl,
   returnUrl,
 }: {
@@ -94,7 +94,11 @@ function refreshInAppSession({
     .use()
 
   if (refreshed) {
-    throw new Error('세션 갱신에 실패했습니다.')
+    return {
+      props: {
+        requireAppLogin: true,
+      },
+    } as unknown as GetServerSidePropsResult<Props>
   }
 
   const destinationQuery = qs.stringify({
