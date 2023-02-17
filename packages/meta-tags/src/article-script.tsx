@@ -1,6 +1,8 @@
 import Head from 'next/head'
 
-interface ArticleScript {
+import { filterValidValue } from './utils'
+
+interface ArticleScriptProps {
   headline: string
   image?: string[]
   datePublished?: string
@@ -19,19 +21,30 @@ interface ArticlePublisher {
   name: string
 }
 
-export function ArticleScript({ articleInfo }: { articleInfo: ArticleScript }) {
-  const articleScript = {
+export function ArticleScript({
+  headline,
+  image,
+  datePublished,
+  dateModified,
+  author,
+  publisher,
+}: ArticleScriptProps) {
+  const articleScript = filterValidValue({
     '@context': 'https://schema.org',
     '@type': 'Article',
-    ...articleInfo,
-    ...(articleInfo.author && {
-      author: articleInfo.author.map((author) => ({
-        '@type': author.type || 'Person',
-        name: author.name,
-        ...(author.url && { url: author.url }),
-      })),
-    }),
-  }
+    headline,
+    image,
+    datePublished,
+    dateModified,
+    publisher,
+    author: author?.map(
+      (author) =>
+        filterValidValue({
+          '@type': author.type || 'Person',
+          ...author,
+        }) || undefined,
+    ),
+  })
 
   return (
     <Head>
