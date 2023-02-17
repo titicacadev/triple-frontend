@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 12.7.0
+
+### core-elements
+
+- Drawer의 layeringProps을 제거하고 z-index를 9999로 변경합니다. [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+- Drawer를 Portal로 렌더합니다. [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+- gender-selector 에 disabled 속성을 추가합니다. [#2410](https://github.com/titicacadev/triple-frontend/pull/2410)
+
+### drawer-button
+
+- DrawerButton의 layeringProps를 제거합니다. [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+
+### modals
+
+- DrawerButton의 layeringProps를 제거합니다. [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+- 설치유도팝업 문구를 수정합니다. [#2415](https://github.com/titicacadev/triple-frontend/pull/2415)
+
+### popup
+
+- Popup의 layeringProps을 제거하고 z-index를 9999로 변경합니다. [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+- Popup을 Portal로 렌더합니다 [#2404](https://github.com/titicacadev/triple-frontend/pull/2404)
+
 ## 12.6.0
 
 ### intersection-observer
