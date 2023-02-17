@@ -115,8 +115,8 @@ export function TransitionModal({
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
     const {
       description = [
-        'teuripeul-aebeseo-deoug-dayanghan-gineungeul-pyeonrihage-iyonghaeboseyo.',
-        '트리플 앱에서 더욱 다양한 기능을\n편리하게 이용해보세요.',
+        'soljighan-ribyu-110mangaewa-coesin-yeohaeng-sosigdeulggaji-aebeseo-pyeonhage-hwaginhaseyo',
+        '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
       ],
       eventLabel = '',
     } = MODAL_CONTENT[matchData[1]] || {}
@@ -127,6 +127,12 @@ export function TransitionModal({
       <Modal open onClose={back}>
         <Modal.Body>
           <IconImage src={icon} />
+          <Modal.Title>
+            {t([
+              'yeogineun-teuripeul-aebi-pilyohaeyo',
+              '여기는 트리플 앱이 필요해요',
+            ])}
+          </Modal.Title>
           {description ? (
             <Text center alpha={0.7} size="small">
               {t(description)}

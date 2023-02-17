@@ -23,8 +23,6 @@ export const zhCommonWeb = {
   hwagin: '確認',
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '從計畫行程到當地遊、票券預約！\n透過Triple一次完成各種旅行準備',
-  'teuripeul-aebeseo-deoug-dayanghan-gineungeul-pyeonrihage-iyonghaeboseyo.':
-    '在Triple App更輕鬆體驗多樣化的功能',
   'teuripeul-gagi': '前往Triple',
   jeojangcwiso: '取消收藏',
   jeojanghagi: '收藏',
