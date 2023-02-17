@@ -17,6 +17,7 @@ interface AuthGuardOptions {
       customContext?: { [key: string]: unknown }
     },
   ) => string
+  needRefreshInAppSessionError?: boolean
 }
 
 const NON_MEMBER_REGEX = /^_PH/
@@ -56,7 +57,11 @@ export function authGuard<Props>(
 
       if (status === 401) {
         if (userAgentString && parseTripleClientUserAgent(userAgentString)) {
-          return refreshInAppSession<Props>({ resolvedUrl, returnUrl })
+          return refreshInAppSession<Props>({
+            resolvedUrl,
+            returnUrl,
+            needRefreshInAppSessionError: options?.needRefreshInAppSessionError,
+          })
         }
 
         return redirectToLogin({ returnUrl, authType: options?.authType })
@@ -80,9 +85,11 @@ export function authGuard<Props>(
 function refreshInAppSession<Props>({
   resolvedUrl,
   returnUrl,
+  needRefreshInAppSessionError = true,
 }: {
   resolvedUrl: string
   returnUrl: string
+  needRefreshInAppSessionError?: boolean
 }) {
   const { query } = parseUrl(resolvedUrl)
   const { refreshed } = strictQuery(
@@ -94,6 +101,10 @@ function refreshInAppSession<Props>({
     .use()
 
   if (refreshed) {
+    if (needRefreshInAppSessionError) {
+      throw new Error('세션 갱신에 실패했습니다.')
+    }
+
     return {
       props: {
         requireAppLogin: true,
