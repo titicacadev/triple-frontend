@@ -37,14 +37,14 @@ export function ArticleScript({
     datePublished: datePublished ? datePublished.toISOString() : undefined,
     dateModified: dateModified ? dateModified.toISOString() : undefined,
     publisher,
-    author: author?.map(
-      (author) =>
+    author:
+      author?.map((author) =>
         filterValidValue({
           '@type': author.type || 'Person',
           ...author,
           type: undefined,
-        }) || undefined,
-    ),
+        }),
+      ) || undefined,
   })
 
   return (
