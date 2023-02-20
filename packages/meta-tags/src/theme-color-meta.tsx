@@ -10,7 +10,7 @@ type Color = RGB | RGBA | HEX | Global
 export function ThemeColorMeta({
   content = '#ffffff',
 }: {
-  content: Color | string
+  content?: Color | string
 }) {
   return (
     <Head>
