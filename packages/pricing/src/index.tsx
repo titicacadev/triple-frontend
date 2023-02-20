@@ -72,7 +72,8 @@ const PricingContainer = styled.div<{ padding?: MarginPadding }>`
   ${({ padding }) =>
     padding &&
     css`
-      padding: ${padding.top || 0}px ${padding.right || 0}px ${padding.bottom || 0}px ${padding.left || 0}px;
+      padding: ${padding.top || 0}px ${padding.right || 0}px
+        ${padding.bottom || 0}px ${padding.left || 0}px;
     `};
 
   small {

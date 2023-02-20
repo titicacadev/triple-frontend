@@ -9,8 +9,9 @@ export type ResourceClickHandler = (
   },
 ) => void
 
-const ResourceClickHandlerContext =
-  createContext<ResourceClickHandler | undefined>(undefined)
+const ResourceClickHandlerContext = createContext<
+  ResourceClickHandler | undefined
+>(undefined)
 export const ResourceClickHandlerProvider = ResourceClickHandlerContext.Provider
 
 export function useResourceClickHandler() {

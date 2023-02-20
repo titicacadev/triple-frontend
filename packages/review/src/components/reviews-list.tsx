@@ -44,8 +44,9 @@ export default function ReviewsList({
 }) {
   const { t } = useTranslation('common-web')
 
-  const [selectedReview, setSelectedReview] =
-    useState<ReviewData | undefined>(undefined)
+  const [selectedReview, setSelectedReview] = useState<ReviewData | undefined>(
+    undefined,
+  )
   const app = useTripleClientMetadata()
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()

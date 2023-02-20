@@ -26,8 +26,9 @@ interface ReplyBaseActions {
   handleContentChange: (content: string) => void
 }
 
-const RepliesContext =
-  createContext<(EditingMessage & ReplyBaseActions) | undefined>(undefined)
+const RepliesContext = createContext<
+  (EditingMessage & ReplyBaseActions) | undefined
+>(undefined)
 
 export function RepliesProvider({ children }: PropsWithChildren<unknown>) {
   const [

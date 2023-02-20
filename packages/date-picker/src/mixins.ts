@@ -11,7 +11,9 @@ export function todayMixin({
 }) {
   return css`
     /* stylelint-disable selector-class-pattern */
-    .DayPicker-Day--today:not(.DayPicker-Day--selected):not(.DayPicker-Day--outside) {
+    .DayPicker-Day--today:not(.DayPicker-Day--selected):not(
+        .DayPicker-Day--outside
+      ) {
       color: var(--color-blue);
 
       &::before {
