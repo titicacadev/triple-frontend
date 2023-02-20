@@ -6,8 +6,9 @@ export interface ActionSheetContextValue {
   onClose?: () => void
 }
 
-export const ActionSheetContext =
-  createContext<ActionSheetContextValue | undefined>(undefined)
+export const ActionSheetContext = createContext<
+  ActionSheetContextValue | undefined
+>(undefined)
 
 export function useActionSheet() {
   const context = useContext(ActionSheetContext)

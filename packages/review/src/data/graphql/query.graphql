@@ -1,106 +1,108 @@
 fragment BaseReview on Review {
+  id
+  resourceId
+  resourceType
+  comment
+  media
+  rating
+  visitDate
+  recentTrip
+  likesCount
+  blinded
+  reviewedAt
+  user {
+    unregister
+    uid
+    photo
+    mileage {
+      level
+      point
+      badges {
+        label
+        icon {
+          image_url
+        }
+      }
+    }
+    name
+    userBoard {
+      trips
+      reviews
+      thanks
+      reports
+      reviewsV2
+      itineraries
+    }
+  }
+  replyBoard {
     id
-    resourceId
-    resourceType
-    comment
-    media
-    rating
-    visitDate
-    recentTrip
-    likesCount
-    blinded
-    reviewedAt
-    user {
-        unregister
-        uid
-        photo
-        mileage {
-            level
-            point
-            badges {
-              label
-              icon {
-                image_url
-              }
-            }
-        }
-        name
-        userBoard {
-            trips
-            reviews
-            thanks
-            reports
-            reviewsV2
-            itineraries
-        }
-    }
-    replyBoard {
-        id
-        rootMessagesCount
-        childMessagesCount
-    }
-    liked
+    rootMessagesCount
+    childMessagesCount
+  }
+  liked
 }
 
 fragment BaseReviewSpecification on ReviewSpecification {
-    rating {
-        required
-        description
-    }
+  rating {
+    required
+    description
+  }
 }
 
 query GetPopularReviews(
-    $resourceType: String!
-    $resourceId: String!
-    $recentTrip: Boolean
-    $from: Int
-    $size: Int
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $from: Int
+  $size: Int
 ) {
-    popularReviews: getPopularReviews(
-        resourceType: $resourceType
-        resourceId: $resourceId
-        recentTrip: $recentTrip
-        from: $from
-        size: $size
-    ) {
-        ...BaseReview
-    }
+  popularReviews: getPopularReviews(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    from: $from
+    size: $size
+  ) {
+    ...BaseReview
+  }
 }
 
 query GetLatestReviews(
-    $resourceType: String!
-    $resourceId: String!
-    $recentTrip: Boolean
-    $from: Int
-    $size: Int
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $from: Int
+  $size: Int
 ) {
-    latestReviews: getLatestReviews(
-        resourceType: $resourceType
-        resourceId: $resourceId
-        recentTrip: $recentTrip
-        from: $from
-        size: $size
-    ) {
-        ...BaseReview
-    }
+  latestReviews: getLatestReviews(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    from: $from
+    size: $size
+  ) {
+    ...BaseReview
+  }
 }
 
 query GetMyReview($resourceType: String!, $resourceId: String!) {
-    myReview: getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
-        ...BaseReview
-    }
+  myReview: getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
+    ...BaseReview
+  }
 }
 
 query GetReviewSpecification($resourceType: String!, $resourceId: String!) {
-    reviewsSpecification: getReviewSpecification(
-        resourceType: $resourceType
-        resourceId: $resourceId
-    ) {
-        ...BaseReviewSpecification
-    }
+  reviewsSpecification: getReviewSpecification(
+    resourceType: $resourceType
+    resourceId: $resourceId
+  ) {
+    ...BaseReviewSpecification
+  }
 }
 
 query GetReviewsCount($resourceType: String!, $resourceId: String!) {
-    reviewsCount: getReviewsCount(resourceType: $resourceType, resourceId: $resourceId)
+  reviewsCount: getReviewsCount(
+    resourceType: $resourceType
+    resourceId: $resourceId
+  )
 }
-

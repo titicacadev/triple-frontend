@@ -46,10 +46,9 @@ class StrictQuery<Resolved = {}> {
   public string<Key extends string, Value extends string = string>(
     key: Key,
   ): StrictQuery<
-    Resolved &
-      {
-        [key in Key]: Value | undefined
-      }
+    Resolved & {
+      [key in Key]: Value | undefined
+    }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {
@@ -64,10 +63,9 @@ class StrictQuery<Resolved = {}> {
   public number<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Resolved &
-      {
-        [key in Key]: number | undefined
-      }
+    Resolved & {
+      [key in Key]: number | undefined
+    }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const stringified = normalizeToString(value)
@@ -83,10 +81,9 @@ class StrictQuery<Resolved = {}> {
   public stringArray<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Resolved &
-      {
-        [key in Key]: string[]
-      }
+    Resolved & {
+      [key in Key]: string[]
+    }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {
@@ -101,10 +98,9 @@ class StrictQuery<Resolved = {}> {
   public numberArray<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Resolved &
-      {
-        [key in Key]: number[]
-      }
+    Resolved & {
+      [key in Key]: number[]
+    }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {
@@ -119,10 +115,9 @@ class StrictQuery<Resolved = {}> {
   public boolean<Key extends string>(
     key: Key,
   ): StrictQuery<
-    Resolved &
-      {
-        [key in Key]: boolean
-      }
+    Resolved & {
+      [key in Key]: boolean
+    }
   > {
     const { [key]: value, ...restRaw } = this.raw
     const normalized = {

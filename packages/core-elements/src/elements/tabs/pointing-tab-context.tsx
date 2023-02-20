@@ -8,8 +8,9 @@ export interface PointingTabContextValue<
   width: number
 }
 
-export const PointingTabContext =
-  createContext<PointingTabContextValue<string> | undefined>(undefined)
+export const PointingTabContext = createContext<
+  PointingTabContextValue<string> | undefined
+>(undefined)
 
 export function usePointingTab<Value extends number | string | symbol>() {
   const context = useContext(PointingTabContext) as

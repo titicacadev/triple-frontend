@@ -6,8 +6,9 @@ export interface RadioGroupContextValue {
   onChange?: (value: string) => void
 }
 
-export const RadioGroupContext =
-  createContext<RadioGroupContextValue | undefined>(undefined)
+export const RadioGroupContext = createContext<
+  RadioGroupContextValue | undefined
+>(undefined)
 
 export function useRadioGroup() {
   const context = useContext(RadioGroupContext)
