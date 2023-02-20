@@ -113,7 +113,6 @@ export function TripleDocument({
                               onResourceClick: resourceClickHandler,
                               onImageClick,
                               onLinkClick: linkClickHandler,
-                              // eslint-disable-next-line @typescript-eslint/naming-convention
                               ImageSource: imageSourceComponent,
                               deepLink,
                               videoAutoPlay,

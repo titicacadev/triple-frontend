@@ -108,8 +108,9 @@ export function CouponDownloadButton({
 
   const [couponFetched, setCouponFetched] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
-  const [errorMessage, setErrorMessage] =
-    useState<string | undefined>(undefined)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined,
+  )
   const { push } = useHistoryFunctions()
   const { initiateVerification } = useUserVerification({
     verificationType,
@@ -162,7 +163,6 @@ export function CouponDownloadButton({
         const response = await downloadCoupon(slugId)
 
         const responseHandlers = {
-          /* eslint-disable @typescript-eslint/naming-convention */
           SUCCESS: () => {
             push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
             setDownloaded(true)
@@ -267,8 +267,9 @@ export function CouponGroupDownloadButton({
   const { t } = useTranslation('common-web')
 
   const [coupons, setCoupons] = useState<CouponData[]>([])
-  const [errorMessage, setErrorMessage] =
-    useState<string | undefined>(undefined)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+    undefined,
+  )
   const { push } = useHistoryFunctions()
   const { initiateVerification } = useUserVerification({
     verificationType,
@@ -323,7 +324,6 @@ export function CouponGroupDownloadButton({
         const response = await downloadCoupons(coupons)
 
         const responseHandlers = {
-          /* eslint-disable @typescript-eslint/naming-convention */
           NEED_LOGIN: () => {
             login()
           },

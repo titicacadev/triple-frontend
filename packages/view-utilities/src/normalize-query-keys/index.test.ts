@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { normalizeQueryKeys } from './index'
 
 describe('normalizeQueryKeys', () => {
