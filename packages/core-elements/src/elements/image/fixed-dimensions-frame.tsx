@@ -23,14 +23,11 @@ const FixedDimensionsFrameContainer = styled.div<{
   margin?: MarginPadding
 }>`
   background-color: #f5f5f5;
-
   font-size: 0;
   position: relative;
-
   width: ${({ width }) => (width && `${width}px`) || '100%'};
   height: ${({ height, size }) =>
     (height && `${height}px`) || (size ? IMAGE_HEIGHT_OPTIONS[size] : '')};
-
   float: ${({ floated }) => floated || 'none'};
 
   ${marginMixin}

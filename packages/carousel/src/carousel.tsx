@@ -21,9 +21,7 @@ interface CarouselBaseProps {
 
 const CarouselBase = styled.ul<CarouselBaseProps>`
   padding-bottom: 10px;
-
   ${marginMixin}
-
   white-space: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;

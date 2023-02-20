@@ -30,7 +30,6 @@ const HtmlContainer = styled.div`
 
   strong {
     ${textStyle}
-
     font-weight: bold;
     color: rgba(58, 58, 58, 1);
   }
@@ -38,7 +37,6 @@ const HtmlContainer = styled.div`
   && {
     a {
       ${textStyle}
-
       font-weight: bold;
       color: #2987f0;
       text-decoration: underline;

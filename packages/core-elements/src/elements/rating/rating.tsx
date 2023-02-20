@@ -35,7 +35,6 @@ const RatingStar = styled.span<{
     height: ${SIZES[size]};
     margin: 0 ${MARGINS[size]};
     background-size: ${SIZES[size]} ${SIZES[size]};
-
     background-image: url(${IMAGE_PREFIXES[size]}-${full
       ? 'full'
       : half

@@ -24,10 +24,7 @@ export interface ButtonIconProps {
 
 export const ButtonIcon = styled.div<ButtonIconProps>`
   display: inline-block;
-
   ${({ size = 'tiny' }) => BUTTON_ICON_STYLES[size]};
-
   vertical-align: text-top;
-
   background-image: url(${({ src }) => src});
 `

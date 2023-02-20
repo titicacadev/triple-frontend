@@ -21,7 +21,6 @@ const ListItemContainer = styled.li<{ bulletType?: string }>`
     height: 10px;
     ${({ bulletType: name }) =>
       `background-image: url(${BULLET_ICON_URLS[name || 'oval']});`}
-
     background-size: 10px 10px;
     background-position: center center;
     background-repeat: no-repeat;

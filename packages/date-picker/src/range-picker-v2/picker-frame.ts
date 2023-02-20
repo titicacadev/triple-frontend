@@ -30,7 +30,6 @@ export function generateSelectedStyle({
         transform: translate(-50%, -50%);
         background-color: var(--color-blue);
         ${!selectedAll && `border-radius: 4px;`}
-
         content: '';
       }
 

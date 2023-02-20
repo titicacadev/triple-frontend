@@ -45,10 +45,7 @@ export const Tag = styled.div<{
   ${({ size = 'mini' }) => {
     const padding = PADDING_SIZE[size] || {}
     return css`
-      padding-top: ${padding.top || 0}px;
-      padding-bottom: ${padding.bottom || 0}px;
-      padding-left: ${padding.left || 0}px;
-      padding-right: ${padding.right || 0}px;
+      padding: ${padding.top || 0}px ${padding.right || 0}px ${padding.bottom || 0}px ${padding.left || 0}px;
     `
   }};
 

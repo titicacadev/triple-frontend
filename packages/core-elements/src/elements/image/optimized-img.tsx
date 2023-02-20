@@ -30,7 +30,6 @@ const Img = styled.img<{
   border-radius: ${({ borderRadius }) => borderRadius}px;
   object-fit: cover;
   opacity: ${({ dimmed }) => (dimmed ? 80 : 100)}%;
-
   ${({ absolute }) =>
     absolute &&
     `

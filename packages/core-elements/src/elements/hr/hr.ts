@@ -68,7 +68,6 @@ export const HR7 = styled.div<HrProps>`
     css`
       margin: 0;
     `};
-
   width: 100%;
   border-bottom: dashed 1px #efefef;
 `

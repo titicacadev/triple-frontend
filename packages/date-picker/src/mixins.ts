@@ -108,7 +108,6 @@ export function dateLabelMixin({
         display: inline-block;
         font-size: ${fontSize};
         ${fontWeight && `font-weight : ${fontWeight};`}
-
         width: 100%;
         transform: translateY(0);
         background-color: transparent;

@@ -15,20 +15,17 @@ const Img = styled.img<{
   border-radius: ${({ borderRadius }) => borderRadius}px;
   object-fit: cover;
   opacity: ${({ dimmed }) => (dimmed ? 80 : 100)}%;
-
   ${({ absolute }) =>
     absolute &&
     `
     position: absolute;
     top: 0;
   `}
-
   ${({ cursor }) =>
     cursor &&
     `
     cursor: ${cursor};
   `}
-
   z-index: 0;
 `
 

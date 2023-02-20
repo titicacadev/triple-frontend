@@ -33,7 +33,6 @@ export const Overlay = styled.div`
 
   &:not([class*='action-sheet-fade-']) {
     ${inactiveOverlayFadeStyle}
-
     display: none;
   }
 
@@ -63,7 +62,6 @@ export const Overlay = styled.div`
 
   &.action-sheet-fade-exit-done {
     ${inactiveOverlayFadeStyle}
-
     display: none;
   }
 `

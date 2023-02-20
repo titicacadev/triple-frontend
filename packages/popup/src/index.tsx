@@ -33,7 +33,6 @@ const PopupContainer = styled.div`
   right: 0;
   background-color: #fff;
   user-select: none;
-
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -47,7 +46,6 @@ const PopupContainer = styled.div`
 
   &:not([class*='popup-slide-']) {
     ${inactivePopupContainerStyle}
-
     display: none;
   }
 
@@ -77,7 +75,6 @@ const PopupContainer = styled.div`
 
   &.popup-slide-exit-done {
     ${inactivePopupContainerStyle}
-
     display: none;
   }
 `
