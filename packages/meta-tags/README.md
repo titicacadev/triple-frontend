@@ -200,3 +200,84 @@ return (
   - 콘텐츠 타입
     - name: theme-color, msapplication-TileColor
     - content: 색상 (`ex) #ffffff, rgb(0, 0, 0), rgba(0, 0, 0, 0)`)
+
+## 구조화된 데이터
+
+- 관련 문서: [Google 검색에서 지원하는 구조화된 데이터 마크업](https://developers.google.com/search/docs/appearance/structured-data/search-gallery?hl=ko)
+
+### 아티클 스크립트 (ArticleScript)
+
+- 관련 문서 : [구조화된 기사(Article, NewsArticle, BlogPosting) 데이터](https://developers.google.com/search/docs/appearance/structured-data/article?hl=ko)
+- Usage
+
+```tsx
+import { ArticleScript } from '@titicaca/meta-tags'
+
+return (
+  <ArticleScript
+    headline={headline}
+    image={[image1.sizes.large.url, image2.sizes.large.url]}
+    author={[{ name: author1.source.name }, { name: author2.source.name }]}
+    datePublished={exposedAt}
+  />
+)
+```
+
+- 속성
+  - headline: 아티클의 제목
+  - image: 아티클에 포함된 이미지 목록
+  - author: 아티클의 저자
+  - publisher: 아티클의 출판사
+  - datePublished: 아티클 출판일
+  - dateModified: 아티클 수정일
+
+### 탐색경로 (BreadcrumbList)
+
+- 관련 문서 : [구조화된 탐색경로(BreadcrumbList) 데이터](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb?hl=ko)
+- Usage
+
+```tsx
+import { ArticleScript, BreadcrumbListScript } from '@titicaca/meta-tags'
+
+return (
+  <BreadcrumbListScript
+    breadcrumbs={[
+      [
+        {
+          position: 1,
+          name: '아티클',
+          item: `${WEB_URL_BASE}/articles`,
+        },
+        {
+          position: 2,
+          name: title,
+          item: `${WEB_URL_BASE}/articles/${articleId}`,
+        },
+      ],
+      // 하나의 페이지는 여러개의 breadcrumbList를 가질 수 있습니다.
+      [
+        {
+          position: 1,
+          name: '아티클',
+          item: `${WEB_URL_BASE}/articles`,
+        },
+        {
+          position: 2,
+          name: '도쿄',
+          item: `${WEB_URL_BASE}/regions/dokyo/articles`,
+        },
+        {
+          position: 3,
+          name: title,
+          item: `${WEB_URL_BASE}/regions/dokyo/articles/${articleId}`,
+        },
+      ],
+    ]}
+  />
+)
+```
+
+- 속성
+  - position: 탐색 경로의 순서. 1부터 시작
+  - name: 탐색 경로의 제목
+  - item: 탐색 경로의 url
