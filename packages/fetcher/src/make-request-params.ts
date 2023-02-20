@@ -33,9 +33,7 @@ export function makeRequestParams(
 
   const headers = {
     ...customHeaders,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     ...(!!body && !useBodyAsRaw && { 'content-type': 'application/json' }),
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     ...(sessionId && { 'x-soto-session': sessionId }),
     ...(cookie && { cookie }),
   }

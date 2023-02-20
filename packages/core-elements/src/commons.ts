@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import * as CSS from 'csstype'
 
 export type MarginPadding = Partial<

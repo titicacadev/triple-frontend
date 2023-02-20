@@ -32,11 +32,11 @@ interface UtmContextValue {
  * query 객체에서 utm context 객체를 추출합니다.
  */
 export function extractUtmContextFromQuery({
-  utm_source,
-  utm_medium,
-  utm_campaign,
-  utm_term,
-  utm_content,
+  utm_source: originalUtmSource,
+  utm_medium: originalUtmMedium,
+  utm_campaign: originalUtmCampaign,
+  utm_term: originalUtmTerm,
+  utm_content: originalUtmContent,
   utmSource,
   utmMedium,
   utmCampaign,
@@ -44,11 +44,11 @@ export function extractUtmContextFromQuery({
   utmContent,
   prt,
 }: UtmQuery): UtmContextValue {
-  const source = utm_source || utmSource || ''
-  const medium = utm_medium || utmMedium || ''
-  const campaign = utm_campaign || utmCampaign || ''
-  const term = utm_term || utmTerm
-  const content = utm_content || utmContent
+  const source = originalUtmSource || utmSource || ''
+  const medium = originalUtmMedium || utmMedium || ''
+  const campaign = originalUtmCampaign || utmCampaign || ''
+  const term = originalUtmTerm || utmTerm
+  const content = originalUtmContent || utmContent
 
   return {
     source,

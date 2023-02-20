@@ -5,7 +5,6 @@ import {
   ImagePayload,
 } from '../types'
 
-/* eslint-disable */
 export enum ChatActions {
   INIT, // 최초에 메시지
   PAST, // 과거 메시지
@@ -14,7 +13,6 @@ export enum ChatActions {
   FAILED_TO_POST, // 메시지 전송 실패
   UPDATE, // 읽음 표시 업데이트
 }
-/* eslint-enable */
 
 export interface ChatState {
   messages: MessageInterface[]

@@ -5,7 +5,6 @@ import { Text } from '@titicaca/core-elements'
 type StyleType = 'SCHEDULE' | 'PEOPLE' | 'ORIGIN' | 'DESTINATION' | 'SEARCH'
 
 const STYLE_BY_TYPES: { [type in StyleType]: ReturnType<typeof css> } = {
-  /* eslint-disable @typescript-eslint/naming-convention */
   SCHEDULE: css`
     background: url('https://assets.triple.guide/images/img-hub-date@3x.png')
       center center no-repeat;
@@ -26,7 +25,6 @@ const STYLE_BY_TYPES: { [type in StyleType]: ReturnType<typeof css> } = {
     background: url('https://assets.triple.guide/images/img-hub-search@3x.png')
       center center no-repeat;
   `,
-  /* eslint-enable @typescript-eslint/naming-convention */
 }
 
 const CellContainer = styled.div<{ type: StyleType }>`
@@ -45,7 +43,6 @@ const CellContainer = styled.div<{ type: StyleType }>`
     top: 50%;
     margin-top: -10px;
     ${({ type }) => STYLE_BY_TYPES[type]};
-
     background-size: 20px 20px;
   }
 `

@@ -71,7 +71,6 @@ export default function Carousel({
         fa: {
           action,
           label,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           media_id: media?.id,
           type: media?.type === 'video' ? '비디오' : '이미지',
         },
@@ -104,7 +103,6 @@ export default function Carousel({
             action,
             label,
             ...(attachmentId ? { attachment_id: attachmentId } : {}),
-            // eslint-disable-next-line @typescript-eslint/naming-convention
             media_id: id,
             type: type === 'video' ? '비디오' : '이미지',
           },

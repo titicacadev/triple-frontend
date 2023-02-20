@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import ListingFilter from '.'

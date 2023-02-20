@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Meta } from '@storybook/react'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
-import { TripleElementData } from '@titicaca/triple-document/src/types'
 import { Container } from '@titicaca/core-elements'
 
 import MOCK_REGIONS from './mocks/triple-document.regions.json'
@@ -10,6 +9,7 @@ import MOCK_ITINERARY from './mocks/triple-document.itinerary.json'
 import SAMPLE from './mocks/triple-document.sample.json'
 import ELEMENTS from './elements'
 import { TripleDocument } from './triple-document'
+import { TripleElementData } from './types'
 
 const {
   text: Text,

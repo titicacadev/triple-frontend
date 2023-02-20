@@ -42,9 +42,7 @@ export type TripleDocumentContext = {
   onResourceClick?: ResourceClickHandler
   onImageClick?: ImageEventHandler
   onLinkClick?: LinkEventHandler
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   onTNAProductClick?: TnaProductsClickHandler
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   onTNAProductsFetch?: TnaProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
