@@ -193,3 +193,10 @@ return (
   - 언어
     - name: og:locale
     - content: 리소스의 언어, 기본값: en_US `ex) ko_kr`
+
+#### Theme meta 태그
+
+- 사용가이드
+  - 콘텐츠 타입
+    - name: theme-color, msapplication-TileColor
+    - content: 색상 (`ex) #ffffff, rgb(0, 0, 0), rgba(0, 0, 0, 0)`)
