@@ -5,8 +5,8 @@ import { filterValidValue } from './utils'
 interface ArticleScriptProps {
   headline: string
   image?: string[]
-  datePublished?: string
-  dateModified?: string
+  datePublished?: Date
+  dateModified?: Date
   author?: ArticleAuthor[]
   publisher?: ArticlePublisher[]
 }
@@ -34,14 +34,15 @@ export function ArticleScript({
     '@type': 'Article',
     headline,
     image,
-    datePublished,
-    dateModified,
+    datePublished: datePublished ? datePublished.toISOString() : undefined,
+    dateModified: dateModified ? dateModified.toISOString() : undefined,
     publisher,
     author: author?.map(
       (author) =>
         filterValidValue({
           '@type': author.type || 'Person',
           ...author,
+          type: undefined,
         }) || undefined,
     ),
   })
@@ -49,7 +50,7 @@ export function ArticleScript({
   return (
     <Head>
       <script type="application/ld+json">
-        {JSON.stringify(articleScript, null, '\t')}
+        {JSON.stringify(articleScript)}
       </script>
     </Head>
   )
