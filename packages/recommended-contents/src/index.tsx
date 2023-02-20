@@ -14,7 +14,8 @@ const RecommendedContentsContainer = styled.section<{
   ${({ margin }) =>
     margin &&
     css`
-      margin: ${margin.top || 0}px ${margin.right || 0}px ${margin.bottom || 0}px ${margin.left || 0}px;
+      margin: ${margin.top || 0}px ${margin.right || 0}px
+        ${margin.bottom || 0}px ${margin.left || 0}px;
     `};
 `
 
