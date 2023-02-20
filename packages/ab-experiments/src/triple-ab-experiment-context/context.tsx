@@ -137,6 +137,12 @@ export function useTripleABExperimentConversionTracker(
         const { testId, group } = meta
 
         trackEvent({
+          ga: [
+            'experiment_key_conversion',
+            [slug, testId, group, ...Object.values(eventParams ?? {})].join(
+              '_',
+            ),
+          ],
           fa: {
             action: 'experiment_key_conversion',
             experiment_name: slug,
@@ -171,6 +177,12 @@ export function useTripleABExperimentImpressionTracker(
         const { testId, group } = meta
 
         trackEvent({
+          ga: [
+            'experiment_impression',
+            [slug, testId, group, ...Object.values(eventParams ?? {})].join(
+              '_',
+            ),
+          ],
           fa: {
             action: 'experiment_impression',
             experiment_name: slug,
@@ -210,6 +222,15 @@ export function useTripleABExperimentVariant<T, U = OptionalAttributes>(
   useEffect(() => {
     if (testId && group) {
       trackEvent({
+        ga: [
+          'enter_experiment',
+          [
+            slug,
+            testId,
+            group,
+            ...Object.values(eventAttributesRef.current ?? {}),
+          ].join('_'),
+        ],
         fa: {
           action: 'enter_experiment',
           experiment_name: slug,
