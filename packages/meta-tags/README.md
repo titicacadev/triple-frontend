@@ -258,12 +258,12 @@ return (
       [
         {
           position: 1,
-          name: '아티클',
-          item: `${WEB_URL_BASE}/articles`,
+          name: '도쿄',
+          item: `${WEB_URL_BASE}/regions/dokyo`,
         },
         {
           position: 2,
-          name: '도쿄',
+          name: '아티클',
           item: `${WEB_URL_BASE}/regions/dokyo/articles`,
         },
         {
