@@ -6,7 +6,6 @@ import '@testing-library/jest-dom'
 import { ScrollSpyContainer, ScrollSpyEntity } from './index'
 
 jest.mock('@titicaca/intersection-observer', () => ({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   StaticIntersectionObserver: jest
     .fn()
     .mockImplementation(({ onChange, children }) => {

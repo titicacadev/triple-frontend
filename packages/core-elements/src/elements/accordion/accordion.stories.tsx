@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { ComponentMeta, ComponentStoryFn } from '@storybook/react'
 
 import { Text } from '../text'

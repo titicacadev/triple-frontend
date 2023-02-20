@@ -100,7 +100,6 @@ const ListItem = styled.li<ListItemProps>`
 export class List extends PureComponent<
   PropsWithChildren<ListItemProps & ListBaseProp & DividerOptions>
 > {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Item = ListItem
 
   public render() {

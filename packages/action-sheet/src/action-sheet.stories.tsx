@@ -11,7 +11,6 @@ import { ActionSheetItem } from './action-sheet-item'
 export default {
   title: 'action-sheet / action-sheet',
   component: ActionSheet,
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   subcomponents: { Item: ActionSheetItem },
   parameters: {
     docs: {

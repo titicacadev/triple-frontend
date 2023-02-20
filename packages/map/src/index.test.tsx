@@ -18,7 +18,6 @@ jest.mock('@react-google-maps/api', () => ({
     loadError: undefined,
   })),
   useGoogleMap: jest.fn(),
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   GoogleMap: () => <div data-testid="google-map" />,
 }))
 

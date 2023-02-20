@@ -204,13 +204,10 @@ class ListingFilter extends PureComponent<{
   children?: ReactNode
   padding?: MarginPadding
 }> {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public static FilterEntry = FilterEntry
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public static ExpandingFilterEntry = ExpandingFilterEntry
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public static PrimaryFilterEntry = PrimaryFilterEntry
 
   public render() {

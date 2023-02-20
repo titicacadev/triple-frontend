@@ -93,7 +93,6 @@ function ReceivedChatContainer({
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface ChatBubbleUIProps {
   type: 'sent' | 'received'
   /**
@@ -112,7 +111,6 @@ export interface ChatBubbleUIProps {
   onRetry?: () => Promise<boolean> | undefined
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function ChatBubbleUI({
   type,
   payload,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { ComponentProps } from 'react'
 import styled from 'styled-components'
 import { ComponentMeta } from '@storybook/react'

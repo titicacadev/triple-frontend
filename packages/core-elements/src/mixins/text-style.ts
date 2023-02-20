@@ -50,7 +50,6 @@ export const _unsafeTextStyle = (
   `
 }
 
-/* eslint-disable @typescript-eslint/naming-convention */
 export const TextStyleMap = {
   /* 가계부 금액 */
   L6: textStyle(36, 47, -0.3),

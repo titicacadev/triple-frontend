@@ -49,7 +49,6 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
       expect.any(String),
       expect.objectContaining({
         headers: expect.objectContaining({
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           'x-triple-from-ssr': 'true',
         }),
       }),

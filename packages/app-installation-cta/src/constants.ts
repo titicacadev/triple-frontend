@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 export enum BannerExitStrategy {
   NONE = 'NONE',
   CHATBOT_READY = 'CHATBOT_READY',

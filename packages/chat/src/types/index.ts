@@ -1,4 +1,3 @@
-/* eslint-disable */
 export enum UserType {
   TRIPLE_USER = 'TRIPLE_USER',
   TRIPLE_OPERATOR = 'TRIPLE_OPERATOR',
@@ -151,6 +150,7 @@ export interface CloudinaryImageInterface {
   format: string
   resource_type: string
   created_at: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tags: any[]
   bytes: number
   type: string

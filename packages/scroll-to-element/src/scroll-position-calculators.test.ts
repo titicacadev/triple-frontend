@@ -38,7 +38,6 @@ test('calculateScrollOffset()은 스크롤 오프셋을 반환합니다.', () =>
     right: 0,
     bottom: 0,
     left: 0,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     toJSON: () => {},
   }))
 

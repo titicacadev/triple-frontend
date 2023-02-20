@@ -214,7 +214,6 @@ export class Label extends PureComponent<
   LabelProps,
   HTMLAttributes<HTMLElement>
 > {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   public static Group = LabelGroup
 
   public render() {

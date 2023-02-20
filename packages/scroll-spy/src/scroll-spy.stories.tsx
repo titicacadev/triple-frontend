@@ -21,6 +21,7 @@ function ScrollSpy() {
 
         return (
           <ScrollSpyEntity key={id} id={id}>
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
             <div onClick={() => setActiveId(id)}>
               {/* <PoiListElement as="div" poi={poi as unknown as ListingPoi} /> */}
             </div>

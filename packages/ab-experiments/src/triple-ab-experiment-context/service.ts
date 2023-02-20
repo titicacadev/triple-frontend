@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { get, HttpResponse, RequestOptions } from '@titicaca/fetcher'
 
 export interface TripleABExperimentMeta {
