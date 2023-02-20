@@ -3,6 +3,7 @@ import { get } from '@titicaca/fetcher'
 import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
+import { getSessionIdFromRequest } from '@titicaca/react-contexts/src/session-context/app'
 
 interface UserResponse {
   uid: string
@@ -55,7 +56,11 @@ export function authGuard<Props>(
       const { status } = response
 
       if (status === 401) {
-        if (userAgentString && parseTripleClientUserAgent(userAgentString)) {
+        if (
+          userAgentString &&
+          parseTripleClientUserAgent(userAgentString) &&
+          getSessionIdFromRequest(req)
+        ) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
         }
 
