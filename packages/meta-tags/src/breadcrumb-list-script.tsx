@@ -23,7 +23,7 @@ export function BreadcrumbListScript({
   return (
     <Head>
       <script type="application/ld+json">
-        {JSON.stringify(breadcrumbScript, null, '\t')}
+        {JSON.stringify(breadcrumbScript)}
       </script>
     </Head>
   )
