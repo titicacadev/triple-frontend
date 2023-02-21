@@ -402,7 +402,6 @@ export const GlobalStyle = createGlobalStyle`
   img,
   video {
     max-width: 100%;
-    height: auto;
   }
 
   /*
