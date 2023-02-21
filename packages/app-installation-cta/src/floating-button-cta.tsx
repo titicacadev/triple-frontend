@@ -171,60 +171,61 @@ function FloatingButtonCta({
         margin={margin}
         zTier={zTier}
         zIndex={zIndex}
-        css={{ padding: '0 20px 20px' }}
       >
-        <ContentContainer>
-          <img
-            src="https://assets.triple.guide/images/img_app_icon_white@4x.png"
-            alt="icon-app-download"
-            width={42}
-            height={42}
-          />
-          <Container>
-            <InstallAnchor href={appInstallLink} onClick={handleClick}>
-              <Text
-                size={16}
-                bold
-                lineHeight="19px"
-                color="white"
-                letterSpacing={-0.5}
-                margin={{ bottom: 4 }}
-              >
-                {title}
-              </Text>
-              <Text
-                inlineBlock
-                size={13}
-                lineHeight="16px"
-                color="white"
-                alpha={0.8}
-                letterSpacing={-0.5}
-              >
-                {description}
-              </Text>
-            </InstallAnchor>
-          </Container>
-          <Container
-            css={{
-              position: 'absolute',
-              top: 4,
-              right: -16,
-              width: 32,
-              height: 32,
-            }}
-            onClick={handleDismiss}
-          >
-            <CloseButton
-              src="https://assets.triple.guide/images/img_delete_12@4x.png"
-              alt="icon-close-button"
-              width={12}
-              height={12}
+        <Container css={{ padding: '0 20px 20px' }}>
+          <ContentContainer>
+            <img
+              src="https://assets.triple.guide/images/img_app_icon_white@4x.png"
+              alt="icon-app-download"
+              width={42}
+              height={42}
             />
-          </Container>
-        </ContentContainer>
-        <InstallButton href={appInstallLink} onClick={handleClick}>
-          트리플 앱 이용하기
-        </InstallButton>
+            <Container>
+              <InstallAnchor href={appInstallLink} onClick={handleClick}>
+                <Text
+                  size={16}
+                  bold
+                  lineHeight="19px"
+                  color="white"
+                  letterSpacing={-0.5}
+                  margin={{ bottom: 4 }}
+                >
+                  {title}
+                </Text>
+                <Text
+                  inlineBlock
+                  size={13}
+                  lineHeight="16px"
+                  color="white"
+                  alpha={0.8}
+                  letterSpacing={-0.5}
+                >
+                  {description}
+                </Text>
+              </InstallAnchor>
+            </Container>
+            <Container
+              css={{
+                position: 'absolute',
+                top: 4,
+                right: -16,
+                width: 32,
+                height: 32,
+              }}
+              onClick={handleDismiss}
+            >
+              <CloseButton
+                src="https://assets.triple.guide/images/img_delete_12@4x.png"
+                alt="icon-close-button"
+                width={12}
+                height={12}
+              />
+            </Container>
+          </ContentContainer>
+          <InstallButton href={appInstallLink} onClick={handleClick}>
+            트리플 앱 이용하기
+          </InstallButton>
+        </Container>
       </FloatingButtonContainer>
     </CSSTransition>
   )
