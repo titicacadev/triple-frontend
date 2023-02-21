@@ -247,9 +247,8 @@ test('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습�
 })
 
 describe('앱에서', () => {
-  describe('로그인이 필요하면 로그인 페이지 리디렉션 대신 토큰 새로고침을 시도합니다.', () => {
-    const resolvedUrl = '/test-url?_triple_no_navbar'
-
+  const resolvedUrl = '/test-url?_triple_no_navbar'
+  describe('로그인이 필요하면 앱 내 로그인 페이지를 호출합니다.', () => {
     test('쿠키가 없을 때', async () => {
       const oldGssp = jest.fn()
       const newGssp = authGuard(oldGssp)
@@ -260,13 +259,8 @@ describe('앱에서', () => {
       expect(oldGssp).toBeCalledTimes(0)
       expect(result).toEqual({
         redirect: {
-          destination: `/landing/refresh?returnUrl=${encodeURIComponent(
-            generateUrl(
-              {
-                query: 'refreshed=true',
-              },
-              resolvedUrl,
-            ),
+          destination: `/login?returnUrl=${encodeURIComponent(
+            generateUrl({}, resolvedUrl),
           )}`,
           basePath: false,
           permanent: false,
@@ -288,47 +282,13 @@ describe('앱에서', () => {
       expect(oldGssp).toBeCalledTimes(0)
       expect(result).toEqual({
         redirect: {
-          destination: `/landing/refresh?returnUrl=${encodeURIComponent(
-            generateUrl(
-              {
-                query: 'refreshed=true',
-              },
-              resolvedUrl,
-            ),
+          destination: `/login?returnUrl=${encodeURIComponent(
+            generateUrl({}, resolvedUrl),
           )}`,
           basePath: false,
           permanent: false,
         },
       })
-    })
-  })
-
-  describe('토큰 새로고침 이후에도 쿠키가 유효하지 않으면 오류를 던집니다.', () => {
-    test('쿠키가 없을 때', async () => {
-      const oldGssp = jest.fn()
-      const newGssp = authGuard(oldGssp)
-      const context = createContext({
-        userAgent: appUserAgent,
-        resolvedUrl: '/test-url?refreshed=true',
-      })
-
-      await expect(newGssp(context)).rejects.toThrowError()
-
-      expect(oldGssp).toBeCalledTimes(0)
-    })
-
-    test('쿠키가 유효하지 않을 때', async () => {
-      const oldGssp = jest.fn()
-      const newGssp = authGuard(oldGssp)
-      const context = createContext({
-        userAgent: appUserAgent,
-        resolvedUrl: '/test-url?refreshed=true',
-        cookie: invalidCookie,
-      })
-
-      await expect(newGssp(context)).rejects.toThrowError()
-
-      expect(oldGssp).toBeCalledTimes(0)
     })
   })
 })
