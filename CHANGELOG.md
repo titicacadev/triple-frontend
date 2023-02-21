@@ -1,10 +1,14 @@
 # CHANGELOG
 
-## 12.7.1
+## 12.8.0
 
 ### core-elements
 
 - img, video global style height: auto 제거 [#2422](https://github.com/titicacadev/triple-frontend/pull/2422)
+
+### meta-tags
+
+- Theme color를 추가합니다. [#2420](https://github.com/titicacadev/triple-frontend/pull/2420)
 
 ### ui-flow
 
