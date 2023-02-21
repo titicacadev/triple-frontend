@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 12.7.1
+
+### core-elements
+
+- img, video global style height: auto 제거 [#2422](https://github.com/titicacadev/triple-frontend/pull/2422)
+
+### ui-flow
+
+- authGuard의 refreshInAppSession 실행조건을 수정합니다. [#2419](https://github.com/titicacadev/triple-frontend/pull/2419)
+
 ## 12.7.0
 
 ### core-elements
