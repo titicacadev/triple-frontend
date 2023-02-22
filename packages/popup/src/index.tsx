@@ -138,7 +138,7 @@ function Popup({
   return (
     <Portal>
       {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-      <FocusScope autoFocus contain restoreFocus>
+      <FocusScope autoFocus restoreFocus>
         <div {...underlayProps}>
           <CSSTransition
             nodeRef={popupRef}
