@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
 export function FacebookOpenGraphMeta({
-  title: titleFromProps,
-  description: descriptionFromProps,
+  title: titleFromProps = '나를 아는 여행앱, 트리플',
+  description: descriptionFromProps = '예약부터 일정까지 여행이 더 쉬워집니다',
   canonicalUrl,
   type = 'website',
   locale = 'ko_KR',
@@ -22,11 +22,8 @@ export function FacebookOpenGraphMeta({
 }) {
   const { facebookAppId, defaultPageTitle, defaultPageDescription } = useEnv()
 
-  const title = titleFromProps || defaultPageTitle || '나를 아는 여행앱, 트리플'
-  const description =
-    descriptionFromProps ||
-    defaultPageDescription ||
-    '예약부터 일정까지 여행이 더 쉬워집니다'
+  const title = titleFromProps || defaultPageTitle
+  const description = descriptionFromProps || defaultPageDescription
 
   return (
     <Head>
