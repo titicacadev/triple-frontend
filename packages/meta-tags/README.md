@@ -199,7 +199,7 @@ return (
 - 사용가이드
   - 콘텐츠 타입
     - name: theme-color, msapplication-TileColor
-    - content: 색상 (`ex) #ffffff, rgb(0, 0, 0), rgba(0, 0, 0, 0)`)
+    - content: 색상 (default: `#1FC1B6`, e.g. `#ffffff`, `rgb(0, 0, 0)`, `rgba(0, 0, 0, 0)`)
 
 ## 구조화된 데이터
 
