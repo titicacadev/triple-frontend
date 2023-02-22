@@ -80,7 +80,7 @@ export default function AskToTheLocal({
         <Text textStyle="M" alpha={0.7}>
           {primaryName}
         </Text>
-        {phoneNumber ? (
+        {phoneNumber && open ? (
           <Drawer active>
             <DrawerContentContainer
               css={{
