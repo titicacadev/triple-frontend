@@ -80,8 +80,8 @@ export default function AskToTheLocal({
         <Text textStyle="M" alpha={0.7}>
           {primaryName}
         </Text>
-        {phoneNumber && open ? (
-          <Drawer active>
+        {phoneNumber ? (
+          <Drawer active={open}>
             <DrawerContentContainer
               css={{
                 margin: '0 30px',
