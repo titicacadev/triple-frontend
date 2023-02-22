@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.8.1
+
+### directions-finder
+
+- drawer action 조건 추가 [#2424](https://github.com/titicacadev/triple-frontend/pull/2424)
+
 ## 12.8.0
 
 ### core-elements
