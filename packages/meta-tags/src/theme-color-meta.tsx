@@ -8,7 +8,7 @@ type HEX = `#${string}`
 type Color = RGB | RGBA | HEX | Global
 
 export function ThemeColorMeta({
-  content = '#ffffff',
+  content = '#1FC1B6',
 }: {
   content?: Color | string
 }) {
