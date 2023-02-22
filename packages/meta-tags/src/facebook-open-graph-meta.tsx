@@ -8,7 +8,7 @@ export function FacebookOpenGraphMeta({
   type = 'website',
   locale = 'ko_KR',
   image = {
-    url: 'https://assets.triple.guide/images/img-default-page-preview.png',
+    url: 'https://assets.triple.guide/images/og-tag-app_download@4x.png',
     width: 1052,
     height: 1052,
   },
@@ -22,8 +22,11 @@ export function FacebookOpenGraphMeta({
 }) {
   const { facebookAppId, defaultPageTitle, defaultPageDescription } = useEnv()
 
-  const title = titleFromProps || defaultPageTitle
-  const description = descriptionFromProps || defaultPageDescription
+  const title = titleFromProps || defaultPageTitle || '나를 아는 여행앱, 트리플'
+  const description =
+    descriptionFromProps ||
+    defaultPageDescription ||
+    '예약부터 일정까지 여행이 더 쉬워집니다'
 
   return (
     <Head>
