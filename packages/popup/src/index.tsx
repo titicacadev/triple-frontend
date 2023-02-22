@@ -3,7 +3,6 @@ import { CSSTransition } from 'react-transition-group'
 import styled from 'styled-components'
 import { Navbar, Portal } from '@titicaca/core-elements'
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
-import { FocusScope } from '@react-aria/focus'
 import { useOverlay } from '@react-aria/overlays'
 
 type NavbarIcon = 'close' | 'back'
@@ -137,31 +136,28 @@ function Popup({
 
   return (
     <Portal>
-      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-      <FocusScope autoFocus contain restoreFocus>
-        <div {...underlayProps}>
-          <CSSTransition
-            nodeRef={popupRef}
-            timeout={TRANSITION_DURATION}
-            in={open}
-            classNames="popup-slide"
-            appear
-            mountOnEnter={unmountOnExit}
-            unmountOnExit={unmountOnExit}
-            {...restProps}
-          >
-            <PopupContainer {...overlayProps} ref={popupRef}>
-              {noNavbar ? null : (
-                <Navbar borderless={borderless} title={title}>
-                  <Navbar.Item floated="left" icon={icon} onClick={onClose} />
-                </Navbar>
-              )}
+      <div {...underlayProps}>
+        <CSSTransition
+          nodeRef={popupRef}
+          timeout={TRANSITION_DURATION}
+          in={open}
+          classNames="popup-slide"
+          appear
+          mountOnEnter={unmountOnExit}
+          unmountOnExit={unmountOnExit}
+          {...restProps}
+        >
+          <PopupContainer {...overlayProps} ref={popupRef}>
+            {noNavbar ? null : (
+              <Navbar borderless={borderless} title={title}>
+                <Navbar.Item floated="left" icon={icon} onClick={onClose} />
+              </Navbar>
+            )}
 
-              {children}
-            </PopupContainer>
-          </CSSTransition>
-        </div>
-      </FocusScope>
+            {children}
+          </PopupContainer>
+        </CSSTransition>
+      </div>
     </Portal>
   )
 }
