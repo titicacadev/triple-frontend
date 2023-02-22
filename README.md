@@ -6,7 +6,7 @@
 
 [Lerna](https://lerna.js.org/)를 이용해서 작업하고 있습니다.
 
-npm 8.5 이상을 요구합니다. 버전이 낮으면 업그레이드 해주세요.
+npm 9 이상을 요구합니다. 버전이 낮으면 업그레이드 해주세요.
 
 ```sh
 npm install -g npm@latest
@@ -76,7 +76,7 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 
 ### Prerequisites
 
-- NodeJS 10 이상 (12 이상 및 최신 버전 추천)
+- Node.js LTS
 - Lerna (`npm install -g lerna`)
 
 ### Setup
