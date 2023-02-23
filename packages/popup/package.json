@@ -24,13 +24,12 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@react-aria/focus": "^3.10.1",
-    "@react-aria/overlays": "^3.12.1",
+    "@headlessui/react": "^1.7.11",
     "@titicaca/core-elements": "^12.11.0",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.4.4"
+    "@types/react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^18.0",

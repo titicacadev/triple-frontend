@@ -20,15 +20,13 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@react-aria/focus": "^3.9.0",
-    "@react-aria/overlays": "^3.11.0",
     "@titicaca/app-installation-cta": "^12.11.0",
     "@titicaca/core-elements": "^12.11.0",
     "@titicaca/popup": "^12.11.0",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.4.4"
+    "@types/react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^18.0",
