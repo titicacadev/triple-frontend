@@ -24,9 +24,11 @@ const transitionStyles: Record<TransitionStatus, CSSProperties> = {
   },
   exiting: {
     opacity: 0,
+    pointerEvents: 'none',
   },
   exited: {
     opacity: 0,
+    pointerEvents: 'none',
   },
   unmounted: {},
 }
