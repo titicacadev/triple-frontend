@@ -3,7 +3,12 @@ import {
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import { CSSProperties, PropsWithChildren, ReactNode } from 'react'
+import {
+  CSSProperties,
+  MutableRefObject,
+  PropsWithChildren,
+  ReactNode,
+} from 'react'
 import styled, { css } from 'styled-components'
 import { Dialog } from '@headlessui/react'
 import { TransitionStatus } from 'react-transition-group'
@@ -78,6 +83,7 @@ export interface ActionSheetBodyProps extends PropsWithChildren {
   maxContentHeight: string | number
   from: 'top' | 'bottom'
   title?: ReactNode
+  panelRef?: MutableRefObject<null>
 }
 
 export const ActionSheetBody = ({
@@ -88,6 +94,7 @@ export const ActionSheetBody = ({
   maxContentHeight,
   from,
   title,
+  panelRef,
   ...props
 }: ActionSheetBodyProps) => {
   const { transitionStatus } = useActionSheet()
@@ -95,6 +102,8 @@ export const ActionSheetBody = ({
   return (
     <Dialog.Panel
       as={Sheet}
+      ref={panelRef}
+      tabIndex={-1}
       borderRadius={borderRadius}
       bottomSpacing={bottomSpacing}
       from={from}
