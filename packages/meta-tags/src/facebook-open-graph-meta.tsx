@@ -9,8 +9,8 @@ export function FacebookOpenGraphMeta({
   locale = 'ko_KR',
   image = {
     url: 'https://assets.triple.guide/images/og-tag-app_download@4x.png',
-    width: 1052,
-    height: 1052,
+    width: 260,
+    height: 260,
   },
 }: {
   title?: string
