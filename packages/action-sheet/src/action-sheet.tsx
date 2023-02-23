@@ -1,5 +1,7 @@
 import { PropsWithChildren, ReactNode, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
+import { Transition } from 'react-transition-group'
+import { FlexBox } from '@titicaca/core-elements'
 
 import { ActionSheetBody } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'
@@ -28,33 +30,39 @@ export const ActionSheet = ({
   onClose,
   ...props
 }: ActionSheetProps) => {
-  const overlayRef = useRef<HTMLDivElement>(null)
-  const sheetRef = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <ActionSheetContext.Provider value={{ open, onClose }}>
-      <Dialog open={open} onClose={() => onClose?.()}>
-        <ActionSheetOverlay ref={overlayRef} duration={TRANSITION_DURATION} />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
+    <Transition
+      in={open}
+      nodeRef={ref}
+      timeout={TRANSITION_DURATION}
+      appear
+      mountOnEnter
+      unmountOnExit
+    >
+      {(transitionStatus) => (
+        <ActionSheetContext.Provider
+          value={{ transitionStatus, open, onClose }}
         >
-          <ActionSheetBody
-            ref={sheetRef}
-            borderRadius={borderRadius}
-            bottomSpacing={bottomSpacing}
-            duration={TRANSITION_DURATION}
-            maxContentHeight={maxContentHeight}
-            from={from}
-            title={title}
-            {...props}
-          >
-            {children}
-          </ActionSheetBody>
-        </div>
-      </Dialog>
-    </ActionSheetContext.Provider>
+          <Dialog ref={ref} static open={open} onClose={() => onClose?.()}>
+            <ActionSheetOverlay duration={TRANSITION_DURATION} />
+            <FlexBox flex justifyContent="center">
+              <ActionSheetBody
+                borderRadius={borderRadius}
+                bottomSpacing={bottomSpacing}
+                duration={TRANSITION_DURATION}
+                maxContentHeight={maxContentHeight}
+                from={from}
+                title={title}
+                {...props}
+              >
+                {children}
+              </ActionSheetBody>
+            </FlexBox>
+          </Dialog>
+        </ActionSheetContext.Provider>
+      )}
+    </Transition>
   )
 }
