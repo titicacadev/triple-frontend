@@ -1,7 +1,11 @@
-import { PropsWithChildren, ReactNode, useId } from 'react'
+import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { Dialog } from '@headlessui/react'
 
-import { ActionSheetBase } from './action-sheet-base'
+import { ActionSheetBody } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'
+import { ActionSheetOverlay } from './action-sheet-overlay'
+
+const TRANSITION_DURATION = 120
 
 export interface ActionSheetProps extends PropsWithChildren {
   open?: boolean
@@ -24,20 +28,33 @@ export const ActionSheet = ({
   onClose,
   ...props
 }: ActionSheetProps) => {
-  const titleId = useId()
+  const overlayRef = useRef<HTMLDivElement>(null)
+  const sheetRef = useRef<HTMLDivElement>(null)
 
   return (
-    <ActionSheetContext.Provider value={{ open, titleId, onClose }}>
-      <ActionSheetBase
-        borderRadius={borderRadius}
-        bottomSpacing={bottomSpacing}
-        maxContentHeight={maxContentHeight}
-        from={from}
-        title={title}
-        {...props}
-      >
-        {children}
-      </ActionSheetBase>
+    <ActionSheetContext.Provider value={{ open, onClose }}>
+      <Dialog open={open} onClose={() => onClose?.()}>
+        <ActionSheetOverlay ref={overlayRef} duration={TRANSITION_DURATION} />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <ActionSheetBody
+            ref={sheetRef}
+            borderRadius={borderRadius}
+            bottomSpacing={bottomSpacing}
+            duration={TRANSITION_DURATION}
+            maxContentHeight={maxContentHeight}
+            from={from}
+            title={title}
+            {...props}
+          >
+            {children}
+          </ActionSheetBody>
+        </div>
+      </Dialog>
     </ActionSheetContext.Provider>
   )
 }
