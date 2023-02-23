@@ -1,29 +1,12 @@
-import { PropsWithChildren, useRef, useEffect } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { PropsWithChildren, useRef, CSSProperties } from 'react'
 import styled from 'styled-components'
-import { Navbar, Portal } from '@titicaca/core-elements'
-import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
-import { FocusScope } from '@react-aria/focus'
-import { useOverlay } from '@react-aria/overlays'
+import { Navbar } from '@titicaca/core-elements'
+import { Dialog } from '@headlessui/react'
+import { Transition, TransitionStatus } from 'react-transition-group'
 
 type NavbarIcon = 'close' | 'back'
 
 const TRANSITION_DURATION = 300
-
-const inactivePopupContainerStyle = `
-  transform: translateY(100%);
-  pointer-events: none;
-`
-
-const activePopupContainerStyle = `
-  transform: translateY(0);
-  pointer-events: auto;
-  z-index: 9999;
-`
-
-const popupContainerTransitionConfig = `
-  transition: transform ${TRANSITION_DURATION}ms ease-out;
-`
 
 const PopupContainer = styled.div`
   position: fixed;
@@ -33,6 +16,7 @@ const PopupContainer = styled.div`
   right: 0;
   background-color: #fff;
   user-select: none;
+  z-index: 9999;
 
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -44,43 +28,23 @@ const PopupContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
-  &:not([class*='popup-slide-']) {
-    ${inactivePopupContainerStyle}
-
-    display: none;
-  }
-
-  &.popup-slide-appear,
-  &.popup-slide-enter {
-    ${inactivePopupContainerStyle}
-  }
-
-  &.popup-slide-appear-active,
-  &.popup-slide-enter-active {
-    ${activePopupContainerStyle}
-    ${popupContainerTransitionConfig}
-  }
-
-  &.popup-slide-enter-done {
-    ${activePopupContainerStyle}
-  }
-
-  &.popup-slide-exit {
-    ${activePopupContainerStyle}
-  }
-
-  &.popup-slide-exit-active {
-    ${inactivePopupContainerStyle}
-    ${popupContainerTransitionConfig}
-  }
-
-  &.popup-slide-exit-done {
-    ${inactivePopupContainerStyle}
-
-    display: none;
-  }
 `
+
+const transitionStyles: Record<TransitionStatus, CSSProperties> = {
+  entering: {
+    transform: 'translateY(0)',
+  },
+  entered: {
+    transform: 'translateY(0)',
+  },
+  exiting: {
+    opacity: 'translateY(100%)',
+  },
+  exited: {
+    opacity: 'translateY(100%)',
+  },
+  unmounted: {},
+}
 
 /**
  * 밑에서 올라오는 팝업입니다.
@@ -93,64 +57,51 @@ function Popup({
   title,
   noNavbar,
   children,
-  unmountOnExit,
-  ...restProps
-}: PropsWithChildren<
-  {
-    /**
-     * 팝업을 열지 결정합니다.
-     */
-    open: boolean
-    /**
-     * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
-     */
-    onClose: () => void
-    /**
-     * Navbar의 border를 그릴지 결정합니다.
-     */
-    borderless?: boolean
-    /** Navbar의 제목입니다. */
-    title?: string
-    icon?: NavbarIcon
-    /**
-     * Navbar의 렌더링을 생략할 수 있도록 합니다.
-     */
-    noNavbar?: boolean
-    unmountOnExit?: boolean
-  } & Partial<CSSTransitionProps<HTMLDivElement>>
->) {
-  const popupRef = useRef<HTMLDivElement>(null)
-
-  const { overlayProps, underlayProps } = useOverlay(
-    {
-      isOpen: open,
-      onClose,
-    },
-    popupRef,
-  )
-
-  useEffect(() => {
-    if (open && popupRef.current && popupRef.current.scrollTop > 0) {
-      popupRef.current.scrollTop = 0
-    }
-  }, [open])
+  ...props
+}: PropsWithChildren<{
+  /**
+   * 팝업을 열지 결정합니다.
+   */
+  open: boolean
+  /**
+   * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
+   */
+  onClose: () => void
+  /**
+   * Navbar의 border를 그릴지 결정합니다.
+   */
+  borderless?: boolean
+  /** Navbar의 제목입니다. */
+  title?: string
+  icon?: NavbarIcon
+  /**
+   * Navbar의 렌더링을 생략할 수 있도록 합니다.
+   */
+  noNavbar?: boolean
+}>) {
+  const ref = useRef<HTMLDivElement>(null)
 
   return (
-    <Portal>
-      {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-      <FocusScope autoFocus contain restoreFocus>
-        <div {...underlayProps}>
-          <CSSTransition
-            nodeRef={popupRef}
-            timeout={TRANSITION_DURATION}
-            in={open}
-            classNames="popup-slide"
-            appear
-            mountOnEnter={unmountOnExit}
-            unmountOnExit={unmountOnExit}
-            {...restProps}
+    <Transition
+      in={open}
+      nodeRef={ref}
+      timeout={TRANSITION_DURATION}
+      appear
+      mountOnEnter
+      unmountOnExit
+    >
+      {(transitionStatus) => (
+        <Dialog ref={ref} static open={open} onClose={() => onClose?.()}>
+          <Dialog.Panel
+            as={PopupContainer}
+            style={{
+              transition: `transform ${TRANSITION_DURATION}ms ease-out`,
+              transform: `translateY(100%)`,
+              ...transitionStyles[transitionStatus],
+            }}
+            {...props}
           >
-            <PopupContainer {...overlayProps} ref={popupRef}>
+            <PopupContainer>
               {noNavbar ? null : (
                 <Navbar borderless={borderless} title={title}>
                   <Navbar.Item floated="left" icon={icon} onClick={onClose} />
@@ -159,10 +110,10 @@ function Popup({
 
               {children}
             </PopupContainer>
-          </CSSTransition>
-        </div>
-      </FocusScope>
-    </Portal>
+          </Dialog.Panel>
+        </Dialog>
+      )}
+    </Transition>
   )
 }
 
