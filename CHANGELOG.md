@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 12.9.0
+
+### common
+
+- npm 9 이상 버전 사용 [#2426](https://github.com/titicacadev/triple-frontend/pull/2426)
+
+### app-installation-cta
+
+- 플로팅 버튼 3차 UI 변경안 반영 [#2417](https://github.com/titicacadev/triple-frontend/pull/2417)
+
+### meta-tags
+
+- breadcrumb, article 스크립트를 추가합니다. [#2400](https://github.com/titicacadev/triple-frontend/pull/2400)
+- ThemeColorMeta의 기본 props color와 README를 일부 수정합니다. [#2428](https://github.com/titicacadev/triple-frontend/pull/2428)
+
 ## 12.8.1
 
 ### directions-finder
