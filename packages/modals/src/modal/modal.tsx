@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useRef } from 'react'
 import { Container, FlexBox } from '@titicaca/core-elements'
 import { Dialog } from '@headlessui/react'
 import styled, { css } from 'styled-components'
@@ -21,9 +21,11 @@ export interface ModalProps extends PropsWithChildren {
 }
 
 export const Modal = ({ children, open = false, onClose }: ModalProps) => {
+  const panelRef = useRef(null)
+
   return (
     <ModalContext.Provider value={{ open, onClose }}>
-      <Dialog open={open} onClose={() => onClose?.()}>
+      <Dialog open={open} initialFocus={panelRef} onClose={() => onClose?.()}>
         <Container
           css={css`
             position: fixed;
@@ -48,7 +50,12 @@ export const Modal = ({ children, open = false, onClose }: ModalProps) => {
             z-index: 9999;
           `}
         >
-          <Dialog.Panel as={ModalPanel} borderRadius={6}>
+          <Dialog.Panel
+            as={ModalPanel}
+            ref={panelRef}
+            tabIndex={-1}
+            borderRadius={6}
+          >
             {children}
           </Dialog.Panel>
         </FlexBox>

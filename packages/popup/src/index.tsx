@@ -79,7 +79,8 @@ function Popup({
    */
   noNavbar?: boolean
 }>) {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef(null)
+  const panelRef = useRef(null)
 
   return (
     <Transition
@@ -91,9 +92,17 @@ function Popup({
       unmountOnExit
     >
       {(transitionStatus) => (
-        <Dialog ref={ref} static open={open} onClose={() => onClose?.()}>
+        <Dialog
+          ref={ref}
+          initialFocus={panelRef}
+          static
+          open={open}
+          onClose={() => onClose?.()}
+        >
           <Dialog.Panel
             as={PopupContainer}
+            ref={panelRef}
+            tabIndex={-1}
             style={{
               transition: `transform ${TRANSITION_DURATION}ms ease-out`,
               transform: `translateY(100%)`,
@@ -107,7 +116,6 @@ function Popup({
                   <Navbar.Item floated="left" icon={icon} onClick={onClose} />
                 </Navbar>
               )}
-
               {children}
             </PopupContainer>
           </Dialog.Panel>

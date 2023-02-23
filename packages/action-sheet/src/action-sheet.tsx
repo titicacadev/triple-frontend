@@ -30,7 +30,8 @@ export const ActionSheet = ({
   onClose,
   ...props
 }: ActionSheetProps) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef(null)
+  const panelRef = useRef(null)
 
   return (
     <Transition
@@ -45,10 +46,17 @@ export const ActionSheet = ({
         <ActionSheetContext.Provider
           value={{ transitionStatus, open, onClose }}
         >
-          <Dialog ref={ref} static open={open} onClose={() => onClose?.()}>
+          <Dialog
+            ref={ref}
+            initialFocus={panelRef}
+            static
+            open={open}
+            onClose={() => onClose?.()}
+          >
             <ActionSheetOverlay duration={TRANSITION_DURATION} />
             <FlexBox flex justifyContent="center">
               <ActionSheetBody
+                panelRef={panelRef}
                 borderRadius={borderRadius}
                 bottomSpacing={bottomSpacing}
                 duration={TRANSITION_DURATION}
