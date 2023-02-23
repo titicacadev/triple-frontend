@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/web-storage",
-  "version": "12.8.1",
+  "version": "12.9.0",
   "description": "WebStorage API wrapper for Triple services",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/web-storage",
@@ -24,8 +24,8 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.8.1",
-    "@titicaca/modals": "^12.8.1",
+    "@titicaca/i18n": "^12.9.0",
+    "@titicaca/modals": "^12.9.0",
     "@titicaca/next-i18next": "^13.8.4"
   },
   "peerDependencies": {
