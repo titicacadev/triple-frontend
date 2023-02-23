@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/location-properties",
-  "version": "12.8.1",
+  "version": "12.9.0",
   "description": "Location properties: addresses, contact, URL, ...",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/location-properties",
@@ -20,15 +20,15 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.8.1",
-    "@titicaca/core-elements": "^12.8.1",
-    "@titicaca/type-definitions": "^12.8.1"
+    "@titicaca/action-sheet": "^12.9.0",
+    "@titicaca/core-elements": "^12.9.0",
+    "@titicaca/type-definitions": "^12.9.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.8.1",
+    "@titicaca/i18n": "^12.9.0",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.8.1",
-    "@titicaca/react-triple-client-interfaces": "^12.8.1"
+    "@titicaca/react-contexts": "^12.9.0",
+    "@titicaca/react-triple-client-interfaces": "^12.9.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
