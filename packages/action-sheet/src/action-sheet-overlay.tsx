@@ -1,5 +1,8 @@
-import { forwardRef } from 'react'
+import { CSSProperties } from 'react'
+import { TransitionStatus } from 'react-transition-group'
 import styled from 'styled-components'
+
+import { useActionSheet } from './action-sheet-context'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -12,22 +15,36 @@ export const Overlay = styled.div`
   z-index: 9999;
 `
 
+const transitionStyles: Record<TransitionStatus, CSSProperties> = {
+  entering: {
+    opacity: 1,
+  },
+  entered: {
+    opacity: 1,
+  },
+  exiting: {
+    opacity: 0,
+  },
+  exited: {
+    opacity: 0,
+  },
+  unmounted: {},
+}
+
 export interface ActionSheetOverlayProps {
   duration: number
 }
 
-export const ActionSheetOverlay = forwardRef<
-  HTMLDivElement,
-  ActionSheetOverlayProps
->((props, ref) => {
+export const ActionSheetOverlay = ({ duration }: ActionSheetOverlayProps) => {
+  const { transitionStatus } = useActionSheet()
+
   return (
     <Overlay
-      ref={ref}
-      // style={{
-      //   transition: `opacity ${duration}ms ease-in`,
-      //   opacity: state === 'entering' || state === 'entered' ? 1 : 0,
-      // }}
+      style={{
+        transition: `opacity ${duration}ms ease-in`,
+        opacity: 0,
+        ...transitionStyles[transitionStatus],
+      }}
     />
   )
-})
-ActionSheetOverlay.displayName = 'ActionSheetOverlay'
+}

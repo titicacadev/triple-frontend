@@ -1,6 +1,8 @@
 import { createContext, useContext } from 'react'
+import { TransitionStatus } from 'react-transition-group'
 
 export interface ActionSheetContextValue {
+  transitionStatus: TransitionStatus
   open: boolean
   onClose?: () => void
 }
