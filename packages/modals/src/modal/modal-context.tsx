@@ -2,8 +2,6 @@ import { createContext, useContext } from 'react'
 
 export interface ModalContextValue {
   open: boolean
-  titleId: string
-  descriptionId: string
   onClose?: () => void
 }
 
