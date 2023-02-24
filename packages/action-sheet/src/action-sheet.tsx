@@ -19,6 +19,9 @@ export interface ActionSheetProps extends PropsWithChildren {
   onClose?: () => void
 }
 
+/**
+ * ActionSheet
+ */
 export const ActionSheet = ({
   children,
   open = false,
