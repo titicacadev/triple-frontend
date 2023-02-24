@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/frontend-integration-test",
-  "version": "12.9.0",
+  "version": "12.10.0",
   "private": true,
   "description": "Integration tests for Triple frontend packages",
   "keywords": [
@@ -17,8 +17,8 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@titicaca/modals": "^12.9.0",
-    "@titicaca/react-contexts": "^12.9.0",
-    "@titicaca/router": "^12.9.0"
+    "@titicaca/modals": "^12.10.0",
+    "@titicaca/react-contexts": "^12.10.0",
+    "@titicaca/router": "^12.10.0"
   }
 }
