@@ -84,16 +84,16 @@ export function Drawer({
   const drawerContainerRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Portal>
-      <CSSTransition
-        nodeRef={drawerContainerRef}
-        in={active}
-        appear
-        classNames="drawer-slide"
-        timeout={TRANSITION_DURATION}
-        mountOnEnter={unmountOnExit}
-        unmountOnExit={unmountOnExit}
-      >
+    <CSSTransition
+      nodeRef={drawerContainerRef}
+      in={active}
+      appear
+      classNames="drawer-slide"
+      timeout={TRANSITION_DURATION}
+      mountOnEnter={unmountOnExit}
+      unmountOnExit={unmountOnExit}
+    >
+      <Portal>
         <DrawerContainer
           ref={drawerContainerRef}
           duration={TRANSITION_DURATION}
@@ -108,7 +108,7 @@ export function Drawer({
             {children}
           </Container>
         </DrawerContainer>
-      </CSSTransition>
-    </Portal>
+      </Portal>
+    </CSSTransition>
   )
 }
