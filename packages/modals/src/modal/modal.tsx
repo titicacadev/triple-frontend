@@ -13,6 +13,7 @@ import { ModalTitle } from './modal-title'
 const ModalPanel = styled(Container)`
   width: 295px;
   background-color: #fff;
+  outline: none;
 `
 
 export interface ModalProps extends PropsWithChildren {

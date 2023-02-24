@@ -33,6 +33,7 @@ const Sheet = styled.div<SheetProps>`
     from === 'top' ? 30 : bottomSpacing}px;
   padding-top: ${({ from }) => (from === 'bottom' ? 30 : 20)}px;
   z-index: 9999;
+  outline: none;
 
   ${({ from, borderRadius }) => {
     switch (from) {
