@@ -23,6 +23,10 @@ export interface ModalProps extends PropsWithChildren {
 export const Modal = ({ children, open = false, onClose }: ModalProps) => {
   const panelRef = useRef(null)
 
+  if (!open) {
+    return null
+  }
+
   return (
     <ModalContext.Provider value={{ open, onClose }}>
       <Dialog open={open} initialFocus={panelRef} onClose={() => onClose?.()}>
