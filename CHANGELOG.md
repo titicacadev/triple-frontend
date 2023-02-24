@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.10.0
+
+### meta-tags
+
+- og-tag img URL을 변경합니다. [#2430](https://github.com/titicacadev/triple-frontend/pull/2430)
+
 ## 12.9.0
 
 ### common
