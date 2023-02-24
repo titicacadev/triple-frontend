@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { CSSTransition } from 'react-transition-group'
 import { ReactNode, useRef } from 'react'
+import { Portal } from '@headlessui/react'
 
 import { LayeringMixinProps } from '../../mixins'
 import { Container } from '../container'
-import { Portal } from '../portal'
 
 const TRANSITION_DURATION = 300
 
