@@ -19,6 +19,9 @@ const PopupContainer = styled.div`
   z-index: 9999;
   outline: none;
 
+  transition: transform ${TRANSITION_DURATION}ms ease-out;
+  transform: translateY(100%);
+
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -105,8 +108,6 @@ function Popup({
             ref={panelRef}
             tabIndex={-1}
             style={{
-              transition: `transform ${TRANSITION_DURATION}ms ease-out`,
-              transform: `translateY(100%)`,
               ...transitionStyles[transitionStatus],
             }}
             {...props}

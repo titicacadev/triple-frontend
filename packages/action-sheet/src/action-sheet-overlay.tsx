@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { useActionSheet } from './action-sheet-context'
 
-export const Overlay = styled.div`
+export const Overlay = styled.div<{ duration: number }>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -13,6 +13,8 @@ export const Overlay = styled.div`
   width: 100vw;
   background-color: rgba(58, 58, 58, 0.7);
   z-index: 9999;
+  transition: opacity ${({ duration }) => duration}ms ease-in;
+  opacity: 0;
 `
 
 const transitionStyles: Record<TransitionStatus, CSSProperties> = {
@@ -42,9 +44,8 @@ export const ActionSheetOverlay = ({ duration }: ActionSheetOverlayProps) => {
 
   return (
     <Overlay
+      duration={duration}
       style={{
-        transition: `opacity ${duration}ms ease-in`,
-        opacity: 0,
         ...transitionStyles[transitionStatus],
       }}
     />
