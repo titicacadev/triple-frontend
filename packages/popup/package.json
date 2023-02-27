@@ -26,10 +26,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.11",
     "@titicaca/core-elements": "^12.11.0",
+    "@types/react-transition-group": "^4.4.5",
     "react-transition-group": "^4.4.5"
-  },
-  "devDependencies": {
-    "@types/react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^18.0",
