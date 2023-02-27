@@ -35,7 +35,6 @@ export function TripleABExperimentProvider({
   meta?: TripleABExperimentMeta
   onError?: (error: unknown) => void
 }>) {
-  const sessionAvailable = useSessionAvailability()
   const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(TripleABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
@@ -60,10 +59,10 @@ export function TripleABExperimentProvider({
       setMeta(parsedBody)
     }
 
-    if (!metaFromSSR && sessionAvailable === true) {
+    if (!metaFromSSR) {
       fetchAndSetMeta()
     }
-  }, [metaFromSSR, sessionAvailable, slug])
+  }, [metaFromSSR, slug])
 
   const value = useMemo(
     () => ({ ...experimentMetas, [slug]: meta }),
