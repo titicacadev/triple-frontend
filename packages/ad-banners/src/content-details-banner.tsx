@@ -15,17 +15,6 @@ import {
 import { Banner } from './typing'
 import VerticalListView from './vertical-list-view'
 
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    requestIdleCallback?(callback: () => void, timeout?: number): number
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    cancelIdleCallback?(handle: number): void
-  }
-}
-
 interface EventAttributes {
   title?: string
 }
