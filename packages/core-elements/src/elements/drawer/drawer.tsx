@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Transition, TransitionStatus } from 'react-transition-group'
-import { CSSProperties, ReactNode, useRef } from 'react'
+import { TransitionProps } from 'react-transition-group/Transition'
+import { CSSProperties, PropsWithChildren, useRef } from 'react'
 import { Portal } from '@headlessui/react'
 
 import { Container } from '../container'
@@ -39,16 +40,33 @@ const transitionStyles: Record<TransitionStatus, CSSProperties> = {
   unmounted: {},
 }
 
+export interface DrawerProps
+  extends PropsWithChildren,
+    Pick<
+      TransitionProps,
+      | 'onEnter'
+      | 'onEntering'
+      | 'onEntered'
+      | 'onExit'
+      | 'onExiting'
+      | 'onExited'
+    > {
+  active?: boolean
+  overflow?: string
+}
+
 export function Drawer({
   active,
   overflow,
   children,
-}: {
-  active?: boolean
-  overflow?: string
-  children?: ReactNode
-}) {
-  const drawerContainerRef = useRef<HTMLDivElement>(null)
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
+}: DrawerProps) {
+  const drawerContainerRef = useRef(null)
 
   return (
     <Transition
@@ -58,6 +76,12 @@ export function Drawer({
       timeout={TRANSITION_DURATION}
       mountOnEnter
       unmountOnExit
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
     >
       {(transitionStatus) => (
         <Portal>

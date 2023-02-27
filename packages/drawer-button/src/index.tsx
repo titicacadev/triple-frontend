@@ -1,4 +1,3 @@
-import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import {
   Drawer,
@@ -7,6 +6,7 @@ import {
   safeAreaInsetMixin,
   ButtonProps,
   paddingMixin,
+  DrawerProps,
 } from '@titicaca/core-elements'
 
 const ButtonWithSafeAreaInset = styled(Button)`
@@ -14,13 +14,30 @@ const ButtonWithSafeAreaInset = styled(Button)`
   ${safeAreaInsetMixin}
 `
 
+export type DrawerButtonProps = Omit<DrawerProps, 'overflow'> & ButtonProps
+
 function DrawerButton({
-  active = false,
   children,
+  active = false,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
   ...props
-}: PropsWithChildren<{ active?: boolean } & ButtonProps>) {
+}: DrawerButtonProps) {
   return (
-    <Drawer active={active} overflow="hidden">
+    <Drawer
+      active={active}
+      overflow="hidden"
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
+    >
       <Container backgroundColor="white">
         <ButtonWithSafeAreaInset
           size="large"

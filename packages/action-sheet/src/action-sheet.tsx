@@ -1,6 +1,7 @@
 import { PropsWithChildren, ReactNode, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Transition } from 'react-transition-group'
+import { TransitionProps } from 'react-transition-group/Transition'
 import { FlexBox } from '@titicaca/core-elements'
 
 import { ActionSheetBody } from './action-sheet-body'
@@ -9,7 +10,17 @@ import { ActionSheetOverlay } from './action-sheet-overlay'
 
 const TRANSITION_DURATION = 120
 
-export interface ActionSheetProps extends PropsWithChildren {
+export interface ActionSheetProps
+  extends PropsWithChildren,
+    Pick<
+      TransitionProps,
+      | 'onEnter'
+      | 'onEntering'
+      | 'onEntered'
+      | 'onExit'
+      | 'onExiting'
+      | 'onExited'
+    > {
   open?: boolean
   title?: ReactNode
   borderRadius?: number
@@ -31,6 +42,12 @@ export const ActionSheet = ({
   from = 'bottom',
   maxContentHeight = 'calc(100vh - 256px)',
   onClose,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
   ...props
 }: ActionSheetProps) => {
   const ref = useRef(null)
@@ -44,6 +61,12 @@ export const ActionSheet = ({
       appear
       mountOnEnter
       unmountOnExit
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
     >
       {(transitionStatus) => (
         <ActionSheetContext.Provider
