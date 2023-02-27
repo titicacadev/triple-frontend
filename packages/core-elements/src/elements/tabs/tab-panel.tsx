@@ -17,11 +17,11 @@ export const TabPanel = <Value extends number | string | symbol>({
 
   return (
     <div
-      id={`${tabs.id}-panel-${value}`}
+      id={`${tabs.id}-panel-${value.toString()}`}
       role="tabpanel"
       hidden={tabs.value !== value}
       tabIndex={0}
-      aria-labelledby={`${tabs.id}-tab-${value}`}
+      aria-labelledby={`${tabs.id}-tab-${value.toString()}`}
     >
       {children}
     </div>

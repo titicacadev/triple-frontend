@@ -53,10 +53,10 @@ function TabBaseComponent<Value extends number | string | symbol>(
   return (
     <button
       ref={ref}
-      id={`${tabs.id}-tab-${value}`}
+      id={`${tabs.id}-tab-${value.toString()}`}
       role="tab"
       tabIndex={isSelected ? 0 : -1}
-      aria-controls={`${tabs.id}-panel-${value}`}
+      aria-controls={`${tabs.id}-panel-${value.toString()}`}
       aria-selected={isSelected}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
