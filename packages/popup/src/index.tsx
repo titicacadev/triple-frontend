@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Navbar } from '@titicaca/core-elements'
 import { Dialog } from '@headlessui/react'
 import { Transition, TransitionStatus } from 'react-transition-group'
+import { TransitionProps } from 'react-transition-group/Transition'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -50,27 +51,21 @@ const transitionStyles: Record<TransitionStatus, CSSProperties> = {
   unmounted: {},
 }
 
-/**
- * 밑에서 올라오는 팝업입니다.
- */
-function Popup({
-  open = false,
-  borderless = false,
-  onClose,
-  icon = 'close',
-  title,
-  noNavbar,
-  children,
-  ...props
-}: PropsWithChildren<{
+export interface PopupProps
+  extends PropsWithChildren,
+    Pick<
+      TransitionProps,
+      | 'onEnter'
+      | 'onEntering'
+      | 'onEntered'
+      | 'onExit'
+      | 'onExiting'
+      | 'onExited'
+    > {
   /**
    * 팝업을 열지 결정합니다.
    */
   open: boolean
-  /**
-   * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
-   */
-  onClose: () => void
   /**
    * Navbar의 border를 그릴지 결정합니다.
    */
@@ -82,7 +77,31 @@ function Popup({
    * Navbar의 렌더링을 생략할 수 있도록 합니다.
    */
   noNavbar?: boolean
-}>) {
+  /**
+   * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
+   */
+  onClose: () => void
+}
+
+/**
+ * 밑에서 올라오는 팝업입니다.
+ */
+function Popup({
+  open = false,
+  borderless = false,
+  icon = 'close',
+  title,
+  noNavbar,
+  children,
+  onClose,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
+  ...props
+}: PopupProps) {
   const ref = useRef(null)
   const panelRef = useRef(null)
 
@@ -94,6 +113,12 @@ function Popup({
       appear
       mountOnEnter
       unmountOnExit
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
     >
       {(transitionStatus) => (
         <Dialog
