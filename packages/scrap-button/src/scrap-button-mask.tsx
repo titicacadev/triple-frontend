@@ -1,4 +1,5 @@
 import {
+  Attributes,
   ComponentType,
   createContext,
   PropsWithChildren,
@@ -14,7 +15,7 @@ export function ScrapButtonMask({
   return <MaskContext.Provider value={masked}>{children}</MaskContext.Provider>
 }
 
-export function withMask<P>(Component: ComponentType<P>) {
+export function withMask<P extends Attributes>(Component: ComponentType<P>) {
   function ComponentWithMask(props: P) {
     const masked = useContext(MaskContext)
 
