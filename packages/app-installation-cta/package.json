@@ -32,13 +32,13 @@
     "@titicaca/intersection-observer": "^12.11.0",
     "@titicaca/type-definitions": "^12.11.0",
     "@titicaca/web-storage": "^12.11.0",
+    "@types/react-transition-group": "^4.4.5",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@titicaca/i18n": "^12.11.0",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.11.0",
-    "@types/react-transition-group": "^4.4.5"
+    "@titicaca/react-contexts": "^12.11.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
