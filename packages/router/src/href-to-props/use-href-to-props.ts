@@ -220,7 +220,7 @@ export function useHrefToProps(params?: {
         }
       } catch (error) {
         if (onError) {
-          onError(error)
+          onError(error as Error)
         }
 
         return { href, target: 'new', allowSource: 'app-with-session' }

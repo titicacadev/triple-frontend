@@ -41,7 +41,7 @@ export function storageAvailable(type: WebStorageType) {
     return true
   } catch (e) {
     return (
-      checkQuotaExceededError(e) &&
+      checkQuotaExceededError(e as Error) &&
       // acknowledge QuotaExceededError only if there's something already stored
       storage &&
       storage.length !== 0

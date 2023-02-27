@@ -54,7 +54,7 @@ function getCookieStorage({
         // TODO: 초기화되는 로직이 쿠키와 Storage가 약간 다르다.
         return cookie.set(addCookieKeyPrefix(key), value)
       } catch (error) {
-        if (checkQuotaExceededError(error)) {
+        if (checkQuotaExceededError(error as Error)) {
           handleError({
             errorType: 'quotaExceeded',
             storageType,
@@ -109,7 +109,7 @@ export function getWebStorage(
       try {
         return storage.setItem(key, value)
       } catch (error) {
-        if (checkQuotaExceededError(error)) {
+        if (checkQuotaExceededError(error as Error)) {
           handleError({
             errorType: 'quotaExceeded',
             storageType: type,
