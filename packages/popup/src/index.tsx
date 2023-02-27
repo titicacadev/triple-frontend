@@ -137,14 +137,12 @@ function Popup({
             }}
             {...props}
           >
-            <PopupContainer>
-              {noNavbar ? null : (
-                <Navbar borderless={borderless} title={title}>
-                  <Navbar.Item floated="left" icon={icon} onClick={onClose} />
-                </Navbar>
-              )}
-              {children}
-            </PopupContainer>
+            {noNavbar ? null : (
+              <Navbar borderless={borderless} title={title}>
+                <Navbar.Item floated="left" icon={icon} onClick={onClose} />
+              </Navbar>
+            )}
+            {children}
           </Dialog.Panel>
         </Dialog>
       )}
