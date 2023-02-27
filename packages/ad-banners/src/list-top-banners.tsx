@@ -18,8 +18,8 @@ import VerticalListView from './vertical-list-view'
 
 declare global {
   interface Window {
-    requestIdleCallback?(callback: () => void, timeout?: number): number
-    cancelIdleCallback?(handle: number): void
+    requestIdleCallback(callback: () => void, timeout?: number): number
+    cancelIdleCallback(handle: number): void
   }
 }
 
