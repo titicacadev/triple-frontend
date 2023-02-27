@@ -2,7 +2,7 @@ import {
   useEventTrackerWithMetadata,
   useScrapsContext,
 } from '@titicaca/react-contexts'
-import { ComponentType, MouseEventHandler } from 'react'
+import { Attributes, ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 
 import { withMask } from './scrap-button-mask'
@@ -141,7 +141,7 @@ function OverlayScrapButton<R extends ScrapableResource>({
   )
 }
 
-function composedHocs<P>(Component: ComponentType<P>) {
+function composedHocs<P>(Component: ComponentType<P & Attributes>) {
   return withMask(Component)
 }
 

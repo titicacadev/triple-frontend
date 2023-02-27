@@ -1,4 +1,5 @@
 import {
+  Attributes,
   ComponentType,
   createContext,
   PropsWithChildren,
@@ -76,8 +77,8 @@ export function LoginCtaModalProvider({
   )
 }
 
-export function withLoginCtaModal<P>(Component: ComponentType<P>) {
-  return function WithLoginCtaModal(props: P) {
+export function withLoginCtaModal<P>(Component: ComponentType<P & Attributes>) {
+  return function WithLoginCtaModal(props: P & Attributes) {
     return (
       <LoginCtaModalProvider>
         <Component {...props} />
