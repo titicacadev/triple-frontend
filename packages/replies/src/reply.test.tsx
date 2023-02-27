@@ -44,9 +44,12 @@ beforeEach(() => {
     useSessionCallback as unknown as jest.MockedFunction<
       typeof useSessionCallback
     >
-  ).mockImplementation((fn) => {
-    return fn
-  })
+  )
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    .mockImplementation((fn) => {
+      return fn
+    })
 })
 
 const MOCKED_REPLY = {
