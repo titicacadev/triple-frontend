@@ -19,6 +19,8 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
   right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   z-index: 9999;
+  transition: transform ${TRANSITION_DURATION}ms ease-in-out;
+  transform: 'translateY(100%)';
 `
 
 const transitionStyles: Record<TransitionStatus, CSSProperties> = {
@@ -64,8 +66,6 @@ export function Drawer({
             duration={TRANSITION_DURATION}
             overflow={overflow}
             style={{
-              transition: `transform ${TRANSITION_DURATION}ms ease-in-out`,
-              transform: 'translateY(100%)',
               ...transitionStyles[transitionStatus],
             }}
           >

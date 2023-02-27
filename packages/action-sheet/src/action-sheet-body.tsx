@@ -19,6 +19,7 @@ import { useActionSheet } from './action-sheet-context'
 interface SheetProps {
   borderRadius: number
   bottomSpacing: number
+  duration: number
   from: 'top' | 'bottom'
   padding: MarginPadding
 }
@@ -34,6 +35,8 @@ const Sheet = styled.div<SheetProps>`
   padding-top: ${({ from }) => (from === 'bottom' ? 30 : 20)}px;
   z-index: 9999;
   outline: none;
+  transition: transform ${({ duration }) => duration}ms ease-in;
+  transform: translate3d(0, ${({ from }) => (from === 'top' ? -100 : 100)}%, 0);
 
   ${({ from, borderRadius }) => {
     switch (from) {
@@ -107,11 +110,10 @@ export const ActionSheetBody = ({
       tabIndex={-1}
       borderRadius={borderRadius}
       bottomSpacing={bottomSpacing}
+      duration={duration}
       from={from}
       padding={{ bottom: bottomSpacing }}
       style={{
-        transition: `transform ${duration}ms ease-in`,
-        transform: `translate3d(0, ${from === 'top' ? -100 : 100}%, 0)`,
         ...transitionStyles(transitionStatus, from),
       }}
       {...props}
