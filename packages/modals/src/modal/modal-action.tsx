@@ -15,4 +15,5 @@ export const ModalAction = styled.a<{ color?: GlobalColors }>`
   font-weight: bold;
   text-align: center;
   color: ${({ color }) => ACTION_COLORS[color || 'gray']};
+  cursor: pointer;
 `
