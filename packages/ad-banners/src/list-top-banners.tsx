@@ -18,8 +18,12 @@ import VerticalListView from './vertical-list-view'
 
 declare global {
   interface Window {
-    requestIdleCallback(callback: () => void, timeout?: number): number
-    cancelIdleCallback(handle: number): void
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    requestIdleCallback?(callback: () => void, timeout?: number): number
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    cancelIdleCallback?(handle: number): void
   }
 }
 
