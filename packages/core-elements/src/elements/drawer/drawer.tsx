@@ -55,6 +55,9 @@ export interface DrawerProps
   overflow?: string
 }
 
+/**
+ * Drawer
+ */
 export function Drawer({
   active,
   overflow,
