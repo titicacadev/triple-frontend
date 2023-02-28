@@ -14,6 +14,7 @@ import { mockLocation } from './utils/location'
 
 afterEach(() => {
   mockLocation.afterEach()
+  mockResizeObserver()
 })
 
 test('브라우저를 허용하지 않는 링크라면 브라우저 환경에서 클릭했을 때 링크를 열지 않고 앱 유도 모달을 표시합니다.', () => {
@@ -173,4 +174,16 @@ function createTripleClientMetadataProvider({
       </TripleClientMetadataProvider>
     )
   }
+}
+
+function mockResizeObserver() {
+  class ResizeObserver {
+    public observe() {}
+
+    public unobserve() {}
+
+    public disconnect() {}
+  }
+
+  window.ResizeObserver = ResizeObserver
 }
