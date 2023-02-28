@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 12.11.0
+
+### common
+
+- Typescript 최신버전 적용 및 타입에러 수정 [#2435](https://github.com/titicacadev/triple-frontend/pull/2435)
+
+### ab-experiments
+
+- CSR 방식으로 A/B테스트 메타데이터를 가져올 때 세션 유무는 체크하지 않도록 합니다. [#2436](https://github.com/titicacadev/triple-frontend/pull/2436)
+
+### triple-header
+
+- 트리플헤더 날아오기 효과의 속도를 변경합니다. [#2430](https://github.com/titicacadev/triple-frontend/pull/2414)
+
 ## 12.10.0
 
 ### meta-tags
