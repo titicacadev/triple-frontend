@@ -12,7 +12,7 @@
 
 ### triple-header
 
-- 트리플헤더 날아오기 효과의 속도를 변경합니다. [#2430](https://github.com/titicacadev/triple-frontend/pull/2414)
+- 트리플헤더 날아오기 효과의 속도를 변경합니다. [#2414](https://github.com/titicacadev/triple-frontend/pull/2414)
 
 ## 12.10.0
 
