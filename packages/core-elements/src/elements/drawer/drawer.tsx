@@ -4,7 +4,7 @@ import { TransitionProps } from 'react-transition-group/Transition'
 import { CSSProperties, PropsWithChildren, useRef } from 'react'
 import { Portal } from '@headlessui/react'
 
-import { Container } from '../container'
+import { FlexBox } from '../flex-box'
 
 const TRANSITION_DURATION = 300
 
@@ -15,9 +15,9 @@ interface DrawerContainerProps {
 
 const DrawerContainer = styled.div<DrawerContainerProps>`
   position: fixed;
+  max-width: 768px;
+  width: 100%;
   bottom: 0;
-  left: 0;
-  right: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   z-index: 9999;
   transition: transform ${TRANSITION_DURATION}ms ease-in-out;
@@ -88,23 +88,18 @@ export function Drawer({
     >
       {(transitionStatus) => (
         <Portal>
-          <DrawerContainer
-            ref={drawerContainerRef}
-            duration={TRANSITION_DURATION}
-            overflow={overflow}
-            style={{
-              ...transitionStyles[transitionStatus],
-            }}
-          >
-            <Container
-              centered
-              css={{
-                maxWidth: 768,
+          <FlexBox flex justifyContent="center">
+            <DrawerContainer
+              ref={drawerContainerRef}
+              duration={TRANSITION_DURATION}
+              overflow={overflow}
+              style={{
+                ...transitionStyles[transitionStatus],
               }}
             >
               {children}
-            </Container>
-          </DrawerContainer>
+            </DrawerContainer>
+          </FlexBox>
         </Portal>
       )}
     </Transition>
