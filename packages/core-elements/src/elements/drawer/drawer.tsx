@@ -20,7 +20,7 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
   bottom: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   z-index: 9999;
-  transition: transform ${TRANSITION_DURATION}ms ease-in-out;
+  transition: transform ${({ duration }) => duration}ms ease-in-out;
   transform: 'translateY(100%)';
 `
 
