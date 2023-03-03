@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/router",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Triple Universal Router Component and Functions",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/router",
@@ -20,15 +20,15 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/modals": "^12.11.0",
-    "@titicaca/view-utilities": "^12.11.0",
+    "@titicaca/modals": "^12.11.1",
+    "@titicaca/view-utilities": "^12.11.1",
     "qs": "^6.9.4"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.11.0",
+    "@titicaca/i18n": "^12.11.1",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.11.0",
-    "@titicaca/react-triple-client-interfaces": "^12.11.0",
+    "@titicaca/react-contexts": "^12.11.1",
+    "@titicaca/react-triple-client-interfaces": "^12.11.1",
     "@types/qs": "^6.9.5",
     "@types/webpack": "^4.41.25"
   },

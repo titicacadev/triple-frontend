@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-triple-client-interfaces",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "React module for Triple native client interfaces",
   "main": "lib/index.js",
   "files": [
@@ -13,12 +13,12 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/view-utilities": "^12.11.0",
+    "@titicaca/view-utilities": "^12.11.1",
     "qs": "^6.9.4",
     "semver": "^7.3.5"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.11.0",
+    "@titicaca/react-contexts": "^12.11.1",
     "@titicaca/triple-web-to-native-interfaces": "1.7.0",
     "@types/qs": "^6.9.5",
     "@types/semver": "^7.3.6"

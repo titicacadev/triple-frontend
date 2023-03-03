@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/recommended-contents",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Recommended contents list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/recommended-contents",
@@ -20,8 +20,8 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/intersection-observer": "^12.11.0"
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/intersection-observer": "^12.11.1"
   },
   "peerDependencies": {
     "react": "^18.0",

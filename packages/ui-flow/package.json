@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -26,14 +26,14 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.11.0",
-    "@titicaca/modals": "^12.11.0",
-    "@titicaca/react-contexts": "^12.11.0",
-    "@titicaca/view-utilities": "^12.11.0",
+    "@titicaca/fetcher": "^12.11.1",
+    "@titicaca/modals": "^12.11.1",
+    "@titicaca/react-contexts": "^12.11.1",
+    "@titicaca/view-utilities": "^12.11.1",
     "qs": "^6.9.0"
   },
   "devDependencies": {
-    "@titicaca/react-triple-client-interfaces": "^12.11.0",
+    "@titicaca/react-triple-client-interfaces": "^12.11.1",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/drawer-button",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Button in drawer",
   "keywords": [
     "button",
@@ -24,7 +24,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0"
+    "@titicaca/core-elements": "^12.11.1"
   },
   "peerDependencies": {
     "react": "^18.0",

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/content-sharing",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Content Sharing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/content-sharing",
@@ -20,7 +20,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0"
+    "@titicaca/core-elements": "^12.11.1"
   },
   "peerDependencies": {
     "react": "^18.0",

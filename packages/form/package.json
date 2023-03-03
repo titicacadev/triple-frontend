@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/form",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Triple Form Components",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/form",
@@ -20,14 +20,14 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.11.0",
-    "@titicaca/color-palette": "^12.11.0",
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/drawer-button": "^12.11.0",
+    "@titicaca/action-sheet": "^12.11.1",
+    "@titicaca/color-palette": "^12.11.1",
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/drawer-button": "^12.11.1",
     "react-input-mask": "^2.0.4"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.11.0",
+    "@titicaca/i18n": "^12.11.1",
     "@titicaca/next-i18next": "^13.8.4"
   },
   "peerDependencies": {

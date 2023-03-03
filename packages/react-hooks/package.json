@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-hooks",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "triple frontend custom hooks",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-hooks",
@@ -20,7 +20,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.11.0",
+    "@titicaca/fetcher": "^12.11.1",
     "lottie-web": "^5.7.4",
     "react-fast-compare": "^2.0.4",
     "scroll-to-element": "^2.0.3"

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scrap-button",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Listing filter UI",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/scrap-button",
@@ -20,7 +20,7 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.11.0"
+    "@titicaca/react-contexts": "^12.11.1"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

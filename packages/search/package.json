@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "search",
   "keywords": [
     "search"
@@ -23,13 +23,13 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/react-hooks": "^12.11.0",
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/react-hooks": "^12.11.1",
     "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
-    "@titicaca/view-utilities": "^12.11.0"
+    "@titicaca/view-utilities": "^12.11.1"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.11.0"
+    "@titicaca/react-contexts": "^12.11.1"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/public-header",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Common Header for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/public-header",
@@ -20,14 +20,14 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.11.0",
-    "@titicaca/view-utilities": "^12.11.0"
+    "@titicaca/color-palette": "^12.11.1",
+    "@titicaca/view-utilities": "^12.11.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.11.0",
+    "@titicaca/i18n": "^12.11.1",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.11.0",
-    "@titicaca/react-triple-client-interfaces": "^12.11.0"
+    "@titicaca/react-contexts": "^12.11.1",
+    "@titicaca/react-triple-client-interfaces": "^12.11.1"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

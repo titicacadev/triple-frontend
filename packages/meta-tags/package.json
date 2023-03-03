@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Triple Web Application Meta tag modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/meta-tags",
@@ -20,9 +20,9 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.11.0",
+    "@titicaca/i18n": "^12.11.1",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.11.0"
+    "@titicaca/react-contexts": "^12.11.1"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

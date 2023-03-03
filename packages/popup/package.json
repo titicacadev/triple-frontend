@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Triple Popup",
   "keywords": [
     "triple",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@react-aria/focus": "^3.10.1",
     "@react-aria/overlays": "^3.12.1",
-    "@titicaca/core-elements": "^12.11.0",
+    "@titicaca/core-elements": "^12.11.1",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {

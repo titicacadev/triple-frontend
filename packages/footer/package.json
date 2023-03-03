@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/footer",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Common Footer for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/footer",
@@ -20,13 +20,13 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/router": "^12.11.0",
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/router": "^12.11.1",
     "@types/qs": "^6.9.0",
     "qs": "^6.9.0"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.11.0"
+    "@titicaca/react-contexts": "^12.11.1"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

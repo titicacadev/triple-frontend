@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/author",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "Triple Author UI elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/author",
@@ -20,9 +20,9 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.11.0",
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/type-definitions": "^12.11.0"
+    "@titicaca/color-palette": "^12.11.1",
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/type-definitions": "^12.11.1"
   },
   "peerDependencies": {
     "react": "^18.0",

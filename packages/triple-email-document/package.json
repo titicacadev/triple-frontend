@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-email-document",
-  "version": "12.11.0",
+  "version": "12.11.1",
   "description": "EmailDocument: Formatted Email System",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-email-document",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.11.0",
-    "@titicaca/type-definitions": "^12.11.0"
+    "@titicaca/core-elements": "^12.11.1",
+    "@titicaca/type-definitions": "^12.11.1"
   },
   "peerDependencies": {
     "react": "^18.0",
