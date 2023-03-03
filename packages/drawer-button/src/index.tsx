@@ -19,6 +19,7 @@ export type DrawerButtonProps = Omit<DrawerProps, 'overflow'> & ButtonProps
 function DrawerButton({
   children,
   active = false,
+  duration,
   onEnter,
   onEntering,
   onEntered,
@@ -30,6 +31,7 @@ function DrawerButton({
   return (
     <Drawer
       active={active}
+      duration={duration}
       overflow="hidden"
       onEnter={onEnter}
       onEntering={onEntering}
