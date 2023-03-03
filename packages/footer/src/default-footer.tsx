@@ -11,17 +11,16 @@ export const FooterFrame = styled.footer`
 
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  className?: string
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  className,
+  ...props
 }: DefaultFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
-    <FooterFrame className={className}>
+    <FooterFrame {...props}>
       <Container
         centered
         css={{
