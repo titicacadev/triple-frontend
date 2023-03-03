@@ -52,6 +52,7 @@ export interface DrawerProps
       | 'onExited'
     > {
   active?: boolean
+  duration?: number
   overflow?: string
 }
 
@@ -60,6 +61,7 @@ export interface DrawerProps
  */
 export function Drawer({
   active,
+  duration = TRANSITION_DURATION,
   overflow,
   children,
   onEnter,
@@ -76,7 +78,7 @@ export function Drawer({
       nodeRef={drawerContainerRef}
       in={active}
       appear
-      timeout={TRANSITION_DURATION}
+      timeout={duration}
       mountOnEnter
       unmountOnExit
       onEnter={onEnter}
@@ -91,7 +93,7 @@ export function Drawer({
           <FlexBox flex justifyContent="center">
             <DrawerContainer
               ref={drawerContainerRef}
-              duration={TRANSITION_DURATION}
+              duration={duration}
               overflow={overflow}
               style={{
                 ...transitionStyles[transitionStatus],
