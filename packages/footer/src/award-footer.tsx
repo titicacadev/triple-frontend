@@ -67,12 +67,12 @@ const AwardFlexBox = styled(FlexBox).attrs({
 
 export function AwardFooter({
   hideAppDownloadButton = false,
-  className,
+  ...props
 }: AwardFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
-    <FooterFrame className={className}>
+    <FooterFrame {...props}>
       <Container
         centered
         css={{
