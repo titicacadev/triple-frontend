@@ -3,7 +3,7 @@ const path = require('path')
 
 const { koCommonWeb } = require('./assets/ko/common-web')
 const { jaCommonWeb } = require('./assets/ja/common-web')
-const { zhCommonWeb } = require('./assets/zh/common-web')
+const { zhTwCommonWeb } = require('./assets/zh-TW/common-web')
 
 const LOCALE_PATH = './public/static/locales'
 
@@ -17,10 +17,10 @@ const jaLocal =
     ? require(path.resolve(LOCALE_PATH, 'ja', 'local.json'))
     : require('/public/static/locales/ja/local.json')
 
-const zhLocal =
+const zhTwLocal =
   typeof window === 'undefined'
-    ? require(path.resolve(LOCALE_PATH, 'zh', 'local.json'))
-    : require('/public/static/locales/zh/local.json')
+    ? require(path.resolve(LOCALE_PATH, 'zh-TW', 'local.json'))
+    : require('/public/static/locales/zh-TW/local.json')
 
 const resources = {
   ko: {
@@ -31,16 +31,16 @@ const resources = {
     local: jaLocal,
     'common-web': jaCommonWeb,
   },
-  zh: {
-    local: zhLocal,
-    'common-web': zhCommonWeb,
+  'zh-TW': {
+    local: zhTwLocal,
+    'common-web': zhTwCommonWeb,
   },
 }
 
 module.exports = {
   i18n: {
     defaultLocale: 'ko',
-    locales: ['ko', 'ja', 'zh'],
+    locales: ['ko', 'ja', 'zh-TW'],
   },
   localePath:
     typeof window === 'undefined'
