@@ -8,6 +8,7 @@ import {
   Text,
   Button,
   MarginPadding,
+  paddingMixin,
 } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -33,6 +34,7 @@ const FloatedFrame = styled(Container)<{ padding: MarginPadding }>`
   border-top: 1px solid #efefef;
   background: #fff;
 
+  ${paddingMixin}
   @supports (padding: max(0px)) and (padding: env(safe-area-inset-bottom)) {
     ${({ padding }) =>
       padding?.bottom
