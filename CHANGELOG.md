@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 12.12.0
+
+- Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
+
+  - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
+
+  - 변경된 컴포넌트:
+
+    - action-sheet
+    - core-elements/Drawer
+    - drawer-button
+    - modals
+    - popup
+
+  - CSSTransition -> Transition으로 변경합니다.
+  - ActionSheet, Modals, Popup이 열려 있으면 스크롤이 막힙니다.
+  - Modal.Action에 cursor: pointer를 추가합니다.
+  - Drawer, DrawerButton에 `duration` prop을 추가합니다.
+
 ## 12.11.0
 
 ### common
