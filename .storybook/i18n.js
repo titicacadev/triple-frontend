@@ -3,9 +3,9 @@ import { appWithTranslation } from '@titicaca/next-i18next'
 
 import { koCommonWeb } from '@titicaca/i18n/src/assets/ko/common-web'
 import { jaCommonWeb } from '@titicaca/i18n/src/assets/ja/common-web'
-import { zhCommonWeb } from '@titicaca/i18n/src/assets/zh/common-web'
+import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
 
-const locales = ['ko', 'ja', 'zh']
+const locales = ['ko', 'ja', 'zh-TW']
 const resources = {
   ko: {
     'common-web': koCommonWeb,
@@ -13,8 +13,8 @@ const resources = {
   ja: {
     'common-web': jaCommonWeb,
   },
-  zh: {
-    'common-web': zhCommonWeb,
+  'zh-TW': {
+    'common-web': zhTwCommonWeb,
   },
 }
 
