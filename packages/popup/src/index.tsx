@@ -94,6 +94,7 @@ function Popup({
   return (
     <Transition
       show={open}
+      appear
       as={Fragment}
       beforeEnter={onEnter}
       afterEnter={onEntered}
