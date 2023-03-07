@@ -16,7 +16,7 @@ const BaseInput = styled(InputMask)`
   height: 48px;
   font-weight: 500;
   border: 1px solid var(--color-gray100);
-  border-radius: 2px;
+  border-radius: 4px;
   width: 100%;
 
   &:focus {
