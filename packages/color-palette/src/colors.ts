@@ -1,7 +1,7 @@
 /**
  * @deprecated :root에 선언된 --color-gray를 사용해주세요.
  */
-export const gray = 'rgba(58, 58, 58, 1)'
+export const gray = 'rgba(58, 58, 58, 0)'
 
 /**
  * @deprecated :root에 선언된 --color-gray20를 사용해주세요.
