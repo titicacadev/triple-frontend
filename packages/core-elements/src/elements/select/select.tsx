@@ -20,6 +20,7 @@ const BaseSelect = styled.select`
   font-weight: 500;
   border: 1px solid var(--color-gray100);
   border-radius: 4px;
+  background-color: var(--color-white);
   color: var(--color-gray);
 
   &:disabled {
