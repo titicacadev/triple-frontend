@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [12.12.0](https://github.com/titicacadev/triple-frontend/compare/v12.11.0...v12.12.0) (2023-03-07)
+
+**Note:** Version bump only for package @titicaca/react-contexts
+
+
+
+
+
 ## 0.4.7 (2019-07-02)
 
 - `ScrapsProvider`에 초기 scraps 정보를 받는 `scraps` prop 추가.

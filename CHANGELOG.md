@@ -1,3 +1,41 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [12.12.0](https://github.com/titicacadev/triple-frontend/compare/v12.11.0...v12.12.0) (2023-03-07)
+
+
+### Bug Fixes
+
+* **action-sheet:** overlay에 pointer-event none 스타일 추가 ([0ab573b](https://github.com/titicacadev/triple-frontend/commit/0ab573bb1a82135a0ad29f3c06797b31b2cdaf21))
+* **core-elements:** drawer 닫힐 때 portal unmount ([55ed020](https://github.com/titicacadev/triple-frontend/commit/55ed020a7b126d56861480473f9735c2e69fde3a))
+* **core-elements:** Drawer는 기본적으로 unmountOnExit ([82a78ba](https://github.com/titicacadev/triple-frontend/commit/82a78ba234e8d7bf0b47dbdee9c1b2d57f7a4ee1))
+* **core-elements:** Drawer의 transition duration을 전달 받도록 수정 ([0c4a257](https://github.com/titicacadev/triple-frontend/commit/0c4a257c68332696e4803889fdb95132d73e86f1))
+* **core-elements:** Headless Portal 사용 ([aa38597](https://github.com/titicacadev/triple-frontend/commit/aa38597893d8c3ae8a78c521279beb1334f7f695))
+* **core-elements:** Windows에서 Drawer가 가운데 정렬되도록 수정 ([319a90c](https://github.com/titicacadev/triple-frontend/commit/319a90c5b5ad0838ea86a3f01035750b26ae0b1c))
+* **default-footer:** className props 제거하고 rest props 전부 전달하도록 변경 ([c6de2fe](https://github.com/titicacadev/triple-frontend/commit/c6de2fe5257d957169dce613609b0363681c8f78))
+* dialog panel에 outline 제거 ([62597e2](https://github.com/titicacadev/triple-frontend/commit/62597e24998a9a6edc473c6a5dd688cd908ba692))
+* Dialog.Panel을 기본으로 focus ([7fbc138](https://github.com/titicacadev/triple-frontend/commit/7fbc13889bfa053be6355005d3991138c045da7d))
+* gray color value ([bb1d201](https://github.com/titicacadev/triple-frontend/commit/bb1d201b5fc3ebcea0b2c7c4f1aee569db686913))
+* **modals:** 닫힐 때 Unmount ([f78f3f3](https://github.com/titicacadev/triple-frontend/commit/f78f3f35780cf934d0eceb745889a5e12a264689))
+* **popup:** 중복된 컴포넌트 제거 ([ad655f7](https://github.com/titicacadev/triple-frontend/commit/ad655f78b635b46c5651b6ee0666f3c3fd59704f))
+* 최초 등장 애니메이션이 항상 작동하도록 수정 ([c058e14](https://github.com/titicacadev/triple-frontend/commit/c058e1465616b3da75946eef6a3d6956a96f383c))
+
+
+### Features
+
+* constant 추가 ([e7a43d6](https://github.com/titicacadev/triple-frontend/commit/e7a43d631ec7048d04aa86a2dd1f4c8615a786f4))
+* **default-footer:** styled component css props 사용 가능하도록 className 추가 ([5b3e0e2](https://github.com/titicacadev/triple-frontend/commit/5b3e0e2eaf6508a6e642b2febf44723b24e0a9f6))
+* Drawer, DrawerButton에 duration prop 추가 ([14954bc](https://github.com/titicacadev/triple-frontend/commit/14954bc254a3dd2a43130e1fbc8a3cf793e04c6e))
+* **modals:** Modal.Action에 포인터 추가 ([6fc3d84](https://github.com/titicacadev/triple-frontend/commit/6fc3d842ce0eba70ad97a526d8d3eb9f8d5d70b6))
+* testversion script 추가 ([2e9dd14](https://github.com/titicacadev/triple-frontend/commit/2e9dd14cd1ca0c90af7a06cafa8e49c88d714800))
+* Transtion event callback prop 추가 ([76ee661](https://github.com/titicacadev/triple-frontend/commit/76ee66138fe510a70ccdb3f722f12fdf7acf3032))
+
+
+
+
+
 # CHANGELOG
 
 ## 12.11.0
