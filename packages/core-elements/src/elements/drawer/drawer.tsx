@@ -61,29 +61,32 @@ export function Drawer({
   return (
     <Transition
       show={active}
+      appear
       as={Fragment}
       beforeEnter={onEnter}
       afterEnter={onEntered}
       beforeLeave={onExit}
       afterLeave={onExited}
     >
-      <Portal>
-        <FlexBox flex justifyContent="center">
-          <Transition.Child
-            as={Fragment}
-            enter="enter"
-            enterFrom="enter-from"
-            enterTo="enter-to"
-            leave="leave"
-            leaveFrom="leave-from"
-            leaveTo="leave-to"
-          >
-            <DrawerContainer duration={duration} overflow={overflow}>
-              {children}
-            </DrawerContainer>
-          </Transition.Child>
-        </FlexBox>
-      </Portal>
+      <div>
+        <Portal>
+          <FlexBox flex justifyContent="center">
+            <Transition.Child
+              as={Fragment}
+              enter="enter"
+              enterFrom="enter-from"
+              enterTo="enter-to"
+              leave="leave"
+              leaveFrom="leave-from"
+              leaveTo="leave-to"
+            >
+              <DrawerContainer duration={duration} overflow={overflow}>
+                {children}
+              </DrawerContainer>
+            </Transition.Child>
+          </FlexBox>
+        </Portal>
+      </div>
     </Transition>
   )
 }

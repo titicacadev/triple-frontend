@@ -47,6 +47,7 @@ export const ActionSheet = ({
     <ActionSheetContext.Provider value={{ open, onClose }}>
       <Transition
         show={open}
+        appear
         as={Fragment}
         beforeEnter={onEnter}
         afterEnter={onEntered}
