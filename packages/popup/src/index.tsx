@@ -31,7 +31,7 @@ const PopupContainer = styled.div`
 
   &.enter,
   &.leave {
-    transition: transform ${TRANSITION_DURATION}ms ease-in;
+    transition: transform ${TRANSITION_DURATION}ms ease-out;
   }
 
   &.enter-from,
