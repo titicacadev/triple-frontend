@@ -3,18 +3,11 @@ import {
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import {
-  CSSProperties,
-  MutableRefObject,
-  PropsWithChildren,
-  ReactNode,
-} from 'react'
+import { Fragment, MutableRefObject, PropsWithChildren, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
-import { Dialog } from '@headlessui/react'
-import { TransitionStatus } from 'react-transition-group'
+import { Dialog, Transition } from '@headlessui/react'
 
 import { ActionSheetTitle } from './action-sheet-title'
-import { useActionSheet } from './action-sheet-context'
 
 interface SheetProps {
   borderRadius: number
@@ -35,8 +28,6 @@ const Sheet = styled.div<SheetProps>`
   padding-top: ${({ from }) => (from === 'bottom' ? 30 : 20)}px;
   z-index: 9999;
   outline: none;
-  transition: transform ${({ duration }) => duration}ms ease-in;
-  transform: translate3d(0, ${({ from }) => (from === 'top' ? -100 : 100)}%, 0);
 
   ${({ from, borderRadius }) => {
     switch (from) {
@@ -54,6 +45,21 @@ const Sheet = styled.div<SheetProps>`
         `
     }
   }}
+
+  &.enter,
+  &.leave {
+    transition: transform ${({ duration }) => duration}ms ease-in;
+  }
+
+  &.enter-from,
+  &.leave-to {
+    transform: translateY(${({ from }) => (from === 'top' ? -100 : 100)}%);
+  }
+
+  &.enter-to,
+  &.leave-from {
+    transform: translateY(0);
+  }
 `
 
 const Content = styled(Container)`
@@ -63,22 +69,6 @@ const Content = styled(Container)`
     display: none;
   }
 `
-
-const transitionStyles = (
-  status: TransitionStatus,
-  from: 'top' | 'bottom',
-): CSSProperties => {
-  switch (status) {
-    case 'entering':
-    case 'entered':
-      return { transform: `translate3d(0, 0, 0)` }
-    case 'exiting':
-    case 'exited':
-      return { transform: `translate3d(0, ${from === 'top' ? -100 : 100}%, 0)` }
-    default:
-      return {}
-  }
-}
 
 export interface ActionSheetBodyProps extends PropsWithChildren {
   borderRadius: number
@@ -101,32 +91,37 @@ export const ActionSheetBody = ({
   panelRef,
   ...props
 }: ActionSheetBodyProps) => {
-  const { transitionStatus } = useActionSheet()
-
   return (
-    <Dialog.Panel
-      as={Sheet}
-      ref={panelRef}
-      tabIndex={-1}
-      borderRadius={borderRadius}
-      bottomSpacing={bottomSpacing}
-      duration={duration}
-      from={from}
-      padding={{ bottom: bottomSpacing }}
-      style={{
-        ...transitionStyles(transitionStatus, from),
-      }}
-      {...props}
+    <Transition.Child
+      as={Fragment}
+      enter="enter"
+      enterFrom="enter-from"
+      enterTo="enter-to"
+      leave="leave"
+      leaveFrom="leave-from"
+      leaveTo="leave-to"
     >
-      {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
-      <Content
-        css={{
-          maxHeight: maxContentHeight,
-          padding: '0 25px',
-        }}
+      <Dialog.Panel
+        as={Sheet}
+        ref={panelRef}
+        tabIndex={-1}
+        borderRadius={borderRadius}
+        bottomSpacing={bottomSpacing}
+        duration={duration}
+        from={from}
+        padding={{ bottom: bottomSpacing }}
+        {...props}
       >
-        {children}
-      </Content>
-    </Dialog.Panel>
+        {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
+        <Content
+          css={{
+            maxHeight: maxContentHeight,
+            padding: '0 25px',
+          }}
+        >
+          {children}
+        </Content>
+      </Dialog.Panel>
+    </Transition.Child>
   )
 }

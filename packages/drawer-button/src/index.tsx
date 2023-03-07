@@ -21,10 +21,8 @@ function DrawerButton({
   active = false,
   duration,
   onEnter,
-  onEntering,
   onEntered,
   onExit,
-  onExiting,
   onExited,
   ...props
 }: DrawerButtonProps) {
@@ -34,10 +32,8 @@ function DrawerButton({
       duration={duration}
       overflow="hidden"
       onEnter={onEnter}
-      onEntering={onEntering}
       onEntered={onEntered}
       onExit={onExit}
-      onExiting={onExiting}
       onExited={onExited}
     >
       <Container backgroundColor="white">
