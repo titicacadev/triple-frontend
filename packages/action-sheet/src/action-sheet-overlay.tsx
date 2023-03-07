@@ -1,8 +1,6 @@
-import { CSSProperties } from 'react'
-import { TransitionStatus } from 'react-transition-group'
 import styled from 'styled-components'
-
-import { useActionSheet } from './action-sheet-context'
+import { Transition } from '@headlessui/react'
+import { Fragment } from 'react'
 
 export const Overlay = styled.div<{ duration: number }>`
   position: fixed;
@@ -13,41 +11,39 @@ export const Overlay = styled.div<{ duration: number }>`
   width: 100vw;
   background-color: rgba(58, 58, 58, 0.7);
   z-index: 9999;
-  transition: opacity ${({ duration }) => duration}ms ease-in;
-  opacity: 0;
-`
 
-const transitionStyles: Record<TransitionStatus, CSSProperties> = {
-  entering: {
-    opacity: 1,
-  },
-  entered: {
-    opacity: 1,
-  },
-  exiting: {
-    opacity: 0,
-    pointerEvents: 'none',
-  },
-  exited: {
-    opacity: 0,
-    pointerEvents: 'none',
-  },
-  unmounted: {},
-}
+  &.enter,
+  &.leave {
+    transition: opacity ${({ duration }) => duration}ms ease-in;
+  }
+
+  &.enter-from,
+  &.leave-to {
+    opacity: 0;
+  }
+
+  &.enter-to,
+  &.leave-from {
+    opacity: 1;
+  }
+`
 
 export interface ActionSheetOverlayProps {
   duration: number
 }
 
 export const ActionSheetOverlay = ({ duration }: ActionSheetOverlayProps) => {
-  const { transitionStatus } = useActionSheet()
-
   return (
-    <Overlay
-      duration={duration}
-      style={{
-        ...transitionStyles[transitionStatus],
-      }}
-    />
+    <Transition.Child
+      as={Fragment}
+      enter="enter"
+      enterFrom="enter-from"
+      enterTo="enter-to"
+      leave="leave"
+      leaveFrom="leave-from"
+      leaveTo="leave-to"
+    >
+      <Overlay duration={duration} />
+    </Transition.Child>
   )
 }

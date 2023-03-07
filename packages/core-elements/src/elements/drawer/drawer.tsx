@@ -1,8 +1,6 @@
 import styled from 'styled-components'
-import { Transition, TransitionStatus } from 'react-transition-group'
-import { TransitionProps } from 'react-transition-group/Transition'
-import { CSSProperties, PropsWithChildren, useRef } from 'react'
-import { Portal } from '@headlessui/react'
+import { Fragment, PropsWithChildren } from 'react'
+import { Portal, Transition } from '@headlessui/react'
 
 import { FlexBox } from '../flex-box'
 
@@ -20,40 +18,31 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
   bottom: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   z-index: 9999;
-  transition: transform ${({ duration }) => duration}ms ease-in-out;
-  transform: 'translateY(100%)';
+
+  &.enter,
+  &.leave {
+    transition: transform ${({ duration }) => duration}ms ease-in-out;
+  }
+
+  &.enter-from,
+  &.leave-to {
+    transform: translateY(100%);
+  }
+
+  &.enter-to,
+  &.leave-from {
+    transform: translateY(0);
+  }
 `
 
-const transitionStyles: Record<TransitionStatus, CSSProperties> = {
-  entering: {
-    transform: 'translateY(0%)',
-  },
-  entered: {
-    transform: 'translateY(0%)',
-  },
-  exiting: {
-    transform: 'translateY(100%)',
-  },
-  exited: {
-    transform: 'translateY(100%)',
-  },
-  unmounted: {},
-}
-
-export interface DrawerProps
-  extends PropsWithChildren,
-    Pick<
-      TransitionProps,
-      | 'onEnter'
-      | 'onEntering'
-      | 'onEntered'
-      | 'onExit'
-      | 'onExiting'
-      | 'onExited'
-    > {
+export interface DrawerProps extends PropsWithChildren {
   active?: boolean
   duration?: number
   overflow?: string
+  onEnter?: () => void
+  onEntered?: () => void
+  onExit?: () => void
+  onExited?: () => void
 }
 
 /**
@@ -65,45 +54,36 @@ export function Drawer({
   overflow,
   children,
   onEnter,
-  onEntering,
   onEntered,
   onExit,
-  onExiting,
   onExited,
 }: DrawerProps) {
-  const drawerContainerRef = useRef(null)
-
   return (
     <Transition
-      nodeRef={drawerContainerRef}
-      in={active}
-      appear
-      timeout={duration}
-      mountOnEnter
-      unmountOnExit
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
+      show={active}
+      as={Fragment}
+      beforeEnter={onEnter}
+      afterEnter={onEntered}
+      beforeLeave={onExit}
+      afterLeave={onExited}
     >
-      {(transitionStatus) => (
-        <Portal>
-          <FlexBox flex justifyContent="center">
-            <DrawerContainer
-              ref={drawerContainerRef}
-              duration={duration}
-              overflow={overflow}
-              style={{
-                ...transitionStyles[transitionStatus],
-              }}
-            >
+      <Portal>
+        <FlexBox flex justifyContent="center">
+          <Transition.Child
+            as={Fragment}
+            enter="enter"
+            enterFrom="enter-from"
+            enterTo="enter-to"
+            leave="leave"
+            leaveFrom="leave-from"
+            leaveTo="leave-to"
+          >
+            <DrawerContainer duration={duration} overflow={overflow}>
               {children}
             </DrawerContainer>
-          </FlexBox>
-        </Portal>
-      )}
+          </Transition.Child>
+        </FlexBox>
+      </Portal>
     </Transition>
   )
 }

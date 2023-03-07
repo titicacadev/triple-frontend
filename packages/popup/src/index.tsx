@@ -1,9 +1,7 @@
-import { PropsWithChildren, useRef, CSSProperties } from 'react'
+import { PropsWithChildren, useRef, Fragment } from 'react'
 import styled from 'styled-components'
 import { Navbar } from '@titicaca/core-elements'
-import { Dialog } from '@headlessui/react'
-import { Transition, TransitionStatus } from 'react-transition-group'
-import { TransitionProps } from 'react-transition-group/Transition'
+import { Dialog, Transition } from '@headlessui/react'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -20,9 +18,6 @@ const PopupContainer = styled.div`
   z-index: 9999;
   outline: none;
 
-  transition: transform ${TRANSITION_DURATION}ms ease-out;
-  transform: translateY(100%);
-
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -33,35 +28,24 @@ const PopupContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  &.enter,
+  &.leave {
+    transition: transform ${TRANSITION_DURATION}ms ease-in;
+  }
+
+  &.enter-from,
+  &.leave-to {
+    transform: translateY(100%);
+  }
+
+  &.enter-to,
+  &.leave-from {
+    transform: translateY(0);
+  }
 `
 
-const transitionStyles: Record<TransitionStatus, CSSProperties> = {
-  entering: {
-    transform: 'translateY(0)',
-  },
-  entered: {
-    transform: 'translateY(0)',
-  },
-  exiting: {
-    opacity: 'translateY(100%)',
-  },
-  exited: {
-    opacity: 'translateY(100%)',
-  },
-  unmounted: {},
-}
-
-export interface PopupProps
-  extends PropsWithChildren,
-    Pick<
-      TransitionProps,
-      | 'onEnter'
-      | 'onEntering'
-      | 'onEntered'
-      | 'onExit'
-      | 'onExiting'
-      | 'onExited'
-    > {
+export interface PopupProps extends PropsWithChildren {
   /**
    * 팝업을 열지 결정합니다.
    */
@@ -81,6 +65,10 @@ export interface PopupProps
    * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
    */
   onClose: () => void
+  onEnter?: () => void
+  onEntered?: () => void
+  onExit?: () => void
+  onExited?: () => void
 }
 
 /**
@@ -95,10 +83,8 @@ function Popup({
   children,
   onClose,
   onEnter,
-  onEntering,
   onEntered,
   onExit,
-  onExiting,
   onExited,
   ...props
 }: PopupProps) {
@@ -107,34 +93,32 @@ function Popup({
 
   return (
     <Transition
-      in={open}
-      nodeRef={ref}
-      timeout={TRANSITION_DURATION}
-      appear
-      mountOnEnter
-      unmountOnExit
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
+      show={open}
+      as={Fragment}
+      beforeEnter={onEnter}
+      afterEnter={onEntered}
+      beforeLeave={onExit}
+      afterLeave={onExited}
     >
-      {(transitionStatus) => (
-        <Dialog
-          ref={ref}
-          initialFocus={panelRef}
-          static
-          open={open}
-          onClose={() => onClose?.()}
+      <Dialog
+        ref={ref}
+        initialFocus={panelRef}
+        static
+        onClose={() => onClose?.()}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter="enter"
+          enterFrom="enter-from"
+          enterTo="enter-to"
+          leave="leave"
+          leaveFrom="leave-from"
+          leaveTo="leave-to"
         >
           <Dialog.Panel
             as={PopupContainer}
             ref={panelRef}
             tabIndex={-1}
-            style={{
-              ...transitionStyles[transitionStatus],
-            }}
             {...props}
           >
             {noNavbar ? null : (
@@ -144,8 +128,8 @@ function Popup({
             )}
             {children}
           </Dialog.Panel>
-        </Dialog>
-      )}
+        </Transition.Child>
+      </Dialog>
     </Transition>
   )
 }
