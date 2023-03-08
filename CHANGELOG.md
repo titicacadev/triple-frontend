@@ -19,6 +19,10 @@
   - Modal.Action에 cursor: pointer를 추가합니다.
   - Drawer, DrawerButton에 `duration` prop을 추가합니다.
 
+### view-utilities
+
+- PUBLIC_ROUTELIST_REGEXES에 여행기 상세 주소 추가 [#2455](https://github.com/titicacadev/triple-frontend/pull/2455)
+
 ## 12.11.0
 
 ### common
