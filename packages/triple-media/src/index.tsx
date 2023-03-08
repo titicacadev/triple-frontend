@@ -90,6 +90,7 @@ export default function Media({
           <Image.Img
             src={sizes.large.url}
             alt={title || description || undefined}
+            css={{ display: 'block' }}
           />
         )}
       </Image.FixedRatioFrame>
