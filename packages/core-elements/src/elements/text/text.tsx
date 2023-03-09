@@ -11,6 +11,7 @@ import {
   maxLinesMixin,
   paddingMixin,
   textStyleMixin,
+  bulletMixin,
 } from '../../mixins'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
@@ -39,8 +40,12 @@ export type TextProps = PropsWithChildren<{
   underline?: boolean
   whiteSpace?: Property.WhiteSpace
   wordBreak?: Property.WordBreak
+  bullet?: boolean
 }>
 
+/**
+ * Text 를 표현할때 사용하는 컴포넌트입니다.
+ */
 export const Text = styled.div<TextProps>(
   (props) => ({
     boxSizing: 'border-box',
@@ -74,6 +79,7 @@ export const Text = styled.div<TextProps>(
   textStyleMixin,
   ellipsisMixin,
   maxLinesMixin,
+  bulletMixin,
 )
 
 interface TextTitleBaseProps {
