@@ -149,6 +149,17 @@ it('should accept textStyle mixin', () => {
   expect(tree).toHaveStyleRule('letter-spacing', '-0.2px')
 })
 
+it('should accept bullet mixin', () => {
+  const tree = renderer.create(<Text bullet />).toJSON()
+
+  expect(tree).toHaveStyleRule('position', 'relative')
+  expect(tree).toHaveStyleRule('padding-left', '0.5em')
+  expect(tree).toHaveStyleRule('position', 'absolute', {
+    modifier: '&::before',
+  })
+  expect(tree).toHaveStyleRule('content', "'·'", { modifier: '&::before' })
+})
+
 it('should ignore legacy typography props when textStyle mixin is passed', () => {
   const tree = renderer
     .create(
