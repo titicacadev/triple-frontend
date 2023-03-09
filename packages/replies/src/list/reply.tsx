@@ -59,6 +59,11 @@ const ThanksButton = styled.button`
   height: 14px;
 `
 
+const ThanksIcon = styled.img`
+  vertical-align: baseline;
+  margin-bottom: 2px;
+`
+
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
 export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
@@ -286,7 +291,7 @@ export default function Reply({
                 onClick={() => handleUnlikeReplyClick({ messageId: id })}
                 aria-label="unlike-button"
               >
-                <img
+                <ThanksIcon
                   width={14}
                   height={14}
                   src="https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png"
@@ -298,7 +303,7 @@ export default function Reply({
                 onClick={() => handleLikeReplyClick({ messageId: id })}
                 aria-label="like-button"
               >
-                <img
+                <ThanksIcon
                   width={14}
                   height={14}
                   src="https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png"
