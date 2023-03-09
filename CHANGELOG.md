@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.12.1
+
+### triple-media
+
+- 이미지 여백 제거를 위해 display: block 속성 추가 [#2456](https://github.com/titicacadev/triple-frontend/pull/2456)
+
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
@@ -22,6 +28,10 @@
 ### view-utilities
 
 - PUBLIC_ROUTELIST_REGEXES에 여행기 상세 주소 추가 [#2455](https://github.com/titicacadev/triple-frontend/pull/2455)
+
+### default-footer
+
+- Default Footer 에서 css 속성 사용 가능하도록 수정 [#2440](https://github.com/titicacadev/triple-frontend/pull/2440)
 
 ## 12.11.0
 
