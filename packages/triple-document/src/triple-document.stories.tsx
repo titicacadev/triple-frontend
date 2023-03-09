@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Meta } from '@storybook/react'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { TripleElementData } from '@titicaca/triple-document/src/types'
+import { Container } from '@titicaca/core-elements'
 
 import MOCK_REGIONS from './mocks/triple-document.regions.json'
 import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
@@ -27,9 +28,11 @@ export default {
 
 export function Sample() {
   return (
-    <TripleDocument>
-      {SAMPLE as TripleElementData<string, unknown>[]}
-    </TripleDocument>
+    <Container centered css={{ maxWidth: 768 }}>
+      <TripleDocument>
+        {SAMPLE as TripleElementData<string, unknown>[]}
+      </TripleDocument>
+    </Container>
   )
 }
 Sample.storyName = '샘플'
