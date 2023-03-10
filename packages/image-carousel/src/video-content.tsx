@@ -78,6 +78,7 @@ const PlayPauseButtonBase = styled.span`
   &:focus {
     outline: none;
   }
+
   transition: opacity 0.3s;
 `
 

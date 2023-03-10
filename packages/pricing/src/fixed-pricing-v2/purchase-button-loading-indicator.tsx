@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { FlexBox } from '@titicaca/core-elements'
 
 interface IndicatorProps {
@@ -40,11 +40,14 @@ const Indicator = styled.span<{
   margin: ${({ margin }) => `${margin}px`};
   border-radius: 100%;
   display: inline-block;
-  animation: ${({ index, speedMultiplier }) => css`
-    ${pulse} ${0.75 / speedMultiplier}s ${(index * 0.12) /
-    speedMultiplier}s infinite
-        cubic-bezier(0.62, 0.28, 0.23, 0.99) both;
-  `};
+  animation-duration: ${({ speedMultiplier }) => 0.75 / speedMultiplier}s;
+  animation-timing-function: cubic-bezier(0.62, 0.28, 0.23, 0.99);
+  animation-delay: ${({ speedMultiplier, index }) =>
+    (index * 0.12) / speedMultiplier}s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-name: ${pulse};
 `
 
 export default function PurchaseButtonLoadingIndicator({

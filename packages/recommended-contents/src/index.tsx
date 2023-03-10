@@ -14,10 +14,7 @@ const RecommendedContentsContainer = styled.section<{
   ${({ margin }) =>
     margin &&
     css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
+      margin: ${margin.top || 0}px ${margin.right || 0}px ${margin.bottom || 0}px ${margin.left || 0}px;
     `};
 `
 
@@ -31,7 +28,6 @@ const RecommendedContentWithDesktopResolution = styled.li<{
   padding: 20px 15px 0;
   margin-bottom: 15px;
   border-radius: 6px;
-
   ${({ backgroundImageUrl }) =>
     css`
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -40,7 +36,6 @@ const RecommendedContentWithDesktopResolution = styled.li<{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
   cursor: pointer;
 
   &::before {
@@ -70,11 +65,8 @@ const RecommendedContentWithMobileResolution = styled.li`
   margin-bottom: 15px;
   border-radius: 6px;
   position: relative;
-
   cursor: pointer;
-
   overflow: hidden;
-
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

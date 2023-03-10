@@ -20,7 +20,6 @@ export const SendingFailureHandlerContainer = styled.div`
   display: inline-block;
   vertical-align: bottom;
   margin-right: 6px;
-
   width: 48px;
   height: 24px;
   border-radius: 6px;

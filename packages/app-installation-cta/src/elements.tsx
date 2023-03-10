@@ -196,10 +196,8 @@ export const FloatingButtonContainer = styled.div<
   ${({ margin }) =>
     margin &&
     css`
-      margin-top: ${margin.top || 0}px;
-      margin-bottom: ${margin.bottom || 0}px;
-      margin-left: ${margin.left || 0}px;
-      margin-right: ${margin.right || 0}px;
+      margin: ${margin.top || 0}px ${margin.right || 0}px
+        ${margin.bottom || 0}px ${margin.left || 0}px;
     `};
 
   ${({ visibility }) => (visibility ? 'display: block;' : 'display: none;')}
@@ -215,7 +213,6 @@ export const FloatingButtonContainer = styled.div<
 
   &.floating-button-slide-exit-done {
     ${inactiveFloatingButtonStyle}
-
     display: none;
   }
 `
@@ -330,7 +327,6 @@ export const ChatbotContainer = styled.div<
 
   &:not([class*='chatbot-slide-']) {
     ${inactiveChatbotContainerStyle}
-
     display: none;
   }
 
@@ -360,7 +356,6 @@ export const ChatbotContainer = styled.div<
 
   &.chatbot-slide-exit-done {
     ${inactiveChatbotContainerStyle}
-
     display: none;
   }
 `

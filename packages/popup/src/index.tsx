@@ -17,7 +17,6 @@ const PopupContainer = styled.div`
   user-select: none;
   z-index: 9999;
   outline: none;
-
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 

@@ -12,12 +12,10 @@ export const ModalActions = styled.div<{ children?: ReactNode }>`
   a {
     ${({ children }) => {
       const childrenCount = Children.count(children)
-
       return css`
         width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
       `
     }};
-
     padding-left: 0;
     padding-right: 0;
   }

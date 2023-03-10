@@ -33,7 +33,6 @@ const FixedRatioFrameContainer = styled.div<{
   position: relative;
   width: 100%;
   background-color: #f5f5f5;
-
   float: ${({ floated }) => floated || 'none'};
 
   ${({ borderRadius }) => `border-radius: ${borderRadius}px;`}

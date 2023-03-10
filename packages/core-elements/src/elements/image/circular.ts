@@ -22,6 +22,5 @@ export const ImageCircular = styled.img<{
     2}px;
   background-color: var(--color-brightGray);
   object-fit: cover;
-
   float: ${({ floated }) => floated || 'none'};
 `
