@@ -53,7 +53,6 @@ const StaticMapImage = styled.img`
   border-radius: 6px;
   object-fit: cover;
   z-index: 0;
-
   position: absolute;
   top: 0;
 `
@@ -64,7 +63,6 @@ const StaticMapPicture = styled.picture`
   border-radius: 6px;
   object-fit: cover;
   z-index: 0;
-
   position: absolute;
   top: 0;
 `

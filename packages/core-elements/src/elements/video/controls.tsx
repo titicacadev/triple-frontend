@@ -23,7 +23,6 @@ const ControlsContainer = styled.div<{ visible: boolean }>`
   right: 0;
   opacity: ${({ visible }) => (visible ? '1' : '0')};
   background-color: rgba(0, 0, 0, 0.4);
-
   transition: opacity 0.3s;
 `
 

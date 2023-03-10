@@ -7,7 +7,6 @@ export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
   vertical-align: top;
   width: calc(100% - 60px);
-
   margin-left: 15px;
 
   &:first-child {
@@ -50,7 +49,6 @@ export const SquareImage = styled.img<{
   width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
   height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
   border-radius: ${({ size = 'medium' }) => ({ small: 2, medium: 6 }[size])}px;
-
   background-color: #efefef;
   object-fit: cover;
 

@@ -23,7 +23,6 @@ const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
     $scroll &&
     css`
       flex: none;
-
       padding: 11px 18px;
     `}
 `

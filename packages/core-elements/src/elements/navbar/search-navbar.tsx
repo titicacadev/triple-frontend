@@ -45,7 +45,6 @@ const Icon = styled(Navbar.Item)<{ visible: boolean }>`
   transform: translateY(-50%);
   margin-right: 0;
   float: none;
-
   display: ${({ visible }) => (visible ? 'block' : 'none')};
 `
 
