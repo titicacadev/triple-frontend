@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 12.12.2
+
+### replies
+
+- 댓글 따봉 아이콘이 짤리던 현상을 수정합니다. [#2458](https://github.com/titicacadev/triple-frontend/pull/2458)
+
 ## 12.12.1
 
 ### triple-media
