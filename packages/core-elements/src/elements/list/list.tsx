@@ -8,6 +8,7 @@ interface ListBaseProp {
   margin?: MarginPadding
   verticalGap?: number
   clearing?: boolean
+  marker?: boolean
 }
 
 interface DividerOptions {
@@ -30,6 +31,21 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
       margin-top: ${divided ? verticalGap / 2 : verticalGap}px;
     `};
   }
+
+  ${({ marker }) =>
+    marker &&
+    css`
+      & {
+        padding-left: 0.6em;
+      }
+
+      > li::before {
+        content: '·';
+        position: absolute;
+        top: 0;
+        left: -0.6em;
+      }
+    `}
 
   ${({ clearing }) =>
     clearing
