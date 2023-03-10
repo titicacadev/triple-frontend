@@ -13,6 +13,7 @@ import {
   useEventTrackingContext,
   useSessionAvailability,
 } from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
@@ -38,6 +39,7 @@ export function TripleABExperimentProvider({
   const onErrorRef = useRef(onErrorFromProps)
   const experimentMetas = useContext(TripleABExperimentContext)
   const [meta, setMeta] = useState(metaFromSSR)
+  const app = useTripleClientMetadata()
 
   useEffect(() => {
     const onError = onErrorRef.current
@@ -59,10 +61,10 @@ export function TripleABExperimentProvider({
       setMeta(parsedBody)
     }
 
-    if (!metaFromSSR) {
+    if (!metaFromSSR && !app) {
       fetchAndSetMeta()
     }
-  }, [metaFromSSR, slug])
+  }, [metaFromSSR, slug, app])
 
   const value = useMemo(
     () => ({ ...experimentMetas, [slug]: meta }),

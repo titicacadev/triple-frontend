@@ -23,7 +23,8 @@
     "@titicaca/fetcher": "^12.12.1"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.12.1"
+    "@titicaca/react-contexts": "^12.12.1",
+    "@titicaca/react-triple-client-interfaces": "12.12.1"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
