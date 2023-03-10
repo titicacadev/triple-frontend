@@ -1,5 +1,7 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
+import { List } from '../list'
+
 import { Input } from './input'
 
 export default {
@@ -34,5 +36,22 @@ export const Mask: ComponentStoryObj<typeof Input> = {
     ...Default.args,
     mask: '99/99',
     value: 1230,
+  },
+}
+
+export const MultilineHelp: ComponentStoryObj<typeof Input> = {
+  args: {
+    ...Default.args,
+    help: (
+      <List marker verticalGap={4}>
+        <List.Item>연락 가능한 전화번호를 입력해주세요.</List.Item>
+        <List.Item>
+          예약 변경, 이슈가 있는 경우 입력한 번호로 연락드립니다.
+        </List.Item>
+        <List.Item>
+          {`카카오톡 ID는 카카오 프로필 > 설정 > 프로필 관리에서 확인가능합니다.`}
+        </List.Item>
+      </List>
+    ),
   },
 }
