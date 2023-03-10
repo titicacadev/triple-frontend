@@ -105,6 +105,3 @@ docs/storybook-static/
 
 # swc
 .swc
-
-# turborepo
-.turbo
