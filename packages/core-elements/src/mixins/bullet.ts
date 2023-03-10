@@ -1,20 +1,21 @@
 import { css } from 'styled-components'
+import { Property } from 'csstype'
 
 interface Params {
   bullet?: boolean
+  textAlign?: Property.TextAlign
 }
 
-export const bulletMixin = ({ bullet }: Params) =>
+export const bulletMixin = ({ bullet, textAlign }: Params) =>
   bullet
     ? css`
-        position: relative;
-        padding-left: 0.5em;
+        ${textAlign ? '' : 'position: relative; padding-left: 0.6em;'}
 
-        &::before {
+        ::before {
           content: '·';
-          position: absolute;
-          top: 0;
-          left: 0;
+          ${textAlign
+            ? 'padding-right: 0.6em;'
+            : 'position: absolute; top: 0; left: 0;'}
         }
       `
     : undefined

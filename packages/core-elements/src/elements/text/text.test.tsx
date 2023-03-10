@@ -153,11 +153,25 @@ it('should accept bullet mixin', () => {
   const tree = renderer.create(<Text bullet />).toJSON()
 
   expect(tree).toHaveStyleRule('position', 'relative')
-  expect(tree).toHaveStyleRule('padding-left', '0.5em')
+  expect(tree).toHaveStyleRule('padding-left', '0.6em')
+  expect(tree).toHaveStyleRule('content', "'·'", { modifier: '&::before' })
   expect(tree).toHaveStyleRule('position', 'absolute', {
     modifier: '&::before',
   })
+})
+
+it('should have static position bullet when textAlign mixin is passed', () => {
+  const tree = renderer.create(<Text bullet textAlign="right" />).toJSON()
+
+  expect(tree).not.toHaveStyleRule('position', 'relative')
+  expect(tree).not.toHaveStyleRule('padding-left', '0.6em')
   expect(tree).toHaveStyleRule('content', "'·'", { modifier: '&::before' })
+  expect(tree).toHaveStyleRule('padding-right', '0.6em', {
+    modifier: '&::before',
+  })
+  expect(tree).not.toHaveStyleRule('position', 'absolute', {
+    modifier: '&::before',
+  })
 })
 
 it('should ignore legacy typography props when textStyle mixin is passed', () => {
