@@ -25,6 +25,8 @@ env:
   SLACK_FOOTER: ${{ github.repository }}
   SLACK_GITHUB_REF: ${{ github.event.ref }} # 메시지에 ref로 표시되는 값
   SLACK_GITHUB_EVENT_NAME: ${{ github.event_name }} # 메시지에 Event로 표시되는 값
+  # Nx Cloud
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
   check-dependencies:
