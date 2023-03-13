@@ -1,6 +1,13 @@
 import type { IncomingMessage } from 'http'
 
-import { createContext, useContext, PropsWithChildren, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  PropsWithChildren,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react'
 
 import { parseTripleClientUserAgent } from './triple-client-user-agent'
 import type { App } from './types'
@@ -13,9 +20,10 @@ const TripleClientMetadataContext =
 export function TripleClientMetadataProvider({
   appName,
   appVersion,
+  isStaticPage,
   children,
-}: PropsWithChildren<Partial<App>>) {
-  const value: App | null = useMemo(
+}: PropsWithChildren<Partial<App> & { isStaticPage?: boolean }>) {
+  const initialApp: App | null = useMemo(
     () =>
       appName && appVersion
         ? {
@@ -25,6 +33,15 @@ export function TripleClientMetadataProvider({
         : null,
     [appName, appVersion],
   )
+  const [app, setApp] = useState<App | null>(initialApp)
+
+  useEffect(() => {
+    if (isStaticPage) {
+      setApp(extractTripleClientAppUserAgentFromNextPageContext({}))
+    }
+  }, [])
+
+  const value = app
 
   return (
     <TripleClientMetadataContext.Provider value={value}>
