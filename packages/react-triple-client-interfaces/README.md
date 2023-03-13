@@ -31,6 +31,42 @@ class CustomNextjsApp() {
 }
 ```
 
+static page의 경우 서버사이드의 User-Agent 값을 가져오지 못하므로
+해당 페이지의 `getStaticProps`의 리턴 객체에 `isStaticPage`를 true로 설정해야 합니다.
+
+```tsx
+// pages/example.tsx
+interface PageProps {
+  isStaticPage: boolean
+}
+
+export default function ExampleComponent(props: PageProps) {
+  return <div>example</div>
+}
+
+export async function getStaticProps() {
+  return {
+    isStaticPage: true,
+  }
+}
+
+// _app.tsx
+function MyApp({
+  Component,
+  pageProps,
+  tripleClientMetadataProviderProps,
+}: AppProps & CustomAppProps) {
+  return (
+    <TripleClientMetadataProvider
+      {...tripleClientMetadataProviderProps}
+      isStaticPage={pageProps.isStaticPage}
+    >
+      <Component {...pageProps} />
+    </TripleClientMetadataProvider>
+  )
+}
+```
+
 ### `useTripleClientMetadata`
 
 `TripleClientMetadataProvider`가 제공하는 클라이언트 정보를 Hook으로 노출합니다.
