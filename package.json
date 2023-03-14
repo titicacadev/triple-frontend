@@ -6,10 +6,7 @@
   },
   "scripts": {
     "dev": "npm run storybook",
-    "watch:resources": "node scripts/build-watch",
-    "watch:declarations": "npm run build-declarations -- --watch",
-    "build": "lerna run build && npm run build-declarations",
-    "build-declarations": "tsc -b packages/*/tsconfig.build.json",
+    "build": "lerna run build",
     "test": "jest",
     "test:ci": "jest --ci",
     "test:watch": "jest --watch",
