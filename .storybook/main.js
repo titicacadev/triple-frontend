@@ -23,7 +23,9 @@ module.exports = {
     },
   ],
   typescript: {
-    check: true,
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: 'tsconfig.test.json',
+    },
   },
   framework: '@storybook/react',
   core: {
