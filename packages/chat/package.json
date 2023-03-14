@@ -17,8 +17,9 @@
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
   "scripts": {
-    "build": "npm run build:cjs",
-    "build:cjs": "swc src -d lib --config-file ../../.swcrc"
+    "build": "npm run build:cjs && npm run build:types",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:types": "tsc -p tsconfig.build.json"
   },
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
