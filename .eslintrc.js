@@ -8,4 +8,16 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.eslint.json',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            project: 'packages/*/tsconfig.json',
+          },
+        },
+      },
+    },
+  ],
 }
