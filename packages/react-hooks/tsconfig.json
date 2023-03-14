@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/fetcher": ["../fetcher/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

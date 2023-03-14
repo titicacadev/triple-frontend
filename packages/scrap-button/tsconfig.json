@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/react-contexts": ["../react-contexts/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

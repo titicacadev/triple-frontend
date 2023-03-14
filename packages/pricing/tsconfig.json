@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/i18n": ["../i18n/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

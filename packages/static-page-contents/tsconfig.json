@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/i18n": ["../i18n/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

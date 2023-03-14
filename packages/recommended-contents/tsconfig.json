@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

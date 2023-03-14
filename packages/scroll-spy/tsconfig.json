@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/react-hooks": ["../react-hooks/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

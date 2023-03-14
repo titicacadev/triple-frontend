@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/triple-fallback-action": ["../triple-fallback-action/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/i18n": ["../i18n/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}
