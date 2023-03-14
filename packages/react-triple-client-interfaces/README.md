@@ -60,7 +60,7 @@ function MyApp({
   return (
     <TripleClientMetadataProvider
       {...tripleClientMetadataProviderProps}
-      shouldUpdateUserAgentOnMount={pageProps.shouldUpdateUserAgentOnMount}
+      shouldUpdateUserAgentOnMount={pageProps.isStaticPage}
     >
       <Component {...pageProps} />
     </TripleClientMetadataProvider>
