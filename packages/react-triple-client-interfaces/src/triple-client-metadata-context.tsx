@@ -39,7 +39,7 @@ export function TripleClientMetadataProvider({
     if (isStaticPage) {
       setApp(extractTripleClientAppUserAgentFromNextPageContext({}))
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = app
 
