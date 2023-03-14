@@ -40,7 +40,9 @@ module.exports = {
     storyStoreV7: true,
   },
   webpackFinal: async (config) => {
-    config.resolve.plugins = [new TsconfigPathsPlugin()]
+    config.resolve.plugins = [
+      new TsconfigPathsPlugin({ configFile: 'tsconfig.test.json' }),
+    ]
     config.resolve.fallback ||= {}
     config.resolve.fallback.fs = false
 
