@@ -31,8 +31,9 @@ class CustomNextjsApp() {
 }
 ```
 
-static page의 경우 서버사이드의 User-Agent 값을 가져오지 못하므로
-해당 페이지의 `getStaticProps`의 리턴 객체에 `shouldUpdateUserAgentOnMount`를 true로 설정해야 합니다.
+클라이언트에서 UserAgent를 업데이트해야하는 경우(ex. getStaticProps를 사용한 스테틱 페이지) shouldUpdateUserAgentOnMount props를 사용합니다.
+
+- 예) 스테틱 페이지에서 UserAgent를 사용할 경우, 해당 페이지의 `getStaticProps`의 리턴 객체에 `shouldUpdateUserAgentOnMount`를 true로 설정해야 합니다.
 
 ```tsx
 // pages/example.tsx
