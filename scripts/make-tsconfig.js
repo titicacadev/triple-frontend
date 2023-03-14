@@ -47,7 +47,7 @@ function packagesToPaths(packages) {
 }
 
 async function writeTsconfig(transformer) {
-  const tsconfigPath = path.resolve(process.cwd(), './tsconfig.json')
+  const tsconfigPath = path.resolve(process.cwd(), './tsconfig.test.json')
 
   const tsconfig = JSON.parse((await fs.readFile(tsconfigPath)).toString())
 
