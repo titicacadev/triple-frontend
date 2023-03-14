@@ -1,0 +1,83 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/ab-experiments": ["./packages/ab-experiments/src"],
+      "@titicaca/action-sheet": ["./packages/action-sheet/src"],
+      "@titicaca/ad-banners": ["./packages/ad-banners/src"],
+      "@titicaca/app-banner": ["./packages/app-banner/src"],
+      "@titicaca/app-installation-cta": ["./packages/app-installation-cta/src"],
+      "@titicaca/author": ["./packages/author/src"],
+      "@titicaca/booking-completion": ["./packages/booking-completion/src"],
+      "@titicaca/carousel": ["./packages/carousel/src"],
+      "@titicaca/chat": ["./packages/chat/src"],
+      "@titicaca/color-palette": ["./packages/color-palette/src"],
+      "@titicaca/constants": ["./packages/constants/src"],
+      "@titicaca/content-sharing": ["./packages/content-sharing/src"],
+      "@titicaca/core-elements": ["./packages/core-elements/src"],
+      "@titicaca/date-picker": ["./packages/date-picker/src"],
+      "@titicaca/directions-finder": ["./packages/directions-finder/src"],
+      "@titicaca/drawer-button": ["./packages/drawer-button/src"],
+      "@titicaca/fetcher": ["./packages/fetcher/src"],
+      "@titicaca/footer": ["./packages/footer/src"],
+      "@titicaca/form": ["./packages/form/src"],
+      "@titicaca/hub-form": ["./packages/hub-form/src"],
+      "@titicaca/i18n": ["./packages/i18n/src"],
+      "@titicaca/icons": ["./packages/icons/src"],
+      "@titicaca/image-carousel": ["./packages/image-carousel/src"],
+      "@titicaca/intersection-observer": [
+        "./packages/intersection-observer/src"
+      ],
+      "@titicaca/listing-filter": ["./packages/listing-filter/src"],
+      "@titicaca/location-properties": ["./packages/location-properties/src"],
+      "@titicaca/map": ["./packages/map/src"],
+      "@titicaca/meta-tags": ["./packages/meta-tags/src"],
+      "@titicaca/modals": ["./packages/modals/src"],
+      "@titicaca/nearby-pois": ["./packages/nearby-pois/src"],
+      "@titicaca/poi-detail": ["./packages/poi-detail/src"],
+      "@titicaca/poi-list-elements": ["./packages/poi-list-elements/src"],
+      "@titicaca/popup": ["./packages/popup/src"],
+      "@titicaca/pricing": ["./packages/pricing/src"],
+      "@titicaca/public-header": ["./packages/public-header/src"],
+      "@titicaca/react-contexts": ["./packages/react-contexts/src"],
+      "@titicaca/react-hooks": ["./packages/react-hooks/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "./packages/react-triple-client-interfaces/src"
+      ],
+      "@titicaca/recommended-contents": ["./packages/recommended-contents/src"],
+      "@titicaca/replies": ["./packages/replies/src"],
+      "@titicaca/resource-list-element": [
+        "./packages/resource-list-element/src"
+      ],
+      "@titicaca/review": ["./packages/review/src"],
+      "@titicaca/router": ["./packages/router/src"],
+      "@titicaca/scrap-button": ["./packages/scrap-button/src"],
+      "@titicaca/scroll-spy": ["./packages/scroll-spy/src"],
+      "@titicaca/scroll-to-element": ["./packages/scroll-to-element/src"],
+      "@titicaca/search": ["./packages/search/src"],
+      "@titicaca/slider": ["./packages/slider/src"],
+      "@titicaca/social-reviews": ["./packages/social-reviews/src"],
+      "@titicaca/standard-action-handler": [
+        "./packages/standard-action-handler/src"
+      ],
+      "@titicaca/static-map": ["./packages/static-map/src"],
+      "@titicaca/static-page-contents": ["./packages/static-page-contents/src"],
+      "@titicaca/style-box": ["./packages/style-box/src"],
+      "@titicaca/triple-document": ["./packages/triple-document/src"],
+      "@titicaca/triple-email-document": [
+        "./packages/triple-email-document/src"
+      ],
+      "@titicaca/triple-fallback-action": [
+        "./packages/triple-fallback-action/src"
+      ],
+      "@titicaca/triple-header": ["./packages/triple-header/src"],
+      "@titicaca/triple-media": ["./packages/triple-media/src"],
+      "@titicaca/type-definitions": ["./packages/type-definitions/src"],
+      "@titicaca/ui-flow": ["./packages/ui-flow/src"],
+      "@titicaca/user-verification": ["./packages/user-verification/src"],
+      "@titicaca/view-utilities": ["./packages/view-utilities/src"],
+      "@titicaca/web-storage": ["./packages/web-storage/src"]
+    }
+  }
+}
