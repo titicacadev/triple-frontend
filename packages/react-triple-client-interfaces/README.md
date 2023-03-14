@@ -38,7 +38,7 @@ class CustomNextjsApp() {
 ```tsx
 // pages/example.tsx
 interface PageProps {
-  shouldUpdateUserAgentOnMount: boolean
+  isStaticPage: true
 }
 
 export default function ExampleComponent(props: PageProps) {
