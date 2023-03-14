@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/modals": ["../modals/src"],
+      "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/router": ["../router/src"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ]
+    }
+  },
+  "exclude": ["**/node_modules", "lib"]
+}

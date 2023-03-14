@@ -1,65 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
-    "rootDir": "src"
+    "outDir": "./lib"
   },
-  "include": ["src/**/*", "src/**/*.json", "../../global.d.ts"],
-  "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
-  "references": [
-    {
-      "path": "../color-palette/tsconfig.build.json"
-    },
-    {
-      "path": "../core-elements/tsconfig.build.json"
-    },
-    {
-      "path": "../fetcher/tsconfig.build.json"
-    },
-    {
-      "path": "../intersection-observer/tsconfig.build.json"
-    },
-    {
-      "path": "../map/tsconfig.build.json"
-    },
-    {
-      "path": "../modals/tsconfig.build.json"
-    },
-    {
-      "path": "../poi-list-elements/tsconfig.build.json"
-    },
-    {
-      "path": "../react-hooks/tsconfig.build.json"
-    },
-    {
-      "path": "../router/tsconfig.build.json"
-    },
-    {
-      "path": "../scrap-button/tsconfig.build.json"
-    },
-    {
-      "path": "../standard-action-handler/tsconfig.build.json"
-    },
-    {
-      "path": "../triple-media/tsconfig.build.json"
-    },
-    {
-      "path": "../type-definitions/tsconfig.build.json"
-    },
-    {
-      "path": "../ui-flow/tsconfig.build.json"
-    },
-    {
-      "path": "../user-verification/tsconfig.build.json"
-    },
-    {
-      "path": "../view-utilities/tsconfig.build.json"
-    },
-    {
-      "path": "../i18n/tsconfig.build.json"
-    },
-    {
-      "path": "../react-contexts/tsconfig.build.json"
-    }
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/**/*.stories.*"
   ]
 }

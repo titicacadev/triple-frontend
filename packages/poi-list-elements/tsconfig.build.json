@@ -1,32 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
-    "rootDir": "src"
+    "outDir": "./lib"
   },
-  "include": ["src/**/*", "src/**/*.json", "../../global.d.ts"],
-  "exclude": ["lib", "**/*.test.*", "**/*.spec.*", "**/*.stories.*"],
-  "references": [
-    {
-      "path": "../core-elements/tsconfig.build.json"
-    },
-    {
-      "path": "../resource-list-element/tsconfig.build.json"
-    },
-    {
-      "path": "../scrap-button/tsconfig.build.json"
-    },
-    {
-      "path": "../type-definitions/tsconfig.build.json"
-    },
-    {
-      "path": "../view-utilities/tsconfig.build.json"
-    },
-    {
-      "path": "../i18n/tsconfig.build.json"
-    },
-    {
-      "path": "../react-contexts/tsconfig.build.json"
-    }
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/**/*.stories.*"
   ]
 }
