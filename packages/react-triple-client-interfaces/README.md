@@ -32,12 +32,12 @@ class CustomNextjsApp() {
 ```
 
 static page의 경우 서버사이드의 User-Agent 값을 가져오지 못하므로
-해당 페이지의 `getStaticProps`의 리턴 객체에 `isStaticPage`를 true로 설정해야 합니다.
+해당 페이지의 `getStaticProps`의 리턴 객체에 `shouldUpdateUserAgentOnMount`를 true로 설정해야 합니다.
 
 ```tsx
 // pages/example.tsx
 interface PageProps {
-  isStaticPage: boolean
+  shouldUpdateUserAgentOnMount: boolean
 }
 
 export default function ExampleComponent(props: PageProps) {
@@ -46,7 +46,7 @@ export default function ExampleComponent(props: PageProps) {
 
 export async function getStaticProps() {
   return {
-    isStaticPage: true,
+    shouldUpdateUserAgentOnMount: true,
   }
 }
 
@@ -59,7 +59,7 @@ function MyApp({
   return (
     <TripleClientMetadataProvider
       {...tripleClientMetadataProviderProps}
-      isStaticPage={pageProps.isStaticPage}
+      shouldUpdateUserAgentOnMount={pageProps.shouldUpdateUserAgentOnMount}
     >
       <Component {...pageProps} />
     </TripleClientMetadataProvider>

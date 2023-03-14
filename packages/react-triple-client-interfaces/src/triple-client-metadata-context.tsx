@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   PropsWithChildren,
-  useMemo,
   useState,
   useEffect,
 } from 'react'
@@ -21,31 +20,29 @@ const TripleClientMetadataContext = createContext<
 export function TripleClientMetadataProvider({
   appName,
   appVersion,
-  isStaticPage,
+  shouldUpdateUserAgentOnMount,
   children,
-}: PropsWithChildren<Partial<App> & { isStaticPage?: boolean }>) {
-  const initialApp: App | null = useMemo(
-    () =>
-      appName && appVersion
-        ? {
-            appName,
-            appVersion,
-          }
-        : null,
-    [appName, appVersion],
-  )
+}: PropsWithChildren<
+  Partial<App> & { shouldUpdateUserAgentOnMount?: boolean }
+>) {
+  const initialApp: App | null =
+    appName && appVersion
+      ? {
+          appName,
+          appVersion,
+        }
+      : null
+
   const [app, setApp] = useState<App | null>(initialApp)
 
   useEffect(() => {
-    if (isStaticPage) {
+    if (shouldUpdateUserAgentOnMount) {
       setApp(extractTripleClientAppUserAgentFromNextPageContext({}))
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const value = app
-
   return (
-    <TripleClientMetadataContext.Provider value={value}>
+    <TripleClientMetadataContext.Provider value={app}>
       {children}
     </TripleClientMetadataContext.Provider>
   )
