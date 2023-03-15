@@ -28,7 +28,7 @@
     "@titicaca/view-utilities": "^12.12.2",
     "@types/node-fetch": "^2.5.12",
     "isomorphic-fetch": "^2.2.1",
-    "next": "13.2.0",
+    "next": "13.2.4",
     "node-fetch": "^2.6.7"
   },
   "peerDependencies": {
