@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 12.12.3
+
+- turbo 제거, lerna + nx 사용 [#2462](https://github.com/titicacadev/triple-frontend/pull/2465)
+- 타입스크립트 빌드 컨픽 개선 [#2465](https://github.com/titicacadev/triple-frontend/pull/2462)
+
+### modals
+
+- Panel에 webkit-mask-image 속성 제거 [#2468](https://github.com/titicacadev/triple-frontend/pull/2468)
+
 ## 12.12.2
 
 ### replies
