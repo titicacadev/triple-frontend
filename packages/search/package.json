@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "12.12.2",
+  "version": "12.12.3",
   "description": "search",
   "keywords": [
     "search"
@@ -24,13 +24,13 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.12.2",
-    "@titicaca/react-hooks": "^12.12.2",
+    "@titicaca/core-elements": "^12.12.3",
+    "@titicaca/react-hooks": "^12.12.3",
     "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
-    "@titicaca/view-utilities": "^12.12.2"
+    "@titicaca/view-utilities": "^12.12.3"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.12.2"
+    "@titicaca/react-contexts": "^12.12.3"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

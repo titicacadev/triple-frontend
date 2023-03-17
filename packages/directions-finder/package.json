@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/directions-finder",
-  "version": "12.12.2",
+  "version": "12.12.3",
   "description": "POI directions finder",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/directions-finder",
@@ -21,14 +21,14 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.12.2",
-    "@titicaca/popup": "^12.12.2"
+    "@titicaca/core-elements": "^12.12.3",
+    "@titicaca/popup": "^12.12.3"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.12.2",
+    "@titicaca/i18n": "^12.12.3",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.12.2",
-    "@titicaca/react-triple-client-interfaces": "^12.12.2"
+    "@titicaca/react-contexts": "^12.12.3",
+    "@titicaca/react-triple-client-interfaces": "^12.12.3"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

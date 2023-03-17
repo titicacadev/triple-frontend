@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "12.12.2",
+  "version": "12.12.3",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -28,18 +28,18 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.12.2",
-    "@titicaca/core-elements": "^12.12.2",
-    "@titicaca/intersection-observer": "^12.12.2",
-    "@titicaca/type-definitions": "^12.12.2",
-    "@titicaca/web-storage": "^12.12.2",
+    "@titicaca/color-palette": "^12.12.3",
+    "@titicaca/core-elements": "^12.12.3",
+    "@titicaca/intersection-observer": "^12.12.3",
+    "@titicaca/type-definitions": "^12.12.3",
+    "@titicaca/web-storage": "^12.12.3",
     "@types/react-transition-group": "^4.4.5",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.12.2",
+    "@titicaca/i18n": "^12.12.3",
     "@titicaca/next-i18next": "^13.8.4",
-    "@titicaca/react-contexts": "^12.12.2"
+    "@titicaca/react-contexts": "^12.12.3"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

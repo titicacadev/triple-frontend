@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "12.12.2",
+  "version": "12.12.3",
   "description": "a/b experiments package",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ab-experiments",
@@ -21,10 +21,10 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.12.2"
+    "@titicaca/fetcher": "^12.12.3"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.12.2"
+    "@titicaca/react-contexts": "^12.12.3"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
