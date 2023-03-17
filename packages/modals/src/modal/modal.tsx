@@ -14,6 +14,7 @@ const ModalPanel = styled(Container)`
   width: 295px;
   background-color: #fff;
   outline: none;
+  border-radius: 6px;
 `
 
 export interface ModalProps extends PropsWithChildren {
@@ -55,12 +56,7 @@ export const Modal = ({ children, open = false, onClose }: ModalProps) => {
             z-index: 9999;
           `}
         >
-          <Dialog.Panel
-            as={ModalPanel}
-            ref={panelRef}
-            tabIndex={-1}
-            borderRadius={6}
-          >
+          <Dialog.Panel as={ModalPanel} ref={panelRef} tabIndex={-1}>
             {children}
           </Dialog.Panel>
         </FlexBox>
