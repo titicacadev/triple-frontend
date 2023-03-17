@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-media",
-  "version": "12.12.2",
+  "version": "12.13.0",
   "description": "Media object of Triple",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-media",
@@ -21,8 +21,8 @@
     "build:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.12.2",
-    "@titicaca/type-definitions": "^12.12.2"
+    "@titicaca/core-elements": "^12.13.0",
+    "@titicaca/type-definitions": "^12.13.0"
   },
   "peerDependencies": {
     "react": "^18.0",
