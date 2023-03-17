@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 12.13.0
+
+- turbo 제거, lerna + nx 사용 [#2462](https://github.com/titicacadev/triple-frontend/pull/2465)
+- 타입스크립트 빌드 컨픽 개선 [#2465](https://github.com/titicacadev/triple-frontend/pull/2462)
+
+### core-elements
+
+- List 에 marker prop 을 추가합니다. [#2463](https://github.com/titicacadev/triple-frontend/pull/2463)
+
+### modals
+
+- Panel에 webkit-mask-image 속성 제거 [#2468](https://github.com/titicacadev/triple-frontend/pull/2468)
+
+### react-triple-client-interfaces
+
+- TripleClientMetadataContext에 shouldUpdateUserAgentOnMount props를 추가합니다 [#2464](https://github.com/titicacadev/triple-frontend/pull/2464)
+
 ## 12.12.2
 
 ### replies
