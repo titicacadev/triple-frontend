@@ -3,7 +3,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint:es"]
+        "cacheableOperations": ["build", "lint:es", "lint:style", "lint:etc"]
       }
     }
   },
@@ -24,6 +24,10 @@
       "inputs": ["default", "{workspaceRoot}/.eslintrc.js"],
       "outputs": []
     },
+    "lint:es:etc": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.js"],
+      "outputs": []
+    },
     "lint:style": {
       "inputs": [
         "default",
@@ -31,7 +35,21 @@
         "{workspaceRoot}/.stylelintignore"
       ]
     },
+    "lint:style:etc": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.stylelintrc.json",
+        "{workspaceRoot}/.stylelintignore"
+      ]
+    },
     "lint:etc": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.prettierrc",
+        "{workspaceRoot}/.prettierignore"
+      ]
+    },
+    "lint:etc:fix": {
       "inputs": [
         "default",
         "{workspaceRoot}/.prettierrc",
