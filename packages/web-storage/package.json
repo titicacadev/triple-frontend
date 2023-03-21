@@ -20,7 +20,8 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
-    "lint:style": "stylelint '**/*.{js,ts,tsx}'"
+    "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
+    "lint:etc": "prettier src --check"
   },
   "dependencies": {
     "ts-custom-error": "^3.2.0",
