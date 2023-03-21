@@ -44,6 +44,7 @@ const URL_BY_NAMES: { [key: string]: string } = {
   delete: 'https://assets.triple.guide/images/img-action-delete@4x.png',
   message: 'https://assets.triple.guide/images/img-action-message-4-x.png',
   support: 'https://assets.triple.guide/images/img-action-support@3x.png',
+  notice: 'https://assets.triple.guide/images/img-action-notice@4x-v2.png',
 }
 
 const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
