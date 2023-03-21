@@ -3,14 +3,26 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build"]
+        "cacheableOperations": ["build", "lint:es"]
       }
     }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "sources": [
+      "!{projectRoot}/**/*.test.*",
+      "!{projectRoot}/**/*.spec.*",
+      "!{projectRoot}/**/*.stories.*"
+    ]
   },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["{projectRoot}/lib"]
+    },
+    "lint:es": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.js"],
+      "outputs": []
     }
   }
 }

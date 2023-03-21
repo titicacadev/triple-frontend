@@ -21,7 +21,7 @@
     "postinstall": "npm run sync-deps",
     "version": "lerna version --no-push --force-publish",
     "postversion": "npm install && git commit --amend -a -C HEAD",
-    "lint:es": "eslint .",
+    "lint:es": "lerna run lint:es",
     "lint:es:fix": "eslint . --fix",
     "lint:etc": "prettier . --check",
     "lint:etc:fix": "prettier . --write",
