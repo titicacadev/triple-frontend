@@ -25,7 +25,18 @@
       "outputs": []
     },
     "lint:style": {
-      "inputs": ["default", "{workspaceRoot}/.stylelintrc.json"]
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.stylelintrc.json",
+        "{workspaceRoot}/.stylelintignore"
+      ]
+    },
+    "lint:etc": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.prettierrc",
+        "{workspaceRoot}/.prettierignore"
+      ]
     }
   }
 }
