@@ -18,7 +18,8 @@
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
-    "build:types": "tsc -p tsconfig.build.json"
+    "build:types": "tsc -p tsconfig.build.json",
+    "lint:es": "eslint src"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
