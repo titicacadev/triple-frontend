@@ -20,8 +20,11 @@
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
+    "lint:es:fix": "eslint src --fix",
     "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
-    "lint:etc": "prettier src --check"
+    "lint:style:fix": "stylelint 'src/**/*.{js,ts,tsx}' --fix",
+    "lint:etc": "prettier src --check",
+    "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
