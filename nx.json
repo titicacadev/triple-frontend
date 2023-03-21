@@ -23,6 +23,9 @@
     "lint:es": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.js"],
       "outputs": []
+    },
+    "lint:style": {
+      "inputs": ["default", "{workspaceRoot}/.stylelintrc.json"]
     }
   }
 }

@@ -25,7 +25,7 @@
     "lint:es:fix": "eslint . --fix",
     "lint:etc": "prettier . --check",
     "lint:etc:fix": "prettier . --write",
-    "lint:style": "stylelint '**/*.{js,ts,tsx}'",
+    "lint:style": "lerna run lint:style",
     "lint:style:fix": "stylelint '**/*.{js,ts,tsx}' --fix",
     "lint": "npm run lint:es && npm run lint:etc && npm run lint:style",
     "lint:fix": "npm run lint:es:fix && npm run lint:etc:fix && npm run lint:style:fix",
