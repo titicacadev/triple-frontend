@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "12.13.0",
+  "version": "12.14.0",
   "description": "React context modules for triple web applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-contexts",
@@ -27,11 +27,11 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/constants": "^12.13.0",
-    "@titicaca/fetcher": "^12.13.0",
+    "@titicaca/constants": "^12.14.0",
+    "@titicaca/fetcher": "^12.14.0",
     "@titicaca/triple-web-to-native-interfaces": "^1.7.0",
-    "@titicaca/type-definitions": "^12.13.0",
-    "@titicaca/view-utilities": "^12.13.0",
+    "@titicaca/type-definitions": "^12.14.0",
+    "@titicaca/view-utilities": "^12.14.0",
     "qs": "^6.9.4",
     "ua-parser-js": "^0.7.20",
     "universal-cookie": "^4.0.4"
