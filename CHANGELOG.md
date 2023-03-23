@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 12.14.0
+
+- lint 캐시 가능하도록 설정 [#2471](https://github.com/titicacadev/triple-frontend/pull/2471)
+
+### action-sheet
+
+- action-sheet-item에 notice 아이콘 추가 [#2472](https://github.com/titicacadev/triple-frontend/pull/2472)
+
 ## 12.13.0
 
 - turbo 제거, lerna + nx 사용 [#2462](https://github.com/titicacadev/triple-frontend/pull/2465)
