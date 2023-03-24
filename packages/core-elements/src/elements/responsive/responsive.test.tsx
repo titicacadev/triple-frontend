@@ -2,8 +2,6 @@ import renderer from 'react-test-renderer'
 
 import { Responsive } from './responsive'
 
-import 'jest-styled-components'
-
 it('should have media query for maxWidth is passed', () => {
   const tree = renderer.create(<Responsive maxWidth={1000} />).toJSON()
 

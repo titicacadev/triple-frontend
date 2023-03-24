@@ -1,5 +1,4 @@
 import { PropsWithChildren } from 'react'
-import '@testing-library/jest-dom'
 import { fireEvent, render, waitFor } from '@testing-library/react'
 import { EnvProvider } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'

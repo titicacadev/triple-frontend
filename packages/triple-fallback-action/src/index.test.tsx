@@ -1,5 +1,4 @@
 import { fireEvent, render, waitFor } from '@testing-library/react'
-import '@testing-library/jest-dom'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { ReactElement } from 'react'
 

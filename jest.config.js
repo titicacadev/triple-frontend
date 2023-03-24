@@ -9,6 +9,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['lib', 'node_modules'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',

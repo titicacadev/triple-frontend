@@ -1,6 +1,4 @@
 import { PropsWithChildren } from 'react'
-import '@testing-library/jest-dom'
-import 'jest-styled-components'
 import { fireEvent, render } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
 

@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react'
-import '@testing-library/jest-dom'
 
 import { RouterGuardedLink } from './router-guarded-link'
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
