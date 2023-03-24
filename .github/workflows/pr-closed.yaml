@@ -27,7 +27,7 @@ jobs:
           echo "::set-output name=status::$(cat status)"
 
       - name: Delete release tag of this pull request
-        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           delete_release: true
           tag_name: ${{ env.TAG_NAME }}
