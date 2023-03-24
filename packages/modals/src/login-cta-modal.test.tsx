@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom'
 import { render, renderHook, act } from '@testing-library/react'
 import {
   useEventTrackingContext,

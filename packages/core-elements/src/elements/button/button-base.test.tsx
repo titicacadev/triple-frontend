@@ -2,8 +2,6 @@ import { render } from '@testing-library/react'
 
 import { ButtonBase } from './button-base'
 
-import '@testing-library/jest-dom'
-
 test('type attribute 기본값은 button 입니다.', () => {
   const { getByText } = render(<ButtonBase>Default</ButtonBase>)
 
