@@ -131,7 +131,7 @@ jobs:
 
       - name: Generate coverage report
         id: test
-        run: npm run test:coverage -- --ci --reporters github-actions --reporters summary
+        run: npm run test:coverage -- --ci --reporters github-actions --reporters summary --runInBand
 
       - name: Notify testing failure
         if: failure() && steps.test.outcome == 'failure'
