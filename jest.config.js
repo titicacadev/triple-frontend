@@ -9,14 +9,13 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['lib', 'node_modules'],
-  roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
   collectCoverageFrom: [
     '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
-    '!**/lib/**',
-    '!**/node_modules/**',
+    '!**/*.stories.*',
   ],
+  coveragePathIgnorePatterns: ['/node_modules/', '/lib'],
 }
