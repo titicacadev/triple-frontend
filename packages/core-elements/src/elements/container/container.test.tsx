@@ -2,8 +2,6 @@ import renderer from 'react-test-renderer'
 
 import { Container } from './container'
 
-import 'jest-styled-components'
-
 it('should accept style shortcut props', () => {
   const tree = renderer
     .create(

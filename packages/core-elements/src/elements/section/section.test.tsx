@@ -2,8 +2,6 @@ import renderer, { ReactTestRendererJSON } from 'react-test-renderer'
 
 import { Section } from './section'
 
-import 'jest-styled-components'
-
 it('should render null if children is empty', () => {
   const tree = renderer.create(<Section />).toJSON()
 

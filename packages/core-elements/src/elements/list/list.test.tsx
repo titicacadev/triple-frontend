@@ -2,8 +2,6 @@ import renderer from 'react-test-renderer'
 
 import { List } from './list'
 
-import 'jest-styled-components'
-
 it('should accept weight divided prop', () => {
   const tree = renderer
     .create(

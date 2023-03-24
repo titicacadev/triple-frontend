@@ -2,8 +2,6 @@ import renderer from 'react-test-renderer'
 
 import { Text } from './text'
 
-import 'jest-styled-components'
-
 it('should have default styles', () => {
   const tree = renderer.create(<Text />).toJSON()
 

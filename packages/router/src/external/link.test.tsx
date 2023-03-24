@@ -1,5 +1,3 @@
-import '@testing-library/jest-dom'
-import 'jest-styled-components'
 import { fireEvent, render } from '@testing-library/react'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'

@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
 import { render } from '@testing-library/react'
 
-import '@testing-library/jest-dom'
-
 import { ScrollSpyContainer, ScrollSpyEntity } from './index'
 
 jest.mock('@titicaca/intersection-observer', () => ({
