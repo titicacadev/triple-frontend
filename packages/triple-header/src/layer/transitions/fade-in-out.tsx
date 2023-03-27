@@ -1,4 +1,4 @@
-import { useEffect, useState, ReactNode } from 'react'
+import { useEffect, useState, ReactElement } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 import { MotionContainer } from '../../motion-container'
@@ -11,8 +11,20 @@ const variants = {
   exit: () => ({ opacity: 0, transition: { duration: 1 } }),
 }
 
-export function FadeInOut({ children }: { children: ReactNode[] }) {
+export function FadeInOut({ children }: { children: ReactElement[] }) {
   const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
+
+  const imageUrls = children
+    .map((child) => {
+      if (typeof child === 'object') {
+        return child.props.frame.value.image.sizes.full.url
+      }
+
+      return null
+    })
+    .filter((v) => v)
+
+  useImagePreloader(imageUrls)
 
   useEffect(() => {
     const timer = setInterval(
@@ -40,4 +52,13 @@ export function FadeInOut({ children }: { children: ReactNode[] }) {
       </MotionContainer>
     </AnimatePresence>
   )
+}
+
+function useImagePreloader(imageUrls: string[]) {
+  useEffect(() => {
+    imageUrls.forEach((imageUrl) => {
+      const img = new Image()
+      img.src = imageUrl
+    })
+  }, [imageUrls])
 }
