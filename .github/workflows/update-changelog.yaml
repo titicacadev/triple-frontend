@@ -1,0 +1,71 @@
+name: Update CHANGELOG
+
+on:
+  pull_request:
+    types:
+      - labeled
+
+env:
+  COMMIT_USER_EMAIL: developer@triple-corp.com
+  COMMIT_USER_NAME: triple-frontend[bot]
+  CURRENT_VERSION: ${{ github.event.pull_request.milestone.title }}
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.label.name == 'release' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Fetch PRs in current version's milestone and write a question to ChatGPT
+        run: |
+          RESPONSE=$(curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/search/issues?q=milestone:${{ env.CURRENT_VERSION }}+type:pr+repo:$GITHUB_REPOSITORY")
+
+          if [[ $(echo "$RESPONSE" | jq '.total_count') == null ]]; then
+            echo $RESPONSE | jq '.message'
+            exit 1
+          fi
+
+          PRS_IN_MILESTONE=$(echo "$RESPONSE" | jq '.items[] | select(.pull_request.merged_at != null and (.labels | map(select(.name == "release")) | length == 0)) | {title: .title, number: .number, url: .html_url, package: .labels[].name}' | jq -s tostring | sed 's/^"//;s/"$//')
+          echo "CHAT_GPT_CONTENT=$(echo Write down a markdown content based on this data\\n $PRS_IN_MILESTONE \\nin the following format:\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### other package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n but with the title name of common coming first, followed by the alphabetically sorted packages.)" >> $GITHUB_ENV
+
+      - name: Request ChatGPT to write down CHANGELOG
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+        run: |
+          RESPONSE=$(curl -X POST https://api.openai.com/v1/chat/completions \
+           -H "Content-Type: application/json" \
+           -H "Authorization: Bearer $OPENAI_KEY" \
+           -d '{
+              "model": "gpt-3.5-turbo",
+              "temperature": 0.2,
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "${{ env.CHAT_GPT_CONTENT }}"
+                }
+              ]
+            }' 
+          )
+
+          echo $RESPONSE | jq
+          changelog_content=$(echo $RESPONSE | jq -r '.choices[].message.content')
+
+          printf '\n%s\n\n' "## ${{ env.CURRENT_VERSION }}" >> changelog_tmp.md
+          echo -e "$changelog_content" >> changelog_tmp.md
+
+          sed -i '1r changelog_tmp.md' CHANGELOG.md
+          rm changelog_tmp.md
+
+      - name: Commit and push updated CHANGELOG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
+          git add CHANGELOG.md
+          git commit -m "Update ${{ env.CURRENT_VERSION }} CHANGELOG"
+          git push
