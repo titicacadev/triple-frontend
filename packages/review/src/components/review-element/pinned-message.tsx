@@ -1,23 +1,18 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import moment from 'moment'
-import styled from 'styled-components'
-import { Container, FlexBox, Text } from '@titicaca/core-elements'
+import { Button, FlexBox, Text } from '@titicaca/core-elements'
 import { useTranslation } from '@titicaca/next-i18next'
 
 import { PinnedMessageData } from '../types'
 
 interface PinnedMessageProps {
   pinnedMessage: PinnedMessageData
-  onShowMoreClick: MouseEventHandler<HTMLButtonElement>
+  onPinnedMessageClick: MouseEventHandler<HTMLButtonElement>
 }
-
-const ShowMoreButton = styled.button`
-  color: var(--color-blue);
-`
 
 export function PinnedMessage({
   pinnedMessage,
-  onShowMoreClick,
+  onPinnedMessageClick,
 }: PinnedMessageProps) {
   const { t } = useTranslation('common-web')
   const textRef = useRef<HTMLDivElement>(null)
@@ -39,13 +34,15 @@ export function PinnedMessage({
   }
 
   return (
-    <Container
+    <Button
       css={{
         background: 'rgba(58, 58, 58, 0.03)',
+        textAlign: 'left',
         margin: '10px 0 20px',
         padding: 18,
         borderRadius: 10,
       }}
+      onClick={onPinnedMessageClick}
     >
       <FlexBox
         flex
@@ -82,10 +79,10 @@ export function PinnedMessage({
         {content.markdownText}
       </Text>
       {isTextClamped ? (
-        <ShowMoreButton onClick={onShowMoreClick}>
+        <Text css={{ color: 'var(--color-blue)' }}>
           {t(['deobogi', '더보기'])}
-        </ShowMoreButton>
+        </Text>
       ) : null}
-    </Container>
+    </Button>
   )
 }

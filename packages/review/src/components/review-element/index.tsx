@@ -249,7 +249,7 @@ function ReviewElement({
         {replyBoard?.pinnedMessages[0] ? (
           <PinnedMessage
             pinnedMessage={replyBoard?.pinnedMessages[0]}
-            onShowMoreClick={(e) => {
+            onPinnedMessageClick={(e) => {
               onReviewClick(e, review.id)
             }}
           />
