@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
-import Popup from '.'
+import Popup from './popup'
 
 export default {
   title: 'popup / Popup',
