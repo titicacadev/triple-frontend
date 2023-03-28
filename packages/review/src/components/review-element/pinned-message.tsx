@@ -36,6 +36,8 @@ export function PinnedMessage({
   return (
     <Button
       css={{
+        display: 'block',
+        width: '100%',
         background: 'rgba(58, 58, 58, 0.03)',
         textAlign: 'left',
         margin: '10px 0 20px',
