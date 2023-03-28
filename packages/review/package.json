@@ -51,7 +51,7 @@
     "@graphql-codegen/typescript-operations": "2.4.0",
     "@graphql-codegen/typescript-react-query": "^3.5.14",
     "@titicaca/i18n": "^12.14.0",
-    "@titicaca/next-i18next": "^13.8.4",
+    "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "^12.14.0",
     "@titicaca/react-triple-client-interfaces": "^12.14.0",
     "@types/qs": "^6.9.0",

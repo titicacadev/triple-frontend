@@ -58,7 +58,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@titicaca/eslint-config-triple": "5.0.0",
-    "@titicaca/next-i18next": "^13.8.5",
+    "@titicaca/next-i18next": "13.8.5",
     "@titicaca/prettier-config-triple": "1.0.2",
     "@titicaca/stylelint-config-triple": "1.0.2",
     "@types/jest": "^27.0.2",
