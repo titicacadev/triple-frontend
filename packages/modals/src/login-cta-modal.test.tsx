@@ -18,7 +18,6 @@ beforeEach(() => {
   mockHistoryFunctions()
   mockEventTrackingContext()
   mockUserAgentContext()
-  mockResizeObserver()
 })
 
 test('children을 렌더링합니다.', () => {
@@ -120,16 +119,4 @@ function mockUserAgentContext() {
     os: {},
     app: null,
   }))
-}
-
-function mockResizeObserver() {
-  class ResizeObserver {
-    public observe() {}
-
-    public unobserve() {}
-
-    public disconnect() {}
-  }
-
-  window.ResizeObserver = ResizeObserver
 }
