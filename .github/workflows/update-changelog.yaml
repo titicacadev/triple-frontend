@@ -62,7 +62,7 @@ jobs:
 
       - name: Commit and push updated CHANGELOG
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
         run: |
           git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
           git config --local user.name "${{ env.COMMIT_USER_NAME }}"
