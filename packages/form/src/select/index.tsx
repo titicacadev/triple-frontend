@@ -42,7 +42,7 @@ const SelectFrame = styled.div<{ focused?: string; error?: boolean }>`
 const BaseSelect = styled.select<{ selected?: boolean; error?: boolean }>`
   width: 100%;
   font-size: 16px;
-  color: css(--color-gray);
+  color: var(--color-gray);
   opacity: ${({ selected }) => (selected ? 1 : 0.3)};
 
   ${({ error }) =>
