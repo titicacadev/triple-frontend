@@ -1,0 +1,41 @@
+name: Label a PR with its package update
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    # =============== 테스트용. 이후 제거할 예정입니다 ===============
+    if: ${{ github.event.pull_request.head.ref == 'feat/automate-changelog' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Get changed packages
+        run: |
+          RESPONSE=$(curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          "https://api.github.com/repos/${{ github.repository }}/compare/${{ github.event.pull_request.base.ref }}...${{ github.event.pull_request.head.ref }}")
+
+          if [[ $(echo "$RESPONSE" | jq '.total_commits') == null ]]; then
+            echo $RESPONSE | jq '.message'
+            exit 1
+          fi
+
+          CHANGED_PACKAGES=$(echo "$RESPONSE" | jq '[.files[].filename | capture("packages/(?<packageName>[^/]+)/") .packageName] | unique | tostring')
+          echo "CHANGED_PACKAGES=$CHANGED_PACKAGES" >> $GITHUB_ENV
+
+      - name: Label PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PACKAGE_LABELS=$(echo ${{ env.CHANGED_PACKAGES }} | jq .)
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d "{\"labels\": $PACKAGE_LABELS }"
