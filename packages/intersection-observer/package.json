@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@titicaca/react-intersection-observer": "1.7.0",
-    "intersection-observer": "^0.7.0"
+    "intersection-observer": "^0.12.2"
   },
   "peerDependencies": {
     "next": "^13.0",
