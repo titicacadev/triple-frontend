@@ -94,7 +94,7 @@
     "rimraf": "^3.0.2",
     "storybook-addon-next-router": "^4.0.2",
     "storybook-addon-swc": "^1.1.9",
-    "styled-components": "^5.3.6",
+    "styled-components": "^5.3.9",
     "stylelint": "^15.2.0",
     "ts-jest": "^27.1.5",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
