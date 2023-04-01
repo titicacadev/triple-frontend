@@ -76,7 +76,7 @@
     "eslint": "^8.35.0",
     "eslint-plugin-mdx": "^2.0.5",
     "http-proxy-middleware": "^2.0.6",
-    "husky": "^7.0.2",
+    "husky": "^7.0.4",
     "i18next": "22.0.6",
     "jest": "^27.3.1",
     "jest-styled-components": "^7.1.1",
