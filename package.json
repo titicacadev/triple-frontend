@@ -62,7 +62,7 @@
     "@titicaca/prettier-config-triple": "1.0.2",
     "@titicaca/stylelint-config-triple": "1.1.0",
     "@types/jest": "^27.0.2",
-    "@types/node": "^12.12.47",
+    "@types/node": "^12.20.55",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/react-input-mask": "^2.0.5",
