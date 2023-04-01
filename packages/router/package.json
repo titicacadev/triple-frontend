@@ -37,7 +37,7 @@
     "@titicaca/react-contexts": "^12.14.0",
     "@titicaca/react-triple-client-interfaces": "^12.14.0",
     "@types/qs": "^6.9.5",
-    "@types/webpack": "^4.41.25"
+    "@types/webpack": "^4.41.33"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
