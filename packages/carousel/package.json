@@ -39,7 +39,7 @@
     "@titicaca/react-contexts": "*",
     "react": "^18.0",
     "react-dom": "^18.0",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.9"
   },
   "author": "torres-triple <torres@triple-corp.com>"
 }
