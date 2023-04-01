@@ -44,7 +44,7 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.17.2",
-    "@nrwl/nx-cloud": "^15.2.0",
+    "@nrwl/nx-cloud": "^15.3.5",
     "@storybook/addon-docs": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
