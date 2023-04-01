@@ -31,7 +31,7 @@
     "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {
-    "@types/scroll-to-element": "^2.0.0"
+    "@types/scroll-to-element": "^2.0.2"
   },
   "peerDependencies": {
     "react": "^18.0",
