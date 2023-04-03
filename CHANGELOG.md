@@ -1,5 +1,56 @@
 # CHANGELOG
 
+## v12.2.0
+
+### common
+
+- ci 속도 개선 [#2340](https://github.com/titicacadev/triple-frontend/pull/2340)
+- cd workflow 에러 수정 [#2351](https://github.com/titicacadev/triple-frontend/pull/2351)
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+
+### core-elements
+
+- [core-elements] story title을 소문자로 변경 [#2345](https://github.com/titicacadev/triple-frontend/pull/2345)
+- [core-elements] ConfirmSelector 디자인 수정 [#2359](https://github.com/titicacadev/triple-frontend/pull/2359)
+- [core-elements] Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
+
+### poi-detail
+
+- [poi-detail] Actions 스토리가 빌드마다 변경되는 현상 수정 [#2346](https://github.com/titicacadev/triple-frontend/pull/2346)
+
+### modals
+
+- [Modals] modal handler onClose 실행 분기문 이전 버전과 동일하게 변경 [#2347](https://github.com/titicacadev/triple-frontend/pull/2347)
+
+### view-utilities
+
+- [view-utilities] public route list에 `/redirect`를 추가합니다. [#2355](https://github.com/titicacadev/triple-frontend/pull/2355)
+
+### action-sheet
+
+- [action-sheet] 액션시트 열고 닫히는 transition이 일부 브라우저에서 layout shift 되지 않도록 수정 [#2358](https://github.com/titicacadev/triple-frontend/pull/2358)
+
+### version-up
+
+- 🚀 Release v12.2.0 [#2366](https://github.com/titicacadev/triple-frontend/pull/2366)
+
+### anchor
+
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+
+### color-palette
+
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+
+### theme
+
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+
+### ab-experiments
+
+- [core-elements] Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
+- 🚀 Release v12.2.0 [#2366](https://github.com/titicacadev/triple-frontend/pull/2366)
+
 ## 12.14.0
 
 - lint 캐시 가능하도록 설정 [#2471](https://github.com/titicacadev/triple-frontend/pull/2471)
