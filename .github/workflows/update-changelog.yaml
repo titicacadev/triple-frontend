@@ -40,13 +40,13 @@ jobs:
             jq "[.items[] | \
               select(.pull_request.merged_at != null and \
                      (.labels | map(select(.name == \"release\")) | length == 0)) | \
-              {title: .title, number: .number, url: .html_url, package: .labels[].name}] | \
+              {title: .title, number: .number, url: .html_url, packages: .labels[].name}] | \
               group_by(.number) | \
-              map({ title: .[0].title, number: .[0].number, url: .[0].url, package: [.[].package] }) | \
+              map({ title: .[0].title, number: .[0].number, url: .[0].url, packages: [.[].packages] }) | \
               tostring" | \
             sed 's/^"//;s/"$//')
-          echo "CHAT_GPT_PROMPT=$(echo Please write me a markdown using this data\\n$PRS_IN_MILESTONE\\nin the following format\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n \
-            Please filter out emojis when writing package name in the markdown, and if the item has multiple packages write it in multiple package group. Note that each package group must not be duplicated.)" >> $GITHUB_ENV
+            echo "CHAT_GPT_PROMPT=$(echo Using the following data, please write a Markdown list in the format of \`\`\`- [packages] title [#number]\(url\)\\n- [packages] title [#number]\(url\)\`\`\`. \
+              And please filter out any emojis in the package names:\\n\`\`\`$PRS_IN_MILESTONE\`\`\`)" >> $GITHUB_ENV
 
       - name: Request ChatGPT to write down CHANGELOG
         env:
@@ -57,7 +57,6 @@ jobs:
            -H "Authorization: Bearer $OPENAI_KEY" \
            -d '{
               "model": "gpt-3.5-turbo",
-              "temperature": 0.2,
               "messages": [
                 {
                   "role": "user",
