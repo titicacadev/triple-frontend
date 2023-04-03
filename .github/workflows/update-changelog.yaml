@@ -45,7 +45,7 @@ jobs:
               map({ title: .[0].title, number: .[0].number, url: .[0].url, package: [.[].package] }) | \
               tostring" | \
             sed 's/^"//;s/"$//')
-          echo "CHAT_GPT_PROMPT=$(echo Please write me a markdown using this data\\n$PRS_IN_MILESTONE\\nin the following format\\n\\n### package\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n \
+          echo "CHAT_GPT_PROMPT=$(echo Please write me a markdown using this data\\n$PRS_IN_MILESTONE\\nin the following format\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n \
             Please filter out emojis when writing package name in the markdown, and if the item has multiple packages write it in multiple package group. Note that each package group must not be duplicated.)" >> $GITHUB_ENV
 
       - name: Request ChatGPT to write down CHANGELOG
