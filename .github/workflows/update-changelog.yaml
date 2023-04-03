@@ -31,7 +31,7 @@ jobs:
 
           PRS_IN_MILESTONE=$(echo "$RESPONSE" | jq '[.items[] | select(.pull_request.merged_at != null and (.labels | map(select(.name == "release")) | length == 0)) | {title: .title, number: .number, url: .html_url, package: .labels[].name}] | group_by(.number) | map({ title: .[0].title, number: .[0].number, url: .[0].url, package: [.[].package] }) | tostring' | sed 's/^"//;s/"$//')
           echo $PRS_IN_MILESTONE
-          echo "CHAT_GPT_PROMPT=$(echo Please write me a markdown using this data\\n$PRS_IN_MILESTONE\\nin the following format\\n\\n### package\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\nPlease filter out emojis when writing package name in the markdown, and if the item has multiple packages write it in multiple package group. ${package} should only be one package, not multiple packages.)" >> $GITHUB_ENV
+          echo "CHAT_GPT_PROMPT=$(echo Please write me a markdown using this data\\n$PRS_IN_MILESTONE\\nin the following format\\n\\n### package\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\n\\n### package\\n\\n- title [#number]\(url\)\\n- title [#number]\(url\)\\nPlease filter out emojis when writing package name in the markdown, and if the item has multiple packages write it in multiple package group. Note that each package group must not be duplicated.)" >> $GITHUB_ENV
 
       - name: Request ChatGPT to write down CHANGELOG
         env:
