@@ -6,6 +6,9 @@ import { useAccordion } from './accordion-context'
 
 type AccordionContentProps = PropsWithChildren
 
+// eslint-disable-next-line no-console
+console.log(1)
+
 export const AccordionContent = ({
   children,
   ...props
