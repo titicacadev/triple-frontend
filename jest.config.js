@@ -2,6 +2,9 @@ const { pathsToModuleNameMapper } = require('ts-jest')
 
 const { compilerOptions } = require('./tsconfig.test.json')
 
+// eslint-disable-next-line no-console
+console.log(1)
+
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   transform: {
