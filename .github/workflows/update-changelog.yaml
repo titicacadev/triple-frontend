@@ -45,9 +45,8 @@ jobs:
               map({ title: .[0].title, number: .[0].number, url: .[0].url, packages: [.[].packages] }) | \
               tostring" | \
             sed 's/^"//;s/"$//')
-            echo "CHAT_GPT_PROMPT=$(echo Using the following data, please write a Markdown list in the format of \`\`\`### {{package1}}\\n\\n- {{title1}} [#{{number1}}]\({{url1}}\)\\n\\n### {{package2}}\\n\\n- {{title2}} [#{{number2}}]\({{url2}}\)\\n\\n...\\n\\n### {{packageN}}\\n\\n- {{titleN}} [#{{numberN}}]\({{urlN}}\)\`\`\`. \
-              Substitute \`{{package}}\` with the package name in the \`packages\` field, \`{{title}}\` with the \`title\` field value, \`{{number}}\` with the \`number\` field value, and \`{{url}}\` with the \`url\` field value of a list item. \
-              And also, please filter out any emojis in the package names:\\n\`\`\`$PRS_IN_MILESTONE\`\`\`)" >> $GITHUB_ENV
+            echo "CHAT_GPT_PROMPT=$(echo Using the following data, please write a Markdown list in the format of \`\`\`### {{package1}}\\n\\n- {{title1}} [#{{number1}}]\({{url1}}\)\\n\\n### {{package2}}\\n\\n- {{title2}} [#{{number2}}]\({{url2}}\)\\n\\n...\\n\\n### {{packageN}}\\n\\n- {{titleN}} [#{{numberN}}]\({{urlN}}\)\`\`\` \
+              where \`{{package}}\` is the package name in the \`packages\` field with any emojis removed, and only single package. If there are multiple packages in an item, write each one separately. The \`{{title}}\` field should be used for the title, \`{{number}}\` for the number, and \`{{url}}\` for the url of a list item. The data is:\\n\`\`\`$PRS_IN_MILESTONE\`\`\`)" >> $GITHUB_ENV
 
       - name: Request ChatGPT to write down CHANGELOG
         env:
