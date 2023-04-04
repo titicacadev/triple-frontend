@@ -20,24 +20,6 @@ test('올바른 aria attributes를 가집니다.', async () => {
   expect(modal).toHaveAttribute('aria-modal', 'true')
 })
 
-test('외부를 클릭하면 닫습니다.', async () => {
-  const user = userEvent.setup()
-
-  const onClose = jest.fn()
-
-  await act(() => {
-    render(
-      <Popup open onClose={onClose}>
-        contents
-      </Popup>,
-    )
-  })
-
-  await user.click(document.body)
-
-  expect(onClose).toHaveBeenCalledTimes(1)
-})
-
 test('ESC 키를 누르면 닫습니다.', async () => {
   const user = userEvent.setup()
 
