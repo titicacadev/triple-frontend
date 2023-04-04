@@ -19,6 +19,9 @@ interface TripleABExperimentMetas {
   [key: string]: TripleABExperimentMeta | undefined
 }
 
+// eslint-disable-next-line no-console
+console.log(1)
+
 const TripleABExperimentContext = createContext<TripleABExperimentMetas>({})
 
 export function TripleABExperimentProvider({
