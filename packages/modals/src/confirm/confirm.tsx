@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { CSSProp } from 'styled-components'
 
 import { Modal } from '../modal'
 
@@ -8,6 +9,8 @@ export interface ConfirmProps {
   open?: boolean
   cancelText?: string
   confirmText?: string
+  BodyProps?: CSSProp
+  ActionsProps?: CSSProp
   onClose?: () => void
   onCancel?: () => boolean | unknown
   onConfirm?: () => boolean | unknown
@@ -22,6 +25,7 @@ export const Confirm = ({
   onClose,
   onCancel,
   onConfirm,
+  ...props
 }: ConfirmProps) => {
   const handleCancel = () => {
     onCancel ? !onCancel() && onClose?.() : onClose?.()
@@ -33,7 +37,7 @@ export const Confirm = ({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Modal.Body>
+      <Modal.Body {...props}>
         {title && <Modal.Title>{title}</Modal.Title>}
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
