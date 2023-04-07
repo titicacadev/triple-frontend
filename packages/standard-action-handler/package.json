@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/standard-action-handler",
-  "version": "12.14.0",
+  "version": "12.15.0",
   "description": "Standard action handler for Triple service applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/standard-action-handler",
@@ -25,16 +25,16 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/router": "^12.14.0",
-    "@titicaca/scroll-to-element": "^12.14.0",
+    "@titicaca/router": "^12.15.0",
+    "@titicaca/scroll-to-element": "^12.15.0",
     "@titicaca/triple-web-to-native-interfaces": "1.7.0",
-    "@titicaca/view-utilities": "^12.14.0",
+    "@titicaca/view-utilities": "^12.15.0",
     "qs": "^6.9.4"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.14.0",
+    "@titicaca/i18n": "^12.15.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-triple-client-interfaces": "^12.14.0",
+    "@titicaca/react-triple-client-interfaces": "^12.15.0",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
