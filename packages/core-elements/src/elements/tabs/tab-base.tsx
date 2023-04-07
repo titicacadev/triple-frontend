@@ -1,11 +1,15 @@
-import { useFocusManager } from '@react-aria/focus'
 import {
+  FocusEventHandler,
   ForwardedRef,
   forwardRef,
   KeyboardEventHandler,
   MouseEventHandler,
   PropsWithChildren,
+  useRef,
 } from 'react'
+import { useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex'
+
+import { mergeRefs } from '../../utils/merge-refs'
 
 import { useTabs } from './tabs-context'
 
@@ -21,44 +25,39 @@ function TabBaseComponent<Value extends number | string | symbol>(
   ref: ForwardedRef<HTMLButtonElement>,
 ) {
   const tabs = useTabs<Value>()
-  const focusManager = useFocusManager()
+  const internalRef = useRef<HTMLButtonElement>(null)
+  const [tabIndex, focused, onKeyDown, onClick] = useRovingTabIndex(
+    internalRef,
+    false,
+  )
 
   const isSelected = tabs.value === value
 
   const handleClick: MouseEventHandler = () => {
+    onClick()
+    tabs.onChange?.(value)
+  }
+
+  const handleFocus: FocusEventHandler = () => {
     tabs.onChange?.(value)
   }
 
   const handleKeyDown: KeyboardEventHandler = (event) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        event.stopPropagation()
-        focusManager.focusPrevious({ wrap: true })
-        break
-      case 'ArrowRight':
-        event.stopPropagation()
-        focusManager.focusNext({ wrap: true })
-        break
-      case 'Home':
-        event.stopPropagation()
-        focusManager.focusFirst({ wrap: true })
-        break
-      case 'End':
-        event.stopPropagation()
-        focusManager.focusLast({ wrap: true })
-        break
-    }
+    onKeyDown(event)
   }
+
+  useFocusEffect(focused, internalRef)
 
   return (
     <button
-      ref={ref}
+      ref={mergeRefs([ref, internalRef])}
       id={`${tabs.id}-tab-${value.toString()}`}
       role="tab"
-      tabIndex={isSelected ? 0 : -1}
+      tabIndex={tabIndex}
       aria-controls={`${tabs.id}-panel-${value.toString()}`}
       aria-selected={isSelected}
       onClick={handleClick}
+      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       {...props}
     >
