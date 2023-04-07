@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v12.15.0
+
+### common
+
+- CHANGELOG 자동화를 구현합니다. [#2518](https://github.com/titicacadev/triple-frontend/pull/2518)
+- chore: 불필요한 의존성 제거 [#2519](https://github.com/titicacadev/triple-frontend/pull/2519)
+- ci: renovate-pr-fix 삭제 [#2533](https://github.com/titicacadev/triple-frontend/pull/2533)
+
+### popup
+
+- [popup] 외부 클릭시 닫는 테스트 제거 [#2532](https://github.com/titicacadev/triple-frontend/pull/2532)
+
+### modals
+
+- [ Modals ] Confirm body에 css prop을 추가합니다. [#2546](https://github.com/titicacadev/triple-frontend/pull/2546)
+
 ## 12.14.0
 
 - lint 캐시 가능하도록 설정 [#2471](https://github.com/titicacadev/triple-frontend/pull/2471)
