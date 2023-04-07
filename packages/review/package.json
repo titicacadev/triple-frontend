@@ -40,7 +40,7 @@
     "@titicaca/view-utilities": "^12.15.0",
     "graphql": "^16.6.0",
     "graphql-request": "^4.3.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "qs": "^6.9.0",
     "react-query": "^3.39.3",
     "scroll-to-element": "^2.0.3"

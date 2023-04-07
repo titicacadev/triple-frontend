@@ -44,7 +44,7 @@
     "@titicaca/ui-flow": "^12.15.0",
     "@titicaca/user-verification": "^12.15.0",
     "@titicaca/view-utilities": "^12.15.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "qs": "^6.11.0"
   },
   "devDependencies": {
