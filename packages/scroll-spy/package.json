@@ -29,7 +29,7 @@
   "dependencies": {
     "@titicaca/intersection-observer": "^12.15.0",
     "@titicaca/react-hooks": "^12.15.0",
-    "react-use": "^17.2.1"
+    "react-use": "^17.4.0"
   },
   "peerDependencies": {
     "react": "^18.0",
