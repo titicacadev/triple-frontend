@@ -8,13 +8,23 @@
 - chore: 불필요한 의존성 제거 [#2519](https://github.com/titicacadev/triple-frontend/pull/2519)
 - ci: renovate-pr-fix 삭제 [#2533](https://github.com/titicacadev/triple-frontend/pull/2533)
 
+### action-sheet
+
+- ActionSheet, Modal, Popup 접근성 테스트 추가 [#2480](https://github.com/titicacadev/triple-frontend/pull/2480)
+
+### review
+
+- 리뷰 목록에 pinned message를 노출합니다. [#2403](https://github.com/titicacadev/triple-frontend/pull/2403)
+
 ### popup
 
 - [popup] 외부 클릭시 닫는 테스트 제거 [#2532](https://github.com/titicacadev/triple-frontend/pull/2532)
+- ActionSheet, Modal, Popup 접근성 테스트 추가 [#2480](https://github.com/titicacadev/triple-frontend/pull/2480)
 
 ### modals
 
 - [ Modals ] Confirm body에 css prop을 추가합니다. [#2546](https://github.com/titicacadev/triple-frontend/pull/2546)
+- ActionSheet, Modal, Popup 접근성 테스트 추가 [#2480](https://github.com/titicacadev/triple-frontend/pull/2480)
 
 ## 12.14.0
 
