@@ -1,12 +1,13 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { useVisuallyHidden } from '@react-aria/visually-hidden'
+
+import { visuallyHiddenCss } from '../visually-hidden'
 
 const ConfirmSelectorBaseWrapper = styled.div`
   display: inline-block;
 `
 
-const ConfirmSelectorBaseInput = styled.input``
+const ConfirmSelectorBaseInput = styled.input({}, visuallyHiddenCss)
 
 const ConfirmSelectorBaseControl = styled.div`
   display: inline-block;
@@ -38,16 +39,9 @@ export const ConfirmSelectorBase = forwardRef<
   HTMLInputElement,
   ConfirmSelectorBaseProps
 >(function ConfirmSelectorBase(props, ref) {
-  const { visuallyHiddenProps } = useVisuallyHidden()
-
   return (
     <ConfirmSelectorBaseWrapper>
-      <ConfirmSelectorBaseInput
-        ref={ref}
-        type="checkbox"
-        {...visuallyHiddenProps}
-        {...props}
-      />
+      <ConfirmSelectorBaseInput ref={ref} type="checkbox" {...props} />
       <ConfirmSelectorBaseControl>
         <ConfirmSelectorBaseSvg
           width="12"

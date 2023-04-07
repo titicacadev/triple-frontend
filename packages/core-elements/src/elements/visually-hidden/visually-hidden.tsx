@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const StyledDiv = styled.div`
+export const visuallyHiddenCss = css`
   border: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -12,6 +12,8 @@ const StyledDiv = styled.div`
   white-space: nowrap;
   position: absolute;
 `
+
+const StyledDiv = styled.div({}, visuallyHiddenCss)
 
 export type VisuallyHiddenProps = PropsWithChildren
 
