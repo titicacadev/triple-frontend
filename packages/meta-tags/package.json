@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "12.14.0",
+  "version": "12.15.0",
   "description": "Triple Web Application Meta tag modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/meta-tags",
@@ -27,9 +27,9 @@
     "lint:etc:fix": "prettier src --write"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.14.0",
+    "@titicaca/i18n": "^12.15.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.14.0"
+    "@titicaca/react-contexts": "^12.15.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

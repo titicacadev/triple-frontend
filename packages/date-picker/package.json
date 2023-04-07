@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/date-picker",
-  "version": "12.14.0",
+  "version": "12.15.0",
   "description": "Triple - Date Picker",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/date-picker",
@@ -27,8 +27,8 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.14.0",
-    "@titicaca/fetcher": "^12.14.0",
+    "@titicaca/color-palette": "^12.15.0",
+    "@titicaca/fetcher": "^12.15.0",
     "moment": "^2.24.0",
     "react-day-picker": "^7.4.10"
   },
