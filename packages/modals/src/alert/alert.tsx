@@ -18,6 +18,7 @@ export const Alert = ({
   confirmText = '확인',
   onClose,
   onConfirm,
+  ...props
 }: AlertProps) => {
   const handleConfirm = () => {
     onConfirm ? !onConfirm() && onClose?.() : onClose?.()
@@ -25,7 +26,7 @@ export const Alert = ({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Modal.Body>
+      <Modal.Body {...props}>
         {title && <Modal.Title>{title}</Modal.Title>}
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
