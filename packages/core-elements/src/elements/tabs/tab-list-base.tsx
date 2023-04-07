@@ -1,14 +1,20 @@
 import { PropsWithChildren } from 'react'
-import { FocusScope } from '@react-aria/focus'
+import { RovingTabIndexProvider } from 'react-roving-tabindex'
 
 export type TabListBaseProps = PropsWithChildren
 
 export const TabListBase = ({ children, ...props }: TabListBaseProps) => {
   return (
-    <FocusScope>
+    <RovingTabIndexProvider
+      options={{
+        direction: 'horizontal',
+        focusOnClick: true,
+        loopAround: true,
+      }}
+    >
       <div role="tablist" aria-orientation="horizontal" {...props}>
         {children}
       </div>
-    </FocusScope>
+    </RovingTabIndexProvider>
   )
 }
