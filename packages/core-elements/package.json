@@ -39,7 +39,8 @@
     "@titicaca/intersection-observer": "^12.15.0",
     "@titicaca/triple-fallback-action": "^12.15.0",
     "@titicaca/view-utilities": "^12.15.0",
-    "react-input-mask": "^2.0.4"
+    "react-input-mask": "^2.0.4",
+    "react-roving-tabindex": "^3.2.0"
   },
   "devDependencies": {
     "@titicaca/i18n": "^12.15.0",
