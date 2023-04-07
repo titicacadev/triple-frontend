@@ -34,8 +34,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.13",
-    "@react-aria/focus": "^3.11.0",
-    "@react-aria/visually-hidden": "^3.7.0",
     "@titicaca/color-palette": "^12.15.0",
     "@titicaca/content-utilities": "4.21.0",
     "@titicaca/intersection-observer": "^12.15.0",
