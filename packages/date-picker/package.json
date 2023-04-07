@@ -29,7 +29,7 @@
   "dependencies": {
     "@titicaca/color-palette": "^12.15.0",
     "@titicaca/fetcher": "^12.15.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react-day-picker": "^7.4.10"
   },
   "peerDependencies": {
