@@ -29,7 +29,7 @@ jobs:
 
       - name: Fetch PRs in current version's milestone and write a question to ChatGPT
         run: |
-          RESPONSE=$(curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/search/issues?q=milestone:${{ env.CURRENT_VERSION }}+type:pr+repo:$GITHUB_REPOSITORY")
+          RESPONSE=$(curl -H "Accept: application/vnd.github+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/search/issues?q=milestone:${{ env.CURRENT_VERSION }}+type:pr+repo:$GITHUB_REPOSITORY&per_page=100")
 
           if [[ $(echo "$RESPONSE" | jq '.total_count') == null ]]; then
             echo $RESPONSE | jq '.message'
