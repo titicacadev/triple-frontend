@@ -157,13 +157,13 @@ devDependency이면 --dev를, peer dependency이면 --peer를 추가합니다.
 
 마일스톤의 모든 이슈가 완료되었다면 이제 새 버전을 릴리즈할 차례입니다. 다음 순서로 진행합니다.
 
-최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다.
+1. 최신 기본 브랜치에서 릴리즈용 브랜치를 만듭니다.
 
 ```bash
 git switch -c release/v2.9.0
 ```
 
-새로운 버전을 올립니다. 원하는 버전을 선택하면 lerna가 알아서 모든 패키지의 버전을 바꿉니다.
+2. 새로운 버전을 올립니다. 원하는 버전을 선택하면 lerna가 알아서 모든 패키지의 버전을 바꿉니다.
 
 ```bash
 $ npm run version
@@ -186,20 +186,11 @@ lerna info Assuming all packages changed
   Custom Version
 ```
 
-새로운 버전의 마일스톤이나 커밋 히스토리를 참고하여 `CHANGELOG.md`에 변경 사항을 작성합니다.
-Unreleased 단락에 내용이 작성되어있다면 이를 새 버전 아래로 옮겨줍니다.
+3. Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다. 이때, Pull Request에 `release` 라벨과 마일스톤이 등록되어 있어야 CHANGELOG가 자동으로 작성됩니다. 릴리즈 PR을 생성할 때 반드시 `release` 라벨과 마일스톤을 등록해주세요!
 
-Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니다.
+4. `#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
 
-`#triple-web-dev-notifications` 채널에서 `/release triple-frontend main`을 입력하여 CD를 실행합니다.
-
-릴리즈가 완료되면 마일스톤을 닫고, 다음 minor 버전의 마일스톤을 생성합니다.
-
-#### 패치 릴리즈
-
-심각한 버그가 발견되어 다음 마이너 릴리즈 전에 패치 버전을 릴리즈해야할 수 있습니다.
-이때는 별도의 마일스톤을 생성하진 않고 수정 내역을 반영한 다음 바로 릴리즈 PR을 생성하여 릴리즈합니다.
-`CHANGELOG.md`의 수정 내역은 동일하게 작성합니다.
+5. 릴리즈가 완료되면 마일스톤을 닫고, 다음 minor 버전의 마일스톤을 생성합니다.
 
 ### 주의사항
 
@@ -207,4 +198,3 @@ Pull Request를 생성하여 변경 내역을 기본 브랜치로 머지합니�
   빌드한 이후에만 의도한 동작을 수행할 수 있습니다.
 - 뷰 및 기능에 변경이 있는 기여인 경우, docs 페이지도 그에 준하게 업데이트해야
   합니다.
-- CHANGELOG 반영이 필요한 경우, PR에 포함하여 CHANGELOG를 작성해야 합니다.
