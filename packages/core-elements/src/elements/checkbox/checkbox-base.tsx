@@ -1,6 +1,7 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { useVisuallyHidden } from '@react-aria/visually-hidden'
+
+import { visuallyHiddenCss } from '../visually-hidden'
 
 type CheckboxVariant = 'square' | 'round'
 
@@ -8,7 +9,7 @@ const CheckboxBaseWrapper = styled.div`
   display: inline-block;
 `
 
-const CheckboxBaseInput = styled.input``
+const CheckboxBaseInput = styled.input({}, visuallyHiddenCss)
 
 const CheckboxBaseControl = styled.div<{ variant: CheckboxVariant }>`
   display: inline-block;
@@ -43,16 +44,9 @@ export interface CheckboxBaseProps
 
 export const CheckboxBase = forwardRef<HTMLInputElement, CheckboxBaseProps>(
   function CheckboxBase({ variant = 'square', ...props }, ref) {
-    const { visuallyHiddenProps } = useVisuallyHidden()
-
     return (
       <CheckboxBaseWrapper>
-        <CheckboxBaseInput
-          ref={ref}
-          type="checkbox"
-          {...visuallyHiddenProps}
-          {...props}
-        />
+        <CheckboxBaseInput ref={ref} type="checkbox" {...props} />
         <CheckboxBaseControl variant={variant}>
           <CheckboxBaseSvg
             width="14"

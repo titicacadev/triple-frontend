@@ -1,8 +1,8 @@
 import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { useVisuallyHidden } from '@react-aria/visually-hidden'
 
 import { useRadioGroup } from '../radio'
+import { visuallyHiddenCss } from '../visually-hidden'
 
 const Label = styled.label<{ checked: boolean }>`
   display: inline-block;
@@ -25,6 +25,8 @@ const Label = styled.label<{ checked: boolean }>`
   }
 `
 
+const Input = styled.input({}, visuallyHiddenCss)
+
 export interface GenderSelectorItemProps extends PropsWithChildren {
   value?: string
   disabled?: boolean
@@ -35,7 +37,6 @@ export const GenderSelectorItem = ({
   value,
   disabled,
 }: GenderSelectorItemProps) => {
-  const { visuallyHiddenProps } = useVisuallyHidden()
   const group = useRadioGroup()
   if (!group) {
     throw new Error()
@@ -49,8 +50,7 @@ export const GenderSelectorItem = ({
 
   return (
     <Label checked={checked}>
-      <input
-        {...visuallyHiddenProps}
+      <Input
         type="radio"
         name={group.name}
         checked={checked}
