@@ -1,14 +1,16 @@
-import { HTMLAttributes, PropsWithChildren } from 'react'
+/* eslint-disable import/no-unresolved */
+import { HTMLAttributes, PropsWithChildren, SyntheticEvent } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
+import { useLinkClickHandler } from '../context'
 import { FluidTable, Box as DefaultBox } from '../common'
 
 interface Link {
   id?: string
   label?: string
   href: string
-  target?: string
+  target?: 'browser'
 }
 
 export interface LinksDocument {
@@ -98,6 +100,8 @@ export default function LinksView({
   const Box = LINK_BOXES[display] || ButtonBox
   const Element = LINK_ELEMENTS[display] || ButtonLink
 
+  const { onLinkClick } = useLinkClickHandler()
+
   return (
     <FluidTable>
       <tbody>
@@ -109,7 +113,13 @@ export default function LinksView({
                   textAlign: 'center',
                 }}
               >
-                <Element href={link.href} ses:tags={`link:${link.id}`}>
+                <Element
+                  href={link.href}
+                  ses:tags={`link:${link.id}`}
+                  onClick={
+                    onLinkClick && ((e: SyntheticEvent) => onLinkClick(e, link))
+                  }
+                >
                   {link.label}
                 </Element>
               </Container>
