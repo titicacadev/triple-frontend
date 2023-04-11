@@ -29,8 +29,8 @@
   "dependencies": {
     "@titicaca/core-elements": "^12.15.0",
     "@titicaca/router": "^12.15.0",
-    "@types/qs": "^6.9.0",
-    "qs": "^6.9.0"
+    "@types/qs": "^6.9.7",
+    "qs": "^6.11.1"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "^12.15.0"
