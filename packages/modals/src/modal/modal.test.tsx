@@ -35,18 +35,21 @@ test('외부를 클릭하면 닫습니다.', async () => {
   const onClose = jest.fn()
 
   render(
-    <Modal open onClose={onClose}>
-      <Modal.Body>
-        <Modal.Title>Title</Modal.Title>
-        <Modal.Description>Description</Modal.Description>
-      </Modal.Body>
-      <Modal.Actions>
-        <Modal.Action>Close</Modal.Action>
-      </Modal.Actions>
-    </Modal>,
+    <>
+      <button>outside</button>
+      <Modal open onClose={onClose}>
+        <Modal.Body>
+          <Modal.Title>Title</Modal.Title>
+          <Modal.Description>Description</Modal.Description>
+        </Modal.Body>
+        <Modal.Actions>
+          <Modal.Action>Close</Modal.Action>
+        </Modal.Actions>
+      </Modal>
+    </>,
   )
 
-  await user.click(document.body)
+  await user.click(screen.getByText('outside'))
 
   expect(onClose).toHaveBeenCalledTimes(1)
 })
