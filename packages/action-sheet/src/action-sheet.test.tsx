@@ -28,13 +28,16 @@ test('외부를 클릭하면 닫습니다.', async () => {
 
   await act(() => {
     render(
-      <ActionSheet open title="Title" onClose={onClose}>
-        contents
-      </ActionSheet>,
+      <>
+        <button>outside</button>
+        <ActionSheet open title="Title" onClose={onClose}>
+          contents
+        </ActionSheet>
+      </>,
     )
   })
 
-  await user.click(document.body)
+  await user.click(screen.getByText('outside'))
 
   expect(onClose).toHaveBeenCalledTimes(1)
 })
