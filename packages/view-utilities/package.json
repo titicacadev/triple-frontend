@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "@titicaca/type-definitions": "^12.15.0",
-    "@types/qs": "^6.9.0",
+    "@types/qs": "^6.9.7",
     "haversine": "^1.1.1",
     "humps": "^2.0.1",
     "moment": "^2.29.4",
-    "qs": "^6.9.0"
+    "qs": "^6.11.1"
   },
   "devDependencies": {
     "@titicaca/i18n": "^12.15.0",
