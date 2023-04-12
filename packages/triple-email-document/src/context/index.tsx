@@ -1,1 +1,1 @@
-export * from './link-clink-handler'
+export * from './link-click-handler'
