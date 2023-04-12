@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { HTMLAttributes, PropsWithChildren, SyntheticEvent } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
