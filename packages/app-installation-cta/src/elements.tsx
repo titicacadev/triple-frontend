@@ -4,6 +4,7 @@ import {
   MarginPadding,
   layeringMixin,
   LayeringMixinProps,
+  safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 
 export const Overlay = styled.div<LayeringMixinProps>`
@@ -170,6 +171,7 @@ export const FloatingButtonContainer = styled.div<
   height: 84px;
 
   ${layeringMixin(1)}
+  ${safeAreaInsetMixin}
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     display: none;
   }
