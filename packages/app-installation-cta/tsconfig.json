@@ -3,7 +3,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@titicaca/color-palette": ["../color-palette/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
