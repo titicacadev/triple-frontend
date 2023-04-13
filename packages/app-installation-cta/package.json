@@ -34,7 +34,6 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.15.0",
     "@titicaca/core-elements": "^12.15.0",
     "@titicaca/intersection-observer": "^12.15.0",
     "@titicaca/type-definitions": "^12.15.0",
