@@ -1,20 +1,32 @@
-import { Fragment, PropsWithChildren, ReactNode, useRef } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { useEffect, useId } from 'react'
 import { FlexBox } from '@titicaca/core-elements'
+import {
+  FloatingFocusManager,
+  FloatingPortal,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
+  useTransitionStatus,
+} from '@floating-ui/react'
 
-import { ActionSheetBody } from './action-sheet-body'
+import { ActionSheetBody, ActionSheetBodyProps } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'
 import { ActionSheetOverlay } from './action-sheet-overlay'
 
 const TRANSITION_DURATION = 120
 
-export interface ActionSheetProps extends PropsWithChildren {
+export interface ActionSheetProps
+  extends Pick<
+    ActionSheetBodyProps,
+    | 'children'
+    | 'borderRadius'
+    | 'bottomSpacing'
+    | 'from'
+    | 'maxContentHeight'
+    | 'title'
+  > {
   open?: boolean
-  title?: ReactNode
-  borderRadius?: number
-  bottomSpacing?: number
-  from?: 'top' | 'bottom'
-  maxContentHeight?: string | number
   onClose?: () => void
   onEnter?: () => void
   onEntered?: () => void
@@ -40,43 +52,72 @@ export const ActionSheet = ({
   onExited,
   ...props
 }: ActionSheetProps) => {
-  const ref = useRef(null)
-  const panelRef = useRef(null)
+  const labelId = useId()
+
+  const { context, refs } = useFloating({
+    open,
+    onOpenChange: (open) => (open ? undefined : onClose?.()),
+  })
+
+  const dismiss = useDismiss(context)
+  const role = useRole(context, { role: 'dialog' })
+
+  const { getFloatingProps } = useInteractions([dismiss, role])
+
+  const { isMounted, status } = useTransitionStatus(context, {
+    duration: TRANSITION_DURATION,
+  })
+
+  useEffect(() => {
+    if (status === 'open') {
+      onEnter?.()
+      const timeout = setTimeout(() => onEntered?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    } else if (status === 'close') {
+      onExit?.()
+      const timeout = setTimeout(() => onExited?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    }
+  }, [onEnter, onEntered, onExit, onExited, status])
 
   return (
-    <ActionSheetContext.Provider value={{ open, onClose }}>
-      <Transition
-        show={open}
-        appear
-        as={Fragment}
-        beforeEnter={onEnter}
-        afterEnter={onEntered}
-        beforeLeave={onExit}
-        afterLeave={onExited}
-      >
-        <Dialog
-          ref={ref}
-          initialFocus={panelRef}
-          static
-          onClose={() => onClose?.()}
-        >
-          <ActionSheetOverlay duration={TRANSITION_DURATION} />
-          <FlexBox flex justifyContent="center">
-            <ActionSheetBody
-              panelRef={panelRef}
-              borderRadius={borderRadius}
-              bottomSpacing={bottomSpacing}
-              duration={TRANSITION_DURATION}
-              maxContentHeight={maxContentHeight}
-              from={from}
-              title={title}
-              {...props}
+    <ActionSheetContext.Provider value={{ open, labelId, onClose }}>
+      {isMounted ? (
+        <FloatingPortal>
+          <ActionSheetOverlay transitionStatus={status} />
+          <FlexBox
+            flex
+            justifyContent="center"
+            css={{
+              position: 'fixed',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              zIndex: 9999,
+            }}
+          >
+            <FloatingFocusManager
+              context={context}
+              initialFocus={refs.floating}
             >
-              {children}
-            </ActionSheetBody>
+              <ActionSheetBody
+                ref={refs.setFloating}
+                borderRadius={borderRadius}
+                bottomSpacing={bottomSpacing}
+                maxContentHeight={maxContentHeight}
+                from={from}
+                title={title}
+                transitionStatus={status}
+                aria-modal
+                {...getFloatingProps(props)}
+              >
+                {children}
+              </ActionSheetBody>
+            </FloatingFocusManager>
           </FlexBox>
-        </Dialog>
-      </Transition>
+        </FloatingPortal>
+      ) : null}
     </ActionSheetContext.Provider>
   )
 }

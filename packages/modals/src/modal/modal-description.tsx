@@ -1,19 +1,16 @@
 import { PropsWithChildren } from 'react'
 import { Text } from '@titicaca/core-elements'
-import { Dialog } from '@headlessui/react'
+
+import { useModal } from './modal-context'
 
 export type ModalDescriptionProps = PropsWithChildren
 
 export const ModalDescription = ({ children }: ModalDescriptionProps) => {
+  const { descriptionId } = useModal()
+
   return (
-    <Dialog.Description
-      as={Text}
-      center
-      size="large"
-      lineHeight={1.38}
-      color="gray"
-    >
+    <Text id={descriptionId} center size="large" lineHeight={1.38} color="gray">
       {children}
-    </Dialog.Description>
+    </Text>
   )
 }

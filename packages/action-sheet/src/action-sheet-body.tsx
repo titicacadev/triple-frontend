@@ -3,17 +3,16 @@ import {
   MarginPadding,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import { Fragment, MutableRefObject, PropsWithChildren, ReactNode } from 'react'
+import { PropsWithChildren, ReactNode, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
-import { Dialog, Transition } from '@headlessui/react'
 
 import { ActionSheetTitle } from './action-sheet-title'
+import { TRANSITION_DURATION } from './constants'
 
 interface SheetProps {
-  borderRadius: number
-  bottomSpacing: number
-  duration: number
-  from: 'top' | 'bottom'
+  $borderRadius: number
+  $bottomSpacing: number
+  $from: 'top' | 'bottom'
   padding: MarginPadding
 }
 
@@ -22,41 +21,30 @@ const Sheet = styled.div<SheetProps>`
   width: 100%;
   max-width: 768px;
   background-color: var(--color-white);
-  padding-bottom: ${({ from, bottomSpacing }) =>
-    from === 'top' ? 30 : bottomSpacing}px;
-  padding-top: ${({ from }) => (from === 'bottom' ? 30 : 20)}px;
+  padding-bottom: ${({ $from, $bottomSpacing }) =>
+    $from === 'top' ? 30 : $bottomSpacing}px;
+  padding-top: ${({ $from }) => ($from === 'bottom' ? 30 : 20)}px;
   z-index: 9999;
   outline: none;
-
-  ${({ from, borderRadius }) => {
-    switch (from) {
+  ${({ $from, $borderRadius }) => {
+    switch ($from) {
       case 'top':
         return css`
           top: 0;
-          border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
+          border-radius: 0 0 ${$borderRadius}px ${$borderRadius}px;
         `
       case 'bottom':
         return css`
           bottom: 0;
-          border-radius: ${borderRadius}px ${borderRadius}px 0 0;
-
+          border-radius: ${$borderRadius}px ${$borderRadius}px 0 0;
           ${safeAreaInsetMixin};
         `
     }
   }}
+  transition: transform ${TRANSITION_DURATION}ms ease-in;
+  transform: translateY(${({ $from }) => ($from === 'top' ? -100 : 100)}%);
 
-  &.enter,
-  &.leave {
-    transition: transform ${({ duration }) => duration}ms ease-in;
-  }
-
-  &.enter-from,
-  &.leave-to {
-    transform: translateY(${({ from }) => (from === 'top' ? -100 : 100)}%);
-  }
-
-  &.enter-to,
-  &.leave-from {
+  &[data-transition='open'] {
     transform: translateY(0);
   }
 `
@@ -70,48 +58,44 @@ const Content = styled(Container)`
 `
 
 export interface ActionSheetBodyProps extends PropsWithChildren {
-  borderRadius: number
-  bottomSpacing: number
-  duration: number
-  maxContentHeight: string | number
-  from: 'top' | 'bottom'
+  borderRadius?: number
+  bottomSpacing?: number
+  from?: 'top' | 'bottom'
+  maxContentHeight?: string | number
   title?: ReactNode
-  panelRef?: MutableRefObject<null>
+  labelId: string
+  transitionStatus: string
 }
 
-export const ActionSheetBody = ({
-  children,
-  borderRadius,
-  bottomSpacing,
-  duration,
-  maxContentHeight,
-  from,
-  title,
-  panelRef,
-  ...props
-}: ActionSheetBodyProps) => {
-  return (
-    <Transition.Child
-      as={Fragment}
-      enter="enter"
-      enterFrom="enter-from"
-      enterTo="enter-to"
-      leave="leave"
-      leaveFrom="leave-from"
-      leaveTo="leave-to"
-    >
-      <Dialog.Panel
-        as={Sheet}
-        ref={panelRef}
-        tabIndex={-1}
-        borderRadius={borderRadius}
-        bottomSpacing={bottomSpacing}
-        duration={duration}
-        from={from}
+export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
+  function ActionSheetBody(
+    {
+      children,
+      borderRadius = 12,
+      bottomSpacing = 13,
+      from = 'bottom',
+      maxContentHeight = 'calc(100vh - 256px)',
+      title,
+      labelId,
+      transitionStatus,
+      ...props
+    },
+    ref,
+  ) {
+    return (
+      <Sheet
+        ref={ref}
+        $borderRadius={borderRadius}
+        $bottomSpacing={bottomSpacing}
+        $from={from}
         padding={{ bottom: bottomSpacing }}
+        aria-labelledby={labelId}
+        data-transition={transitionStatus}
         {...props}
       >
-        {title && <ActionSheetTitle>{title}</ActionSheetTitle>}
+        {title && (
+          <ActionSheetTitle labelId={labelId}>{title}</ActionSheetTitle>
+        )}
         <Content
           css={{
             maxHeight: maxContentHeight,
@@ -120,7 +104,7 @@ export const ActionSheetBody = ({
         >
           {children}
         </Content>
-      </Dialog.Panel>
-    </Transition.Child>
-  )
-}
+      </Sheet>
+    )
+  },
+)
