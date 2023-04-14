@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react'
 
 export interface ActionSheetContextValue {
   open: boolean
+  labelId: string
   onClose?: () => void
 }
 

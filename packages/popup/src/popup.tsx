@@ -1,7 +1,16 @@
-import { PropsWithChildren, useRef, Fragment } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
 import styled from 'styled-components'
 import { Navbar } from '@titicaca/core-elements'
-import { Dialog, Transition } from '@headlessui/react'
+import {
+  FloatingFocusManager,
+  FloatingOverlay,
+  FloatingPortal,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
+  useTransitionStatus,
+} from '@floating-ui/react'
 
 type NavbarIcon = 'close' | 'back'
 
@@ -28,18 +37,10 @@ const PopupContainer = styled.div`
     display: none;
   }
 
-  &.enter,
-  &.leave {
-    transition: transform ${TRANSITION_DURATION}ms ease-out;
-  }
+  transition: transform ${TRANSITION_DURATION}ms ease-out;
+  transform: translateY(100%);
 
-  &.enter-from,
-  &.leave-to {
-    transform: translateY(100%);
-  }
-
-  &.enter-to,
-  &.leave-from {
+  &[data-transition='open'] {
     transform: translateY(0);
   }
 `
@@ -87,50 +88,55 @@ function Popup({
   onExited,
   ...props
 }: PopupProps) {
-  const ref = useRef(null)
-  const panelRef = useRef(null)
+  const { context, refs } = useFloating({
+    open,
+    onOpenChange: (open) => (open ? undefined : onClose?.()),
+  })
+
+  const dismiss = useDismiss(context)
+  const role = useRole(context, { role: 'dialog' })
+
+  const { getFloatingProps } = useInteractions([dismiss, role])
+
+  const { isMounted, status } = useTransitionStatus(context, {
+    duration: TRANSITION_DURATION,
+  })
+
+  useEffect(() => {
+    if (status === 'open') {
+      onEnter?.()
+      const timeout = setTimeout(() => onEntered?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    } else if (status === 'close') {
+      onExit?.()
+      const timeout = setTimeout(() => onExited?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    }
+  }, [onEnter, onEntered, onExit, onExited, status])
+
+  if (!isMounted) {
+    return null
+  }
 
   return (
-    <Transition
-      show={open}
-      appear
-      as={Fragment}
-      beforeEnter={onEnter}
-      afterEnter={onEntered}
-      beforeLeave={onExit}
-      afterLeave={onExited}
-    >
-      <Dialog
-        ref={ref}
-        initialFocus={panelRef}
-        static
-        onClose={() => onClose?.()}
-      >
-        <Transition.Child
-          as={Fragment}
-          enter="enter"
-          enterFrom="enter-from"
-          enterTo="enter-to"
-          leave="leave"
-          leaveFrom="leave-from"
-          leaveTo="leave-to"
+    <FloatingPortal>
+      <FloatingOverlay lockScroll />
+      <FloatingFocusManager context={context} initialFocus={refs.floating}>
+        <PopupContainer
+          ref={refs.setFloating}
+          data-transition={status}
+          aria-modal
+          {...getFloatingProps(props)}
         >
-          <Dialog.Panel
-            as={PopupContainer}
-            ref={panelRef}
-            tabIndex={-1}
-            {...props}
-          >
-            {noNavbar ? null : (
-              <Navbar borderless={borderless} title={title}>
-                <Navbar.Item floated="left" icon={icon} onClick={onClose} />
-              </Navbar>
-            )}
-            {children}
-          </Dialog.Panel>
-        </Transition.Child>
-      </Dialog>
-    </Transition>
+          {noNavbar ? null : (
+            <Navbar borderless={borderless} title={title}>
+              <Navbar.Item floated="left" icon={icon} onClick={onClose} />
+            </Navbar>
+          )}
+          {children}
+        </PopupContainer>
+      </FloatingFocusManager>
+    </FloatingPortal>
   )
 }
 

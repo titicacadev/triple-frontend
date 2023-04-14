@@ -1,7 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { Text } from '@titicaca/core-elements'
-import { Dialog } from '@headlessui/react'
 import styled from 'styled-components'
+
+import { useModal } from './modal-context'
 
 const StyledText = styled(Text)`
   margin-bottom: 10px;
@@ -10,9 +11,11 @@ const StyledText = styled(Text)`
 export type ModalTitleProps = PropsWithChildren
 
 export const ModalTitle = ({ children }: ModalTitleProps) => {
+  const { labelId } = useModal()
+
   return (
-    <Dialog.Title as={StyledText} bold center size="big" color="gray">
+    <StyledText id={labelId} bold center size="big" color="gray">
       {children}
-    </Dialog.Title>
+    </StyledText>
   )
 }
