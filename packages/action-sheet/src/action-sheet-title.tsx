@@ -1,10 +1,13 @@
 import { isValidElement, PropsWithChildren } from 'react'
 import { Container, Text } from '@titicaca/core-elements'
-import { Dialog } from '@headlessui/react'
+
+import { useActionSheet } from './action-sheet-context'
 
 type ActionSheetTitleProps = PropsWithChildren
 
 export const ActionSheetTitle = ({ children }: ActionSheetTitleProps) => {
+  const { labelId } = useActionSheet()
+
   if (
     typeof children === 'string' ||
     typeof children === 'number' ||
@@ -17,9 +20,9 @@ export const ActionSheetTitle = ({ children }: ActionSheetTitleProps) => {
           margin: '0 0 10px 27px',
         }}
       >
-        <Dialog.Title as={Text} size="tiny" bold color="gray700">
+        <Text id={labelId} size="tiny" bold color="gray700">
           {children}
-        </Dialog.Title>
+        </Text>
       </Container>
     )
   }

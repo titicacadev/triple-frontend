@@ -27,6 +27,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.23.0",
     "@titicaca/app-installation-cta": "^12.18.2",
     "@titicaca/core-elements": "^12.18.2",
     "@titicaca/popup": "^12.18.2"

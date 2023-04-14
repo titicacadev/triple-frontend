@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import { Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { FloatingOverlay } from '@floating-ui/react'
 
-export const Overlay = styled.div<{ duration: number }>`
+import { TRANSITION_DURATION } from './constants'
+
+export const Overlay = styled(FloatingOverlay)`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -11,39 +12,20 @@ export const Overlay = styled.div<{ duration: number }>`
   width: 100vw;
   background-color: rgba(58, 58, 58, 0.7);
   z-index: 9999;
+  transition: opacity ${TRANSITION_DURATION}ms ease-in;
+  opacity: 0;
 
-  &.enter,
-  &.leave {
-    transition: opacity ${({ duration }) => duration}ms ease-in;
-  }
-
-  &.enter-from,
-  &.leave-to {
-    opacity: 0;
-  }
-
-  &.enter-to,
-  &.leave-from {
+  &[data-transition='open'] {
     opacity: 1;
   }
 `
 
 export interface ActionSheetOverlayProps {
-  duration: number
+  transitionStatus: string
 }
 
-export const ActionSheetOverlay = ({ duration }: ActionSheetOverlayProps) => {
-  return (
-    <Transition.Child
-      as={Fragment}
-      enter="enter"
-      enterFrom="enter-from"
-      enterTo="enter-to"
-      leave="leave"
-      leaveFrom="leave-from"
-      leaveTo="leave-to"
-    >
-      <Overlay duration={duration} />
-    </Transition.Child>
-  )
+export const ActionSheetOverlay = ({
+  transitionStatus,
+}: ActionSheetOverlayProps) => {
+  return <Overlay lockScroll data-transition={transitionStatus} />
 }
