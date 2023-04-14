@@ -13,8 +13,7 @@ import {
 import { ActionSheetBody, ActionSheetBodyProps } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'
 import { ActionSheetOverlay } from './action-sheet-overlay'
-
-const TRANSITION_DURATION = 120
+import { TRANSITION_DURATION } from './constants'
 
 export interface ActionSheetProps
   extends Pick<
@@ -81,7 +80,7 @@ export const ActionSheet = ({
   }, [onEnter, onEntered, onExit, onExited, status])
 
   return (
-    <ActionSheetContext.Provider value={{ open, labelId, onClose }}>
+    <ActionSheetContext.Provider value={{ open, onClose }}>
       {isMounted ? (
         <FloatingPortal>
           <ActionSheetOverlay transitionStatus={status} />
@@ -108,6 +107,7 @@ export const ActionSheet = ({
                 maxContentHeight={maxContentHeight}
                 from={from}
                 title={title}
+                labelId={labelId}
                 transitionStatus={status}
                 aria-modal
                 {...getFloatingProps(props)}
