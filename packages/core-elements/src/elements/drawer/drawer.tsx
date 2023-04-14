@@ -1,6 +1,11 @@
 import styled from 'styled-components'
-import { Fragment, PropsWithChildren } from 'react'
-import { Portal, Transition } from '@headlessui/react'
+import { PropsWithChildren, useEffect } from 'react'
+import {
+  FloatingFocusManager,
+  FloatingPortal,
+  useFloating,
+  useTransitionStatus,
+} from '@floating-ui/react'
 
 import { FlexBox } from '../flex-box'
 
@@ -18,19 +23,10 @@ const DrawerContainer = styled.div<DrawerContainerProps>`
   bottom: 0;
   overflow: ${({ overflow }) => overflow || 'hidden'};
   z-index: 9999;
+  transition: transform ${({ duration }) => duration}ms ease-in-out;
+  transform: translateY(100%);
 
-  &.enter,
-  &.leave {
-    transition: transform ${({ duration }) => duration}ms ease-in-out;
-  }
-
-  &.enter-from,
-  &.leave-to {
-    transform: translateY(100%);
-  }
-
-  &.enter-to,
-  &.leave-from {
+  &[data-transition='open'] {
     transform: translateY(0);
   }
 `
@@ -58,35 +54,44 @@ export function Drawer({
   onExit,
   onExited,
 }: DrawerProps) {
+  const { context, refs } = useFloating({
+    open: active,
+  })
+
+  const { isMounted, status } = useTransitionStatus(context, {
+    duration,
+  })
+
+  useEffect(() => {
+    if (status === 'open') {
+      onEnter?.()
+      const timeout = setTimeout(() => onEntered?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    } else if (status === 'close') {
+      onExit?.()
+      const timeout = setTimeout(() => onExited?.(), TRANSITION_DURATION)
+      return () => clearTimeout(timeout)
+    }
+  }, [onEnter, onEntered, onExit, onExited, status])
+
+  if (!isMounted) {
+    return null
+  }
+
   return (
-    <Transition
-      show={active}
-      appear
-      as={Fragment}
-      beforeEnter={onEnter}
-      afterEnter={onEntered}
-      beforeLeave={onExit}
-      afterLeave={onExited}
-    >
-      <div>
-        <Portal>
-          <FlexBox flex justifyContent="center">
-            <Transition.Child
-              as={Fragment}
-              enter="enter"
-              enterFrom="enter-from"
-              enterTo="enter-to"
-              leave="leave"
-              leaveFrom="leave-from"
-              leaveTo="leave-to"
-            >
-              <DrawerContainer duration={duration} overflow={overflow}>
-                {children}
-              </DrawerContainer>
-            </Transition.Child>
-          </FlexBox>
-        </Portal>
-      </div>
-    </Transition>
+    <FloatingPortal>
+      <FlexBox flex justifyContent="center">
+        <FloatingFocusManager context={context}>
+          <DrawerContainer
+            ref={refs.setFloating}
+            duration={duration}
+            overflow={overflow}
+            data-transition={status}
+          >
+            {children}
+          </DrawerContainer>
+        </FloatingFocusManager>
+      </FlexBox>
+    </FloatingPortal>
   )
 }
