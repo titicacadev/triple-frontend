@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v12.16.0
+
+### core-elements
+
+- react-aria 패키지 제거 [#2551](https://github.com/titicacadev/triple-frontend/pull/2551)
+
+### modals
+
+- 외부 클릭하면 닫는 테스트가 랜덤하게 실패하는 문제 수정 [#2560](https://github.com/titicacadev/triple-frontend/pull/2560)
+
+### action-sheet
+
+- 외부 클릭하면 닫는 테스트가 랜덤하게 실패하는 문제 수정 [#2560](https://github.com/titicacadev/triple-frontend/pull/2560)
+
+### app-installation-cta
+
+- 플로팅 버튼 디자인을 v1 버전으로 되돌립니다 [#2561](https://github.com/titicacadev/triple-frontend/pull/2561)
+
 ## v12.15.0
 
 ### common
