@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { Modal } from './modal'
@@ -95,13 +95,13 @@ test('focus trap을 사용합니다.', async () => {
 
   await user.tab()
 
-  expect(document.activeElement).toHaveTextContent('Button 1')
+  await waitFor(() => expect(screen.getByText('Button 1')).toHaveFocus())
 
   await user.tab()
 
-  expect(document.activeElement).toHaveTextContent('Button 2')
+  await waitFor(() => expect(screen.getByText('Button 2')).toHaveFocus())
 
   await user.tab()
 
-  expect(document.activeElement).toHaveTextContent('Button 1')
+  await waitFor(() => expect(screen.getByText('Button 1')).toHaveFocus())
 })
