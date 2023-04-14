@@ -1,13 +1,14 @@
 import { isValidElement, PropsWithChildren } from 'react'
 import { Container, Text } from '@titicaca/core-elements'
 
-import { useActionSheet } from './action-sheet-context'
+interface ActionSheetTitleProps extends PropsWithChildren {
+  labelId: string
+}
 
-type ActionSheetTitleProps = PropsWithChildren
-
-export const ActionSheetTitle = ({ children }: ActionSheetTitleProps) => {
-  const { labelId } = useActionSheet()
-
+export const ActionSheetTitle = ({
+  children,
+  labelId,
+}: ActionSheetTitleProps) => {
   if (
     typeof children === 'string' ||
     typeof children === 'number' ||
