@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/drawer-button",
-  "version": "12.15.0",
+  "version": "12.16.0",
   "description": "Button in drawer",
   "keywords": [
     "button",
@@ -31,7 +31,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.15.0"
+    "@titicaca/core-elements": "^12.16.0"
   },
   "peerDependencies": {
     "react": "^18.0",
