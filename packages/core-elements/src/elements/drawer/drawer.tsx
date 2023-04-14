@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { PropsWithChildren, useEffect } from 'react'
 import {
-  FloatingFocusManager,
   FloatingPortal,
   useFloating,
   useTransitionStatus,
@@ -79,18 +78,16 @@ export function Drawer({
   }
 
   return (
-    <FloatingPortal>
+    <FloatingPortal preserveTabOrder={false}>
       <FlexBox flex justifyContent="center">
-        <FloatingFocusManager context={context}>
-          <DrawerContainer
-            ref={refs.setFloating}
-            duration={duration}
-            overflow={overflow}
-            data-transition={status}
-          >
-            {children}
-          </DrawerContainer>
-        </FloatingFocusManager>
+        <DrawerContainer
+          ref={refs.setFloating}
+          duration={duration}
+          overflow={overflow}
+          data-transition={status}
+        >
+          {children}
+        </DrawerContainer>
       </FlexBox>
     </FloatingPortal>
   )
