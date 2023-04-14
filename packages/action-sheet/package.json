@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "12.15.0",
+  "version": "12.16.0",
   "description": "Action sheet component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/action-sheet",
@@ -27,9 +27,9 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/app-installation-cta": "^12.15.0",
-    "@titicaca/core-elements": "^12.15.0",
-    "@titicaca/popup": "^12.15.0"
+    "@titicaca/app-installation-cta": "^12.16.0",
+    "@titicaca/core-elements": "^12.16.0",
+    "@titicaca/popup": "^12.16.0"
   },
   "peerDependencies": {
     "react": "^18.0",
