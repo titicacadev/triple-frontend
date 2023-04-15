@@ -8,18 +8,29 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react'
 import { PropsWithChildren, useCallback, useId, useRef, useState } from 'react'
+import { FormField } from '@titicaca/core-elements'
 
 import { ActionSheetSelectContext } from './action-sheet-select-context'
 import { TRANSITION_DURATION } from './constants'
 
 export interface ActionSheetSelectProps extends PropsWithChildren {
   value?: string
+  disabled?: boolean
+  error?: string
+  help?: string
+  label?: string
+  required?: boolean
   onChange?: (value: string) => void
 }
 
 export const ActionSheetSelect = ({
   children,
   value,
+  disabled,
+  error,
+  help,
+  label,
+  required,
   onChange,
 }: ActionSheetSelectProps) => {
   const [open, setOpen] = useState(false)
@@ -62,6 +73,10 @@ export const ActionSheetSelect = ({
     [onChange],
   )
 
+  const isDisabled = !!disabled
+  const isError = !!error
+  const isRequired = !!required
+
   return (
     <ActionSheetSelectContext.Provider
       value={{
@@ -73,10 +88,20 @@ export const ActionSheetSelect = ({
         activeIndex,
         value,
         open,
+        disabled,
+        error,
+        help,
+        label,
         handleChange,
       }}
     >
-      {children}
+      <FormField
+        isDisabled={isDisabled}
+        isError={isError}
+        isRequired={isRequired}
+      >
+        {children}
+      </FormField>
     </ActionSheetSelectContext.Provider>
   )
 }
