@@ -27,7 +27,13 @@ export const Basic: ComponentStory<typeof ActionSheetSelect> = () => {
   const [value, setValue] = useState<string | undefined>(undefined)
 
   return (
-    <ActionSheetSelect value={value} onChange={setValue}>
+    <ActionSheetSelect
+      label="Label"
+      help="Help message"
+      required
+      value={value}
+      onChange={setValue}
+    >
       <ActionSheetSelectButton>
         {list.find((item) => item[0] === value)?.[1] ?? '선택하기'}
       </ActionSheetSelectButton>

@@ -14,8 +14,11 @@ export interface ActionSheetSelectContextValue {
   labelId: string
   value: string | undefined
   open: boolean
+  disabled: boolean | undefined
+  error: string | undefined
+  help: string | undefined
+  label: string | undefined
   handleChange: (value: string, index: number) => void
-  onClose?: () => void
 }
 
 export const ActionSheetSelectContext = createContext<
