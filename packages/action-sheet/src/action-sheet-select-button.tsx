@@ -1,5 +1,11 @@
 import styled from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import {
+  FormFieldError,
+  FormFieldHelp,
+  FormFieldLabel,
+  Text,
+  useFormField,
+} from '@titicaca/core-elements'
 import { HTMLAttributes, forwardRef } from 'react'
 import { useMergeRefs } from '@floating-ui/react'
 
@@ -33,17 +39,47 @@ export const ActionSheetSelectButton = forwardRef<
   HTMLButtonElement,
   ActionSheetSelectButtonProps
 >(function ActionSheetSelectButton({ children, ...props }, ref) {
-  const { floating, interactions, value } = useActionSheetSelect()
+  const { floating, interactions, value, error, help, label } =
+    useActionSheetSelect()
+  const {
+    errorId,
+    descriptionId,
+    inputId,
+    isError,
+    isRequired,
+    handleBlur,
+    handleFocus,
+  } = useFormField()
+
+  const hasLabel = !!label
+  const hasHelp = !!help
 
   return (
-    <Button
-      ref={useMergeRefs([ref, floating.refs.setReference])}
-      {...interactions.getReferenceProps(props)}
-    >
-      <Text size="large" alpha={value ? 1 : 0.5}>
-        {children}
-      </Text>
-      <ArrowDown />
-    </Button>
+    <div>
+      {hasLabel ? <FormFieldLabel>{label}</FormFieldLabel> : null}
+      <Button
+        ref={useMergeRefs([ref, floating.refs.setReference])}
+        id={inputId}
+        aria-describedby={hasHelp && !isError ? descriptionId : undefined}
+        aria-errormessage={isError ? errorId : undefined}
+        aria-invalid={isError}
+        aria-required={isRequired}
+        {...interactions.getReferenceProps({
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          ...props,
+        })}
+      >
+        <Text size="large" alpha={value ? 1 : 0.5}>
+          {children}
+        </Text>
+        <ArrowDown />
+      </Button>
+      {error ? (
+        <FormFieldError>{error}</FormFieldError>
+      ) : help ? (
+        <FormFieldHelp>{help}</FormFieldHelp>
+      ) : null}
+    </div>
   )
 })
