@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/type-definitions": ["../type-definitions/src"]
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"]
     }
   },
   "exclude": ["**/node_modules", "lib"]
