@@ -1,8 +1,8 @@
-import { HTMLAttributes, PropsWithChildren, SyntheticEvent } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
+import { parseUrl, checkIfRoutable } from '@titicaca/view-utilities'
 
-import { useLinkClickHandler } from '../context'
 import { FluidTable, Box as DefaultBox } from '../common'
 
 interface Link {
@@ -93,38 +93,41 @@ const LINK_ELEMENTS = {
 
 export default function LinksView({
   value: { display, links },
+  webUrlBase,
 }: {
   value: LinksDocument['value']
+  webUrlBase?: string
 }) {
   const Box = LINK_BOXES[display] || ButtonBox
   const Element = LINK_ELEMENTS[display] || ButtonLink
 
-  const { onLinkClick } = useLinkClickHandler()
-
   return (
     <FluidTable>
       <tbody>
-        {links.map((link, index) => (
-          <tr key={index}>
-            <Box>
-              <Container
-                css={{
-                  textAlign: 'center',
-                }}
-              >
-                <Element
-                  href={link.href}
-                  ses:tags={`link:${link.id}`}
-                  onClick={
-                    onLinkClick && ((e: SyntheticEvent) => onLinkClick(e, link))
-                  }
+        {links.map((link, index) => {
+          const href = canonizeTargetAddress({
+            href: link.href,
+            webUrlBase,
+          })
+
+          const targetHref = checkIfRoutable({ href }) ? href : ''
+
+          return (
+            <tr key={index}>
+              <Box>
+                <Container
+                  css={{
+                    textAlign: 'center',
+                  }}
                 >
-                  {link.label}
-                </Element>
-              </Container>
-            </Box>
-          </tr>
-        ))}
+                  <Element href={targetHref} ses:tags={`link:${link.id}`}>
+                    {link.label}
+                  </Element>
+                </Container>
+              </Box>
+            </tr>
+          )
+        })}
       </tbody>
     </FluidTable>
   )
@@ -152,4 +155,20 @@ function LargeBox({ children }: PropsWithChildren<unknown>) {
       {children}
     </DefaultBox>
   )
+}
+
+function canonizeTargetAddress({
+  href: rawHref,
+  webUrlBase,
+}: {
+  href: string
+  webUrlBase?: string
+}) {
+  const { host, path } = parseUrl(rawHref)
+
+  if (host) {
+    return rawHref
+  } else {
+    return `${webUrlBase}${path}`
+  }
 }
