@@ -2,7 +2,6 @@ import { ComponentType } from 'react'
 
 import ELEMENTS, { TripleEmailElementData, GetValue } from './elements'
 import { FluidTable } from './common'
-import { LinkClickHandlerProvider } from './context'
 
 interface ElementSet {
   [key: string]: ComponentType<{
@@ -18,31 +17,29 @@ export function TripleEmailDocument({
   customElements?: ElementSet
 }) {
   return (
-    <LinkClickHandlerProvider>
-      <FluidTable>
-        <tbody>
-          {elements.map(({ type, value }, index) => {
-            const RegularElement = ELEMENTS[type] as ComponentType<{
-              value: GetValue<typeof type>
-            }>
-            const CustomElement = customElements[type]
+    <FluidTable>
+      <tbody>
+        {elements.map(({ type, value }, index) => {
+          const RegularElement = ELEMENTS[type] as ComponentType<{
+            value: GetValue<typeof type>
+          }>
+          const CustomElement = customElements[type]
 
-            const Element = CustomElement || RegularElement
+          const Element = CustomElement || RegularElement
 
-            if (Element === undefined) {
-              return null
-            }
+          if (Element === undefined) {
+            return null
+          }
 
-            return (
-              <tr key={index}>
-                <td>
-                  <Element value={value} />
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </FluidTable>
-    </LinkClickHandlerProvider>
+          return (
+            <tr key={index}>
+              <td>
+                <Element value={value} />
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </FluidTable>
   )
 }
