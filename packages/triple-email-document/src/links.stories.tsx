@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { LinkClickHandlerProvider } from './context'
 import ELEMENTS from './elements'
 
 const { links: Links } = ELEMENTS
@@ -29,13 +28,6 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <LinkClickHandlerProvider>
-        <Story />
-      </LinkClickHandlerProvider>
-    ),
-  ],
 } as Meta
 
 export const StyledButtonLinkElement: StoryObj = {
@@ -72,5 +64,6 @@ function generateSampleData(type: LinkDisplay) {
       ],
       display: type,
     },
+    webUrlBase: 'https://triple-dev.titicaca-corp.com',
   }
 }
