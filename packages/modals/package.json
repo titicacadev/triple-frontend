@@ -27,7 +27,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
+    "@headlessui/react": "^1.7.14",
     "@titicaca/core-elements": "^12.16.0",
     "@titicaca/i18n": "^12.16.0"
   },

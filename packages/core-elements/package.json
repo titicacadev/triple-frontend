@@ -33,7 +33,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.13",
+    "@headlessui/react": "^1.7.14",
     "@titicaca/color-palette": "^12.16.0",
     "@titicaca/content-utilities": "4.21.0",
     "@titicaca/intersection-observer": "^12.16.0",
