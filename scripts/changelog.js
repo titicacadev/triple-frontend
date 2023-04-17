@@ -175,7 +175,7 @@ async function fetchPrsInMilestone() {
       title,
       number,
       url,
-      packages: labels.map(({ name }) => name),
+      packages: labels.map(({ name }) => name.replace(/[^a-zA-Z0-9-\s]/g, '')),
     }))
     .sort((a, b) => a.number - b.number)
 
