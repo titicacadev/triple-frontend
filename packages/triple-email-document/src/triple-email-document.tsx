@@ -12,9 +12,11 @@ interface ElementSet {
 export function TripleEmailDocument({
   elements,
   customElements = {},
+  ...props
 }: {
   elements: TripleEmailElementData[]
   customElements?: ElementSet
+  webUrlBase?: string
 }) {
   return (
     <FluidTable>
@@ -34,7 +36,7 @@ export function TripleEmailDocument({
           return (
             <tr key={index}>
               <td>
-                <Element value={value} />
+                <Element value={value} {...props} />
               </td>
             </tr>
           )
