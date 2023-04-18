@@ -63,7 +63,7 @@
     "@titicaca/stylelint-config-triple": "1.1.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.35",
+    "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/react-input-mask": "^2.0.5",
     "@types/react-test-renderer": "^18.0.0",
