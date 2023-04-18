@@ -3,6 +3,7 @@
 const fs = require('fs')
 
 const fetch = require('node-fetch')
+const emojiRegex = require('emoji-regex')
 
 function generateChatGptPrompt(inputData) {
   return `
@@ -121,6 +122,17 @@ Output markdown:
 `
 }
 
+function removeEmojis(str) {
+  const emojiShortCodeRegex = /:.*:/gu
+  const variationSelectorRegex = /[\uFE00-\uFE0F]/g
+
+  return str
+    .replace(emojiRegex(), '')
+    .replace(emojiShortCodeRegex, '')
+    .replace(variationSelectorRegex, '')
+    .trim()
+}
+
 function groupPullRequestsByPackage(pullRequests) {
   const groupedPullRequests = pullRequests.reduce(
     (result, { packages, title, number, url }) => {
@@ -175,7 +187,7 @@ async function fetchPrsInMilestone() {
       title,
       number,
       url,
-      packages: labels.map(({ name }) => name.replace(/[^a-zA-Z0-9-\s]/g, '')),
+      packages: labels.map(({ name }) => removeEmojis(name)),
     }))
     .sort((a, b) => a.number - b.number)
 

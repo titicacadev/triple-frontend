@@ -37,7 +37,7 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
-      - run: npm i node-fetch@v2 prettier
+      - run: npm i node-fetch@v2 prettier emoji-regex
 
       - name: Execute Changelog JavaScript
         run: node scripts/changelog.js
