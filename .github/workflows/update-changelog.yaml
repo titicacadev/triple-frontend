@@ -11,6 +11,7 @@ env:
   CURRENT_VERSION: ${{ github.event.pull_request.milestone.title }}
   NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
 jobs:
   update-changelog:
@@ -29,20 +30,23 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
-      - run: npm install
+      - run: npm i node-fetch@v2 prettier emoji-regex
 
       - name: Execute Changelog JavaScript
         run: node scripts/changelog.js
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run prettier on CHANGELOG.md
+        run: npx prettier --write CHANGELOG.md
 
       - name: Commit and push updated CHANGELOG
         env:
