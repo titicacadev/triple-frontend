@@ -1,7 +1,7 @@
 import { ComponentMeta } from '@storybook/react'
 
 import { FormField } from './form-field'
-import { FormFieldContext } from './form-field-context'
+import { useFormField } from './form-field-context'
 import { FormFieldError } from './form-field-error'
 import { FormFieldHelp } from './form-field-help'
 import { FormFieldLabel } from './form-field-label'
@@ -11,19 +11,37 @@ export default {
   component: FormField,
 } as ComponentMeta<typeof FormField>
 
+const CustomInput = () => {
+  const {
+    inputId,
+    descriptionId,
+    errorId,
+    handleBlur,
+    handleFocus,
+    isDisabled,
+    isError,
+    isRequired,
+  } = useFormField()
+
+  return (
+    <input
+      id={inputId}
+      disabled={isDisabled}
+      required={isRequired}
+      aria-invalid={isError}
+      aria-describedby={descriptionId}
+      aria-errormessage={errorId}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+    />
+  )
+}
+
 export const Default = () => {
   return (
     <FormField>
       <FormFieldLabel>Label</FormFieldLabel>
-      <FormFieldContext.Consumer>
-        {(formField) => (
-          <input
-            id={formField?.inputId}
-            aria-labelledby={formField?.labelId}
-            aria-describedby={formField?.descriptionId}
-          />
-        )}
-      </FormFieldContext.Consumer>
+      <CustomInput />
       <FormFieldHelp>Helper text.</FormFieldHelp>
     </FormField>
   )
@@ -33,16 +51,7 @@ export const Required = () => {
   return (
     <FormField isRequired>
       <FormFieldLabel>Label</FormFieldLabel>
-      <FormFieldContext.Consumer>
-        {(formField) => (
-          <input
-            id={formField?.inputId}
-            aria-labelledby={formField?.labelId}
-            aria-describedby={formField?.descriptionId}
-            required
-          />
-        )}
-      </FormFieldContext.Consumer>
+      <CustomInput />
       <FormFieldHelp>Helper text.</FormFieldHelp>
     </FormField>
   )
@@ -52,16 +61,7 @@ export const Error = () => {
   return (
     <FormField isError>
       <FormFieldLabel>Label</FormFieldLabel>
-      <FormFieldContext.Consumer>
-        {(formField) => (
-          <input
-            id={formField?.inputId}
-            aria-labelledby={formField?.labelId}
-            aria-errormessage={formField?.errorId}
-            aria-invalid
-          />
-        )}
-      </FormFieldContext.Consumer>
+      <CustomInput />
       <FormFieldError>Error message.</FormFieldError>
     </FormField>
   )
