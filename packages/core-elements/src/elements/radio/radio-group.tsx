@@ -1,12 +1,12 @@
 import { HTMLAttributes, PropsWithChildren } from 'react'
 
 import {
-  FormFieldContext,
-  FormFieldError,
-  FormFieldHelp,
-  FormFieldLabel,
-  useFormFieldState,
-} from '../form-field'
+  FormGroupContext,
+  FormGroupError,
+  FormGroupHelp,
+  FormGroupLabel,
+  useFormGroupState,
+} from '../form-group'
 
 import {
   RadioGroupContext,
@@ -16,7 +16,7 @@ import {
 export interface RadioGroupProps
   extends PropsWithChildren,
     RadioGroupContextValue,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
   required?: boolean
   disabled?: boolean
   label?: string
@@ -38,9 +38,8 @@ export const RadioGroup = ({
   onFocus,
   ...props
 }: RadioGroupProps) => {
-  const formFieldState = useFormFieldState({ onBlur, onFocus })
+  const formGroupState = useFormGroupState({ onBlur, onFocus })
 
-  const hasLabel = !!label
   const hasHelp = !!help
   const isError = !!error
 
@@ -52,36 +51,35 @@ export const RadioGroup = ({
         onChange,
       }}
     >
-      <FormFieldContext.Provider
+      <FormGroupContext.Provider
         value={{
-          ...formFieldState,
+          ...formGroupState,
           isError,
           isDisabled: disabled,
           isRequired: required,
         }}
       >
-        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-        <div
+        <fieldset
           role="radiogroup"
-          aria-labelledby={hasLabel ? formFieldState?.labelId : undefined}
           aria-describedby={
-            hasHelp && !isError ? formFieldState?.descriptionId : undefined
+            hasHelp && !isError ? formGroupState?.descriptionId : undefined
           }
-          aria-errormessage={isError ? formFieldState?.errorId : undefined}
+          aria-errormessage={isError ? formGroupState?.errorId : undefined}
           aria-invalid={isError}
           aria-required={required}
-          onBlur={formFieldState.handleBlur}
-          onFocus={formFieldState.handleFocus}
+          onBlur={formGroupState.handleBlur}
+          onFocus={formGroupState.handleFocus}
           {...props}
         >
+          {label ? <FormGroupLabel>{label}</FormGroupLabel> : null}
           {children}
-        </div>
-        {error ? (
-          <FormFieldError>{error}</FormFieldError>
-        ) : help ? (
-          <FormFieldHelp>{help}</FormFieldHelp>
-        ) : null}
-      </FormFieldContext.Provider>
+          {error ? (
+            <FormGroupError>{error}</FormGroupError>
+          ) : help ? (
+            <FormGroupHelp>{help}</FormGroupHelp>
+          ) : null}
+        </fieldset>
+      </FormGroupContext.Provider>
     </RadioGroupContext.Provider>
   )
 }

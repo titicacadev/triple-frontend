@@ -1,12 +1,12 @@
 import { HTMLAttributes, PropsWithChildren } from 'react'
 
 import {
-  FormFieldContext,
-  FormFieldError,
-  FormFieldHelp,
-  FormFieldLabel,
-  useFormFieldState,
-} from '../form-field'
+  FormGroupContext,
+  FormGroupError,
+  FormGroupHelp,
+  FormGroupLabel,
+  useFormGroupState,
+} from '../form-group'
 
 import {
   CheckboxGroupContext,
@@ -16,7 +16,7 @@ import {
 export interface CheckboxGroupProps
   extends PropsWithChildren,
     CheckboxGroupContextValue,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<HTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
   label?: string
   error?: string
   help?: string
@@ -34,45 +34,42 @@ export const CheckboxGroup = ({
   onFocus,
   ...props
 }: CheckboxGroupProps) => {
-  const formFieldState = useFormFieldState({ onBlur, onFocus })
+  const formGroupState = useFormGroupState({ onBlur, onFocus })
 
-  const hasLabel = !!label
   const hasHelp = !!help
   const isError = !!error
 
   return (
     <CheckboxGroupContext.Provider value={{ name, value, onChange }}>
-      <FormFieldContext.Provider
+      <FormGroupContext.Provider
         value={{
-          ...formFieldState,
+          ...formGroupState,
           isError,
           isDisabled: false,
           isRequired: false,
         }}
       >
-        {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
-        <div
-          role="group"
-          aria-labelledby={hasLabel ? formFieldState.labelId : undefined}
+        <fieldset
           aria-describedby={
             hasHelp
-              ? formFieldState.descriptionId
+              ? formGroupState.descriptionId
               : isError
-              ? formFieldState.errorId
+              ? formGroupState.errorId
               : undefined
           }
-          onBlur={formFieldState.handleBlur}
-          onFocus={formFieldState.handleFocus}
+          onBlur={formGroupState.handleBlur}
+          onFocus={formGroupState.handleFocus}
           {...props}
         >
+          {label ? <FormGroupLabel>{label}</FormGroupLabel> : null}
           {children}
-        </div>
-        {error ? (
-          <FormFieldError>{error}</FormFieldError>
-        ) : help ? (
-          <FormFieldHelp>{help}</FormFieldHelp>
-        ) : null}
-      </FormFieldContext.Provider>
+          {error ? (
+            <FormGroupError>{error}</FormGroupError>
+          ) : help ? (
+            <FormGroupHelp>{help}</FormGroupHelp>
+          ) : null}
+        </fieldset>
+      </FormGroupContext.Provider>
     </CheckboxGroupContext.Provider>
   )
 }
