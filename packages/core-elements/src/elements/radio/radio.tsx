@@ -1,10 +1,15 @@
-import { ChangeEventHandler, forwardRef, PropsWithChildren } from 'react'
+import {
+  ChangeEventHandler,
+  forwardRef,
+  PropsWithChildren,
+  useContext,
+} from 'react'
 import styled from 'styled-components'
 
 import { Text } from '../text'
+import { RadioGroupContext } from '../radio-group'
 
 import { RadioBase, RadioBaseProps } from './radio-base'
-import { useRadioGroup } from './radio-group-context'
 
 const RadioLabel = styled.label`
   display: flex;
@@ -26,7 +31,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   { children, name, checked, value, onChange, ...props },
   ref,
 ) {
-  const group = useRadioGroup()
+  const group = useContext(RadioGroupContext)
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     if (group) {

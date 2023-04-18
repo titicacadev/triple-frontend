@@ -1,10 +1,15 @@
-import { ChangeEventHandler, forwardRef, PropsWithChildren } from 'react'
+import {
+  ChangeEventHandler,
+  forwardRef,
+  PropsWithChildren,
+  useContext,
+} from 'react'
 import styled from 'styled-components'
 
 import { Text } from '../text'
+import { CheckboxGroupContext } from '../checkbox-group'
 
 import { CheckboxBase, CheckboxBaseProps } from './checkbox-base'
-import { useCheckboxGroup } from './checkbox-group-context'
 
 const CheckboxLabel = styled.label`
   display: flex;
@@ -27,7 +32,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     { children, variant = 'square', name, checked, value, onChange, ...props },
     ref,
   ) {
-    const group = useCheckboxGroup()
+    const group = useContext(CheckboxGroupContext)
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
       if (group) {
@@ -53,6 +58,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             (value ? group?.value?.includes(value.toString()) : undefined)
           }
           value={value}
+          aria-errormessage={group?.errorId}
+          aria-invalid={group?.isError}
+          aria-required={group?.isRequired}
           onChange={handleChange}
         />
       </CheckboxLabel>
