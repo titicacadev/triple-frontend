@@ -1,8 +1,8 @@
 import { ChangeEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-import { useRadioGroup } from '../radio'
 import { visuallyHiddenCss } from '../visually-hidden'
+import { useRadioGroup } from '../radio-group'
 
 const Label = styled.label<{ checked: boolean }>`
   display: inline-block;
@@ -38,9 +38,6 @@ export const GenderSelectorItem = ({
   disabled,
 }: GenderSelectorItemProps) => {
   const group = useRadioGroup()
-  if (!group) {
-    throw new Error()
-  }
 
   const checked = group.value === value
 
