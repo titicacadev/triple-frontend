@@ -91,6 +91,8 @@ const LINK_ELEMENTS = {
   largeCompactButton: LargeCompactLink,
 }
 
+const TRIPLE_PROD_DOMAIN = 'https://triple.guide'
+
 export default function LinksView({
   value: { display, links },
   webUrlBase,
@@ -159,7 +161,7 @@ function LargeBox({ children }: PropsWithChildren<unknown>) {
 
 function canonizeTargetAddress({
   href: rawHref,
-  webUrlBase,
+  webUrlBase = TRIPLE_PROD_DOMAIN,
 }: {
   href: string
   webUrlBase?: string
