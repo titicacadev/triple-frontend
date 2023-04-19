@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@titicaca/fetcher": "^12.16.0",
-    "lottie-web": "^5.10.2",
+    "lottie-web": "^5.11.0",
     "react-fast-compare": "^2.0.4",
     "scroll-to-element": "^2.0.3"
   },
