@@ -65,7 +65,7 @@
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
-    "@types/react-input-mask": "^2.0.5",
+    "@types/react-input-mask": "^3.0.2",
     "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.26",
     "chokidar": "^3.5.3",
