@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@titicaca/react-contexts": "^12.16.0",
-    "@titicaca/triple-web-to-native-interfaces": "1.7.0",
+    "@titicaca/triple-web-to-native-interfaces": "1.8.0",
     "@types/qs": "^6.9.7",
     "@types/semver": "^7.3.13"
   },
