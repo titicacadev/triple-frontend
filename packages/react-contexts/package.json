@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/qs": "^6.9.7",
     "@types/ua-parser-js": "^0.7.36",
-    "firebase": "^9.19.1"
+    "firebase": "^9.20.0"
   },
   "peerDependencies": {
     "firebase": "^9.11.0",
