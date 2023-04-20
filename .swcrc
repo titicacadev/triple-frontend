@@ -17,7 +17,9 @@
       }
     },
     "experimental": {
-      "plugins": [["@swc/plugin-styled-components", {}]]
+      "plugins": [
+        ["@swc/plugin-styled-components", { "displayName": true, "ssr": true }]
+      ]
     }
   }
 }
