@@ -1,4 +1,4 @@
-import { RadioGroup, RadioGroupProps } from '../radio'
+import { RadioGroup, RadioGroupProps } from '../radio-group'
 
 import { GenderSelectorItem } from './gender-selector-item'
 
