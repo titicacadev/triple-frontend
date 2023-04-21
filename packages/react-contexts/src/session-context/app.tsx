@@ -1,7 +1,13 @@
 import { IncomingMessage } from 'http'
 
 import { NextPageContext } from 'next'
-import { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
+import {
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useEffect,
+  useState,
+} from 'react'
 import {
   fetcher,
   RequestOptions,
@@ -26,12 +32,14 @@ export interface InAppSessionContextProviderProps {
   initialSessionId: string | undefined
   initialUser: User | undefined
   preventSessionFixation: boolean | undefined
+  shouldUpdateOnMount?: boolean
 }
 
 export function InAppSessionContextProvider({
   initialSessionId,
   initialUser,
   preventSessionFixation,
+  shouldUpdateOnMount,
   children,
 }: PropsWithChildren<InAppSessionContextProviderProps>) {
   if (!preventSessionFixation) {
@@ -41,7 +49,7 @@ export function InAppSessionContextProvider({
   const { appUrlScheme } = useEnv()
   const { user, clear: clearUserState } = useUserState(initialUser)
 
-  const sessionAvailableRef = useRef(!!initialSessionId)
+  const [sessionAvaility, setSessionAvaility] = useState(!!initialSessionId)
 
   const login = useCallback<SessionControllers['login']>(() => {
     const loginHref = generateUrl({ scheme: appUrlScheme, path: '/login' })
@@ -57,9 +65,15 @@ export function InAppSessionContextProvider({
 
   const controllers = useMemo(() => ({ login, logout }), [login, logout])
 
+  useEffect(() => {
+    if (shouldUpdateOnMount) {
+      setSessionAvaility(!!user)
+    }
+  }, [shouldUpdateOnMount, user])
+
   return (
     <SessionControllerContext.Provider value={controllers}>
-      <SessionAvailabilityContext.Provider value={sessionAvailableRef.current}>
+      <SessionAvailabilityContext.Provider value={sessionAvaility}>
         <UserProvider value={user || null}>{children}</UserProvider>
       </SessionAvailabilityContext.Provider>
     </SessionControllerContext.Provider>

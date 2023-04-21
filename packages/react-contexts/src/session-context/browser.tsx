@@ -1,7 +1,13 @@
 import { IncomingMessage } from 'http'
 
 import { NextPageContext } from 'next'
-import { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
+import {
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react'
 import {
   fetcher,
   ssrFetcherize,
@@ -24,14 +30,18 @@ import {
 export interface InBrowserSessionContextProviderProps {
   initialSessionAvailability: boolean
   initialUser: User | undefined
+  shouldUpdateOnMount?: boolean
 }
 
 export function InBrowserSessionContextProvider({
   initialSessionAvailability,
   initialUser,
+  shouldUpdateOnMount,
   children,
 }: PropsWithChildren<InBrowserSessionContextProviderProps>) {
-  const sessionAvailableRef = useRef(initialSessionAvailability)
+  const [sessionAvaility, setSessionAvaility] = useState(
+    initialSessionAvailability,
+  )
 
   const { user, clear: clearUserState } = useUserState(initialUser)
 
@@ -57,9 +67,15 @@ export function InBrowserSessionContextProvider({
 
   const controllers = useMemo(() => ({ login, logout }), [login, logout])
 
+  useEffect(() => {
+    if (shouldUpdateOnMount) {
+      setSessionAvaility(!!user)
+    }
+  }, [shouldUpdateOnMount, user])
+
   return (
     <SessionControllerContext.Provider value={controllers}>
-      <SessionAvailabilityContext.Provider value={sessionAvailableRef.current}>
+      <SessionAvailabilityContext.Provider value={sessionAvaility}>
         <UserProvider value={user || null}>{children}</UserProvider>
       </SessionAvailabilityContext.Provider>
     </SessionControllerContext.Provider>
