@@ -30,7 +30,7 @@
     "@titicaca/color-palette": "^12.16.0",
     "@titicaca/fetcher": "^12.16.0",
     "moment": "^2.29.4",
-    "react-day-picker": "^7.4.10"
+    "react-day-picker": "^8.7.1"
   },
   "peerDependencies": {
     "react": "^18.0",
