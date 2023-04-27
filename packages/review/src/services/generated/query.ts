@@ -1044,6 +1044,7 @@ export const BaseReviewFragmentDoc = `
         profileImage
       }
       content {
+        text
         markdownText
       }
       createdAt
