@@ -33,7 +33,8 @@ export interface PinnedMessageData {
     profileImage?: string
   }
   content: {
-    markdownText?: string
+    text: string | null
+    markdownText: string | null
   }
   createAt: string
   updatedAt: string
