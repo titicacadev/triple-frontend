@@ -18,7 +18,11 @@ export function PinnedMessage({
   const textRef = useRef<HTMLDivElement>(null)
   const [isTextClamped, setIsTextClamped] = useState(false)
 
-  const { content, writer, updatedAt } = pinnedMessage
+  const {
+    content: { text, markdownText },
+    writer,
+    updatedAt,
+  } = pinnedMessage
 
   useEffect(() => {
     if (!textRef.current) {
@@ -29,7 +33,7 @@ export function PinnedMessage({
     setIsTextClamped(textElement.scrollHeight > textElement.clientHeight)
   }, [])
 
-  if (!content.markdownText) {
+  if (!text && !markdownText) {
     return null
   }
 
@@ -78,7 +82,7 @@ export function PinnedMessage({
         maxLines={2}
         css={{ fontSize: 15, lineHeight: '20px' }}
       >
-        {content.markdownText}
+        {text ?? markdownText}
       </Text>
       {isTextClamped ? (
         <Text css={{ color: 'var(--color-blue)' }}>
