@@ -40,6 +40,7 @@ function DatePicker({
   hideTodayLabel = false,
   canChangeMonth = false,
   renderDayInfo,
+  renderDay: customRenderDay,
   fromMonth,
   toMonth,
 }: DislableDaysProps & {
@@ -56,6 +57,7 @@ function DatePicker({
    * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
    */
   publicHolidays?: Date[]
+  renderDay?: (date: Date, modifiers?: DayModifiers) => ReactNode
 }) {
   const hasRangeMonth = fromMonth && toMonth
   const diffRangeMonth = moment(toMonth).diff(moment(fromMonth), 'months', true)
@@ -153,7 +155,7 @@ function DatePicker({
         month={hasRangeMonth ? formattedFromMonth : undefined}
         fromMonth={formattedFromMonth}
         toMonth={formattedToMonth}
-        renderDay={renderDay}
+        renderDay={customRenderDay || renderDay}
       />
     </DayContainer>
   )
