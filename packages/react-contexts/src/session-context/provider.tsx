@@ -16,21 +16,27 @@ type SessionContextProviderProps =
   | {
       type: 'browser'
       props: InBrowserSessionContextProviderProps
+      shouldUpdateOnMount?: boolean
     }
   | {
       type: 'app'
       props: InAppSessionContextProviderProps
+      shouldUpdateOnMount?: boolean
     }
 
 export default function SessionContextProvider({
   children,
+  shouldUpdateOnMount,
   ...props
 }: PropsWithChildren<SessionContextProviderProps>) {
   if (props.type === 'browser') {
     const { props: inBrowserProps } = props
 
     return (
-      <InBrowserSessionContextProvider {...inBrowserProps}>
+      <InBrowserSessionContextProvider
+        shouldUpdateOnMount={shouldUpdateOnMount}
+        {...inBrowserProps}
+      >
         {children}
       </InBrowserSessionContextProvider>
     )
@@ -39,7 +45,10 @@ export default function SessionContextProvider({
   const { props: inAppProps } = props
 
   return (
-    <InAppSessionContextProvider {...inAppProps}>
+    <InAppSessionContextProvider
+      shouldUpdateOnMount={shouldUpdateOnMount}
+      {...inAppProps}
+    >
       {children}
     </InAppSessionContextProvider>
   )
