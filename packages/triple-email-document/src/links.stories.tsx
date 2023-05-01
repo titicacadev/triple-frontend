@@ -59,7 +59,7 @@ function generateSampleData(type: LinkDisplay) {
         {
           id: 'Link_ID',
           label: `${type} 디자인 형식`,
-          href: '/regions/e3803739-d1c4-441e-a3f7-5a057fa851c8/articles/991aea4e-4645-4682-9bb5-f0e070e1f169',
+          href: '',
         },
       ],
       display: type,
