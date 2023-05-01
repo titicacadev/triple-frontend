@@ -1,7 +1,6 @@
 import { HTMLAttributes, PropsWithChildren } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
-import { parseUrl, checkIfRoutable } from '@titicaca/view-utilities'
 
 import { FluidTable, Box as DefaultBox } from '../common'
 
@@ -9,7 +8,7 @@ interface Link {
   id?: string
   label?: string
   href: string
-  target?: 'browser'
+  target?: string
 }
 
 export interface LinksDocument {
@@ -91,14 +90,10 @@ const LINK_ELEMENTS = {
   largeCompactButton: LargeCompactLink,
 }
 
-const TRIPLE_PROD_DOMAIN = 'https://triple.guide'
-
 export default function LinksView({
   value: { display, links },
-  webUrlBase,
 }: {
   value: LinksDocument['value']
-  webUrlBase?: string
 }) {
   const Box = LINK_BOXES[display] || ButtonBox
   const Element = LINK_ELEMENTS[display] || ButtonLink
@@ -107,13 +102,6 @@ export default function LinksView({
     <FluidTable>
       <tbody>
         {links.map((link, index) => {
-          const href = canonizeTargetAddress({
-            href: link.href,
-            webUrlBase,
-          })
-
-          const targetHref = checkIfRoutable({ href }) ? href : ''
-
           return (
             <tr key={index}>
               <Box>
@@ -122,7 +110,7 @@ export default function LinksView({
                     textAlign: 'center',
                   }}
                 >
-                  <Element href={targetHref} ses:tags={`link:${link.id}`}>
+                  <Element href={link.href} ses:tags={`link:${link.id}`}>
                     {link.label}
                   </Element>
                 </Container>
@@ -157,20 +145,4 @@ function LargeBox({ children }: PropsWithChildren<unknown>) {
       {children}
     </DefaultBox>
   )
-}
-
-function canonizeTargetAddress({
-  href: rawHref,
-  webUrlBase = TRIPLE_PROD_DOMAIN,
-}: {
-  href: string
-  webUrlBase?: string
-}) {
-  const { host, path } = parseUrl(rawHref)
-
-  if (host) {
-    return rawHref
-  } else {
-    return `${webUrlBase}${path}`
-  }
 }
