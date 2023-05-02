@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/image-carousel",
-  "version": "12.16.0",
+  "version": "12.17.0",
   "description": "Triple Image Carousel",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/image-carousel",
@@ -29,12 +29,12 @@
   "dependencies": {
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
-    "@titicaca/core-elements": "^12.16.0",
-    "@titicaca/intersection-observer": "^12.16.0",
-    "@titicaca/type-definitions": "^12.16.0"
+    "@titicaca/core-elements": "^12.17.0",
+    "@titicaca/intersection-observer": "^12.17.0",
+    "@titicaca/type-definitions": "^12.17.0"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.16.0"
+    "@titicaca/react-contexts": "^12.17.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

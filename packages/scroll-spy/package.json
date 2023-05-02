@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scroll-spy",
-  "version": "12.16.0",
+  "version": "12.17.0",
   "description": "Scroll Spy Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/scroll-spy",
@@ -27,8 +27,8 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/intersection-observer": "^12.16.0",
-    "@titicaca/react-hooks": "^12.16.0",
+    "@titicaca/intersection-observer": "^12.17.0",
+    "@titicaca/react-hooks": "^12.17.0",
     "react-use": "^17.4.0"
   },
   "peerDependencies": {

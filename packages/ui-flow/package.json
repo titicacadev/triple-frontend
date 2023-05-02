@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "12.16.0",
+  "version": "12.17.0",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -31,14 +31,14 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.16.0",
-    "@titicaca/modals": "^12.16.0",
-    "@titicaca/react-contexts": "^12.16.0",
-    "@titicaca/view-utilities": "^12.16.0",
+    "@titicaca/fetcher": "^12.17.0",
+    "@titicaca/modals": "^12.17.0",
+    "@titicaca/react-contexts": "^12.17.0",
+    "@titicaca/view-utilities": "^12.17.0",
     "qs": "^6.11.1"
   },
   "devDependencies": {
-    "@titicaca/react-triple-client-interfaces": "^12.16.0",
+    "@titicaca/react-triple-client-interfaces": "^12.17.0",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
