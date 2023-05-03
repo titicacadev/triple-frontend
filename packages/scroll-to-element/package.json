@@ -28,6 +28,6 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "dependencies": {
-    "@tweenjs/tween.js": "^18.6.4"
+    "@tweenjs/tween.js": "^20.0.3"
   }
 }
