@@ -6,8 +6,8 @@ on:
       - labeled
 
 env:
-  COMMIT_USER_EMAIL: developer@triple-corp.com
-  COMMIT_USER_NAME: triple-frontend[bot]
+  COMMIT_USER_EMAIL: triple-bot@interpark.com
+  COMMIT_USER_NAME: TRIPLE Bot
   CURRENT_VERSION: ${{ github.event.pull_request.milestone.title }}
   NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
