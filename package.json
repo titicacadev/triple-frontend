@@ -69,7 +69,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.26",
     "chokidar": "^3.5.3",
-    "chromatic": "^6.17.3",
+    "chromatic": "^6.17.4",
     "concurrently": "^8.0.1",
     "csstype": "^3.1.2",
     "eslint": "^8.39.0",
@@ -100,7 +100,7 @@
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "5.0.4",
     "utility-types": "^3.10.0",
-    "webpack": "^5.81.0"
+    "webpack": "^5.82.0"
   },
   "workspaces": [
     "packages/*",
