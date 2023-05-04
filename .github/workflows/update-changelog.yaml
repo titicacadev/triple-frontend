@@ -14,7 +14,51 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
 
 jobs:
+  wait-for-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - name: Wait for CI
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-ci
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: build
+          ref: ${{ github.event.head }}
+
+      - name: Notify checking CI timeout
+        if: steps.wait-for-ci.outputs.conclusion == 'timed_out'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: CI Waiting timeout'
+          SLACK_TOPIC: 'CI workflow가 시작되었는지, 기다리는 job의 이름이 CI job과 일치하는지, 확인해주세요.'
+        run: npx @titicaca/gha-tools notify
+
+      - name: Notify checking CI failure
+        if: steps.wait-for-ci.outputs.conclusion == 'failure'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: CI FAILURE'
+          SLACK_TOPIC: '배포를 중단합니다.'
+        run: npx @titicaca/gha-tools notify
+
+      - name: Shutdown workflow
+        if: steps.wait-for-ci.outputs.conclusion != 'success'
+        run: node -e 'process.exit(1)'
+
   update-changelog:
+    needs: wait-for-ci
     runs-on: ubuntu-latest
     if: ${{ github.event.label.name == 'release' }}
     steps:
@@ -37,6 +81,32 @@ jobs:
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
 
+      - name: Wait for CI
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-ci
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: build
+          ref: ${{ github.event.head }}
+
+      - name: Notify checking CI timeout
+        if: steps.wait-for-ci.outputs.conclusion == 'timed_out'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: CI Waiting timeout'
+          SLACK_TOPIC: 'CI workflow가 시작되었는지, 기다리는 job의 이름이 CI job과 일치하는지, 확인해주세요.'
+        run: npx @titicaca/gha-tools notify
+
+      - name: Notify checking CI failure
+        if: steps.wait-for-ci.outputs.conclusion == 'failure'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+          SLACK_COLOR: fail
+          SLACK_TITLE: ':pleading: CI FAILURE'
+          SLACK_TOPIC: '배포를 중단합니다.'
+        run: npx @titicaca/gha-tools notify
+
       - run: npm ci node-fetch prettier
 
       - name: Execute Changelog JavaScript
@@ -52,8 +122,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
         run: |
-          git config user.name "$(git log -n 1 --pretty=format:%an)"
-          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+          git config --local user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git config --local user.name "${{ env.COMMIT_USER_NAME }}"
           git add .
           git commit -m "Add ${{ env.CURRENT_VERSION }} CHANGELOG"
           git push origin ${{ github.head_ref }}
