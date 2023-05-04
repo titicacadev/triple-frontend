@@ -29,7 +29,39 @@ env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
+  wait-for-update-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Skip if this PR is not a release PR
+        run: |
+          if [[ "${{ github.event.label.name }}" != "release" ]]; then
+            exit 0
+          fi
+
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          cache: 'npm'
+
+      - name: Wait for Update Changelog
+        uses: fountainhead/action-wait-for-check@v1.0.0
+        id: wait-for-update-changelog
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checkName: update-changelog
+          ref: ${{ github.event.head }}
+
+      - name: Shutdown workflow
+        if: steps.wait-for-update-changelog.outputs.conclusion != 'success'
+        run: node -e 'process.exit(1)'
+
   check-dependencies:
+    needs: wait-for-update-changelog
     runs-on: ubuntu-latest
 
     steps:
@@ -61,6 +93,7 @@ jobs:
         run: npx @titicaca/gha-tools notify
 
   lint:
+    needs: wait-for-update-changelog
     runs-on: ubuntu-latest
 
     steps:
@@ -88,6 +121,7 @@ jobs:
         run: npx @titicaca/gha-tools notify
 
   build:
+    needs: wait-for-update-changelog
     runs-on: ubuntu-latest
 
     steps:
@@ -115,6 +149,7 @@ jobs:
         run: npx @titicaca/gha-tools notify
 
   test:
+    needs: wait-for-update-changelog
     runs-on: ubuntu-latest
 
     steps:
@@ -161,6 +196,7 @@ jobs:
         run: npx @titicaca/gha-tools notify
 
   chromatic-deployment:
+    needs: wait-for-update-changelog
     runs-on: ubuntu-latest
 
     steps:
