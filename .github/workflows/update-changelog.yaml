@@ -28,6 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Node.js ${{ env.NODE_VERSION }}
