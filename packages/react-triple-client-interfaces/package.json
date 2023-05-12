@@ -33,7 +33,7 @@
     "@titicaca/react-contexts": "^12.16.0",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@types/qs": "^6.9.7",
-    "@types/semver": "^7.3.13"
+    "@types/semver": "^7.5.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
