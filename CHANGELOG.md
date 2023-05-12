@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v12.17.0
+
+### core-elements
+
+- [core-elements] CheckboxGroup, RadioGroup 접근성 수정 [#2581](https://github.com/jaehyeon48/github-actions-test/pull/2581)
+- [core-elements] Fieldset 추가 [#2582](https://github.com/jaehyeon48/github-actions-test/pull/2582)
+
+### review
+
+- PinnedMessage의 text 필드를 추가합니다. [#2606](https://github.com/jaehyeon48/github-actions-test/pull/2606)
+
+### triple-email-document
+
+- [triple-email-document] 이메일에서 도메인이 없는 링크 클릭 시, 정상적으로 랜딩되지 않는 이슈를 수정합니다. [#2559](https://github.com/jaehyeon48/github-actions-test/pull/2559)
+- [triple-email-document] 링크 Element에 존재하는 URL 변환하는 로직을 제거합니다. [#2610](https://github.com/jaehyeon48/github-actions-test/pull/2610)
+
 ## v12.16.0
 
 ### core-elements
