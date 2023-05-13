@@ -6,8 +6,8 @@ export default {
   title: 'modals / Alert',
   component: Alert,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 500,
     },
   },

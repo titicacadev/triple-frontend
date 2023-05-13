@@ -1,11 +1,12 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-module.exports = {
+/** @type { import('@storybook/nextjs').StorybookConfig } */
+const config = {
   stories: ['../packages/**/!(/lib)/*.stories.@(mdx,js|jsx|ts|tsx)'],
   addons: [
-    '@storybook/addon-links',
     '@storybook/addon-essentials',
-    'storybook-addon-next-router',
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
     {
       name: 'storybook-addon-swc',
       options: {
@@ -27,27 +28,34 @@ module.exports = {
       tsconfigPath: 'tsconfig.test.json',
     },
   },
-  framework: '@storybook/react',
-  core: {
-    builder: {
-      name: 'webpack5',
-      options: {
+  framework: {
+    name: '@storybook/nextjs',
+    options: {
+      builder: {
         lazyCompilation: true,
-        fsCache: true,
       },
     },
   },
-  features: {
-    postcss: false,
-    storyStoreV7: true,
-  },
   webpackFinal: async (config) => {
     config.resolve.plugins = [
-      new TsconfigPathsPlugin({ configFile: 'tsconfig.test.json' }),
+      new TsconfigPathsPlugin({
+        configFile: 'tsconfig.test.json',
+      }),
     ]
-    config.resolve.fallback ||= {}
-    config.resolve.fallback.fs = false
+
+    config.resolve.fallback = {
+      assert: require.resolve('browser-assert'),
+      crypto: false,
+      fs: false,
+      path: false,
+      util: false,
+    }
 
     return config
   },
+  docs: {
+    autodocs: true,
+  },
 }
+
+export default config

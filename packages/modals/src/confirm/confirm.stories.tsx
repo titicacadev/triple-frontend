@@ -6,8 +6,8 @@ export default {
   title: 'modals / Confirm',
   component: Confirm,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 500,
     },
   },

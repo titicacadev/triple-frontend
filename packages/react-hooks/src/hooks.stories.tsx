@@ -12,8 +12,8 @@ import { useLottie } from './use-lottie'
 export default {
   title: 'react-hooks / hooks',
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 500,
     },
   },
