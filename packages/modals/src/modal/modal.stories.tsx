@@ -6,8 +6,8 @@ export default {
   title: 'modals / Modal',
   component: Modal,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 500,
     },
   },

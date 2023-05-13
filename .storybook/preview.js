@@ -1,4 +1,3 @@
-import { RouterContext } from 'next/dist/shared/lib/router-context' // next 12
 import {
   HistoryProvider,
   SessionContextProvider,
@@ -7,40 +6,42 @@ import {
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
+import { withActions } from '@storybook/addon-actions/decorator'
 import { I18nDecorator } from './i18n'
 
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  nextRouter: {
-    Provider: RouterContext.Provider,
+/** @type { import('@storybook/react').Preview } */
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
   },
-}
-
-export const decorators = [
-  globalStyleDecorator,
-  tripleClientMetadataDecorator,
-  userAgentProviderDecorator,
-  historyProviderDecorator,
-  sessionContextProviderDecorator,
-  envProviderDecorator,
-  I18nDecorator,
-]
-
-export const globalTypes = {
-  locale: {
-    name: 'Locale',
-    description: 'i18n locale',
-    defaultValue: 'ko',
-    toolbar: {
-      icon: 'globe',
-      items: [
-        { value: 'ko', right: '🇰🇷', title: '한국어' },
-        { value: 'ja', right: '🇯🇵', title: '일본어' },
-        { value: 'zh', right: '🇨🇳', title: '중국어(번체)' },
-      ],
+  decorators: [
+    withActions,
+    globalStyleDecorator,
+    tripleClientMetadataDecorator,
+    userAgentProviderDecorator,
+    historyProviderDecorator,
+    sessionContextProviderDecorator,
+    envProviderDecorator,
+    I18nDecorator,
+  ],
+  globalTypes: {
+    locale: {
+      name: 'Locale',
+      description: 'i18n locale',
+      defaultValue: 'ko',
+      toolbar: {
+        icon: 'globe',
+        items: [
+          { value: 'ko', right: '🇰🇷', title: '한국어' },
+          { value: 'ja', right: '🇯🇵', title: '일본어' },
+          { value: 'zh', right: '🇨🇳', title: '중국어(번체)' },
+        ],
+      },
     },
   },
 }
+
+export default preview
 
 export function globalStyleDecorator(Story) {
   return (

@@ -6,8 +6,8 @@ export default {
   title: 'drawer-button / DrawerButton',
   component: DrawerButton,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 300,
     },
   },

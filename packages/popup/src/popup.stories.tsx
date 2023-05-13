@@ -7,8 +7,8 @@ export default {
   title: 'popup / Popup',
   component: Popup,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 500,
     },
   },

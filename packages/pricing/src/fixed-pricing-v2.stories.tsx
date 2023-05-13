@@ -6,8 +6,8 @@ export default {
   title: 'pricing / FixedPricingV2',
   component: FixedPricingV2,
   parameters: {
-    docs: {
-      inlineStories: false,
+    story: {
+      inline: false,
       iframeHeight: 300,
     },
   },
