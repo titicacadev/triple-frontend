@@ -20,24 +20,16 @@ import {
   SessionControllers,
 } from './context'
 
-const saveSessionIdToCookie = createSessionIdSaver()
-
 export interface InAppSessionContextProviderProps {
   initialSessionId: string | undefined
   initialUser: User | undefined
-  preventSessionFixation: boolean | undefined
 }
 
 export function InAppSessionContextProvider({
   initialSessionId,
   initialUser,
-  preventSessionFixation,
   children,
 }: PropsWithChildren<InAppSessionContextProviderProps>) {
-  if (!preventSessionFixation) {
-    saveSessionIdToCookie(initialSessionId)
-  }
-
   const { appUrlScheme } = useEnv()
   const { user, clear: clearUserState } = useUserState(initialUser)
 
@@ -68,9 +60,7 @@ export function InAppSessionContextProvider({
 
 InAppSessionContextProvider.getInitialProps = async function ({
   req,
-}: NextPageContext): Promise<
-  Omit<InAppSessionContextProviderProps, 'preventSessionFixation'>
-> {
+}: NextPageContext): Promise<InAppSessionContextProviderProps> {
   const initialSessionId = getSessionIdFromRequest(req)
 
   if (!initialSessionId) {
@@ -108,23 +98,8 @@ InAppSessionContextProvider.getInitialProps = async function ({
   return { initialSessionId, initialUser }
 }
 
-function createSessionIdSaver() {
-  let sessionIdSet = false
-
-  return (sessionId: string | undefined) => {
-    if (sessionIdSet === false && !!sessionId) {
-      storeSessionIdToCookie(sessionId)
-      sessionIdSet = true
-    }
-  }
-}
-
 export const SESSION_ID_KEY = 'x-soto-session'
 
 export function getSessionIdFromRequest(req: IncomingMessage | undefined) {
   return new Cookies(req?.headers.cookie).get(SESSION_ID_KEY)
-}
-
-function storeSessionIdToCookie(sessionId: string) {
-  new Cookies().set(SESSION_ID_KEY, sessionId, { path: '/' })
 }
