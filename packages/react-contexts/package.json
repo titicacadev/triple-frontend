@@ -12,6 +12,10 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./middleware": "./lib/middleware.js"
+  },
   "files": [
     "lib"
   ],

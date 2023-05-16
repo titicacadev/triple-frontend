@@ -1,6 +1,6 @@
 import { NextMiddleware, NextRequest, NextResponse } from 'next/server'
 
-import { parseApp } from '../user-agent-context'
+import { parseApp } from './user-agent-context'
 
 export const middleware: NextMiddleware = (request: NextRequest) => {
   const response = NextResponse.next()
