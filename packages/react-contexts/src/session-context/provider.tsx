@@ -53,7 +53,7 @@ SessionContextProvider.getInitialProps = async function (
     req !== undefined
       ? req.headers['user-agent'] || ''
       : window.navigator.userAgent
-  const { app, isPublic } = generateUserAgentValues(userAgent)
+  const { isPublic } = generateUserAgentValues(userAgent)
 
   if (isPublic === true) {
     const props = await InBrowserSessionContextProvider.getInitialProps(context)
@@ -65,6 +65,6 @@ SessionContextProvider.getInitialProps = async function (
 
   return {
     type: 'app',
-    props: { ...props, preventSessionFixation: app?.name !== 'Triple-iOS' },
+    props,
   }
 }
