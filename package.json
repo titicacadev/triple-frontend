@@ -33,7 +33,7 @@
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "devDependencies": {
-    "@nrwl/nx-cloud": "^15.3.5",
+    "@nrwl/nx-cloud": "^16.0.5",
     "@storybook/addon-actions": "^7.0.12",
     "@storybook/addon-docs": "^7.0.12",
     "@storybook/addon-essentials": "^7.0.12",
