@@ -21,6 +21,11 @@ export interface NextjsRoutingOptions {
    * 기본 값 true
    */
   scroll?: boolean
+  /**
+   * 현재창에서 URL을 변경할 때 data fetching(getServerSideProps, getStaticProps, getInitialProps)을 하지 않습니다.
+   * 기본 값 false
+   */
+  shallow?: boolean
 }
 
 export function useLocalHrefHandler() {
@@ -32,13 +37,14 @@ export function useLocalHrefHandler() {
 
   const handleNextjsRouting = async (
     href: string,
-    { replace, scroll = true }: NextjsRoutingOptions,
+    { replace, scroll = true, shallow = false }: NextjsRoutingOptions,
   ): Promise<void> => {
     const success = await router[replace ? 'replace' : 'push'](
       href,
       undefined,
       {
         scroll,
+        shallow,
       },
     )
     if (success && scroll) {
@@ -55,6 +61,7 @@ export function useLocalHrefHandler() {
     swipeToClose,
     replace,
     scroll,
+    shallow,
     isKeyPressing,
     stopDefaultHandler,
   }: HrefProps &
@@ -67,7 +74,7 @@ export function useLocalHrefHandler() {
     if (target === 'current' && isKeyPressing === false) {
       stopDefaultHandler()
 
-      await handleNextjsRouting(href, { replace, scroll })
+      await handleNextjsRouting(href, { replace, scroll, shallow })
 
       return
     }

@@ -28,6 +28,7 @@ export function LocalLink({
   allowSource,
   replace,
   scroll = true,
+  shallow = false,
   lnbTarget,
   noNavbar,
   swipeToClose,
@@ -55,6 +56,7 @@ export function LocalLink({
       swipeToClose,
       replace,
       scroll,
+      shallow,
       isKeyPressing: isKeyPressingClick(e),
       stopDefaultHandler: () => {
         e.preventDefault()
