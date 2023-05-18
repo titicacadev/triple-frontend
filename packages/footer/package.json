@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/footer",
-  "version": "12.17.0",
+  "version": "12.18.0",
   "description": "Common Footer for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/footer",
@@ -27,13 +27,13 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.17.0",
-    "@titicaca/router": "^12.17.0",
+    "@titicaca/core-elements": "^12.18.0",
+    "@titicaca/router": "^12.18.0",
     "@types/qs": "^6.9.7",
     "qs": "^6.11.1"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.17.0"
+    "@titicaca/react-contexts": "^12.18.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
