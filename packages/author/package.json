@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/author",
-  "version": "12.18.0",
+  "version": "12.18.1",
   "description": "Triple Author UI elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/author",
@@ -27,9 +27,9 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.18.0",
-    "@titicaca/core-elements": "^12.18.0",
-    "@titicaca/type-definitions": "^12.18.0"
+    "@titicaca/color-palette": "^12.18.1",
+    "@titicaca/core-elements": "^12.18.1",
+    "@titicaca/type-definitions": "^12.18.1"
   },
   "peerDependencies": {
     "react": "^18.0",

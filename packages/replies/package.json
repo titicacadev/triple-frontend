@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/replies",
-  "version": "12.18.0",
+  "version": "12.18.1",
   "description": "Replies Component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/replies",
@@ -27,20 +27,20 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.18.0",
-    "@titicaca/core-elements": "^12.18.0",
-    "@titicaca/fetcher": "^12.18.0",
-    "@titicaca/modals": "^12.18.0",
-    "@titicaca/router": "^12.18.0",
-    "@titicaca/ui-flow": "^12.18.0",
-    "@titicaca/view-utilities": "^12.18.0",
+    "@titicaca/action-sheet": "^12.18.1",
+    "@titicaca/core-elements": "^12.18.1",
+    "@titicaca/fetcher": "^12.18.1",
+    "@titicaca/modals": "^12.18.1",
+    "@titicaca/router": "^12.18.1",
+    "@titicaca/ui-flow": "^12.18.1",
+    "@titicaca/view-utilities": "^12.18.1",
     "qs": "^6.11.1"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.18.0",
+    "@titicaca/i18n": "^12.18.1",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.18.0",
-    "@titicaca/react-triple-client-interfaces": "^12.18.0",
+    "@titicaca/react-contexts": "^12.18.1",
+    "@titicaca/react-triple-client-interfaces": "^12.18.1",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
