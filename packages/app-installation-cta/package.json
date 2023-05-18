@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "12.17.0",
+  "version": "12.18.0",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -34,17 +34,17 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.17.0",
-    "@titicaca/intersection-observer": "^12.17.0",
-    "@titicaca/type-definitions": "^12.17.0",
-    "@titicaca/web-storage": "^12.17.0",
+    "@titicaca/core-elements": "^12.18.0",
+    "@titicaca/intersection-observer": "^12.18.0",
+    "@titicaca/type-definitions": "^12.18.0",
+    "@titicaca/web-storage": "^12.18.0",
     "@types/react-transition-group": "^4.4.6",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.17.0",
+    "@titicaca/i18n": "^12.18.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.17.0"
+    "@titicaca/react-contexts": "^12.18.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
