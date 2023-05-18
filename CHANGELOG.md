@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v12.18.0
+
+### router
+
+- [ Router ] LocalLink 컴포넌트에 shallow property를 추가합니다. [#2639](https://github.com/jaehyeon48/github-actions-test/pull/2639)
+
 ## v12.17.0
 
 ### core-elements
