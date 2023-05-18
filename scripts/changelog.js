@@ -93,25 +93,25 @@ Example output markdown:
 \`\`\`
 ### ab-experiments
 
-- [core-elements] story title을 소문자로 변경 [#2345](https://github.com/jaehyeon48/github-actions-test/pull/2345)
-- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/jaehyeon48/github-actions-test/pull/2352)
-- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/jaehyeon48/github-actions-test/pull/2364)
+- [core-elements] story title을 소문자로 변경 [#2345](https://github.com/titicacadev/triple-frontend/pull/2345)
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
 
 ### anchor
 
-- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/jaehyeon48/github-actions-test/pull/2352)
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
 
 ### common
 
-- cd workflow 에러 수정 [#2351](https://github.com/jaehyeon48/github-actions-test/pull/2351)
-- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/jaehyeon48/github-actions-test/pull/2352)
-- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/jaehyeon48/github-actions-test/pull/2364)
+- cd workflow 에러 수정 [#2351](https://github.com/titicacadev/triple-frontend/pull/2351)
+- css prop과 centered prop이 충돌하는 문제 수정 [#2352](https://github.com/titicacadev/triple-frontend/pull/2352)
+- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
 
 ### core-elements
 
-- [core-elements] story title을 소문자로 변경 [#2345](https://github.com/jaehyeon48/github-actions-test/pull/2345)
-- [core-elements] ConfirmSelector 디자인 수정 [#2359](https://github.com/jaehyeon48/github-actions-test/pull/2359)
-- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/jaehyeon48/github-actions-test/pull/2364)
+- [core-elements] story title을 소문자로 변경 [#2345](https://github.com/titicacadev/triple-frontend/pull/2345)
+- [core-elements] ConfirmSelector 디자인 수정 [#2359](https://github.com/titicacadev/triple-frontend/pull/2359)
+- Rating 컴포넌트에 최대값,최소값 설정 추가 [#2364](https://github.com/titicacadev/triple-frontend/pull/2364)
 \`\`\`
 Input JSON data:
 \`\`\`
