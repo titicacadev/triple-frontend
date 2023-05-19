@@ -34,6 +34,10 @@ const Button = styled.a`
   border-radius: 4px;
   background-color: rgba(250, 250, 250, 1);
 
+  &:first-child {
+    margin-right: 6px;
+  }
+
   img {
     width: 16px;
     margin-left: 6px;
@@ -65,10 +69,6 @@ const AccordionArrow = styled.img`
 `
 
 const ButtonContainer = styled(FlexBox)`
-  a:first-child {
-    margin-right: 6px;
-  }
-
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     width: 100%;
     margin-bottom: 20px;
@@ -112,6 +112,8 @@ export function CompanyInfo({
         {!hideAppDownloadButton ? (
           <ButtonContainer flex>
             <Button
+              as="button"
+              type="button"
               onClick={() => {
                 if (sessionAvailable) {
                   logout()
