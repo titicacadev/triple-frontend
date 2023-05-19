@@ -30,7 +30,7 @@
     "@titicaca/core-elements": "^12.18.0",
     "@titicaca/router": "^12.18.0",
     "@types/qs": "^6.9.7",
-    "qs": "^6.11.1"
+    "qs": "^6.11.2"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "^12.18.0"

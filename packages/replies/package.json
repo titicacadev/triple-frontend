@@ -34,7 +34,7 @@
     "@titicaca/router": "^12.18.0",
     "@titicaca/ui-flow": "^12.18.0",
     "@titicaca/view-utilities": "^12.18.0",
-    "qs": "^6.11.1"
+    "qs": "^6.11.2"
   },
   "devDependencies": {
     "@titicaca/i18n": "^12.18.0",

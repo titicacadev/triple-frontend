@@ -35,7 +35,7 @@
     "@titicaca/modals": "^12.18.0",
     "@titicaca/react-contexts": "^12.18.0",
     "@titicaca/view-utilities": "^12.18.0",
-    "qs": "^6.11.1"
+    "qs": "^6.11.2"
   },
   "devDependencies": {
     "@titicaca/react-triple-client-interfaces": "^12.18.0",
