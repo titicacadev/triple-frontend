@@ -27,7 +27,7 @@
   "dependencies": {
     "@titicaca/view-utilities": "^12.18.1",
     "qs": "^6.11.2",
-    "semver": "^7.5.0"
+    "semver": "^7.5.1"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "^12.18.1",
