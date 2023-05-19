@@ -41,7 +41,7 @@
     "graphql": "^16.6.0",
     "graphql-request": "^4.3.0",
     "moment": "^2.29.4",
-    "qs": "^6.11.1",
+    "qs": "^6.11.2",
     "react-query": "^3.39.3",
     "scroll-to-element": "^2.0.3"
   },
