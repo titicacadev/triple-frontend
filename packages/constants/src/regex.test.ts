@@ -33,7 +33,16 @@ test('사용자 ID에 .이 포함되어 있을 때 바로 다음 문자가 영�
   expect(NOT_SINGLE_DOT.every(testIsInvalidEmail)).toBe(true)
 })
 
-test('@ 이후에 온점을 포함하고 2글자 이상의 최상위 도메인 주소가 존재하지 않으면 유효하지 않은 이메일 주소입니다.', async () => {
+test('-(하이픈)이 도메인 주소 시작 또는 끝에 존재하면 유효하지 않은 이메일 주소입니다.', async () => {
+  const INVALID_DOMAIN_NAME = [
+    'test@triple-corp-.com',
+    'test@-triple-corp.com',
+    'test@-triple-corp-.com',
+  ]
+  expect(INVALID_DOMAIN_NAME.every(testIsInvalidEmail)).toBe(true)
+})
+
+test('2글자 이상의 최상위 도메인 주소가 존재하지 않으면 유효하지 않은 이메일 주소입니다.', async () => {
   const INVALID_DOMAIN_NAME = ['test@triple-corp.c', 'test@triple.corp.c']
   expect(INVALID_DOMAIN_NAME.every(testIsInvalidEmail)).toBe(true)
   const VALID_DOMAIN_NAME = [

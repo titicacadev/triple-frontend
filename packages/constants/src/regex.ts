@@ -18,7 +18,7 @@ export const FULL_NAME_REGEX =
   /^([가-힣]{2,100}|[a-zA-Z]{2,32}\s?[a-zA-Z]{2,32})$/
 
 export const EMAIL_REGEX =
-  /^[a-zA-Z0-9_\-+]+(\.[a-zA-Z0-9_\-+]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$/
+  /^[a-zA-Z0-9_\-+]+(\.[a-zA-Z0-9_\-+]+)*@[a-zA-Z0-9]+[a-zA-Z0-9-]*[a-zA-Z0-9]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$/
 export const PHONE_REGEX =
   /^(010[-. ]?([0-9]{4})|(011|016|017|018|019)[-. ]?([0-9]{3,4}))[-. ]?([0-9]{4})$/
 export const DATE_REGEX =
