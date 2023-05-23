@@ -17,7 +17,7 @@ import { TRANSITION_DURATION } from './constants'
 
 export interface ActionSheetProps
   extends Pick<
-    ActionSheetBodyProps,
+    Partial<ActionSheetBodyProps>,
     | 'children'
     | 'borderRadius'
     | 'bottomSpacing'
