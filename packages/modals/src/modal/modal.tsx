@@ -75,9 +75,9 @@ export const Modal = ({ children, open = false, onClose }: ModalProps) => {
             alignItems="center"
             justifyContent="center"
             css={css`
-            width: 100vw;
-            height: 100vh;
-            height: 100dvh;
+              width: 100vw;
+              height: 100vh;
+              height: 100dvh;
               position: fixed;
               top: 0;
               bottom: 0;
