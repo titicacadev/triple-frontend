@@ -12,9 +12,12 @@ import { ModalTitle } from './modal-title'
 
 const ModalPanel = styled(Container)`
   width: 295px;
+  max-height: 100%;
   background-color: #fff;
   outline: none;
   border-radius: 6px;
+  overflow: auto;
+  overscroll-behavior-y: none;
 `
 
 export interface ModalProps extends PropsWithChildren {
@@ -48,6 +51,9 @@ export const Modal = ({ children, open = false, onClose }: ModalProps) => {
           alignItems="center"
           justifyContent="center"
           css={css`
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
             position: fixed;
             top: 0;
             bottom: 0;
