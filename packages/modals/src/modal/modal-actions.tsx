@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 export const ModalActions = styled.div<{ children?: ReactNode }>`
   display: block;
   width: 100%;
-  height: 50px;
   border-top-style: solid;
   border-width: 1px;
   border-color: #f5f5f5;
