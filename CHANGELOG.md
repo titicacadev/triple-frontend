@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v12.18.1
+
+### footer
+
+- [Footer] 로그인 버튼 a -> button으로 수정 [#2646](https://github.com/titicacadev/triple-frontend/pull/2646)
+
+### meta-tags
+
+- [meta-tags] article script의 date 형식에 validation을 추가합니다. [#2653](https://github.com/titicacadev/triple-frontend/pull/2653)
+
 ## v12.18.0
 
 ### router
