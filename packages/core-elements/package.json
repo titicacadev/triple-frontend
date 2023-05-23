@@ -35,7 +35,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@titicaca/color-palette": "^12.18.1",
-    "@titicaca/content-utilities": "4.21.0",
+    "@titicaca/content-utilities": "7.11.0",
     "@titicaca/intersection-observer": "^12.18.1",
     "@titicaca/triple-fallback-action": "^12.18.1",
     "@titicaca/view-utilities": "^12.18.1",
