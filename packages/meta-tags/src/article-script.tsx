@@ -61,8 +61,7 @@ function toISOString(dateString: string | undefined) {
     return
   }
 
-  // safari에서 '-'가 들어간 날짜 string을 invalid date로 취급합니다.
-  const date = new Date(dateString.replace(/-/g, '/'))
+  const date = new Date(dateString)
   const isValidDate = date instanceof Date && !isNaN(date.getTime())
 
   return isValidDate ? date.toISOString() : undefined
