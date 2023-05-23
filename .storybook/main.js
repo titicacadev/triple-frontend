@@ -5,7 +5,6 @@ const config = {
   stories: ['../packages/**/!(/lib)/*.stories.@(mdx,js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
-    '@storybook/addon-actions',
     '@storybook/addon-links',
     {
       name: 'storybook-addon-swc',
@@ -48,7 +47,9 @@ const config = {
       crypto: false,
       fs: false,
       path: false,
+      stream: false,
       util: false,
+      zlib: false,
     }
 
     return config
