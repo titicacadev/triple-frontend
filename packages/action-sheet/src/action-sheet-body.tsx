@@ -58,9 +58,9 @@ const Content = styled(Container)`
 `
 
 export interface ActionSheetBodyProps extends PropsWithChildren {
-  borderRadius?: number
-  bottomSpacing?: number
-  from?: 'top' | 'bottom'
+  borderRadius: number
+  bottomSpacing: number
+  from: 'top' | 'bottom'
   maxContentHeight?: string | number
   title?: ReactNode
   labelId: string
@@ -71,10 +71,10 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
   function ActionSheetBody(
     {
       children,
-      borderRadius = 12,
-      bottomSpacing = 13,
-      from = 'bottom',
-      maxContentHeight = 'calc(100vh - 256px)',
+      borderRadius,
+      bottomSpacing,
+      from,
+      maxContentHeight,
       title,
       labelId,
       transitionStatus,
