@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { filterValidValue } from './utils'
+import { filterValidValue, toISOString } from './utils'
 
 interface ArticleScriptProps {
   headline: string
@@ -26,7 +26,7 @@ export function ArticleScript({
   image,
   datePublished,
   dateModified,
-  author,
+  author: authors,
   publisher,
 }: ArticleScriptProps) {
   const articleScript = filterValidValue({
@@ -38,7 +38,7 @@ export function ArticleScript({
     dateModified: toISOString(dateModified),
     publisher,
     author:
-      author?.map((author) =>
+      authors?.map((author) =>
         filterValidValue({
           '@type': author.type || 'Person',
           ...author,
@@ -54,15 +54,4 @@ export function ArticleScript({
       </script>
     </Head>
   )
-}
-
-function toISOString(dateString: string | undefined) {
-  if (!dateString) {
-    return
-  }
-
-  const date = new Date(dateString)
-  const isValidDate = date instanceof Date && !isNaN(date.getTime())
-
-  return isValidDate ? date.toISOString() : undefined
 }
