@@ -39,7 +39,7 @@
     "@titicaca/ui-flow": "^12.18.1",
     "@titicaca/view-utilities": "^12.18.1",
     "graphql": "^16.6.0",
-    "graphql-request": "^4.3.0",
+    "graphql-request": "^6.1.0",
     "moment": "^2.29.4",
     "qs": "^6.11.2",
     "react-query": "^3.39.3",
