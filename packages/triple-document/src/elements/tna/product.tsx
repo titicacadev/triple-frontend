@@ -223,7 +223,7 @@ export function TnaProductWithPrice({
             <Pricing
               salePrice={salePrice}
               basePrice={
-                !!basePrice && salePrice !== basePrice ? basePrice : undefined
+                !!basePrice && salePrice < basePrice ? basePrice : undefined
               }
             />
           ) : null}
