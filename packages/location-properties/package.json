@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/location-properties",
-  "version": "12.18.1",
+  "version": "12.18.2",
   "description": "Location properties: addresses, contact, URL, ...",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/location-properties",
@@ -27,15 +27,15 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^12.18.1",
-    "@titicaca/core-elements": "^12.18.1",
-    "@titicaca/type-definitions": "^12.18.1"
+    "@titicaca/action-sheet": "^12.18.2",
+    "@titicaca/core-elements": "^12.18.2",
+    "@titicaca/type-definitions": "^12.18.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.18.1",
+    "@titicaca/i18n": "^12.18.2",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.18.1",
-    "@titicaca/react-triple-client-interfaces": "^12.18.1"
+    "@titicaca/react-contexts": "^12.18.2",
+    "@titicaca/react-triple-client-interfaces": "^12.18.2"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

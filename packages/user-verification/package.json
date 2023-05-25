@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "12.18.1",
+  "version": "12.18.2",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -33,17 +33,17 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.18.1",
-    "@titicaca/fetcher": "^12.18.1",
-    "@titicaca/modals": "^12.18.1",
-    "@titicaca/react-hooks": "^12.18.1",
-    "@titicaca/router": "^12.18.1"
+    "@titicaca/core-elements": "^12.18.2",
+    "@titicaca/fetcher": "^12.18.2",
+    "@titicaca/modals": "^12.18.2",
+    "@titicaca/react-hooks": "^12.18.2",
+    "@titicaca/router": "^12.18.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.18.1",
+    "@titicaca/i18n": "^12.18.2",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.18.1",
-    "@titicaca/react-triple-client-interfaces": "^12.18.1"
+    "@titicaca/react-contexts": "^12.18.2",
+    "@titicaca/react-triple-client-interfaces": "^12.18.2"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
