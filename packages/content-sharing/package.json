@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/content-sharing",
-  "version": "12.18.1",
+  "version": "12.18.2",
   "description": "Content Sharing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/content-sharing",
@@ -27,7 +27,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.18.1"
+    "@titicaca/core-elements": "^12.18.2"
   },
   "peerDependencies": {
     "react": "^18.0",
