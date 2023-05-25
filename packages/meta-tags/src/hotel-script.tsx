@@ -24,8 +24,8 @@ interface HotelScriptProps {
     ratingValue: number
   }
   geo?: {
-    lat: string
-    lon: string
+    latitude: string
+    longitude: string
   }
 }
 
@@ -38,6 +38,7 @@ export function HotelScript({
   image,
   hasMap,
   rating,
+  geo,
 }: HotelScriptProps) {
   const hotelScript = filterValidValue({
     '@context': 'http://schema.org',
@@ -52,6 +53,7 @@ export function HotelScript({
     aggregateRating: rating
       ? addSchemaType(filterValidValue(rating), 'AggregateRating')
       : undefined,
+    geo: geo ? addSchemaType(geo, 'GeoCoordinates') : undefined,
   })
 
   return (
