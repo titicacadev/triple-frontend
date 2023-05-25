@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v12.18.2
+
+### modals
+
+- [modals] Modal height가 스크린 높이보다 커도 스크롤 가능하도록 수정 [#2661](https://github.com/titicacadev/triple-frontend/pull/2661)
+
+### triple-document
+
+- [triple-document] 표시가보다 판매가가 큰 경우 할인율과 표시가가 미노출되도록 수정합니다. [#2662](https://github.com/titicacadev/triple-frontend/pull/2662)
+
 ## v12.18.1
 
 ### footer
