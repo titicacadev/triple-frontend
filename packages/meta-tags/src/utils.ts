@@ -14,3 +14,10 @@ export function toISOString(dateString: string | undefined) {
 
   return isValidDate ? date.toISOString() : undefined
 }
+
+export function addSchemaType<T extends object>(obj: T, type: string) {
+  return {
+    '@type': 'type' in obj ? obj.type : type,
+    ...obj,
+  }
+}
