@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { filterValidValue, toISOString } from './utils'
+import { addSchemaType, filterValidValue, toISOString } from './utils'
 
 interface ArticleScriptProps {
   headline: string
@@ -39,11 +39,7 @@ export function ArticleScript({
     publisher,
     author:
       authors?.map((author) =>
-        filterValidValue({
-          '@type': author.type || 'Person',
-          ...author,
-          type: undefined,
-        }),
+        addSchemaType(filterValidValue(author), 'Person'),
       ) || undefined,
   })
 
