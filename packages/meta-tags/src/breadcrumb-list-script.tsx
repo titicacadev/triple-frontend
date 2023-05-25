@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import { addSchemaType } from './utils'
+
 interface BreadcrumbListItem {
   position: number
   name: string
@@ -14,10 +16,9 @@ export function BreadcrumbListScript({
   const breadcrumbScript = breadcrumbs.map((breadcrumbList) => ({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: breadcrumbList.map((breadcrumbListItem) => ({
-      '@type': 'ListItem',
-      ...breadcrumbListItem,
-    })),
+    itemListElement: breadcrumbList.map((breadcrumbListItem) =>
+      addSchemaType(breadcrumbListItem, 'ListItem'),
+    ),
   }))
 
   return (
