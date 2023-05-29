@@ -1,3 +1,5 @@
+import { withActions } from '@storybook/addon-actions/decorator'
+import { initialize, mswLoader } from 'msw-storybook-addon'
 import {
   HistoryProvider,
   SessionContextProvider,
@@ -6,14 +8,19 @@ import {
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
 import { GlobalStyle } from '@titicaca/core-elements'
-import { withActions } from '@storybook/addon-actions/decorator'
 import { I18nDecorator } from './i18n'
+
+// Initialize MSW
+initialize({
+  onUnhandledRequest: 'bypass',
+})
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
   },
+  loaders: [mswLoader],
   decorators: [
     withActions,
     globalStyleDecorator,
