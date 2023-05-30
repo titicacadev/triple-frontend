@@ -11,35 +11,57 @@ fragment BaseReview on Review {
   blinded
   reviewedAt
   user {
-    unregister
-    uid
-    photo
-    mileage {
-      level
-      point
-      badges {
-        label
-        icon {
-          image_url
-        }
-      }
-    }
-    name
-    userBoard {
-      trips
-      reviews
-      thanks
-      reports
-      reviewsV2
-      itineraries
-    }
+    ...BaseUser
   }
   replyBoard {
     id
+    resourceId
+    resourceType
     rootMessagesCount
     childMessagesCount
+    pinnedMessagesCount
+    pinnedMessages {
+      ...BasePinnedMessage
+    }
   }
   liked
+}
+
+fragment BaseUser on User {
+  unregister
+  uid
+  photo
+  mileage {
+    level
+    point
+    badges {
+      label
+      icon {
+        image_url
+      }
+    }
+  }
+  name
+  userBoard {
+    trips
+    reviews
+    thanks
+    reports
+    reviewsV2
+    itineraries
+  }
+}
+
+fragment BasePinnedMessage on ReplyMessage {
+  content {
+    text
+    markdownText
+  }
+  createdAt
+  updatedAt
+  writer {
+    name
+  }
 }
 
 fragment BaseReviewSpecification on ReviewSpecification {
