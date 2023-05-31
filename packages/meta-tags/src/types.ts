@@ -39,6 +39,17 @@ export interface AggregateOfferSchema {
   availability?: ItemAvailability
 }
 
+export interface ReviewSchema {
+  author: Author
+  description?: string
+  inLanguage?: string
+  datePublished?: string
+  reviewRating: Pick<
+    AggregateRatingSchema,
+    'ratingValue' | 'bestRating' | 'worstRating'
+  >
+}
+
 export enum ItemAvailability {
   BackOrder = 'BackOrder', // 이월 주문된 상품
   Discontinued = 'Discontinued', // 단종된 상품

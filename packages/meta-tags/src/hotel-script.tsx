@@ -40,7 +40,7 @@ export function HotelScript({
     aggregateRating: rating
       ? addSchemaType(filterValidValue(rating), 'AggregateRating')
       : undefined,
-    geo: geo ? addSchemaType(geo, 'GeoCoordinates') : undefined,
+    geo: addSchemaType(geo, 'GeoCoordinates'),
   })
 
   return (
