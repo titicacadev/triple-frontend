@@ -1,7 +1,12 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue } from './utils'
-import { AddressSchema, AggregateRatingSchema, GeoSchema } from './types'
+import { addSchemaType, filterValidValue, formatReviews } from './utils'
+import {
+  AddressSchema,
+  AggregateRatingSchema,
+  GeoSchema,
+  ReviewSchema,
+} from './types'
 
 interface HotelScriptProps {
   name: string
@@ -14,6 +19,7 @@ interface HotelScriptProps {
   hasMap?: string
   rating?: AggregateRatingSchema
   geo?: GeoSchema
+  reviews?: ReviewSchema[]
 }
 
 export function HotelScript({
@@ -26,6 +32,7 @@ export function HotelScript({
   hasMap,
   rating,
   geo,
+  reviews,
 }: HotelScriptProps) {
   const hotelScript = filterValidValue({
     '@context': 'http://schema.org',
@@ -37,10 +44,9 @@ export function HotelScript({
     address: addSchemaType(filterValidValue(address), 'PostalAddress'),
     image,
     hasMap,
-    aggregateRating: rating
-      ? addSchemaType(filterValidValue(rating), 'AggregateRating')
-      : undefined,
+    aggregateRating: addSchemaType(filterValidValue(rating), 'AggregateRating'),
     geo: addSchemaType(geo, 'GeoCoordinates'),
+    reviews: formatReviews(reviews),
   })
 
   return (

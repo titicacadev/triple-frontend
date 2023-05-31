@@ -19,13 +19,13 @@ export interface AddressSchema {
 }
 
 export interface GeoSchema {
-  latitude: string
-  longitude: string
+  latitude: number
+  longitude: number
 }
 
 export interface AggregateRatingSchema {
-  reviewCount: number
   ratingCount: number
+  reviewCount?: number
   ratingValue: number
   bestRating?: number
   worstRating?: number
@@ -42,12 +42,8 @@ export interface AggregateOfferSchema {
 export interface ReviewSchema {
   author: Author
   description?: string
-  inLanguage?: string
   datePublished?: string
-  reviewRating: Pick<
-    AggregateRatingSchema,
-    'ratingValue' | 'bestRating' | 'worstRating'
-  >
+  reviewRating: Pick<AggregateRatingSchema, 'ratingValue'>
 }
 
 export enum ItemAvailability {
@@ -61,4 +57,10 @@ export enum ItemAvailability {
   PreOrder = 'PreOrder', // 선주문할 수 있는 상품
   PreSale = 'PreSale', // 정식 버전 출시 전에 주문 및 배송 가능
   SoldOut = 'SoldOut', // 매진된 상품
+}
+
+export interface OpeningHoursSpecificationSchema {
+  dayOfWeek: string[]
+  opens: string
+  closes: string
 }
