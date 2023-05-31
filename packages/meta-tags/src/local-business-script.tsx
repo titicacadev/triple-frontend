@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue } from './utils'
+import { addSchemaType, filterValidValue, formatReviews } from './utils'
 import {
   AggregateRatingSchema,
   AddressSchema,
@@ -18,11 +18,15 @@ interface LocalBusinessScriptProps {
   name: string
   description?: string
   image?: string
+  url?: string
+  telephone?: string
   address: AddressSchema
   rating: AggregateRatingSchema
   geo?: GeoSchema
   menu?: string
   review: ReviewSchema[]
+  priceRange?: string
+  servesCuisine?: string[]
 }
 
 export function LocalBusinessScript({
@@ -32,6 +36,12 @@ export function LocalBusinessScript({
   rating,
   image,
   address,
+  review,
+  geo,
+  url,
+  telephone,
+  priceRange,
+  servesCuisine,
 }: LocalBusinessScriptProps) {
   const localBusinessScript = filterValidValue({
     '@context': 'http://schema.org',
@@ -41,6 +51,12 @@ export function LocalBusinessScript({
     image,
     address: addSchemaType(filterValidValue(address), 'PostalAddress'),
     aggregateRating: addSchemaType(filterValidValue(rating), 'AggregateRating'),
+    review: formatReviews(review),
+    geo: addSchemaType(geo, 'GeoCoordinates'),
+    url,
+    telephone,
+    priceRange,
+    servesCuisine,
   })
 
   return (
