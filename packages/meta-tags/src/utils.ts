@@ -15,9 +15,22 @@ export function toISOString(dateString: string | undefined) {
   return isValidDate ? date.toISOString() : undefined
 }
 
-export function addSchemaType<T extends object>(obj: T, type: string) {
-  return {
+export function addSchemaType<T extends object>(
+  obj: T | undefined,
+  type: string,
+) {
+  if (!obj || !Object.keys(obj).length) {
+    return undefined
+  }
+
+  const typedObj = {
     '@type': 'type' in obj ? obj.type : type,
     ...obj,
   }
+
+  if ('type' in typedObj) {
+    delete typedObj.type
+  }
+
+  return typedObj
 }
