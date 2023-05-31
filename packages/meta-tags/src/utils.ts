@@ -1,7 +1,11 @@
-export function filterValidValue<T extends object>(obj: T) {
-  return Object.entries(obj)
-    .filter(([_, value]) => !!value)
-    .reduce<T>((obj, [key, value]) => ({ ...obj, [key]: value }), {} as T)
+import { ReviewSchema } from './types'
+
+export function filterValidValue<T extends object>(obj: T | undefined) {
+  return obj
+    ? Object.entries(obj)
+        .filter(([_, value]) => !!value)
+        .reduce<T>((obj, [key, value]) => ({ ...obj, [key]: value }), {} as T)
+    : {}
 }
 
 export function toISOString(dateString: string | undefined) {
@@ -33,4 +37,18 @@ export function addSchemaType<T extends object>(
   }
 
   return typedObj
+}
+
+export function formatReviews(reviews?: ReviewSchema[]) {
+  return reviews?.map((review) =>
+    addSchemaType(
+      filterValidValue({
+        author: addSchemaType(review.author, 'Person'),
+        reviewRating: addSchemaType(review.reviewRating, 'Rating'),
+        description: review.description,
+        datePublished: toISOString(review.datePublished),
+      }),
+      'Review',
+    ),
+  )
 }
