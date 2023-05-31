@@ -1,17 +1,12 @@
 import Head from 'next/head'
 
 import { addSchemaType } from './utils'
-
-interface BreadcrumbListItem {
-  position: number
-  name: string
-  item?: string
-}
+import { ListItem } from './types'
 
 export function BreadcrumbListScript({
   breadcrumbs,
 }: {
-  breadcrumbs: BreadcrumbListItem[][]
+  breadcrumbs: ListItem[][]
 }) {
   const breadcrumbScript = breadcrumbs.map((breadcrumbList) => ({
     '@context': 'https://schema.org',

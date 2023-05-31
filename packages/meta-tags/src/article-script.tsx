@@ -1,20 +1,15 @@
 import Head from 'next/head'
 
 import { addSchemaType, filterValidValue, toISOString } from './utils'
+import { Author } from './types'
 
 interface ArticleScriptProps {
   headline: string
   image?: string[]
   datePublished?: string
   dateModified?: string
-  author?: ArticleAuthor[]
+  author?: Author[]
   publisher?: ArticlePublisher[]
-}
-
-interface ArticleAuthor {
-  type?: 'Person' | 'Organization'
-  name: string
-  url?: string
 }
 
 interface ArticlePublisher {
