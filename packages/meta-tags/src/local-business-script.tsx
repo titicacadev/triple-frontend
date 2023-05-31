@@ -6,6 +6,7 @@ import {
   AddressSchema,
   GeoSchema,
   ReviewSchema,
+  OpeningHoursSpecificationSchema,
 } from './types'
 
 const POI_TO_LOCAL_BUSINESS_TYPE_MAP = {
@@ -23,10 +24,11 @@ interface LocalBusinessScriptProps {
   address: AddressSchema
   rating: AggregateRatingSchema
   geo?: GeoSchema
-  menu?: string
+  menu?: string[]
+  servesCuisine?: string[]
   review: ReviewSchema[]
   priceRange?: string
-  servesCuisine?: string[]
+  openingHours: OpeningHoursSpecificationSchema[]
 }
 
 export function LocalBusinessScript({
@@ -42,6 +44,7 @@ export function LocalBusinessScript({
   telephone,
   priceRange,
   servesCuisine,
+  openingHours,
 }: LocalBusinessScriptProps) {
   const localBusinessScript = filterValidValue({
     '@context': 'http://schema.org',
@@ -57,6 +60,9 @@ export function LocalBusinessScript({
     telephone,
     priceRange,
     servesCuisine,
+    openingHoursSpecification: openingHours?.map((opening) =>
+      addSchemaType(opening, 'OpeningHoursSpecification'),
+    ),
   })
 
   return (
