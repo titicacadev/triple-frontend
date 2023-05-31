@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { addSchemaType, filterValidValue, toISOString } from './utils'
-import { Author } from './types'
+import { Author, Publisher } from './types'
 
 interface ArticleScriptProps {
   headline: string
@@ -9,11 +9,7 @@ interface ArticleScriptProps {
   datePublished?: string
   dateModified?: string
   author?: Author[]
-  publisher?: ArticlePublisher[]
-}
-
-interface ArticlePublisher {
-  name: string
+  publisher?: Publisher[]
 }
 
 export function ArticleScript({
@@ -32,10 +28,9 @@ export function ArticleScript({
     datePublished: toISOString(datePublished),
     dateModified: toISOString(dateModified),
     publisher,
-    author:
-      authors?.map((author) =>
-        addSchemaType(filterValidValue(author), 'Person'),
-      ) || undefined,
+    author: authors?.map((author) =>
+      addSchemaType(filterValidValue(author), 'Person'),
+    ),
   })
 
   return (
