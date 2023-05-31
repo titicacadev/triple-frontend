@@ -1,32 +1,19 @@
 import Head from 'next/head'
 
 import { addSchemaType, filterValidValue } from './utils'
+import { AddressSchema, AggregateRatingSchema, GeoSchema } from './types'
 
 interface HotelScriptProps {
   name: string
   description?: string
   url: string
+  address: AddressSchema
   priceRange?: string
-  address: {
-    streetAddress?: string
-    addressLocality?: string
-    addressRegion?: string
-    postalCode?: string
-    addressCountry?: string
-  }
   telephone?: string
   image?: string
   hasMap?: string
-  rating?: {
-    bestRating?: number
-    worstRating?: number
-    reviewCount: number
-    ratingValue: number
-  }
-  geo?: {
-    latitude: string
-    longitude: string
-  }
+  rating?: AggregateRatingSchema
+  geo?: GeoSchema
 }
 
 export function HotelScript({
