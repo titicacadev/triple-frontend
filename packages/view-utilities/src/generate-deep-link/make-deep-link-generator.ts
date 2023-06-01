@@ -32,6 +32,7 @@ interface GeneratorParams {
   clickLookBack?: string
   reengagementWindow?: string
   webUrl?: string
+  appScheme?: string
 }
 
 export type DeepLinkGenerator = (params: GeneratorParams) => string
@@ -45,7 +46,7 @@ export type DeepLinkGenerator = (params: GeneratorParams) => string
  */
 export function makeDeepLinkGenerator({
   oneLinkParams: { subdomain, id, pid: defaultPid },
-  appScheme,
+  appScheme: defaultAppScheme,
   webURLBase,
 }: FactoryParams): DeepLinkGenerator {
   return ({
@@ -60,8 +61,9 @@ export function makeDeepLinkGenerator({
     clickLookBack,
     reengagementWindow,
     webUrl,
+    appScheme,
   }) => {
-    const appLink = generateUrl({ scheme: appScheme, path })
+    const appLink = generateUrl({ scheme: appScheme || defaultAppScheme, path })
 
     const query = qs.stringify({
       af_dp: appLink,
