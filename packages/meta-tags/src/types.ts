@@ -1,5 +1,5 @@
 export interface Author {
-  type: 'Person' | 'Organization'
+  type?: 'Person' | 'Organization'
   name: string
   url?: string
 }
