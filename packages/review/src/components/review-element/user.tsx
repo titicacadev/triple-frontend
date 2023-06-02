@@ -3,7 +3,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 
-import { UserData } from '../types'
+import { BaseUserFragment } from '../../data/graphql'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
@@ -28,7 +28,7 @@ export default function User({
   onClick,
 }: {
   onClick?: MouseEventHandler
-  user: UserData
+  user: BaseUserFragment
 }) {
   const { t } = useTranslation('common-web')
 
@@ -42,8 +42,10 @@ export default function User({
         padding: '0 0 2px',
       }}
     >
-      <UserPhoto src={photo} onClick={onClick} />
-      {badges.length > 0 ? <Badge src={badges[0].icon.image_url} /> : null}
+      {photo ? <UserPhoto src={photo} onClick={onClick} /> : null}
+      {badges?.[0]?.icon?.image_url ? (
+        <Badge src={badges[0]?.icon.image_url} />
+      ) : null}
       <div>
         <Name onClick={onClick}>{name}</Name>
         {!unregister ? (

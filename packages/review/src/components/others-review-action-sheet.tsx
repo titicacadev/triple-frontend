@@ -2,36 +2,32 @@ import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
-import { ReviewData } from './types'
+import { useClientActions } from '../services'
 
 export const HASH_REVIEW_ACTION_SHEET =
   'common.reviews-list.review-action-sheet'
 
-export default function OthersReviewActionSheet({
-  selectedReview,
-  onReportReview,
-}: {
-  selectedReview?: ReviewData | null
-  onReportReview: (reportingReviewId: string) => void
-}) {
+export interface OthersReviewActionSheetProps {
+  reviewId: string
+}
+
+export function OthersReviewActionSheet({
+  reviewId,
+}: OthersReviewActionSheetProps) {
   const { t } = useTranslation('common-web')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
+  const { reportReview } = useClientActions()
 
   const handleReportClick = () => {
-    if (selectedReview) {
-      onReportReview(selectedReview.id)
-    }
+    reportReview(reviewId)
 
     back()
   }
 
   return (
-    <ActionSheet
-      open={uriHash === HASH_REVIEW_ACTION_SHEET && !!selectedReview}
-      onClose={back}
-    >
+    <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
       <ActionSheetItem icon="report" onClick={handleReportClick}>
         {t(['singohagi', '신고하기'])}
       </ActionSheetItem>

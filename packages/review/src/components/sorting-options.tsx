@@ -1,15 +1,13 @@
-import { SyntheticEvent } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { Label, FlexBox } from '@titicaca/core-elements'
 
-export interface SortingOptionsProps {
-  onSelect: (e: SyntheticEvent, key: string) => void
-  selected: string
-}
+import { SortingOption } from './types'
 
-export const ORDER_BY_RECOMMENDATION = ''
-export const ORDER_BY_RECENCY = 'latest'
+export interface SortingOptionsProps {
+  selected: string
+  onSelect: (key: SortingOption) => void
+}
 
 const OptionsContainer = styled(FlexBox)`
   padding: 0;
@@ -24,14 +22,14 @@ const OptionsContainer = styled(FlexBox)`
 `
 
 export default function SortingOptions({
-  onSelect,
   selected,
+  onSelect,
 }: SortingOptionsProps) {
   const { t } = useTranslation('common-web')
 
   const sortingOptions = [
-    { key: ORDER_BY_RECOMMENDATION, text: t(['cuceonsun', '추천순']) },
-    { key: ORDER_BY_RECENCY, text: t(['coesinsun', '최신순']) },
+    { key: '' as const, text: t(['cuceonsun', '추천순']) },
+    { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
   ]
 
   return (
@@ -44,11 +42,9 @@ export default function SortingOptions({
       {sortingOptions.map(({ key, text }) => (
         <Label key={key} radio selected={selected === key}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-          <span onClick={onSelect && ((e) => onSelect(e, key))}>{text}</span>
+          <span onClick={() => onSelect(key)}>{text}</span>
         </Label>
       ))}
     </OptionsContainer>
   )
 }
-
-export const DEFAULT_SORTING_OPTION = ORDER_BY_RECOMMENDATION
