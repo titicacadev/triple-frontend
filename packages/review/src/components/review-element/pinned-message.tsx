@@ -3,10 +3,10 @@ import moment from 'moment'
 import { Button, FlexBox, Text } from '@titicaca/core-elements'
 import { useTranslation } from '@titicaca/next-i18next'
 
-import { PinnedMessageData } from '../types'
+import { BasePinnedMessageFragment } from '../../data/graphql'
 
 interface PinnedMessageProps {
-  pinnedMessage: PinnedMessageData
+  pinnedMessage: BasePinnedMessageFragment
   onPinnedMessageClick: MouseEventHandler<HTMLButtonElement>
 }
 
@@ -59,7 +59,7 @@ export function PinnedMessage({
         }}
       >
         <FlexBox flex css={{ alignItems: 'center' }}>
-          <Text css={{ fontSize: 15, fontWeight: 700 }}>{writer.name}</Text>
+          <Text css={{ fontSize: 15, fontWeight: 700 }}>{writer?.name}</Text>
           <img
             src="https://assets.triple.guide/images/img-badge-verified@4x.png"
             alt="verified badge"

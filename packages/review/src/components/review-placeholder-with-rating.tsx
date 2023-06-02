@@ -1,9 +1,14 @@
-import { SyntheticEvent } from 'react'
+import { SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/core-elements'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { TransitionType } from '@titicaca/modals'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-import { ResourceType } from './types'
+import { useClientActions } from '../services'
+
+import { SortingOption } from './types'
 
 const PlaceholderContainer = styled(Container)`
   width: 100%;
@@ -32,35 +37,99 @@ const RecentTripContainer = styled(Container)`
   }
 `
 
-function ReviewsPlaceholder({
-  isMorePage,
-  hasReviews,
-  resourceType,
-  recentTrip,
-  placeholderText,
-  onClick,
-}: {
+export interface ReviewsPlaceholderProps {
   isMorePage: boolean
   hasReviews: boolean
-  resourceType: ResourceType
+  resourceId: string
+  resourceType: string
+  regionId: string | undefined
   recentTrip: boolean
   placeholderText?: string
-  onClick?: (e: SyntheticEvent, rating?: number) => void
-}) {
-  const { t } = useTranslation('common-web')
+  sortingOption: SortingOption
+}
+
+export function ReviewsPlaceholder({
+  isMorePage,
+  hasReviews,
+  resourceId,
+  resourceType,
+  regionId,
+  recentTrip,
+  placeholderText,
+  sortingOption,
+}: ReviewsPlaceholderProps) {
+  const { trackEvent } = useEventTrackingContext()
+  const { writeReview, navigateReviewList } = useClientActions()
+
+  const handleFullClick = useAppCallback(
+    TransitionType.OpenReviewList,
+    useSessionCallback(
+      useCallback(() => {
+        navigateReviewList({
+          resourceId,
+          resourceType,
+          recentTrip: false,
+          sortingOption,
+        })
+      }, [navigateReviewList, resourceId, resourceType, sortingOption]),
+      { triggeredEventAction: '리뷰_리스트더보기_선택' },
+    ),
+  )
+
+  const handleWriteClick = useAppCallback(
+    TransitionType.ReviewWrite,
+    useSessionCallback(
+      useCallback(
+        (rating = 0) => {
+          trackEvent({
+            ga: ['리뷰_리뷰쓰기'],
+            fa: {
+              action: '리뷰_리뷰쓰기',
+              item_id: resourceId,
+            },
+          })
+
+          writeReview({
+            resourceType,
+            resourceId,
+            regionId,
+            rating,
+          })
+        },
+        [regionId, resourceId, resourceType, trackEvent, writeReview],
+      ),
+      { triggeredEventAction: '리뷰_리뷰쓰기' },
+    ),
+  )
+
+  const handleClick = (rating?: number) => {
+    trackEvent({
+      ga: ['리뷰_리스트더보기_선택'],
+      fa: {
+        action: '리뷰_리스트더보기_선택',
+        item_id: resourceId,
+        tab_name: sortingOption === 'latest' ? '최신순' : '추천순',
+      },
+    })
+    if (recentTrip) {
+      handleFullClick()
+    } else {
+      handleWriteClick(rating)
+    }
+  }
 
   return (
     <PlaceholderContainer
-      onClick={!isMorePage ? onClick : undefined}
       css={{
         margin: '20px 0 0',
       }}
+      onClick={!isMorePage ? () => handleClick() : undefined}
     >
       {!recentTrip ? (
         resourceType === 'article' ? (
           <GuideImage />
         ) : (
-          <Rating size="medium" onClick={onClick} />
+          <Rating size="medium" onClick={(_, rating) => handleClick(rating)} />
         )
       ) : null}
 
@@ -68,25 +137,22 @@ function ReviewsPlaceholder({
         <RecentTripPlaceholder
           isMorePage={isMorePage}
           hasReviews={hasReviews}
-          onClick={onClick}
+          onClick={() => handleClick()}
         />
-      ) : null}
-      {!recentTrip ? (
-        <DefaultPlaceholder
-          placeholderText={
-            placeholderText ??
-            t([
-              'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.',
-              '이곳의 첫 번째 리뷰를 올려주세요.',
-            ])
-          }
-        />
-      ) : null}
+      ) : (
+        <DefaultPlaceholder placeholderText={placeholderText} />
+      )}
     </PlaceholderContainer>
   )
 }
 
-function DefaultPlaceholder({ placeholderText }: { placeholderText: string }) {
+function DefaultPlaceholder({
+  placeholderText,
+}: {
+  placeholderText: string | undefined
+}) {
+  const { t } = useTranslation('common-web')
+
   return (
     <Text
       margin={{ top: 8 }}
@@ -95,7 +161,11 @@ function DefaultPlaceholder({ placeholderText }: { placeholderText: string }) {
       alpha={1}
       lineHeight={1.5}
     >
-      {placeholderText}
+      {placeholderText ??
+        t([
+          'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.',
+          '이곳의 첫 번째 리뷰를 올려주세요.',
+        ])}
     </Text>
   )
 }
@@ -164,5 +234,3 @@ function RecentTripPlaceholder({
     </Container>
   )
 }
-
-export default ReviewsPlaceholder

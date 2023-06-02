@@ -6,9 +6,9 @@ import {
 } from '@titicaca/react-contexts'
 import { ComponentStoryObj, Meta } from '@storybook/react'
 
-import { authHandlers, handlers } from './mocks/reviews'
+import { handlers, authHandlers } from './mocks/reviews'
 
-import { Reviews } from '.'
+import { ReviewsShorten } from '.'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,8 +19,8 @@ const queryClient = new QueryClient({
 })
 
 export default {
-  title: 'Review / Reviews',
-  component: Reviews,
+  title: 'Review / ReviewsShorten',
+  component: ReviewsShorten,
   decorators: [
     (Story) => (
       <>
@@ -45,7 +45,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof Reviews> = {
+export const Basic: ComponentStoryObj<typeof ReviewsShorten> = {
   name: '일반',
   args: {
     initialReviewsCount: 120,
@@ -60,7 +60,7 @@ export const Basic: ComponentStoryObj<typeof Reviews> = {
   },
 }
 
-export const HasMyReview: ComponentStoryObj<typeof Reviews> = {
+export const HasMyReview: ComponentStoryObj<typeof ReviewsShorten> = {
   name: '내 리뷰 작성됨',
   args: {
     ...Basic.args,

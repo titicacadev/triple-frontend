@@ -1,171 +1,191 @@
-import { GraphQLClient } from 'graphql-request'
-import { useInfiniteQuery } from 'react-query'
-
-import { ReviewData } from '../components/types'
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import {
-  GetLatestReviewsDocument,
-  GetPopularReviewsDocument,
-  useGetMyReviewQuery,
-  useGetReviewsCountQuery,
-  useGetReviewSpecificationQuery,
-} from './generated/query'
+  client,
+  GetMyReviewQueryVariables,
+  GetReviewSpecificationQueryVariables,
+  GetReviewsCountQueryVariables,
+  LikeReviewMutationVariables,
+  UnlikeReviewMutationVariables,
+  DeleteReviewMutationVariables,
+  GetPopularReviewsQueryVariables,
+  GetLatestReviewsQueryVariables,
+} from '../data/graphql'
+import {
+  DEFAULT_REVIEWS_COUNT_PER_PAGE,
+  SHORTENED_REVIEWS_COUNT_PER_PAGE,
+} from '../constants'
 
-export const graphqlClient = new GraphQLClient('/api/graphql')
-
-interface UseReviewsProps {
-  resourceType: string
-  resourceId: string
-  recentTrip: boolean
-  latestReview: boolean
-  perPage: number
-}
-
-export function useReviews({
-  resourceType,
-  resourceId,
-  recentTrip,
-  latestReview,
-  perPage,
-}: UseReviewsProps) {
-  const {
-    data: latestReviewsData,
-    fetchNextPage: latestReviewsFetch,
-    isFetchedAfterMount: isLatestReviewsAfterMount,
-  } = useInfiniteQuery(
-    ['review/getLatestReviews', recentTrip],
-    async ({ pageParam = 1 }) => {
-      const { latestReviews } = await graphqlClient.request(
-        GetLatestReviewsDocument,
-        {
-          resourceType,
-          resourceId,
-          recentTrip,
-          from: (pageParam - 1) * perPage,
-          size: perPage,
-        },
-      )
-
-      return {
-        latestReviews,
-        nextPage: pageParam + 1,
-        isLast: latestReviews.length === 0,
-      }
-    },
-    {
-      getNextPageParam: ({ isLast, nextPage }) =>
-        !isLast ? nextPage : undefined,
-      select: ({ pages, pageParams }) => ({
-        pages: pages.reduce(
-          (reviews: ReviewData[], { latestReviews }) => [
-            ...reviews,
-            ...latestReviews,
-          ],
-          [],
-        ),
-        pageParams,
+export function usePopularReviews(
+  params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
+) {
+  return useQuery(
+    [
+      'review/getPopularReviews',
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+    ],
+    () =>
+      client.GetPopularReviews({
+        ...params,
+        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-      refetchOnReconnect: false,
-    },
+    { refetchOnMount: false },
   )
+}
 
-  const {
-    data: popularReviewsData,
-    fetchNextPage: popularReviewsFetch,
-    isFetchedAfterMount: isPopularReviewsAfterMount,
-  } = useInfiniteQuery(
-    ['review/getPopularReviews', recentTrip],
-    async ({ pageParam = 1 }) => {
-      const { popularReviews } = await graphqlClient.request(
-        GetPopularReviewsDocument,
-        {
-          resourceType,
-          resourceId,
-          recentTrip,
-          from: (pageParam - 1) * perPage,
-          size: perPage,
-        },
-      )
-
-      return {
-        popularReviews,
-        nextPage: pageParam + 1,
-        isLast: popularReviews.length === 0,
-      }
-    },
-    {
-      getNextPageParam: ({ isLast, nextPage }) =>
-        !isLast ? nextPage : undefined,
-      select: ({ pages, pageParams }) => ({
-        pages: pages.reduce(
-          (reviews: ReviewData[], { popularReviews }) => [
-            ...reviews,
-            ...popularReviews,
-          ],
-          [],
-        ),
-        pageParams,
+export function useLatestReviews(
+  params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
+) {
+  return useQuery(
+    [
+      'review/getLatestReviews',
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+    ],
+    () =>
+      client.GetLatestReviews({
+        ...params,
+        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-      refetchOnReconnect: false,
-    },
+    { refetchOnMount: false },
   )
-
-  return {
-    reviewsData:
-      (latestReview ? latestReviewsData?.pages : popularReviewsData?.pages) ||
-      [],
-    isLoaded: isLatestReviewsAfterMount && isPopularReviewsAfterMount,
-    moreFetcher: latestReview ? latestReviewsFetch : popularReviewsFetch,
-  }
 }
 
-export function useReviewCount({
-  resourceType,
-  resourceId,
-  recentTrip,
-}: Pick<UseReviewsProps, 'resourceType' | 'resourceId' | 'recentTrip'>) {
-  const { data: reviewsCountData } = useGetReviewsCountQuery(
-    graphqlClient,
+export function useInfinitePopularReviews(
+  params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
+) {
+  return useInfiniteQuery(
+    [
+      'review/getPopularReviews',
+      { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
+    ],
+    ({ pageParam = 1 }) =>
+      client.GetPopularReviews({
+        ...params,
+        from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
+        size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
+      }),
     {
-      resourceType,
-      resourceId,
-      recentTrip,
-    },
-    {
-      refetchOnReconnect: false,
-    },
-  )
-  return reviewsCountData
-}
-
-export function useDescriptions({
-  resourceType,
-  resourceId,
-}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
-  const { data: descriptionsData } = useGetReviewSpecificationQuery(
-    graphqlClient,
-    {
-      resourceType,
-      resourceId,
-    },
-    {
-      select: ({ reviewsSpecification }) =>
-        reviewsSpecification?.rating?.description || [],
-      refetchOnReconnect: false,
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.popularReviews.length === 0) {
+          return undefined
+        }
+        return allPages.length + 1
+      },
+      select: ({ pageParams, pages }) => ({
+        pageParams,
+        pages: pages.map((item) => item.popularReviews),
+      }),
+      keepPreviousData: true,
+      refetchOnMount: false,
     },
   )
-
-  return descriptionsData
 }
 
-export function useMyReview({
-  resourceType,
-  resourceId,
-}: Pick<UseReviewsProps, 'resourceType' | 'resourceId'>) {
-  const { data: myReviewData } = useGetMyReviewQuery(graphqlClient, {
-    resourceType,
-    resourceId,
-  })
+export function useInfiniteLatestReviews(
+  params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
+) {
+  return useInfiniteQuery(
+    [
+      'review/getLatestReviews',
+      { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
+    ],
+    ({ pageParam = 1 }) =>
+      client.GetLatestReviews({
+        ...params,
+        from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
+        size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
+      }),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.latestReviews.length === 0) {
+          return undefined
+        }
+        return allPages.length + 1
+      },
+      select: ({ pageParams, pages }) => ({
+        pageParams,
+        pages: pages.map((item) => item.latestReviews),
+      }),
+      keepPreviousData: true,
+      refetchOnMount: false,
+    },
+  )
+}
 
-  return myReviewData
+export function useReviewCount(
+  params: GetReviewsCountQueryVariables,
+  initiaValue?: number,
+) {
+  return useQuery(
+    ['reviews/getReviewCount'],
+    () => client.GetReviewsCount(params),
+    {
+      initialData: initiaValue
+        ? {
+            __typename: 'Query',
+            reviewsCount: initiaValue,
+          }
+        : undefined,
+      refetchOnMount: false,
+    },
+  )
+}
+
+export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
+  return useQuery(
+    ['review/getReviewSpecification', params],
+    () => client.GetReviewSpecification(params),
+    { refetchOnMount: false },
+  )
+}
+
+export function useMyReview(params: GetMyReviewQueryVariables) {
+  return useQuery(
+    ['review/getMyReview', params],
+    () => client.GetMyReview(params),
+    { refetchOnMount: false },
+  )
+}
+
+export function useLikeReviewMutation() {
+  const { notifyReviewLiked } = useTripleClientActions()
+
+  return useMutation(
+    (variables: LikeReviewMutationVariables & { resourceId: string }) =>
+      client.LikeReview({ reviewId: variables.reviewId }),
+    {
+      onSuccess: (data, variables) => {
+        notifyReviewLiked?.(variables.resourceId, variables.reviewId)
+      },
+    },
+  )
+}
+
+export function useUnlikeReviewMutation() {
+  const { notifyReviewUnliked } = useTripleClientActions()
+
+  return useMutation(
+    (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
+      client.UnlikeReview({ reviewId: variables.reviewId }),
+    {
+      onSuccess: (data, variables) => {
+        notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
+      },
+    },
+  )
+}
+
+export function useDeleteReviewMutation() {
+  const { notifyReviewDeleted } = useTripleClientActions()
+
+  return useMutation(
+    (variables: DeleteReviewMutationVariables & { resourceId: string }) =>
+      client.DeleteReview(variables),
+    {
+      onSuccess: (data, variables) => {
+        notifyReviewDeleted?.(variables.resourceId, variables.id)
+      },
+    },
+  )
 }

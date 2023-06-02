@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
-import ReviewsPlaceholder from './components/review-placeholder-with-rating'
+import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
 
 export default {
   title: 'Review / Review Placeholder',
