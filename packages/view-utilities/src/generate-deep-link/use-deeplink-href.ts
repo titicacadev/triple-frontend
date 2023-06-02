@@ -1,11 +1,8 @@
 import { useMemo } from 'react'
 import { useEnv, useUtmContext } from '@titicaca/react-contexts'
 
-import {
-  injectIsSearchAd,
-  injectUTMContext,
-  makeDeepLinkGenerator,
-} from '@titicaca/view-utilities'
+import { makeDeepLinkGenerator } from './make-deep-link-generator'
+import { injectIsSearchAd, injectUTMContext } from './param-injectors'
 
 export function useDeeplinkHref(path: string) {
   const {
