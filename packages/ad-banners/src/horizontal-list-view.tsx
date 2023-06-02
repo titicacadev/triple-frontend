@@ -1,8 +1,7 @@
 import { FC, useRef, useEffect, useState } from 'react'
 import { formatMarginPadding, MarginPadding } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { FlickingOptions } from '@egjs/flicking'
-import Flicking from '@egjs/react-flicking'
+import Flicking, { FlickingProps, FlickingOptions } from '@egjs/react-flicking'
 import { css } from 'styled-components'
 
 import { Banner } from './typing'
@@ -22,7 +21,7 @@ interface HorizontalListViewProps {
 }
 
 const FLICKING_DEFAULT_INDEX = 0
-const FLICKING_CONFIG: Partial<FlickingOptions> = {
+const FLICKING_CONFIG: Partial<FlickingProps & FlickingOptions> = {
   collectStatistics: false,
   zIndex: 1,
   defaultIndex: FLICKING_DEFAULT_INDEX,
@@ -53,9 +52,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
 
   const makeBannerClickHandler = (index: number) => {
     return (banner: Banner) => {
-      if (!flickingRef.current?.isPlaying()) {
-        onBannerClick(banner, index)
-      }
+      onBannerClick(banner, index)
     }
   }
 
@@ -100,7 +97,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
             {...FLICKING_CONFIG}
             ref={flickingRef}
             onMoveEnd={(e) => {
-              const newIndex = e.index
+              const newIndex = e.currentTarget.index
 
               onBannerIntersect(false, banners[visibleIndex], visibleIndex)
               onBannerIntersect(true, banners[newIndex], newIndex)

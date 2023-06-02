@@ -35,8 +35,7 @@
     ]
   },
   "dependencies": {
-    "@egjs/flicking": "^3.9.3",
-    "@egjs/react-flicking": "^3.8.3",
+    "@egjs/react-flicking": "^4.10.9",
     "@titicaca/core-elements": "^12.19.1",
     "@titicaca/icons": "^12.19.1",
     "@titicaca/intersection-observer": "^12.19.1",
