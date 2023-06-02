@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue, formatReviews } from './utils'
+import { createScript } from './utils'
 import {
   AggregateRatingSchema,
   AddressSchema,
@@ -11,7 +11,7 @@ import {
 
 const POI_TO_LOCAL_BUSINESS_TYPE_MAP = {
   restaurant: 'FoodEstablishment',
-  attractions: 'LocalBusiness',
+  attraction: 'LocalBusiness',
 }
 
 interface LocalBusinessScriptProps {
@@ -22,48 +22,23 @@ interface LocalBusinessScriptProps {
   url?: string
   telephone?: string
   address: AddressSchema
-  rating: AggregateRatingSchema
+  aggregateRating?: AggregateRatingSchema
   geo?: GeoSchema
   menu?: string[]
   servesCuisine?: string[]
-  review: ReviewSchema[]
+  review?: ReviewSchema[]
   priceRange?: string
-  openingHours: OpeningHoursSpecificationSchema[]
+  openingHoursSpecification?: OpeningHoursSpecificationSchema[]
 }
 
 export function LocalBusinessScript({
   type,
-  name,
-  description,
-  rating,
-  image,
-  address,
-  review,
-  geo,
-  url,
-  telephone,
-  priceRange,
-  servesCuisine,
-  openingHours,
+  ...props
 }: LocalBusinessScriptProps) {
-  const localBusinessScript = filterValidValue({
-    '@context': 'http://schema.org',
-    '@type': POI_TO_LOCAL_BUSINESS_TYPE_MAP[type],
-    name,
-    description,
-    image,
-    address: addSchemaType(filterValidValue(address), 'PostalAddress'),
-    aggregateRating: addSchemaType(filterValidValue(rating), 'AggregateRating'),
-    review: formatReviews(review),
-    geo: addSchemaType(geo, 'GeoCoordinates'),
-    url,
-    telephone,
-    priceRange,
-    servesCuisine,
-    openingHoursSpecification: openingHours?.map((opening) =>
-      addSchemaType(opening, 'OpeningHoursSpecification'),
-    ),
-  })
+  const localBusinessScript = createScript(
+    props,
+    POI_TO_LOCAL_BUSINESS_TYPE_MAP[type],
+  )
 
   return (
     <Head>

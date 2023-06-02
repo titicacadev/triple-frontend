@@ -1,20 +1,10 @@
 import Head from 'next/head'
 
-import { addSchemaType } from './utils'
+import { createScript } from './utils'
 import { ListItem } from './types'
 
-export function BreadcrumbListScript({
-  breadcrumbs,
-}: {
-  breadcrumbs: ListItem[][]
-}) {
-  const breadcrumbScript = breadcrumbs.map((breadcrumbList) => ({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: breadcrumbList.map((breadcrumbListItem) =>
-      addSchemaType(breadcrumbListItem, 'ListItem'),
-    ),
-  }))
+export function BreadcrumbListScript(props: { itemListElement: ListItem[] }) {
+  const breadcrumbScript = createScript(props, 'BreadcrumbList')
 
   return (
     <Head>
