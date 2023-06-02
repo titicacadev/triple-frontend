@@ -1,7 +1,5 @@
 import qs from 'qs'
 
-import { ResourceType } from '../../components/types'
-
 export function writeReview({
   appUrlScheme,
   resourceType,
@@ -11,7 +9,7 @@ export function writeReview({
   photoFirst,
 }: {
   appUrlScheme: string
-  resourceType: ResourceType
+  resourceType: string
   resourceId: string
   regionId?: string
   rating?: number
