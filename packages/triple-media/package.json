@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-media",
-  "version": "12.18.2",
+  "version": "12.18.3",
   "description": "Media object of Triple",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-media",
@@ -27,8 +27,8 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.18.2",
-    "@titicaca/type-definitions": "^12.18.2"
+    "@titicaca/core-elements": "^12.18.3",
+    "@titicaca/type-definitions": "^12.18.3"
   },
   "peerDependencies": {
     "react": "^18.0",

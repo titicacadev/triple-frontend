@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/modals",
-  "version": "12.18.2",
+  "version": "12.18.3",
   "description": "Triple modal dialog components",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/modals",
@@ -28,12 +28,12 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.13",
-    "@titicaca/core-elements": "^12.18.2",
-    "@titicaca/i18n": "^12.18.2"
+    "@titicaca/core-elements": "^12.18.3",
+    "@titicaca/i18n": "^12.18.3"
   },
   "devDependencies": {
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.18.2"
+    "@titicaca/react-contexts": "^12.18.3"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
