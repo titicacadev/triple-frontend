@@ -65,7 +65,7 @@ export enum ItemAvailability {
 }
 
 export interface OpeningHoursSpecificationSchema {
-  dayOfWeek: string[]
+  dayOfWeek: string
   opens: string
   closes: string
 }
