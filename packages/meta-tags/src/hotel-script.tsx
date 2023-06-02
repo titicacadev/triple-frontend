@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue, formatReviews } from './utils'
+import { createScript } from './utils'
 import {
   AddressSchema,
   AggregateRatingSchema,
@@ -17,37 +17,13 @@ interface HotelScriptProps {
   telephone?: string
   image?: string
   hasMap?: string
-  rating?: AggregateRatingSchema
+  aggregateRating?: AggregateRatingSchema
   geo?: GeoSchema
   reviews?: ReviewSchema[]
 }
 
-export function HotelScript({
-  name,
-  description,
-  url,
-  priceRange,
-  address,
-  image,
-  hasMap,
-  rating,
-  geo,
-  reviews,
-}: HotelScriptProps) {
-  const hotelScript = filterValidValue({
-    '@context': 'http://schema.org',
-    '@type': 'Hotel',
-    name,
-    description,
-    url,
-    priceRange,
-    address: addSchemaType(filterValidValue(address), 'PostalAddress'),
-    image,
-    hasMap,
-    aggregateRating: addSchemaType(filterValidValue(rating), 'AggregateRating'),
-    geo: addSchemaType(geo, 'GeoCoordinates'),
-    reviews: formatReviews(reviews),
-  })
+export function HotelScript(props: HotelScriptProps) {
+  const hotelScript = createScript(props, 'Hotel')
 
   return (
     <Head>
