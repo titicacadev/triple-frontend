@@ -11,7 +11,6 @@ import { DeepPartial } from 'utility-types'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import { Modal } from './modal'
-import { useDeeplinkHref } from './use-deeplink-href'
 
 type ShowTransitionModal = (type: TransitionType) => void
 
@@ -111,7 +110,6 @@ export function TransitionModal({
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
-  const deeplinkHref = useDeeplinkHref(deepLink)
   const matchData = (uriHash || '').match(/^transition\.(.+)$/)
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
@@ -161,7 +159,7 @@ export function TransitionModal({
                 },
               })
 
-              window.location.href = deeplinkHref
+              window.location.href = deepLink
             }}
           >
             {t(['teuripeul-gagi', '트리플 가기'])}

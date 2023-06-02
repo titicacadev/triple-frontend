@@ -5,8 +5,7 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"],
-      "@titicaca/view-utilities": ["../view-utilities/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"]
     }
   },
   "exclude": ["**/node_modules", "lib"]
