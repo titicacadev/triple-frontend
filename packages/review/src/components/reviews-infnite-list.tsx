@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { List, Spinner } from '@titicaca/core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { useDescriptions, useMyReview } from '../services'
 import { BaseReviewFragment } from '../data/graphql'
@@ -9,8 +10,6 @@ import { ReviewElement } from './review-element'
 import { MyReviewActionSheet } from './my-review-action-sheet'
 import { OthersReviewActionSheet } from './others-review-action-sheet'
 import { ReviewsPlaceholder } from './review-placeholder-with-rating'
-import { FullListButton } from './full-list-button'
-import { MileageButton } from './mileage-button'
 import { SortingOption } from './types'
 
 interface Props {
@@ -22,10 +21,12 @@ interface Props {
   sortingOption: SortingOption
   reviewsCount: number | undefined
   reviews: BaseReviewFragment[] | undefined
+  hasNextPage?: boolean
+  fetchNextPage?: () => void
   refetch: () => void
 }
 
-export function ReviewsList({
+export function ReviewsInfiniteList({
   resourceId,
   resourceType,
   regionId,
@@ -34,6 +35,8 @@ export function ReviewsList({
   sortingOption,
   reviewsCount,
   reviews,
+  hasNextPage,
+  fetchNextPage,
   refetch,
 }: Props) {
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
@@ -81,7 +84,7 @@ export function ReviewsList({
     return (
       <ReviewsPlaceholder
         hasReviews={(reviewsCount ?? 0) > 0}
-        isMorePage={false}
+        isMorePage={!!hasNextPage}
         resourceId={resourceId}
         resourceType={resourceType}
         regionId={regionId}
@@ -98,7 +101,7 @@ export function ReviewsList({
         {sortedReviews.map((review, i) => (
           <ReviewElement
             key={i}
-            isFullList={false}
+            isFullList
             isMyReview={myReviewData.myReview?.id === review.id}
             review={review}
             reviewRateDescriptions={
@@ -111,16 +114,17 @@ export function ReviewsList({
         ))}
       </List>
 
-      <FullListButton
-        reviewsCount={reviewsCount}
-        resourceId={resourceId}
-        resourceType={resourceType}
-        regionId={regionId}
-        recentTrip={recentTrip}
-        sortingOption={sortingOption}
-      />
-
-      <MileageButton resourceId={resourceId} />
+      {hasNextPage ? (
+        <StaticIntersectionObserver
+          onChange={({ isIntersecting }) => {
+            if (isIntersecting) {
+              fetchNextPage?.()
+            }
+          }}
+        >
+          <div />
+        </StaticIntersectionObserver>
+      ) : null}
 
       {myReviewData?.myReview ? (
         <MyReviewActionSheet

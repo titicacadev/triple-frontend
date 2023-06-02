@@ -2,49 +2,43 @@ import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Confirm } from '@titicaca/modals'
 import {
-  useMyReviewsContext,
   useHistoryFunctions,
   useUriHash,
+  useEnv,
 } from '@titicaca/react-contexts'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import qs from 'qs'
 
-import { useDeleteReviewMutation, graphqlClient } from '../services'
-
-import { ResourceType, ReviewData, ReviewDeleteHandler } from './types'
-
-interface MyReviewActionSheetProps {
-  myReview: ReviewData
-  resourceType: ResourceType
-  resourceId: string
-  notifyReviewDeleted: (resourceId: string, reviewId: string) => void
-  /**
-   * @deprecated 리뷰 작성 함수를 자체 구현하면
-   * 다양한 방어 로직을 중복 구현하게 됩니다.
-   * 이 prop을 사용하지 말아주세요.
-   */
-  onReviewEdit?: () => void
-  onReviewDelete?: ReviewDeleteHandler
-}
+import { useDeleteReviewMutation } from '../services'
 
 export const HASH_MY_REVIEW_ACTION_SHEET =
   'common.reviews-list.my-review-action-sheet'
 
 const HASH_DELETION_MODAL = 'common.reviews-list.deletion-modal'
 
-export default function MyReviewActionSheet({
-  myReview,
+interface MyReviewActionSheetProps {
+  reviewId: string
+  reviewBlinded: boolean
+  resourceType: string
+  resourceId: string
+  regionId: string | undefined
+}
+
+export function MyReviewActionSheet({
+  reviewId,
+  reviewBlinded,
   resourceType,
   resourceId,
-  notifyReviewDeleted,
-  onReviewEdit,
-  onReviewDelete,
+  regionId,
 }: MyReviewActionSheetProps) {
   const { t } = useTranslation('common-web')
 
+  const { appUrlScheme } = useEnv()
   const uriHash = useUriHash()
   const { replace, back } = useHistoryFunctions()
-  const { deleteMyReview } = useMyReviewsContext()
+  const { notifyReviewDeleted } = useTripleClientActions()
 
-  const { mutate } = useDeleteReviewMutation(graphqlClient)
+  const { mutate } = useDeleteReviewMutation()
 
   const handleDeleteMenuClick = () => {
     replace(HASH_DELETION_MODAL)
@@ -52,20 +46,20 @@ export default function MyReviewActionSheet({
     return true
   }
 
-  const handleDeleteReview = ({
-    resourceType,
-    resourceId,
-    reviewId,
-  }: {
-    resourceId: string
-    reviewId: string
-    resourceType: ResourceType
-  }) => {
-    mutate({ id: myReview.id })
-    notifyReviewDeleted(resourceId, reviewId)
-    deleteMyReview({ id: reviewId, resourceId, resourceType })
+  const handleDeleteReview = () => {
+    mutate({ id: reviewId, resourceId })
+    notifyReviewDeleted?.(resourceId, reviewId, resourceType)
 
     back()
+  }
+
+  const handleEditReview = () => {
+    const params = qs.stringify({
+      region_id: regionId,
+      resource_type: resourceType,
+      resource_id: resourceId,
+    })
+    window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
   }
 
   return (
@@ -74,8 +68,8 @@ export default function MyReviewActionSheet({
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
         onClose={back}
       >
-        {!myReview.blindedAt ? (
-          <ActionSheetItem icon="review" onClick={onReviewEdit}>
+        {!reviewBlinded ? (
+          <ActionSheetItem icon="review" onClick={handleEditReview}>
             {t(['sujeonghagi', '수정하기'])}
           </ActionSheetItem>
         ) : null}
@@ -87,16 +81,7 @@ export default function MyReviewActionSheet({
       <Confirm
         open={uriHash === HASH_DELETION_MODAL}
         onClose={back}
-        onConfirm={
-          onReviewDelete
-            ? () => onReviewDelete(myReview.id)
-            : () =>
-                handleDeleteReview({
-                  resourceType,
-                  resourceId,
-                  reviewId: myReview.id,
-                })
-        }
+        onConfirm={handleDeleteReview}
       >
         {t([
           'sagjehagessseubnigga-sagjehamyeon-jeogribdoen-ribyu-pointeudo-hamgge-sarajibnida.',
