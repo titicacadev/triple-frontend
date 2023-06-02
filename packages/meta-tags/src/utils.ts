@@ -31,60 +31,59 @@ function filterValidValue<T extends object>(originObj: T): T {
   return Object.entries(originObj)
     .filter(([_, value]) => !!value)
     .reduce<T>(
-      (obj, [key, value]) => ({
-        ...obj,
-        [key]: isObject(value) ? filterValidValue(value) : value,
-      }),
+      (obj, [key, value]) =>
+        mergeObj(obj, {
+          [key]: isObject(value) ? filterValidValue(value) : value,
+        }),
       {} as T,
     )
 }
 
 function addSchemaType<T extends object>(originObj: T): T {
   return Object.entries(originObj).reduce((obj, [key, value]) => {
-    if (isObject(value)) {
-      return { ...obj, [key]: addSchemaType(value) }
-    }
-
-    if (Array.isArray(value)) {
-      const hasObjectItem = value.every((item) => isObject(item))
-      const typedValue = hasObjectItem
-        ? value.map((item) => addSchemaType(item))
-        : value
-      return { ...obj, [key]: typedValue }
-    }
-
     if (key === 'type') {
-      return { '@type': value, ...obj }
+      return mergeObj({ '@type': value }, obj)
     }
 
     if (key in SCHEMA_TYPE_MAP) {
-      return { '@type': SCHEMA_TYPE_MAP[key], ...obj }
+      if (isObject(value)) {
+        return mergeObj(obj, {
+          [key]: mergeObj({ '@type': SCHEMA_TYPE_MAP[key] }, value),
+        })
+      }
+
+      if (isArrayOfObject(value)) {
+        const arrayValue = (value as object[]).map((item) =>
+          mergeObj({ '@type': SCHEMA_TYPE_MAP[key] }, item),
+        )
+        return mergeObj(obj, { [key]: arrayValue })
+      }
     }
 
-    return obj
+    return mergeObj(obj, { [key]: value })
   }, {} as T)
 }
 
 function formatValue<T extends object>(originObj: T): T {
   return Object.entries(originObj).reduce((obj, [key, value]) => {
-    if (isObject(value)) {
-      return { ...obj, [key]: formatValue(value) }
-    }
-
-    if (Array.isArray(value)) {
-      const hasObjectItem = value.every((item) => isObject(item))
-      const formattedValue = hasObjectItem
-        ? value.map((item) => formatValue(item))
-        : value
-      return { ...obj, [key]: formattedValue }
-    }
-
     if (key in VALUE_FORMATTER_MAP) {
       const formatter = VALUE_FORMATTER_MAP[key]
-      return { ...obj, [key]: formatter(value) }
+
+      if (isObject(value)) {
+        return mergeObj(obj, { [key]: formatValue(value) })
+      }
+
+      if (Array.isArray(value)) {
+        const formattedValue = isArrayOfObject(value)
+          ? value.map((item) => formatValue(item))
+          : value.map((item) => formatter(item))
+        return mergeObj(obj, { [key]: formattedValue })
+      }
+
+      return mergeObj(obj, { [key]: formatter(value) })
     }
 
-    return obj
+    return mergeObj(obj, { [key]: value })
   }, {} as T)
 }
 
@@ -103,8 +102,16 @@ function toISOString(dateString: string) {
   return isValidDate ? date.toISOString() : undefined
 }
 
-function isObject<T extends object>(obj: T) {
-  return typeof obj === 'object' && !Array.isArray(obj) && obj !== null
+function mergeObj<T1 extends object, T2 extends object>(obj1: T1, obj2: T2) {
+  return { ...obj1, ...obj2 }
+}
+
+function isObject<T>(data: T) {
+  return typeof data === 'object' && !Array.isArray(data) && data !== null
+}
+
+function isArrayOfObject<T>(data: T) {
+  return Array.isArray(data) && data.every((item) => isObject(item))
 }
 
 function pipe<T extends object>(...functions: ((arg: T) => T)[]) {
