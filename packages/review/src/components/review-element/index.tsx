@@ -1,55 +1,36 @@
-import {
-  useState,
-  PropsWithChildren,
-  ComponentType,
-  MouseEventHandler,
-  useCallback,
-  SyntheticEvent,
-} from 'react'
-import moment from 'moment'
-import { useTranslation } from '@titicaca/next-i18next'
-import styled, { css } from 'styled-components'
-import * as CSS from 'csstype'
+import { Container, FlexBox, List, Rating, Text } from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { FlexBox, List, Container, Text, Rating } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { useSessionCallback } from '@titicaca/ui-flow'
-
-import { useReviewLikesContext } from '../review-likes-context'
-import { ReviewData } from '../types'
+import { TransitionType } from '@titicaca/modals'
+import { useTranslation } from '@titicaca/next-i18next'
 import {
+  useEventTrackingContext,
+  useHistoryFunctions,
+} from '@titicaca/react-contexts'
+import {
+  useTripleClientActions,
+  useTripleClientMetadata,
+} from '@titicaca/react-triple-client-interfaces'
+import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { Timestamp } from '@titicaca/view-utilities'
+import * as CSS from 'csstype'
+import moment from 'moment'
+import { PropsWithChildren, useCallback, useState } from 'react'
+import styled, { css } from 'styled-components'
+
+import { BaseReviewFragment } from '../../data/graphql'
+import {
+  useClientActions,
   useLikeReviewMutation,
   useUnlikeReviewMutation,
-  graphqlClient,
 } from '../../services'
+import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
+import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 
-import User from './user'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
 import { PinnedMessage } from './pinned-message'
-
-type ReviewEventHandler<T = Element, E = Event> = (
-  e: SyntheticEvent<T, E>,
-  review: ReviewData,
-) => void
-
-export interface ReviewElementProps {
-  review: ReviewData
-  isMyReview: boolean
-  index: number
-  onUserClick?: ReviewEventHandler
-  onUnfoldButtonClick?: ReviewEventHandler
-  onMenuClick: ReviewEventHandler
-  onReviewClick: (e: SyntheticEvent, reviewId: string) => void | boolean
-  onMessageCountClick: (e: SyntheticEvent, reviewId: string) => void
-  onShow?: (index: number) => void
-  reviewRateDescriptions?: string[]
-  DateFormatter?: ComponentType<{ date: string }>
-  resourceId: string
-  regionId?: string
-  isMorePage: boolean
-}
+import User from './user'
 
 const MetaContainer = styled.div`
   margin-top: 5px;
@@ -96,11 +77,21 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
 `
 
-function ReviewElement({
+export interface ReviewElementProps {
+  review: BaseReviewFragment
+  isFullList: boolean
+  isMyReview: boolean
+  reviewRateDescriptions: string[] | null | undefined
+  resourceId: string
+  regionId?: string
+  onMenuClick: (reviewId: string) => void
+}
+
+export function ReviewElement({
   review,
   review: {
     user,
-    blindedAt,
+    blinded,
     comment,
     recentTrip,
     reviewedAt: originReviewedAt,
@@ -109,57 +100,172 @@ function ReviewElement({
     replyBoard,
     resourceType,
     visitDate,
+    liked,
+    likesCount,
   },
+  isFullList,
   isMyReview,
-  index,
-  onUserClick,
-  onUnfoldButtonClick,
-  onMenuClick,
-  onReviewClick,
-  onMessageCountClick,
-  onShow,
-  DateFormatter,
   reviewRateDescriptions,
   resourceId,
   regionId,
-  isMorePage,
+  onMenuClick,
 }: ReviewElementProps) {
   const { t } = useTranslation('common-web')
 
   const [unfolded, setUnfolded] = useState(false)
-  const { deriveCurrentStateAndCount, updateLikedStatus } =
-    useReviewLikesContext()
   const { trackEvent } = useEventTrackingContext()
-  const { liked, likesCount } = deriveCurrentStateAndCount({
-    reviewId: review.id,
-    liked: review.liked,
-    likesCount: review.likesCount,
-  })
+  const { push } = useHistoryFunctions()
+  const app = useTripleClientMetadata()
+  const { showToast } = useTripleClientActions()
+  const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview } = useLikeReviewMutation(graphqlClient)
-  const { mutate: unlikeReview } = useUnlikeReviewMutation(graphqlClient)
+  const { mutate: likeReview } = useLikeReviewMutation()
+  const { mutate: unlikeReview } = useUnlikeReviewMutation()
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
-  const handleLikeButtonClick: MouseEventHandler = useSessionCallback(
-    useCallback(async () => {
-      liked
-        ? unlikeReview({ reviewId: review.id })
-        : likeReview({ reviewId: review.id })
-      updateLikedStatus({ [review.id]: !liked }, resourceId)
+
+  const handleUserClick = useSessionCallback(
+    useCallback(() => {
+      if (!app) {
+        return
+      }
+
+      if (!review.user) {
+        return
+      }
+
+      const { uid, mileage, unregister } = review.user
+
+      trackEvent({
+        ga: ['리뷰 프로필'],
+        fa: {
+          action: '리뷰_프로필',
+          item_id: resourceId,
+          user_id: uid,
+          review_id: review.id,
+          level: mileage?.level ?? 0,
+        },
+      })
+
+      if (unregister) {
+        showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
+      } else {
+        navigateUserDetail(uid)
+      }
     }, [
+      app,
+      review.user,
+      review.id,
+      trackEvent,
+      resourceId,
+      showToast,
+      t,
+      navigateUserDetail,
+    ]),
+  )
+
+  const handleMenuClick = useSessionCallback(
+    useCallback(() => {
+      if (!app) {
+        return
+      }
+
+      if (isMyReview) {
+        push(HASH_MY_REVIEW_ACTION_SHEET)
+      } else {
+        onMenuClick?.(review.id)
+        push(HASH_REVIEW_ACTION_SHEET)
+      }
+    }, [app, isMyReview, onMenuClick, push, review.id]),
+  )
+
+  const handleReviewClick = useAppCallback(
+    TransitionType.ReviewSelect,
+    useCallback(() => {
+      trackEvent({
+        ga: ['리뷰_리뷰내용_선택', review.id],
+        fa: {
+          action: '리뷰_리뷰내용_선택',
+          item_id: review.id,
+          resource_id: resourceId,
+          ...(recentTrip && { recent_trip: '최근여행' }),
+        },
+      })
+
+      navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
+    }, [
+      trackEvent,
+      review.id,
+      resourceId,
+      recentTrip,
+      navigateReviewDetail,
+      regionId,
+    ]),
+    false,
+  )
+
+  const handleLikeButtonClick = useSessionCallback(
+    useCallback(() => {
+      trackEvent({
+        ga: [likeButtonAction, review.id],
+        fa: {
+          action: likeButtonAction,
+          item_id: review.id,
+          resource_id: resourceId,
+        },
+      })
+
+      liked
+        ? unlikeReview({ reviewId: review.id, resourceId })
+        : likeReview({ reviewId: review.id, resourceId })
+    }, [
+      likeButtonAction,
       likeReview,
       liked,
       resourceId,
       review.id,
+      trackEvent,
       unlikeReview,
-      updateLikedStatus,
     ]),
     { triggeredEventAction: likeButtonAction },
   )
 
+  const handleMessageCountClick = useAppCallback(
+    TransitionType.ReviewCommentSelect,
+    useSessionCallback(
+      useCallback(() => {
+        trackEvent({
+          ga: ['리뷰_댓글_선택', review.id],
+          fa: {
+            action: '리뷰_댓글_선택',
+            item_id: review.id,
+            resource_id: resourceId,
+            region_id: regionId,
+            content_type: resourceType,
+          },
+        })
+
+        navigateReviewDetail({
+          reviewId: review.id,
+          regionId,
+          resourceId,
+          anchor: 'reply',
+        })
+      }, [
+        navigateReviewDetail,
+        regionId,
+        resourceId,
+        resourceType,
+        review.id,
+        trackEvent,
+      ]),
+      { triggeredEventAction: '리뷰_댓글_선택' },
+    ),
+  )
+
   const reviewedAt = moment(originReviewedAt).format()
   const reviewExposureAction = `${
-    isMorePage ? '리뷰_전체보기_노출' : '리뷰_노출'
+    isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
   }`
 
   return (
@@ -175,38 +281,17 @@ function ReviewElement({
               ...(review.recentTrip && { recent_trip: '최근여행' }),
             },
           })
-
-          onShow && onShow(index)
         }
       }}
     >
       <List.Item style={{ paddingTop: 6 }}>
-        <User
-          user={user}
-          onClick={onUserClick && ((e) => onUserClick(e, review))}
-        />
-        {!blindedAt && !!rating ? <Score score={rating} /> : null}
-        {!blindedAt ? (
+        {user ? <User user={user} onClick={handleUserClick} /> : null}
+        {!blinded && !!rating ? <Score score={rating} /> : null}
+        {!blinded ? (
           <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
         ) : null}
-        <Content
-          onClick={(e: SyntheticEvent) => {
-            trackEvent({
-              ga: ['리뷰_리뷰내용_선택', review.id],
-              fa: {
-                action: '리뷰_리뷰내용_선택',
-                item_id: review.id,
-                resource_id: resourceId,
-                ...(recentTrip && { recent_trip: '최근여행' }),
-              },
-            })
-            const reviewClickHandledOnApp = onReviewClick(e, review.id)
-            if (reviewClickHandledOnApp !== false) {
-              unfolded && setUnfolded(false)
-            }
-          }}
-        >
-          {blindedAt ? (
+        <Content onClick={handleReviewClick}>
+          {blinded ? (
             t([
               'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
               '신고가 접수되어 블라인드 처리되었습니다.',
@@ -229,8 +314,6 @@ function ReviewElement({
                     },
                   })
                   setUnfolded(true)
-
-                  onUnfoldButtonClick && onUnfoldButtonClick(e, review)
                 }}
               />
             )
@@ -241,7 +324,7 @@ function ReviewElement({
             />
           )}
         </Content>
-        {!blindedAt && media && media.length > 0 ? (
+        {!blinded && media && media.length > 0 ? (
           <Container
             css={{
               margin: '10px 0 0',
@@ -253,32 +336,20 @@ function ReviewElement({
         {replyBoard?.pinnedMessages[0] ? (
           <PinnedMessage
             pinnedMessage={replyBoard?.pinnedMessages[0]}
-            onPinnedMessageClick={(e) => {
-              onReviewClick(e, review.id)
-            }}
+            onPinnedMessageClick={handleReviewClick}
           />
         ) : null}
         <Meta>
-          {!blindedAt ? (
+          {!blinded ? (
             <LikeButton
               display="inline-block"
               liked={liked}
-              onClick={(e) => {
-                trackEvent({
-                  ga: [likeButtonAction, review.id],
-                  fa: {
-                    action: likeButtonAction,
-                    item_id: review.id,
-                    resource_id: resourceId,
-                  },
-                })
-                handleLikeButtonClick(e)
-              }}
               css={{
                 marginTop: 5,
                 padding: '2px 10px 2px 20px',
                 height: 18,
               }}
+              onClick={handleLikeButtonClick}
             >
               {likesCount}
             </LikeButton>
@@ -287,25 +358,13 @@ function ReviewElement({
           <MessageCount
             display="inline-block"
             position="relative"
-            isCommaVisible={!blindedAt}
-            onClick={(e: SyntheticEvent) => {
-              trackEvent({
-                ga: ['리뷰_댓글_선택', review.id],
-                fa: {
-                  action: '리뷰_댓글_선택',
-                  item_id: review.id,
-                  resource_id: resourceId,
-                  region_id: regionId,
-                  content_type: resourceType,
-                },
-              })
-              onMessageCountClick(e, review.id)
-            }}
+            isCommaVisible={!blinded}
             css={{
               height: 18,
               marginTop: 5,
               padding: '2px 0 2px 20px',
             }}
+            onClick={handleMessageCountClick}
           >
             {replyBoard
               ? replyBoard.rootMessagesCount +
@@ -314,12 +373,12 @@ function ReviewElement({
               : 0}
           </MessageCount>
 
-          {!blindedAt || (blindedAt && isMyReview) ? (
+          {!blinded || (blinded && isMyReview) ? (
             <Date floated="right">
-              {DateFormatter ? <DateFormatter date={reviewedAt} /> : reviewedAt}
+              <Timestamp date={reviewedAt} />
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                onClick={(e) => onMenuClick(e, review)}
+                onClick={handleMenuClick}
               />
             </Date>
           ) : null}
@@ -344,7 +403,7 @@ function Score({ score }: { score?: number }) {
 function Content({
   onClick,
   children,
-}: PropsWithChildren<{ onClick?: (e: SyntheticEvent) => void }>) {
+}: PropsWithChildren<{ onClick?: () => void }>) {
   return (
     <Container
       clearing
@@ -391,7 +450,7 @@ function RateDescription({
   reviewRateDescriptions,
 }: {
   rating?: number | null | undefined
-  reviewRateDescriptions: string[] | undefined
+  reviewRateDescriptions: string[] | null | undefined
 }) {
   const comment =
     rating && reviewRateDescriptions ? reviewRateDescriptions[rating] : ''
@@ -402,7 +461,7 @@ function RecentReviewInfo({
   visitDate,
   recentTrip,
 }: {
-  visitDate?: string
+  visitDate?: string | null
   recentTrip: boolean
 }) {
   const { t } = useTranslation('common-web')
@@ -452,5 +511,3 @@ function RecentReviewInfo({
     </FlexBox>
   )
 }
-
-export default ReviewElement

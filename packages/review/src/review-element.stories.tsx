@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
-import { ComponentProps } from 'react'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import monoImageData from './mocks/review-element.mono-image.json'
 import duoImagesData from './mocks/review-element.duo-images.json'
@@ -12,8 +11,7 @@ import monoVideoData from './mocks/review-element.mono-video.json'
 import duoVideosData from './mocks/review-element.duo-videos.json'
 import triVideosData from './mocks/review-element.tri-videos.json'
 import moreVideosData from './mocks/review-element.more-vidoes.json'
-import ReviewElement from './components/review-element'
-import { ReviewLikesProvider } from './components/review-likes-context'
+import { ReviewElement } from './components/review-element'
 
 const queryClient = new QueryClient()
 
@@ -22,15 +20,6 @@ export default {
   component: ReviewElement,
   decorators: [
     (Story) => (
-      <ReviewLikesProvider
-        subscribeLikedChangeEvent={() => {}}
-        notifyReviewLiked={() => {}}
-        notifyReviewUnliked={() => {}}
-      >
-        <Story />
-      </ReviewLikesProvider>
-    ),
-    (Story) => (
       <QueryClientProvider client={queryClient}>
         <Story />
       </QueryClientProvider>
@@ -38,114 +27,82 @@ export default {
   ],
 } as ComponentMeta<typeof ReviewElement>
 
-type ReviewData = ComponentProps<typeof ReviewElement>['review']
-
 export const MonoImage: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: monoImageData as ReviewData,
+    review: monoImageData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const DuoImages: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: duoImagesData as ReviewData,
+    review: duoImagesData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const TriImages: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: triImagesData as ReviewData,
+    review: triImagesData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const QuadImages: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: quadImagesData as ReviewData,
+    review: quadImagesData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const PentaImages: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: pentaImagesData as ReviewData,
+    review: pentaImagesData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const MoreImages: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: moreImagesData as ReviewData,
+    review: moreImagesData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const MonoVideo: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: monoVideoData as ReviewData,
+    review: monoVideoData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const DuoVideos: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: duoVideosData as ReviewData,
+    review: duoVideosData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const TriVideos: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: triVideosData as ReviewData,
+    review: triVideosData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }
 
 export const MoreVideos: ComponentStoryObj<typeof ReviewElement> = {
   args: {
-    review: moreVideosData as ReviewData,
+    review: moreVideosData,
     isMyReview: false,
-    index: 0,
-    onMenuClick: () => {},
-    onMessageCountClick: () => {},
-    isMorePage: false,
+    isFullList: false,
   },
 }

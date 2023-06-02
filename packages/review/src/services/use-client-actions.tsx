@@ -4,8 +4,7 @@ import { useEnv } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import { ResourceType } from '../components/types'
-import { writeReview } from '../data/api'
+import { writeReview } from '../utils'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
@@ -14,7 +13,7 @@ export function useClientActions() {
   return useMemo(() => {
     return {
       writeReview(params: {
-        resourceType: ResourceType
+        resourceType: string
         resourceId: string
         regionId?: string
         rating?: number
@@ -29,7 +28,7 @@ export function useClientActions() {
       }: {
         regionId?: string
         resourceId: string
-        resourceType: ResourceType
+        resourceType: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
@@ -47,7 +46,7 @@ export function useClientActions() {
       }: {
         regionId?: string
         resourceId: string
-        resourceType: ResourceType
+        resourceType: string
         recentTrip: boolean
         sortingOption: string
       }) {
