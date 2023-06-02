@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v12.18.3
+
+### constants
+
+- e-mail 유효성 검증이 특수문자, 이모지 등을 허용하는 현상을 수정합니다. [#2649](https://github.com/titicacadev/triple-frontend/pull/2649)
+
 ## v12.18.2
 
 ### modals
