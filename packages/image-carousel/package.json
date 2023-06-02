@@ -27,8 +27,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@egjs/flicking": "^3.9.3",
-    "@egjs/react-flicking": "^3.8.3",
+    "@egjs/react-flicking": "^4.10.9",
     "@titicaca/core-elements": "^12.18.2",
     "@titicaca/intersection-observer": "^12.18.2",
     "@titicaca/type-definitions": "^12.18.2"

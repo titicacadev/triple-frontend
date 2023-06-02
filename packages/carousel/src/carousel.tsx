@@ -8,8 +8,11 @@ import {
   marginMixin,
   formatMarginPadding,
 } from '@titicaca/core-elements'
-import { FlickingOptions } from '@egjs/flicking'
-import Flicking from '@egjs/react-flicking'
+import Flicking, {
+  FlickingProps,
+  FlickingOptions,
+  MOVE_TYPE,
+} from '@egjs/react-flicking'
 
 import CarouselItem from './carousel-item'
 
@@ -60,7 +63,7 @@ const FlickingScrollButton = styled.button<{
   outline: none;
 `
 
-const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
+const FLICK_ATTRIBUTES: Partial<FlickingProps & FlickingOptions> = {
   deceleration: 0.0075,
   horizontal: true,
   circular: true,
@@ -80,7 +83,7 @@ const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
   hanger: '50%',
   anchor: '50%',
   gap: 10,
-  moveType: { type: 'snap', count: 1 },
+  moveType: [MOVE_TYPE.SNAP, { count: 1 }],
   collectStatistics: false,
   zIndex: 50,
   classPrefix: 'eg-flick',
