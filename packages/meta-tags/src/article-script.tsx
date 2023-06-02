@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue, toISOString } from './utils'
+import { createScript } from './utils'
 import { Author, Publisher } from './types'
 
 interface ArticleScriptProps {
@@ -12,26 +12,8 @@ interface ArticleScriptProps {
   publisher?: Publisher[]
 }
 
-export function ArticleScript({
-  headline,
-  image,
-  datePublished,
-  dateModified,
-  author: authors,
-  publisher,
-}: ArticleScriptProps) {
-  const articleScript = filterValidValue({
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline,
-    image,
-    datePublished: toISOString(datePublished),
-    dateModified: toISOString(dateModified),
-    publisher,
-    author: authors?.map((author) =>
-      addSchemaType(filterValidValue(author), 'Person'),
-    ),
-  })
+export function ArticleScript(props: ArticleScriptProps) {
+  const articleScript = createScript(props, 'Article')
 
   return (
     <Head>

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { addSchemaType, filterValidValue, formatReviews } from './utils'
+import { createScript } from './utils'
 import {
   AggregateRatingSchema,
   AggregateOfferSchema,
@@ -11,37 +11,13 @@ interface ProductScriptProps {
   name: string
   description?: string
   image?: string
-  rating?: AggregateRatingSchema
+  aggregateRating?: AggregateRatingSchema
   offers: AggregateOfferSchema
-  reviews?: ReviewSchema[]
+  review?: ReviewSchema[]
 }
 
-export function ProductScript({
-  name,
-  description,
-  rating,
-  offers,
-  image,
-  reviews,
-}: ProductScriptProps) {
-  const productScript = filterValidValue({
-    '@context': 'http://schema.org',
-    '@type': 'Product',
-    name,
-    description,
-    image,
-    aggregateRating: addSchemaType(filterValidValue(rating), 'AggregateRating'),
-    offers: addSchemaType(
-      filterValidValue({
-        ...offers,
-        availability: offers.availability
-          ? `https://schema.org/${offers.availability}`
-          : undefined,
-      }),
-      'AggregateOffer',
-    ),
-    review: formatReviews(reviews),
-  })
+export function ProductScript(props: ProductScriptProps) {
+  const productScript = createScript(props, 'Product')
 
   return (
     <Head>
