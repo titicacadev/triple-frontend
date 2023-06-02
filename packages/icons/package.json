@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/icons",
-  "version": "12.18.2",
+  "version": "12.18.3",
   "description": "Triple Icons",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/icons",
@@ -27,7 +27,7 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.18.2"
+    "@titicaca/color-palette": "^12.18.3"
   },
   "peerDependencies": {
     "react": "^18.0",
