@@ -1,6 +1,5 @@
 import { MessageType, MetaDataInterface, UserType } from '../types'
-import { ChatContextValue } from '../chat'
-import { ChatProps } from '../chat/chat'
+import { ChatContextValue, ChatProps } from '../chat'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
   {
@@ -37,6 +36,7 @@ export const MEDIA_ARGS: ChatContextValue = {
 }
 
 export const CHAT_ARGS: ChatProps = {
+  pusherKey: '0000',
   displayTarget: UserType.TNA_PARTNER,
   userInfo: {
     me: {
