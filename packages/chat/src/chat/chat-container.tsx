@@ -9,6 +9,7 @@ import {
 } from '../types'
 
 import { ChatContext, ChatContextValue } from './chat-context'
+import { ScrollProvider } from './scroll-context'
 
 export interface ChatContainerProps extends ChatContextValue {
   /**
@@ -66,8 +67,10 @@ export const ChatContainer = ({
         setPostMessage,
       }}
     >
-      <Container>{children}</Container>
-      {Input && postMessage ? <Input postMessage={postMessage} /> : null}
+      <ScrollProvider>
+        <Container>{children}</Container>
+        {Input && postMessage ? <Input postMessage={postMessage} /> : null}
+      </ScrollProvider>
     </ChatContext.Provider>
   )
 }
