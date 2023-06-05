@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 import { createScript } from './utils'
-import { Author, Publisher } from './types'
+import { Author } from './types'
 
 interface ArticleScriptProps {
   headline: string
@@ -9,7 +9,7 @@ interface ArticleScriptProps {
   datePublished?: string
   dateModified?: string
   author?: Author[]
-  publisher?: Publisher[]
+  publisher?: Author[]
 }
 
 export function ArticleScript(props: ArticleScriptProps) {
