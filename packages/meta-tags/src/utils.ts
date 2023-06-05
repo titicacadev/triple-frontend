@@ -1,3 +1,10 @@
+export const SCHEMA_SCRIPT_TYPE_MAP = {
+  restaurant: 'FoodEstablishment',
+  attraction: 'LocalBusiness',
+  hotel: 'Hotel',
+  tna: 'Product',
+}
+
 const SCHEMA_TYPE_MAP: Record<string, string> = {
   address: 'PostalAddress',
   aggregateRating: 'AggregateRating',
