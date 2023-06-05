@@ -204,8 +204,9 @@ return (
 ## 구조화된 데이터
 
 - 관련 문서: [Google 검색에서 지원하는 구조화된 데이터 마크업](https://developers.google.com/search/docs/appearance/structured-data/search-gallery?hl=ko)
+- 테스트: [Google 리치 검색결과 테스트](https://search.google.com/test/rich-results?hl=ko) 사이트에서 url 혹은 코드로 구조화된 데이터 결과를 테스트할 수 있습니다.
 
-### 아티클 스크립트 (ArticleScript)
+### 아티클 (Article)
 
 - 관련 문서 : [구조화된 기사(Article, NewsArticle, BlogPosting) 데이터](https://developers.google.com/search/docs/appearance/structured-data/article?hl=ko)
 - Usage
@@ -237,11 +238,11 @@ return (
 - Usage
 
 ```tsx
-import { ArticleScript, BreadcrumbListScript } from '@titicaca/meta-tags'
+import { BreadcrumbListScript } from '@titicaca/meta-tags'
 
 return (
   <BreadcrumbListScript
-    breadcrumbs={[
+    itemListElement={
       [
         {
           position: 1,
@@ -254,25 +255,7 @@ return (
           item: `${WEB_URL_BASE}/articles/${articleId}`,
         },
       ],
-      // 하나의 페이지는 여러개의 breadcrumbList를 가질 수 있습니다.
-      [
-        {
-          position: 1,
-          name: '도쿄',
-          item: `${WEB_URL_BASE}/regions/dokyo`,
-        },
-        {
-          position: 2,
-          name: '아티클',
-          item: `${WEB_URL_BASE}/regions/dokyo/articles`,
-        },
-        {
-          position: 3,
-          name: title,
-          item: `${WEB_URL_BASE}/regions/dokyo/articles/${articleId}`,
-        },
-      ],
-    ]}
+    }
   />
 )
 ```
@@ -281,3 +264,18 @@ return (
   - position: 탐색 경로의 순서. 1부터 시작
   - name: 탐색 경로의 제목
   - item: 탐색 경로의 url
+
+### 지역 비지니스 (LocalBusiness)
+
+- 관련 문서 : [구조화된 지역 비즈니스(LocalBusiness) 데이터](https://developers.google.com/search/docs/appearance/structured-data/local-business?hl=ko)
+
+- 속성
+  - type: poiType으로 'restaurant', 'attraction', 'hotel' 중 하나여야 합니다.
+  - [LocalBusiness의 필수/권장 속성](https://developers.google.com/search/docs/appearance/structured-data/local-business?hl=ko#local-business-properties)을 참고하여 작성합니다.
+
+### 제품 (Product)
+
+- 관련 문서 : [구조화된 제품(Product, Review, Offer) 데이터](https://developers.google.com/search/docs/appearance/structured-data/product?hl=ko)
+
+- 속성
+  - [Product의 필수/권장 속성](https://developers.google.com/search/docs/appearance/structured-data/product?hl=ko#product-properties)을 참고하여 작성합니다.
