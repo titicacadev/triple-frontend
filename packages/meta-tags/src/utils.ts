@@ -5,6 +5,7 @@ const SCHEMA_TYPE_MAP: Record<string, string> = {
   openingHoursSpecification: 'OpeningHoursSpecification',
   review: 'Review',
   author: 'Person',
+  publisher: 'Organization',
   geo: 'GeoCoordinates',
   reviewRating: 'Rating',
   itemListElement: 'ListItem',
