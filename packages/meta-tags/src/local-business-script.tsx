@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { createScript } from './utils'
+import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from './utils'
 import {
   AggregateRatingSchema,
   AddressSchema,
@@ -9,14 +9,8 @@ import {
   OpeningHoursSpecificationSchema,
 } from './types'
 
-const POI_TO_LOCAL_BUSINESS_TYPE_MAP = {
-  restaurant: 'FoodEstablishment',
-  attraction: 'LocalBusiness',
-  hotel: 'Hotel',
-}
-
 interface LocalBusinessScriptProps {
-  type: keyof typeof POI_TO_LOCAL_BUSINESS_TYPE_MAP
+  type: keyof Omit<typeof SCHEMA_SCRIPT_TYPE_MAP, 'tna'>
   name: string
   description?: string
   image?: string
@@ -27,7 +21,7 @@ interface LocalBusinessScriptProps {
   geo?: GeoSchema
   menu?: string[]
   servesCuisine?: string[]
-  review?: ReviewSchema[]
+  review?: Omit<ReviewSchema, 'itemReviewed'>[]
   priceRange?: string
   openingHoursSpecification?: OpeningHoursSpecificationSchema[]
 }
@@ -36,10 +30,7 @@ export function LocalBusinessScript({
   type,
   ...props
 }: LocalBusinessScriptProps) {
-  const localBusinessScript = createScript(
-    props,
-    POI_TO_LOCAL_BUSINESS_TYPE_MAP[type],
-  )
+  const localBusinessScript = createScript(props, SCHEMA_SCRIPT_TYPE_MAP[type])
 
   return (
     <Head>

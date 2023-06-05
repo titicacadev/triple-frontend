@@ -1,3 +1,5 @@
+import { SCHEMA_SCRIPT_TYPE_MAP } from './utils'
+
 export interface Author {
   type?: 'Person' | 'Organization'
   name: string
@@ -40,7 +42,12 @@ export interface AggregateOfferSchema {
 }
 
 export interface ReviewSchema {
+  itemReviewed: {
+    type: keyof typeof SCHEMA_SCRIPT_TYPE_MAP
+    name: string // poi or product title
+  }
   author: Author
+  publisher?: Author
   description?: string
   datePublished?: string
   reviewRating: Pick<AggregateRatingSchema, 'ratingValue'>

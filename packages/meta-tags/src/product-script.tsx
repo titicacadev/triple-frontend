@@ -13,7 +13,7 @@ interface ProductScriptProps {
   image?: string
   aggregateRating?: AggregateRatingSchema
   offers: AggregateOfferSchema
-  review?: ReviewSchema[]
+  review?: Omit<ReviewSchema, 'itemReviewed'>[]
 }
 
 export function ProductScript(props: ProductScriptProps) {
