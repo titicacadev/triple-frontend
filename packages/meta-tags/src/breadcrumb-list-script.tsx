@@ -3,7 +3,9 @@ import Head from 'next/head'
 import { createScript } from './utils'
 import { ListItem } from './types'
 
-export function BreadcrumbListScript(props: { itemListElement: ListItem[] }) {
+export function BreadcrumbListScript(props: {
+  itemListElement: Required<ListItem>[]
+}) {
   const breadcrumbScript = createScript(props, 'BreadcrumbList')
 
   return (
