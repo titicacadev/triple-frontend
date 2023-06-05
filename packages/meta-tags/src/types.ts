@@ -4,11 +4,6 @@ export interface Author {
   url?: string
 }
 
-export interface Publisher {
-  name: string
-  url?: string
-}
-
 export interface ListItem {
   position: number
   name: string
