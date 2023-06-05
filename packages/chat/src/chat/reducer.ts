@@ -17,7 +17,6 @@ export enum ChatActions {
 export interface ChatState {
   messages: MessageInterface[]
   hasPrevMessage: boolean
-  scrollY: number
   otherUnreadInfo: OtherUnreadInterface[]
   firstMessageId: number | null
   lastMessageId: number | null
@@ -32,7 +31,6 @@ export type ChatAction =
   | {
       action: ChatActions.PAST
       messages: MessageInterface[]
-      scrollY: number
     }
   | {
       action: ChatActions.NEW
@@ -73,7 +71,6 @@ export const ChatReducer = (
           messages: mergeMessages(action.messages, state.messages),
           firstMessageId: action.messages[0].id,
           hasPrevMessage: true,
-          scrollY: action.scrollY,
           otherUnreadInfo: [],
         }
       } else {
@@ -122,7 +119,6 @@ export const ChatReducer = (
 export const initialChatState: ChatState = {
   messages: [],
   hasPrevMessage: true,
-  scrollY: 0,
   otherUnreadInfo: [],
   firstMessageId: null,
   lastMessageId: null,
