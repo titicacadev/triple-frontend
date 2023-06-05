@@ -2,6 +2,7 @@ const SCHEMA_TYPE_MAP: Record<string, string> = {
   address: 'PostalAddress',
   aggregateRating: 'AggregateRating',
   aggregateOffer: 'AggregateOffer',
+  offers: 'AggregateOffer',
   openingHoursSpecification: 'OpeningHoursSpecification',
   review: 'Review',
   author: 'Person',
@@ -30,11 +31,15 @@ export function createScript<T extends object>(data: T, type: string) {
 
 function filterValidValue<T extends object>(originObj: T): T {
   return Object.entries(originObj)
-    .filter(([_, value]) => !!value)
+    .filter(isValidValue)
     .reduce<T>(
       (obj, [key, value]) =>
         mergeObj(obj, {
-          [key]: isObject(value) ? filterValidValue(value) : value,
+          [key]: isObject(value)
+            ? filterValidValue(value)
+            : isArrayOfObject(value)
+            ? value.map((item: object) => filterValidValue(item))
+            : value,
         }),
       {} as T,
     )
@@ -116,6 +121,18 @@ function isObject<T>(data: T) {
 
 function isArrayOfObject<T>(data: T) {
   return Array.isArray(data) && data.every((item) => isObject(item))
+}
+
+function isValidValue<T>([_, value]: [key: string, value: T]) {
+  if (isObject(value)) {
+    return Object.values(value as object).length > 0
+  }
+
+  if (Array.isArray(value)) {
+    return value.length > 0
+  }
+
+  return value !== null && value !== undefined
 }
 
 function pipe<T extends object>(...functions: ((arg: T) => T)[]) {
