@@ -12,6 +12,7 @@ import {
 const POI_TO_LOCAL_BUSINESS_TYPE_MAP = {
   restaurant: 'FoodEstablishment',
   attraction: 'LocalBusiness',
+  hotel: 'Hotel',
 }
 
 interface LocalBusinessScriptProps {
