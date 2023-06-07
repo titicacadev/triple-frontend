@@ -66,9 +66,10 @@ function Video({ medium }: Props) {
     deviceState: { autoplay, networkType },
   } = useDeviceContext()
 
-  const videoAutoplay =
+  const [videoAutoplay, setVideoAutoPlay] = useState(
     autoplay === 'always' ||
-    (autoplay === 'wifi_only' && networkType === 'wifi')
+      (autoplay === 'wifi_only' && networkType === 'wifi'),
+  )
 
   useEffect(() => {
     async function togglePlay() {
@@ -85,7 +86,11 @@ function Video({ medium }: Props) {
         } else {
           ref.current.pause()
         }
-      } catch {}
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'NotAllowedError') {
+          setVideoAutoPlay(false)
+        }
+      }
     }
 
     togglePlay()
