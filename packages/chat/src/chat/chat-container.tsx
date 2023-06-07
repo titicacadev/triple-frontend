@@ -1,4 +1,5 @@
 import React, { ElementType, PropsWithChildren, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 import {
   ImagePayload,
@@ -9,7 +10,10 @@ import {
 } from '../types'
 
 import { ChatContext, ChatContextValue } from './chat-context'
-import { ScrollProvider } from './scroll-context'
+
+const ScrollProvider = dynamic(() => import('./scroll-context'), {
+  ssr: false,
+})
 
 export interface ChatContainerProps extends ChatContextValue {
   /**

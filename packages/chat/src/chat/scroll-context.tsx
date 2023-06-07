@@ -21,7 +21,7 @@ export interface ScrollContextValue {
 
 export const ScrollContext = createContext<ScrollContextValue | null>(null)
 
-export function ScrollProvider({ children }: { children: ReactNode }) {
+export default function ScrollProvider({ children }: { children: ReactNode }) {
   const chatRoomRef = useRef<HTMLDivElement | null>(null)
   const bottomRef = useRef<HTMLDivElement | null>(null)
 
