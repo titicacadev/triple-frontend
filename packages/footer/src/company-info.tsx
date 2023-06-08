@@ -155,7 +155,7 @@ export function CompanyInfo({
 
       <AccordionContent>
         <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
-          (주)인터파크트리플 | 대표 최휘영 <br />
+          &#12828;인터파크트리플 | 대표 최휘영 <br />
           사업자 등록번호 824-81-02515
           <br />
           통신판매업 신고번호 2022-서울강남-02179
