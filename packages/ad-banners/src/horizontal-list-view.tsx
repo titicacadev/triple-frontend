@@ -98,7 +98,7 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
           <Flicking
             {...FLICKING_CONFIG}
             ref={flickingRef}
-            onMoveEnd={(e) => {
+            onChanged={(e) => {
               const newIndex = e.currentTarget.index
 
               onBannerIntersect(false, banners[visibleIndex], visibleIndex)
@@ -108,13 +108,16 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
           >
             {banners.map((banner, index) => {
               return (
-                <HorizontalEntity
-                  key={banner.id}
-                  banner={banner}
-                  onClick={makeBannerClickHandler(index)}
-                  onLoad={resizeFlicking}
-                  widthOffset={Number(padding.left || padding.right || 25) * 2}
-                />
+                <div key={banner.id} style={{ width: '100%' }}>
+                  <HorizontalEntity
+                    banner={banner}
+                    onClick={makeBannerClickHandler(index)}
+                    onLoad={resizeFlicking}
+                    widthOffset={
+                      Number(padding.left || padding.right || 25) * 2
+                    }
+                  />
+                </div>
               )
             })}
           </Flicking>
