@@ -40,6 +40,7 @@ function ImageCarousel({
   margin,
   borderRadius,
   defaultIndex,
+  onChanged,
   onMoveStart,
   onMove,
   onMoveEnd,
@@ -65,6 +66,7 @@ function ImageCarousel({
       height={height}
       borderRadius={borderRadius}
       defaultIndex={defaultIndex}
+      onChanged={onChanged}
       onMoveStart={onMoveStart}
       onMove={onMove}
       onMoveEnd={onMoveEnd}
@@ -75,17 +77,18 @@ function ImageCarousel({
           : null
 
         return (
-          <Content
-            key={image.id}
-            medium={image}
-            globalFrame={globalFrame}
-            globalSize={globalSize}
-            height={height}
-            optimized={optimized}
-            overlay={overlay}
-            ImageSource={ImageSource}
-            onClick={(event) => handleContentClick(event, image)}
-          />
+          <div key={image.id} style={{ width: '100%' }}>
+            <Content
+              medium={image}
+              globalFrame={globalFrame}
+              globalSize={globalSize}
+              height={height}
+              optimized={optimized}
+              overlay={overlay}
+              ImageSource={ImageSource}
+              onClick={(event) => handleContentClick(event, image)}
+            />
+          </div>
         )
       })}
     </Carousel>
