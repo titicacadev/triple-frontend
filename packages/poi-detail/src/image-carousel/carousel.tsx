@@ -145,7 +145,7 @@ export default function Carousel({
             displayedTotalCount={totalImagesCount}
             borderRadius={borderRadius}
             onImageClick={handleImageClick}
-            onMoveEnd={handlePageChange}
+            onChanged={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
@@ -167,7 +167,7 @@ export default function Carousel({
             borderRadius={borderRadius}
             size="large"
             onImageClick={handleImageClick}
-            onMoveEnd={handlePageChange}
+            onChanged={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
