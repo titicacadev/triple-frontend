@@ -27,6 +27,14 @@
     "lint:etc:fix": "prettier src --write",
     "generate": "graphql-codegen --config codegen.yml"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
   "dependencies": {
     "@titicaca/action-sheet": "^12.19.1",
     "@titicaca/core-elements": "^12.19.1",

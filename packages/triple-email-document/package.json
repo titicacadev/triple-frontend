@@ -2,12 +2,16 @@
   "name": "@titicaca/triple-email-document",
   "version": "12.19.1",
   "description": "EmailDocument: Formatted Email System",
-  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-email-document",
   "license": "MIT",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-email-document",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
   "files": [
     "lib"
   ],
@@ -22,9 +26,13 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
   },
   "dependencies": {
     "@titicaca/core-elements": "^12.19.1",

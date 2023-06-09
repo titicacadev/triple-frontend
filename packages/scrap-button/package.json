@@ -26,6 +26,14 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
   "devDependencies": {
     "@titicaca/react-contexts": "^12.19.1"
   },

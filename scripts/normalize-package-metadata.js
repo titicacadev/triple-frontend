@@ -42,6 +42,11 @@ async function normalizePackageMetadata() {
     },
     main: 'lib/index.js',
     files: ['lib'],
+    scripts,
+    'lint-staged': {
+      '*': ['prettier --check'],
+      '*.{js,ts,tsx}': ['eslint'],
+    },
     dependencies,
     devDependencies,
     peerDependencies,

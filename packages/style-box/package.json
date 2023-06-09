@@ -26,6 +26,14 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
   "dependencies": {
     "csstype": "^3.1.2",
     "styled-components": ">=4.4.1 < 6"
