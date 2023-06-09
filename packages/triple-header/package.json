@@ -4,14 +4,17 @@
   "description": "TripleHeader",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-header",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
   },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
@@ -23,8 +26,13 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
-  "bugs": {
-    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
   },
   "dependencies": {
     "@titicaca/core-elements": "^12.19.1",

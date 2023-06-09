@@ -13,7 +13,7 @@
   },
   "main": "lib/index.js",
   "files": [
-    "lib/*"
+    "lib"
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
@@ -23,6 +23,14 @@
     "lint:es:fix": "eslint src --fix",
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
   },
   "dependencies": {
     "@titicaca/view-utilities": "^12.19.1",

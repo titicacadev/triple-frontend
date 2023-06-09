@@ -26,6 +26,14 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
   "dependencies": {
     "@titicaca/core-elements": "^12.19.1",
     "@titicaca/router": "^12.19.1",

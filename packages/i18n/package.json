@@ -24,6 +24,14 @@
     "lint:etc": "prettier src --check",
     "lint:etc:fix": "prettier src --write"
   },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
   "dependencies": {
     "node-fetch": "2.6.11"
   },
