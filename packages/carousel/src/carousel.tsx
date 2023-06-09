@@ -16,6 +16,8 @@ import Flicking, {
 
 import CarouselItem from './carousel-item'
 
+import '@egjs/react-flicking/dist/flicking.css'
+
 interface CarouselBaseProps {
   margin?: MarginPadding
   containerPadding?: { left: number; right: number }
