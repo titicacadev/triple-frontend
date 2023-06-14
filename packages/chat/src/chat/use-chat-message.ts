@@ -1,30 +1,28 @@
 import { Dispatch, useEffect } from 'react'
 import Pusher from 'pusher-js'
 
-import {
-  HasUnreadOfRoomInterface,
-  MessageInterface,
-  RoomInterface,
-} from '../types'
+import { HasUnreadOfRoomInterface, MessageInterface } from '../types'
 
 import { ChatAction, ChatActions } from './reducer'
 import { useScrollContext } from './scroll-context'
 
 interface ChatPusherProps {
   pusherKey: string
-  room: RoomInterface
+  roomId: string
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   dispatch: Dispatch<ChatAction>
+  updateUnread: () => Promise<boolean | undefined>
 }
 
-export const useChatPusher = ({
+export const useChatMessage = ({
   pusherKey,
-  room,
+  roomId,
   notifyNewMessage,
   dispatch,
+  updateUnread,
 }: ChatPusherProps) => {
   const { channelName, sendMessage, unreadMessage } =
-    getChatChannelAndEventName(room.id)
+    getChatChannelAndEventName(roomId)
   const { scrollToBottom } = useScrollContext()
 
   useEffect(() => {
@@ -36,7 +34,7 @@ export const useChatPusher = ({
 
     const channel = pusher.subscribe(channelName)
 
-    channel.bind(sendMessage, handleSendEvent)
+    channel.bind(sendMessage, handleSendMessageEvent)
     channel.bind(unreadMessage, handleUnreadMessageEvent)
 
     return () => {
@@ -47,12 +45,12 @@ export const useChatPusher = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelName, sendMessage, unreadMessage])
 
-  async function handleSendEvent({
+  async function handleSendMessageEvent({
     message: updatedMessage,
   }: {
     message: MessageInterface
   }) {
-    if (!updatedMessage || !room.id) {
+    if (!updatedMessage || !roomId) {
       return
     }
 
@@ -61,6 +59,7 @@ export const useChatPusher = ({
       messages: [updatedMessage],
     })
     notifyNewMessage?.(updatedMessage)
+    await updateUnread?.()
     scrollToBottom()
   }
 
@@ -69,9 +68,15 @@ export const useChatPusher = ({
   }: {
     otherUnreadInfo: HasUnreadOfRoomInterface
   }) {
+    const others = otherUnreadInfo.others.map(
+      ({ memberId, lastSeenMessageId }) => ({
+        memberId,
+        lastSeenMessageId: Number(lastSeenMessageId),
+      }),
+    )
     dispatch({
       action: ChatActions.UPDATE,
-      otherUnreadInfo: otherUnreadInfo.others,
+      otherUnreadInfo: others,
     })
   }
 }
@@ -79,7 +84,6 @@ export const useChatPusher = ({
 function getChatChannelAndEventName(roomId: string) {
   return {
     channelName: `TRIPLE_CHAT_CHANNEL_${roomId}`,
-    sendRoom: `TRIPLE_CHAT_ROOM_${roomId}`, // 채팅룸 업데이트
     sendMessage: `TRIPLE_CHAT_MESSAGE_${roomId}`, // 채팅 메시지 업데이트
     unreadMessage: `TRIPLE_CHAT_UNREAD_MESSAGE_${roomId}`, // 읽지 않은 메시지 업데이트
   }
