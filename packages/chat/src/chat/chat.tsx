@@ -21,7 +21,7 @@ import { HiddenElement } from '../chat-bubble/elements'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
 import { useChat } from './chat-context'
-import { useChatPusher } from './use-chat-pusher'
+import { useChatMessage } from './use-chat-message'
 import { getChatListHeight, useScrollContext } from './scroll-context'
 
 const MINIMUM_INTERSECTING_TIME = 3000
@@ -87,11 +87,9 @@ export const Chat = ({
     },
     dispatch,
   ] = useReducer(ChatReducer, initialChatState)
-  useChatPusher({ pusherKey, room, notifyNewMessage, dispatch })
 
   const { os } = useUserAgentContext()
   const isIos = useMemo(() => os.name === 'iOS', [os.name])
-
   const updateUnread = useCallback(async () => {
     if (!lastMessageId) {
       return
@@ -99,7 +97,7 @@ export const Chat = ({
 
     const unreadRoomResult = await getUnreadRoom?.({
       roomId: room.id,
-      lastSeenMessageId: lastMessageId,
+      lastSeenMessageId: Number(lastMessageId),
     })
     const { hasUnread = false, others = [] } = unreadRoomResult || {}
 
@@ -110,6 +108,14 @@ export const Chat = ({
 
     return hasUnread
   }, [lastMessageId, getUnreadRoom, room.id])
+
+  useChatMessage({
+    pusherKey,
+    roomId: room.id,
+    notifyNewMessage,
+    dispatch,
+    updateUnread,
+  })
 
   useEffect(() => {
     const chatListDiv = chatRoomRef.current
@@ -162,7 +168,7 @@ export const Chat = ({
     if (messages.length) {
       return getMessages({
         roomId: room.id,
-        lastMessageId: firstMessageId,
+        lastMessageId: Number(firstMessageId),
         backward: true,
       })
     } else {

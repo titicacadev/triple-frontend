@@ -61,7 +61,7 @@ export const ChatReducer = (
         messages: action.messages,
         hasPrevMessage: true,
         firstMessageId: action.messages.length ? action.messages[0].id : 0,
-        lastMessageId: action.lastMessageId,
+        lastMessageId: Number(action.lastMessageId),
       }
 
     case ChatActions.PAST:
@@ -89,7 +89,7 @@ export const ChatReducer = (
             : state.messages,
           action.messages,
         ),
-        lastMessageId: action.messages[action.messages.length - 1].id,
+        lastMessageId: Number(action.messages[action.messages.length - 1].id),
       }
 
     case ChatActions.NEW:
