@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-map",
-  "version": "12.19.0",
+  "version": "12.19.1",
   "description": "Static map component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/static-map",
@@ -27,10 +27,10 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.19.0"
+    "@titicaca/core-elements": "^12.19.1"
   },
   "devDependencies": {
-    "@titicaca/type-definitions": "^12.19.0"
+    "@titicaca/type-definitions": "^12.19.1"
   },
   "peerDependencies": {
     "react": "^18.0",

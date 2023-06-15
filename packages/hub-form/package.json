@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/hub-form",
-  "version": "12.19.0",
+  "version": "12.19.1",
   "description": "Form for hub-like pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/hub-form",
@@ -27,8 +27,8 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.19.0",
-    "@titicaca/core-elements": "^12.19.0"
+    "@titicaca/color-palette": "^12.19.1",
+    "@titicaca/core-elements": "^12.19.1"
   },
   "peerDependencies": {
     "react": "^18.0",
