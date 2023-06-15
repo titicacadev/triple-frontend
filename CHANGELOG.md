@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v12.19.1
+
+### core-elements
+
+- [core-elements] radio-group, checkbox-group export [#2707](https://github.com/titicacadev/triple-frontend/pull/2707)
+
 ## v12.19.0
 
 ### footer
