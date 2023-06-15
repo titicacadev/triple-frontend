@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "12.18.3",
+  "version": "12.19.0",
   "description": "a/b experiments package",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ab-experiments",
@@ -25,10 +25,10 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/fetcher": "^12.18.3"
+    "@titicaca/fetcher": "^12.19.0"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.18.3"
+    "@titicaca/react-contexts": "^12.19.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",

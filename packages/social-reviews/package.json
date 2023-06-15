@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/social-reviews",
-  "version": "12.18.3",
+  "version": "12.19.0",
   "description": "Social reviews section for Triple contents",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/social-reviews",
@@ -27,13 +27,13 @@
     "lint:etc:fix": "prettier src --write"
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.18.3",
-    "@titicaca/router": "^12.18.3"
+    "@titicaca/core-elements": "^12.19.0",
+    "@titicaca/router": "^12.19.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.18.3",
+    "@titicaca/i18n": "^12.19.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.18.3"
+    "@titicaca/react-contexts": "^12.19.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
