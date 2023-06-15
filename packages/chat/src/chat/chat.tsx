@@ -101,9 +101,13 @@ export const Chat = ({
     })
     const { hasUnread = false, others = [] } = unreadRoomResult || {}
 
+    const otherUnreadInfo = others.map(({ memberId, lastSeenMessageId }) => ({
+      memberId,
+      lastSeenMessageId: Number(lastSeenMessageId),
+    }))
     dispatch({
       action: ChatActions.UPDATE,
-      otherUnreadInfo: others,
+      otherUnreadInfo,
     })
 
     return hasUnread
