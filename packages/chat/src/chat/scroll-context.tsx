@@ -40,6 +40,7 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
         top: getChatListHeight() - scrollY,
       })
       chatRoomRef.current.parentElement.style.overflowY = 'scroll'
+      window.scrollTo(0, getChatListHeight() - scrollY)
     }
   }, [chatRoomRef, scrollY])
 
