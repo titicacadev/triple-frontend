@@ -9,6 +9,7 @@ import { useScrollContext } from './scroll-context'
 interface ChatPusherProps {
   pusherKey: string
   roomId: string
+  userMeId: string
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   dispatch: Dispatch<ChatAction>
 }
@@ -16,6 +17,7 @@ interface ChatPusherProps {
 export const useChatMessage = ({
   pusherKey,
   roomId,
+  userMeId,
   notifyNewMessage,
   dispatch,
 }: ChatPusherProps) => {
@@ -65,16 +67,18 @@ export const useChatMessage = ({
   }: {
     otherUnreadInfo: HasUnreadOfRoomInterface
   }) {
-    const others = otherUnreadInfo.others.map(
-      ({ memberId, lastSeenMessageId }) => ({
+    const others = otherUnreadInfo.others
+      .map(({ memberId, lastSeenMessageId }) => ({
         memberId,
         lastSeenMessageId: Number(lastSeenMessageId),
-      }),
-    )
-    dispatch({
-      action: ChatActions.UPDATE,
-      otherUnreadInfo: others,
-    })
+      }))
+      .filter(({ memberId }) => memberId === userMeId)
+
+    others.length > 0 &&
+      dispatch({
+        action: ChatActions.UPDATE,
+        otherUnreadInfo: others,
+      })
   }
 }
 

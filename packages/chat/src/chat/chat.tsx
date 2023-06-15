@@ -116,6 +116,7 @@ export const Chat = ({
   useChatMessage({
     pusherKey,
     roomId: room.id,
+    userMeId: userInfo.me.id,
     notifyNewMessage,
     dispatch,
   })
