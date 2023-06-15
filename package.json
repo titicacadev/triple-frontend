@@ -107,5 +107,8 @@
     "**/*.{json,yaml,md}": [
       "prettier --check"
     ]
+  },
+  "dependencies": {
+    "npm": "^9.5.0"
   }
 }
