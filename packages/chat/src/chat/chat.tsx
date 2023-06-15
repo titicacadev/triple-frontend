@@ -118,7 +118,6 @@ export const Chat = ({
     roomId: room.id,
     notifyNewMessage,
     dispatch,
-    updateUnread,
   })
 
   useEffect(() => {
@@ -159,12 +158,6 @@ export const Chat = ({
             lastMessageId: Number(room.lastMessageId),
           })
       }
-
-      await updateUnread()
-
-      window.setTimeout(() => {
-        scrollToBottom()
-      }, 0)
     })()
   }, [room, initMessages]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -214,32 +207,21 @@ export const Chat = ({
       showFailToast?.('메시지 발송에 실패했습니다.')
     }
 
-    scrollToBottom()
-
     return success
   }
+
+  const handleChangeLastMessageId = async () => {
+    await updateUnread()
+    scrollToBottom()
+  }
+
+  useEffect(() => {
+    void handleChangeLastMessageId()
+  }, [lastMessageId])
 
   useEffect(() => {
     postMessage && setPostMessage?.(() => postMessageAction)
   }, [postMessage, setPostMessage]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  /** 채팅창 메시지(lastMessageId)가 업데이트 될 경우 채팅창 스크롤을 맨 아래로 이동 */
-  const chatRoomResizeObserver = useMemo(
-    () => new ResizeObserver(scrollToBottom),
-    [],
-  )
-
-  useEffect(() => {
-    if (!chatRoomRef?.current) {
-      return
-    }
-
-    chatRoomResizeObserver.observe(chatRoomRef.current)
-
-    return () => {
-      chatRoomResizeObserver.disconnect()
-    }
-  }, [lastMessageId, chatRoomResizeObserver])
 
   const onChangeScroll = async ({
     isIntersecting,
