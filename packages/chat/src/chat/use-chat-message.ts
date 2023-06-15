@@ -11,7 +11,6 @@ interface ChatPusherProps {
   roomId: string
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   dispatch: Dispatch<ChatAction>
-  updateUnread: () => Promise<boolean | undefined>
 }
 
 export const useChatMessage = ({
@@ -19,7 +18,6 @@ export const useChatMessage = ({
   roomId,
   notifyNewMessage,
   dispatch,
-  updateUnread,
 }: ChatPusherProps) => {
   const { channelName, sendMessage, unreadMessage } =
     getChatChannelAndEventName(roomId)
@@ -59,7 +57,6 @@ export const useChatMessage = ({
       messages: [updatedMessage],
     })
     notifyNewMessage?.(updatedMessage)
-    await updateUnread?.()
     scrollToBottom()
   }
 
