@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v12.19.0
+
+### footer
+
+- [footer] 푸터 사명 변경 [#2690](https://github.com/titicacadev/triple-frontend/pull/2690)
+
+### image-carousel
+
+- 비디오 자동 재생 시에 간헐적으로 발생하는 NotAllowedError를 핸들링합니다. [#2693](https://github.com/titicacadev/triple-frontend/pull/2693)
+
+### review
+
+- 비디오 자동 재생 시에 간헐적으로 발생하는 NotAllowedError를 핸들링합니다. [#2693](https://github.com/titicacadev/triple-frontend/pull/2693)
+
 ## v12.18.3
 
 ### constants
