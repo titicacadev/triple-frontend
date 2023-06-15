@@ -83,7 +83,7 @@ export const useChatMessage = ({
 
 function getChatChannelAndEventName(roomId: string) {
   return {
-    channelName: `TRIPLE_CHAT_CHANNEL_${roomId}`,
+    channelName: `TRIPLE_CHAT_ROOM_CHANNEL_${roomId}`,
     sendMessage: `TRIPLE_CHAT_MESSAGE_${roomId}`, // 채팅 메시지 업데이트
     unreadMessage: `TRIPLE_CHAT_UNREAD_MESSAGE_${roomId}`, // 읽지 않은 메시지 업데이트
   }
