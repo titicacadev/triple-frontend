@@ -36,7 +36,6 @@
     ]
   },
   "dependencies": {
-    "@tanstack/react-query": "4.29.7",
     "@titicaca/action-sheet": "^12.21.0",
     "@titicaca/core-elements": "^12.21.0",
     "@titicaca/fetcher": "^12.21.0",
@@ -58,6 +57,7 @@
     "@graphql-codegen/typescript": "4.0.0",
     "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
     "@graphql-codegen/typescript-operations": "4.0.0",
+    "@tanstack/react-query": "^4.29.13",
     "@titicaca/i18n": "^12.21.0",
     "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "^12.21.0",
@@ -66,6 +66,7 @@
     "csstype": "^3.1.2"
   },
   "peerDependencies": {
+    "@tanstack/react-query": "^4.0.0",
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "@titicaca/react-triple-client-interfaces": "*",
