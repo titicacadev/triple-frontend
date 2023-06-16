@@ -1,3 +1,5 @@
+import path from 'path'
+
 import i18next, { i18n, InitOptions, Namespace, ResourceKey } from 'i18next'
 
 let i18nInstance: i18n | null = null
@@ -13,6 +15,14 @@ export const FALLBACK_LANGUAGE = 'ko'
 export const LANGUAGES = [FALLBACK_LANGUAGE, 'en', 'ja', 'zh']
 export const DEFAULT_NAMESPACE = 'local'
 export const LANGUAGE_COOKIE_NAME = 'LANGUAGE'
+
+function getI18nResource(language: Language): ResourceKey {
+  const LOCALE_PATH = './public/static/locales'
+
+  return typeof window === 'undefined'
+    ? require(path.resolve(LOCALE_PATH, language, 'local.json'))
+    : require(`/public/static/locales/${language}/local.json`)
+}
 
 function constructResources(languages: Language[]) {
   const initialResources = {
@@ -31,8 +41,8 @@ function constructResources(languages: Language[]) {
   }
 
   return languages.reduce((acc, lang) => {
-    acc[lang].local =
-      require(`/public/static/locales/${lang}/local.json`) as ResourceKey
+    acc[lang].local = getI18nResource(lang)
+
     return acc
   }, initialResources)
 }
