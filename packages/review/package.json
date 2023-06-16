@@ -35,14 +35,6 @@
       "eslint"
     ]
   },
-  "lint-staged": {
-    "*": [
-      "prettier --check"
-    ],
-    "*.{js,ts,tsx}": [
-      "eslint"
-    ]
-  },
   "dependencies": {
     "@tanstack/react-query": "4.29.7",
     "@titicaca/action-sheet": "^12.21.0",
