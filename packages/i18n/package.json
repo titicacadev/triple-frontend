@@ -39,6 +39,7 @@
     "@types/node-fetch": "2.x"
   },
   "peerDependencies": {
+    "react": "*",
     "i18next": "*"
   }
 }
