@@ -17,6 +17,8 @@ import {
   SHORTENED_REVIEWS_COUNT_PER_PAGE,
 } from '../constants'
 
+import { TripleQueryClientContext } from './triple-react-query'
+
 export function usePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
 ) {
@@ -30,7 +32,7 @@ export function usePopularReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false },
+    { refetchOnMount: false, context: TripleQueryClientContext },
   )
 }
 
@@ -47,7 +49,7 @@ export function useLatestReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false },
+    { refetchOnMount: false, context: TripleQueryClientContext },
   )
 }
 
@@ -78,6 +80,7 @@ export function useInfinitePopularReviews(
       }),
       keepPreviousData: true,
       refetchOnMount: false,
+      context: TripleQueryClientContext,
     },
   )
 }
@@ -109,6 +112,7 @@ export function useInfiniteLatestReviews(
       }),
       keepPreviousData: true,
       refetchOnMount: false,
+      context: TripleQueryClientContext,
     },
   )
 }
@@ -128,6 +132,7 @@ export function useReviewCount(
           }
         : undefined,
       refetchOnMount: false,
+      context: TripleQueryClientContext,
     },
   )
 }
@@ -136,7 +141,7 @@ export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
   return useQuery(
     ['review/getReviewSpecification', params],
     () => client.GetReviewSpecification(params),
-    { refetchOnMount: false },
+    { refetchOnMount: false, context: TripleQueryClientContext },
   )
 }
 
@@ -144,7 +149,7 @@ export function useMyReview(params: GetMyReviewQueryVariables) {
   return useQuery(
     ['review/getMyReview', params],
     () => client.GetMyReview(params),
-    { refetchOnMount: false },
+    { refetchOnMount: false, context: TripleQueryClientContext },
   )
 }
 
@@ -158,6 +163,7 @@ export function useLikeReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewLiked?.(variables.resourceId, variables.reviewId)
       },
+      context: TripleQueryClientContext,
     },
   )
 }
@@ -172,6 +178,7 @@ export function useUnlikeReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
       },
+      context: TripleQueryClientContext,
     },
   )
 }
@@ -186,6 +193,7 @@ export function useDeleteReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewDeleted?.(variables.resourceId, variables.id)
       },
+      context: TripleQueryClientContext,
     },
   )
 }
