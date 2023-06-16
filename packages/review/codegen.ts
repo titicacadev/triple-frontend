@@ -13,6 +13,9 @@ const config: CodegenConfig = {
       ],
     },
   },
+  config: {
+    documentMode: 'documentNode',
+  },
 }
 
 export default config
