@@ -79,7 +79,7 @@ function initializeI18n({ lang }: { lang?: Language } = {}) {
   i18next.init({ ...getOptions() })
 }
 
-export function getTranslation(namespace: string) {
+export function useTranslation(namespace: string) {
   initializeI18n()
   return i18next.getFixedT(null, namespace)
 }
