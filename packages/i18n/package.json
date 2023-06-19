@@ -15,7 +15,9 @@
   "files": [
     "lib",
     "client.js",
-    "client.d.ts"
+    "client.d.ts",
+    "server.js",
+    "server.d.ts"
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
