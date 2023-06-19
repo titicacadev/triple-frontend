@@ -14,6 +14,5 @@ export function useCurrentLanguage() {
 
 export function useTranslation(namespace: string) {
   const lang = useCurrentLanguage()
-  i18next.changeLanguage(lang)
-  i18next.getFixedT(null, namespace)
+  return i18next.getFixedT(lang, namespace)
 }
