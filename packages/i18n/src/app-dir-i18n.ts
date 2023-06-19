@@ -1,6 +1,10 @@
 import { ComponentType } from 'react'
 import { createInstance, InitOptions, Namespace } from 'i18next'
 
+import { koCommonWeb } from './assets/ko/common-web'
+import { jaCommonWeb } from './assets/ja/common-web'
+import { zhCommonWeb } from './assets/zh/common-web'
+
 const i18nInstance = createInstance()
 
 interface I18nConfigParams {
@@ -18,15 +22,18 @@ export const LANGUAGE_COOKIE_NAME = 'LANGUAGE'
 function constructResources(languages: Language[]) {
   const initialResources = {
     ko: {
+      common: koCommonWeb,
       local: {},
     },
     en: {
       local: {},
     },
     ja: {
+      common: jaCommonWeb,
       local: {},
     },
     zh: {
+      common: zhCommonWeb,
       local: {},
     },
   }
