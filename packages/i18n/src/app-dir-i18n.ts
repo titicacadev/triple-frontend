@@ -53,15 +53,18 @@ export function getOptions({
 }
 
 export function appWithTranslation<T>(rootLayout: ComponentType<T>) {
-  initializeI18n()
+  if (i18nInstance === null) {
+    initializeI18n()
+  }
 
+  // eslint-disable-next-line no-console
+  console.log('appWithTranslation', i18nInstance?.isInitialized)
   return rootLayout
 }
 
 function initializeI18n() {
-  if (i18nInstance !== null) {
-    return i18nInstance
-  }
+  // eslint-disable-next-line no-console
+  console.log('here')
 
   const newInstance = i18next.createInstance()
   newInstance.init({ ...getOptions() })
@@ -76,6 +79,13 @@ export function getTranslation({
   lang: string
   namespace: string
 }) {
-  const instance = initializeI18n()
-  return instance.getFixedT(lang, namespace)
+  if (i18nInstance === null) {
+    const instance = initializeI18n()
+    return instance.getFixedT(lang, namespace)
+  }
+
+  // eslint-disable-next-line no-console
+  console.log('getTranslation', i18nInstance?.isInitialized)
+
+  return i18nInstance.getFixedT(lang, namespace)
 }
