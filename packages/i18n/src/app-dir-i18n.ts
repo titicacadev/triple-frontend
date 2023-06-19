@@ -1,9 +1,9 @@
 import { ComponentType } from 'react'
-import i18next, { i18n, InitOptions, Namespace } from 'i18next'
+import { createInstance, InitOptions, Namespace } from 'i18next'
 
-let i18nInstance: i18n | null = null
+const i18nInstance = createInstance()
 
-export interface I18nConfigParams {
+interface I18nConfigParams {
   lang: string
   namespace: Namespace
 }
@@ -38,7 +38,7 @@ function constructResources(languages: Language[]) {
   }, initialResources)
 }
 
-export function getOptions({
+function getOptions({
   lang = FALLBACK_LANGUAGE,
   namespace = DEFAULT_NAMESPACE,
 }: Partial<I18nConfigParams> = {}): InitOptions {
@@ -53,23 +53,16 @@ export function getOptions({
 }
 
 export function appWithTranslation<T>(rootLayout: ComponentType<T>) {
-  if (i18nInstance === null) {
-    initializeI18n()
-  }
-
-  // eslint-disable-next-line no-console
-  console.log('appWithTranslation', i18nInstance?.isInitialized)
+  initializeI18n()
   return rootLayout
 }
 
 function initializeI18n() {
-  // eslint-disable-next-line no-console
-  console.log('here')
+  if (i18nInstance.isInitialized) {
+    return
+  }
 
-  const newInstance = i18next.createInstance()
-  newInstance.init({ ...getOptions() })
-  i18nInstance = newInstance
-  return newInstance
+  i18nInstance.init({ ...getOptions() })
 }
 
 export function getTranslation({
@@ -79,13 +72,6 @@ export function getTranslation({
   lang: string
   namespace: string
 }) {
-  if (i18nInstance === null) {
-    const instance = initializeI18n()
-    return instance.getFixedT(lang, namespace)
-  }
-
-  // eslint-disable-next-line no-console
-  console.log('getTranslation', i18nInstance?.isInitialized)
-
+  initializeI18n()
   return i18nInstance.getFixedT(lang, namespace)
 }
