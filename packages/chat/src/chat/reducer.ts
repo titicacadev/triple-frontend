@@ -71,7 +71,6 @@ export const ChatReducer = (
           messages: mergeMessages(action.messages, state.messages),
           firstMessageId: action.messages[0].id,
           hasPrevMessage: true,
-          otherUnreadInfo: [],
         }
       } else {
         return { ...state, hasPrevMessage: false }
