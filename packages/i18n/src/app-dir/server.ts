@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import i18next, { InitOptions, Namespace } from 'i18next'
+import { InitOptions, Namespace, createInstance } from 'i18next'
 
 import { koCommonWeb } from '../assets/ko/common-web'
 import { jaCommonWeb } from '../assets/ja/common-web'
@@ -7,6 +7,8 @@ import { zhCommonWeb } from '../assets/zh/common-web'
 
 import { DEFAULT_NAMESPACE, FALLBACK_LANGUAGE, LANGUAGES } from './constants'
 import { Language } from './types'
+
+export let i18nInstance = createInstance()
 
 interface I18nConfigParams {
   lang: string
@@ -68,18 +70,20 @@ export function appWithTranslation<T extends { params: { lang: Language } }>(
   }
 }
 
-function initializeI18n({ lang }: { lang?: Language } = {}) {
-  if (i18next.isInitialized) {
-    const language = lang ?? i18next.resolvedLanguage
+export function initializeI18n({ lang }: { lang?: Language } = {}) {
+  if (i18nInstance.isInitialized) {
+    const language = lang ?? i18nInstance.resolvedLanguage
 
-    i18next.changeLanguage(language)
+    i18nInstance = i18nInstance.cloneInstance({
+      ...getOptions({ lang: language }),
+    })
     return
   }
 
-  i18next.init({ ...getOptions() })
+  i18nInstance.init({ ...getOptions() })
 }
 
 export function useTranslation(namespace: string) {
   initializeI18n()
-  return i18next.getFixedT(null, namespace)
+  return i18nInstance.getFixedT(null, namespace)
 }

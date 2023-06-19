@@ -1,8 +1,8 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import i18next from 'i18next'
 
+import { initializeI18n, i18nInstance } from './server'
 import { FALLBACK_LANGUAGE, LANGUAGES } from './constants'
 import { Language } from './types'
 
@@ -13,6 +13,7 @@ export function useCurrentLanguage() {
 }
 
 export function useTranslation(namespace: string) {
+  initializeI18n()
   const lang = useCurrentLanguage()
-  return i18next.getFixedT(lang, namespace)
+  return i18nInstance.getFixedT(lang, namespace)
 }
