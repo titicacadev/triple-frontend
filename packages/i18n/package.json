@@ -13,7 +13,9 @@
   },
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "client.js",
+    "client.d.ts"
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
