@@ -1,1 +1,1 @@
-export type Language = 'ko' | 'en' | 'zh' | 'ja'
+export type Language = 'ko' | 'en' | 'ja' | 'zh' | 'zh-TW'
