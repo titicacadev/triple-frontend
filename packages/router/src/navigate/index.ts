@@ -16,7 +16,11 @@ import canonizeTargetAddress from './canonization'
 
 export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
-}: { changeLocationHref?: (href: string) => void } = {}) {
+  transitionModalType = TransitionType.General,
+}: {
+  changeLocationHref?: (href: string) => void
+  transitionModalType?: TransitionType
+} = {}) {
   const { webUrlBase } = useEnv()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
@@ -37,7 +41,7 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal(TransitionType.General)
+      showTransitionModal(transitionModalType)
     },
     [changeLocationHref, showTransitionModal, webUrlBase],
   )
