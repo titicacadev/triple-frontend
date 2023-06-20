@@ -72,15 +72,29 @@ export function appWithTranslation<T extends { params: { lang: Language } }>(
 
 export function initializeI18n({ lang }: { lang?: Language } = {}) {
   if (i18nInstance.isInitialized) {
-    const language = lang ?? i18nInstance.resolvedLanguage
+    if (lang === undefined) {
+      return
+    }
 
     i18nInstance = i18nInstance.cloneInstance({
-      ...getOptions({ lang: language }),
+      ...getOptions({ lang }),
     })
+
     return
   }
 
   i18nInstance.init({ ...getOptions() })
+}
+
+export function getTranslation({
+  lang,
+  namespace,
+}: {
+  lang: Language
+  namespace: string
+}) {
+  initializeI18n()
+  return i18nInstance.getFixedT(lang, namespace)
 }
 
 export function useTranslation(namespace: string) {
