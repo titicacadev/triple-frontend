@@ -13,6 +13,7 @@ import {
   PostMessageType,
   RoomInterface,
   TextPayload,
+  UpdateChatData,
   UserInfoInterface,
   UserType,
 } from '../types'
@@ -52,6 +53,8 @@ export interface ChatProps {
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   showFailToast?: (message: string) => void
+
+  updateChatData?: UpdateChatData
 }
 
 /**
@@ -71,6 +74,7 @@ export const Chat = ({
   getUnreadRoom,
   notifyNewMessage,
   showFailToast,
+  updateChatData,
   ...props
 }: ChatProps) => {
   const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
@@ -114,11 +118,11 @@ export const Chat = ({
   }, [lastMessageId, getUnreadRoom, room.id])
 
   useChatMessage({
-    pusherKey,
     roomId: room.id,
     userMeId: userInfo.me.id,
     notifyNewMessage,
     dispatch,
+    updateChatData,
   })
 
   useEffect(() => {

@@ -130,6 +130,10 @@ export interface RoomMembersInterface {
   others: UserInterface[]
 }
 
+export interface UpdateChatData {
+  message?: MessageInterface
+  otherUnreadInfo?: HasUnreadOfRoomInterface
+}
 /**
  * @alias RoomMembersInterface
  */
