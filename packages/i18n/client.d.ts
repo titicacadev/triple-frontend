@@ -1,1 +1,1 @@
-export * from './lib/app-dir/client'
+export * from './lib/app-directory/client'

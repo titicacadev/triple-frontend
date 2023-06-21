@@ -1,1 +1,1 @@
-export * from './lib/app-dir/middleware-utils'
+export * from './lib/app-directory/middleware-utils'

@@ -1,1 +1,1 @@
-module.exports = require('./lib/app-dir/middleware-utils')
+module.exports = require('./lib/app-directory/middleware-utils')

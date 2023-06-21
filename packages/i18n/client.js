@@ -1,1 +1,1 @@
-module.exports = require('./lib/app-dir/client')
+module.exports = require('./lib/app-directory/client')
