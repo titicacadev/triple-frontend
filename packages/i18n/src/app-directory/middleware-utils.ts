@@ -16,10 +16,20 @@ export function getValidLangUrlWithCookie(req: NextRequest) {
   return new URL(`/${cookieLang}${pathname}${search}`, url)
 }
 
-export function isInvalidLangParam(req: NextRequest) {
+export function isInvalidLangParam({
+  req,
+  healthCheckPath,
+}: {
+  req: NextRequest
+  healthCheckPath: string
+}) {
   const {
     nextUrl: { pathname },
   } = req
+
+  if (pathname.includes(healthCheckPath)) {
+    return
+  }
 
   const langParam = pathname
     .split('/')
