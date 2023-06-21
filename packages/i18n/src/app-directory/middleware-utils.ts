@@ -21,21 +21,18 @@ export function isInvalidLangParam(req: NextRequest) {
     nextUrl: { pathname },
   } = req
 
-  return !hasValidLangPathParam(pathname) && !pathname.startsWith('/_next')
+  const langParam = pathname
+    .split('/')
+    .filter((pathSegment) => pathSegment !== '')[0]
+
+  return (
+    (langParam === undefined || !LANGUAGES.includes(langParam)) &&
+    !pathname.startsWith('/_next')
+  )
 }
 
 function getLanguageFromCookie(value: string | undefined) {
   return value !== undefined && LANGUAGES.includes(value)
     ? value
     : FALLBACK_LANGUAGE
-}
-
-function hasValidLangPathParam(pathname: string) {
-  const langParamCandidate = pathname
-    .split('/')
-    .filter((pathSegment) => pathSegment !== '')[0]
-
-  return (
-    langParamCandidate !== undefined && LANGUAGES.includes(langParamCandidate)
-  )
 }
