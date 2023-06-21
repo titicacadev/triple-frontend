@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 /* eslint-disable import/no-absolute-path */
 const path = require('path')
 
@@ -8,9 +7,20 @@ const { zhCommonWeb } = require('./assets/zh/common-web')
 
 const LOCALE_PATH = './public/static/locales'
 
-const koLocal = require('/public/static/locales/ko/local.json')
-const jaLocal = require('/public/static/locales/ja/local.json')
-const zhLocal = require('/public/static/locales/zh/local.json')
+const koLocal =
+  typeof window === 'undefined'
+    ? require(path.resolve(LOCALE_PATH, 'ko', 'local.json'))
+    : require('/public/static/locales/ko/local.json')
+
+const jaLocal =
+  typeof window === 'undefined'
+    ? require(path.resolve(LOCALE_PATH, 'ja', 'local.json'))
+    : require('/public/static/locales/ja/local.json')
+
+const zhLocal =
+  typeof window === 'undefined'
+    ? require(path.resolve(LOCALE_PATH, 'zh', 'local.json'))
+    : require('/public/static/locales/zh/local.json')
 
 const resources = {
   ko: {
