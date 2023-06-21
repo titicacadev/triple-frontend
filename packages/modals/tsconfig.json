@@ -5,6 +5,7 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/view-utilities": ["../view-utilities/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"]
     }
   },
