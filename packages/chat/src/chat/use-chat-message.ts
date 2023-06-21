@@ -1,56 +1,46 @@
 import { Dispatch, useEffect } from 'react'
-import Pusher from 'pusher-js'
 
-import { HasUnreadOfRoomInterface, MessageInterface } from '../types'
+import {
+  HasUnreadOfRoomInterface,
+  MessageInterface,
+  UpdateChatData,
+} from '../types'
 
 import { ChatAction, ChatActions } from './reducer'
 import { useScrollContext } from './scroll-context'
 
 interface ChatPusherProps {
-  pusherKey: string
   roomId: string
   userMeId: string
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   dispatch: Dispatch<ChatAction>
+  updateChatData?: UpdateChatData
 }
 
 export const useChatMessage = ({
-  pusherKey,
   roomId,
   userMeId,
   notifyNewMessage,
   dispatch,
+  updateChatData,
 }: ChatPusherProps) => {
-  const { channelName, sendMessage, unreadMessage } =
-    getChatChannelAndEventName(roomId)
   const { scrollToBottom } = useScrollContext()
 
   useEffect(() => {
-    const pusher = new Pusher(pusherKey, {
-      cluster: 'ap3',
-      ignoreNullOrigin: true,
-      forceTLS: true,
-    })
-
-    const channel = pusher.subscribe(channelName)
-
-    channel.bind(sendMessage, handleSendMessageEvent)
-    channel.bind(unreadMessage, handleUnreadMessageEvent)
-
-    return () => {
-      pusher.unsubscribe(channelName)
-      pusher.unbind_all()
-      pusher.disconnect()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelName, sendMessage, unreadMessage])
+    updateChatData?.message &&
+      handleSendMessageEvent({ message: updateChatData.message })
+    updateChatData?.otherUnreadInfo &&
+      handleUnreadMessageEvent({
+        otherUnreadInfo: updateChatData.otherUnreadInfo,
+      })
+  }, [updateChatData])
 
   async function handleSendMessageEvent({
     message: updatedMessage,
   }: {
     message: MessageInterface
   }) {
-    if (!updatedMessage || !roomId) {
+    if (!roomId) {
       return
     }
 
@@ -79,13 +69,5 @@ export const useChatMessage = ({
         action: ChatActions.UPDATE,
         otherUnreadInfo: others,
       })
-  }
-}
-
-function getChatChannelAndEventName(roomId: string) {
-  return {
-    channelName: `TRIPLE_CHAT_ROOM_CHANNEL_${roomId}`,
-    sendMessage: `TRIPLE_CHAT_MESSAGE_${roomId}`, // 채팅 메시지 업데이트
-    unreadMessage: `TRIPLE_CHAT_UNREAD_MESSAGE_${roomId}`, // 읽지 않은 메시지 업데이트
   }
 }
