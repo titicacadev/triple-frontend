@@ -13,7 +13,15 @@
   },
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "app-directory.d.ts",
+    "app-directory.js",
+    "client.d.ts",
+    "client.js",
+    "middleware-utils.d.ts",
+    "middleware-utils.js",
+    "server.d.ts",
+    "server.js"
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
@@ -37,5 +45,10 @@
   },
   "devDependencies": {
     "@types/node-fetch": "2.x"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "next": "*",
+    "i18next": "*"
   }
 }
