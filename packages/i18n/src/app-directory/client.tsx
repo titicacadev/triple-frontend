@@ -6,11 +6,11 @@ import { Trans as OriginalTrans } from 'react-i18next'
 
 import { initializeI18n, i18nInstance } from './server'
 import { FALLBACK_LANGUAGE, LANGUAGES } from './constants'
-import { Language } from './types'
+import { Language, Namespace } from './types'
 
 export function Trans(
   props: ComponentProps<typeof OriginalTrans> & {
-    namespace: string
+    namespace: Namespace
   },
 ) {
   const { children, namespace, ...rest } = props
@@ -33,13 +33,13 @@ export function getTranslation({
   namespace,
 }: {
   lang: Language
-  namespace: string
+  namespace: Namespace
 }) {
   initializeI18n()
   return i18nInstance.getFixedT(lang, namespace)
 }
 
-export function useTranslation(namespace: string) {
+export function useTranslation(namespace: Namespace) {
   const lang = useCurrentLanguage()
   initializeI18n()
   return i18nInstance.getFixedT(lang, namespace)

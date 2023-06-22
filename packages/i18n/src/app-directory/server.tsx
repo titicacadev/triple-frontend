@@ -2,7 +2,7 @@ import { ComponentProps, PropsWithChildren } from 'react'
 import { createInstance } from 'i18next'
 import { Trans as OriginalTrans } from 'react-i18next/TransWithoutContext'
 
-import { Language } from './types'
+import { Language, Namespace } from './types'
 import { getOptions } from './configs'
 
 export let i18nInstance = createInstance()
@@ -11,7 +11,7 @@ type Layout<T> = (props: PropsWithChildren<T>) => JSX.Element
 
 export function Trans(
   props: ComponentProps<typeof OriginalTrans> & {
-    namespace: string
+    namespace: Namespace
   },
 ) {
   const { children, namespace, ...rest } = props
@@ -56,13 +56,13 @@ export function getTranslation({
   namespace,
 }: {
   lang: Language
-  namespace: string
+  namespace: Namespace
 }) {
   initializeI18n()
   return i18nInstance.getFixedT(lang, namespace)
 }
 
-export function useTranslation(namespace: string) {
+export function useTranslation(namespace: Namespace) {
   initializeI18n()
   return i18nInstance.getFixedT(null, namespace)
 }
