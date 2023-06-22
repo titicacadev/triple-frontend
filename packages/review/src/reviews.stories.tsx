@@ -1,22 +1,16 @@
+import { ComponentStoryObj, Meta } from '@storybook/react'
 import { TransitionModal } from '@titicaca/modals'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import {
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
 
 import { Reviews } from '.'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-})
+const queryClient = new QueryClient()
 
 export default {
   title: 'Review / Reviews',
