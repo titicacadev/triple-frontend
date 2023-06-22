@@ -1,23 +1,21 @@
-import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useInfiniteQuery, useMutation, useQuery } from 'react-query'
 
-import {
-  client,
-  GetMyReviewQueryVariables,
-  GetReviewSpecificationQueryVariables,
-  GetReviewsCountQueryVariables,
-  LikeReviewMutationVariables,
-  UnlikeReviewMutationVariables,
-  DeleteReviewMutationVariables,
-  GetPopularReviewsQueryVariables,
-  GetLatestReviewsQueryVariables,
-} from '../data/graphql'
 import {
   DEFAULT_REVIEWS_COUNT_PER_PAGE,
   SHORTENED_REVIEWS_COUNT_PER_PAGE,
 } from '../constants'
-
-import { TripleQueryClientContext } from './triple-react-query'
+import {
+  DeleteReviewMutationVariables,
+  GetLatestReviewsQueryVariables,
+  GetMyReviewQueryVariables,
+  GetPopularReviewsQueryVariables,
+  GetReviewSpecificationQueryVariables,
+  GetReviewsCountQueryVariables,
+  LikeReviewMutationVariables,
+  UnlikeReviewMutationVariables,
+  client,
+} from '../data/graphql'
 
 export function usePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
@@ -32,7 +30,7 @@ export function usePopularReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false, context: TripleQueryClientContext },
+    { refetchOnMount: false },
   )
 }
 
@@ -49,7 +47,7 @@ export function useLatestReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false, context: TripleQueryClientContext },
+    { refetchOnMount: false },
   )
 }
 
@@ -80,7 +78,6 @@ export function useInfinitePopularReviews(
       }),
       keepPreviousData: true,
       refetchOnMount: false,
-      context: TripleQueryClientContext,
     },
   )
 }
@@ -112,7 +109,6 @@ export function useInfiniteLatestReviews(
       }),
       keepPreviousData: true,
       refetchOnMount: false,
-      context: TripleQueryClientContext,
     },
   )
 }
@@ -132,7 +128,6 @@ export function useReviewCount(
           }
         : undefined,
       refetchOnMount: false,
-      context: TripleQueryClientContext,
     },
   )
 }
@@ -141,7 +136,7 @@ export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
   return useQuery(
     ['review/getReviewSpecification', params],
     () => client.GetReviewSpecification(params),
-    { refetchOnMount: false, context: TripleQueryClientContext },
+    { refetchOnMount: false },
   )
 }
 
@@ -149,7 +144,7 @@ export function useMyReview(params: GetMyReviewQueryVariables) {
   return useQuery(
     ['review/getMyReview', params],
     () => client.GetMyReview(params),
-    { refetchOnMount: false, context: TripleQueryClientContext },
+    { refetchOnMount: false },
   )
 }
 
@@ -163,7 +158,6 @@ export function useLikeReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewLiked?.(variables.resourceId, variables.reviewId)
       },
-      context: TripleQueryClientContext,
     },
   )
 }
@@ -178,7 +172,6 @@ export function useUnlikeReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
       },
-      context: TripleQueryClientContext,
     },
   )
 }
@@ -193,7 +186,6 @@ export function useDeleteReviewMutation() {
       onSuccess: (data, variables) => {
         notifyReviewDeleted?.(variables.resourceId, variables.id)
       },
-      context: TripleQueryClientContext,
     },
   )
 }
