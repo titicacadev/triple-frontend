@@ -36,7 +36,6 @@ export const MEDIA_ARGS: ChatContextValue = {
 }
 
 export const CHAT_ARGS: ChatProps = {
-  pusherKey: '0000',
   displayTarget: UserType.TNA_PARTNER,
   userInfo: {
     me: {

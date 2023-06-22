@@ -9,7 +9,7 @@ import {
 import { ChatAction, ChatActions } from './reducer'
 import { useScrollContext } from './scroll-context'
 
-interface ChatPusherProps {
+interface ChatMessageProps {
   roomId: string
   userMeId: string
   notifyNewMessage?: (lastMessage: MessageInterface) => void
@@ -23,7 +23,7 @@ export const useChatMessage = ({
   notifyNewMessage,
   dispatch,
   updateChatData,
-}: ChatPusherProps) => {
+}: ChatMessageProps) => {
   const { scrollToBottom } = useScrollContext()
 
   useEffect(() => {

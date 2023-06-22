@@ -29,7 +29,6 @@ const MINIMUM_INTERSECTING_TIME = 3000
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
-  pusherKey: string
   displayTarget: UserType
   /**
    * me(sender), others(receiver)에 대한 기본 정보
@@ -63,7 +62,6 @@ export interface ChatProps {
  * ChatContainer로 감싸서 함께 사용해야 합니다.
  */
 export const Chat = ({
-  pusherKey,
   displayTarget,
   userInfo,
   room,
