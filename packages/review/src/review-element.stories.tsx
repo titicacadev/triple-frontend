@@ -1,17 +1,17 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
-import monoImageData from './mocks/review-element.mono-image.json'
-import duoImagesData from './mocks/review-element.duo-images.json'
-import triImagesData from './mocks/review-element.tri-images.json'
-import quadImagesData from './mocks/review-element.quad-images.json'
-import pentaImagesData from './mocks/review-element.penta-images.json'
-import moreImagesData from './mocks/review-element.more-images.json'
-import monoVideoData from './mocks/review-element.mono-video.json'
-import duoVideosData from './mocks/review-element.duo-videos.json'
-import triVideosData from './mocks/review-element.tri-videos.json'
-import moreVideosData from './mocks/review-element.more-vidoes.json'
 import { ReviewElement } from './components/review-element'
+import duoImagesData from './mocks/review-element.duo-images.json'
+import duoVideosData from './mocks/review-element.duo-videos.json'
+import monoImageData from './mocks/review-element.mono-image.json'
+import monoVideoData from './mocks/review-element.mono-video.json'
+import moreImagesData from './mocks/review-element.more-images.json'
+import moreVideosData from './mocks/review-element.more-vidoes.json'
+import pentaImagesData from './mocks/review-element.penta-images.json'
+import quadImagesData from './mocks/review-element.quad-images.json'
+import triImagesData from './mocks/review-element.tri-images.json'
+import triVideosData from './mocks/review-element.tri-videos.json'
 
 const queryClient = new QueryClient()
 
