@@ -1,5 +1,6 @@
-import { PropsWithChildren } from 'react'
+import { ComponentProps, PropsWithChildren } from 'react'
 import { createInstance } from 'i18next'
+import { Trans as OriginalTrans } from 'react-i18next/TransWithoutContext'
 
 import { Language } from './types'
 import { getOptions } from './configs'
@@ -7,6 +8,20 @@ import { getOptions } from './configs'
 export let i18nInstance = createInstance()
 
 type Layout<T> = (props: PropsWithChildren<T>) => JSX.Element
+
+export function Trans(
+  props: ComponentProps<typeof OriginalTrans> & {
+    namespace: string
+  },
+) {
+  const { children, namespace, ...rest } = props
+
+  return (
+    <OriginalTrans i18n={i18nInstance} t={useTranslation(namespace)} {...rest}>
+      {children}
+    </OriginalTrans>
+  )
+}
 
 export function appWithTranslation<T extends { params: { lang: Language } }>(
   rootLayout: Layout<T>,
