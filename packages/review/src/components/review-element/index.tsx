@@ -200,6 +200,7 @@ function ReviewElement({
                 ...(recentTrip && { recent_trip: '최근여행' }),
               },
             })
+            unfolded && setUnfolded(false)
             onReviewClick(e, review.id)
           }}
         >
