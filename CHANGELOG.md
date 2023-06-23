@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v12.20.0
+
+### chat
+
+- chat 구현에서 Polling을 제거하고 스크롤 동작 버그를 수정합니다. [#2687](https://github.com/titicacadev/triple-frontend/pull/2687)
+
 ## v12.19.1
 
 ### core-elements
