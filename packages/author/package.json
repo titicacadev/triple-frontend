@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/author",
-  "version": "12.19.1",
+  "version": "12.20.0",
   "description": "Triple Author UI elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/author",
@@ -35,9 +35,9 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^12.19.1",
-    "@titicaca/core-elements": "^12.19.1",
-    "@titicaca/type-definitions": "^12.19.1"
+    "@titicaca/color-palette": "^12.20.0",
+    "@titicaca/core-elements": "^12.20.0",
+    "@titicaca/type-definitions": "^12.20.0"
   },
   "peerDependencies": {
     "react": "^18.0",
