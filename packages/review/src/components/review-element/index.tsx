@@ -41,7 +41,7 @@ export interface ReviewElementProps {
   onUserClick?: ReviewEventHandler
   onUnfoldButtonClick?: ReviewEventHandler
   onMenuClick: ReviewEventHandler
-  onReviewClick: (e: SyntheticEvent, reviewId: string) => void
+  onReviewClick: (e: SyntheticEvent, reviewId: string) => void | boolean
   onMessageCountClick: (e: SyntheticEvent, reviewId: string) => void
   onShow?: (index: number) => void
   reviewRateDescriptions?: string[]
@@ -200,8 +200,10 @@ function ReviewElement({
                 ...(recentTrip && { recent_trip: '최근여행' }),
               },
             })
-            unfolded && setUnfolded(false)
-            onReviewClick(e, review.id)
+            const reviewClickHandled = onReviewClick(e, review.id)
+            if (reviewClickHandled) {
+              unfolded && setUnfolded(false)
+            }
           }}
         >
           {blindedAt ? (
