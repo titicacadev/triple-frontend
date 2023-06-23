@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/search",
-  "version": "12.19.1",
+  "version": "12.20.0",
   "description": "search",
   "keywords": [
     "search"
@@ -38,13 +38,13 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.19.1",
-    "@titicaca/react-hooks": "^12.19.1",
+    "@titicaca/core-elements": "^12.20.0",
+    "@titicaca/react-hooks": "^12.20.0",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
-    "@titicaca/view-utilities": "^12.19.1"
+    "@titicaca/view-utilities": "^12.20.0"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^12.19.1"
+    "@titicaca/react-contexts": "^12.20.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
