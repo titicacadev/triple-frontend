@@ -35,9 +35,12 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     if (scrollY !== null && chatRoomRef.current?.parentElement) {
+      // iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가 ref: https://github.com/titicacadev/triple-geochat-web/pull/99
+      chatRoomRef.current.parentElement.style.overflowY = 'hidden'
       chatRoomRef.current.parentElement.scrollTo({
         top: getChatListHeight() - scrollY,
       })
+      chatRoomRef.current.parentElement.style.overflowY = 'scroll'
       window.scrollTo(0, getChatListHeight() - scrollY)
     }
   }, [chatRoomRef, scrollY])
