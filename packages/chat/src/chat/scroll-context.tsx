@@ -35,11 +35,9 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     if (scrollY !== null && chatRoomRef.current?.parentElement) {
-      chatRoomRef.current.parentElement.style.overflowY = 'hidden'
       chatRoomRef.current.parentElement.scrollTo({
         top: getChatListHeight() - scrollY,
       })
-      chatRoomRef.current.parentElement.style.overflowY = 'scroll'
       window.scrollTo(0, getChatListHeight() - scrollY)
     }
   }, [chatRoomRef, scrollY])
