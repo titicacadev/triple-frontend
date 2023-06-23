@@ -60,7 +60,9 @@ export const ChatReducer = (
         ...state,
         messages: action.messages,
         hasPrevMessage: true,
-        firstMessageId: action.messages.length ? action.messages[0].id : 0,
+        firstMessageId: action.messages.length
+          ? Number(action.messages[0].id)
+          : 0,
         lastMessageId: Number(action.lastMessageId),
       }
 
@@ -69,7 +71,7 @@ export const ChatReducer = (
         return {
           ...state,
           messages: mergeMessages(action.messages, state.messages),
-          firstMessageId: action.messages[0].id,
+          firstMessageId: Number(action.messages[0].id),
           hasPrevMessage: true,
         }
       } else {

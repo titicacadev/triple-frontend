@@ -99,7 +99,7 @@ export const Chat = ({
 
     const unreadRoomResult = await getUnreadRoom?.({
       roomId: room.id,
-      lastSeenMessageId: Number(lastMessageId),
+      lastSeenMessageId: lastMessageId,
     })
     const { hasUnread = false, others = [] } = unreadRoomResult || {}
 
@@ -151,14 +151,14 @@ export const Chat = ({
           dispatch({
             action: ChatActions.INIT,
             messages: result,
-            lastMessageId: Number(room.lastMessageId),
+            lastMessageId: room.lastMessageId,
           })
       } else {
         initMessages.length > 0 &&
           dispatch({
             action: ChatActions.INIT,
             messages: initMessages,
-            lastMessageId: Number(room.lastMessageId),
+            lastMessageId: room.lastMessageId,
           })
       }
     })()
@@ -168,7 +168,7 @@ export const Chat = ({
     if (messages.length) {
       return getMessages({
         roomId: room.id,
-        lastMessageId: Number(firstMessageId),
+        lastMessageId: firstMessageId,
         backward: true,
       })
     } else {
