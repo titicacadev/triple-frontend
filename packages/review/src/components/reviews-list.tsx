@@ -107,7 +107,7 @@ export default function ReviewsList({
       },
       [resourceId, navigateReviewDetail, regionId],
     ),
-    true,
+    false,
   )
 
   const handleMessageCountClick = useAppCallback(

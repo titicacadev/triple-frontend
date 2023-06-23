@@ -200,8 +200,8 @@ function ReviewElement({
                 ...(recentTrip && { recent_trip: '최근여행' }),
               },
             })
-            const reviewClickHandled = onReviewClick(e, review.id)
-            if (reviewClickHandled) {
+            const reviewClickHandledOnApp = onReviewClick(e, review.id)
+            if (reviewClickHandledOnApp !== false) {
               unfolded && setUnfolded(false)
             }
           }}
