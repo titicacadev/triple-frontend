@@ -11,12 +11,12 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
  * const invokeNativeFn= useAppCallback(TransitionType.Some, () => {})
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useAppCallback<T extends (...args: any[]) => any>(
+export function useAppCallback<FN extends (...args: any[]) => any, V>(
   transitionType: TransitionType,
-  fn: T,
+  fn: FN,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  returnValue?: any,
-): (...args: Parameters<T>) => ReturnType<T> | void {
+  returnValue?: V,
+): (...args: Parameters<FN>) => ReturnType<FN> | void | V {
   const app = useTripleClientMetadata()
   const { show } = useTransitionModal()
 
