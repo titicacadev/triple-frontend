@@ -216,6 +216,7 @@ function ReviewElement({
                 comment={comment}
                 hasImage={(media || []).length > 0}
                 onUnfoldButtonClick={(e) => {
+                  e.stopPropagation()
                   trackEvent({
                     ga: ['리뷰_리뷰글더보기_선택'],
                     fa: {
