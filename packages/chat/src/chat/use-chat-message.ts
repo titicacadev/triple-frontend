@@ -57,17 +57,17 @@ export const useChatMessage = ({
   }: {
     otherUnreadInfo: HasUnreadOfRoomInterface
   }) {
-    const myLastSeenInfo = otherUnreadInfo.others
+    const myUnreadMessageInfos = otherUnreadInfo.others
       .map(({ memberId, lastSeenMessageId }) => ({
         memberId,
         lastSeenMessageId: Number(lastSeenMessageId),
       }))
       .filter(({ memberId }) => memberId === userMeId)
 
-    myLastSeenInfo.length > 0 &&
+    myUnreadMessageInfos.length > 0 &&
       dispatch({
         action: ChatActions.UPDATE,
-        otherUnreadInfo: myLastSeenInfo,
+        otherUnreadInfo: myUnreadMessageInfos,
       })
   }
 }
