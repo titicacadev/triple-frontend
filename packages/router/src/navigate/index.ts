@@ -17,9 +17,11 @@ import canonizeTargetAddress from './canonization'
 export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
   transitionModalType = TransitionType.General,
+  appAuthReturnUrl,
 }: {
   changeLocationHref?: (href: string) => void
   transitionModalType?: TransitionType
+  appAuthReturnUrl?: string
 } = {}) {
   const { webUrlBase } = useEnv()
   const sessionAvailable = useSessionAvailability()
@@ -60,7 +62,7 @@ export function useNavigate({
         sessionAvailable === false &&
         !checkIfRoutable({ href: canonizedHref })
       ) {
-        showLoginCtaModal()
+        showLoginCtaModal(appAuthReturnUrl)
 
         return
       }
