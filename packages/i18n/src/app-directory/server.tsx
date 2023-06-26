@@ -2,7 +2,7 @@ import { ComponentProps, PropsWithChildren } from 'react'
 import { createInstance } from 'i18next'
 import { Trans as OriginalTrans } from 'react-i18next/TransWithoutContext'
 
-import { Language, Namespace } from './types'
+import { Language, LangParams, Namespace } from './types'
 import { getOptions } from './configs'
 
 export let i18nInstance = createInstance()
@@ -23,7 +23,7 @@ export function Trans(
   )
 }
 
-export function appWithTranslation<T extends { params: { lang: Language } }>(
+export function appWithTranslation<T extends LangParams>(
   rootLayout: Layout<T>,
 ) {
   return (props: Parameters<Layout<T>>[0]) => {
