@@ -1,5 +1,5 @@
 import { NextMiddleware, NextRequest, NextResponse } from 'next/server'
-import lt from 'semver/functions/lt'
+import satisfies from 'semver/functions/satisfies'
 
 import { parseApp } from './user-agent-context'
 
@@ -15,9 +15,11 @@ export const middleware: NextMiddleware = (request: NextRequest) => {
   const app = parseApp(userAgent)
 
   try {
-    const cookieFixedVersion = '6.5.0'
+    const oldVersionRange = '< 6.5.0'
     const isOldIosApp =
-      app && app.name === 'Triple-iOS' && lt(app.version, cookieFixedVersion)
+      app &&
+      app.name === 'Triple-iOS' &&
+      satisfies(app.version, oldVersionRange)
 
     if (isOldIosApp) {
       const cookies = request.cookies.getAll()
