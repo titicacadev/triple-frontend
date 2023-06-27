@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/booking-completion",
-  "version": "12.20.0",
+  "version": "12.21.0",
   "description": "Triple Booking completion Page",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/booking-completion",
@@ -35,16 +35,16 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.20.0",
-    "@titicaca/router": "^12.20.0",
-    "@titicaca/type-definitions": "^12.20.0",
-    "@titicaca/ui-flow": "^12.20.0"
+    "@titicaca/core-elements": "^12.21.0",
+    "@titicaca/router": "^12.21.0",
+    "@titicaca/type-definitions": "^12.21.0",
+    "@titicaca/ui-flow": "^12.21.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.20.0",
-    "@titicaca/modals": "^12.20.0",
+    "@titicaca/i18n": "^12.21.0",
+    "@titicaca/modals": "^12.21.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.20.0"
+    "@titicaca/react-contexts": "^12.21.0"
   },
   "peerDependencies": {
     "@titicaca/modals": "*",
