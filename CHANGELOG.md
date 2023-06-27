@@ -6,10 +6,6 @@
 
 - [TFC-97] 호텔 리뷰 개선 - 더보기 UX 개선 [#2731](https://github.com/titicacadev/triple-frontend/pull/2731)
 
-### ui-flow
-
-- [TFC-97] 호텔 리뷰 개선 - 더보기 UX 개선 [#2731](https://github.com/titicacadev/triple-frontend/pull/2731)
-
 ## v12.20.0
 
 ### chat
