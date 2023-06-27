@@ -193,7 +193,10 @@ export function ReviewElement({
       })
 
       navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
+
+      unfolded && setUnfolded(false)
     }, [
+      unfolded,
       trackEvent,
       review.id,
       resourceId,
