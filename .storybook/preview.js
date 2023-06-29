@@ -13,6 +13,7 @@ import { I18nDecorator } from './i18n'
 // Initialize MSW
 initialize({
   onUnhandledRequest: 'bypass',
+  serviceWorker: { url: '/mockServiceWorker.js' },
 })
 
 /** @type { import('@storybook/react').Preview } */
