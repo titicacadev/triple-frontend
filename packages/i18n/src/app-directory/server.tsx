@@ -1,9 +1,11 @@
 import { ComponentProps, PropsWithChildren } from 'react'
+import { headers } from 'next/headers'
 import { createInstance } from 'i18next'
 import { Trans as OriginalTrans } from 'react-i18next/TransWithoutContext'
 
-import { Language, LangParams, Namespace } from './types'
+import { Language, Namespace } from './types'
 import { getOptions } from './configs'
+import { CUSTOM_LANG_HEADER, FALLBACK_LANGUAGE, LANGUAGES } from './constants'
 
 export let i18nInstance = createInstance()
 
@@ -23,15 +25,9 @@ export function Trans(
   )
 }
 
-export function appWithTranslation<T extends LangParams>(
-  rootLayout: Layout<T>,
-) {
+export function appWithTranslation<T>(rootLayout: Layout<T>) {
   return (props: Parameters<Layout<T>>[0]) => {
-    const {
-      params: { lang },
-    } = props
-
-    initializeI18n({ lang })
+    initializeI18n({ lang: getLanguageFromHeader() })
     return rootLayout(props)
   }
 }
@@ -65,4 +61,14 @@ export function getTranslation({
 export function useTranslation(namespace: Namespace) {
   initializeI18n()
   return i18nInstance.getFixedT(null, namespace)
+}
+
+export function getLanguageFromHeader() {
+  const headersList = headers()
+  const langFromHeader = headersList.get(CUSTOM_LANG_HEADER)
+  const lang = LANGUAGES.includes(langFromHeader ?? '')
+    ? langFromHeader
+    : FALLBACK_LANGUAGE
+
+  return lang as Language
 }
