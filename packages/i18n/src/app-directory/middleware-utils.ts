@@ -1,11 +1,21 @@
 import type { NextRequest } from 'next/server'
 
 import {
+  CUSTOM_LANG_HEADER,
   FALLBACK_LANGUAGE,
   LANGUAGES,
   LANGUAGE_COOKIE_NAME,
   LANG_QUERY_STRING_NAME,
 } from './constants'
+
+export function getCustomLangHeader(req: NextRequest) {
+  const { searchParams } = req.nextUrl
+  const lang = searchParams.get(LANG_QUERY_STRING_NAME) ?? FALLBACK_LANGUAGE
+
+  return {
+    [CUSTOM_LANG_HEADER]: lang,
+  }
+}
 
 export function getValidLangUrlWithCookie(req: NextRequest) {
   const { cookies, url: currentUrl } = req
