@@ -1,8 +1,9 @@
 import { Meta } from '@storybook/react'
+import { ScrapsProvider } from '@titicaca/react-contexts'
+import { rest } from 'msw'
 
 import SLOTS from './mocks/slots.sample.json'
 import ELEMENTS from './elements'
-import { Slot } from './elements/tna/slot'
 
 const { tnaProducts: TnaProducts } = ELEMENTS
 
@@ -13,19 +14,22 @@ export default {
 
 export function InTripleDocument() {
   return (
-    <TnaProducts
-      value={{
-        slotId: 1546,
-      }}
-    />
+    <ScrapsProvider>
+      <TnaProducts
+        value={{
+          slotId: 1546,
+        }}
+      />
+    </ScrapsProvider>
   )
 }
 InTripleDocument.storyName = 'Triple-document에 포함된 Slot'
-
-export function Slots() {
-  return SLOTS.map((slot, i) => (
-    <Slot key={i} id={slot.id} title={slot.title} products={slot.products} />
-  ))
+InTripleDocument.parameters = {
+  msw: {
+    handlers: [
+      rest.get('/api/tna-v2/slots/:slotId', (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(SLOTS))
+      }),
+    ],
+  },
 }
-
-Slots.storyName = 'Slots'
