@@ -158,6 +158,7 @@ export const jaCommonWeb = {
   'regionname-yeohaeng-junbihareo-gagi': '{{regionName}} 旅行の準備をする',
   'nae-iljeonge-cugahagi': '私の日程に追加',
   'formattedsaleprice-weon': '{{formattedSalePrice}}円',
+  ilsipumjeol: '一時売り切れ',
   'jeojang-formattedscrapscount': '保存{{formattedScrapsCount}}',
   weon: 'ウォン',
   'coedae-geumaeg-cogwa': '最大限度額を超過',

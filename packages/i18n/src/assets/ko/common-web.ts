@@ -154,6 +154,7 @@ export const koCommonWeb = {
   'regionname-yeohaeng-junbihareo-gagi': '{{regionName}} 여행 준비하러 가기',
   'nae-iljeonge-cugahagi': '내 일정에 추가하기',
   'formattedsaleprice-weon': '{{formattedSalePrice}}원',
+  ilsipumjeol: '일시품절',
   'jeojang-formattedscrapscount': '저장 {{formattedScrapsCount}}',
   weon: '원',
   'coedae-geumaeg-cogwa': '최대 금액 초과',
