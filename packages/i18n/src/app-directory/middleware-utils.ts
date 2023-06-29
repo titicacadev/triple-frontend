@@ -1,22 +1,25 @@
 import type { NextRequest } from 'next/server'
 
-import { FALLBACK_LANGUAGE, LANGUAGES, LANGUAGE_COOKIE_NAME } from './constants'
+import {
+  FALLBACK_LANGUAGE,
+  LANGUAGES,
+  LANGUAGE_COOKIE_NAME,
+  LANG_QUERY_STRING_NAME,
+} from './constants'
 
 export function getValidLangUrlWithCookie(req: NextRequest) {
-  const {
-    cookies,
-    url,
-    nextUrl: { pathname, search },
-  } = req
+  const { cookies, url: currentUrl } = req
 
   const cookieLang = getLanguageFromCookie(
     cookies.get(LANGUAGE_COOKIE_NAME)?.value,
   )
 
-  return new URL(`/${cookieLang}${pathname}${search}`, url)
+  const newUrl = new URL(currentUrl)
+  newUrl.searchParams.set(LANG_QUERY_STRING_NAME, cookieLang)
+  return newUrl
 }
 
-export function isInvalidLangParam({
+export function isInvalidLangQuery({
   req,
   healthCheckPath,
 }: {
@@ -24,19 +27,17 @@ export function isInvalidLangParam({
   healthCheckPath: string
 }) {
   const {
-    nextUrl: { pathname },
+    nextUrl: { pathname, searchParams },
   } = req
 
   if (pathname.includes(healthCheckPath)) {
     return
   }
 
-  const langParam = pathname
-    .split('/')
-    .filter((pathSegment) => pathSegment !== '')[0]
+  const langQuery = searchParams.get(LANG_QUERY_STRING_NAME)
 
   return (
-    (langParam === undefined || !LANGUAGES.includes(langParam)) &&
+    (langQuery === null || !LANGUAGES.includes(langQuery)) &&
     !pathname.startsWith('/_next')
   )
 }
