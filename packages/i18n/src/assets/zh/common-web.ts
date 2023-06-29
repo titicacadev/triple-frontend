@@ -149,6 +149,7 @@ export const zhCommonWeb = {
   'regionname-yeohaeng-junbihareo-gagi': '準備前往{{regionName}} 的旅行',
   'nae-iljeonge-cugahagi': '新增至我的行程',
   'formattedsaleprice-weon': 'NTW{{formattedSalePrice}}',
+  ilsipumjeol: '暂时缺货',
   'jeojang-formattedscrapscount': '收藏 {{formattedScrapsCount}}',
   weon: 'NTW',
   'coedae-geumaeg-cogwa': '超過最高金額上限',
