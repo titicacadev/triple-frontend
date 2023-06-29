@@ -1,6 +1,7 @@
 import { ComponentStoryObj, Meta } from '@storybook/react'
 import { TransitionModal } from '@titicaca/modals'
 import {
+  SessionContextProvider,
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
@@ -23,13 +24,20 @@ export default {
       </>
     ),
     (Story) => (
-      <UserAgentProvider
-        value={generateUserAgentValues(
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
-        )}
-      >
+      <UserAgentProvider value={generateUserAgentValues(navigator.userAgent)}>
         <Story />
       </UserAgentProvider>
+    ),
+    (Story) => (
+      <SessionContextProvider
+        type="browser"
+        props={{
+          initialUser: { uid: 'random-uid' },
+          initialSessionAvailability: true,
+        }}
+      >
+        <Story />
+      </SessionContextProvider>
     ),
     (Story) => (
       <QueryClientProvider client={queryClient}>

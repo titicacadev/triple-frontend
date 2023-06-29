@@ -1,6 +1,8 @@
 import { graphql } from 'msw'
 
 import {
+  DeleteReviewMutation,
+  DeleteReviewMutationVariables,
   GetLatestReviewsQuery,
   GetLatestReviewsQueryVariables,
   GetMyReviewQuery,
@@ -11,6 +13,9 @@ import {
   GetReviewSpecificationQueryVariables,
   GetReviewsCountQuery,
   GetReviewsCountQueryVariables,
+  LikeReviewMutation,
+  UnlikeReviewMutation,
+  UnlikeReviewMutationVariables,
 } from '../data/graphql'
 
 export const handlers = {
@@ -172,6 +177,31 @@ export const handlers = {
         reviewsCount: 100,
       }),
     )
+  }),
+  likeReview: graphql.mutation<
+    LikeReviewMutation,
+    UnlikeReviewMutationVariables
+  >('LikeReview', (req, res, ctx) => {
+    const { reviewId } = req.variables
+
+    return res(
+      ctx.data({
+        __typename: 'Mutation',
+        likeReview: { __typename: 'ReviewReaction', id: reviewId },
+      }),
+    )
+  }),
+  unlikeReview: graphql.mutation<
+    UnlikeReviewMutation,
+    UnlikeReviewMutationVariables
+  >('UnlikeReview', (req, res, ctx) => {
+    return res(ctx.data({ __typename: 'Mutation', unlikeReview: true }))
+  }),
+  deleteReview: graphql.mutation<
+    DeleteReviewMutation,
+    DeleteReviewMutationVariables
+  >('DeleteReview', (req, res, ctx) => {
+    return res(ctx.data({ __typename: 'Mutation', deleteReview: true }))
   }),
 }
 
