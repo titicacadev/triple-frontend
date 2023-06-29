@@ -14,8 +14,8 @@ const PLACEHOLDER_IMAGE_URL =
   'https://assets.triple.guide/images/ico_blank_see@2x.png'
 
 function Pricing({
-  basePrice,
-  salePrice,
+  basePrice, // 판매가
+  salePrice, // 표시가
 }: Parameters<typeof Container>[0] & {
   basePrice?: number
   salePrice: number
@@ -48,11 +48,17 @@ function Pricing({
       ) : null}
 
       <Container>
-        <Text inline bold size={18} color="gray">
-          {t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
-            formattedSalePrice,
-          })}
-        </Text>
+        {salePrice > 0 ? (
+          <Text inline bold size={18} color="gray">
+            {t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+              formattedSalePrice,
+            })}
+          </Text>
+        ) : (
+          <Text inline bold size={18} color="gray300">
+            {t('ilsipumjeol')}
+          </Text>
+        )}
 
         {basePrice ? (
           <Text
