@@ -1,11 +1,15 @@
 'use client'
 
 import { ComponentProps } from 'react'
-import { useParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Trans as OriginalTrans } from 'react-i18next'
 
 import { initializeI18n, i18nInstance } from './server'
-import { FALLBACK_LANGUAGE, LANGUAGES } from './constants'
+import {
+  FALLBACK_LANGUAGE,
+  LANGUAGES,
+  LANG_QUERY_STRING_NAME,
+} from './constants'
 import { Language, Namespace } from './types'
 
 export function Trans(
@@ -23,9 +27,10 @@ export function Trans(
 }
 
 export function useCurrentLanguage() {
-  const { lang } = useParams()
+  const searchParams = useSearchParams()
+  const lang = searchParams.get(LANG_QUERY_STRING_NAME)
 
-  return LANGUAGES.includes(lang) ? (lang as Language) : FALLBACK_LANGUAGE
+  return LANGUAGES.includes(lang ?? '') ? (lang as Language) : FALLBACK_LANGUAGE
 }
 
 export function getTranslation({
