@@ -188,7 +188,7 @@ export function useLikeReviewMutation() {
                 }
               : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
           old
@@ -201,7 +201,7 @@ export function useLikeReviewMutation() {
               }
             : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetLatestReviewsQuery> | undefined
         >(['review/getInfiniteLatestReviews'], (old) =>
           old
@@ -259,7 +259,7 @@ export function useUnlikeReviewMutation() {
                 }
               : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
           old
@@ -272,7 +272,7 @@ export function useUnlikeReviewMutation() {
               }
             : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetLatestReviewsQuery> | undefined
         >(['review/getInfiniteLatestReviews'], (old) =>
           old
@@ -324,7 +324,7 @@ export function useDeleteReviewMutation() {
                 }
               : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
           old
@@ -337,7 +337,7 @@ export function useDeleteReviewMutation() {
               }
             : old,
         )
-        queryClient.setQueryData<
+        queryClient.setQueriesData<
           InfiniteData<GetLatestReviewsQuery> | undefined
         >(['review/getInfiniteLatestReviews'], (old) =>
           old
