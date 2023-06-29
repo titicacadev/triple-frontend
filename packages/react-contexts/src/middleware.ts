@@ -15,11 +15,11 @@ export const middleware: NextMiddleware = (request: NextRequest) => {
   const app = parseApp(userAgent)
 
   try {
-    const oldVersionRange = '< 6.5.0'
+    const oldVersionRange = '< 6.6.0'
     const isOldIosApp =
       app &&
       app.name === 'Triple-iOS' &&
-      satisfies(app.version, oldVersionRange)
+      satisfies(app.version, oldVersionRange, { includePrerelease: true })
 
     if (isOldIosApp) {
       const cookies = request.cookies.getAll()
