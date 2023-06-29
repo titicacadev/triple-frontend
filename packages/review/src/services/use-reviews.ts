@@ -1,14 +1,23 @@
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { useInfiniteQuery, useMutation, useQuery } from 'react-query'
+import {
+  InfiniteData,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from 'react-query'
 
 import {
   DEFAULT_REVIEWS_COUNT_PER_PAGE,
   SHORTENED_REVIEWS_COUNT_PER_PAGE,
 } from '../constants'
 import {
+  BaseReviewFragment,
   DeleteReviewMutationVariables,
+  GetLatestReviewsQuery,
   GetLatestReviewsQueryVariables,
   GetMyReviewQueryVariables,
+  GetPopularReviewsQuery,
   GetPopularReviewsQueryVariables,
   GetReviewSpecificationQueryVariables,
   GetReviewsCountQueryVariables,
@@ -30,7 +39,6 @@ export function usePopularReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false },
   )
 }
 
@@ -47,7 +55,6 @@ export function useLatestReviews(
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-    { refetchOnMount: false },
   )
 }
 
@@ -56,7 +63,7 @@ export function useInfinitePopularReviews(
 ) {
   return useInfiniteQuery(
     [
-      'review/getPopularReviews',
+      'review/getInfinitePopularReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
     ({ pageParam = 1 }) =>
@@ -77,7 +84,6 @@ export function useInfinitePopularReviews(
         pages: pages.map((item) => item.popularReviews),
       }),
       keepPreviousData: true,
-      refetchOnMount: false,
     },
   )
 }
@@ -87,7 +93,7 @@ export function useInfiniteLatestReviews(
 ) {
   return useInfiniteQuery(
     [
-      'review/getLatestReviews',
+      'review/getInfiniteLatestReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
     ({ pageParam = 1 }) =>
@@ -108,7 +114,6 @@ export function useInfiniteLatestReviews(
         pages: pages.map((item) => item.latestReviews),
       }),
       keepPreviousData: true,
-      refetchOnMount: false,
     },
   )
 }
@@ -127,29 +132,25 @@ export function useReviewCount(
             reviewsCount: initiaValue,
           }
         : undefined,
-      refetchOnMount: false,
     },
   )
 }
 
 export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
-  return useQuery(
-    ['review/getReviewSpecification', params],
-    () => client.GetReviewSpecification(params),
-    { refetchOnMount: false },
+  return useQuery(['review/getReviewSpecification', params], () =>
+    client.GetReviewSpecification(params),
   )
 }
 
 export function useMyReview(params: GetMyReviewQueryVariables) {
-  return useQuery(
-    ['review/getMyReview', params],
-    () => client.GetMyReview(params),
-    { refetchOnMount: false },
+  return useQuery(['review/getMyReview', params], () =>
+    client.GetMyReview(params),
   )
 }
 
 export function useLikeReviewMutation() {
   const { notifyReviewLiked } = useTripleClientActions()
+  const queryClient = useQueryClient()
 
   return useMutation(
     (variables: LikeReviewMutationVariables & { resourceId: string }) =>
@@ -157,6 +158,62 @@ export function useLikeReviewMutation() {
     {
       onSuccess: (data, variables) => {
         notifyReviewLiked?.(variables.resourceId, variables.reviewId)
+
+        const updater = (review: BaseReviewFragment) =>
+          review.id === variables.reviewId
+            ? {
+                ...review,
+                liked: !review.liked,
+                likesCount: review.likesCount + 1,
+              }
+            : review
+
+        queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
+          ['review/getPopularReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  popularReviews: old.popularReviews.map(updater),
+                }
+              : old,
+        )
+        queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
+          ['review/getLatestReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  latestReviews: old.latestReviews.map(updater),
+                }
+              : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetPopularReviewsQuery> | undefined
+        >(['review/getInfinitePopularReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  popularReviews: page.popularReviews.map(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetLatestReviewsQuery> | undefined
+        >(['review/getInfiniteLatestReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  latestReviews: page.latestReviews.map(updater),
+                })),
+              }
+            : old,
+        )
       },
     },
   )
@@ -164,6 +221,7 @@ export function useLikeReviewMutation() {
 
 export function useUnlikeReviewMutation() {
   const { notifyReviewUnliked } = useTripleClientActions()
+  const queryClient = useQueryClient()
 
   return useMutation(
     (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
@@ -171,6 +229,62 @@ export function useUnlikeReviewMutation() {
     {
       onSuccess: (data, variables) => {
         notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
+
+        const updater = (review: BaseReviewFragment) =>
+          review.id === variables.reviewId
+            ? {
+                ...review,
+                liked: !review.liked,
+                likesCount: review.likesCount - 1,
+              }
+            : review
+
+        queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
+          ['review/getPopularReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  popularReviews: old.popularReviews.map(updater),
+                }
+              : old,
+        )
+        queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
+          ['review/getLatestReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  latestReviews: old.latestReviews.map(updater),
+                }
+              : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetPopularReviewsQuery> | undefined
+        >(['review/getInfinitePopularReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  popularReviews: page.popularReviews.map(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetLatestReviewsQuery> | undefined
+        >(['review/getInfiniteLatestReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  latestReviews: page.latestReviews.map(updater),
+                })),
+              }
+            : old,
+        )
       },
     },
   )
@@ -178,6 +292,7 @@ export function useUnlikeReviewMutation() {
 
 export function useDeleteReviewMutation() {
   const { notifyReviewDeleted } = useTripleClientActions()
+  const queryClient = useQueryClient()
 
   return useMutation(
     (variables: DeleteReviewMutationVariables & { resourceId: string }) =>
@@ -185,6 +300,56 @@ export function useDeleteReviewMutation() {
     {
       onSuccess: (data, variables) => {
         notifyReviewDeleted?.(variables.resourceId, variables.id)
+
+        const updater = (review: BaseReviewFragment) =>
+          review.id === variables.id
+
+        queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
+          ['review/getPopularReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  popularReviews: old.popularReviews.filter(updater),
+                }
+              : old,
+        )
+        queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
+          ['review/getLatestReviews'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  latestReviews: old.latestReviews.filter(updater),
+                }
+              : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetPopularReviewsQuery> | undefined
+        >(['review/getInfinitePopularReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  popularReviews: page.popularReviews.filter(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueryData<
+          InfiniteData<GetLatestReviewsQuery> | undefined
+        >(['review/getInfiniteLatestReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  latestReviews: page.latestReviews.filter(updater),
+                })),
+              }
+            : old,
+        )
       },
     },
   )
