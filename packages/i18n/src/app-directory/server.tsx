@@ -27,7 +27,7 @@ export function Trans(
 
 export function appWithTranslation<T>(rootLayout: Layout<T>) {
   return (props: Parameters<Layout<T>>[0]) => {
-    initializeI18n({ lang: getLanguageFromHeader() })
+    initializeI18n({ lang: useCurrentLanguage() })
     return rootLayout(props)
   }
 }
@@ -63,7 +63,7 @@ export function useTranslation(namespace: Namespace) {
   return i18nInstance.getFixedT(null, namespace)
 }
 
-export function getLanguageFromHeader() {
+export function useCurrentLanguage() {
   const headersList = headers()
   const langFromHeader = headersList.get(CUSTOM_LANG_HEADER)
   const lang = LANGUAGES.includes(langFromHeader ?? '')
