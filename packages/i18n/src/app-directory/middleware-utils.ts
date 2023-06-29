@@ -8,12 +8,28 @@ import {
   LANG_QUERY_STRING_NAME,
 } from './constants'
 
+const ONE_YEAR_SEC = 31_536_000
+
 export function getCustomLangHeader(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const lang = searchParams.get(LANG_QUERY_STRING_NAME) ?? FALLBACK_LANGUAGE
 
   return {
     [CUSTOM_LANG_HEADER]: lang,
+  }
+}
+
+export function setLanguageCookie(req: NextRequest) {
+  const langCookie = req.cookies.get(LANGUAGE_COOKIE_NAME)
+  const langQuery =
+    req.nextUrl.searchParams.get(LANG_QUERY_STRING_NAME) ?? FALLBACK_LANGUAGE
+
+  if (langCookie?.value === langQuery) {
+    return null
+  }
+
+  return {
+    'Set-Cookie': `${LANGUAGE_COOKIE_NAME}=${langQuery}; Domain=.globalinterpark.com; Path=/; Max-Age=${ONE_YEAR_SEC}`,
   }
 }
 
