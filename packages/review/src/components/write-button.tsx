@@ -1,16 +1,15 @@
-import styled from 'styled-components'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { ButtonBase } from '@titicaca/core-elements'
 import { TransitionType } from '@titicaca/modals'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useCallback } from 'react'
+import styled from 'styled-components'
 
 import { useClientActions } from '../services'
 
 const WriteIcon = styled.img`
-  margin-top: -5px;
   width: 34px;
   height: 34px;
-  float: right;
 `
 
 interface Props {
@@ -46,8 +45,8 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   )
 
   return (
-    <button onClick={handleClick}>
+    <ButtonBase css={{ marginLeft: 'auto' }} onClick={handleClick}>
       <WriteIcon src="https://assets.triple.guide/images/btn-com-write@2x.png" />
-    </button>
+    </ButtonBase>
   )
 }
