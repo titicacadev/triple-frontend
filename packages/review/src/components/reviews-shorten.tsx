@@ -1,18 +1,18 @@
-import { useEffect, useState, useCallback } from 'react'
+import { FlexBox, Section, Text } from '@titicaca/core-elements'
+import { withLoginCtaModal } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
-import { FlexBox, Section, Container, Text } from '@titicaca/core-elements'
-import { formatNumber } from '@titicaca/view-utilities'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { withLoginCtaModal } from '@titicaca/modals'
+import { formatNumber } from '@titicaca/view-utilities'
+import { useCallback, useEffect, useState } from 'react'
 
 import { useReviewCount } from '../services'
 
-import { SortingOption } from './types'
-import SortingOptions from './sorting-options'
-import RecentCheckBox from './recent-checkbox'
 import { LatestReviews } from './latest-reviews'
 import { PopularReviews } from './popular-reviews'
+import RecentCheckBox from './recent-checkbox'
+import SortingOptions from './sorting-options'
+import { SortingOption } from './types'
 import { WriteButton } from './write-button'
 
 const REVIEWS_SECTION_ID = 'reviews'
@@ -95,14 +95,8 @@ function ReviewsShortenComponent({
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
-      <Container>
-        <WriteButton
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-        />
-
-        <>
+      <FlexBox flex alignItems="center">
+        <div>
           <Text bold size="huge" color="gray" alpha={1} inline>
             {t(['ribyu', '리뷰'])}
           </Text>
@@ -111,8 +105,13 @@ function ReviewsShortenComponent({
               {` ${formatNumber(reviewsCountData?.reviewsCount)}`}
             </Text>
           ) : null}
-        </>
-      </Container>
+        </div>
+        <WriteButton
+          resourceId={resourceId}
+          resourceType={resourceType}
+          regionId={regionId}
+        />
+      </FlexBox>
 
       <FlexBox
         flex
