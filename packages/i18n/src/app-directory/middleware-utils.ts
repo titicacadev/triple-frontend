@@ -29,7 +29,7 @@ export function setLanguageCookie(req: NextRequest) {
   }
 
   return {
-    'Set-Cookie': `${LANGUAGE_COOKIE_NAME}=${langQuery}; Domain=.globalinterpark.com; Path=/; Max-Age=${ONE_YEAR_SEC}`,
+    'Set-Cookie': `${LANGUAGE_COOKIE_NAME}=${langQuery}; Path=/; Max-Age=${ONE_YEAR_SEC}`,
   }
 }
 
