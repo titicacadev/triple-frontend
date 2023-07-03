@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v12.21.1
+
+### triple-document
+
+- [triple-document] POI 가격 0원 개선 - 0원일 때 일시품절 텍스트로 노출 [#2737](https://github.com/titicacadev/triple-frontend/pull/2737)
+
 ## v12.21.0
 
 ### review
