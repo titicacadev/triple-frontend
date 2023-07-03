@@ -48,6 +48,9 @@ export function TripleClientMetadataProvider({
   )
 }
 
+/** 
+  next v13 이후 app router를 사용하는 경우 getTripleClientMetadata를 사용하세요.
+*/
 TripleClientMetadataProvider.getInitialProps = async function ({
   req,
 }: {
