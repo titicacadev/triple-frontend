@@ -1,8 +1,6 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 
-export interface User {
-  uid: string
-}
+import { User } from './types'
 
 export const GET_USER_REQUEST_URL = '/api/users/me'
 

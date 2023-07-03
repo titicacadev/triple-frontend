@@ -5,6 +5,9 @@
     "paths": {
       "@titicaca/constants": ["../constants/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"]
     }

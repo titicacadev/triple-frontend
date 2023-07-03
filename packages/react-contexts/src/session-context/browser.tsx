@@ -14,17 +14,13 @@ import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import Cookies from 'universal-cookie'
 
-import { User, UserProvider, useUserState } from './user'
+import { UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
   SessionControllers,
 } from './context'
-
-export interface InBrowserSessionContextProviderProps {
-  initialSessionAvailability: boolean
-  initialUser: User | undefined
-}
+import { InBrowserSessionContextProviderProps, User } from './types'
 
 export function InBrowserSessionContextProvider({
   initialSessionAvailability,
@@ -66,6 +62,9 @@ export function InBrowserSessionContextProvider({
   )
 }
 
+/** 
+  next v13 이후 app router를 사용하는 경우 getBrowserSessionProps를 사용하세요.
+*/
 InBrowserSessionContextProvider.getInitialProps = async function ({
   req,
 }: NextPageContext): Promise<InBrowserSessionContextProviderProps> {
