@@ -6,8 +6,8 @@ import {
   ExtendFetcher,
   NEED_LOGIN_IDENTIFIER,
   ssrFetcherize,
-  i18nFetcherize,
 } from './factories'
+import { i18nFetcherize } from './client-factories'
 import { del, get, post, put } from './methods'
 import { RequestOptions, HttpResponse } from './types'
 
