@@ -53,10 +53,10 @@
     "scroll-to-element": "^2.0.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "4.0.0",
-    "@graphql-codegen/typescript": "4.0.0",
+    "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
-    "@graphql-codegen/typescript-operations": "4.0.0",
+    "@graphql-codegen/typescript-operations": "4.0.1",
     "@titicaca/i18n": "^12.21.1",
     "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "^12.21.1",
