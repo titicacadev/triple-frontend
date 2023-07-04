@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## v13
+
+### action-sheet
+
+- Headless UI -> Floating UI 변경 [#2567](https://github.com/titicacadev/triple-frontend/pull/2567)
+
+### Breaking Change
+
+- [meta-tag] 구조화된 데이터 스크립트를 작성합니다. [#2674](https://github.com/titicacadev/triple-frontend/pull/2674)
+
+### core-elements
+
+- Headless UI -> Floating UI 변경 [#2567](https://github.com/titicacadev/triple-frontend/pull/2567)
+
+### i18n
+
+- i18n 번체 토큰 디렉토리 이름을 zh에서 zh-TW로 수정합니다. [#2446](https://github.com/titicacadev/triple-frontend/pull/2446)
+
+### meta-tags
+
+- [meta-tag] 구조화된 데이터 스크립트를 작성합니다. [#2674](https://github.com/titicacadev/triple-frontend/pull/2674)
+- 구조화된 데이터에 ReviewScript를 추가합니다. [#2726](https://github.com/titicacadev/triple-frontend/pull/2726)
+
+### modals
+
+- Headless UI -> Floating UI 변경 [#2567](https://github.com/titicacadev/triple-frontend/pull/2567)
+
+### popup
+
+- Headless UI -> Floating UI 변경 [#2567](https://github.com/titicacadev/triple-frontend/pull/2567)
+
+### review
+
+- [TFC-97] 호텔 리뷰 개선 - 더보기 UX 개선 (v13 용) [#2734](https://github.com/titicacadev/triple-frontend/pull/2734)
+- [review] mutation, 디자인 버그 수정 [#2736](https://github.com/titicacadev/triple-frontend/pull/2736)
+
 ## v12.21.1
 
 ### triple-document
