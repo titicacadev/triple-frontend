@@ -1,12 +1,12 @@
-'use client'
+'use server'
 
 import {
-  fetcher,
   ssrFetcherize,
-  captureHttpError,
   authFetcherize,
-  post,
-} from '@titicaca/fetcher'
+  // captureHttpError,
+} from '@titicaca/fetcher/lib/factories'
+import { fetcher } from '@titicaca/fetcher/lib/fetcher'
+import { post } from '@titicaca/fetcher/lib/methods'
 import { headers } from 'next/headers'
 
 import { User } from '../types'
@@ -37,7 +37,7 @@ export async function getUser(): Promise<User | undefined> {
     return undefined
   }
 
-  captureHttpError(response)
+  // captureHttpError(response)
 
   if (response.ok === false) {
     return undefined
