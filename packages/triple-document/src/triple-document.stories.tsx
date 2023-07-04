@@ -103,7 +103,7 @@ export const RegionExample: StoryObj<typeof Regions> = {
   name: '리전',
   render: (args) => <Regions value={args.value} />,
   args: {
-    value: MOCK_REGIONS,
+    value: { regions: MOCK_REGIONS },
   },
 }
 
