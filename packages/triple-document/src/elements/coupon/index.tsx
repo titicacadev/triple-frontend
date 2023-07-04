@@ -18,6 +18,11 @@ export default function Coupon({
     verificationType,
     couponType = 'single',
     enabledAt,
+    color = {
+      buttonBackground: '#368fff',
+      buttonText: '#ffffff',
+      description: '#3a3a3a80',
+    },
   },
 }: {
   value: {
@@ -26,6 +31,12 @@ export default function Coupon({
     verificationType?: VerificationType
     couponType?: 'single' | 'group'
     enabledAt?: string
+    color?: {
+      background?: string
+      buttonText?: string
+      buttonBackground?: string
+      description?: string
+    }
   }
 }) {
   const trackEventWithMetadata = useEventTrackerWithMetadata()
@@ -50,7 +61,8 @@ export default function Coupon({
   return (
     <Container
       css={{
-        margin: '44px 30px 42px',
+        padding: '44px 30px 42px',
+        backgroundColor: color.background,
       }}
     >
       {couponType === 'single' ? (
@@ -59,6 +71,8 @@ export default function Coupon({
           slugId={identifier}
           enabledAt={enabledAt}
           onClick={handleCouponClick}
+          textColor={color.buttonText}
+          backgroundColor={color.buttonBackground}
         />
       ) : (
         <CouponGroupDownloadButton
@@ -66,13 +80,14 @@ export default function Coupon({
           groupId={identifier}
           enabledAt={enabledAt}
           onClick={handleCouponClick}
+          textColor={color.buttonText}
+          backgroundColor={color.buttonBackground}
         />
       )}
 
       {description ? (
         <Text
-          color="gray"
-          alpha={0.5}
+          css={{ color: color.description }}
           margin={{ top: 13 }}
           lineHeight={1.46}
           size="tiny"
