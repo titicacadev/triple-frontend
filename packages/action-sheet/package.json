@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.23.0",
+    "@floating-ui/react": "^0.24.3",
     "@titicaca/app-installation-cta": "^12.21.1",
     "@titicaca/core-elements": "^12.21.1",
     "@titicaca/popup": "^12.21.1"

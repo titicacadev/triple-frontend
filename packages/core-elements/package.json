@@ -41,7 +41,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.23.0",
+    "@floating-ui/react": "^0.24.3",
     "@titicaca/color-palette": "^12.21.1",
     "@titicaca/content-utilities": "8.0.0",
     "@titicaca/intersection-observer": "^12.21.1",
