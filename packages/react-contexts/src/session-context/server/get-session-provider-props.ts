@@ -1,6 +1,6 @@
 'use server'
 
-import { AppName } from '@titicaca/react-triple-client-interfaces'
+import { AppName } from '@titicaca/react-triple-client-interfaces/lib/types'
 import { getTripleClientMetadata } from '@titicaca/react-triple-client-interfaces/lib/server'
 
 import { SessionContextProviderProps } from '../types'
@@ -16,9 +16,7 @@ export async function getSessionProviderProps(): Promise<SessionContextProviderP
 
     return {
       type: 'app',
-      props: {
-        ...(await getAppSessionProviderProps(preventSessionFixation)),
-      },
+      props: await getAppSessionProviderProps(preventSessionFixation),
     }
   }
 
