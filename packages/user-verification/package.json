@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/user-verification",
-  "version": "12.21.1",
+  "version": "13.0.0",
   "description": "user verification",
   "keywords": [
     "triple",
@@ -41,17 +41,17 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^12.21.1",
-    "@titicaca/fetcher": "^12.21.1",
-    "@titicaca/modals": "^12.21.1",
-    "@titicaca/react-hooks": "^12.21.1",
-    "@titicaca/router": "^12.21.1"
+    "@titicaca/core-elements": "^13.0.0",
+    "@titicaca/fetcher": "^13.0.0",
+    "@titicaca/modals": "^13.0.0",
+    "@titicaca/react-hooks": "^13.0.0",
+    "@titicaca/router": "^13.0.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^12.21.1",
+    "@titicaca/i18n": "^13.0.0",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^12.21.1",
-    "@titicaca/react-triple-client-interfaces": "^12.21.1"
+    "@titicaca/react-contexts": "^13.0.0",
+    "@titicaca/react-triple-client-interfaces": "^13.0.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
