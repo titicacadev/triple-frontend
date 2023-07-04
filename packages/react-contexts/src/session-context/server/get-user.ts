@@ -7,12 +7,12 @@ import {
   authFetcherize,
   post,
 } from '@titicaca/fetcher'
-import { cookies } from 'next/headers'
+import { headers } from 'next/headers'
 
 import { User } from '../types'
 
 export async function getUser(): Promise<User | undefined> {
-  const cookie = cookies().getAll().toString()
+  const cookie = headers().get('cookie') ?? ''
   const ssrFetcherizeOptions = {
     apiUriBase: process.env.API_URI_BASE || '',
     cookie,
