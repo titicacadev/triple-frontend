@@ -44,7 +44,7 @@
     "@titicaca/i18n": "^12.21.1",
     "@titicaca/next-i18next": "13.8.5",
     "@types/haversine": "^1.1.5",
-    "@types/humps": "^2.0.2"
+    "@types/humps": "^2.0.3"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*"
