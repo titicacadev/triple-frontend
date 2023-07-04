@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.23.0",
+    "@floating-ui/react": "^0.24.3",
     "@titicaca/core-elements": "^12.21.1"
   },
   "peerDependencies": {
