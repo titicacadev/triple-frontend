@@ -95,11 +95,15 @@ async function downloadCoupon(slugId: string) {
 
 export function CouponDownloadButton({
   slugId,
+  textColor,
+  backgroundColor,
   verificationType,
   enabledAt,
   onClick,
 }: {
   slugId: string
+  textColor?: string
+  backgroundColor?: string
   verificationType?: VerificationType
   enabledAt?: string
   onClick?: () => void
@@ -188,6 +192,7 @@ export function CouponDownloadButton({
   return (
     <>
       <BaseCouponDownloadButton
+        css={{ color: textColor, backgroundColor }}
         disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
@@ -255,11 +260,15 @@ async function downloadCoupons(coupons: CouponData[]) {
 
 export function CouponGroupDownloadButton({
   groupId,
+  textColor,
+  backgroundColor,
   verificationType,
   enabledAt,
   onClick,
 }: {
   groupId: string
+  textColor?: string
+  backgroundColor?: string
   verificationType?: VerificationType
   enabledAt?: string
   onClick?: () => void
@@ -356,6 +365,7 @@ export function CouponGroupDownloadButton({
   return (
     <>
       <BaseCouponDownloadButton
+        css={{ color: textColor, backgroundColor }}
         disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
