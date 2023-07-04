@@ -1,5 +1,9 @@
 # 마이그레이션 가이드
 
+## v12 to v13
+
+- [v13 업그레이드 가이드](https://titicaca.atlassian.net/l/cp/GhNV1PUo)
+
 ## v12 to v12.12.0
 
 - ActionSheet, Modal, Popup 컴포넌트를 중첩할 때의 사용방법이 변경되었습니다.
