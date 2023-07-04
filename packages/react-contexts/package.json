@@ -35,12 +35,12 @@
     ]
   },
   "dependencies": {
-    "@titicaca/constants": "v12.21.1-pr-2742.19",
-    "@titicaca/fetcher": "v12.21.1-pr-2742.19",
-    "@titicaca/react-triple-client-interfaces": "v12.21.1-pr-2742.19",
+    "@titicaca/constants": "v12.21.1-pr-2742.25",
+    "@titicaca/fetcher": "v12.21.1-pr-2742.25",
+    "@titicaca/react-triple-client-interfaces": "v12.21.1-pr-2742.25",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
-    "@titicaca/type-definitions": "v12.21.1-pr-2742.19",
-    "@titicaca/view-utilities": "v12.21.1-pr-2742.19",
+    "@titicaca/type-definitions": "v12.21.1-pr-2742.25",
+    "@titicaca/view-utilities": "v12.21.1-pr-2742.25",
     "qs": "^6.11.2",
     "ua-parser-js": "^1.0.35",
     "universal-cookie": "^4.0.4"

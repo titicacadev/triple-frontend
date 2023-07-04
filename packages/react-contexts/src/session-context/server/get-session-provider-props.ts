@@ -1,7 +1,7 @@
 'use server'
 
 import { AppName } from '@titicaca/react-triple-client-interfaces'
-import { getTripleClientMetadata } from '@titicaca/react-triple-client-interfaces/lib/get-triple-client-metadata'
+import { getTripleClientMetadata } from '@titicaca/react-triple-client-interfaces/lib/server'
 
 import { SessionContextProviderProps } from '../types'
 
