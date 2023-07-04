@@ -1,7 +1,7 @@
 {
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint:es", "lint:style", "lint:etc"]
       }
@@ -13,7 +13,8 @@
       "!{projectRoot}/**/*.test.*",
       "!{projectRoot}/**/*.spec.*",
       "!{projectRoot}/**/*.stories.*"
-    ]
+    ],
+    "production": ["default"]
   },
   "targetDefaults": {
     "build": {
@@ -56,5 +57,6 @@
         "{workspaceRoot}/.prettierignore"
       ]
     }
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
