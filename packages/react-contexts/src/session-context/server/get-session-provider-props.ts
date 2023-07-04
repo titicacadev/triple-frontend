@@ -12,7 +12,7 @@ export async function getSessionProviderProps(): Promise<SessionContextProviderP
   const app = getTripleClientMetadata()
 
   if (app) {
-    const preventSessionFixation = app?.appName !== AppName.iOS
+    const preventSessionFixation = app.appName !== AppName.iOS
 
     return {
       type: 'app',
