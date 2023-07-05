@@ -18,5 +18,10 @@ module.exports = {
     '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
     '!**/*.stories.*',
   ],
-  coveragePathIgnorePatterns: ['/node_modules/', '/lib', '/app-directory'],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/lib',
+    '/app-directory',
+    'server.{js,jsx,ts,tsx}',
+  ],
 }
