@@ -8,7 +8,7 @@ module.exports = {
     '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['lib', 'node_modules'],
+  testPathIgnorePatterns: ['lib', 'node_modules', 'server.js'],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
@@ -18,5 +18,5 @@ module.exports = {
     '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
     '!**/*.stories.*',
   ],
-  coveragePathIgnorePatterns: ['/node_modules/', '/lib'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/lib', '/server.js'],
 }
