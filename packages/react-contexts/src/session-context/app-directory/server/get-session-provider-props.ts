@@ -3,7 +3,7 @@
 import { AppName } from '@titicaca/react-triple-client-interfaces/lib/types'
 import { getTripleClientMetadata } from '@titicaca/react-triple-client-interfaces/lib/server'
 
-import { SessionContextProviderProps } from '../types'
+import { SessionContextProviderProps } from '../../types'
 
 import { getBrowserSessionProviderProps } from './browser'
 import { getAppSessionProviderProps } from './app'

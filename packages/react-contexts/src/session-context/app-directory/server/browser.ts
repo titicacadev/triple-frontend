@@ -2,7 +2,7 @@
 
 import { headers, cookies } from 'next/headers'
 
-import { InBrowserSessionContextProviderProps } from '../types'
+import { InBrowserSessionContextProviderProps } from '../../types'
 
 import { getUser } from './get-user'
 

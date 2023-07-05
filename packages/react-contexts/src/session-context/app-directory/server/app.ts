@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers'
 
-import { InAppSessionContextProviderProps } from '../types'
+import { InAppSessionContextProviderProps } from '../../types'
 
 import { getUser } from './get-user'
 

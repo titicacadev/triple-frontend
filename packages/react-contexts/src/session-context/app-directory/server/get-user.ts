@@ -1,15 +1,14 @@
 'use server'
 
 import {
+  fetcher,
+  post,
   ssrFetcherize,
   authFetcherize,
-  // captureHttpError,
-} from '@titicaca/fetcher/lib/factories'
-import { fetcher } from '@titicaca/fetcher/lib/fetcher'
-import { post } from '@titicaca/fetcher/lib/methods'
+} from '@titicaca/fetcher/server'
 import { headers } from 'next/headers'
 
-import { User } from '../types'
+import { User } from '../../types'
 
 export async function getUser(): Promise<User | undefined> {
   const cookie = headers().get('cookie') ?? ''
@@ -33,13 +32,7 @@ export async function getUser(): Promise<User | undefined> {
 
   const response = await userFetcher<User>('/api/users/me')
 
-  if (response === 'NEED_LOGIN' || response.status === 401) {
-    return undefined
-  }
-
-  // captureHttpError(response)
-
-  if (response.ok === false) {
+  if (response === 'NEED_LOGIN' || response.status === 401 || !response.ok) {
     return undefined
   }
 
