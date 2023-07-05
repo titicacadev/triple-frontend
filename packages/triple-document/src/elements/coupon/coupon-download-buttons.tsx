@@ -40,6 +40,11 @@ const BaseCouponDownloadButton = styled(Button)`
 
 const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
 
+export const DEFAULT_BUTTON_COLOR = {
+  background: '#368fff',
+  text: '#ffffff',
+}
+
 function useDownloadTimePassed(time: string | undefined) {
   const calculator = useCallback(() => {
     return (
@@ -95,8 +100,8 @@ async function downloadCoupon(slugId: string) {
 
 export function CouponDownloadButton({
   slugId,
-  textColor,
-  backgroundColor,
+  textColor = DEFAULT_BUTTON_COLOR.text,
+  backgroundColor = DEFAULT_BUTTON_COLOR.background,
   verificationType,
   enabledAt,
   onClick,
@@ -260,8 +265,8 @@ async function downloadCoupons(coupons: CouponData[]) {
 
 export function CouponGroupDownloadButton({
   groupId,
-  textColor,
-  backgroundColor,
+  textColor = DEFAULT_BUTTON_COLOR.text,
+  backgroundColor = DEFAULT_BUTTON_COLOR.background,
   verificationType,
   enabledAt,
   onClick,
