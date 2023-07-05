@@ -13,7 +13,9 @@
   },
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "server.js",
+    "server.d.ts"
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:types",
@@ -38,7 +40,7 @@
   },
   "devDependencies": {
     "@sentry/nextjs": "7.56.0",
-    "@titicaca/view-utilities": "^12.21.0",
+    "@titicaca/view-utilities": "^v12.21.1-pr-2760.20",
     "@types/node-fetch": "^2.6.4",
     "isomorphic-fetch": "^2.2.1",
     "next": "13.4.7",
