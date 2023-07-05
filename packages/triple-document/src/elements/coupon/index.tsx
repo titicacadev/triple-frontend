@@ -9,7 +9,14 @@ import { CouponModal } from './modals'
 import {
   CouponDownloadButton,
   CouponGroupDownloadButton,
+  DEFAULT_BUTTON_COLOR,
 } from './coupon-download-buttons'
+
+const DEFAULT_COLOR = {
+  buttonText: DEFAULT_BUTTON_COLOR.text,
+  buttonBackground: DEFAULT_BUTTON_COLOR.background,
+  description: '#3a3a3a80',
+}
 
 export default function Coupon({
   value: {
@@ -18,11 +25,7 @@ export default function Coupon({
     verificationType,
     couponType = 'single',
     enabledAt,
-    color = {
-      buttonBackground: '#368fff',
-      buttonText: '#ffffff',
-      description: '#3a3a3a80',
-    },
+    color = DEFAULT_COLOR,
   },
 }: {
   value: {
@@ -87,7 +90,7 @@ export default function Coupon({
 
       {description ? (
         <Text
-          css={{ color: color.description }}
+          css={{ color: color.description || DEFAULT_COLOR.description }}
           margin={{ top: 13 }}
           lineHeight={1.46}
           size="tiny"
