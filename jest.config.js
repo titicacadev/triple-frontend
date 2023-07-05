@@ -21,7 +21,6 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/lib',
-    '/app-directory',
-    'server.{js,jsx,ts,tsx}',
+    '<rootDir>/server.{js,jsx,ts,tsx}',
   ],
 }
