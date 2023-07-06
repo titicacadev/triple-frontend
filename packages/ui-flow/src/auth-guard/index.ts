@@ -4,7 +4,7 @@ import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interf
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
 import { getSessionAvailabilityFromRequest } from '@titicaca/react-contexts'
-import { User } from '@titicaca/type-definitions'
+import { GET_USER_INFO_URL, User } from '@titicaca/type-definitions'
 
 interface AuthGuardOptions {
   authType?: string
@@ -43,7 +43,7 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const response = await get<User>('/api/users/me', {
+    const response = await get<User>(GET_USER_INFO_URL, {
       req,
       retryable: true,
     })
