@@ -1,3 +1,5 @@
+export const GET_USER_INFO_URL = '/api/users/me'
+
 export interface User {
   name: string
   provider: Provider
