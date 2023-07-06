@@ -35,16 +35,21 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   }
 `
 
-type Props = PropsWithChildren<{
-  className?: string
-  size?: CarouselSizes
-  threshold?: number
-  onImpress?: () => void
-  onClick?: MouseEventHandler<HTMLLIElement>
-}>
-
-const CarouselItem = forwardRef<HTMLLIElement, Props>(function CarouselItem(
-  { size, children, threshold, onImpress, onClick, className }: Props,
+const CarouselItem = forwardRef<HTMLLIElement>(function CarouselItem(
+  {
+    size,
+    children,
+    threshold,
+    onImpress,
+    onClick,
+    className,
+  }: PropsWithChildren<{
+    className?: string
+    size?: CarouselSizes
+    threshold?: number
+    onImpress?: () => void
+    onClick?: MouseEventHandler<HTMLLIElement>
+  }>,
   ref,
 ) {
   if (onImpress) {
