@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v13.0.1
+
+### ad-banners
+
+- Revert egjs flicking 업데이트 [#2765](https://github.com/titicacadev/triple-frontend/pull/2765)
+
+### carousel
+
+- Revert egjs flicking 업데이트 [#2765](https://github.com/titicacadev/triple-frontend/pull/2765)
+
+### image-carousel
+
+- Revert egjs flicking 업데이트 [#2765](https://github.com/titicacadev/triple-frontend/pull/2765)
+
+### poi-detail
+
+- Revert egjs flicking 업데이트 [#2765](https://github.com/titicacadev/triple-frontend/pull/2765)
+
 ## v13
 
 ### action-sheet
