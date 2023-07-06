@@ -123,7 +123,7 @@ export function useReviewCount(
   initiaValue?: number,
 ) {
   return useQuery(
-    ['reviews/getReviewCount'],
+    ['reviews/getReviewCount', { ...params }],
     () => client.GetReviewsCount(params),
     {
       initialData: initiaValue
