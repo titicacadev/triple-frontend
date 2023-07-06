@@ -1,4 +1,4 @@
-import { MouseEventHandler, PropsWithChildren, forwardRef } from 'react'
+import { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { GlobalSizes } from '@titicaca/type-definitions'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -35,26 +35,23 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   }
 `
 
-const CarouselItem = forwardRef<HTMLLIElement>(function CarouselItem(
-  {
-    size,
-    children,
-    threshold,
-    onImpress,
-    onClick,
-    className,
-  }: PropsWithChildren<{
-    className?: string
-    size?: CarouselSizes
-    threshold?: number
-    onImpress?: () => void
-    onClick?: MouseEventHandler<HTMLLIElement>
-  }>,
-  ref,
-) {
+export default function CarouselItem({
+  size,
+  children,
+  threshold,
+  onImpress,
+  onClick,
+  className,
+}: PropsWithChildren<{
+  className?: string
+  size?: CarouselSizes
+  threshold?: number
+  onImpress?: () => void
+  onClick?: MouseEventHandler<HTMLLIElement>
+}>) {
   if (onImpress) {
     return (
-      <Item ref={ref} onClick={onClick} size={size} className={className}>
+      <Item onClick={onClick} size={size} className={className}>
         <StaticIntersectionObserver
           threshold={threshold || 0.5}
           onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
@@ -70,10 +67,8 @@ const CarouselItem = forwardRef<HTMLLIElement>(function CarouselItem(
   }
 
   return (
-    <Item ref={ref} onClick={onClick} size={size} className={className}>
+    <Item onClick={onClick} size={size} className={className}>
       {children}
     </Item>
   )
-})
-
-export default CarouselItem
+}

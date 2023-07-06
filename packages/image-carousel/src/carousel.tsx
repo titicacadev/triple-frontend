@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import Flicking, {
   FlickingProps,
   FlickingOptions,
-  ChangedEvent,
+  MoveStartEvent,
+  MoveEvent,
+  MoveEndEvent,
 } from '@egjs/react-flicking'
 import {
   Container,
@@ -45,13 +47,24 @@ function Carousel({
   horizontal = true,
   bounce = [0, 0],
   duration = 100,
-  onChanged,
+  onMoveStart,
+  onMove,
+  onMoveEnd,
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
 
-  const handleChanged = (e: ChangedEvent<Flicking>) => {
+  const handleMoveStart = (e: MoveStartEvent<Flicking>) => {
+    onMoveStart?.(e)
+  }
+
+  const handleMove = (e: MoveEvent<Flicking>) => {
+    onMove?.(e)
+  }
+
+  const handleMoveEnd = (e: MoveEndEvent<Flicking>) => {
     setCurrentIndex(e.currentTarget.index)
-    onChanged?.(e)
+
+    onMoveEnd?.(e)
   }
 
   const flickingProps = {
@@ -72,7 +85,13 @@ function Carousel({
       borderRadius={borderRadius}
       css={formatMarginPadding(margin, 'margin')}
     >
-      <Flicking ref={flickingRef} onChanged={handleChanged} {...flickingProps}>
+      <Flicking
+        ref={flickingRef}
+        onMoveStart={handleMoveStart}
+        onMove={handleMove}
+        onMoveEnd={handleMoveEnd}
+        {...flickingProps}
+      >
         {children}
       </Flicking>
 
