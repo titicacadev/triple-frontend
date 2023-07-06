@@ -302,7 +302,7 @@ export function useDeleteReviewMutation() {
         notifyReviewDeleted?.(variables.resourceId, variables.id)
 
         const updater = (review: BaseReviewFragment) =>
-          review.id === variables.id
+          review.id !== variables.id
 
         queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
           ['review/getPopularReviews'],
