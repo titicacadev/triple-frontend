@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ab-experiments",
-  "version": "13.0.0",
+  "version": "13.0.1",
   "description": "a/b experiments package",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/ab-experiments",
@@ -33,10 +33,10 @@
     ]
   },
   "dependencies": {
-    "@titicaca/fetcher": "^13.0.0"
+    "@titicaca/fetcher": "^13.0.1"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.0.0"
+    "@titicaca/react-contexts": "^13.0.1"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
