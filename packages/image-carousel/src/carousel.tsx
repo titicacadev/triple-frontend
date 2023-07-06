@@ -1,12 +1,7 @@
 import { ReactNode, RefObject, useState } from 'react'
 import styled from 'styled-components'
-import Flicking, {
-  FlickingProps,
-  FlickingOptions,
-  MoveStartEvent,
-  MoveEvent,
-  MoveEndEvent,
-} from '@egjs/react-flicking'
+import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
+import Flicking, { FlickingProps } from '@egjs/react-flicking'
 import {
   Container,
   formatMarginPadding,
@@ -53,16 +48,16 @@ function Carousel({
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
 
-  const handleMoveStart = (e: MoveStartEvent<Flicking>) => {
+  const handleMoveStart = (e: FlickingEvent) => {
     onMoveStart?.(e)
   }
 
-  const handleMove = (e: MoveEvent<Flicking>) => {
+  const handleMove = (e: FlickingEvent) => {
     onMove?.(e)
   }
 
-  const handleMoveEnd = (e: MoveEndEvent<Flicking>) => {
-    setCurrentIndex(e.currentTarget.index)
+  const handleMoveEnd = (e: FlickingEvent) => {
+    setCurrentIndex(e.index)
 
     onMoveEnd?.(e)
   }
