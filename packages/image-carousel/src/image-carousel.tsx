@@ -8,7 +8,7 @@ import { CarouselImageMeta, RendererParams } from './types'
 import { PageLabel } from './page-label'
 import Content from './content'
 
-// import '@egjs/react-flicking/dist/flicking.css'
+import './flicking.css'
 
 interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   images: CarouselImageMeta[]

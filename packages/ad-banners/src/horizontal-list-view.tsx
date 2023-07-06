@@ -8,7 +8,7 @@ import { Banner } from './typing'
 import HorizontalEntity from './horizontal-entity'
 import ListSection from './list-section'
 
-// import '@egjs/react-flicking/dist/flicking.css'
+import './flicking.css'
 
 interface HorizontalListViewProps {
   banners: Banner[]

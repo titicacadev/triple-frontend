@@ -12,7 +12,7 @@ import Flicking, { FlickingProps, FlickingOptions } from '@egjs/react-flicking'
 
 import CarouselItem from './carousel-item'
 
-// import '@egjs/react-flicking/dist/flicking.css'
+import './flicking.css'
 
 interface CarouselBaseProps {
   margin?: MarginPadding
