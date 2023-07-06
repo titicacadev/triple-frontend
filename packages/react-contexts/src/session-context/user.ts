@@ -1,7 +1,7 @@
 import { User } from '@titicaca/type-definitions'
 import { createContext, useCallback, useContext, useState } from 'react'
 
-export const GET_USER_REQUEST_URL = '/api/users/me'
+export const GET_USER_INFO_URL = '/api/users/me'
 
 const UserContext = createContext<User | null>(null)
 

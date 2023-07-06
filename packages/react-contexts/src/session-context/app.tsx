@@ -14,7 +14,7 @@ import { User } from '@titicaca/type-definitions'
 
 import { useEnv } from '../env-context'
 
-import { GET_USER_REQUEST_URL, UserProvider, useUserState } from './user'
+import { GET_USER_INFO_URL, UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
@@ -84,7 +84,7 @@ InAppSessionContextProvider.getInitialProps = async function ({
         })
       : optionalOptionsFetcher
 
-  const response = await finalFetcher<User>(GET_USER_REQUEST_URL)
+  const response = await finalFetcher<User>(GET_USER_INFO_URL)
 
   if (response.status !== 401) {
     captureHttpError(response)
