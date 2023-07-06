@@ -13,8 +13,9 @@ import {
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import Cookies from 'universal-cookie'
+import { User } from '@titicaca/type-definitions'
 
-import { User, UserProvider, useUserState } from './user'
+import { UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
