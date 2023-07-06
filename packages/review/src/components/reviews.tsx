@@ -48,6 +48,7 @@ function ReviewsComponent({
       {
         resourceId,
         resourceType,
+        recentTrip: isRecentTrip,
       },
       initialReviewsCount,
     )

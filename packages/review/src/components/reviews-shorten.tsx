@@ -51,6 +51,7 @@ function ReviewsShortenComponent({
       {
         resourceId,
         resourceType,
+        recentTrip: isRecentTrip,
       },
       initialReviewsCount,
     )
