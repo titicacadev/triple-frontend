@@ -10,10 +10,11 @@ import {
 } from '@titicaca/fetcher'
 import Cookies from 'universal-cookie'
 import { generateUrl } from '@titicaca/view-utilities'
+import { User } from '@titicaca/type-definitions'
 
 import { useEnv } from '../env-context'
 
-import { GET_USER_REQUEST_URL, User, UserProvider, useUserState } from './user'
+import { GET_USER_REQUEST_URL, UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,

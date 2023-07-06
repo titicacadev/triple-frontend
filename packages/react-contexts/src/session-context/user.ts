@@ -1,8 +1,5 @@
+import { User } from '@titicaca/type-definitions'
 import { createContext, useCallback, useContext, useState } from 'react'
-
-export interface User {
-  uid: string
-}
 
 export const GET_USER_REQUEST_URL = '/api/users/me'
 
