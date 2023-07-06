@@ -69,6 +69,10 @@ export const FullListButton = ({
     fullListButtonClickCallback()
   }
 
+  if (restReviewsCount <= 0) {
+    return null
+  }
+
   return (
     <Button
       basic
