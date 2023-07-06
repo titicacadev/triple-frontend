@@ -56,6 +56,10 @@ export function ReviewsList({
       return undefined
     }
 
+    if (reviews.length === 0) {
+      return []
+    }
+
     let newReviews = reviews.filter(
       (review) => review.id !== myReviewData.myReview?.id,
     )
