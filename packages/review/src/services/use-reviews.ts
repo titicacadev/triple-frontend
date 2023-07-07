@@ -14,6 +14,7 @@ import {
 import {
   BaseReviewFragment,
   DeleteReviewMutationVariables,
+  GetMyReviewQuery,
   GetLatestReviewsQuery,
   GetLatestReviewsQueryVariables,
   GetMyReviewQueryVariables,
@@ -304,6 +305,16 @@ export function useDeleteReviewMutation() {
         const updater = (review: BaseReviewFragment) =>
           review.id !== variables.id
 
+        queryClient.setQueriesData<GetMyReviewQuery | undefined>(
+          ['review/getMyReview'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  myReview: null,
+                }
+              : old,
+        )
         queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
           ['review/getPopularReviews'],
           (old) =>
