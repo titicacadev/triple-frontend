@@ -2,7 +2,7 @@ import { InitOptions, Namespace, Resource } from 'i18next'
 
 import { koCommonWeb } from '../assets/ko/common-web'
 import { jaCommonWeb } from '../assets/ja/common-web'
-import { zhCommonWeb } from '../assets/zh/common-web'
+import { zhTwCommonWeb } from '../assets/zh-TW/common-web'
 
 import { Language } from './types'
 import { DEFAULT_NAMESPACE, FALLBACK_LANGUAGE, LANGUAGES } from './constants'
@@ -34,8 +34,8 @@ function constructResources(languages: Language[]) {
     ja: {
       common: jaCommonWeb,
     },
-    zh: {
-      common: zhCommonWeb,
+    'zh-TW': {
+      common: zhTwCommonWeb,
     },
   }
 
