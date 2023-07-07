@@ -262,9 +262,9 @@ export function EventTrackingProvider({
           {},
         )
 
-      trackScreen(page?.path, page.label, utmParams)
+      trackScreen(page.path, page.label, utmParams)
     }
-  }, [trackScreen, page?.path, page.label, searchParams])
+  }, [trackScreen, page.path, page.label, searchParams])
 
   useEffect(() => {
     if (item?.id) {
