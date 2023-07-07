@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: |
-          npx @titicaca/gha-tools fetch-github-pr ${{ github.event.issue.number }}
+          pnpm dlx @titicaca/gha-tools fetch-github-pr ${{ github.event.issue.number }}
           PR_SHA=$(cat ./pr.json | jq -r '.head.sha')
           PR_REF=$(cat ./pr.json | jq -r '.head.ref')
           echo "PR_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
@@ -119,7 +119,7 @@ jobs:
           SLACK_COLOR: success
           SLACK_TITLE: ':label: Release tagging SUCCESS'
           SLACK_TOPIC: '${{ github.event.sender.login }} tagged ${{ env.PR_REF }} as ${{ env.TAG_NAME }}.'
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Notify tagging fail to Slack
         if: failure()
@@ -128,4 +128,4 @@ jobs:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Release tagging FAILURE'
           SLACK_TOPIC: 'Fail to tag ${{ env.PR_REF }} as ${{ env.TAG_NAME }}.'
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify

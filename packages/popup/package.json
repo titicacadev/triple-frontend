@@ -20,7 +20,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -40,11 +40,14 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.24.8",
-    "@titicaca/core-elements": "^13.2.4"
+    "@titicaca/core-elements": "workspace:*"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "styled-components": "^5.3.11"
   },
   "peerDependencies": {
     "react": "^18.0",
-    "react-dom": "^18.0",
     "styled-components": "^5.3.9"
   }
 }

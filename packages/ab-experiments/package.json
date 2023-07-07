@@ -16,7 +16,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -33,15 +33,16 @@
     ]
   },
   "dependencies": {
-    "@titicaca/fetcher": "^13.2.4"
+    "@titicaca/fetcher": "workspace:*"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.2.4"
+    "@titicaca/react-contexts": "workspace:*",
+    "next": "^13.4.13",
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "next": "^13.0",
-    "react": "^18.0",
-    "react-dom": "^18.0"
+    "react": "^18.0"
   }
 }

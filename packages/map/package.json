@@ -16,7 +16,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -36,15 +36,27 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.18.1",
-    "@titicaca/core-elements": "^13.2.4",
-    "@titicaca/router": "^13.2.4",
-    "@titicaca/type-definitions": "^13.2.4"
+    "@titicaca/core-elements": "workspace:*",
+    "@titicaca/router": "workspace:*",
+    "@titicaca/type-definitions": "workspace:*"
   },
   "devDependencies": {
-    "@types/googlemaps": "^3.43.3",
+    "@titicaca/i18n": "workspace:*",
+    "@titicaca/next-i18next": "^13.8.5",
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-triple-client-interfaces": "workspace:*",
+    "next": "^13.4.13",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "styled-components": "^5.3.11",
     "utility-types": "^3.10.0"
+  },
+  "peerDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
+    "next": "^13.0",
+    "react": "^18.0",
+    "styled-components": "^5.3.9"
   }
 }

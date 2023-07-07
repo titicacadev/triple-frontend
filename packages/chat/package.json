@@ -16,7 +16,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -35,24 +35,25 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.2.4",
-    "@titicaca/core-elements": "^13.2.4",
-    "@titicaca/intersection-observer": "^13.2.4",
-    "@titicaca/triple-fallback-action": "^13.2.4",
+    "@titicaca/color-palette": "workspace:*",
+    "@titicaca/core-elements": "workspace:*",
+    "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/triple-fallback-action": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
-    "@titicaca/type-definitions": "^13.2.4",
-    "@titicaca/view-utilities": "^13.2.4",
+    "@titicaca/type-definitions": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.0.0",
     "moment": "^2.29.4"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.2.4",
-    "@types/isomorphic-fetch": "^0.0.36"
+    "@titicaca/react-contexts": "workspace:*",
+    "@types/isomorphic-fetch": "^0.0.36",
+    "react": "^18.2.0",
+    "styled-components": "^5.3.11"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "react": "^18.0",
-    "react-dom": "^18.0",
     "styled-components": "^5.3.9"
   }
 }

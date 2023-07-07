@@ -16,7 +16,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -35,24 +35,27 @@
     ]
   },
   "dependencies": {
-    "@titicaca/modals": "^13.2.4",
-    "@titicaca/view-utilities": "^13.2.4",
+    "@titicaca/modals": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.2.4",
+    "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^13.2.4",
-    "@titicaca/react-triple-client-interfaces": "^13.2.4",
-    "@types/qs": "^6.9.7"
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-triple-client-interfaces": "workspace:*",
+    "@types/qs": "^6.9.7",
+    "next": "^13.4.13",
+    "react": "^18.2.0",
+    "styled-components": "^5.3.11"
   },
   "peerDependencies": {
+    "@titicaca/i18n": "*",
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "@titicaca/react-triple-client-interfaces": "*",
     "next": "^13.0",
     "react": "^18.0",
-    "react-dom": "^18.0",
     "styled-components": "^5.3.9"
   }
 }

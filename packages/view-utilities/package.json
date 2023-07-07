@@ -11,7 +11,6 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "typesVersions": {
     "*": {
@@ -31,7 +30,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -48,20 +47,21 @@
     ]
   },
   "dependencies": {
-    "@titicaca/type-definitions": "^13.2.4",
-    "@types/qs": "^6.9.7",
+    "@titicaca/type-definitions": "workspace:*",
     "haversine": "^1.1.1",
     "humps": "^2.0.1",
     "moment": "^2.29.4",
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.2.4",
+    "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
     "@types/haversine": "^1.1.5",
-    "@types/humps": "^2.0.3"
+    "@types/humps": "^2.0.3",
+    "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
+    "@titicaca/i18n": "*",
     "@titicaca/next-i18next": "*"
   }
 }

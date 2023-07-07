@@ -39,7 +39,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -58,11 +58,11 @@
     ]
   },
   "dependencies": {
-    "@titicaca/constants": "^13.2.4",
-    "@titicaca/fetcher": "^13.2.4",
+    "@titicaca/constants": "workspace:*",
+    "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
-    "@titicaca/type-definitions": "^13.2.4",
-    "@titicaca/view-utilities": "^13.2.4",
+    "@titicaca/type-definitions": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
     "ua-parser-js": "^1.0.35",
@@ -70,16 +70,18 @@
   },
   "devDependencies": {
     "@types/qs": "^6.9.7",
+    "@types/semver": "^7.5.0",
     "@types/ua-parser-js": "^0.7.36",
     "firebase": "^9.15.0",
+    "next": "^13.4.13",
+    "react": "^18.2.0",
+    "styled-components": "^5.3.11",
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
     "firebase": "^9.11.0 || ^10.0.0",
     "next": "^13.0",
     "react": "^18.0",
-    "react-dom": "^18.0",
     "styled-components": "^5.3.9"
-  },
-  "author": ""
+  }
 }
