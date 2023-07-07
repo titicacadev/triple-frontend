@@ -14,7 +14,7 @@ import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import Cookies from 'universal-cookie'
 
-import { User, UserProvider, useUserState } from './user'
+import { GET_USER_REQUEST_URL, User, UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
@@ -90,7 +90,7 @@ InBrowserSessionContextProvider.getInitialProps = async function ({
             refresh: () => post('/api/users/web-session/token'),
           })
 
-    const response = await finalFetcher<User>('/api/users/me')
+    const response = await finalFetcher<User>(GET_USER_REQUEST_URL)
 
     if (response === 'NEED_LOGIN') {
       return undefined
