@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { appWithTranslation } from '@titicaca/next-i18next'
 
-import { koCommonWeb } from '@titicaca/i18n/src/assets/ko/common-web'
-import { jaCommonWeb } from '@titicaca/i18n/src/assets/ja/common-web'
-import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
+import { koCommonWeb } from './public/assets/ko/common-web'
+import { jaCommonWeb } from './public/assets/ja/common-web'
+import { zhTwCommonWeb } from './public/assets/zh-TW/common-web'
 
 const locales = ['ko', 'ja', 'zh-TW']
 const resources = {

@@ -12,6 +12,52 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "main": "lib/index.js",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "lib/index.d.ts"
+      ],
+      "client": [
+        "lib/app-directory/client.d.ts"
+      ],
+      "server": [
+        "lib/app-directory/server.d.ts"
+      ],
+      "app-directory": [
+        "lib/app-directory/index.d.ts"
+      ],
+      "middleware-utils": [
+        "lib/app-directory/middleware-utils.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./client": {
+      "require": "./lib/app-directory/client.js",
+      "import": "./lib/app-directory/client.js",
+      "types": "./lib/app-directory/client.d.ts"
+    },
+    "./server": {
+      "require": "./lib/app-directory/server.js",
+      "import": "./lib/app-directory/server.js",
+      "types": "./lib/app-directory/server.d.ts"
+    },
+    "./app-directory": {
+      "require": "./lib/app-directory/index.js",
+      "import": "./lib/app-directory/index.js",
+      "types": "./lib/app-directory/index.d.ts"
+    },
+    "./middleware-utils": {
+      "require": "./lib/app-directory/middleware-utils.js",
+      "import": "./lib/app-directory/middleware-utils.js",
+      "types": "./lib/app-directory/middleware-utils.d.ts"
+    }
+  },
   "files": [
     "lib"
   ],
@@ -33,9 +79,15 @@
     ]
   },
   "dependencies": {
-    "node-fetch": "2.6.12"
+    "node-fetch": "2.6.12",
+    "react-i18next": "12.3.1"
   },
   "devDependencies": {
     "@types/node-fetch": "2.x"
+  },
+  "peerDependencies": {
+    "i18next": "*",
+    "next": "*",
+    "react": "*"
   }
 }
