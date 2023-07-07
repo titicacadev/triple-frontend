@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/listing-filter",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "Listing filter UI",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/listing-filter",
@@ -35,8 +35,8 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.0.1",
-    "@titicaca/core-elements": "^13.0.1"
+    "@titicaca/color-palette": "^13.0.2",
+    "@titicaca/core-elements": "^13.0.2"
   },
   "peerDependencies": {
     "react": "^18.0",

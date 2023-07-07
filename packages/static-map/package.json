@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-map",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "Static map component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/static-map",
@@ -35,10 +35,10 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^13.0.1"
+    "@titicaca/core-elements": "^13.0.2"
   },
   "devDependencies": {
-    "@titicaca/type-definitions": "^13.0.1"
+    "@titicaca/type-definitions": "^13.0.2"
   },
   "peerDependencies": {
     "react": "^18.0",
