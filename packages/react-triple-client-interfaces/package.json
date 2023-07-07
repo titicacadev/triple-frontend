@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-triple-client-interfaces",
-  "version": "13.0.1",
+  "version": "13.0.2",
   "description": "React module for Triple native client interfaces",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-triple-client-interfaces",
@@ -33,12 +33,12 @@
     ]
   },
   "dependencies": {
-    "@titicaca/view-utilities": "^13.0.1",
+    "@titicaca/view-utilities": "^13.0.2",
     "qs": "^6.11.2",
     "semver": "^7.5.3"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.0.1",
+    "@titicaca/react-contexts": "^13.0.2",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@types/qs": "^6.9.7",
     "@types/semver": "^7.5.0"
