@@ -2,22 +2,24 @@
   "name": "root",
   "private": true,
   "engines": {
-    "npm": ">= 9.0"
+    "node": ">= 16",
+    "pnpm": ">= 8"
   },
   "scripts": {
-    "dev": "npm run storybook",
+    "dev": "pnpm run storybook",
     "build": "lerna run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "clean:deps": "rimraf node_modules packages/**/node_modules",
     "clean:build": "rimraf packages/**/lib packages/**/*.tsbuildinfo node_modules/.cache/nx",
-    "clean": "npm run clean:build && npm run clean:deps",
+    "clean": "pnpm run clean:build && pnpm run clean:deps",
     "make-tsconfig": "node scripts/make-tsconfig",
     "make-build-tsconfig": "lerna exec --ignore=@titicaca/frontend-integration-test --parallel -- node \\$LERNA_ROOT_PATH/scripts/make-build-tsconfig.js",
-    "sync-deps": "npm run make-tsconfig && npm run make-build-tsconfig",
+    "sync-deps": "pnpm run make-tsconfig && pnpm run make-build-tsconfig",
     "prepare": "husky install",
-    "postinstall": "npm run sync-deps",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpm run sync-deps",
     "version": "lerna version --no-push --force-publish",
     "postversion": "npm install && git commit --amend -a -C HEAD",
     "lint:es": "lerna run lint:es",
@@ -28,8 +30,8 @@
     "lint:etc:fix": "lerna run lint:etc:fix",
     "lint": "lerna run lint:es,lint:style,lint:etc",
     "lint:fix": "lerna run lint:es:fix,lint:style:fix,lint:etc:fix",
-    "storybook": "storybook dev --quiet -p 6006",
-    "build-storybook": "storybook build --quiet",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "devDependencies": {
@@ -90,10 +92,6 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "5.1.6"
   },
-  "workspaces": [
-    "packages/*",
-    "integration-test"
-  ],
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
       "eslint",

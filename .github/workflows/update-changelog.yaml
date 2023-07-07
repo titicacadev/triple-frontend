@@ -36,9 +36,8 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'npm'
 
-      - run: npm ci node-fetch prettier
+      - run: pnpm install node-fetch prettier
 
       - name: Execute Changelog JavaScript
         run: node scripts/changelog.js

@@ -6,6 +6,7 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"]
     }
   },

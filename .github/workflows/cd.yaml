@@ -37,12 +37,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Wait for CI
         uses: fountainhead/action-wait-for-check@v1.1.0
@@ -57,7 +61,7 @@ jobs:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: CI Waiting timeout'
           SLACK_TOPIC: 'CI workflow가 시작되었는지, 기다리는 job의 이름이 CI job과 일치하는지, 확인해주세요.'
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Notify checking CI failure
         if: steps.wait-for-ci.outputs.conclusion == 'failure'
@@ -65,7 +69,7 @@ jobs:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: CI FAILURE'
           SLACK_TOPIC: '배포를 중단합니다.'
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Shutdown workflow
         if: steps.wait-for-ci.outputs.conclusion != 'success'
@@ -79,12 +83,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Get release version
         run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
@@ -94,17 +102,19 @@ jobs:
           SLACK_COLOR: gray
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Install dependencies
-        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+        run: pnpm install
 
-      - run: npm run build
+      - run: pnpm run build
 
       - name: Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: npx lerna publish from-package --yes
+        run: pnpm exec lerna publish from-package --yes
 
       - name: Notify deploy success to slack
         if: success()
@@ -112,7 +122,7 @@ jobs:
           SLACK_COLOR: success
           SLACK_TITLE: ':tada: Release SUCCESS'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Notify deploy fail to slack
         if: failure()
@@ -120,7 +130,7 @@ jobs:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Release FAILURE'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
   tag:
     needs: release
@@ -194,12 +204,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Get release version
         env:
@@ -219,17 +233,19 @@ jobs:
           SLACK_COLOR: gray
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Install dependencies
-        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
+        run: pnpm install
 
-      - run: npm run build
+      - run: pnpm run build
 
       - name: Publish as canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: npx lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
+        run: pnpm exec lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
 
       - name: Notify released version on pull request
         run: |
@@ -246,7 +262,7 @@ jobs:
           SLACK_COLOR: success
           SLACK_TITLE: ':tada: Release SUCCESS'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Notify release failure to Slack
         if: failure()
@@ -254,4 +270,4 @@ jobs:
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Release FAILURE'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
-        run: npx @titicaca/gha-tools notify
+        run: pnpm dlx @titicaca/gha-tools notify

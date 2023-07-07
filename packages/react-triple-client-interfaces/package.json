@@ -16,7 +16,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:types",
+    "build": "pnpm run build:cjs && pnpm run build:types",
     "build:cjs": "swc src -d lib --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
@@ -33,20 +33,21 @@
     ]
   },
   "dependencies": {
-    "@titicaca/view-utilities": "^13.2.4",
+    "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2",
     "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.2.4",
+    "@titicaca/react-contexts": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@types/qs": "^6.9.7",
-    "@types/semver": "^7.5.0"
+    "@types/semver": "^7.5.0",
+    "next": "^13.4.13",
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "next": "^13.0",
-    "react": "^18.0",
-    "react-dom": "^18.0"
+    "react": "^18.0"
   }
 }
