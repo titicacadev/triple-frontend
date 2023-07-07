@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.0.2
+
+### review
+
+- TF13 review fix [#2766](https://github.com/titicacadev/triple-frontend/pull/2766)
+
 ## v13.0.1
 
 ### ad-banners
