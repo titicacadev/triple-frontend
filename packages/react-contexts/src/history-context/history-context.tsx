@@ -40,8 +40,8 @@ interface NavigateFunctionConfig {
 
 interface HistoryContextValue {
   uriHash: UriHash
-  push: (hash: string, config?: NavigateFunctionConfig) => void
-  replace: (hash: string, config?: NavigateFunctionConfig) => void
+  push: (hash: string, config?: NavigateFunctionConfig) => Promise<boolean>
+  replace: (hash: string, config?: NavigateFunctionConfig) => Promise<boolean>
   back: () => void
   /**
    * @deprecated router 패키지를 이용하세요.
@@ -55,6 +55,7 @@ interface HistoryContextValue {
 }
 
 const NOOP = () => {}
+const THENABLENOOP = () => Promise.resolve(true)
 
 function addHashToCurrentUrl({
   hash,
@@ -76,8 +77,8 @@ const UriHashContext = createContext<UriHash>('')
 const HistoryFunctionsContext = createContext<
   Omit<HistoryContextValue, 'uriHash'>
 >({
-  push: NOOP,
-  replace: NOOP,
+  push: THENABLENOOP,
+  replace: THENABLENOOP,
   back: NOOP,
   navigate: NOOP,
   openWindow: NOOP,
