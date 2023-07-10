@@ -41,7 +41,8 @@
   },
   "devDependencies": {
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^13.0.2"
+    "@titicaca/react-contexts": "^13.0.2",
+    "utility-types": "^3.10.0"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",
