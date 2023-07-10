@@ -28,6 +28,9 @@
       ],
       "middleware-utils": [
         "lib/app-directory/middleware-utils.d.ts"
+      ],
+      "assets": [
+        "lib/assets/index.d.ts"
       ]
     }
   },
@@ -56,6 +59,11 @@
       "require": "./lib/app-directory/middleware-utils.js",
       "import": "./lib/app-directory/middleware-utils.js",
       "types": "./lib/app-directory/middleware-utils.d.ts"
+    },
+    "./assets": {
+      "require": "./lib/assets/index.js",
+      "import": "./lib/assets/index.js",
+      "types": "./lib/assets/index.d.ts"
     }
   },
   "files": [
