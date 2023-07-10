@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from 'next'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { generateUrl, parseUrl } from '@titicaca/view-utilities/server'
 
 import { HttpResponse, RequestOptions } from './types'
 
