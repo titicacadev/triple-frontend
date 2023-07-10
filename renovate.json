@@ -5,6 +5,10 @@
       "matchManagers": ["npm"],
       "matchDepTypes": ["engines"],
       "enabled": false
+    },
+    {
+      "groupName": "SWC",
+      "matchPackagePrefixes": ["@swc/"]
     }
   ]
 }
