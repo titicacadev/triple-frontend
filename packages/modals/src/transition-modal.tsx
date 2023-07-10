@@ -12,7 +12,7 @@ import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import { Modal } from './modal'
 
-type ShowTransitionModal = (type: TransitionType) => void
+type ShowTransitionModal = (type: TransitionType) => Promise<boolean>
 
 const IconImage = styled.img`
   display: block;
@@ -188,7 +188,7 @@ export function useTransitionModal(): { show: ShowTransitionModal } {
             referrer_event: triggeredEventLabel,
           },
         })
-        push(`transition.${type}`)
+        return push(`transition.${type}`)
       },
     }),
     [push, trackEvent],
