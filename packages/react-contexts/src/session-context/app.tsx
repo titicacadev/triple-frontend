@@ -13,17 +13,13 @@ import { generateUrl } from '@titicaca/view-utilities'
 
 import { useEnv } from '../env-context'
 
-import { GET_USER_REQUEST_URL, User, UserProvider, useUserState } from './user'
+import { GET_USER_REQUEST_URL, UserProvider, useUserState } from './user'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
   SessionControllers,
 } from './context'
-
-export interface InAppSessionContextProviderProps {
-  initialSessionId: string | undefined
-  initialUser: User | undefined
-}
+import { InAppSessionContextProviderProps, User } from './types'
 
 export function InAppSessionContextProvider({
   initialSessionId,
@@ -58,6 +54,9 @@ export function InAppSessionContextProvider({
   )
 }
 
+/** 
+  next v13 이후 app router를 사용하는 경우 getAppSessionProps를 사용하세요.
+*/
 InAppSessionContextProvider.getInitialProps = async function ({
   req,
 }: NextPageContext): Promise<InAppSessionContextProviderProps> {

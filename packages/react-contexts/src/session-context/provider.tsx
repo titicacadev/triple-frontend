@@ -3,24 +3,9 @@ import { PropsWithChildren } from 'react'
 
 import { generateUserAgentValues } from '../user-agent-context'
 
-import {
-  InAppSessionContextProviderProps,
-  InAppSessionContextProvider,
-} from './app'
-import {
-  InBrowserSessionContextProviderProps,
-  InBrowserSessionContextProvider,
-} from './browser'
-
-type SessionContextProviderProps =
-  | {
-      type: 'browser'
-      props: InBrowserSessionContextProviderProps
-    }
-  | {
-      type: 'app'
-      props: InAppSessionContextProviderProps
-    }
+import { InAppSessionContextProvider } from './app'
+import { InBrowserSessionContextProvider } from './browser'
+import { SessionContextProviderProps } from './types'
 
 export default function SessionContextProvider({
   children,
