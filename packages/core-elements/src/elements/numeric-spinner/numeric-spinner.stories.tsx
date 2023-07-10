@@ -1,8 +1,4 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from '@storybook/react'
+import type { StoryFn, Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { NumericSpinner } from './numeric-spinner'
@@ -10,22 +6,22 @@ import { NumericSpinner } from './numeric-spinner'
 export default {
   title: 'core-elements / NumericSpinner',
   component: NumericSpinner,
-} as ComponentMeta<typeof NumericSpinner>
+} as Meta<typeof NumericSpinner>
 
-export const Default: ComponentStoryObj<typeof NumericSpinner> = {
+export const Default: StoryObj<typeof NumericSpinner> = {
   args: {
     label: '성인',
   },
 }
 
-export const Disabled: ComponentStoryObj<typeof NumericSpinner> = {
+export const Disabled: StoryObj<typeof NumericSpinner> = {
   args: {
     ...Default.args,
     disabled: true,
   },
 }
 
-export const Label: ComponentStory<typeof NumericSpinner> = () => {
+export const Label: StoryFn<typeof NumericSpinner> = () => {
   return (
     <>
       <NumericSpinner {...Default.args} />
@@ -40,7 +36,7 @@ export const Label: ComponentStory<typeof NumericSpinner> = () => {
   )
 }
 
-export const Size: ComponentStory<typeof NumericSpinner> = () => {
+export const Size: StoryFn<typeof NumericSpinner> = () => {
   return (
     <>
       <NumericSpinner {...Default.args} size="tiny" />
@@ -50,7 +46,7 @@ export const Size: ComponentStory<typeof NumericSpinner> = () => {
   )
 }
 
-export const Controlled: ComponentStory<typeof NumericSpinner> = () => {
+export const Controlled: StoryFn<typeof NumericSpinner> = () => {
   const [value, setValue] = useState(1)
 
   return <NumericSpinner {...Default.args} value={value} onChange={setValue} />

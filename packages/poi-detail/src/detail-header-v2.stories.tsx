@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import { UserAgentProvider } from '@titicaca/react-contexts'
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import DetailHeaderV2 from './detail-header-v2'
 
@@ -20,9 +20,9 @@ export default {
       </UserAgentProvider>
     ),
   ],
-} as ComponentMeta<typeof DetailHeaderV2>
+} as Meta<typeof DetailHeaderV2>
 
-export const Basic: ComponentStoryObj<typeof DetailHeaderV2> = {
+export const Basic: StoryObj<typeof DetailHeaderV2> = {
   name: 'V2',
   args: {
     names: {

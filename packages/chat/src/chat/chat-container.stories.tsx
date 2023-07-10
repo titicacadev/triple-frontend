@@ -1,12 +1,12 @@
-import { Story } from '@storybook/react'
+import type { StoryFn } from '@storybook/react'
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 import { MessageType, TextPayload } from '../types'
 import { CHAT_ARGS } from '../utils/constants'
 
-import { ChatContainerProps, ChatContainer } from './chat-container'
 import { Chat } from './chat'
+import { ChatContainer, ChatContainerProps } from './chat-container'
 
 export default {
   title: 'chat / ChatContainer',
@@ -58,7 +58,7 @@ const Input = ({
   )
 }
 
-const Template: Story<ChatContainerProps> = () => (
+const Template: StoryFn<ChatContainerProps> = () => (
   <ChatContainer
     container={ChatMessagesContainer}
     inputElement={Input}
@@ -71,6 +71,7 @@ const Template: Story<ChatContainerProps> = () => (
   </ChatContainer>
 )
 
-export const ChatStory = Template.bind({})
-
-ChatStory.storyName = 'Chat Room'
+export const ChatStory = {
+  render: Template,
+  name: 'Chat Room',
+}

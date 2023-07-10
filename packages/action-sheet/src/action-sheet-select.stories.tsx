@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
 
 import { ActionSheetSelect } from './action-sheet-select'
-import { ActionSheetSelectOption } from './action-sheet-select-option'
 import { ActionSheetSelectButton } from './action-sheet-select-button'
+import { ActionSheetSelectOption } from './action-sheet-select-option'
 import { ActionSheetSelectOptions } from './action-sheet-select-options'
 
 export default {
@@ -15,7 +15,7 @@ export default {
       iframeHeight: 500,
     },
   },
-} as ComponentMeta<typeof ActionSheetSelect>
+} as Meta<typeof ActionSheetSelect>
 
 const list = [
   ['a', 'Option A'],
@@ -23,7 +23,7 @@ const list = [
   ['c', 'Option C'],
 ]
 
-export const Basic: ComponentStory<typeof ActionSheetSelect> = () => {
+export const Basic: StoryFn<typeof ActionSheetSelect> = () => {
   const [value, setValue] = useState<string | undefined>(undefined)
 
   return (

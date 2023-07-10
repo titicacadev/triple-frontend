@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { Checkbox } from './checkbox'
@@ -6,13 +6,15 @@ import { Checkbox } from './checkbox'
 export default {
   title: 'core-elements / Checkbox',
   component: Checkbox,
-} as ComponentMeta<typeof Checkbox>
+} as Meta<typeof Checkbox>
 
-export const Default: ComponentStory<typeof Checkbox> = (args) => {
-  return <Checkbox {...args}>Option</Checkbox>
+export const Default: StoryObj<typeof Checkbox> = {
+  render: (args) => {
+    return <Checkbox {...args}>Option</Checkbox>
+  },
 }
 
-export const Controlled: ComponentStory<typeof Checkbox> = () => {
+export const Controlled: StoryFn<typeof Checkbox> = () => {
   const [checked, setChecekd] = useState(false)
 
   return (

@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
 
 export default {
   title: 'Review / Review Placeholder',
   component: ReviewsPlaceholder,
-} as ComponentMeta<typeof ReviewsPlaceholder>
+} as Meta<typeof ReviewsPlaceholder>
 
-export const Basic: ComponentStoryObj<typeof ReviewsPlaceholder> = {
+export const Basic: StoryObj<typeof ReviewsPlaceholder> = {
   args: {
     resourceType: 'tna',
     recentTrip: false,
@@ -16,7 +16,7 @@ export const Basic: ComponentStoryObj<typeof ReviewsPlaceholder> = {
   },
 }
 
-export const Article: ComponentStoryObj<typeof ReviewsPlaceholder> = {
+export const Article: StoryObj<typeof ReviewsPlaceholder> = {
   args: {
     resourceType: 'article',
     recentTrip: false,
@@ -25,7 +25,7 @@ export const Article: ComponentStoryObj<typeof ReviewsPlaceholder> = {
   },
 }
 
-export const RecentTrip: ComponentStoryObj<typeof ReviewsPlaceholder> = {
+export const RecentTrip: StoryObj<typeof ReviewsPlaceholder> = {
   args: {
     resourceType: 'tna',
     recentTrip: true,
@@ -34,7 +34,7 @@ export const RecentTrip: ComponentStoryObj<typeof ReviewsPlaceholder> = {
   },
 }
 
-export const HasReviews: ComponentStoryObj<typeof ReviewsPlaceholder> = {
+export const HasReviews: StoryObj<typeof ReviewsPlaceholder> = {
   args: {
     resourceType: 'tna',
     recentTrip: true,
@@ -43,7 +43,7 @@ export const HasReviews: ComponentStoryObj<typeof ReviewsPlaceholder> = {
   },
 }
 
-export const IsMorePage: ComponentStoryObj<typeof ReviewsPlaceholder> = {
+export const IsMorePage: StoryObj<typeof ReviewsPlaceholder> = {
   args: {
     resourceType: 'tna',
     recentTrip: true,

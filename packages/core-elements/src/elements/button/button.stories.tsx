@@ -1,8 +1,4 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from '@storybook/react'
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 
 import { Button } from './button'
 import { ButtonContainer } from './button-container'
@@ -17,22 +13,22 @@ export default {
     ButtonGroup,
     ButtonIcon,
   },
-} as ComponentMeta<typeof Button>
+} as Meta<typeof Button>
 
-export const Normal: ComponentStoryObj<typeof Button> = {
+export const Normal: StoryObj<typeof Button> = {
   args: {
     children: 'Normal',
   },
 }
 
-export const Basic: ComponentStoryObj<typeof Button> = {
+export const Basic: StoryObj<typeof Button> = {
   args: {
     children: 'Basic',
     basic: true,
   },
 }
 
-export const Disabled: ComponentStory<typeof Button> = () => {
+export const Disabled: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button disabled>Normal</Button>
@@ -43,7 +39,7 @@ export const Disabled: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const Compact: ComponentStory<typeof Button> = () => {
+export const Compact: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button compact>Normal</Button>
@@ -54,7 +50,7 @@ export const Compact: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const Size: ComponentStory<typeof Button> = () => {
+export const Size: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button size="tiny">Tiny</Button>
@@ -64,7 +60,7 @@ export const Size: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const Fluid: ComponentStory<typeof Button> = () => {
+export const Fluid: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button fluid>Normal</Button>
@@ -75,7 +71,7 @@ export const Fluid: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const Icon: ComponentStory<typeof Button> = () => {
+export const Icon: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button>
@@ -96,7 +92,7 @@ export const Icon: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const BlockIcons: ComponentStory<typeof Button> = () => {
+export const BlockIcons: StoryFn<typeof Button> = () => {
   return (
     <>
       <Button icon="saveEmpty">saveEmpty</Button>
@@ -110,53 +106,58 @@ export const BlockIcons: ComponentStory<typeof Button> = () => {
   )
 }
 
-export const WithButtonGroup: ComponentStory<typeof ButtonGroup> = (args) => {
-  return (
-    <ButtonGroup {...args}>
-      <Button basic color="gray" size="small">
-        현지에서 길묻기
-      </Button>
-      <Button basic inverted color="blue" size="small">
-        길찾기
-      </Button>
-    </ButtonGroup>
-  )
-}
-WithButtonGroup.args = {
-  horizontalGap: 10,
-  buttonCount: 2,
+export const WithButtonGroup: StoryObj<typeof ButtonGroup> = {
+  render: (args) => {
+    return (
+      <ButtonGroup {...args}>
+        <Button basic color="gray" size="small">
+          현지에서 길묻기
+        </Button>
+        <Button basic inverted color="blue" size="small">
+          길찾기
+        </Button>
+      </ButtonGroup>
+    )
+  },
+
+  args: {
+    horizontalGap: 10,
+    buttonCount: 2,
+  },
 }
 
-export const WithIconButtonGroup: ComponentStory<typeof ButtonGroup> = (
-  args,
-) => {
-  return (
-    <ButtonGroup {...args}>
-      <Button icon="saveEmpty">저장하기</Button>
-      <Button icon="schedule">일정추가</Button>
-      <Button icon="starEmpty">리뷰쓰기</Button>
-      <Button icon="share">공유하기</Button>
-    </ButtonGroup>
-  )
-}
-WithIconButtonGroup.args = {
-  horizontalGap: 22,
+export const WithIconButtonGroup: StoryObj<typeof ButtonGroup> = {
+  render: (args) => {
+    return (
+      <ButtonGroup {...args}>
+        <Button icon="saveEmpty">저장하기</Button>
+        <Button icon="schedule">일정추가</Button>
+        <Button icon="starEmpty">리뷰쓰기</Button>
+        <Button icon="share">공유하기</Button>
+      </ButtonGroup>
+    )
+  },
+
+  args: {
+    horizontalGap: 22,
+  },
 }
 
-export const WithButtonContainer: ComponentStory<typeof ButtonContainer> = (
-  args,
-) => {
-  return (
-    <ButtonContainer {...args}>
-      <Button basic color="gray" size="small">
-        버튼 1
-      </Button>
-      <Button basic inverted color="blue" size="small">
-        버튼 2
-      </Button>
-    </ButtonContainer>
-  )
-}
-WithButtonContainer.args = {
-  floated: 'none',
+export const WithButtonContainer: StoryObj<typeof ButtonContainer> = {
+  render: (args) => {
+    return (
+      <ButtonContainer {...args}>
+        <Button basic color="gray" size="small">
+          버튼 1
+        </Button>
+        <Button basic inverted color="blue" size="small">
+          버튼 2
+        </Button>
+      </ButtonContainer>
+    )
+  },
+
+  args: {
+    floated: 'none',
+  },
 }

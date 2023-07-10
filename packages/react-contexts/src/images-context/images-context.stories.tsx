@@ -1,4 +1,4 @@
-import { useState, memo } from 'react'
+import { memo, useState } from 'react'
 import styled from 'styled-components'
 
 import { ImagesProvider, useImagesContext } from '.'
@@ -98,16 +98,22 @@ function RenderingTester() {
   )
 }
 
-export const Basic = () => {
-  return (
-    <ImagesProvider source={SAMPLE_SOURCE}>
-      <ImagesContextMonitor />
-    </ImagesProvider>
-  )
-}
-Basic.storyName = '데이터 확인'
+export const Basic = {
+  render: () => {
+    return (
+      <ImagesProvider source={SAMPLE_SOURCE}>
+        <ImagesContextMonitor />
+      </ImagesProvider>
+    )
+  },
 
-export const Tester = () => {
-  return <RenderingTester />
+  name: '데이터 확인',
 }
-Tester.storyName = '자식 렌더링 될 때 value 유지 테스트'
+
+export const Tester = {
+  render: () => {
+    return <RenderingTester />
+  },
+
+  name: '자식 렌더링 될 때 value 유지 테스트',
+}

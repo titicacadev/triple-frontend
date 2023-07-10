@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
 import { CheckboxBase } from './checkbox-base'
 
 export default {
   title: 'core-elements / CheckboxBase',
   component: CheckboxBase,
-} as ComponentMeta<typeof CheckboxBase>
+} as Meta<typeof CheckboxBase>
 
-export const Variants: ComponentStory<typeof CheckboxBase> = () => {
+export const Variants: StoryFn<typeof CheckboxBase> = () => {
   return (
     <>
       <div>

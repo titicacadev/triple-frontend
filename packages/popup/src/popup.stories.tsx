@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
 import Popup from './popup'
@@ -12,13 +12,13 @@ export default {
       iframeHeight: 500,
     },
   },
-} as ComponentMeta<typeof Popup>
+} as Meta<typeof Popup>
 
 const EmptyScroll = styled.div`
   height: 200vh;
 `
 
-export const Basic: ComponentStoryObj<typeof Popup> = {
+export const Basic: StoryObj<typeof Popup> = {
   args: {
     open: true,
     title: '테스트',
@@ -26,7 +26,7 @@ export const Basic: ComponentStoryObj<typeof Popup> = {
   },
 }
 
-export const Borderless: ComponentStoryObj<typeof Popup> = {
+export const Borderless: StoryObj<typeof Popup> = {
   args: {
     open: true,
     borderless: true,
@@ -35,7 +35,7 @@ export const Borderless: ComponentStoryObj<typeof Popup> = {
   },
 }
 
-export const NoNavbar: ComponentStoryObj<typeof Popup> = {
+export const NoNavbar: StoryObj<typeof Popup> = {
   args: {
     open: true,
     noNavbar: true,

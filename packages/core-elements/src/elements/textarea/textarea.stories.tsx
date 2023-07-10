@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Textarea } from './textarea'
 
 export default {
   title: 'core-elements / Textarea',
   component: Textarea,
-} as ComponentMeta<typeof Textarea>
+} as Meta<typeof Textarea>
 
-export const Default: ComponentStoryObj<typeof Textarea> = {
+export const Default: StoryObj<typeof Textarea> = {
   args: {
     error: false,
     label: '요청사항',
@@ -16,14 +16,14 @@ export const Default: ComponentStoryObj<typeof Textarea> = {
   },
 }
 
-export const Required: ComponentStoryObj<typeof Textarea> = {
+export const Required: StoryObj<typeof Textarea> = {
   args: {
     ...Default.args,
     required: true,
   },
 }
 
-export const Error: ComponentStoryObj<typeof Textarea> = {
+export const Error: StoryObj<typeof Textarea> = {
   args: {
     ...Default.args,
     error: '요청사항은 필수 입력 사항입니다.',

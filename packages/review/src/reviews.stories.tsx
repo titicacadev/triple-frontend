@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { TransitionModal } from '@titicaca/modals'
 import {
   SessionContextProvider,
@@ -47,7 +47,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof Reviews> = {
+export const Basic: StoryObj<typeof Reviews> = {
   name: '일반',
   args: {
     initialReviewsCount: 120,
@@ -62,7 +62,7 @@ export const Basic: ComponentStoryObj<typeof Reviews> = {
   },
 }
 
-export const HasMyReview: ComponentStoryObj<typeof Reviews> = {
+export const HasMyReview: StoryObj<typeof Reviews> = {
   name: '내 리뷰 작성됨',
   args: {
     ...Basic.args,

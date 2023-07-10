@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
@@ -11,31 +11,43 @@ const {
 
 export default { title: 'triple-document / heading' } as Meta
 
-const Heading1Template: Story<{
+const Heading1Template: StoryFn<{
   // FIXME: HeadingProps
   value: { text: string; href?: string; emphasize?: boolean; headline?: string }
 }> = (args) => <Heading1 {...args} />
 
-export const Heading1Normal = Heading1Template.bind({})
-Heading1Normal.args = {
-  value: { text: '제목1: bold 21' },
-}
-Heading1Normal.storyName = '제목 1 기본'
+export const Heading1Normal = {
+  render: Heading1Template,
 
-export const Heading1Emphasized = Heading1Template.bind({})
-Heading1Emphasized.args = {
-  value: { emphasize: true, text: '제목0: bold 21 #2987F0' },
-}
-Heading1Emphasized.storyName = '제목 1 강조'
-
-export const Heading1WithHeadline = Heading1Template.bind({})
-Heading1WithHeadline.args = {
-  value: {
-    text: '제목1: bold 21',
-    headline: '보조: bold 13 #2987F0',
+  args: {
+    value: { text: '제목1: bold 21' },
   },
+
+  name: '제목 1 기본',
 }
-Heading1WithHeadline.storyName = '보조 문구가 있는 제목 1'
+
+export const Heading1Emphasized = {
+  render: Heading1Template,
+
+  args: {
+    value: { emphasize: true, text: '제목0: bold 21 #2987F0' },
+  },
+
+  name: '제목 1 강조',
+}
+
+export const Heading1WithHeadline = {
+  render: Heading1Template,
+
+  args: {
+    value: {
+      text: '제목1: bold 21',
+      headline: '보조: bold 13 #2987F0',
+    },
+  },
+
+  name: '보조 문구가 있는 제목 1',
+}
 
 export function Heading2Example() {
   return <Heading2 value={{ text: '제목2: medium 19' }} />

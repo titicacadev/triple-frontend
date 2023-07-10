@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Replies from './replies'
 
@@ -37,9 +37,9 @@ export default {
       required: false,
     },
   },
-} as ComponentMeta<typeof Replies>
+} as Meta<typeof Replies>
 
-export const Basic: ComponentStoryObj<typeof Replies> = {
+export const Basic: StoryObj<typeof Replies> = {
   args: {
     resourceId: 'c31a0e75-0053-4ef2-9407-d2bdc7f116e3',
     resourceType: 'article',

@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
 import { FormField } from './form-field'
 import { useFormField } from './form-field-context'
@@ -9,7 +9,7 @@ import { FormFieldLabel } from './form-field-label'
 export default {
   title: 'core-elements / FormField',
   component: FormField,
-} as ComponentMeta<typeof FormField>
+} as Meta<typeof FormField>
 
 const CustomInput = () => {
   const {

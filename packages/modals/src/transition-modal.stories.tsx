@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '@titicaca/core-elements'
 
 import {
@@ -22,14 +22,17 @@ function UriHashHistoryManipulator({ uriHash }: { uriHash: string }) {
   )
 }
 
-export const Basic: ComponentStory<typeof TransitionModal> = ({ ...args }) => {
-  return (
-    <div>
-      <UriHashHistoryManipulator uriHash={TransitionType.General} />
-      <TransitionModal {...args} />
-    </div>
-  )
-}
-Basic.args = {
-  deepLink: '',
+export const Basic: StoryObj<typeof TransitionModal> = {
+  render: ({ ...args }) => {
+    return (
+      <div>
+        <UriHashHistoryManipulator uriHash={TransitionType.General} />
+        <TransitionModal {...args} />
+      </div>
+    )
+  },
+
+  args: {
+    deepLink: '',
+  },
 }

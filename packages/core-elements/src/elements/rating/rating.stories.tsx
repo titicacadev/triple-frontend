@@ -1,24 +1,20 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from '@storybook/react'
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 
 import { Rating } from './rating'
 
 export default {
   title: 'core-elements / Rating',
   component: Rating,
-} as ComponentMeta<typeof Rating>
+} as Meta<typeof Rating>
 
-export const Basic: ComponentStoryObj<typeof Rating> = {
+export const Basic: StoryObj<typeof Rating> = {
   args: {
     size: 'tiny',
     score: 5,
   },
 }
 
-export const Score: ComponentStory<typeof Rating> = () => {
+export const Score: StoryFn<typeof Rating> = () => {
   return (
     <>
       <Rating size="tiny" score={3} />
@@ -30,7 +26,7 @@ export const Score: ComponentStory<typeof Rating> = () => {
   )
 }
 
-export const Size: ComponentStory<typeof Rating> = () => {
+export const Size: StoryFn<typeof Rating> = () => {
   return (
     <>
       <Rating size="tiny" score={3} />

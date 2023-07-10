@@ -1,6 +1,6 @@
+import type { Meta } from '@storybook/react'
 import { ComponentProps } from 'react'
 import styled from 'styled-components'
-import { ComponentMeta } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
@@ -9,7 +9,7 @@ const { images: Images } = ELEMENTS
 export default {
   title: 'triple-email-document / Images',
   component: Images,
-} as ComponentMeta<typeof Images>
+} as Meta<typeof Images>
 
 const Container = styled.div`
   max-width: 600px;
@@ -95,40 +95,58 @@ const ImageTemplate: {
   )
 }
 
-export const Default = ImageTemplate.bind({})
-Default.storyName = '간격 없는 이미지 1개'
-Default.args = {
-  propList: generateSampleImages('gapless-block'),
+export const Default = {
+  render: ImageTemplate,
+  name: '간격 없는 이미지 1개',
+
+  args: {
+    propList: generateSampleImages('gapless-block'),
+  },
 }
 
-export const TwoImages = ImageTemplate.bind({})
-TwoImages.storyName = '간격 없는 이미지 2개'
-TwoImages.args = {
-  propList: generateSampleImagesTwo('gapless-block'),
+export const TwoImages = {
+  render: ImageTemplate,
+  name: '간격 없는 이미지 2개',
+
+  args: {
+    propList: generateSampleImagesTwo('gapless-block'),
+  },
 }
 
-export const OneImageWithPadding = ImageTemplate.bind({})
-OneImageWithPadding.storyName = '간격 있는 이미지 1개'
-OneImageWithPadding.args = {
-  propList: generateSampleImages('default'),
+export const OneImageWithPadding = {
+  render: ImageTemplate,
+  name: '간격 있는 이미지 1개',
+
+  args: {
+    propList: generateSampleImages('default'),
+  },
 }
 
-export const TwoImagesWithPadding = ImageTemplate.bind({})
-TwoImagesWithPadding.storyName = '간격 있는 이미지 2개'
-TwoImagesWithPadding.args = {
-  propList: generateSampleImagesTwo('default'),
+export const TwoImagesWithPadding = {
+  render: ImageTemplate,
+  name: '간격 있는 이미지 2개',
+
+  args: {
+    propList: generateSampleImagesTwo('default'),
+  },
 }
 
-export const OneImageWithPaddingV2 = ImageTemplate.bind({})
-OneImageWithPaddingV2.storyName = '간격 있는 이미지 1개 V2'
-OneImageWithPaddingV2.args = {
-  propList: generateSampleImagesTwo('default-v2'),
+export const OneImageWithPaddingV2 = {
+  render: ImageTemplate,
+  name: '간격 있는 이미지 1개 V2',
+
+  args: {
+    propList: generateSampleImagesTwo('default-v2'),
+  },
 }
 
-export const TwoImagesWithPaddingV2 = ImageTemplate.bind({})
-TwoImagesWithPaddingV2.storyName = '간격 있는 이미지 2개 V2'
-TwoImagesWithPaddingV2.args = {
-  propList: generateSampleImagesTwo('default-v2'),
+export const TwoImagesWithPaddingV2 = {
+  render: ImageTemplate,
+  name: '간격 있는 이미지 2개 V2',
+
+  args: {
+    propList: generateSampleImagesTwo('default-v2'),
+  },
 }
 
 type ImageDisply = 'default' | 'gapless-block' | 'default-v2'

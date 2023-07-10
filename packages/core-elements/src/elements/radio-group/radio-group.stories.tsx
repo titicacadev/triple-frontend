@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
 
 import { Radio } from '../radio/radio'
@@ -8,9 +8,9 @@ import { RadioGroup } from './radio-group'
 export default {
   title: 'core-elements / RadioGroup',
   component: RadioGroup,
-} as ComponentMeta<typeof RadioGroup>
+} as Meta<typeof RadioGroup>
 
-export const Default: ComponentStory<typeof RadioGroup> = () => {
+export const Default: StoryFn<typeof RadioGroup> = () => {
   return (
     <RadioGroup name="option" label="Label" help="Help message">
       <Radio value="a">Option A</Radio>
@@ -20,7 +20,7 @@ export const Default: ComponentStory<typeof RadioGroup> = () => {
   )
 }
 
-export const Disabled: ComponentStory<typeof RadioGroup> = () => {
+export const Disabled: StoryFn<typeof RadioGroup> = () => {
   return (
     <RadioGroup name="option" label="Label" help="Help message" disabled>
       <Radio value="a">Option A</Radio>
@@ -30,7 +30,7 @@ export const Disabled: ComponentStory<typeof RadioGroup> = () => {
   )
 }
 
-export const Required: ComponentStory<typeof RadioGroup> = () => {
+export const Required: StoryFn<typeof RadioGroup> = () => {
   return (
     <RadioGroup name="option" label="Label" help="Help message" required>
       <Radio value="a">Option A</Radio>
@@ -40,7 +40,7 @@ export const Required: ComponentStory<typeof RadioGroup> = () => {
   )
 }
 
-export const Error: ComponentStory<typeof RadioGroup> = () => {
+export const Error: StoryFn<typeof RadioGroup> = () => {
   return (
     <RadioGroup
       name="option"
@@ -55,7 +55,7 @@ export const Error: ComponentStory<typeof RadioGroup> = () => {
   )
 }
 
-export const Controlled: ComponentStory<typeof RadioGroup> = () => {
+export const Controlled: StoryFn<typeof RadioGroup> = () => {
   const [value, setValue] = useState<string>()
 
   return (

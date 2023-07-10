@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { List } from './list'
 
 export default {
   title: 'core-elements / List',
   component: List,
-} as ComponentMeta<typeof List>
+} as Meta<typeof List>
 
-export const Default: ComponentStoryObj<typeof List> = {
+export const Default: StoryObj<typeof List> = {
   args: {
     children: (
       <>
@@ -19,7 +19,7 @@ export const Default: ComponentStoryObj<typeof List> = {
   },
 }
 
-export const Marker: ComponentStoryObj<typeof List> = {
+export const Marker: StoryObj<typeof List> = {
   args: {
     marker: true,
     children: (
@@ -32,7 +32,7 @@ export const Marker: ComponentStoryObj<typeof List> = {
   },
 }
 
-export const Divided: ComponentStoryObj<typeof List> = {
+export const Divided: StoryObj<typeof List> = {
   args: {
     divided: true,
     dividerWeight: 10,

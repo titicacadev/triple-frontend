@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import MockDate from 'mockdate'
 
 import RangePicker from './range-picker'
@@ -14,7 +14,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof RangePicker> = {
+export const Basic: StoryObj<typeof RangePicker> = {
   name: '날짜 구간 선택 컴포넌트',
   args: {
     startDate: null,

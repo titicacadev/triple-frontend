@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
 
 import { Tabs } from './tabs'
@@ -14,9 +14,9 @@ export default {
     Tab,
     TabPanel,
   },
-} as ComponentMeta<typeof Tabs>
+} as Meta<typeof Tabs>
 
-const Template: ComponentStory<typeof Tabs> = (args) => {
+const Template: StoryFn<typeof Tabs> = (args) => {
   const [value, setValue] = useState('a')
 
   return (
@@ -33,29 +33,44 @@ const Template: ComponentStory<typeof Tabs> = (args) => {
   )
 }
 
-export const Basic = Template.bind({})
-Basic.args = {
-  variant: 'basic',
+export const Basic = {
+  render: Template,
+
+  args: {
+    variant: 'basic',
+  },
 }
 
-export const Pointing = Template.bind({})
-Pointing.args = {
-  variant: 'pointing',
+export const Pointing = {
+  render: Template,
+
+  args: {
+    variant: 'pointing',
+  },
 }
 
-export const PointingScroll = Template.bind({})
-PointingScroll.args = {
-  ...Pointing.args,
-  scroll: true,
+export const PointingScroll = {
+  render: Template,
+
+  args: {
+    ...Pointing.args,
+    scroll: true,
+  },
 }
 
-export const Rounded = Template.bind({})
-Rounded.args = {
-  variant: 'rounded',
+export const Rounded = {
+  render: Template,
+
+  args: {
+    variant: 'rounded',
+  },
 }
 
-export const RoundedScroll = Template.bind({})
-RoundedScroll.args = {
-  ...Rounded.args,
-  scroll: true,
+export const RoundedScroll = {
+  render: Template,
+
+  args: {
+    ...Rounded.args,
+    scroll: true,
+  },
 }

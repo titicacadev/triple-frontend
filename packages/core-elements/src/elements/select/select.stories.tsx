@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Select } from './select'
 
 export default {
   title: 'core-elements / Select',
   component: Select,
-} as ComponentMeta<typeof Select>
+} as Meta<typeof Select>
 
-export const Default: ComponentStoryObj<typeof Select> = {
+export const Default: StoryObj<typeof Select> = {
   args: {
     label: '투어티켓 시간',
     help: '고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.',
@@ -29,7 +29,7 @@ export const Default: ComponentStoryObj<typeof Select> = {
   },
 }
 
-export const Error: ComponentStoryObj<typeof Select> = {
+export const Error: StoryObj<typeof Select> = {
   args: {
     ...Default.args,
     error: '선택할 수 없는 시간입니다.',

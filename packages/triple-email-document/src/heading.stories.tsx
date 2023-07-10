@@ -1,4 +1,4 @@
-import { ComponentStory, Meta } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
@@ -13,28 +13,34 @@ export default {
   title: 'triple-email-document / Heading',
 } as Meta
 
-const Heading1Template: ComponentStory<typeof Heading1> = (args) => (
+const Heading1Template: StoryFn<typeof Heading1> = (args) => (
   <Heading1 {...args} />
 )
 
-export const Heading1Normal = Heading1Template.bind({})
-Heading1Normal.args = {
-  value: {
-    text: '제목 1: bold 21px',
+export const Heading1Normal = {
+  render: Heading1Template,
+
+  args: {
+    value: {
+      text: '제목 1: bold 21px',
+    },
   },
+
+  name: '제목 1 기본',
 }
 
-Heading1Normal.storyName = '제목 1 기본'
+export const Heading1WithHeadline = {
+  render: Heading1Template,
 
-export const Heading1WithHeadline = Heading1Template.bind({})
-Heading1WithHeadline.args = {
-  value: {
-    headline: '헤드라인: bold 13px #2987F0',
-    text: '제목 1: bold 21px',
+  args: {
+    value: {
+      headline: '헤드라인: bold 13px #2987F0',
+      text: '제목 1: bold 21px',
+    },
   },
-}
 
-Heading1WithHeadline.storyName = '제목 1 헤드라인 포함'
+  name: '제목 1 헤드라인 포함',
+}
 
 export function Heading2Example() {
   return <Heading2 value={{ text: '제목2: medium 19px' }} />

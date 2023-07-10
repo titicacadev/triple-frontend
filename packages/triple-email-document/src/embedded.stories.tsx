@@ -1,6 +1,6 @@
+import type { Meta } from '@storybook/react'
 import { ComponentProps } from 'react'
 import styled from 'styled-components'
-import { ComponentMeta } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
@@ -25,7 +25,7 @@ const Border = styled.div`
 export default {
   title: 'triple-email-document / Embedded',
   component: EmbeddedView,
-} as ComponentMeta<typeof EmbeddedView>
+} as Meta<typeof EmbeddedView>
 
 const IMAGE = {
   id: 'IMAGE_ID',
@@ -61,88 +61,94 @@ const EmbeddedTemplate: {
   )
 }
 
-export const DefaultEmbeddedElement = EmbeddedTemplate.bind({})
-DefaultEmbeddedElement.storyName = '기본 (이미지 여백 X)'
-DefaultEmbeddedElement.args = {
-  value: {
-    entries: [
-      [
-        {
-          type: 'images',
-          value: {
-            display: 'gapless-block',
-            images: [IMAGE],
+export const DefaultEmbeddedElement = {
+  render: EmbeddedTemplate,
+  name: '기본 (이미지 여백 X)',
+
+  args: {
+    value: {
+      entries: [
+        [
+          {
+            type: 'images',
+            value: {
+              display: 'gapless-block',
+              images: [IMAGE],
+            },
           },
-        },
-        {
-          type: 'heading',
-          value: {
-            text: '임베디드의 타이틀 영역입니다.',
+          {
+            type: 'heading',
+            value: {
+              text: '임베디드의 타이틀 영역입니다.',
+            },
           },
-        },
-        {
-          type: 'text',
-          value: {
-            text: '임베디드의 본문 영역입니다.',
+          {
+            type: 'text',
+            value: {
+              text: '임베디드의 본문 영역입니다.',
+            },
           },
-        },
-        {
-          type: 'links',
-          value: {
-            links: [
-              {
-                id: 'Link_ID',
-                label: '박스 디자인 형식',
-                href: '',
-              },
-            ],
-            display: 'block',
+          {
+            type: 'links',
+            value: {
+              links: [
+                {
+                  id: 'Link_ID',
+                  label: '박스 디자인 형식',
+                  href: '',
+                },
+              ],
+              display: 'block',
+            },
           },
-        },
+        ],
       ],
-    ],
+    },
   },
 }
 
-export const withPaddingImageEmbeddedElement = EmbeddedTemplate.bind({})
-withPaddingImageEmbeddedElement.storyName = '기본 (이미지 여백 O)'
-withPaddingImageEmbeddedElement.args = {
-  value: {
-    entries: [
-      [
-        {
-          type: 'images',
-          value: {
-            display: 'default',
-            images: [IMAGE],
+export const withPaddingImageEmbeddedElement = {
+  render: EmbeddedTemplate,
+  name: '기본 (이미지 여백 O)',
+
+  args: {
+    value: {
+      entries: [
+        [
+          {
+            type: 'images',
+            value: {
+              display: 'default',
+              images: [IMAGE],
+            },
           },
-        },
-        {
-          type: 'heading',
-          value: {
-            text: '임베디드의 타이틀 영역입니다.',
+          {
+            type: 'heading',
+            value: {
+              text: '임베디드의 타이틀 영역입니다.',
+            },
           },
-        },
-        {
-          type: 'text',
-          value: {
-            text: '임베디드의 본문 영역입니다.',
+          {
+            type: 'text',
+            value: {
+              text: '임베디드의 본문 영역입니다.',
+            },
           },
-        },
-        {
-          type: 'links',
-          value: {
-            links: [
-              {
-                id: 'Link_ID',
-                label: '박스 디자인 형식',
-                href: '',
-              },
-            ],
-            display: 'block',
+          {
+            type: 'links',
+            value: {
+              links: [
+                {
+                  id: 'Link_ID',
+                  label: '박스 디자인 형식',
+                  href: '',
+                },
+              ],
+              display: 'block',
+            },
           },
-        },
+        ],
       ],
-    ],
+    },
   },
 }

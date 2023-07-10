@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import ListingFilter from '.'
 
@@ -7,9 +7,7 @@ export default {
   component: ListingFilter.ExpandingFilterEntry,
 } as Meta
 
-export const Basic: ComponentStoryObj<
-  typeof ListingFilter.ExpandingFilterEntry
-> = {
+export const Basic: StoryObj<typeof ListingFilter.ExpandingFilterEntry> = {
   name: '기본 Expanding',
   args: {
     active: true,

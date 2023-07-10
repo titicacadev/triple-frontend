@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryFn } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Fieldset } from './fieldset'
 import { FieldsetLegend } from './fieldset-legend'
@@ -7,7 +7,7 @@ import { useFieldset } from './use-fieldset'
 export default {
   title: 'core-elements / Fieldset',
   component: Fieldset,
-} as ComponentMeta<typeof Fieldset>
+} as Meta<typeof Fieldset>
 
 const CustomInputGroup = () => {
   const { isRequired } = useFieldset()
@@ -26,35 +26,43 @@ const CustomInputGroup = () => {
   )
 }
 
-export const Default: ComponentStoryFn<typeof Fieldset> = (args) => {
-  return (
-    <Fieldset {...args}>
-      <FieldsetLegend>Label</FieldsetLegend>
-      <CustomInputGroup />
-    </Fieldset>
-  )
+export const Default: StoryObj<typeof Fieldset> = {
+  render: (args) => {
+    return (
+      <Fieldset {...args}>
+        <FieldsetLegend>Label</FieldsetLegend>
+        <CustomInputGroup />
+      </Fieldset>
+    )
+  },
 }
 
-export const Disabled: ComponentStoryFn<typeof Fieldset> = (args) => {
-  return (
-    <Fieldset {...args}>
-      <FieldsetLegend>Label</FieldsetLegend>
-      <CustomInputGroup />
-    </Fieldset>
-  )
-}
-Disabled.args = {
-  isDisabled: true,
+export const Disabled: StoryObj<typeof Fieldset> = {
+  render: (args) => {
+    return (
+      <Fieldset {...args}>
+        <FieldsetLegend>Label</FieldsetLegend>
+        <CustomInputGroup />
+      </Fieldset>
+    )
+  },
+
+  args: {
+    isDisabled: true,
+  },
 }
 
-export const Required: ComponentStoryFn<typeof Fieldset> = (args) => {
-  return (
-    <Fieldset {...args}>
-      <FieldsetLegend>Label</FieldsetLegend>
-      <CustomInputGroup />
-    </Fieldset>
-  )
-}
-Required.args = {
-  isRequired: true,
+export const Required: StoryObj<typeof Fieldset> = {
+  render: (args) => {
+    return (
+      <Fieldset {...args}>
+        <FieldsetLegend>Label</FieldsetLegend>
+        <CustomInputGroup />
+      </Fieldset>
+    )
+  },
+
+  args: {
+    isRequired: true,
+  },
 }

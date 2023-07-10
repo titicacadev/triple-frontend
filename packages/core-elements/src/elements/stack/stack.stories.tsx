@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 import styled from 'styled-components'
 
 import { Stack } from './stack'
@@ -6,7 +6,7 @@ import { Stack } from './stack'
 export default {
   title: 'core-elements / Stack',
   component: Stack,
-} as ComponentMeta<typeof Stack>
+} as Meta<typeof Stack>
 
 const VerticalContainer = styled.div`
   border: 1px solid black;

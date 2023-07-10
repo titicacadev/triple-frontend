@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { Radio } from './radio'
@@ -6,9 +6,9 @@ import { Radio } from './radio'
 export default {
   title: 'core-elements / Radio',
   component: Radio,
-} as ComponentMeta<typeof Radio>
+} as Meta<typeof Radio>
 
-export const Default: ComponentStoryObj<typeof Radio> = {
+export const Default: StoryObj<typeof Radio> = {
   args: {
     children: 'Radio',
   },

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { ExternalLink } from './external/link'
 
@@ -9,10 +9,10 @@ export default {
       테스트링크
     </ExternalLink>
   ),
-} as ComponentMeta<typeof ExternalLink>
+} as Meta<typeof ExternalLink>
 
-export const Primary: ComponentStoryObj<typeof ExternalLink> = {}
-export const Disabled: ComponentStoryObj<typeof ExternalLink> = {
+export const Primary: StoryObj<typeof ExternalLink> = {}
+export const Disabled: StoryObj<typeof ExternalLink> = {
   ...Primary,
   args: { allowSource: 'none' },
 }

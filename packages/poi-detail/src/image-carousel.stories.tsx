@@ -1,18 +1,18 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import {
   ImagesProvider,
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
 import ImageCarousel from './image-carousel'
 
 export default {
   title: 'poi-detail / ImageCarousel',
   component: ImageCarousel,
-} as ComponentMeta<typeof ImageCarousel>
+} as Meta<typeof ImageCarousel>
 
-export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {
+export const AttractionOrRestaurant: StoryObj<typeof ImageCarousel> = {
   decorators: [
     (Story) => (
       <UserAgentProvider
@@ -33,7 +33,7 @@ export const AttractionOrRestaurant: ComponentStoryObj<typeof ImageCarousel> = {
   ],
 }
 
-export const Hotel: ComponentStoryObj<typeof ImageCarousel> = {
+export const Hotel: StoryObj<typeof ImageCarousel> = {
   decorators: [
     (Story) => (
       <UserAgentProvider

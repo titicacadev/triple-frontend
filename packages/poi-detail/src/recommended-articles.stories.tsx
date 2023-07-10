@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import RecommendedArticles from './recommended-articles/recommended-articles'
 
 export default {
   title: 'poi-detail / RecommendedArticles',
   component: RecommendedArticles,
-} as ComponentMeta<typeof RecommendedArticles>
+} as Meta<typeof RecommendedArticles>
 
-export const Basic: ComponentStoryObj<typeof RecommendedArticles> = {
+export const Basic: StoryObj<typeof RecommendedArticles> = {
   args: {
     appInstallationCta: {
       inventoryId: 'app-install-cta-footer-hotel-v1',

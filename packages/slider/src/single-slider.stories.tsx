@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import SingleSlider from './single-slider'
 
 export default {
   title: 'slider / SingleSlider',
   component: SingleSlider,
-} as ComponentMeta<typeof SingleSlider>
+} as Meta<typeof SingleSlider>
 
-export const Baisc: ComponentStoryObj<typeof SingleSlider> = {
+export const Baisc: StoryObj<typeof SingleSlider> = {
   args: {
     min: 0,
     max: 500000,

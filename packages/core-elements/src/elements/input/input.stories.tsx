@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { List } from '../list'
 
@@ -7,9 +7,9 @@ import { Input } from './input'
 export default {
   title: 'core-elements / Input',
   component: Input,
-} as ComponentMeta<typeof Input>
+} as Meta<typeof Input>
 
-export const Default: ComponentStoryObj<typeof Input> = {
+export const Default: StoryObj<typeof Input> = {
   args: {
     label: '이름',
     placeholder: '이름을 입력해주세요',
@@ -17,21 +17,21 @@ export const Default: ComponentStoryObj<typeof Input> = {
   },
 }
 
-export const Required: ComponentStoryObj<typeof Input> = {
+export const Required: StoryObj<typeof Input> = {
   args: {
     ...Default.args,
     required: true,
   },
 }
 
-export const Error: ComponentStoryObj<typeof Input> = {
+export const Error: StoryObj<typeof Input> = {
   args: {
     ...Default.args,
     error: '이름은 필수 입력 사항입니다.',
   },
 }
 
-export const Mask: ComponentStoryObj<typeof Input> = {
+export const Mask: StoryObj<typeof Input> = {
   args: {
     ...Default.args,
     mask: '99/99',
@@ -39,7 +39,7 @@ export const Mask: ComponentStoryObj<typeof Input> = {
   },
 }
 
-export const MultilineHelp: ComponentStoryObj<typeof Input> = {
+export const MultilineHelp: StoryObj<typeof Input> = {
   args: {
     ...Default.args,
     help: (

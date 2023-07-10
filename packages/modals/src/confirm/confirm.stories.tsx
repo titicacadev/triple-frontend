@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Confirm } from './confirm'
 
@@ -11,9 +11,9 @@ export default {
       iframeHeight: 500,
     },
   },
-} as ComponentMeta<typeof Confirm>
+} as Meta<typeof Confirm>
 
-export const Default: ComponentStoryObj<typeof Confirm> = {
+export const Default: StoryObj<typeof Confirm> = {
   args: {
     open: true,
     title: '요금 변동을 확인해주세요',

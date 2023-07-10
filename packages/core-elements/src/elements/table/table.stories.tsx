@@ -7,12 +7,18 @@ export default {
   component: Table,
 }
 
-export const Horizontal = () => {
-  return <Table {...(SAMPLE[0].table as TableProps)} />
-}
-Horizontal.storyName = '가로 테이블'
+export const Horizontal = {
+  render: () => {
+    return <Table {...(SAMPLE[0].table as TableProps)} />
+  },
 
-export const Vertical = () => {
-  return <Table {...(SAMPLE[0].table as TableProps)} />
+  name: '가로 테이블',
 }
-Vertical.storyName = '세로 테이블'
+
+export const Vertical = {
+  render: () => {
+    return <Table {...(SAMPLE[0].table as TableProps)} />
+  },
+
+  name: '세로 테이블',
+}

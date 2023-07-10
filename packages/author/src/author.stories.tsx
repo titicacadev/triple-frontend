@@ -1,11 +1,11 @@
-import { ComponentStoryObj, StoryObj } from '@storybook/react'
+import type { StoryObj } from '@storybook/react'
 
 import Author from '.'
 
 export default {
   title: 'author / Author',
   component: Author,
-} as ComponentStoryObj<typeof Author>
+} as StoryObj<typeof Author>
 
 export const Basic: StoryObj = {
   args: {

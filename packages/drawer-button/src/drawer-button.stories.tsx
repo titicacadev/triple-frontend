@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import DrawerButton from '.'
 
@@ -11,16 +11,16 @@ export default {
       iframeHeight: 300,
     },
   },
-} as ComponentMeta<typeof DrawerButton>
+} as Meta<typeof DrawerButton>
 
-export const Basic: ComponentStoryObj<typeof DrawerButton> = {
+export const Basic: StoryObj<typeof DrawerButton> = {
   args: {
     active: true,
     children: '선택 완료',
   },
 }
 
-export const Disabled: ComponentStoryObj<typeof DrawerButton> = {
+export const Disabled: StoryObj<typeof DrawerButton> = {
   args: {
     ...Basic.args,
     disabled: true,
