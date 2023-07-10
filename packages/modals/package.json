@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.24.3",
+    "@floating-ui/react": "^0.24.6",
     "@titicaca/core-elements": "^13.0.2",
     "@titicaca/i18n": "^13.0.2"
   },
