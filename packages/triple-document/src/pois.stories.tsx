@@ -1,8 +1,8 @@
-import { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
-import POIS from './mocks/pois.sample.json'
-import HOTEL from './mocks/hotel.sample.json'
 import ELEMENTS from './elements'
+import HOTEL from './mocks/hotel.sample.json'
+import POIS from './mocks/pois.sample.json'
 
 const { pois: Pois } = ELEMENTS
 

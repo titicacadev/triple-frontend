@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import FloatingButtonCTA from './floating-button-cta'
 
@@ -10,9 +10,9 @@ export default {
       viewports: [375],
     },
   },
-} as ComponentMeta<typeof FloatingButtonCTA>
+} as Meta<typeof FloatingButtonCTA>
 
-export const Basic: ComponentStoryObj<typeof FloatingButtonCTA> = {
+export const Basic: StoryObj<typeof FloatingButtonCTA> = {
   args: {
     appInstallLink: 'https://triple.onelink.me/aZP6/21d43a81',
   },

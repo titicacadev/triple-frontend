@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import MockDate from 'mockdate'
 
 import DayPicker from './day-picker'
@@ -14,7 +14,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof DayPicker> = {
+export const Basic: StoryObj<typeof DayPicker> = {
   name: '단일 날짜 선택 컴포넌트',
   args: {
     day: null,

@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import ReviewScrapStat from './review-scrap-stat'
 
 export default {
   title: 'resource-list-element / review-scrap-stat',
   component: ReviewScrapStat,
-} as ComponentMeta<typeof ReviewScrapStat>
+} as Meta<typeof ReviewScrapStat>
 
-export const Basic: ComponentStoryObj<typeof ReviewScrapStat> = {
+export const Basic: StoryObj<typeof ReviewScrapStat> = {
   args: {
     reviewsCount: 23,
     scrapsCount: 7,

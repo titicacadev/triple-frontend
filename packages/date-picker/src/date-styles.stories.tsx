@@ -1,8 +1,8 @@
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
-import { Meta, Story } from '@storybook/react'
 
-import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 import { dateLabelMixin, rangeMixin } from './mixins'
+import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
 
 const Table = styled.table`
   border-collapse: separate;
@@ -35,7 +35,7 @@ export default {
   ],
 } as Meta
 
-export const common: Story = () => {
+export const Common: StoryFn = () => {
   return (
     <tbody className="DayPicker-Body">
       <tr className="DayPicker-Week">
@@ -79,108 +79,49 @@ export const common: Story = () => {
   )
 }
 
-export const dayPicker: Story = () => {
-  return (
-    <>
-      <tr className="DayPicker-Week">
-        <td>selected</td>
-        <td className="DayPicker-Day DayPicker-Day--selected">1</td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--disabled">
-          2
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--saturday">
-          3
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--sunday">
-          4
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--publicHolidays">
-          5
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--today">
-          6
-        </td>
-      </tr>
-
-      <tr className="DayPicker-Week">
-        <td>knob</td>
-        <td className={['DayPicker-Day'].join(' ')}>42</td>
-      </tr>
-    </>
-  )
-}
-
 const DayContainer = styled.tbody`
   ${generateSelectedCircleStyle('.DayPicker-Day--selected')}
 `
 
-dayPicker.decorators = [
-  (Story) => (
-    <DayContainer className="DayPicker-Body">
-      <Story />
-    </DayContainer>
-  ),
-]
+export const DayPicker: StoryObj = {
+  render: () => {
+    return (
+      <>
+        <tr className="DayPicker-Week">
+          <td>selected</td>
+          <td className="DayPicker-Day DayPicker-Day--selected">1</td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--disabled">
+            2
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--saturday">
+            3
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--sunday">
+            4
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--publicHolidays">
+            5
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--today">
+            6
+          </td>
+        </tr>
 
-export const rangePicker: Story = () => {
-  return (
-    <>
-      <tr className="DayPicker-Week">
-        <td>outside 구간</td>
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--from DayPicker-Day--selected DayPicker-Day--included-range" />
-        <td className="DayPicker-Day DayPicker-Day--publicHolidays DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
-        <td className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--selected DayPicker-Day--included-range" />
-        <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--publicHolidays  DayPicker-Day--selected DayPicker-Day--included-range" />
-      </tr>
+        <tr className="DayPicker-Week">
+          <td>knob</td>
+          <td className={['DayPicker-Day'].join(' ')}>42</td>
+        </tr>
+      </>
+    )
+  },
 
-      <tr className="DayPicker-Week">
-        <td>구간</td>
-
-        <td className="DayPicker-Day DayPicker-Day--selected">1</td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--disabled">
-          2
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--saturday">
-          3
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--sunday">
-          4
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--publicHolidays">
-          5
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--today">
-          6
-        </td>
-      </tr>
-
-      <tr className="DayPicker-Week">
-        <td>from, to</td>
-        <td />
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from">
-          1
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--to">
-          2
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--to">
-          3
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--saturday">
-          4
-        </td>
-        <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--today">
-          5
-        </td>
-      </tr>
-
-      <tr className="DayPicker-Week">
-        <td>knob</td>
-        <td className={['DayPicker-Day'].join(' ')}>42</td>
-      </tr>
-    </>
-  )
+  decorators: [
+    (Story) => (
+      <DayContainer className="DayPicker-Body">
+        <Story />
+      </DayContainer>
+    ),
+  ],
 }
 
 const RangeContainer = styled.tbody`
@@ -201,10 +142,73 @@ const RangeContainer = styled.tbody`
   })}
 `
 
-rangePicker.decorators = [
-  (Story) => (
-    <RangeContainer className="DayPicker-Body">
-      <Story />
-    </RangeContainer>
-  ),
-]
+export const RangePicker: StoryObj = {
+  render: () => {
+    return (
+      <>
+        <tr className="DayPicker-Week">
+          <td>outside 구간</td>
+          <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--from DayPicker-Day--selected DayPicker-Day--included-range" />
+          <td className="DayPicker-Day DayPicker-Day--publicHolidays DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
+          <td className="DayPicker-Day DayPicker-Day--disabled DayPicker-Day--outside DayPicker-Day--selected DayPicker-Day--included-range" />
+          <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--selected DayPicker-Day--included-range" />
+          <td className="DayPicker-Day DayPicker-Day--outside DayPicker-Day--today DayPicker-Day--publicHolidays  DayPicker-Day--selected DayPicker-Day--included-range" />
+        </tr>
+
+        <tr className="DayPicker-Week">
+          <td>구간</td>
+
+          <td className="DayPicker-Day DayPicker-Day--selected">1</td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--disabled">
+            2
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--saturday">
+            3
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--sunday">
+            4
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--publicHolidays">
+            5
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--today">
+            6
+          </td>
+        </tr>
+
+        <tr className="DayPicker-Week">
+          <td>from, to</td>
+          <td />
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from">
+            1
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--to">
+            2
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--to">
+            3
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--saturday">
+            4
+          </td>
+          <td className="DayPicker-Day DayPicker-Day--selected DayPicker-Day--from DayPicker-Day--today">
+            5
+          </td>
+        </tr>
+
+        <tr className="DayPicker-Week">
+          <td>knob</td>
+          <td className={['DayPicker-Day'].join(' ')}>42</td>
+        </tr>
+      </>
+    )
+  },
+
+  decorators: [
+    (Story) => (
+      <RangeContainer className="DayPicker-Body">
+        <Story />
+      </RangeContainer>
+    ),
+  ],
+}

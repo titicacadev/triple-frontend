@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import { UserAgentProvider } from '@titicaca/react-contexts'
-import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import DetailHeader from './detail-header'
 
@@ -22,7 +22,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof DetailHeader> = {
+export const Basic: StoryObj<typeof DetailHeader> = {
   name: '기본',
   args: {
     names: {
@@ -38,7 +38,7 @@ export const Basic: ComponentStoryObj<typeof DetailHeader> = {
   },
 }
 
-export const WithBusinessHoursNote: ComponentStoryObj<typeof DetailHeader> = {
+export const WithBusinessHoursNote: StoryObj<typeof DetailHeader> = {
   name: '영업시간 추가',
   args: {
     ...Basic.args,

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { contents } from './mocks/recommended-contents.sample.json'
 
@@ -7,9 +7,9 @@ import RecommendedContents from '.'
 export default {
   title: 'recommended-contents / RecommendedContents',
   component: RecommendedContents,
-} as ComponentMeta<typeof RecommendedContents>
+} as Meta<typeof RecommendedContents>
 
-export const Basic: ComponentStoryObj<typeof RecommendedContents> = {
+export const Basic: StoryObj<typeof RecommendedContents> = {
   args: {
     contents,
   },

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { LocalLink } from './local/link'
 
@@ -9,10 +9,10 @@ export default {
       테스트링크
     </LocalLink>
   ),
-} as ComponentMeta<typeof LocalLink>
+} as Meta<typeof LocalLink>
 
-export const Primary: ComponentStoryObj<typeof LocalLink> = {}
-export const Disabled: ComponentStoryObj<typeof LocalLink> = {
+export const Primary: StoryObj<typeof LocalLink> = {}
+export const Disabled: StoryObj<typeof LocalLink> = {
   ...Primary,
   args: { allowSource: 'none' },
 }

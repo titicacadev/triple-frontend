@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Label } from './label'
 
@@ -7,7 +7,7 @@ export default {
   component: Label,
 } as Meta
 
-export const Radio: ComponentStoryObj<typeof Label> = {
+export const Radio: StoryObj<typeof Label> = {
   name: '라디오',
   args: {
     radio: true,
@@ -16,7 +16,7 @@ export const Radio: ComponentStoryObj<typeof Label> = {
   },
 }
 
-export const Promo: ComponentStoryObj<typeof Label> = {
+export const Promo: StoryObj<typeof Label> = {
   name: '최대 24%',
   args: {
     promo: true,

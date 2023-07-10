@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { ReviewElement } from './components/review-element'
@@ -25,9 +25,9 @@ export default {
       </QueryClientProvider>
     ),
   ],
-} as ComponentMeta<typeof ReviewElement>
+} as Meta<typeof ReviewElement>
 
-export const MonoImage: ComponentStoryObj<typeof ReviewElement> = {
+export const MonoImage: StoryObj<typeof ReviewElement> = {
   args: {
     review: monoImageData,
     isMyReview: false,
@@ -35,7 +35,7 @@ export const MonoImage: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const DuoImages: ComponentStoryObj<typeof ReviewElement> = {
+export const DuoImages: StoryObj<typeof ReviewElement> = {
   args: {
     review: duoImagesData,
     isMyReview: false,
@@ -43,7 +43,7 @@ export const DuoImages: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const TriImages: ComponentStoryObj<typeof ReviewElement> = {
+export const TriImages: StoryObj<typeof ReviewElement> = {
   args: {
     review: triImagesData,
     isMyReview: false,
@@ -51,7 +51,7 @@ export const TriImages: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const QuadImages: ComponentStoryObj<typeof ReviewElement> = {
+export const QuadImages: StoryObj<typeof ReviewElement> = {
   args: {
     review: quadImagesData,
     isMyReview: false,
@@ -59,7 +59,7 @@ export const QuadImages: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const PentaImages: ComponentStoryObj<typeof ReviewElement> = {
+export const PentaImages: StoryObj<typeof ReviewElement> = {
   args: {
     review: pentaImagesData,
     isMyReview: false,
@@ -67,7 +67,7 @@ export const PentaImages: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const MoreImages: ComponentStoryObj<typeof ReviewElement> = {
+export const MoreImages: StoryObj<typeof ReviewElement> = {
   args: {
     review: moreImagesData,
     isMyReview: false,
@@ -75,7 +75,7 @@ export const MoreImages: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const MonoVideo: ComponentStoryObj<typeof ReviewElement> = {
+export const MonoVideo: StoryObj<typeof ReviewElement> = {
   args: {
     review: monoVideoData,
     isMyReview: false,
@@ -83,7 +83,7 @@ export const MonoVideo: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const DuoVideos: ComponentStoryObj<typeof ReviewElement> = {
+export const DuoVideos: StoryObj<typeof ReviewElement> = {
   args: {
     review: duoVideosData,
     isMyReview: false,
@@ -91,7 +91,7 @@ export const DuoVideos: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const TriVideos: ComponentStoryObj<typeof ReviewElement> = {
+export const TriVideos: StoryObj<typeof ReviewElement> = {
   args: {
     review: triVideosData,
     isMyReview: false,
@@ -99,7 +99,7 @@ export const TriVideos: ComponentStoryObj<typeof ReviewElement> = {
   },
 }
 
-export const MoreVideos: ComponentStoryObj<typeof ReviewElement> = {
+export const MoreVideos: StoryObj<typeof ReviewElement> = {
   args: {
     review: moreVideosData,
     isMyReview: false,

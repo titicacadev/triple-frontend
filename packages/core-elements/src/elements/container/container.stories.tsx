@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 
 import { Container } from './container'
 
@@ -7,10 +7,9 @@ export default {
   component: Container,
 } as Meta
 
-const Template: Story = (args) => <Container {...args} />
-
-export const Basic = Template.bind({})
-Basic.args = { children: 'Basic Container' }
+export const Basic = {
+  args: { children: 'Basic Container' },
+}
 
 export const CustomCss = () => {
   return (
@@ -22,9 +21,3 @@ export const CustomCss = () => {
     </Container>
   )
 }
-// export const CustomCss = Template.bind({})
-// CustomCss.args = {
-//   children: 'Custom CSS Container',
-//   css: { padding: 50, backgroundColor: 'gray', color: 'white' },
-//   borderRadius: 10,
-// }

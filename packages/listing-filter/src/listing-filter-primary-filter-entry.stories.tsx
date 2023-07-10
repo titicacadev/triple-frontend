@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import ListingFilter from '.'
 
@@ -14,11 +14,10 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof ListingFilter.PrimaryFilterEntry> =
-  {
-    name: '기본 Primary',
-    args: {
-      disabled: false,
-      children: '5.17-5.20, 3명',
-    },
-  }
+export const Basic: StoryObj<typeof ListingFilter.PrimaryFilterEntry> = {
+  name: '기본 Primary',
+  args: {
+    disabled: false,
+    children: '5.17-5.20, 3명',
+  },
+}

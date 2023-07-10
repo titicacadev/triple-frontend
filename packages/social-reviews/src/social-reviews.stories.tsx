@@ -1,13 +1,13 @@
-import { ComponentStoryObj, ComponentMeta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import SocialReviews from './social-review'
 
 export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
-} as ComponentMeta<typeof SocialReviews>
+} as Meta<typeof SocialReviews>
 
-export const Basic: ComponentStoryObj<typeof SocialReviews> = {
+export const Basic: StoryObj<typeof SocialReviews> = {
   args: {
     placeholderImageUrl:
       'https://assets.triple-dev.titicaca-corp.com/images/img-empty-contents@3x.png',

@@ -1,13 +1,13 @@
+import type { Meta, StoryObj } from '@storybook/react'
+import isChromatic from 'chromatic/isChromatic'
 import { useEffect } from 'react'
 import styled from 'styled-components'
-import isChromatic from 'chromatic/isChromatic'
-import { Meta, Story } from '@storybook/react'
 
 import logos from './mocks/lottie.sample.json'
-import { useScrollToElement } from './use-scroll-to-element'
-import { useScrollToAnchor } from './use-scroll-to-anchor'
-import { useVisibilityChange } from './use-visibility-change'
 import { useLottie } from './use-lottie'
+import { useScrollToAnchor } from './use-scroll-to-anchor'
+import { useScrollToElement } from './use-scroll-to-element'
+import { useVisibilityChange } from './use-visibility-change'
 
 export default {
   title: 'react-hooks / hooks',
@@ -77,15 +77,16 @@ interface ScrollToAnchorCustomArgs {
   useAlias: boolean
 }
 
-export const ScrollToAnchor: Story<ScrollToAnchorCustomArgs> = ({
-  useAlias,
-}) => {
-  return (
-    <ScrollToAnchorComponent key={Math.random() * 10} useAlias={useAlias} />
-  )
-}
-ScrollToAnchor.args = {
-  useAlias: false,
+export const ScrollToAnchor: StoryObj<ScrollToAnchorCustomArgs> = {
+  render: ({ useAlias }) => {
+    return (
+      <ScrollToAnchorComponent key={Math.random() * 10} useAlias={useAlias} />
+    )
+  },
+
+  args: {
+    useAlias: false,
+  },
 }
 
 export function VisibilityChange() {

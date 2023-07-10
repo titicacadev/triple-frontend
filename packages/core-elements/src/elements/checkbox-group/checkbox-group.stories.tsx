@@ -1,5 +1,5 @@
+import type { Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { Checkbox } from '../checkbox'
 
@@ -8,9 +8,9 @@ import { CheckboxGroup } from './checkbox-group'
 export default {
   title: 'core-elements / CheckboxGroup',
   component: CheckboxGroup,
-} as ComponentMeta<typeof CheckboxGroup>
+} as Meta<typeof CheckboxGroup>
 
-export const Default: ComponentStory<typeof CheckboxGroup> = () => {
+export const Default: StoryFn<typeof CheckboxGroup> = () => {
   return (
     <CheckboxGroup name="options" label="Label" help="Help message">
       <Checkbox value="a">Option A</Checkbox>
@@ -20,7 +20,7 @@ export const Default: ComponentStory<typeof CheckboxGroup> = () => {
   )
 }
 
-export const Disabled: ComponentStory<typeof CheckboxGroup> = () => {
+export const Disabled: StoryFn<typeof CheckboxGroup> = () => {
   return (
     <CheckboxGroup name="options" label="Label" help="Help message" disabled>
       <Checkbox value="a">Option A</Checkbox>
@@ -30,7 +30,7 @@ export const Disabled: ComponentStory<typeof CheckboxGroup> = () => {
   )
 }
 
-export const Required: ComponentStory<typeof CheckboxGroup> = () => {
+export const Required: StoryFn<typeof CheckboxGroup> = () => {
   return (
     <CheckboxGroup name="options" label="Label" help="Help message" required>
       <Checkbox value="a">Option A</Checkbox>
@@ -40,7 +40,7 @@ export const Required: ComponentStory<typeof CheckboxGroup> = () => {
   )
 }
 
-export const Error: ComponentStory<typeof CheckboxGroup> = () => {
+export const Error: StoryFn<typeof CheckboxGroup> = () => {
   return (
     <CheckboxGroup
       name="options"
@@ -55,7 +55,7 @@ export const Error: ComponentStory<typeof CheckboxGroup> = () => {
   )
 }
 
-export const Controlled: ComponentStory<typeof CheckboxGroup> = () => {
+export const Controlled: StoryFn<typeof CheckboxGroup> = () => {
   const [value, setValue] = useState<string[]>([])
 
   return (

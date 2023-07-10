@@ -1,4 +1,4 @@
-import { ComponentMeta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
@@ -19,7 +19,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Note>
+} as Meta<typeof Note>
 
 export const NoteElement: StoryObj = {
   name: '노트',

@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import IMAGES from './mocks/images.sample.json'
-import IMAGES_FRAME from './mocks/images-frame.sample.json'
 import ELEMENTS from './elements'
+import IMAGES_FRAME from './mocks/images-frame.sample.json'
+import IMAGES from './mocks/images.sample.json'
 
 const { images: Images } = ELEMENTS
 

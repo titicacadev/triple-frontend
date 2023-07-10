@@ -1,14 +1,14 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import NearbyPois from './nearby-pois'
 
 export default {
   title: 'Nearby-Pois / NearbyPois',
   component: NearbyPois,
-} as ComponentMeta<typeof NearbyPois>
+} as Meta<typeof NearbyPois>
 
 // TODO: 서버에 데이터가 없어서 mocking 해야 할 듯
-export const Basic: ComponentStoryObj<typeof NearbyPois> = {
+export const Basic: StoryObj<typeof NearbyPois> = {
   args: {
     poiId: 'a86a3f55-9f89-4540-a124-f8c4db07ab34',
     geolocation: {
@@ -19,7 +19,7 @@ export const Basic: ComponentStoryObj<typeof NearbyPois> = {
   },
 }
 
-export const InitialTab: ComponentStoryObj<typeof NearbyPois> = {
+export const InitialTab: StoryObj<typeof NearbyPois> = {
   args: {
     ...Basic.args,
     initialTab: 'restaurant',

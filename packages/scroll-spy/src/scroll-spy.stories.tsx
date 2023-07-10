@@ -1,5 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { ComponentStoryObj, Meta } from '@storybook/react'
 
 import POIS from './mocks/pois.sample.json'
 
@@ -37,6 +37,6 @@ export default {
   component: ScrollSpy,
 } as Meta
 
-export const BaseScrollSpy: ComponentStoryObj<typeof ScrollSpy> = {
+export const BaseScrollSpy: StoryObj<typeof ScrollSpy> = {
   name: '기본 스크롤 스파이',
 }

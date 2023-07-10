@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Actions from './actions'
 
@@ -11,9 +11,9 @@ export default {
       return Story()
     },
   ],
-} as ComponentMeta<typeof Actions>
+} as Meta<typeof Actions>
 
-export const Basic: ComponentStoryObj<typeof Actions> = {
+export const Basic: StoryObj<typeof Actions> = {
   args: {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,
@@ -21,14 +21,14 @@ export const Basic: ComponentStoryObj<typeof Actions> = {
   },
 }
 
-export const NoDivider: ComponentStoryObj<typeof Actions> = {
+export const NoDivider: StoryObj<typeof Actions> = {
   args: {
     ...Basic.args,
     noDivider: true,
   },
 }
 
-export const GlobalHotel: ComponentStoryObj<typeof Actions> = {
+export const GlobalHotel: StoryObj<typeof Actions> = {
   args: {
     ...Basic.args,
     onScheduleAdd: undefined,

@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import ListingFilter from '.'
 
@@ -14,7 +14,7 @@ export default {
   ],
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
+export const Basic: StoryObj<typeof ListingFilter.FilterEntry> = {
   name: '기본 FilterEntry',
   args: {
     active: true,
@@ -23,7 +23,7 @@ export const Basic: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
   },
 }
 
-export const Underline: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
+export const Underline: StoryObj<typeof ListingFilter.FilterEntry> = {
   name: 'Underline FilterEntry',
   args: {
     underline: true,
@@ -35,9 +35,7 @@ export const Underline: ComponentStoryObj<typeof ListingFilter.FilterEntry> = {
   },
 }
 
-export const WithIconImage: ComponentStoryObj<
-  typeof ListingFilter.FilterEntry
-> = {
+export const WithIconImage: StoryObj<typeof ListingFilter.FilterEntry> = {
   name: 'FilterEntry (with Icon Image)',
   args: {
     active: true,

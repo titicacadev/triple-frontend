@@ -1,9 +1,5 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import styled, { css } from 'styled-components'
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from '@storybook/react'
 
 import { ActionSheet } from './action-sheet'
 import { ActionSheetItem } from './action-sheet-item'
@@ -20,9 +16,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ActionSheet>
+} as Meta<typeof ActionSheet>
 
-export const Basic: ComponentStoryObj<typeof ActionSheet> = {
+export const Basic: StoryObj<typeof ActionSheet> = {
   args: {
     open: true,
     children: (
@@ -40,7 +36,7 @@ export const Basic: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
+export const WithTextMenu: StoryObj<typeof ActionSheet> = {
   name: '텍스트 메뉴',
   args: {
     open: true,
@@ -56,7 +52,7 @@ export const WithTextMenu: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithIconMenu: ComponentStoryObj<typeof ActionSheet> = {
+export const WithIconMenu: StoryObj<typeof ActionSheet> = {
   name: '아이콘 메뉴',
   args: {
     open: true,
@@ -70,7 +66,7 @@ export const WithIconMenu: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithForm: ComponentStoryObj<typeof ActionSheet> = {
+export const WithForm: StoryObj<typeof ActionSheet> = {
   name: '액션시트 방향 조절',
   args: {
     open: true,
@@ -104,7 +100,7 @@ const CustomHeader = ({ title, help }: { title: string; help: string }) => (
   </>
 )
 
-export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
+export const WithCustomHeader: StoryObj<typeof ActionSheet> = {
   name: '커스텀 헤더',
   args: {
     open: true,
@@ -120,40 +116,44 @@ export const WithCustomHeader: ComponentStoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithExtendStyle: ComponentStory<typeof ActionSheet> = () => {
-  return (
-    <ActionSheet
-      open
-      title="샘플 액션 시트"
-      css={css`
-        background-color: gray;
-
-        &.action-sheet-slide-enter-done {
-          > div:last-child {
-            padding: 0 40px;
-          }
-        }
-      `}
-    >
-      <ActionSheetItem
-        icon="save"
+export const WithExtendStyle: StoryObj<typeof ActionSheet> = {
+  render: () => {
+    return (
+      <ActionSheet
+        open
+        title="샘플 액션 시트"
         css={css`
-          padding: 0 40px;
-          background-color: aqua;
+          background-color: gray;
+
+          &.action-sheet-slide-enter-done {
+            > div:last-child {
+              padding: 0 40px;
+            }
+          }
         `}
       >
-        샘플 메뉴
-      </ActionSheetItem>
-      <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
-    </ActionSheet>
-  )
-}
-WithExtendStyle.storyName = '스타일 확장'
-WithExtendStyle.parameters = {
-  docs: {
-    description: {
-      story:
-        '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
+        <ActionSheetItem
+          icon="save"
+          css={css`
+            padding: 0 40px;
+            background-color: aqua;
+          `}
+        >
+          샘플 메뉴
+        </ActionSheetItem>
+        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
+      </ActionSheet>
+    )
+  },
+
+  name: '스타일 확장',
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
+      },
     },
   },
 }

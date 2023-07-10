@@ -1,5 +1,5 @@
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { FlexBox, FlexBoxItem } from '../flex-box'
 
@@ -17,7 +17,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FlexBox>
+} as Meta<typeof FlexBox>
 
 const Item = styled(FlexBoxItem)`
   border: 2px solid #e91e63;
@@ -25,36 +25,40 @@ const Item = styled(FlexBoxItem)`
   border-radius: 10px;
 `
 
-export const Flex: ComponentStory<typeof FlexBox> = (args) => {
-  return (
-    <FlexBox {...args}>
-      <FlexBoxItem>
-        <Item>Item1</Item>
-        <Item>Item2</Item>
-        <Item>Item3</Item>
-      </FlexBoxItem>
-      <FlexBoxItem>
-        <Item>Item4</Item>
-        <Item>Item5</Item>
-        <Item>Item6</Item>
-      </FlexBoxItem>
-    </FlexBox>
-  )
-}
-Flex.storyName = 'Default'
-Flex.args = {
-  flex: true,
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignItems: 'center',
-  alignContent: 'baseline',
-  gap: 'normal',
-  columnGap: 'normal',
-  rowGap: 'normal',
+export const Flex: StoryObj<typeof FlexBox> = {
+  render: (args) => {
+    return (
+      <FlexBox {...args}>
+        <FlexBoxItem>
+          <Item>Item1</Item>
+          <Item>Item2</Item>
+          <Item>Item3</Item>
+        </FlexBoxItem>
+        <FlexBoxItem>
+          <Item>Item4</Item>
+          <Item>Item5</Item>
+          <Item>Item6</Item>
+        </FlexBoxItem>
+      </FlexBox>
+    )
+  },
+
+  name: 'Default',
+
+  args: {
+    flex: true,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'baseline',
+    gap: 'normal',
+    columnGap: 'normal',
+    rowGap: 'normal',
+  },
 }
 
-export const FlexItem: ComponentStory<typeof FlexBox> = () => {
+export const FlexItem: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex>
       <FlexBoxItem
@@ -73,7 +77,7 @@ export const FlexItem: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const FlexGrow: ComponentStory<typeof FlexBox> = () => {
+export const FlexGrow: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex>
       <Item flexGrow={1}>Item1</Item>
@@ -83,7 +87,7 @@ export const FlexGrow: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const Order: ComponentStory<typeof FlexBox> = () => {
+export const Order: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex>
       <Item order={3}>Item1</Item>
@@ -93,7 +97,7 @@ export const Order: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const FlexShrink: ComponentStory<typeof FlexBox> = () => {
+export const FlexShrink: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox
       flex
@@ -110,7 +114,7 @@ export const FlexShrink: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const FlexDirection: ComponentStory<typeof FlexBox> = () => {
+export const FlexDirection: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex flexDirection="row">
       <Item>Item1</Item>
@@ -120,7 +124,7 @@ export const FlexDirection: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const FlexWrap: ComponentStory<typeof FlexBox> = () => {
+export const FlexWrap: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox
       flex
@@ -154,7 +158,7 @@ export const FlexWrap: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const JustifyContent: ComponentStory<typeof FlexBox> = () => {
+export const JustifyContent: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex flexDirection="row" justifyContent="space-between">
       <Item>Item1</Item>
@@ -164,7 +168,7 @@ export const JustifyContent: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const AlignItems: ComponentStory<typeof FlexBox> = () => {
+export const AlignItems: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex flexDirection="column" alignItems="center">
       <Item>Item1</Item>
@@ -174,7 +178,7 @@ export const AlignItems: ComponentStory<typeof FlexBox> = () => {
   )
 }
 
-export const Gap: ComponentStory<typeof FlexBox> = () => {
+export const Gap: StoryFn<typeof FlexBox> = () => {
   return (
     <FlexBox flex gap="10px">
       <Item>Item1</Item>

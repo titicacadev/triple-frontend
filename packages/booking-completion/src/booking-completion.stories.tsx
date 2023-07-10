@@ -1,4 +1,4 @@
-import { ComponentStoryObj, Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import BookingCompletion from '.'
 
@@ -7,7 +7,7 @@ export default {
   component: BookingCompletion,
 } as Meta
 
-export const Basic: ComponentStoryObj<typeof BookingCompletion> = {
+export const Basic: StoryObj<typeof BookingCompletion> = {
   args: {
     descriptions: [
       '공급사 확인 후 예약이 확정됩니다.',
@@ -16,14 +16,14 @@ export const Basic: ComponentStoryObj<typeof BookingCompletion> = {
   },
 }
 
-export const Compact: ComponentStoryObj<typeof BookingCompletion> = {
+export const Compact: StoryObj<typeof BookingCompletion> = {
   args: {
     ...Basic.args,
     compact: true,
   },
 }
 
-export const WithRegion: ComponentStoryObj<typeof BookingCompletion> = {
+export const WithRegion: StoryObj<typeof BookingCompletion> = {
   args: {
     ...Basic.args,
     region: {

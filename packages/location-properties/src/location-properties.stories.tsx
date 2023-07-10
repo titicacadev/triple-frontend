@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import LocationProperties from './location-properties'
 
 export default {
   title: 'Location-Properties / LocationProperties',
   component: LocationProperties,
-} as ComponentMeta<typeof LocationProperties>
+} as Meta<typeof LocationProperties>
 
-export const Basic: ComponentStoryObj<typeof LocationProperties> = {
+export const Basic: StoryObj<typeof LocationProperties> = {
   args: {
     addresses: {
       primary: null,

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { EmailPreview } from './components'
 
@@ -13,9 +13,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof EmailPreview>
+} as Meta<typeof EmailPreview>
 
-export const DefaultPreview: ComponentStoryObj<typeof EmailPreview> = {
+export const DefaultPreview: StoryObj<typeof EmailPreview> = {
   name: '미리보기',
   args: {
     value: {

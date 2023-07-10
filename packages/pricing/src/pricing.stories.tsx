@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import Pricing from '.'
 
 export default {
   title: 'pricing / Pricing',
   component: Pricing,
-} as ComponentMeta<typeof Pricing>
+} as Meta<typeof Pricing>
 
-export const Basic: ComponentStoryObj<typeof Pricing> = {
+export const Basic: StoryObj<typeof Pricing> = {
   args: {
     basePrice: 30000,
     salePrice: 25000,
@@ -15,7 +15,7 @@ export const Basic: ComponentStoryObj<typeof Pricing> = {
   },
 }
 
-export const Rich: ComponentStoryObj<typeof Pricing> = {
+export const Rich: StoryObj<typeof Pricing> = {
   args: {
     rich: true,
     basePrice: 30000,
@@ -29,7 +29,7 @@ export const Rich: ComponentStoryObj<typeof Pricing> = {
   },
 }
 
-export const Fixed: ComponentStoryObj<typeof Pricing> = {
+export const Fixed: StoryObj<typeof Pricing> = {
   args: {
     fixed: true,
     active: true,

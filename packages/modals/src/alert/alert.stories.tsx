@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Alert } from './alert'
 
@@ -11,9 +11,9 @@ export default {
       iframeHeight: 500,
     },
   },
-} as ComponentMeta<typeof Alert>
+} as Meta<typeof Alert>
 
-export const Default: ComponentStoryObj<typeof Alert> = {
+export const Default: StoryObj<typeof Alert> = {
   args: {
     open: true,
     title: '항공사 예약번호',

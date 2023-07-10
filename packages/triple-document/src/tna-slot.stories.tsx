@@ -1,9 +1,9 @@
-import { Meta } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 import { rest } from 'msw'
 
-import SLOTS from './mocks/slots.sample.json'
 import ELEMENTS from './elements'
+import SLOTS from './mocks/slots.sample.json'
 
 const { tnaProducts: TnaProducts } = ELEMENTS
 

@@ -1,9 +1,8 @@
-import React from 'react'
-import { ComponentMeta, Story } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
-import { MEDIA_ARGS, SAMPLE_IMAGES } from '../utils/constants'
 import { ChatContext } from '../chat'
 import { MessageType } from '../types'
+import { MEDIA_ARGS, SAMPLE_IMAGES } from '../utils/constants'
 
 import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
 
@@ -21,70 +20,78 @@ export default {
       control: { type: 'date' },
     },
   },
-} as ComponentMeta<typeof ChatBubbleUI>
+} as Meta<typeof ChatBubbleUI>
 
-const Template: Story<ChatBubbleUIProps> = (args) => (
+const Template: StoryFn<ChatBubbleUIProps> = (args) => (
   <ChatContext.Provider value={{ ...MEDIA_ARGS }}>
     <ChatBubbleUI {...args} />
   </ChatContext.Provider>
 )
 
-export const Text = Template.bind({})
+export const Text = {
+  render: Template,
 
-Text.args = {
-  type: 'sent',
-  payload: {
-    type: MessageType.TEXT,
-    message: '안녕하세요\nhttps://www.google.com',
+  args: {
+    type: 'sent',
+    payload: {
+      type: MessageType.TEXT,
+      message: '안녕하세요\nhttps://www.google.com',
+    },
+    unreadCount: 1,
+    createdAt: new Date(2022, 10, 1).toISOString(),
+    profileName: '테스트계정',
   },
-  unreadCount: 1,
-  createdAt: new Date(2022, 10, 1).toISOString(),
-  profileName: '테스트계정',
 }
 
-export const Image = Template.bind({})
+export const Image = {
+  render: Template,
 
-Image.args = {
-  type: 'received',
-  payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
-  unreadCount: 1,
-  createdAt: new Date(2022, 10, 1).toISOString(),
-  profileName: '테스트계정',
+  args: {
+    type: 'received',
+    payload: { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
+    unreadCount: 1,
+    createdAt: new Date(2022, 10, 1).toISOString(),
+    profileName: '테스트계정',
+  },
 }
 
-export const Rich = Template.bind({})
+export const Rich = {
+  render: Template,
 
-Rich.args = {
-  type: 'received',
-  payload: {
-    type: MessageType.RICH,
-    items: [
-      { type: MessageType.TEXT, message: '안녕하세요.' },
-      { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
-      {
-        type: MessageType.BUTTON,
-        label: '버튼 누르기',
-        action: {
-          type: MessageType.LINK,
-          param: 'https://www.google.com',
+  args: {
+    type: 'received',
+    payload: {
+      type: MessageType.RICH,
+      items: [
+        { type: MessageType.TEXT, message: '안녕하세요.' },
+        { type: MessageType.IMAGES, images: SAMPLE_IMAGES },
+        {
+          type: MessageType.BUTTON,
+          label: '버튼 누르기',
+          action: {
+            type: MessageType.LINK,
+            param: 'https://www.google.com',
+          },
         },
-      },
-    ],
+      ],
+    },
+    unreadCount: 1,
+    createdAt: new Date(2022, 10, 1).toISOString(),
+    profileName: '테스트계정',
   },
-  unreadCount: 1,
-  createdAt: new Date(2022, 10, 1).toISOString(),
-  profileName: '테스트계정',
 }
 
-export const FailedSentMessage = Template.bind({})
+export const FailedSentMessage = {
+  render: Template,
 
-FailedSentMessage.args = {
-  type: 'sent',
-  payload: {
-    type: MessageType.RICH,
-    items: [{ type: MessageType.TEXT, message: '안녕하세요.' }],
+  args: {
+    type: 'sent',
+    payload: {
+      type: MessageType.RICH,
+      items: [{ type: MessageType.TEXT, message: '안녕하세요.' }],
+    },
+    unreadCount: 1,
+    createdAt: undefined,
+    profileName: '테스트계정',
   },
-  unreadCount: 1,
-  createdAt: undefined,
-  profileName: '테스트계정',
 }

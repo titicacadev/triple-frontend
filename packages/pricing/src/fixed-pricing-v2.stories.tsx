@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import FixedPricingV2 from './fixed-pricing-v2'
 
@@ -11,9 +11,9 @@ export default {
       iframeHeight: 300,
     },
   },
-} as ComponentMeta<typeof FixedPricingV2>
+} as Meta<typeof FixedPricingV2>
 
-export const Basic: ComponentStoryObj<typeof FixedPricingV2> = {
+export const Basic: StoryObj<typeof FixedPricingV2> = {
   args: {
     loading: false,
     active: true,
@@ -26,14 +26,14 @@ export const Basic: ComponentStoryObj<typeof FixedPricingV2> = {
   },
 }
 
-export const Loading: ComponentStoryObj<typeof FixedPricingV2> = {
+export const Loading: StoryObj<typeof FixedPricingV2> = {
   args: {
     ...Basic.args,
     loading: true,
   },
 }
 
-export const Soldout: ComponentStoryObj<typeof FixedPricingV2> = {
+export const Soldout: StoryObj<typeof FixedPricingV2> = {
   args: {
     loading: false,
     active: true,
@@ -48,7 +48,7 @@ export const Soldout: ComponentStoryObj<typeof FixedPricingV2> = {
   },
 }
 
-export const WithTooltip: ComponentStoryObj<typeof FixedPricingV2> = {
+export const WithTooltip: StoryObj<typeof FixedPricingV2> = {
   args: {
     loading: false,
     active: true,
