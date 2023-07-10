@@ -55,7 +55,7 @@ interface HistoryContextValue {
 }
 
 const NOOP = () => {}
-const THENABLENOOP = () => Promise.resolve(true)
+const THENABLE_NOOP = () => Promise.resolve(true)
 
 function addHashToCurrentUrl({
   hash,
@@ -77,8 +77,8 @@ const UriHashContext = createContext<UriHash>('')
 const HistoryFunctionsContext = createContext<
   Omit<HistoryContextValue, 'uriHash'>
 >({
-  push: THENABLENOOP,
-  replace: THENABLENOOP,
+  push: THENABLE_NOOP,
+  replace: THENABLE_NOOP,
   back: NOOP,
   navigate: NOOP,
   openWindow: NOOP,
