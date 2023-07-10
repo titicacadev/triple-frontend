@@ -21,6 +21,9 @@
       "server": [
         "lib/server/index.d.ts"
       ],
+      "client": [
+        "lib/client/index.d.ts"
+      ],
       "middleware": [
         "lib/middleware.d.ts"
       ]
@@ -36,6 +39,11 @@
       "import": "./lib/server/index.js",
       "require": "./lib/server/index.js",
       "types": "./lib/server/index.d.ts"
+    },
+    "./client": {
+      "import": "./lib/client/index.js",
+      "require": "./lib/client/index.js",
+      "types": "./lib/client/index.d.ts"
     },
     "./middleware": {
       "import": "./lib/middleware.js",
