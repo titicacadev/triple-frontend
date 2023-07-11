@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export function Slide({ children }: { children: ReactNode[] }) {
   const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
@@ -18,5 +18,11 @@ export function Slide({ children }: { children: ReactNode[] }) {
     return () => clearInterval(timer)
   }, [children, visibleFrameIndex])
 
-  return <AnimatePresence>{children[visibleFrameIndex]}</AnimatePresence>
+  return (
+    <AnimatePresence>
+      <motion.div key={visibleFrameIndex}>
+        {children[visibleFrameIndex]}
+      </motion.div>
+    </AnimatePresence>
+  )
 }
