@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@titicaca/color-palette": "^13.0.2",
-    "@titicaca/content-type-definitions": "8.1.0",
+    "@titicaca/content-type-definitions": "8.2.0",
     "@titicaca/core-elements": "^13.0.2",
     "@titicaca/fetcher": "^13.0.2",
     "@titicaca/intersection-observer": "^13.0.2",
