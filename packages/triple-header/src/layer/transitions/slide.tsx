@@ -18,9 +18,5 @@ export function Slide({ children }: { children: ReactNode[] }) {
     return () => clearInterval(timer)
   }, [children, visibleFrameIndex])
 
-  return (
-    <AnimatePresence initial exitBeforeEnter>
-      {children[visibleFrameIndex]}
-    </AnimatePresence>
-  )
+  return <AnimatePresence>{children[visibleFrameIndex]}</AnimatePresence>
 }
