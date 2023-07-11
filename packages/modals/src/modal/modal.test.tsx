@@ -93,6 +93,8 @@ test('focus trap을 사용합니다.', async () => {
     </Modal>,
   )
 
+  await waitFor(() => expect(screen.getByRole('dialog')).toHaveFocus())
+
   await user.tab()
 
   await waitFor(() => expect(screen.getByText('Button 1')).toHaveFocus())
