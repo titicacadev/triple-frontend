@@ -20,7 +20,7 @@ export function Slide({ children }: { children: ReactNode[] }) {
 
   return (
     <AnimatePresence>
-      <motion.div key={visibleFrameIndex}>
+      <motion.div key={visibleFrameIndex} animate={{}}>
         {children[visibleFrameIndex]}
       </motion.div>
     </AnimatePresence>
