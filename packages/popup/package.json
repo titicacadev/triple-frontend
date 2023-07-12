@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/popup",
-  "version": "13.1.0",
+  "version": "13.1.1",
   "description": "Triple Popup",
   "keywords": [
     "triple",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.24.6",
-    "@titicaca/core-elements": "^13.1.0"
+    "@titicaca/core-elements": "^13.1.1"
   },
   "peerDependencies": {
     "react": "^18.0",
