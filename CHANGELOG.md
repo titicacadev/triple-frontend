@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.1.1
+
+### triple-document
+
+- 쿠폰 색상 HEX fixation 을 지원합니다. [#2791](https://github.com/titicacadev/triple-frontend/pull/2791)
+
 ## v13.1.0
 
 ### action-sheet
