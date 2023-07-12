@@ -2,7 +2,7 @@ import { safeParseHexColor } from './utils'
 
 test('sRGB 스펙에 맞는 HEX 코드 색상을 올바르게 처리합니다.', () => {
   const threeValueExample = '#f09'
-  const fourValueExample = '#F09'
+  const fourValueExample = '#F009'
   const sixValueExample = '#ff0099'
   const eightValueExample = ' #ff009990'
 
