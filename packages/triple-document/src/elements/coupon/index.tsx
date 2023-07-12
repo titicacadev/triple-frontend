@@ -11,6 +11,7 @@ import {
   CouponGroupDownloadButton,
   DEFAULT_BUTTON_COLOR,
 } from './coupon-download-buttons'
+import { safeParseHexColor } from './utils'
 
 const DEFAULT_COLOR = {
   buttonText: DEFAULT_BUTTON_COLOR.text,
@@ -65,7 +66,7 @@ export default function Coupon({
     <Container
       css={{
         padding: '44px 30px 42px',
-        backgroundColor: color.background,
+        backgroundColor: safeParseHexColor(color.background),
       }}
     >
       {couponType === 'single' ? (
@@ -74,8 +75,8 @@ export default function Coupon({
           slugId={identifier}
           enabledAt={enabledAt}
           onClick={handleCouponClick}
-          textColor={color.buttonText}
-          backgroundColor={color.buttonBackground}
+          textColor={safeParseHexColor(color.buttonText)}
+          backgroundColor={safeParseHexColor(color.buttonBackground)}
         />
       ) : (
         <CouponGroupDownloadButton
@@ -83,14 +84,18 @@ export default function Coupon({
           groupId={identifier}
           enabledAt={enabledAt}
           onClick={handleCouponClick}
-          textColor={color.buttonText}
-          backgroundColor={color.buttonBackground}
+          textColor={safeParseHexColor(color.buttonText)}
+          backgroundColor={safeParseHexColor(color.buttonBackground)}
         />
       )}
 
       {description ? (
         <Text
-          css={{ color: color.description || DEFAULT_COLOR.description }}
+          css={{
+            color: safeParseHexColor(
+              color.description || DEFAULT_COLOR.description,
+            ),
+          }}
           margin={{ top: 13 }}
           lineHeight={1.46}
           size="tiny"
