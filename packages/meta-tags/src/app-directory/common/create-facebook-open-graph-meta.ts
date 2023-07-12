@@ -18,23 +18,27 @@ export function createFacebookOpenGraphMeta({
 }: {
   title?: string
   description?: string
-  canonicalUrl: string
+  canonicalUrl?: string
   type?: OpenGraphType
   locale?: string
   image?: { url: string; width?: number; height?: number }
-}): Metadata {
+} = {}): Metadata {
   const title =
-    titleFromProps || process.env.NEXT_PUBLIC_DEFAULT_PAGE_TITLE || ''
+    titleFromProps || process.env.NEXT_PUBLIC_DEFAULT_PAGE_TITLE || undefined
   const description =
     descriptionFromProps ||
     process.env.NEXT_PUBLIC_DEFAULT_PAGE_DESCRIPTION ||
-    ''
+    undefined
+  const url =
+    canonicalUrl || process.env.NEXT_PUBLIC_WEB_URL_BASE
+      ? `${process.env.NEXT_PUBLIC_WEB_URL_BASE}/auth-web`
+      : undefined
 
   return {
     openGraph: {
       title,
       description,
-      url: canonicalUrl,
+      url,
       type,
       locale,
       images: [image],
