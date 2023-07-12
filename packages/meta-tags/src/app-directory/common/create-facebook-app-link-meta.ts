@@ -2,6 +2,9 @@ import { getTranslation } from '@titicaca/i18n/lib/app-directory/server'
 import { Language } from '@titicaca/i18n/lib/app-directory/types'
 import { Metadata } from 'next'
 
+/**
+ * FacebookAppLinkMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
+ */
 export function createFacebookAppLinkMeta({
   lang = 'ko',
   appName: appNameFromProps,
@@ -14,7 +17,7 @@ export function createFacebookAppLinkMeta({
   iosAppStoreId?: string
   appPath?: string
   appPackageName?: string
-}): Metadata {
+} = {}): Metadata {
   const t = getTranslation({ lang, namespace: 'common-web' })
   const appName = appNameFromProps ?? t(['teuripeul', '트리플']) ?? undefined
   const appUrlScheme = process.env.NEXT_PUBLIC_APP_URL_SCHEME || ''

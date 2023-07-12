@@ -2,6 +2,9 @@ import Head from 'next/head'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEnv } from '@titicaca/react-contexts'
 
+/**
+ * next13 app router를 사용할 경우 @titicaca/meta-tags/common의 createFacebookAppLinkMeta를 사용해주세요
+ */
 export function FacebookAppLinkMeta({
   appName,
   iosAppStoreId = '1225499481',
