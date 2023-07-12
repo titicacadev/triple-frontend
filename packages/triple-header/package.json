@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-header",
-  "version": "13.0.2",
+  "version": "13.1.0",
   "description": "TripleHeader",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-header",
@@ -35,11 +35,11 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^13.0.2",
-    "@titicaca/react-contexts": "^13.0.2",
-    "@titicaca/router": "^13.0.2",
-    "@titicaca/standard-action-handler": "^13.0.2",
-    "@titicaca/type-definitions": "^13.0.2",
+    "@titicaca/core-elements": "^13.1.0",
+    "@titicaca/react-contexts": "^13.1.0",
+    "@titicaca/router": "^13.1.0",
+    "@titicaca/standard-action-handler": "^13.1.0",
+    "@titicaca/type-definitions": "^13.1.0",
     "framer-motion": "^7.10.3"
   },
   "devDependencies": {

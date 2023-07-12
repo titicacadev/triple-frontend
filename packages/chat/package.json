@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/chat",
-  "version": "13.0.2",
+  "version": "13.1.0",
   "description": "via triple-chat-frontend",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/chat",
@@ -35,18 +35,18 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.0.2",
-    "@titicaca/core-elements": "^13.0.2",
-    "@titicaca/intersection-observer": "^13.0.2",
-    "@titicaca/triple-fallback-action": "^13.0.2",
+    "@titicaca/color-palette": "^13.1.0",
+    "@titicaca/core-elements": "^13.1.0",
+    "@titicaca/intersection-observer": "^13.1.0",
+    "@titicaca/triple-fallback-action": "^13.1.0",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
-    "@titicaca/type-definitions": "^13.0.2",
-    "@titicaca/view-utilities": "^13.0.2",
+    "@titicaca/type-definitions": "^13.1.0",
+    "@titicaca/view-utilities": "^13.1.0",
     "autolinker": "^4.0.0",
     "moment": "^2.29.4"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "^13.0.2",
+    "@titicaca/react-contexts": "^13.1.0",
     "@types/isomorphic-fetch": "^0.0.36"
   },
   "peerDependencies": {
