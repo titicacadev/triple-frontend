@@ -1,16 +1,14 @@
 import Head from 'next/head'
 
-type Global = 'inherit' | 'initial' | 'revert' | 'unset'
-type RGB = `rgb(${number}, ${number}, ${number})`
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
-type HEX = `#${string}`
+import { ThemeColor } from './types'
 
-type Color = RGB | RGBA | HEX | Global
-
+/**
+ * next13 app router를 사용할 경우 @titicaca/meta-tags/common의 createThemeColorMeta를 사용해주세요
+ */
 export function ThemeColorMeta({
   content = '#1FC1B6',
 }: {
-  content?: Color | string
+  content?: ThemeColor | string
 }) {
   return (
     <Head>

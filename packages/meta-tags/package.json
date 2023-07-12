@@ -11,7 +11,29 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "lib/index.d.ts"
+      ],
+      "common": [
+        "lib/common/index.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./common": {
+      "import": "./lib/app-directory/common/index.js",
+      "require": "./lib/app-directory/common/index.js",
+      "types": "./lib/app-directory/common/index.d.ts"
+    }
+  },
   "files": [
     "lib"
   ],
@@ -45,5 +67,8 @@
     "react": "^18.0",
     "react-dom": "^18.0",
     "styled-components": "^5.3.9"
+  },
+  "dependencies": {
+    "deepmerge": "^4.3.1"
   }
 }

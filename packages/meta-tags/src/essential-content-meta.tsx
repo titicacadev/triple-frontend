@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
+/**
+ * next13 app router를 사용할 경우 @titicaca/meta-tags/common의 createEssentialContentMeta를 사용해주세요
+ */
 export function EssentialContentMeta({
   title: titleFromProps,
   description: descriptionFromProps,

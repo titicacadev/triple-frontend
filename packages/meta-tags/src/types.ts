@@ -71,3 +71,10 @@ export interface OpeningHoursSpecificationSchema {
   opens: string
   closes: string
 }
+
+type Global = 'inherit' | 'initial' | 'revert' | 'unset'
+type RGB = `rgb(${number}, ${number}, ${number})`
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
+type HEX = `#${string}`
+
+export type ThemeColor = RGB | RGBA | HEX | Global
