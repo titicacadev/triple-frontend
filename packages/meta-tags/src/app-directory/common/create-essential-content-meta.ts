@@ -1,5 +1,8 @@
 import { Metadata } from 'next'
 
+/**
+ * EssentialContentMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
+ */
 export function createEssentialContentMeta({
   title,
   description,
@@ -8,7 +11,7 @@ export function createEssentialContentMeta({
   title?: string
   description?: string
   canonicalUrl?: string
-}): Metadata {
+} = {}): Metadata {
   return {
     title: title || process.env.NEXT_PUBLIC_DEFAULT_PAGE_TITLE || '',
     description:
