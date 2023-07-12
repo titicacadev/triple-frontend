@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "13.0.2",
+  "version": "13.1.0",
   "description": "Action sheet component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/action-sheet",
@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.24.6",
-    "@titicaca/app-installation-cta": "^13.0.2",
-    "@titicaca/core-elements": "^13.0.2",
-    "@titicaca/popup": "^13.0.2"
+    "@titicaca/app-installation-cta": "^13.1.0",
+    "@titicaca/core-elements": "^13.1.0",
+    "@titicaca/popup": "^13.1.0"
   },
   "peerDependencies": {
     "react": "^18.0",
