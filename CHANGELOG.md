@@ -1,5 +1,47 @@
 # CHANGELOG
 
+## v13.1.0
+
+### action-sheet
+
+- focus trap 테스트가 랜덤하게 실패하는 현상 수정 [#2785](https://github.com/titicacadev/triple-frontend/pull/2785)
+
+### core-elements
+
+- workspace root의 의존성 제거 및 이동 [#2777](https://github.com/titicacadev/triple-frontend/pull/2777)
+
+### form
+
+- workspace root의 의존성 제거 및 이동 [#2777](https://github.com/titicacadev/triple-frontend/pull/2777)
+
+### map
+
+- workspace root의 의존성 제거 및 이동 [#2777](https://github.com/titicacadev/triple-frontend/pull/2777)
+
+### modals
+
+- TransitionModal에 community TransitionType 추가 [#2774](https://github.com/titicacadev/triple-frontend/pull/2774)
+- workspace root의 의존성 제거 및 이동 [#2777](https://github.com/titicacadev/triple-frontend/pull/2777)
+- focus trap 테스트가 랜덤하게 실패하는 현상 수정 [#2785](https://github.com/titicacadev/triple-frontend/pull/2785)
+
+### popup
+
+- focus trap 테스트가 랜덤하게 실패하는 현상 수정 [#2785](https://github.com/titicacadev/triple-frontend/pull/2785)
+
+### react-contexts
+
+- app 디렉토리용 eventTrackingProvider를 작성합니다. [#2768](https://github.com/titicacadev/triple-frontend/pull/2768)
+- /api/users/me의 타입을 최신화합니다. [#2770](https://github.com/titicacadev/triple-frontend/pull/2770)
+- workspace root의 의존성 제거 및 이동 [#2777](https://github.com/titicacadev/triple-frontend/pull/2777)
+
+### triple-document
+
+- triple-document 쿠폰 개선 [#2743](https://github.com/titicacadev/triple-frontend/pull/2743)
+
+### view-utilities
+
+- view-utilities에 common, client export 경로를 추가하고 query 관련 유틸함수를 작성합니다. [#2784](https://github.com/titicacadev/triple-frontend/pull/2784)
+
 ## v13.0.2
 
 ### review
