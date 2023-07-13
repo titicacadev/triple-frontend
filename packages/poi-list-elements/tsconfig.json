@@ -8,6 +8,12 @@
       "@titicaca/scrap-button": ["../scrap-button/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/view-utilities/common": [
+        "../view-utilities/src/app-directory/common"
+      ],
+      "@titicaca/view-utilities/client": [
+        "../view-utilities/src/app-directory/client"
+      ],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"]
     }

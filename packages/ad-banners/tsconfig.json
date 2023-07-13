@@ -5,6 +5,7 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/router": ["../router/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"]

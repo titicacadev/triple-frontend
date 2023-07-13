@@ -8,11 +8,18 @@
       "@titicaca/carousel": ["../carousel/src"],
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/image-carousel": ["../image-carousel/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/view-utilities/common": [
+        "../view-utilities/src/app-directory/common"
+      ],
+      "@titicaca/view-utilities/client": [
+        "../view-utilities/src/app-directory/client"
+      ],
       "@titicaca/web-storage": ["../web-storage/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],

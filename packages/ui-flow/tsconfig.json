@@ -4,9 +4,16 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/view-utilities/common": [
+        "../view-utilities/src/app-directory/common"
+      ],
+      "@titicaca/view-utilities/client": [
+        "../view-utilities/src/app-directory/client"
+      ],
       "@titicaca/react-triple-client-interfaces": [
         "../react-triple-client-interfaces/src"
       ]
