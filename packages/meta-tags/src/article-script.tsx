@@ -1,16 +1,7 @@
 import Head from 'next/head'
 
 import { createScript } from './utils'
-import { Author } from './types'
-
-interface ArticleScriptProps {
-  headline: string
-  image?: string[]
-  datePublished?: string
-  dateModified?: string
-  author?: Author[]
-  publisher?: Author[]
-}
+import { ArticleScriptProps } from './types'
 
 export function ArticleScript(props: ArticleScriptProps) {
   const articleScript = createScript(props, 'Article')
