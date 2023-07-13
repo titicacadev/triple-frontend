@@ -1,11 +1,7 @@
 import Head from 'next/head'
 
 import { createScript } from './utils'
-import { ReviewSchema } from './types'
-
-interface ReviewScriptProps {
-  reviews: ReviewSchema[]
-}
+import { ReviewScriptProps } from './types'
 
 export function ReviewScript({ reviews }: ReviewScriptProps) {
   const reviewScript = reviews.map((review) => createScript(review, 'Review'))
