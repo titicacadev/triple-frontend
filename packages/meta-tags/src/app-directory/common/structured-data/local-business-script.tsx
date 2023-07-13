@@ -1,6 +1,9 @@
 import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from '../../../utils'
 import { LocalBusinessScriptProps } from '../../../types'
 
+/**
+ * LocalBusinessScript 컴포넌트의 Next13 app router 버전입니다.
+ */
 export function LocalBusinessScript({
   type,
   ...props
