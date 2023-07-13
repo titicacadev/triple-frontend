@@ -27,13 +27,27 @@ function dependenciesToPaths(deps) {
         ),
       ),
     )
-    .reduce(
-      (paths, packageName) => ({
+    .reduce((paths, packageName) => {
+      return {
         ...paths,
         [packageName]: [`../${packageName.replace('@titicaca/', '')}/src`],
-      }),
-      {},
-    )
+        ...createExportPath({
+          packageName,
+          filename: 'common',
+          filePath: 'src/app-directory/common',
+        }),
+        ...createExportPath({
+          packageName,
+          filename: 'client',
+          filePath: 'src/app-directory/client',
+        }),
+        ...createExportPath({
+          packageName,
+          filename: 'server',
+          filePath: 'src/app-directory/server',
+        }),
+      }
+    }, {})
 }
 
 async function main() {
@@ -77,6 +91,28 @@ async function main() {
     }),
     { encoding: 'utf8' },
   )
+}
+
+function createExportPath({ packageName, filename, filePath }) {
+  const hasPath = fs.existsSync(
+    path.relative(
+      process.cwd(),
+      path.join(
+        process.env.LERNA_ROOT_PATH,
+        './packages',
+        packageName.replace('@titicaca/', ''),
+        filePath,
+      ),
+    ),
+  )
+
+  return hasPath
+    ? {
+        [`${packageName}/${filename}`]: [
+          `../${packageName.replace('@titicaca/', '')}/${filePath}`,
+        ],
+      }
+    : {}
 }
 
 main()

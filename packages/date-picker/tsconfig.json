@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
-      "@titicaca/fetcher": ["../fetcher/src"]
+      "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

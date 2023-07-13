@@ -4,7 +4,13 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/view-utilities": ["../view-utilities/src"]
+      "@titicaca/view-utilities": ["../view-utilities/src"],
+      "@titicaca/view-utilities/common": [
+        "../view-utilities/src/app-directory/common"
+      ],
+      "@titicaca/view-utilities/client": [
+        "../view-utilities/src/app-directory/client"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

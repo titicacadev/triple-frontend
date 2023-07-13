@@ -5,6 +5,7 @@
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
+      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-hooks": ["../react-hooks/src"],
       "@titicaca/router": ["../router/src"],
