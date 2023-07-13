@@ -1,4 +1,4 @@
-import { SCHEMA_SCRIPT_TYPE_MAP } from './utils'
+import { SCHEMA_SCRIPT_TYPE_MAP } from '../utils'
 
 export interface Author {
   type?: 'Person' | 'Organization'
