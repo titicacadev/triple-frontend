@@ -3,6 +3,9 @@ import Head from 'next/head'
 import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from './utils'
 import { LocalBusinessScriptProps } from './types'
 
+/**
+ * Next13 app router 버전일 경우 '@titicaca/meta-tags/common'의 LocalBusinessScript를 사용하세요.
+ */
 export function LocalBusinessScript({
   type,
   ...props
