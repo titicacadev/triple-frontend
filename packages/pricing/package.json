@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/pricing",
-  "version": "13.1.1",
+  "version": "13.1.2",
   "description": "Triple - pricing",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/pricing",
@@ -35,12 +35,12 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^13.1.1",
-    "@titicaca/type-definitions": "^13.1.1",
-    "@titicaca/view-utilities": "^13.1.1"
+    "@titicaca/core-elements": "^13.1.2",
+    "@titicaca/type-definitions": "^13.1.2",
+    "@titicaca/view-utilities": "^13.1.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.1.1",
+    "@titicaca/i18n": "^13.1.2",
     "@titicaca/next-i18next": "13.8.5"
   },
   "peerDependencies": {
