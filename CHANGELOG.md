@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.1.2
+
+### react-contexts
+
+- [react-contexts] ios cookie fixation 기준 버전 변경 [#2800](https://github.com/titicacadev/triple-frontend/pull/2800)
+
 ## v13.1.1
 
 ### triple-document
