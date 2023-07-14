@@ -15,7 +15,7 @@ export const middleware: NextMiddleware = (request: NextRequest) => {
   const app = parseApp(userAgent)
 
   try {
-    const oldVersionRange = '< 6.6.0'
+    const oldVersionRange = '< 6.5.5'
     const isOldIosApp =
       app &&
       app.name === 'Triple-iOS' &&
