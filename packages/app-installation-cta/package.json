@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "13.1.1",
+  "version": "13.1.2",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -42,17 +42,17 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^13.1.1",
-    "@titicaca/intersection-observer": "^13.1.1",
-    "@titicaca/type-definitions": "^13.1.1",
-    "@titicaca/web-storage": "^13.1.1",
+    "@titicaca/core-elements": "^13.1.2",
+    "@titicaca/intersection-observer": "^13.1.2",
+    "@titicaca/type-definitions": "^13.1.2",
+    "@titicaca/web-storage": "^13.1.2",
     "@types/react-transition-group": "^4.4.6",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.1.1",
+    "@titicaca/i18n": "^13.1.2",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^13.1.1"
+    "@titicaca/react-contexts": "^13.1.2"
   },
   "peerDependencies": {
     "@titicaca/next-i18next": "*",

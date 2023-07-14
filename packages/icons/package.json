@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/icons",
-  "version": "13.1.1",
+  "version": "13.1.2",
   "description": "Triple Icons",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/icons",
@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.1.1"
+    "@titicaca/color-palette": "^13.1.2"
   },
   "peerDependencies": {
     "react": "^18.0",

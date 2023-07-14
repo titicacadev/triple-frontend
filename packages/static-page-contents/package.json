@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/static-page-contents",
-  "version": "13.1.1",
+  "version": "13.1.2",
   "description": "Static page pomponent",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/static-page-contents",
@@ -35,10 +35,10 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.1.1"
+    "@titicaca/color-palette": "^13.1.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.1.1",
+    "@titicaca/i18n": "^13.1.2",
     "@titicaca/next-i18next": "13.8.5"
   },
   "peerDependencies": {
