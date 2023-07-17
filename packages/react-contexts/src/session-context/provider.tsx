@@ -3,24 +3,9 @@ import { PropsWithChildren } from 'react'
 
 import { generateUserAgentValues } from '../user-agent-context'
 
-import {
-  InAppSessionContextProviderProps,
-  InAppSessionContextProvider,
-} from './app'
-import {
-  InBrowserSessionContextProviderProps,
-  InBrowserSessionContextProvider,
-} from './browser'
-
-type SessionContextProviderProps =
-  | {
-      type: 'browser'
-      props: InBrowserSessionContextProviderProps
-    }
-  | {
-      type: 'app'
-      props: InAppSessionContextProviderProps
-    }
+import { InAppSessionContextProvider } from './app'
+import { InBrowserSessionContextProvider } from './browser'
+import { SessionContextProviderProps } from './types'
 
 export default function SessionContextProvider({
   children,
@@ -45,6 +30,9 @@ export default function SessionContextProvider({
   )
 }
 
+/** 
+  next v13 app router를 사용하는 경우 '@titicaca/react-contexts/server'의 getSessionProviderProps를 사용하세요.
+*/
 SessionContextProvider.getInitialProps = async function (
   context: NextPageContext,
 ): Promise<SessionContextProviderProps> {

@@ -16,7 +16,7 @@ export interface InBrowserSessionContextProviderProps {
 export interface InAppSessionContextProviderProps {
   initialSessionId: string | undefined
   initialUser: User | undefined
-  preventSessionFixation: boolean | undefined
+  preventSessionFixation?: boolean | undefined
 }
 
 export interface User {

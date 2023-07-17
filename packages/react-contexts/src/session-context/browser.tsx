@@ -14,17 +14,13 @@ import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import Cookies from 'universal-cookie'
 
-import { GET_USER_REQUEST_URL, User, UserProvider, useUserState } from './user'
+import { GET_USER_REQUEST_URL, UserProvider, useUserState } from './user'
+import { InBrowserSessionContextProviderProps, User } from './types'
 import {
   SessionControllerContext,
   SessionAvailabilityContext,
   SessionControllers,
 } from './context'
-
-export interface InBrowserSessionContextProviderProps {
-  initialSessionAvailability: boolean
-  initialUser: User | undefined
-}
 
 export function InBrowserSessionContextProvider({
   initialSessionAvailability,
