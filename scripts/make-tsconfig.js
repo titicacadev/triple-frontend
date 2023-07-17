@@ -64,13 +64,15 @@ function packagesToPaths(packages) {
 async function writeTsconfig(transformer) {
   const tsconfigPath = path.resolve(process.cwd(), './tsconfig.test.json')
 
-  const tsconfig = JSON.parse((await fs.readFileSync(tsconfigPath)).toString())
+  const tsconfig = JSON.parse(
+    (await fs.promises.readFile(tsconfigPath)).toString(),
+  )
 
   const newTsconfig = transformer(tsconfig)
   const fileContent = `${JSON.stringify(newTsconfig, null, '  ')}\n`
   const prettified = prettier.format(fileContent, { parser: 'json' })
 
-  await fs.writeFileSync(tsconfigPath, prettified)
+  await fs.promises.writeFile(tsconfigPath, prettified)
 }
 
 function createExportPath({ packageName, filename, filePath }) {
@@ -84,7 +86,7 @@ function createExportPath({ packageName, filename, filePath }) {
   return hasPath
     ? {
         [`@titicaca/${packageName}/${filename}`]: [
-          `./packages//${packageName}/${filePath}`,
+          `./packages/${packageName}/${filePath}`,
         ],
       }
     : {}
