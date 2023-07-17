@@ -2,14 +2,16 @@ import Head from 'next/head'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEnv } from '@titicaca/react-contexts'
 
+import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
+
 /**
  * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookAppLinkMeta를 사용해주세요
  */
 export function FacebookAppLinkMeta({
   appName,
-  iosAppStoreId = '1225499481',
+  iosAppStoreId = DEFAULT_APP_ID,
   appPath = '/',
-  appPackageName = 'com.titicacacorp.triple',
+  appPackageName = DEFAULT_APP_PACKAGE_NAME,
 }: {
   appName?: string
   iosAppStoreId?: string

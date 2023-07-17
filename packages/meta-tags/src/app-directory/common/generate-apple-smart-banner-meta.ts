@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
 
+import { DEFAULT_APP_ID } from '../../constants'
+
 /**
  * AppleSmartBannerMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
  */
 export function generateAppleSmartBannerMeta({
-  appId = '1225499481',
+  appId = DEFAULT_APP_ID,
   appPath = '/',
 }: {
   appId?: string

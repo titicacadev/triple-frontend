@@ -1,12 +1,13 @@
 import Head from 'next/head'
 
 import { ThemeColor } from './types'
+import { DEFAULT_THEME_COLOR } from './constants'
 
 /**
  * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateThemeColorMeta를 사용해주세요
  */
 export function ThemeColorMeta({
-  content = '#1FC1B6',
+  content = DEFAULT_THEME_COLOR,
 }: {
   content?: ThemeColor | string
 }) {
