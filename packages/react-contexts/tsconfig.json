@@ -6,6 +6,12 @@
       "@titicaca/constants": ["../constants/src"],
       "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
+      "@titicaca/react-triple-client-interfaces": [
+        "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/react-triple-client-interfaces/server": [
+        "../react-triple-client-interfaces/src/app-directory/server"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"],
       "@titicaca/view-utilities": ["../view-utilities/src"],
       "@titicaca/view-utilities/common": [
