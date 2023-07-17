@@ -20,6 +20,9 @@
       "@titicaca/directions-finder": ["./packages/directions-finder/src"],
       "@titicaca/drawer-button": ["./packages/drawer-button/src"],
       "@titicaca/fetcher": ["./packages/fetcher/src"],
+      "@titicaca/fetcher/common": [
+        "./packages//fetcher/src/app-directory/common"
+      ],
       "@titicaca/footer": ["./packages/footer/src"],
       "@titicaca/form": ["./packages/form/src"],
       "@titicaca/hub-form": ["./packages/hub-form/src"],
@@ -78,7 +81,10 @@
       "@titicaca/user-verification": ["./packages/user-verification/src"],
       "@titicaca/view-utilities": ["./packages/view-utilities/src"],
       "@titicaca/view-utilities/common": [
-        "./packages/view-utilities/src/app-directory/common"
+        "./packages//view-utilities/src/app-directory/common"
+      ],
+      "@titicaca/view-utilities/client": [
+        "./packages//view-utilities/src/app-directory/client"
       ],
       "@titicaca/web-storage": ["./packages/web-storage/src"]
     }
