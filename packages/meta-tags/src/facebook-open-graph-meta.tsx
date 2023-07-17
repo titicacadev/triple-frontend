@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
 /**
- * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 createFacebookOpenGraphMeta룰 사용해주세요
+ * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookOpenGraphMeta룰 사용해주세요
  */
 export function FacebookOpenGraphMeta({
   title: titleFromProps,

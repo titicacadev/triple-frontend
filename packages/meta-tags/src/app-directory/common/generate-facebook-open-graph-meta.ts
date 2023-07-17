@@ -4,7 +4,7 @@ import { OpenGraphType } from 'next/dist/lib/metadata/types/opengraph-types'
 /**
  * FacebookOpenGraphMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
  */
-export function createFacebookOpenGraphMeta({
+export function generateFacebookOpenGraphMeta({
   title: titleFromProps,
   description: descriptionFromProps,
   canonicalUrl,
