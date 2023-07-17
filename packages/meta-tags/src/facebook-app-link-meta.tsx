@@ -9,12 +9,12 @@ import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
  */
 export function FacebookAppLinkMeta({
   appName,
-  iosAppStoreId = DEFAULT_APP_ID,
+  appId = DEFAULT_APP_ID,
   appPath = '/',
   appPackageName = DEFAULT_APP_PACKAGE_NAME,
 }: {
   appName?: string
-  iosAppStoreId?: string
+  appId?: string
   appPath?: string
   appPackageName?: string
 }) {
@@ -42,7 +42,7 @@ export function FacebookAppLinkMeta({
       <meta
         key="al-ios-app-store-id"
         property="al:ios:app_store_id"
-        content={iosAppStoreId}
+        content={appId}
       />
       <meta
         key="al-android-url"
