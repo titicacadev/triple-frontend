@@ -57,6 +57,9 @@
       "@titicaca/react-triple-client-interfaces": [
         "./packages/react-triple-client-interfaces/src"
       ],
+      "@titicaca/react-triple-client-interfaces/common": [
+        "./packages/react-triple-client-interfaces/src/app-directory/common"
+      ],
       "@titicaca/react-triple-client-interfaces/server": [
         "./packages/react-triple-client-interfaces/src/app-directory/server"
       ],
