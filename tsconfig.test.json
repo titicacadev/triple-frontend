@@ -47,6 +47,9 @@
       "@titicaca/pricing": ["./packages/pricing/src"],
       "@titicaca/public-header": ["./packages/public-header/src"],
       "@titicaca/react-contexts": ["./packages/react-contexts/src"],
+      "@titicaca/react-contexts/common": [
+        "./packages/react-contexts/src/app-directory/common"
+      ],
       "@titicaca/react-contexts/client": [
         "./packages/react-contexts/src/app-directory/client"
       ],

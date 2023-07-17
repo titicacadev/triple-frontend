@@ -6,6 +6,9 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/router": ["../router/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/common": [
+        "../react-contexts/src/app-directory/common"
+      ],
       "@titicaca/react-contexts/client": [
         "../react-contexts/src/app-directory/client"
       ],

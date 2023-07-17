@@ -7,6 +7,9 @@
       "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/modals": ["../modals/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/common": [
+        "../react-contexts/src/app-directory/common"
+      ],
       "@titicaca/react-contexts/client": [
         "../react-contexts/src/app-directory/client"
       ],
