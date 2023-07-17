@@ -77,6 +77,9 @@
       "@titicaca/ui-flow": ["./packages/ui-flow/src"],
       "@titicaca/user-verification": ["./packages/user-verification/src"],
       "@titicaca/view-utilities": ["./packages/view-utilities/src"],
+      "@titicaca/view-utilities/common": [
+        "./packages/view-utilities/src/app-directory/common"
+      ],
       "@titicaca/web-storage": ["./packages/web-storage/src"]
     }
   }
