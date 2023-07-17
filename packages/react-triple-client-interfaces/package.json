@@ -12,6 +12,37 @@
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "lib/index.d.ts"
+      ],
+      "server": [
+        "lib/app-directory/server/index.d.ts"
+      ],
+      "client": [
+        "lib/app-directory/client/index.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./server": {
+      "import": "./lib/app-directory/server/index.js",
+      "require": "./lib/app-directory/server/index.js",
+      "types": "./lib/app-directory/server/index.d.ts"
+    },
+    "./client": {
+      "import": "./lib/app-directory/client/index.js",
+      "require": "./lib/app-directory/client/index.js",
+      "types": "./lib/app-directory/client/index.d.ts"
+    }
+  },
   "files": [
     "lib"
   ],

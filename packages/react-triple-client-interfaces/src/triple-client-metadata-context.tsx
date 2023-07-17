@@ -48,6 +48,9 @@ export function TripleClientMetadataProvider({
   )
 }
 
+/** 
+  next v13 app router를 사용하는 경우 '@titicaca/react-triple-client-interfaces/server'의 getTripleClientMetadata를 사용하세요.
+*/
 TripleClientMetadataProvider.getInitialProps = async function ({
   req,
 }: {
