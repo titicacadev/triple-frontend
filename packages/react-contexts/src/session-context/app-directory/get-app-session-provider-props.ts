@@ -6,9 +6,11 @@ import { InAppSessionContextProviderProps } from '../types'
 
 import { getUser } from './get-user'
 
-export async function getAppSessionProviderProps(
-  preventSessionFixation: boolean,
-): Promise<InAppSessionContextProviderProps> {
+export async function getAppSessionProviderProps({
+  preventSessionFixation,
+}: {
+  preventSessionFixation: boolean
+}): Promise<InAppSessionContextProviderProps> {
   const initialSessionId = getAppSessionId()
   const user = initialSessionId ? await getUser() : undefined
 

@@ -1,27 +1,28 @@
 'use server'
 
-import { AppName } from '@titicaca/react-triple-client-interfaces/common'
-import { getTripleClientMetadata } from '@titicaca/react-triple-client-interfaces/server'
-
 import { SessionContextProviderProps } from '../types'
 
 import { getBrowserSessionProviderProps } from './get-browser-session-provider-props'
 import { getAppSessionProviderProps } from './get-app-session-provider-props'
 
-export async function getSessionProviderProps(): Promise<SessionContextProviderProps> {
-  const app = getTripleClientMetadata()
-
-  if (app) {
-    const preventSessionFixation = app.appName !== AppName.iOS
-
+export async function getSessionProviderProps({
+  isPublic,
+  isAndroid,
+}: {
+  isPublic: boolean
+  isAndroid: boolean
+}): Promise<SessionContextProviderProps> {
+  if (isPublic) {
     return {
-      type: 'app',
-      props: await getAppSessionProviderProps(preventSessionFixation),
+      type: 'browser',
+      props: await getBrowserSessionProviderProps(),
     }
   }
 
   return {
-    type: 'browser',
-    props: await getBrowserSessionProviderProps(),
+    type: 'app',
+    props: await getAppSessionProviderProps({
+      preventSessionFixation: isAndroid,
+    }),
   }
 }
