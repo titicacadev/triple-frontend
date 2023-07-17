@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 /**
  * AppleSmartBannerMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
  */
-export function createAppleSmartBannerMeta({
+export function generateAppleSmartBannerMeta({
   appId = '1225499481',
   appPath = '/',
 }: {

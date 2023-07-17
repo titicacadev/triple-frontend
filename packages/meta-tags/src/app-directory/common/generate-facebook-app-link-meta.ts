@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 /**
  * FacebookAppLinkMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
  */
-export function createFacebookAppLinkMeta({
+export function generateFacebookAppLinkMeta({
   appName: appNameFromProps,
   iosAppStoreId = '1225499481',
   appPath = '/',
