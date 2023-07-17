@@ -1,16 +1,18 @@
 import { Metadata } from 'next'
 
+import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from '../../constants'
+
 /**
  * FacebookAppLinkMeta 컴포넌트의 Next13 app router 버전 유틸 함수입니다.
  */
 export function generateFacebookAppLinkMeta({
   appName: appNameFromProps,
-  iosAppStoreId = '1225499481',
+  appId = DEFAULT_APP_ID,
   appPath = '/',
-  appPackageName = 'com.titicacacorp.triple',
+  appPackageName = DEFAULT_APP_PACKAGE_NAME,
 }: {
   appName?: string
-  iosAppStoreId?: string
+  appId?: string
   appPath?: string
   appPackageName?: string
 } = {}): Metadata {
@@ -24,7 +26,7 @@ export function generateFacebookAppLinkMeta({
       ios: {
         app_name: appName,
         url,
-        app_store_id: iosAppStoreId,
+        app_store_id: appId,
       },
       android: {
         app_name: appName,

@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
+import { DEFAULT_OG_IMAGE } from './constants'
+
 /**
  * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookOpenGraphMeta룰 사용해주세요
  */
@@ -10,11 +12,7 @@ export function FacebookOpenGraphMeta({
   canonicalUrl,
   type = 'website',
   locale = 'ko_KR',
-  image = {
-    url: 'https://assets.triple.guide/images/og-tag-app_download@4x.png',
-    width: 260,
-    height: 260,
-  },
+  image = DEFAULT_OG_IMAGE,
 }: {
   title?: string
   description?: string
