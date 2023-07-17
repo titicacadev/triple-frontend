@@ -8,7 +8,13 @@
       "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/router": ["../router/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "../react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "../react-contexts/src/app-directory/server"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

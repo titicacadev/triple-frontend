@@ -7,6 +7,12 @@
       "@titicaca/icons": ["../icons/src"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "../react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "../react-contexts/src/app-directory/server"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"]
     }
   },

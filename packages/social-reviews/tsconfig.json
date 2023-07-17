@@ -6,7 +6,13 @@
       "@titicaca/core-elements": ["../core-elements/src"],
       "@titicaca/router": ["../router/src"],
       "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "../react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "../react-contexts/src/app-directory/server"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

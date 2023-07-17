@@ -5,7 +5,13 @@
     "paths": {
       "@titicaca/fetcher": ["../fetcher/src"],
       "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "../react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "../react-contexts/src/app-directory/server"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

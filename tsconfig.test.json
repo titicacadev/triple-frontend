@@ -36,6 +36,9 @@
       "@titicaca/location-properties": ["./packages/location-properties/src"],
       "@titicaca/map": ["./packages/map/src"],
       "@titicaca/meta-tags": ["./packages/meta-tags/src"],
+      "@titicaca/meta-tags/common": [
+        "./packages/meta-tags/src/app-directory/common"
+      ],
       "@titicaca/modals": ["./packages/modals/src"],
       "@titicaca/nearby-pois": ["./packages/nearby-pois/src"],
       "@titicaca/poi-detail": ["./packages/poi-detail/src"],
@@ -44,9 +47,18 @@
       "@titicaca/pricing": ["./packages/pricing/src"],
       "@titicaca/public-header": ["./packages/public-header/src"],
       "@titicaca/react-contexts": ["./packages/react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "./packages/react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "./packages/react-contexts/src/app-directory/server"
+      ],
       "@titicaca/react-hooks": ["./packages/react-hooks/src"],
       "@titicaca/react-triple-client-interfaces": [
         "./packages/react-triple-client-interfaces/src"
+      ],
+      "@titicaca/react-triple-client-interfaces/server": [
+        "./packages/react-triple-client-interfaces/src/app-directory/server"
       ],
       "@titicaca/recommended-contents": ["./packages/recommended-contents/src"],
       "@titicaca/replies": ["./packages/replies/src"],

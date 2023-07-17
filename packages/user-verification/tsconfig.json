@@ -11,8 +11,17 @@
       "@titicaca/router": ["../router/src"],
       "@titicaca/i18n": ["../i18n/src"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/client": [
+        "../react-contexts/src/app-directory/client"
+      ],
+      "@titicaca/react-contexts/server": [
+        "../react-contexts/src/app-directory/server"
+      ],
       "@titicaca/react-triple-client-interfaces": [
         "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/react-triple-client-interfaces/server": [
+        "../react-triple-client-interfaces/src/app-directory/server"
       ]
     }
   },
