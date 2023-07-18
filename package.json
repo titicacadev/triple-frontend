@@ -82,7 +82,7 @@
     "rimraf": "^5.0.1",
     "storybook": "^7.0.27",
     "storybook-addon-swc": "^1.2.0",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.0.4",
     "stylelint": "^15.10.1",
     "ts-jest": "^29.1.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",

@@ -48,6 +48,6 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "styled-components": ">=4.4.1 < 6"
+    "styled-components": ">=4.4.1 < 7"
   }
 }
