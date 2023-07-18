@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@titicaca/color-palette": ["../color-palette/src"]
+      "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/color-palette/*": ["../color-palette/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

@@ -4,89 +4,207 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/ab-experiments": ["./packages/ab-experiments/src"],
-      "@titicaca/action-sheet": ["./packages/action-sheet/src"],
-      "@titicaca/ad-banners": ["./packages/ad-banners/src"],
-      "@titicaca/app-banner": ["./packages/app-banner/src"],
-      "@titicaca/app-installation-cta": ["./packages/app-installation-cta/src"],
-      "@titicaca/author": ["./packages/author/src"],
-      "@titicaca/booking-completion": ["./packages/booking-completion/src"],
-      "@titicaca/carousel": ["./packages/carousel/src"],
-      "@titicaca/chat": ["./packages/chat/src"],
-      "@titicaca/color-palette": ["./packages/color-palette/src"],
-      "@titicaca/constants": ["./packages/constants/src"],
-      "@titicaca/content-sharing": ["./packages/content-sharing/src"],
-      "@titicaca/core-elements": ["./packages/core-elements/src"],
-      "@titicaca/date-picker": ["./packages/date-picker/src"],
-      "@titicaca/directions-finder": ["./packages/directions-finder/src"],
-      "@titicaca/drawer-button": ["./packages/drawer-button/src"],
-      "@titicaca/fetcher": ["./packages/fetcher/src"],
-      "@titicaca/fetcher/common": [
-        "./packages/fetcher/src/app-directory/common"
+      "@titicaca/ab-experiments/*": [
+        "./packages/ab-experiments/src/app-directory/*"
       ],
+      "@titicaca/action-sheet": ["./packages/action-sheet/src"],
+      "@titicaca/action-sheet/*": [
+        "./packages/action-sheet/src/app-directory/*"
+      ],
+      "@titicaca/ad-banners": ["./packages/ad-banners/src"],
+      "@titicaca/ad-banners/*": ["./packages/ad-banners/src/app-directory/*"],
+      "@titicaca/app-banner": ["./packages/app-banner/src"],
+      "@titicaca/app-banner/*": ["./packages/app-banner/src/app-directory/*"],
+      "@titicaca/app-installation-cta": ["./packages/app-installation-cta/src"],
+      "@titicaca/app-installation-cta/*": [
+        "./packages/app-installation-cta/src/app-directory/*"
+      ],
+      "@titicaca/author": ["./packages/author/src"],
+      "@titicaca/author/*": ["./packages/author/src/app-directory/*"],
+      "@titicaca/booking-completion": ["./packages/booking-completion/src"],
+      "@titicaca/booking-completion/*": [
+        "./packages/booking-completion/src/app-directory/*"
+      ],
+      "@titicaca/carousel": ["./packages/carousel/src"],
+      "@titicaca/carousel/*": ["./packages/carousel/src/app-directory/*"],
+      "@titicaca/chat": ["./packages/chat/src"],
+      "@titicaca/chat/*": ["./packages/chat/src/app-directory/*"],
+      "@titicaca/color-palette": ["./packages/color-palette/src"],
+      "@titicaca/color-palette/*": [
+        "./packages/color-palette/src/app-directory/*"
+      ],
+      "@titicaca/constants": ["./packages/constants/src"],
+      "@titicaca/constants/*": ["./packages/constants/src/app-directory/*"],
+      "@titicaca/content-sharing": ["./packages/content-sharing/src"],
+      "@titicaca/content-sharing/*": [
+        "./packages/content-sharing/src/app-directory/*"
+      ],
+      "@titicaca/core-elements": ["./packages/core-elements/src"],
+      "@titicaca/core-elements/*": [
+        "./packages/core-elements/src/app-directory/*"
+      ],
+      "@titicaca/date-picker": ["./packages/date-picker/src"],
+      "@titicaca/date-picker/*": ["./packages/date-picker/src/app-directory/*"],
+      "@titicaca/directions-finder": ["./packages/directions-finder/src"],
+      "@titicaca/directions-finder/*": [
+        "./packages/directions-finder/src/app-directory/*"
+      ],
+      "@titicaca/drawer-button": ["./packages/drawer-button/src"],
+      "@titicaca/drawer-button/*": [
+        "./packages/drawer-button/src/app-directory/*"
+      ],
+      "@titicaca/fetcher": ["./packages/fetcher/src"],
+      "@titicaca/fetcher/*": ["./packages/fetcher/src/app-directory/*"],
       "@titicaca/footer": ["./packages/footer/src"],
+      "@titicaca/footer/*": ["./packages/footer/src/app-directory/*"],
       "@titicaca/form": ["./packages/form/src"],
+      "@titicaca/form/*": ["./packages/form/src/app-directory/*"],
       "@titicaca/hub-form": ["./packages/hub-form/src"],
+      "@titicaca/hub-form/*": ["./packages/hub-form/src/app-directory/*"],
       "@titicaca/i18n": ["./packages/i18n/src"],
+      "@titicaca/i18n/*": ["./packages/i18n/src/app-directory/*"],
       "@titicaca/icons": ["./packages/icons/src"],
+      "@titicaca/icons/*": ["./packages/icons/src/app-directory/*"],
       "@titicaca/image-carousel": ["./packages/image-carousel/src"],
+      "@titicaca/image-carousel/*": [
+        "./packages/image-carousel/src/app-directory/*"
+      ],
       "@titicaca/intersection-observer": [
         "./packages/intersection-observer/src"
       ],
+      "@titicaca/intersection-observer/*": [
+        "./packages/intersection-observer/src/app-directory/*"
+      ],
       "@titicaca/listing-filter": ["./packages/listing-filter/src"],
+      "@titicaca/listing-filter/*": [
+        "./packages/listing-filter/src/app-directory/*"
+      ],
       "@titicaca/location-properties": ["./packages/location-properties/src"],
+      "@titicaca/location-properties/*": [
+        "./packages/location-properties/src/app-directory/*"
+      ],
       "@titicaca/map": ["./packages/map/src"],
+      "@titicaca/map/*": ["./packages/map/src/app-directory/*"],
       "@titicaca/meta-tags": ["./packages/meta-tags/src"],
+      "@titicaca/meta-tags/*": ["./packages/meta-tags/src/app-directory/*"],
       "@titicaca/modals": ["./packages/modals/src"],
+      "@titicaca/modals/*": ["./packages/modals/src/app-directory/*"],
       "@titicaca/nearby-pois": ["./packages/nearby-pois/src"],
+      "@titicaca/nearby-pois/*": ["./packages/nearby-pois/src/app-directory/*"],
       "@titicaca/poi-detail": ["./packages/poi-detail/src"],
+      "@titicaca/poi-detail/*": ["./packages/poi-detail/src/app-directory/*"],
       "@titicaca/poi-list-elements": ["./packages/poi-list-elements/src"],
+      "@titicaca/poi-list-elements/*": [
+        "./packages/poi-list-elements/src/app-directory/*"
+      ],
       "@titicaca/popup": ["./packages/popup/src"],
+      "@titicaca/popup/*": ["./packages/popup/src/app-directory/*"],
       "@titicaca/pricing": ["./packages/pricing/src"],
+      "@titicaca/pricing/*": ["./packages/pricing/src/app-directory/*"],
       "@titicaca/public-header": ["./packages/public-header/src"],
+      "@titicaca/public-header/*": [
+        "./packages/public-header/src/app-directory/*"
+      ],
       "@titicaca/react-contexts": ["./packages/react-contexts/src"],
+      "@titicaca/react-contexts/*": [
+        "./packages/react-contexts/src/app-directory/*"
+      ],
       "@titicaca/react-hooks": ["./packages/react-hooks/src"],
+      "@titicaca/react-hooks/*": ["./packages/react-hooks/src/app-directory/*"],
       "@titicaca/react-triple-client-interfaces": [
         "./packages/react-triple-client-interfaces/src"
       ],
+      "@titicaca/react-triple-client-interfaces/*": [
+        "./packages/react-triple-client-interfaces/src/app-directory/*"
+      ],
       "@titicaca/recommended-contents": ["./packages/recommended-contents/src"],
+      "@titicaca/recommended-contents/*": [
+        "./packages/recommended-contents/src/app-directory/*"
+      ],
       "@titicaca/replies": ["./packages/replies/src"],
+      "@titicaca/replies/*": ["./packages/replies/src/app-directory/*"],
       "@titicaca/resource-list-element": [
         "./packages/resource-list-element/src"
       ],
+      "@titicaca/resource-list-element/*": [
+        "./packages/resource-list-element/src/app-directory/*"
+      ],
       "@titicaca/review": ["./packages/review/src"],
+      "@titicaca/review/*": ["./packages/review/src/app-directory/*"],
       "@titicaca/router": ["./packages/router/src"],
+      "@titicaca/router/*": ["./packages/router/src/app-directory/*"],
       "@titicaca/scrap-button": ["./packages/scrap-button/src"],
+      "@titicaca/scrap-button/*": [
+        "./packages/scrap-button/src/app-directory/*"
+      ],
       "@titicaca/scroll-spy": ["./packages/scroll-spy/src"],
+      "@titicaca/scroll-spy/*": ["./packages/scroll-spy/src/app-directory/*"],
       "@titicaca/scroll-to-element": ["./packages/scroll-to-element/src"],
+      "@titicaca/scroll-to-element/*": [
+        "./packages/scroll-to-element/src/app-directory/*"
+      ],
       "@titicaca/search": ["./packages/search/src"],
+      "@titicaca/search/*": ["./packages/search/src/app-directory/*"],
       "@titicaca/slider": ["./packages/slider/src"],
+      "@titicaca/slider/*": ["./packages/slider/src/app-directory/*"],
       "@titicaca/social-reviews": ["./packages/social-reviews/src"],
+      "@titicaca/social-reviews/*": [
+        "./packages/social-reviews/src/app-directory/*"
+      ],
       "@titicaca/standard-action-handler": [
         "./packages/standard-action-handler/src"
       ],
+      "@titicaca/standard-action-handler/*": [
+        "./packages/standard-action-handler/src/app-directory/*"
+      ],
       "@titicaca/static-map": ["./packages/static-map/src"],
+      "@titicaca/static-map/*": ["./packages/static-map/src/app-directory/*"],
       "@titicaca/static-page-contents": ["./packages/static-page-contents/src"],
+      "@titicaca/static-page-contents/*": [
+        "./packages/static-page-contents/src/app-directory/*"
+      ],
       "@titicaca/style-box": ["./packages/style-box/src"],
+      "@titicaca/style-box/*": ["./packages/style-box/src/app-directory/*"],
       "@titicaca/triple-document": ["./packages/triple-document/src"],
+      "@titicaca/triple-document/*": [
+        "./packages/triple-document/src/app-directory/*"
+      ],
       "@titicaca/triple-email-document": [
         "./packages/triple-email-document/src"
+      ],
+      "@titicaca/triple-email-document/*": [
+        "./packages/triple-email-document/src/app-directory/*"
       ],
       "@titicaca/triple-fallback-action": [
         "./packages/triple-fallback-action/src"
       ],
+      "@titicaca/triple-fallback-action/*": [
+        "./packages/triple-fallback-action/src/app-directory/*"
+      ],
       "@titicaca/triple-header": ["./packages/triple-header/src"],
+      "@titicaca/triple-header/*": [
+        "./packages/triple-header/src/app-directory/*"
+      ],
       "@titicaca/triple-media": ["./packages/triple-media/src"],
+      "@titicaca/triple-media/*": [
+        "./packages/triple-media/src/app-directory/*"
+      ],
       "@titicaca/type-definitions": ["./packages/type-definitions/src"],
+      "@titicaca/type-definitions/*": [
+        "./packages/type-definitions/src/app-directory/*"
+      ],
       "@titicaca/ui-flow": ["./packages/ui-flow/src"],
+      "@titicaca/ui-flow/*": ["./packages/ui-flow/src/app-directory/*"],
       "@titicaca/user-verification": ["./packages/user-verification/src"],
+      "@titicaca/user-verification/*": [
+        "./packages/user-verification/src/app-directory/*"
+      ],
       "@titicaca/view-utilities": ["./packages/view-utilities/src"],
-      "@titicaca/view-utilities/common": [
-        "./packages/view-utilities/src/app-directory/common"
+      "@titicaca/view-utilities/*": [
+        "./packages/view-utilities/src/app-directory/*"
       ],
-      "@titicaca/view-utilities/client": [
-        "./packages/view-utilities/src/app-directory/client"
-      ],
-      "@titicaca/web-storage": ["./packages/web-storage/src"]
+      "@titicaca/web-storage": ["./packages/web-storage/src"],
+      "@titicaca/web-storage/*": ["./packages/web-storage/src/app-directory/*"]
     }
   }
 }

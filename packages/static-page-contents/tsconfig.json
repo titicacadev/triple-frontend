@@ -4,7 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
-      "@titicaca/i18n": ["../i18n/src"]
+      "@titicaca/color-palette/*": ["../color-palette/src/app-directory/*"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

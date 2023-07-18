@@ -4,8 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/fetcher": ["../fetcher/src"],
-      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/fetcher/*": ["../fetcher/src/app-directory/*"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

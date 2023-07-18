@@ -4,7 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/i18n": ["../i18n/src"]
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

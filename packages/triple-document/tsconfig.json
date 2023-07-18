@@ -4,30 +4,51 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/color-palette/*": ["../color-palette/src/app-directory/*"],
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
       "@titicaca/fetcher": ["../fetcher/src"],
-      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
+      "@titicaca/fetcher/*": ["../fetcher/src/app-directory/*"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/intersection-observer/*": [
+        "../intersection-observer/src/app-directory/*"
+      ],
       "@titicaca/map": ["../map/src"],
+      "@titicaca/map/*": ["../map/src/app-directory/*"],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/modals/*": ["../modals/src/app-directory/*"],
       "@titicaca/poi-list-elements": ["../poi-list-elements/src"],
+      "@titicaca/poi-list-elements/*": [
+        "../poi-list-elements/src/app-directory/*"
+      ],
       "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/react-hooks/*": ["../react-hooks/src/app-directory/*"],
       "@titicaca/router": ["../router/src"],
+      "@titicaca/router/*": ["../router/src/app-directory/*"],
       "@titicaca/scrap-button": ["../scrap-button/src"],
+      "@titicaca/scrap-button/*": ["../scrap-button/src/app-directory/*"],
       "@titicaca/standard-action-handler": ["../standard-action-handler/src"],
+      "@titicaca/standard-action-handler/*": [
+        "../standard-action-handler/src/app-directory/*"
+      ],
       "@titicaca/triple-media": ["../triple-media/src"],
+      "@titicaca/triple-media/*": ["../triple-media/src/app-directory/*"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ],
       "@titicaca/ui-flow": ["../ui-flow/src"],
+      "@titicaca/ui-flow/*": ["../ui-flow/src/app-directory/*"],
       "@titicaca/user-verification": ["../user-verification/src"],
+      "@titicaca/user-verification/*": [
+        "../user-verification/src/app-directory/*"
+      ],
       "@titicaca/view-utilities": ["../view-utilities/src"],
-      "@titicaca/view-utilities/common": [
-        "../view-utilities/src/app-directory/common"
-      ],
-      "@titicaca/view-utilities/client": [
-        "../view-utilities/src/app-directory/client"
-      ],
+      "@titicaca/view-utilities/*": ["../view-utilities/src/app-directory/*"],
       "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

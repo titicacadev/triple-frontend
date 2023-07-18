@@ -4,8 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
       "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

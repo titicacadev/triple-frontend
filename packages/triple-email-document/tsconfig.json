@@ -4,7 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/type-definitions": ["../type-definitions/src"]
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

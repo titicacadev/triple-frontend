@@ -4,27 +4,42 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/action-sheet": ["../action-sheet/src"],
+      "@titicaca/action-sheet/*": ["../action-sheet/src/app-directory/*"],
       "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
+      "@titicaca/app-installation-cta/*": [
+        "../app-installation-cta/src/app-directory/*"
+      ],
       "@titicaca/carousel": ["../carousel/src"],
+      "@titicaca/carousel/*": ["../carousel/src/app-directory/*"],
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
       "@titicaca/fetcher": ["../fetcher/src"],
-      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
+      "@titicaca/fetcher/*": ["../fetcher/src/app-directory/*"],
       "@titicaca/image-carousel": ["../image-carousel/src"],
+      "@titicaca/image-carousel/*": ["../image-carousel/src/app-directory/*"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/intersection-observer/*": [
+        "../intersection-observer/src/app-directory/*"
+      ],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/modals/*": ["../modals/src/app-directory/*"],
       "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ],
       "@titicaca/view-utilities": ["../view-utilities/src"],
-      "@titicaca/view-utilities/common": [
-        "../view-utilities/src/app-directory/common"
-      ],
-      "@titicaca/view-utilities/client": [
-        "../view-utilities/src/app-directory/client"
-      ],
+      "@titicaca/view-utilities/*": ["../view-utilities/src/app-directory/*"],
       "@titicaca/web-storage": ["../web-storage/src"],
+      "@titicaca/web-storage/*": ["../web-storage/src/app-directory/*"],
       "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"],
       "@titicaca/react-triple-client-interfaces": [
         "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/react-triple-client-interfaces/*": [
+        "../react-triple-client-interfaces/src/app-directory/*"
       ]
     }
   },

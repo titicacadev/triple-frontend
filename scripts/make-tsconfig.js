@@ -41,21 +41,9 @@ function packagesToPaths(packages) {
     (paths, packageName) => ({
       ...paths,
       [`@titicaca/${packageName}`]: [`./packages/${packageName}/src`],
-      ...createExportPath({
-        packageName,
-        filename: 'common',
-        filePath: 'src/app-directory/common',
-      }),
-      ...createExportPath({
-        packageName,
-        filename: 'client',
-        filePath: 'src/app-directory/client',
-      }),
-      ...createExportPath({
-        packageName,
-        filename: 'server',
-        filePath: 'src/app-directory/server',
-      }),
+      [`@titicaca/${packageName}/*`]: [
+        `./packages/${packageName}/src/app-directory/*`,
+      ],
     }),
     {},
   )
@@ -73,21 +61,4 @@ async function writeTsconfig(transformer) {
   const prettified = prettier.format(fileContent, { parser: 'json' })
 
   await fs.promises.writeFile(tsconfigPath, prettified)
-}
-
-function createExportPath({ packageName, filename, filePath }) {
-  const hasPath = fs.existsSync(
-    path.relative(
-      process.cwd(),
-      path.join('./packages', packageName, filePath),
-    ),
-  )
-
-  return hasPath
-    ? {
-        [`@titicaca/${packageName}/${filename}`]: [
-          `./packages/${packageName}/${filePath}`,
-        ],
-      }
-    : {}
 }

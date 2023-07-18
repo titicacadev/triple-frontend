@@ -4,8 +4,13 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/app-installation-cta": ["../app-installation-cta/src"],
+      "@titicaca/app-installation-cta/*": [
+        "../app-installation-cta/src/app-directory/*"
+      ],
       "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/popup": ["../popup/src"]
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
+      "@titicaca/popup": ["../popup/src"],
+      "@titicaca/popup/*": ["../popup/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

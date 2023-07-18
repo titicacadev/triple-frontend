@@ -4,7 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/type-definitions": ["../type-definitions/src"],
-      "@titicaca/i18n": ["../i18n/src"]
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

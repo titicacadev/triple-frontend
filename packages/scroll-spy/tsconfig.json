@@ -4,7 +4,11 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
-      "@titicaca/react-hooks": ["../react-hooks/src"]
+      "@titicaca/intersection-observer/*": [
+        "../intersection-observer/src/app-directory/*"
+      ],
+      "@titicaca/react-hooks": ["../react-hooks/src"],
+      "@titicaca/react-hooks/*": ["../react-hooks/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

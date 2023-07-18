@@ -4,18 +4,18 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/fetcher": ["../fetcher/src"],
-      "@titicaca/fetcher/common": ["../fetcher/src/app-directory/common"],
+      "@titicaca/fetcher/*": ["../fetcher/src/app-directory/*"],
       "@titicaca/modals": ["../modals/src"],
+      "@titicaca/modals/*": ["../modals/src/app-directory/*"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"],
       "@titicaca/view-utilities": ["../view-utilities/src"],
-      "@titicaca/view-utilities/common": [
-        "../view-utilities/src/app-directory/common"
-      ],
-      "@titicaca/view-utilities/client": [
-        "../view-utilities/src/app-directory/client"
-      ],
+      "@titicaca/view-utilities/*": ["../view-utilities/src/app-directory/*"],
       "@titicaca/react-triple-client-interfaces": [
         "../react-triple-client-interfaces/src"
+      ],
+      "@titicaca/react-triple-client-interfaces/*": [
+        "../react-triple-client-interfaces/src/app-directory/*"
       ]
     }
   },

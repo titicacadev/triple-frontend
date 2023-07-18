@@ -4,10 +4,19 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
       "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"],
       "@titicaca/router": ["../router/src"],
+      "@titicaca/router/*": ["../router/src/app-directory/*"],
       "@titicaca/standard-action-handler": ["../standard-action-handler/src"],
-      "@titicaca/type-definitions": ["../type-definitions/src"]
+      "@titicaca/standard-action-handler/*": [
+        "../standard-action-handler/src/app-directory/*"
+      ],
+      "@titicaca/type-definitions": ["../type-definitions/src"],
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ]
     }
   },
   "exclude": ["**/node_modules", "lib"]

@@ -4,16 +4,19 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/color-palette": ["../color-palette/src"],
+      "@titicaca/color-palette/*": ["../color-palette/src/app-directory/*"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/intersection-observer/*": [
+        "../intersection-observer/src/app-directory/*"
+      ],
       "@titicaca/triple-fallback-action": ["../triple-fallback-action/src"],
+      "@titicaca/triple-fallback-action/*": [
+        "../triple-fallback-action/src/app-directory/*"
+      ],
       "@titicaca/view-utilities": ["../view-utilities/src"],
-      "@titicaca/view-utilities/common": [
-        "../view-utilities/src/app-directory/common"
-      ],
-      "@titicaca/view-utilities/client": [
-        "../view-utilities/src/app-directory/client"
-      ],
-      "@titicaca/i18n": ["../i18n/src"]
+      "@titicaca/view-utilities/*": ["../view-utilities/src/app-directory/*"],
+      "@titicaca/i18n": ["../i18n/src"],
+      "@titicaca/i18n/*": ["../i18n/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]

@@ -4,9 +4,17 @@
     "baseUrl": ".",
     "paths": {
       "@titicaca/core-elements": ["../core-elements/src"],
+      "@titicaca/core-elements/*": ["../core-elements/src/app-directory/*"],
       "@titicaca/intersection-observer": ["../intersection-observer/src"],
+      "@titicaca/intersection-observer/*": [
+        "../intersection-observer/src/app-directory/*"
+      ],
       "@titicaca/type-definitions": ["../type-definitions/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"]
+      "@titicaca/type-definitions/*": [
+        "../type-definitions/src/app-directory/*"
+      ],
+      "@titicaca/react-contexts": ["../react-contexts/src"],
+      "@titicaca/react-contexts/*": ["../react-contexts/src/app-directory/*"]
     }
   },
   "exclude": ["**/node_modules", "lib"]
