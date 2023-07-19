@@ -17,18 +17,22 @@ interface TextFrameProps {
   width?: number
   height?: number
   effect?: Effect
+  index: number
+  totalFramesCount: number
   onLinkClick?: LinkEventHandler
 }
 
 export function TextFrame({
   value: { text },
   effect,
+  index,
+  totalFramesCount,
   onLinkClick,
 }: TextFrameProps) {
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return (
-    <EffectElement options={effect?.options}>
+    <EffectElement options={{ ...effect?.options, index, totalFramesCount }}>
       <Text
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, text.link)}
       >

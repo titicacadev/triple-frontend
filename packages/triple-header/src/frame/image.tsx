@@ -16,6 +16,8 @@ interface ImageFrameProps {
   width?: number
   height?: number
   effect?: Effect
+  index: number
+  totalFramesCount: number
   onLinkClick?: LinkEventHandler
 }
 
@@ -28,12 +30,14 @@ const Image = styled.img`
 export function ImageFrame({
   value: { image },
   effect,
+  index,
+  totalFramesCount,
   onLinkClick,
 }: ImageFrameProps) {
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return Object.keys(image).length > 0 ? (
-    <EffectElement options={effect?.options}>
+    <EffectElement options={{ ...effect?.options, index, totalFramesCount }}>
       <Image
         src={image.sizes.full.url}
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, image.link)}

@@ -48,7 +48,9 @@ export function Layer({
             <Frame
               key={index}
               frame={frame}
+              index={index}
               calculateFrameRatio={calculateFrameRatio}
+              totalFramesCount={frames.length}
             />
           )
         })}
