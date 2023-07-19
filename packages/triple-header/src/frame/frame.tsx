@@ -34,11 +34,15 @@ const FrameContainer = styled(Container)<{
 
 export function Frame({
   frame: { type, width, height, value, effect },
+  index,
   calculateFrameRatio,
+  totalFramesCount,
   onLinkClick,
 }: {
   frame: FrameData
+  index: number
   calculateFrameRatio: (length?: number) => number
+  totalFramesCount: number
   onLinkClick?: LinkEventHandler
 }) {
   const FrameElement = FRAMES[type] as ComponentType<Omit<FrameData, 'type'>>
@@ -83,6 +87,8 @@ export function Frame({
       <FrameElement
         value={value}
         effect={effect}
+        index={index}
+        totalFramesCount={totalFramesCount}
         onLinkClick={linkClickHandler}
       />
     </FrameContainer>
