@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.1.3
+
+### react-contexts
+
+- firebase 버전을 v9.15.0으로 다운그레이드합니다. [#2811](https://github.com/titicacadev/triple-frontend/pull/2811)
+
 ## v13.1.2
 
 ### react-contexts
