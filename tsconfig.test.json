@@ -79,5 +79,7 @@
       "@titicaca/view-utilities": ["./packages/view-utilities/src"],
       "@titicaca/web-storage": ["./packages/web-storage/src"]
     }
-  }
+  },
+  "include": ["global.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/lib"]
 }
