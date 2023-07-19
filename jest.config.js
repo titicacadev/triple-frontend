@@ -2,7 +2,7 @@ const { pathsToModuleNameMapper } = require('ts-jest')
 
 const { compilerOptions } = require('./tsconfig.test.json')
 
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+/** @type {import('ts-jest/dist/types').JestConfigWithTsJest} */
 module.exports = {
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest'],
