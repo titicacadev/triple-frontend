@@ -70,10 +70,10 @@ export default function AskToTheLocal({
           marginTop: 20,
         }}
       >
-        <Text maxLines={2} textStyle="M4" color="blue">
+        <Text maxLines={2} color="blue" size={36}>
           {localName}
         </Text>
-        <Text textStyle="M" margin={{ top: 10 }}>
+        <Text margin={{ top: 10 }} size={28} css={{ lineHeight: '38px' }}>
           {localAddress}
         </Text>
         <HR1 compact css={{ marginTop: 20, marginBottom: 20 }} />
