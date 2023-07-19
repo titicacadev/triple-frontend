@@ -4,6 +4,9 @@ module.exports = {
   extends: [
     '@titicaca/eslint-config-triple',
     '@titicaca/eslint-config-triple/frontend',
+    'plugin:jest/recommended',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/react',
     'plugin:storybook/recommended',
     '@titicaca/eslint-config-triple/prettier',
   ],
