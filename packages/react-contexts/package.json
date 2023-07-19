@@ -87,7 +87,7 @@
   "devDependencies": {
     "@types/qs": "^6.9.7",
     "@types/ua-parser-js": "^0.7.36",
-    "firebase": "^10.0.0",
+    "firebase": "^9.15.0",
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
