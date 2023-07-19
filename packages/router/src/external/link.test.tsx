@@ -1,12 +1,11 @@
-import { fireEvent, render } from '@testing-library/react'
-import { useSessionAvailability } from '@titicaca/react-contexts'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useSessionAvailability } from '@titicaca/react-contexts'
 import {
   useTripleClientMetadata,
   useTripleClientNavigate,
 } from '@titicaca/react-triple-client-interfaces'
 import styled from 'styled-components'
-import renderer from 'react-test-renderer'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 
@@ -173,13 +172,13 @@ test('styled-components로 스타일을 확장할 수 있습니다.', () => {
     border-radius: 4px;
   `
 
-  const tree = renderer
-    .create(<StyledExternalLink href="/foo" target="browser" />)
-    .toJSON()
+  render(<StyledExternalLink href="/foo" target="browser" />)
 
-  expect(tree).toHaveStyleRule('color', 'red')
-  expect(tree).toHaveStyleRule('background-color', 'green')
-  expect(tree).toHaveStyleRule('border-radius', '4px')
+  const element = screen.getByRole('link')
+
+  expect(element).toHaveStyleRule('color', 'red')
+  expect(element).toHaveStyleRule('background-color', 'green')
+  expect(element).toHaveStyleRule('border-radius', '4px')
 })
 
 function prepareTest({

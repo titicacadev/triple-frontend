@@ -1,5 +1,5 @@
+import { render } from '@testing-library/react'
 import { useEnv } from '@titicaca/react-contexts'
-import renderer from 'react-test-renderer'
 
 import { EssentialContentMeta } from './essential-content-meta'
 
@@ -32,44 +32,32 @@ describe('EssentialContentMeta', () => {
   })
 
   it('should render title.', () => {
-    const instance = renderer.create(
-      <EssentialContentMeta title={title} />,
-    ).root
+    render(<EssentialContentMeta title={title} />)
 
-    expect(instance.findByType('title').children).toEqual([title])
+    expect(document.title).toBe(title)
   })
 
   it('should render description.', () => {
-    const instance = renderer.create(
-      <EssentialContentMeta description={description} />,
-    ).root
+    render(<EssentialContentMeta description={description} />)
 
-    expect(
-      instance.find(
-        (node) => node.type === 'meta' && node.props.name === 'description',
-      ).props.content,
-    ).toBe(description)
+    const element = document.querySelector('meta[name="description"]')
+
+    expect(element).toHaveAttribute('content', description)
   })
 
   it('should render canonical url tag.', () => {
-    const instance = renderer.create(
-      <EssentialContentMeta canonicalUrl={canonicalUrl} />,
-    ).root
+    render(<EssentialContentMeta canonicalUrl={canonicalUrl} />)
 
-    expect(
-      instance.find(
-        (node) => node.type === 'link' && node.props.rel === 'canonical',
-      ).props.href,
-    ).toBe(canonicalUrl)
+    const element = document.querySelector('link[rel="canonical"]')
+
+    expect(element).toHaveAttribute('href', canonicalUrl)
   })
 
   it('should not render canonical url tag when canonicalUrl prop is not provided.', () => {
-    const instance = renderer.create(<EssentialContentMeta />).root
+    render(<EssentialContentMeta />)
 
-    expect(
-      instance.findAll(
-        (node) => node.type === 'link' && node.props.rel === 'canonical',
-      ),
-    ).toEqual([])
+    const element = document.querySelector('link[rel="canonical"]')
+
+    expect(element).not.toBeInTheDocument()
   })
 })

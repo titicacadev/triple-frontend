@@ -1,6 +1,6 @@
-import { PropsWithChildren } from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+import { PropsWithChildren } from 'react'
 
 import { RepliesProvider } from './context'
 import Register from './register'

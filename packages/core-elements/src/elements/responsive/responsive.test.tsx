@@ -1,25 +1,31 @@
-import renderer from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 import { Responsive } from './responsive'
 
 it('should have media query for maxWidth is passed', () => {
-  const tree = renderer.create(<Responsive maxWidth={1000} />).toJSON()
+  render(<Responsive maxWidth={1000}>responsive</Responsive>)
 
-  expect(tree).toHaveStyleRule('display', 'none', {
+  const element = screen.getByText('responsive')
+
+  expect(element).toHaveStyleRule('display', 'none', {
     media: '(min-width:1001px)',
   })
 })
 
 it('should have media query when minWidth is passed', () => {
-  const tree = renderer.create(<Responsive minWidth={1000} />).toJSON()
+  render(<Responsive minWidth={1000}>responsive</Responsive>)
 
-  expect(tree).toHaveStyleRule('display', 'none', {
+  const element = screen.getByText('responsive')
+
+  expect(element).toHaveStyleRule('display', 'none', {
     media: '(max-width:999px)',
   })
 })
 
 it('should accept inline prop', () => {
-  const tree = renderer.create(<Responsive inline />).toJSON()
+  render(<Responsive inline>responsive</Responsive>)
 
-  expect(tree).toHaveStyleRule('display', 'inline')
+  const element = screen.getByText('responsive')
+
+  expect(element).toHaveStyleRule('display', 'inline')
 })
