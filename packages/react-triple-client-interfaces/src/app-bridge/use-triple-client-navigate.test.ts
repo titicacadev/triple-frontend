@@ -31,7 +31,7 @@ describe('openInlink', () => {
 
     openInlink(href)
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(href)}`,
     )
   })
@@ -55,7 +55,7 @@ describe('openInlink', () => {
 
       openInlink(href, { lnbTarget })
 
-      expect(changeLocation).toBeCalledWith(
+      expect(changeLocation).toHaveBeenCalledWith(
         `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
           `${href}?${containingQuery}`,
         )}`,
@@ -77,7 +77,7 @@ describe('openInlink', () => {
 
     openInlink(href, { noNavbar: true })
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
         `${href}?_triple_no_navbar=true`,
       )}`,
@@ -98,7 +98,7 @@ describe('openInlink', () => {
 
     openInlink(href, { swipeToClose: true })
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
         `${href}?_triple_swipe_to_close=true`,
       )}`,
@@ -119,7 +119,7 @@ describe('openInlink', () => {
 
     openInlink(href, { shouldPresent: true })
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///inlink?path=${encodeURIComponent(
         `${href}?_triple_should_present=true`,
       )}`,
@@ -141,7 +141,7 @@ describe('openInlink', () => {
 
     openInlink(href, { noNavbar: true })
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       expect.stringContaining(
         encodeURIComponent('regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'),
       ),
@@ -164,7 +164,7 @@ describe('openOutlink', () => {
 
     openOutlink(href)
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///outlink?url=${encodeURIComponent(href)}`,
     )
   })
@@ -185,7 +185,7 @@ describe('openOutlink', () => {
 
     openOutlink(href, { target, title })
 
-    expect(changeLocation).toBeCalledWith(
+    expect(changeLocation).toHaveBeenCalledWith(
       `${MOCK_APP_SCHEME}:///outlink?url=${encodeURIComponent(
         href,
       )}&target=${target}&title=${encodeURIComponent(title)}`,
@@ -207,7 +207,7 @@ describe('openNativeLink', () => {
 
     openNativeLink(href)
 
-    expect(changeLocation).toBeCalledWith(`${MOCK_APP_SCHEME}://${href}`)
+    expect(changeLocation).toHaveBeenCalledWith(`${MOCK_APP_SCHEME}://${href}`)
   })
 })
 

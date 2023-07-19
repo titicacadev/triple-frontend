@@ -40,7 +40,7 @@ test('apiUriBase 파라미터를 요청의 base href로 사용합니다.', async
   )
 
   await gssp(baseContext)
-  expect(mockedGet).toBeCalledWith(
+  expect(mockedGet).toHaveBeenCalledWith(
     expect.stringContaining(customApiUriBase),
     expect.any(Object),
   )
@@ -86,7 +86,7 @@ test('토큰을 갱신했을 때 context.res의 setHeader를 이용해 쿠키 �
     res: { setHeader },
   } as unknown as GetServerSidePropsContext)
 
-  expect(setHeader).toBeCalledWith('set-cookie', validCookie)
+  expect(setHeader).toHaveBeenCalledWith('set-cookie', validCookie)
 })
 
 test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', async () => {
@@ -131,7 +131,7 @@ test('API 요청을 여러 번 해도 refresh는 한 번만 호출합니다.', a
     res: { setHeader },
   } as unknown as GetServerSidePropsContext)
 
-  expect(mockedPost).toBeCalledTimes(1)
+  expect(mockedPost).toHaveBeenCalledTimes(1)
 })
 
 test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합니다.', async () => {
@@ -199,7 +199,7 @@ test('API를 여러 번 호출하더라도 유효한 쿠키 하나만 사용합�
       }),
     }),
   )
-  expect(setHeader).toBeCalledWith('set-cookie', `${validCookie}-1`)
+  expect(setHeader).toHaveBeenCalledWith('set-cookie', `${validCookie}-1`)
 })
 
 test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합니다.', async () => {
@@ -257,6 +257,6 @@ test('토큰을 갱신하면 갱신한 쿠키 값으로 다음 API를 요청합�
   )
   await gssp(baseContext)
 
-  expect(dapiRecorder).toBeCalledTimes(1)
-  expect(dapiRecorder).toBeCalledWith(validCookie)
+  expect(dapiRecorder).toHaveBeenCalledTimes(1)
+  expect(dapiRecorder).toHaveBeenCalledWith(validCookie)
 })

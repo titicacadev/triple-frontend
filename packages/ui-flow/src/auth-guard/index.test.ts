@@ -81,7 +81,7 @@ describe('유효한 쿠키와 함께 요청할 때', () => {
 
     await newGssp(validMemberContext)
 
-    expect(oldGssp).toBeCalledTimes(1)
+    expect(oldGssp).toHaveBeenCalledTimes(1)
   })
 
   test('기존 gssp는 customContext.user 파라미터를 사용할 수 있습니다.', async () => {
@@ -90,7 +90,7 @@ describe('유효한 쿠키와 함께 요청할 때', () => {
 
     await newGssp(validMemberContext)
 
-    expect(oldGssp).toBeCalledWith(
+    expect(oldGssp).toHaveBeenCalledWith(
       expect.objectContaining({
         customContext: expect.objectContaining({
           user: expect.objectContaining({ uid: expect.any(String) }),
@@ -110,8 +110,8 @@ test('allowNonMembers 옵션을 켜면 휴대폰 번호로 가입한 계정의 �
 
   await newGssp(validNonMemberContext)
 
-  expect(oldGssp).toBeCalledTimes(1)
-  expect(oldGssp).toBeCalledWith(
+  expect(oldGssp).toHaveBeenCalledTimes(1)
+  expect(oldGssp).toHaveBeenCalledWith(
     expect.objectContaining({
       customContext: expect.objectContaining({
         user: expect.objectContaining({ uid: expect.any(String) }),
@@ -134,7 +134,7 @@ test('/api/users/me가 401 이외의 에러로 응답했다면 에러를 던집�
   const newGssp = authGuard(oldGssp)
   const context = createContext({})
 
-  await expect(newGssp(context)).rejects.toThrowError()
+  await expect(newGssp(context)).rejects.toThrow()
 })
 
 test('resolveReturnUrl 함수 속성으로 로그인 후 돌아갈 URL을 만들 수 있습니다.', async () => {
@@ -149,7 +149,7 @@ test('resolveReturnUrl 함수 속성으로 로그인 후 돌아갈 URL을 만들
 
   const result = await newGssp({ ...context, query: { foo: 1 } })
 
-  expect(oldGssp).toBeCalledTimes(0)
+  expect(oldGssp).toHaveBeenCalledTimes(0)
   expect(result).toEqual({
     redirect: {
       destination: `/login?returnUrl=${encodeURIComponent('/foo/1')}`,
@@ -169,7 +169,7 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
 
     const result = await newGssp(context)
 
-    expect(oldGssp).toBeCalledTimes(0)
+    expect(oldGssp).toHaveBeenCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -190,7 +190,7 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
 
     const result = await newGssp(context)
 
-    expect(oldGssp).toBeCalledTimes(0)
+    expect(oldGssp).toHaveBeenCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -211,7 +211,7 @@ describe('브라우저에서 페이지 접근을 막아야 하면 로그인 페�
 
     const result = await newGssp(context)
 
-    expect(oldGssp).toBeCalledTimes(0)
+    expect(oldGssp).toHaveBeenCalledTimes(0)
     expect(result).toEqual({
       redirect: {
         destination: `/login?returnUrl=${encodeURIComponent(resolvedUrl)}`,
@@ -234,7 +234,7 @@ test('authType을 이용해 로그인 페이지의 Type을 명시할 수 있습�
 
   const result = await newGssp(context)
 
-  expect(oldGssp).toBeCalledTimes(0)
+  expect(oldGssp).toHaveBeenCalledTimes(0)
   expect(result).toEqual({
     redirect: {
       destination: `/login?returnUrl=${encodeURIComponent(
@@ -256,7 +256,7 @@ describe('앱에서', () => {
 
       const result = await newGssp(context)
 
-      expect(oldGssp).toBeCalledTimes(0)
+      expect(oldGssp).toHaveBeenCalledTimes(0)
       expect(result).toEqual({
         redirect: {
           destination: `/login?returnUrl=${encodeURIComponent(
@@ -279,7 +279,7 @@ describe('앱에서', () => {
 
       const result = await newGssp(context)
 
-      expect(oldGssp).toBeCalledTimes(0)
+      expect(oldGssp).toHaveBeenCalledTimes(0)
       expect(result).toEqual({
         redirect: {
           destination: `/login?returnUrl=${encodeURIComponent(

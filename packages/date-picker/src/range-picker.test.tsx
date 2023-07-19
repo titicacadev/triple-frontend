@@ -28,7 +28,7 @@ describe('RangePicker', () => {
     }
 
     fireEvent.click(todayCell)
-    expect(handleDatesChange).toBeCalledWith({
+    expect(handleDatesChange).toHaveBeenCalledWith({
       startDate: moment().format('YYYY-MM-DD'),
       endDate: null,
       nights: 0,
@@ -68,6 +68,6 @@ describe('RangePicker', () => {
     )
 
     fireEvent.click(targetCell)
-    expect(handleDatesChange).toBeCalledTimes(1)
+    expect(handleDatesChange).toHaveBeenCalledTimes(1)
   })
 })

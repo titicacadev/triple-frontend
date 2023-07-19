@@ -20,7 +20,7 @@ test('children이 빈 배열이면 Email Document Element가 렌더링되지 않
 
   const TrElement = queryByRole('tr')
 
-  expect(TrElement).toEqual(null)
+  expect(TrElement).not.toBeInTheDocument()
 })
 
 test('type이 정의되지 않은 Element는 렌더링되지 않습니다.', () => {
@@ -39,7 +39,7 @@ test('type이 정의되지 않은 Element는 렌더링되지 않습니다.', () 
 
   const TrElement = queryByRole('tr')
 
-  expect(TrElement).toEqual(null)
+  expect(TrElement).not.toBeInTheDocument()
 })
 
 test('Heading1 Element가 렌더링됩니다.', () => {

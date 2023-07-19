@@ -25,7 +25,7 @@ test('Fallback Action 클래스를 가진 요소를 클릭하면 페이지를 �
 
   fireEvent.click(button)
 
-  expect(back).toBeCalled()
+  expect(back).toHaveBeenCalled()
 })
 
 test('핸들러를 제거하는 컴포넌트를 함께 렌더링하면 페이지를 닫지 않습니다.', async () => {
@@ -44,7 +44,7 @@ test('핸들러를 제거하는 컴포넌트를 함께 렌더링하면 페이지
 
   fireEvent.click(button)
 
-  expect(back).not.toBeCalled()
+  expect(back).not.toHaveBeenCalled()
 })
 
 function renderScriptTag(el: ReactElement) {

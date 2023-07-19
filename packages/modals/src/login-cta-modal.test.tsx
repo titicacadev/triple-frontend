@@ -44,7 +44,7 @@ test('useLoginCtaModal 훅은 history context에 해시 값을 push합니다.', 
     result.current.show()
   })
 
-  expect(push).toBeCalledWith(LOGIN_CTA_MODAL_HASH)
+  expect(push).toHaveBeenCalledWith(LOGIN_CTA_MODAL_HASH)
 })
 
 test('history context가 LOGIN_CTA_MODAL_HASH를 반환할 때 로그인 dialog를 렌더링합니다.', () => {
@@ -64,7 +64,7 @@ test('여러 개의 provider가 있어도 하나의 dialog를 렌더링합니다
     </LoginCtaModalProvider>,
   )
 
-  expect(getAllByRole('dialog')).toHaveLength(1)
+  expect(getByRole('dialog')).toBeInTheDocument()
 })
 
 function mockUseUriHash(hash: string) {

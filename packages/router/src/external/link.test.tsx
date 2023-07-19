@@ -30,7 +30,7 @@ test('주어진 href를 가진 anchor 태그를 렌더링합니다.', () => {
   )
 
   const anchor = queryByRole('link')
-  expect(anchor).not.toBe(null)
+  expect(anchor).toBeInTheDocument()
   expect(anchor).toHaveAttribute('href', href)
 })
 
@@ -59,7 +59,7 @@ describe('앱에서 절대 경로를 현재 창에서 열도록 설정했을 때
       </ExternalLink>,
     )
 
-    expect(handleError).toBeCalled()
+    expect(handleError).toHaveBeenCalled()
   })
 
   test('링크를 렌더링하지 않습니다.', () => {
@@ -71,7 +71,7 @@ describe('앱에서 절대 경로를 현재 창에서 열도록 설정했을 때
       </ExternalLink>,
     )
 
-    expect(queryByRole('link')).toBe(null)
+    expect(queryByRole('link')).not.toBeInTheDocument()
   })
 })
 
@@ -92,7 +92,7 @@ test('앱에서 절대 경로 URL을 새 창으로 열면 outlink를 사용합�
 
   fireEvent.click(link)
 
-  expect(openOutlink).toBeCalledWith(ABSOLUTE_URL, expect.any(Object))
+  expect(openOutlink).toHaveBeenCalledWith(ABSOLUTE_URL, expect.any(Object))
 })
 
 test('앱에서 트리플 URL을 새 창으로 열면 inlink를 사용합니다.', () => {
@@ -112,7 +112,7 @@ test('앱에서 트리플 URL을 새 창으로 열면 inlink를 사용합니다.
 
   fireEvent.click(link)
 
-  expect(openInlink).toBeCalledWith(TRIPLE_URL, expect.any(Object))
+  expect(openInlink).toHaveBeenCalledWith(TRIPLE_URL, expect.any(Object))
 })
 
 describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
@@ -133,7 +133,7 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
 
     fireEvent.click(link)
 
-    expect(openOutlink).toBeCalledWith(
+    expect(openOutlink).toHaveBeenCalledWith(
       ABSOLUTE_URL,
       expect.objectContaining({ target: 'browser' }),
     )
@@ -156,7 +156,7 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
 
     fireEvent.click(link)
 
-    expect(openOutlink).toBeCalledWith(
+    expect(openOutlink).toHaveBeenCalledWith(
       `${webUrlBase}${TRIPLE_URL}`,
       expect.objectContaining({ target: 'browser' }),
     )

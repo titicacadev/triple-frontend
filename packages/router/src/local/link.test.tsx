@@ -46,16 +46,16 @@ test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다
   const link = getByRole('link')
 
   fireEvent.click(link, { metaKey: true })
-  expect(nextPush).toBeCalledTimes(0)
+  expect(nextPush).toHaveBeenCalledTimes(0)
 
   fireEvent.click(link, { shiftKey: true })
-  expect(nextPush).toBeCalledTimes(0)
+  expect(nextPush).toHaveBeenCalledTimes(0)
 
   fireEvent.click(link, { altKey: true })
-  expect(nextPush).toBeCalledTimes(0)
+  expect(nextPush).toHaveBeenCalledTimes(0)
 
   fireEvent.click(link, { ctrlKey: true })
-  expect(nextPush).toBeCalledTimes(0)
+  expect(nextPush).toHaveBeenCalledTimes(0)
 })
 
 test('현재 창에서 이동할 때 next/router를 사용합니다.', () => {
@@ -72,7 +72,7 @@ test('현재 창에서 이동할 때 next/router를 사용합니다.', () => {
 
   fireEvent.click(link)
 
-  expect(nextPush).toBeCalledWith(href, undefined, expect.any(Object))
+  expect(nextPush).toHaveBeenCalledWith(href, undefined, expect.any(Object))
 })
 
 test('앱에서 새창으로 이동할 때 inlink를 사용합니다.', () => {
@@ -89,7 +89,7 @@ test('앱에서 새창으로 이동할 때 inlink를 사용합니다.', () => {
 
   fireEvent.click(link)
 
-  expect(openInlink).toBeCalledWith(`${basePath}${href}`, expect.any(Object))
+  expect(openInlink).toHaveBeenCalledWith(`${basePath}${href}`, expect.any(Object))
 })
 
 test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () => {
@@ -106,7 +106,7 @@ test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () =
 
   fireEvent.click(link)
 
-  expect(openOutlink).toBeCalledWith(
+  expect(openOutlink).toHaveBeenCalledWith(
     `${webUrlBase}${basePath}${href}`,
     expect.any(Object),
   )

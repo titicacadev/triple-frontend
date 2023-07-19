@@ -30,5 +30,5 @@ test('ScrollSpyEntity로 감싼 영역이 화면에 들어오면 ScrollSpyContai
       <ScrollSpyEntity id={targetId}>테스트 Entity</ScrollSpyEntity>
     </ScrollSpyContainer>,
   )
-  expect(handleActiveIdChange).toBeCalledWith(targetId)
+  expect(handleActiveIdChange).toHaveBeenCalledWith(targetId)
 })

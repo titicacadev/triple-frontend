@@ -35,7 +35,7 @@ test('allowSource 파라미터로 허용한 라우팅환경이 아니면 알림�
 
   await routeLocally({ href: '', target: 'new', allowSource: 'app' })
 
-  expect(raiseAlert).toBeCalled()
+  expect(raiseAlert).toHaveBeenCalled()
 })
 
 test('customRouter가 작동하지 않으면 default Router를 사용합니다.', async () => {
@@ -50,8 +50,8 @@ test('customRouter가 작동하지 않으면 default Router를 사용합니다.'
 
   await routeLocally({ href: '', target: 'new' })
 
-  expect(customRouter).not.toBeCalled()
-  expect(defaultRouter).toBeCalled()
+  expect(customRouter).not.toHaveBeenCalled()
+  expect(defaultRouter).toHaveBeenCalled()
 })
 
 test('customRouter가 작동하면 default 라우터가 작동하지 않습니다.', async () => {
@@ -66,8 +66,8 @@ test('customRouter가 작동하면 default 라우터가 작동하지 않습니�
 
   await routeLocally({ href: '', target: 'new' })
 
-  expect(customRouter).toBeCalled()
-  expect(defaultRouter).not.toBeCalled()
+  expect(customRouter).toHaveBeenCalled()
+  expect(defaultRouter).not.toHaveBeenCalled()
 })
 
 function mockTripleClientMetadata({

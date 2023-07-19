@@ -13,7 +13,7 @@ describe('ScrapButton', () => {
       { wrapper: ScrapsProvider },
     )
 
-    expect(screen.getByRole('button')).not.toBeFalsy()
+    expect(screen.getByRole('button')).toBeInTheDocument()
 
     unmount()
 
@@ -24,6 +24,6 @@ describe('ScrapButton', () => {
       />,
       { wrapper: ScrapsProvider },
     )
-    expect(screen.getByRole('button')).not.toBeFalsy()
+    expect(screen.getByRole('button')).toBeInTheDocument()
   })
 })
