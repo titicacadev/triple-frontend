@@ -24,5 +24,5 @@ jest.mock('@react-google-maps/api', () => ({
 test('MapView의 로드 여부를 체크합니다.', () => {
   const { getByTestId } = render(<MapView {...MOCK_MAP_VIEW} />)
 
-  expect(getByTestId('google-map')).toBeTruthy()
+  expect(getByTestId('google-map')).toBeInTheDocument()
 })

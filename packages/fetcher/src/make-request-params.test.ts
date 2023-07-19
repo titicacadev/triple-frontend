@@ -33,7 +33,7 @@ describe('makeRequestParams', () => {
       makeRequestParams('/api/mock-url', {
         req: { headers: { cookie: 'mock-cookie-value' } } as IncomingMessage,
       }),
-    ).toThrowError()
+    ).toThrow()
 
     process.env.API_URI_BASE = 'https://triple-dev.titicaca-corp.com'
 
@@ -41,7 +41,7 @@ describe('makeRequestParams', () => {
       makeRequestParams('/api/mock-url', {
         req: { headers: { cookie: 'mock-cookie-value' } } as IncomingMessage,
       }),
-    ).not.toThrowError()
+    ).not.toThrow()
   })
 
   test('withApiUriBase가 true면 API_URI_BASE가 환경 변수에 존재하는지 검사합니다.', () => {
@@ -49,7 +49,7 @@ describe('makeRequestParams', () => {
       makeRequestParams('/api/mock-url', {
         withApiUriBase: true,
       }),
-    ).toThrowError()
+    ).toThrow()
 
     process.env.API_URI_BASE = 'https://triple-dev.titicaca-corp.com'
 
@@ -57,7 +57,7 @@ describe('makeRequestParams', () => {
       makeRequestParams('/api/mock-url', {
         withApiUriBase: true,
       }),
-    ).not.toThrowError()
+    ).not.toThrow()
   })
 
   test('req가 존재하면 요청 URL에 API_URI_BASE를 추가합니다.', () => {

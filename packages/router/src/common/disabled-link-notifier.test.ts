@@ -56,7 +56,7 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
         notifier()
 
         expect(transitionModalFunctionCalled).toBe(true)
-        expect(showTransitionModal).toBeCalled()
+        expect(showTransitionModal).toHaveBeenCalled()
       }
     },
   )
@@ -95,7 +95,7 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
         notifier()
 
         if (functionType) {
-          expect(fns[functionType]).toBeCalled()
+          expect(fns[functionType]).toHaveBeenCalled()
         }
       }
     },
@@ -127,7 +127,7 @@ describe('allowSource가 "none"이면 항상 알림을 표시합니다.', () => 
     if (notifier) {
       notifier()
 
-      expect(alert).toBeCalled()
+      expect(alert).toHaveBeenCalled()
     }
   })
 })

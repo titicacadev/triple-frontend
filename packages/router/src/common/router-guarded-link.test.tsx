@@ -25,7 +25,7 @@ describe('라우팅할 수 없는 환경일 때', () => {
       <RouterGuardedLink href="">테스트링크</RouterGuardedLink>,
     )
 
-    expect(getByRole('button')).toBeTruthy()
+    expect(getByRole('button')).toBeInTheDocument()
   })
 
   test('클릭하면 disabled link notifier를 호출합니다.', () => {
@@ -37,7 +37,7 @@ describe('라우팅할 수 없는 환경일 때', () => {
 
     fireEvent.click(button)
 
-    expect(notifier).toBeCalled()
+    expect(notifier).toHaveBeenCalled()
   })
 
   test('className prop을 전달합니다.', () => {
@@ -50,7 +50,7 @@ describe('라우팅할 수 없는 환경일 때', () => {
 
     const button = getByRole('button')
 
-    expect(button).toHaveAttribute('class', expect.stringContaining(className))
+    expect(button).toHaveClass(className)
   })
 })
 
@@ -66,7 +66,7 @@ describe('라우팅할 수 있는 환경일 때', () => {
 
     const link = getByRole('link')
 
-    expect(link).toBeTruthy()
+    expect(link).toBeInTheDocument()
   })
 
   test('className prop을 클래스로 전달합니다.', () => {
@@ -79,7 +79,7 @@ describe('라우팅할 수 있는 환경일 때', () => {
 
     const link = getByRole('link')
 
-    expect(link).toHaveAttribute('class', expect.stringContaining(className))
+    expect(link).toHaveClass(className)
   })
 
   test('relList prop을 rel로 전달합니다.', () => {

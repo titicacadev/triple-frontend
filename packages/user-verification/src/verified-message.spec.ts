@@ -48,7 +48,7 @@ describe('useSendVerifiedMessage', () => {
 
     sendVerifiedMessage({ type: 'USER_VERIFIED', phoneNumber: '010-1234-5678' })
 
-    expect(broadcastMessage).toBeCalled()
+    expect(broadcastMessage).toHaveBeenCalled()
   })
 
   it('should refer parent window if it is not running on triple client', () => {
@@ -79,7 +79,7 @@ describe('useSendVerifiedMessage', () => {
 
     sendVerifiedMessage({ type: 'USER_VERIFIED', phoneNumber: '010-1234-5678' })
 
-    expect(postMessage).toBeCalled()
+    expect(postMessage).toHaveBeenCalled()
   })
 })
 
@@ -110,7 +110,7 @@ describe('useVerifiedMessageListener', () => {
 
     renderHook(() => useVerifiedMessageListener(handleVerifiedMessage))
 
-    expect(subscribe).toBeCalled()
+    expect(subscribe).toHaveBeenCalled()
   })
 
   it('should start event listener if it is not running on triple client', () => {
@@ -127,6 +127,6 @@ describe('useVerifiedMessageListener', () => {
 
     renderHook(() => useVerifiedMessageListener(handleVerifiedMessage))
 
-    expect(addEventListenerSpy).lastCalledWith('message', expect.anything())
+    expect(addEventListenerSpy).toHaveBeenLastCalledWith('message', expect.anything())
   })
 })

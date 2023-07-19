@@ -56,7 +56,7 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       async (verificationType: string | undefined, href: string) => {
         const { routeExternally } = await prepareTest({ verificationType })
 
-        expect(routeExternally).toBeCalledWith(
+        expect(routeExternally).toHaveBeenCalledWith(
           expect.objectContaining({
             href: expect.stringContaining(href),
           }),
@@ -75,7 +75,7 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
       async (verificationContext, containingQuery) => {
         const { routeExternally } = await prepareTest({ verificationContext })
 
-        expect(routeExternally).toBeCalledWith(
+        expect(routeExternally).toHaveBeenCalledWith(
           expect.objectContaining({
             href: expect.stringContaining(containingQuery),
           }),
@@ -87,7 +87,7 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
   test('인증 페이지를 새 창으로 엽니다.', async () => {
     const { routeExternally } = await prepareTest()
 
-    expect(routeExternally).toBeCalledWith(
+    expect(routeExternally).toHaveBeenCalledWith(
       expect.objectContaining({ target: 'new' }),
     )
   })
@@ -95,7 +95,7 @@ describe('인증 시작함수를 호출하면 인증 페이지를 엽니다.', (
   test('noNavbar 옵션을 사용합니다.', async () => {
     const { routeExternally } = await prepareTest()
 
-    expect(routeExternally).toBeCalledWith(
+    expect(routeExternally).toHaveBeenCalledWith(
       expect.objectContaining({ noNavbar: true }),
     )
   })

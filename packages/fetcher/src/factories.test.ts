@@ -13,7 +13,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
 
     ssrFetcher('/api/mock-url')
 
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ cookie: 'THIS_IS_MOCK_COOKIE' }),
     )
@@ -29,7 +29,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
 
     ssrFetcher('/api/mock-url')
 
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       'https://triple-dev.titicaca-corp.com/api/mock-url',
       expect.anything(),
     )
@@ -45,7 +45,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
 
     ssrFetcher('/api/mock-url')
 
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({
         headers: expect.objectContaining({
@@ -66,7 +66,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
     ssrFetcher('/api/mock-url', {
       req: { headers: { cookie: 'my-own-cookie' } } as IncomingMessage,
     })
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.not.objectContaining({ req: expect.anything() }),
     )
@@ -81,12 +81,12 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
     })
 
     ssrFetcher('/api/mock-url')
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ withApiUriBase: false }),
     )
     ssrFetcher('/api/mock-url', { withApiUriBase: true })
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ withApiUriBase: false }),
     )
@@ -102,7 +102,7 @@ function makeTestSuite(testingFunction: typeof ssrFetcherize) {
 
     ssrFetcher('/api/mock-url', { cookie: 'I_WANT_OVERRIDE_MY_COOKIE' })
 
-    expect(fetcher).toBeCalledWith(
+    expect(fetcher).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ cookie: 'I_WANT_OVERRIDE_MY_COOKIE' }),
     )

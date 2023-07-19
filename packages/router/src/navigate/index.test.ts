@@ -41,7 +41,7 @@ describe('브라우저', () => {
 
       navigate(href)
 
-      expect(changeLocationHref).toBeCalledWith(routablePath)
+      expect(changeLocationHref).toHaveBeenCalledWith(routablePath)
     })
   })
 
@@ -62,8 +62,8 @@ describe('브라우저', () => {
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
       navigate(href)
 
-      expect(changeLocationHref).not.toBeCalled()
-      expect(showTransitionModal).toBeCalled()
+      expect(changeLocationHref).not.toHaveBeenCalled()
+      expect(showTransitionModal).toHaveBeenCalled()
     })
   })
 
@@ -77,8 +77,8 @@ describe('브라우저', () => {
 
     navigate(`/inlink?path=${encodeURIComponent(routablePath)}`)
 
-    expect(changeLocationHref).not.toBeCalled()
-    expect(showTransitionModal).toBeCalled()
+    expect(changeLocationHref).not.toHaveBeenCalled()
+    expect(showTransitionModal).toHaveBeenCalled()
   })
 })
 
@@ -107,8 +107,8 @@ describe('앱', () => {
 
       navigate(href)
 
-      expect(changeLocationHref).not.toBeCalled()
-      expect(showLoginCtaModal).toBeCalled()
+      expect(changeLocationHref).not.toHaveBeenCalled()
+      expect(showLoginCtaModal).toHaveBeenCalled()
     })
   })
 
@@ -126,7 +126,7 @@ describe('앱', () => {
 
     navigate(href)
 
-    expect(openOutlink).toBeCalledWith(href, undefined)
+    expect(openOutlink).toHaveBeenCalledWith(href, undefined)
   })
 
   test('상대 경로이면 네이티브 앱 URL로 간주하고 엽니다.', () => {
@@ -142,7 +142,7 @@ describe('앱', () => {
 
     navigate(href)
 
-    expect(openNativeLink).toBeCalledWith(href)
+    expect(openNativeLink).toHaveBeenCalledWith(href)
   })
 })
 

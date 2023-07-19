@@ -200,7 +200,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
       const afterLikeCount = await findByText(/좋아요/)
 
-      expect(afterLikeCount.textContent).toEqual(
+      expect(afterLikeCount).toHaveTextContent(
         `좋아요 ${beforeLikeCount - 1}`,
       )
     })
@@ -234,7 +234,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
       const afterLikeCount = await findByText(/좋아요/)
 
-      expect(afterLikeCount.textContent).toEqual(
+      expect(afterLikeCount).toHaveTextContent(
         `좋아요 ${beforeLikeCount + 1}`,
       )
     })

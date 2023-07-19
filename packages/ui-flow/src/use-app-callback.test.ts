@@ -21,7 +21,7 @@ test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니�
     result.current.doAction()
   })
 
-  expect(mockShow).toBeCalledTimes(1)
+  expect(mockShow).toHaveBeenCalledTimes(1)
 })
 
 test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', () => {
@@ -38,7 +38,7 @@ test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', 
     result.current.doAction()
   })
 
-  expect(mockShow).toBeCalledTimes(0)
+  expect(mockShow).toHaveBeenCalledTimes(0)
 })
 
 function mockTripleClientMetadata(
