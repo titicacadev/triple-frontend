@@ -1,14 +1,13 @@
 import { useEffect, useState, ReactNode } from 'react'
-import { AnimatePresence } from 'framer-motion'
 
 import { MotionContainer } from '../../motion-container'
 
 const variants = {
-  active: () => ({
+  fadeIn: {
     opacity: [0, 1],
     transition: { duration: 1.5 },
-  }),
-  exit: () => ({ opacity: 0, transition: { duration: 1 } }),
+  },
+  fadeOut: { opacity: 0, transition: { duration: 1 } },
 }
 
 export function FadeInOut({ children }: { children: ReactNode[] }) {
@@ -29,15 +28,17 @@ export function FadeInOut({ children }: { children: ReactNode[] }) {
   }, [children, visibleFrameIndex])
 
   return (
-    <AnimatePresence>
-      <MotionContainer
-        key={visibleFrameIndex}
-        variants={variants}
-        animate="active"
-        exit="exit"
-      >
-        {children[visibleFrameIndex]}
-      </MotionContainer>
-    </AnimatePresence>
+    <>
+      {children.map((slide, index) => (
+        <MotionContainer
+          key={index}
+          initial="fadeOut"
+          variants={variants}
+          animate={index === visibleFrameIndex ? 'fadeIn' : 'fadeOut'}
+        >
+          {slide}
+        </MotionContainer>
+      ))}
+    </>
   )
 }
