@@ -1,49 +1,49 @@
-import renderer, { ReactTestRendererJSON } from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 import { Section } from './section'
 
 it('should render null if children is empty', () => {
-  const tree = renderer.create(<Section />).toJSON()
+  render(<Section data-testid="id" />)
 
-  expect(tree).toBeNull()
+  const element = screen.queryByText('id')
+
+  expect(element).not.toBeInTheDocument()
 })
 
 it('should accept anchor prop', () => {
-  const tree = renderer
-    .create(<Section anchor="anchorValue">Sectioon</Section>)
-    .toJSON()
+  render(<Section anchor="anchorValue">section</Section>)
 
-  expect(tree).toHaveProperty('props.id', 'anchorValue')
+  const element = screen.getByText('section')
+
+  expect(element).toHaveAttribute('id', 'anchorValue')
 })
 
 it('should show top divider', () => {
-  const tree = renderer
-    .create(<Section divider="top">Section</Section>)
-    .toJSON()
+  render(<Section divider="top">section</Section>)
 
-  expect(tree).toHaveLength(2)
-  expect((tree as ReactTestRendererJSON[])[0].children).toBeNull()
-  expect((tree as ReactTestRendererJSON[])[1].children).toContain('Section')
+  const element = screen.getByText('section')
+
+  expect(element.previousSibling).toBeInTheDocument()
+  expect(element.nextSibling).not.toBeInTheDocument()
 })
 
 it('should show bottom divider', () => {
-  const tree = renderer
-    .create(<Section divider="bottom">Section</Section>)
-    .toJSON()
+  render(<Section divider="bottom">section</Section>)
 
-  expect(tree).toHaveLength(2)
-  expect((tree as ReactTestRendererJSON[])[0].children).toContain('Section')
-  expect((tree as ReactTestRendererJSON[])[1].children).toBeNull()
+  const element = screen.getByText('section')
+
+  expect(element.previousSibling).not.toBeInTheDocument()
+  expect(element.nextSibling).toBeInTheDocument()
 })
 
 it('should override style with css prop', () => {
-  const tree = renderer
-    .create(
-      <Section position="absolute" css={{ position: 'fixed' }}>
-        Section
-      </Section>,
-    )
-    .toJSON()
+  render(
+    <Section position="absolute" css={{ position: 'fixed' }}>
+      section
+    </Section>,
+  )
 
-  expect(tree).toHaveStyleRule('position', 'fixed')
+  const element = screen.getByText('section')
+
+  expect(element).toHaveStyleRule('position', 'fixed')
 })

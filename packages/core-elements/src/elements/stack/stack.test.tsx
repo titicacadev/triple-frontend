@@ -1,11 +1,15 @@
-import renderer from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 import { Stack } from './stack'
 
 it('should override style with css prop', () => {
-  const tree = renderer
-    .create(<Stack position="absolute" css={{ position: 'fixed' }} />)
-    .toJSON()
+  render(
+    <Stack position="absolute" css={{ position: 'fixed' }}>
+      stack
+    </Stack>,
+  )
 
-  expect(tree).toHaveStyleRule('position', 'fixed')
+  const element = screen.getByText('stack')
+
+  expect(element).toHaveStyleRule('position', 'fixed')
 })

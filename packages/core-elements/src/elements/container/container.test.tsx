@@ -1,114 +1,138 @@
-import renderer from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 import { Container } from './container'
 
 it('should accept style shortcut props', () => {
-  const tree = renderer
-    .create(
-      <Container
-        position="absolute"
-        display="inline-block"
-        floated="none"
-        backgroundColor="white"
-        css={{
-          textAlign: 'center',
-          whiteSpace: 'pre',
-          userSelect: 'none',
-          cursor: 'pointer',
-        }}
-      />,
-    )
-    .toJSON()
+  render(
+    <Container
+      position="absolute"
+      display="inline-block"
+      floated="none"
+      backgroundColor="white"
+      css={{
+        textAlign: 'center',
+        whiteSpace: 'pre',
+        userSelect: 'none',
+        cursor: 'pointer',
+      }}
+    >
+      container
+    </Container>,
+  )
 
-  expect(tree).toHaveStyleRule('position', 'absolute')
-  expect(tree).toHaveStyleRule('text-align', 'center')
-  expect(tree).toHaveStyleRule('white-space', 'pre')
-  expect(tree).toHaveStyleRule('user-select', 'none')
-  expect(tree).toHaveStyleRule('display', 'inline-block')
-  expect(tree).toHaveStyleRule('cursor', 'pointer')
-  expect(tree).toHaveStyleRule('float', 'none')
-  expect(tree).toHaveStyleRule('background-color', 'rgba(255,255,255,1)')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('position', 'absolute')
+  expect(element).toHaveStyleRule('text-align', 'center')
+  expect(element).toHaveStyleRule('white-space', 'pre')
+  expect(element).toHaveStyleRule('user-select', 'none')
+  expect(element).toHaveStyleRule('display', 'inline-block')
+  expect(element).toHaveStyleRule('cursor', 'pointer')
+  expect(element).toHaveStyleRule('float', 'none')
+  expect(element).toHaveStyleRule('background-color', 'rgba(255,255,255,1)')
 })
 
 it('should accept spacing props', () => {
-  const tree = renderer
-    .create(
-      <Container
-        css={{
-          margin: '10px 20px 30px 40px',
-          padding: '50px 60px 70px 80px',
-        }}
-      />,
-    )
-    .toJSON()
+  render(
+    <Container
+      css={{
+        margin: '10px 20px 30px 40px',
+        padding: '50px 60px 70px 80px',
+      }}
+    >
+      container
+    </Container>,
+  )
 
-  expect(tree).toHaveStyleRule('margin', '10px 20px 30px 40px')
-  expect(tree).toHaveStyleRule('padding', '50px 60px 70px 80px')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('margin', '10px 20px 30px 40px')
+  expect(element).toHaveStyleRule('padding', '50px 60px 70px 80px')
 })
 
 it('should accept sizing props', () => {
-  const tree = renderer
-    .create(
-      <Container
-        css={{
-          width: 10,
-          height: 20,
-          minWidth: 30,
-          minHeight: 40,
-          maxWidth: 50,
-          maxHeight: 60,
-        }}
-      />,
-    )
-    .toJSON()
+  render(
+    <Container
+      css={{
+        width: 10,
+        height: 20,
+        minWidth: 30,
+        minHeight: 40,
+        maxWidth: 50,
+        maxHeight: 60,
+      }}
+    >
+      container
+    </Container>,
+  )
 
-  expect(tree).toHaveStyleRule('width', '10px')
-  expect(tree).toHaveStyleRule('height', '20px')
-  expect(tree).toHaveStyleRule('min-width', '30px')
-  expect(tree).toHaveStyleRule('min-height', '40px')
-  expect(tree).toHaveStyleRule('max-width', '50px')
-  expect(tree).toHaveStyleRule('max-height', '60px')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('width', '10px')
+  expect(element).toHaveStyleRule('height', '20px')
+  expect(element).toHaveStyleRule('min-width', '30px')
+  expect(element).toHaveStyleRule('min-height', '40px')
+  expect(element).toHaveStyleRule('max-width', '50px')
+  expect(element).toHaveStyleRule('max-height', '60px')
 })
 
 it('should accept centered mixin', () => {
-  const tree = renderer.create(<Container centered />).toJSON()
+  render(<Container centered>container</Container>)
 
-  expect(tree).toHaveStyleRule('margin-left', 'auto')
-  expect(tree).toHaveStyleRule('margin-right', 'auto')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('margin-left', 'auto')
+  expect(element).toHaveStyleRule('margin-right', 'auto')
 })
 
 it('should accept borderRadius mixin', () => {
-  const tree = renderer.create(<Container borderRadius={10} />).toJSON()
+  render(<Container borderRadius={10}>container</Container>)
 
-  expect(tree).toHaveStyleRule('border-radius', '10px')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('border-radius', '10px')
 })
 
 it('should accept clearing mixin', () => {
-  const tree = renderer.create(<Container clearing />).toJSON()
+  render(
+    <Container data-testid="test" clearing>
+      container
+    </Container>,
+  )
 
-  expect(tree).toHaveStyleRule('content', "''", { modifier: '::after' })
-  expect(tree).toHaveStyleRule('display', 'block', { modifier: '::after' })
-  expect(tree).toHaveStyleRule('clear', 'both', { modifier: '::after' })
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('content', "''", { modifier: '::after' })
+  expect(element).toHaveStyleRule('display', 'block', { modifier: '::after' })
+  expect(element).toHaveStyleRule('clear', 'both', { modifier: '::after' })
 })
 
 it('should accept horizontalScroll mixin', () => {
-  const tree = renderer.create(<Container horizontalScroll />).toJSON()
+  render(<Container horizontalScroll>container</Container>)
 
-  expect(tree).toHaveStyleRule('white-space', 'nowrap')
-  expect(tree).toHaveStyleRule('overflow-x', 'auto')
-  expect(tree).toHaveStyleRule('overflow-y', 'hidden')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('white-space', 'nowrap')
+  expect(element).toHaveStyleRule('overflow-x', 'auto')
+  expect(element).toHaveStyleRule('overflow-y', 'hidden')
 })
 
 it('should accept shadow mixin', () => {
-  const tree = renderer.create(<Container shadow="large" />).toJSON()
+  render(<Container shadow="large">container</Container>)
 
-  expect(tree).toHaveStyleRule('box-shadow', '0 0 30px 0 rgba(0,0,0,0.1)')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('box-shadow', '0 0 30px 0 rgba(0,0,0,0.1)')
 })
 
 it('should override style with css prop', () => {
-  const tree = renderer
-    .create(<Container position="absolute" css={{ position: 'fixed' }} />)
-    .toJSON()
+  render(
+    <Container position="absolute" css={{ position: 'fixed' }}>
+      container
+    </Container>,
+  )
 
-  expect(tree).toHaveStyleRule('position', 'fixed')
+  const element = screen.getByText('container')
+
+  expect(element).toHaveStyleRule('position', 'fixed')
 })

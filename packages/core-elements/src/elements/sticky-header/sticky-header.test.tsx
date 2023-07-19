@@ -1,9 +1,11 @@
-import renderer from 'react-test-renderer'
+import { render, screen } from '@testing-library/react'
 
 import { StickyHeader } from './sticky-header'
 
 it('should override style with css prop', () => {
-  const tree = renderer.create(<StickyHeader css={{ top: 10 }} />).toJSON()
+  render(<StickyHeader css={{ top: 10 }} />)
 
-  expect(tree).toHaveStyleRule('top', '10px')
+  const element = screen.getByRole('banner')
+
+  expect(element).toHaveStyleRule('top', '10px')
 })
