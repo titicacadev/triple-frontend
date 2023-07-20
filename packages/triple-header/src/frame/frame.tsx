@@ -45,7 +45,9 @@ export function Frame({
   totalFramesCount: number
   onLinkClick?: LinkEventHandler
 }) {
-  const FrameElement = FRAMES[type] as ComponentType<Omit<FrameData, 'type'>>
+  const FrameElement = FRAMES[type] as ComponentType<
+    Omit<FrameData, 'type'> & { index: number; totalFramesCount: number }
+  >
 
   const widthRatio = calculateFrameRatio(width)
   const heightRatio = calculateFrameRatio(height)
