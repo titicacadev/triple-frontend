@@ -7,10 +7,12 @@ import {
 import useDefaultRouter from '../common/default-router'
 import { useDisabledLinkNotifierCreator } from '../common/disabled-link-notifier'
 
-import { useLocalHrefHandler } from './href-handler'
-import { mockNextRouter } from './base-path.test'
 import useLocalRouter from './hook'
+import { useLocalHrefHandler } from './href-handler'
 
+jest.mock('next/router', () => ({
+  useRouter: jest.fn().mockReturnValue({ basePath: '/test-env' }),
+}))
 jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('../common/disabled-link-notifier')
@@ -21,7 +23,6 @@ beforeEach(() => {
   mockTripleClientMetadata()
   mockAppBridgeHook()
   mockDisabledLinkNotifierCreatorHook({ shouldRaiseAlert: false })
-  mockNextRouter()
 })
 
 test('allowSource 파라미터로 허용한 라우팅환경이 아니면 알림을 표시합니다.', async () => {

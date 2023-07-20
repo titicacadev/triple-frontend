@@ -1,3 +1,5 @@
+/* eslint-disable jest/no-conditional-expect */
+/* TODO: jest/no-conditional-expect 해결하기 */
 import { renderHook } from '@testing-library/react'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
@@ -48,15 +50,18 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
 
       const notifier = createDisabledLinkNotifier({ allowSource: 'app' })
 
-      expect(notifier).toEqual(
-        transitionModalFunctionCalled ? expect.any(Function) : undefined,
-      )
+      if (transitionModalFunctionCalled) {
+        expect(notifier).toEqual(expect.any(Function))
+      } else {
+        expect(notifier).toBeUndefined()
+      }
 
       if (notifier) {
         notifier()
-
         expect(transitionModalFunctionCalled).toBe(true)
         expect(showTransitionModal).toHaveBeenCalled()
+      } else {
+        expect(showTransitionModal).not.toHaveBeenCalled()
       }
     },
   )

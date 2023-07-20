@@ -46,25 +46,23 @@ describe('useTripleClientMetadata', () => {
     })
   })
 
-  // it('should not raise error when context provider is mounted before', () => {
-  //   const wrapper = ({ children }: PropsWithChildren) => (
-  //     <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
-  //   )
+  it('should not raise error when context provider is mounted before', () => {
+    const wrapper = ({ children }: PropsWithChildren) => (
+      <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
+    )
 
-  //   const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
+    expect(() =>
+      renderHook(() => useTripleClientMetadata(), { wrapper }),
+    ).not.toThrow()
+  })
 
-  //   expect(result.error).not.toBeTruthy()
-  // })
-
-  // it('should raise error when no context provider is mounted before', () => {
-  //   const { result } = renderHook(() => useTripleClientMetadata())
-
-  //   expect(result.error).toBeTruthy()
-  // })
+  it('should raise error when no context provider is mounted before', () => {
+    expect(() => renderHook(() => useTripleClientMetadata())).toThrow()
+  })
 })
 
 describe('TripleClientMetadataProvider.getInitialProps', () => {
-  it('should extract app user agent from req', () => {
+  it('should extract app user agent from req', async () => {
     const req = {
       headers: {
         userAgent:
@@ -72,7 +70,7 @@ describe('TripleClientMetadataProvider.getInitialProps', () => {
       },
     } as unknown as IncomingMessage
 
-    expect(
+    await expect(
       TripleClientMetadataProvider.getInitialProps({ req }),
     ).resolves.toStrictEqual({
       appName: 'Triple-Android',
@@ -80,7 +78,7 @@ describe('TripleClientMetadataProvider.getInitialProps', () => {
     })
   })
 
-  it('should extract app user agent from window if available', () => {
+  it('should extract app user agent from window if available', async () => {
     const userAgentSpy = jest.spyOn(global.window.navigator, 'userAgent', 'get')
 
     userAgentSpy.mockImplementation(
@@ -88,7 +86,7 @@ describe('TripleClientMetadataProvider.getInitialProps', () => {
         'Mozilla/5.0 (Linux; Android 10; SM-G965N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.70 Mobile Safari/537.36 Triple-Android/5.11.0',
     )
 
-    expect(
+    await expect(
       TripleClientMetadataProvider.getInitialProps({}),
     ).resolves.toStrictEqual({
       appName: 'Triple-Android',
@@ -98,14 +96,16 @@ describe('TripleClientMetadataProvider.getInitialProps', () => {
     userAgentSpy.mockRestore()
   })
 
-  it('should fall back safely', () => {
+  it('should fall back safely', async () => {
     const windowSpy = jest.spyOn(global, 'window', 'get')
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     windowSpy.mockImplementation(() => undefined)
 
-    expect(TripleClientMetadataProvider.getInitialProps({})).resolves.toBeNull()
+    await expect(
+      TripleClientMetadataProvider.getInitialProps({}),
+    ).resolves.toBeNull()
 
     windowSpy.mockRestore()
   })
