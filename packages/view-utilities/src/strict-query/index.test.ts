@@ -18,7 +18,7 @@ describe('query utils', () => {
       .string('multipleQueries')
       .use()
     expect(regionId).toBe('MOCK_REGION_ID')
-    expect(hotelId).toBe(undefined)
+    expect(hotelId).toBeUndefined()
     expect(landingPage).toBe('service-main')
     expect(multipleQueries).toBe('a')
   })
@@ -37,7 +37,7 @@ describe('query utils', () => {
       .use()
 
     expect(tripId).toBe(123456)
-    expect(numberOfAdults).toBe(undefined)
+    expect(numberOfAdults).toBeUndefined()
     expect(multipleQueries).toBe(1)
   })
 

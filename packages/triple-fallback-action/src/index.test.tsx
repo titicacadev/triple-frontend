@@ -38,7 +38,7 @@ test('핸들러를 제거하는 컴포넌트를 함께 렌더링하면 페이지
 
   const button = screen.getByText('클릭')
 
-  await waitFor(() => expect(window.__DISASTER_FALLBACK_HANDLER__).toBe(null))
+  await waitFor(() => expect(window.__DISASTER_FALLBACK_HANDLER__).toBeNull())
 
   fireEvent.click(button)
 

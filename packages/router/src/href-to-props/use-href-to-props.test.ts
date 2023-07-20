@@ -64,7 +64,7 @@ describe('target', () => {
     const path = '/my-path'
     const { target } = hrefToProps(path)
 
-    expect(target).toEqual('current')
+    expect(target).toBe('current')
   })
 
   test('앱에선 target을 "new"로 설정합니다.', () => {
@@ -77,7 +77,7 @@ describe('target', () => {
     const path = '/my-path'
     const { target } = hrefToProps(path)
 
-    expect(target).toEqual('new')
+    expect(target).toBe('new')
   })
 
   test('outlink의 target이 "browser"이면 target을 "browser"로 설정합니다.', () => {
@@ -93,7 +93,7 @@ describe('target', () => {
       )}&target=browser`
       const { target } = hrefToProps(path)
 
-      expect(target).toEqual('browser')
+      expect(target).toBe('browser')
     }
 
     runTest(true)
@@ -120,7 +120,7 @@ describe('allowSource', () => {
 
     const { allowSource } = hrefToProps(routablePath)
 
-    expect(allowSource).toEqual('all')
+    expect(allowSource).toBe('all')
   })
 
   test('routable하지 않은 링크는 allowSource를 "app-with-session"으로 설정합니다.', () => {
@@ -130,7 +130,7 @@ describe('allowSource', () => {
 
     const { allowSource } = hrefToProps('not-routable')
 
-    expect(allowSource).toEqual('app-with-session')
+    expect(allowSource).toBe('app-with-session')
   })
 
   test('inlink는 path가 routable하면 allowSource를 "app"으로 설정합니다.', () => {
@@ -141,7 +141,7 @@ describe('allowSource', () => {
     const href = `/inlink?path=${encodeURIComponent(routablePath)}`
     const { allowSource } = hrefToProps(href)
 
-    expect(allowSource).toEqual('app')
+    expect(allowSource).toBe('app')
   })
 
   test('inlink의 _web_expand 파라미터가 있으면 routable하지 않아도 allowSource를 "all"로 설정합니다.', () => {
@@ -156,7 +156,7 @@ describe('allowSource', () => {
     )}&_web_expand=true`
     const { allowSource } = hrefToProps(href)
 
-    expect(allowSource).toEqual('all')
+    expect(allowSource).toBe('all')
   })
 })
 

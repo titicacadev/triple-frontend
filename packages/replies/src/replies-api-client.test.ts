@@ -213,7 +213,7 @@ describe('Author Message', () => {
       mockedBaseReplyProps,
     )) as { response: Reply; authoringRequestType: string }
 
-    expect(authoringRequestType).toEqual('writeReply')
+    expect(authoringRequestType).toBe('writeReply')
     expect(response).toStrictEqual(mockedBodyWithWritedReply)
   })
 
@@ -245,7 +245,7 @@ describe('Author Message', () => {
       authoringRequestType: string
     }
 
-    expect(authoringRequestType).toEqual('writeChildReply')
+    expect(authoringRequestType).toBe('writeChildReply')
     expect(response).toStrictEqual(mockedBodyWithWritedChildReply)
   })
 
@@ -274,7 +274,7 @@ describe('Author Message', () => {
       mockedEditedReplyProps,
     )) as { response: Reply; authoringRequestType: string }
 
-    expect(authoringRequestType).toEqual('editReply')
+    expect(authoringRequestType).toBe('editReply')
     expect(response).toStrictEqual(mockedBodyWithEditedReply)
   })
 })

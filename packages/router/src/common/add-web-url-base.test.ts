@@ -18,7 +18,7 @@ test('useEnv에서 webUrlBase를 가져와서 주어진 href에 붙입니다.', 
   const addWebUrlBaseToHref = result.current
   const path = '/base'
 
-  expect(addWebUrlBaseToHref(path)).toEqual(`${MOCK_URL_BASE}${path}`)
+  expect(addWebUrlBaseToHref(path)).toBe(`${MOCK_URL_BASE}${path}`)
 })
 
 test('주어진 href가 /이면 그냥 baseURL을 반환합니다.', () => {

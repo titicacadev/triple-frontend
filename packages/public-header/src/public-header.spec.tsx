@@ -28,7 +28,7 @@ it('renders nothing inside triple client', () => {
 
   const { container } = render(<PublicHeader />)
 
-  expect(container.childNodes.length).toBe(0)
+  expect(container.childNodes).toHaveLength(0)
 })
 
 it('renders header outside triple client', () => {
@@ -40,5 +40,5 @@ it('renders header outside triple client', () => {
 
   const { container } = render(<PublicHeader />)
 
-  expect(container.childNodes.length).toBe(1)
+  expect(container.childNodes).toHaveLength(1)
 })

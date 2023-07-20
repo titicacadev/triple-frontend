@@ -13,7 +13,7 @@ test('주어진 href에 basePath를 더합니다.', () => {
     result: { current: addBasePath },
   } = renderHook(useBasePathAdder)
 
-  expect(addBasePath(href)).toEqual(`${basePath}${href}`)
+  expect(addBasePath(href)).toBe(`${basePath}${href}`)
 })
 
 test('주어진 href가 "/"이면 그냥 basePath를 반환합니다.', () => {

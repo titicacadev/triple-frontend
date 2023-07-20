@@ -13,7 +13,7 @@ it('should return the function as-is if version requirement is not listed', () =
 
   const { result } = renderHook(() => useTripleClientActions(), { wrapper })
 
-  expect(result.current.showToast).not.toBe(null)
+  expect(result.current.showToast).not.toBeNull()
 })
 
 it('should not return the function if it does not match version requirement', () => {
