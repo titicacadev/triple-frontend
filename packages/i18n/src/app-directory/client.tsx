@@ -28,9 +28,9 @@ export function Trans(
 
 export function useCurrentLanguage() {
   const searchParams = useSearchParams()
-  const lang = searchParams.get(LANG_QUERY_STRING_NAME)
+  const lang = searchParams.get(LANG_QUERY_STRING_NAME) as Language
 
-  return LANGUAGES.includes(lang ?? '') ? (lang as Language) : FALLBACK_LANGUAGE
+  return LANGUAGES.includes(lang ?? '') ? lang : FALLBACK_LANGUAGE
 }
 
 export function getTranslation({
