@@ -49,6 +49,7 @@ function renderScriptTag(el: ReactElement) {
   const scriptContainer = document.createElement('div')
   scriptContainer.innerHTML = renderToStaticMarkup(el)
   const script = document.createElement('script')
+  // eslint-disable-next-line testing-library/no-node-access
   script.innerHTML = scriptContainer.getElementsByTagName('script')[0].innerHTML
   document.body.appendChild(script)
 }
