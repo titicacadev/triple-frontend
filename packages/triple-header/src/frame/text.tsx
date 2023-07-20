@@ -6,7 +6,11 @@ import { Link, LinkEventHandler } from '../types'
 import { generateLinkClickHandler } from './common'
 import { EFFECTS, Effect } from './effects'
 
-export type TextFrame = { type: 'text' } & TextFrameProps
+export type TextFrame = { type: 'text' } & Omit<
+  TextFrameProps,
+  'index' | 'totalFramesCount'
+>
+
 interface TextFrameProps {
   value: {
     text: {

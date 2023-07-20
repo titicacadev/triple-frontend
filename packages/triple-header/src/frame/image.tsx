@@ -7,7 +7,10 @@ import { LinkEventHandler } from '../types'
 import { EFFECTS, Effect } from './effects'
 import { generateLinkClickHandler } from './common'
 
-export type ImageFrame = { type: 'image' } & ImageFrameProps
+export type ImageFrame = { type: 'image' } & Omit<
+  ImageFrameProps,
+  'index' | 'totalFramesCount'
+>
 
 interface ImageFrameProps {
   value: {
