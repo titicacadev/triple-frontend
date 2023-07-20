@@ -40,7 +40,7 @@ describe('useSessionCallback', () => {
         return { uriHash, doAction }
       })
 
-      act(() => expect(result.current.doAction()).toBe(undefined))
+      act(() => expect(result.current.doAction()).toBeUndefined())
     })
 
     it('returns fallback value if provided', () => {

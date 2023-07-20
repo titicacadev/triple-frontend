@@ -22,8 +22,8 @@ jest
 test('initialScrollPosition()은 현재 스크롤의 위치 정보를 반환합니다.', () => {
   const { top, left } = initialScrollPosition()
 
-  expect(top).toEqual(100)
-  expect(left).toEqual(10)
+  expect(top).toBe(100)
+  expect(left).toBe(10)
 })
 
 test('calculateScrollOffset()은 스크롤 오프셋을 반환합니다.', () => {
@@ -43,5 +43,5 @@ test('calculateScrollOffset()은 스크롤 오프셋을 반환합니다.', () =>
 
   const scrollOffset = calculateScrollOffset({ element, offset: -52 })
 
-  expect(scrollOffset).toEqual(200)
+  expect(scrollOffset).toBe(200)
 })

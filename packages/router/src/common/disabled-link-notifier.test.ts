@@ -24,7 +24,7 @@ describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 
 
     const notifier = createDisabledLinkNotifier({ allowSource: 'all' })
 
-    expect(notifier).toBe(undefined)
+    expect(notifier).toBeUndefined()
   })
 })
 
@@ -90,7 +90,7 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
       )
 
       if (notifier) {
-        expect(functionType).not.toBe(undefined)
+        expect(functionType).toBeDefined()
 
         notifier()
 
@@ -122,7 +122,7 @@ describe('allowSource가 "none"이면 항상 알림을 표시합니다.', () => 
       allowSource: 'none',
     })
 
-    expect(notifier).not.toBe(undefined)
+    expect(notifier).toBeDefined()
 
     if (notifier) {
       notifier()

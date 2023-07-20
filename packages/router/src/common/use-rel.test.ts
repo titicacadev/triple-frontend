@@ -26,9 +26,9 @@ test('같은 값을 추가해도 하나만 출력합니다.', () => {
   } = renderHook(useRel, { initialProps: ['noopener', 'bookmark', 'bookmark'] })
 
   expect(
-    current.split(' ').filter((value) => value === 'noopener').length,
-  ).toBe(1)
+    current.split(' ').filter((value) => value === 'noopener'),
+  ).toHaveLength(1)
   expect(
-    current.split(' ').filter((value) => value === 'bookmark').length,
-  ).toBe(1)
+    current.split(' ').filter((value) => value === 'bookmark'),
+  ).toHaveLength(1)
 })
