@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
@@ -27,7 +27,7 @@ describe('이미지의 여백을 조절합니다.', () => {
   const images = generateSampleImages()
 
   test('여백없는 이미지 1개를 렌더링합니다.', () => {
-    const { getByRole, getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -36,9 +36,9 @@ describe('이미지의 여백을 조절합니다.', () => {
       />,
     )
 
-    const wrapperBoxElement = getAllByRole('cell')[0]
-    const firstImgBoxElement = getAllByRole('cell')[1]
-    const imgElement = getByRole('img')
+    const wrapperBoxElement = screen.getAllByRole('cell')[0]
+    const firstImgBoxElement = screen.getAllByRole('cell')[1]
+    const imgElement = screen.getByRole('img')
 
     expect(wrapperBoxElement).toHaveStyleRule('padding', '0 0 0 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 0 0 0')
@@ -46,7 +46,7 @@ describe('이미지의 여백을 조절합니다.', () => {
   })
 
   test('여백있는 이미지 1개를 렌더링합니다.', () => {
-    const { getByRole, getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'default',
@@ -55,9 +55,9 @@ describe('이미지의 여백을 조절합니다.', () => {
       />,
     )
 
-    const wrapperBoxElement = getAllByRole('cell')[0]
-    const firstImgBoxElement = getAllByRole('cell')[1]
-    const imgElement = getByRole('img')
+    const wrapperBoxElement = screen.getAllByRole('cell')[0]
+    const firstImgBoxElement = screen.getAllByRole('cell')[1]
+    const imgElement = screen.getByRole('img')
 
     expect(wrapperBoxElement).toHaveStyleRule('padding', '40px 0 30px 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 30px 0 30px')
@@ -65,7 +65,7 @@ describe('이미지의 여백을 조절합니다.', () => {
   })
 
   test('여백이 있으면서 테두리가 굴곡인 이미지 1개를 렌더링합니다.', () => {
-    const { getByRole, getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'default-v2',
@@ -74,9 +74,9 @@ describe('이미지의 여백을 조절합니다.', () => {
       />,
     )
 
-    const wrapperBoxElement = getAllByRole('cell')[0]
-    const firstImgBoxElement = getAllByRole('cell')[1]
-    const imgElement = getByRole('img')
+    const wrapperBoxElement = screen.getAllByRole('cell')[0]
+    const firstImgBoxElement = screen.getAllByRole('cell')[1]
+    const imgElement = screen.getByRole('img')
 
     expect(wrapperBoxElement).toHaveStyleRule('padding', '20px 0 20px 0')
     expect(firstImgBoxElement).toHaveStyleRule('padding', '0 30px 0 30px')
@@ -90,7 +90,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('4:1 비율로 조절합니다.', () => {
     const images = generateSampleImages('mini')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -99,7 +99,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '25%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
@@ -107,7 +107,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('5:3 비율로 조절합니다.', () => {
     const images = generateSampleImages('small')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -116,7 +116,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '60%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
@@ -124,7 +124,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('4:3 비율로 조절합니다.', () => {
     const images = generateSampleImages('medium')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -133,7 +133,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '75%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
@@ -141,7 +141,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('1:1 비율로 조절합니다.', () => {
     const images = generateSampleImages('large')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -150,7 +150,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '100%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
@@ -158,7 +158,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('10:11 비율로 조절합니다.', () => {
     const images = generateSampleImages('big')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -167,7 +167,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '110%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)
@@ -175,7 +175,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
 
   test('5:8 비율로 조절합니다.', () => {
     const images = generateSampleImages('huge')
-    const { getAllByRole } = render(
+    render(
       <Images
         value={{
           display: 'gapless-block',
@@ -184,7 +184,7 @@ describe('이미지 크기를 비율에 따라 조절합니다.', () => {
       />,
     )
 
-    const backgroundImgElement = getAllByRole('cell')[2].firstChild
+    const backgroundImgElement = screen.getAllByRole('cell')[2].firstChild
 
     expect(backgroundImgElement).toHaveStyleRule('padding-top', '160%')
     expect(backgroundImgElement).toHaveAttribute('src', SAMPLE_IMAGE)

@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
 test('버튼형 링크 Element를 렌더링합니다.', () => {
   const Links = ELEMENTS.links
 
-  const { getByRole } = render(
+  render(
     <Links
       value={{
         links: [
@@ -20,7 +20,7 @@ test('버튼형 링크 Element를 렌더링합니다.', () => {
     />,
   )
 
-  const anchorElement = getByRole('link')
+  const anchorElement = screen.getByRole('link')
 
   expect(anchorElement).toHaveAttribute('href', 'Test Href')
   expect(anchorElement).toHaveStyleRule(
@@ -33,7 +33,7 @@ test('버튼형 링크 Element를 렌더링합니다.', () => {
 test('블락형 링크 Element를 렌더링합니다.', () => {
   const Link = ELEMENTS.links
 
-  const { getByRole } = render(
+  render(
     <Link
       value={{
         links: [{ id: '', label: 'Block Styled Link', href: 'Test Href' }],
@@ -42,7 +42,7 @@ test('블락형 링크 Element를 렌더링합니다.', () => {
     />,
   )
 
-  const anchorElement = getByRole('link')
+  const anchorElement = screen.getByRole('link')
 
   expect(anchorElement).toHaveAttribute('href', 'Test Href')
   expect(anchorElement).toHaveStyleRule(
@@ -55,7 +55,7 @@ test('블락형 링크 Element를 렌더링합니다.', () => {
 test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
   const Link = ELEMENTS.links
 
-  const { getByRole } = render(
+  render(
     <Link
       value={{
         links: [
@@ -70,7 +70,7 @@ test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
     />,
   )
 
-  const anchorElement = getByRole('link')
+  const anchorElement = screen.getByRole('link')
 
   expect(anchorElement).toHaveAttribute('href', 'Test Href')
   expect(anchorElement).toHaveStyleRule(
@@ -84,7 +84,7 @@ test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
 test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
   const Link = ELEMENTS.links
 
-  const { getByRole } = render(
+  render(
     <Link
       value={{
         links: [
@@ -99,7 +99,7 @@ test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
     />,
   )
 
-  const anchorElement = getByRole('link')
+  const anchorElement = screen.getByRole('link')
 
   expect(anchorElement).toHaveAttribute('href', 'Test Href')
   expect(anchorElement).toHaveStyleRule(

@@ -23,13 +23,13 @@ test('주어진 href를 가진 anchor 태그를 렌더링합니다.', () => {
   prepareTest()
   const href = 'https://www.google.com'
 
-  const { queryByRole } = render(
+  render(
     <ExternalLink href={href} target="current">
       테스트링크
     </ExternalLink>,
   )
 
-  const anchor = queryByRole('link')
+  const anchor = screen.queryByRole('link')
   expect(anchor).toBeInTheDocument()
   expect(anchor).toHaveAttribute('href', href)
 })
@@ -38,13 +38,13 @@ test('절대 경로를 사용할 때는 anchor의 rel 속성에 "external"을 �
   prepareTest()
   const href = 'https://www.google.com'
 
-  const { queryByRole } = render(
+  render(
     <ExternalLink href={href} target="current">
       테스트링크
     </ExternalLink>,
   )
 
-  const anchor = queryByRole('link')
+  const anchor = screen.queryByRole('link')
   expect(anchor).toHaveAttribute('rel', expect.stringContaining('external'))
 })
 
@@ -65,26 +65,26 @@ describe('앱에서 절대 경로를 현재 창에서 열도록 설정했을 때
   test('링크를 렌더링하지 않습니다.', () => {
     prepareTest({ isPublic: false })
 
-    const { queryByRole } = render(
+    render(
       <ExternalLink href={ABSOLUTE_URL} target="current">
         테스트링크
       </ExternalLink>,
     )
 
-    expect(queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
   })
 })
 
 test('앱에서 절대 경로 URL을 새 창으로 열면 outlink를 사용합니다.', () => {
   const { openOutlink } = prepareTest({ isPublic: false })
 
-  const { queryByRole } = render(
+  render(
     <ExternalLink href={ABSOLUTE_URL} target="new">
       테스트링크
     </ExternalLink>,
   )
 
-  const link = queryByRole('link')
+  const link = screen.queryByRole('link')
 
   if (link === null) {
     throw new Error('링크가 없습니다.')
@@ -98,13 +98,13 @@ test('앱에서 절대 경로 URL을 새 창으로 열면 outlink를 사용합�
 test('앱에서 트리플 URL을 새 창으로 열면 inlink를 사용합니다.', () => {
   const { openInlink } = prepareTest({ isPublic: false })
 
-  const { queryByRole } = render(
+  render(
     <ExternalLink href={TRIPLE_URL} target="new">
       테스트링크
     </ExternalLink>,
   )
 
-  const link = queryByRole('link')
+  const link = screen.queryByRole('link')
 
   if (link === null) {
     throw new Error('링크가 없습니다.')
@@ -119,13 +119,13 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
   test('절대 경로 URL은 그대로 사용합니다.', () => {
     const { openOutlink } = prepareTest({ isPublic: false })
 
-    const { queryByRole } = render(
+    render(
       <ExternalLink href={ABSOLUTE_URL} target="browser">
         테스트링크
       </ExternalLink>,
     )
 
-    const link = queryByRole('link')
+    const link = screen.queryByRole('link')
 
     if (link === null) {
       throw new Error('링크가 없습니다.')
@@ -142,13 +142,13 @@ describe('앱에서 브라우저로 열면 outlink를 사용합니다.', () => {
   test('트리플 URL은 앞에 트리플 URL base를 붙여줍니다.', () => {
     const { openOutlink, webUrlBase } = prepareTest({ isPublic: false })
 
-    const { queryByRole } = render(
+    render(
       <ExternalLink href={TRIPLE_URL} target="browser">
         테스트링크
       </ExternalLink>,
     )
 
-    const link = queryByRole('link')
+    const link = screen.queryByRole('link')
 
     if (link === null) {
       throw new Error('링크가 없습니다.')

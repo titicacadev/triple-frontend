@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import EmailPreview from './preview'
 
@@ -7,9 +7,9 @@ test('EmailPreview를 렌더링합니다.', () => {
     phrase: 'Cheking Email',
   }
 
-  const { getByText } = render(<EmailPreview value={mockedPreviewValue} />)
+  render(<EmailPreview value={mockedPreviewValue} />)
 
-  const previewElement = getByText(mockedPreviewValue.phrase)
+  const previewElement = screen.getByText(mockedPreviewValue.phrase)
 
   expect(previewElement).toBeInTheDocument()
 })

@@ -1,12 +1,12 @@
-import { ReactNode, RefObject, useState } from 'react'
-import styled from 'styled-components'
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
 import {
   Container,
-  formatMarginPadding,
   MarginPadding,
+  formatMarginPadding,
 } from '@titicaca/core-elements'
+import { ReactNode, RefObject, useState } from 'react'
+import styled from 'styled-components'
 
 export interface CarouselProps
   extends Partial<FlickingProps & FlickingOptions> {
@@ -72,6 +72,7 @@ function Carousel({
     collectStatistics: false,
   }
 
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const PageLabel = pageLabelRenderer({ currentIndex })
 
   return (

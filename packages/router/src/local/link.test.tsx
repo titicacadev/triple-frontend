@@ -23,19 +23,19 @@ test('주어진 href에 basePath를 더해서 anchor에 제공합니다.', () =>
   const href =
     '/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
 
-  const { getByRole } = render(
+  render(
     <LocalLink href={href} target="current">
       테스트링크
     </LocalLink>,
   )
 
-  expect(getByRole('link')).toHaveAttribute('href', `${basePath}${href}`)
+  expect(screen.getByRole('link')).toHaveAttribute('href', `${basePath}${href}`)
 })
 
 test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다.', () => {
   const { nextPush } = prepareTest()
 
-  const { getByRole } = render(
+  render(
     <LocalLink
       href="/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d"
       target="current"
@@ -43,7 +43,7 @@ test('키를 누르고 클릭할 때는 next/router를 사용하지 않습니다
       테스트링크
     </LocalLink>,
   )
-  const link = getByRole('link')
+  const link = screen.getByRole('link')
 
   fireEvent.click(link, { metaKey: true })
   expect(nextPush).toHaveBeenCalledTimes(0)
@@ -63,12 +63,12 @@ test('현재 창에서 이동할 때 next/router를 사용합니다.', () => {
   const href =
     '/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
 
-  const { getByRole } = render(
+  render(
     <LocalLink href={href} target="current">
       테스트링크
     </LocalLink>,
   )
-  const link = getByRole('link')
+  const link = screen.getByRole('link')
 
   fireEvent.click(link)
 
@@ -80,16 +80,19 @@ test('앱에서 새창으로 이동할 때 inlink를 사용합니다.', () => {
   const href =
     '/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
 
-  const { getByRole } = render(
+  render(
     <LocalLink href={href} target="new">
       테스트링크
     </LocalLink>,
   )
-  const link = getByRole('link')
+  const link = screen.getByRole('link')
 
   fireEvent.click(link)
 
-  expect(openInlink).toHaveBeenCalledWith(`${basePath}${href}`, expect.any(Object))
+  expect(openInlink).toHaveBeenCalledWith(
+    `${basePath}${href}`,
+    expect.any(Object),
+  )
 })
 
 test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () => {
@@ -97,12 +100,12 @@ test('앱에서 브라우저로 이동할 때 outlink를 사용합니다.', () =
   const href =
     '/5b700a4e-4b0f-4266-81db-eb42f834bdd9?regionId=71476976-cf9a-4ae8-a60f-76e6fb26900d'
 
-  const { getByRole } = render(
+  render(
     <LocalLink href={href} target="browser">
       테스트링크
     </LocalLink>,
   )
-  const link = getByRole('link')
+  const link = screen.getByRole('link')
 
   fireEvent.click(link)
 

@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import moment from 'moment'
 
 import RangePicker from './range-picker'
@@ -10,7 +10,7 @@ jest.mock('./use-public-holidays', () => ({
 describe('RangePicker', () => {
   it('should select today when enableSameDay is false', () => {
     const handleDatesChange = jest.fn()
-    const { getAllByRole } = render(
+    render(
       <RangePicker
         startDate={null}
         endDate={null}
@@ -19,7 +19,7 @@ describe('RangePicker', () => {
       />,
     )
 
-    const dateCells = getAllByRole('gridcell')
+    const dateCells = screen.getAllByRole('gridcell')
     const todayCell = dateCells.find((el) =>
       el.classList.contains('DayPicker-Day--today'),
     )
@@ -41,7 +41,7 @@ describe('RangePicker', () => {
       startDate = newStartDate
     })
 
-    const { getAllByRole, rerender } = render(
+    const { rerender } = render(
       <RangePicker
         startDate={null}
         endDate={null}
@@ -50,7 +50,7 @@ describe('RangePicker', () => {
       />,
     )
 
-    const dateCells = getAllByRole('gridcell')
+    const dateCells = screen.getAllByRole('gridcell')
     const targetCell = dateCells[0]
     if (!targetCell) {
       throw new Error('Cannot find target cell')

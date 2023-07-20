@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { ScrapsProvider } from '@titicaca/react-contexts'
 
-import { OverlayScrapButton, OutlineScrapButton } from './scrap-button'
+import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 import { ScrapButtonMask } from './scrap-button-mask'
 
 describe('ScrapButtonMask 컴포넌트', () => {
@@ -32,7 +32,7 @@ describe('ScrapButtonMask 컴포넌트', () => {
   })
 
   it('should render child scrap button with masked false', () => {
-    const { getAllByRole } = render(
+    render(
       <ScrapButtonMask masked={false}>
         <OverlayScrapButton
           resource={{
@@ -56,6 +56,6 @@ describe('ScrapButtonMask 컴포넌트', () => {
       { wrapper: ScrapsProvider },
     )
 
-    expect(getAllByRole('button')).toHaveLength(2)
+    expect(screen.getAllByRole('button')).toHaveLength(2)
   })
 })

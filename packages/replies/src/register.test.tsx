@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
 import { PropsWithChildren } from 'react'
 
@@ -10,7 +10,7 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
     const mockedOnReplyAdd = jest.fn()
     const mockedOnReplyEdit = jest.fn()
 
-    const { getByRole } = render(
+    render(
       <Register
         resourceId=""
         resourceType="article"
@@ -20,7 +20,7 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
       { wrapper: ReplyWithLoginWrapper },
     )
 
-    const registerButtonElement = getByRole('button', { name: /등록/ })
+    const registerButtonElement = screen.getByRole('button', { name: /등록/ })
 
     expect(registerButtonElement).toHaveStyleRule(
       'color',
@@ -32,7 +32,7 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
     const mockedOnReplyAdd = jest.fn()
     const mockedOnReplyEdit = jest.fn()
 
-    const { getByRole } = render(
+    render(
       <Register
         resourceId=""
         resourceType="article"
@@ -42,11 +42,11 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
       { wrapper: ReplyWithLoginWrapper },
     )
 
-    const textareaElement = getByRole('textbox')
+    const textareaElement = screen.getByRole('textbox')
 
     fireEvent.change(textareaElement, { target: { value: 'Hi' } })
 
-    const registerButtonElement = getByRole('button', { name: /등록/ })
+    const registerButtonElement = screen.getByRole('button', { name: /등록/ })
 
     expect(registerButtonElement).toHaveStyleRule('color', 'var(--color-blue)')
   })

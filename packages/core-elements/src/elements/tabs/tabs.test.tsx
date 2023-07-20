@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useState } from 'react'
 
-import { Tabs } from './tabs'
-import { TabList } from './tab-list'
 import { Tab } from './tab'
+import { TabList } from './tab-list'
 import { TabPanel } from './tab-panel'
+import { Tabs } from './tabs'
 
 test('방향키로 roving tabindex를 사용합니다.', async () => {
   const user = userEvent.setup()
@@ -31,40 +31,40 @@ test('방향키로 roving tabindex를 사용합니다.', async () => {
 
   await user.tab()
 
-  expect(document.activeElement).toHaveTextContent('A')
-  expect(screen.getByText('This is panel A'))
+  expect(screen.getByText('A')).toHaveFocus()
+  expect(screen.getByText('This is panel A')).toBeVisible()
 
   await user.keyboard('{ArrowRight}')
 
-  expect(document.activeElement).toHaveTextContent('B')
-  expect(screen.getByText('This is panel B'))
+  expect(screen.getByText('B')).toHaveFocus()
+  expect(screen.getByText('This is panel B')).toBeVisible()
 
   await user.keyboard('{ArrowRight}')
 
-  expect(document.activeElement).toHaveTextContent('C')
-  expect(screen.getByText('This is panel C'))
+  expect(screen.getByText('C')).toHaveFocus()
+  expect(screen.getByText('This is panel C')).toBeVisible()
 
   // 마지막에서 다음 포커스는 처음으로 돌아 갑니다.
   await user.keyboard('{ArrowRight}')
 
-  expect(document.activeElement).toHaveTextContent('A')
-  expect(screen.getByText('This is panel A'))
+  expect(screen.getByText('A')).toHaveFocus()
+  expect(screen.getByText('This is panel A')).toBeVisible()
 
   // 처음에서 이전 포커스는 마지막으로 돌아 갑니다.
   await user.keyboard('{ArrowLeft}')
 
-  expect(document.activeElement).toHaveTextContent('C')
-  expect(screen.getByText('This is panel C'))
+  expect(screen.getByText('C')).toHaveFocus()
+  expect(screen.getByText('This is panel C')).toBeVisible()
 
   await user.keyboard('{ArrowLeft}')
 
-  expect(document.activeElement).toHaveTextContent('B')
-  expect(screen.getByText('This is panel B'))
+  expect(screen.getByText('B')).toHaveFocus()
+  expect(screen.getByText('This is panel B')).toBeVisible()
 
   await user.keyboard('{ArrowLeft}')
 
-  expect(document.activeElement).toHaveTextContent('A')
-  expect(screen.getByText('This is panel A'))
+  expect(screen.getByText('A')).toHaveFocus()
+  expect(screen.getByText('This is panel A')).toBeVisible()
 })
 
 test('Home, End키로 roving tabindex를 사용합니다.', async () => {
@@ -91,16 +91,16 @@ test('Home, End키로 roving tabindex를 사용합니다.', async () => {
 
   await user.tab()
 
-  expect(document.activeElement).toHaveTextContent('A')
-  expect(screen.getByText('This is panel A'))
+  expect(screen.getByText('A')).toHaveFocus()
+  expect(screen.getByText('This is panel A')).toBeVisible()
 
   await user.keyboard('{End}')
 
-  expect(document.activeElement).toHaveTextContent('C')
-  expect(screen.getByText('This is panel C'))
+  expect(screen.getByText('C')).toHaveFocus()
+  expect(screen.getByText('This is panel C')).toBeVisible()
 
   await user.keyboard('{Home}')
 
-  expect(document.activeElement).toHaveTextContent('A')
-  expect(screen.getByText('This is panel A'))
+  expect(screen.getByText('A')).toHaveFocus()
+  expect(screen.getByText('This is panel A')).toBeVisible()
 })
