@@ -12,13 +12,10 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 export type RotateEffect = { type: 'rotate' } & RotateProps
 
 interface RotateProps {
-  options?: ExtendedEffectOptions
+  options: ExtendedEffectOptions
 }
 
-export function Rotate({
-  children,
-  options = {},
-}: PropsWithChildren<RotateProps>) {
+export function Rotate({ children, options }: PropsWithChildren<RotateProps>) {
   const transition = generateTransition(options)
 
   return (
