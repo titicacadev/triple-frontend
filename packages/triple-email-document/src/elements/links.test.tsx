@@ -81,7 +81,7 @@ test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
   expect(anchorElement).toHaveTextContent('Large Button Styled Link')
 })
 
-test('대형 버튼형 링크 Element를 렌더링합니다.', () => {
+test('대형 컴팩트 버튼형 링크 Element를 렌더링합니다.', () => {
   const Link = ELEMENTS.links
 
   render(
