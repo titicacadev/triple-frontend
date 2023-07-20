@@ -127,6 +127,9 @@ describe('useVerifiedMessageListener', () => {
 
     renderHook(() => useVerifiedMessageListener(handleVerifiedMessage))
 
-    expect(addEventListenerSpy).toHaveBeenLastCalledWith('message', expect.anything())
+    expect(addEventListenerSpy).toHaveBeenLastCalledWith(
+      'message',
+      expect.anything(),
+    )
   })
 })
