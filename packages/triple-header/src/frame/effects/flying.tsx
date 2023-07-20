@@ -12,13 +12,10 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 export type FlyingEffect = { type: 'flying' } & FlyingProps
 
 interface FlyingProps {
-  options?: ExtendedEffectOptions
+  options: ExtendedEffectOptions
 }
 
-export function Flying({
-  children,
-  options = {},
-}: PropsWithChildren<FlyingProps>) {
+export function Flying({ children, options }: PropsWithChildren<FlyingProps>) {
   const transition = generateTransition({ ...options, duration: 0.3 })
 
   return (

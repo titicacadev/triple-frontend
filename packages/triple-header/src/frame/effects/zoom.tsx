@@ -8,10 +8,10 @@ import { generateTransition, stringifyTransition } from './common'
 export type ZoomEffect = { type: 'zoom' } & ZoomProps
 
 interface ZoomProps {
-  options?: InitialEffectOptions
+  options: InitialEffectOptions
 }
 
-export function Zoom({ children, options = {} }: PropsWithChildren<ZoomProps>) {
+export function Zoom({ children, options }: PropsWithChildren<ZoomProps>) {
   const transition = generateTransition(options)
 
   return (
