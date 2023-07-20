@@ -1,7 +1,6 @@
 import type { NextRequest } from 'next/server'
 
 import {
-  CUSTOM_LANG_HEADER,
   FALLBACK_LANGUAGE,
   LANGUAGES,
   LANGUAGE_COOKIE_NAME,
@@ -9,15 +8,6 @@ import {
 } from './constants'
 
 const ONE_YEAR_SEC = 31_536_000
-
-export function getCustomLangHeader(req: NextRequest) {
-  const { searchParams } = req.nextUrl
-  const lang = searchParams.get(LANG_QUERY_STRING_NAME) ?? FALLBACK_LANGUAGE
-
-  return {
-    [CUSTOM_LANG_HEADER]: lang,
-  }
-}
 
 export function setLanguageCookie(req: NextRequest) {
   const langCookie = req.cookies.get(LANGUAGE_COOKIE_NAME)
