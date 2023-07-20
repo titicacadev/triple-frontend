@@ -1,7 +1,7 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
-import { RouterGuardedLink } from './router-guarded-link'
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
+import { RouterGuardedLink } from './router-guarded-link'
 
 jest.mock('../common/disabled-link-notifier')
 
@@ -21,19 +21,15 @@ describe('라우팅할 수 없는 환경일 때', () => {
   })
 
   test('버튼을 렌더링합니다.', () => {
-    const { getByRole } = render(
-      <RouterGuardedLink href="">테스트링크</RouterGuardedLink>,
-    )
+    render(<RouterGuardedLink href="">테스트링크</RouterGuardedLink>)
 
-    expect(getByRole('button')).toBeInTheDocument()
+    expect(screen.getByRole('button')).toBeInTheDocument()
   })
 
   test('클릭하면 disabled link notifier를 호출합니다.', () => {
-    const { getByRole } = render(
-      <RouterGuardedLink href="">테스트링크</RouterGuardedLink>,
-    )
+    render(<RouterGuardedLink href="">테스트링크</RouterGuardedLink>)
 
-    const button = getByRole('button')
+    const button = screen.getByRole('button')
 
     fireEvent.click(button)
 
@@ -42,13 +38,13 @@ describe('라우팅할 수 없는 환경일 때', () => {
 
   test('className prop을 전달합니다.', () => {
     const className = 'TEST_CLASS_NAME'
-    const { getByRole } = render(
+    render(
       <RouterGuardedLink href="" className={className}>
         테스트링크
       </RouterGuardedLink>,
     )
 
-    const button = getByRole('button')
+    const button = screen.getByRole('button')
 
     expect(button).toHaveClass(className)
   })
@@ -60,24 +56,22 @@ describe('라우팅할 수 있는 환경일 때', () => {
   })
 
   test('앵커 태그를 렌더링합니다.', () => {
-    const { getByRole } = render(
-      <RouterGuardedLink href="/foo">테스트링크</RouterGuardedLink>,
-    )
+    render(<RouterGuardedLink href="/foo">테스트링크</RouterGuardedLink>)
 
-    const link = getByRole('link')
+    const link = screen.getByRole('link')
 
     expect(link).toBeInTheDocument()
   })
 
   test('className prop을 클래스로 전달합니다.', () => {
     const className = 'TEST_CLASS_NAME'
-    const { getByRole } = render(
+    render(
       <RouterGuardedLink href="/foo" className={className}>
         테스트링크
       </RouterGuardedLink>,
     )
 
-    const link = getByRole('link')
+    const link = screen.getByRole('link')
 
     expect(link).toHaveClass(className)
   })
@@ -87,13 +81,13 @@ describe('라우팅할 수 있는 환경일 때', () => {
       'external',
     ]
 
-    const { getByRole } = render(
+    render(
       <RouterGuardedLink href="/foo" relList={relList}>
         테스트링크
       </RouterGuardedLink>,
     )
 
-    const link = getByRole('link')
+    const link = screen.getByRole('link')
 
     expect(link).toHaveAttribute('rel', expect.stringContaining('external'))
   })

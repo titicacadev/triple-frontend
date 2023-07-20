@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
@@ -9,9 +9,9 @@ test('rawHTML을 렌더링합니다.', () => {
 
   const Text = ELEMENTS.text
 
-  const { getByText } = render(<Text value={mockedTextValue} />)
+  render(<Text value={mockedTextValue} />)
 
-  const anchorElement = getByText(/Inline link/i).outerHTML
+  const anchorElement = screen.getByText(/Inline link/i).outerHTML
 
   expect(anchorElement).toBe(mockedTextValue.rawHTML)
 })
@@ -23,9 +23,9 @@ test('text를 렌더링합니다.', () => {
 
   const Text = ELEMENTS.text
 
-  const { getByText } = render(<Text value={mockedTextValue} />)
+  render(<Text value={mockedTextValue} />)
 
-  const textElement = getByText(/Default Text/i)
+  const textElement = screen.getByText(/Default Text/i)
 
   expect(textElement).toBeInTheDocument()
 })

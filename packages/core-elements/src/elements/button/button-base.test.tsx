@@ -1,15 +1,15 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ButtonBase } from './button-base'
 
 test('type attribute 기본값은 button 입니다.', () => {
-  const { getByText } = render(<ButtonBase>Default</ButtonBase>)
+  render(<ButtonBase>Default</ButtonBase>)
 
-  expect(getByText('Default')).toHaveAttribute('type', 'button')
+  expect(screen.getByText('Default')).toHaveAttribute('type', 'button')
 })
 
 test('type attribute를 변경할 수 있습니다.', () => {
-  const { getByText } = render(
+  render(
     <>
       <ButtonBase type="button">Button</ButtonBase>
       <ButtonBase type="submit">Submit</ButtonBase>
@@ -17,7 +17,7 @@ test('type attribute를 변경할 수 있습니다.', () => {
     </>,
   )
 
-  expect(getByText('Button')).toHaveAttribute('type', 'button')
-  expect(getByText('Submit')).toHaveAttribute('type', 'submit')
-  expect(getByText('Reset')).toHaveAttribute('type', 'reset')
+  expect(screen.getByText('Button')).toHaveAttribute('type', 'button')
+  expect(screen.getByText('Submit')).toHaveAttribute('type', 'submit')
+  expect(screen.getByText('Reset')).toHaveAttribute('type', 'reset')
 })

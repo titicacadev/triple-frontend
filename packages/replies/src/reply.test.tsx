@@ -1,8 +1,8 @@
-import { PropsWithChildren } from 'react'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { EnvProvider } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { PropsWithChildren } from 'react'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
@@ -101,7 +101,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      render(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -110,7 +110,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         { wrapper: ReplyWithLoginWrapper },
       )
 
-      const likeCountElement = queryByText(/좋아요/)
+      const likeCountElement = screen.queryByText(/좋아요/)
 
       await waitFor(() => {
         expect(likeCountElement).toBeInTheDocument()
@@ -127,7 +127,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      render(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -136,7 +136,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         { wrapper: ReplyWithLoginWrapper },
       )
 
-      const likeCountElement = queryByText(/좋아요/)
+      const likeCountElement = screen.queryByText(/좋아요/)
 
       await waitFor(() => {
         expect(likeCountElement).not.toBeInTheDocument()
@@ -153,7 +153,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { queryByText } = render(
+      render(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -162,7 +162,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         { wrapper: ReplyWithLoginWrapper },
       )
 
-      const likeCountElement = queryByText(/좋아요/)
+      const likeCountElement = screen.queryByText(/좋아요/)
 
       await waitFor(() => {
         expect(likeCountElement).not.toBeInTheDocument()
@@ -181,7 +181,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
+      render(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -190,7 +190,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         { wrapper: ReplyWithLoginWrapper },
       )
 
-      const unlikeButtonElement = getByRole('button', {
+      const unlikeButtonElement = screen.getByRole('button', {
         name: /unlike-button/i,
       })
 
@@ -198,11 +198,9 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
       fireEvent.click(unlikeButtonElement)
 
-      const afterLikeCount = await findByText(/좋아요/)
+      const afterLikeCount = await screen.findByText(/좋아요/)
 
-      expect(afterLikeCount).toHaveTextContent(
-        `좋아요 ${beforeLikeCount - 1}`,
-      )
+      expect(afterLikeCount).toHaveTextContent(`좋아요 ${beforeLikeCount - 1}`)
     })
 
     test('좋아요를 클릭하지 않았던 사용자가 클릭하면, 좋아요 갯수를 +1 합니다.', async () => {
@@ -215,7 +213,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         },
       })
 
-      const { getByRole, findByText } = render(
+      render(
         <Reply
           reply={reply}
           focusInput={onFocusInput}
@@ -224,7 +222,7 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
         { wrapper: ReplyWithLoginWrapper },
       )
 
-      const likeButtonElement = getByRole('button', {
+      const likeButtonElement = screen.getByRole('button', {
         name: /like-button/i,
       })
 
@@ -232,11 +230,9 @@ describe('리액션 관련 기능을 테스트합니다.', () => {
 
       fireEvent.click(likeButtonElement)
 
-      const afterLikeCount = await findByText(/좋아요/)
+      const afterLikeCount = await screen.findByText(/좋아요/)
 
-      expect(afterLikeCount).toHaveTextContent(
-        `좋아요 ${beforeLikeCount + 1}`,
-      )
+      expect(afterLikeCount).toHaveTextContent(`좋아요 ${beforeLikeCount + 1}`)
     })
   })
 })

@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
@@ -66,12 +66,12 @@ test('이미지, 타이틀, 본문, 버튼의 조합을 렌더링합니다.', ()
     entries: ENTRIES,
   } as EmbeddedDocument['value']
 
-  const { getByRole, getAllByRole } = render(<Embedded value={value} />)
+  render(<Embedded value={value} />)
 
-  const imageElement = getByRole('img')
-  const titleElement = getAllByRole('table')[3]
-  const textElement = getAllByRole('table')[4]
-  const linkElement = getByRole('link')
+  const imageElement = screen.getByRole('img')
+  const titleElement = screen.getAllByRole('table')[3]
+  const textElement = screen.getAllByRole('table')[4]
+  const linkElement = screen.getByRole('link')
 
   expect(imageElement).toHaveAttribute(
     'src',

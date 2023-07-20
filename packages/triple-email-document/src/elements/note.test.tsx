@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
@@ -10,10 +10,10 @@ test('노트 Element를 렌더링합니다.', () => {
 
   const Note = ELEMENTS.note
 
-  const { getByText } = render(<Note value={mockeNoteValue} />)
+  render(<Note value={mockeNoteValue} />)
 
-  const noteTitleElement = getByText(mockeNoteValue.title)
-  const noteBodyElement = getByText(mockeNoteValue.body)
+  const noteTitleElement = screen.getByText(mockeNoteValue.title)
+  const noteBodyElement = screen.getByText(mockeNoteValue.body)
 
   expect(noteTitleElement).toBeInTheDocument()
   expect(noteBodyElement).toBeInTheDocument()

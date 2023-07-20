@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { MapView, WithGoogleMapProps } from './map-view'
 
@@ -22,7 +22,7 @@ jest.mock('@react-google-maps/api', () => ({
 }))
 
 test('MapView의 로드 여부를 체크합니다.', () => {
-  const { getByTestId } = render(<MapView {...MOCK_MAP_VIEW} />)
+  render(<MapView {...MOCK_MAP_VIEW} />)
 
-  expect(getByTestId('google-map')).toBeInTheDocument()
+  expect(screen.getByTestId('google-map')).toBeInTheDocument()
 })
