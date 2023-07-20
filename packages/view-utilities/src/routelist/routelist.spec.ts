@@ -1,5 +1,3 @@
-import * as assert from 'assert'
-
 import { checkIfRoutable } from './routelist'
 
 describe('checkIfRoutable', () => {
@@ -7,108 +5,99 @@ describe('checkIfRoutable', () => {
   const hotelId = 'f20c23b6-8eff-47d7-b25a-032be42c1ea6'
 
   it('should allow navigation to login path', () => {
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: '/login',
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to external url', () => {
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: 'https://google.com',
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to hotel details without regionId', () => {
     const path = `/hotels/${hotelId}`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to hotel details with regionId', () => {
     const path = `/regions/${regionId}/hotels/${hotelId}`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to attraction details with regionId', () => {
     const path = `/regions/${regionId}/attractions/${hotelId}`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should not allow navigation to attraction list', () => {
     const path = `/regions/${regionId}/attractions`
-
-    assert.ok(
-      !checkIfRoutable({
+    expect(
+      checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(false)
   })
 
   it('should not allow navigation to tna list', () => {
     const path = `/tna/regions/${regionId}/products`
-
-    assert.ok(
-      !checkIfRoutable({
+    expect(
+      checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(false)
   })
 
   it('should allow navigation to tna details', () => {
     const path = `/tna/regions/${regionId}/products/${hotelId}`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to hotel hub', () => {
     const path = `/hotels`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to hotels list', () => {
     const path = `/hotels/list`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 
   it('should allow navigation to article', () => {
     const path = `/articles/${hotelId}`
-
-    assert.ok(
+    expect(
       checkIfRoutable({
         href: path,
       }),
-    )
+    ).toBe(true)
   })
 })

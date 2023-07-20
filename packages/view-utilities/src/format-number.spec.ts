@@ -1,33 +1,31 @@
-import assert from 'assert'
-
 import { formatNumber } from './format-number'
 
-describe('formatNumber', function () {
-  it('should format number to string with comma', function () {
-    assert.strictEqual(formatNumber(0), '0')
-    assert.strictEqual(formatNumber(123), '123')
-    assert.strictEqual(formatNumber(24000), '24,000')
-    assert.strictEqual(formatNumber(1234567), '1,234,567')
-    assert.strictEqual(formatNumber(-1234567), '-1,234,567')
+describe('formatNumber', () => {
+  it('should format number to string with comma', () => {
+    expect(formatNumber(0)).toBe('0')
+    expect(formatNumber(123)).toBe('123')
+    expect(formatNumber(24000)).toBe('24,000')
+    expect(formatNumber(1234567)).toBe('1,234,567')
+    expect(formatNumber(-1234567)).toBe('-1,234,567')
   })
 
-  it('should format string number with comma', function () {
-    assert.strictEqual(formatNumber('0'), '0')
-    assert.strictEqual(formatNumber('123'), '123')
-    assert.strictEqual(formatNumber('24000'), '24,000')
-    assert.strictEqual(formatNumber('1234567'), '1,234,567')
-    assert.strictEqual(formatNumber('-1234567'), '-1,234,567')
+  it('should format string number with comma', () => {
+    expect(formatNumber('0')).toBe('0')
+    expect(formatNumber('123')).toBe('123')
+    expect(formatNumber('24000')).toBe('24,000')
+    expect(formatNumber('1234567')).toBe('1,234,567')
+    expect(formatNumber('-1234567')).toBe('-1,234,567')
   })
 
-  it('should return empty string when parameter is falsy value except number zero', function () {
-    assert.strictEqual(formatNumber(''), '')
-    assert.strictEqual(formatNumber(null), '')
-    assert.strictEqual(formatNumber(undefined), '')
+  it('should return empty string when the parameter is a falsy value except for number zero', () => {
+    expect(formatNumber('')).toBe('')
+    expect(formatNumber(null)).toBe('')
+    expect(formatNumber(undefined)).toBe('')
   })
 
-  it('should not add commas in decimals', function () {
-    assert.strictEqual(formatNumber(0.1), '0.1')
-    assert.strictEqual(formatNumber(0.1345), '0.1345')
-    assert.strictEqual(formatNumber(123214.324234), '123,214.324234')
+  it('should not add commas in decimals', () => {
+    expect(formatNumber(0.1)).toBe('0.1')
+    expect(formatNumber(0.1345)).toBe('0.1345')
+    expect(formatNumber(123214.324234)).toBe('123,214.324234')
   })
 })

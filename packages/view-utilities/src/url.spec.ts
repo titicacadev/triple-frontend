@@ -1,12 +1,10 @@
-import assert from 'assert'
-
 import qs from 'qs'
 
-import { parseUrl, generateUrl, getTripleUtmQuery } from './url'
+import { generateUrl, getTripleUtmQuery, parseUrl } from './url'
 
-describe('parseUrl', function () {
-  it('should parse http url', function () {
-    assert.deepStrictEqual(parseUrl('http://triple.guide'), {
+describe('parseUrl', () => {
+  it('should parse http url', () => {
+    expect(parseUrl('http://triple.guide')).toEqual({
       href: 'http://triple.guide',
       scheme: 'http',
       host: 'triple.guide',
@@ -16,8 +14,8 @@ describe('parseUrl', function () {
     })
   })
 
-  it('should parse https url', function () {
-    assert.deepStrictEqual(parseUrl('https://triple.guide'), {
+  it('should parse https url', () => {
+    expect(parseUrl('https://triple.guide')).toEqual({
       href: 'https://triple.guide',
       scheme: 'https',
       host: 'triple.guide',
@@ -27,8 +25,8 @@ describe('parseUrl', function () {
     })
   })
 
-  it('should parse url with custom scheme', function () {
-    assert.deepStrictEqual(parseUrl('triple://triple.guide'), {
+  it('should parse url with custom scheme', () => {
+    expect(parseUrl('triple://triple.guide')).toEqual({
       href: 'triple://triple.guide',
       scheme: 'triple',
       host: 'triple.guide',
@@ -38,22 +36,19 @@ describe('parseUrl', function () {
     })
   })
 
-  it('should parse simple url with query', function () {
-    assert.deepStrictEqual(
-      parseUrl('https://triple.guide?q=1&_triple_no_navbar'),
-      {
-        href: 'https://triple.guide?q=1&_triple_no_navbar',
-        scheme: 'https',
-        host: 'triple.guide',
-        path: '',
-        query: 'q=1&_triple_no_navbar',
-        hash: '',
-      },
-    )
+  it('should parse simple url with query', () => {
+    expect(parseUrl('https://triple.guide?q=1&_triple_no_navbar')).toEqual({
+      href: 'https://triple.guide?q=1&_triple_no_navbar',
+      scheme: 'https',
+      host: 'triple.guide',
+      path: '',
+      query: 'q=1&_triple_no_navbar',
+      hash: '',
+    })
   })
 
-  it('should parse simple url with hash', function () {
-    assert.deepStrictEqual(parseUrl('https://triple.guide#show-me-the-money'), {
+  it('should parse simple url with hash', () => {
+    expect(parseUrl('https://triple.guide#show-me-the-money')).toEqual({
       href: 'https://triple.guide#show-me-the-money',
       scheme: 'https',
       host: 'triple.guide',
@@ -63,164 +58,153 @@ describe('parseUrl', function () {
     })
   })
 
-  it('should parse poi page', function () {
-    assert.deepStrictEqual(
+  it('should parse poi page', () => {
+    expect(
       parseUrl(
         'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
       ),
-      {
-        href: 'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        scheme: 'https',
-        host: 'triple.guide',
-        path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: 'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      scheme: 'https',
+      host: 'triple.guide',
+      path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: '',
+    })
   })
 
-  it('should parse poi page with hash', function () {
-    assert.deepStrictEqual(
+  it('should parse poi page with hash', () => {
+    expect(
       parseUrl(
         'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
       ),
-      {
-        href: 'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
-        scheme: 'https',
-        host: 'triple.guide',
-        path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: 'reviews',
-      },
-    )
+    ).toEqual({
+      href: 'https://triple.guide/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
+      scheme: 'https',
+      host: 'triple.guide',
+      path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: 'reviews',
+    })
   })
 
-  it('should parse relative path of poi page', function () {
-    assert.deepStrictEqual(
+  it('should parse relative path of poi page', () => {
+    expect(
       parseUrl(
         '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
       ),
-      {
-        href: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        scheme: '',
-        host: '',
-        path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      scheme: '',
+      host: '',
+      path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: '',
+    })
   })
 
-  it('should parse app url of poi page', function () {
-    assert.deepStrictEqual(
+  it('should parse app url of poi page', () => {
+    expect(
       parseUrl(
         'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
       ),
-      {
-        href: 'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        scheme: 'triple',
-        host: '',
-        path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: 'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      scheme: 'triple',
+      host: '',
+      path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: '',
+    })
   })
 
-  it('should parse app url of poi page with hash', function () {
-    assert.deepStrictEqual(
+  it('should parse app url of poi page with hash', () => {
+    expect(
       parseUrl(
         'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
       ),
-      {
-        href: 'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
-        scheme: 'triple',
-        host: '',
-        path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: 'reviews',
-      },
-    )
+    ).toEqual({
+      href: 'triple:///regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#reviews',
+      scheme: 'triple',
+      host: '',
+      path: '/regions/5b13316d-0bfc-4f90-93a1-69ff5a6d1f48/attractions/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: 'reviews',
+    })
   })
 
-  it('should parse article page', function () {
-    assert.deepStrictEqual(
+  it('should parse article page', () => {
+    expect(
       parseUrl(
         'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
       ),
-      {
-        href: 'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        scheme: 'https',
-        host: 'triple.guide',
-        path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: 'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      scheme: 'https',
+      host: 'triple.guide',
+      path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: '',
+    })
   })
 
-  it('should parse outlink', function () {
-    assert.deepStrictEqual(
+  it('should parse outlink', () => {
+    expect(
       parseUrl(
         '/outlink?url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
       ),
-      {
-        href: '/outlink?url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
-        scheme: '',
-        host: '',
-        path: '/outlink',
-        query:
-          'url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: '/outlink?url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
+      scheme: '',
+      host: '',
+      path: '/outlink',
+      query:
+        'url=https%3A%2F%2Ftriple.guide%2Farticles%2F68dc3c17-01e9-45d2-aa04-a2891d5c7b69%3F_triple_no_navbar%26_triple_swipe_to_close',
+      hash: '',
+    })
   })
 
-  it('should trim passed url before parsing', function () {
-    assert.deepStrictEqual(
+  it('should trim passed url before parsing', () => {
+    expect(
       parseUrl(
         ' https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3\t ',
       ),
-      {
-        href: 'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        scheme: 'https',
-        host: 'triple.guide',
-        path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
-        query: '',
-        hash: '',
-      },
-    )
+    ).toEqual({
+      href: 'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      scheme: 'https',
+      host: 'triple.guide',
+      path: '/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3',
+      query: '',
+      hash: '',
+    })
   })
 })
 
-describe('generateUrl', function () {
-  it('should generate url with scheme and host only', function () {
-    assert.strictEqual(
-      generateUrl({ scheme: 'https', host: 'triple.guide' }),
+describe('generateUrl', () => {
+  it('should generate url with scheme and host only', () => {
+    expect(generateUrl({ scheme: 'https', host: 'triple.guide' })).toBe(
       'https://triple.guide',
     )
   })
 
-  it('should generate url with scheme, host and path only', function () {
-    assert.strictEqual(
+  it('should generate url with scheme, host and path only', () => {
+    expect(
       generateUrl({
         scheme: 'https',
         host: 'triple.guide',
         path: '/announcements',
       }),
-      'https://triple.guide/announcements',
-    )
+    ).toBe('https://triple.guide/announcements')
   })
 
-  it('should generate url with scheme and path only', function () {
-    assert.strictEqual(
-      generateUrl({ scheme: 'triple', path: '/announcements' }),
+  it('should generate url with scheme and path only', () => {
+    expect(generateUrl({ scheme: 'triple', path: '/announcements' })).toBe(
       'triple:///announcements',
     )
   })
 
-  it('should generate url with all elements', function () {
-    assert.strictEqual(
+  it('should generate url with all elements', () => {
+    expect(
       generateUrl({
         scheme: 'https',
         host: 'triple.guide',
@@ -228,16 +212,18 @@ describe('generateUrl', function () {
         query: 'in_region=true',
         hash: 'reviews',
       }),
+    ).toBe(
       'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3?in_region=true#reviews',
     )
   })
 
-  it('should generate url with base url', function () {
-    assert.strictEqual(
+  it('should generate url with base url', () => {
+    expect(
       generateUrl(
         { query: 'in_region=true', hash: 'reviews' },
         'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3#nearby',
       ),
+    ).toBe(
       'https://triple.guide/articles/e62129b9-ea71-4d3a-bcd8-a2af12566ca3?in_region=true#reviews',
     )
   })
@@ -359,8 +345,8 @@ describe('generateUrl', function () {
   })
 })
 
-describe('getTripleUtmQuery', function () {
-  it('should only get targetQuery', function () {
+describe('getTripleUtmQuery', () => {
+  it('should only get targetQuery', () => {
     const parsedQuery = {
       _web_expand: 'true',
       triple_link_param_item_id: '123-1234',

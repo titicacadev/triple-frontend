@@ -1,7 +1,7 @@
 import type { IncomingMessage } from 'http'
 
-import type { PropsWithChildren } from 'react'
 import { renderHook } from '@testing-library/react'
+import type { PropsWithChildren } from 'react'
 
 import {
   TripleClientMetadataProvider,
@@ -16,7 +16,7 @@ describe('useTripleClientMetadata', () => {
 
     const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
-    expect(result.current).toBe(null)
+    expect(result.current).toBeNull()
   })
 
   it('should return null when provider has not received proper app props', () => {
@@ -28,7 +28,7 @@ describe('useTripleClientMetadata', () => {
 
     const { result } = renderHook(() => useTripleClientMetadata(), { wrapper })
 
-    expect(result.current).toBe(null)
+    expect(result.current).toBeNull()
   })
 
   it('should return app spec when provider has received proper app props', () => {

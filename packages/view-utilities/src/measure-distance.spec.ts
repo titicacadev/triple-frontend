@@ -1,9 +1,7 @@
-import assert from 'assert'
-
 import { measureDistance } from './measure-distance'
 
-describe('measureDistance', function () {
-  it('직선거리', function () {
+describe('measureDistance', () => {
+  it('직선거리', () => {
     const distance = measureDistance(
       {
         coordinates: [121.525966, 25.094853],
@@ -15,6 +13,6 @@ describe('measureDistance', function () {
       },
     )
 
-    assert.strictEqual(248, distance)
+    expect(distance).toBe(248)
   })
 })
