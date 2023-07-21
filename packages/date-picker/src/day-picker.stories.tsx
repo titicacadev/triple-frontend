@@ -1,17 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import MockDate from 'mockdate'
 
 import DayPicker from './day-picker'
 
 export default {
   title: 'date-picker / DayPicker',
   component: DayPicker,
-  decorators: [
-    (Story) => {
-      MockDate.set('1/1/2022')
-      return <Story />
-    },
-  ],
+  parameters: {
+    date: new Date('1/1/2022'),
+  },
 } as Meta
 
 export const Basic: StoryObj<typeof DayPicker> = {
