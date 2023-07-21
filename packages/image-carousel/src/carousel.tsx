@@ -72,7 +72,6 @@ function Carousel({
     collectStatistics: false,
   }
 
-  // eslint-disable-next-line testing-library/render-result-naming-convention
   const PageLabel = pageLabelRenderer({ currentIndex })
 
   return (
