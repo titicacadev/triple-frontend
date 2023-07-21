@@ -1,13 +1,14 @@
 import { withActions } from '@storybook/addon-actions/decorator'
-import { initialize, mswLoader } from 'msw-storybook-addon'
+import { GlobalStyle } from '@titicaca/core-elements'
 import {
+  EnvProvider,
   HistoryProvider,
   SessionContextProvider,
-  EnvProvider,
   UserAgentProvider,
 } from '@titicaca/react-contexts'
 import { TripleClientMetadataProvider } from '@titicaca/react-triple-client-interfaces'
-import { GlobalStyle } from '@titicaca/core-elements'
+import { initialize, mswLoader } from 'msw-storybook-addon'
+import { mockDateDecorator } from 'storybook-mock-date-decorator'
 import { I18nDecorator } from './i18n'
 
 // Initialize MSW
@@ -24,6 +25,7 @@ const preview = {
   loaders: [mswLoader],
   decorators: [
     withActions,
+    mockDateDecorator,
     globalStyleDecorator,
     tripleClientMetadataDecorator,
     userAgentProviderDecorator,
