@@ -44,7 +44,7 @@ const preview = {
         items: [
           { value: 'ko', right: '🇰🇷', title: '한국어' },
           { value: 'ja', right: '🇯🇵', title: '일본어' },
-          { value: 'zh', right: '🇨🇳', title: '중국어(번체)' },
+          { value: 'zh-TW', right: '🇨🇳', title: '중국어(번체)' },
         ],
       },
     },
