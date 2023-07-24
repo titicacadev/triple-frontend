@@ -1,8 +1,14 @@
+const fs = require('fs')
+
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
+const stories = fs
+  .readdirSync('packages')
+  .map((pkg) => `../packages/${pkg}/src/**/*.stories.@(mdx,js|jsx|ts|tsx)`)
 
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
-  stories: ['../packages/**/!(/lib)/*.stories.@(mdx,js|jsx|ts|tsx)'],
+  stories,
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-links',
@@ -30,9 +36,9 @@ const config = {
   framework: {
     name: '@storybook/nextjs',
     options: {
-      builder: {
-        lazyCompilation: true,
-      },
+      builder: {},
+      fastRefresh: true,
+      strictMode: true,
     },
   },
   webpackFinal: async (config) => {
@@ -58,6 +64,9 @@ const config = {
     autodocs: true,
   },
   staticDirs: ['./public'],
+  features: {
+    buildStoriesJson: true,
+  },
 }
 
 export default config
