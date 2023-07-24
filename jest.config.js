@@ -14,6 +14,9 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/.pnpm/(?!(firebase|@firebase\\+util)@)',
+  ],
   collectCoverageFrom: [
     '<rootDir>/packages/**/*.{js,jsx,ts,tsx}',
     '!**/*.stories.*',
