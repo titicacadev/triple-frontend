@@ -1,12 +1,47 @@
 import type { Meta } from '@storybook/react'
+import { appWithTranslation } from '@titicaca/next-i18next'
 
-import ELEMENTS from './elements'
-import HOTEL from './mocks/hotel.sample.json'
+import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
+import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
+import { zhTwCommonWeb } from '../../i18n/src/assets/zh-TW/common-web'
+
 import POIS from './mocks/pois.sample.json'
+import HOTEL from './mocks/hotel.sample.json'
+import ELEMENTS from './elements'
 
 const { pois: Pois } = ELEMENTS
 
-export default { title: 'triple-document / POI', component: Pois } as Meta
+const locales = ['ko', 'ja', 'zh-TW']
+const resources = {
+  ko: {
+    'common-web': koCommonWeb,
+  },
+  ja: {
+    'common-web': jaCommonWeb,
+  },
+  'zh-TW': {
+    'common-web': zhTwCommonWeb,
+  },
+}
+
+export default {
+  title: 'triple-document / POI',
+  component: Pois,
+  decorators: [
+    (Story, context) => {
+      const App = appWithTranslation(Story, {
+        i18n: { locales, defaultLocale: locales[0] },
+        lng: context.globals.locale,
+        fallbackLng: 'ko',
+        resources,
+        defaultNS: 'common-web',
+        serializeConfig: false,
+      })
+
+      return <App pageProps={{}} />
+    },
+  ],
+} as Meta
 
 export function Normal() {
   return (
