@@ -1,13 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@titicaca/constants": ["../constants/src"],
-      "@titicaca/fetcher": ["../fetcher/src"],
-      "@titicaca/type-definitions": ["../type-definitions/src"],
-      "@titicaca/view-utilities": ["../view-utilities/src"]
-    }
-  },
-  "exclude": ["**/node_modules", "lib"]
+  "exclude": ["node_modules", "lib"]
 }

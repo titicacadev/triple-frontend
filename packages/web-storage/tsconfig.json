@@ -1,11 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/modals": ["../modals/src"]
-    }
-  },
-  "exclude": ["**/node_modules", "lib"]
+  "exclude": ["node_modules", "lib"]
 }
