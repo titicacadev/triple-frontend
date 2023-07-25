@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { StaticPageContents } from '.'
+import { StaticPageContents } from './static-page-contents'
 
 export default {
   title: 'static-page-contents / Static Page Contents',

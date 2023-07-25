@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Pricing from '.'
+import Pricing from './pricing'
 
 export default {
   title: 'pricing / Pricing',

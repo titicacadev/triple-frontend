@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ListingFilter from '.'
+import ListingFilter from './listing-filter'
 
 export default {
   title: 'listing-filter / ListingFilter',

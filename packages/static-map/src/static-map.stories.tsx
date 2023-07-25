@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import StaticMap from '.'
+import StaticMap from './static-map'
 
 export default {
   title: 'static-map / StaticMap',

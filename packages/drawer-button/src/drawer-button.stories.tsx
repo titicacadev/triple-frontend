@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import DrawerButton from '.'
+import DrawerButton from './drawer-button'
 
 export default {
   title: 'drawer-button / DrawerButton',

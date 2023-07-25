@@ -1,3 +1,1 @@
-import LocationProperties from './location-properties'
-
-export default LocationProperties
+export { default } from './location-properties'
