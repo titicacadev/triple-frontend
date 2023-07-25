@@ -17,12 +17,6 @@
     "*": {
       "*": [
         "lib/index.d.ts"
-      ],
-      "common": [
-        "lib/app-directory/common/index.d.ts"
-      ],
-      "client": [
-        "lib/app-directory/client/index.d.ts"
       ]
     }
   },
@@ -31,16 +25,6 @@
       "import": "./lib/index.js",
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
-    },
-    "./common": {
-      "import": "./lib/app-directory/common/index.js",
-      "require": "./lib/app-directory/common/index.js",
-      "types": "./lib/app-directory/common/index.d.ts"
-    },
-    "./client": {
-      "import": "./lib/app-directory/client/index.js",
-      "require": "./lib/app-directory/client/index.js",
-      "types": "./lib/app-directory/client/index.d.ts"
     }
   },
   "files": [
