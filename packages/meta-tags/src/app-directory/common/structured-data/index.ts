@@ -1,5 +1,0 @@
-export * from './article-script'
-export * from './breadcrumb-list-script'
-export * from './local-business-script'
-export * from './product-script'
-export * from './review-script'
