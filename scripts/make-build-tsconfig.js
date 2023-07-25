@@ -3,50 +3,10 @@ const fs = require('fs')
 
 const prettier = require('prettier')
 
-const { dependencies, devDependencies } = require(path.resolve(
-  process.cwd(),
-  './package.json',
-))
-
-function dependenciesToPaths(deps) {
-  if (!deps) {
-    return {}
-  }
-
-  return Object.keys(deps)
-    .filter((packageName) => packageName.startsWith('@titicaca/'))
-    .filter((packageName) =>
-      fs.existsSync(
-        path.relative(
-          process.cwd(),
-          path.join(
-            process.env.LERNA_ROOT_PATH,
-            './packages',
-            packageName.replace('@titicaca/', ''),
-          ),
-        ),
-      ),
-    )
-    .reduce(
-      (paths, packageName) => ({
-        ...paths,
-        [packageName]: [`../${packageName.replace('@titicaca/', '')}/src`],
-      }),
-      {},
-    )
-}
-
 async function main() {
   const tsconfig = {
     extends: '../../tsconfig.json',
-    compilerOptions: {
-      baseUrl: '.',
-      paths: {
-        ...dependenciesToPaths(dependencies),
-        ...dependenciesToPaths(devDependencies),
-      },
-    },
-    exclude: ['**/node_modules', 'lib'],
+    exclude: ['node_modules', 'lib'],
   }
 
   const buildTsconfig = {
@@ -57,6 +17,7 @@ async function main() {
     include: ['src/**/*'],
     exclude: [
       'node_modules',
+      'lib',
       'src/**/*.test.*',
       'src/**/*.spec.*',
       'src/**/*.stories.*',
