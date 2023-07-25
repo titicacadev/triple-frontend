@@ -1,16 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@titicaca/modals": ["../modals/src"],
-      "@titicaca/view-utilities": ["../view-utilities/src"],
-      "@titicaca/i18n": ["../i18n/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"],
-      "@titicaca/react-triple-client-interfaces": [
-        "../react-triple-client-interfaces/src"
-      ]
-    }
-  },
-  "exclude": ["**/node_modules", "lib"]
+  "exclude": ["node_modules", "lib"]
 }

@@ -1,10 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@titicaca/view-utilities": ["../view-utilities/src"]
-    }
-  },
-  "exclude": ["**/node_modules", "lib"]
+  "exclude": ["node_modules", "lib"]
 }

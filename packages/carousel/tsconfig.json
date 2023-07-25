@@ -1,14 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@titicaca/core-elements": ["../core-elements/src"],
-      "@titicaca/icons": ["../icons/src"],
-      "@titicaca/intersection-observer": ["../intersection-observer/src"],
-      "@titicaca/react-contexts": ["../react-contexts/src"],
-      "@titicaca/type-definitions": ["../type-definitions/src"]
-    }
-  },
-  "exclude": ["**/node_modules", "lib"]
+  "exclude": ["node_modules", "lib"]
 }
