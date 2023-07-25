@@ -1,12 +1,12 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { ReactElement } from 'react'
 
 import {
-  TRIPLE_FALLBACK_ACTION_CLASS_NAME,
   TripleFallbackActionRemover,
   TripleFallbackActionScript,
-} from '.'
+  TRIPLE_FALLBACK_ACTION_CLASS_NAME,
+} from './triple-fallback-action'
 
 const back = jest.spyOn(history, 'back')
 

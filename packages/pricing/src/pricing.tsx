@@ -14,8 +14,6 @@ import FixedPricing, { FixedPricingProps } from './fixed-pricing'
 
 export type BasePrice = number | null
 
-export { default as FixedPricingV2 } from './fixed-pricing-v2'
-
 interface RegularPricingProps {
   basePrice?: BasePrice
   salePrice?: number

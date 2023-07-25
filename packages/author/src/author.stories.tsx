@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react'
 
-import Author from '.'
+import Author from './author'
 
 export default {
   title: 'author / Author',

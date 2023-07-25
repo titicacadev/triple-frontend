@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import POIS from './mocks/pois.sample.json'
-
-import { ScrollSpyContainer, ScrollSpyEntity } from '.'
+import { ScrollSpyContainer, ScrollSpyEntity } from './scroll-spy'
 
 function ScrollSpy() {
   const [activeId, setActiveId] = useState<string | null>(null)
