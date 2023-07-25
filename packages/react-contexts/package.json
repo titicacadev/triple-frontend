@@ -11,8 +11,8 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "typesVersions": {
     "*": {
       "*": [
@@ -34,6 +34,10 @@
       "require": "./lib/middleware.js",
       "types": "./lib/middleware.d.ts"
     }
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts"
   },
   "files": [
     "lib"
