@@ -13,8 +13,8 @@ const COMMON_TRANSITION = {
   duration: 3,
 }
 
-export function generateTransition(
-  initialOptions: InitialEffectOptions & { duration?: number },
+export function generateTransition<T>(
+  initialOptions: T & InitialEffectOptions & { duration?: number },
   index: number,
   totalFramesCount: number,
 ) {
@@ -27,6 +27,7 @@ export function generateTransition(
 
   const transition = {
     ...COMMON_TRANSITION,
+    duration,
     ...options,
     ...(infinity && { repeat: Infinity }),
     ...(repeatType && {
