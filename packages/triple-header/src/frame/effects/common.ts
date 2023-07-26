@@ -13,11 +13,17 @@ const COMMON_TRANSITION = {
   duration: 3,
 }
 
-export function generateTransition<T>(
-  initialOptions: T & InitialEffectOptions,
+export function generateTransition(
+  initialOptions: InitialEffectOptions & { duration?: number },
 ) {
-  const { infinity, repeatType, index, totalFramesCount, ...options } =
-    initialOptions
+  const {
+    infinity,
+    repeatType,
+    duration = COMMON_TRANSITION.duration,
+    index,
+    totalFramesCount,
+    ...options
+  } = initialOptions
 
   const transition = {
     ...COMMON_TRANSITION,
@@ -26,8 +32,10 @@ export function generateTransition<T>(
     ...(repeatType && {
       repeatType,
     }),
-    ...(index && { delay: 3 * index }),
-    ...(totalFramesCount && { repeatDelay: 3 * (totalFramesCount - 1) }),
+    ...(index && { delay: COMMON_TRANSITION.duration * index }),
+    ...(totalFramesCount && {
+      repeatDelay: COMMON_TRANSITION.duration * totalFramesCount - duration,
+    }),
   }
 
   return transition
