@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "13.2.0",
+  "version": "13.2.1",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
@@ -39,14 +39,14 @@
     ]
   },
   "dependencies": {
-    "@titicaca/fetcher": "^13.2.0",
-    "@titicaca/modals": "^13.2.0",
-    "@titicaca/react-contexts": "^13.2.0",
-    "@titicaca/view-utilities": "^13.2.0",
+    "@titicaca/fetcher": "^13.2.1",
+    "@titicaca/modals": "^13.2.1",
+    "@titicaca/react-contexts": "^13.2.1",
+    "@titicaca/view-utilities": "^13.2.1",
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/react-triple-client-interfaces": "^13.2.0",
+    "@titicaca/react-triple-client-interfaces": "^13.2.1",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {

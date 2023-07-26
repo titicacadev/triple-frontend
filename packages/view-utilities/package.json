@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "13.2.0",
+  "version": "13.2.1",
   "description": "Utilities for Triple view libraries and applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/view-utilities",
@@ -48,7 +48,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/type-definitions": "^13.2.0",
+    "@titicaca/type-definitions": "^13.2.1",
     "@types/qs": "^6.9.7",
     "haversine": "^1.1.1",
     "humps": "^2.0.1",
@@ -56,7 +56,7 @@
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.2.0",
+    "@titicaca/i18n": "^13.2.1",
     "@titicaca/next-i18next": "13.8.5",
     "@types/haversine": "^1.1.5",
     "@types/humps": "^2.0.3"
