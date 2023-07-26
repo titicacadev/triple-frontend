@@ -2,6 +2,105 @@
 
 ## v13.2.0
 
+### color-palette
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### core-elements
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### date-picker
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+- mockdate 대신 storybook-mock-date-decorator 사용 [#2816](https://github.com/titicacadev/triple-frontend/pull/2816)
+
+### directions-finder
+
+- 현지에서 길묻기 팝업 글씨 크기를 조정합니다. [#2812](https://github.com/titicacadev/triple-frontend/pull/2812)
+
+### fetcher
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### image-carousel
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### map
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### meta-tags
+
+- app directory용 메타태그 유틸 함수를 작성합니다. [#2789](https://github.com/titicacadev/triple-frontend/pull/2789)
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
+### modals
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### public-header
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### react-contexts
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
+### react-triple-client-interfaces
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### replies
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### router
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### scrap-button
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### scroll-spy
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### scroll-to-element
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### triple-email-document
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### triple-fallback-action
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### ui-flow
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### user-verification
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+
+### view-utilities
+
+- 테스트 코드 린트 [#2815](https://github.com/titicacadev/triple-frontend/pull/2815)
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
+## v13.2.0
+
 ### core-elements
 
 - react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
