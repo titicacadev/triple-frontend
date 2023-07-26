@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## v13.2.0
+
+### core-elements
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+
+### date-picker
+
+- mockdate 대신 storybook-mock-date-decorator 사용 [#2816](https://github.com/titicacadev/triple-frontend/pull/2816)
+
+### directions-finder
+
+- 현지에서 길묻기 팝업 글씨 크기를 조정합니다 [#2812](https://github.com/titicacadev/triple-frontend/pull/2812)
+
+### meta-tags
+
+- app directory용 메타태그 유틸 함수를 작성합니다. [#2789](https://github.com/titicacadev/triple-frontend/pull/2789)
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
+### react-contexts
+
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
+### replies
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+
+### router
+
+- react-test-renderer -> testing-library 변경 [#2814](https://github.com/titicacadev/triple-frontend/pull/2814)
+
+### view-utilities
+
+- app-directory 관련 코드를 TF에서 삭제합니다. [#2826](https://github.com/titicacadev/triple-frontend/pull/2826)
+
 ## v13.1.3
 
 ### react-contexts
