@@ -40,7 +40,11 @@ export function ImageFrame({
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return Object.keys(image).length > 0 ? (
-    <EffectElement options={{ ...effect?.options, index, totalFramesCount }}>
+    <EffectElement
+      options={effect?.options}
+      index={index}
+      totalFramesCount={totalFramesCount}
+    >
       <Image
         src={image.sizes.full.url}
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, image.link)}

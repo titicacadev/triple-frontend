@@ -15,13 +15,13 @@ const COMMON_TRANSITION = {
 
 export function generateTransition(
   initialOptions: InitialEffectOptions & { duration?: number },
+  index: number,
+  totalFramesCount: number,
 ) {
   const {
     infinity,
     repeatType,
     duration = COMMON_TRANSITION.duration,
-    index,
-    totalFramesCount,
     ...options
   } = initialOptions
 

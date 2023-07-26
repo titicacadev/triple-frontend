@@ -36,7 +36,11 @@ export function TextFrame({
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
 
   return (
-    <EffectElement options={{ ...effect?.options, index, totalFramesCount }}>
+    <EffectElement
+      options={effect?.options}
+      index={index}
+      totalFramesCount={totalFramesCount}
+    >
       <Text
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, text.link)}
       >
