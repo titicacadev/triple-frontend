@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.2.1
+
+### react-contexts
+
+- react-contexts의 middleware export 경로를 복구합니다. [#2829](https://github.com/titicacadev/triple-frontend/pull/2829)
+
 ## v13.2.0
 
 ### color-palette
