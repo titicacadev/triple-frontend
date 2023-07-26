@@ -9,14 +9,28 @@ type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
 }
 
-export type FlyingEffect = { type: 'flying' } & FlyingProps
+export type FlyingEffect = { type: 'flying' } & Omit<
+  FlyingProps,
+  'index' | 'totalFramesCount'
+>
 
 interface FlyingProps {
-  options: ExtendedEffectOptions
+  options?: ExtendedEffectOptions
+  index: number
+  totalFramesCount: number
 }
 
-export function Flying({ children, options }: PropsWithChildren<FlyingProps>) {
-  const transition = generateTransition({ ...options, duration: 0.3 })
+export function Flying({
+  children,
+  options = {},
+  index,
+  totalFramesCount,
+}: PropsWithChildren<FlyingProps>) {
+  const transition = generateTransition(
+    { ...options, duration: 0.3 },
+    index,
+    totalFramesCount,
+  )
 
   return (
     <MotionContainer

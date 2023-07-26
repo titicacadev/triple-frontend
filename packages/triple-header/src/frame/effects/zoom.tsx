@@ -5,14 +5,24 @@ import { MotionContainer } from '../../motion-container'
 import { InitialEffectOptions } from './types'
 import { generateTransition, stringifyTransition } from './common'
 
-export type ZoomEffect = { type: 'zoom' } & ZoomProps
+export type ZoomEffect = { type: 'zoom' } & Omit<
+  ZoomProps,
+  'index' | 'totalFramesCount'
+>
 
 interface ZoomProps {
-  options: InitialEffectOptions
+  options?: InitialEffectOptions
+  index: number
+  totalFramesCount: number
 }
 
-export function Zoom({ children, options }: PropsWithChildren<ZoomProps>) {
-  const transition = generateTransition(options)
+export function Zoom({
+  children,
+  options = {},
+  index,
+  totalFramesCount,
+}: PropsWithChildren<ZoomProps>) {
+  const transition = generateTransition(options, index, totalFramesCount)
 
   return (
     <MotionContainer

@@ -9,14 +9,24 @@ type ExtendedEffectOptions = InitialEffectOptions & {
   degree?: number
 }
 
-export type RotateEffect = { type: 'rotate' } & RotateProps
+export type RotateEffect = { type: 'rotate' } & Omit<
+  RotateProps,
+  'index' | 'totalFramesCount'
+>
 
 interface RotateProps {
-  options: ExtendedEffectOptions
+  options?: ExtendedEffectOptions
+  index: number
+  totalFramesCount: number
 }
 
-export function Rotate({ children, options }: PropsWithChildren<RotateProps>) {
-  const transition = generateTransition(options)
+export function Rotate({
+  children,
+  options = {},
+  index,
+  totalFramesCount,
+}: PropsWithChildren<RotateProps>) {
+  const transition = generateTransition(options, index, totalFramesCount)
 
   return (
     <MotionContainer
