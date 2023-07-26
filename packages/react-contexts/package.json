@@ -17,6 +17,9 @@
     "*": {
       "*": [
         "lib/index.d.ts"
+      ],
+      "middleware": [
+        "lib/middleware.d.ts"
       ]
     }
   },
@@ -25,6 +28,11 @@
       "import": "./lib/index.js",
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
+    },
+    "./middleware": {
+      "import": "./lib/middleware.js",
+      "require": "./lib/middleware.js",
+      "types": "./lib/middleware.d.ts"
     }
   },
   "files": [
