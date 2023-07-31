@@ -70,14 +70,14 @@ export default function AskToTheLocal({
           marginTop: 20,
         }}
       >
-        <Text maxLines={2} color="blue" size={36}>
+        <Text color="blue" size={36}>
           {localName}
         </Text>
         <Text margin={{ top: 10 }} size={28} css={{ lineHeight: '38px' }}>
           {localAddress}
         </Text>
         <HR1 compact css={{ marginTop: 20, marginBottom: 20 }} />
-        <Text textStyle="M" alpha={0.7}>
+        <Text textStyle="M" alpha={0.7} css={{ marginBottom: 150 }}>
           {primaryName}
         </Text>
         {phoneNumber ? (
@@ -86,6 +86,7 @@ export default function AskToTheLocal({
               css={{
                 margin: '0 30px',
                 padding: '0 0 10px',
+                background: 'var(--color-white)',
               }}
             >
               <CallButton fluid borderRadius={4} onClick={handleCall}>
