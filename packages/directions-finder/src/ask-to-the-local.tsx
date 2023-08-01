@@ -84,8 +84,7 @@ export default function AskToTheLocal({
           <Drawer active={open}>
             <DrawerContentContainer
               css={{
-                margin: '0 30px',
-                padding: '0 0 10px',
+                padding: '0 30px 10px',
                 background: 'var(--color-white)',
               }}
             >
