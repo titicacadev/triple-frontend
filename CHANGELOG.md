@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v13.2.2
+
+### directions-finder
+
+- 현지에서 길묻기 ellipsis 옵션 삭제 [#2834](https://github.com/titicacadev/triple-frontend/pull/2834)
+
+### react-contexts
+
+- react-contexts의 middleware export 경로를 복구합니다. [#2829](https://github.com/titicacadev/triple-frontend/pull/2829)
+
+### view-utilities
+
+- feat: debounce에 leading, trailing 옵션 추가 [#2740](https://github.com/titicacadev/triple-frontend/pull/2740)
+
 ## v13.2.1
 
 ### react-contexts
