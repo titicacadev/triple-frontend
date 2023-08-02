@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/drawer-button",
-  "version": "13.2.1",
+  "version": "13.2.2",
   "description": "Button in drawer",
   "keywords": [
     "button",
@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "^13.2.1"
+    "@titicaca/core-elements": "^13.2.2"
   },
   "peerDependencies": {
     "react": "^18.0",
