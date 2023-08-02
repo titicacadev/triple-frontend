@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/hub-form",
-  "version": "13.2.1",
+  "version": "13.2.2",
   "description": "Form for hub-like pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/hub-form",
@@ -35,8 +35,8 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "^13.2.1",
-    "@titicaca/core-elements": "^13.2.1"
+    "@titicaca/color-palette": "^13.2.2",
+    "@titicaca/core-elements": "^13.2.2"
   },
   "peerDependencies": {
     "react": "^18.0",
