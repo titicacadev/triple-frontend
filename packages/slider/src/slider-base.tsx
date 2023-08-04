@@ -8,8 +8,8 @@ import {
 } from 'react'
 import styled from 'styled-components'
 import { Rail, Slider as OriginalSlider, Handles } from 'react-compound-slider'
-import { debounce } from '@titicaca/view-utilities'
 import { Container } from '@titicaca/core-elements'
+import { debounce } from '@titicaca/view-utilities'
 
 import Handle from './handle'
 import { ValueTransformer, SliderValue } from './types'
@@ -44,6 +44,10 @@ export interface SliderBaseProps {
    * initialValues가 step의 배수가 아닐 경우 가까운 숫자로 조정
    */
   adjustInitValues?: boolean
+  /**
+   * 비활성화 (Handler를 감추고 배경색을 변경합니다)
+   */
+  disabled?: boolean
 }
 
 const IDENTICAL_SCALE: ValueTransformer = (x) => x
@@ -62,11 +66,11 @@ const SliderContainer = styled.div`
   touch-action: pan-x;
 `
 
-const RailBase = styled.div`
+const RailBase = styled.div<Pick<SliderBaseProps, 'disabled'>>`
   position: absolute;
   width: 100%;
   border-radius: 4px;
-  background-color: #efefef;
+  background-color: ${({ disabled }) => (disabled ? '#368FFF4D' : '#efefef')};
   height: 3px;
   transform: translate(0, -50%);
 `
@@ -85,6 +89,7 @@ export default function SliderBase({
   nonLinear,
   debounceTime = 500,
   adjustInitValues,
+  disabled = false,
   children,
 }: PropsWithChildren<SliderBaseProps>) {
   const [values, setValues] = useState<SliderValue>(
@@ -147,34 +152,35 @@ export default function SliderBase({
           onUpdate={(newValues) =>
             setValues(newValues.map(scaleFnInverse).map(limiter))
           }
+          disabled={disabled}
         >
-          <Rail>{() => <RailBase />}</Rail>
-
-          <Handles>
-            {({ handles, getHandleProps }) => (
-              <>
-                {handles.map(({ id, percent }, i) => (
-                  <Handle
-                    key={i}
-                    percent={percent}
-                    {...getHandleProps(id)}
-                    tabIndex={0}
-                    role="slider"
-                    aria-valuemax={
-                      i === 0 && adjustedValues.length > 1
-                        ? adjustedValues[1] - step
-                        : max
-                    }
-                    aria-valuemin={i === 0 ? min : adjustedValues[0] + step}
-                    aria-valuenow={adjustedValues[i]}
-                    aria-orientation="horizontal"
-                  />
-                ))}
-              </>
-            )}
-          </Handles>
-
-          {children}
+          <Rail>{() => <RailBase disabled={disabled} />}</Rail>
+          {!disabled && (
+            <Handles>
+              {({ handles, getHandleProps }) => (
+                <>
+                  {handles.map(({ id, percent }, i) => (
+                    <Handle
+                      key={i}
+                      percent={percent}
+                      {...getHandleProps(id)}
+                      tabIndex={0}
+                      role="slider"
+                      aria-valuemax={
+                        i === 0 && adjustedValues.length > 1
+                          ? adjustedValues[1] - step
+                          : max
+                      }
+                      aria-valuemin={i === 0 ? min : adjustedValues[0] + step}
+                      aria-valuenow={adjustedValues[i]}
+                      aria-orientation="horizontal"
+                    />
+                  ))}
+                </>
+              )}
+            </Handles>
+          )}
+          {!disabled && children}
         </OriginalSlider>
       </SliderContainer>
     </Container>
