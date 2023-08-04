@@ -14,5 +14,17 @@ export const Baisc: StoryObj<typeof SingleSlider> = {
     debounceTime: 800,
     nonLinear: false,
     initialValue: 0,
+    disabled: false,
+  },
+}
+
+export const Disabled: StoryObj<typeof SingleSlider> = {
+  args: {
+    min: 0,
+    max: 500000,
+    debounceTime: 800,
+    nonLinear: false,
+    initialValue: 0,
+    disabled: true,
   },
 }

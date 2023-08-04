@@ -14,6 +14,7 @@ export const Basic: StoryObj<typeof RangeSlider> = {
     debounceTime: 800,
     nonLinear: false,
     initialValues: [0, 500000],
+    disabled: false,
   },
 }
 
@@ -26,5 +27,17 @@ export const Adjusted: StoryObj<typeof RangeSlider> = {
     debounceTime: 800,
     nonLinear: false,
     initialValues: [1, 31],
+    disabled: false,
+  },
+}
+
+export const Disabled: StoryObj<typeof RangeSlider> = {
+  args: {
+    min: 0,
+    max: 500000,
+    debounceTime: 800,
+    nonLinear: false,
+    initialValues: [0, 500000],
+    disabled: true,
   },
 }
