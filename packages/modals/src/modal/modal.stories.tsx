@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import styled from 'styled-components'
 
 import { Modal } from './modal'
 
@@ -42,14 +41,10 @@ export const Default: StoryObj<typeof Modal> = {
   },
 }
 
-const ModalBody = styled(Modal.Body)`
-  max-width: 500px;
-`
-
 export const Flexible: StoryObj<typeof Modal> = {
   render: (args) => (
     <Modal {...args}>
-      <ModalBody>
+      <Modal.Body css={{ maxWidth: '500px' }}>
         <Modal.Title>Title</Modal.Title>
         <Modal.Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -57,7 +52,7 @@ export const Flexible: StoryObj<typeof Modal> = {
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </Modal.Description>
-      </ModalBody>
+      </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="blue">Close</Modal.Action>
       </Modal.Actions>
