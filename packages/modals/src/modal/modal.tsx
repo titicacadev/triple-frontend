@@ -18,7 +18,7 @@ import { ModalContext } from './modal-context'
 import { ModalDescription } from './modal-description'
 import { ModalTitle } from './modal-title'
 
-const ModalPanel = styled(Container)`
+export const ModalPanel = styled(Container)`
   width: 295px;
   max-height: 100%;
   background-color: #fff;
