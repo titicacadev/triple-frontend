@@ -18,22 +18,36 @@ import { ModalContext } from './modal-context'
 import { ModalDescription } from './modal-description'
 import { ModalTitle } from './modal-title'
 
-const ModalPanel = styled(Container)`
-  width: 295px;
+const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
   background-color: #fff;
   outline: none;
   border-radius: 6px;
   overflow: auto;
   overscroll-behavior-y: none;
+
+  ${({ $flexible }) =>
+    $flexible
+      ? css`
+          min-width: 295px;
+        `
+      : css`
+          width: 295px;
+        `}
 `
 
 export interface ModalProps extends PropsWithChildren {
   open?: boolean
+  flexible?: boolean
   onClose?: () => void
 }
 
-export const Modal = ({ children, open = false, onClose }: ModalProps) => {
+export const Modal = ({
+  children,
+  open = false,
+  flexible = false,
+  onClose,
+}: ModalProps) => {
   const labelId = useId()
   const descriptionId = useId()
 
@@ -95,6 +109,7 @@ export const Modal = ({ children, open = false, onClose }: ModalProps) => {
                 aria-labelledby={labelId}
                 aria-describedby={descriptionId}
                 aria-modal
+                $flexible={flexible}
                 {...getFloatingProps()}
               >
                 {children}
