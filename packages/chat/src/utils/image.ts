@@ -28,9 +28,11 @@ export function generatePreviewImage({
   mediaUrlBase: string
   cloudinaryName: string
 }) {
-  const { cloudinaryId, width } = imageInfo
+  const { cloudinaryId, width, cloudinaryBucket } = imageInfo
 
-  return `${mediaUrlBase}/${cloudinaryName}/image/upload/c_fill,w_${Math.min(
+  return `${mediaUrlBase}/${
+    cloudinaryBucket || cloudinaryName
+  }/image/upload/c_fill,w_${Math.min(
     width,
     customWidth,
   )},q_auto,f_auto/${cloudinaryId}.jpeg`
