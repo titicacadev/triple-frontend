@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.2.3
+
+### chat
+
+- [chat] chat image url 생성 시 cloudinaryBucket을 우선적으로 사용하도록 변경 [#2838](https://github.com/titicacadev/triple-frontend/pull/2838)
+
+### modals
+
+- (modal) modal flexible 옵션을 추가합니다. [#2841](https://github.com/titicacadev/triple-frontend/pull/2841)
+
 ## v13.2.2
 
 ### directions-finder
