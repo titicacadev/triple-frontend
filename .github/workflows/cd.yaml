@@ -243,7 +243,7 @@ jobs:
       - run: pnpm run build
 
       - run: |
-          pnpm exec lerna version prepatch \
+          pnpm exec lerna version $DEPLOY_VERSION \
             --amend \
             --force-publish \
             --ignore-scripts \
