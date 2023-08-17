@@ -191,6 +191,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
@@ -198,10 +200,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
           cache: 'npm'
-
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Get release version
         env:
