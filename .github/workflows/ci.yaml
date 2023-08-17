@@ -11,8 +11,7 @@ env:
   NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
-  COMMIT_USER_EMAIL: developer@triple-corp.com
-  COMMIT_USER_NAME: triple-frontend[bot]
+  HUSKY: 0
   # Slack Notifications
   SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
   SLACK_CHANNEL: '#triple-web-dev-notifications' # 메시지 보낼 채널
