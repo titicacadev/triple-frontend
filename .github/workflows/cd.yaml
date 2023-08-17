@@ -13,6 +13,7 @@ env:
   # Node.js
   NODE_VERSION: 'lts/*'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
   HUSKY: 0
   # Slack notifications
   SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
@@ -53,7 +54,6 @@ jobs:
       - name: Notify checking CI timeout
         if: steps.wait-for-ci.outputs.conclusion == 'timed_out'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: CI Waiting timeout'
           SLACK_TOPIC: 'CI workflow가 시작되었는지, 기다리는 job의 이름이 CI job과 일치하는지, 확인해주세요.'
@@ -62,7 +62,6 @@ jobs:
       - name: Notify checking CI failure
         if: steps.wait-for-ci.outputs.conclusion == 'failure'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: CI FAILURE'
           SLACK_TOPIC: '배포를 중단합니다.'
@@ -92,15 +91,12 @@ jobs:
 
       - name: Notify deploy start to slack
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: gray
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
         run: npx @titicaca/gha-tools notify
 
       - name: Install dependencies
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build
@@ -113,7 +109,6 @@ jobs:
       - name: Notify deploy success to slack
         if: success()
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: success
           SLACK_TITLE: ':tada: Release SUCCESS'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
@@ -122,7 +117,6 @@ jobs:
       - name: Notify deploy fail to slack
         if: failure()
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Release FAILURE'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
@@ -224,15 +218,12 @@ jobs:
 
       - name: Notify release start to Slack
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: gray
           SLACK_TITLE: ':rocket: Release WORKING'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
         run: npx @titicaca/gha-tools notify
 
       - name: Install dependencies
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
         run: npm ci
 
       - run: npm run build
@@ -254,7 +245,6 @@ jobs:
       - name: Notify release success to Slack
         if: success()
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: success
           SLACK_TITLE: ':tada: Release SUCCESS'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
@@ -263,7 +253,6 @@ jobs:
       - name: Notify release failure to Slack
         if: failure()
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
           SLACK_COLOR: fail
           SLACK_TITLE: ':pleading: Release FAILURE'
           SLACK_TOPIC: ${{ env.DEPLOY_VERSION }}
