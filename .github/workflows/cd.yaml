@@ -114,7 +114,7 @@ jobs:
       - name: Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: pnpm exec lerna publish from-package --yes
+        run: pnpm -r publish
 
       - name: Notify deploy success to slack
         if: success()
@@ -242,10 +242,19 @@ jobs:
 
       - run: pnpm run build
 
+      - run: |
+          pnpm exec lerna version prepatch \
+            --amend \
+            --force-publish \
+            --ignore-scripts \
+            --no-git-tag-version \
+            --preid "pr-$PR_NUMBER" \
+            --yes
+
       - name: Publish as canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: pnpm exec lerna publish --canary --force-publish --yes --preid "pr-${{ env.PR_NUMBER }}"
+        run: pnpm -r publish --tag canary --no-git-checks
 
       - name: Notify released version on pull request
         run: |
