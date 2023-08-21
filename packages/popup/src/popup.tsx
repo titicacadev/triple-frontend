@@ -90,7 +90,7 @@ function Popup({
 }: PopupProps) {
   const { context, refs } = useFloating({
     open,
-    onOpenChange: (open) => (open ? undefined : onClose?.()),
+    onOpenChange: (open) => (!noNavbar || open ? undefined : onClose?.()),
   })
 
   const dismiss = useDismiss(context)
