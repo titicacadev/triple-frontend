@@ -98,9 +98,31 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
     <ResourceListItem onClick={onClick} {...props}>
       <FlexBox flex justifyContent="space-between">
         <ContentContainer>
-          <Text bold maxLines={2} size="large">
-            {name}
-          </Text>
+          <FlexBox
+            flex
+            alignItems="flex-start"
+            justifyContent="space-between"
+            gap="7px"
+          >
+            <Text bold maxLines={2} size="large">
+              {name}
+            </Text>
+
+            {isAdvertisement ? (
+              <Text
+                size={9}
+                color="gray400"
+                css={{
+                  minWidth: '26px',
+                  border: '1px solid var(--color-gray200)',
+                  borderRadius: '4px',
+                  padding: '2px 3px',
+                }}
+              >
+                {t(['gwanggo', '광고'])}
+              </Text>
+            ) : null}
+          </FlexBox>
 
           <Text
             alpha={0.7}
@@ -136,18 +158,6 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                 margin: '3px 0 0',
               }}
             >
-              {isAdvertisement ? (
-                <Label
-                  emphasized
-                  size="tiny"
-                  promo
-                  color="white"
-                  margin={{ right: 5 }}
-                  verticalAlign="middle"
-                >
-                  {t(['gwanggo', '광고'])}
-                </Label>
-              ) : null}
               {distance || distance === 0 ? (
                 <Text inline color="blue" size="small" alpha={1}>
                   {`${distance}${distanceSuffix} `}
