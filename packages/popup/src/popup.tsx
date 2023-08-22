@@ -61,6 +61,7 @@ export interface PopupProps extends PropsWithChildren {
    * Navbar의 렌더링을 생략할 수 있도록 합니다.
    */
   noNavbar?: boolean
+  lockScroll?: boolean
   /**
    * 닫기 버튼을 눌렀을 때의 이벤트 입니다.
    */
@@ -80,6 +81,7 @@ function Popup({
   icon = 'close',
   title,
   noNavbar,
+  lockScroll = true,
   children,
   onClose,
   onEnter,
@@ -120,7 +122,7 @@ function Popup({
 
   return (
     <FloatingPortal>
-      <FloatingOverlay lockScroll />
+      <FloatingOverlay lockScroll={lockScroll} />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <PopupContainer
           ref={refs.setFloating}
