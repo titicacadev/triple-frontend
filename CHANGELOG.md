@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.2.4
+
+### slider
+
+- [slider] SliderBase disabled 상태 추가 [#2824](https://github.com/titicacadev/triple-frontend/pull/2824)
+
 ## v13.2.3
 
 ### chat
