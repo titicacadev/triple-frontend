@@ -35,10 +35,19 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     if (scrollY !== null && chatRoomRef.current?.parentElement) {
-      chatRoomRef.current.parentElement.scrollTo({
-        top: getChatListHeight() - scrollY,
-      })
-      window.scrollTo(0, getChatListHeight() - scrollY)
+      const chatParentElement = chatRoomRef.current.parentElement
+      const scrollTopPosition = getChatListHeight() - scrollY
+
+      // scrollRestoration이 manual일 시, 46, 48라인의 방어코드가 처음 자리로 스크롤을 복귀시켜 적용 제외
+      if (history.scrollRestoration && history.scrollRestoration === 'manual') {
+        chatParentElement.scrollTo({ top: scrollTopPosition })
+      } else {
+        // iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가 ref: https://github.com/titicacadev/triple-geochat-web/pull/99
+        chatParentElement.style.overflowY = 'hidden'
+        chatParentElement.scrollTo({ top: scrollTopPosition })
+        chatParentElement.style.overflowY = 'scroll'
+      }
+      window.scrollTo(0, scrollTopPosition)
     }
   }, [chatRoomRef, scrollY])
 
