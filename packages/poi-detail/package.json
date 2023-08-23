@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-detail",
-  "version": "13.2.3",
+  "version": "13.2.4",
   "description": "Components for POI detail page",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-detail",
@@ -35,24 +35,24 @@
     ]
   },
   "dependencies": {
-    "@titicaca/action-sheet": "^13.2.3",
-    "@titicaca/app-installation-cta": "^13.2.3",
-    "@titicaca/carousel": "^13.2.3",
-    "@titicaca/core-elements": "^13.2.3",
-    "@titicaca/fetcher": "^13.2.3",
-    "@titicaca/image-carousel": "^13.2.3",
-    "@titicaca/intersection-observer": "^13.2.3",
-    "@titicaca/modals": "^13.2.3",
-    "@titicaca/type-definitions": "^13.2.3",
-    "@titicaca/view-utilities": "^13.2.3",
-    "@titicaca/web-storage": "^13.2.3",
+    "@titicaca/action-sheet": "^13.2.4",
+    "@titicaca/app-installation-cta": "^13.2.4",
+    "@titicaca/carousel": "^13.2.4",
+    "@titicaca/core-elements": "^13.2.4",
+    "@titicaca/fetcher": "^13.2.4",
+    "@titicaca/image-carousel": "^13.2.4",
+    "@titicaca/intersection-observer": "^13.2.4",
+    "@titicaca/modals": "^13.2.4",
+    "@titicaca/type-definitions": "^13.2.4",
+    "@titicaca/view-utilities": "^13.2.4",
+    "@titicaca/web-storage": "^13.2.4",
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "^13.2.3",
+    "@titicaca/i18n": "^13.2.4",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "^13.2.3",
-    "@titicaca/react-triple-client-interfaces": "^13.2.3",
+    "@titicaca/react-contexts": "^13.2.4",
+    "@titicaca/react-triple-client-interfaces": "^13.2.4",
     "@types/qs": "^6.9.7"
   },
   "peerDependencies": {
