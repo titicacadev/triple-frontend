@@ -6,7 +6,7 @@ on:
 
 jobs:
   label-pr:
-    if: ${{ github.event.pull_request.draft == false && github.event.pull_request.user.login != 'triple-bot' && !startsWith(github.event.pull_request.head.ref, 'release/') }}
+    if: ${{ github.event.pull_request.draft == false && github.event.pull_request.user.login != 'triple-bot' && !contains(github.event.pull_request.labels.*.name, 'release') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
