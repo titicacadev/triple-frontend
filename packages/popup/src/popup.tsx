@@ -69,6 +69,7 @@ export interface PopupProps extends PropsWithChildren {
   onEntered?: () => void
   onExit?: () => void
   onExited?: () => void
+  disableFocus?: boolean
 }
 
 /**
@@ -86,6 +87,7 @@ function Popup({
   onEntered,
   onExit,
   onExited,
+  disableFocus = false,
   ...props
 }: PopupProps) {
   const { context, refs } = useFloating({
@@ -121,7 +123,11 @@ function Popup({
   return (
     <FloatingPortal>
       <FloatingOverlay lockScroll />
-      <FloatingFocusManager context={context} initialFocus={refs.floating}>
+      <FloatingFocusManager
+        context={context}
+        initialFocus={refs.floating}
+        disabled={disableFocus}
+      >
         <PopupContainer
           ref={refs.setFloating}
           data-transition={status}
