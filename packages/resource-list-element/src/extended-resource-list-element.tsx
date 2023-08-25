@@ -110,13 +110,14 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
 
             {isAdvertisement ? (
               <Text
-                size={9}
+                size={10}
+                lineHeight="12px"
                 color="gray400"
                 css={{
                   minWidth: '26px',
                   border: '1px solid var(--color-gray200)',
                   borderRadius: '4px',
-                  padding: '2px 3px',
+                  padding: '2px 3px 3px',
                 }}
               >
                 {t(['gwanggo', '광고'])}
