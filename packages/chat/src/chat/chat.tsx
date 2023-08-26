@@ -25,7 +25,7 @@ import { useChat } from './chat-context'
 import { useChatMessage } from './use-chat-message'
 import { getChatListHeight, useScrollContext } from './scroll-context'
 
-const MINIMUM_INITIAL_INTERSECTING_TIME = 3000
+const MINIMUM_INTERSECTING_TIME = 3000
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
@@ -234,26 +234,23 @@ export const Chat = ({
     if (isIntersecting) {
       const prevScrollY = getChatListHeight()
 
-      if (!(target as HTMLElement).dataset.viewStartedAt) {
-        ;(target as HTMLElement).dataset.viewStartedAt = time.toString()
-      } else {
-        const viewStartedAt = Number(
-          (target as HTMLElement).dataset.viewStartedAt,
-        )
-        if (
-          time - viewStartedAt >= MINIMUM_INITIAL_INTERSECTING_TIME &&
-          hasPrevMessage
-        ) {
-          const pastMessages = await fetchPastMessages()
+      const lastViewStartedAt = Number(
+        (target as HTMLElement).dataset.lastViewStartedAt || '',
+      )
+      if (
+        time - lastViewStartedAt >= MINIMUM_INTERSECTING_TIME &&
+        hasPrevMessage
+      ) {
+        const pastMessages = await fetchPastMessages()
 
-          await dispatch({
-            action: ChatActions.PAST,
-            messages: pastMessages,
-          })
-          setScrollY(prevScrollY)
-        }
+        await dispatch({
+          action: ChatActions.PAST,
+          messages: pastMessages,
+        })
+        setScrollY(prevScrollY)
       }
     }
+    ;(target as HTMLElement).dataset.lastViewStartedAt = time.toString()
   }
 
   return (
