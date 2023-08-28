@@ -25,7 +25,7 @@ import { useChat } from './chat-context'
 import { useChatMessage } from './use-chat-message'
 import { getChatListHeight, useScrollContext } from './scroll-context'
 
-const MINIMUM_INTERSECTING_TIME = 3000
+const MINIMUM_INITIAL_INTERSECTING_TIME = 3000
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
@@ -241,7 +241,7 @@ export const Chat = ({
           (target as HTMLElement).dataset.viewStartedAt,
         )
         if (
-          time - viewStartedAt >= MINIMUM_INTERSECTING_TIME &&
+          time - viewStartedAt >= MINIMUM_INITIAL_INTERSECTING_TIME &&
           hasPrevMessage
         ) {
           const pastMessages = await fetchPastMessages()
