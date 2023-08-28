@@ -473,8 +473,8 @@ importers:
         specifier: workspace:*
         version: link:../color-palette
       '@titicaca/content-utilities':
-        specifier: 8.6.1
-        version: 8.6.1
+        specifier: 8.7.0
+        version: 8.7.0
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -1641,8 +1641,8 @@ importers:
         specifier: workspace:*
         version: link:../color-palette
       '@titicaca/content-type-definitions':
-        specifier: 8.6.1
-        version: 8.6.1
+        specifier: 8.7.0
+        version: 8.7.0
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -4540,6 +4540,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -8808,14 +8809,14 @@ packages:
       '@testing-library/dom': 9.3.1
     dev: true
 
-  /@titicaca/content-type-definitions@8.6.1:
-    resolution: {integrity: sha512-Ptjv6yjEc6/R8y1BGMxJPgNdsDg3SNVqPIBmDD01TU7ht7KcWj3Y3i4Dv/EnJQn/21Rho4jah5UwaWot/TsyUw==}
+  /@titicaca/content-type-definitions@8.7.0:
+    resolution: {integrity: sha512-gSKWo8bhlXru9c6eVyRbq3zInp63zYqQqwe22OV1swxkzS2XfnCKdqOR9DoOJRjgKqjFejo/oWjCOjhO1lAV9w==}
     dev: false
 
-  /@titicaca/content-utilities@8.6.1:
-    resolution: {integrity: sha512-nxCtoWHKatMeROXvRp3+0DsgTqXE9XZpEtKiJpMtyvG4xP/aDOXN8nfVPJ4JDGkx3jOFyFb/8Wp1rmZfVLOfqA==}
+  /@titicaca/content-utilities@8.7.0:
+    resolution: {integrity: sha512-w+M0FaxSMTHm+foj0hpPm32FKhBzzvt00DQFCSTXzUocK8C/y1ywhssK9pzsPSfrsEyiHaKuohyCvIgtjz5dwg==}
     dependencies:
-      '@titicaca/content-type-definitions': 8.6.1
+      '@titicaca/content-type-definitions': 8.7.0
       isomorphic-fetch: 3.0.0
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
