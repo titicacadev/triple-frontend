@@ -234,23 +234,26 @@ export const Chat = ({
     if (isIntersecting) {
       const prevScrollY = getChatListHeight()
 
-      const lastViewStartedAt = Number(
-        (target as HTMLElement).dataset.lastViewStartedAt || '',
-      )
-      if (
-        time - lastViewStartedAt >= MINIMUM_INTERSECTING_TIME &&
-        hasPrevMessage
-      ) {
-        const pastMessages = await fetchPastMessages()
+      if (!(target as HTMLElement).dataset.viewStartedAt) {
+        ;(target as HTMLElement).dataset.viewStartedAt = time.toString()
+      } else {
+        const viewStartedAt = Number(
+          (target as HTMLElement).dataset.viewStartedAt,
+        )
+        if (
+          time - viewStartedAt >= MINIMUM_INTERSECTING_TIME &&
+          hasPrevMessage
+        ) {
+          const pastMessages = await fetchPastMessages()
 
-        await dispatch({
-          action: ChatActions.PAST,
-          messages: pastMessages,
-        })
-        setScrollY(prevScrollY)
+          await dispatch({
+            action: ChatActions.PAST,
+            messages: pastMessages,
+          })
+          setScrollY(prevScrollY)
+        }
       }
     }
-    ;(target as HTMLElement).dataset.lastViewStartedAt = time.toString()
   }
 
   return (
