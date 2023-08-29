@@ -73,8 +73,8 @@ export const ChatContainer = ({
     >
       <ScrollProvider>
         <Container>{children}</Container>
-        {Input && postMessage ? <Input postMessage={postMessage} /> : null}
       </ScrollProvider>
+      {Input && postMessage ? <Input postMessage={postMessage} /> : null}
     </ChatContext.Provider>
   )
 }
