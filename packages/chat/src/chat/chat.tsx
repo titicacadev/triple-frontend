@@ -1,6 +1,12 @@
 import { IncomingMessage } from 'http'
 
-import React, { useCallback, useEffect, useMemo, useReducer } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
@@ -25,7 +31,6 @@ import { useChat } from './chat-context'
 import { useChatMessage } from './use-chat-message'
 import { getChatListHeight, useScrollContext } from './scroll-context'
 
-const MINIMUM_INITIAL_INTERSECTING_TIME = 3000
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
@@ -89,6 +94,8 @@ export const Chat = ({
     },
     dispatch,
   ] = useReducer(ChatReducer, initialChatState)
+
+  const isScrollReady = useRef(false)
 
   const { os } = useUserAgentContext()
   const isIos = useMemo(() => os.name === 'iOS', [os.name])
@@ -216,6 +223,10 @@ export const Chat = ({
   const handleChangeLastMessageId = async () => {
     await updateUnread()
     scrollToBottom()
+
+    if (!isScrollReady.current) {
+      isScrollReady.current = true
+    }
   }
 
   useEffect(() => {
@@ -227,31 +238,19 @@ export const Chat = ({
   }, [postMessage, setPostMessage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChangeScroll = async ({
-    target,
     isIntersecting,
-    time,
   }: IntersectionObserverEntry) => {
     if (isIntersecting) {
       const prevScrollY = getChatListHeight()
 
-      if (!(target as HTMLElement).dataset.viewStartedAt) {
-        ;(target as HTMLElement).dataset.viewStartedAt = time.toString()
-      } else {
-        const viewStartedAt = Number(
-          (target as HTMLElement).dataset.viewStartedAt,
-        )
-        if (
-          time - viewStartedAt >= MINIMUM_INITIAL_INTERSECTING_TIME &&
-          hasPrevMessage
-        ) {
-          const pastMessages = await fetchPastMessages()
+      if (isScrollReady.current && hasPrevMessage) {
+        const pastMessages = await fetchPastMessages()
 
-          await dispatch({
-            action: ChatActions.PAST,
-            messages: pastMessages,
-          })
-          setScrollY(prevScrollY)
-        }
+        await dispatch({
+          action: ChatActions.PAST,
+          messages: pastMessages,
+        })
+        setScrollY(prevScrollY)
       }
     }
   }
