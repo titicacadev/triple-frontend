@@ -25,7 +25,6 @@ import { useChat } from './chat-context'
 import { useChatMessage } from './use-chat-message'
 import { getChatListHeight, useScrollContext } from './scroll-context'
 
-const MINIMUM_INITIAL_INTERSECTING_TIME = 3000
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
@@ -227,31 +226,19 @@ export const Chat = ({
   }, [postMessage, setPostMessage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChangeScroll = async ({
-    target,
     isIntersecting,
-    time,
   }: IntersectionObserverEntry) => {
     if (isIntersecting) {
       const prevScrollY = getChatListHeight()
 
-      if (!(target as HTMLElement).dataset.viewStartedAt) {
-        ;(target as HTMLElement).dataset.viewStartedAt = time.toString()
-      } else {
-        const viewStartedAt = Number(
-          (target as HTMLElement).dataset.viewStartedAt,
-        )
-        if (
-          time - viewStartedAt >= MINIMUM_INITIAL_INTERSECTING_TIME &&
-          hasPrevMessage
-        ) {
-          const pastMessages = await fetchPastMessages()
+      if (hasPrevMessage) {
+        const pastMessages = await fetchPastMessages()
 
-          await dispatch({
-            action: ChatActions.PAST,
-            messages: pastMessages,
-          })
-          setScrollY(prevScrollY)
-        }
+        await dispatch({
+          action: ChatActions.PAST,
+          messages: pastMessages,
+        })
+        setScrollY(prevScrollY)
       }
     }
   }

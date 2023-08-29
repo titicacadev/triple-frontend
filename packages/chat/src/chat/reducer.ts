@@ -119,7 +119,7 @@ export const ChatReducer = (
 
 export const initialChatState: ChatState = {
   messages: [],
-  hasPrevMessage: true,
+  hasPrevMessage: false,
   otherUnreadInfo: [],
   firstMessageId: null,
   lastMessageId: null,
