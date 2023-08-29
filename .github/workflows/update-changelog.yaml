@@ -31,6 +31,10 @@ jobs:
           token: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
