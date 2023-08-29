@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
-    "next": "^13.4.13",
+    "next": "^13.4.19",
     "react": "^18.2.0"
   },
   "peerDependencies": {

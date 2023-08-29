@@ -46,7 +46,7 @@
     "@titicaca/view-utilities": "workspace:*",
     "@types/node-fetch": "^2.6.4",
     "isomorphic-fetch": "^2.2.1",
-    "next": "13.4.13",
+    "next": "13.4.19",
     "node-fetch": "^2.6.12"
   },
   "peerDependencies": {

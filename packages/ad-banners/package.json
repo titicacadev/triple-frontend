@@ -52,7 +52,7 @@
     "@titicaca/next-i18next": "^13.8.5",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
-    "next": "^13.4.13",
+    "next": "^13.4.19",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },

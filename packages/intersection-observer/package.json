@@ -44,7 +44,7 @@
     "intersection-observer": "^0.12.2"
   },
   "devDependencies": {
-    "next": "^13.4.13",
+    "next": "^13.4.19",
     "react": "^18.2.0"
   },
   "peerDependencies": {
