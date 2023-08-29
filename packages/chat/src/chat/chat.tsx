@@ -230,7 +230,9 @@ export const Chat = ({
   }
 
   useEffect(() => {
-    void handleChangeLastMessageId()
+    if (lastMessageId) {
+      void handleChangeLastMessageId()
+    }
   }, [lastMessageId])
 
   useEffect(() => {
