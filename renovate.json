@@ -7,8 +7,16 @@
       "enabled": false
     },
     {
+      "matchSourceUrls": ["https://github.com/titicacadev/triple-frontend"],
+      "enabled": false
+    },
+    {
       "groupName": "SWC",
       "matchPackagePrefixes": ["@swc/"]
+    },
+    {
+      "matchPackageNames": ["firebase"],
+      "enabled": false
     }
   ]
 }
