@@ -30,10 +30,10 @@
     "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^7.4.0",
-    "@storybook/addon-docs": "^7.4.0",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.4.0",
     "@storybook/nextjs": "^7.4.0",
     "@storybook/react": "^7.4.0",
     "@swc/cli": "0.1.62",
@@ -79,7 +79,6 @@
     "react-i18next": "12.3.1",
     "rimraf": "^5.0.1",
     "storybook": "^7.4.0",
-    "storybook-addon-swc": "^1.2.0",
     "storybook-mock-date-decorator": "^1.0.1",
     "styled-components": "^5.3.11",
     "stylelint": "^15.10.2",
