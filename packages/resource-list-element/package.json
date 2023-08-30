@@ -53,7 +53,7 @@
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
+    "@titicaca/i18n": "13.2.4",
     "@titicaca/next-i18next": "*",
     "react": "^18.0",
     "styled-components": "^5.3.9"

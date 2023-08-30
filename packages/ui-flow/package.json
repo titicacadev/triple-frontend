@@ -58,8 +58,8 @@
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-triple-client-interfaces": "*",
+    "@titicaca/react-contexts": "13.2.4",
+    "@titicaca/react-triple-client-interfaces": "13.2.4",
     "next": "^13.0",
     "react": "^18.0"
   }

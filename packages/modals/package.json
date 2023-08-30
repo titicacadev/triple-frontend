@@ -52,9 +52,9 @@
     "utility-types": "^3.10.0"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
+    "@titicaca/i18n": "13.2.4",
     "@titicaca/next-i18next": "*",
-    "@titicaca/react-contexts": "*",
+    "@titicaca/react-contexts": "13.2.4",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
