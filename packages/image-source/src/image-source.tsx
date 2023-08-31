@@ -1,7 +1,5 @@
 import formatSourceUrl from './format-source-url'
 
-export type ImageSourceType = typeof ImageSource
-
 export interface ImageSourceProps {
   sourceUrl?: string
 }
