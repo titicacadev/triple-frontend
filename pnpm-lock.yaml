@@ -688,8 +688,8 @@ importers:
   packages/i18n:
     dependencies:
       node-fetch:
-        specifier: 2.6.12
-        version: 2.6.12
+        specifier: 2.7.0
+        version: 2.7.0
     devDependencies:
       '@types/node-fetch':
         specifier: 2.x
@@ -17610,18 +17610,6 @@ packages:
       encoding: 0.1.13
       is-stream: 1.1.0
     dev: true
-
-  /node-fetch@2.6.12:
-    resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-    dependencies:
-      whatwg-url: 5.0.0
-    dev: false
 
   /node-fetch@2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
