@@ -488,12 +488,6 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -719,6 +713,9 @@ importers:
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
+      '@titicaca/image-source':
+        specifier: workspace:*
+        version: link:../image-source
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -741,6 +738,21 @@ importers:
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
+  packages/image-source:
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@types/react':
+        specifier: ^18.2.21
+        version: 18.2.21
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
 
   packages/intersection-observer:
     dependencies:
@@ -954,6 +966,9 @@ importers:
       '@titicaca/image-carousel':
         specifier: workspace:*
         version: link:../image-carousel
+      '@titicaca/image-source':
+        specifier: workspace:*
+        version: link:../image-source
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -1646,6 +1661,9 @@ importers:
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
+      '@titicaca/image-source':
+        specifier: workspace:*
+        version: link:../image-source
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -1784,6 +1802,9 @@ importers:
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
+      '@titicaca/image-source':
+        specifier: workspace:*
+        version: link:../image-source
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -2054,7 +2075,7 @@ packages:
     resolution: {integrity: sha512-+lcUbnTRhd0jOewtFSedLyiPsD5tswKkbgcezOqqWFUVNEwoUTlpPOBmvhG7OXWLR4jMdv0czPGH5XbflnD1EA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.5
+      '@babel/types': 7.22.11
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
       jsesc: 2.5.2
