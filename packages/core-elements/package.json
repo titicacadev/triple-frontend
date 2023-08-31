@@ -56,16 +56,12 @@
     "react-roving-tabindex": "^3.2.0"
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
     "@types/react": "^18.2.21",
     "@types/react-input-mask": "^2.0.5",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
