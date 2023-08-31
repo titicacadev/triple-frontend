@@ -190,379 +190,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/action-sheet:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/app-installation-cta':
-        specifier: workspace:*
-        version: link:../app-installation-cta
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/popup':
-        specifier: workspace:*
-        version: link:../popup
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/ad-banners:
-    dependencies:
-      '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
-      '@egjs/react-flicking':
-        specifier: ^3.8.3
-        version: 3.8.3
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/app-banner:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/app-installation-cta:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/web-storage':
-        specifier: workspace:*
-        version: link:../web-storage
-      react-transition-group:
-        specifier: ^4.4.5
-        version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@types/react-transition-group':
-        specifier: ^4.4.7
-        version: 4.4.7
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/author:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/booking-completion:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/ui-flow':
-        specifier: workspace:*
-        version: link:../ui-flow
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/carousel:
-    dependencies:
-      '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
-      '@egjs/react-flicking':
-        specifier: ^3.8.3
-        version: 3.8.3
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/chat:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/triple-fallback-action':
-        specifier: workspace:*
-        version: link:../triple-fallback-action
-      '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      autolinker:
-        specifier: ^4.0.0
-        version: 4.0.0
-      moment:
-        specifier: ^2.29.4
-        version: 2.29.4
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@types/isomorphic-fetch':
-        specifier: ^0.0.37
-        version: 0.0.37
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/color-palette: {}
-
   packages/constants: {}
-
-  packages/content-sharing:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/core-elements:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/content-utilities':
-        specifier: 8.16.0
-        version: 8.16.0
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/triple-fallback-action':
-        specifier: workspace:*
-        version: link:../triple-fallback-action
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      react-input-mask:
-        specifier: ^2.0.4
-        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
-      react-roving-tabindex:
-        specifier: ^3.2.0
-        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
-      '@types/react-input-mask':
-        specifier: ^2.0.5
-        version: 2.0.5
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/date-picker:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      moment:
-        specifier: ^2.29.4
-        version: 2.29.4
-      react-day-picker:
-        specifier: ^7.4.10
-        version: 7.4.10(react@18.2.0)
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/directions-finder:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/popup':
-        specifier: workspace:*
-        version: link:../popup
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/drawer-button:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/fetcher:
     dependencies:
@@ -592,59 +220,6 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
 
-  packages/footer:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      '@types/qs':
-        specifier: ^6.9.8
-        version: 6.9.8
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/hub-form:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/i18n:
     dependencies:
       node-fetch:
@@ -654,58 +229,6 @@ importers:
       '@types/node-fetch':
         specifier: 2.x
         version: 2.6.4
-
-  packages/image-carousel:
-    dependencies:
-      '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
-      '@egjs/react-flicking':
-        specifier: ^3.8.3
-        version: 3.8.3
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/image-source':
-        specifier: workspace:*
-        version: link:../image-source
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/image-source:
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
 
   packages/intersection-observer:
     dependencies:
@@ -723,64 +246,17 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/listing-filter:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/location-properties:
-    dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/map:
     dependencies:
       '@react-google-maps/api':
         specifier: ^2.19.2
         version: 2.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -827,12 +303,9 @@ importers:
 
   packages/modals:
     dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -852,219 +325,6 @@ importers:
       utility-types:
         specifier: ^3.10.0
         version: 3.10.0
-
-  packages/nearby-pois:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/poi-list-elements':
-        specifier: workspace:*
-        version: link:../poi-list-elements
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/poi-detail:
-    dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
-      '@titicaca/app-installation-cta':
-        specifier: workspace:*
-        version: link:../app-installation-cta
-      '@titicaca/carousel':
-        specifier: workspace:*
-        version: link:../carousel
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/image-carousel':
-        specifier: workspace:*
-        version: link:../image-carousel
-      '@titicaca/image-source':
-        specifier: workspace:*
-        version: link:../image-source
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      '@titicaca/web-storage':
-        specifier: workspace:*
-        version: link:../web-storage
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      '@types/qs':
-        specifier: ^6.9.8
-        version: 6.9.8
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/poi-list-elements:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/resource-list-element':
-        specifier: workspace:*
-        version: link:../resource-list-element
-      '@titicaca/scrap-button':
-        specifier: workspace:*
-        version: link:../scrap-button
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/popup:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/pricing:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/public-header:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/react-contexts:
     dependencies:
@@ -1174,196 +434,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/recommended-contents:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/replies:
-    dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/ui-flow':
-        specifier: workspace:*
-        version: link:../ui-flow
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      '@types/qs':
-        specifier: ^6.9.8
-        version: 6.9.8
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/resource-list-element:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/pricing':
-        specifier: workspace:*
-        version: link:../pricing
-      '@titicaca/scrap-button':
-        specifier: workspace:*
-        version: link:../scrap-button
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/review:
-    dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/react-hooks':
-        specifier: workspace:*
-        version: link:../react-hooks
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/ui-flow':
-        specifier: workspace:*
-        version: link:../ui-flow
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      graphql:
-        specifier: ^16.8.0
-        version: 16.8.0
-      graphql-request:
-        specifier: ^6.1.0
-        version: 6.1.0(graphql@16.8.0)
-      moment:
-        specifier: ^2.29.4
-        version: 2.29.4
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-      scroll-to-element:
-        specifier: ^2.0.3
-        version: 2.0.3
-    devDependencies:
-      '@graphql-codegen/cli':
-        specifier: 4.0.1
-        version: 4.0.1(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-codegen/typescript':
-        specifier: 4.0.1
-        version: 4.0.1(graphql@16.8.0)
-      '@graphql-codegen/typescript-generic-sdk':
-        specifier: ^3.1.0
-        version: 3.1.0(graphql-tag@2.12.6)(graphql@16.8.0)
-      '@graphql-codegen/typescript-operations':
-        specifier: 4.0.1
-        version: 4.0.1(graphql@16.8.0)
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      '@types/qs':
-        specifier: ^6.9.8
-        version: 6.9.8
-      csstype:
-        specifier: ^3.1.2
-        version: 3.1.2
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-query:
-        specifier: ^3.39.3
-        version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/router:
     dependencies:
       '@titicaca/modals':
@@ -1401,18 +471,6 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
-  packages/scrap-button:
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/scroll-spy:
     dependencies:
       '@titicaca/intersection-observer':
@@ -1437,81 +495,6 @@ importers:
       '@tweenjs/tween.js':
         specifier: ^18.6.4
         version: 18.6.4
-
-  packages/search:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/react-hooks':
-        specifier: workspace:*
-        version: link:../react-hooks
-      '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/slider:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      react-compound-slider:
-        specifier: ^3.4.0
-        version: 3.4.0(react@18.2.0)
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/social-reviews:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/standard-action-handler:
     dependencies:
@@ -1558,9 +541,9 @@ importers:
 
   packages/static-map:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
     devDependencies:
       '@titicaca/type-definitions':
         specifier: workspace:*
@@ -1573,10 +556,6 @@ importers:
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/static-page-contents:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -1600,23 +579,169 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
-  packages/triple-document:
+  packages/tds-ui:
     dependencies:
-      '@titicaca/color-palette':
+      '@egjs/flicking':
+        specifier: ^3.9.3
+        version: 3.9.3
+      '@egjs/react-flicking':
+        specifier: ^3.8.3
+        version: 3.8.3
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+      '@titicaca/content-utilities':
+        specifier: ^8.12.0
+        version: 8.12.0
+      '@titicaca/intersection-observer':
         specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/content-type-definitions':
-        specifier: 8.16.0
-        version: 8.16.0
-      '@titicaca/core-elements':
+        version: link:../intersection-observer
+      '@titicaca/triple-fallback-action':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../triple-fallback-action
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+      react-compound-slider:
+        specifier: ^3.4.0
+        version: 3.4.0(react@18.2.0)
+      react-input-mask:
+        specifier: ^2.0.4
+        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
+      react-roving-tabindex:
+        specifier: ^3.2.0
+        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@titicaca/tds-theme':
+        specifier: workspace:*
+        version: link:../tds-theme
+      '@types/react-input-mask':
+        specifier: '2'
+        version: 2.0.5
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
+  packages/tds-widget:
+    dependencies:
+      '@egjs/flicking':
+        specifier: ^3.9.3
+        version: 3.9.3
+      '@egjs/react-flicking':
+        specifier: ^3.8.3
+        version: 3.8.3
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
-      '@titicaca/image-source':
+      '@titicaca/intersection-observer':
         specifier: workspace:*
-        version: link:../image-source
+        version: link:../intersection-observer
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
+      '@titicaca/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
+      '@titicaca/router':
+        specifier: workspace:*
+        version: link:../router
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
+      '@titicaca/type-definitions':
+        specifier: workspace:*
+        version: link:../type-definitions
+      '@titicaca/ui-flow':
+        specifier: workspace:*
+        version: link:../ui-flow
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+      '@titicaca/web-storage':
+        specifier: workspace:*
+        version: link:../web-storage
+      autolinker:
+        specifier: ^4.0.0
+        version: 4.0.0
+      graphql:
+        specifier: ^16.8.0
+        version: 16.8.1
+      graphql-request:
+        specifier: ^6.1.0
+        version: 6.1.0(graphql@16.8.1)
+      moment:
+        specifier: ^2.29.4
+        version: 2.29.4
+      qs:
+        specifier: ^6.11.2
+        version: 6.11.2
+      react-day-picker:
+        specifier: ^7.4.10
+        version: 7.4.10(react@18.2.0)
+      react-transition-group:
+        specifier: ^4.4.5
+        version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+      scroll-to-element:
+        specifier: ^2.0.3
+        version: 2.0.3
+    devDependencies:
+      '@graphql-codegen/cli':
+        specifier: 4.0.1
+        version: 4.0.1(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-codegen/typescript':
+        specifier: 4.0.1
+        version: 4.0.1(graphql@16.8.1)
+      '@graphql-codegen/typescript-generic-sdk':
+        specifier: ^3.1.0
+        version: 3.1.0(graphql-tag@2.12.6)(graphql@16.8.1)
+      '@graphql-codegen/typescript-operations':
+        specifier: 4.0.1
+        version: 4.0.1(graphql@16.8.1)
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: ^13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/react-triple-client-interfaces':
+        specifier: workspace:*
+        version: link:../react-triple-client-interfaces
+      '@titicaca/tds-theme':
+        specifier: workspace:*
+        version: link:../tds-theme
+      '@types/qs':
+        specifier: ^6.9.8
+        version: 6.9.8
+      '@types/react-transition-group':
+        specifier: ^4.4.6
+        version: 4.4.7
+      csstype:
+        specifier: ^3.1.2
+        version: 3.1.2
+      next:
+        specifier: ^13.4.13
+        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-query:
+        specifier: ^3.39.3
+        version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
+  packages/triple-document:
+    dependencies:
+      '@titicaca/content-type-definitions':
+        specifier: 8.16.0
+        version: 8.16.0
+      '@titicaca/fetcher':
+        specifier: workspace:*
+        version: link:../fetcher
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -1626,21 +751,21 @@ importers:
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
-      '@titicaca/poi-list-elements':
-        specifier: workspace:*
-        version: link:../poi-list-elements
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
-      '@titicaca/scrap-button':
-        specifier: workspace:*
-        version: link:../scrap-button
       '@titicaca/standard-action-handler':
         specifier: workspace:*
         version: link:../standard-action-handler
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
+      '@titicaca/tds-widget':
+        specifier: workspace:*
+        version: link:../tds-widget
       '@titicaca/triple-media':
         specifier: workspace:*
         version: link:../triple-media
@@ -1650,12 +775,6 @@ importers:
       '@titicaca/ui-flow':
         specifier: workspace:*
         version: link:../ui-flow
-      '@titicaca/user-verification':
-        specifier: workspace:*
-        version: link:../user-verification
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -1690,9 +809,9 @@ importers:
 
   packages/triple-email-document:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -1712,15 +831,15 @@ importers:
 
   packages/triple-header:
     dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
       '@titicaca/standard-action-handler':
         specifier: workspace:*
         version: link:../standard-action-handler
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -1752,12 +871,12 @@ importers:
 
   packages/triple-media:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/image-source':
+        version: link:../tds-ui
+      '@titicaca/tds-widget':
         specifier: workspace:*
-        version: link:../image-source
+        version: link:../tds-widget
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -1805,46 +924,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/user-verification:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/react-hooks':
-        specifier: workspace:*
-        version: link:../react-hooks
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/view-utilities:
     dependencies:
       '@titicaca/type-definitions':
@@ -1863,12 +942,6 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
       '@types/haversine':
         specifier: ^1.1.6
         version: 1.1.6
@@ -1922,7 +995,7 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
 
-  /@ardatan/relay-compiler@12.0.0(graphql@16.8.0):
+  /@ardatan/relay-compiler@12.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-9anThAaj1dQr6IGmzBMcfzOQKTa5artjuPmw8NYK/fiGEMjADbSguBY2FMDykt+QhilR3wc9VA/3yVju7JHg7Q==}
     hasBin: true
     peerDependencies:
@@ -1939,7 +1012,7 @@ packages:
       fb-watchman: 2.0.2
       fbjs: 3.0.5
       glob: 7.2.3
-      graphql: 16.8.0
+      graphql: 16.8.1
       immutable: 3.7.6
       invariant: 2.2.4
       nullthrows: 1.1.1
@@ -2019,7 +1092,7 @@ packages:
     resolution: {integrity: sha512-+lcUbnTRhd0jOewtFSedLyiPsD5tswKkbgcezOqqWFUVNEwoUTlpPOBmvhG7OXWLR4jMdv0czPGH5XbflnD1EA==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.5
+      '@babel/types': 7.22.11
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
       jsesc: 2.5.2
@@ -4304,35 +3377,35 @@ packages:
       supercluster: 8.0.1
     dev: false
 
-  /@graphql-codegen/cli@4.0.1(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.0):
+  /@graphql-codegen/cli@4.0.1(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-/H4imnGOl3hoPXLKmIiGUnXpmBmeIClSZie/YHDzD5N59cZlGGJlIOOrUlOTDpJx5JNU1MTQcRjyTToOYM5IfA==}
     hasBin: true
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@babel/generator': 7.22.5
+      '@babel/generator': 7.22.10
       '@babel/template': 7.22.5
-      '@babel/types': 7.22.5
-      '@graphql-codegen/core': 4.0.0(graphql@16.8.0)
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-tools/apollo-engine-loader': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/code-file-loader': 8.0.1(@babel/core@7.22.11)(graphql@16.8.0)
-      '@graphql-tools/git-loader': 8.0.1(@babel/core@7.22.11)(graphql@16.8.0)
-      '@graphql-tools/github-loader': 8.0.0(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/json-file-loader': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/load': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/prisma-loader': 8.0.1(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@babel/types': 7.22.11
+      '@graphql-codegen/core': 4.0.0(graphql@16.8.1)
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-tools/apollo-engine-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/code-file-loader': 8.0.1(@babel/core@7.22.11)(graphql@16.8.1)
+      '@graphql-tools/git-loader': 8.0.1(@babel/core@7.22.11)(graphql@16.8.1)
+      '@graphql-tools/github-loader': 8.0.0(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/json-file-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/load': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/prisma-loader': 8.0.1(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@parcel/watcher': 2.2.0
       '@whatwg-node/fetch': 0.8.8
       chalk: 4.1.2
       cosmiconfig: 8.2.0
       debounce: 1.2.1
       detect-indent: 6.1.0
-      graphql: 16.8.0
-      graphql-config: 5.0.2(@types/node@18.18.5)(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-config: 5.0.2(@types/node@18.18.5)(graphql@16.8.1)
       inquirer: 8.2.5
       is-glob: 4.0.3
       jiti: 1.19.1
@@ -4343,7 +3416,7 @@ packages:
       shell-quote: 1.8.1
       string-env-interpolation: 1.0.1
       ts-log: 2.2.5
-      tslib: 2.6.0
+      tslib: 2.6.2
       yaml: 1.10.2
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -4357,134 +3430,134 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-codegen/core@4.0.0(graphql@16.8.0):
+  /@graphql-codegen/core@4.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-JAGRn49lEtSsZVxeIlFVIRxts2lWObR+OQo7V2LHDJ7ohYYw3ilv7nJ8pf8P4GTg/w6ptcYdSdVVdkI8kUHB/Q==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-tools/schema': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.5.3
     dev: true
 
-  /@graphql-codegen/plugin-helpers@2.7.2(graphql@16.8.0):
+  /@graphql-codegen/plugin-helpers@2.7.2(graphql@16.8.1):
     resolution: {integrity: sha512-kln2AZ12uii6U59OQXdjLk5nOlh1pHis1R98cDZGFnfaiAbX9V3fxcZ1MMJkB7qFUymTALzyjZoXXdyVmPMfRg==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-tools/utils': 8.13.1(graphql@16.8.0)
+      '@graphql-tools/utils': 8.13.1(graphql@16.8.1)
       change-case-all: 1.0.14
       common-tags: 1.8.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       import-from: 4.0.0
       lodash: 4.17.21
       tslib: 2.4.1
     dev: true
 
-  /@graphql-codegen/plugin-helpers@3.1.2(graphql@16.8.0):
+  /@graphql-codegen/plugin-helpers@3.1.2(graphql@16.8.1):
     resolution: {integrity: sha512-emOQiHyIliVOIjKVKdsI5MXj312zmRDwmHpyUTZMjfpvxq/UVAHUJIVdVf+lnjjrI+LXBTgMlTWTgHQfmICxjg==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-tools/utils': 9.2.1(graphql@16.8.0)
+      '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       change-case-all: 1.0.15
       common-tags: 1.8.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       import-from: 4.0.0
       lodash: 4.17.21
       tslib: 2.4.1
     dev: true
 
-  /@graphql-codegen/plugin-helpers@5.0.0(graphql@16.8.0):
+  /@graphql-codegen/plugin-helpers@5.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-suL2ZMkBAU2a4YbBHaZvUPsV1z0q3cW6S96Z/eYYfkRIsJoe2vN+wNZ9Xdzmqx0JLmeeFCBSoBGC0imFyXlkDQ==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       change-case-all: 1.0.15
       common-tags: 1.8.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       import-from: 4.0.0
       lodash: 4.17.21
       tslib: 2.5.3
     dev: true
 
-  /@graphql-codegen/schema-ast@4.0.0(graphql@16.8.0):
+  /@graphql-codegen/schema-ast@4.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-WIzkJFa9Gz28FITAPILbt+7A8+yzOyd1NxgwFh7ie+EmO9a5zQK6UQ3U/BviirguXCYnn+AR4dXsoDrSrtRA1g==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.5.3
     dev: true
 
-  /@graphql-codegen/typescript-generic-sdk@3.1.0(graphql-tag@2.12.6)(graphql@16.8.0):
+  /@graphql-codegen/typescript-generic-sdk@3.1.0(graphql-tag@2.12.6)(graphql@16.8.1):
     resolution: {integrity: sha512-nQZi/YGRI1+qCZZsh0V5nz6+hCHSN4OU9tKyOTDsEPyDFnGEukDuRdCH2IZasGn22a3Iu5TUDkgp5w9wEQwGmg==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-tag: ^2.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.8.0)
-      '@graphql-codegen/visitor-plugin-common': 2.13.1(graphql@16.8.0)
+      '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.8.1)
+      '@graphql-codegen/visitor-plugin-common': 2.13.1(graphql@16.8.1)
       auto-bind: 4.0.0
-      graphql: 16.8.0
-      graphql-tag: 2.12.6(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-tag: 2.12.6(graphql@16.8.1)
       tslib: 2.4.1
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-operations@4.0.1(graphql@16.8.0):
+  /@graphql-codegen/typescript-operations@4.0.1(graphql@16.8.1):
     resolution: {integrity: sha512-GpUWWdBVUec/Zqo23aFLBMrXYxN2irypHqDcKjN78JclDPdreasAEPcIpMfqf4MClvpmvDLy4ql+djVAwmkjbw==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-codegen/typescript': 4.0.1(graphql@16.8.0)
-      '@graphql-codegen/visitor-plugin-common': 4.0.1(graphql@16.8.0)
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-codegen/typescript': 4.0.1(graphql@16.8.1)
+      '@graphql-codegen/visitor-plugin-common': 4.0.1(graphql@16.8.1)
       auto-bind: 4.0.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.5.3
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript@4.0.1(graphql@16.8.0):
+  /@graphql-codegen/typescript@4.0.1(graphql@16.8.1):
     resolution: {integrity: sha512-3YziQ21dCVdnHb+Us1uDb3pA6eG5Chjv0uTK+bt9dXeMlwYBU8MbtzvQTo4qvzWVC1AxSOKj0rgfNu1xCXqJyA==}
     peerDependencies:
       graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-codegen/schema-ast': 4.0.0(graphql@16.8.0)
-      '@graphql-codegen/visitor-plugin-common': 4.0.1(graphql@16.8.0)
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-codegen/schema-ast': 4.0.0(graphql@16.8.1)
+      '@graphql-codegen/visitor-plugin-common': 4.0.1(graphql@16.8.1)
       auto-bind: 4.0.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.5.3
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@graphql-codegen/visitor-plugin-common@2.13.1(graphql@16.8.0):
+  /@graphql-codegen/visitor-plugin-common@2.13.1(graphql@16.8.1):
     resolution: {integrity: sha512-mD9ufZhDGhyrSaWQGrU1Q1c5f01TeWtSWy/cDwXYjJcHIj1Y/DG2x0tOflEfCvh5WcnmHNIw4lzDsg1W7iFJEg==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 2.7.2(graphql@16.8.0)
-      '@graphql-tools/optimize': 1.4.0(graphql@16.8.0)
-      '@graphql-tools/relay-operation-optimizer': 6.5.18(graphql@16.8.0)
-      '@graphql-tools/utils': 8.13.1(graphql@16.8.0)
+      '@graphql-codegen/plugin-helpers': 2.7.2(graphql@16.8.1)
+      '@graphql-tools/optimize': 1.4.0(graphql@16.8.1)
+      '@graphql-tools/relay-operation-optimizer': 6.5.18(graphql@16.8.1)
+      '@graphql-tools/utils': 8.13.1(graphql@16.8.1)
       auto-bind: 4.0.0
       change-case-all: 1.0.14
       dependency-graph: 0.11.0
-      graphql: 16.8.0
-      graphql-tag: 2.12.6(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-tag: 2.12.6(graphql@16.8.1)
       parse-filepath: 1.0.2
       tslib: 2.4.1
     transitivePeerDependencies:
@@ -4492,20 +3565,20 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/visitor-plugin-common@4.0.1(graphql@16.8.0):
+  /@graphql-codegen/visitor-plugin-common@4.0.1(graphql@16.8.1):
     resolution: {integrity: sha512-Bi/1z0nHg4QMsAqAJhds+ForyLtk7A3HQOlkrZNm3xEkY7lcBzPtiOTLBtvziwopBsXUxqeSwVjOOFPLS5Yw1Q==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.0)
-      '@graphql-tools/optimize': 2.0.0(graphql@16.8.0)
-      '@graphql-tools/relay-operation-optimizer': 7.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-codegen/plugin-helpers': 5.0.0(graphql@16.8.1)
+      '@graphql-tools/optimize': 2.0.0(graphql@16.8.1)
+      '@graphql-tools/relay-operation-optimizer': 7.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       dependency-graph: 0.11.0
-      graphql: 16.8.0
-      graphql-tag: 2.12.6(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-tag: 2.12.6(graphql@16.8.1)
       parse-filepath: 1.0.2
       tslib: 2.5.3
     transitivePeerDependencies:
@@ -4513,44 +3586,44 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-tools/apollo-engine-loader@8.0.0(graphql@16.8.0):
+  /@graphql-tools/apollo-engine-loader@8.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-axQTbN5+Yxs1rJ6cWQBOfw3AEeC+fvIuZSfJLPLLvFJLj4pUm9fhxey/g6oQZAAQJqKPfw+tLDUQvnfvRK8Kmg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@whatwg-node/fetch': 0.9.7
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     transitivePeerDependencies:
       - encoding
     dev: true
 
-  /@graphql-tools/batch-execute@9.0.0(graphql@16.8.0):
+  /@graphql-tools/batch-execute@9.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-lT9/1XmPSYzBcEybXPLsuA6C5E0t8438PVUELABcqdvwHgZ3VOOx29MLBEqhr2oewOlDChH6PXNkfxoOoAuzRg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       dataloader: 2.2.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: true
 
-  /@graphql-tools/code-file-loader@8.0.1(@babel/core@7.22.11)(graphql@16.8.0):
+  /@graphql-tools/code-file-loader@8.0.1(@babel/core@7.22.11)(graphql@16.8.1):
     resolution: {integrity: sha512-pmg81lsIXGW3uW+nFSCIG0lFQIxWVbgDjeBkSWlnP8CZsrHTQEkB53DT7t4BHLryoxDS4G4cPxM52yNINDSL8w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       globby: 11.1.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       unixify: 1.0.0
     transitivePeerDependencies:
@@ -4558,32 +3631,32 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-tools/delegate@10.0.0(graphql@16.8.0):
+  /@graphql-tools/delegate@10.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-ZW5/7Q0JqUM+guwn8/cM/1Hz16Zvj6WR6r3gnOwoPO7a9bCbe8QTCk4itT/EO+RiGT8RLUPYaunWR9jxfNqqOA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/batch-execute': 9.0.0(graphql@16.8.0)
-      '@graphql-tools/executor': 1.1.0(graphql@16.8.0)
-      '@graphql-tools/schema': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/batch-execute': 9.0.0(graphql@16.8.1)
+      '@graphql-tools/executor': 1.1.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       dataloader: 2.2.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: true
 
-  /@graphql-tools/executor-graphql-ws@1.0.2(graphql@16.8.0):
+  /@graphql-tools/executor-graphql-ws@1.0.2(graphql@16.8.1):
     resolution: {integrity: sha512-T9lKnweig4+LqS8EmBmyfAVYYUEkzLzoiB/L7CJeoI4dy+U+5fxZcfq8Aq2imVQpeeOldBg54JK89UgBRKv9Qg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@types/ws': 8.5.5
-      graphql: 16.8.0
-      graphql-ws: 5.14.0(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-ws: 5.14.0(graphql@16.8.1)
       isomorphic-ws: 5.0.0(ws@8.13.0)
       tslib: 2.6.2
       ws: 8.13.0
@@ -4592,17 +3665,17 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-tools/executor-http@1.0.1(@types/node@18.18.5)(graphql@16.8.0):
+  /@graphql-tools/executor-http@1.0.1(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-36D2oxVuv7NboFdPPS9MDOICvsg08P1K9xkqcQTB4UQogkUn58ZFfWM+4cZ9rwfNCIPTIzH4quoj7Xo09xbzmw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.4
       '@whatwg-node/fetch': 0.9.7
       extract-files: 11.0.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       meros: 1.3.0(@types/node@18.18.5)
       tslib: 2.6.2
       value-or-promise: 1.0.12
@@ -4610,15 +3683,15 @@ packages:
       - '@types/node'
     dev: true
 
-  /@graphql-tools/executor-legacy-ws@1.0.1(graphql@16.8.0):
+  /@graphql-tools/executor-legacy-ws@1.0.1(graphql@16.8.1):
     resolution: {integrity: sha512-PQrTJ+ncHMEQspBARc2lhwiQFfRAX/z/CsOdZTFjIljOHgRWGAA1DAx7pEN0j6PflbLCfZ3NensNq2jCBwF46w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@types/ws': 8.5.5
-      graphql: 16.8.0
+      graphql: 16.8.1
       isomorphic-ws: 5.0.0(ws@8.13.0)
       tslib: 2.6.2
       ws: 8.13.0
@@ -4627,29 +3700,29 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-tools/executor@1.1.0(graphql@16.8.0):
+  /@graphql-tools/executor@1.1.0(graphql@16.8.1):
     resolution: {integrity: sha512-+1wmnaUHETSYxiK/ELsT60x584Rw3QKBB7F/7fJ83HKPnLifmE2Dm/K9Eyt6L0Ppekf1jNUbWBpmBGb8P5hAeg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.4
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: true
 
-  /@graphql-tools/git-loader@8.0.1(@babel/core@7.22.11)(graphql@16.8.0):
+  /@graphql-tools/git-loader@8.0.1(@babel/core@7.22.11)(graphql@16.8.1):
     resolution: {integrity: sha512-ivNtxD+iEfpPONYKip0kbpZMRdMCNR3HrIui8NCURmUdvBYGaGcbB3VrGMhxwZuzc+ybhs2ralPt1F8Oxq2jLA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       is-glob: 4.0.3
       micromatch: 4.0.5
       tslib: 2.6.2
@@ -4659,18 +3732,18 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-tools/github-loader@8.0.0(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.0):
+  /@graphql-tools/github-loader@8.0.0(@babel/core@7.22.11)(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-VuroArWKcG4yaOWzV0r19ElVIV6iH6UKDQn1MXemND0xu5TzrFme0kf3U9o0YwNo0kUYEk9CyFM0BYg4he17FA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
-      '@graphql-tools/executor-http': 1.0.1(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/executor-http': 1.0.1(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.22.11)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@whatwg-node/fetch': 0.9.7
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     transitivePeerDependencies:
@@ -4680,21 +3753,21 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-tools/graphql-file-loader@8.0.0(graphql@16.8.0):
+  /@graphql-tools/graphql-file-loader@8.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-wRXj9Z1IFL3+zJG1HWEY0S4TXal7+s1vVhbZva96MSp0kbb/3JBF7j0cnJ44Eq0ClccMgGCDFqPFXty4JlpaPg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/import': 7.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/import': 7.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       globby: 11.1.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       unixify: 1.0.0
     dev: true
 
-  /@graphql-tools/graphql-tag-pluck@8.0.1(@babel/core@7.22.11)(graphql@16.8.0):
+  /@graphql-tools/graphql-tag-pluck@8.0.1(@babel/core@7.22.11)(graphql@16.8.1):
     resolution: {integrity: sha512-4sfBJSoXxVB4rRCCp2GTFhAYsUJgAPSKxSV+E3Voc600mK52JO+KsHCCTnPgCeyJFMNR9l94J6+tqxVKmlqKvw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -4704,98 +3777,98 @@ packages:
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.11)
       '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
     dev: true
 
-  /@graphql-tools/import@7.0.0(graphql@16.8.0):
+  /@graphql-tools/import@7.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-NVZiTO8o1GZs6OXzNfjB+5CtQtqsZZpQOq+Uu0w57kdUkT4RlQKlwhT8T81arEsbV55KpzkpFsOZP7J1wdmhBw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       resolve-from: 5.0.0
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/json-file-loader@8.0.0(graphql@16.8.0):
+  /@graphql-tools/json-file-loader@8.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-ki6EF/mobBWJjAAC84xNrFMhNfnUFD6Y0rQMGXekrUgY0NdeYXHU0ZUgHzC9O5+55FslqUmAUHABePDHTyZsLg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       globby: 11.1.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
       unixify: 1.0.0
     dev: true
 
-  /@graphql-tools/load@8.0.0(graphql@16.8.0):
+  /@graphql-tools/load@8.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-Cy874bQJH0FP2Az7ELPM49iDzOljQmK1PPH6IuxsWzLSTxwTqd8dXA09dcVZrI7/LsN26heTY2R8q2aiiv0GxQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/schema': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/schema': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       p-limit: 3.1.0
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/merge@9.0.0(graphql@16.8.0):
+  /@graphql-tools/merge@9.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-J7/xqjkGTTwOJmaJQJ2C+VDBDOWJL3lKrHJN4yMaRLAJH3PosB7GiPRaSDZdErs0+F77sH2MKs2haMMkywzx7Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/optimize@1.4.0(graphql@16.8.0):
+  /@graphql-tools/optimize@1.4.0(graphql@16.8.1):
     resolution: {integrity: sha512-dJs/2XvZp+wgHH8T5J2TqptT9/6uVzIYvA6uFACha+ufvdMBedkfR4b4GbT8jAKLRARiqRTxy3dctnwkTM2tdw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/optimize@2.0.0(graphql@16.8.0):
+  /@graphql-tools/optimize@2.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-nhdT+CRGDZ+bk68ic+Jw1OZ99YCDIKYA5AlVAnBHJvMawSx9YQqQAIj4refNc1/LRieGiuWvhbG3jvPVYho0Dg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/prisma-loader@8.0.1(@types/node@18.18.5)(graphql@16.8.0):
+  /@graphql-tools/prisma-loader@8.0.1(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-bl6e5sAYe35Z6fEbgKXNrqRhXlCJYeWKBkarohgYA338/SD9eEhXtg3Cedj7fut3WyRLoQFpHzfiwxKs7XrgXg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       '@types/js-yaml': 4.0.5
       '@types/json-stable-stringify': 1.0.34
       '@whatwg-node/fetch': 0.9.7
       chalk: 4.1.2
       debug: 4.3.4(supports-color@5.5.0)
       dotenv: 16.3.1
-      graphql: 16.8.0
-      graphql-request: 6.1.0(graphql@16.8.0)
+      graphql: 16.8.1
+      graphql-request: 6.1.0(graphql@16.8.1)
       http-proxy-agent: 7.0.0
       https-proxy-agent: 7.0.0
       jose: 4.14.4
@@ -4813,64 +3886,64 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-tools/relay-operation-optimizer@6.5.18(graphql@16.8.0):
+  /@graphql-tools/relay-operation-optimizer@6.5.18(graphql@16.8.1):
     resolution: {integrity: sha512-mc5VPyTeV+LwiM+DNvoDQfPqwQYhPV/cl5jOBjTgSniyaq8/86aODfMkrE2OduhQ5E00hqrkuL2Fdrgk0w1QJg==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@ardatan/relay-compiler': 12.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 9.2.1(graphql@16.8.0)
-      graphql: 16.8.0
+      '@ardatan/relay-compiler': 12.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@graphql-tools/relay-operation-optimizer@7.0.0(graphql@16.8.0):
+  /@graphql-tools/relay-operation-optimizer@7.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-UNlJi5y3JylhVWU4MBpL0Hun4Q7IoJwv9xYtmAz+CgRa066szzY7dcuPfxrA7cIGgG/Q6TVsKsYaiF4OHPs1Fw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@ardatan/relay-compiler': 12.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@ardatan/relay-compiler': 12.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@graphql-tools/schema@10.0.0(graphql@16.8.0):
+  /@graphql-tools/schema@10.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-kf3qOXMFcMs2f/S8Y3A8fm/2w+GaHAkfr3Gnhh2LOug/JgpY/ywgFVxO3jOeSpSEdoYcDKLcXVjMigNbY4AdQg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/merge': 9.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/merge': 9.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: true
 
-  /@graphql-tools/url-loader@8.0.0(@types/node@18.18.5)(graphql@16.8.0):
+  /@graphql-tools/url-loader@8.0.0(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-rPc9oDzMnycvz+X+wrN3PLrhMBQkG4+sd8EzaFN6dypcssiefgWKToXtRKI8HHK68n2xEq1PyrOpkjHFJB+GwA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
-      '@graphql-tools/delegate': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/executor-graphql-ws': 1.0.2(graphql@16.8.0)
-      '@graphql-tools/executor-http': 1.0.1(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/executor-legacy-ws': 1.0.1(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      '@graphql-tools/wrap': 10.0.0(graphql@16.8.0)
+      '@graphql-tools/delegate': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/executor-graphql-ws': 1.0.2(graphql@16.8.1)
+      '@graphql-tools/executor-http': 1.0.1(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/executor-legacy-ws': 1.0.1(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      '@graphql-tools/wrap': 10.0.0(graphql@16.8.1)
       '@types/ws': 8.5.5
       '@whatwg-node/fetch': 0.9.7
-      graphql: 16.8.0
+      graphql: 16.8.1
       isomorphic-ws: 5.0.0(ws@8.13.0)
       tslib: 2.6.2
       value-or-promise: 1.0.12
@@ -4882,57 +3955,57 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-tools/utils@10.0.3(graphql@16.8.0):
+  /@graphql-tools/utils@10.0.3(graphql@16.8.1):
     resolution: {integrity: sha512-6uO41urAEIs4sXQT2+CYGsUTkHkVo/2MpM/QjoHj6D6xoEF2woXHBpdAVi0HKIInDwZqWgEYOwIFez0pERxa1Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.0)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       dset: 3.1.2
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/utils@8.13.1(graphql@16.8.0):
+  /@graphql-tools/utils@8.13.1(graphql@16.8.1):
     resolution: {integrity: sha512-qIh9yYpdUFmctVqovwMdheVNJqFh+DQNWIhX87FJStfXYnmweBUDATok9fWPleKeFwxnW8IapKmY8m8toJEkAw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/utils@9.2.1(graphql@16.8.0):
+  /@graphql-tools/utils@9.2.1(graphql@16.8.1):
     resolution: {integrity: sha512-WUw506Ql6xzmOORlriNrD6Ugx+HjVgYxt9KCXD9mHAak+eaXSwuGGPyE60hy9xaDEoXKBsG7SkG69ybitaVl6A==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /@graphql-tools/wrap@10.0.0(graphql@16.8.0):
+  /@graphql-tools/wrap@10.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-HDOeUUh6UhpiH0WPJUQl44ODt1x5pnMUbOJZ7GjTdGQ7LK0AgVt3ftaAQ9duxLkiAtYJmu5YkULirfZGj4HzDg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/delegate': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/schema': 10.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
-      graphql: 16.8.0
+      '@graphql-tools/delegate': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
+      graphql: 16.8.1
       tslib: 2.6.2
       value-or-promise: 1.0.12
     dev: true
 
-  /@graphql-typed-document-node/core@3.2.0(graphql@16.8.0):
+  /@graphql-typed-document-node/core@3.2.0(graphql@16.8.1):
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
 
   /@grpc/grpc-js@1.7.3:
     resolution: {integrity: sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==}
@@ -8487,8 +7560,8 @@ packages:
     resolution: {integrity: sha512-yGoD18SBY6dx10tPAG+c2/Fzr0qI9bTwtvced0CrifX4oyH9d8ag+ezdCh7Om9mH+kHJx/UO4g63vEquvtKJ7w==}
     dev: false
 
-  /@titicaca/content-utilities@8.16.0:
-    resolution: {integrity: sha512-322b2Rgs0J33e4rYv/vH0+t51BR17VMYvruoHMIBH3CXfZh1G56Z6GyEw3RYISZW5cfAUsinBY4x2k4dh6Cr8w==}
+  /@titicaca/content-utilities@8.12.0:
+    resolution: {integrity: sha512-QlGSDxrsIkRY+gLmRFOdRXyav6J6UNhiHU7dasDAtQxhAnerDm3f2lfC0pLQNqHarGosG4lFLhovTRy9n634Kg==}
     dependencies:
       '@titicaca/content-type-definitions': 8.16.0
       isomorphic-fetch: 3.0.0
@@ -8817,10 +7890,6 @@ packages:
 
   /@types/is-function@1.0.1:
     resolution: {integrity: sha512-A79HEEiwXTFtfY+Bcbo58M2GRYzCr9itHWzbzHVFNEYCcoU/MMGwYYf721gBrnhpj1s6RGVVha/IgNFnR0Iw/Q==}
-    dev: true
-
-  /@types/isomorphic-fetch@0.0.37:
-    resolution: {integrity: sha512-+27HulrbyFpcalE4Agl+KHfGi4Qkcdmxv/ISi+DmUs5NECAFxRHeuZaLJj6DBfDRle6yxCOqLHJrfyVy9y5x9w==}
     dev: true
 
   /@types/istanbul-lib-coverage@2.0.4:
@@ -9995,7 +9064,7 @@ packages:
   /autolinker@4.0.0:
     resolution: {integrity: sha512-fl5Kh6BmEEZx+IWBfEirnRUU5+cOiV0OK7PEt0RBKvJMJ8GaRseIOeDU3FKf4j3CE5HVefcjHmhYPOcaVt0bZw==}
     dependencies:
-      tslib: 2.6.0
+      tslib: 2.6.2
     dev: false
 
   /available-typed-arrays@1.0.5:
@@ -13782,7 +12851,7 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /graphql-config@5.0.2(@types/node@18.18.5)(graphql@16.8.0):
+  /graphql-config@5.0.2(@types/node@18.18.5)(graphql@16.8.1):
     resolution: {integrity: sha512-7TPxOrlbiG0JplSZYCyxn2XQtqVhXomEjXUmWJVSS5ET1nPhOJSsIb/WTwqWhcYX6G0RlHXSj9PLtGTKmxLNGg==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
@@ -13792,14 +12861,14 @@ packages:
       cosmiconfig-toml-loader:
         optional: true
     dependencies:
-      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/json-file-loader': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/load': 8.0.0(graphql@16.8.0)
-      '@graphql-tools/merge': 9.0.0(graphql@16.8.0)
-      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
+      '@graphql-tools/graphql-file-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/json-file-loader': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/load': 8.0.0(graphql@16.8.1)
+      '@graphql-tools/merge': 9.0.0(graphql@16.8.1)
+      '@graphql-tools/url-loader': 8.0.0(@types/node@18.18.5)(graphql@16.8.1)
+      '@graphql-tools/utils': 10.0.3(graphql@16.8.1)
       cosmiconfig: 8.2.0
-      graphql: 16.8.0
+      graphql: 16.8.1
       jiti: 1.19.1
       minimatch: 4.2.3
       string-env-interpolation: 1.0.1
@@ -13811,44 +12880,39 @@ packages:
       - utf-8-validate
     dev: true
 
-  /graphql-request@6.1.0(graphql@16.8.0):
+  /graphql-request@6.1.0(graphql@16.8.1):
     resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}
     peerDependencies:
       graphql: 14 - 16
     dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.0)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       cross-fetch: 3.1.8
-      graphql: 16.8.0
+      graphql: 16.8.1
     transitivePeerDependencies:
       - encoding
 
-  /graphql-tag@2.12.6(graphql@16.8.0):
+  /graphql-tag@2.12.6(graphql@16.8.1):
     resolution: {integrity: sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==}
     engines: {node: '>=10'}
     peerDependencies:
       graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
       tslib: 2.6.2
     dev: true
 
-  /graphql-ws@5.14.0(graphql@16.8.0):
+  /graphql-ws@5.14.0(graphql@16.8.1):
     resolution: {integrity: sha512-itrUTQZP/TgswR4GSSYuwWUzrE/w5GhbwM2GX3ic2U7aw33jgEsayfIlvaj7/GcIvZgNMzsPTrE5hqPuFUiE5g==}
     engines: {node: '>=10'}
     peerDependencies:
       graphql: '>=0.11 <=16'
     dependencies:
-      graphql: 16.8.0
+      graphql: 16.8.1
     dev: true
-
-  /graphql@16.8.0:
-    resolution: {integrity: sha512-0oKGaR+y3qcS5mCu1vb7KG+a89vjn06C7Ihq/dDl3jA+A8B3TKomvi3CiEcVLJQGalbu8F52LxkOym7U5sSfbg==}
-    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
   /graphql@16.8.1:
     resolution: {integrity: sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
-    dev: true
 
   /gunzip-maybe@1.4.2:
     resolution: {integrity: sha512-4haO1M4mLO91PW57BMsDFf75UmwoRX0GkdD+Faw+Lr+r/OZrOCS0pIBwOL1xCKQqnQzbNFGgK2V2CpBUPeFNTw==}
@@ -20755,6 +19819,7 @@ packages:
 
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
