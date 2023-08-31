@@ -63,7 +63,7 @@
     "@titicaca/next-i18next": "13.8.5",
     "@types/haversine": "^1.1.5",
     "@types/humps": "^2.0.3",
-    "@types/qs": "^6.9.7"
+    "@types/qs": "^6.9.8"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
