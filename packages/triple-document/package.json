@@ -44,6 +44,7 @@
     "@titicaca/content-type-definitions": "8.17.0",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
+    "@titicaca/image-source": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/map": "workspace:*",
     "@titicaca/modals": "workspace:*",
