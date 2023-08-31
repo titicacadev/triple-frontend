@@ -55,10 +55,6 @@ const ResourceListItem = styled(List.Item)`
   cursor: pointer;
 `
 
-const ContentContainer = styled.div`
-  width: calc(100% - 110px);
-`
-
 const LabelContainer = styled.div`
   position: absolute;
   bottom: 20px;
@@ -96,8 +92,8 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
 
   return (
     <ResourceListItem onClick={onClick} {...props}>
-      <FlexBox flex justifyContent="space-between">
-        <ContentContainer>
+      <FlexBox flex justifyContent="space-between" gap="16px">
+        <Container css={{ width: '100%' }}>
           <FlexBox
             flex
             alignItems="flex-start"
@@ -114,10 +110,10 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                 lineHeight="12px"
                 color="gray400"
                 css={{
-                  minWidth: '26px',
+                  minWidth: '24px',
                   border: '1px solid var(--color-gray200)',
                   borderRadius: '4px',
-                  padding: '2px 3px 3px',
+                  padding: '1px 2px',
                 }}
               >
                 {t(['gwanggo', '광고'])}
@@ -171,7 +167,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
               ) : null}
             </Container>
           ) : null}
-        </ContentContainer>
+        </Container>
 
         <Container position="relative">
           <Container clearing>
