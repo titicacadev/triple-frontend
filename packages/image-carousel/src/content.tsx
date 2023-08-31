@@ -1,4 +1,4 @@
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 import {
   FrameRatioAndSizes,
   GlobalSizes,
@@ -16,7 +16,7 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
-  ImageSource?: ImageSourceType
+  ImageSource?: typeof ImageSource
   onClick?: MouseEventHandler
 }
 

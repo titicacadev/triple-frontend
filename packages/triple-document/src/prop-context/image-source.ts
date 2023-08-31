@@ -1,7 +1,9 @@
 import { createContext, useContext } from 'react'
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 
-const ImageSourceContext = createContext<ImageSourceType | undefined>(undefined)
+const ImageSourceContext = createContext<typeof ImageSource | undefined>(
+  undefined,
+)
 
 export const ImageSourceProvider = ImageSourceContext.Provider
 
