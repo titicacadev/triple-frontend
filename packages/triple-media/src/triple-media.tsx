@@ -1,14 +1,28 @@
 import { SyntheticEvent } from 'react'
 import {
   Video,
-  ImageSourceType,
   Image,
   MarginPadding,
   OptimizedImgProps,
 } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type MediaMeta = ImageMeta
+
+type Props = {
+  optimized?: boolean
+  media: ImageMeta
+  autoPlay?: boolean
+  loop?: boolean
+  hideControls?: boolean
+  showNativeControls?: boolean
+  ImageSource?: typeof ImageSource
+  borderRadius?: number
+  margin?: MarginPadding
+  frame?: FrameRatioAndSizes
+  onClick?: (e: SyntheticEvent, media: ImageMeta) => void
+} & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>
 
 export default function Media({
   optimized = false,
@@ -23,19 +37,7 @@ export default function Media({
   frame,
   onClick,
   ...props
-}: {
-  optimized?: boolean
-  media: ImageMeta
-  autoPlay?: boolean
-  loop?: boolean
-  hideControls?: boolean
-  showNativeControls?: boolean
-  ImageSource?: ImageSourceType
-  borderRadius?: number
-  margin?: MarginPadding
-  frame?: FrameRatioAndSizes
-  onClick?: (e: SyntheticEvent, media: ImageMeta) => void
-} & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>) {
+}: Props) {
   const {
     id,
     type,
