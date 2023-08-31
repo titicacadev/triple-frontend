@@ -1,5 +1,5 @@
 import { MouseEvent, ReactNode, useRef } from 'react'
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
 import Flicking from '@egjs/react-flicking'
 
@@ -13,7 +13,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   size?: GlobalSizes
   height?: number
   frame?: FrameRatioAndSizes
-  ImageSource?: ImageSourceType
+  ImageSource?: typeof ImageSource
   onImageClick?: (e?: MouseEvent, image?: CarouselImageMeta) => void
   showMoreRenderer?: (params: RendererParams) => ReactNode
   pageLabelRenderer?: (params: RendererParams) => ReactNode

@@ -1,6 +1,6 @@
 import { ComponentType, SyntheticEvent } from 'react'
 import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
@@ -44,7 +44,7 @@ export type TripleDocumentContext = {
   onLinkClick?: LinkEventHandler
   onTNAProductClick?: TnaProductsClickHandler
   onTNAProductsFetch?: TnaProductsFetcher
-  imageSourceComponent?: ImageSourceType
+  imageSourceComponent?: typeof ImageSource
   deepLink?: string
 } & MediaConfig
 

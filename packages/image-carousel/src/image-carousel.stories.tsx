@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react'
-import { ImageSource } from '@titicaca/core-elements'
+import { ImageSource } from '@titicaca/image-source'
 import { appWithTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 
