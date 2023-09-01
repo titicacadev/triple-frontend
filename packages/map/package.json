@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.18.1",
+    "@react-google-maps/api": "^2.19.2",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/type-definitions": "workspace:*"
