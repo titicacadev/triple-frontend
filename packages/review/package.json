@@ -51,7 +51,7 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/ui-flow": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
-    "graphql": "^16.6.0",
+    "graphql": "^16.8.0",
     "graphql-request": "^6.1.0",
     "moment": "^2.29.4",
     "qs": "^6.11.2",
