@@ -59,6 +59,7 @@ export interface ChatProps {
   showFailToast?: (message: string) => void
 
   updateChatData?: UpdateChatData
+  disableUnreadCount?: boolean
 }
 
 /**
@@ -78,6 +79,7 @@ export const Chat = ({
   notifyNewMessage,
   showFailToast,
   updateChatData,
+  disableUnreadCount = false,
   ...props
 }: ChatProps) => {
   const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
@@ -221,7 +223,7 @@ export const Chat = ({
   }
 
   const handleChangeLastMessageId = async () => {
-    await updateUnread()
+    !disableUnreadCount && (await updateUnread())
     scrollToBottom()
 
     if (!isScrollReady.current) {
@@ -275,6 +277,7 @@ export const Chat = ({
                     postMessage ? postMessageAction : undefined
                   }
                   otherReadInfo={otherUnreadInfo}
+                  disableUnreadCount={disableUnreadCount}
                 />
               ) : null}
             </li>
