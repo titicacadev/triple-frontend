@@ -20,6 +20,7 @@ interface ChatBubbleProps {
   otherReadInfo?: OtherUnreadInterface[]
   displayTarget: UserType
   postMessageAction?: PostMessageActionType
+  disableUnreadCount?: boolean
 }
 
 const ChatBubble = ({
@@ -29,22 +30,24 @@ const ChatBubble = ({
   otherReadInfo,
   displayTarget: componentDisplayTarget,
   postMessageAction,
+  disableUnreadCount = false,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
     [senderId, others],
   )
 
-  const unreadCount = otherReadInfo
-    ? otherReadInfo.reduce(
-        (prev, info) =>
-          Number(info.lastSeenMessageId) < Number(message.id) &&
-          info.memberId !== message.senderId
-            ? prev + 1
-            : prev,
-        0,
-      )
-    : null
+  const unreadCount =
+    !disableUnreadCount && otherReadInfo
+      ? otherReadInfo.reduce(
+          (prev, info) =>
+            Number(info.lastSeenMessageId) < Number(message.id) &&
+            info.memberId !== message.senderId
+              ? prev + 1
+              : prev,
+          0,
+        )
+      : null
 
   const payload = useMemo(() => {
     if (!message.displayTarget || message.displayTarget === 'all') {
