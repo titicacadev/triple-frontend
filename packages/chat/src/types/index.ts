@@ -69,6 +69,7 @@ export interface MessageInterface {
   createdAt?: string
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: TextPayload | ImagePayload | RichPayload
+  blinded?: boolean
 }
 
 export interface UserInterface {

@@ -23,6 +23,7 @@ interface ChatBubbleProps {
   disableUnreadCount?: boolean
   onRetryButtonClick?: () => void
   onRetryCancelButtonClick?: () => void
+  blindedText?: string
 }
 
 const ChatBubble = ({
@@ -35,6 +36,7 @@ const ChatBubble = ({
   onRetryButtonClick,
   onRetryCancelButtonClick,
   disableUnreadCount = false,
+  blindedText,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
@@ -54,6 +56,12 @@ const ChatBubble = ({
       : null
 
   const payload = useMemo(() => {
+    if (message.blinded) {
+      return {
+        type: MessageType.TEXT,
+        message: blindedText || '관리자에 의해 삭제된 메세지입니다.',
+      } as TextPayload
+    }
     if (!message.displayTarget || message.displayTarget === 'all') {
       return message.payload
     }
