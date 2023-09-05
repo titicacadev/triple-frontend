@@ -2,8 +2,6 @@
 /* eslint-disable camelcase */
 const fs = require('fs')
 
-const fetch = require('node-fetch')
-
 function generateChatGptPrompt(inputData) {
   return `
 Read the following example and markdown format, and write a markdown using given input data in exactly same format. Note that you must remove emojis from package names, and all items must be grouped by their package names properly.
