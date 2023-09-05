@@ -10,7 +10,9 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 interface FilterValues {
   isRecentTrip: boolean
+  isMediaCollection: boolean
   handleRecentTripChange: () => void
+  handleMediaChange: () => void
 }
 
 interface FilterProps {
@@ -24,6 +26,7 @@ export function FilterProvider({
   children,
 }: PropsWithChildren<FilterProps>) {
   const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTripFilter)
+  const [isMediaCollection, setIsMediaCollection] = useState(false)
 
   const { trackEvent } = useEventTrackingContext()
 
@@ -40,12 +43,25 @@ export function FilterProvider({
     })
   }, [isRecentTrip, trackEvent])
 
+  const handleMediaChange = useCallback(() => {
+    setIsMediaCollection((prevState) => !prevState)
+
+    // TODO: 이벤트 수집
+  }, [])
+
   const values = useMemo(
     () => ({
       isRecentTrip,
+      isMediaCollection,
       handleRecentTripChange,
+      handleMediaChange,
     }),
-    [isRecentTrip, handleRecentTripChange],
+    [
+      isRecentTrip,
+      isMediaCollection,
+      handleRecentTripChange,
+      handleMediaChange,
+    ],
   )
 
   return (
