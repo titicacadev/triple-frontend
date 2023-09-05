@@ -62,6 +62,7 @@ export interface ChatProps {
 
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
+  blindedText?: string
 }
 
 /**
@@ -84,6 +85,7 @@ export const Chat = ({
   onRetryCancelButtonClick,
   updateChatData,
   disableUnreadCount = false,
+  blindedText,
   ...props
 }: ChatProps) => {
   const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
@@ -284,6 +286,7 @@ export const Chat = ({
                   onRetryButtonClick={onRetryButtonClick}
                   onRetryCancelButtonClick={onRetryCancelButtonClick}
                   disableUnreadCount={disableUnreadCount}
+                  blindedText={blindedText}
                 />
               ) : null}
             </li>
