@@ -47,7 +47,7 @@ const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
     case MessageType.RICH:
       return <RichBubble my={my} items={payload.items} bubbleStyle={bubbleStyle} />
     case MessageType.PRODUCT:
-      return <ProductBubble />
+      return <ProductBubble my={my} product={payload.product} />
     default:
       return null
   }
