@@ -1,7 +1,13 @@
+import { useCallback } from 'react'
 import styled from 'styled-components'
-import { FlexBox, Label } from '@titicaca/core-elements'
+import { FlexBox, Text } from '@titicaca/core-elements'
+import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { useReviewSortingOptions } from './sorting-context'
+import {
+  SortingOptionsActionSheet,
+  HASH_SORTING_OPTIONS_ACTION_SHEET,
+} from './sorting-options-action-sheet'
 
 const OptionsContainer = styled(FlexBox)`
   padding: 0;
@@ -16,22 +22,29 @@ const OptionsContainer = styled(FlexBox)`
 `
 
 export function SortingOptions() {
-  const { selectedOption, sortingOptions, handleOptionSelect } =
-    useReviewSortingOptions()
+  const { selectedOption, sortingOptions } = useReviewSortingOptions()
+  const { push } = useHistoryFunctions()
+
+  const { text } =
+    sortingOptions.find(({ key }) => key === selectedOption) || {}
+
+  const handleActionSheetOpen = useCallback(() => {
+    push(HASH_SORTING_OPTIONS_ACTION_SHEET)
+  }, [push])
 
   return (
-    <OptionsContainer
-      flex
-      css={{
-        alignItems: 'center',
-      }}
-    >
-      {sortingOptions.map(({ key, text }) => (
-        <Label key={key} radio selected={selectedOption === key}>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-          <span onClick={() => handleOptionSelect(key)}>{text}</span>
-        </Label>
-      ))}
-    </OptionsContainer>
+    <>
+      <OptionsContainer
+        flex
+        css={{
+          alignItems: 'center',
+        }}
+        onClick={handleActionSheetOpen}
+      >
+        <Text>{text}</Text>
+      </OptionsContainer>
+
+      <SortingOptionsActionSheet />
+    </>
   )
 }
