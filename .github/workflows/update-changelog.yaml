@@ -31,17 +31,11 @@ jobs:
           token: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
       - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-
-      - run: pnpm install node-fetch prettier
 
       - name: Execute Changelog JavaScript
         run: node scripts/changelog.js
