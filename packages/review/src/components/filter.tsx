@@ -1,7 +1,7 @@
+import { useState } from 'react'
+import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
 import { FlexBox, Text, Container } from '@titicaca/core-elements'
-import styled from 'styled-components'
-import { useState } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useReviewFilters } from './filter-context'
@@ -64,7 +64,12 @@ const CloseIcon = styled.img`
 `
 
 export function Filters() {
-  const { isRecentTrip, handleRecentTripChange } = useReviewFilters()
+  const {
+    isRecentTrip,
+    isMediaCollection,
+    handleRecentTripChange,
+    handleMediaChange,
+  } = useReviewFilters()
 
   const { t } = useTranslation('common-web')
 
@@ -74,6 +79,12 @@ export function Filters() {
         title={t(['coegeun-yeohaeng', '최근 여행'])}
         checked={isRecentTrip}
         onClick={handleRecentTripChange}
+      />
+
+      <Filter
+        title="사진/동영상"
+        checked={isMediaCollection}
+        onClick={handleMediaChange}
       />
 
       <ToolTip />
@@ -100,7 +111,6 @@ function Filter({
       }}
     >
       <CheckBox readOnly type="checkbox" checked={checked} />
-
       <Text size={14}>{title}</Text>
     </FlexBox>
   )
