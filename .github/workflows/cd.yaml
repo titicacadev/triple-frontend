@@ -114,7 +114,7 @@ jobs:
       - name: Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: pnpm -r publish
+        run: pnpm -r publish --no-git-checks
 
       - name: Notify deploy success to slack
         if: success()
