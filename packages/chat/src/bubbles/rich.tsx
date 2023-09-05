@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { GlobalSizes } from '@titicaca/type-definitions'
 
+import { useChat } from '../chat'
 import {
   MetaDataInterface,
   MessageType,
@@ -38,22 +38,10 @@ const Button = styled.a`
 export function RichBubble({
   my,
   items,
-  textBubbleFontSize,
-  textBubbleMaxWidthOffset,
-  onButtonBeforeRouting,
-  cloudinaryName,
-  mediaUrlBase,
-  onImageBubbleClick,
   bubbleStyle,
 }: {
   my: boolean
   items: (TextPayload | ImagePayload | ButtonPayload)[]
-  textBubbleFontSize: GlobalSizes | number
-  textBubbleMaxWidthOffset: number
-  onButtonBeforeRouting?: () => void
-  cloudinaryName: string
-  mediaUrlBase: string
-  onImageBubbleClick?: (imageInfos: MetaDataInterface[]) => void
   bubbleStyle?: {
     backgroundColor: BackgroundColor
     textColor: string
@@ -61,6 +49,15 @@ export function RichBubble({
     linkUnderline?: boolean
   }
 }) {
+  const {
+    textBubbleFontSize,
+    textBubbleMaxWidthOffset,
+    mediaUrlBase,
+    cloudinaryName,
+    onImageBubbleClick,
+    onRichBubbleButtonBeforeRouting: onButtonBeforeRouting,
+  } = useChat()
+
   return (
     <TextBubble
       my={my}
