@@ -41,7 +41,9 @@ export function SortingOptions() {
         }}
         onClick={handleActionSheetOpen}
       >
-        <Text>{text}</Text>
+        <Text size={14} color="gray">
+          {text}
+        </Text>
       </OptionsContainer>
 
       <SortingOptionsActionSheet />
