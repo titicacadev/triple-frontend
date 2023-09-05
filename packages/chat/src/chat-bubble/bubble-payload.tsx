@@ -17,26 +17,12 @@ interface BubblePayloadProps {
 }
 
 const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
-  const {
-    textBubbleFontSize,
-    textBubbleMaxWidthOffset,
-    mediaUrlBase,
-    cloudinaryName,
-    onRichBubbleButtonBeforeRouting,
-    onImageBubbleClick,
-    onTextBubbleClick,
-  } = useChat()
+  const { textBubbleFontSize, textBubbleMaxWidthOffset, onTextBubbleClick } =
+    useChat()
 
   switch (payload.type) {
     case MessageType.IMAGES:
-      return (
-        <ImageBubble
-          imageInfos={payload.images}
-          cloudinaryName={cloudinaryName}
-          mediaUrlBase={mediaUrlBase}
-          onClick={onImageBubbleClick}
-        />
-      )
+      return <ImageBubble imageInfos={payload.images} />
     case MessageType.TEXT:
       return (
         <TextBubble
@@ -59,19 +45,7 @@ const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
         </TextBubble>
       )
     case MessageType.RICH:
-      return (
-        <RichBubble
-          my={my}
-          items={payload.items}
-          textBubbleFontSize={textBubbleFontSize}
-          textBubbleMaxWidthOffset={textBubbleMaxWidthOffset}
-          onButtonBeforeRouting={onRichBubbleButtonBeforeRouting}
-          cloudinaryName={cloudinaryName}
-          mediaUrlBase={mediaUrlBase}
-          onImageBubbleClick={onImageBubbleClick}
-          bubbleStyle={bubbleStyle}
-        />
-      )
+      return <RichBubble my={my} items={payload.items} bubbleStyle={bubbleStyle} />
     case MessageType.PRODUCT:
       return <ProductBubble />
     default:

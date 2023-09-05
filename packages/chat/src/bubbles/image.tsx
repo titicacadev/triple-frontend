@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { MetaDataInterface } from '../types'
 import { generatePreviewImage } from '../utils'
+import { useChat } from '../chat'
 
 const PreviewImage = styled.img<{ isRichBubble: boolean }>`
   ${({ isRichBubble }) =>
@@ -19,16 +20,16 @@ const PreviewImage = styled.img<{ isRichBubble: boolean }>`
 export function ImageBubble({
   imageInfos,
   isRichBubble = false,
-  cloudinaryName,
-  mediaUrlBase,
-  onClick,
 }: {
   imageInfos: MetaDataInterface[]
   isRichBubble?: boolean
-  cloudinaryName: string
-  mediaUrlBase: string
-  onClick?: (imageInfos: MetaDataInterface[]) => void
 }) {
+  const {
+    mediaUrlBase,
+    cloudinaryName,
+    onImageBubbleClick: onClick,
+  } = useChat()
+
   if (imageInfos.length === 0) {
     return null
   }
