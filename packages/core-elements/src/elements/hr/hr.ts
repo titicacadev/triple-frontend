@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-interface HrProps {
+export interface HrProps {
   compact?: boolean
   color?: string
 }

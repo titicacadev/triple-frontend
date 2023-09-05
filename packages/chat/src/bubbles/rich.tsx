@@ -52,9 +52,6 @@ export function RichBubble({
   const {
     textBubbleFontSize,
     textBubbleMaxWidthOffset,
-    mediaUrlBase,
-    cloudinaryName,
-    onImageBubbleClick,
     onRichBubbleButtonBeforeRouting: onButtonBeforeRouting,
   } = useChat()
 
@@ -72,14 +69,7 @@ export function RichBubble({
             return <div key={index}>{item.message}</div>
           case MessageType.IMAGES:
             return (
-              <ImageBubble
-                key={index}
-                isRichBubble
-                imageInfos={item.images}
-                cloudinaryName={cloudinaryName}
-                mediaUrlBase={mediaUrlBase}
-                onClick={onImageBubbleClick}
-              />
+              <ImageBubble key={index} isRichBubble imageInfos={item.images} />
             )
           case MessageType.BUTTON:
             return (
