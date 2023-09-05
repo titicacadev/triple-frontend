@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v13.3.0
+
+### chat
+
+- [Chat] iOS 모바일에서 init 시점에 infinite scroll 로직 실행되는 오류 수정 [#2868](https://github.com/titicacadev/triple-frontend/pull/2868)
+- Chat에 disableUnreadCount props를 추가합니다. [#2884](https://github.com/titicacadev/triple-frontend/pull/2884)
+
+### resource-list-element
+
+- [resource-list-element] 광고 표기 위치와 디자인을 수정합니다. [#2858](https://github.com/titicacadev/triple-frontend/pull/2858)
+
 ## v13.2.4
 
 ### slider
@@ -3933,11 +3944,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
