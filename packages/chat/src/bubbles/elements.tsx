@@ -5,6 +5,7 @@ import {
   Text,
   HR1,
   FlexBox,
+  HrProps,
 } from '@titicaca/core-elements'
 import { Color } from '@titicaca/color-palette'
 
@@ -39,7 +40,7 @@ export const ProductImage = styled.img`
   border-radius: 6px;
 `
 
-export const ProductHr = styled(HR1)`
+export const ProductHr = styled(HR1)<HrProps>`
   margin: 12px 0;
 `
 
