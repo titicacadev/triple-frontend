@@ -95,3 +95,28 @@ export const FailedSentMessage = {
     profileName: '테스트계정',
   },
 }
+
+export const Product = {
+  render: Template,
+
+  args: {
+    type: 'received',
+    payload: {
+      type: MessageType.PRODUCT,
+      product: {
+        customerBookingStatus: 'COMPLETED',
+        productName: '타오위안 블루 나이트 엑스파크 캠핑 체험 by HOTEL COZZI',
+        productThumbnail:
+          'https://media.triple.guide/triple-cms/image/upload/c_fill,w_224,q_auto,f_auto/70c9db60-cd42-49c3-b6a8-274318695cc2.jpeg',
+        itemName:
+          'Blu Night Suhai Adventure Star Ocean Sleeping Brigade (개인 여행자 합동 단체)｜목요일~토요일 출발',
+        optionName: '성인',
+        dateOfUse: '2023-12-28',
+        bookingId: 79465,
+      },
+    },
+    unreadCount: 1,
+    createdAt: new Date(2022, 10, 1).toISOString(),
+    profileName: '테스트계정',
+  },
+}
