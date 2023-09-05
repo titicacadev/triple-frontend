@@ -13,6 +13,7 @@ export enum MessageType {
   SUBMIT = 'submit',
   BUTTON = 'button',
   RICH = 'rich',
+  PRODUCT = 'product',
 }
 
 export enum RoomType {
@@ -121,8 +122,39 @@ export interface RichPayload {
   items: (TextPayload | ImagePayload | ButtonPayload)[]
 }
 
+export interface ProductPayload {
+  type: MessageType.PRODUCT
+  product: ProductItem
+}
+
 export interface RichItem {
   type: MessageType
+}
+
+export type CustomerBookingStatus =
+  | 'BOOKED'
+  | 'ONGOING'
+  | 'COMPLETED'
+  | 'CANCEL_REQUESTED'
+  | 'CANCELED'
+
+export interface ProductItem {
+  customerBookingStatus: CustomerBookingStatus
+  productName: string
+  productThumbnail?: string
+  itemName: string
+  optionName: string
+  dateOfUse: string
+  bookingId: number
+}
+
+export interface BookingOptionItem {
+  label: string
+  value: string
+}
+
+export interface PerPax {
+  perPax: BookingOptionItem[]
 }
 
 export interface HasUnreadInterface {
