@@ -11,9 +11,15 @@ import { useTranslation } from '@titicaca/next-i18next'
 
 import { useReviewFilters } from './filter-context'
 
-export type SortingOption = '' | 'latest'
+export type SortingOption =
+  | ''
+  | 'latest'
+  | 'reviews-rating-desc'
+  | 'reviews-rating-asc'
+export type SortingType = 'default' | 'poi'
 
 interface SortingOptionsProps {
+  type: SortingType
   resourceId: string
   initialSortingOption?: SortingOption
 }
@@ -29,6 +35,7 @@ const SortingOptionsContext = createContext<SortingOptionsValues | undefined>(
 )
 
 export function SortingOptionsProvider({
+  type,
   resourceId,
   initialSortingOption = '',
   children,
@@ -39,13 +46,18 @@ export function SortingOptionsProvider({
   const { trackEvent } = useEventTrackingContext()
   const { isRecentTrip } = useReviewFilters()
 
-  const sortingOptions = useMemo(
-    () => [
-      { key: '' as const, text: t(['cuceonsun', '추천순']) },
-      { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
-    ],
-    [t],
-  )
+  const defaultOptions = [
+    { key: '' as const, text: t(['cuceonsun', '추천순']) },
+    { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
+  ]
+
+  const poiOptions = [
+    ...defaultOptions,
+    { key: 'reviews-rating-desc' as const, text: '리뷰 높은순' },
+    { key: 'reviews-rating-asc' as const, text: '리뷰 낮은순' },
+  ]
+
+  const sortingOptions = type === 'default' ? defaultOptions : poiOptions
 
   const handleOptionSelect = useCallback(
     (sortingOption: SortingOption) => {
