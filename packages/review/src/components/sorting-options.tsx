@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { FlexBox, Label } from '@titicaca/core-elements'
 
-import { SortingOptionsActionSheet } from './sorting-options-action-sheet'
 import { useReviewSortingOptions } from './sorting-context'
 
 const OptionsContainer = styled(FlexBox)`
@@ -21,22 +20,18 @@ export function SortingOptions() {
     useReviewSortingOptions()
 
   return (
-    <>
-      <OptionsContainer
-        flex
-        css={{
-          alignItems: 'center',
-        }}
-      >
-        {sortingOptions.map(({ key, text }) => (
-          <Label key={key} radio selected={selectedOption === key}>
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-            <span onClick={() => handleOptionSelect(key)}>{text}</span>
-          </Label>
-        ))}
-      </OptionsContainer>
-
-      <SortingOptionsActionSheet />
-    </>
+    <OptionsContainer
+      flex
+      css={{
+        alignItems: 'center',
+      }}
+    >
+      {sortingOptions.map(({ key, text }) => (
+        <Label key={key} radio selected={selectedOption === key}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+          <span onClick={() => handleOptionSelect(key)}>{text}</span>
+        </Label>
+      ))}
+    </OptionsContainer>
   )
 }
