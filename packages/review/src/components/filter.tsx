@@ -75,16 +75,18 @@ export function Filters() {
 
   return (
     <FlexBox flex alignItems="center" position="relative">
+      <Container css={{ marginRight: '12px' }}>
+        <Filter
+          title="사진/동영상"
+          checked={isMediaCollection}
+          onClick={handleMediaChange}
+        />
+      </Container>
+
       <Filter
         title={t(['coegeun-yeohaeng', '최근 여행'])}
         checked={isRecentTrip}
         onClick={handleRecentTripChange}
-      />
-
-      <Filter
-        title="사진/동영상"
-        checked={isMediaCollection}
-        onClick={handleMediaChange}
       />
 
       <ToolTip />
