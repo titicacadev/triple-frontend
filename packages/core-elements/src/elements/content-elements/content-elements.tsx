@@ -46,9 +46,9 @@ export const SquareImage = styled.img<{
   borderRadius?: number
   floated?: CSS.Property.Float
 }>`
-  width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
-  height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 }[size])}px;
-  border-radius: ${({ size = 'medium' }) => ({ small: 2, medium: 6 }[size])}px;
+  width: ${({ size = 'medium' }) => ({ small: 40, medium: 140 })[size]}px;
+  height: ${({ size = 'medium' }) => ({ small: 40, medium: 140 })[size]}px;
+  border-radius: ${({ size = 'medium' }) => ({ small: 2, medium: 6 })[size]}px;
   background-color: #efefef;
   object-fit: cover;
 

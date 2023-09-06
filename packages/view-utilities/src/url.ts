@@ -104,40 +104,43 @@ function parseQuery(query: string): ParsedQuery {
 
 function stringifyQuery(obj: ParsedQuery): string {
   return Object.entries(obj)
-    .reduce((result, [key, value]) => {
-      if (typeof value === 'string') {
-        return [...result, [key, value] as const]
-      }
-      if ('type' in value) {
-        if (value.type === 'implicitBoolean') {
-          return [...result, [key] as const]
+    .reduce(
+      (result, [key, value]) => {
+        if (typeof value === 'string') {
+          return [...result, [key, value] as const]
         }
+        if ('type' in value) {
+          if (value.type === 'implicitBoolean') {
+            return [...result, [key] as const]
+          }
 
-        const { type, value: array } = value
+          const { type, value: array } = value
 
-        if (type === 'indices') {
-          return [
-            ...result,
-            ...array.map(
-              (value, index) => [`${key}[${index}]`, value] as const,
-            ),
-          ]
+          if (type === 'indices') {
+            return [
+              ...result,
+              ...array.map(
+                (value, index) => [`${key}[${index}]`, value] as const,
+              ),
+            ]
+          }
+          if (type === 'brackets') {
+            return [
+              ...result,
+              ...array.map((value) => [`${key}[]`, value] as const),
+            ]
+          }
+          if (type === 'repeat') {
+            return [...result, ...array.map((value) => [key, value] as const)]
+          }
+          if (type === 'comma') {
+            return [...result, [key, array.join(',')] as const]
+          }
         }
-        if (type === 'brackets') {
-          return [
-            ...result,
-            ...array.map((value) => [`${key}[]`, value] as const),
-          ]
-        }
-        if (type === 'repeat') {
-          return [...result, ...array.map((value) => [key, value] as const)]
-        }
-        if (type === 'comma') {
-          return [...result, [key, array.join(',')] as const]
-        }
-      }
-      return result
-    }, [] as (readonly [string] | readonly [string, string])[])
+        return result
+      },
+      [] as (readonly [string] | readonly [string, string])[],
+    )
     .map((pair: readonly [string] | readonly [string, string]) =>
       pair.map((str) => encodeURIComponent(str)),
     )

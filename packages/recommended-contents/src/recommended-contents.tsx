@@ -29,11 +29,10 @@ const RecommendedContentWithDesktopResolution = styled.li<{
   padding: 20px 15px 0;
   margin-bottom: 15px;
   border-radius: 6px;
-  ${({ backgroundImageUrl }) =>
-    css`
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url(${backgroundImageUrl});
-    `};
+  ${({ backgroundImageUrl }) => css`
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(${backgroundImageUrl});
+  `};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
