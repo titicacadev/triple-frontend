@@ -38,19 +38,13 @@ export function ReviewsShorten({
   resourceType,
   regionId,
   initialReviewsCount,
-  initialRecentTrip = false,
-  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
 }: ReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
-      <FilterProvider initialRecentTripFilter={initialRecentTrip}>
-        <SortingOptionsProvider
-          type={sortingType}
-          resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
+      <FilterProvider>
+        <SortingOptionsProvider type={sortingType} resourceId={resourceId}>
           <ReviewsShortenComponent
             resourceId={resourceId}
             resourceType={resourceType}
