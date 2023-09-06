@@ -9,16 +9,11 @@ import {
   HASH_SORTING_OPTIONS_ACTION_SHEET,
 } from './sorting-options-action-sheet'
 
-const OptionsContainer = styled(FlexBox)`
-  padding: 0;
-
-  div:not(:first-child) {
-    margin-left: 12px;
-  }
-
-  span {
-    font-weight: bold;
-  }
+const ArrowIcon = styled.div`
+  width: 12px;
+  height: 12px;
+  background-image: url('https://assets.triple.guide/images/ico_arrow_down_12@3x.png');
+  background-size: 12px 12px;
 `
 
 export function SortingOptions() {
@@ -34,10 +29,11 @@ export function SortingOptions() {
 
   return (
     <>
-      <OptionsContainer
+      <FlexBox
         flex
+        alignItems="center"
+        gap="4px"
         css={{
-          alignItems: 'center',
           cursor: 'pointer',
         }}
         onClick={handleActionSheetOpen}
@@ -45,7 +41,9 @@ export function SortingOptions() {
         <Text size={14} color="gray">
           {text}
         </Text>
-      </OptionsContainer>
+
+        <ArrowIcon />
+      </FlexBox>
 
       <SortingOptionsActionSheet />
     </>
