@@ -192,4 +192,5 @@ export const koCommonWeb = {
   'soljighan-ribyu-110mangaewa-coesin-yeohaeng-sosigdeulggaji-aebeseo-pyeonhage-hwaginhaseyo':
     '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
   'yeogineun-teuripeul-aebi-pilyohaeyo': '여기는 트리플 앱이 필요해요',
+  'sajin-dongyeongsang': '사진/동영상',
 } as const

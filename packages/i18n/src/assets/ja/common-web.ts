@@ -194,4 +194,5 @@ export const jaCommonWeb = {
   'selpeupaekiji-cugahalin-ganeung': 'セルフパッケージの追加割引可能',
   gwangwang: '観光',
   masjib: 'グルメ',
+  'sajin-dongyeongsang': '写真/動画',
 }
