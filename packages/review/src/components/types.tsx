@@ -1,5 +1,3 @@
-export type SortingOption = '' | 'latest'
-
 export interface AppNativeActionProps {
   subscribeReviewUpdateEvent?: (
     handler: (params?: { id: string }) => void,
