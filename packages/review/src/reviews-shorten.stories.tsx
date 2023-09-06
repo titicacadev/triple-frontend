@@ -8,6 +8,8 @@ import {
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
+import { FilterProvider } from './components/filter-context'
+import { SortingOptionsProvider } from './components/sorting-context'
 
 import { ReviewsShorten } from '.'
 
@@ -43,6 +45,13 @@ export default {
       <QueryClientProvider client={queryClient}>
         <Story />
       </QueryClientProvider>
+    ),
+    (Story) => (
+      <FilterProvider>
+        <SortingOptionsProvider resourceId="">
+          <Story />
+        </SortingOptionsProvider>
+      </FilterProvider>
     ),
   ],
 } as Meta
