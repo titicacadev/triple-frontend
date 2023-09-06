@@ -27,7 +27,6 @@ interface ReviewsProps {
   initialReviewsCount: number
   sortingType?: SortingType
   placeholderText?: string
-  isMorePage?: boolean
 }
 
 export function Reviews({
