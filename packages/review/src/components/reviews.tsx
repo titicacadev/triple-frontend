@@ -38,7 +38,7 @@ export function Reviews({
   regionId,
   initialReviewsCount,
   initialRecentTrip = false,
-  initialSortingOption = '',
+  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
 }: ReviewsProps) {
@@ -61,6 +61,13 @@ export function Reviews({
       </FilterProvider>
     </LoginCtaModalProvider>
   )
+}
+
+const REVIEW_INFINITY_LIST_TYPES = {
+  recommendation: PopularReviewsInfinite,
+  latest: LatestReviewsInfinite,
+  'reviews-rating-desc': Container,
+  'reviews-rating-asc': Container,
 }
 
 function ReviewsComponent({
@@ -99,6 +106,8 @@ function ReviewsComponent({
     unsubscribeReviewUpdateEvent,
   ])
 
+  const ListElement = REVIEW_INFINITY_LIST_TYPES[selectedOption]
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -133,25 +142,14 @@ function ReviewsComponent({
         <Filters />
       </FlexBox>
 
-      {selectedOption === '' ? (
-        <PopularReviewsInfinite
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-          recentTrip={isRecentTrip}
-          placeholderText={placeholderText}
-          reviewsCount={reviewsCountData?.reviewsCount}
-        />
-      ) : (
-        <LatestReviewsInfinite
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-          recentTrip={isRecentTrip}
-          placeholderText={placeholderText}
-          reviewsCount={reviewsCountData?.reviewsCount}
-        />
-      )}
+      <ListElement
+        resourceId={resourceId}
+        resourceType={resourceType}
+        regionId={regionId}
+        recentTrip={isRecentTrip}
+        placeholderText={placeholderText}
+        reviewsCount={reviewsCountData?.reviewsCount}
+      />
     </Section>
   )
 }
