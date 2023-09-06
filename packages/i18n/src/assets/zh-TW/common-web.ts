@@ -184,4 +184,5 @@ export const zhTwCommonWeb = {
   'selpeupaekiji-cugahalin-ganeung': '自助套裝行程有更多追加優惠',
   gwangwang: '觀光',
   masjib: '餐廳',
+  'sajin-dongyeongsang': '攝影/錄像',
 }
