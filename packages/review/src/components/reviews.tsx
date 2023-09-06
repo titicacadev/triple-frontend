@@ -10,10 +10,10 @@ import { useReviewCount } from '../services'
 import { PopularReviewsInfinite } from './popular-reviews-infinite'
 import { LatestReviewsInfinite } from './latest-reviews-infinite'
 import {
-  SortingOption,
   SortingOptionsProvider,
   useReviewSortingOptions,
 } from './sorting-context'
+import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
@@ -27,6 +27,7 @@ interface ReviewsProps {
   initialReviewsCount: number
   initialRecentTrip?: boolean
   initialSortingOption?: SortingOption
+  sortingType?: SortingType
   placeholderText?: string
   isMorePage?: boolean
 }
@@ -38,12 +39,14 @@ export function Reviews({
   initialReviewsCount,
   initialRecentTrip = false,
   initialSortingOption = '',
+  sortingType = 'default',
   placeholderText,
 }: ReviewsProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider initialRecentTripFilter={initialRecentTrip}>
         <SortingOptionsProvider
+          type={sortingType}
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
@@ -66,7 +69,10 @@ function ReviewsComponent({
   regionId,
   initialReviewsCount,
   placeholderText,
-}: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
+}: Omit<
+  ReviewsProps,
+  'initialRecentTrip' | 'initialSortingOption' | 'sortingType'
+>) {
   const { isRecentTrip } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
 
