@@ -19,9 +19,9 @@ interface SortingOptionsProps {
 }
 
 interface SortingOptionsValues {
-  sortingOption: SortingOption
+  selectedOption: SortingOption
   sortingOptions: { key: SortingOption; text: string }[]
-  handleSortingOptionSelect: (sortingOption: SortingOption) => void
+  handleOptionSelect: (option: SortingOption) => void
 }
 
 const SortingOptionsContext = createContext<SortingOptionsValues | undefined>(
@@ -33,7 +33,7 @@ export function SortingOptionsProvider({
   initialSortingOption = '',
   children,
 }: PropsWithChildren<SortingOptionsProps>) {
-  const [sortingOption, setSortingOption] = useState(initialSortingOption)
+  const [selectedOption, setSelectedOption] = useState(initialSortingOption)
 
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
@@ -47,7 +47,7 @@ export function SortingOptionsProvider({
     [t],
   )
 
-  const handleSortingOptionSelect = useCallback(
+  const handleOptionSelect = useCallback(
     (sortingOption: SortingOption) => {
       const eventLabel = sortingOption === 'latest' ? '최신순' : '추천순'
 
@@ -61,18 +61,18 @@ export function SortingOptionsProvider({
         },
       })
 
-      setSortingOption(sortingOption)
+      setSelectedOption(sortingOption)
     },
     [isRecentTrip, resourceId, trackEvent],
   )
 
   const values = useMemo(
     () => ({
-      sortingOption,
+      selectedOption,
       sortingOptions,
-      handleSortingOptionSelect,
+      handleOptionSelect,
     }),
-    [sortingOption, sortingOptions, handleSortingOptionSelect],
+    [selectedOption, sortingOptions, handleOptionSelect],
   )
 
   return (
