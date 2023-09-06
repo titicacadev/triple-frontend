@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
 
-export default {
+const meta: Meta<typeof ReviewsPlaceholder> = {
   title: 'Review / Review Placeholder',
   component: ReviewsPlaceholder,
-} as Meta<typeof ReviewsPlaceholder>
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof ReviewsPlaceholder> = {
   args: {

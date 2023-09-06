@@ -15,7 +15,7 @@ import triVideosData from './mocks/review-element.tri-videos.json'
 
 const queryClient = new QueryClient()
 
-export default {
+const meta: Meta<typeof ReviewElement> = {
   title: 'Review / Review Element',
   component: ReviewElement,
   decorators: [
@@ -25,7 +25,9 @@ export default {
       </QueryClientProvider>
     ),
   ],
-} as Meta<typeof ReviewElement>
+}
+
+export default meta
 
 export const MonoImage: StoryObj<typeof ReviewElement> = {
   args: {

@@ -15,7 +15,7 @@ import { Reviews } from '.'
 
 const queryClient = new QueryClient()
 
-export default {
+const meta: Meta<typeof Reviews> = {
   title: 'Review / Reviews',
   component: Reviews,
   decorators: [
@@ -54,7 +54,9 @@ export default {
       </FilterProvider>
     ),
   ],
-} as Meta
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof Reviews> = {
   name: '일반',
@@ -63,7 +65,6 @@ export const Basic: StoryObj<typeof Reviews> = {
     resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
     resourceType: 'tna',
     placeholderText: '이 투어·티켓 어떠셨나요?',
-    sortingOptionType: 'default',
   },
   parameters: {
     msw: {

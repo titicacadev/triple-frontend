@@ -15,7 +15,7 @@ import { ReviewsShorten } from '.'
 
 const queryClient = new QueryClient()
 
-export default {
+const meta: Meta<typeof ReviewsShorten> = {
   title: 'Review / ReviewsShorten',
   component: ReviewsShorten,
   decorators: [
@@ -54,7 +54,9 @@ export default {
       </FilterProvider>
     ),
   ],
-} as Meta
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof ReviewsShorten> = {
   name: '일반',
