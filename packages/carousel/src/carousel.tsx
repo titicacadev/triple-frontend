@@ -52,10 +52,9 @@ const FlickingScrollButton = styled.button<{
   width: 60px;
   height: 60px;
   top: calc(50% - 30px);
-  ${({ direction, containerPadding }) =>
-    css`
-      ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
-    `}
+  ${({ direction, containerPadding }) => css`
+    ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
+  `}
   z-index: 60;
   outline: none;
 `

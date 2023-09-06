@@ -28,7 +28,7 @@ describe('EssentialContentMeta', () => {
         ({
           defaultPageTitle: title,
           defaultPageDescription: description,
-        } as ReturnType<typeof useEnv>),
+        }) as ReturnType<typeof useEnv>,
     )
   })
 

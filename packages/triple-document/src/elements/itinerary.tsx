@@ -104,16 +104,16 @@ export default function ItineraryElement({ value }: Props) {
 
   const generatePoiClickHandler = useCallback(
     ({
-        regionId,
-        type,
-        id,
-        name,
-      }: {
-        regionId: string
-        type: ItineraryItemType['poi']['type']
-        id: string
-        name: string
-      }) =>
+      regionId,
+      type,
+      id,
+      name,
+    }: {
+      regionId: string
+      type: ItineraryItemType['poi']['type']
+      id: string
+      name: string
+    }) =>
       () => {
         trackEvent({
           ga: ['POI_선택', `${type}_${id}_${name}`],

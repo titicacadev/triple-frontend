@@ -23,12 +23,11 @@ export const textStyle = (
   fontSize: number,
   lineHeight: number,
   letterSpacing: number,
-) =>
-  css`
-    font-size: ${fontSize}px;
-    line-height: ${lineHeight}px;
-    letter-spacing: ${letterSpacing}px;
-  `
+) => css`
+  font-size: ${fontSize}px;
+  line-height: ${lineHeight}px;
+  letter-spacing: ${letterSpacing}px;
+`
 
 /**
  * 기존 스펙 그대로 text style 을 생성하는 함수
