@@ -12,5 +12,13 @@
   },
   "devDependencies": {
     "@types/jscodeshift": "^0.11.6"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
   }
 }
