@@ -11,7 +11,7 @@ import { MyReviewActionSheet } from './my-review-action-sheet'
 import { OthersReviewActionSheet } from './others-review-action-sheet'
 import { ReviewElement } from './review-element'
 import { ReviewsPlaceholder } from './review-placeholder-with-rating'
-import { SortingOption } from './types'
+import type { SortingOption } from './sorting-context'
 
 interface Props {
   resourceId: string

@@ -8,7 +8,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useClientActions } from '../services'
 
-import { SortingOption } from './types'
+import type { SortingOption } from './sorting-context'
 
 const PlaceholderContainer = styled(Container)`
   width: 100%;
