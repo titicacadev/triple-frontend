@@ -1,18 +1,19 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans } from '@titicaca/next-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { withLoginCtaModal } from '@titicaca/modals'
+import { LoginCtaModalProvider } from '@titicaca/modals'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useReviewCount } from '../services'
 
-import { SortingOption } from './types'
-import SortingOptions from './sorting-options'
-import RecentCheckBox from './recent-checkbox'
 import { PopularReviewsInfinite } from './popular-reviews-infinite'
 import { LatestReviewsInfinite } from './latest-reviews-infinite'
+import { SortingOption } from './sorting-context'
+import { FilterProvider, useReviewFilters } from './filter-context'
+import { SortingOptions } from './sorting-options'
+import { Filters } from './filter'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -27,7 +28,7 @@ interface ReviewsProps {
   isMorePage?: boolean
 }
 
-function ReviewsComponent({
+export function Reviews({
   resourceId,
   resourceType,
   regionId,
@@ -36,7 +37,31 @@ function ReviewsComponent({
   initialSortingOption = '',
   placeholderText,
 }: ReviewsProps) {
-  const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTrip)
+  return (
+    <LoginCtaModalProvider>
+      <FilterProvider initialRecentTripFilter={initialRecentTrip}>
+        <ReviewsComponent
+          resourceId={resourceId}
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          initialSortingOption={initialSortingOption}
+          placeholderText={placeholderText}
+        />
+      </FilterProvider>
+    </LoginCtaModalProvider>
+  )
+}
+
+function ReviewsComponent({
+  resourceId,
+  resourceType,
+  regionId,
+  initialReviewsCount,
+  initialSortingOption,
+  placeholderText,
+}: Omit<ReviewsProps, 'initialRecentTrip'>) {
+  const { isRecentTrip } = useReviewFilters()
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -79,18 +104,6 @@ function ReviewsComponent({
     setSortingOption(sortingOption)
   }
 
-  const handleRecentTripChange = useCallback(() => {
-    setIsRecentTrip((prevState) => !prevState)
-
-    const action = isRecentTrip ? '리뷰_최근여행_해제' : '리뷰_최근여행_선택'
-    trackEvent({
-      ga: [action],
-      fa: {
-        action,
-      },
-    })
-  }, [isRecentTrip, trackEvent])
-
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -124,10 +137,8 @@ function ReviewsComponent({
           selected={sortingOption}
           onSelect={handleSortingOptionSelect}
         />
-        <RecentCheckBox
-          isRecentReview={isRecentTrip}
-          onRecentReviewChange={handleRecentTripChange}
-        />
+
+        <Filters />
       </FlexBox>
 
       {sortingOption === '' ? (
@@ -152,5 +163,3 @@ function ReviewsComponent({
     </Section>
   )
 }
-
-export const Reviews = withLoginCtaModal(ReviewsComponent)

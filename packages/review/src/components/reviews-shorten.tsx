@@ -1,19 +1,20 @@
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
-import { withLoginCtaModal } from '@titicaca/modals'
+import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useReviewCount } from '../services'
 
 import { LatestReviews } from './latest-reviews'
 import { PopularReviews } from './popular-reviews'
-import RecentCheckBox from './recent-checkbox'
-import SortingOptions from './sorting-options'
-import { SortingOption } from './types'
 import { WriteButton } from './write-button'
+import { FilterProvider, useReviewFilters } from './filter-context'
+import { SortingOption } from './sorting-context'
+import { Filters } from './filter'
+import { SortingOptions } from './sorting-options'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -28,7 +29,7 @@ interface ReviewsShortenProps {
   isMorePage?: boolean
 }
 
-function ReviewsShortenComponent({
+export function ReviewsShorten({
   resourceId,
   resourceType,
   regionId,
@@ -37,9 +38,33 @@ function ReviewsShortenComponent({
   initialSortingOption = '',
   placeholderText,
 }: ReviewsShortenProps) {
+  return (
+    <LoginCtaModalProvider>
+      <FilterProvider initialRecentTripFilter={initialRecentTrip}>
+        <ReviewsShortenComponent
+          resourceId={resourceId}
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          initialSortingOption={initialSortingOption}
+          placeholderText={placeholderText}
+        />
+      </FilterProvider>
+    </LoginCtaModalProvider>
+  )
+}
+
+function ReviewsShortenComponent({
+  resourceId,
+  resourceType,
+  regionId,
+  initialReviewsCount,
+  initialSortingOption = '',
+  placeholderText,
+}: Omit<ReviewsShortenProps, 'initialRecentTrip'>) {
+  const { isRecentTrip } = useReviewFilters()
   const { t } = useTranslation('common-web')
 
-  const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTrip)
   const [sortingOption, setSortingOption] = useState(initialSortingOption)
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -82,18 +107,6 @@ function ReviewsShortenComponent({
     setSortingOption(sortingOption)
   }
 
-  const handleRecentTripChange = useCallback(() => {
-    setIsRecentTrip((prevState) => !prevState)
-
-    const action = isRecentTrip ? '리뷰_최근여행_해제' : '리뷰_최근여행_선택'
-    trackEvent({
-      ga: [action],
-      fa: {
-        action,
-      },
-    })
-  }, [isRecentTrip, trackEvent])
-
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <FlexBox flex alignItems="center">
@@ -126,10 +139,8 @@ function ReviewsShortenComponent({
           selected={sortingOption}
           onSelect={handleSortingOptionSelect}
         />
-        <RecentCheckBox
-          isRecentReview={isRecentTrip}
-          onRecentReviewChange={handleRecentTripChange}
-        />
+
+        <Filters />
       </FlexBox>
 
       {sortingOption === '' ? (
@@ -154,5 +165,3 @@ function ReviewsShortenComponent({
     </Section>
   )
 }
-
-export const ReviewsShorten = withLoginCtaModal(ReviewsShortenComponent)
