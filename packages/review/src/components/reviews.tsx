@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import styled from 'styled-components'
 import { Trans } from '@titicaca/next-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -19,6 +20,19 @@ import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
 
 const REVIEWS_SECTION_ID = 'reviews'
+
+const OptionContainer = styled(FlexBox)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 23px 0 0;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+`
 
 interface ReviewsProps {
   resourceId: string
@@ -120,18 +134,11 @@ function ReviewsComponent({
         </Trans>
       </Container>
 
-      <FlexBox
-        flex
-        justifyContent="space-between"
-        alignItems="center"
-        css={{
-          margin: '23px 0 0',
-        }}
-      >
+      <OptionContainer>
         <SortingOptions />
 
         <Filters />
-      </FlexBox>
+      </OptionContainer>
 
       <ListElement
         resourceId={resourceId}
