@@ -15,7 +15,7 @@ import {
   SortingOptionsProvider,
   useReviewSortingOptions,
 } from './sorting-context'
-import type { SortingOption, SortingType } from './sorting-context'
+import type { SortingType } from './sorting-context'
 import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
 
@@ -26,11 +26,8 @@ interface ReviewsShortenProps {
   resourceType: string
   regionId?: string
   initialReviewsCount: number
-  initialRecentTrip?: boolean
-  initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
-  isMorePage?: boolean
 }
 
 export function ReviewsShorten({
