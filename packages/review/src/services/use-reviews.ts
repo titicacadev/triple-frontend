@@ -121,16 +121,16 @@ export function useInfiniteLatestReviews(
 
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
-  initiaValue?: number,
+  initialValue?: number,
 ) {
   return useQuery(
     ['reviews/getReviewCount', { ...params }],
     () => client.GetReviewsCount(params),
     {
-      initialData: initiaValue
+      initialData: initialValue
         ? {
             __typename: 'Query',
-            reviewsCount: initiaValue,
+            reviewsCount: initialValue,
           }
         : undefined,
     },
