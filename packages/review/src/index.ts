@@ -1,4 +1,4 @@
-export * from './components/reviews-shorten'
-export * from './components/reviews'
-export * from './utils'
-export * from './services'
+export { ReviewsShorten } from './components/reviews-shorten'
+export { Reviews } from './components/reviews'
+export { writeReview } from './utils'
+export type { SortingOption } from './components/sorting-context'
