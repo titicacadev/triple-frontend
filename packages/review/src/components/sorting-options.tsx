@@ -38,6 +38,7 @@ export function SortingOptions() {
         flex
         css={{
           alignItems: 'center',
+          cursor: 'pointer',
         }}
         onClick={handleActionSheetOpen}
       >
