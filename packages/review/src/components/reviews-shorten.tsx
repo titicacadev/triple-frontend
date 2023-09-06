@@ -15,7 +15,7 @@ import {
   SortingOptionsProvider,
   useReviewSortingOptions,
 } from './sorting-context'
-import type { SortingType } from './sorting-context'
+import type { SortingOption, SortingType } from './sorting-context'
 import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
 
@@ -26,6 +26,7 @@ interface ReviewsShortenProps {
   resourceType: string
   regionId?: string
   initialReviewsCount: number
+  initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
 }
@@ -35,13 +36,18 @@ export function ReviewsShorten({
   resourceType,
   regionId,
   initialReviewsCount,
+  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
 }: ReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider>
-        <SortingOptionsProvider type={sortingType} resourceId={resourceId}>
+        <SortingOptionsProvider
+          type={sortingType}
+          resourceId={resourceId}
+          initialSortingOption={initialSortingOption}
+        >
           <ReviewsShortenComponent
             resourceId={resourceId}
             resourceType={resourceType}
