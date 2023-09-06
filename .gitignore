@@ -90,6 +90,7 @@ storybook-static
 .dynamodb/
 
 # Build output
+codemod/lib
 packages/*/lib
 
 # Triple environment

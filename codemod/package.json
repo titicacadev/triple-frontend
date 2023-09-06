@@ -1,0 +1,16 @@
+{
+  "name": "@titicaca/frontend-codemod",
+  "version": "1.0.0",
+  "description": "Codemods for triple-frontend",
+  "license": "MIT",
+  "main": "lib/codeshift.config.js",
+  "scripts": {
+    "build": "swc src -d lib --config-file ../.swcrc"
+  },
+  "dependencies": {
+    "jscodeshift": "^0.15.0"
+  },
+  "devDependencies": {
+    "@types/jscodeshift": "^0.11.6"
+  }
+}
