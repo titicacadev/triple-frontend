@@ -32,7 +32,7 @@ export function PopularReviews({
       regionId={regionId}
       recentTrip={recentTrip}
       placeholderText={placeholderText}
-      sortingOption=""
+      sortingOption="recommendation"
       reviewsCount={reviewsCount}
       reviews={data?.popularReviews}
       refetch={refetch}
