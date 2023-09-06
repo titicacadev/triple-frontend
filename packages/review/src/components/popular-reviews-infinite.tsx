@@ -33,7 +33,7 @@ export function PopularReviewsInfinite({
       regionId={regionId}
       recentTrip={recentTrip}
       placeholderText={placeholderText}
-      sortingOption=""
+      sortingOption="recommendation"
       reviewsCount={reviewsCount}
       reviews={data?.pages.flat()}
       hasNextPage={hasNextPage}

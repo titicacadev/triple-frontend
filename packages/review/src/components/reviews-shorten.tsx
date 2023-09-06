@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { FlexBox, Section, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
@@ -39,7 +39,7 @@ export function ReviewsShorten({
   regionId,
   initialReviewsCount,
   initialRecentTrip = false,
-  initialSortingOption = '',
+  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
 }: ReviewsShortenProps) {
@@ -62,6 +62,13 @@ export function ReviewsShorten({
       </FilterProvider>
     </LoginCtaModalProvider>
   )
+}
+
+const REVIEW_SHORTEN_LIST_TYPES = {
+  recommendation: PopularReviews,
+  latest: LatestReviews,
+  'reviews-rating-desc': Container,
+  'reviews-rating-asc': Container,
 }
 
 function ReviewsShortenComponent({
@@ -98,6 +105,8 @@ function ReviewsShortenComponent({
     unsubscribeReviewUpdateEvent,
   ])
 
+  const ListElement = REVIEW_SHORTEN_LIST_TYPES[selectedOption]
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <FlexBox flex alignItems="center">
@@ -131,25 +140,14 @@ function ReviewsShortenComponent({
         <Filters />
       </FlexBox>
 
-      {selectedOption === '' ? (
-        <PopularReviews
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-          recentTrip={isRecentTrip}
-          placeholderText={placeholderText}
-          reviewsCount={reviewsCountData?.reviewsCount}
-        />
-      ) : (
-        <LatestReviews
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-          recentTrip={isRecentTrip}
-          placeholderText={placeholderText}
-          reviewsCount={reviewsCountData?.reviewsCount}
-        />
-      )}
+      <ListElement
+        resourceId={resourceId}
+        resourceType={resourceType}
+        regionId={regionId}
+        recentTrip={isRecentTrip}
+        placeholderText={placeholderText}
+        reviewsCount={reviewsCountData?.reviewsCount}
+      />
     </Section>
   )
 }

@@ -12,14 +12,14 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { useReviewFilters } from './filter-context'
 
 export type SortingOption =
-  | ''
+  | 'recommendation'
   | 'latest'
   | 'reviews-rating-desc'
   | 'reviews-rating-asc'
 export type SortingType = 'default' | 'poi'
 
 interface SortingOptionsProps {
-  type: SortingType
+  type?: SortingType
   resourceId: string
   initialSortingOption?: SortingOption
 }
@@ -35,9 +35,9 @@ const SortingOptionsContext = createContext<SortingOptionsValues | undefined>(
 )
 
 export function SortingOptionsProvider({
-  type,
+  type = 'default',
   resourceId,
-  initialSortingOption = '',
+  initialSortingOption = 'recommendation',
   children,
 }: PropsWithChildren<SortingOptionsProps>) {
   const [selectedOption, setSelectedOption] = useState(initialSortingOption)
@@ -47,7 +47,7 @@ export function SortingOptionsProvider({
   const { isRecentTrip } = useReviewFilters()
 
   const defaultOptions = [
-    { key: '' as const, text: t(['cuceonsun', '추천순']) },
+    { key: 'recommendation' as const, text: t(['cuceonsun', '추천순']) },
     { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
   ]
 
