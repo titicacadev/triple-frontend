@@ -15,17 +15,10 @@ interface FilterValues {
   handleMediaChange: () => void
 }
 
-interface FilterProps {
-  initialRecentTripFilter?: boolean
-}
-
 const FilterContext = createContext<FilterValues | undefined>(undefined)
 
-export function FilterProvider({
-  initialRecentTripFilter = false,
-  children,
-}: PropsWithChildren<FilterProps>) {
-  const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTripFilter)
+export function FilterProvider({ children }: PropsWithChildren<unknown>) {
+  const [isRecentTrip, setIsRecentTrip] = useState(false)
   const [isMediaCollection, setIsMediaCollection] = useState(false)
 
   const { trackEvent } = useEventTrackingContext()

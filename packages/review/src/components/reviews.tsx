@@ -13,7 +13,7 @@ import {
   SortingOptionsProvider,
   useReviewSortingOptions,
 } from './sorting-context'
-import type { SortingOption, SortingType } from './sorting-context'
+import type { SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
@@ -25,8 +25,6 @@ interface ReviewsProps {
   resourceType: string
   regionId?: string
   initialReviewsCount: number
-  initialRecentTrip?: boolean
-  initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
   isMorePage?: boolean
@@ -37,19 +35,13 @@ export function Reviews({
   resourceType,
   regionId,
   initialReviewsCount,
-  initialRecentTrip = false,
-  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
 }: ReviewsProps) {
   return (
     <LoginCtaModalProvider>
-      <FilterProvider initialRecentTripFilter={initialRecentTrip}>
-        <SortingOptionsProvider
-          type={sortingType}
-          resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
+      <FilterProvider>
+        <SortingOptionsProvider type={sortingType} resourceId={resourceId}>
           <ReviewsComponent
             resourceId={resourceId}
             resourceType={resourceType}

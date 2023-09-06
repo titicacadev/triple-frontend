@@ -16,12 +16,12 @@ export type SortingOption =
   | 'latest'
   | 'reviews-rating-desc'
   | 'reviews-rating-asc'
+
 export type SortingType = 'default' | 'poi'
 
 interface SortingOptionsProps {
   type?: SortingType
   resourceId: string
-  initialSortingOption?: SortingOption
 }
 
 interface SortingOptionsValues {
@@ -37,10 +37,10 @@ const SortingOptionsContext = createContext<SortingOptionsValues | undefined>(
 export function SortingOptionsProvider({
   type = 'default',
   resourceId,
-  initialSortingOption = 'recommendation',
   children,
 }: PropsWithChildren<SortingOptionsProps>) {
-  const [selectedOption, setSelectedOption] = useState(initialSortingOption)
+  const [selectedOption, setSelectedOption] =
+    useState<SortingOption>('recommendation')
 
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
