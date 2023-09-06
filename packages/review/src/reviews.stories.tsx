@@ -8,6 +8,8 @@ import {
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
+import { FilterProvider } from './components/filter-context'
+import { SortingOptionsProvider } from './components/sorting-context'
 
 import { Reviews } from '.'
 
@@ -44,6 +46,13 @@ export default {
         <Story />
       </QueryClientProvider>
     ),
+    (Story) => (
+      <FilterProvider>
+        <SortingOptionsProvider resourceId="">
+          <Story />
+        </SortingOptionsProvider>
+      </FilterProvider>
+    ),
   ],
 } as Meta
 
@@ -54,6 +63,7 @@ export const Basic: StoryObj<typeof Reviews> = {
     resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
     resourceType: 'tna',
     placeholderText: '이 투어·티켓 어떠셨나요?',
+    sortingOptionType: 'default',
   },
   parameters: {
     msw: {
