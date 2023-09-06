@@ -6,13 +6,6 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useReviewFilters } from './filter-context'
 
-export interface RecentCheckboxProps {
-  isRecentReview: boolean
-  isMediaCollectionReview: boolean
-  onMediaCollectionChange: () => void
-  onRecentReviewChange: () => void
-}
-
 const CheckBox = styled.input`
   appearance: none;
   width: 22px;
@@ -71,11 +64,7 @@ const CloseIcon = styled.img`
 `
 
 export function Filters() {
-  const {
-    isRecentTrip,
-
-    handleRecentTripChange,
-  } = useReviewFilters()
+  const { isRecentTrip, handleRecentTripChange } = useReviewFilters()
 
   const { t } = useTranslation('common-web')
 
