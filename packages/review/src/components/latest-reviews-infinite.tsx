@@ -7,6 +7,7 @@ interface Props {
   resourceType: string
   regionId: string | undefined
   recentTrip: boolean
+  hasMedia: boolean
   placeholderText: string | undefined
   reviewsCount: number | undefined
 }
@@ -16,6 +17,7 @@ export function LatestReviewsInfinite({
   resourceType,
   regionId,
   recentTrip,
+  hasMedia,
   placeholderText,
   reviewsCount,
 }: Props) {
@@ -24,6 +26,7 @@ export function LatestReviewsInfinite({
       resourceId,
       resourceType,
       recentTrip,
+      hasMedia,
     })
 
   return (
