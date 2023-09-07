@@ -1,7 +1,12 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
-import { TextPayload, ImagePayload, RichPayload } from '../types'
+import {
+  TextPayload,
+  ImagePayload,
+  RichPayload,
+  ProductPayload,
+} from '../types'
 import { ChatBubbleStyle } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
@@ -108,8 +113,9 @@ export interface ChatBubbleUIProps {
    * `Text`: 텍스트로 이루어진 메시지 타입,
    * `Image`: 이미지로 이루어진 메시지 타입,
    * `Rich`: 이미지, 텍스트, 버튼으로 이루어진 메시지 타입
+   * `Product`: 상품 정보를 보낼 수 있는 메시지 타입. 처음 접속 시 보여진다.
    */
-  payload: TextPayload | ImagePayload | RichPayload
+  payload: TextPayload | ImagePayload | RichPayload | ProductPayload
   profileImageUrl?: string
   profileName?: string
   unreadCount: number | null
