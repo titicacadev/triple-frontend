@@ -8,7 +8,7 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string; }
+  ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
@@ -147,6 +147,35 @@ export type GeoMetadata = {
   geotags?: Maybe<Array<Scalars['JSON']['output']>>;
   timeZone?: Maybe<Scalars['String']['output']>;
   vicinity?: Maybe<Scalars['String']['output']>;
+};
+
+export type Geotag = {
+  __typename?: 'Geotag';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  source: GeotagSource;
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type GeotagSource = {
+  __typename?: 'GeotagSource';
+  attractionCategories?: Maybe<Array<Scalars['JSON']['output']>>;
+  attractionFilters?: Maybe<Array<Scalars['JSON']['output']>>;
+  countryCode?: Maybe<Scalars['String']['output']>;
+  currencies?: Maybe<Array<Scalars['String']['output']>>;
+  defaultRange?: Maybe<Scalars['Int']['output']>;
+  geofence?: Maybe<Scalars['JSON']['output']>;
+  languages?: Maybe<Array<Scalars['String']['output']>>;
+  media?: Maybe<Scalars['JSON']['output']>;
+  menu?: Maybe<Scalars['JSON']['output']>;
+  names: Scalars['JSON']['output'];
+  popularKeywords?: Maybe<Array<Scalars['String']['output']>>;
+  ranges?: Maybe<Array<Scalars['Int']['output']>>;
+  relatedGeotags?: Maybe<Array<RelatedGeotag>>;
+  restaurantCategories?: Maybe<Array<Scalars['JSON']['output']>>;
+  restaurantFilters?: Maybe<Array<Scalars['JSON']['output']>>;
+  stale?: Maybe<Scalars['JSON']['output']>;
+  timeZone?: Maybe<Scalars['String']['output']>;
 };
 
 export type Homeward = {
@@ -341,6 +370,8 @@ export type Query = {
   getArticle?: Maybe<Article>;
   getCountry?: Maybe<Country>;
   getFeaturedDestinationsList?: Maybe<FeaturedDestinationsList>;
+  getGeotag?: Maybe<Geotag>;
+  getGeotags: Array<Geotag>;
   getGuides: Array<Article>;
   getHomewardRestriction: Homeward;
   getLatestReviews: Array<Review>;
@@ -360,17 +391,21 @@ export type Query = {
   getRegionRestrictions: Array<Region>;
   getRegionsByIds: Array<Region>;
   getReviewSpecification?: Maybe<ReviewSpecification>;
+  getReviewsByRating: Array<Review>;
   getReviewsCount: Scalars['Int']['output'];
   getRoom: Room;
   getScraps: Array<Scrap>;
+  getTripByTripCode: Trip;
   getTripPlans: Array<Array<TripPlan>>;
+  getTripPlansByTripCode: Array<Array<TripPlan>>;
   getZone?: Maybe<Zone>;
   mgetArticles: Array<Article>;
   mgetCountries: Array<Country>;
+  mgetGeotags: Array<Maybe<Geotag>>;
   mgetMessages: Array<Message>;
   mgetPois: Array<Poi>;
   mgetRegionCategories: Array<RegionCategory>;
-  mgetRegions: Array<Region>;
+  mgetRegions: Array<Maybe<Region>>;
   mgetReplyBoards: Array<ReplyBoard>;
   mgetReviewedArticles: Array<Article>;
   mgetReviewedPois: Array<Poi>;
@@ -380,7 +415,7 @@ export type Query = {
   mgetScrapedPois: Array<Poi>;
   mgetScrapedTna: Array<TnaProduct>;
   mgetUsersByFbIds: Array<User>;
-  mgetZones: Array<Zone>;
+  mgetZones: Array<Maybe<Zone>>;
   searchCities: Array<City>;
 };
 
@@ -407,6 +442,18 @@ export type QueryGetFeaturedDestinationsListArgs = {
 };
 
 
+export type QueryGetGeotagArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGetGeotagsArgs = {
+  from: Scalars['Int']['input'];
+  size: Scalars['Int']['input'];
+  type: Scalars['String']['input'];
+};
+
+
 export type QueryGetGuidesArgs = {
   from?: InputMaybe<Scalars['Int']['input']>;
   regionId?: InputMaybe<Scalars['String']['input']>;
@@ -417,6 +464,7 @@ export type QueryGetGuidesArgs = {
 
 export type QueryGetLatestReviewsArgs = {
   from?: InputMaybe<Scalars['Int']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
   resourceId: Scalars['String']['input'];
   resourceType: Scalars['String']['input'];
@@ -475,6 +523,7 @@ export type QueryGetPoisArgs = {
 
 export type QueryGetPopularReviewsArgs = {
   from?: InputMaybe<Scalars['Int']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
   resourceId: Scalars['String']['input'];
   resourceType: Scalars['String']['input'];
@@ -516,7 +565,19 @@ export type QueryGetReviewSpecificationArgs = {
 };
 
 
+export type QueryGetReviewsByRatingArgs = {
+  from?: InputMaybe<Scalars['Int']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
+  recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
+  resourceId: Scalars['String']['input'];
+  resourceType: Scalars['String']['input'];
+  size?: InputMaybe<Scalars['Int']['input']>;
+  sortBy?: InputMaybe<SortByInput>;
+};
+
+
 export type QueryGetReviewsCountArgs = {
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
   resourceId: Scalars['String']['input'];
   resourceType: Scalars['String']['input'];
@@ -538,8 +599,18 @@ export type QueryGetScrapsArgs = {
 };
 
 
+export type QueryGetTripByTripCodeArgs = {
+  tripCode: Scalars['String']['input'];
+};
+
+
 export type QueryGetTripPlansArgs = {
   tripId: Scalars['ID']['input'];
+};
+
+
+export type QueryGetTripPlansByTripCodeArgs = {
+  tripCode: Scalars['String']['input'];
 };
 
 
@@ -554,6 +625,11 @@ export type QueryMgetArticlesArgs = {
 
 
 export type QueryMgetCountriesArgs = {
+  ids: Array<Scalars['ID']['input']>;
+};
+
+
+export type QueryMgetGeotagsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
@@ -701,6 +777,14 @@ export type RegionSource = {
   weatherSpots: Array<Scalars['JSON']['output']>;
 };
 
+export type RelatedGeotag = {
+  __typename?: 'RelatedGeotag';
+  alias: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
 export type ReplyBoard = {
   __typename?: 'ReplyBoard';
   childMessagesCount: Scalars['Int']['output'];
@@ -826,6 +910,15 @@ export enum ScrapContentType {
   Tna = 'TNA'
 }
 
+export type SortByInput = {
+  rating?: InputMaybe<SortDirection>;
+};
+
+export enum SortDirection {
+  Asc = 'asc',
+  Desc = 'desc'
+}
+
 export type StructuredAddress = {
   __typename?: 'StructuredAddress';
   addressCountry?: Maybe<Scalars['String']['output']>;
@@ -845,6 +938,29 @@ export type TravelingUsers = {
   __typename?: 'TravelingUsers';
   count: Scalars['Int']['output'];
   recordedAt: Scalars['DateTime']['output'];
+};
+
+export type Trip = {
+  __typename?: 'Trip';
+  companionCount?: Maybe<Scalars['Int']['output']>;
+  dateInterval?: Maybe<Scalars['Int']['output']>;
+  deleted?: Maybe<Scalars['Boolean']['output']>;
+  end?: Maybe<Scalars['String']['output']>;
+  geotagStyles: Array<TripGeotagStyle>;
+  geotags: Array<TripGeotag>;
+  localEndDate?: Maybe<Scalars['String']['output']>;
+  localStartDate?: Maybe<Scalars['String']['output']>;
+  share?: Maybe<TripShare>;
+  start?: Maybe<Scalars['String']['output']>;
+  timezone?: Maybe<Scalars['String']['output']>;
+  tripCompanions: Array<Maybe<TripCompanion>>;
+  tripTitle?: Maybe<Scalars['String']['output']>;
+};
+
+export type TripCompanion = {
+  __typename?: 'TripCompanion';
+  name: Scalars['String']['output'];
+  photo: Scalars['String']['output'];
 };
 
 export type TripFlightInformation = {
@@ -871,8 +987,6 @@ export type TripFlightSchedule = {
   operatingAirline?: Maybe<TripFlightScheduleAirline>;
   operatingFlight?: Maybe<Scalars['String']['output']>;
   orderId?: Maybe<Scalars['String']['output']>;
-  tripId: Scalars['ID']['output'];
-  userId: Scalars['ID']['output'];
 };
 
 export type TripFlightScheduleAirline = {
@@ -908,11 +1022,65 @@ export type TripFlightScheduleAttachment = {
   width: Scalars['Int']['output'];
 };
 
+export type TripGeotag = {
+  __typename?: 'TripGeotag';
+  id: Scalars['String']['output'];
+  type: Scalars['String']['output'];
+};
+
+export type TripGeotagMedia = {
+  __typename?: 'TripGeotagMedia';
+  backgroundImage: TripMediaSource;
+  backgroundVideo: TripMediaSource;
+  blurredBackgroundImage: TripMediaSource;
+  logoImage: TripMediaSource;
+};
+
+export type TripGeotagStyle = {
+  __typename?: 'TripGeotagStyle';
+  countryCode?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  media?: Maybe<TripGeotagMedia>;
+  names?: Maybe<TripGeotagStyleName>;
+};
+
+export type TripGeotagStyleName = {
+  __typename?: 'TripGeotagStyleName';
+  en?: Maybe<Scalars['String']['output']>;
+  ko?: Maybe<Scalars['String']['output']>;
+  local?: Maybe<Scalars['String']['output']>;
+};
+
 export type TripLodgingBookingInfo = {
   __typename?: 'TripLodgingBookingInfo';
   bookingId?: Maybe<Scalars['ID']['output']>;
   checkIn?: Maybe<Scalars['String']['output']>;
   checkOut?: Maybe<Scalars['String']['output']>;
+};
+
+export type TripMediaImgUrl = {
+  __typename?: 'TripMediaImgUrl';
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type TripMediaSize = {
+  __typename?: 'TripMediaSize';
+  full: TripMediaImgUrl;
+  large: TripMediaImgUrl;
+  small_square: TripMediaImgUrl;
+};
+
+export type TripMediaSource = {
+  __typename?: 'TripMediaSource';
+  cloudinaryBucket: Scalars['String']['output'];
+  cloudinaryId: Scalars['String']['output'];
+  height: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+  sizes: TripMediaSize;
+  source?: Maybe<TripMediaImgUrl>;
+  type: Scalars['String']['output'];
+  video?: Maybe<TripMediaSize>;
+  width: Scalars['Int']['output'];
 };
 
 export type TripPlan = {
@@ -927,7 +1095,30 @@ export type TripPlan = {
   poi?: Maybe<Poi>;
   time?: Maybe<Scalars['String']['output']>;
   tnaProduct?: Maybe<TripTnaProduct>;
+  tripPlanImages?: Maybe<Array<TripPlanImage>>;
   type: Scalars['String']['output'];
+};
+
+export type TripPlanImage = {
+  __typename?: 'TripPlanImage';
+  format: Scalars['String']['output'];
+  fullImage: Scalars['String']['output'];
+  height: Scalars['Int']['output'];
+  id: Scalars['ID']['output'];
+  largeThumbnail: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  smallThumbnail: Scalars['String']['output'];
+  url: Scalars['String']['output'];
+  width: Scalars['Int']['output'];
+};
+
+export type TripShare = {
+  __typename?: 'TripShare';
+  kakaoShareImage: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+  shareImage: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  webLink: Scalars['String']['output'];
 };
 
 export type TripTnaArea = {
@@ -973,7 +1164,7 @@ export type TripTnaProduct = {
   priority?: Maybe<Scalars['Float']['output']>;
   productId?: Maybe<Scalars['String']['output']>;
   promotions?: Maybe<Array<TripTnaPromotion>>;
-  regions?: Maybe<Array<Scalars['String']['output']>>;
+  regions?: Maybe<Array<Region>>;
   reviewsCount?: Maybe<Scalars['Float']['output']>;
   reviewsRating?: Maybe<Scalars['Int']['output']>;
   scrapsCount?: Maybe<Scalars['Float']['output']>;
@@ -1101,6 +1292,7 @@ export type GetPopularReviewsQueryVariables = Exact<{
   resourceType: Scalars['String']['input'];
   resourceId: Scalars['String']['input'];
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   from?: InputMaybe<Scalars['Int']['input']>;
   size?: InputMaybe<Scalars['Int']['input']>;
 }>;
@@ -1112,12 +1304,26 @@ export type GetLatestReviewsQueryVariables = Exact<{
   resourceType: Scalars['String']['input'];
   resourceId: Scalars['String']['input'];
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
   from?: InputMaybe<Scalars['Int']['input']>;
   size?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
 export type GetLatestReviewsQuery = { __typename?: 'Query', latestReviews: Array<{ __typename?: 'Review', id: string, resourceId: string, resourceType: string, comment?: string | null, media?: Array<any> | null, rating?: number | null, visitDate?: string | null, recentTrip: boolean, likesCount: number, blinded?: boolean | null, reviewedAt: string, liked: boolean, user?: { __typename?: 'User', unregister?: boolean | null, uid: string, photo?: string | null, name?: string | null, mileage?: { __typename?: 'UserMileage', level?: number | null, point?: number | null, badges?: Array<{ __typename?: 'UserMileageBadge', label?: string | null, icon?: { __typename?: 'UserMileageIcon', image_url?: string | null } | null } | null> | null } | null, userBoard?: { __typename?: 'UserBoard', trips?: number | null, reviews?: number | null, thanks?: number | null, reports?: number | null, reviewsV2?: number | null, itineraries?: number | null } | null } | null, replyBoard?: { __typename?: 'ReplyBoard', id: string, resourceId: string, resourceType: string, rootMessagesCount: number, childMessagesCount: number, pinnedMessagesCount: number, pinnedMessages: Array<{ __typename?: 'ReplyMessage', createdAt: string, updatedAt: string, content: { __typename?: 'ReplyMessageContent', text?: string | null, markdownText?: string | null }, writer?: { __typename?: 'ReplyUser', name: string } | null }> } | null }> };
+
+export type GetRatingReviewsQueryVariables = Exact<{
+  resourceType: Scalars['String']['input'];
+  resourceId: Scalars['String']['input'];
+  recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
+  from?: InputMaybe<Scalars['Int']['input']>;
+  size?: InputMaybe<Scalars['Int']['input']>;
+  sortBy?: InputMaybe<SortByInput>;
+}>;
+
+
+export type GetRatingReviewsQuery = { __typename?: 'Query', ratingReviews: Array<{ __typename?: 'Review', id: string, resourceId: string, resourceType: string, comment?: string | null, media?: Array<any> | null, rating?: number | null, visitDate?: string | null, recentTrip: boolean, likesCount: number, blinded?: boolean | null, reviewedAt: string, liked: boolean, user?: { __typename?: 'User', unregister?: boolean | null, uid: string, photo?: string | null, name?: string | null, mileage?: { __typename?: 'UserMileage', level?: number | null, point?: number | null, badges?: Array<{ __typename?: 'UserMileageBadge', label?: string | null, icon?: { __typename?: 'UserMileageIcon', image_url?: string | null } | null } | null> | null } | null, userBoard?: { __typename?: 'UserBoard', trips?: number | null, reviews?: number | null, thanks?: number | null, reports?: number | null, reviewsV2?: number | null, itineraries?: number | null } | null } | null, replyBoard?: { __typename?: 'ReplyBoard', id: string, resourceId: string, resourceType: string, rootMessagesCount: number, childMessagesCount: number, pinnedMessagesCount: number, pinnedMessages: Array<{ __typename?: 'ReplyMessage', createdAt: string, updatedAt: string, content: { __typename?: 'ReplyMessageContent', text?: string | null, markdownText?: string | null }, writer?: { __typename?: 'ReplyUser', name: string } | null }> } | null }> };
 
 export type GetMyReviewQueryVariables = Exact<{
   resourceType: Scalars['String']['input'];
@@ -1139,6 +1345,7 @@ export type GetReviewsCountQueryVariables = Exact<{
   resourceType: Scalars['String']['input'];
   resourceId: Scalars['String']['input'];
   recentTrip?: InputMaybe<Scalars['Boolean']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
@@ -1151,11 +1358,12 @@ export const BaseReviewSpecificationFragmentDoc = {"kind":"Document","definition
 export const LikeReviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeReview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"reviewId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likeReview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"reviewId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"reviewId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode;
 export const UnlikeReviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UnlikeReview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"reviewId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlikeReview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"reviewId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"reviewId"}}}]}]}}]} as unknown as DocumentNode;
 export const DeleteReviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteReview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteReview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}]}}]} as unknown as DocumentNode;
-export const GetPopularReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPopularReviews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"size"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"popularReviews"},"name":{"kind":"Name","value":"getPopularReviews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"Argument","name":{"kind":"Name","value":"size"},"value":{"kind":"Variable","name":{"kind":"Name","value":"size"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
-export const GetLatestReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLatestReviews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"size"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"latestReviews"},"name":{"kind":"Name","value":"getLatestReviews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"Argument","name":{"kind":"Name","value":"size"},"value":{"kind":"Variable","name":{"kind":"Name","value":"size"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
+export const GetPopularReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPopularReviews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"size"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"popularReviews"},"name":{"kind":"Name","value":"getPopularReviews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"hasMedia"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}}},{"kind":"Argument","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"Argument","name":{"kind":"Name","value":"size"},"value":{"kind":"Variable","name":{"kind":"Name","value":"size"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
+export const GetLatestReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLatestReviews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"size"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"latestReviews"},"name":{"kind":"Name","value":"getLatestReviews"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"hasMedia"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}}},{"kind":"Argument","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"Argument","name":{"kind":"Name","value":"size"},"value":{"kind":"Variable","name":{"kind":"Name","value":"size"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
+export const GetRatingReviewsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRatingReviews"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"from"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"size"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sortBy"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SortByInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"ratingReviews"},"name":{"kind":"Name","value":"getReviewsByRating"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"hasMedia"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}}},{"kind":"Argument","name":{"kind":"Name","value":"from"},"value":{"kind":"Variable","name":{"kind":"Name","value":"from"}}},{"kind":"Argument","name":{"kind":"Name","value":"size"},"value":{"kind":"Variable","name":{"kind":"Name","value":"size"}}},{"kind":"Argument","name":{"kind":"Name","value":"sortBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sortBy"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
 export const GetMyReviewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetMyReview"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"myReview"},"name":{"kind":"Name","value":"getMyReview"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReview"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReview"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Review"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"comment"}},{"kind":"Field","name":{"kind":"Name","value":"media"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"visitDate"}},{"kind":"Field","name":{"kind":"Name","value":"recentTrip"}},{"kind":"Field","name":{"kind":"Name","value":"likesCount"}},{"kind":"Field","name":{"kind":"Name","value":"blinded"}},{"kind":"Field","name":{"kind":"Name","value":"reviewedAt"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUser"}}]}},{"kind":"Field","name":{"kind":"Name","value":"replyBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"resourceId"}},{"kind":"Field","name":{"kind":"Name","value":"resourceType"}},{"kind":"Field","name":{"kind":"Name","value":"rootMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"childMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessagesCount"}},{"kind":"Field","name":{"kind":"Name","value":"pinnedMessages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BasePinnedMessage"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"liked"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseUser"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unregister"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"photo"}},{"kind":"Field","name":{"kind":"Name","value":"mileage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"point"}},{"kind":"Field","name":{"kind":"Name","value":"badges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"userBoard"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"trips"}},{"kind":"Field","name":{"kind":"Name","value":"reviews"}},{"kind":"Field","name":{"kind":"Name","value":"thanks"}},{"kind":"Field","name":{"kind":"Name","value":"reports"}},{"kind":"Field","name":{"kind":"Name","value":"reviewsV2"}},{"kind":"Field","name":{"kind":"Name","value":"itineraries"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BasePinnedMessage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReplyMessage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"markdownText"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"writer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode;
 export const GetReviewSpecificationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetReviewSpecification"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"reviewsSpecification"},"name":{"kind":"Name","value":"getReviewSpecification"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseReviewSpecification"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseReviewSpecification"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ReviewSpecification"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rating"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"required"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode;
-export const GetReviewsCountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetReviewsCount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"reviewsCount"},"name":{"kind":"Name","value":"getReviewsCount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}}]}]}}]} as unknown as DocumentNode;
+export const GetReviewsCountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetReviewsCount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"reviewsCount"},"name":{"kind":"Name","value":"getReviewsCount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"resourceType"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceType"}}},{"kind":"Argument","name":{"kind":"Name","value":"resourceId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"resourceId"}}},{"kind":"Argument","name":{"kind":"Name","value":"recentTrip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"recentTrip"}}},{"kind":"Argument","name":{"kind":"Name","value":"hasMedia"},"value":{"kind":"Variable","name":{"kind":"Name","value":"hasMedia"}}}]}]}}]} as unknown as DocumentNode;
 export type Requester<C = {}, E = unknown> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
@@ -1173,6 +1381,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     },
     GetLatestReviews(variables: GetLatestReviewsQueryVariables, options?: C): Promise<GetLatestReviewsQuery> {
       return requester<GetLatestReviewsQuery, GetLatestReviewsQueryVariables>(GetLatestReviewsDocument, variables, options) as Promise<GetLatestReviewsQuery>;
+    },
+    GetRatingReviews(variables: GetRatingReviewsQueryVariables, options?: C): Promise<GetRatingReviewsQuery> {
+      return requester<GetRatingReviewsQuery, GetRatingReviewsQueryVariables>(GetRatingReviewsDocument, variables, options) as Promise<GetRatingReviewsQuery>;
     },
     GetMyReview(variables: GetMyReviewQueryVariables, options?: C): Promise<GetMyReviewQuery> {
       return requester<GetMyReviewQuery, GetMyReviewQueryVariables>(GetMyReviewDocument, variables, options) as Promise<GetMyReviewQuery>;
