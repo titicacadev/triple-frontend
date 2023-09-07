@@ -66,7 +66,7 @@ export interface MessageInterface {
   id: number
   roomId: string
   senderId: string
-  payload: TextPayload | ImagePayload | RichPayload
+  payload: TextPayload | ImagePayload | RichPayload | ProductPayload
   createdAt?: string
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: TextPayload | ImagePayload | RichPayload
