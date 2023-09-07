@@ -91,7 +91,7 @@ function ReviewsComponent({
   ReviewsProps,
   'initialRecentTrip' | 'initialSortingOption' | 'sortingType'
 >) {
-  const { isRecentTrip } = useReviewFilters()
+  const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -103,6 +103,7 @@ function ReviewsComponent({
         resourceId,
         resourceType,
         recentTrip: isRecentTrip,
+        hasMedia: isMediaCollection,
       },
       initialReviewsCount,
     )
@@ -151,6 +152,7 @@ function ReviewsComponent({
         resourceType={resourceType}
         regionId={regionId}
         recentTrip={isRecentTrip}
+        hasMedia={isMediaCollection}
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
       />

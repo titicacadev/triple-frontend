@@ -23,7 +23,8 @@ export const handlers = {
     GetPopularReviewsQuery,
     GetPopularReviewsQueryVariables
   >('GetPopularReviews', (req, res, ctx) => {
-    const { resourceId, resourceType, from, size, recentTrip } = req.variables
+    const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
+      req.variables
 
     return res(
       ctx.data({
@@ -40,6 +41,7 @@ export const handlers = {
             rating: 3,
             visitDate: null,
             recentTrip: recentTrip ?? false,
+            hasMedia: hasMedia ?? false,
             likesCount: 0,
             blinded: false,
             reviewedAt: '2023-04-27T07:18:15.918Z',
@@ -82,7 +84,8 @@ export const handlers = {
     GetLatestReviewsQuery,
     GetLatestReviewsQueryVariables
   >('GetLatestReviews', (req, res, ctx) => {
-    const { resourceId, resourceType, from, size, recentTrip } = req.variables
+    const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
+      req.variables
 
     return res(
       ctx.data({
@@ -99,6 +102,7 @@ export const handlers = {
             rating: 3,
             visitDate: null,
             recentTrip: recentTrip ?? false,
+            hasMedia: hasMedia ?? false,
             likesCount: 0,
             blinded: false,
             reviewedAt: '2023-04-27T07:18:15.918Z',
