@@ -75,7 +75,7 @@ function ReviewsShortenComponent({
   initialReviewsCount,
   placeholderText,
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
-  const { isRecentTrip } = useReviewFilters()
+  const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
   const { t } = useTranslation('common-web')
 
@@ -88,6 +88,7 @@ function ReviewsShortenComponent({
         resourceId,
         resourceType,
         recentTrip: isRecentTrip,
+        hasMedia: isMediaCollection,
       },
       initialReviewsCount,
     )
@@ -142,6 +143,7 @@ function ReviewsShortenComponent({
         resourceType={resourceType}
         regionId={regionId}
         recentTrip={isRecentTrip}
+        hasMedia={isMediaCollection}
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
       />
