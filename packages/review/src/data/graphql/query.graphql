@@ -75,6 +75,7 @@ query GetPopularReviews(
   $resourceType: String!
   $resourceId: String!
   $recentTrip: Boolean
+  $hasMedia: Boolean
   $from: Int
   $size: Int
 ) {
@@ -82,6 +83,7 @@ query GetPopularReviews(
     resourceType: $resourceType
     resourceId: $resourceId
     recentTrip: $recentTrip
+    hasMedia: $hasMedia
     from: $from
     size: $size
   ) {
@@ -93,6 +95,7 @@ query GetLatestReviews(
   $resourceType: String!
   $resourceId: String!
   $recentTrip: Boolean
+  $hasMedia: Boolean
   $from: Int
   $size: Int
 ) {
@@ -100,8 +103,31 @@ query GetLatestReviews(
     resourceType: $resourceType
     resourceId: $resourceId
     recentTrip: $recentTrip
+    hasMedia: $hasMedia
     from: $from
     size: $size
+  ) {
+    ...BaseReview
+  }
+}
+
+query GetRatingReviews(
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $hasMedia: Boolean
+  $from: Int
+  $size: Int
+  $sortBy: SortByInput
+) {
+  ratingReviews: getReviewsByRating(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    hasMedia: $hasMedia
+    from: $from
+    size: $size
+    sortBy: $sortBy
   ) {
     ...BaseReview
   }
@@ -126,10 +152,12 @@ query GetReviewsCount(
   $resourceType: String!
   $resourceId: String!
   $recentTrip: Boolean
+  $hasMedia: Boolean
 ) {
   reviewsCount: getReviewsCount(
     resourceType: $resourceType
     resourceId: $resourceId
     recentTrip: $recentTrip
+    hasMedia: $hasMedia
   )
 }
