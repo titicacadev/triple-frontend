@@ -148,15 +148,6 @@ export interface ProductItem {
   bookingId: number
 }
 
-export interface BookingOptionItem {
-  label: string
-  value: string
-}
-
-export interface PerPax {
-  perPax: BookingOptionItem[]
-}
-
 export interface HasUnreadInterface {
   hasUnread: boolean
 }
