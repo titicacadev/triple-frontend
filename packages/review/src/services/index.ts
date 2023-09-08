@@ -5,6 +5,7 @@ export {
   useRatingReviews,
   useInfinitePopularReviews,
   useInfiniteLatestReviews,
+  useInfiniteRatingReviews,
   useReviewCount,
   useDescriptions,
   useMyReview,
