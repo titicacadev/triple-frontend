@@ -14,8 +14,8 @@ import { useReviewFilters } from './filter-context'
 export type SortingOption =
   | 'recommendation'
   | 'latest'
-  | 'reviews-rating-desc'
-  | 'reviews-rating-asc'
+  | 'star-rating-desc'
+  | 'star-rating-asc'
 
 export type SortingType = 'default' | 'poi'
 
@@ -54,8 +54,8 @@ export function SortingOptionsProvider({
 
   const poiOptions = [
     ...defaultOptions,
-    { key: 'reviews-rating-desc' as const, text: '리뷰 높은순' },
-    { key: 'reviews-rating-asc' as const, text: '리뷰 낮은순' },
+    { key: 'star-rating-desc' as const, text: '별점 높은순' },
+    { key: 'star-rating-asc' as const, text: '별점 낮은순' },
   ]
 
   const sortingOptions = type === 'default' ? defaultOptions : poiOptions
