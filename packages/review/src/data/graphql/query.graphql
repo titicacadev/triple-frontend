@@ -111,14 +111,14 @@ query GetLatestReviews(
   }
 }
 
-query GetRatingReviews(
+query GetReviewsByRating(
   $resourceType: String!
   $resourceId: String!
   $recentTrip: Boolean
   $hasMedia: Boolean
   $from: Int
   $size: Int
-  $sortBy: SortByInput
+  $sortBy: SortByRatingsInput
 ) {
   ratingReviews: getReviewsByRating(
     resourceType: $resourceType
