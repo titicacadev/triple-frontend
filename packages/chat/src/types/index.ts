@@ -139,13 +139,13 @@ export type CustomerBookingStatus =
   | 'CANCELED'
 
 export interface ProductItem {
-  customerBookingStatus: CustomerBookingStatus
+  customerBookingStatus?: CustomerBookingStatus
   productName: string
   productThumbnail?: string
-  itemName: string
-  optionName: string
-  dateOfUse: string
-  bookingId: number
+  itemName?: string
+  optionName?: string
+  dateOfUse?: string
+  bookingId?: number
 }
 
 export interface HasUnreadInterface {

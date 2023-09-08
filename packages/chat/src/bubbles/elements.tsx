@@ -49,25 +49,29 @@ export const ProductInfo = ({
   label,
 }: {
   title: string
-  label: string
+  label?: string
 }) => {
   return (
-    <FlexBox
-      flex
-      alignItems="flex-start"
-      gap="10px"
-      css={css`
-        & + & {
-          margin-top: 4px;
-        }
-      `}
-    >
-      <Text color="gray500" size={13}>
-        {title}
-      </Text>
-      <Text color="gray700" size={13}>
-        {label}
-      </Text>
-    </FlexBox>
+    <>
+      {label && (
+        <FlexBox
+          flex
+          alignItems="flex-start"
+          gap="10px"
+          css={css`
+            & + & {
+              margin-top: 4px;
+            }
+          `}
+        >
+          <Text color="gray500" size={13}>
+            {title}
+          </Text>
+          <Text color="gray700" size={13}>
+            {label}
+          </Text>
+        </FlexBox>
+      )}
+    </>
   )
 }
