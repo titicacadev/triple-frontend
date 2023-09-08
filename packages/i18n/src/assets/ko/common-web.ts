@@ -193,4 +193,6 @@ export const koCommonWeb = {
     '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
   'yeogineun-teuripeul-aebi-pilyohaeyo': '여기는 트리플 앱이 필요해요',
   'sajin-dongyeongsang': '사진/동영상',
+  'byeoljeom-nopeunsun': '별점 높은순',
+  'byeoljeom-najeunsun': '별점 낮은순',
 } as const

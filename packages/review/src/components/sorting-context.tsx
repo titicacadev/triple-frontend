@@ -54,8 +54,14 @@ export function SortingOptionsProvider({
 
   const poiOptions = [
     ...defaultOptions,
-    { key: 'star-rating-desc' as const, text: '별점 높은순' },
-    { key: 'star-rating-asc' as const, text: '별점 낮은순' },
+    {
+      key: 'star-rating-desc' as const,
+      text: t(['byeoljeom-nopeunsun', '별점 높은순']),
+    },
+    {
+      key: 'star-rating-asc' as const,
+      text: t(['byeoljeom-najeunsun', '별점 낮은순']),
+    },
   ]
 
   const sortingOptions = type === 'default' ? defaultOptions : poiOptions

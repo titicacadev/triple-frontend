@@ -195,4 +195,6 @@ export const jaCommonWeb = {
   gwangwang: '観光',
   masjib: 'グルメ',
   'sajin-dongyeongsang': '写真/動画',
+  'byeoljeom-nopeunsun': '星の高い順',
+  'byeoljeom-najeunsun': '星の低い順',
 }
