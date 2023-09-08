@@ -12,6 +12,7 @@ import {
   ProfileName,
 } from './elements'
 import BubblePayload from './bubble-payload'
+import BlindedBubble from './blinded'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
@@ -112,6 +113,8 @@ export interface ChatBubbleUIProps {
   profileName?: string
   unreadCount: number | null
   createdAt?: string
+  blindedAt?: string
+  blindedText?: string
   /**
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도하는 함수
    */
@@ -129,6 +132,8 @@ export function ChatBubbleUI({
   createdAt,
   profileImageUrl,
   profileName,
+  blindedAt,
+  blindedText,
   onRetry,
 }: ChatBubbleUIProps) {
   switch (type) {
@@ -139,7 +144,11 @@ export function ChatBubbleUI({
           unreadCount={unreadCount}
           onRetry={onRetry}
         >
-          <BubblePayload payload={payload} my />
+          {blindedAt ? (
+            <BlindedBubble my blindedText={blindedText} />
+          ) : (
+            <BubblePayload payload={payload} my />
+          )}
         </SentChatContainer>
       )
     case 'received':
@@ -150,7 +159,11 @@ export function ChatBubbleUI({
           profileImageUrl={profileImageUrl}
           profileName={profileName}
         >
-          <BubblePayload payload={payload} my={false} />
+          {blindedAt ? (
+            <BlindedBubble my={false} blindedText={blindedText} />
+          ) : (
+            <BubblePayload payload={payload} my={false} />
+          )}
         </ReceivedChatContainer>
       )
     default:

@@ -56,12 +56,6 @@ const ChatBubble = ({
       : null
 
   const payload = useMemo(() => {
-    if (message.blinded) {
-      return {
-        type: MessageType.TEXT,
-        message: blindedText || '관리자에 의해 삭제된 메세지입니다.',
-      } as TextPayload
-    }
     if (!message.displayTarget || message.displayTarget === 'all') {
       return message.payload
     }
@@ -105,6 +99,8 @@ const ChatBubble = ({
       payload={payload}
       onRetry={couldRetry ? onRetry : undefined}
       onCancel={onCancel}
+      blindedAt={message.blindedAt}
+      blindedText={blindedText}
     />
   )
 }
