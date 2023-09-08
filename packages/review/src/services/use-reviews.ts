@@ -17,6 +17,7 @@ import {
   GetMyReviewQuery,
   GetLatestReviewsQuery,
   GetLatestReviewsQueryVariables,
+  GetReviewsByRatingQueryVariables,
   GetMyReviewQueryVariables,
   GetPopularReviewsQuery,
   GetPopularReviewsQueryVariables,
@@ -53,6 +54,22 @@ export function useLatestReviews(
     ],
     () =>
       client.GetLatestReviews({
+        ...params,
+        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
+      }),
+  )
+}
+
+export function useRatingReviews(
+  params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
+) {
+  return useQuery(
+    [
+      'review/getReviewsByRating',
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+    ],
+    () =>
+      client.GetReviewsByRating({
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),

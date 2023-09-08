@@ -2,6 +2,7 @@ export { useClientActions } from './use-client-actions'
 export {
   usePopularReviews,
   useLatestReviews,
+  useRatingReviews,
   useInfinitePopularReviews,
   useInfiniteLatestReviews,
   useReviewCount,

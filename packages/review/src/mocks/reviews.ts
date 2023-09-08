@@ -11,6 +11,8 @@ import {
   GetPopularReviewsQueryVariables,
   GetReviewSpecificationQuery,
   GetReviewSpecificationQueryVariables,
+  GetReviewsByRatingQuery,
+  GetReviewsByRatingQueryVariables,
   GetReviewsCountQuery,
   GetReviewsCountQueryVariables,
   LikeReviewMutation,
@@ -91,6 +93,67 @@ export const handlers = {
       ctx.data({
         __typename: 'Query',
         latestReviews: Array.from({ length: size ?? 1 }).map((_, index) => {
+          const id = ((from ?? 0) + index).toString()
+
+          return {
+            id,
+            resourceId,
+            resourceType,
+            comment: '리뷰 내용',
+            media: [],
+            rating: 3,
+            visitDate: null,
+            recentTrip: recentTrip ?? false,
+            hasMedia: hasMedia ?? false,
+            likesCount: 0,
+            blinded: false,
+            reviewedAt: '2023-04-27T07:18:15.918Z',
+            user: {
+              unregister: false,
+              uid: `random-uid-${id}`,
+              photo:
+                'https://media.triple.guide/titicaca-imgs/image/upload/v1490937645/defaul_profile01_yuj1eh.png',
+              mileage: {
+                level: 1,
+                point: 7,
+                badges: [],
+              },
+              name: id === '2' ? 'Me' : `User ${id}`,
+              userBoard: {
+                trips: 4,
+                reviews: 0,
+                thanks: 0,
+                reports: 0,
+                reviewsV2: 1,
+                itineraries: 1,
+              },
+            },
+            replyBoard: {
+              id: `REVIEW.${id}`,
+              resourceId: id,
+              resourceType: 'review',
+              rootMessagesCount: 3,
+              childMessagesCount: 1,
+              pinnedMessagesCount: 0,
+              pinnedMessages: [],
+            },
+            liked: false,
+          }
+        }),
+      }),
+    )
+  }),
+  getReviewsByRating: graphql.query<
+    GetReviewsByRatingQuery,
+    GetReviewsByRatingQueryVariables
+  >('GetReviewsByRating', (req, res, ctx) => {
+    const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
+      req.variables
+
+    return res(
+      ctx.data({
+        __typename: 'Query',
+        ratingReviews: Array.from({ length: size ?? 1 }).map((_, index) => {
           const id = ((from ?? 0) + index).toString()
 
           return {

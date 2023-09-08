@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Container, FlexBox, Section, Text } from '@titicaca/core-elements'
+import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
@@ -18,6 +18,7 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
+import { RatingReviews } from './rating-reviews'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -37,7 +38,7 @@ export function ReviewsShorten({
   regionId,
   initialReviewsCount,
   initialSortingOption = 'recommendation',
-  sortingType = 'default',
+  sortingType = 'poi',
   placeholderText,
 }: ReviewsShortenProps) {
   return (
@@ -64,8 +65,8 @@ export function ReviewsShorten({
 const REVIEW_SHORTEN_LIST_TYPES = {
   recommendation: PopularReviews,
   latest: LatestReviews,
-  'reviews-rating-desc': Container,
-  'reviews-rating-asc': Container,
+  'reviews-rating-desc': RatingReviews,
+  'reviews-rating-asc': RatingReviews,
 }
 
 function ReviewsShortenComponent({
@@ -104,6 +105,13 @@ function ReviewsShortenComponent({
   ])
 
   const ListElement = REVIEW_SHORTEN_LIST_TYPES[selectedOption]
+
+  const sorting = selectedOption.startsWith('reviews-rating')
+    ? selectedOption.replace(/^reviews-rating-/, '')
+    : undefined
+
+  const sort =
+    sorting === undefined ? undefined : sorting === 'asc' ? 'asc' : 'desc'
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -146,6 +154,7 @@ function ReviewsShortenComponent({
         hasMedia={isMediaCollection}
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
+        sort={sort}
       />
     </Section>
   )
