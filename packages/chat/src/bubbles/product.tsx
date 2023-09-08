@@ -72,15 +72,19 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
         <ProductImage src={productThumbnail} alt="상품 사진" />
       </FlexBox>
 
-      <Text color="gray700" size={13}>
-        {itemName}
-      </Text>
+      {itemName && (
+        <Text color="gray700" size={13}>
+          {itemName}
+        </Text>
+      )}
 
-      <ProductHr compact color="var(--color-gray50)" />
+      {(optionName || dateOfUse || bookingId) && (
+        <ProductHr compact color="var(--color-gray50)" />
+      )}
 
       <ProductInfo title="선택옵션" label={optionName} />
       <ProductInfo title="이용예정" label={dateOfUse} />
-      <ProductInfo title="예약번호" label={bookingId.toString()} />
+      <ProductInfo title="예약번호" label={bookingId?.toString()} />
     </TextBubble>
   )
 }
