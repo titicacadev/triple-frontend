@@ -65,8 +65,8 @@ export function ReviewsShorten({
 const REVIEW_SHORTEN_LIST_TYPES = {
   recommendation: PopularReviews,
   latest: LatestReviews,
-  'reviews-rating-desc': RatingReviews,
-  'reviews-rating-asc': RatingReviews,
+  'star-rating-desc': RatingReviews,
+  'star-rating-asc': RatingReviews,
 }
 
 function ReviewsShortenComponent({
@@ -106,8 +106,8 @@ function ReviewsShortenComponent({
 
   const ListElement = REVIEW_SHORTEN_LIST_TYPES[selectedOption]
 
-  const sorting = selectedOption.startsWith('reviews-rating')
-    ? selectedOption.replace(/^reviews-rating-/, '')
+  const sorting = selectedOption.startsWith('star-rating')
+    ? selectedOption.replace(/^star-rating-/, '')
     : undefined
 
   const sort =

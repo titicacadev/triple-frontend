@@ -78,8 +78,8 @@ export function Reviews({
 const REVIEW_INFINITY_LIST_TYPES = {
   recommendation: PopularReviewsInfinite,
   latest: LatestReviewsInfinite,
-  'reviews-rating-desc': RatingReviewsInfinite,
-  'reviews-rating-asc': RatingReviewsInfinite,
+  'star-rating-desc': RatingReviewsInfinite,
+  'star-rating-asc': RatingReviewsInfinite,
 }
 
 function ReviewsComponent({
@@ -121,8 +121,8 @@ function ReviewsComponent({
 
   const ListElement = REVIEW_INFINITY_LIST_TYPES[selectedOption]
 
-  const sorting = selectedOption.startsWith('reviews-rating')
-    ? selectedOption.replace(/^reviews-rating-/, '')
+  const sorting = selectedOption.startsWith('star-rating')
+    ? selectedOption.replace(/^star-rating-/, '')
     : undefined
 
   const sort =

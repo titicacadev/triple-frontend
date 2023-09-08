@@ -41,7 +41,7 @@ export function RatingReviews({
       recentTrip={recentTrip}
       placeholderText={placeholderText}
       sortingOption={
-        sort !== undefined ? `reviews-rating-${sort}` : `reviews-rating-asc`
+        sort !== undefined ? `star-rating-${sort}` : `star-rating-asc`
       }
       reviewsCount={reviewsCount}
       reviews={data?.ratingReviews}
