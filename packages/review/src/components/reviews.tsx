@@ -18,6 +18,7 @@ import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
+import { RatingReviewsInfinite } from './rating-infinite-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -77,8 +78,8 @@ export function Reviews({
 const REVIEW_INFINITY_LIST_TYPES = {
   recommendation: PopularReviewsInfinite,
   latest: LatestReviewsInfinite,
-  'reviews-rating-desc': Container,
-  'reviews-rating-asc': Container,
+  'reviews-rating-desc': RatingReviewsInfinite,
+  'reviews-rating-asc': RatingReviewsInfinite,
 }
 
 function ReviewsComponent({
@@ -120,6 +121,13 @@ function ReviewsComponent({
 
   const ListElement = REVIEW_INFINITY_LIST_TYPES[selectedOption]
 
+  const sorting = selectedOption.startsWith('reviews-rating')
+    ? selectedOption.replace(/^reviews-rating-/, '')
+    : undefined
+
+  const sort =
+    sorting === undefined ? undefined : sorting === 'asc' ? 'asc' : 'desc'
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
@@ -155,6 +163,7 @@ function ReviewsComponent({
         hasMedia={isMediaCollection}
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
+        sort={sort}
       />
     </Section>
   )

@@ -17,6 +17,7 @@ import {
   GetMyReviewQuery,
   GetLatestReviewsQuery,
   GetLatestReviewsQueryVariables,
+  GetReviewsByRatingQuery,
   GetReviewsByRatingQueryVariables,
   GetMyReviewQueryVariables,
   GetPopularReviewsQuery,
@@ -136,6 +137,36 @@ export function useInfiniteLatestReviews(
   )
 }
 
+export function useInfiniteRatingReviews(
+  params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
+) {
+  return useInfiniteQuery(
+    [
+      'review/getInfiniteRatingReviews',
+      { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
+    ],
+    ({ pageParam = 1 }) =>
+      client.GetReviewsByRating({
+        ...params,
+        from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
+        size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
+      }),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.ratingReviews.length === 0) {
+          return undefined
+        }
+        return allPages.length + 1
+      },
+      select: ({ pageParams, pages }) => ({
+        pageParams,
+        pages: pages.map((item) => item.ratingReviews),
+      }),
+      keepPreviousData: true,
+    },
+  )
+}
+
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
   initialValue?: number,
@@ -206,6 +237,17 @@ export function useLikeReviewMutation() {
                 }
               : old,
         )
+        queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
+          ['review/getReviewsByRating'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  ratingReviews: old.ratingReviews.map(updater),
+                }
+              : old,
+        )
+
         queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
@@ -228,6 +270,19 @@ export function useLikeReviewMutation() {
                 pages: old.pages.map((page) => ({
                   ...page,
                   latestReviews: page.latestReviews.map(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueriesData<
+          InfiniteData<GetReviewsByRatingQuery> | undefined
+        >(['review/getInfiniteRatingReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  ratingReviews: page.ratingReviews.map(updater),
                 })),
               }
             : old,
@@ -277,6 +332,16 @@ export function useUnlikeReviewMutation() {
                 }
               : old,
         )
+        queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
+          ['review/getReviewsByRating'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  ratingReviews: old.ratingReviews.map(updater),
+                }
+              : old,
+        )
         queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
@@ -299,6 +364,19 @@ export function useUnlikeReviewMutation() {
                 pages: old.pages.map((page) => ({
                   ...page,
                   latestReviews: page.latestReviews.map(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueriesData<
+          InfiniteData<GetReviewsByRatingQuery> | undefined
+        >(['review/getInfiniteRatingReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  ratingReviews: page.ratingReviews.map(updater),
                 })),
               }
             : old,
@@ -352,6 +430,16 @@ export function useDeleteReviewMutation() {
                 }
               : old,
         )
+        queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
+          ['review/getReviewsByRating'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  ratingReviews: old.ratingReviews.filter(updater),
+                }
+              : old,
+        )
         queryClient.setQueriesData<
           InfiniteData<GetPopularReviewsQuery> | undefined
         >(['review/getInfinitePopularReviews'], (old) =>
@@ -374,6 +462,19 @@ export function useDeleteReviewMutation() {
                 pages: old.pages.map((page) => ({
                   ...page,
                   latestReviews: page.latestReviews.filter(updater),
+                })),
+              }
+            : old,
+        )
+        queryClient.setQueriesData<
+          InfiniteData<GetReviewsByRatingQuery> | undefined
+        >(['review/getInfiniteRatingReviews'], (old) =>
+          old
+            ? {
+                ...old,
+                pages: old.pages.map((page) => ({
+                  ...page,
+                  ratingReviews: page.ratingReviews.filter(updater),
                 })),
               }
             : old,
