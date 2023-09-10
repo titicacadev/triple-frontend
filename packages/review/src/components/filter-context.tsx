@@ -17,8 +17,11 @@ interface FilterValues {
 
 const FilterContext = createContext<FilterValues | undefined>(undefined)
 
-export function FilterProvider({ children }: PropsWithChildren<unknown>) {
-  const [isRecentTrip, setIsRecentTrip] = useState(false)
+export function FilterProvider({
+  initialRecentTrip = false,
+  children,
+}: PropsWithChildren<{ initialRecentTrip?: boolean }>) {
+  const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTrip)
   const [isMediaCollection, setIsMediaCollection] = useState(false)
 
   const { trackEvent } = useEventTrackingContext()
