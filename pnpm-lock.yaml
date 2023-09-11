@@ -945,6 +945,9 @@ importers:
 
   packages/poi-list-elements:
     dependencies:
+      '@titicaca/carousel':
+        specifier: workspace:*
+        version: link:../carousel
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -1593,6 +1596,12 @@ importers:
 
   packages/triple-document:
     dependencies:
+      '@titicaca/carousel':
+        specifier: workspace:*
+        version: link:../carousel
+      '@titicaca/color-palette':
+        specifier: workspace:*
+        version: link:../color-palette
       '@titicaca/content-type-definitions':
         specifier: 8.11.0
         version: 8.11.0
