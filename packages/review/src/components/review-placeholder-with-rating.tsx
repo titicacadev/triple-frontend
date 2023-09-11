@@ -137,7 +137,7 @@ export function ReviewsPlaceholder({
       ) : null}
 
       {recentTrip || hasMedia ? (
-        <RecentTripPlaceholder
+        <FilterPlaceholder
           isMorePage={isMorePage}
           hasReviews={hasReviews}
           onClick={() => handleClick()}
@@ -173,7 +173,7 @@ function DefaultPlaceholder({
   )
 }
 
-function RecentTripPlaceholder({
+function FilterPlaceholder({
   isMorePage,
   hasReviews,
   onClick,
