@@ -1,4 +1,4 @@
-import { MessageType, MetaDataInterface, UserType } from '../types'
+import { MessageType, MetaDataInterface, RoomType, UserType } from '../types'
 import { ChatContextValue, ChatProps } from '../chat'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
@@ -112,6 +112,7 @@ export const CHAT_ARGS: ChatProps = {
   },
   room: {
     id: '6344c73a53749900140bca43',
+    type: RoomType.DEFAULT,
     createdAt: '2022-10-11T01:30:34.519Z',
     name: '',
     isDirect: true,
