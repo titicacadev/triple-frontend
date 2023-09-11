@@ -15,6 +15,11 @@ export enum MessageType {
   RICH = 'rich',
 }
 
+export enum RoomType {
+  DEFAULT = 'default',
+  EVENT = 'event',
+}
+
 export type PostMessageType = (
   payload: TextPayload | ImagePayload,
 ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
@@ -37,6 +42,7 @@ export interface RoomListResultWithPagingInterface
 
 export interface RoomInterface {
   id: string
+  type: RoomType
   name?: string
   lastMessageId: number
   lastMessage: MessageInterface
