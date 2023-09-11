@@ -42,7 +42,7 @@ export function ReviewsShorten({
   initialRecentTrip,
   initialMediaFilter,
   initialSortingOption = 'recommendation',
-  sortingType = 'poi',
+  sortingType = 'default',
   placeholderText,
 }: ReviewsShortenProps) {
   return (
