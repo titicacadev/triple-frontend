@@ -40,6 +40,8 @@
     ]
   },
   "dependencies": {
+    "@titicaca/carousel": "workspace:*",
+    "@titicaca/color-palette": "workspace:*",
     "@titicaca/content-type-definitions": "8.11.0",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
