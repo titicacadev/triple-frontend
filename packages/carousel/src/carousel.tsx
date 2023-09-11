@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import { ArrowIcon } from '@titicaca/icons'
 import {
   Container,
   MarginPadding,
@@ -12,6 +11,7 @@ import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
 import CarouselItem from './carousel-item'
+import ArrowIcon from './arrow-icon'
 
 interface CarouselBaseProps {
   margin?: MarginPadding
