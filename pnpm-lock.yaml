@@ -378,12 +378,12 @@ importers:
       '@egjs/react-flicking':
         specifier: ^3.8.3
         version: 3.8.3
+      '@titicaca/color-palette':
+        specifier: workspace:*
+        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
-      '@titicaca/icons':
-        specifier: workspace:*
-        version: link:../icons
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -629,40 +629,6 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
-  packages/form:
-    dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/drawer-button':
-        specifier: workspace:*
-        version: link:../drawer-button
-      react-input-mask:
-        specifier: ^2.0.4
-        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@types/react-input-mask':
-        specifier: ^2.0.5
-        version: 2.0.5
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/hub-form:
     dependencies:
       '@titicaca/color-palette':
@@ -688,19 +654,6 @@ importers:
       '@types/node-fetch':
         specifier: 2.x
         version: 2.6.4
-
-  packages/icons:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/image-carousel:
     dependencies:
@@ -1634,15 +1587,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/style-box:
-    devDependencies:
-      csstype:
-        specifier: ^3.1.2
-        version: 3.1.2
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
