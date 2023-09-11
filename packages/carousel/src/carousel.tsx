@@ -14,6 +14,7 @@ import CarouselItem from './carousel-item'
 import ArrowIcon from './arrow-icon'
 
 interface CarouselBaseProps {
+  noFlicking?: boolean
   margin?: MarginPadding
   containerPadding?: { left: number; right: number }
   className?: string
@@ -92,6 +93,7 @@ const FlickingContainer = styled.div`
 `
 
 function Carousel({
+  noFlicking,
   margin,
   containerPadding,
   children,
@@ -114,7 +116,7 @@ function Carousel({
     }
   }, [carouselRef])
 
-  return !isMobile && scrollable ? (
+  return !noFlicking && !isMobile && scrollable ? (
     <Container
       position="relative"
       css={css`
