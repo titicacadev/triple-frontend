@@ -16,6 +16,7 @@ interface Props {
   resourceId: string
   resourceType: string
   regionId: string | undefined
+  hasMedia: boolean
   recentTrip: boolean
   placeholderText: string | undefined
   sortingOption: SortingOption
@@ -30,6 +31,7 @@ export function ReviewsInfiniteList({
   resourceId,
   resourceType,
   regionId,
+  hasMedia,
   recentTrip,
   placeholderText,
   sortingOption,
@@ -89,6 +91,7 @@ export function ReviewsInfiniteList({
         resourceType={resourceType}
         regionId={regionId}
         sortingOption={sortingOption}
+        hasMedia={hasMedia}
         recentTrip={recentTrip}
         placeholderText={placeholderText}
       />
