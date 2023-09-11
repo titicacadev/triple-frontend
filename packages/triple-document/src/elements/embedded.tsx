@@ -1,7 +1,8 @@
 import { ComponentType } from 'react'
-import { Carousel, Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { Carousel } from '@titicaca/carousel'
 
 import { TripleElementData, ElementSet } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
