@@ -40,6 +40,7 @@ interface ReviewsProps {
   resourceType: string
   regionId?: string
   initialReviewsCount?: number
+  initialMediaFilter?: boolean
   initialRecentTrip?: boolean
   initialSortingOption?: SortingOption
   sortingType?: SortingType
@@ -51,6 +52,7 @@ export function Reviews({
   resourceType,
   regionId,
   initialReviewsCount,
+  initialMediaFilter,
   initialRecentTrip,
   initialSortingOption = 'recommendation',
   sortingType = 'default',
@@ -58,7 +60,10 @@ export function Reviews({
 }: ReviewsProps) {
   return (
     <LoginCtaModalProvider>
-      <FilterProvider initialRecentTrip={initialRecentTrip}>
+      <FilterProvider
+        initialRecentTrip={initialRecentTrip}
+        initialMediaFilter={initialMediaFilter}
+      >
         <SortingOptionsProvider
           type={sortingType}
           resourceId={resourceId}

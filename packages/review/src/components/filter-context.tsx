@@ -19,10 +19,14 @@ const FilterContext = createContext<FilterValues | undefined>(undefined)
 
 export function FilterProvider({
   initialRecentTrip = false,
+  initialMediaFilter = false,
   children,
-}: PropsWithChildren<{ initialRecentTrip?: boolean }>) {
+}: PropsWithChildren<{
+  initialRecentTrip?: boolean
+  initialMediaFilter?: boolean
+}>) {
   const [isRecentTrip, setIsRecentTrip] = useState(initialRecentTrip)
-  const [isMediaCollection, setIsMediaCollection] = useState(false)
+  const [isMediaCollection, setIsMediaCollection] = useState(initialMediaFilter)
 
   const { trackEvent } = useEventTrackingContext()
 

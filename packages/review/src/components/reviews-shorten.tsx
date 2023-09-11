@@ -27,6 +27,7 @@ interface ReviewsShortenProps {
   resourceType: string
   regionId?: string
   initialReviewsCount: number
+  initialMediaFilter?: boolean
   initialRecentTrip?: boolean
   initialSortingOption?: SortingOption
   sortingType?: SortingType
@@ -39,13 +40,17 @@ export function ReviewsShorten({
   regionId,
   initialReviewsCount,
   initialRecentTrip,
+  initialMediaFilter,
   initialSortingOption = 'recommendation',
   sortingType = 'poi',
   placeholderText,
 }: ReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
-      <FilterProvider initialRecentTrip={initialRecentTrip}>
+      <FilterProvider
+        initialRecentTrip={initialRecentTrip}
+        initialMediaFilter={initialMediaFilter}
+      >
         <SortingOptionsProvider
           type={sortingType}
           resourceId={resourceId}

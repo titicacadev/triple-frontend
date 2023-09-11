@@ -38,6 +38,7 @@ export function RatingReviews({
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}
+      hasMedia={hasMedia}
       recentTrip={recentTrip}
       placeholderText={placeholderText}
       sortingOption={
