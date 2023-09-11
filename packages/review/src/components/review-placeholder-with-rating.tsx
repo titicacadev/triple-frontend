@@ -43,6 +43,7 @@ export interface ReviewsPlaceholderProps {
   resourceId: string
   resourceType: string
   regionId: string | undefined
+  hasMedia: boolean
   recentTrip: boolean
   placeholderText?: string
   sortingOption: SortingOption
@@ -54,6 +55,7 @@ export function ReviewsPlaceholder({
   resourceId,
   resourceType,
   regionId,
+  hasMedia,
   recentTrip,
   placeholderText,
   sortingOption,
@@ -68,6 +70,7 @@ export function ReviewsPlaceholder({
         navigateReviewList({
           resourceId,
           resourceType,
+          hasMedia: false,
           recentTrip: false,
           sortingOption,
         })
@@ -111,7 +114,7 @@ export function ReviewsPlaceholder({
         tab_name: sortingOption === 'latest' ? '최신순' : '추천순',
       },
     })
-    if (recentTrip) {
+    if (recentTrip || hasMedia) {
       handleFullClick()
     } else {
       handleWriteClick(rating)
@@ -125,7 +128,7 @@ export function ReviewsPlaceholder({
       }}
       onClick={!isMorePage ? () => handleClick() : undefined}
     >
-      {!recentTrip ? (
+      {!recentTrip || !hasMedia ? (
         resourceType === 'article' ? (
           <GuideImage />
         ) : (
@@ -133,7 +136,7 @@ export function ReviewsPlaceholder({
         )
       ) : null}
 
-      {recentTrip ? (
+      {recentTrip || hasMedia ? (
         <RecentTripPlaceholder
           isMorePage={isMorePage}
           hasReviews={hasReviews}

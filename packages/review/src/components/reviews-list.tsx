@@ -92,6 +92,7 @@ export function ReviewsList({
         resourceType={resourceType}
         regionId={regionId}
         sortingOption={sortingOption}
+        hasMedia={hasMedia}
         recentTrip={recentTrip}
         placeholderText={placeholderText}
       />
