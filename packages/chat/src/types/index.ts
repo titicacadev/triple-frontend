@@ -16,8 +16,8 @@ export enum MessageType {
 }
 
 export enum RoomType {
-  DEFAULT = 'default',
-  EVENT = 'event',
+  DEFAULT = 'default', // 기존 파트너센터 챗
+  EVENT = 'event', // 행사용 그룹 챗
 }
 
 export type PostMessageType = (
