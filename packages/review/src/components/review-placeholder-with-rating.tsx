@@ -128,7 +128,7 @@ export function ReviewsPlaceholder({
       }}
       onClick={!isMorePage ? () => handleClick() : undefined}
     >
-      {!recentTrip || !hasMedia ? (
+      {!recentTrip && !hasMedia ? (
         resourceType === 'article' ? (
           <GuideImage />
         ) : (
