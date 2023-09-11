@@ -1,6 +1,5 @@
 export * from './accordion'
 export * from './button'
-export * from './carousel'
 export * from './checkbox'
 export * from './checkbox-group'
 export * from './confirm-selector'
