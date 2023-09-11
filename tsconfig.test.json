@@ -21,10 +21,8 @@
       "@titicaca/drawer-button": ["./packages/drawer-button/src"],
       "@titicaca/fetcher": ["./packages/fetcher/src"],
       "@titicaca/footer": ["./packages/footer/src"],
-      "@titicaca/form": ["./packages/form/src"],
       "@titicaca/hub-form": ["./packages/hub-form/src"],
       "@titicaca/i18n": ["./packages/i18n/src"],
-      "@titicaca/icons": ["./packages/icons/src"],
       "@titicaca/image-carousel": ["./packages/image-carousel/src"],
       "@titicaca/intersection-observer": [
         "./packages/intersection-observer/src"
@@ -63,7 +61,6 @@
       ],
       "@titicaca/static-map": ["./packages/static-map/src"],
       "@titicaca/static-page-contents": ["./packages/static-page-contents/src"],
-      "@titicaca/style-box": ["./packages/style-box/src"],
       "@titicaca/triple-document": ["./packages/triple-document/src"],
       "@titicaca/triple-email-document": [
         "./packages/triple-email-document/src"
