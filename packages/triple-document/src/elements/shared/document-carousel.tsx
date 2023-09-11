@@ -7,7 +7,11 @@ export default function DocumentCarousel({
   children,
 }: PropsWithChildren<{ margin?: MarginPadding }>) {
   return (
-    <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
+    <Carousel
+      noFlicking
+      margin={margin}
+      containerPadding={{ left: 30, right: 30 }}
+    >
       {children}
     </Carousel>
   )
