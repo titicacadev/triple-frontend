@@ -40,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "@titicaca/carousel": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/resource-list-element": "workspace:*",
     "@titicaca/scrap-button": "workspace:*",

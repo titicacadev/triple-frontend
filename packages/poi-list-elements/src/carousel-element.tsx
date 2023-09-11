@@ -1,13 +1,8 @@
 import { ReactNode } from 'react'
-import {
-  CarouselSizes,
-  Carousel,
-  Text,
-  Container,
-  Image,
-} from '@titicaca/core-elements'
+import { Text, Container, Image } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
+import { Carousel, CarouselSizes } from '@titicaca/carousel'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'

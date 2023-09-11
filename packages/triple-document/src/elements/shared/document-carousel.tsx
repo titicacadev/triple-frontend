@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { MarginPadding, Carousel } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/core-elements'
+import { Carousel } from '@titicaca/carousel'
 
 export default function DocumentCarousel({
   margin,
