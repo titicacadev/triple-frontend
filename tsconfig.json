@@ -2,17 +2,13 @@
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2015"],
     "module": "ESNext",
+    "moduleResolution": "Node",
     "target": "ES2015",
 
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
