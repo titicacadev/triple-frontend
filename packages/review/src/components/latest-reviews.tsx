@@ -33,6 +33,7 @@ export function LatestReviews({
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}
+      hasMedia={hasMedia}
       recentTrip={recentTrip}
       placeholderText={placeholderText}
       sortingOption="latest"

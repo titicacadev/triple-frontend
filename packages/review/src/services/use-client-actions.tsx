@@ -41,12 +41,14 @@ export function useClientActions() {
         regionId,
         resourceId,
         resourceType,
+        hasMedia,
         recentTrip,
         sortingOption,
       }: {
         regionId?: string
         resourceId: string
         resourceType: string
+        hasMedia: boolean
         recentTrip: boolean
         sortingOption: string
       }) {
@@ -56,6 +58,7 @@ export function useClientActions() {
           resource_type: resourceType,
           recent_trip: recentTrip,
           sorting_option: sortingOption,
+          has_media: hasMedia,
         })
 
         navigate(

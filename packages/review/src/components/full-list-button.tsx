@@ -13,6 +13,7 @@ interface Props {
   resourceId: string
   resourceType: string
   regionId: string | undefined
+  hasMedia: boolean
   recentTrip: boolean
   sortingOption: string
 }
@@ -22,6 +23,7 @@ export const FullListButton = ({
   resourceId,
   resourceType,
   regionId,
+  hasMedia,
   recentTrip,
   sortingOption,
 }: Props) => {
@@ -37,6 +39,7 @@ export const FullListButton = ({
           regionId,
           resourceId,
           resourceType,
+          hasMedia,
           recentTrip,
           sortingOption,
         })
