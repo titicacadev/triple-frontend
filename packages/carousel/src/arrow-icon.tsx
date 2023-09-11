@@ -2,9 +2,6 @@ import { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { gray as defaultSvgIconColor } from '@titicaca/color-palette'
 
-import { IconBaseProps } from './types'
-import { SvgIcon } from './base'
-
 const SVG_ATTRIBUTES_BY_DIRECTION = {
   left: {
     d: 'M33.942 35L29 30.029 34 25',
@@ -19,19 +16,16 @@ const SVG_ATTRIBUTES_BY_DIRECTION = {
 }
 
 export default function ArrowIcon({
-  color,
-  strokeWidth = 2,
-  opacity = 1,
   direction,
-}: Omit<IconBaseProps, 'width' | 'height'> & {
+}: {
   direction: 'left' | 'right'
 }) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
   const { colors } = useContext(ThemeContext) || { colors: {} }
-  const stroke = color || colors.primary || defaultSvgIconColor
+  const stroke = colors.primary || defaultSvgIconColor
 
   return (
-    <SvgIcon
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 60 60"
@@ -76,8 +70,8 @@ export default function ArrowIcon({
                 stroke={stroke}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={strokeWidth}
-                opacity={opacity}
+                strokeWidth={2}
+                opacity={1}
                 d={d}
                 transform={transform}
               />
@@ -85,6 +79,6 @@ export default function ArrowIcon({
           </g>
         </g>
       </g>
-    </SvgIcon>
+    </svg>
   )
 }
