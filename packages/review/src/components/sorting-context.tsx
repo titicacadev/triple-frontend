@@ -35,6 +35,13 @@ const SortingOptionsContext = createContext<SortingOptionsValues | undefined>(
   undefined,
 )
 
+const OPTION_LABELS = {
+  recommendation: '추천순',
+  latest: '최신순',
+  'star-rating-desc': '별점 높은순',
+  'star-rating-asc': '별점 낮은순',
+}
+
 export function SortingOptionsProvider({
   type = 'default',
   resourceId,
@@ -68,7 +75,7 @@ export function SortingOptionsProvider({
 
   const handleOptionSelect = useCallback(
     (sortingOption: SortingOption) => {
-      const eventLabel = sortingOption === 'latest' ? '최신순' : '추천순'
+      const eventLabel = OPTION_LABELS[sortingOption]
 
       trackEvent({
         ga: ['리뷰_리뷰정렬', eventLabel],

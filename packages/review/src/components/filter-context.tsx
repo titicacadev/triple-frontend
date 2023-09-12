@@ -46,8 +46,16 @@ export function FilterProvider({
   const handleMediaChange = useCallback(() => {
     setIsMediaCollection((prevState) => !prevState)
 
-    // TODO: 이벤트 수집
-  }, [])
+    const action = isMediaCollection
+      ? '리뷰_사진영상필터_해제'
+      : '리뷰_사진영상필터_선택'
+
+    trackEvent({
+      fa: {
+        action,
+      },
+    })
+  }, [isMediaCollection, trackEvent])
 
   const values = useMemo(
     () => ({
