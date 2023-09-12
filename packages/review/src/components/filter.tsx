@@ -77,7 +77,7 @@ export function Filters() {
     <FlexBox flex alignItems="center" position="relative">
       <Container css={{ marginRight: '12px' }}>
         <Filter
-          title="사진/동영상"
+          title={t(['sajin-dongyeongsang', '사진/동영상'])}
           checked={isMediaCollection}
           onClick={handleMediaChange}
         />
