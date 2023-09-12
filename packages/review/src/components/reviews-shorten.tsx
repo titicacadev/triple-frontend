@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
@@ -18,6 +18,7 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
+import type { ShortenReviewValue } from './shorten-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -125,14 +126,22 @@ function ReviewsShortenComponent({
     unsubscribeReviewUpdateEvent,
   ])
 
-  const ListElement = REVIEW_SHORTEN_LIST_TYPES[selectedOption]
+  const ListElement = REVIEW_SHORTEN_LIST_TYPES[
+    selectedOption
+  ] as ComponentType<{ value: ShortenReviewValue }>
+  const isRatingOption = selectedOption.startsWith('star-rating')
 
-  const sorting = selectedOption.startsWith('star-rating')
-    ? selectedOption.replace(/^star-rating-/, '')
-    : undefined
-
-  const sort =
-    sorting === undefined ? undefined : sorting === 'asc' ? 'asc' : 'desc'
+  const value = {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip: isRecentTrip,
+    hasMedia: isMediaCollection,
+    placeholderText,
+    reviewsCount: reviewsCountData?.reviewsCount,
+    sortingType: sortingType,
+    ...(isRatingOption && { sortingLabel: selectedOption }),
+  }
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -160,17 +169,7 @@ function ReviewsShortenComponent({
         <Filters />
       </OptionContainer>
 
-      <ListElement
-        resourceId={resourceId}
-        resourceType={resourceType}
-        regionId={regionId}
-        recentTrip={isRecentTrip}
-        hasMedia={isMediaCollection}
-        placeholderText={placeholderText}
-        reviewsCount={reviewsCountData?.reviewsCount}
-        sort={sort}
-        sortingType={sortingType}
-      />
+      <ListElement value={value} />
     </Section>
   )
 }

@@ -5,15 +5,19 @@ import type { SortingType } from '../sorting-context'
 import type { ShortenReview } from './types'
 
 export function PopularReviews({
-  resourceId,
-  resourceType,
-  regionId,
-  recentTrip,
-  hasMedia,
-  placeholderText,
-  reviewsCount,
-  sortingType,
-}: ShortenReview & { sortingType?: SortingType }) {
+  value: {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip,
+    hasMedia,
+    placeholderText,
+    reviewsCount,
+    sortingType,
+  },
+}: {
+  value: ShortenReview & { sortingType?: SortingType }
+}) {
   const { data, refetch } = usePopularReviews({
     resourceId,
     resourceType,

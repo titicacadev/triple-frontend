@@ -9,5 +9,7 @@ export interface ShortenReview {
 }
 
 export type ExtendShortenReview = ShortenReview & {
-  sort: 'asc' | 'desc'
+  sortingLabel: 'star-rating-asc' | 'star-rating-desc'
 }
+
+export type ShortenReviewValue = ShortenReview | ExtendShortenReview
