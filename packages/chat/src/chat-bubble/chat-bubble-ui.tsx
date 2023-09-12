@@ -1,7 +1,12 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
-import { TextPayload, ImagePayload, RichPayload } from '../types'
+import {
+  TextPayload,
+  ImagePayload,
+  RichPayload,
+  BackgroundColorInterface,
+} from '../types'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -123,6 +128,24 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
    */
   onCancel?: () => void
+  bubbleColor?: {
+    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
+    received: {
+      backgroundColor: BackgroundColorInterface['received']
+      text: string
+    }
+  }
+}
+
+const DEFAULT_BUBBLE_COLOR: {
+  sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
+  received: {
+    backgroundColor: BackgroundColorInterface['received']
+    text: string
+  }
+} = {
+  sent: { backgroundColor: 'blue', text: 'var(--color-gray)' },
+  received: { backgroundColor: 'gray', text: 'var(--color-gray)' },
 }
 
 export function ChatBubbleUI({
@@ -135,6 +158,7 @@ export function ChatBubbleUI({
   blindedAt,
   blindedText,
   onRetry,
+  bubbleColor = DEFAULT_BUBBLE_COLOR,
 }: ChatBubbleUIProps) {
   switch (type) {
     case 'sent':
@@ -145,9 +169,17 @@ export function ChatBubbleUI({
           onRetry={onRetry}
         >
           {blindedAt ? (
-            <BlindedBubble my blindedText={blindedText} />
+            <BlindedBubble
+              my
+              blindedText={blindedText}
+              bubbleColor={bubbleColor?.sent}
+            />
           ) : (
-            <BubblePayload payload={payload} my />
+            <BubblePayload
+              payload={payload}
+              my
+              bubbleColor={bubbleColor?.sent}
+            />
           )}
         </SentChatContainer>
       )
@@ -160,9 +192,17 @@ export function ChatBubbleUI({
           profileName={profileName}
         >
           {blindedAt ? (
-            <BlindedBubble my={false} blindedText={blindedText} />
+            <BlindedBubble
+              my={false}
+              blindedText={blindedText}
+              bubbleColor={bubbleColor?.received}
+            />
           ) : (
-            <BubblePayload payload={payload} my={false} />
+            <BubblePayload
+              payload={payload}
+              my={false}
+              bubbleColor={bubbleColor?.received}
+            />
           )}
         </ReceivedChatContainer>
       )

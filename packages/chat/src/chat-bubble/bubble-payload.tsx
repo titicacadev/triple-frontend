@@ -2,14 +2,21 @@ import { Autolinker } from 'autolinker'
 
 import { ImageBubble, RichBubble, TextBubble } from '../bubbles'
 import { useChat } from '../chat'
-import { ImagePayload, MessageType, RichPayload, TextPayload } from '../types'
+import {
+  BackgroundColor,
+  ImagePayload,
+  MessageType,
+  RichPayload,
+  TextPayload,
+} from '../types'
 
 interface BubblePayloadProps {
   payload: TextPayload | ImagePayload | RichPayload
   my: boolean
+  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
 }
 
-const BubblePayload = ({ payload, my }: BubblePayloadProps) => {
+const BubblePayload = ({ payload, my, bubbleColor }: BubblePayloadProps) => {
   const {
     textBubbleFontSize,
     textBubbleMaxWidthOffset,
@@ -37,6 +44,7 @@ const BubblePayload = ({ payload, my }: BubblePayloadProps) => {
           size={textBubbleFontSize}
           maxWidthOffset={textBubbleMaxWidthOffset}
           margin={my ? { left: 8 } : undefined}
+          bubbleColor={bubbleColor}
         >
           <div
             onClick={onTextBubbleClick}
@@ -61,6 +69,7 @@ const BubblePayload = ({ payload, my }: BubblePayloadProps) => {
           cloudinaryName={cloudinaryName}
           mediaUrlBase={mediaUrlBase}
           onImageBubbleClick={onImageBubbleClick}
+          bubbleColor={bubbleColor}
         />
       )
     default:

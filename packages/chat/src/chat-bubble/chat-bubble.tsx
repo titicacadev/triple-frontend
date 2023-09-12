@@ -1,6 +1,7 @@
-import React, { memo, useMemo } from 'react'
+import { memo, useMemo } from 'react'
 
 import {
+  BackgroundColorInterface,
   ImagePayload,
   MessageInterface,
   MessageType,
@@ -24,6 +25,13 @@ interface ChatBubbleProps {
   onRetryButtonClick?: () => void
   onRetryCancelButtonClick?: () => void
   blindedText?: string
+  bubbleColor?: {
+    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
+    received: {
+      backgroundColor: BackgroundColorInterface['received']
+      text: string
+    }
+  }
 }
 
 const ChatBubble = ({
@@ -37,6 +45,7 @@ const ChatBubble = ({
   onRetryCancelButtonClick,
   disableUnreadCount = false,
   blindedText,
+  bubbleColor,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
@@ -101,6 +110,7 @@ const ChatBubble = ({
       onCancel={onCancel}
       blindedAt={message.blindedAt}
       blindedText={blindedText}
+      bubbleColor={bubbleColor}
     />
   )
 }
