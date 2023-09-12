@@ -2,17 +2,7 @@ import { useRatingReviews } from '../../services'
 import { ReviewsList } from '../reviews-list'
 import type { SortingType } from '../sorting-context'
 
-interface Props {
-  resourceId: string
-  resourceType: string
-  regionId: string | undefined
-  recentTrip: boolean
-  hasMedia: boolean
-  placeholderText: string | undefined
-  reviewsCount: number | undefined
-  sort: 'asc' | 'desc' | undefined
-  sortingType?: SortingType
-}
+import type { ExtendShortenReview } from './types'
 
 export function RatingReviews({
   resourceId,
@@ -24,7 +14,7 @@ export function RatingReviews({
   reviewsCount,
   sort,
   sortingType,
-}: Props) {
+}: ExtendShortenReview & { sortingType?: SortingType }) {
   const { data, refetch } = useRatingReviews({
     resourceId,
     resourceType,
