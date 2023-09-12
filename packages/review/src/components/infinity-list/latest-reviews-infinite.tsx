@@ -2,16 +2,7 @@ import { useInfiniteLatestReviews } from '../../services'
 import { ReviewsInfiniteList } from '../reviews-infnite-list'
 import type { SortingType } from '../sorting-context'
 
-interface Props {
-  resourceId: string
-  resourceType: string
-  regionId: string | undefined
-  recentTrip: boolean
-  hasMedia: boolean
-  placeholderText: string | undefined
-  reviewsCount: number | undefined
-  sortingType?: SortingType
-}
+import type { InfinityReviewProps } from './types'
 
 export function LatestReviewsInfinite({
   resourceId,
@@ -22,7 +13,7 @@ export function LatestReviewsInfinite({
   placeholderText,
   reviewsCount,
   sortingType,
-}: Props) {
+}: InfinityReviewProps & { sortingType?: SortingType }) {
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfiniteLatestReviews({
       resourceId,
