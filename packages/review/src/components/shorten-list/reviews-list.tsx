@@ -2,16 +2,15 @@ import { List, Spinner } from '@titicaca/core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useEffect, useMemo, useState } from 'react'
 
-import { BaseReviewFragment } from '../data/graphql'
-import { useDescriptions, useMyReview } from '../services'
-
-import { FullListButton } from './full-list-button'
-import { MileageButton } from './mileage-button'
-import { MyReviewActionSheet } from './my-review-action-sheet'
-import { OthersReviewActionSheet } from './others-review-action-sheet'
-import { ReviewElement } from './review-element'
-import { ReviewsPlaceholder } from './review-placeholder-with-rating'
-import type { SortingOption, SortingType } from './sorting-context'
+import { BaseReviewFragment } from '../../data/graphql'
+import { useDescriptions, useMyReview } from '../../services'
+import { FullListButton } from '../full-list-button'
+import { MileageButton } from '../mileage-button'
+import { MyReviewActionSheet } from '../my-review-action-sheet'
+import { OthersReviewActionSheet } from '../others-review-action-sheet'
+import { ReviewElement } from '../review-element'
+import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
+import type { SortingType, SortingOption } from '../sorting-context'
 
 interface Props {
   resourceId: string
