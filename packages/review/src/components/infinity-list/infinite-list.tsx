@@ -3,14 +3,13 @@ import { List, Spinner } from '@titicaca/core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-import { useDescriptions, useMyReview } from '../services'
-import { BaseReviewFragment } from '../data/graphql'
-
-import { ReviewElement } from './review-element'
-import { MyReviewActionSheet } from './my-review-action-sheet'
-import { OthersReviewActionSheet } from './others-review-action-sheet'
-import { ReviewsPlaceholder } from './review-placeholder-with-rating'
-import type { SortingOption, SortingType } from './sorting-context'
+import { useDescriptions, useMyReview } from '../../services'
+import { BaseReviewFragment } from '../../data/graphql'
+import { ReviewElement } from '../review-element'
+import { MyReviewActionSheet } from '../my-review-action-sheet'
+import { OthersReviewActionSheet } from '../others-review-action-sheet'
+import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
+import type { SortingType, SortingOption } from '../sorting-context'
 
 interface Props {
   resourceId: string
@@ -28,7 +27,7 @@ interface Props {
   refetch: () => void
 }
 
-export function ReviewsInfiniteList({
+export function InfiniteList({
   resourceId,
   resourceType,
   regionId,

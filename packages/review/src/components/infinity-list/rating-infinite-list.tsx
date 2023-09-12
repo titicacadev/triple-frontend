@@ -1,8 +1,9 @@
 import { useInfiniteRatingReviews } from '../../services'
-import { ReviewsInfiniteList } from '../reviews-infnite-list'
+
 import type { SortingType } from '../sorting-context'
 
-import type { ExtendInfinityReviewProps } from './types'
+import { InfiniteList } from './infinite-list'
+import type { ExtendInfiniteReviewProps } from './types'
 
 export function RatingReviewsInfinite({
   value: {
@@ -17,7 +18,7 @@ export function RatingReviewsInfinite({
     sortingType,
   },
 }: {
-  value: ExtendInfinityReviewProps & { sortingType?: SortingType }
+  value: ExtendInfiniteReviewProps & { sortingType?: SortingType }
 }) {
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
@@ -33,7 +34,7 @@ export function RatingReviewsInfinite({
     })
 
   return (
-    <ReviewsInfiniteList
+    <InfiniteList
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}

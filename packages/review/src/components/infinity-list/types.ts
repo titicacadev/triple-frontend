@@ -1,4 +1,4 @@
-export interface InfinityReviewProps {
+export interface InfiniteReviewProps {
   resourceId: string
   resourceType: string
   regionId?: string
@@ -8,10 +8,10 @@ export interface InfinityReviewProps {
   hasMedia: boolean
 }
 
-export type ExtendInfinityReviewProps = InfinityReviewProps & {
+export type ExtendInfiniteReviewProps = InfiniteReviewProps & {
   sortingLabel: 'star-rating-asc' | 'star-rating-desc'
 }
 
 export type InfinityReviewValue =
-  | InfinityReviewProps
-  | ExtendInfinityReviewProps
+  | InfiniteReviewProps
+  | ExtendInfiniteReviewProps
