@@ -8,7 +8,7 @@ import { LoginCtaModalProvider } from '@titicaca/modals'
 
 import { useReviewCount } from '../services'
 
-import { PopularReviewsInfinite } from './popular-reviews-infinite'
+import { PopularReviewsInfinite } from './infinity-list/popular-reviews-infinite'
 import { LatestReviewsInfinite } from './latest-reviews-infinite'
 import {
   SortingOptionsProvider,
