@@ -8,7 +8,11 @@ import { LoginCtaModalProvider } from '@titicaca/modals'
 
 import { useReviewCount } from '../services'
 
-import { PopularReviewsInfinite, LatestReviewsInfinite } from './infinity-list'
+import {
+  PopularReviewsInfinite,
+  LatestReviewsInfinite,
+  RatingReviewsInfinite,
+} from './infinity-list'
 import {
   SortingOptionsProvider,
   useReviewSortingOptions,
@@ -17,7 +21,6 @@ import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
-import { RatingReviewsInfinite } from './rating-infinite-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
