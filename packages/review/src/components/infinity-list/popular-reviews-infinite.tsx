@@ -1,7 +1,6 @@
-import { useInfinitePopularReviews } from '../services'
-
-import { ReviewsInfiniteList } from './reviews-infnite-list'
-import type { SortingType } from './sorting-context'
+import { useInfinitePopularReviews } from '../../services'
+import { ReviewsInfiniteList } from '../reviews-infnite-list'
+import type { SortingType } from '../sorting-context'
 
 interface Props {
   resourceId: string
