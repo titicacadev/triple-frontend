@@ -1,7 +1,6 @@
-import { useRatingReviews } from '../services'
-
-import { ReviewsList } from './reviews-list'
-import type { SortingType } from './sorting-context'
+import { useRatingReviews } from '../../services'
+import { ReviewsList } from '../reviews-list'
+import type { SortingType } from '../sorting-context'
 
 interface Props {
   resourceId: string
