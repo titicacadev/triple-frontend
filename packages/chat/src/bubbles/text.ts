@@ -80,7 +80,7 @@ export const TextBubble = styled(Text).attrs({
       background-color: ${BACKGROUND_COLORS[
         bubbleColor?.backgroundColor || getDefaultBackgroundColor(my)
       ]};
-      color: ${bubbleColor?.text || 'gray'};
+      color: ${bubbleColor?.text || 'var(--color-gray)'};
     `}
   ${({ my }) => css`
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
