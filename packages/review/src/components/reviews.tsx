@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { Trans } from '@titicaca/next-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/core-elements'
@@ -21,6 +21,7 @@ import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
+import { InfinityReviewValue } from './infinity-list/types'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -57,7 +58,7 @@ export function Reviews({
   initialMediaFilter,
   initialRecentTrip,
   initialSortingOption = 'recommendation',
-  sortingType = 'default',
+  sortingType = 'poi',
   placeholderText,
 }: ReviewsProps) {
   return (
@@ -127,14 +128,22 @@ function ReviewsComponent({
     unsubscribeReviewUpdateEvent,
   ])
 
-  const ListElement = REVIEW_INFINITY_LIST_TYPES[selectedOption]
+  const ListElement = REVIEW_INFINITY_LIST_TYPES[
+    selectedOption
+  ] as ComponentType<{ value: InfinityReviewValue }>
 
-  const sorting = selectedOption.startsWith('star-rating')
-    ? selectedOption.replace(/^star-rating-/, '')
-    : undefined
-
-  const sort =
-    sorting === undefined ? undefined : sorting === 'asc' ? 'asc' : 'desc'
+  const isRatingOption = selectedOption.startsWith('star-rating')
+  const value = {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip: isRecentTrip,
+    hasMedia: isMediaCollection,
+    placeholderText,
+    reviewsCount: reviewsCountData?.reviewsCount,
+    sortingType: sortingType,
+    ...(isRatingOption && { sortingLabel: selectedOption }),
+  }
 
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
@@ -163,17 +172,7 @@ function ReviewsComponent({
         <Filters />
       </OptionContainer>
 
-      <ListElement
-        resourceId={resourceId}
-        resourceType={resourceType}
-        regionId={regionId}
-        recentTrip={isRecentTrip}
-        hasMedia={isMediaCollection}
-        placeholderText={placeholderText}
-        reviewsCount={reviewsCountData?.reviewsCount}
-        sort={sort}
-        sortingType={sortingType}
-      />
+      <ListElement value={value} />
     </Section>
   )
 }

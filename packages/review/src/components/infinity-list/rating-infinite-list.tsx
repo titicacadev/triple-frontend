@@ -2,19 +2,25 @@ import { useInfiniteRatingReviews } from '../../services'
 import { ReviewsInfiniteList } from '../reviews-infnite-list'
 import type { SortingType } from '../sorting-context'
 
-import type { InfinityReviewProps } from './types'
+import type { ExtendInfinityReviewProps } from './types'
 
 export function RatingReviewsInfinite({
-  resourceId,
-  resourceType,
-  regionId,
-  recentTrip,
-  hasMedia,
-  placeholderText,
-  reviewsCount,
-  sort,
-  sortingType,
-}: InfinityReviewProps & { sort: 'asc' | 'desc'; sortingType?: SortingType }) {
+  value: {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip,
+    hasMedia,
+    placeholderText,
+    reviewsCount,
+    sortingLabel,
+    sortingType,
+  },
+}: {
+  value: ExtendInfinityReviewProps & { sortingType?: SortingType }
+}) {
+  const sort = sortingLabel.replace(/^star-rating-/, '')
+
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfiniteRatingReviews({
       resourceId,
@@ -35,9 +41,7 @@ export function RatingReviewsInfinite({
       recentTrip={recentTrip}
       placeholderText={placeholderText}
       sortingType={sortingType}
-      sortingOption={
-        sort !== undefined ? `star-rating-${sort}` : `star-rating-asc`
-      }
+      sortingOption={sortingLabel}
       reviewsCount={reviewsCount}
       reviews={data?.pages.flat()}
       hasNextPage={hasNextPage}

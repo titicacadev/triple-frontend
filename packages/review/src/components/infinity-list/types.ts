@@ -7,3 +7,11 @@ export interface InfinityReviewProps {
   recentTrip: boolean
   hasMedia: boolean
 }
+
+export type ExtendInfinityReviewProps = InfinityReviewProps & {
+  sortingLabel: 'star-rating-asc' | 'star-rating-desc'
+}
+
+export type InfinityReviewValue =
+  | InfinityReviewProps
+  | ExtendInfinityReviewProps
