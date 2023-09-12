@@ -1,9 +1,15 @@
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-const BACKGROUND_COLORS: { [key: string]: string } = {
+import { BackgroundColor } from '../types'
+
+const BACKGROUND_COLORS: {
+  [key in BackgroundColor]: string
+} = {
   blue: '#d7e9ff',
   gray: '#f5f5f5',
+  darkGray: '#F6F6F6',
+  mint: '#24CABD',
 }
 
 const TAIL_POSITION_STYLE_MAP: { [key: string]: ReturnType<typeof css> } = {
@@ -21,10 +27,12 @@ const TAIL_POSITION_STYLE_MAP: { [key: string]: ReturnType<typeof css> } = {
   `,
 }
 
-const getBackgroundImage = (my: boolean) => {
-  return `https://assets.triple.guide/images/img-speechbubble-${
-    my ? 'blue' : 'gray'
-  }@3x.png`
+const getBackgroundImage = (color: BackgroundColor) => {
+  return `https://assets.triple-dev.titicaca-corp.com/images/img-speechbubble-${color}@3x.png`
+}
+
+function getDefaultBackgroundColor(my: boolean) {
+  return my ? 'blue' : 'gray'
 }
 
 /**
@@ -37,6 +45,7 @@ export const TextBubble = styled(Text).attrs({
 })<{
   maxWidthOffset: number
   my: boolean
+  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
 }>`
   border-radius: 10px;
   position: relative;
@@ -58,12 +67,22 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
-    background-image: url(${({ my }) => getBackgroundImage(my)});
+    ${({ my, bubbleColor }) => css`
+      background-image: url(${getBackgroundImage(
+        bubbleColor?.backgroundColor || getDefaultBackgroundColor(my),
+      )});
+    `}
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
+  ${({ my, bubbleColor }) =>
+    css`
+      background-color: ${BACKGROUND_COLORS[
+        bubbleColor?.backgroundColor || getDefaultBackgroundColor(my)
+      ]};
+      color: ${bubbleColor?.text || 'gray'};
+    `}
   ${({ my }) => css`
-    background-color: ${BACKGROUND_COLORS[my ? 'blue' : 'gray']};
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
   `}
 `

@@ -1,18 +1,13 @@
 import { IncomingMessage } from 'http'
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useRef,
-} from 'react'
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { Container } from '@titicaca/core-elements'
 
 import {
+  BackgroundColorInterface,
   HasUnreadOfRoomInterface,
   ImagePayload,
   MessageInterface,
@@ -63,6 +58,13 @@ export interface ChatProps {
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
+  bubbleColor?: {
+    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
+    received: {
+      backgroundColor: BackgroundColorInterface['received']
+      text: string
+    }
+  }
 }
 
 /**
@@ -86,6 +88,7 @@ export const Chat = ({
   updateChatData,
   disableUnreadCount = false,
   blindedText,
+  bubbleColor,
   ...props
 }: ChatProps) => {
   const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
@@ -287,6 +290,7 @@ export const Chat = ({
                   onRetryCancelButtonClick={onRetryCancelButtonClick}
                   disableUnreadCount={disableUnreadCount}
                   blindedText={blindedText}
+                  bubbleColor={bubbleColor}
                 />
               ) : null}
             </li>
