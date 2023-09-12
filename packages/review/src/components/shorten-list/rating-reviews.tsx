@@ -5,16 +5,22 @@ import type { SortingType } from '../sorting-context'
 import type { ExtendShortenReview } from './types'
 
 export function RatingReviews({
-  resourceId,
-  resourceType,
-  regionId,
-  recentTrip,
-  hasMedia,
-  placeholderText,
-  reviewsCount,
-  sort,
-  sortingType,
-}: ExtendShortenReview & { sortingType?: SortingType }) {
+  value: {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip,
+    hasMedia,
+    placeholderText,
+    reviewsCount,
+    sortingLabel,
+    sortingType,
+  },
+}: {
+  value: ExtendShortenReview & { sortingType?: SortingType }
+}) {
+  const sort = sortingLabel.replace(/^star-rating-/, '')
+
   const { data, refetch } = useRatingReviews({
     resourceId,
     resourceType,
@@ -34,9 +40,7 @@ export function RatingReviews({
       recentTrip={recentTrip}
       placeholderText={placeholderText}
       sortingType={sortingType}
-      sortingOption={
-        sort !== undefined ? `star-rating-${sort}` : `star-rating-asc`
-      }
+      sortingOption={sortingLabel}
       reviewsCount={reviewsCount}
       reviews={data?.ratingReviews}
       refetch={refetch}
