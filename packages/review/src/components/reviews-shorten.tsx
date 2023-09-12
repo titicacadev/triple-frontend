@@ -8,8 +8,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
 
-import { LatestReviews } from './latest-reviews'
-import { PopularReviews } from './shorten-list'
+import { PopularReviews, LatestReviews } from './shorten-list'
 import { WriteButton } from './write-button'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import {
