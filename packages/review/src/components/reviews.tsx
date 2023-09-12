@@ -21,7 +21,7 @@ import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
-import { InfinityReviewValue } from './infinity-list/types'
+import type { InfinityReviewValue } from './infinity-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
