@@ -1,8 +1,8 @@
 import { useInfinitePopularReviews } from '../../services'
-import { ReviewsInfiniteList } from '../reviews-infnite-list'
 import type { SortingType } from '../sorting-context'
 
-import type { InfinityReviewProps } from './types'
+import { InfiniteList } from './infinite-list'
+import type { InfiniteReviewProps } from './types'
 
 export function PopularReviewsInfinite({
   value: {
@@ -16,7 +16,7 @@ export function PopularReviewsInfinite({
     sortingType,
   },
 }: {
-  value: InfinityReviewProps & { sortingType?: SortingType }
+  value: InfiniteReviewProps & { sortingType?: SortingType }
 }) {
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfinitePopularReviews({
@@ -27,7 +27,7 @@ export function PopularReviewsInfinite({
     })
 
   return (
-    <ReviewsInfiniteList
+    <InfiniteList
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}
