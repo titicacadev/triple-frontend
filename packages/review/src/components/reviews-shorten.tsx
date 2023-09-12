@@ -8,7 +8,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
 
-import { PopularReviews, LatestReviews } from './shorten-list'
+import { PopularReviews, LatestReviews, RatingReviews } from './shorten-list'
 import { WriteButton } from './write-button'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import {
@@ -18,7 +18,6 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
-import { RatingReviews } from './rating-reviews'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
