@@ -1,7 +1,8 @@
 import { useLatestReviews } from '../../services'
-import { ReviewsList } from '../reviews-list'
+
 import type { SortingType } from '../sorting-context'
 
+import { ReviewsList } from './reviews-list'
 import type { ShortenReview } from './types'
 
 export function LatestReviews({
