@@ -5,15 +5,19 @@ import type { SortingType } from '../sorting-context'
 import type { InfinityReviewProps } from './types'
 
 export function LatestReviewsInfinite({
-  resourceId,
-  resourceType,
-  regionId,
-  recentTrip,
-  hasMedia,
-  placeholderText,
-  reviewsCount,
-  sortingType,
-}: InfinityReviewProps & { sortingType?: SortingType }) {
+  value: {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip,
+    hasMedia,
+    placeholderText,
+    reviewsCount,
+    sortingType,
+  },
+}: {
+  value: InfinityReviewProps & { sortingType?: SortingType }
+}) {
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfiniteLatestReviews({
       resourceId,
