@@ -123,7 +123,9 @@ function LocationProperties({
         <ActionSheetItem
           buttonLabel={t(['bogsa', '복사'])}
           onClick={handleClick}
-        />
+        >
+          {value}
+        </ActionSheetItem>
       </ActionSheet>
     </>
   )
