@@ -2,16 +2,7 @@ import { usePopularReviews } from '../../services'
 import { ReviewsList } from '../reviews-list'
 import type { SortingType } from '../sorting-context'
 
-interface Props {
-  resourceId: string
-  resourceType: string
-  regionId: string | undefined
-  recentTrip: boolean
-  hasMedia: boolean
-  placeholderText: string | undefined
-  reviewsCount: number | undefined
-  sortingType?: SortingType
-}
+import type { ShortenReview } from './types'
 
 export function PopularReviews({
   resourceId,
@@ -22,7 +13,7 @@ export function PopularReviews({
   placeholderText,
   reviewsCount,
   sortingType,
-}: Props) {
+}: ShortenReview & { sortingType?: SortingType }) {
   const { data, refetch } = usePopularReviews({
     resourceId,
     resourceType,
