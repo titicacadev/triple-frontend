@@ -1,12 +1,8 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
-import {
-  TextPayload,
-  ImagePayload,
-  RichPayload,
-  BackgroundColorInterface,
-} from '../types'
+import { TextPayload, ImagePayload, RichPayload } from '../types'
+import { BubbleColor, ChatBubbleColor } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -128,24 +124,15 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
    */
   onCancel?: () => void
-  bubbleColor?: {
-    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
-    received: {
-      backgroundColor: BackgroundColorInterface['received']
-      text: string
-    }
-  }
+  bubbleColor?: ChatBubbleColor
 }
 
 const DEFAULT_BUBBLE_COLOR: {
-  sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
-  received: {
-    backgroundColor: BackgroundColorInterface['received']
-    text: string
-  }
+  sent: BubbleColor<'sent'>
+  received: BubbleColor<'received'>
 } = {
-  sent: { backgroundColor: 'blue', text: 'var(--color-gray)' },
-  received: { backgroundColor: 'gray', text: 'var(--color-gray)' },
+  sent: { backgroundColor: 'blue', textColor: 'var(--color-gray)' },
+  received: { backgroundColor: 'gray', textColor: 'var(--color-gray)' },
 }
 
 export function ChatBubbleUI({

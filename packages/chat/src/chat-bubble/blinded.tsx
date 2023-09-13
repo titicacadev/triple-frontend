@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 import { useChat } from '../chat'
 import { TextBubble } from '../bubbles/text'
-import { BackgroundColor } from '../types'
+import { BackgroundColor } from '../types/ui'
 
 const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
-  background-image: url('https://assets.triple.guide/images/ico_exclamation_mark_${({
-    color = 'gray',
-  }) => color}.svg');
+  ${({ color = 'gray' }) =>
+    `background-image: url('https://assets.triple.guide/images/ico_exclamation_mark_${color}.svg');`}
+
   width: 16px;
   height: 16px;
 `
@@ -19,7 +19,7 @@ export default function BlindedBubble({
 }: {
   my: boolean
   blindedText?: string
-  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
+  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
 }) {
   const { textBubbleMaxWidthOffset } = useChat()
   return (

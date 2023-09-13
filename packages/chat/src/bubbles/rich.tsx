@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { GlobalSizes } from '@titicaca/type-definitions'
 
@@ -8,8 +7,8 @@ import {
   ButtonPayload,
   TextPayload,
   ImagePayload,
-  BackgroundColor,
 } from '../types'
+import { BackgroundColor } from '../types/ui'
 
 import { ImageBubble } from './image'
 import { TextBubble } from './text'
@@ -55,7 +54,7 @@ export function RichBubble({
   cloudinaryName: string
   mediaUrlBase: string
   onImageBubbleClick?: (imageInfos: MetaDataInterface[]) => void
-  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
+  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
 }) {
   return (
     <TextBubble

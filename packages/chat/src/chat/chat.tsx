@@ -7,7 +7,6 @@ import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { Container } from '@titicaca/core-elements'
 
 import {
-  BackgroundColorInterface,
   HasUnreadOfRoomInterface,
   ImagePayload,
   MessageInterface,
@@ -20,6 +19,7 @@ import {
 } from '../types'
 import ChatBubble from '../chat-bubble'
 import { HiddenElement } from '../chat-bubble/elements'
+import { ChatBubbleColor } from '../types/ui'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
 import { useChat } from './chat-context'
@@ -58,13 +58,7 @@ export interface ChatProps {
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
-  bubbleColor?: {
-    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
-    received: {
-      backgroundColor: BackgroundColorInterface['received']
-      text: string
-    }
-  }
+  bubbleColor?: ChatBubbleColor
 }
 
 /**

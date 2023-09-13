@@ -1,7 +1,6 @@
 import { memo, useMemo } from 'react'
 
 import {
-  BackgroundColorInterface,
   ImagePayload,
   MessageInterface,
   MessageType,
@@ -12,6 +11,7 @@ import {
   UserType,
 } from '../types'
 import { getProfileImageUrl } from '../utils'
+import { ChatBubbleColor } from '../types/ui'
 
 import { ChatBubbleUI } from './chat-bubble-ui'
 
@@ -25,13 +25,7 @@ interface ChatBubbleProps {
   onRetryButtonClick?: () => void
   onRetryCancelButtonClick?: () => void
   blindedText?: string
-  bubbleColor?: {
-    sent: { backgroundColor: BackgroundColorInterface['sent']; text: string }
-    received: {
-      backgroundColor: BackgroundColorInterface['received']
-      text: string
-    }
-  }
+  bubbleColor?: ChatBubbleColor
 }
 
 const ChatBubble = ({
