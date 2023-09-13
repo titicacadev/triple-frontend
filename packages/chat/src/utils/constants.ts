@@ -155,6 +155,10 @@ export const CHAT_ARGS: ChatProps = {
       },
     },
     unreadCount: 0,
+    metadata: {
+      name: '',
+      memberCounts: 2,
+    },
   },
   postMessage: async (payload) => {
     return {

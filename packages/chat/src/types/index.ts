@@ -40,6 +40,12 @@ export interface RoomListResultWithPagingInterface
   size: number
 }
 
+export interface RoomMetadata {
+  name: string
+  memberCounts: number
+  faqId?: string
+}
+
 export interface RoomInterface {
   id: string
   type: RoomType
@@ -50,6 +56,7 @@ export interface RoomInterface {
   members: UserInterface[]
   isDirect: boolean
   createdAt: string
+  metadata: RoomMetadata
 }
 
 export type DisplayTargetAll = 'all'
