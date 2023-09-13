@@ -2,18 +2,13 @@ import { Autolinker } from 'autolinker'
 
 import { ImageBubble, RichBubble, TextBubble } from '../bubbles'
 import { useChat } from '../chat'
-import {
-  BackgroundColor,
-  ImagePayload,
-  MessageType,
-  RichPayload,
-  TextPayload,
-} from '../types'
+import { ImagePayload, MessageType, RichPayload, TextPayload } from '../types'
+import { BackgroundColor } from '../types/ui'
 
 interface BubblePayloadProps {
   payload: TextPayload | ImagePayload | RichPayload
   my: boolean
-  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
+  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
 }
 
 const BubblePayload = ({ payload, my, bubbleColor }: BubblePayloadProps) => {

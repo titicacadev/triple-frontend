@@ -208,10 +208,3 @@ export interface MetaDataInterface {
   width: number
   height: number
 }
-
-export type BackgroundColor = 'mint' | 'blue' | 'gray' | 'darkGray'
-
-export interface BackgroundColorInterface {
-  sent: Extract<BackgroundColor, 'mint' | 'blue'>
-  received: Extract<BackgroundColor, 'gray' | 'darkGray'>
-}

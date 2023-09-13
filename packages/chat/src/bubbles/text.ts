@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
 
-import { BackgroundColor } from '../types'
+import { BackgroundColor } from '../types/ui'
 
 const BACKGROUND_COLORS: {
   [key in BackgroundColor]: string
@@ -45,7 +45,7 @@ export const TextBubble = styled(Text).attrs({
 })<{
   maxWidthOffset: number
   my: boolean
-  bubbleColor?: { backgroundColor: BackgroundColor; text: string }
+  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
 }>`
   border-radius: 10px;
   position: relative;
@@ -68,9 +68,9 @@ export const TextBubble = styled(Text).attrs({
     top: 5px;
     background-size: 10px 17px;
     ${({ my, bubbleColor }) => css`
-      background-image: url(${getBackgroundImage(
+      background-image: url('${getBackgroundImage(
         bubbleColor?.backgroundColor || getDefaultBackgroundColor(my),
-      )});
+      )}');
     `}
   }
 
@@ -80,7 +80,7 @@ export const TextBubble = styled(Text).attrs({
       background-color: ${BACKGROUND_COLORS[
         bubbleColor?.backgroundColor || getDefaultBackgroundColor(my)
       ]};
-      color: ${bubbleColor?.text || 'var(--color-gray)'};
+      color: ${bubbleColor?.textColor || 'var(--color-gray)'};
     `}
   ${({ my }) => css`
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
