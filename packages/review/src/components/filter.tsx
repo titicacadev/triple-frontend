@@ -10,7 +10,6 @@ const CheckBox = styled.input`
   appearance: none;
   width: 22px;
   height: 22px;
-  margin: 3px 8px 3px 4px;
   border: 1px solid var(--color-gray200);
   border-radius: 5px;
   cursor: pointer;
@@ -107,6 +106,7 @@ function Filter({
     <FlexBox
       flex
       alignItems="center"
+      gap="6px"
       onClick={onClick}
       css={{
         cursor: 'pointer',

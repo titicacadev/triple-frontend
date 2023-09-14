@@ -28,7 +28,7 @@ const OptionContainer = styled(FlexBox)`
   align-items: center;
   margin: 23px 0 0;
 
-  @media (max-width: 450px) {
+  @media (max-width: 360px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -33,6 +34,19 @@ interface ReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
 }
+
+const OptionContainer = styled(FlexBox)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 23px 0 0;
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+`
 
 export function ReviewsShorten({
   resourceId,
@@ -142,18 +156,11 @@ function ReviewsShortenComponent({
         />
       </FlexBox>
 
-      <FlexBox
-        flex
-        justifyContent="space-between"
-        alignItems="center"
-        css={{
-          margin: '23px 0 0',
-        }}
-      >
+      <OptionContainer>
         <SortingOptions />
 
         <Filters />
-      </FlexBox>
+      </OptionContainer>
 
       <ListElement
         resourceId={resourceId}
