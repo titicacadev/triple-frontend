@@ -70,7 +70,6 @@ export const FullListButton = ({
   const restReviewsCount = reviewsCount
     ? reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE
     : 0
-  const latestReview = OPTION_LABELS[sortingOption]
 
   const handleClick = () => {
     trackEvent({
@@ -78,7 +77,7 @@ export const FullListButton = ({
       fa: {
         action: '리뷰_리스트더보기_선택',
         item_id: resourceId,
-        tab_name: latestReview ? '최신순' : '추천순',
+        tab_name: OPTION_LABELS[sortingOption],
       },
     })
     fullListButtonClickCallback()
