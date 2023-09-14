@@ -8,7 +8,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useClientActions } from '../services'
 
-import type { SortingOption } from './sorting-context'
+import type { SortingOption, SortingType } from './sorting-context'
 
 const PlaceholderContainer = styled(Container)`
   width: 100%;
@@ -46,6 +46,7 @@ export interface ReviewsPlaceholderProps {
   hasMedia: boolean
   recentTrip: boolean
   placeholderText?: string
+  sortingType?: SortingType
   sortingOption: SortingOption
 }
 
@@ -58,6 +59,7 @@ export function ReviewsPlaceholder({
   hasMedia,
   recentTrip,
   placeholderText,
+  sortingType,
   sortingOption,
 }: ReviewsPlaceholderProps) {
   const { trackEvent } = useEventTrackingContext()
@@ -72,9 +74,16 @@ export function ReviewsPlaceholder({
           resourceType,
           hasMedia: false,
           recentTrip: false,
+          sortingType,
           sortingOption,
         })
-      }, [navigateReviewList, resourceId, resourceType, sortingOption]),
+      }, [
+        navigateReviewList,
+        resourceId,
+        resourceType,
+        sortingType,
+        sortingOption,
+      ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
   )

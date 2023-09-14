@@ -62,6 +62,7 @@ export function ReviewsShorten({
             regionId={regionId}
             initialReviewsCount={initialReviewsCount}
             placeholderText={placeholderText}
+            sortingType={sortingType}
           />
         </SortingOptionsProvider>
       </FilterProvider>
@@ -82,10 +83,8 @@ function ReviewsShortenComponent({
   regionId,
   initialReviewsCount,
   placeholderText,
-}: Omit<
-  ReviewsShortenProps,
-  'initialRecentTrip' | 'initialSortingOption' | 'sortingType'
->) {
+  sortingType,
+}: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
   const { t } = useTranslation('common-web')
@@ -165,6 +164,7 @@ function ReviewsShortenComponent({
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
         sort={sort}
+        sortingType={sortingType}
       />
     </Section>
   )

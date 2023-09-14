@@ -8,6 +8,8 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
 import { useClientActions } from '../services'
 
+import type { SortingType, SortingOption } from './sorting-context'
+
 interface Props {
   reviewsCount: number | undefined
   resourceId: string
@@ -15,7 +17,15 @@ interface Props {
   regionId: string | undefined
   hasMedia: boolean
   recentTrip: boolean
-  sortingOption: string
+  sortingType?: SortingType
+  sortingOption: SortingOption
+}
+
+const OPTION_LABELS = {
+  recommendation: '추천순',
+  latest: '최신순',
+  'star-rating-desc': '별점 높은순',
+  'star-rating-asc': '별점 낮은순',
 }
 
 export const FullListButton = ({
@@ -25,6 +35,7 @@ export const FullListButton = ({
   regionId,
   hasMedia,
   recentTrip,
+  sortingType,
   sortingOption,
 }: Props) => {
   const { t } = useTranslation()
@@ -41,6 +52,7 @@ export const FullListButton = ({
           resourceType,
           hasMedia,
           recentTrip,
+          sortingType,
           sortingOption,
         })
       }, [
@@ -58,7 +70,7 @@ export const FullListButton = ({
   const restReviewsCount = reviewsCount
     ? reviewsCount - SHORTENED_REVIEWS_COUNT_PER_PAGE
     : 0
-  const latestReview = sortingOption === ''
+  const latestReview = OPTION_LABELS[sortingOption]
 
   const handleClick = () => {
     trackEvent({
