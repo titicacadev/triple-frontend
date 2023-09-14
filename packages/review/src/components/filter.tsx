@@ -84,7 +84,7 @@ export function Filters() {
       </Container>
 
       <Filter
-        title={t(['coegeun-yeohaeng', '최근 여행'])}
+        title={t(['coegeun-yeohaeng', '최근여행'])}
         checked={isRecentTrip}
         onClick={handleRecentTripChange}
       />

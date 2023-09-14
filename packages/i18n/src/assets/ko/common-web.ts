@@ -103,7 +103,7 @@ export const koCommonWeb = {
   'sagjehagessseubnigga-sagjehamyeon-jeogribdoen-ribyu-pointeudo-hamgge-sarajibnida.':
     '삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.',
   singohagi: '신고하기',
-  'coegeun-yeohaeng': '최근 여행',
+  'coegeun-yeohaeng': '최근여행',
   'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.':
     '최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.',
   'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.':
