@@ -24,11 +24,13 @@ function SentChatContainer({
   createdAt,
   unreadCount,
   onRetry,
+  onCancel,
   children,
 }: PropsWithChildren<{
   createdAt?: string
   unreadCount: number | null
   onRetry?: () => Promise<boolean> | undefined
+  onCancel?: () => void
 }>) {
   const [show, setShow] = useState<boolean>(true)
 
@@ -43,7 +45,12 @@ function SentChatContainer({
               }
             }}
           />
-          <DeleteButton onClick={() => setShow(false)} />
+          <DeleteButton
+            onClick={() => {
+              onCancel?.()
+              setShow(false)
+            }}
+          />
         </SendingFailureHandlerContainer>
       ) : (
         <BubbleInfo
@@ -109,6 +116,10 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도하는 함수
    */
   onRetry?: () => Promise<boolean> | undefined
+  /**
+   * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
+   */
+  onCancel?: () => void
 }
 
 export function ChatBubbleUI({

@@ -57,6 +57,8 @@ export interface ChatProps {
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   showFailToast?: (message: string) => void
+  onRetryButtonClick?: () => void
+  onRetryCancelButtonClick?: () => void
 
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
@@ -78,6 +80,8 @@ export const Chat = ({
   getUnreadRoom,
   notifyNewMessage,
   showFailToast,
+  onRetryButtonClick,
+  onRetryCancelButtonClick,
   updateChatData,
   disableUnreadCount = false,
   ...props
@@ -277,6 +281,8 @@ export const Chat = ({
                     postMessage ? postMessageAction : undefined
                   }
                   otherReadInfo={otherUnreadInfo}
+                  onRetryButtonClick={onRetryButtonClick}
+                  onRetryCancelButtonClick={onRetryCancelButtonClick}
                   disableUnreadCount={disableUnreadCount}
                 />
               ) : null}

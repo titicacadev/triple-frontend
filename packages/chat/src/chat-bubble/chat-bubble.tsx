@@ -21,6 +21,8 @@ interface ChatBubbleProps {
   displayTarget: UserType
   postMessageAction?: PostMessageActionType
   disableUnreadCount?: boolean
+  onRetryButtonClick?: () => void
+  onRetryCancelButtonClick?: () => void
 }
 
 const ChatBubble = ({
@@ -30,6 +32,8 @@ const ChatBubble = ({
   otherReadInfo,
   displayTarget: componentDisplayTarget,
   postMessageAction,
+  onRetryButtonClick,
+  onRetryCancelButtonClick,
   disableUnreadCount = false,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
@@ -64,13 +68,22 @@ const ChatBubble = ({
     message.payload,
   ])
 
-  const onRetry =
+  const couldRetry =
     !message.createdAt &&
     message.payload.type !== MessageType.RICH &&
-    postMessageAction
-      ? () =>
-          postMessageAction(message.payload as TextPayload | ImagePayload, true)
-      : undefined
+    !!postMessageAction
+
+  const onRetry = () => {
+    onRetryButtonClick?.()
+    return postMessageAction?.(
+      message.payload as TextPayload | ImagePayload,
+      true,
+    )
+  }
+
+  const onCancel = () => {
+    onRetryCancelButtonClick?.()
+  }
 
   return (
     <ChatBubbleUI
@@ -82,7 +95,8 @@ const ChatBubble = ({
       unreadCount={unreadCount}
       createdAt={createdAt}
       payload={payload}
-      onRetry={onRetry}
+      onRetry={couldRetry ? onRetry : undefined}
+      onCancel={onCancel}
     />
   )
 }
