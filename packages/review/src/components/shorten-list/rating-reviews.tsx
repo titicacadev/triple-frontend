@@ -1,5 +1,4 @@
 import { useRatingReviews } from '../../services'
-
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'

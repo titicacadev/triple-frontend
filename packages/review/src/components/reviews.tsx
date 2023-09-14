@@ -141,7 +141,7 @@ function ReviewsComponent({
     hasMedia: isMediaCollection,
     placeholderText,
     reviewsCount: reviewsCountData?.reviewsCount,
-    sortingType: sortingType,
+    sortingType,
     ...(isRatingOption && { sortingLabel: selectedOption }),
   }
 

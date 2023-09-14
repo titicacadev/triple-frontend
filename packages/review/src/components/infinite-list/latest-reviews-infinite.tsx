@@ -1,5 +1,4 @@
 import { useInfiniteLatestReviews } from '../../services'
-
 import type { SortingType } from '../sorting-context'
 
 import { InfiniteList } from './infinite-list'
