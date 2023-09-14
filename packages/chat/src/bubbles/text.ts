@@ -67,21 +67,19 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
-    ${({ my, bubbleColor }) => css`
-      background-image: url('${getBackgroundImage(
+    background-image: url(${({ my, bubbleColor }) =>
+      `${getBackgroundImage(
         bubbleColor?.backgroundColor || getDefaultBackgroundColor(my),
-      )}');
-    `}
+      )}`});
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
-  ${({ my, bubbleColor }) =>
-    css`
-      background-color: ${BACKGROUND_COLORS[
+  background-color: ${({ my, bubbleColor }) =>
+    `${
+      BACKGROUND_COLORS[
         bubbleColor?.backgroundColor || getDefaultBackgroundColor(my)
-      ]};
-      color: ${bubbleColor?.textColor || 'var(--color-gray)'};
-    `}
+      ]
+    }`};
   ${({ my }) => css`
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
   `}
