@@ -50,6 +50,13 @@ export interface ReviewsPlaceholderProps {
   sortingOption: SortingOption
 }
 
+const OPTION_LABELS = {
+  recommendation: '추천순',
+  latest: '최신순',
+  'star-rating-desc': '별점 높은순',
+  'star-rating-asc': '별점 낮은순',
+}
+
 export function ReviewsPlaceholder({
   isMorePage,
   hasReviews,
@@ -120,7 +127,7 @@ export function ReviewsPlaceholder({
       fa: {
         action: '리뷰_리스트더보기_선택',
         item_id: resourceId,
-        tab_name: sortingOption === 'latest' ? '최신순' : '추천순',
+        tab_name: OPTION_LABELS[sortingOption],
       },
     })
     if (recentTrip || hasMedia) {
