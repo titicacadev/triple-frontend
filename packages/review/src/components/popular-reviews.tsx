@@ -1,6 +1,7 @@
 import { usePopularReviews } from '../services'
 
 import { ReviewsList } from './reviews-list'
+import type { SortingType } from './sorting-context'
 
 interface Props {
   resourceId: string
@@ -10,6 +11,7 @@ interface Props {
   hasMedia: boolean
   placeholderText: string | undefined
   reviewsCount: number | undefined
+  sortingType?: SortingType
 }
 
 export function PopularReviews({
@@ -20,6 +22,7 @@ export function PopularReviews({
   hasMedia,
   placeholderText,
   reviewsCount,
+  sortingType,
 }: Props) {
   const { data, refetch } = usePopularReviews({
     resourceId,
@@ -36,6 +39,7 @@ export function PopularReviews({
       hasMedia={hasMedia}
       recentTrip={recentTrip}
       placeholderText={placeholderText}
+      sortingType={sortingType}
       sortingOption="recommendation"
       reviewsCount={reviewsCount}
       reviews={data?.popularReviews}

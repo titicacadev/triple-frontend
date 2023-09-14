@@ -10,7 +10,7 @@ import { ReviewElement } from './review-element'
 import { MyReviewActionSheet } from './my-review-action-sheet'
 import { OthersReviewActionSheet } from './others-review-action-sheet'
 import { ReviewsPlaceholder } from './review-placeholder-with-rating'
-import type { SortingOption } from './sorting-context'
+import type { SortingOption, SortingType } from './sorting-context'
 
 interface Props {
   resourceId: string
@@ -19,6 +19,7 @@ interface Props {
   hasMedia: boolean
   recentTrip: boolean
   placeholderText: string | undefined
+  sortingType?: SortingType
   sortingOption: SortingOption
   reviewsCount: number | undefined
   reviews: BaseReviewFragment[] | undefined
@@ -34,6 +35,7 @@ export function ReviewsInfiniteList({
   hasMedia,
   recentTrip,
   placeholderText,
+  sortingType,
   sortingOption,
   reviewsCount,
   reviews,
@@ -90,6 +92,7 @@ export function ReviewsInfiniteList({
         resourceId={resourceId}
         resourceType={resourceType}
         regionId={regionId}
+        sortingType={sortingType}
         sortingOption={sortingOption}
         hasMedia={hasMedia}
         recentTrip={recentTrip}

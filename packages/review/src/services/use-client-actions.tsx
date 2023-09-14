@@ -5,6 +5,7 @@ import { useNavigate } from '@titicaca/router'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { writeReview } from '../utils'
+import type { SortingType, SortingOption } from '../components/sorting-context'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
@@ -43,6 +44,7 @@ export function useClientActions() {
         resourceType,
         hasMedia,
         recentTrip,
+        sortingType,
         sortingOption,
       }: {
         regionId?: string
@@ -50,13 +52,15 @@ export function useClientActions() {
         resourceType: string
         hasMedia: boolean
         recentTrip: boolean
-        sortingOption: string
+        sortingType?: SortingType
+        sortingOption: SortingOption
       }) {
         const params = qs.stringify({
           region_id: regionId,
           resource_id: resourceId,
           resource_type: resourceType,
           recent_trip: recentTrip,
+          sorting_type: sortingType,
           sorting_option: sortingOption,
           has_media: hasMedia,
         })

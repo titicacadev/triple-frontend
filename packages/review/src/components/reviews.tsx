@@ -75,6 +75,7 @@ export function Reviews({
             regionId={regionId}
             initialReviewsCount={initialReviewsCount}
             placeholderText={placeholderText}
+            sortingType={sortingType}
           />
         </SortingOptionsProvider>
       </FilterProvider>
@@ -95,10 +96,8 @@ function ReviewsComponent({
   regionId,
   initialReviewsCount,
   placeholderText,
-}: Omit<
-  ReviewsProps,
-  'initialRecentTrip' | 'initialSortingOption' | 'sortingType'
->) {
+  sortingType,
+}: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
 
@@ -171,6 +170,7 @@ function ReviewsComponent({
         placeholderText={placeholderText}
         reviewsCount={reviewsCountData?.reviewsCount}
         sort={sort}
+        sortingType={sortingType}
       />
     </Section>
   )
