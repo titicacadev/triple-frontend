@@ -493,7 +493,7 @@ function RecentReviewInfo({
             alt="recent-trip-icon"
           />
           <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
-            {t(['coegeun-yeohaeng', '최근 여행'])}
+            {t(['coegeun-yeohaeng', '최근여행'])}
           </Text>
         </>
       ) : null}
