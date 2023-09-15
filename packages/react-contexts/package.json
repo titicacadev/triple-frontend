@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@types/qs": "^6.9.8",
-    "@types/semver": "^7.5.1",
+    "@types/semver": "^7.5.2",
     "@types/ua-parser-js": "^0.7.37",
     "firebase": "^9.15.0",
     "next": "^13.4.13",
