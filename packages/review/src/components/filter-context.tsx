@@ -5,8 +5,10 @@ import {
   useCallback,
   useMemo,
   useContext,
+  useEffect,
 } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 interface FilterValues {
   isRecentTrip: boolean
@@ -17,11 +19,15 @@ interface FilterValues {
 
 const FilterContext = createContext<FilterValues | undefined>(undefined)
 
+const EVENT_TYPE = 'reviews-web/filter-change'
+
 export function FilterProvider({
+  receiverId,
   initialRecentTrip = false,
   initialMediaFilter = false,
   children,
 }: PropsWithChildren<{
+  receiverId?: string
   initialRecentTrip?: boolean
   initialMediaFilter?: boolean
 }>) {
@@ -29,6 +35,7 @@ export function FilterProvider({
   const [isMediaCollection, setIsMediaCollection] = useState(initialMediaFilter)
 
   const { trackEvent } = useEventTrackingContext()
+  const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
 
   const handleRecentTripChange = useCallback(() => {
     setIsRecentTrip((prevState) => !prevState)
@@ -56,6 +63,49 @@ export function FilterProvider({
       },
     })
   }, [isMediaCollection, trackEvent])
+
+  useEffect(() => {
+    if (receiverId) {
+      broadcastMessage &&
+        broadcastMessage({
+          receiverId,
+          type: EVENT_TYPE,
+          filter: {
+            isRecentTrip,
+            hasMedia: isMediaCollection,
+          },
+        })
+    }
+  }, [receiverId, isRecentTrip, isMediaCollection, broadcastMessage])
+
+  useEffect(() => {
+    const handleReceiveMessage = ({
+      payload,
+    }: {
+      payload?: {
+        type: string
+        filter: {
+          isRecentTrip: boolean
+          hasMedia: boolean
+        }
+      }
+    }) => {
+      if (!payload || payload.type !== EVENT_TYPE) {
+        return
+      }
+
+      const { isRecentTrip, hasMedia } = payload.filter
+
+      setIsRecentTrip(isRecentTrip)
+      setIsMediaCollection(hasMedia)
+    }
+
+    subscribe && subscribe('receiveMessage', handleReceiveMessage)
+
+    return () => {
+      unsubscribe && unsubscribe('receiveMessage', handleReceiveMessage)
+    }
+  }, [subscribe, unsubscribe, setIsRecentTrip, setIsMediaCollection])
 
   const values = useMemo(
     () => ({

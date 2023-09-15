@@ -48,6 +48,7 @@ interface ReviewsProps {
   initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
+  receiverId?: string
 }
 
 export function Reviews({
@@ -60,12 +61,14 @@ export function Reviews({
   initialSortingOption = 'recommendation',
   sortingType = 'poi',
   placeholderText,
+  receiverId,
 }: ReviewsProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider
         initialRecentTrip={initialRecentTrip}
         initialMediaFilter={initialMediaFilter}
+        receiverId={receiverId}
       >
         <SortingOptionsProvider
           type={sortingType}

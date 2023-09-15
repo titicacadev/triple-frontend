@@ -3,6 +3,7 @@ import qs from 'qs'
 import { useEnv } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { writeReview } from '../utils'
 import type { SortingType, SortingOption } from '../components/sorting-context'
@@ -10,6 +11,7 @@ import type { SortingType, SortingOption } from '../components/sorting-context'
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
   const navigate = useNavigate()
+  const { getWindowId } = useTripleClientActions()
 
   return useMemo(() => {
     return {
@@ -63,6 +65,7 @@ export function useClientActions() {
           sorting_type: sortingType,
           sorting_option: sortingOption,
           has_media: hasMedia,
+          opener_id: getWindowId && getWindowId(),
         })
 
         navigate(
@@ -110,5 +113,5 @@ export function useClientActions() {
         window.location.href = `${appUrlScheme}:///reviews/${reviewId}/report`
       },
     }
-  }, [appUrlScheme, navigate])
+  }, [appUrlScheme, navigate, getWindowId])
 }
