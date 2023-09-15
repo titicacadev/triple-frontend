@@ -5,9 +5,11 @@ import {
   useContext,
   useMemo,
   useState,
+  useEffect,
 } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTranslation } from '@titicaca/next-i18next'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { useReviewFilters } from './filter-context'
 
@@ -19,8 +21,11 @@ export type SortingOption =
 
 export type SortingType = 'default' | 'poi'
 
+const EVENT_TYPE = 'reviews-web/sorting-option-change'
+
 interface SortingOptionsProps {
   type?: SortingType
+  receiverId?: string
   resourceId: string
   initialSortingOption?: SortingOption
 }
@@ -44,6 +49,7 @@ const OPTION_LABELS = {
 
 export function SortingOptionsProvider({
   type = 'default',
+  receiverId,
   resourceId,
   initialSortingOption = 'recommendation',
   children,
@@ -53,6 +59,7 @@ export function SortingOptionsProvider({
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
   const { isRecentTrip } = useReviewFilters()
+  const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
 
   const defaultOptions = [
     { key: 'recommendation' as const, text: t(['cuceonsun', '추천순']) },
@@ -91,6 +98,40 @@ export function SortingOptionsProvider({
     },
     [isRecentTrip, resourceId, trackEvent],
   )
+
+  useEffect(() => {
+    if (receiverId) {
+      broadcastMessage &&
+        broadcastMessage({
+          receiverId,
+          type: EVENT_TYPE,
+          selectedSortingOption: selectedOption,
+        })
+    }
+  }, [receiverId, selectedOption, broadcastMessage])
+
+  useEffect(() => {
+    const handleReceiveMessage = ({
+      payload,
+    }: {
+      payload?: {
+        type: string
+        selectedSortingOption: SortingOption
+      }
+    }) => {
+      if (!payload || payload.type !== EVENT_TYPE) {
+        return
+      }
+
+      setSelectedOption(payload.selectedSortingOption)
+    }
+
+    subscribe && subscribe('receiveMessage', handleReceiveMessage)
+
+    return () => {
+      unsubscribe && unsubscribe('receiveMessage', handleReceiveMessage)
+    }
+  }, [subscribe, unsubscribe, setSelectedOption])
 
   const values = useMemo(
     () => ({
