@@ -7,10 +7,7 @@ import {
   useQueryClient,
 } from 'react-query'
 
-import {
-  DEFAULT_REVIEWS_COUNT_PER_PAGE,
-  SHORTENED_REVIEWS_COUNT_PER_PAGE,
-} from '../constants'
+import { DEFAULT_REVIEWS_COUNT_PER_PAGE } from '../constants'
 import {
   BaseReviewFragment,
   DeleteReviewMutationVariables,
@@ -28,54 +25,6 @@ import {
   UnlikeReviewMutationVariables,
   client,
 } from '../data/graphql'
-
-export function usePopularReviews(
-  params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
-) {
-  return useQuery(
-    [
-      'review/getPopularReviews',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
-    ],
-    () =>
-      client.GetPopularReviews({
-        ...params,
-        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
-      }),
-  )
-}
-
-export function useLatestReviews(
-  params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
-) {
-  return useQuery(
-    [
-      'review/getLatestReviews',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
-    ],
-    () =>
-      client.GetLatestReviews({
-        ...params,
-        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
-      }),
-  )
-}
-
-export function useRatingReviews(
-  params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
-) {
-  return useQuery(
-    [
-      'review/getReviewsByRating',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
-    ],
-    () =>
-      client.GetReviewsByRating({
-        ...params,
-        size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
-      }),
-  )
-}
 
 export function useInfinitePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
