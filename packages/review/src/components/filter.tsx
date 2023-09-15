@@ -51,7 +51,7 @@ const TooltipText = styled(Text)`
 `
 
 const OpenIcon = styled.img`
-  margin-top: 2px;
+  margin-top: 3px;
   margin-left: 4px;
   vertical-align: baseline;
 `
