@@ -72,6 +72,7 @@ export function Reviews({
       >
         <SortingOptionsProvider
           type={sortingType}
+          receiverId={receiverId}
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
