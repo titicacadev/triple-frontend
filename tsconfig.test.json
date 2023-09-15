@@ -61,6 +61,7 @@
       ],
       "@titicaca/static-map": ["./packages/static-map/src"],
       "@titicaca/static-page-contents": ["./packages/static-page-contents/src"],
+      "@titicaca/triple-tds": ["./packages/tds-theme/src"],
       "@titicaca/triple-document": ["./packages/triple-document/src"],
       "@titicaca/triple-email-document": [
         "./packages/triple-email-document/src"
