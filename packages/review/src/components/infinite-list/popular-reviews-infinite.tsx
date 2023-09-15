@@ -1,7 +1,7 @@
-import { useInfinitePopularReviews } from '../../services'
 import type { SortingType } from '../sorting-context'
 
 import { InfiniteList } from './infinite-list'
+import { useInfinitePopularReviews } from './services'
 import type { InfiniteReviewProps } from './types'
 
 export function PopularReviewsInfinite({
