@@ -1,7 +1,7 @@
-import { useRatingReviews } from '../../services'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
+import { useRatingReviews } from './services'
 import type { ExtendShortenReview } from './types'
 
 export function RatingReviews({
