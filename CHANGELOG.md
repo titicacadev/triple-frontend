@@ -1,5 +1,48 @@
 # CHANGELOG
 
+## v13.4.0
+
+### chat
+
+- [Chat] RoomInterface에 roomType을 추가합니다. [#2900](https://github.com/titicacadev/triple-frontend/pull/2900)
+- [Chat] 채팅 리트라이 이벤트를 위한 props를 추가합니다. [#2905](https://github.com/titicacadev/triple-frontend/pull/2905)
+
+### common
+
+- tsconfig emit 관련 설정을 tsconfig.build.json 으로 이동 [#2898](https://github.com/titicacadev/triple-frontend/pull/2898)
+
+### core-elements
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
+### image-carousel
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
+### image-source
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
+### location-properties
+
+- [LocationProperties] 액션시트에서 누락된 주소를 복원합니다. [#2903](https://github.com/titicacadev/triple-frontend/pull/2903)
+
+### poi-detail
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
+### review
+
+- 리뷰 컴포넌트를 리펙토링합니다. [#2892](https://github.com/titicacadev/triple-frontend/pull/2892)
+
+### triple-document
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
+### triple-media
+
+- image-source 패키지 추가 [#2876](https://github.com/titicacadev/triple-frontend/pull/2876)
+
 ## v13.3.0
 
 ### chat
