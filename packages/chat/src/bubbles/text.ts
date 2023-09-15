@@ -83,4 +83,6 @@ export const TextBubble = styled(Text).attrs({
   ${({ my }) => css`
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
   `}
+  color: ${({ bubbleColor }) =>
+    `${bubbleColor?.textColor || 'var(--color-gray)'}`}
 `
