@@ -32,6 +32,7 @@ interface ReviewsShortenProps {
   initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
+  receiverId?: string
 }
 
 const OptionContainer = styled(FlexBox)`
@@ -57,10 +58,12 @@ export function ReviewsShorten({
   initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
+  receiverId,
 }: ReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider
+        receiverId={receiverId}
         initialRecentTrip={initialRecentTrip}
         initialMediaFilter={initialMediaFilter}
       >
