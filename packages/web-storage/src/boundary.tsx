@@ -1,6 +1,7 @@
 import { Alert } from '@titicaca/modals'
 import { WithTranslation, withTranslation } from '@titicaca/next-i18next'
 import { Component, ReactNode } from 'react'
+import type { ComponentType } from 'react'
 
 import { WebStorageError } from './error'
 
@@ -65,4 +66,4 @@ class WebStorageErrorBoundaryClass extends Component<
 // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1519138189
 export const WebStorageErrorBoundary = withTranslation('common-web')(
   WebStorageErrorBoundaryClass,
-) as unknown as WebStorageErrorBoundaryClass
+) as unknown as ComponentType<WebStorageErrorBoundaryProps>
