@@ -9,8 +9,7 @@ import {
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
-
-import { Modal } from './modal'
+import { Modal } from '@titicaca/tds-ui'
 
 type ShowTransitionModal = (type: TransitionType) => void
 
