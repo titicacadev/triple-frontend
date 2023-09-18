@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import styled, { css } from 'styled-components'
 import { Property } from 'csstype'
-import { Color } from '@titicaca/color-palette'
+import type { Theme } from '@titicaca/tds-theme'
 
 import { GetGlobalColor, MarginPadding } from '../../commons'
 import { unit } from '../../utils/unit'
@@ -40,7 +40,7 @@ export interface ButtonBaseOwnProps {
   margin?: MarginPadding
   lineHeight?: number | string
   textAlpha?: number
-  textColor?: Color
+  textColor?: keyof Theme['colors']
 }
 
 export type ButtonBaseProps = ButtonBaseOwnProps &
