@@ -3,7 +3,7 @@ import { initialize, mswLoader } from 'msw-storybook-addon'
 import { mockDateDecorator } from 'storybook-mock-date-decorator'
 import { I18nDecorator } from './i18n'
 import {
-  globalStyleDecorator,
+  themeDecorator,
   tripleClientMetadataDecorator,
   userAgentProviderDecorator,
   historyProviderDecorator,
@@ -24,7 +24,7 @@ const preview: Preview = {
   loaders: [mswLoader],
   decorators: [
     mockDateDecorator,
-    globalStyleDecorator,
+    themeDecorator,
     tripleClientMetadataDecorator,
     userAgentProviderDecorator,
     historyProviderDecorator,
