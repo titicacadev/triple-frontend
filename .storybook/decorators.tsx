@@ -1,19 +1,20 @@
 import React from 'react'
-import { GlobalStyle } from '../packages/core-elements/src'
 import {
   EnvProvider,
   HistoryProvider,
   SessionContextProvider,
   UserAgentProvider,
 } from '../packages/react-contexts/src'
+import { defaultTheme, GlobalStyle } from '../packages/tds-theme/src'
 import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
+import { ThemeProvider } from 'styled-components'
 
-export function globalStyleDecorator(Story) {
+export function themeDecorator(Story) {
   return (
-    <>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <Story />
-    </>
+    </ThemeProvider>
   )
 }
 
