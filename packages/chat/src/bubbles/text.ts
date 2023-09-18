@@ -43,7 +43,7 @@ export const TextBubble = styled(Text).attrs({
   textAlign: 'left',
   inlineBlock: true,
 })<{
-  maxWidthOffset: number
+  maxWidthOffset?: number
   my: boolean
   bubbleStyle?: {
     backgroundColor: BackgroundColor
@@ -80,7 +80,8 @@ export const TextBubble = styled(Text).attrs({
       )}`});
   }
 
-  ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
+  ${({ maxWidthOffset }) =>
+    maxWidthOffset && `max-width: calc(100% - ${maxWidthOffset}px);`}
   background-color: ${({ my, bubbleStyle }) =>
     `${
       BACKGROUND_COLORS[

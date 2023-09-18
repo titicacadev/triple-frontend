@@ -35,7 +35,7 @@ const PRODUCT_BADGE_LABEL: Record<CustomerBookingStatus, string> = {
 }
 
 export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
-  const { textBubbleFontSize, textBubbleMaxWidthOffset } = useChat()
+  const { textBubbleFontSize } = useChat()
   const {
     customerBookingStatus,
     productName,
@@ -50,8 +50,8 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
     <TextBubble
       my={my}
       size={textBubbleFontSize}
-      maxWidthOffset={textBubbleMaxWidthOffset}
       margin={my ? { left: 8 } : undefined}
+      css={{ width: 'calc(100% - 15px)', maxWidth: '768px' }}
     >
       {customerBookingStatus && (
         <Badge backgroundColor={PRODUCT_BADGE_COLOR[customerBookingStatus]}>
