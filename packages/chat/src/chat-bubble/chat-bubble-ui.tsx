@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { TextPayload, ImagePayload, RichPayload } from '../types'
-import { BubbleColor, ChatBubbleColor } from '../types/ui'
+import { ChatBubbleColor } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -127,14 +127,6 @@ export interface ChatBubbleUIProps {
   bubbleColor?: ChatBubbleColor
 }
 
-const DEFAULT_BUBBLE_COLOR: {
-  sent: BubbleColor<'sent'>
-  received: BubbleColor<'received'>
-} = {
-  sent: { backgroundColor: 'blue', textColor: 'var(--color-gray)' },
-  received: { backgroundColor: 'gray', textColor: 'var(--color-gray)' },
-}
-
 export function ChatBubbleUI({
   type,
   payload,
@@ -145,10 +137,11 @@ export function ChatBubbleUI({
   blindedAt,
   blindedText,
   onRetry,
-  bubbleColor = DEFAULT_BUBBLE_COLOR,
+  bubbleColor,
 }: ChatBubbleUIProps) {
   switch (type) {
-    case 'sent':
+    case 'sent': {
+      const sentBubbleColor = bubbleColor?.sent
       return (
         <SentChatContainer
           createdAt={createdAt}
@@ -159,18 +152,36 @@ export function ChatBubbleUI({
             <BlindedBubble
               my
               blindedText={blindedText}
-              bubbleColor={bubbleColor?.sent}
+              bubbleColor={
+                sentBubbleColor
+                  ? {
+                      ...sentBubbleColor,
+                      textColor:
+                        sentBubbleColor.textColor.blinded ||
+                        sentBubbleColor.textColor.normal,
+                    }
+                  : undefined
+              }
             />
           ) : (
             <BubblePayload
               payload={payload}
               my
-              bubbleColor={bubbleColor?.sent}
+              bubbleColor={
+                sentBubbleColor
+                  ? {
+                      ...sentBubbleColor,
+                      textColor: sentBubbleColor.textColor.normal,
+                    }
+                  : undefined
+              }
             />
           )}
         </SentChatContainer>
       )
-    case 'received':
+    }
+    case 'received': {
+      const receivedBubbleColor = bubbleColor?.received
       return (
         <ReceivedChatContainer
           unreadCount={unreadCount}
@@ -182,17 +193,34 @@ export function ChatBubbleUI({
             <BlindedBubble
               my={false}
               blindedText={blindedText}
-              bubbleColor={bubbleColor?.received}
+              bubbleColor={
+                receivedBubbleColor
+                  ? {
+                      ...receivedBubbleColor,
+                      textColor:
+                        receivedBubbleColor.textColor.blinded ||
+                        receivedBubbleColor.textColor.normal,
+                    }
+                  : undefined
+              }
             />
           ) : (
             <BubblePayload
               payload={payload}
               my={false}
-              bubbleColor={bubbleColor?.received}
+              bubbleColor={
+                receivedBubbleColor
+                  ? {
+                      ...receivedBubbleColor,
+                      textColor: receivedBubbleColor.textColor.normal,
+                    }
+                  : undefined
+              }
             />
           )}
         </ReceivedChatContainer>
       )
+    }
     default:
       return null
   }
