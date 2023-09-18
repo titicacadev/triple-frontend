@@ -313,9 +313,6 @@ importers:
 
   packages/author:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -378,9 +375,6 @@ importers:
       '@egjs/react-flicking':
         specifier: ^3.8.3
         version: 3.8.3
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -403,9 +397,6 @@ importers:
 
   packages/chat:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -444,8 +435,6 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
-  packages/color-palette: {}
-
   packages/constants: {}
 
   packages/content-sharing:
@@ -466,9 +455,6 @@ importers:
       '@floating-ui/react':
         specifier: ^0.25.4
         version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/content-utilities':
         specifier: 8.11.0
         version: 8.11.0
@@ -488,6 +474,9 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@titicaca/tds-theme':
+        specifier: workspace:*
+        version: link:../tds-theme
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -503,9 +492,6 @@ importers:
 
   packages/date-picker:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -631,9 +617,6 @@ importers:
 
   packages/hub-form:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -725,9 +708,6 @@ importers:
 
   packages/listing-filter:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -1040,9 +1020,6 @@ importers:
 
   packages/public-header:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -1573,10 +1550,6 @@ importers:
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/static-page-contents:
-    dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -1620,9 +1593,6 @@ importers:
 
   packages/triple-document:
     dependencies:
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/content-type-definitions':
         specifier: 8.11.0
         version: 8.11.0
