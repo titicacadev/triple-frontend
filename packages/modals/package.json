@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.6",
-    "@titicaca/core-elements": "workspace:*"
+    "@titicaca/tds-ui": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",

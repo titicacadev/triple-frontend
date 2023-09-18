@@ -10,8 +10,9 @@ import {
 import { PropsWithChildren, useCallback, useId, useRef, useState } from 'react'
 import { FormField } from '@titicaca/core-elements'
 
+import { TRANSITION_DURATION } from '../action-sheet/constants'
+
 import { ActionSheetSelectContext } from './action-sheet-select-context'
-import { TRANSITION_DURATION } from './constants'
 
 export interface ActionSheetSelectProps extends PropsWithChildren {
   value?: string

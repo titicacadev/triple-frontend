@@ -39,11 +39,24 @@
       "eslint"
     ]
   },
+  "dependencies": {
+    "@floating-ui/react": "^0.25.4",
+    "@titicaca/content-utilities": "^8.12.0",
+    "@titicaca/core-elements": "workspace:*",
+    "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/triple-fallback-action": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
+    "react-input-mask": "^2.0.4",
+    "react-roving-tabindex": "^3.2.0"
+  },
   "devDependencies": {
+    "@titicaca/tds-theme": "workspace:*",
+    "@types/react-input-mask": "2",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
+    "@titicaca/tds-theme": "*",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
