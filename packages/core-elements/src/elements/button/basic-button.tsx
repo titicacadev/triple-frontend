@@ -1,7 +1,9 @@
 import { css } from 'styled-components'
-import { Color } from '@titicaca/color-palette'
+import type { Theme } from '@titicaca/tds-theme'
 
 import { buttonBaseMixin, ButtonBaseOwnProps } from './button-base'
+
+type Color = keyof Theme['colors']
 
 const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
   blue: '#368fff',

@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { gray as defaultSvgIconColor } from '@titicaca/color-palette'
 
 const SVG_ATTRIBUTES_BY_DIRECTION = {
   left: {
@@ -22,7 +21,7 @@ export default function ArrowIcon({
 }) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
   const { colors } = useContext(ThemeContext) || { colors: {} }
-  const stroke = colors.primary || defaultSvgIconColor
+  const stroke = colors.gray
 
   return (
     <svg
