@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
-import { Color, getColor } from '@titicaca/color-palette'
+import type { Theme } from '@titicaca/tds-theme'
 
 import { BaseSizes } from '../../commons'
 import {
@@ -22,7 +22,7 @@ export type ContainerProps = PropsWithChildren<{
   floated?: Property.Float
   horizontalScroll?: boolean
   shadow?: BaseSizes
-  backgroundColor?: Color
+  backgroundColor?: keyof Theme['colors']
 }>
 
 /**
@@ -37,7 +37,7 @@ export const Container = styled.div<ContainerProps>(
     display: props.display,
     float: props.floated ?? 'none',
     backgroundColor: props.backgroundColor
-      ? `rgba(${getColor(props.backgroundColor)}) `
+      ? props.theme.colors[props.backgroundColor]
       : undefined,
   }),
   centeredMixin,
