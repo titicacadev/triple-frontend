@@ -2,20 +2,21 @@ import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import {
-  TextPayload,
   ImagePayload,
-  RichPayload,
+  MessageType,
   ProductPayload,
+  RichPayload,
+  TextPayload,
 } from '../types'
 import { ChatBubbleStyle } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
 import {
-  SendingFailureHandlerContainer,
-  RetryButton,
   DeleteButton,
   ProfileImage,
   ProfileName,
+  RetryButton,
+  SendingFailureHandlerContainer,
 } from './elements'
 import BubblePayload from './bubble-payload'
 import BlindedBubble from './blinded'
@@ -33,11 +34,13 @@ function SentChatContainer({
   onRetry,
   onCancel,
   children,
+  showBubbleInfo,
 }: PropsWithChildren<{
   createdAt?: string
   unreadCount: number | null
   onRetry?: () => Promise<boolean> | undefined
   onCancel?: () => void
+  showBubbleInfo: boolean
 }>) {
   const [show, setShow] = useState<boolean>(true)
 
@@ -60,11 +63,15 @@ function SentChatContainer({
           />
         </SendingFailureHandlerContainer>
       ) : (
-        <BubbleInfo
-          unreadCount={unreadCount}
-          date={createdAt}
-          css={{ marginRight: 8, textAlign: 'right' }}
-        />
+        <>
+          {showBubbleInfo && (
+            <BubbleInfo
+              unreadCount={unreadCount}
+              date={createdAt}
+              css={{ marginRight: 8, textAlign: 'right' }}
+            />
+          )}
+        </>
       )}
 
       {children}
@@ -77,12 +84,14 @@ function ReceivedChatContainer({
   profileName,
   unreadCount,
   createdAt,
+  showBubbleInfo,
   children,
 }: {
   profileImageUrl?: string
   profileName?: string
   unreadCount: number | null
   createdAt?: string
+  showBubbleInfo: boolean
   children: React.ReactNode
 }) {
   return (
@@ -95,7 +104,7 @@ function ReceivedChatContainer({
 
         {children}
 
-        {createdAt ? (
+        {createdAt && showBubbleInfo ? (
           <BubbleInfo
             unreadCount={unreadCount}
             date={createdAt}
@@ -151,6 +160,7 @@ export function ChatBubbleUI({
       return (
         <SentChatContainer
           createdAt={createdAt}
+          showBubbleInfo={payload.type !== MessageType.PRODUCT}
           unreadCount={unreadCount}
           onRetry={onRetry}
         >
@@ -194,6 +204,7 @@ export function ChatBubbleUI({
         <ReceivedChatContainer
           unreadCount={unreadCount}
           createdAt={createdAt}
+          showBubbleInfo={payload.type !== MessageType.PRODUCT}
           profileImageUrl={profileImageUrl}
           profileName={profileName}
         >
