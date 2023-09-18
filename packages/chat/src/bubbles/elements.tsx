@@ -30,14 +30,18 @@ export const Badge = styled.span<BadgeProps>`
 `
 
 export const ProductName = styled(Text)`
+  width: 100%;
   font-weight: 700;
   text-overflow: ellipsis;
 `
 
 export const ProductImage = styled.img`
+  display: flex;
   width: 40px;
   height: 40px;
   border-radius: 6px;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const ProductHr = styled(HR1)<HrProps>`

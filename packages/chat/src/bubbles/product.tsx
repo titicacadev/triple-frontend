@@ -61,22 +61,30 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
 
       <FlexBox
         flex
-        gap="12px"
+        gap="16px"
+        alignItems="flex-start"
         justifyContent="space-between"
-        alignItems="center"
-        css={{ margin: '6px 0' }}
+        css={{ width: '100%', margin: '6px 0' }}
       >
-        <ProductName color="gray" size={15}>
-          {productName}
-        </ProductName>
+        <FlexBox
+          flex
+          gap="6px"
+          justifyContent="center"
+          alignItems="flex-start"
+          flexDirection="column"
+        >
+          <ProductName color="gray" size={15}>
+            {productName}
+          </ProductName>
+          {itemName && (
+            <Text color="gray700" size={13}>
+              {itemName}
+            </Text>
+          )}
+        </FlexBox>
+
         <ProductImage src={productThumbnail} alt="상품 사진" />
       </FlexBox>
-
-      {itemName && (
-        <Text color="gray700" size={13}>
-          {itemName}
-        </Text>
-      )}
 
       {(optionName || dateOfUse || bookingId) && (
         <ProductHr compact color="var(--color-gray50)" />
