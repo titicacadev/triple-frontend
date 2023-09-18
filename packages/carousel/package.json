@@ -42,7 +42,6 @@
   "dependencies": {
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
-    "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/type-definitions": "workspace:*"
