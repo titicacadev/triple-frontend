@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { Property } from 'csstype'
-import { getColor, Color } from '@titicaca/color-palette'
+import type { Theme } from '@titicaca/tds-theme'
 
 import { MarginPadding, GlobalSizes, GetGlobalColor } from '../../commons'
 import {
@@ -21,7 +21,7 @@ export type TextProps = PropsWithChildren<{
   alpha?: number
   bold?: boolean
   center?: boolean
-  color?: Color | string
+  color?: keyof Theme['colors'] | string
   cursor?: Property.Cursor
   ellipsis?: boolean
   floated?: Property.Float
@@ -47,7 +47,7 @@ export const Text = styled.div<TextProps>(
     overflowWrap: 'break-word',
     color: props.alpha
       ? rgba({ color: props.color, alpha: props.alpha })
-      : `rgba(${getColor(props.color ?? 'gray')}) `,
+      : props.theme.colors[(props.color as keyof Theme['colors']) ?? 'gray'],
     cursor: props.cursor,
     display: props.inlineBlock
       ? 'inline-block'

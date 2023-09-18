@@ -2,8 +2,8 @@ import { SyntheticEvent, useCallback, useState } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Container, H1, List, Button } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { gray50 } from '@titicaca/color-palette'
 import { useNavigate } from '@titicaca/router'
+import { useTheme } from 'styled-components'
 
 import { TnaProductData } from './types'
 import { TnaProductWithPrice } from './product'
@@ -18,6 +18,7 @@ export function Slot({
   products: TnaProductData[]
 }) {
   const { t } = useTranslation('common-web')
+  const { colors } = useTheme()
 
   const { trackEvent } = useEventTrackingContext()
   const navigate = useNavigate()
@@ -81,7 +82,7 @@ export function Slot({
         {slotTitle}
       </H1>
 
-      <List clearing verticalGap={40} divided dividerColor={gray50}>
+      <List clearing verticalGap={40} divided dividerColor={colors.gray50}>
         {(showMore ? products : products.slice(0, 3)).map((product, i) => (
           <List.Item key={i}>
             <TnaProductWithPrice

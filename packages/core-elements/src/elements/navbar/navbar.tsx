@@ -1,6 +1,5 @@
 import * as CSS from 'csstype'
 import styled, { css } from 'styled-components'
-import { Color, getColor } from '@titicaca/color-palette'
 import {
   PropsWithChildren,
   Children,
@@ -10,6 +9,7 @@ import {
   HTMLAttributes,
 } from 'react'
 import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
+import type { Theme } from '@titicaca/tds-theme'
 
 import { MarginPadding } from '../../commons'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../../mixins'
@@ -18,7 +18,7 @@ import { unit } from '../../utils/unit'
 interface NavbarProps {
   maxWidth?: number
   borderless?: boolean
-  backgroundColor?: Color
+  backgroundColor?: keyof Theme['colors']
   position?: CSS.Property.Position
   padding?: MarginPadding
 }
@@ -44,8 +44,8 @@ const WrapperContainer = styled.div<
 `
 
 const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
-  background-color: ${({ backgroundColor = 'white' }) =>
-    `rgba(${getColor(backgroundColor)}) `};
+  background-color: ${({ backgroundColor = 'white', theme }) =>
+    theme.colors[backgroundColor]};
   position: ${({ position = 'sticky' }) => position};
   top: 0;
   left: 0;
@@ -157,8 +157,8 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
 `
 
 const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
-  background-color: ${({ backgroundColor = 'white' }) =>
-    `rgba(${getColor(backgroundColor)}) `};
+  background-color: ${({ backgroundColor = 'white', theme }) =>
+    theme.colors[backgroundColor]};
   ${({ position = 'sticky' }) => `
       position: ${position};
       top: ${position === 'sticky' ? '52px' : 0};
