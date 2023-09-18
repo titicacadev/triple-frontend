@@ -13,8 +13,7 @@ import {
   useHistoryFunctions,
   useUriHash,
 } from '@titicaca/react-contexts'
-
-import { Confirm } from './confirm'
+import { Confirm } from '@titicaca/tds-ui'
 
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
