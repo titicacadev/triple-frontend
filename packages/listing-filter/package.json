@@ -40,7 +40,6 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*"
   },
   "devDependencies": {

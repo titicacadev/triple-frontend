@@ -40,7 +40,6 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "moment": "^2.29.4",
     "react-day-picker": "^7.4.10"
