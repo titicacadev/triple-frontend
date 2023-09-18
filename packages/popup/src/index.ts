@@ -1,2 +1,1 @@
-export * from './popup'
-export { default } from './popup'
+export * from '@titicaca/tds-ui/src/components/popup'
