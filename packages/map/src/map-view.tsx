@@ -60,6 +60,7 @@ export interface WithGoogleMapProps extends GoogleMapProps {
     googleMapsApiKey: string
     /** region default: kr - https://developers.google.com/maps/faq#languagesupport */
     region?: string
+    language?: string
   }
   /**
    * Map SDK loaded 콜백 핸들러
@@ -89,7 +90,7 @@ export function MapView({
   coordinates = [],
   options: originOptions,
   mapContainerStyle: originMapContainerStyle,
-  googleMapLoadOptions: { googleMapsApiKey, region = 'kr' },
+  googleMapLoadOptions: { googleMapsApiKey, region = 'kr', language },
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
@@ -98,6 +99,7 @@ export function MapView({
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey,
     region,
+    language,
     libraries: GOOGLE_MAP_LIBRARIES,
   })
 
