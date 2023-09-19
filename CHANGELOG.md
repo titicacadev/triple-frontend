@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v13.5.0
+
+### i18n
+
+- [reviews] 리뷰에 사진/동영상 필터를 지원합니다. [#2896](https://github.com/titicacadev/triple-frontend/pull/2896)
+
+### review
+
+- [reviews] 리뷰에 사진/동영상 필터를 지원합니다. [#2896](https://github.com/titicacadev/triple-frontend/pull/2896)
+- [reviews] 코드를 리팩토링합니다. [#2904](https://github.com/titicacadev/triple-frontend/pull/2904)
+- [reviews] 정렬 옵션 및 필터가 싱크되도록 지원합니다. [#2907](https://github.com/titicacadev/triple-frontend/pull/2907)
+
+### web-storage
+
+- web storage error boundary 컴포넌트 타입 수정 [#2912](https://github.com/titicacadev/triple-frontend/pull/2912)
+
 ## v13.4.0
 
 ### chat
