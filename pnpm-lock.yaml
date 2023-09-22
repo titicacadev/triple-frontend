@@ -1851,12 +1851,6 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
       '@types/haversine':
         specifier: ^1.1.5
         version: 1.1.5
@@ -1924,7 +1918,7 @@ packages:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
       '@babel/runtime': 7.22.6
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.11)
       chalk: 4.1.2
@@ -1993,7 +1987,7 @@ packages:
       '@babel/helpers': 7.22.11
       '@babel/parser': 7.22.13
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       convert-source-map: 1.9.0
       debug: 4.3.4(supports-color@5.5.0)
@@ -2145,7 +2139,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2210,7 +2204,7 @@ packages:
       '@babel/helper-member-expression-to-functions': 7.22.5
       '@babel/helper-optimise-call-expression': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2262,7 +2256,7 @@ packages:
     dependencies:
       '@babel/helper-function-name': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2273,7 +2267,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -3449,7 +3443,7 @@ packages:
       '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
 
-  /@babel/traverse@7.22.11(supports-color@5.5.0):
+  /@babel/traverse@7.22.11:
     resolution: {integrity: sha512-mzAenteTfomcB7mfPtyi+4oe5BZ6MXxWcn4CX+h4IRJ+OOGXBrWU6jDQavkQI9Vuc5P+donFabBfFCcmWka9lQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
@@ -4829,7 +4823,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.13
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.11)
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
       graphql: 16.8.0
@@ -7879,7 +7873,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.4.0
@@ -12771,7 +12765,7 @@ packages:
     resolution: {integrity: sha512-YNF+mZ/Wu2FU/gvmzuWtYc8rloubL7wfXCTgouFrnjGVXPA/EeYYA7pupXWrb3Iv1cTBeSSxxJIbK23l4MRNqg==}
     engines: {node: '>=8.3.0'}
     dependencies:
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       c8: 7.14.0
     transitivePeerDependencies:
