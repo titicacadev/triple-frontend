@@ -46,18 +46,11 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.25.4",
-    "@titicaca/content-utilities": "8.17.0",
-    "@titicaca/intersection-observer": "workspace:*",
-    "@titicaca/triple-fallback-action": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
-    "react-input-mask": "^2.0.4",
-    "react-roving-tabindex": "^3.2.0"
+    "@titicaca/tds-ui": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.39",
     "@titicaca/tds-theme": "workspace:*",
-    "@types/react-input-mask": "^2.0.5",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
