@@ -96,7 +96,7 @@ function composeStringifiedQuery({
   return composedQuery
 }
 
-function appSpecificLinkOptions({
+export function appSpecificLinkOptions({
   href,
   lnbTarget,
   noNavbar,
