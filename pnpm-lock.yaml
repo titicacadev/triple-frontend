@@ -192,18 +192,9 @@ importers:
 
   packages/action-sheet:
     dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/app-installation-cta':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../app-installation-cta
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/popup':
-        specifier: workspace:*
-        version: link:../popup
+        version: link:../tds-ui
     devDependencies:
       react:
         specifier: ^18.2.0
@@ -452,37 +443,13 @@ importers:
 
   packages/core-elements:
     dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/content-utilities':
-        specifier: 8.11.0
-        version: 8.11.0
-      '@titicaca/intersection-observer':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/triple-fallback-action':
-        specifier: workspace:*
-        version: link:../triple-fallback-action
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      react-input-mask:
-        specifier: ^2.0.4
-        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
-      react-roving-tabindex:
-        specifier: ^3.2.0
-        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
+        version: link:../tds-ui
     devDependencies:
       '@titicaca/tds-theme':
         specifier: workspace:*
         version: link:../tds-theme
-      '@types/react':
-        specifier: ^18.2.21
-        version: 18.2.21
-      '@types/react-input-mask':
-        specifier: ^2.0.5
-        version: 2.0.5
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -807,12 +774,12 @@ importers:
 
   packages/modals:
     dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -982,12 +949,9 @@ importers:
 
   packages/popup:
     dependencies:
-      '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
     devDependencies:
       react:
         specifier: ^18.2.0
@@ -1577,7 +1541,38 @@ importers:
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/tds-ui:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+      '@titicaca/content-utilities':
+        specifier: ^8.12.0
+        version: 8.12.0
+      '@titicaca/core-elements':
+        specifier: workspace:*
+        version: link:../core-elements
+      '@titicaca/intersection-observer':
+        specifier: workspace:*
+        version: link:../intersection-observer
+      '@titicaca/triple-fallback-action':
+        specifier: workspace:*
+        version: link:../triple-fallback-action
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+      react-input-mask:
+        specifier: ^2.0.4
+        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
+      react-roving-tabindex:
+        specifier: ^3.2.0
+        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
+      '@titicaca/tds-theme':
+        specifier: workspace:*
+        version: link:../tds-theme
+      '@types/react-input-mask':
+        specifier: '2'
+        version: 2.0.5
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1599,9 +1594,6 @@ importers:
       '@titicaca/carousel':
         specifier: workspace:*
         version: link:../carousel
-      '@titicaca/color-palette':
-        specifier: workspace:*
-        version: link:../color-palette
       '@titicaca/content-type-definitions':
         specifier: 8.11.0
         version: 8.11.0
@@ -1933,7 +1925,7 @@ packages:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
       '@babel/runtime': 7.22.6
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.11)
       chalk: 4.1.2
@@ -2002,7 +1994,7 @@ packages:
       '@babel/helpers': 7.22.11
       '@babel/parser': 7.22.13
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       convert-source-map: 1.9.0
       debug: 4.3.4(supports-color@5.5.0)
@@ -2154,7 +2146,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.22.6
       '@babel/helper-validator-identifier': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2219,7 +2211,7 @@ packages:
       '@babel/helper-member-expression-to-functions': 7.22.5
       '@babel/helper-optimise-call-expression': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2271,7 +2263,7 @@ packages:
     dependencies:
       '@babel/helper-function-name': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2282,7 +2274,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -3458,7 +3450,7 @@ packages:
       '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
 
-  /@babel/traverse@7.22.11(supports-color@5.5.0):
+  /@babel/traverse@7.22.11:
     resolution: {integrity: sha512-mzAenteTfomcB7mfPtyi+4oe5BZ6MXxWcn4CX+h4IRJ+OOGXBrWU6jDQavkQI9Vuc5P+donFabBfFCcmWka9lQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
@@ -4365,39 +4357,16 @@ packages:
     resolution: {integrity: sha512-BpiZLBWdLFw+qFel9p3Zs1jD6QmH7Ii4aTDu6+vx8ShdidChZUXqDhYJly4ZjSgQh54miXbBgBrk0S+jTIh/Qg==}
     dev: true
 
-  /@floating-ui/core@1.3.1:
-    resolution: {integrity: sha512-Bu+AMaXNjrpjh41znzHqaz3r2Nr8hHuHZT6V2LBKMhyMl0FgKA62PNYbqnfgmzOhoWZj70Zecisbo4H1rotP5g==}
-    dev: true
-
   /@floating-ui/core@1.4.1:
     resolution: {integrity: sha512-jk3WqquEJRlcyu7997NtR5PibI+y5bi+LS3hPmguVClypenMsCY3CBa3LAQnozRCtCrYWSEtAdiskpamuJRFOQ==}
     dependencies:
       '@floating-ui/utils': 0.1.1
-    dev: false
-
-  /@floating-ui/dom@1.4.5:
-    resolution: {integrity: sha512-96KnRWkRnuBSSFbj0sFGwwOUd8EkiecINVl0O9wiZlZ64EkpyAOG3Xc2vKKNJmru0Z7RqWNymA+6b8OZqjgyyw==}
-    dependencies:
-      '@floating-ui/core': 1.3.1
-    dev: true
 
   /@floating-ui/dom@1.5.1:
     resolution: {integrity: sha512-KwvVcPSXg6mQygvA1TjbN/gh///36kKtllIF8SUm0qpFj8+rvYrpvlYdL1JoA71SHpDqgSSdGOSoQ0Mp3uY5aw==}
     dependencies:
       '@floating-ui/core': 1.4.1
       '@floating-ui/utils': 0.1.1
-    dev: false
-
-  /@floating-ui/react-dom@2.0.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-rZtAmSht4Lry6gdhAJDrCp/6rKN7++JnL1/Anbr/DdeyYXQPxvg/ivrbYvJulbRf4vL8b212suwMM2lxbv+RQA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/dom': 1.4.5
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
   /@floating-ui/react-dom@2.0.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-5qhlDvjaLmAst/rKb3VdlCinwTF4EYMiVxuuc/HVUjs46W0zgtbMmAZ1UTsDrRTxRmUEzl92mOtWbeeXL26lSQ==}
@@ -4408,7 +4377,6 @@ packages:
       '@floating-ui/dom': 1.5.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /@floating-ui/react@0.25.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-lWRQ/UiTvSIBxohn0/2HFHEmnmOVRjl7j6XcRJuLH0ls6f/9AyHMWVzkAJFuwx0n9gaEeCmg9VccCSCJzbEJig==}
@@ -4425,7 +4393,6 @@ packages:
 
   /@floating-ui/utils@0.1.1:
     resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
-    dev: false
 
   /@googlemaps/js-api-loader@1.16.2:
     resolution: {integrity: sha512-psGw5u0QM6humao48Hn4lrChOM2/rA43ZCm3tKK9qQsEj1/VzqkCqnvGfEOshDbBQflydfaRovbKwZMF4AyqbA==}
@@ -4838,7 +4805,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.13
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.11)
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
       graphql: 16.8.0
@@ -6543,7 +6510,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.6
-      '@floating-ui/react-dom': 2.0.1(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.21)(react@18.2.0)
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.21)(react@18.2.0)
@@ -7888,7 +7855,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.4.0
@@ -8535,10 +8502,14 @@ packages:
     resolution: {integrity: sha512-CKZCumOmGGH0DG8e+RXpyquU3I2uyo7vPg7kEvP5a+2aK85L+MRymrEufo83FlYByyAS+P25+sOmHtgQNrxfEw==}
     dev: false
 
-  /@titicaca/content-utilities@8.11.0:
-    resolution: {integrity: sha512-siUV0KpDgF4ymRyKEvOq63GodR4NgAsFQ0SlTz9Ybdzjtl4Y40xru6k0pMguyzXWg7V291yoCUe2qm6k+vBjBA==}
+  /@titicaca/content-type-definitions@8.12.0:
+    resolution: {integrity: sha512-0m4htvgTTJno0RMEUuNmJSzGqtuSG9dEPdLHqV7Drj09xb/vm2zC+MFkoj3qN6wSN2t2XEBBc+kFjobkowbxoQ==}
+    dev: false
+
+  /@titicaca/content-utilities@8.12.0:
+    resolution: {integrity: sha512-QlGSDxrsIkRY+gLmRFOdRXyav6J6UNhiHU7dasDAtQxhAnerDm3f2lfC0pLQNqHarGosG4lFLhovTRy9n634Kg==}
     dependencies:
-      '@titicaca/content-type-definitions': 8.11.0
+      '@titicaca/content-type-definitions': 8.12.0
       isomorphic-fetch: 3.0.0
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
@@ -12780,7 +12751,7 @@ packages:
     resolution: {integrity: sha512-YNF+mZ/Wu2FU/gvmzuWtYc8rloubL7wfXCTgouFrnjGVXPA/EeYYA7pupXWrb3Iv1cTBeSSxxJIbK23l4MRNqg==}
     engines: {node: '>=8.3.0'}
     dependencies:
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       c8: 7.14.0
     transitivePeerDependencies:
