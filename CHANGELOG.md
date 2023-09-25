@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.6.0
+
+### i18n
+
+- i18n 영어 설정을 추가합니다. [#2923](https://github.com/titicacadev/triple-frontend/pull/2923)
+
+### map
+
+- 구글맵 load script 언어 옵션 추가 [#2918](https://github.com/titicacadev/triple-frontend/pull/2918)
+
 ## v13.5.0
 
 ### i18n
