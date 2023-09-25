@@ -21,8 +21,8 @@ export interface ChatContainerProps extends ChatContextValue {
    * Chat list와 보내기 Input 창을 감싸는 컨테이너로, 커스텀 스타일 등 적용 가능
    */
   container: ElementType
-  containerProps: {
-    css: CSSProp
+  containerProps?: {
+    css?: CSSProp
   }
   /**
    * input 창, 보내기 버튼 등을 포함하는 컴포넌트
