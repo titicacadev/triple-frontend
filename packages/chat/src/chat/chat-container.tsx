@@ -24,7 +24,7 @@ export interface ChatContainerProps extends ChatContextValue {
   /**
    * ChatContainer가 동적으로 변화하는 스타일일 경우 사용합니다.
    */
-  containerCss: CSSProp
+  containerCss?: CSSProp
   /**
    * input 창, 보내기 버튼 등을 포함하는 컴포넌트
    */
