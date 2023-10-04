@@ -1,6 +1,5 @@
-import { ElementType, PropsWithChildren, useState } from 'react'
+import { ComponentType, PropsWithChildren, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { CSSProp } from 'styled-components'
 
 import {
   ImagePayload,
@@ -20,15 +19,11 @@ export interface ChatContainerProps extends ChatContextValue {
   /**
    * Chat list와 보내기 Input 창을 감싸는 컨테이너로, 커스텀 스타일 등 적용 가능
    */
-  container: ElementType
-  /**
-   * ChatContainer가 동적으로 변화하는 스타일일 경우 사용합니다.
-   */
-  containerCss?: CSSProp
+  container: ComponentType<PropsWithChildren>
   /**
    * input 창, 보내기 버튼 등을 포함하는 컴포넌트
    */
-  inputElement?: ElementType
+  inputElement?: ComponentType<{ postMessage: PostMessageActionType }>
   /**
    * 메시지를 전송하는 api를 래핑하는 함수
    */
@@ -49,7 +44,6 @@ const defaultOnImageBubbleClick = (imageInfos: MetaDataInterface[]) => {
 export const ChatContainer = ({
   container: Container,
   inputElement: Input,
-  containerCss,
   children,
 
   textBubbleFontSize,
@@ -78,7 +72,7 @@ export const ChatContainer = ({
       }}
     >
       <ScrollProvider>
-        <Container css={containerCss ?? {}}>{children}</Container>
+        <Container>{children}</Container>
         {Input && postMessage ? <Input postMessage={postMessage} /> : null}
       </ScrollProvider>
     </ChatContext.Provider>
