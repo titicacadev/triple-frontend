@@ -1,4 +1,7 @@
 import { Autolinker } from 'autolinker'
+import { useEnv } from '@titicaca/react-contexts'
+import { useHrefToProps } from '@titicaca/router'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { ImageBubble, RichBubble, TextBubble } from '../bubbles'
 import { useChat } from '../chat'
@@ -19,6 +22,9 @@ const BubblePayload = ({ payload, my }: BubblePayloadProps) => {
     onImageBubbleClick,
     onTextBubbleClick,
   } = useChat()
+  const { webUrlBase } = useEnv()
+  const convertHrefToProps = useHrefToProps()
+  const app = useTripleClientMetadata()
 
   switch (payload.type) {
     case MessageType.IMAGES:
@@ -45,6 +51,15 @@ const BubblePayload = ({ payload, my }: BubblePayloadProps) => {
               __html: Autolinker.link(payload.message, {
                 newWindow: true,
                 stripPrefix: false,
+                replaceFn: (match) => {
+                  const tag = match.buildTag()
+                  if (match.getAnchorHref().includes(webUrlBase) && app) {
+                    const linkProps = convertHrefToProps(match.getAnchorHref())
+
+                    tag.setAttr('href', linkProps.href)
+                  }
+                  return tag
+                },
               }),
             }}
           />
