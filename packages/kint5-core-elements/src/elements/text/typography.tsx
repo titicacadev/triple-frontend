@@ -1,4 +1,5 @@
 import * as CSS from 'csstype'
+import { CSSProp } from 'styled-components'
 
 import { Container } from '../container'
 
@@ -9,6 +10,8 @@ export type H1Props = TextProps & {
   headline?: string
   emphasize?: boolean
   textAlign?: CSS.Property.TextAlign
+  headlineCss?: CSSProp
+  textCss?: CSSProp
 }
 
 export type H2Props = TextProps
@@ -21,6 +24,8 @@ export function H1({
   headline,
   emphasize,
   textAlign,
+  headlineCss,
+  textCss,
   children,
   ...props
 }: H1Props) {
@@ -33,11 +38,17 @@ export function H1({
       {...props}
     >
       {headline && (
-        <Text bold size="tiny" color="blue" margin={{ bottom: 3 }}>
+        <Text
+          bold
+          size="tiny"
+          color="blue"
+          margin={{ bottom: 3 }}
+          css={headlineCss}
+        >
           {headline}
         </Text>
       )}
-      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'}>
+      <Text bold size="huge" color={emphasize ? 'blue' : 'gray'} css={textCss}>
         {children}
       </Text>
     </Container>
