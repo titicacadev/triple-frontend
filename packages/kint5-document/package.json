@@ -45,6 +45,7 @@
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/kint5-core-elements": "workspace:*",
     "@titicaca/map": "workspace:*",
     "@titicaca/modals": "workspace:*",
     "@titicaca/poi-list-elements": "workspace:*",
