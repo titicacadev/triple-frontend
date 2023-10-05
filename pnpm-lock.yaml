@@ -758,6 +758,91 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
+  packages/kint5-document:
+    dependencies:
+      '@titicaca/color-palette':
+        specifier: workspace:*
+        version: link:../color-palette
+      '@titicaca/content-type-definitions':
+        specifier: 8.12.0
+        version: 8.12.0
+      '@titicaca/core-elements':
+        specifier: workspace:*
+        version: link:../core-elements
+      '@titicaca/fetcher':
+        specifier: workspace:*
+        version: link:../fetcher
+      '@titicaca/intersection-observer':
+        specifier: workspace:*
+        version: link:../intersection-observer
+      '@titicaca/map':
+        specifier: workspace:*
+        version: link:../map
+      '@titicaca/modals':
+        specifier: workspace:*
+        version: link:../modals
+      '@titicaca/poi-list-elements':
+        specifier: workspace:*
+        version: link:../poi-list-elements
+      '@titicaca/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
+      '@titicaca/router':
+        specifier: workspace:*
+        version: link:../router
+      '@titicaca/scrap-button':
+        specifier: workspace:*
+        version: link:../scrap-button
+      '@titicaca/standard-action-handler':
+        specifier: workspace:*
+        version: link:../standard-action-handler
+      '@titicaca/triple-media':
+        specifier: workspace:*
+        version: link:../triple-media
+      '@titicaca/type-definitions':
+        specifier: workspace:*
+        version: link:../type-definitions
+      '@titicaca/ui-flow':
+        specifier: workspace:*
+        version: link:../ui-flow
+      '@titicaca/user-verification':
+        specifier: workspace:*
+        version: link:../user-verification
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+      moment:
+        specifier: ^2.29.4
+        version: 2.29.4
+      qs:
+        specifier: ^6.11.2
+        version: 6.11.2
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
+      '@titicaca/react-triple-client-interfaces':
+        specifier: workspace:*
+        version: link:../react-triple-client-interfaces
+      '@types/qs':
+        specifier: ^6.9.8
+        version: 6.9.8
+      next:
+        specifier: ^13.4.13
+        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
   packages/listing-filter:
     dependencies:
       '@titicaca/color-palette':
@@ -1961,7 +2046,7 @@ packages:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
       '@babel/runtime': 7.22.6
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.11)
       chalk: 4.1.2
@@ -2025,7 +2110,7 @@ packages:
       '@babel/helpers': 7.22.11
       '@babel/parser': 7.22.13
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       convert-source-map: 1.9.0
       debug: 4.3.4(supports-color@5.5.0)
@@ -2197,7 +2282,7 @@ packages:
       '@babel/helper-member-expression-to-functions': 7.22.5
       '@babel/helper-optimise-call-expression': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2248,7 +2333,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -3376,7 +3461,7 @@ packages:
       '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
 
-  /@babel/traverse@7.22.11:
+  /@babel/traverse@7.22.11(supports-color@5.5.0):
     resolution: {integrity: sha512-mzAenteTfomcB7mfPtyi+4oe5BZ6MXxWcn4CX+h4IRJ+OOGXBrWU6jDQavkQI9Vuc5P+donFabBfFCcmWka9lQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
@@ -4731,7 +4816,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.13
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.11)
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
       graphql: 16.8.0
@@ -7808,7 +7893,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.4.0
@@ -7824,7 +7909,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.5.1
@@ -12754,7 +12839,7 @@ packages:
     resolution: {integrity: sha512-YNF+mZ/Wu2FU/gvmzuWtYc8rloubL7wfXCTgouFrnjGVXPA/EeYYA7pupXWrb3Iv1cTBeSSxxJIbK23l4MRNqg==}
     engines: {node: '>=8.3.0'}
     dependencies:
-      '@babel/traverse': 7.22.11
+      '@babel/traverse': 7.22.11(supports-color@5.5.0)
       '@babel/types': 7.22.11
       c8: 7.14.0
     transitivePeerDependencies:
