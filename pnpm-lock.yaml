@@ -758,6 +758,52 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
+  packages/kint5-core-elements:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+      '@titicaca/color-palette':
+        specifier: workspace:*
+        version: link:../color-palette
+      '@titicaca/content-utilities':
+        specifier: 8.12.0
+        version: 8.12.0
+      '@titicaca/intersection-observer':
+        specifier: workspace:*
+        version: link:../intersection-observer
+      '@titicaca/triple-fallback-action':
+        specifier: workspace:*
+        version: link:../triple-fallback-action
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+      react-input-mask:
+        specifier: ^2.0.4
+        version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
+      react-roving-tabindex:
+        specifier: ^3.2.0
+        version: 3.2.0(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@types/react':
+        specifier: ^18.2.21
+        version: 18.2.21
+      '@types/react-input-mask':
+        specifier: ^2.0.5
+        version: 2.0.5
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
   packages/kint5-document:
     dependencies:
       '@titicaca/color-palette':
