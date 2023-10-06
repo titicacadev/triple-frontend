@@ -1,5 +1,5 @@
 import React from 'react'
-import { GlobalStyle } from '../packages/core-elements/src'
+import { GlobalStyle } from '../packages/kint5-core-elements/src'
 import {
   EnvProvider,
   HistoryProvider,
