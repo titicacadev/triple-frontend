@@ -412,6 +412,12 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/react-triple-client-interfaces':
+        specifier: workspace:*
+        version: link:../react-triple-client-interfaces
+      '@titicaca/router':
+        specifier: workspace:*
+        version: link:../router
       '@titicaca/triple-fallback-action':
         specifier: workspace:*
         version: link:../triple-fallback-action
@@ -431,6 +437,12 @@ importers:
         specifier: ^2.29.4
         version: 2.29.4
     devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
