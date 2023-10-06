@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { appWithTranslation } from '@titicaca/next-i18next'
 
-import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
-import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
-import { zhTwCommonWeb } from '../../i18n/src/assets/zh-TW/common-web'
+import { koCommonWeb } from '../../../i18n/src/assets/ko/common-web'
+import { jaCommonWeb } from '../../../i18n/src/assets/ja/common-web'
+import { zhTwCommonWeb } from '../../../i18n/src/assets/zh-TW/common-web'
 
 import PoiCarouselElement from './carousel-element'
 import POIS from './mocks/pois.sample.json'
