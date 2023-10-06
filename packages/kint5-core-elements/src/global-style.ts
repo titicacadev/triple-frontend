@@ -48,6 +48,41 @@ export const GlobalStyle = createGlobalStyle`
     --color-teal100: rgba(10, 219, 143, 0.1);
     --color-teal900: rgba(10, 219, 143, 0.9);
     --color-vermilion: rgb(255, 97, 105, 1);
+
+    /* Kint5 */
+    --color-kint5-blue: #1769ff;
+    --color-kint5-purple: #8041f5;
+    --color-kint5-red: #ff322e;
+    --color-kint5-orange: #ff7800;
+    --color-kint5-pink: #eb147b;
+    --color-kint5-skyblue: #18cfdf;
+    --color-kint5-skygreen: #35d27c;
+    --color-kint5-yellow: #fcc038;
+    --color-kint5-gray0: #FFF;
+    --color-kint5-gray10: #F9FAFB;
+    --color-kint5-gray20: #F1F3F5;
+    --color-kint5-gray30: #D1D6DB;
+    --color-kint5-gray40: #B0B8C1;
+    --color-kint5-gray50: #8B95A1;
+    --color-kint5-gray60: #6B7684;
+    --color-kint5-gray70: #4E5968;
+    --color-kint5-gray80: #333D4B;
+    --color-kint5-gray90: #191F28;
+    --color-kint5-gray100: #000;
+    --color-kint5-brand1: #8041F5;
+    --color-kint5-brand2: linear-gradient(90deg, #EB147B 20.97%, #8041F5 77.57%);
+    --color-kint5-poi-tour: #1769FF;
+    --color-kint5-poi-food: #FF6B00;
+    --color-kint5-poi-event: #EB147B;
+    --color-kint5-poi-ticket: #8041F5;
+    --color-kint5-interest-review: #FCC038;
+    --color-kint5-interest-like: #EB147B;
+    --color-kint5-btn-fill1: #FFF;
+    --color-kint5-btn-fill2: #F1F3F5;
+    --color-kint5-btn-fill3: #000;
+    --color-kint5-btn-fill4: #8041F5;
+    --color-kint5-result-error: #FF322E;
+    --color-kint5-result-correct: #06C755;
   }
 
   /*
