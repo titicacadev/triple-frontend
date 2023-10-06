@@ -47,7 +47,9 @@ export const Text = styled.div<TextProps>(
     overflowWrap: 'break-word',
     color: props.alpha
       ? rgba({ color: props.color, alpha: props.alpha })
-      : `rgba(${getColor(props.color ?? 'gray')}) `,
+      : props.color
+      ? `rgba(${getColor(props.color)})`
+      : 'var(--color-kint5-gray100)',
     cursor: props.cursor,
     display: props.inlineBlock
       ? 'inline-block'
@@ -84,7 +86,7 @@ const TextTitleBase = styled(Text)<TextTitleBaseProps>`
   line-height: 1.2;
   font-size: 24px;
   font-weight: bold;
-  color: #3a3a3a;
+  color: var(--color-kint5-gray100);
   ${marginMixin}
 `
 
