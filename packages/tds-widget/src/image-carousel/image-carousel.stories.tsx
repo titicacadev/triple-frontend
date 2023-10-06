@@ -3,9 +3,9 @@ import { ImageSource } from '@titicaca/image-source'
 import { appWithTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 
-import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
-import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
-import { zhTwCommonWeb } from '../../i18n/src/assets/zh-TW/common-web'
+import { koCommonWeb } from '../../../i18n/src/assets/ko/common-web'
+import { jaCommonWeb } from '../../../i18n/src/assets/ja/common-web'
+import { zhTwCommonWeb } from '../../../i18n/src/assets/zh-TW/common-web'
 
 import ImageCarousel from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'
