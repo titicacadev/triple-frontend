@@ -1,12 +1,8 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { GlobalSizes } from '@titicaca/type-definitions'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-export type CarouselSizes = Exclude<
-  GlobalSizes,
-  'mini' | 'tiny' | 'huge' | 'massive'
->
+import { CarouselSizes } from '../../commons'
 
 const CAROUSEL_WIDTH_SIZES = {
   small: '140px',
