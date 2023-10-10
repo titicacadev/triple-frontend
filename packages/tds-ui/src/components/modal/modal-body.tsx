@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
-import { Container } from '@titicaca/tds-ui'
 import { css } from 'styled-components'
+
+import { Container } from '../container'
 
 export const ModalBody = ({ children, ...props }: PropsWithChildren) => {
   return (
