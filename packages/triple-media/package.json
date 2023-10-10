@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@titicaca/core-elements": "workspace:*",
-    "@titicaca/image-source": "workspace:*",
+    "@titicaca/tds-widget": "workspace:*",
     "@titicaca/type-definitions": "workspace:*"
   },
   "devDependencies": {
