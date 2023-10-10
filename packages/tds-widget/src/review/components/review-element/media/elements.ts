@@ -1,4 +1,4 @@
-import { Container, FlexBox } from '@titicaca/core-elements'
+import { Container, FlexBox } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 export const GridWrapper = styled(Container)`

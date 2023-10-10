@@ -6,7 +6,7 @@ import {
   MarginPadding,
   marginMixin,
   formatMarginPadding,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 

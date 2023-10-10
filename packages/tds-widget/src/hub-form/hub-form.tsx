@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { CardFrame, CardProps } from '@titicaca/core-elements'
+import { CardFrame, CardProps } from '@titicaca/tds-ui'
 
 const HubFormFrame = styled(CardFrame)`
   > div:not(:last-child) {
