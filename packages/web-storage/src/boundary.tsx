@@ -1,4 +1,4 @@
-import { Alert } from '@titicaca/modals'
+import { Alert } from '@titicaca/tds-ui'
 import { WithTranslation, withTranslation } from '@titicaca/next-i18next'
 import { Component, ReactNode } from 'react'
 

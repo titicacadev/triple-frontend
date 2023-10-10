@@ -10,7 +10,7 @@ import {
   Text,
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
-import Popup from '@titicaca/popup'
+import { Popup } from '@titicaca/tds-ui'
 
 const DrawerContentContainer = styled(Container)`
   ${safeAreaInsetMixin}
