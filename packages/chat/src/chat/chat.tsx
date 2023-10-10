@@ -92,6 +92,7 @@ export const Chat = ({
   const [
     {
       messages,
+      failedMessages,
       hasPrevMessage,
       otherUnreadInfo,
       lastMessageId,
@@ -202,7 +203,6 @@ export const Chat = ({
       dispatch({
         action: ChatActions.POST,
         messages: newMessages,
-        payload,
       })
 
       const lastMessage = newMessages[newMessages.length - 1]
@@ -211,7 +211,7 @@ export const Chat = ({
       dispatch({
         action: ChatActions.FAILED_TO_POST,
         message: {
-          id: NaN,
+          id: new Date().getTime(),
           roomId: room.id,
           senderId: userInfo.me.id,
           payload,
@@ -262,34 +262,73 @@ export const Chat = ({
     }
   }
 
+  function removeFromFailedMessages(message: MessageInterface) {
+    dispatch({
+      action: ChatActions.REMOVE_FROM_FAILED,
+      message,
+    })
+  }
+
+  function onRetry(message: MessageInterface) {
+    removeFromFailedMessages(message)
+    onRetryButtonClick?.()
+  }
+
+  function onRetryCancel(message: MessageInterface) {
+    removeFromFailedMessages(message)
+    onRetryButtonClick?.()
+  }
+
   return (
     <>
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
       <Container ref={chatRoomRef} id={CHAT_CONTAINER_ID} {...props}>
-        <ul>
-          {messages.map((message: MessageInterface, index) => (
-            <li key={index}>
-              {userInfo ? (
-                <ChatBubble
-                  displayTarget={displayTarget}
-                  message={message}
-                  userInfo={userInfo}
-                  postMessageAction={
-                    postMessage ? postMessageAction : undefined
-                  }
-                  otherReadInfo={otherUnreadInfo}
-                  onRetryButtonClick={onRetryButtonClick}
-                  onRetryCancelButtonClick={onRetryCancelButtonClick}
-                  disableUnreadCount={disableUnreadCount}
-                  blindedText={blindedText}
-                  bubbleColor={bubbleColor}
-                />
-              ) : null}
-            </li>
-          ))}
-        </ul>
+        {userInfo ? (
+          <>
+            <ul id="messages_list">
+              {messages.map((message: MessageInterface) => (
+                <li key={message.id}>
+                  <ChatBubble
+                    displayTarget={displayTarget}
+                    message={message}
+                    userInfo={userInfo}
+                    postMessageAction={
+                      postMessage ? postMessageAction : undefined
+                    }
+                    otherReadInfo={otherUnreadInfo}
+                    onRetryButtonClick={onRetry}
+                    onRetryCancelButtonClick={onRetryCancel}
+                    disableUnreadCount={disableUnreadCount}
+                    blindedText={blindedText}
+                    bubbleColor={bubbleColor}
+                  />
+                </li>
+              ))}
+            </ul>
+            <ul id="failed_messages_list">
+              {failedMessages.map((message: MessageInterface) => (
+                <li key={message.id}>
+                  <ChatBubble
+                    displayTarget={displayTarget}
+                    message={message}
+                    userInfo={userInfo}
+                    postMessageAction={
+                      postMessage ? postMessageAction : undefined
+                    }
+                    otherReadInfo={otherUnreadInfo}
+                    onRetryButtonClick={onRetry}
+                    onRetryCancelButtonClick={onRetryCancel}
+                    disableUnreadCount={disableUnreadCount}
+                    blindedText={blindedText}
+                    bubbleColor={bubbleColor}
+                  />
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
       </Container>
       <HiddenElement ref={bottomRef} />
     </>

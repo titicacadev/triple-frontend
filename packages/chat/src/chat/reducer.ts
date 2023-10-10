@@ -1,9 +1,4 @@
-import {
-  MessageInterface,
-  OtherUnreadInterface,
-  TextPayload,
-  ImagePayload,
-} from '../types'
+import { MessageInterface, OtherUnreadInterface } from '../types'
 
 export enum ChatActions {
   INIT, // 최초에 메시지
@@ -12,10 +7,12 @@ export enum ChatActions {
   POST, // 메시지 전송
   FAILED_TO_POST, // 메시지 전송 실패
   UPDATE, // 읽음 표시 업데이트
+  REMOVE_FROM_FAILED, // 전송 실패 메세지 재전송 또는 삭제
 }
 
 export interface ChatState {
   messages: MessageInterface[]
+  failedMessages: MessageInterface[]
   hasPrevMessage: boolean
   otherUnreadInfo: OtherUnreadInterface[]
   firstMessageId: number | null
@@ -39,7 +36,6 @@ export type ChatAction =
   | {
       action: ChatActions.POST
       messages: MessageInterface[]
-      payload: TextPayload | ImagePayload
     }
   | {
       action: ChatActions.FAILED_TO_POST
@@ -49,6 +45,7 @@ export type ChatAction =
       action: ChatActions.UPDATE
       otherUnreadInfo: OtherUnreadInterface[]
     }
+  | { action: ChatActions.REMOVE_FROM_FAILED; message: MessageInterface }
 
 export const ChatReducer = (
   state: ChatState,
@@ -81,15 +78,7 @@ export const ChatReducer = (
     case ChatActions.POST:
       return {
         ...state,
-        messages: mergeMessages(
-          state.messages.some((message) => !message.id)
-            ? state.messages.filter(
-                (message) =>
-                  !message.id && !Object.is(message.payload, action.payload),
-              )
-            : state.messages,
-          action.messages,
-        ),
+        messages: mergeMessages(state.messages, action.messages),
         lastMessageId: Number(action.messages[action.messages.length - 1].id),
       }
 
@@ -103,13 +92,21 @@ export const ChatReducer = (
     case ChatActions.FAILED_TO_POST:
       return {
         ...state,
-        messages: [...state.messages, action.message],
+        failedMessages: [...state.failedMessages, action.message],
       }
 
     case ChatActions.UPDATE:
       return {
         ...state,
         otherUnreadInfo: action.otherUnreadInfo,
+      }
+
+    case ChatActions.REMOVE_FROM_FAILED:
+      return {
+        ...state,
+        failedMessages: state.failedMessages.filter(
+          (message) => message.id !== action.message.id,
+        ),
       }
 
     default:
@@ -119,6 +116,7 @@ export const ChatReducer = (
 
 export const initialChatState: ChatState = {
   messages: [],
+  failedMessages: [],
   hasPrevMessage: true,
   otherUnreadInfo: [],
   firstMessageId: null,
