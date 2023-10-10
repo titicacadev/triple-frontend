@@ -8,7 +8,7 @@ import {
 } from 'react'
 import styled from 'styled-components'
 import { Rail, Slider as OriginalSlider, Handles } from 'react-compound-slider'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { debounce } from '@titicaca/view-utilities'
 
 import Handle from './handle'

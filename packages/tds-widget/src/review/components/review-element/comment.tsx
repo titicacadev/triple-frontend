@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 export default function Comment({ children }: PropsWithChildren<unknown>) {
   return (

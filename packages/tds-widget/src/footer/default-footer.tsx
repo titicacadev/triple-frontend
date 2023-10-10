@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Container } from '@titicaca/core-elements'
+import { Text, Container } from '@titicaca/tds-ui'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'

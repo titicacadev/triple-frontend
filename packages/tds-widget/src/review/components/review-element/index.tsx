@@ -1,4 +1,4 @@
-import { Container, FlexBox, List, Rating, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'

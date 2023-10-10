@@ -1,4 +1,4 @@
-import { Section, Container } from '@titicaca/core-elements'
+import { Section, Container } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
 
 import Carousel, { CarouselProps } from './carousel'

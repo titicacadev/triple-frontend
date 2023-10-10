@@ -1,5 +1,5 @@
 import { ImageMeta } from '@titicaca/type-definitions'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { useIntersection } from '@titicaca/intersection-observer'
 import { useEffect, useState } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'

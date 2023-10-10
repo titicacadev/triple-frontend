@@ -7,7 +7,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, ButtonGroup, Container } from '@titicaca/core-elements'
+import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import AskToTheLocal from './ask-to-the-local'

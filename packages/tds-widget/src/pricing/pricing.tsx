@@ -2,12 +2,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
 import { formatNumber } from '@titicaca/view-utilities'
-import {
-  Container,
-  Text,
-  MarginPadding,
-  GlobalColors,
-} from '@titicaca/core-elements'
+import { Container, Text, MarginPadding, GlobalColors } from '@titicaca/tds-ui'
 import { GlobalSizes } from '@titicaca/type-definitions'
 
 import FixedPricing, { FixedPricingProps } from './fixed-pricing'

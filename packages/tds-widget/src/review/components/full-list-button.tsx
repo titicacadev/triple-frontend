@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 import { useSessionCallback } from '@titicaca/ui-flow'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'

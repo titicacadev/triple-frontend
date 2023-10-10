@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import { H1, H2, H3, H4 } from '@titicaca/core-elements'
+import { H1, H2, H3, H4 } from '@titicaca/tds-ui'
 
 interface HeadingProps {
   href?: string

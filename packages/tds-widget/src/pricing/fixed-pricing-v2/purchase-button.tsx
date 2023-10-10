@@ -1,4 +1,4 @@
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 
 import PurchaseButtonLoadingIndicator from './purchase-button-loading-indicator'
 

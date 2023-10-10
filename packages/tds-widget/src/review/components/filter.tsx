@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
-import { FlexBox, Text, Container } from '@titicaca/core-elements'
+import { FlexBox, Text, Container } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useReviewFilters } from './filter-context'

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { useModal } from './modal-context'

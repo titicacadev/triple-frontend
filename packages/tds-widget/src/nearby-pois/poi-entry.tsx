@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { List } from '@titicaca/core-elements'
+import { List } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { PoiListElement } from '@titicaca/poi-list-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'

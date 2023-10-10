@@ -1,4 +1,4 @@
-import { Image } from '@titicaca/core-elements'
+import { Image } from '@titicaca/tds-ui'
 import { ImageSource } from '@titicaca/image-source'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode } from 'react'

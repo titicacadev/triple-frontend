@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from 'react'
 import styled from 'styled-components'
-import { Navbar } from '@titicaca/core-elements'
+import { Navbar } from '@titicaca/tds-ui'
 import {
   FloatingFocusManager,
   FloatingOverlay,

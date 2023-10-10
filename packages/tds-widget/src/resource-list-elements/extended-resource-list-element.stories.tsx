@@ -1,5 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import Pricing from '@titicaca/pricing'
 
 import ExtendedResourceListElement from './extended-resource-list-element'

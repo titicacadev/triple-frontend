@@ -6,7 +6,7 @@ import {
   FlexBox,
   LongClickableComponentProps,
   FlexBoxProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
   useEventTrackingContext,
   useHistoryFunctions,

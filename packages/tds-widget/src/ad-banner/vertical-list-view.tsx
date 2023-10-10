@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { css } from 'styled-components'
-import { formatMarginPadding, MarginPadding } from '@titicaca/core-elements'
+import { formatMarginPadding, MarginPadding } from '@titicaca/tds-ui'
 
 import VerticalEntity from './vertical-entity'
 import { Banner } from './typing'

@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react'
-import { MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/tds-ui'
 import {
   useDeviceContext,
   useEventTrackingContext,

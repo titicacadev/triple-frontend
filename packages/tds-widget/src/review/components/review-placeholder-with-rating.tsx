@@ -1,7 +1,7 @@
 import { SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Button, Container, Rating, Text } from '@titicaca/core-elements'
+import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'

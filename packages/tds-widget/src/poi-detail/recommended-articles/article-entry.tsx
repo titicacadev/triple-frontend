@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { Image, H3 } from '@titicaca/core-elements'
+import { Image, H3 } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { ArticleListingData } from './types'

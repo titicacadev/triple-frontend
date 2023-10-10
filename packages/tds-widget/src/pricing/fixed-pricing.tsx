@@ -9,7 +9,7 @@ import {
   Button,
   MarginPadding,
   paddingMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
 export interface FixedPricingProps {

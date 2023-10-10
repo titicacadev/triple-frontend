@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Segment, List } from '@titicaca/core-elements'
+import { Segment, List } from '@titicaca/tds-ui'
 import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'

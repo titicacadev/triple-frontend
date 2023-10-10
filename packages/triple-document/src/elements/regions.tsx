@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { ResourceListItem, Image } from '@titicaca/core-elements'
+import { ResourceListItem, Image } from '@titicaca/tds-ui'
 
 import { RegionData } from '../types'
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'

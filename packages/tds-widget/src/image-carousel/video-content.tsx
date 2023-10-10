@@ -1,4 +1,4 @@
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
 import styled from 'styled-components'

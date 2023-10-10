@@ -1,4 +1,4 @@
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { useTranslation } from 'react-i18next'

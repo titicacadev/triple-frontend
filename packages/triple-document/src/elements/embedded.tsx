@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Carousel } from '@titicaca/carousel'

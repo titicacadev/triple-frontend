@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Container, FlexBox, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 
 import { TimeIcon, RightArrowIcon } from './business-hours-icons'
 

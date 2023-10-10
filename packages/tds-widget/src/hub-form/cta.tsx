@@ -1,5 +1,5 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 
 function Cta({
   available,

@@ -1,10 +1,6 @@
 import { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking, { FlickingProps } from '@egjs/react-flicking'
-import {
-  Container,
-  MarginPadding,
-  formatMarginPadding,
-} from '@titicaca/core-elements'
+import { Container, MarginPadding, formatMarginPadding } from '@titicaca/tds-ui'
 import { ReactNode, RefObject, useState } from 'react'
 import styled from 'styled-components'
 

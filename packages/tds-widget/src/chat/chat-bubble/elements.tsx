@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 export const HiddenElement = styled.div`
   height: 1px;

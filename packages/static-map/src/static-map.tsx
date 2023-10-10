@@ -6,7 +6,7 @@ import {
   formatMarginPadding,
   MEDIA_FRAME_OPTIONS,
   marginMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 
 interface IndicatorProps {
   loading: boolean

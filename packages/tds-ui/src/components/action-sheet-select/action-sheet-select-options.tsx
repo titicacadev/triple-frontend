@@ -3,7 +3,7 @@ import {
   FloatingList,
   FloatingPortal,
 } from '@floating-ui/react'
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 
 import { ActionSheetOverlay } from '../action-sheet/action-sheet-overlay'
 import {

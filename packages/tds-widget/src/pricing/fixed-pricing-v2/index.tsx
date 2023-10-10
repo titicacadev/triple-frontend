@@ -10,7 +10,7 @@ import {
   Skeleton,
   safeAreaInsetMixin,
   paddingMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import PurchaseButton from './purchase-button'

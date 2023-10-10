@@ -5,7 +5,7 @@ import {
   MarginPadding,
   LayeringMixinProps,
   Container,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { CSSTransition } from 'react-transition-group'
 import { useSessionStorage } from '@titicaca/react-hooks'
 

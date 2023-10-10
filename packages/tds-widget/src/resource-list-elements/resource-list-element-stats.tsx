@@ -1,4 +1,4 @@
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 function ResourceListElementStats({
   stats,

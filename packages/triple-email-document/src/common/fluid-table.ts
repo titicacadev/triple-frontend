@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { marginMixin, MarginPadding } from '@titicaca/core-elements'
+import { marginMixin, MarginPadding } from '@titicaca/tds-ui'
 
 const FluidTable = styled.table<{ margin?: MarginPadding }>`
   width: 100%;

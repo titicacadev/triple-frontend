@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import { FlexBox, Text, Icon } from '@titicaca/core-elements'
+import { FlexBox, Text, Icon } from '@titicaca/tds-ui'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { useRepliesContext } from './context'

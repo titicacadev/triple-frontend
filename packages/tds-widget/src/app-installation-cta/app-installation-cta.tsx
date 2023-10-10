@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { LayeringMixinProps } from '@titicaca/core-elements'
+import { LayeringMixinProps } from '@titicaca/tds-ui'
 
 import { BottomFixedContainer } from './elements'
 import ImageBanner from './image-banner'

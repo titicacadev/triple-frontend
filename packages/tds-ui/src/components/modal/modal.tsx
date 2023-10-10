@@ -9,7 +9,7 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react'
-import { Container, FlexBox } from '@titicaca/core-elements'
+import { Container, FlexBox } from '@titicaca/tds-ui'
 
 import { ModalAction } from './modal-action'
 import { ModalActions } from './modal-actions'

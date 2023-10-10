@@ -4,7 +4,7 @@ import ImageCarousel, {
   PageLabel,
   CarouselImageMeta,
 } from '@titicaca/image-carousel'
-import { Container, Responsive } from '@titicaca/core-elements'
+import { Container, Responsive } from '@titicaca/tds-ui'
 import { ImageSource } from '@titicaca/image-source'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'

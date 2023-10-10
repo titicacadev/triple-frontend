@@ -1,6 +1,6 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import moment from 'moment'
-import { Button, FlexBox, Text } from '@titicaca/core-elements'
+import { Button, FlexBox, Text } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 
 import { BasePinnedMessageFragment } from '../../data/graphql'

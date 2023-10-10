@@ -1,4 +1,4 @@
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
 

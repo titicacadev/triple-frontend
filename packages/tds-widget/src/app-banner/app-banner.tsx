@@ -1,11 +1,7 @@
 import { SyntheticEvent } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
-import {
-  Text,
-  layeringMixin,
-  LayeringMixinProps,
-} from '@titicaca/core-elements'
+import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
 
 const AppBannerFrame = styled.header<
   { fixed?: boolean; maxWidth?: number } & LayeringMixinProps

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Image } from '@titicaca/core-elements'
+import { Image } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { InventoryItemMeta } from '@titicaca/type-definitions'

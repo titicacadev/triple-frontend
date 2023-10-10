@@ -7,7 +7,7 @@ import {
   MarginPadding,
   Tooltip,
   ButtonGroup,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { useEffect, useRef } from 'react'
 import { useLocalStorage } from '@titicaca/react-hooks'
 

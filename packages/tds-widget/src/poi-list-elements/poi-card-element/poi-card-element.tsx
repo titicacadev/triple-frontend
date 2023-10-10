@@ -1,12 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import {
-  Container,
-  Text,
-  Card as OriginalCard,
-  Image,
-} from '@titicaca/core-elements'
+import { Container, Text, Card as OriginalCard, Image } from '@titicaca/tds-ui'
 import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
 import {
   ReviewScrapStat,

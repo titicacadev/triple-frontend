@@ -1,6 +1,6 @@
 import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
+import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { OverlayScrapButton } from '@titicaca/scrap-button'

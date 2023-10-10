@@ -1,12 +1,6 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import {
-  Container,
-  Card,
-  Text,
-  FlexBox,
-  FlexBoxItem,
-} from '@titicaca/core-elements'
+import { Container, Card, Text, FlexBox, FlexBoxItem } from '@titicaca/tds-ui'
 import type {
   TransportationType,
   Itinerary,

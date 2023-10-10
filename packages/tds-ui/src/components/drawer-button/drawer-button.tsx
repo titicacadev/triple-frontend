@@ -7,7 +7,7 @@ import {
   ButtonProps,
   paddingMixin,
   DrawerProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 
 const ButtonWithSafeAreaInset = styled(Button)`
   ${paddingMixin}

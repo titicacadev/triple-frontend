@@ -1,5 +1,5 @@
 import type { StoryFn } from '@storybook/react'
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { MessageType, TextPayload } from '../types'

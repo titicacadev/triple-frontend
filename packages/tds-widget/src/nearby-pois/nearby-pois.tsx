@@ -10,7 +10,7 @@ import {
   TabPanel,
   H1,
   Paragraph,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { PointGeoJson } from '@titicaca/type-definitions'
 

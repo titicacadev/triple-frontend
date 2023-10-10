@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, FlexBox, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 import { Fragment, useState } from 'react'
 
 import { LinkGroup as LinkGroupBase } from './link-group'
