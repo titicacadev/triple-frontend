@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
+import { MarginPadding, paddingMixin } from '@titicaca/tds-ui'
 import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`

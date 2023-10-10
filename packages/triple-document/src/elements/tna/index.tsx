@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { HR2 } from '@titicaca/core-elements'
+import { HR2 } from '@titicaca/tds-ui'
 import { get } from '@titicaca/fetcher'
 
 import { TnaProductsResponse } from './types'

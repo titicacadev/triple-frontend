@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
-import { Text, Responsive } from '@titicaca/core-elements'
+import { Text, Responsive } from '@titicaca/tds-ui'
 
 const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
   width: 100%;

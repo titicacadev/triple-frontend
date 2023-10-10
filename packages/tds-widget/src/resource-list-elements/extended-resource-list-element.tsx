@@ -10,7 +10,7 @@ import {
   List,
   Image,
   FlexBox,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import ReviewScrapStat from './review-scrap-stat'

@@ -10,7 +10,7 @@ import React, {
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 
 import {
   HasUnreadOfRoomInterface,

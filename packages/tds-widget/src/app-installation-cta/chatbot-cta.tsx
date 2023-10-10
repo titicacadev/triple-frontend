@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Text, LayeringMixinProps } from '@titicaca/core-elements'
+import { Text, LayeringMixinProps } from '@titicaca/tds-ui'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { getWebStorage } from '@titicaca/web-storage'

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Section } from '@titicaca/core-elements'
+import { Section } from '@titicaca/tds-ui'
 
 const ListSection = styled(Section)`
   @media (min-width: 600px) {

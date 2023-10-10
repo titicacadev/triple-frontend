@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import { FlexBox, Text } from '@titicaca/core-elements'
+import { FlexBox, Text } from '@titicaca/tds-ui'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { useReviewSortingOptions } from './sorting-context'

@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import { Section } from '@titicaca/core-elements'
+import { Section } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 

@@ -4,7 +4,7 @@ import {
   Image,
   MarginPadding,
   OptimizedImgProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { ImageSource } from '@titicaca/image-source'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
