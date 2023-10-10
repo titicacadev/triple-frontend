@@ -5,6 +5,7 @@ import {
   Container,
   H1,
   formatMarginPadding,
+  Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
@@ -14,7 +15,6 @@ import {
   fetchInventoryItems,
 } from '@titicaca/app-installation-cta'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-import { Carousel } from '@titicaca/carousel'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
