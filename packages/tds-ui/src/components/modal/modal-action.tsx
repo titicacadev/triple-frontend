@@ -1,5 +1,6 @@
-import { GlobalColors } from '@titicaca/tds-ui'
 import styled from 'styled-components'
+
+import { GlobalColors } from '../../commons'
 
 const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
   gray: 'rgba(58, 58, 58, 0.5)',

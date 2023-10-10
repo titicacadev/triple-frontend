@@ -1,17 +1,15 @@
 import styled, { css } from 'styled-components'
 import { PropsWithChildren, useRef, useEffect, useState } from 'react'
 import { useUserAgentContext } from '@titicaca/react-contexts'
-import {
-  Container,
-  MarginPadding,
-  marginMixin,
-  formatMarginPadding,
-} from '@titicaca/tds-ui'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
-import CarouselItem from './carousel-item'
+import { MarginPadding } from '../../commons'
+import { formatMarginPadding, marginMixin } from '../../mixins'
+import { Container } from '../container'
+
 import ArrowIcon from './arrow-icon'
+import CarouselItem from './carousel-item'
 
 interface CarouselBaseProps {
   noFlicking?: boolean

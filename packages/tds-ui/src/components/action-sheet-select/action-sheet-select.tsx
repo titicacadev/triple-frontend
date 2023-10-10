@@ -8,9 +8,9 @@ import {
   useTransitionStatus,
 } from '@floating-ui/react'
 import { PropsWithChildren, useCallback, useId, useRef, useState } from 'react'
-import { FormField } from '@titicaca/tds-ui'
 
 import { TRANSITION_DURATION } from '../action-sheet/constants'
+import { FormField } from '../form-field'
 
 import { ActionSheetSelectContext } from './action-sheet-select-context'
 

@@ -3,13 +3,13 @@ import {
   FloatingList,
   FloatingPortal,
 } from '@floating-ui/react'
-import { FlexBox } from '@titicaca/tds-ui'
 
 import { ActionSheetOverlay } from '../action-sheet/action-sheet-overlay'
 import {
   ActionSheetBody,
   ActionSheetBodyProps,
 } from '../action-sheet/action-sheet-body'
+import { FlexBox } from '../flex-box'
 
 import { useActionSheetSelect } from './action-sheet-select-context'
 
