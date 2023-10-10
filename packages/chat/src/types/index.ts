@@ -43,7 +43,7 @@ export interface RoomListResultWithPagingInterface
 export interface RoomMetadata {
   name: string
   memberCounts: number
-  faqId?: string
+  articleId?: string
 }
 
 export interface RoomInterface {
