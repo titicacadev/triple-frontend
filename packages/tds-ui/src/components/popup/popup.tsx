@@ -1,6 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
 import styled from 'styled-components'
-import { Navbar } from '@titicaca/tds-ui'
 import {
   FloatingFocusManager,
   FloatingOverlay,
@@ -11,6 +10,8 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react'
+
+import { Navbar } from '../navbar'
 
 type NavbarIcon = 'close' | 'back'
 

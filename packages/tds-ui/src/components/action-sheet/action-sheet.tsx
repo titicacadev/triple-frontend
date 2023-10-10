@@ -1,5 +1,4 @@
 import { useEffect, useId } from 'react'
-import { FlexBox } from '@titicaca/tds-ui'
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -9,6 +8,8 @@ import {
   useRole,
   useTransitionStatus,
 } from '@floating-ui/react'
+
+import { FlexBox } from '../flex-box'
 
 import { ActionSheetBody, ActionSheetBodyProps } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'

@@ -1,13 +1,9 @@
 import styled from 'styled-components'
-import {
-  Drawer,
-  Container,
-  Button,
-  safeAreaInsetMixin,
-  ButtonProps,
-  paddingMixin,
-  DrawerProps,
-} from '@titicaca/tds-ui'
+
+import { Drawer, DrawerProps } from '../drawer/drawer'
+import { Container } from '../container'
+import { Button, ButtonProps } from '../button'
+import { paddingMixin, safeAreaInsetMixin } from '../../mixins'
 
 const ButtonWithSafeAreaInset = styled(Button)`
   ${paddingMixin}
