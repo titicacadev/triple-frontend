@@ -7,7 +7,7 @@ import {
   SquareImage,
   SimpleLink,
   Text,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Link } from '../types'

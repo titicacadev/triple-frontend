@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Container, Text, Button, ButtonGroup } from '@titicaca/core-elements'
+import { Container, Text, Button, ButtonGroup } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'

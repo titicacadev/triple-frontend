@@ -1,5 +1,5 @@
 import { isValidElement, PropsWithChildren } from 'react'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 interface ActionSheetTitleProps extends PropsWithChildren {
   labelId: string

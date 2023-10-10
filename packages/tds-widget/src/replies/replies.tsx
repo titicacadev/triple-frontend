@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
+import { Container, safeAreaInsetMixin } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'

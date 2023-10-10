@@ -1,4 +1,4 @@
-import { ButtonBase } from '@titicaca/core-elements'
+import { ButtonBase } from '@titicaca/tds-ui'
 import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
