@@ -1,6 +1,9 @@
-import { Container, MarginPadding, safeAreaInsetMixin } from '@titicaca/tds-ui'
 import { PropsWithChildren, ReactNode, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
+
+import { Container } from '../container'
+import { MarginPadding } from '../../commons'
+import { safeAreaInsetMixin } from '../../mixins'
 
 import { ActionSheetTitle } from './action-sheet-title'
 import { TRANSITION_DURATION } from './constants'
