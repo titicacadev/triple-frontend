@@ -40,9 +40,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/carousel": "workspace:*",
     "@titicaca/content-type-definitions": "8.16.0",
-    "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/map": "workspace:*",
@@ -50,10 +48,11 @@
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
+    "@titicaca/tds-widget": "workspace:*",
     "@titicaca/triple-media": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/ui-flow": "workspace:*",
-    "@titicaca/tds-widget": "workspace:*",
     "moment": "^2.29.4",
     "qs": "^6.11.2"
   },
