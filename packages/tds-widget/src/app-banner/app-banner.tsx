@@ -74,7 +74,7 @@ type Props = {
   onCtaClick?: (e?: SyntheticEvent) => void
 } & LayeringMixinProps
 
-function AppBanner({
+export function AppBanner({
   title,
   description,
   cta,
@@ -109,5 +109,3 @@ function AppBanner({
     </AppBannerFrame>
   )
 }
-
-export default AppBanner
