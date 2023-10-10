@@ -200,7 +200,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   ${paddingMixin}
 `
 
-class ListingFilter extends PureComponent<{
+export class ListingFilter extends PureComponent<{
   children?: ReactNode
   padding?: MarginPadding
 }> {
@@ -221,5 +221,3 @@ class ListingFilter extends PureComponent<{
     return <ListingFilterBase padding={padding}>{children}</ListingFilterBase>
   }
 }
-
-export default ListingFilter

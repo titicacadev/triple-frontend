@@ -98,7 +98,7 @@ interface ContentElementProps {
   title: string
 }
 
-function RecommendedContents<T extends ContentElementProps>({
+export function RecommendedContents<T extends ContentElementProps>({
   contents: contentsData,
   margin,
   onContentClick,
@@ -175,5 +175,3 @@ function RecommendedContents<T extends ContentElementProps>({
     </RecommendedContentsContainer>
   )
 }
-
-export default RecommendedContents
