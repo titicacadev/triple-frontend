@@ -1,5 +1,5 @@
 import { useEffect, useId } from 'react'
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 import {
   FloatingFocusManager,
   FloatingPortal,

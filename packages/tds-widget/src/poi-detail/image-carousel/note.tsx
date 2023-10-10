@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 const NoteContainer = styled.div<{
   warning?: boolean

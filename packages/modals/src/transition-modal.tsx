@@ -1,7 +1,7 @@
 import { ComponentType, FC, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text, Modal } from '@titicaca/tds-ui'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -9,7 +9,6 @@ import {
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
-import { Modal } from '@titicaca/tds-ui'
 
 type ShowTransitionModal = (type: TransitionType) => void
 

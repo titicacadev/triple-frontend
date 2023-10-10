@@ -9,7 +9,7 @@ import {
   H3,
   FlexBox,
   FlexBoxItem,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { MouseEvent } from 'react'
 
 const ExternalLinkEntry = styled(List.Item)`

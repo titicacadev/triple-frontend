@@ -6,7 +6,7 @@ import {
   PoiListElementProps,
   PoiListElementType,
 } from '@titicaca/poi-list-elements'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 

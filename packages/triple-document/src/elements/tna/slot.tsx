@@ -1,6 +1,6 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Container, H1, List, Button } from '@titicaca/core-elements'
+import { Container, H1, List, Button } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
 import { useTheme } from 'styled-components'

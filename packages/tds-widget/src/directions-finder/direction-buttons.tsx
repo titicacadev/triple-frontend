@@ -6,7 +6,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, ButtonGroup } from '@titicaca/core-elements'
+import { Button, ButtonGroup } from '@titicaca/tds-ui'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'

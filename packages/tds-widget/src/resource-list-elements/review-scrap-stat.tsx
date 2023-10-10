@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import { Container, Rating } from '@titicaca/core-elements'
+import { Container, Rating } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import ResourceListElementStats from './resource-list-element-stats'
