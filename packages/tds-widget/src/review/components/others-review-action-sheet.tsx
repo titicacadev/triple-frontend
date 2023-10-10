@@ -1,4 +1,4 @@
-import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
