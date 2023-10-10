@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 const ShareIcon = styled.img`
   margin: 0 5px;

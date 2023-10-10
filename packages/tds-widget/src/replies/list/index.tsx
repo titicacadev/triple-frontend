@@ -1,4 +1,4 @@
-import { Container, HR1, List, Text } from '@titicaca/core-elements'
+import { Container, HR1, List, Text } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Confirm } from '@titicaca/tds-ui'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'

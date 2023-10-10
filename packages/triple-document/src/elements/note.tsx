@@ -1,4 +1,4 @@
-import { Segment, Text } from '@titicaca/core-elements'
+import { Segment, Text } from '@titicaca/tds-ui'
 
 export default function Note({
   value: { title, body },

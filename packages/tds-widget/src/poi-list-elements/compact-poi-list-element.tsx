@@ -4,7 +4,7 @@ import {
   SquareImage,
   ResourceListItem,
   Container,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import {

@@ -7,7 +7,7 @@ import {
   Rating,
   Icon,
   TextTitle,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
   useEventTrackingContext,
   useHistoryFunctions,

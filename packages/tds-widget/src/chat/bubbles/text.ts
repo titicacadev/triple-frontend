@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
   blue: '#d7e9ff',
