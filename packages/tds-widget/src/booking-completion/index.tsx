@@ -64,7 +64,7 @@ const GrayButton = styled(Button)`
 /**
  * 항공/호텔/TNA에서 예약이 최종적으로 완료 되었을 때 보여주는 페이지입니다.
  */
-function BookingCompletion({
+export function BookingCompletion({
   title,
   myBookingButtonTitle,
   compact = false,
@@ -184,5 +184,3 @@ function BookingCompletion({
     </>
   )
 }
-
-export default BookingCompletion

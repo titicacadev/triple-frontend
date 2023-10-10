@@ -40,7 +40,7 @@ const KEY_CODE_ENTER = 13
 /**
  * 상단에는 검색 Navbar, 하단에는 Navbar이벤트를 통해 검색결과를 그릴수 있도록 제공해주는 컴포넌트 입니다.
  */
-function FullScreenSearchView({
+export function FullScreenSearchView({
   children,
   onDelete,
   onAutoComplete,
@@ -192,5 +192,3 @@ function FullScreenSearchView({
     </>
   )
 }
-
-export default FullScreenSearchView

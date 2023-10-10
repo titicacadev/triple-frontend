@@ -46,7 +46,7 @@ const EVENT_LABELS: { [key in NearByPoiType]: string } = {
 const DEFAULT_PAGE_SIZE = 3
 const SUBSEQUENT_PAGE_SIZE = 10
 
-function NearbyPois({
+export function NearbyPois({
   poiId,
   regionId,
   initialTab,
@@ -208,5 +208,3 @@ function NearbyPois({
     </Section>
   )
 }
-
-export default NearbyPois
