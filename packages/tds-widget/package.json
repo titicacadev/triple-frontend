@@ -39,12 +39,55 @@
       "eslint"
     ]
   },
+  "dependencies": {
+    "@egjs/flicking": "^3.9.3",
+    "@egjs/react-flicking": "^3.8.3",
+    "@titicaca/fetcher": "workspace:*",
+    "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-hooks": "workspace:*",
+    "@titicaca/router": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
+    "@titicaca/type-definitions": "workspace:*",
+    "@titicaca/ui-flow": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
+    "@titicaca/web-storage": "workspace:*",
+    "autolinker": "^4.0.0",
+    "graphql-request": "^6.1.0",
+    "graphql": "^16.8.0",
+    "moment": "^2.29.4",
+    "qs": "^6.11.2",
+    "react-day-picker": "^7.4.10",
+    "react-transition-group": "^4.4.5",
+    "scroll-to-element": "^2.0.3"
+  },
   "devDependencies": {
+    "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
+    "@graphql-codegen/typescript-operations": "4.0.1",
+    "@graphql-codegen/typescript": "4.0.1",
+    "@titicaca/i18n": "workspace:*",
+    "@titicaca/next-i18next": "^13.8.5",
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-triple-client-interfaces": "workspace:*",
+    "@titicaca/tds-theme": "workspace:*",
+    "@types/qs": "^6.9.8",
+    "@types/react-transition-group": "^4.4.6",
+    "csstype": "^3.1.2",
+    "next": "^13.4.13",
+    "react-query": "^3.39.3",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
+    "@titicaca/i18n": "*",
+    "@titicaca/next-i18next": "*",
+    "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
+    "@titicaca/tds-theme": "*",
+    "next": "^13.4.13",
     "react": "^18.0",
+    "react-query": "^3.39.3",
     "styled-components": "^5.3.9"
   }
 }
