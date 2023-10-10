@@ -18,7 +18,7 @@ const LinkBreak = styled(Container)`
   height: 0;
 `
 
-function DirectionButtons({
+export function DirectionButtons({
   onDirectionsClick,
   primaryName,
   localName,
@@ -109,5 +109,3 @@ function DirectionButtons({
     </>
   )
 }
-
-export default DirectionButtons
