@@ -1,5 +1,5 @@
 import { ComponentType, useCallback, useMemo } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { initialize } from '@titicaca/standard-action-handler'
 import styled, { css } from 'styled-components'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'

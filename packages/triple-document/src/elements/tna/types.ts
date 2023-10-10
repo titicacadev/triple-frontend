@@ -1,5 +1,5 @@
 import { CSSProperties, SyntheticEvent } from 'react'
-import { TagColors } from '@titicaca/core-elements'
+import { TagColors } from '@titicaca/tds-ui'
 
 type Price = string | number
 

@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import { Container, HR1, Text } from '@titicaca/core-elements'
+import { Container, HR1, Text } from '@titicaca/tds-ui'
 
 export default function NotExistReplies() {
   const { t } = useTranslation('common-web')
