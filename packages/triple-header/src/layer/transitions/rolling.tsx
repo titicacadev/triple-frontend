@@ -7,7 +7,7 @@ import {
   Fragment,
   useMemo,
 } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 
 const RollingContainer = styled(Container)<{ isTransition: boolean }>`

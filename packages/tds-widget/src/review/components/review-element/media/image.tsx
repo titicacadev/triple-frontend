@@ -1,4 +1,4 @@
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 

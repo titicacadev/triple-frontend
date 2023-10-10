@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { rest } from 'msw'
 import { useEffect } from 'react'

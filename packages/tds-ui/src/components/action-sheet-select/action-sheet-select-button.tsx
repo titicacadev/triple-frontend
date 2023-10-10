@@ -5,7 +5,7 @@ import {
   FormFieldLabel,
   Text,
   useFormField,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { HTMLAttributes, forwardRef } from 'react'
 import { useMergeRefs } from '@floating-ui/react'
 

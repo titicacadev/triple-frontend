@@ -1,5 +1,5 @@
 import { useCallback, SyntheticEvent } from 'react'
-import { Text, Paragraph } from '@titicaca/core-elements'
+import { Text, Paragraph } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'

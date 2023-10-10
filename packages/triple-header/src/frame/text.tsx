@@ -1,4 +1,4 @@
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 import { MotionContainer } from '../motion-container'
 import { Link, LinkEventHandler } from '../types'

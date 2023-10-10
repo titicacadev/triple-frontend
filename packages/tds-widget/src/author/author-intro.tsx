@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 const Html = styled.div`
   line-height: 1.43;

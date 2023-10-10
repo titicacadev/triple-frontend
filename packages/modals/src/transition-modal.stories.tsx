@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 
 import {
   TransitionModal,

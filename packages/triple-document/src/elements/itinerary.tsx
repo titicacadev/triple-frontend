@@ -8,7 +8,7 @@ import {
   FlexBox,
   FlexBoxItem,
   Button,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import type {
   TransportationType,
   Itinerary,

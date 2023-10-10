@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { List, Spinner } from '@titicaca/core-elements'
+import { List, Spinner } from '@titicaca/tds-ui'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 

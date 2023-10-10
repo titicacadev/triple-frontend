@@ -1,4 +1,4 @@
-import { GlobalColors } from '@titicaca/core-elements'
+import { GlobalColors } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
