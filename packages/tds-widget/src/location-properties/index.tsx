@@ -1,1 +1,1 @@
-export { default } from './location-properties'
+export * from './location-properties'
