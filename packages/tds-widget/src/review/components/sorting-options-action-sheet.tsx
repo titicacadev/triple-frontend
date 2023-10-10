@@ -1,4 +1,4 @@
-import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 
 import { useReviewSortingOptions } from './sorting-context'

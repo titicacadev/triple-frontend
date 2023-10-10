@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import { Text } from '@titicaca/core-elements'
-import { Modal, Alert } from '@titicaca/modals'
+import { Modal, Alert } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'

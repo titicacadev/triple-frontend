@@ -1,4 +1,4 @@
-import { ActionSheet } from '@titicaca/action-sheet'
+import { ActionSheet } from '@titicaca/tds-ui'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import CopyActionSheetItem from './copy-action-sheet-item'
