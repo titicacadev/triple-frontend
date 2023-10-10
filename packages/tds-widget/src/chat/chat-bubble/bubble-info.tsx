@@ -1,6 +1,6 @@
 import moment from 'moment'
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;

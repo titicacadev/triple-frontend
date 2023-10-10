@@ -1,4 +1,4 @@
-import { Section, Container } from '@titicaca/core-elements'
+import { Section, Container } from '@titicaca/tds-ui'
 
 import Carousel, { CarouselProps } from './carousel'
 import Placeholder from './placeholder'

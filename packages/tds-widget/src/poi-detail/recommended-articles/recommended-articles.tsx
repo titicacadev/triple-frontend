@@ -5,7 +5,7 @@ import {
   Container,
   H1,
   formatMarginPadding,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'

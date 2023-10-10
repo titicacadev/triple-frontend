@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 
 import { TextPayload, ImagePayload, RichPayload } from '../types'
 

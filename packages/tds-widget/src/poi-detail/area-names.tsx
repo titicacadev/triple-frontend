@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 const AreaContainer = styled(Container)`
   padding-left: 20px;

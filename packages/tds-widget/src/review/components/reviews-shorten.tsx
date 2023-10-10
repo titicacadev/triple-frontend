@@ -1,6 +1,6 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
-import { FlexBox, Section, Text } from '@titicaca/core-elements'
+import { FlexBox, Section, Text } from '@titicaca/tds-ui'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'

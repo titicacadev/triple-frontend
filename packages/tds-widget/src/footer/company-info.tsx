@@ -5,7 +5,7 @@ import {
   Text,
   FlexBox,
   AccordionTitle,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
   useEventTrackingContext,
   useSessionAvailability,

@@ -1,7 +1,4 @@
-import {
-  ImageCarouselElementContainer,
-  ImageCaption,
-} from '@titicaca/core-elements'
+import { ImageCarouselElementContainer, ImageCaption } from '@titicaca/tds-ui'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'

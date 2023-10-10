@@ -1,8 +1,4 @@
-import {
-  Container,
-  MarginPadding,
-  safeAreaInsetMixin,
-} from '@titicaca/core-elements'
+import { Container, MarginPadding, safeAreaInsetMixin } from '@titicaca/tds-ui'
 import { PropsWithChildren, ReactNode, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
