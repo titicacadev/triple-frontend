@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
-    "@titicaca/core-elements": "workspace:*",
     "@titicaca/router": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/type-definitions": "workspace:*"
   },
   "devDependencies": {

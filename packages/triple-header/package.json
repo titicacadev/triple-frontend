@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
