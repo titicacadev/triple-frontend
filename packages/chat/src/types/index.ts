@@ -56,7 +56,7 @@ export interface RoomInterface {
   members: UserInterface[]
   isDirect: boolean
   createdAt: string
-  metadata: RoomMetadata
+  metadata?: RoomMetadata
 }
 
 export type DisplayTargetAll = 'all'
