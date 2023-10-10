@@ -5,7 +5,9 @@ import styled from 'styled-components'
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
 const TextHtml = styled(Text)`
-  line-height: 1.63;
+  color: var(--color-kint5-gray100);
+  font-weight: 400;
+  line-height: normal;
   white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
 
   p {
@@ -16,17 +18,12 @@ const TextHtml = styled(Text)`
     margin-top: 0;
   }
 
-  strong {
-    color: var(--color-gray);
-  }
-
   /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
   && {
     a {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: bold;
-      color: #2987f0;
-      text-decoration: underline;
+      color: var(--color-kint5-brand1);
     }
   }
 `
@@ -67,7 +64,6 @@ export default function TextElement({
     return (
       <TextHtml
         margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
-        alpha={0.9}
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         onClick={handleClick}
         {...props}
@@ -78,6 +74,11 @@ export default function TextElement({
   return (
     <Paragraph
       margin={compact ? { top: 4 } : { top: 10, left: 30, right: 30 }}
+      css={{
+        lineHeight: 'normal',
+        color: 'var(--color-kint5-gray100)',
+        fontWeight: 400,
+      }}
       {...props}
     >
       {text}
