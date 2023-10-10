@@ -1,5 +1,5 @@
 import { FC, useRef, useEffect, useState } from 'react'
-import { formatMarginPadding, MarginPadding } from '@titicaca/core-elements'
+import { formatMarginPadding, MarginPadding } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'

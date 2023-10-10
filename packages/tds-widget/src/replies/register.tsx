@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
+import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 import { useLoginCtaModal } from '@titicaca/modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useSessionCallback } from '@titicaca/ui-flow'

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 
 export default styled(Button)`
   width: 100%;

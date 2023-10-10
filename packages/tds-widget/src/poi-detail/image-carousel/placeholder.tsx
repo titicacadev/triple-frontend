@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
-import { Text, Responsive } from '@titicaca/core-elements'
+import { Text, Responsive } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
 
 import { PoiType } from './carousel-section'

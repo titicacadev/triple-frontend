@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Text, Container, Image } from '@titicaca/core-elements'
+import { Text, Container, Image } from '@titicaca/tds-ui'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
 import { Carousel, CarouselSizes } from '@titicaca/carousel'
