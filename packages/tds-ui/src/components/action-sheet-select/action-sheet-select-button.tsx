@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import { HTMLAttributes, forwardRef } from 'react'
+import { useMergeRefs } from '@floating-ui/react'
+
 import {
   FormFieldError,
   FormFieldHelp,
   FormFieldLabel,
-  Text,
   useFormField,
-} from '@titicaca/tds-ui'
-import { HTMLAttributes, forwardRef } from 'react'
-import { useMergeRefs } from '@floating-ui/react'
+} from '../form-field'
+import { Text } from '../text'
 
 import { useActionSheetSelect } from './action-sheet-select-context'
 
