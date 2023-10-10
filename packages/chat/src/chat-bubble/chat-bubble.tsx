@@ -22,8 +22,8 @@ interface ChatBubbleProps {
   displayTarget: UserType
   postMessageAction?: PostMessageActionType
   disableUnreadCount?: boolean
-  onRetryButtonClick?: () => void
-  onRetryCancelButtonClick?: () => void
+  onRetryButtonClick?: (message: MessageInterface) => void
+  onRetryCancelButtonClick?: (message: MessageInterface) => void
   blindedText?: string
   bubbleColor?: ChatBubbleColor
 }
@@ -79,7 +79,7 @@ const ChatBubble = ({
     !!postMessageAction
 
   const onRetry = () => {
-    onRetryButtonClick?.()
+    onRetryButtonClick?.(message)
     return postMessageAction?.(
       message.payload as TextPayload | ImagePayload,
       true,
@@ -87,7 +87,7 @@ const ChatBubble = ({
   }
 
   const onCancel = () => {
-    onRetryCancelButtonClick?.()
+    onRetryCancelButtonClick?.(message)
   }
 
   return (
