@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
-import { Text } from '@titicaca/tds-ui'
+
+import { Text } from '../text'
 
 import { useModal } from './modal-context'
 
