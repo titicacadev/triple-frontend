@@ -1,8 +1,13 @@
 import { ReactNode } from 'react'
-import { Text, Container, Image } from '@titicaca/tds-ui'
+import {
+  Text,
+  Container,
+  Image,
+  Carousel,
+  CarouselSizes,
+} from '@titicaca/tds-ui'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
-import { Carousel, CarouselSizes } from '@titicaca/carousel'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'
