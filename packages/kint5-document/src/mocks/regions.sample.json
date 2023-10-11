@@ -1,0 +1,83 @@
+[
+  {
+    "id": "71476976-cf9a-4ae8-a60f-76e6fb26900d",
+    "type": "region",
+    "source": {
+      "names": {
+        "ko": "오사카",
+        "en": "Osaka",
+        "local": "Osaka"
+      },
+      "style": {
+        "logoImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/f47677bb-88cd-4c7f-af98-b9e2ff099e87.png",
+        "backgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/b005f18c-00db-449d-af7f-cc9feb61a8be.jpeg",
+        "backgroundVideoUrl": "https://media.triple.guide/triple-cms/video/upload/c_limit,h_1024,w_1024/a6651e5d-0128-4c2e-b931-c78ee2629ccb.mp4",
+        "backgroundImageThumbUrl": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/b005f18c-00db-449d-af7f-cc9feb61a8be.jpeg",
+        "blurredBackgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/cc6d208a-55dc-40bc-8f01-11503363e724.png"
+      }
+    },
+    "regionCategory": {
+      "id": "eb6a6dca-d2f3-4475-bfa6-93bdf783750d",
+      "name": "일본"
+    },
+    "zoneIds": [],
+    "state": "NORMAL",
+    "updatedAt": "2023-07-25T05:04:03.956Z",
+    "createdAt": "2023-03-02T09:47:20.007Z"
+  },
+  {
+    "id": "42a59364-5008-4307-99ce-4ae97cf1aea9",
+    "type": "region",
+    "source": {
+      "names": {
+        "ko": "부산",
+        "en": "Busan",
+        "local": ""
+      },
+      "style": {
+        "logoImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/f63e7bd4-a93b-4376-922e-bdf805446fe5.png",
+        "backgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/9cd2e606-5f35-4b10-b16d-3da669ffedaa.jpeg",
+        "backgroundVideoUrl": "https://media.triple.guide/triple-cms/video/upload/c_limit,h_1024,w_1024/eb75cb62-8beb-4f87-b292-a96526455e2b.mp4",
+        "backgroundImageThumbUrl": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/9cd2e606-5f35-4b10-b16d-3da669ffedaa.jpeg",
+        "blurredBackgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/41c9338e-d3f1-4097-bca5-11b9e1c1f2cb.png"
+      }
+    },
+    "regionCategory": {
+      "id": "19ac0dda-8654-4273-aca7-d7d4e50c90bc",
+      "name": "대한민국"
+    },
+    "zoneIds": [
+      "41658134-233f-4b30-adad-ea58ace7c71b",
+      "41658134-233f-4b30-adad-ea58ace7c71b"
+    ],
+    "state": "NORMAL",
+    "updatedAt": "2023-05-02T06:40:51.783Z",
+    "createdAt": "2023-03-02T09:47:20.084Z"
+  },
+  {
+    "id": "0176f62b-eaf5-4d4d-87d6-843e6dec30e5",
+    "type": "region",
+    "source": {
+      "names": {
+        "ko": "뉴욕",
+        "en": "New York",
+        "local": "New York"
+      },
+      "style": {
+        "logoImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/6a76e28b-e3fb-40aa-8892-b6dca3f03609.png",
+        "backgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/b2472410-28eb-4655-9dd5-acc3511bd1e9.jpeg",
+        "backgroundVideoUrl": "https://media.triple.guide/triple-cms/video/upload/c_limit,h_1024,w_1024/09c7b80d-13a5-40e4-86aa-391da2efe78b.mp4",
+        "backgroundImageThumbUrl": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/b2472410-28eb-4655-9dd5-acc3511bd1e9.jpeg",
+        "blurredBackgroundImageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/fce7474a-65d7-4703-a7ab-bbcd9d9e0541.png"
+      }
+    },
+    "regionCategory": {
+      "id": "ae6b7833-3462-48a5-8173-622b2442fa8a",
+      "name": "미주"
+    },
+    "zoneIds": [],
+    "state": "NORMAL",
+    "updatedAt": "2023-03-10T04:43:42.559Z",
+    "createdAt": "2023-03-02T09:47:20.176Z"
+  }
+]
