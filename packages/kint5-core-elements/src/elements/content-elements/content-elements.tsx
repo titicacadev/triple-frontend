@@ -73,12 +73,10 @@ export const FluidSquareImage = styled.div<{ src?: string }>`
 `
 
 export const SimpleLink = styled.a`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
-  color: #2987f0;
-
-  /* HACK: global-style의 underline 설정보다 우선하도록 수정 */
-  && {
-    text-decoration: underline;
-  }
+  color: var(--color-kint5-brand1);
+  padding-right: 12px;
+  background: url('https://assets.triple-dev.titicaca-corp.com/images/ic-arrow-1-line-24.svg')
+    no-repeat 100% 50%;
 `
