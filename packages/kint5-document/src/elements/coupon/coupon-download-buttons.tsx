@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/kint5-core-elements'
 import styled from 'styled-components'
 import {
   useHistoryFunctions,

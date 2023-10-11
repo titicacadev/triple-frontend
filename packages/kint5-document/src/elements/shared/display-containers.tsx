@@ -5,7 +5,7 @@ import {
   Container,
   ImageBlockElementContainer,
   ImageCarouselElementContainer,
-} from '@titicaca/core-elements'
+} from '@titicaca/kint5-core-elements'
 
 import DocumentCarousel from './document-carousel'
 

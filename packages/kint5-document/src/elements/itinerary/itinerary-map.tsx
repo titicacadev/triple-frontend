@@ -1,5 +1,5 @@
 import { useCallback, MouseEvent } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/kint5-core-elements'
 import {
   MapView,
   HotelCircleMarker,
