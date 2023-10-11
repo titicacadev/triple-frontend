@@ -57,7 +57,16 @@ const BlockContainer = styled.div<{ compact?: boolean }>`
 
 function ButtonLink({ children, ...props }: PropsWithChildren<ButtonProps>) {
   return (
-    <Button bold color="blue" {...props}>
+    <Button
+      css={{
+        backgroundColor: 'var(--color-kint5-brand1)',
+        borderRadius: 12,
+        fontSize: 14,
+        color: 'var(--color-kint5-gray0)',
+        textAlign: 'center',
+      }}
+      {...props}
+    >
       {children}
     </Button>
   )
@@ -70,13 +79,20 @@ function BlockLink({
 }: PropsWithChildren<ButtonProps & Link>) {
   return (
     <Button
-      basic={level !== 'primary'}
       fluid
-      size="small"
-      compact={!(level === 'primary' || level === 'secondary')}
-      color={level === 'primary' ? 'blue' : 'gray'}
-      borderRadius={4}
-      margin={{ top: 10 }}
+      css={{
+        fontSize: 14,
+        backgroundColor:
+          level === 'primary'
+            ? 'var(--color-kint5-brand1)'
+            : 'var(--color-kint5-gray20)',
+        color:
+          level === 'primary'
+            ? 'var(--color-kint5-gray0)'
+            : 'var(--color-kint5-gray100)',
+        borderRadius: 12,
+        marginTop: 10,
+      }}
       {...props}
     >
       {children}
