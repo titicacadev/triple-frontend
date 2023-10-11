@@ -8,7 +8,7 @@ import {
   FlexBox,
   FlexBoxItem,
   Button,
-} from '@titicaca/core-elements'
+} from '@titicaca/kint5-core-elements'
 import type {
   TransportationType,
   Itinerary,

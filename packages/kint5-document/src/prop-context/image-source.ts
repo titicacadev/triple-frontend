@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSourceType } from '@titicaca/kint5-core-elements'
 
 const ImageSourceContext = createContext<ImageSourceType | undefined>(undefined)
 

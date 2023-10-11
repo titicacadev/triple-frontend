@@ -3,7 +3,7 @@ import {
   ContainerProps,
   Table as TableView,
   TableProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/kint5-core-elements'
 
 export default function Table({
   value: { table },

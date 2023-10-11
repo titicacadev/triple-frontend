@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/kint5-core-elements'
 
 import { TripleElementData, Link } from '../types'
 

@@ -1,4 +1,4 @@
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/kint5-core-elements'
 import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
 

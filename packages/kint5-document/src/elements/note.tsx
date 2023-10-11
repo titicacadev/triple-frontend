@@ -1,4 +1,4 @@
-import { Segment, Text } from '@titicaca/core-elements'
+import { Segment, Text } from '@titicaca/kint5-core-elements'
 
 export default function Note({
   value: { title, body },

@@ -1,6 +1,6 @@
 import { ComponentType, SyntheticEvent } from 'react'
 import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
-import { ImageSourceType } from '@titicaca/core-elements'
+import { ImageSourceType } from '@titicaca/kint5-core-elements'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'

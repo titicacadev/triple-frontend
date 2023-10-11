@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Text, Container } from '@titicaca/core-elements'
+import { Text, Container } from '@titicaca/kint5-core-elements'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { VerificationType } from '@titicaca/user-verification'
 

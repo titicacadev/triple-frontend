@@ -812,9 +812,6 @@ importers:
       '@titicaca/content-type-definitions':
         specifier: 8.12.0
         version: 8.12.0
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
