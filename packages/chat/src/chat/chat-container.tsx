@@ -17,7 +17,7 @@ const ScrollProvider = dynamic(() => import('./scroll-context'), {
 
 export interface ChatContainerProps extends ChatContextValue {
   /**
-   * Chat list와 보내기 Input 창을 감싸는 컨테이너로, 커스텀 스타일 등 적용 가능
+   * Chat list를 감싸는 컨테이너로, 커스텀 스타일 등 적용 가능
    */
   container: ElementType
   /**
