@@ -5,7 +5,7 @@ import {
   PoiCarouselElement,
   PoiListElementProps,
   PoiListElementType,
-} from '@titicaca/poi-list-elements'
+} from '@titicaca/kint5-poi-list-elements'
 import { Text } from '@titicaca/core-elements'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'

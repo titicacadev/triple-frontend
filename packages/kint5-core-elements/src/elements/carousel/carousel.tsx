@@ -6,7 +6,7 @@ import { MarginPadding, CarouselSizes } from '../../commons'
 import { marginMixin } from '../../mixins'
 
 const CAROUSEL_WIDTH_SIZES = {
-  small: '140px',
+  small: '136px',
   medium: '153px',
   large: '270px',
   big: '275px',

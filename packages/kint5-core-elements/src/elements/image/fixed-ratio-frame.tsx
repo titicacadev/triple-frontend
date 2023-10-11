@@ -50,12 +50,14 @@ export function ImageFixedRatioFrame({
   frame = 'small',
   floated,
   margin,
+  borderRadius: borderRadiusProp,
   onClick,
   children,
 }: PropsWithChildren<{
   frame?: FrameRatioAndSizes
   floated?: CSS.Property.Float
   margin?: MarginPadding
+  borderRadius?: number
   onClick?: MouseEventHandler
 }>) {
   const { borderRadius } = useImageState()
@@ -67,7 +69,7 @@ export function ImageFixedRatioFrame({
       frame={frame}
       overflowHidden={!originalFrame}
       floated={floated}
-      borderRadius={borderRadius}
+      borderRadius={borderRadiusProp ?? borderRadius}
       margin={margin}
       onClick={onClick}
     >

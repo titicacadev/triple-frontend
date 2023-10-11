@@ -30,7 +30,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
   description,
   additionalInfo = null,
   carouselSize,
-  titleTopSpacing = 10,
+  titleTopSpacing = 12,
   imageFrame,
   onImpress,
   optimized,
@@ -60,7 +60,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
       onImpress={onImpress}
     >
       <Image>
-        <Image.FixedRatioFrame frame={imageFrame || 'large'}>
+        <Image.FixedRatioFrame frame={imageFrame || 'large'} borderRadius={14}>
           {image ? (
             optimized ? (
               <Image.OptimizedImg
@@ -69,7 +69,11 @@ function PoiCarouselElement<T extends PoiListElementType>({
                 alt={name || ''}
               />
             ) : (
-              <Image.Img src={image.sizes.large.url} alt={name || ''} />
+              <Image.Img
+                src={image.sizes.large.url}
+                alt={name || ''}
+                css={{ borderRadius: 14 }}
+              />
             )
           ) : (
             <Image.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
@@ -77,13 +81,30 @@ function PoiCarouselElement<T extends PoiListElementType>({
         </Image.FixedRatioFrame>
       </Image>
 
-      <Text bold ellipsis alpha={1} margin={{ top: titleTopSpacing }}>
+      <Text
+        ellipsis
+        css={{ fontSize: 14, fontWeight: 700, marginTop: titleTopSpacing }}
+      >
         {name}
       </Text>
-      <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
+      <Text
+        css={{
+          fontSize: 13,
+          fontWeight: 400,
+          color: 'var(--color-kint5-gray60)',
+          marginTop: 8,
+        }}
+      >
         {description || getTypeNames(type)}
       </Text>
-      <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
+      <Text
+        css={{
+          fontSize: 13,
+          fontWeight: 400,
+          color: 'var(--color-kint5-gray60)',
+          marginTop: 4,
+        }}
+      >
         {regionName
           ? areas?.[0]?.name
             ? `${regionName}(${areas?.[0]?.name})`
