@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 import {
   Text,
   SquareImage,
-  ResourceListItem,
   Container,
-} from '@titicaca/core-elements'
+  FlexBox,
+  List,
+} from '@titicaca/kint5-core-elements'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
 import {
@@ -21,7 +22,7 @@ interface CompactPoiListElementBaseProps<T extends PoiListElementType>
 
 export type CompactPoiListElementProps<T extends PoiListElementType> =
   CompactPoiListElementBaseProps<T> &
-    Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
+    Partial<Pick<Parameters<typeof Container>['0'], 'as'>>
 
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string
@@ -57,35 +58,58 @@ export function CompactPoiListElement<T extends PoiListElementType>({
   const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
 
   return (
-    <ResourceListItem onClick={onClick}>
+    <List.Item
+      onClick={onClick}
+      css={{
+        display: 'flex',
+        gap: 12,
+        ':not(:last-child)': { marginBottom: 20 },
+      }}
+    >
       <SquareImage
-        floated="left"
         size="small"
         src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS_SMALL[type]}
         alt={name || ''}
+        borderRadius={12}
       />
-      <Text
-        bold
-        ellipsis
-        alpha={1}
-        margin={{ left: 50, right: actionButtonWidth }}
-        padding={{ right: 40 }}
+      <FlexBox
+        flex
+        css={{
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          gap: 8,
+        }}
       >
-        {name}
-      </Text>
-      <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
-        {[
-          getTypeNames(type),
-          regionName
-            ? areas?.[0]?.name
-              ? `${regionName}(${areas?.[0]?.name})`
-              : regionName
-            : areas?.[0]?.name || vicinity,
-        ]
-          .filter(Boolean)
-          .join(' · ')}
-      </Text>
-
+        <Text
+          ellipsis
+          css={{
+            fontSize: 14,
+            fontWeight: 700,
+            marginRight: actionButtonWidth,
+          }}
+        >
+          {name}
+        </Text>
+        <Text
+          css={{
+            fontSize: 13,
+            fontWeight: 400,
+            color: 'var(--color-kint5-gray60)',
+          }}
+        >
+          {[
+            getTypeNames(type),
+            regionName
+              ? areas?.[0]?.name
+                ? `${regionName}(${areas?.[0]?.name})`
+                : regionName
+              : areas?.[0]?.name || vicinity,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
+        </Text>
+      </FlexBox>
       {actionButtonElement ? (
         <div ref={actionButtonRef}>{actionButtonElement}</div>
       ) : (
@@ -99,6 +123,6 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           <OutlineScrapButton resource={poi} size={34} />
         </Container>
       )}
-    </ResourceListItem>
+    </List.Item>
   )
 }
