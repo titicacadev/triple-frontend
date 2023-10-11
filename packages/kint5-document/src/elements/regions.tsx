@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { ResourceListItem, Image } from '@titicaca/core-elements'
+import { List, Text } from '@titicaca/kint5-core-elements'
 
 import { RegionData } from '../types'
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
@@ -34,28 +34,10 @@ export default function Regions({
   )
 }
 
-const Name = styled.div`
-  float: left;
-  margin-left: 10px;
-  height: 40px;
-  line-height: 40px;
-  text-align: left center;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3a3a3a;
-`
-
-const Action = styled.div`
-  position: absolute;
-  top: 7px;
-  right: 0;
-  padding: 8px 17px 7px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: bold;
-  color: #3a3a3a;
-  border-radius: 17px;
-  background-color: #fafafa;
+const Image = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
 `
 
 export function RegionListElement({
@@ -74,15 +56,37 @@ export function RegionListElement({
     } = value
 
     return (
-      <ResourceListItem key={id} onClick={onClick}>
-        <Image.Circular
-          size="small"
-          floated="left"
-          src={style && style.backgroundImageUrl}
-        />
-        <Name>{nameOverride || names.ko || names.en || names.local}</Name>
-        <Action>{t(['barogagi', '바로가기'])}</Action>
-      </ResourceListItem>
+      <List.Item
+        key={id}
+        onClick={onClick}
+        css={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          cursor: 'pointer',
+          position: 'relative',
+          ':not(:last-child)': { marginBottom: 20 },
+        }}
+      >
+        <Image src={style && style.backgroundImageUrl} />
+        <Text css={{ fontSize: 14, fontWeight: 700 }}>
+          {nameOverride || names.ko || names.en || names.local}
+        </Text>
+        <Text
+          css={{
+            fontSize: 14,
+            fontWeight: 700,
+            color: 'var(--color-kint5-brand1)',
+            position: 'absolute',
+            right: 0,
+            paddingRight: 12,
+            background:
+              "url('https://assets.triple-dev.titicaca-corp.com/images/ic-arrow-1-line-24.svg') no-repeat 100% 50%",
+          }}
+        >
+          {t(['barogagi', '바로가기'])}
+        </Text>
+      </List.Item>
     )
   }
 
