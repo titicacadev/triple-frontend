@@ -190,77 +190,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/action-sheet:
-    dependencies:
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/carousel:
-    dependencies:
-      '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
-      '@egjs/react-flicking':
-        specifier: ^3.8.3
-        version: 3.8.3
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/constants: {}
-
-  packages/core-elements:
-    dependencies:
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      '@titicaca/tds-theme':
-        specifier: workspace:*
-        version: link:../tds-theme
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/drawer-button:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/fetcher:
     dependencies:
@@ -321,12 +251,12 @@ importers:
       '@react-google-maps/api':
         specifier: ^2.19.2
         version: 2.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -373,9 +303,6 @@ importers:
 
   packages/modals:
     dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/tds-ui':
         specifier: workspace:*
         version: link:../tds-ui
@@ -398,19 +325,6 @@ importers:
       utility-types:
         specifier: ^3.10.0
         version: 3.10.0
-
-  packages/popup:
-    dependencies:
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/react-contexts:
     dependencies:
@@ -582,25 +496,6 @@ importers:
         specifier: ^18.6.4
         version: 18.6.4
 
-  packages/slider:
-    dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      react-compound-slider:
-        specifier: ^3.4.0
-        version: 3.4.0(react@18.2.0)
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/standard-action-handler:
     dependencies:
       '@titicaca/router':
@@ -646,9 +541,9 @@ importers:
 
   packages/static-map:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
     devDependencies:
       '@titicaca/type-definitions':
         specifier: workspace:*
@@ -686,15 +581,18 @@ importers:
 
   packages/tds-ui:
     dependencies:
+      '@egjs/flicking':
+        specifier: ^3.9.3
+        version: 3.9.3
+      '@egjs/react-flicking':
+        specifier: ^3.8.3
+        version: 3.8.3
       '@floating-ui/react':
         specifier: ^0.25.4
         version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
       '@titicaca/content-utilities':
         specifier: ^8.12.0
         version: 8.12.0
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -704,6 +602,9 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
+      react-compound-slider:
+        specifier: ^3.4.0
+        version: 3.4.0(react@18.2.0)
       react-input-mask:
         specifier: ^2.0.4
         version: 2.0.4(react-dom@18.2.0)(react@18.2.0)
@@ -835,15 +736,9 @@ importers:
 
   packages/triple-document:
     dependencies:
-      '@titicaca/carousel':
-        specifier: workspace:*
-        version: link:../carousel
       '@titicaca/content-type-definitions':
         specifier: 8.11.0
         version: 8.11.0
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -865,6 +760,9 @@ importers:
       '@titicaca/standard-action-handler':
         specifier: workspace:*
         version: link:../standard-action-handler
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/tds-widget':
         specifier: workspace:*
         version: link:../tds-widget
@@ -911,9 +809,9 @@ importers:
 
   packages/triple-email-document:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -933,15 +831,15 @@ importers:
 
   packages/triple-header:
     dependencies:
-      '@titicaca/core-elements':
-        specifier: workspace:*
-        version: link:../core-elements
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
       '@titicaca/standard-action-handler':
         specifier: workspace:*
         version: link:../standard-action-handler
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -973,9 +871,9 @@ importers:
 
   packages/triple-media:
     dependencies:
-      '@titicaca/core-elements':
+      '@titicaca/tds-ui':
         specifier: workspace:*
-        version: link:../core-elements
+        version: link:../tds-ui
       '@titicaca/tds-widget':
         specifier: workspace:*
         version: link:../tds-widget
