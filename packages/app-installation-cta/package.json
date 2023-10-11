@@ -57,7 +57,7 @@
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "workspace:*",
-    "@types/react-transition-group": "^4.4.6",
+    "@types/react-transition-group": "^4.4.7",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
