@@ -1,7 +1,7 @@
 import {
   ImageCarouselElementContainer,
   ImageCaption,
-} from '@titicaca/core-elements'
+} from '@titicaca/kint5-core-elements'
 import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'
@@ -54,7 +54,7 @@ export default function Images({
         return (
           <ElementContainer key={i}>
             <TripleMedia
-              frame="small"
+              frame="large"
               optimized={optimized}
               borderRadius={isOnlyImage ? 0 : undefined}
               autoPlay={videoAutoPlay}

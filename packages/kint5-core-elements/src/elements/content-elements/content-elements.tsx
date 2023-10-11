@@ -6,15 +6,11 @@ import { List } from '../list'
 export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
   vertical-align: top;
-  width: calc(100% - 60px);
-  margin-left: 15px;
+  width: 100%;
+  max-width: 343px;
 
-  &:first-child {
-    margin-left: 30px;
-  }
-
-  &:last-child {
-    margin-right: 30px;
+  &:not(:first-child) {
+    margin-left: 12px;
   }
 `
 
