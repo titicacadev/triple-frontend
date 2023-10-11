@@ -8,7 +8,7 @@ interface HrProps {
 export const HR1 = styled.div<HrProps>`
   margin: 50px 30px;
   height: 1px;
-  background-color: ${({ color }) => color || '#efefef'};
+  background-color: ${({ color }) => color || 'var(--color-kint5-gray20)'};
 
   ${({ compact }) =>
     compact &&
@@ -19,8 +19,8 @@ export const HR1 = styled.div<HrProps>`
 
 export const HR2 = styled.div<HrProps>`
   margin: 50px 0;
-  height: 10px;
-  background-color: #efefef;
+  height: 8px;
+  background-color: var(--color-kint5-gray20);
 
   ${({ compact }) =>
     compact &&
@@ -36,29 +36,29 @@ export const HR3 = styled.div<{ height?: number }>`
 
 export const HR4 = styled.div`
   margin: 40px auto;
-  width: 130px;
-  height: 37px;
+  width: 50px;
+  height: 50px;
   background-repeat: no-repeat;
-  background-size: 130px 37px;
-  background-image: url('https://assets.triple.guide/images/img-line1@2x.png');
+  background-size: 50px 50px;
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-document-line1.svg');
 `
 
 export const HR5 = styled.div`
-  margin: 40px auto;
-  width: 130px;
-  height: 37px;
+  margin: 30px auto;
+  width: 50px;
+  height: 6px;
   background-repeat: no-repeat;
-  background-size: 130px 37px;
-  background-image: url('https://assets.triple.guide/images/img-line2@2x.png');
+  background-size: 50px 6px;
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-document-line2.svg');
 `
 
 export const HR6 = styled.div`
   margin: 40px auto;
-  width: 130px;
-  height: 37px;
+  width: 102px;
+  height: 6px;
   background-repeat: no-repeat;
-  background-size: 130px 37px;
-  background-image: url('https://assets.triple.guide/images/img-line3@2x.png');
+  background-size: 102px 6px;
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-document-line3.svg');
 `
 
 export const HR7 = styled.div<HrProps>`
