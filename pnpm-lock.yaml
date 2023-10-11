@@ -824,6 +824,9 @@ importers:
       '@titicaca/kint5-core-elements':
         specifier: workspace:*
         version: link:../kint5-core-elements
+      '@titicaca/kint5-poi-list-elements':
+        specifier: workspace:*
+        version: link:../kint5-poi-list-elements
       '@titicaca/map':
         specifier: workspace:*
         version: link:../map
@@ -885,6 +888,43 @@ importers:
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
+  packages/kint5-poi-list-elements:
+    dependencies:
+      '@titicaca/core-elements':
+        specifier: workspace:*
+        version: link:../core-elements
+      '@titicaca/kint5-core-elements':
+        specifier: workspace:*
+        version: link:../kint5-core-elements
+      '@titicaca/resource-list-element':
+        specifier: workspace:*
+        version: link:../resource-list-element
+      '@titicaca/scrap-button':
+        specifier: workspace:*
+        version: link:../scrap-button
+      '@titicaca/type-definitions':
+        specifier: workspace:*
+        version: link:../type-definitions
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2285,7 +2325,7 @@ packages:
     resolution: {integrity: sha512-8Dl6+HD/cKifutF5qGd/8ZJi84QeAKh+CEe1sBzz8UayBBGg1dAIJrdHOcOM5b2MpzWL2yuotJTtGjETq0qjXg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.22.5
+      '@babel/types': 7.22.11
 
   /@babel/helper-module-transforms@7.22.9(@babel/core@7.22.11):
     resolution: {integrity: sha512-t+WA2Xn5K+rTeGtC8jCsdAH52bjggG5TKRuRrAGNM/mjIbO4GxvlLMFOEz9wXY5I2XQ60PMFsAG2WIcG82dQMQ==}
