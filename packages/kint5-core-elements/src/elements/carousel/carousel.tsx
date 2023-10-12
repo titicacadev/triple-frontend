@@ -53,10 +53,13 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   display: inline-block;
   position: relative;
   width: ${({ size }) => CAROUSEL_WIDTH_SIZES[size || 'small']};
-  margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
   vertical-align: top;
   white-space: normal;
   cursor: pointer;
+
+  &:not(:first-child) {
+    margin-left: ${({ size }) => CAROUSEL_LEFT_SPACING_SIZES[size || 'small']};
+  }
 `
 
 export function CarouselItem({
