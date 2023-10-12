@@ -7,7 +7,6 @@ export const ImageCarouselElementContainer = styled.div`
   display: inline-block;
   vertical-align: top;
   width: 100%;
-  max-width: 343px;
 
   &:not(:first-child) {
     margin-left: 12px;
