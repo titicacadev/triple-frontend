@@ -52,7 +52,7 @@ export function H1({
         bold
         size="huge"
         css={{
-          ...(emphasize && { color: 'var(--color-blue' }),
+          ...(emphasize && { color: 'var(--color-blue)' }),
           ...textCss,
         }}
       >
