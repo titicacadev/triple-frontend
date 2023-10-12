@@ -11,7 +11,6 @@ import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
 import ELEMENTS from './elements'
 import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
 import MOCK_ITINERARY from './mocks/triple-document.itinerary.json'
-import MOCK_REGIONS from './mocks/triple-document.regions.json'
 import SAMPLE from './mocks/triple-document.sample.json'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { TripleDocument } from './triple-document'
@@ -31,11 +30,7 @@ const resources = {
 }
 
 const {
-  text: Text,
-  note: Note,
-  video: Video,
   table: Table,
-  regions: Regions,
   embedded: Embedded,
   anchor: Anchor,
   itinerary: Itinerary,
@@ -71,43 +66,6 @@ export const Sample: StoryObj<typeof TripleDocument> = {
   ),
 }
 
-export const TextExample: StoryObj<typeof Text> = {
-  name: '텍스트',
-  render: () => (
-    <>
-      <Text value={{ text: '텍스트: medium 16 80%' }} />
-      <Text
-        value={{
-          rawHTML: '텍스트 <a href="/regions/:regionId">Inline link</a>',
-        }}
-      />
-      <Text bold value={{ text: '강조 텍스트: bold 16 100%' }} alpha={1} />
-    </>
-  ),
-}
-
-export const NoteExample: StoryObj<typeof Note> = {
-  name: '노트',
-  render: (args) => <Note value={args.value} />,
-  args: {
-    value: {
-      body: '목적지로 바로 가지 않고, 중간 지점에서 잠시 머무는 단기 체류를 뜻한다. 보통 경유 시간인 3-4시간 정도가 아니라 24시간 이상을 뜻하기 때문에 관광과 숙박이 가능한 것이 특징. 일부 항공사는 스탑오버시 무료 관광을 제공하니 참고할것!',
-      title: '잠깐! 스탑오버(Stopover)란?',
-    },
-  },
-}
-
-export const VideoExample: StoryObj<typeof Video> = {
-  name: '비디오',
-  render: (args) => <Video value={args.value} />,
-  args: {
-    value: {
-      provider: 'youtube',
-      identifier: 'hYIe4VrfHoA',
-    },
-  },
-}
-
 export const TableExample: StoryObj<typeof Table> = {
   name: '표',
   render: (args) => <Table value={args.value} />,
@@ -127,14 +85,6 @@ export const TableExample: StoryObj<typeof Table> = {
         ],
       },
     },
-  },
-}
-
-export const RegionExample: StoryObj<typeof Regions> = {
-  name: '리전',
-  render: (args) => <Regions value={args.value} />,
-  args: {
-    value: { regions: MOCK_REGIONS },
   },
 }
 
