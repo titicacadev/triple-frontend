@@ -46,6 +46,7 @@ function EmbeddedImage({
         {...props}
       >
         <TripleMedia
+          frame="large"
           optimized={optimized}
           media={image}
           ImageSource={ImageSource}
