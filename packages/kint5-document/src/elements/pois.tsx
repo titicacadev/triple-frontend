@@ -46,8 +46,6 @@ export default function Pois<T extends ExtendedPoiListElementData>({
   const onResourceClick = useResourceClickHandler()
 
   const Container = display === 'list' ? ResourceList : DocumentCarousel
-  const margin =
-    display === 'list' ? { top: 20, left: 30, right: 30 } : { top: 20 }
   const Element =
     display === 'list'
       ? function WrappedPoiListElement(
@@ -58,7 +56,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
       : PoiCarouselElement
 
   return (
-    <Container margin={margin}>
+    <Container margin={{ top: 20 }}>
       {pois.map((poi) => (
         <Element
           key={poi.id}
