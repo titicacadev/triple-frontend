@@ -8,7 +8,6 @@ import { jaCommonWeb } from '@titicaca/i18n/src/assets/ja/common-web'
 import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
 
 import ELEMENTS from './elements'
-import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
 import MOCK_ITINERARY from './mocks/triple-document.itinerary.json'
 import SAMPLE from './mocks/triple-document.sample.json'
 import { TripleDocument } from './triple-document'
@@ -27,12 +26,7 @@ const resources = {
   },
 }
 
-const {
-  table: Table,
-  embedded: Embedded,
-  anchor: Anchor,
-  itinerary: Itinerary,
-} = ELEMENTS
+const { table: Table, anchor: Anchor, itinerary: Itinerary } = ELEMENTS
 
 export default {
   title: 'kint5-document / Kint5Document',
@@ -82,14 +76,6 @@ export const TableExample: StoryObj<typeof Table> = {
         ],
       },
     },
-  },
-}
-
-export const EmbeddedExample: StoryObj<typeof Embedded> = {
-  name: '임베딩',
-  render: (args) => <Embedded value={args.value} />,
-  args: {
-    value: MOCK_EMBEDDED,
   },
 }
 
