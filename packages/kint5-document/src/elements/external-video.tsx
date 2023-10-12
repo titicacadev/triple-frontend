@@ -3,9 +3,9 @@ import { borderRadiusMixin } from '@titicaca/kint5-core-elements'
 
 const VideoContainer = styled.div<{ borderRadius: number }>`
   position: relative;
-  margin: 30px 30px 0;
+  margin: 30px 0 0;
   height: 0;
-  padding-bottom: 56.25%;
+  padding-bottom: 66.667%;
   ${borderRadiusMixin}
 `
 
@@ -23,7 +23,7 @@ export default function ExternalVideo({
   value: { provider: string; identifier: string }
 }) {
   return provider === 'youtube' ? (
-    <VideoContainer borderRadius={6}>
+    <VideoContainer borderRadius={12}>
       <VideoPlayer
         className="chromatic-ignore"
         src={`https://www.youtube.com/embed/${identifier}?rel=0&amp;showinfo=0`}
