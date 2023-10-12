@@ -16,7 +16,7 @@ import { safeParseHexColor } from './utils'
 const DEFAULT_COLOR = {
   buttonText: DEFAULT_BUTTON_COLOR.text,
   buttonBackground: DEFAULT_BUTTON_COLOR.background,
-  description: '#3a3a3a80',
+  description: 'var(--color-kint5-gray60)',
 }
 
 export default function Coupon({
@@ -92,13 +92,13 @@ export default function Coupon({
       {description ? (
         <Text
           css={{
+            fontSize: 14,
+            fontWeight: 400,
+            marginTop: 16,
             color: safeParseHexColor(
               color.description || DEFAULT_COLOR.description,
             ),
           }}
-          margin={{ top: 13 }}
-          lineHeight={1.46}
-          size="tiny"
         >
           {description}
         </Text>

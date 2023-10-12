@@ -41,8 +41,8 @@ const BaseCouponDownloadButton = styled(Button)`
 const MAX_COUPONS_PER_USER_ERROR_CODE = 'MAX_COUPONS_PER_USER'
 
 export const DEFAULT_BUTTON_COLOR = {
-  background: '#368fff',
-  text: '#ffffff',
+  background: 'var(--color-kint5-brand1)',
+  text: 'var(--color-kint5-gray0)',
 }
 
 function useDownloadTimePassed(time: string | undefined) {
