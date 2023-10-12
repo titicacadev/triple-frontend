@@ -5,9 +5,5 @@ export default function DocumentCarousel({
   margin,
   children,
 }: PropsWithChildren<{ margin?: MarginPadding }>) {
-  return (
-    <Carousel margin={margin} containerPadding={{ left: 30, right: 30 }}>
-      {children}
-    </Carousel>
-  )
+  return <Carousel margin={margin}>{children}</Carousel>
 }
