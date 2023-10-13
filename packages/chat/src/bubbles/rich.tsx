@@ -44,7 +44,7 @@ export function RichBubble({
   cloudinaryName,
   mediaUrlBase,
   onImageBubbleClick,
-  bubbleColor,
+  bubbleStyle,
 }: {
   my: boolean
   items: (TextPayload | ImagePayload | ButtonPayload)[]
@@ -54,7 +54,12 @@ export function RichBubble({
   cloudinaryName: string
   mediaUrlBase: string
   onImageBubbleClick?: (imageInfos: MetaDataInterface[]) => void
-  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
+  bubbleStyle?: {
+    backgroundColor: BackgroundColor
+    textColor: string
+    linkColor?: string
+    linkUnderline?: boolean
+  }
 }) {
   return (
     <TextBubble
@@ -62,7 +67,7 @@ export function RichBubble({
       size={textBubbleFontSize}
       maxWidthOffset={textBubbleMaxWidthOffset}
       margin={my ? { left: 8 } : undefined}
-      bubbleColor={bubbleColor}
+      bubbleStyle={bubbleStyle}
     >
       {items.map((item, index) => {
         switch (item.type) {

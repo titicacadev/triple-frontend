@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { TextPayload, ImagePayload, RichPayload } from '../types'
-import { ChatBubbleColor } from '../types/ui'
+import { ChatBubbleStyle } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -124,7 +124,7 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
    */
   onCancel?: () => void
-  bubbleColor?: ChatBubbleColor
+  bubbleStyle?: ChatBubbleStyle
 }
 
 export function ChatBubbleUI({
@@ -137,11 +137,11 @@ export function ChatBubbleUI({
   blindedAt,
   blindedText,
   onRetry,
-  bubbleColor,
+  bubbleStyle,
 }: ChatBubbleUIProps) {
   switch (type) {
     case 'sent': {
-      const sentBubbleColor = bubbleColor?.sent
+      const sentBubbleStyle = bubbleStyle?.sent
       return (
         <SentChatContainer
           createdAt={createdAt}
@@ -152,13 +152,13 @@ export function ChatBubbleUI({
             <BlindedBubble
               my
               blindedText={blindedText}
-              bubbleColor={
-                sentBubbleColor
+              bubbleStyle={
+                sentBubbleStyle
                   ? {
-                      ...sentBubbleColor,
+                      ...sentBubbleStyle,
                       textColor:
-                        sentBubbleColor.textColor.blinded ||
-                        sentBubbleColor.textColor.normal,
+                        sentBubbleStyle.textColor.blinded ||
+                        sentBubbleStyle.textColor.normal,
                     }
                   : undefined
               }
@@ -167,11 +167,13 @@ export function ChatBubbleUI({
             <BubblePayload
               payload={payload}
               my
-              bubbleColor={
-                sentBubbleColor
+              bubbleStyle={
+                sentBubbleStyle
                   ? {
-                      ...sentBubbleColor,
-                      textColor: sentBubbleColor.textColor.normal,
+                      ...sentBubbleStyle,
+                      textColor: sentBubbleStyle.textColor.normal,
+                      linkColor: sentBubbleStyle.link?.color,
+                      linkUnderline: sentBubbleStyle.link?.underline,
                     }
                   : undefined
               }
@@ -181,7 +183,7 @@ export function ChatBubbleUI({
       )
     }
     case 'received': {
-      const receivedBubbleColor = bubbleColor?.received
+      const receivedBubbleStyle = bubbleStyle?.received
       return (
         <ReceivedChatContainer
           unreadCount={unreadCount}
@@ -193,13 +195,13 @@ export function ChatBubbleUI({
             <BlindedBubble
               my={false}
               blindedText={blindedText}
-              bubbleColor={
-                receivedBubbleColor
+              bubbleStyle={
+                receivedBubbleStyle
                   ? {
-                      ...receivedBubbleColor,
+                      ...receivedBubbleStyle,
                       textColor:
-                        receivedBubbleColor.textColor.blinded ||
-                        receivedBubbleColor.textColor.normal,
+                        receivedBubbleStyle.textColor.blinded ||
+                        receivedBubbleStyle.textColor.normal,
                     }
                   : undefined
               }
@@ -208,11 +210,13 @@ export function ChatBubbleUI({
             <BubblePayload
               payload={payload}
               my={false}
-              bubbleColor={
-                receivedBubbleColor
+              bubbleStyle={
+                receivedBubbleStyle
                   ? {
-                      ...receivedBubbleColor,
-                      textColor: receivedBubbleColor.textColor.normal,
+                      ...receivedBubbleStyle,
+                      textColor: receivedBubbleStyle.textColor.normal,
+                      linkColor: receivedBubbleStyle.link?.color,
+                      linkUnderline: receivedBubbleStyle.link?.underline,
                     }
                   : undefined
               }

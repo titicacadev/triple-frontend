@@ -8,10 +8,15 @@ import { BackgroundColor } from '../types/ui'
 interface BubblePayloadProps {
   payload: TextPayload | ImagePayload | RichPayload
   my: boolean
-  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
+  bubbleStyle?: {
+    backgroundColor: BackgroundColor
+    textColor: string
+    linkColor?: string
+    linkUnderline?: boolean
+  }
 }
 
-const BubblePayload = ({ payload, my, bubbleColor }: BubblePayloadProps) => {
+const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
   const {
     textBubbleFontSize,
     textBubbleMaxWidthOffset,
@@ -39,7 +44,7 @@ const BubblePayload = ({ payload, my, bubbleColor }: BubblePayloadProps) => {
           size={textBubbleFontSize}
           maxWidthOffset={textBubbleMaxWidthOffset}
           margin={my ? { left: 8 } : undefined}
-          bubbleColor={bubbleColor}
+          bubbleStyle={bubbleStyle}
         >
           <div
             onClick={onTextBubbleClick}
@@ -64,7 +69,7 @@ const BubblePayload = ({ payload, my, bubbleColor }: BubblePayloadProps) => {
           cloudinaryName={cloudinaryName}
           mediaUrlBase={mediaUrlBase}
           onImageBubbleClick={onImageBubbleClick}
-          bubbleColor={bubbleColor}
+          bubbleStyle={bubbleStyle}
         />
       )
     default:
