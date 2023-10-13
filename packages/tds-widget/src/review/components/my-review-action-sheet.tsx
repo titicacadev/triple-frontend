@@ -1,6 +1,5 @@
-import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
+import { ActionSheet, ActionSheetItem, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Confirm } from '@titicaca/tds-ui'
 import {
   useHistoryFunctions,
   useUriHash,

@@ -1,7 +1,15 @@
 import { useState, useCallback } from 'react'
 import { useTranslation, getTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Container, FlexBox, List, SquareImage, Text } from '@titicaca/tds-ui'
+import {
+  Container,
+  FlexBox,
+  List,
+  SquareImage,
+  Text,
+  ActionSheet,
+  ActionSheetItem,
+} from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
@@ -11,7 +19,6 @@ import {
   useHistoryFunctions,
   useIsomorphicNavigation,
 } from '@titicaca/react-contexts'
-import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'

@@ -1,7 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Modal } from '@titicaca/tds-ui'
-import { Text } from '@titicaca/tds-ui'
+import { Modal, Text } from '@titicaca/tds-ui'
 
 import { useUserVerification } from './use-user-verification'
 

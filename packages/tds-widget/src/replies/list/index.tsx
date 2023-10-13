@@ -1,6 +1,5 @@
-import { Container, HR1, List, Text } from '@titicaca/tds-ui'
+import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Confirm } from '@titicaca/tds-ui'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
