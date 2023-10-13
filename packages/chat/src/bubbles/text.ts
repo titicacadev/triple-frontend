@@ -45,7 +45,12 @@ export const TextBubble = styled(Text).attrs({
 })<{
   maxWidthOffset: number
   my: boolean
-  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
+  bubbleStyle?: {
+    backgroundColor: BackgroundColor
+    textColor: string
+    linkColor?: string
+    linkUnderline?: boolean
+  }
 }>`
   border-radius: 10px;
   position: relative;
@@ -55,8 +60,10 @@ export const TextBubble = styled(Text).attrs({
     white-space: pre-wrap;
 
     > a {
-      color: var(--color-blue) !important;
-      text-decoration: none !important;
+      color: ${({ bubbleStyle }) =>
+        bubbleStyle?.linkColor || 'var(--color-blue)'} !important;
+      text-decoration: ${({ bubbleStyle }) =>
+        bubbleStyle?.linkUnderline ? 'underline' : 'none'} !important;
     }
   }
 
@@ -67,22 +74,22 @@ export const TextBubble = styled(Text).attrs({
     position: absolute;
     top: 5px;
     background-size: 10px 17px;
-    background-image: url(${({ my, bubbleColor }) =>
+    background-image: url(${({ my, bubbleStyle }) =>
       `${getBackgroundImage(
-        bubbleColor?.backgroundColor || getDefaultBackgroundColor(my),
+        bubbleStyle?.backgroundColor || getDefaultBackgroundColor(my),
       )}`});
   }
 
   ${({ maxWidthOffset }) => `max-width: calc(100% - ${maxWidthOffset}px);`}
-  background-color: ${({ my, bubbleColor }) =>
+  background-color: ${({ my, bubbleStyle }) =>
     `${
       BACKGROUND_COLORS[
-        bubbleColor?.backgroundColor || getDefaultBackgroundColor(my)
+        bubbleStyle?.backgroundColor || getDefaultBackgroundColor(my)
       ]
     }`};
   ${({ my }) => css`
     ${TAIL_POSITION_STYLE_MAP[my ? 'right' : 'left']}
   `}
-  color: ${({ bubbleColor }) =>
-    `${bubbleColor?.textColor || 'var(--color-gray)'}`}
+  color: ${({ bubbleStyle }) =>
+    `${bubbleStyle?.textColor || 'var(--color-gray)'}`}
 `
