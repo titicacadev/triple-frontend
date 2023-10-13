@@ -16,7 +16,6 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import ResourceList from './shared/resource-list'
 
 const LinksContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '0' : '0 30px')};
   margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
   margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
 
