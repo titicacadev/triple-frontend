@@ -29,7 +29,7 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
 `
 
 const ButtonContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
+  margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 0 0')};
   text-align: center;
 
   a,
@@ -51,7 +51,7 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
 `
 
 const BlockContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '30px 30px 0 30px')};
+  margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '30px 0 0')};
   text-align: center;
 `
 
