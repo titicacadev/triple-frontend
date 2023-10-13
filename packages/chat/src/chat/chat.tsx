@@ -19,7 +19,7 @@ import {
 } from '../types'
 import ChatBubble from '../chat-bubble'
 import { HiddenElement } from '../chat-bubble/elements'
-import { ChatBubbleColor } from '../types/ui'
+import { ChatBubbleStyle } from '../types/ui'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
 import { useChat } from './chat-context'
@@ -58,7 +58,7 @@ export interface ChatProps {
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
-  bubbleColor?: ChatBubbleColor
+  bubbleStyle?: ChatBubbleStyle
 }
 
 /**
@@ -82,7 +82,7 @@ export const Chat = ({
   updateChatData,
   disableUnreadCount = false,
   blindedText,
-  bubbleColor,
+  bubbleStyle,
   ...props
 }: ChatProps) => {
   const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
@@ -302,7 +302,7 @@ export const Chat = ({
                     onRetryCancelButtonClick={onRetryCancel}
                     disableUnreadCount={disableUnreadCount}
                     blindedText={blindedText}
-                    bubbleColor={bubbleColor}
+                    bubbleStyle={bubbleStyle}
                   />
                 </li>
               ))}
@@ -322,7 +322,7 @@ export const Chat = ({
                     onRetryCancelButtonClick={onRetryCancel}
                     disableUnreadCount={disableUnreadCount}
                     blindedText={blindedText}
-                    bubbleColor={bubbleColor}
+                    bubbleStyle={bubbleStyle}
                   />
                 </li>
               ))}

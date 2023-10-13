@@ -5,15 +5,19 @@ export interface BackgroundColorInterface {
   received: Extract<BackgroundColor, 'gray' | 'darkGray'>
 }
 
-export interface BubbleColor<T extends 'sent' | 'received'> {
+export interface BubbleStyle<T extends 'sent' | 'received'> {
   backgroundColor: BackgroundColorInterface[T]
   textColor: {
     normal: string
     blinded?: string
   }
+  link?: {
+    color?: string
+    underline?: boolean
+  }
 }
 
-export interface ChatBubbleColor {
-  sent: BubbleColor<'sent'>
-  received: BubbleColor<'received'>
+export interface ChatBubbleStyle {
+  sent: BubbleStyle<'sent'>
+  received: BubbleStyle<'received'>
 }

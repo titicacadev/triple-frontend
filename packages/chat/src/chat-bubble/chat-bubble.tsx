@@ -11,7 +11,7 @@ import {
   UserType,
 } from '../types'
 import { getProfileImageUrl } from '../utils'
-import { ChatBubbleColor } from '../types/ui'
+import { ChatBubbleStyle } from '../types/ui'
 
 import { ChatBubbleUI } from './chat-bubble-ui'
 
@@ -25,7 +25,7 @@ interface ChatBubbleProps {
   onRetryButtonClick?: (message: MessageInterface) => void
   onRetryCancelButtonClick?: (message: MessageInterface) => void
   blindedText?: string
-  bubbleColor?: ChatBubbleColor
+  bubbleStyle?: ChatBubbleStyle
 }
 
 const ChatBubble = ({
@@ -39,7 +39,7 @@ const ChatBubble = ({
   onRetryCancelButtonClick,
   disableUnreadCount = false,
   blindedText,
-  bubbleColor,
+  bubbleStyle,
 }: ChatBubbleProps) => {
   const otherUserInfo = useMemo(
     () => others.find((other) => other.id === senderId),
@@ -104,7 +104,7 @@ const ChatBubble = ({
       onCancel={onCancel}
       blindedAt={message.blindedAt}
       blindedText={blindedText}
-      bubbleColor={bubbleColor}
+      bubbleStyle={bubbleStyle}
     />
   )
 }

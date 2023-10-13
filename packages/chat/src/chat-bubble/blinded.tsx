@@ -15,11 +15,11 @@ const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
 export default function BlindedBubble({
   my,
   blindedText,
-  bubbleColor,
+  bubbleStyle,
 }: {
   my: boolean
   blindedText?: string
-  bubbleColor?: { backgroundColor: BackgroundColor; textColor: string }
+  bubbleStyle?: { backgroundColor: BackgroundColor; textColor: string }
 }) {
   const { textBubbleMaxWidthOffset } = useChat()
   return (
@@ -27,7 +27,7 @@ export default function BlindedBubble({
       maxWidthOffset={textBubbleMaxWidthOffset}
       my={my}
       margin={my ? { left: 8 } : undefined}
-      bubbleColor={bubbleColor}
+      bubbleStyle={bubbleStyle}
     >
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon
