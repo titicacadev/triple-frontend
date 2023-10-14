@@ -23,25 +23,17 @@ export interface TableProps extends TableBodyProps {
 }
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
-  header: '234, 234, 234',
-  body: '245, 245, 245',
+  header: 'var(--color-kint5-gray60)',
+  body: 'var(--color-kint5-gray10)',
 }
 
-const Container = styled.div<{ borderRadius?: number; borderLine?: boolean }>`
+const Container = styled.div<{ borderRadius?: number }>`
   overflow: hidden;
 
   ${({ borderRadius }) =>
     borderRadius &&
     css`
       border-radius: ${borderRadius}px;
-    `};
-
-  ${({ borderLine }) =>
-    borderLine &&
-    css`
-      & > div:not(:last-child) {
-        border-bottom: 1px solid rgb(${BACKGROUND_COLORS.header});
-      }
     `};
 `
 
@@ -89,15 +81,18 @@ const Column = styled.div<{
   ${({ type }) =>
     type &&
     css`
-      background-color: rgb(${BACKGROUND_COLORS[type || 'body']});
+      background-color: ${BACKGROUND_COLORS[type || 'body']};
     `};
 
   ${paddingMixin}
 `
 
 function HorizontalTable({ head, body }: TableBodyProps) {
+  const bodyRowCount = body.length
+  const bodyColumnCount = body[0].length
+
   return (
-    <Container borderLine borderRadius={6}>
+    <Container borderRadius={6}>
       <Row>
         {head.map(({ text }, idx) => (
           <Column
@@ -105,7 +100,13 @@ function HorizontalTable({ head, body }: TableBodyProps) {
             type="header"
             padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
           >
-            <Text bold size="small">
+            <Text
+              css={{
+                fontSize: 13,
+                fontWeight: 700,
+                color: 'var(--color-kint5-gray0)',
+              }}
+            >
               {text}
             </Text>
           </Column>
@@ -113,14 +114,26 @@ function HorizontalTable({ head, body }: TableBodyProps) {
       </Row>
 
       {body.map((columns, idx) => (
-        <Row key={idx}>
+        <Row
+          key={idx}
+          css={{
+            ...(idx < bodyRowCount - 1 && {
+              borderBottom: '1px solid var(--color-kint5-gray30)',
+            }),
+          }}
+        >
           {columns.map(({ text }, idx) => (
             <Column
               key={idx}
               type="body"
-              padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
+              css={{
+                padding: '12px 15px',
+                ...(idx < bodyColumnCount - 1 && {
+                  borderRight: '1px solid var(--color-kint5-gray30)',
+                }),
+              }}
             >
-              <Text size="small">{text}</Text>
+              <Text css={{ fontSize: 13, fontWeight: 400 }}>{text}</Text>
             </Column>
           ))}
         </Row>
