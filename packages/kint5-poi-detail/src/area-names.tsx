@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { Container, Text } from '@titicaca/kint5-core-elements'
 
 const AreaContainer = styled(Container)`
-  padding-left: 20px;
-  background-image: url('https://assets.triple.guide/images/ico-end-location@3x.png');
-  background-size: 16px 16px;
+  padding-left: 16px;
+  background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-location-1.svg');
+  background-size: 12px 12px;
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: left center;
 `
 
 interface Area {
@@ -30,7 +30,7 @@ export default function AreaNames({
 
   return names ? (
     <AreaContainer>
-      <Text size="tiny" bold margin={{ top: 10 }} alpha={0.8} lineHeight={1.38}>
+      <Text css={{ fontSize: 13, fontWeight: 400, marginTop: 12 }}>
         {names}
         {arrowAction}
       </Text>

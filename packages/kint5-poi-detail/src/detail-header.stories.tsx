@@ -32,9 +32,9 @@ export const Basic: StoryObj<typeof DetailHeader> = {
       local: '東京ディズニーランド',
     },
     areaName: '도쿄',
-    scrapsCount: 682,
+    scrapsCount: 12094,
     reviewsCount: 13859,
-    reviewsRating: 4.45,
+    reviewsRating: 3.6666666666666665,
   },
 }
 
