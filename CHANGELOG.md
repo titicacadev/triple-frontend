@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v13.7.0
+
+### chat
+
+- [Chat] message에 blinded 필드를 추가합니다. [#2886](https://github.com/titicacadev/triple-frontend/pull/2886)
+- [Chat] 전송 실패 메시지 처리 방식 변경 [#2938](https://github.com/titicacadev/triple-frontend/pull/2938)
+- [Chat] RoomMetadata의 타입을 변경합니다. [#2939](https://github.com/titicacadev/triple-frontend/pull/2939)
+- [Chat] 채팅 bubble의 link 스타일을 수정합니다. [#2944](https://github.com/titicacadev/triple-frontend/pull/2944)
+
 ## v13.6.0
 
 ### i18n
