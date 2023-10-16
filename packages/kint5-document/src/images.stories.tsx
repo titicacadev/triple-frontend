@@ -18,7 +18,7 @@ export const OneImage: StoryObj = {
       images: [
         {
           ...IMAGES[0],
-          frame: 'small',
+          frame: 'large',
           title: 'Kint5Document 샘플 1',
           sourceUrl: 'https://triple.guide',
         },
@@ -34,7 +34,7 @@ export const OneImageWithFrame: StoryObj = {
       images: [
         {
           ...IMAGES_FRAME[0],
-          frame: 'small',
+          frame: 'large',
           title: 'Kint5Document 샘플 1',
           sourceUrl: 'https://triple.guide',
         },

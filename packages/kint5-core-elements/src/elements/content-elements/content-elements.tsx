@@ -3,10 +3,15 @@ import * as CSS from 'csstype'
 
 import { List } from '../list'
 
-export const ImageCarouselElementContainer = styled.div`
+export const ImageCarouselElementContainer = styled.div<{ maxWidth?: number }>`
   display: inline-block;
   vertical-align: top;
   width: 100%;
+  ${({ maxWidth }) =>
+    maxWidth &&
+    css`
+      max-width: ${maxWidth}px;
+    `}
 
   &:not(:first-child) {
     margin-left: 12px;

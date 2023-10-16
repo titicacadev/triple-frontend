@@ -48,11 +48,16 @@ export default function Images({
   const handleClick = generateClickHandler(onLinkClick, onImageClick)
   const isOnlyImage = ['gapless-block', 'grid'].includes(display)
 
+  const isHorizontalLayout = display === undefined || display === 'default'
+
   return (
     <ImagesContainer images={images}>
       {images.map((image, i) => {
         return (
-          <ElementContainer key={i}>
+          <ElementContainer
+            key={i}
+            {...(isHorizontalLayout && images.length > 1 && { maxWidth: 320 })}
+          >
             <TripleMedia
               frame="large"
               optimized={optimized}
