@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Container } from '@titicaca/kint5-core-elements'
 
 import { TripleElementData, Link } from '../types'
@@ -6,25 +6,26 @@ import { TripleElementData, Link } from '../types'
 import { Text } from './text'
 import Links from './links'
 
-const BULLET_ICON_URLS: { [key: string]: string } = {
-  oval: 'https://assets.triple.guide/images/img-bullet-oval@3x.png',
-  check: 'https://assets.triple.guide/images/img-bullet-check@3x.png',
-}
-
 const ListItemContainer = styled.li<{ bulletType?: string }>`
   padding-left: 18px;
   text-indent: -18px;
 
   &::before {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    ${({ bulletType: name }) =>
-      `background-image: url(${BULLET_ICON_URLS[name || 'oval']});`}
-    background-size: 10px 10px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    content: '';
+    ${({ bulletType }) =>
+      bulletType === 'check'
+        ? css`
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-document-list-check.svg');
+            background-size: 10px 10px;
+            background-position: center center;
+            background-repeat: no-repeat;
+          `
+        : css`
+            content: '•';
+          `}
   }
 `
 
@@ -59,7 +60,7 @@ export default function List({
     <Container
       {...props}
       css={{
-        margin: '10px 30px 0',
+        margin: '10px 0 0',
       }}
     >
       <ul>
