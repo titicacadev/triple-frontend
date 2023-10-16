@@ -2,7 +2,13 @@ import { Autolinker } from 'autolinker'
 
 import { ImageBubble, RichBubble, TextBubble, ProductBubble } from '../bubbles'
 import { useChat } from '../chat'
-import { ImagePayload, MessageType, RichPayload, TextPayload } from '../types'
+import {
+  ImagePayload,
+  MessageType,
+  RichPayload,
+  TextPayload,
+  ProductPayload,
+} from '../types'
 import { BackgroundColor } from '../types/ui'
 
 interface BubblePayloadProps {
