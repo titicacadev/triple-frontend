@@ -4,9 +4,9 @@ import {
   Container,
   longClickable,
   Text,
-  Rating,
   Icon,
   TextTitle,
+  FlexBox,
 } from '@titicaca/kint5-core-elements'
 import {
   useEventTrackingContext,
@@ -80,6 +80,7 @@ function DetailHeader({
     <>
       <LongClickableSection
         onLongClick={app ? handleLongClick : undefined}
+        css={{ padding: '0 16px' }}
         {...props}
       >
         <TextTitle>{names.primary || names.ko || names.en}</TextTitle>
@@ -95,31 +96,57 @@ function DetailHeader({
         ) : null}
 
         {(reviewsCount > 0 || scrapsCount > 0) && (
-          <Container
+          <FlexBox
+            flex
             css={{
+              alignItems: 'center',
               margin: '10px 0 0',
             }}
           >
             {reviewsCount > 0 && (
-              <Text
-                inline
-                bold
-                size="mini"
-                alpha={1}
-                margin={{ right: 10 }}
-                onClick={onReviewsRatingClick}
+              <Container
+                css={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  marginRight: 8,
+                }}
               >
-                <Rating score={reviewsRating} />
-                {` ${formatNumber(reviewsCount)}`}
-              </Text>
+                <img
+                  src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ico-star-fill.svg"
+                  alt="Star icon"
+                  width={12}
+                  height={12}
+                />
+                <Text
+                  onClick={onReviewsRatingClick}
+                  css={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    margin: '1px 4px 0 2px',
+                  }}
+                >
+                  {reviewsRating.toFixed(2)}
+                </Text>
+                <Text css={{ fontSize: 13, fontWeight: 400, marginTop: 1 }}>
+                  ({formatNumber(reviewsCount)})
+                </Text>
+              </Container>
             )}
             {scrapsCount > 0 && (
-              <Text inline bold size="mini" alpha={1}>
+              <FlexBox flex css={{ alignItems: 'center', marginTop: 2 }}>
                 <Icon name="save" size="tiny" />
-                {` ${formatNumber(scrapsCount)}`}
-              </Text>
+                <Text
+                  css={{
+                    marginLeft: 2,
+                    fontSize: 13,
+                    fontWeight: 700,
+                  }}
+                >
+                  {formatNumber(scrapsCount)}
+                </Text>
+              </FlexBox>
             )}
-          </Container>
+          </FlexBox>
         )}
         <AreaNames areaName={areaName} areas={areas} vicinity={vicinity} />
       </LongClickableSection>
