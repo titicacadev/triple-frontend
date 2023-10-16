@@ -1,13 +1,7 @@
 import styled from 'styled-components'
 
 import { useChat } from '../chat'
-import {
-  MetaDataInterface,
-  MessageType,
-  ButtonPayload,
-  TextPayload,
-  ImagePayload,
-} from '../types'
+import { MessageType, ButtonPayload, TextPayload, ImagePayload } from '../types'
 import { BackgroundColor } from '../types/ui'
 
 import { ImageBubble } from './image'
