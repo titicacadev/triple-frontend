@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'pnpm'
+          # cache: 'pnpm'
 
       - name: Wait for CI
         uses: fountainhead/action-wait-for-check@v1.1.0
@@ -92,7 +92,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'pnpm'
+          # cache: 'pnpm'
 
       - name: Get release version
         run: echo "DEPLOY_VERSION=v$(cat ./lerna.json | jq -r '.version')" >> $GITHUB_ENV
@@ -213,7 +213,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
-          cache: 'pnpm'
+          # cache: 'pnpm'
 
       - name: Get release version
         env:
