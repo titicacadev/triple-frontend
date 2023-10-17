@@ -1,13 +1,6 @@
 import { SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
-import {
-  Container,
-  Image,
-  formatMarginPadding,
-  MEDIA_FRAME_OPTIONS,
-  marginMixin,
-} from '@titicaca/core-elements'
-import { FrameRatioAndSizes } from '@titicaca/type-definitions'
+import styled from 'styled-components'
+import { Container, Image, marginMixin } from '@titicaca/core-elements'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
 export interface ResponsiveVariant {
@@ -27,24 +20,17 @@ const Marker = styled.img`
   height: 30px;
 `
 
-const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
+const StaticMapContainer = styled.div`
   width: 100%;
   position: relative;
-  background: '#f5f5f5';
+  background: #f5f5f5;
   float: none;
-  border-radius: 6px;
+  border-radius: 16px;
   overflow: hidden;
 
   ${marginMixin};
 
-  ${({ frame }) =>
-    frame && frame !== 'original'
-      ? css`
-          ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS[frame] }, 'padding')}
-        `
-      : css`
-          ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS.small }, 'padding')}
-        `}
+  padding-top: 64.1%;
 `
 
 const StaticMapImage = styled.img`
@@ -79,7 +65,6 @@ function StaticMap({
   lat,
   lon,
   zoom = 16,
-  frame = 'mini',
   mapSize = '320x120',
   mapScale = '2',
   markerImage,
@@ -112,7 +97,7 @@ function StaticMap({
 
   return (
     <Container position="relative" onClick={onClick}>
-      <StaticMapContainer frame={srcSet ? undefined : frame}>
+      <StaticMapContainer>
         <StaticMapPicture>
           {srcSet ? (
             <source media="(min-width: 600px)" srcSet={srcSet} />
