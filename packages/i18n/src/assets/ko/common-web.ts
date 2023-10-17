@@ -195,4 +195,5 @@ export const koCommonWeb = {
   'sajin-dongyeongsang': '사진/동영상',
   'byeoljeom-nopeunsun': '별점 높은순',
   'byeoljeom-najeunsun': '별점 낮은순',
+  jjim: '찜',
 } as const

@@ -3,18 +3,47 @@ import styled from 'styled-components'
 import {
   Section,
   HR1,
-  Button,
   MarginPadding,
   Tooltip,
-  ButtonGroup,
+  FlexBox,
+  Text,
 } from '@titicaca/kint5-core-elements'
 import { useEffect, useState } from 'react'
 import { getWebStorage } from '@titicaca/web-storage'
 
-const ActionButton = styled(Button)`
+const ACTION_BUTTON_ICON_URLS = {
+  saveEmpty:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-heart-line-24.svg',
+  saveFilled: 'https://assets.triple.guide/images/btn-end-save-on@4x.png',
+  starEmpty:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-bubble-line-24.svg',
+  starFilled: 'https://assets.triple.guide/images/btn-end-review-on@4x.png',
+  map: 'https://assets.triple.guide/images/btn-end-search-place@2x.png',
+  share:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-share-line-24.svg',
+  schedule:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-calendar-2-line-24.svg',
+} as const
+
+type IconType = keyof typeof ACTION_BUTTON_ICON_URLS
+
+const ActionButton = styled.button<{ icon: IconType }>`
   position: relative;
-  padding-left: 0;
-  padding-right: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-kint5-gray60);
+  width: 45px;
+  background-size: 24px;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-image: ${({ icon }) => `url('${ACTION_BUTTON_ICON_URLS[icon]}')`};
+`
+
+const ActionButtonText = styled(Text)`
+  color: var(--color-kint5-gray60);
+  font-size: 13px;
+  font-weight: 400;
+  padding-top: 32px;
 `
 
 const ReviewTooltip = styled(Tooltip)`
@@ -68,27 +97,28 @@ function Actions({
 
   return (
     <Section {...props}>
-      <ButtonGroup
-        horizontalGap={22}
-        buttonCount={
-          [onScheduleAdd, onScrapedChange, onContentShare, onReviewEdit].filter(
-            Boolean,
-          ).length
-        }
+      <FlexBox
+        flex
+        css={{
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
         {onScrapedChange ? (
           <ActionButton
             icon={scraped ? 'saveFilled' : 'saveEmpty'}
             onClick={onScrapedChange}
           >
-            {scraped
-              ? t(['jeojangcwiso', '저장취소'])
-              : t(['jeojanghagi', '저장하기'])}
+            <ActionButtonText>
+              {scraped ? t(['jeojangcwiso', '저장취소']) : t(['jjim', '찜'])}
+            </ActionButtonText>
           </ActionButton>
         ) : null}
         {onScheduleAdd ? (
           <ActionButton icon="schedule" onClick={onScheduleAdd}>
-            {t(['iljeongcuga', '일정추가'])}
+            <ActionButtonText>
+              {t(['iljeongcuga', '일정추가'])}
+            </ActionButtonText>
           </ActionButton>
         ) : null}
         <ActionButton
@@ -108,14 +138,16 @@ function Actions({
               positioning={{ top: -26 }}
             />
           ) : null}
-          {reviewed
-            ? t(['ribyusujeong', '리뷰수정'])
-            : t(['ribyusseugi', '리뷰쓰기'])}
+          <ActionButtonText>
+            {reviewed
+              ? t(['ribyusujeong', '리뷰수정'])
+              : t(['ribyusseugi', '리뷰쓰기'])}
+          </ActionButtonText>
         </ActionButton>
         <ActionButton icon="share" onClick={onContentShare}>
-          {t(['gongyuhagi', '공유하기'])}
+          <ActionButtonText>{t(['gongyuhagi', '공유하기'])}</ActionButtonText>
         </ActionButton>
-      </ButtonGroup>
+      </FlexBox>
       {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}
     </Section>
   )
