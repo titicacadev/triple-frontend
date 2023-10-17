@@ -8,6 +8,7 @@ import copyToClipboard from './copy-to-clipboard'
 import newWindow from './new-window'
 import imageDownload from './image-download'
 import scrollToElement from './scroll-to-element'
+import converse from './converse'
 import { ContextOptions } from './types'
 
 export function initialize(options: ContextOptions) {
@@ -22,6 +23,7 @@ export function initialize(options: ContextOptions) {
       newWindow,
       imageDownload,
       scrollToElement,
+      converse,
     ],
     options,
   })
