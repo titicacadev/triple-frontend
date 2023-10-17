@@ -6,7 +6,9 @@ import { WebActionParams } from './types'
 const title = 'TEST'
 const description = '성공입니다.'
 
-export default function converse({ url: { path } = {} }: WebActionParams) {
+export default async function converse({
+  url: { path } = {},
+}: WebActionParams) {
   if (path === '/web-action/converse') {
     if (title && description) {
       const container = document.createElement('div')
@@ -19,6 +21,8 @@ export default function converse({ url: { path } = {} }: WebActionParams) {
       return true
     }
   }
+
+  return false
 }
 
 function OpenModal({
