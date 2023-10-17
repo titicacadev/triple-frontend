@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/core-elements": "workspace:*"
+    "@titicaca/kint5-core-elements": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/type-definitions": "workspace:*",

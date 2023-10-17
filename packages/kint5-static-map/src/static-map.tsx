@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { Container, Image, marginMixin } from '@titicaca/core-elements'
+import { Container, Image, marginMixin } from '@titicaca/kint5-core-elements'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
 export interface ResponsiveVariant {
