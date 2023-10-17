@@ -1547,6 +1547,9 @@ importers:
 
   packages/standard-action-handler:
     dependencies:
+      '@titicaca/modals':
+        specifier: workspace:*
+        version: link:../modals
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router

@@ -40,6 +40,7 @@
   "dependencies": {
     "@titicaca/router": "workspace:*",
     "@titicaca/scroll-to-element": "workspace:*",
+    "@titicaca/modals": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2"
