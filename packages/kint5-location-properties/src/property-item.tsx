@@ -57,7 +57,7 @@ export default function PropertyItem({
     <List.Item>
       <LongClickableItemContainer
         flex
-        alignItems="flex-start"
+        alignItems="center"
         gap="9px"
         onLongClick={app ? handleLongClick : undefined}
         onClick={onClick}
