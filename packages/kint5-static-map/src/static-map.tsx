@@ -27,10 +27,8 @@ const StaticMapContainer = styled.div`
   float: none;
   border-radius: 16px;
   overflow: hidden;
-
-  ${marginMixin};
-
   padding-top: 64.1%;
+  ${marginMixin};
 `
 
 const StaticMapImage = styled.img`
@@ -59,6 +57,8 @@ const MARKER_SOURCES: { [key: string]: string } = {
   attraction: 'https://assets.triple.guide/images/img_map_pin_sight@4x.png',
   tna: 'https://assets.triple.guide/images/img_map_pin_tna@4x.png',
 }
+
+const IMAGE_SRC_BASE_URL = 'https://triple.guide/api/maps/static-map'
 
 function StaticMap({
   type,
@@ -90,7 +90,7 @@ function StaticMap({
         mapScale: responsiveMapScale = 2,
         zoom: responsiveZoom = 13,
       }) => {
-        return `/api/maps/static-map?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
+        return `${IMAGE_SRC_BASE_URL}?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
       },
     )
     .join(', ')
@@ -103,7 +103,7 @@ function StaticMap({
             <source media="(min-width: 600px)" srcSet={srcSet} />
           ) : null}
           <StaticMapImage
-            src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
+            src={`${IMAGE_SRC_BASE_URL}?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
           />
         </StaticMapPicture>
       </StaticMapContainer>
