@@ -7,7 +7,6 @@ import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 const TextHtml = styled(Text)`
   color: var(--color-kint5-gray100);
   font-weight: 400;
-  line-height: normal;
   white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
 
   p {
@@ -74,7 +73,6 @@ export default function TextElement({
   return (
     <Paragraph
       css={{
-        lineHeight: 'normal',
         color: 'var(--color-kint5-gray100)',
         fontWeight: 400,
         margin: compact ? '4px 0 0' : '10px 0 0',
