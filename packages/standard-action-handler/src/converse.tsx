@@ -1,15 +1,20 @@
+import qs from 'qs'
 import { createRoot } from 'react-dom/client'
 import { Modal } from '@titicaca/modals'
 
 import { WebActionParams } from './types'
 
-const title = 'TEST'
-const description = '성공입니다.'
-
 export default async function converse({
-  url: { path } = {},
+  url: { path, query } = {},
 }: WebActionParams) {
-  if (path === '/web-action/converse') {
+  if (path === '/web-action/converse' && query) {
+    const { path: url } = qs.parse(query) as { path: string }
+
+    // 예시 코드
+    const { title, body: description } = (await fetch(url).then((response) => {
+      return response.json()
+    })) as { title: string; body: string }
+
     if (title && description) {
       const container = document.createElement('div')
       const root = createRoot(container)
