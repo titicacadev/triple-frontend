@@ -68,10 +68,14 @@ export const ProductInfo = ({
             }
           `}
         >
-          <Text color="gray500" size={13}>
+          <Text color="gray500" size={13} css={{ minWidth: '47px' }}>
             {title}
           </Text>
-          <Text color="gray700" size={13}>
+          <Text
+            color="gray700"
+            size={13}
+            css={{ maxWidth: 'calc(100% - 47px)' }}
+          >
             {label}
           </Text>
         </FlexBox>
