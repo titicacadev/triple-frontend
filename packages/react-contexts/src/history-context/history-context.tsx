@@ -106,6 +106,7 @@ export type HistoryProviderProps = PropsWithChildren<{
   initialHashStrategy?: HashStrategy
 }>
 
+/** @deprecated HashRouterContext를 이용해주세요 */
 export function HistoryProvider({
   transitionModalHash = '',
   loginCtaModalHash = '',
@@ -332,10 +333,12 @@ export function HistoryProvider({
   )
 }
 
+/** @deprecated useHashRouter를 이용해주세요 */
 export function useUriHash(): UriHash {
   return useContext(UriHashContext)
 }
 
+/** @deprecated useHashRouter를 이용해주세요 */
 export function useHistoryFunctions(): Omit<HistoryContextValue, 'uriHash'> {
   return useContext(HistoryFunctionsContext)
 }
@@ -348,6 +351,7 @@ export interface WithHistoryBaseProps {
   >
 }
 
+/** @deprecated HashRouterContext를 이용해주세요 */
 export function withHistory<P extends DeepPartial<WithHistoryBaseProps>>(
   Component: ComponentType<P>,
 ) {
