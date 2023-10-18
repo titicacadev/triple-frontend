@@ -6,7 +6,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, ButtonGroup } from '@titicaca/kint5-core-elements'
+import { Button, FlexBox } from '@titicaca/kint5-core-elements'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -41,27 +41,50 @@ function DirectionButtons({
 
   return (
     <>
-      <ButtonGroup horizontalGap={10}>
+      <FlexBox
+        flex
+        css={{
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          margin: '0 16px',
+        }}
+      >
         {localName && localAddress ? (
           <Button
-            basic
-            color="gray"
-            size="small"
             onClick={handleAskToLocalsClick}
+            css={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: 'var(--color-kint5-brand1)',
+              background: 'none',
+              margin: '0 0 20px 0',
+              padding: '0 12px 0 0',
+              backgroundImage:
+                "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')",
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right center',
+              backgroundSize: '12px 12px',
+            }}
           >
             {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
           </Button>
         ) : null}
         <Button
-          basic
-          inverted
-          color="blue"
-          size="small"
           onClick={onDirectionsClick}
+          css={{
+            width: '100%',
+            fontSize: 14,
+            fontWeight: 700,
+            backgroundColor: 'var(--color-kint5-brand1)',
+            color: 'var(--color-kint5-gray0)',
+            borderRadius: 12,
+            padding: '16px 0',
+            textAlign: 'center',
+          }}
         >
           {t(['gilcajgi', '길찾기'])}
         </Button>
-      </ButtonGroup>
+      </FlexBox>
 
       {localName && localAddress ? (
         <AskToTheLocal
