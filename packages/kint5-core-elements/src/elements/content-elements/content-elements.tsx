@@ -81,6 +81,6 @@ export const SimpleLink = styled.a`
   font-weight: bold;
   color: var(--color-kint5-brand1);
   padding-right: 12px;
-  background: url('https://assets.triple-dev.titicaca-corp.com/images/ic-arrow-1-line-24.svg')
+  background: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')
     no-repeat 100% 50%;
 `
