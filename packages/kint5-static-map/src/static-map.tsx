@@ -96,7 +96,7 @@ function StaticMap({
     .join(', ')
 
   return (
-    <Container position="relative" onClick={onClick}>
+    <Container position="relative" onClick={onClick} css={{ margin: '0 16px' }}>
       <StaticMapContainer>
         <StaticMapPicture>
           {srcSet ? (
