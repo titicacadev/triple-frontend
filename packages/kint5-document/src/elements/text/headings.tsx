@@ -17,7 +17,7 @@ export const MH1 = tripleDocumentHeading(
       }}
       textCss={{ fontSize: 18 }}
       css={{
-        margin: '25px 0 20px',
+        margin: '25px 16px 20px',
       }}
       {...props}
     >
@@ -28,7 +28,7 @@ export const MH1 = tripleDocumentHeading(
 
 export const MH2 = tripleDocumentHeading(
   ({ children, ...props }: HeadingProps) => (
-    <H2 css={{ fontSize: 20, fontWeight: 700, margin: '20px 0' }} {...props}>
+    <H2 css={{ fontSize: 20, fontWeight: 700, margin: '20px 16px' }} {...props}>
       {children}
     </H2>
   ),
@@ -37,7 +37,7 @@ export const MH2 = tripleDocumentHeading(
 export const MH3 = tripleDocumentHeading(
   ({ compact, children, ...props }: HeadingProps & { compact: boolean }) => (
     <H3
-      css={{ fontSize: 18, margin: compact ? '13px 0 0' : '20px 0 0' }}
+      css={{ fontSize: 18, margin: compact ? '13px 16px 0' : '20px 16px 0' }}
       {...props}
     >
       {children}
@@ -51,7 +51,7 @@ export const MH4 = tripleDocumentHeading(
       css={{
         fontSize: 18,
         color: 'var(--color-kint5-poi-tour)',
-        margin: '20px 0 0',
+        margin: '20px 16px 0',
       }}
       {...props}
     >

@@ -3,7 +3,7 @@ import { borderRadiusMixin } from '@titicaca/kint5-core-elements'
 
 const VideoContainer = styled.div<{ borderRadius: number }>`
   position: relative;
-  margin: 30px 0 0;
+  margin: 30px 16px 0;
   height: 0;
   padding-bottom: 66.667%;
   ${borderRadiusMixin}

@@ -75,7 +75,7 @@ export default function Embedded({
   }
 }) {
   return (
-    <DocumentCarousel margin={{ top: 20 }}>
+    <DocumentCarousel margin={{ top: 20, left: 16, right: 16 }}>
       {entries.map((elements, i) => (
         <Carousel.Item key={i} size="large">
           {elements.map(({ type, value }, j) => {

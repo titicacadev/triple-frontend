@@ -15,7 +15,7 @@ export default function Table({
     <Container
       {...props}
       css={{
-        margin: '20px 0',
+        margin: '20px 16px',
       }}
     >
       <TableView {...table} />

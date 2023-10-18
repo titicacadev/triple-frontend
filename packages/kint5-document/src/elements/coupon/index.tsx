@@ -65,7 +65,7 @@ export default function Coupon({
   return (
     <Container
       css={{
-        padding: '44px 30px 42px',
+        padding: '44px 16px 42px',
         backgroundColor: safeParseHexColor(color.background),
       }}
     >

@@ -75,7 +75,7 @@ export default function TextElement({
       css={{
         color: 'var(--color-kint5-gray100)',
         fontWeight: 400,
-        margin: compact ? '4px 0 0' : '10px 0 0',
+        margin: compact ? '4px 16px 0' : '10px 16px 0',
       }}
       {...props}
     >
