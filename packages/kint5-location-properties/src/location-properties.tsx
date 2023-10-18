@@ -116,7 +116,11 @@ function LocationProperties({
     <>
       <Segment
         {...props}
-        css={{ backgroundColor: 'transparent', padding: '20px 0' }}
+        css={{
+          backgroundColor: 'transparent',
+          margin: '0 16px',
+          padding: '20px 0',
+        }}
       >
         <List verticalGap={15}>
           {Array.from(properties.entries()).map(([key, props]) => (
