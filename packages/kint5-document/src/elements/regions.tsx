@@ -81,7 +81,7 @@ export function RegionListElement({
             right: 0,
             paddingRight: 12,
             background:
-              "url('https://assets.triple-dev.titicaca-corp.com/images/ic-arrow-1-line-24.svg') no-repeat 100% 50%",
+              "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg') no-repeat 100% 50%",
           }}
         >
           {t(['barogagi', '바로가기'])}
