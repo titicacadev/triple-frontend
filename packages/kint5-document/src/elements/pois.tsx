@@ -56,7 +56,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
       : PoiCarouselElement
 
   return (
-    <Container margin={{ top: 20 }}>
+    <Container margin={{ top: 20, left: 16, right: 16 }}>
       {pois.map((poi) => (
         <Element
           key={poi.id}

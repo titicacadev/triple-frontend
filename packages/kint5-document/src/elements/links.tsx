@@ -16,8 +16,8 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import ResourceList from './shared/resource-list'
 
 const LinksContainer = styled.div<{ compact?: boolean }>`
-  margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
-  margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
+  margin: ${({ compact }) => (compact ? '10px' : '20px')} 16px
+    ${({ compact }) => (compact ? '-10px' : '-20px')} 16px;
 
   a,
   button {
@@ -28,7 +28,7 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
 `
 
 const ButtonContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 0 0')};
+  margin: ${({ compact }) => (compact ? '12px 16px 4px 16px' : '50px 16px 0')};
   text-align: center;
 
   a,
@@ -50,7 +50,7 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
 `
 
 const BlockContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '30px 0 0')};
+  margin: ${({ compact }) => (compact ? '7px 16px 4px 16px' : '30px 16px 0')};
   text-align: center;
 `
 

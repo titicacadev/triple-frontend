@@ -18,7 +18,7 @@ export const HR1 = styled.div<HrProps>`
 `
 
 export const HR2 = styled.div<HrProps>`
-  margin: 50px 0;
+  margin: 32px 0;
   height: 8px;
   background-color: var(--color-kint5-gray20);
 

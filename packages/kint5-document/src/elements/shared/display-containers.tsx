@@ -18,6 +18,8 @@ function BlockContainer({
       css={{
         marginTop: 40,
         marginBottom: images.some(({ title }) => title) ? 10 : 30,
+        marginLeft: 16,
+        marginRight: 16,
       }}
     >
       {children}
@@ -28,6 +30,7 @@ function BlockContainer({
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, auto));
+  margin: 0 16px;
 `
 
 export function DocumentCarouselContainer({
@@ -38,6 +41,8 @@ export function DocumentCarouselContainer({
     <DocumentCarousel
       margin={{
         top: 40,
+        left: 16,
+        right: 16,
         bottom: images.some(({ title }) => title) ? 10 : 30,
       }}
     >

@@ -60,7 +60,7 @@ export default function List({
     <Container
       {...props}
       css={{
-        margin: '10px 0 0',
+        margin: '10px 16px 0',
       }}
     >
       <ul>

@@ -8,7 +8,7 @@ export default function Note({
   return (
     <Segment
       css={{
-        margin: '30px 0',
+        margin: '30px 16px',
         borderRadius: 16,
         backgroundColor: 'var(--color-kint5-gray20)',
       }}
