@@ -3,14 +3,8 @@ import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useCallback } from 'react'
-import styled from 'styled-components'
 
 import { useClientActions } from '../services'
-
-const WriteIcon = styled.img`
-  width: 34px;
-  height: 34px;
-`
 
 interface Props {
   resourceId: string
@@ -45,8 +39,22 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   )
 
   return (
-    <ButtonBase css={{ marginLeft: 'auto' }} onClick={handleClick}>
-      <WriteIcon src="https://assets.triple.guide/images/btn-com-write@2x.png" />
+    <ButtonBase
+      css={{
+        marginLeft: 'auto',
+        fontSize: 14,
+        fontWeight: 700,
+        color: 'var(--color-kint5-brand1)',
+        paddingRight: 14,
+        backgroundImage:
+          "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right center',
+        backgroundSize: 12,
+      }}
+      onClick={handleClick}
+    >
+      리뷰쓰기
     </ButtonBase>
   )
 }
