@@ -4,8 +4,6 @@ import ExtendedResourceListElement, {
 } from '@titicaca/resource-list-element'
 import { useScrapsContext } from '@titicaca/react-contexts'
 
-import { useGuestMode } from '../../triple-document/src/prop-context/guest-mode'
-
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
 
@@ -56,10 +54,10 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   isAdvertisement,
   notes,
   optimized,
+  guestMode,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { t } = useTranslation('common-web')
 
-  const guestMode = useGuestMode()
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {
     source: { starRating },

@@ -10,6 +10,7 @@ export type ActionButtonElement = ReactNode
 export interface PoiListElementBaseProps<T extends PoiListElementType> {
   poi: T
   onClick?: MouseEventHandler<HTMLLIElement>
+  guestMode?: boolean
 }
 
 type PoiType = 'attraction' | 'restaurant' | 'hotel'
