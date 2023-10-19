@@ -3,7 +3,7 @@ import { Text } from '@titicaca/kint5-core-elements'
 
 export default function Comment({ children }: PropsWithChildren<unknown>) {
   return (
-    <Text size="large" color="gray" lineHeight={1.5}>
+    <Text css={{ fontSize: 16, fontWeight: 400, lineHeight: 1.5 }}>
       {children}
     </Text>
   )

@@ -1,4 +1,4 @@
-import { Container, FlexBox } from '@titicaca/kint5-core-elements'
+import { Container } from '@titicaca/kint5-core-elements'
 import styled from 'styled-components'
 
 export const GridWrapper = styled(Container)`
@@ -24,14 +24,4 @@ export const MediumWrapper = styled(Container)`
     padding-top: 0;
     height: 100%;
   }
-`
-
-export const Dimmer = styled(FlexBox)`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  color: var(--color-white900);
-  font-weight: bold;
 `

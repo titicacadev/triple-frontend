@@ -7,20 +7,11 @@ import { BaseUserFragment } from '../../data/graphql'
 
 const UserPhoto = styled.img`
   margin-right: 9px;
-  width: 36px;
-  height: 36px;
-  float: left;
+  width: 40px;
+  height: 40px;
   background-color: #efefef;
   border-radius: 19px;
   object-fit: cover;
-`
-
-const Badge = styled.img`
-  position: absolute;
-  top: 22px;
-  left: 25px;
-  width: 18px;
-  height: 18px;
 `
 
 export default function User({
@@ -33,7 +24,7 @@ export default function User({
   const { t } = useTranslation('common-web')
 
   const { reviewsV2: reviewsCount } = userBoard || {}
-  const { badges = [], level } = mileage || {}
+  const { level } = mileage || {}
 
   return (
     <Container
@@ -43,20 +34,19 @@ export default function User({
       }}
     >
       {photo ? <UserPhoto src={photo} onClick={onClick} /> : null}
-      {badges?.[0]?.icon?.image_url ? (
-        <Badge src={badges[0]?.icon.image_url} />
-      ) : null}
-      <div>
+      <Container css={{ paddingTop: 2 }}>
         <Name onClick={onClick}>{name}</Name>
         {!unregister ? (
           <Text
-            margin={{ top: 3 }}
-            size="mini"
-            color="gray"
-            alpha={0.4}
             onClick={onClick}
+            css={{
+              fontSize: 13,
+              fontWeight: 400,
+              color: 'var(--color-kint5-gray60)',
+              marginTop: 4,
+            }}
           >
-            {level && level > 0 ? `LEVEL${level} / ` : null}
+            Level {level} /{' '}
             {reviewsCount
               ? t(['reviewscount-gaeyi-ribyu', '{{reviewsCount}}개의 리뷰'], {
                   reviewsCount,
@@ -64,7 +54,7 @@ export default function User({
               : null}
           </Text>
         ) : null}
-      </div>
+      </Container>
     </Container>
   )
 }
@@ -74,7 +64,10 @@ function Name({
   children,
 }: PropsWithChildren<{ onClick?: MouseEventHandler<HTMLDivElement> }>) {
   return (
-    <Text bold size="medium" onClick={onClick} wordBreak="break-word">
+    <Text
+      onClick={onClick}
+      css={{ fontSize: 14, fontWeight: 700, wordBreak: 'break-word' }}
+    >
       {children}
     </Text>
   )

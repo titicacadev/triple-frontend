@@ -38,10 +38,11 @@ export const handlers = {
             id,
             resourceId,
             resourceType,
-            comment: '리뷰 내용',
+            comment:
+              '은은한 조명들로 인해 운치 있는 분위기 가득했고 입장 후 제일 먼저 보이는건 경복궁 근정전입니다. 낮에 방문했을 때와는 또다른 매력의 야간개장! 강추에용~!! 포토존이 많아서 한복 입고 오시는 분들도 많고 커플끼리 데이트 온 사람들도 많아 보였어요.',
             media: [],
             rating: 3,
-            visitDate: null,
+            visitDate: '2023-01-01',
             recentTrip: recentTrip ?? false,
             hasMedia: hasMedia ?? false,
             likesCount: 0,
