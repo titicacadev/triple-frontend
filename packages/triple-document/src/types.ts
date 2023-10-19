@@ -46,6 +46,7 @@ export type TripleDocumentContext = {
   onTNAProductsFetch?: TnaProductsFetcher
   imageSourceComponent?: ImageSourceType
   deepLink?: string
+  guestMode?: boolean
 } & MediaConfig
 
 export interface ElementSet {

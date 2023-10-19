@@ -7,6 +7,8 @@ import {
 } from '@titicaca/core-elements'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
+import { useGuestMode } from '../../triple-document/src/prop-context/guest-mode'
+
 import {
   PoiListElementBaseProps,
   ActionButtonElement,
@@ -42,6 +44,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
   },
   onClick,
 }: CompactPoiListElementProps<T>) {
+  const guestMode = useGuestMode()
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement & { width?: number }>(null)
 
@@ -86,7 +89,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           .join(' · ')}
       </Text>
 
-      {actionButtonElement ? (
+      {actionButtonElement && !guestMode ? (
         <div ref={actionButtonRef}>{actionButtonElement}</div>
       ) : (
         <Container

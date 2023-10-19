@@ -21,6 +21,7 @@ import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS from './elements'
 import useEventResourceTracker from './use-resource-event-tracker'
+import { GuestModeProvider } from './prop-context/guest-mode'
 
 export function TripleDocument({
   children,
@@ -34,6 +35,7 @@ export function TripleDocument({
   videoAutoPlay,
   hideVideoControls,
   optimized = false,
+  guestMode,
 }: {
   customElements?: ElementSet
   children: TripleElementData[]
@@ -97,33 +99,35 @@ export function TripleDocument({
                 hideVideoControls={hideVideoControls}
                 optimized={optimized}
               >
-                {children.map(({ type, value }, i) => {
-                  const RegularElement = ELEMENTS[type]
-                  const CustomElement = customElements[type]
+                <GuestModeProvider value={guestMode}>
+                  {children.map(({ type, value }, i) => {
+                    const RegularElement = ELEMENTS[type]
+                    const CustomElement = customElements[type]
 
-                  const Element = CustomElement || RegularElement
+                    const Element = CustomElement || RegularElement
 
-                  return (
-                    Element && (
-                      <Element
-                        key={i}
-                        value={value}
-                        {...(CustomElement
-                          ? {
-                              onResourceClick: resourceClickHandler,
-                              onImageClick,
-                              onLinkClick: linkClickHandler,
-                              ImageSource: imageSourceComponent,
-                              deepLink,
-                              videoAutoPlay,
-                              hideVideoControls,
-                              optimized,
-                            }
-                          : {})}
-                      />
+                    return (
+                      Element && (
+                        <Element
+                          key={i}
+                          value={value}
+                          {...(CustomElement
+                            ? {
+                                onResourceClick: resourceClickHandler,
+                                onImageClick,
+                                onLinkClick: linkClickHandler,
+                                ImageSource: imageSourceComponent,
+                                deepLink,
+                                videoAutoPlay,
+                                hideVideoControls,
+                                optimized,
+                              }
+                            : {})}
+                        />
+                      )
                     )
-                  )
-                })}
+                  })}
+                </GuestModeProvider>
               </MediaConfigProvider>
             </DeepLinkProvider>
           </ImageSourceProvider>
