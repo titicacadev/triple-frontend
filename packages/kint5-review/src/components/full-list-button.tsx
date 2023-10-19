@@ -91,12 +91,16 @@ export const FullListButton = ({
 
   return (
     <Button
-      basic
-      fluid
-      compact
-      size="small"
       css={{
+        width: '100%',
         margin: '40px 0 0',
+        padding: '16px 0',
+        borderRadius: 12,
+        backgroundColor: 'var(--color-kint5-gray20)',
+        fontSize: 14,
+        fontWeight: 700,
+        color: 'var(--color-kint5-gray100)',
+        textAlign: 'center',
       }}
       onClick={handleClick}
     >
