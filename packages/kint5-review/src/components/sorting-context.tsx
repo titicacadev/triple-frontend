@@ -8,7 +8,7 @@ import {
   useEffect,
 } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { useTranslation } from '@titicaca/next-i18next'
+import { getTranslation } from '@titicaca/next-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { useReviewFilters } from './filter-context'
@@ -47,8 +47,16 @@ const OPTION_LABELS = {
   'star-rating-asc': '별점 낮은순',
 }
 
+function getOptions() {
+  const t = getTranslation('common-web')
+
+  return [
+    { key: 'recommendation' as const, text: t(['cuceonsun', '추천순']) },
+    { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
+  ]
+}
+
 export function SortingOptionsProvider({
-  type = 'default',
   receiverId,
   resourceId,
   initialSortingOption = 'recommendation',
@@ -56,29 +64,11 @@ export function SortingOptionsProvider({
 }: PropsWithChildren<SortingOptionsProps>) {
   const [selectedOption, setSelectedOption] = useState(initialSortingOption)
 
-  const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
   const { isRecentTrip } = useReviewFilters()
   const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
 
-  const defaultOptions = [
-    { key: 'recommendation' as const, text: t(['cuceonsun', '추천순']) },
-    { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
-  ]
-
-  const poiOptions = [
-    ...defaultOptions,
-    {
-      key: 'star-rating-desc' as const,
-      text: t(['byeoljeom-nopeunsun', '별점 높은순']),
-    },
-    {
-      key: 'star-rating-asc' as const,
-      text: t(['byeoljeom-najeunsun', '별점 낮은순']),
-    },
-  ]
-
-  const sortingOptions = type === 'default' ? defaultOptions : poiOptions
+  const sortingOptions = getOptions()
 
   const handleOptionSelect = useCallback(
     (sortingOption: SortingOption) => {
@@ -153,7 +143,9 @@ export function useReviewSortingOptions() {
   const context = useContext(SortingOptionsContext)
 
   if (context === undefined) {
-    throw new Error('SortingOptionsProvider is not mount.')
+    throw new Error(
+      'useReviewSortingOptions must be used within SortingOptionsProvider.',
+    )
   }
 
   return context

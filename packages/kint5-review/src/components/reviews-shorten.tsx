@@ -1,5 +1,4 @@
 import { ComponentType, useEffect } from 'react'
-import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -16,7 +15,6 @@ import {
   useReviewSortingOptions,
 } from './sorting-context'
 import type { SortingOption, SortingType } from './sorting-context'
-import { Filters } from './filter'
 import { SortingOptions } from './sorting-options'
 import type { ShortenReviewValue } from './shorten-list'
 
@@ -34,19 +32,6 @@ interface ReviewsShortenProps {
   placeholderText?: string
   receiverId?: string
 }
-
-const OptionContainer = styled(FlexBox)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 23px 0 0;
-
-  @media (max-width: 359px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-`
 
 export function ReviewsShorten({
   resourceId,
@@ -147,31 +132,23 @@ function ReviewsShortenComponent({
   }
 
   return (
-    <Section anchor={REVIEWS_SECTION_ID}>
-      <FlexBox flex alignItems="center">
-        <div>
-          <Text bold size="huge" color="gray" alpha={1} inline>
-            {t(['ribyu', '리뷰'])}
+    <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
+      <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
+        <Text css={{ fontSize: 18, fontWeight: 700 }}>
+          {t(['ribyu', '리뷰'])}
+        </Text>
+        {reviewsCountData !== undefined && reviewsCountData.reviewsCount > 0 ? (
+          <Text css={{ fontSize: 18, fontWeight: 700 }}>
+            {` ${formatNumber(reviewsCountData.reviewsCount)}`}
           </Text>
-          {(reviewsCountData?.reviewsCount ?? 0) > 0 ? (
-            <Text bold size="huge" color="blue" alpha={1} inline>
-              {` ${formatNumber(reviewsCountData?.reviewsCount)}`}
-            </Text>
-          ) : null}
-        </div>
+        ) : null}
         <WriteButton
           resourceId={resourceId}
           resourceType={resourceType}
           regionId={regionId}
         />
       </FlexBox>
-
-      <OptionContainer>
-        <SortingOptions />
-
-        <Filters />
-      </OptionContainer>
-
+      <SortingOptions />
       <ListElement value={value} />
     </Section>
   )
