@@ -2,7 +2,7 @@ import {
   Container,
   FlexBox,
   List,
-  Rating,
+  RatingV2,
   Text,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
@@ -17,11 +17,10 @@ import {
   useTripleClientMetadata,
 } from '@titicaca/react-triple-client-interfaces'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { Timestamp } from '@titicaca/view-utilities'
-import * as CSS from 'csstype'
+import { formatTimestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import {
@@ -38,50 +37,16 @@ import Media from './media'
 import { PinnedMessage } from './pinned-message'
 import User from './user'
 
-const MetaContainer = styled.div`
-  margin-top: 5px;
-  height: 27px;
+const LikeButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-kint5-gray100);
 `
 
-const MoreIcon = styled.img`
-  margin-top: -3px;
-  margin-left: 5px;
-  width: 30px;
-  height: 30px;
-  vertical-align: middle;
-  cursor: pointer;
-`
-
-const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
-  font-weight: bold;
-  background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-
-  ${({ isCommaVisible }) =>
-    isCommaVisible &&
-    css`
-      margin-left: 8px;
-
-      &::before {
-        position: absolute;
-        left: -10px;
-        content: '·';
-      }
-    `}
-`
-
-const LikeButton = styled(Container)<{ liked?: boolean }>`
-  font-weight: bold;
-  text-decoration: none;
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-  color: ${({ liked }) => (liked ? '--color-blue' : '--color-gray400')};
-  background-image: ${({ liked }) =>
-    liked
-      ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png')"
-      : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
-`
+const MoreButton = styled.button``
 
 export interface ReviewElementProps {
   review: BaseReviewFragment
@@ -104,7 +69,6 @@ export function ReviewElement({
     rating,
     media,
     replyBoard,
-    resourceType,
     visitDate,
     liked,
     likesCount,
@@ -239,39 +203,6 @@ export function ReviewElement({
     { triggeredEventAction: likeButtonAction },
   )
 
-  const handleMessageCountClick = useAppCallback(
-    TransitionType.ReviewCommentSelect,
-    useSessionCallback(
-      useCallback(() => {
-        trackEvent({
-          ga: ['리뷰_댓글_선택', review.id],
-          fa: {
-            action: '리뷰_댓글_선택',
-            item_id: review.id,
-            resource_id: resourceId,
-            region_id: regionId,
-            content_type: resourceType,
-          },
-        })
-
-        navigateReviewDetail({
-          reviewId: review.id,
-          regionId,
-          resourceId,
-          anchor: 'reply',
-        })
-      }, [
-        navigateReviewDetail,
-        regionId,
-        resourceId,
-        resourceType,
-        review.id,
-        trackEvent,
-      ]),
-      { triggeredEventAction: '리뷰_댓글_선택' },
-    ),
-  )
-
   const reviewedAt = moment(originReviewedAt).format()
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
@@ -295,10 +226,10 @@ export function ReviewElement({
     >
       <List.Item style={{ paddingTop: 6 }}>
         {user ? <User user={user} onClick={handleUserClick} /> : null}
-        {!blinded && !!rating ? <Score score={rating} /> : null}
-        {!blinded ? (
-          <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
-        ) : null}
+        <FlexBox flex css={{ alignItems: 'center', gap: 8, marginTop: 18 }}>
+          {!blinded && !!rating ? <RatingV2 score={rating} /> : null}
+          {!blinded ? <RecentReviewInfo visitDate={visitDate} /> : null}
+        </FlexBox>
         <Content onClick={handleReviewClick}>
           {blinded ? (
             t([
@@ -336,7 +267,7 @@ export function ReviewElement({
         {!blinded && media && media.length > 0 ? (
           <Container
             css={{
-              margin: '10px 0 0',
+              margin: '20px 0 0',
             }}
           >
             <Media media={media} reviewId={review.id} />
@@ -348,64 +279,51 @@ export function ReviewElement({
             onPinnedMessageClick={handleReviewClick}
           />
         ) : null}
-        <Meta>
+        <FlexBox
+          flex
+          css={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 20,
+          }}
+        >
           {!blinded ? (
-            <LikeButton
-              display="inline-block"
-              liked={liked}
-              css={{
-                marginTop: 5,
-                padding: '2px 10px 2px 20px',
-                height: 18,
-              }}
-              onClick={handleLikeButtonClick}
-            >
+            <LikeButton onClick={handleLikeButtonClick}>
+              <img
+                src="https://assets.triple-dev.titicaca-corp.com/images/kint5-thumb-up.svg"
+                alt="Likes count"
+                width={16}
+                height={16}
+              />
               {likesCount}
             </LikeButton>
           ) : null}
 
-          <MessageCount
-            display="inline-block"
-            position="relative"
-            isCommaVisible={!blinded}
-            css={{
-              height: 18,
-              marginTop: 5,
-              padding: '2px 0 2px 20px',
-            }}
-            onClick={handleMessageCountClick}
-          >
-            {replyBoard
-              ? replyBoard.rootMessagesCount +
-                replyBoard.childMessagesCount +
-                replyBoard.pinnedMessagesCount
-              : 0}
-          </MessageCount>
-
           {!blinded || (blinded && isMyReview) ? (
-            <Date floated="right">
-              <Timestamp date={reviewedAt} />
-              <MoreIcon
-                src="https://assets.triple.guide/images/btn-review-more@4x.png"
-                onClick={handleMenuClick}
-              />
-            </Date>
+            <FlexBox flex css={{ alignItems: 'center', gap: 5 }}>
+              <Text
+                inline
+                css={{
+                  fontSize: 12,
+                  fontWeight: 400,
+                  color: 'var(--color-kint5-gray50)',
+                }}
+              >
+                {formatTimestamp(reviewedAt)}
+              </Text>
+              <MoreButton onClick={handleMenuClick}>
+                <img
+                  src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-dot-line-24.svg"
+                  alt="Show more"
+                  width={24}
+                  height={24}
+                />
+              </MoreButton>
+            </FlexBox>
           ) : null}
-        </Meta>
+        </FlexBox>
       </List.Item>
     </IntersectionObserver>
-  )
-}
-
-function Score({ score }: { score?: number }) {
-  return (
-    <Container
-      css={{
-        margin: '18px 0 0',
-      }}
-    >
-      <Rating size="tiny" score={score} />
-    </Container>
   )
 }
 
@@ -417,39 +335,13 @@ function Content({
     <Container
       clearing
       css={{
-        margin: '6px 0 0',
+        margin: '16px 0 0',
       }}
     >
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <a onClick={onClick}>
         <Comment>{children}</Comment>
       </a>
-    </Container>
-  )
-}
-
-function Meta({ children }: PropsWithChildren<unknown>) {
-  return (
-    <MetaContainer>
-      <Text size="mini" color="gray" alpha={0.4}>
-        {children}
-      </Text>
-    </MetaContainer>
-  )
-}
-
-function Date({
-  floated,
-  children,
-}: PropsWithChildren<{ floated?: CSS.Property.Float }>) {
-  return (
-    <Container
-      floated={floated}
-      css={{
-        margin: '2px 0 0',
-      }}
-    >
-      {children}
     </Container>
   )
 }
@@ -466,57 +358,27 @@ function RateDescription({
   return <Comment>{comment}</Comment>
 }
 
-function RecentReviewInfo({
-  visitDate,
-  recentTrip,
-}: {
-  visitDate?: string | null
-  recentTrip: boolean
-}) {
+function RecentReviewInfo({ visitDate }: { visitDate?: string | null }) {
   const { t } = useTranslation('common-web')
-
-  const startDate = moment('2000-01')
-  const endDate = moment().subtract(180, 'days').format('YYYY-MM')
-  const isOldReview =
-    visitDate && moment(visitDate).isBetween(startDate, endDate)
 
   const [visitYear, visitMonth] = visitDate?.split('-') || []
 
+  if (!visitDate) {
+    return null
+  }
+
   return (
-    <FlexBox
-      flex
-      alignItems="center"
-      css={{
-        padding: '8px 0 0',
-      }}
-    >
-      {recentTrip && !isOldReview ? (
-        <>
-          <img
-            width={16}
-            height={16}
-            src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
-            alt="recent-trip-icon"
-          />
-          <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
-            {t(['coegeun-yeohaeng', '최근여행'])}
-          </Text>
-        </>
-      ) : null}
-      {visitDate ? (
-        <Text size={14} color="gray700">
-          {t(
-            [
-              'visityear-nyeon-visitmonth-weol-yeohaeng',
-              '{{visitYear}}년 {{visitMonth}}월 여행',
-            ],
-            {
-              visitYear,
-              visitMonth,
-            },
-          )}
-        </Text>
-      ) : null}
-    </FlexBox>
+    <Text css={{ fontSize: 13, fontWeight: 400 }}>
+      {t(
+        [
+          'visityear-nyeon-visitmonth-weol-yeohaeng',
+          '{{visitYear}}년 {{visitMonth}}월 여행',
+        ],
+        {
+          visitYear,
+          visitMonth,
+        },
+      )}
+    </Text>
   )
 }

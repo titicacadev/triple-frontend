@@ -1,4 +1,5 @@
 import { TransitionType } from '@titicaca/modals'
+import { FlexBox } from '@titicaca/kint5-core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
@@ -7,7 +8,7 @@ import { useMemo } from 'react'
 import { useClientActions } from '../../../services'
 
 import { compareMedia } from './compare-media'
-import { Dimmer, MediumWrapper } from './elements'
+import { MediumWrapper } from './elements'
 import MediaWrapper from './media-wrapper'
 import Medium from './medium'
 
@@ -69,14 +70,24 @@ function Media({ media, reviewId }: Props) {
           >
             <Medium medium={medium} />
             {restLength > 0 && index === limit - 1 ? (
-              <Dimmer
+              <FlexBox
                 flex
-                alignItems="center"
-                justifyContent="center"
-                backgroundColor="gray500"
+                css={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  position: 'absolute',
+                  top: 0,
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 8,
+                  color: 'var(--color-kint5-gray0)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  fontSize: 24,
+                  fontWeight: 700,
+                }}
               >
                 +{restLength}
-              </Dimmer>
+              </FlexBox>
             ) : null}
           </MediumWrapper>
         )

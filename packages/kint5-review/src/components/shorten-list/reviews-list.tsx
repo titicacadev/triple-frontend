@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { BaseReviewFragment } from '../../data/graphql'
 import { useDescriptions, useMyReview } from '../../services'
 import { FullListButton } from '../full-list-button'
-import { MileageButton } from '../mileage-button'
 import { MyReviewActionSheet } from '../my-review-action-sheet'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
 import { ReviewElement } from '../review-element'
@@ -103,7 +102,7 @@ export function ReviewsList({
 
   return (
     <>
-      <List divided margin={{ top: 24 }} verticalGap={48}>
+      <List divided margin={{ top: 40 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
           <ReviewElement
             key={i}
@@ -130,8 +129,6 @@ export function ReviewsList({
         sortingType={sortingType}
         sortingOption={sortingOption}
       />
-
-      <MileageButton resourceId={resourceId} />
 
       {myReviewData?.myReview ? (
         <MyReviewActionSheet
