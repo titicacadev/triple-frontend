@@ -120,8 +120,8 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(styled-components@5.3.11)
       lerna:
-        specifier: ^7.4.0
-        version: 7.4.0(@swc/core@1.3.93)
+        specifier: ^7.4.1
+        version: 7.4.1(@swc/core@1.3.93)
       lint-staged:
         specifier: ^13.3.0
         version: 13.3.0
@@ -5342,8 +5342,8 @@ packages:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: true
 
-  /@lerna/child-process@7.4.0:
-    resolution: {integrity: sha512-KhocFx7HI04N2tUdKv/kJDy627m9TzIDrtudRTMTFVS8vKzGtxpfjgWZAnJ20hwQqe/MvvfrOhHsvDBrcBEW/g==}
+  /@lerna/child-process@7.4.1:
+    resolution: {integrity: sha512-Bx1cRCZcVcWoz+atDQc4CSVzGuEgGJPOpIAXjQbBEA2cX5nqIBWdbye8eHu31En/F03aH9BhpNEJghs6wy4iTg==}
     engines: {node: '>=16.0.0'}
     dependencies:
       chalk: 4.1.2
@@ -5351,11 +5351,11 @@ packages:
       strong-log-transformer: 2.1.0
     dev: true
 
-  /@lerna/create@7.4.0(@swc/core@1.3.93):
-    resolution: {integrity: sha512-VmuJCS/cC2itJjpMNNBWBl1YRfYNBjo6BR4+KVdDYPO2/WT+CWqv5gWGrm0bU5/djwGJ2BN96STzHnWegACK0A==}
+  /@lerna/create@7.4.1(@swc/core@1.3.93):
+    resolution: {integrity: sha512-zPO9GyWceRimtMD+j+aQ8xJgNPYn/Q/SzHf4wYN+4Rj5nrFKMyX+Et7FbWgUNpj0dRgyCCKBDYmTB7xQVVq4gQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@lerna/child-process': 7.4.0
+      '@lerna/child-process': 7.4.1
       '@npmcli/run-script': 6.0.2
       '@nx/devkit': 16.5.2(nx@16.5.2)
       '@octokit/plugin-enterprise-rest': 6.0.1
@@ -15726,13 +15726,13 @@ packages:
       dotenv-expand: 10.0.0
     dev: true
 
-  /lerna@7.4.0(@swc/core@1.3.93):
-    resolution: {integrity: sha512-Dp5js6R7mygy3Ncxc/1HxDd5EgiE7mFqZbCAYKm6FzeOn/GLcqyOPJHLsck6PlSu/uvqUh1lZO4wGaJJQAcW2Q==}
+  /lerna@7.4.1(@swc/core@1.3.93):
+    resolution: {integrity: sha512-c6sOO0dlJU689vStIsko+zjRdn2fJOWH8aNjePLNv2AubAdABKqfrDCpE2H/Q7+O80Duo68ZQtWYkUUk7hRWDw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
-      '@lerna/child-process': 7.4.0
-      '@lerna/create': 7.4.0(@swc/core@1.3.93)
+      '@lerna/child-process': 7.4.1
+      '@lerna/create': 7.4.1(@swc/core@1.3.93)
       '@npmcli/run-script': 6.0.2
       '@nx/devkit': 16.5.2(nx@16.5.2)
       '@octokit/plugin-enterprise-rest': 6.0.1
