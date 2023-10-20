@@ -28,7 +28,7 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
 `
 
 const ButtonContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '12px 16px 4px 16px' : '50px 16px 0')};
+  margin: ${({ compact }) => (compact ? '12px 16px 4px 16px' : '30px 16px 0')};
   text-align: center;
 
   a,
@@ -38,7 +38,7 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
 
   a:not(:first-child),
   button:not(:first-child) {
-    margin-left: 5px;
+    margin-top: 12px;
   }
 
   @media (max-width: 360px) {
@@ -58,6 +58,7 @@ function ButtonLink({ children, ...props }: PropsWithChildren<ButtonProps>) {
   return (
     <Button
       css={{
+        width: '100%',
         backgroundColor: 'var(--color-kint5-brand1)',
         borderRadius: 12,
         fontSize: 14,
@@ -90,7 +91,7 @@ function BlockLink({
             ? 'var(--color-kint5-gray0)'
             : 'var(--color-kint5-gray100)',
         borderRadius: 12,
-        marginTop: 10,
+        marginTop: 12,
       }}
       {...props}
     >
