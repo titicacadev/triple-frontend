@@ -34,6 +34,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
   imageFrame,
   onImpress,
   optimized,
+  guestMode,
 }: PoiListElementBaseProps<T> & {
   actionButtonElement?: ActionButtonElement
   description?: ReactNode
@@ -52,7 +53,17 @@ function PoiCarouselElement<T extends PoiListElementType>({
 
   const name = nameOverride || names.ko || names.en || names.local
   const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
-
+  const ActionElement = actionButtonElement || (
+    <Container
+      position="absolute"
+      css={{
+        top: '3px',
+        right: '3px',
+      }}
+    >
+      <OverlayScrapButton resource={poi} size={36} />
+    </Container>
+  )
   return (
     <Carousel.Item
       size={carouselSize || 'small'}
@@ -91,17 +102,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
           : vicinity}
       </Text>
 
-      {actionButtonElement || (
-        <Container
-          position="absolute"
-          css={{
-            top: '3px',
-            right: '3px',
-          }}
-        >
-          <OverlayScrapButton resource={poi} size={36} />
-        </Container>
-      )}
+      {!guestMode ? ActionElement : null}
 
       {additionalInfo}
     </Carousel.Item>

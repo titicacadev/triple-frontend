@@ -56,6 +56,19 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 
   const name = nameOverride || names.ko || names.en || names.local
   const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
+  const ActionElement = actionButtonElement ? (
+    <div ref={actionButtonRef}>{actionButtonElement}</div>
+  ) : (
+    <Container
+      position="absolute"
+      css={{
+        top: 0,
+        right: 0,
+      }}
+    >
+      <OutlineScrapButton resource={poi} size={34} />
+    </Container>
+  )
 
   return (
     <ResourceListItem onClick={onClick}>
@@ -87,19 +100,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           .join(' · ')}
       </Text>
 
-      {actionButtonElement && !guestMode ? (
-        <div ref={actionButtonRef}>{actionButtonElement}</div>
-      ) : (
-        <Container
-          position="absolute"
-          css={{
-            top: 0,
-            right: 0,
-          }}
-        >
-          <OutlineScrapButton resource={poi} size={34} />
-        </Container>
-      )}
+      {!guestMode ? ActionElement : null}
     </ResourceListItem>
   )
 }
