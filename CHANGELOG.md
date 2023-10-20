@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.8.0
+
+### chat
+
+- [Chat] Product bubble 추가 [#2891](https://github.com/titicacadev/triple-frontend/pull/2891)
+
+### core-elements
+
+- [Chat] Product bubble 추가 [#2891](https://github.com/titicacadev/triple-frontend/pull/2891)
+
 ## v13.7.0
 
 ### chat
