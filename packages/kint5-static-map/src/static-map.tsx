@@ -58,8 +58,6 @@ const MARKER_SOURCES: { [key: string]: string } = {
   tna: 'https://assets.triple.guide/images/img_map_pin_tna@4x.png',
 }
 
-const IMAGE_SRC_BASE_URL = 'https://triple.guide/api/maps/static-map'
-
 function StaticMap({
   type,
   lat,
@@ -90,7 +88,7 @@ function StaticMap({
         mapScale: responsiveMapScale = 2,
         zoom: responsiveZoom = 13,
       }) => {
-        return `${IMAGE_SRC_BASE_URL}?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
+        return `/api/maps/static-map?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
       },
     )
     .join(', ')
@@ -103,7 +101,7 @@ function StaticMap({
             <source media="(min-width: 600px)" srcSet={srcSet} />
           ) : null}
           <StaticMapImage
-            src={`${IMAGE_SRC_BASE_URL}?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
+            src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
           />
         </StaticMapPicture>
       </StaticMapContainer>
