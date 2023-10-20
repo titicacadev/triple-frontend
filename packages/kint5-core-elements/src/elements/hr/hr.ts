@@ -6,7 +6,7 @@ interface HrProps {
 }
 
 export const HR1 = styled.div<HrProps>`
-  margin: 50px 16px;
+  margin: 40px 16px;
   height: 1px;
   background-color: ${({ color }) => color || 'var(--color-kint5-gray20)'};
 
