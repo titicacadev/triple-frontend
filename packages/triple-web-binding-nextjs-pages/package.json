@@ -1,0 +1,53 @@
+{
+  "name": "@titicaca/triple-web-binding-nextjs-pages",
+  "version": "13.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-web-binding-nextjs-pages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titicacadev/triple-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/titicacadev/triple-frontend/issues"
+  },
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "pnpm run build:cjs && pnpm run build:types",
+    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:types": "tsc -p tsconfig.build.json",
+    "lint:es": "eslint src",
+    "lint:es:fix": "eslint src --fix",
+    "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
+    "lint:style:fix": "stylelint 'src/**/*.{js,ts,tsx}' --fix",
+    "lint:etc": "prettier src --check",
+    "lint:etc:fix": "prettier src --write"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
+  "dependencies": {
+    "ua-parser-js": "^1.0.36"
+  },
+  "devDependencies": {
+    "@titicaca/triple-web": "workspace:*",
+    "@types/ua-parser-js": "^0.7.37",
+    "next": "^13.5.5"
+  },
+  "peerDependencies": {
+    "@titicaca/triple-web": "*",
+    "next": "^13.0"
+  }
+}
