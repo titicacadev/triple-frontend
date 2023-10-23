@@ -61,7 +61,7 @@ export default function Images({
             <TripleMedia
               frame="large"
               optimized={optimized}
-              borderRadius={isOnlyImage ? 0 : undefined}
+              borderRadius={isOnlyImage ? 0 : 16}
               autoPlay={videoAutoPlay}
               hideControls={hideVideoControls}
               media={image}
