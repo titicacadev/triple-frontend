@@ -84,6 +84,7 @@ function StaticMap({
   mapScale = '2',
   markerImage,
   responsiveVariants,
+  language = 'ko',
   onClick,
 }: {
   type?: PoiType
@@ -95,6 +96,7 @@ function StaticMap({
   mapScale?: string
   markerImage?: string
   responsiveVariants?: ResponsiveVariant[]
+  language?: string
   onClick?: (e: SyntheticEvent) => void
 }) {
   const srcSet = responsiveVariants
@@ -105,7 +107,7 @@ function StaticMap({
         mapScale: responsiveMapScale = 2,
         zoom: responsiveZoom = 13,
       }) => {
-        return `/api/maps/static-map?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom} ${viewport}`
+        return `/api/maps/static-map?size=${mapSize}&scale=${responsiveMapScale}&center=${lat}%2C${lon}&zoom=${responsiveZoom}&language=${language} ${viewport}`
       },
     )
     .join(', ')
@@ -118,7 +120,7 @@ function StaticMap({
             <source media="(min-width: 600px)" srcSet={srcSet} />
           ) : null}
           <StaticMapImage
-            src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
+            src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}&language=${language}`}
           />
         </StaticMapPicture>
       </StaticMapContainer>
