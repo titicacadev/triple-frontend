@@ -35,9 +35,17 @@ export const MH2 = tripleDocumentHeading(
 )
 
 export const MH3 = tripleDocumentHeading(
-  ({ compact, children, ...props }: HeadingProps & { compact: boolean }) => (
+  ({
+    compact,
+    embedded,
+    children,
+    ...props
+  }: HeadingProps & { compact: boolean; embedded?: boolean }) => (
     <H3
-      css={{ fontSize: 18, margin: compact ? '13px 16px 0' : '20px 16px 0' }}
+      css={{
+        fontSize: 18,
+        margin: embedded ? '13px 0 0' : compact ? '13px 16px 0' : '20px 16px 0',
+      }}
       {...props}
     >
       {children}
