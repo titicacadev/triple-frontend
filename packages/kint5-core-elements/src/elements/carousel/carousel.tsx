@@ -15,7 +15,7 @@ const CAROUSEL_WIDTH_SIZES = {
 const CAROUSEL_LEFT_SPACING_SIZES = {
   small: '10px',
   medium: '10px',
-  large: '15px',
+  large: '12px',
   big: '10px',
 }
 
