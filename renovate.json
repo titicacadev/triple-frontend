@@ -15,7 +15,7 @@
       "matchPackagePrefixes": ["@swc/"]
     },
     {
-      "matchPackageNames": ["firebase"],
+      "matchPackageNames": ["firebase", "nx-cloud"],
       "enabled": false
     }
   ]
