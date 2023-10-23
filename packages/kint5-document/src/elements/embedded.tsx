@@ -50,6 +50,7 @@ function EmbeddedImage({
           optimized={optimized}
           media={image}
           ImageSource={ImageSource}
+          borderRadius={16}
           onClick={handleClick}
         />
       </Container>
