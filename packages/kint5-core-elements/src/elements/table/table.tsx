@@ -98,7 +98,7 @@ function HorizontalTable({ head, body }: TableBodyProps) {
           <Column
             key={idx}
             type="header"
-            padding={{ top: 12, bottom: 12, left: 15, right: 15 }}
+            padding={{ top: 16, bottom: 16, left: 15, right: 15 }}
           >
             <Text
               css={{
@@ -127,7 +127,7 @@ function HorizontalTable({ head, body }: TableBodyProps) {
               key={idx}
               type="body"
               css={{
-                padding: '12px 15px',
+                padding: '16px 15px',
                 ...(idx < bodyColumnCount - 1 && {
                   borderRight: '1px solid var(--color-kint5-gray30)',
                 }),
@@ -151,8 +151,8 @@ function VerticalTable({ head, body }: TableBodyProps) {
             width={25}
             type="header"
             padding={{
-              top: 13,
-              bottom: 13,
+              top: 16,
+              bottom: 16,
               left: 15,
               right: 15,
             }}
@@ -168,8 +168,8 @@ function VerticalTable({ head, body }: TableBodyProps) {
               width={75}
               type="body"
               padding={{
-                top: 13,
-                bottom: 13,
+                top: 16,
+                bottom: 16,
                 left: 15,
                 right: 15,
               }}
