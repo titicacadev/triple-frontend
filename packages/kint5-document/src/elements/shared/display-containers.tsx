@@ -42,7 +42,7 @@ export function DocumentCarouselContainer({
       margin={{
         top: 40,
         left: 16,
-        right: 16,
+        right: images.length > 1 ? 0 : 16,
         bottom: images.some(({ title }) => title) ? 10 : 30,
       }}
     >
