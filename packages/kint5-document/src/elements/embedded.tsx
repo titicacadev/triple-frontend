@@ -79,7 +79,11 @@ export default function Embedded({
       margin={{ top: 20, left: 16, right: numOfImages > 1 ? 0 : 16 }}
     >
       {entries.map((elements, i) => (
-        <Carousel.Item key={i} size="large">
+        <Carousel.Item
+          key={i}
+          size="large"
+          css={{ ':last-child': { marginRight: 16 } }}
+        >
           {elements.map(({ type, value }, j) => {
             const Element = EMBEDDED_ELEMENTS[type]
 
