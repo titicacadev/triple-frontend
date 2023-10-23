@@ -15,8 +15,8 @@ import { Text, MH3 } from './text'
 import Links from './links'
 
 function Compact<P extends { compact?: boolean }>(Component: ComponentType<P>) {
-  return function CompactedComponent(props: P) {
-    return <Component compact {...props} />
+  return function CompactedComponent({ ...rest }: P) {
+    return <Component compact {...rest} />
   }
 }
 
@@ -39,12 +39,7 @@ function EmbeddedImage({
     const handleClick = generateClickHandler(onLinkClick, onImageClick)
 
     return (
-      <Container
-        css={{
-          margin: '10px 0 0',
-        }}
-        {...props}
-      >
+      <Container {...props}>
         <TripleMedia
           frame="large"
           optimized={optimized}
@@ -88,15 +83,7 @@ export default function Embedded({
           {elements.map(({ type, value }, j) => {
             const Element = EMBEDDED_ELEMENTS[type]
 
-            return (
-              Element && (
-                <Element
-                  key={j}
-                  value={value}
-                  {...(j === 0 ? { css: { marginTop: 0 } } : {})}
-                />
-              )
-            )
+            return Element && <Element key={j} value={value} embedded />
           })}
         </Carousel.Item>
       ))}

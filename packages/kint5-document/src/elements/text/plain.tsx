@@ -30,10 +30,12 @@ const TextHtml = styled(Text)`
 export default function TextElement({
   value: { text, rawHTML },
   compact,
+  embedded,
   ...props
 }: {
   value: { text: string; rawHTML: string }
   compact: boolean
+  embedded?: boolean
 }) {
   const onLinkClick = useLinkClickHandler()
 
@@ -62,7 +64,7 @@ export default function TextElement({
   if (rawHTML) {
     return (
       <TextHtml
-        margin={compact ? { top: 4 } : { top: 10 }}
+        margin={compact || embedded ? { top: 4 } : { top: 10 }}
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         onClick={handleClick}
         {...props}
@@ -75,7 +77,7 @@ export default function TextElement({
       css={{
         color: 'var(--color-kint5-gray100)',
         fontWeight: 400,
-        margin: compact ? '4px 16px 0' : '10px 16px 0',
+        margin: embedded ? '4px 0 0' : compact ? '4px 16px 0' : '10px 16px 0',
       }}
       {...props}
     >

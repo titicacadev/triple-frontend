@@ -15,9 +15,13 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 
 import ResourceList from './shared/resource-list'
 
-const LinksContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '10px' : '20px')} 16px
-    ${({ compact }) => (compact ? '-10px' : '-20px')} 16px;
+const LinksContainer = styled.div<{ compact?: boolean; embedded?: boolean }>`
+  margin: ${({ compact, embedded }) =>
+    embedded
+      ? '10px 0 -10px'
+      : compact
+      ? '10px 16px -10px'
+      : '20px 16px -20px'};
 
   a,
   button {
@@ -27,8 +31,9 @@ const LinksContainer = styled.div<{ compact?: boolean }>`
   }
 `
 
-const ButtonContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '12px 16px 4px 16px' : '30px 16px 0')};
+const ButtonContainer = styled.div<{ compact?: boolean; embedded?: boolean }>`
+  margin: ${({ compact, embedded }) =>
+    embedded ? '12px 0 4px' : compact ? '12px 16px 4px' : '30px 16px 0'};
   text-align: center;
 
   a,
@@ -49,8 +54,9 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
   }
 `
 
-const BlockContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '7px 16px 4px 16px' : '30px 16px 0')};
+const BlockContainer = styled.div<{ compact?: boolean; embedded?: boolean }>`
+  margin: ${({ compact, embedded }) =>
+    embedded ? '7px 0 4px' : compact ? '7px 16px 4px' : '30px 16px 0'};
   text-align: center;
 `
 
@@ -192,6 +198,7 @@ export default function Links({
     links: Link[]
   }
   compact?: boolean
+  embedded?: boolean
 }) {
   const onLinkClick = useLinkClickHandler()
 
