@@ -135,8 +135,8 @@ importers:
         specifier: 13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       nx-cloud:
-        specifier: ^16.5.2
-        version: 16.5.2
+        specifier: 16.4.0
+        version: 16.4.0
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -5711,10 +5711,10 @@ packages:
       - nx
     dev: true
 
-  /@nrwl/nx-cloud@16.5.2:
-    resolution: {integrity: sha512-oHO5T1HRJsR9mbRd8eUqMBPCgqVZLSbAh3zJoPFmhEmjbM4YB9ePRpgYFT8dRNeZUOUd/8Yt7Pb6EVWOHvpD/w==}
+  /@nrwl/nx-cloud@16.4.0:
+    resolution: {integrity: sha512-QitrYK6z9ceagetBlgLMZnC0T85k2JTk+oK0MxZ5p/woclqeYN7SiGNZgMzDq8TjJwt8Fm/MDnsSo3xtufmLBg==}
     dependencies:
-      nx-cloud: 16.5.2
+      nx-cloud: 16.4.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -17445,11 +17445,11 @@ packages:
     resolution: {integrity: sha512-vSZ4miHQ4FojLjmz2+ux4B0/XA16jfwt/LBzIUftDpRd8tujHFkXjMyLwjS08fIZCzesj2z7gJukOKJwqebJAQ==}
     dev: true
 
-  /nx-cloud@16.5.2:
-    resolution: {integrity: sha512-1t1Ii9gojl8r/8hFGaZ/ZyYR0Cb0hzvXLCsaFuvg+EJEFdvua3P4cfNya/0bdRrm+7Eb/ITUOskbvYq4TSlyGg==}
+  /nx-cloud@16.4.0:
+    resolution: {integrity: sha512-jbq4hWvDwRlJVpxgMgbmNSkue+6XZSn53R6Vo6qmCAWODJ9KY1BZdZ/9VRL8IX/BRKebVFiXp3SapFB1qPhH8A==}
     hasBin: true
     dependencies:
-      '@nrwl/nx-cloud': 16.5.2
+      '@nrwl/nx-cloud': 16.4.0
       axios: 1.1.3
       chalk: 4.1.2
       dotenv: 10.0.0
