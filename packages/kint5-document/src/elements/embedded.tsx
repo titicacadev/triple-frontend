@@ -74,8 +74,14 @@ export default function Embedded({
     entries: TripleElementData[][]
   }
 }) {
+  const numOfImages = entries
+    .flat()
+    .filter((entry) => entry.type === 'images').length
+
   return (
-    <DocumentCarousel margin={{ top: 20, left: 16, right: 16 }}>
+    <DocumentCarousel
+      margin={{ top: 20, left: 16, right: numOfImages > 1 ? 0 : 16 }}
+    >
       {entries.map((elements, i) => (
         <Carousel.Item key={i} size="large">
           {elements.map(({ type, value }, j) => {
