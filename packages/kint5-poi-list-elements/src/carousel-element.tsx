@@ -58,6 +58,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
       size={carouselSize || 'small'}
       onClick={onClick}
       onImpress={onImpress}
+      css={{ ':last-child': { marginRight: 16 } }}
     >
       <Image>
         <Image.FixedRatioFrame frame={imageFrame || 'large'} borderRadius={14}>
