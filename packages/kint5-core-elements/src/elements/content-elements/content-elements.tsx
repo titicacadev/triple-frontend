@@ -16,6 +16,10 @@ export const ImageCarouselElementContainer = styled.div<{ maxWidth?: number }>`
   &:not(:first-child) {
     margin-left: 12px;
   }
+
+  &:last-child {
+    margin-right: 16px;
+  }
 `
 
 export const ImageBlockElementContainer = styled.div`
