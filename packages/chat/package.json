@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
-    "@types/isomorphic-fetch": "^0.0.37",
+    "@types/isomorphic-fetch": "^0.0.38",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
