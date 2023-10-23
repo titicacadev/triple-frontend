@@ -61,9 +61,9 @@
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
-    "@types/haversine": "^1.1.6",
-    "@types/humps": "^2.0.4",
-    "@types/qs": "^6.9.8"
+    "@types/haversine": "^1.1.7",
+    "@types/humps": "^2.0.5",
+    "@types/qs": "^6.9.9"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
