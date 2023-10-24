@@ -39,12 +39,14 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
 interface ImagePlaceholderProps {
   large?: boolean
   noContent?: boolean
+  guestMode?: boolean
   onClick: () => void
 }
 
 function ImagePlaceholder({
   large,
   noContent,
+  guestMode,
   onClick,
 }: ImagePlaceholderProps) {
   const { t } = useTranslation('common-web')
@@ -52,7 +54,10 @@ function ImagePlaceholder({
   return (
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
-        {noContent ? null : (
+        {noContent ? null : guestMode ? (
+          // TODO : 아이콘 교체
+          <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
+        ) : (
           <>
             <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
             <Text size="small" color="gray" alpha={0.3}>
@@ -71,19 +76,30 @@ function ImagePlaceholder({
 interface ResponsiveImagePlaceholderProps {
   onClick: () => void
   noContent?: boolean
+  guestMode?: boolean
 }
 
 export default function ResponsiveImagePlaceholder({
   onClick,
   noContent,
+  guestMode,
 }: ResponsiveImagePlaceholderProps) {
   return (
     <>
       <Responsive maxWidth={706}>
-        <ImagePlaceholder noContent={noContent} onClick={onClick} />
+        <ImagePlaceholder
+          noContent={noContent}
+          guestMode={guestMode}
+          onClick={onClick}
+        />
       </Responsive>
       <Responsive minWidth={707}>
-        <ImagePlaceholder noContent={noContent} large onClick={onClick} />
+        <ImagePlaceholder
+          noContent={noContent}
+          guestMode={guestMode}
+          large
+          onClick={onClick}
+        />
       </Responsive>
     </>
   )

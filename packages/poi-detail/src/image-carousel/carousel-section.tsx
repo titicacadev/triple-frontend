@@ -18,6 +18,7 @@ export interface CarouselSectionProps extends CarouselProps {
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
   height?: number
+  guestMode?: boolean
 }
 
 export default function CarouselSection({
@@ -29,6 +30,7 @@ export default function CarouselSection({
   onPlaceholderClick,
   onBusinessHoursClick,
   borderRadius,
+  guestMode,
   ...props
 }: CarouselSectionProps) {
   return (
@@ -45,7 +47,11 @@ export default function CarouselSection({
         {images.length > 0 ? (
           <Carousel images={images} borderRadius={borderRadius} {...props} />
         ) : (
-          <Placeholder onClick={onPlaceholderClick} noContent={loading} />
+          <Placeholder
+            onClick={onPlaceholderClick}
+            guestMode={guestMode}
+            noContent={loading}
+          />
         )}
         {!permanentlyClosed && onBusinessHoursClick ? (
           <BusinessHoursNote
