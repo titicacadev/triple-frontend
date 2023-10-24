@@ -38,6 +38,10 @@ export interface ChatProps {
    * 초기 메시지들
    */
   messages?: MessageInterface[]
+  /**
+   * 보내기 전 메시지들
+   */
+  beforeSentMessages?: MessageInterface[]
   postMessage?: PostMessageType
   getMessages: (option: {
     roomId: string
@@ -71,6 +75,7 @@ export const Chat = ({
   userInfo,
   room,
   messages: initMessages,
+  beforeSentMessages = [],
 
   postMessage,
   getMessages,
@@ -146,6 +151,13 @@ export const Chat = ({
       }
     }
   }, [isIos])
+
+  useEffect(() => {
+    dispatch({
+      action: ChatActions.BEFORE_SEND,
+      message: beforeSentMessages,
+    })
+  }, [beforeSentMessages])
 
   useEffect(() => {
     ;(async function () {
@@ -253,7 +265,7 @@ export const Chat = ({
       if (isScrollReady.current && hasPrevMessage) {
         const pastMessages = await fetchPastMessages()
 
-        await dispatch({
+        dispatch({
           action: ChatActions.PAST,
           messages: pastMessages,
         })
@@ -288,24 +300,26 @@ export const Chat = ({
         {userInfo ? (
           <>
             <ul id="messages_list">
-              {messages.map((message: MessageInterface) => (
-                <li key={message.id}>
-                  <ChatBubble
-                    displayTarget={displayTarget}
-                    message={message}
-                    userInfo={userInfo}
-                    postMessageAction={
-                      postMessage ? postMessageAction : undefined
-                    }
-                    otherReadInfo={otherUnreadInfo}
-                    onRetryButtonClick={onRetry}
-                    onRetryCancelButtonClick={onRetryCancel}
-                    disableUnreadCount={disableUnreadCount}
-                    blindedText={blindedText}
-                    bubbleStyle={bubbleStyle}
-                  />
-                </li>
-              ))}
+              {[...messages, ...beforeSentMessages].map(
+                (message: MessageInterface) => (
+                  <li key={message.id}>
+                    <ChatBubble
+                      displayTarget={displayTarget}
+                      message={message}
+                      userInfo={userInfo}
+                      postMessageAction={
+                        postMessage ? postMessageAction : undefined
+                      }
+                      otherReadInfo={otherUnreadInfo}
+                      onRetryButtonClick={onRetry}
+                      onRetryCancelButtonClick={onRetryCancel}
+                      disableUnreadCount={disableUnreadCount}
+                      blindedText={blindedText}
+                      bubbleStyle={bubbleStyle}
+                    />
+                  </li>
+                ),
+              )}
             </ul>
             <ul id="failed_messages_list">
               {failedMessages.map((message: MessageInterface) => (
