@@ -1,4 +1,5 @@
 export * from './use-body-scroll-lock'
+export * from './use-debounce'
 export * from './use-error-handler'
 export * from './use-fetch'
 export * from './use-interval'
@@ -8,5 +9,3 @@ export * from './use-scroll-to-anchor'
 export * from './use-scroll-to-element'
 export * from './use-session-storage'
 export * from './use-visibility-change'
-
-export { default as useDebouncedState } from './use-debounce'
