@@ -1,12 +1,13 @@
 import { useCallback } from 'react'
 import {
   Section,
-  Container,
   longClickable,
   Text,
   Icon,
   TextTitle,
   FlexBox,
+  RatingV2,
+  Button,
 } from '@titicaca/kint5-core-elements'
 import {
   useEventTrackingContext,
@@ -104,33 +105,22 @@ function DetailHeader({
             }}
           >
             {reviewsCount > 0 && (
-              <Container
+              <Button
                 css={{
+                  background: 'none',
+                  padding: 0,
+                  margin: 0,
                   display: 'inline-flex',
                   alignItems: 'center',
                   marginRight: 8,
                 }}
+                onClick={onReviewsRatingClick}
               >
-                <img
-                  src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ico-star-fill.svg"
-                  alt="Star icon"
-                  width={12}
-                  height={12}
-                />
-                <Text
-                  onClick={onReviewsRatingClick}
-                  css={{
-                    fontSize: 13,
-                    fontWeight: 700,
-                    margin: '1px 4px 0 2px',
-                  }}
-                >
-                  {reviewsRating.toFixed(2)}
-                </Text>
+                <RatingV2 score={reviewsRating} />
                 <Text css={{ fontSize: 13, fontWeight: 400, marginTop: 1 }}>
                   ({formatNumber(reviewsCount)})
                 </Text>
-              </Container>
+              </Button>
             )}
             {scrapsCount > 0 && (
               <FlexBox flex css={{ alignItems: 'center', marginTop: 2 }}>
