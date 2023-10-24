@@ -21,7 +21,9 @@ export function RatingV2({
         width={12}
         height={12}
       />
-      <Text css={{ fontSize: 13, fontWeight: 700 }}>{formattedScore}</Text>
+      <Text css={{ fontSize: 13, fontWeight: 700, marginTop: 1 }}>
+        {formattedScore}
+      </Text>
     </FlexBox>
   )
 }
