@@ -7,7 +7,7 @@ import {
   Container,
 } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
-import { getWebStorage } from '@titicaca/web-storage'
+import { useSessionStorage } from '@titicaca/react-hooks'
 
 import {
   BannerExitStrategy,
@@ -73,19 +73,15 @@ export default function FloatingButtonCta({
     },
     [trackEvent],
   )
+  const [visitedPages, setVisitedPages] = useSessionStorage(
+    FLOATING_BUTTON_CLOSED_STORAGE_KEY,
+  )
   useEffect(() => {
-    let visitedPages = false
-    try {
-      const storage = getWebStorage('sessionStorage')
-      visitedPages = !!storage.getItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY)
-    } catch (error) {
-      // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
-      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
+    if (visitedPages === 'true') {
+      return
     }
-    if (!visitedPages && !buttonVisibility) {
-      setButtonVisibility(true)
-    }
-  }, [buttonVisibility])
+    setButtonVisibility(true)
+  }, [visitedPages])
   useEffect(() => {
     if (buttonVisibility) {
       sendTrackEventRequest(trackEventParams && trackEventParams.onShow)
@@ -101,14 +97,8 @@ export default function FloatingButtonCta({
     setButtonVisibility(false)
     sendTrackEventRequest(trackEventParams && trackEventParams.onClose)
     onDismiss && onDismiss()
-    try {
-      const storage = getWebStorage('sessionStorage')
-      storage.setItem(FLOATING_BUTTON_CLOSED_STORAGE_KEY, 'true')
-    } catch (error) {
-      // 사용자가 CTA를 닫았다는 것을 기록합니다.
-      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
-    }
-  }, [onDismiss, sendTrackEventRequest, trackEventParams])
+    setVisitedPages('true')
+  }, [onDismiss, sendTrackEventRequest, setVisitedPages, trackEventParams])
   useEffect(() => {
     if (exitStrategy === BannerExitStrategy.CHATBOT_READY) {
       const onChatbotReady = () => {

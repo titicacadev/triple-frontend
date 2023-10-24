@@ -282,12 +282,12 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
-      '@titicaca/web-storage':
-        specifier: workspace:*
-        version: link:../web-storage
       react-transition-group:
         specifier: ^4.4.5
         version: 4.4.5(react-dom@18.2.0)(react@18.2.0)
@@ -960,15 +960,15 @@ importers:
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
+      '@titicaca/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
-      '@titicaca/web-storage':
-        specifier: workspace:*
-        version: link:../web-storage
       qs:
         specifier: ^6.11.2
         version: 6.11.2

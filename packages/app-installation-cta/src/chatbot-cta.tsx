@@ -3,7 +3,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { Text, LayeringMixinProps } from '@titicaca/core-elements'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-import { getWebStorage } from '@titicaca/web-storage'
+import { useSessionStorage } from '@titicaca/react-hooks'
 
 import {
   CHATBOT_CLOSED_STORAGE_KEY,
@@ -52,23 +52,17 @@ export default function ChatbotCta({
 
   const { detailedDesc = '', text = '' } = inventoryItem || {}
 
+  const [visited, setVisited] = useSessionStorage(CHATBOT_CLOSED_STORAGE_KEY)
+
   useEffect(() => {
-    let visited = false
-
-    try {
-      visited = !!getWebStorage('sessionStorage').getItem(
-        CHATBOT_CLOSED_STORAGE_KEY,
-      )
-    } catch (error) {
-      // 사용자가 이전에 CTA를 닫았었는지 확인합니다.
-      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
+    if (visited === 'true') {
+      return
     }
-
-    if (!visited && !visibility && available && inventoryItem) {
+    if (available && inventoryItem) {
       setVisibility(true)
       window.dispatchEvent(new Event(EVENT_CHATBOT_CTA_READY))
     }
-  }, [available, inventoryItem, onShow, visibility, t])
+  }, [available, inventoryItem, onShow, visited])
 
   useEffect(() => {
     async function fetchInventory() {
@@ -108,16 +102,8 @@ export default function ChatbotCta({
     setVisibility(false)
     onDismiss && onDismiss(inventoryItem)
 
-    try {
-      getWebStorage('sessionStorage').setItem(
-        CHATBOT_CLOSED_STORAGE_KEY,
-        'true',
-      )
-    } catch (error) {
-      // 사용자가 CTA를 닫았다는 것을 기록합니다.
-      // 필수적인 기능이 아니므로 에러를 조용히 넘깁니다.
-    }
-  }, [onDismiss, inventoryItem])
+    setVisited('true')
+  }, [onDismiss, inventoryItem, setVisited])
 
   return (
     <CSSTransition
