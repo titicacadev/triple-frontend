@@ -8,8 +8,8 @@ import {
   Tooltip,
   ButtonGroup,
 } from '@titicaca/core-elements'
-import { useEffect, useState } from 'react'
-import { getWebStorage } from '@titicaca/web-storage'
+import { useEffect, useRef } from 'react'
+import { useLocalStorage } from '@titicaca/react-hooks'
 
 const ActionButton = styled(Button)`
   position: relative;
@@ -54,17 +54,14 @@ function Actions({
 }) {
   const { t } = useTranslation('common-web')
 
-  const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useState(true)
+  const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useLocalStorage(
+    REVIEW_TOOLTIP_EXPOSED,
+  )
+  const isReviewTooltipExposedCopy = useRef(isReviewTooltipExposed)
 
   useEffect(() => {
-    const webStorage = getWebStorage('localStorage', { unavailable: () => {} })
-    setIsReviewTooltipExposed(
-      JSON.parse(
-        webStorage.getItem(REVIEW_TOOLTIP_EXPOSED) || 'false',
-      ) as boolean,
-    )
-    webStorage.setItem(REVIEW_TOOLTIP_EXPOSED, 'true')
-  }, [])
+    setIsReviewTooltipExposed('true')
+  }, [setIsReviewTooltipExposed])
 
   return (
     <Section {...props}>
@@ -95,7 +92,7 @@ function Actions({
           icon={reviewed ? 'starFilled' : 'starEmpty'}
           onClick={onReviewEdit}
         >
-          {!isReviewTooltipExposed ? (
+          {isReviewTooltipExposedCopy.current !== 'true' ? (
             <ReviewTooltip
               label="이제 영상도 올릴 수 있어요!"
               pointing={{
