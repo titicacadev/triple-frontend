@@ -27,7 +27,7 @@ export function HashRouterProvider({
 
   useEffect(() => {
     setUriHash(window.location.hash.replace('#', ''))
-  }, [setUriHash])
+  }, [])
 
   useEffect(() => {
     const onHashChange = () => {
@@ -57,14 +57,17 @@ export function HashRouterProvider({
 
   const removeUriHash = useCallback<HashRouterContextValue['removeUriHash']>(
     (type) => {
+      if (!window.location.hash) {
+        return
+      }
+
       if (type === 'pop' || isAndroid) {
         return window.history.back()
-      } else {
-        const url = new URL(window.location.href)
-        url.hash = ''
-
-        window.history.replaceState(null, '', url)
       }
+
+      const url = new URL(window.location.href)
+      url.hash = ''
+      window.history.replaceState(null, '', url)
       window.dispatchEvent(new Event('hashchange'))
     },
     [isAndroid],
