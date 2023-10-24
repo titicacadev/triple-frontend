@@ -858,9 +858,6 @@ importers:
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
-      '@titicaca/poi-list-elements':
-        specifier: workspace:*
-        version: link:../poi-list-elements
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
