@@ -9,8 +9,7 @@ export const horizontalScroll = (defaultValue?: HorizontalScroll) => css<{
     return horizontalScroll
       ? `
       white-space: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
+      overflow: auto hidden;
         `
       : ''
   }}
