@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 import { CSSObject } from 'styled-components'
 
 import { Button } from '../button'
@@ -9,7 +9,7 @@ interface NavbarProps {
   centerContent?: ReactNode
   rightContent?: ReactNode
   containerCss?: CSSObject
-  onBackButtonClick: () => void
+  onBackButtonClick: MouseEventHandler<HTMLButtonElement>
 }
 
 export function Navbar({
