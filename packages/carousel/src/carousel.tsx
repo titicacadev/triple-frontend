@@ -23,9 +23,8 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
   padding-bottom: 10px;
   ${marginMixin}
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow: scroll hidden;
   -webkit-overflow-scrolling: touch;
-  overflow-y: hidden;
 
   ::-webkit-scrollbar {
     display: none;
