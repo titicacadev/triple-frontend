@@ -10,9 +10,10 @@ import {
 import { useTranslation } from '@titicaca/next-i18next'
 import {
   useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
+  // useHistoryFunctions,
+  useHashRouter,
 } from '@titicaca/react-contexts'
+import { useAuthNavigate } from '@titicaca/router'
 
 import { Confirm } from './confirm'
 
@@ -30,12 +31,12 @@ export function LoginCtaModalProvider({
 }: PropsWithChildren<unknown>) {
   const { t } = useTranslation('common-web')
 
-  const uriHash = useUriHash()
   const { trackEvent } = useEventTrackingContext()
-  const { back, navigate } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
   const hasParentModal = useContext(LoginCtaContext)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
   const [returnUrl, setReturnUrl] = useState<string | undefined>()
+  const { navigate } = useAuthNavigate()
 
   if (hasParentModal) {
     return <>{children}</>
@@ -48,8 +49,10 @@ export function LoginCtaModalProvider({
       <Confirm
         open={open}
         title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
-        onClose={back}
-        onCancel={back}
+        // onClose={back}
+        // onCancel={back}
+        onClose={removeUriHash}
+        onCancel={removeUriHash}
         onConfirm={() => {
           trackEvent({
             ga: ['로그인유도팝업_로그인선택'],
@@ -87,7 +90,8 @@ export function withLoginCtaModal<P>(Component: ComponentType<P & Attributes>) {
 }
 
 export function useLoginCtaModal() {
-  const { push } = useHistoryFunctions()
+  // const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
   const { trackEvent } = useEventTrackingContext()
   const contextValue = useContext(LoginCtaContext)
 
@@ -105,9 +109,11 @@ export function useLoginCtaModal() {
             referrer_event: triggeredEventAction,
           },
         })
-        push(LOGIN_CTA_MODAL_HASH)
+        // push(LOGIN_CTA_MODAL_HASH)
+        addUriHash(LOGIN_CTA_MODAL_HASH)
       },
     }),
-    [push, trackEvent, contextValue],
+    // [push, trackEvent, contextValue],
+    [addUriHash, trackEvent, contextValue],
   )
 }
