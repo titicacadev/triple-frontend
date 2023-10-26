@@ -56,7 +56,11 @@ export default function Carousel({
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
+  const visibleImages = app
+    ? images
+    : guestMode
+    ? images.slice(0, SHOW_CTA_FROM_INDEX)
+    : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
@@ -129,10 +133,27 @@ export default function Carousel({
 
   const ConditionalPageLabel = app
     ? undefined
-    : ({ currentIndex }: { currentIndex: number }) =>
-        !totalImagesCount || currentIndex === SHOW_CTA_FROM_INDEX ? null : (
-          <PageLabel currentIndex={currentPage} totalCount={totalImagesCount} />
-        )
+    : ({ currentIndex }: { currentIndex: number }) => {
+        if (!totalImagesCount) {
+          return null
+        }
+
+        if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
+          const pageLabelTotalCount =
+            guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
+              ? SHOW_CTA_FROM_INDEX
+              : totalImagesCount
+
+          return (
+            <PageLabel
+              currentIndex={currentPage}
+              totalCount={pageLabelTotalCount}
+            />
+          )
+        }
+
+        return null
+      }
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
     !app && currentIndex === SHOW_CTA_FROM_INDEX && !guestMode ? (
