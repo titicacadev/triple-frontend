@@ -9,6 +9,7 @@ import {
 import { Text } from '@titicaca/core-elements'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
+import { useGuestMode } from '../prop-context/guest-mode'
 
 import ResourceList from './shared/resource-list'
 import DocumentCarousel from './shared/document-carousel'
@@ -43,6 +44,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
     pois: T[]
   }
 }) {
+  const guestMode = useGuestMode()
   const onResourceClick = useResourceClickHandler()
 
   const Container = display === 'list' ? ResourceList : DocumentCarousel
@@ -74,6 +76,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
             display,
             poi,
           })}
+          guestMode={guestMode}
         />
       ))}
     </Container>
