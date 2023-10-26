@@ -49,6 +49,6 @@
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*",
-    "next": "^13.0"
+    "next": "^13.4"
   }
 }
