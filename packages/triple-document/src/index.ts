@@ -8,6 +8,7 @@ export { Slot } from './elements/tna/slot'
 export { PricePolicyCouponInfo } from './elements/tna/price-policy-coupon-info'
 
 export { useDeepLink } from './prop-context/deep-link'
+export { useGuestMode } from './prop-context/guest-mode'
 export { useImageClickHandler } from './prop-context/image-click-handler'
 export { useImageSource } from './prop-context/image-source'
 export { useLinkClickHandler } from './prop-context/link-click-handler'
