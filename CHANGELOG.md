@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.8.1
+
+### chat
+
+- [chat] 채팅 인입 후 메시지 전송시 상품/예약정보 중복노출 [#2960](https://github.com/titicacadev/triple-frontend/pull/2960)
+
 ## v13.8.0
 
 ### chat
