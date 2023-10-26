@@ -2,34 +2,28 @@
 
 import { PropsWithChildren } from 'react'
 
-import {
-  DeviceConfig,
-  DeviceConfigContext,
-  Env,
-  EnvContext,
-  UserAgent,
-  UserAgentContext,
-} from './contexts'
+import { Env, EnvContext, UserAgent, UserAgentContext } from './contexts'
+import { ClientApp, ClientAppContext } from './contexts/client-app'
 
 export interface TripleWebProps extends PropsWithChildren {
-  envProvider: Env
-  deviceConfigProvider?: DeviceConfig
+  clientApp?: ClientApp
+  envProvider?: Env
   userAgentProvider?: UserAgent
 }
 
 export function TripleWeb({
   children,
+  clientApp,
   envProvider,
-  deviceConfigProvider,
   userAgentProvider,
 }: TripleWebProps) {
   return (
-    <EnvContext.Provider value={envProvider}>
-      <DeviceConfigContext.Provider value={deviceConfigProvider}>
+    <ClientAppContext.Provider value={clientApp}>
+      <EnvContext.Provider value={envProvider}>
         <UserAgentContext.Provider value={userAgentProvider}>
           {children}
         </UserAgentContext.Provider>
-      </DeviceConfigContext.Provider>
-    </EnvContext.Provider>
+      </EnvContext.Provider>
+    </ClientAppContext.Provider>
   )
 }
