@@ -890,6 +890,12 @@ importers:
 
   packages/triple-web:
     dependencies:
+      '@types/semver':
+        specifier: ^7.5.3
+        version: 7.5.3
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.36
@@ -8258,7 +8264,6 @@ packages:
 
   /@types/semver@7.5.3:
     resolution: {integrity: sha512-OxepLK9EuNEIPxWNME+C6WwbRAOOI2o2BaQEGzz5Lu2e4Z5eDnEo+/aVEDMIXywoJitJ7xWd641wrGLZdtwRyw==}
-    dev: true
 
   /@types/send@0.17.1:
     resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
