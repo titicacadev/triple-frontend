@@ -54,6 +54,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   isAdvertisement,
   notes,
   optimized,
+  guestMode,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { t } = useTranslation('common-web')
 
@@ -105,7 +106,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       reviewsRating={reviewsRatingWithGraphql ?? rawReviewsRating}
       scrapsCount={scrapsCount}
       onClick={onClick}
-      hideScrapButton={hideScrapButton}
+      hideScrapButton={hideScrapButton || guestMode}
       maxCommentLines={maxCommentLines}
       isAdvertisement={isAdvertisement}
       optimized={optimized}
