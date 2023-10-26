@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { useLinkClickHandler } from '../../prop-context/link-click-handler'
 
 const TextHtml = styled(Text)`
+  line-height: 1.63;
   color: var(--color-kint5-gray100);
   font-weight: 400;
   white-space: ${({ whiteSpace }) => whiteSpace || 'normal'};
@@ -64,7 +65,11 @@ export default function TextElement({
   if (rawHTML) {
     return (
       <TextHtml
-        margin={compact || embedded ? { top: 4 } : { top: 10 }}
+        margin={
+          compact || embedded
+            ? { top: 4, left: 16, right: 16 }
+            : { top: 10, left: 16, right: 16 }
+        }
         dangerouslySetInnerHTML={{ __html: rawHTML }}
         onClick={handleClick}
         {...props}
