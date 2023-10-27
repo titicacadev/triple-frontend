@@ -9,7 +9,7 @@ interface NavbarProps {
   centerContent?: ReactNode
   rightContent?: ReactNode
   containerCss?: CSSObject
-  onBackButtonClick: MouseEventHandler<HTMLButtonElement>
+  onBackButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export function Navbar({
