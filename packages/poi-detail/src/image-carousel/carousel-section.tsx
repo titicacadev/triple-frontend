@@ -46,7 +46,12 @@ export default function CarouselSection({
     >
       <Container position="relative">
         {images.length > 0 ? (
-          <Carousel images={images} borderRadius={borderRadius} {...props} />
+          <Carousel
+            images={images}
+            borderRadius={borderRadius}
+            guestMode={guestMode}
+            {...props}
+          />
         ) : (
           <Placeholder
             onClick={onPlaceholderClick}
