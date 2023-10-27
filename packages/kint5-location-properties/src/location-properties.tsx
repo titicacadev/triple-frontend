@@ -47,8 +47,7 @@ function LocationProperties({
     Omit<PropertyItemProps, 'identifier'>
   > = useMemo(() => {
     const allValues = new Map<string, Omit<PropertyItemProps, 'identifier'>>()
-    const addressValue =
-      addresses?.primary || addresses?.ko || addresses?.en || addresses?.local
+    const addressValue = addresses?.primary || addresses?.en || addresses?.local
 
     addressValue &&
       allValues.set('addresses', {
