@@ -31,6 +31,7 @@ export default function CarouselSection({
   onPlaceholderClick,
   onBusinessHoursClick,
   borderRadius,
+  guestMode,
   ...props
 }: CarouselSectionProps) {
   return (
@@ -47,7 +48,11 @@ export default function CarouselSection({
         {images.length > 0 ? (
           <Carousel images={images} borderRadius={borderRadius} {...props} />
         ) : (
-          <Placeholder onClick={onPlaceholderClick} noContent={loading} />
+          <Placeholder
+            onClick={onPlaceholderClick}
+            noContent={loading}
+            guestMode={guestMode}
+          />
         )}
         {!permanentlyClosed && onBusinessHoursClick ? (
           <BusinessHoursNote
