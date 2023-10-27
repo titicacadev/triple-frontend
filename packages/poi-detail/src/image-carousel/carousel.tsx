@@ -39,6 +39,7 @@ export interface CarouselProps {
   optimized?: boolean
   borderRadius?: number
   height?: number
+  guestMode?: boolean
 }
 
 export default function Carousel({
@@ -50,6 +51,7 @@ export default function Carousel({
   optimized,
   borderRadius = 6,
   height,
+  guestMode,
 }: CarouselProps) {
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
@@ -133,7 +135,9 @@ export default function Carousel({
         )
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    !app && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
+    !app && !guestMode && currentIndex === SHOW_CTA_FROM_INDEX ? (
+      <CtaOverlay />
+    ) : null
 
   return (
     <>
