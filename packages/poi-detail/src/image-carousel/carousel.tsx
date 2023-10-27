@@ -39,6 +39,7 @@ export interface CarouselProps {
   optimized?: boolean
   borderRadius?: number
   height?: number
+  guestMode?: boolean
 }
 
 export default function Carousel({
@@ -50,11 +51,14 @@ export default function Carousel({
   optimized,
   borderRadius = 6,
   height,
+  guestMode,
 }: CarouselProps) {
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
+  const visibleImages = app
+    ? images
+    : images.slice(0, guestMode ? SHOW_CTA_FROM_INDEX : SHOW_CTA_FROM_INDEX + 1)
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
@@ -125,15 +129,33 @@ export default function Carousel({
     ],
   )
 
-  const ConditionalPageLabel = app
-    ? undefined
-    : ({ currentIndex }: { currentIndex: number }) =>
-        !totalImagesCount || currentIndex === SHOW_CTA_FROM_INDEX ? null : (
-          <PageLabel currentIndex={currentPage} totalCount={totalImagesCount} />
-        )
+  const publicPageLabelRenderer = ({
+    currentIndex,
+  }: {
+    currentIndex: number
+  }) => {
+    if (!totalImagesCount) {
+      return null
+    }
+
+    if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
+      const totalCount =
+        guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
+          ? SHOW_CTA_FROM_INDEX
+          : totalImagesCount
+
+      return <PageLabel currentIndex={currentPage} totalCount={totalCount} />
+    }
+
+    return null
+  }
+
+  const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    !app && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
+    !app && !guestMode && currentIndex === SHOW_CTA_FROM_INDEX ? (
+      <CtaOverlay />
+    ) : null
 
   return (
     <>
