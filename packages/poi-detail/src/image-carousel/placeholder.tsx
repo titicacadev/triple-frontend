@@ -39,6 +39,7 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
 interface ImagePlaceholderProps {
   large?: boolean
   noContent?: boolean
+  guestMode?: boolean
   onClick: () => void
 }
 
@@ -68,22 +69,27 @@ function ImagePlaceholder({
   )
 }
 
-interface ResponsiveImagePlaceholderProps {
-  onClick: () => void
-  noContent?: boolean
-}
-
 export default function ResponsiveImagePlaceholder({
   onClick,
   noContent,
-}: ResponsiveImagePlaceholderProps) {
+  guestMode,
+}: Omit<ImagePlaceholderProps, 'large'>) {
   return (
     <>
       <Responsive maxWidth={706}>
-        <ImagePlaceholder noContent={noContent} onClick={onClick} />
+        <ImagePlaceholder
+          noContent={noContent}
+          guestMode={guestMode}
+          onClick={onClick}
+        />
       </Responsive>
       <Responsive minWidth={707}>
-        <ImagePlaceholder noContent={noContent} large onClick={onClick} />
+        <ImagePlaceholder
+          noContent={noContent}
+          guestMode={guestMode}
+          large
+          onClick={onClick}
+        />
       </Responsive>
     </>
   )
