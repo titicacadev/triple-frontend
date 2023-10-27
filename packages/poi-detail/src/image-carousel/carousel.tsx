@@ -129,12 +129,28 @@ export default function Carousel({
     ],
   )
 
-  const ConditionalPageLabel = app
-    ? undefined
-    : ({ currentIndex }: { currentIndex: number }) =>
-        !totalImagesCount || currentIndex === SHOW_CTA_FROM_INDEX ? null : (
-          <PageLabel currentIndex={currentPage} totalCount={totalImagesCount} />
-        )
+  const publicPageLabelRenderer = ({
+    currentIndex,
+  }: {
+    currentIndex: number
+  }) => {
+    if (!totalImagesCount) {
+      return null
+    }
+
+    if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
+      const totalCount =
+        guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
+          ? SHOW_CTA_FROM_INDEX
+          : totalImagesCount
+
+      return <PageLabel currentIndex={currentPage} totalCount={totalCount} />
+    }
+
+    return null
+  }
+
+  const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
     !app && !guestMode && currentIndex === SHOW_CTA_FROM_INDEX ? (
