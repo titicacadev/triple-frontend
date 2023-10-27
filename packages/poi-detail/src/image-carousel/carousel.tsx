@@ -56,7 +56,9 @@ export default function Carousel({
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
+  const visibleImages = app
+    ? images
+    : images.slice(0, guestMode ? SHOW_CTA_FROM_INDEX : SHOW_CTA_FROM_INDEX + 1)
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
