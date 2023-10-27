@@ -47,13 +47,17 @@ function ImagePlaceholder({
   large,
   noContent,
   onClick,
+  guestMode,
 }: ImagePlaceholderProps) {
   const { t } = useTranslation('common-web')
 
   return (
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
-        {noContent ? null : (
+        {noContent ? null : guestMode ? (
+          /** TODO : 아이콘 이미지 guestMode 용으로 교체  */
+          <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
+        ) : (
           <>
             <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
             <Text size="small" color="gray" alpha={0.3}>
