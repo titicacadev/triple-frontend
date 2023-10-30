@@ -44,6 +44,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
   imageFrame?: FrameRatioAndSizes
   onImpress?: () => void
   optimized?: boolean
+  guestMode?: boolean
 }) {
   if (!poi) {
     return null
