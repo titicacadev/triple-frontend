@@ -1122,8 +1122,8 @@ importers:
         specifier: ^7.5.4
         version: 7.5.4
       ua-parser-js:
-        specifier: ^1.0.36
-        version: 1.0.36
+        specifier: ^1.0.37
+        version: 1.0.37
       universal-cookie:
         specifier: ^4.0.4
         version: 4.0.4
@@ -13099,7 +13099,7 @@ packages:
       object-assign: 4.1.1
       promise: 7.3.1
       setimmediate: 1.0.5
-      ua-parser-js: 1.0.36
+      ua-parser-js: 1.0.37
     transitivePeerDependencies:
       - encoding
     dev: true
@@ -20924,8 +20924,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ua-parser-js@1.0.36:
-    resolution: {integrity: sha512-znuyCIXzl8ciS3+y3fHJI/2OhQIXbXw9MWC/o3qwyR+RGppjZHrM27CGFSKCJXi2Kctiz537iOu2KnXs1lMQhw==}
+  /ua-parser-js@1.0.37:
+    resolution: {integrity: sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==}
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
