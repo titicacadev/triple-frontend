@@ -31,7 +31,7 @@ interface ChatBubbleProps {
 const ChatBubble = ({
   message,
   message: { senderId, createdAt },
-  userInfo: { others },
+  userInfo: { me, others },
   otherReadInfo,
   displayTarget: componentDisplayTarget,
   postMessageAction,
@@ -92,7 +92,7 @@ const ChatBubble = ({
 
   return (
     <ChatBubbleUI
-      type={otherUserInfo ? 'received' : 'sent'}
+      type={me.id !== senderId ? 'received' : 'sent'}
       profileImageUrl={
         otherUserInfo ? getProfileImageUrl(otherUserInfo) : undefined
       }
