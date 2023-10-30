@@ -13,16 +13,9 @@ const AWARD_INFO = [
   {
     id: 1,
     imageUrl:
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/c22c15f7-a48a-49da-b8f6-e784724441d1.jpeg',
-    alt: 'ISO27001',
-    text: '국제표준 정보보호 관리체계 (ISO27001) 인증 취득',
-  },
-  {
-    id: 2,
-    imageUrl:
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/a6a01895-e719-4829-9009-3ed111637826.jpeg',
-    alt: 'ISO27701',
-    text: '국제표준 정보보호 관리체계 (ISO27701) 인증 취득',
+      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg',
+    alt: '국제표준 정보보호 인증마크 ISO27001, ISO 27701',
+    text: '국제표준 정보보호 인증 취득\nISO 27001, ISO 27701',
   },
 ]
 
