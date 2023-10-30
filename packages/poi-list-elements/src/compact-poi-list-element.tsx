@@ -41,6 +41,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
     source: { names, image, areas, vicinity },
   },
   onClick,
+  guestMode,
 }: CompactPoiListElementProps<T>) {
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement & { width?: number }>(null)
@@ -60,6 +61,19 @@ export function CompactPoiListElement<T extends PoiListElementType>({
     regionNames?.ko ||
     regionNames?.en ||
     regionNames?.local
+  const ActionButton = actionButtonElement ? (
+    <div ref={actionButtonRef}>{actionButtonElement}</div>
+  ) : (
+    <Container
+      position="absolute"
+      css={{
+        top: 0,
+        right: 0,
+      }}
+    >
+      <OutlineScrapButton resource={poi} size={34} />
+    </Container>
+  )
 
   return (
     <ResourceListItem onClick={onClick}>
@@ -91,19 +105,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           .join(' · ')}
       </Text>
 
-      {actionButtonElement ? (
-        <div ref={actionButtonRef}>{actionButtonElement}</div>
-      ) : (
-        <Container
-          position="absolute"
-          css={{
-            top: 0,
-            right: 0,
-          }}
-        >
-          <OutlineScrapButton resource={poi} size={34} />
-        </Container>
-      )}
+      {!guestMode ? ActionButton : null}
     </ResourceListItem>
   )
 }
