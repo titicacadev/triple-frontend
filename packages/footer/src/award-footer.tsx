@@ -36,13 +36,17 @@ const AwardImg = styled.img`
 
 const Tooltip = styled.div`
   display: none;
-  width: 132px;
+  width: 135px;
   border: 1px solid var(--color-brightGray);
   border-radius: 6px;
-  padding: 8px 10px;
+  padding: 8px 11px;
   background-color: var(--color-white);
   font-size: 10px;
+  font-weight: 500;
+  color: var(--color-gray800);
   line-height: 14px;
+  word-spacing: -0.5px;
+  white-space: pre-line;
 `
 
 const AwardFlexBox = styled(FlexBox).attrs({
@@ -52,7 +56,7 @@ const AwardFlexBox = styled(FlexBox).attrs({
 })`
   ${AwardImg}:hover + ${Tooltip} {
     position: absolute;
-    bottom: calc(100% + 3px);
+    bottom: calc(100% + 4px);
     right: 0;
     display: block;
   }
