@@ -17,6 +17,7 @@ import { getTypeNames } from './get-type-names'
 interface CompactPoiListElementBaseProps<T extends PoiListElementType>
   extends PoiListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
+  guestMode?: boolean
 }
 
 export type CompactPoiListElementProps<T extends PoiListElementType> =
