@@ -55,8 +55,13 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 
   const { names: regionNames } = region?.source || {}
 
-  const name = nameOverride || names.ko || names.en || names.local
-  const regionName = regionNames?.ko || regionNames?.en || regionNames?.local
+  const name =
+    nameOverride || names.primary || names.ko || names.en || names.local
+  const regionName =
+    regionNames?.primary ||
+    regionNames?.ko ||
+    regionNames?.en ||
+    regionNames?.local
   const ActionButton = actionButtonElement ? (
     <div ref={actionButtonRef}>{actionButtonElement}</div>
   ) : (
