@@ -84,7 +84,7 @@ function DetailHeader({
         css={{ padding: '0 16px' }}
         {...props}
       >
-        <TextTitle>{names.primary || names.ko || names.en}</TextTitle>
+        <TextTitle>{names.primary || names.en || names.local}</TextTitle>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>
