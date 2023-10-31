@@ -97,7 +97,7 @@ function Video({ medium }: Props) {
   }, [isIntersecting, ref, videoAutoplay])
 
   return (
-    <Container borderRadius={6}>
+    <Container>
       <StyledPoster
         style={{ backgroundImage: `url("${medium.sizes.large.url}")` }}
       />
