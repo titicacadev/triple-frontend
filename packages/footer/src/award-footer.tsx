@@ -36,6 +36,9 @@ const AwardImg = styled.img`
 
 const Tooltip = styled.div`
   display: none;
+  position: absolute;
+  bottom: calc(100% + 4px);
+  right: 0;
   width: 135px;
   border: 1px solid var(--color-brightGray);
   border-radius: 6px;
@@ -55,9 +58,6 @@ const AwardFlexBox = styled(FlexBox).attrs({
   gap: 7,
 })`
   ${AwardImg}:hover + ${Tooltip} {
-    position: absolute;
-    bottom: calc(100% + 4px);
-    right: 0;
     display: block;
   }
 `
