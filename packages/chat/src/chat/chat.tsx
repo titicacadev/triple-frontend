@@ -75,7 +75,7 @@ export const Chat = ({
   userInfo,
   room,
   messages: initMessages,
-  beforeSentMessages: initBeforeSentMessages = [],
+  beforeSentMessages: initBeforeSentMessages,
 
   postMessage,
   getMessages,
