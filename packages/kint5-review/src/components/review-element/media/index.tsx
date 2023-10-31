@@ -79,10 +79,9 @@ function Media({ media, reviewId }: Props) {
                   top: 0,
                   width: '100%',
                   height: '100%',
-                  borderRadius: 8,
                   color: 'var(--color-kint5-gray0)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                  fontSize: 24,
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                  fontSize: 20,
                   fontWeight: 700,
                 }}
               >
