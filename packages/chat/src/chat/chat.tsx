@@ -14,7 +14,7 @@ import {
   RoomInterface,
   TextPayload,
   UpdateChatData,
-  UserInfoInterface,
+  UserInterface,
   UserType,
 } from '../types'
 import ChatBubble from '../chat-bubble'
@@ -30,10 +30,7 @@ export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
 export interface ChatProps {
   displayTarget: UserType
-  /**
-   * me(sender), others(receiver)에 대한 기본 정보
-   */
-  userInfo: UserInfoInterface
+  me: UserInterface
   /**
    * 초기 메시지들
    */
@@ -72,7 +69,7 @@ export interface ChatProps {
  */
 export const Chat = ({
   displayTarget,
-  userInfo,
+  me,
   room,
   messages: initMessages,
   beforeSentMessages: initBeforeSentMessages,
@@ -136,7 +133,7 @@ export const Chat = ({
 
   useChatMessage({
     roomId: room.id,
-    userMeId: userInfo.me.id,
+    userMeId: me.id,
     notifyNewMessage,
     dispatch,
     updateChatData,
@@ -232,10 +229,10 @@ export const Chat = ({
         message: {
           id: new Date().getTime(),
           roomId: room.id,
-          senderId: userInfo.me.id,
+          senderId: me.id,
           payload,
           displayTarget: 'all',
-          sender: userInfo.me,
+          sender: me,
         },
       })
 
@@ -305,52 +302,46 @@ export const Chat = ({
         <HiddenElement />
       </IntersectionObserver>
       <Container ref={chatRoomRef} id={CHAT_CONTAINER_ID} {...props}>
-        {userInfo ? (
-          <>
-            <ul id="messages_list">
-              {[...messages, ...beforeSentMessages].map(
-                (message: MessageInterface) => (
-                  <li key={message.id}>
-                    <ChatBubble
-                      my={userInfo.me.id === message.sender.id}
-                      displayTarget={displayTarget}
-                      message={message}
-                      postMessageAction={
-                        postMessage ? postMessageAction : undefined
-                      }
-                      otherReadInfo={otherUnreadInfo}
-                      onRetryButtonClick={onRetry}
-                      onRetryCancelButtonClick={onRetryCancel}
-                      disableUnreadCount={disableUnreadCount}
-                      blindedText={blindedText}
-                      bubbleStyle={bubbleStyle}
-                    />
-                  </li>
-                ),
-              )}
-            </ul>
-            <ul id="failed_messages_list">
-              {failedMessages.map((message: MessageInterface) => (
-                <li key={message.id}>
-                  <ChatBubble
-                    my
-                    displayTarget={displayTarget}
-                    message={message}
-                    postMessageAction={
-                      postMessage ? postMessageAction : undefined
-                    }
-                    otherReadInfo={otherUnreadInfo}
-                    onRetryButtonClick={onRetry}
-                    onRetryCancelButtonClick={onRetryCancel}
-                    disableUnreadCount={disableUnreadCount}
-                    blindedText={blindedText}
-                    bubbleStyle={bubbleStyle}
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null}
+        <ul id="messages_list">
+          {[...messages, ...beforeSentMessages].map(
+            (message: MessageInterface) => (
+              <li key={message.id}>
+                <ChatBubble
+                  my={me.id === message.sender.id}
+                  displayTarget={displayTarget}
+                  message={message}
+                  postMessageAction={
+                    postMessage ? postMessageAction : undefined
+                  }
+                  otherReadInfo={otherUnreadInfo}
+                  onRetryButtonClick={onRetry}
+                  onRetryCancelButtonClick={onRetryCancel}
+                  disableUnreadCount={disableUnreadCount}
+                  blindedText={blindedText}
+                  bubbleStyle={bubbleStyle}
+                />
+              </li>
+            ),
+          )}
+        </ul>
+        <ul id="failed_messages_list">
+          {failedMessages.map((message: MessageInterface) => (
+            <li key={message.id}>
+              <ChatBubble
+                my
+                displayTarget={displayTarget}
+                message={message}
+                postMessageAction={postMessage ? postMessageAction : undefined}
+                otherReadInfo={otherUnreadInfo}
+                onRetryButtonClick={onRetry}
+                onRetryCancelButtonClick={onRetryCancel}
+                disableUnreadCount={disableUnreadCount}
+                blindedText={blindedText}
+                bubbleStyle={bubbleStyle}
+              />
+            </li>
+          ))}
+        </ul>
       </Container>
       <HiddenElement ref={bottomRef} />
     </>
