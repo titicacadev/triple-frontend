@@ -235,6 +235,7 @@ export const Chat = ({
           senderId: userInfo.me.id,
           payload,
           displayTarget: 'all',
+          sender: userInfo.me,
         },
       })
 
@@ -311,9 +312,9 @@ export const Chat = ({
                 (message: MessageInterface) => (
                   <li key={message.id}>
                     <ChatBubble
+                      my={userInfo.me.id === message.sender.id}
                       displayTarget={displayTarget}
                       message={message}
-                      userInfo={userInfo}
                       postMessageAction={
                         postMessage ? postMessageAction : undefined
                       }
@@ -332,9 +333,9 @@ export const Chat = ({
               {failedMessages.map((message: MessageInterface) => (
                 <li key={message.id}>
                   <ChatBubble
+                    my
                     displayTarget={displayTarget}
                     message={message}
-                    userInfo={userInfo}
                     postMessageAction={
                       postMessage ? postMessageAction : undefined
                     }

@@ -7,7 +7,6 @@ import {
   OtherUnreadInterface,
   PostMessageActionType,
   TextPayload,
-  UserInfoInterface,
   UserType,
 } from '../types'
 import { getProfileImageUrl } from '../utils'
@@ -16,7 +15,7 @@ import { ChatBubbleStyle } from '../types/ui'
 import { ChatBubbleUI } from './chat-bubble-ui'
 
 interface ChatBubbleProps {
-  userInfo: UserInfoInterface
+  my: boolean
   message: MessageInterface
   otherReadInfo?: OtherUnreadInterface[]
   displayTarget: UserType
@@ -29,9 +28,9 @@ interface ChatBubbleProps {
 }
 
 const ChatBubble = ({
+  my,
   message,
-  message: { senderId, createdAt },
-  userInfo: { me, others },
+  message: { sender, createdAt },
   otherReadInfo,
   displayTarget: componentDisplayTarget,
   postMessageAction,
@@ -41,11 +40,6 @@ const ChatBubble = ({
   blindedText,
   bubbleStyle,
 }: ChatBubbleProps) => {
-  const otherUserInfo = useMemo(
-    () => others.find((other) => other.id === senderId),
-    [senderId, others],
-  )
-
   const unreadCount =
     !disableUnreadCount && otherReadInfo
       ? otherReadInfo.reduce(
@@ -92,11 +86,9 @@ const ChatBubble = ({
 
   return (
     <ChatBubbleUI
-      type={me.id !== senderId ? 'received' : 'sent'}
-      profileImageUrl={
-        otherUserInfo ? getProfileImageUrl(otherUserInfo) : undefined
-      }
-      profileName={otherUserInfo?.profile.name}
+      type={my ? 'sent' : 'received'}
+      profileImageUrl={my ? undefined : getProfileImageUrl(sender)}
+      profileName={sender.profile.name}
       unreadCount={unreadCount}
       createdAt={createdAt}
       payload={payload}
