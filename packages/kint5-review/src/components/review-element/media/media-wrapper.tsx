@@ -9,6 +9,20 @@ interface Props {
 }
 
 const MonoMediaWrapper = styled(GridWrapper)`
+  height: 200px;
+
+  & * {
+    border-radius: 12px;
+  }
+
+  & > div {
+    padding-top: 200px;
+  }
+
+  & img {
+    height: 200px;
+  }
+
   @media (min-width: 500px) {
     grid-template-rows: 293px;
   }
@@ -20,10 +34,20 @@ const DuoMediaWrapper = styled(GridWrapper)`
 
   & > :nth-child(1) {
     grid-column: 1;
+
+    & * {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
   }
 
   & > :nth-child(2) {
     grid-column: 2;
+
+    & * {
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
   }
 
   @media (min-width: 500px) {
@@ -32,22 +56,35 @@ const DuoMediaWrapper = styled(GridWrapper)`
 `
 
 const TriMediaWrapper = styled(GridWrapper)`
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 66.86% 33.14%;
   grid-template-rows: repeat(2, 1fr);
 
   & > :nth-child(1) {
-    grid-column: span 2;
+    grid-column: 1;
     grid-row: span 2;
+
+    & * {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
   }
 
   & > :nth-child(2) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 1;
+
+    & * {
+      border-top-right-radius: 12px;
+    }
   }
 
   & > :nth-child(3) {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 2;
+
+    & * {
+      border-bottom-right-radius: 12px;
+    }
   }
 
   @media (min-width: 500px) {
@@ -56,27 +93,40 @@ const TriMediaWrapper = styled(GridWrapper)`
 `
 
 const QuadMediaWrapper = styled(GridWrapper)`
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 75.37% 24.63%;
   grid-template-rows: repeat(3, 1fr);
 
   & > :nth-child(1) {
-    grid-column: span 3;
+    grid-column: 1;
     grid-row: span 3;
+
+    & * {
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
   }
 
   & > :nth-child(2) {
-    grid-column: 4;
+    grid-column: 2;
     grid-row: 1;
+
+    & * {
+      border-top-right-radius: 12px;
+    }
   }
 
   & > :nth-child(3) {
-    grid-column: 4;
+    grid-column: 2;
     grid-row: 2;
   }
 
   & > :nth-child(4) {
-    grid-column: 4;
+    grid-column: 2;
     grid-row: 3;
+
+    & * {
+      border-bottom-right-radius: 12px;
+    }
   }
 
   @media (min-width: 500px) {
@@ -91,16 +141,28 @@ const PentaMediaWrapper = styled(GridWrapper)`
   & > :nth-child(1) {
     grid-column: span 3;
     grid-row: span 3;
+
+    & * {
+      border-top-left-radius: 12px;
+    }
   }
 
   & > :nth-child(2) {
     grid-column: 4 / span 3;
     grid-row: span 3;
+
+    & * {
+      border-top-right-radius: 12px;
+    }
   }
 
   & > :nth-child(3) {
     grid-column: span 2;
     grid-row: 4 / span 2;
+
+    & * {
+      border-bottom-left-radius: 12px;
+    }
   }
 
   & > :nth-child(4) {
@@ -111,6 +173,10 @@ const PentaMediaWrapper = styled(GridWrapper)`
   & > :nth-child(5) {
     grid-column: 5 / span 2;
     grid-row: 4 / span 2;
+
+    & * {
+      border-bottom-right-radius: 12px;
+    }
   }
 
   @media (min-width: 500px) {

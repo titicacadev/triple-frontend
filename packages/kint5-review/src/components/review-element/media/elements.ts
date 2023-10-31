@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const GridWrapper = styled(Container)`
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 2px;
 `
 
 export const MediumWrapper = styled(Container)`
