@@ -58,7 +58,7 @@ const ScrapButtonContainer = styled(Container)`
 function PoiCardElement({
   id,
   type,
-  names: { ko, en, local },
+  names: { primary, en, local },
   image,
   comment,
   reviewsRating,
@@ -160,7 +160,7 @@ function PoiCardElement({
           }}
         >
           <Text size="large" bold ellipsis>
-            {ko || en || local}
+            {primary || en || local}
           </Text>
 
           {comment ? (
