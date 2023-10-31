@@ -17,6 +17,8 @@ import {
   PoiListElementType,
 } from './types'
 
+const BORDER_RADIUS_PX = 12
+
 function PoiCarouselElement<T extends PoiListElementType>({
   poi,
   poi: {
@@ -62,25 +64,46 @@ function PoiCarouselElement<T extends PoiListElementType>({
       css={{ ':last-child': { marginRight: 16 } }}
     >
       <Image>
-        <Image.FixedRatioFrame frame={imageFrame || 'large'} borderRadius={14}>
-          {image ? (
-            optimized ? (
-              <Image.OptimizedImg
-                cloudinaryId={image.cloudinaryId as string}
-                cloudinaryBucket={image.cloudinaryBucket}
-                alt={name || ''}
-              />
+        <Container
+          css={{
+            border: '1px solid rgba(0, 0, 0, 0.05)',
+            borderRadius: BORDER_RADIUS_PX,
+          }}
+        >
+          <Image.FixedRatioFrame
+            frame={imageFrame || 'large'}
+            borderRadius={BORDER_RADIUS_PX}
+          >
+            {image ? (
+              optimized ? (
+                <Image.OptimizedImg
+                  cloudinaryId={image.cloudinaryId as string}
+                  cloudinaryBucket={image.cloudinaryBucket}
+                  alt={name || ''}
+                />
+              ) : (
+                <Image.Img
+                  src={image.sizes.large.url}
+                  alt={name || ''}
+                  css={{ borderRadius: BORDER_RADIUS_PX }}
+                />
+              )
             ) : (
-              <Image.Img
-                src={image.sizes.large.url}
+              <img
+                src={POI_IMAGE_PLACEHOLDERS[type]}
                 alt={name || ''}
-                css={{ borderRadius: 14 }}
+                width={36}
+                height={36}
+                css={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
               />
-            )
-          ) : (
-            <Image.Placeholder src={POI_IMAGE_PLACEHOLDERS[type]} />
-          )}
-        </Image.FixedRatioFrame>
+            )}
+          </Image.FixedRatioFrame>
+        </Container>
       </Image>
 
       <Text

@@ -27,10 +27,14 @@ export type CompactPoiListElementProps<T extends PoiListElementType> =
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string
 } = {
-  attraction: 'https://assets.triple.guide/images/ico_blank_see_small@2x.png',
-  restaurant: 'https://assets.triple.guide/images/ico_blank_eat_small@2x.png',
+  attraction:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg',
+  restaurant:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-food-line-24.svg',
   hotel: 'https://assets.triple.guide/images/ico_blank_hotel_small@2x.png',
 }
+
+const BORDER_RADIUS_PX = 12
 
 export function CompactPoiListElement<T extends PoiListElementType>({
   actionButtonElement,
@@ -67,12 +71,39 @@ export function CompactPoiListElement<T extends PoiListElementType>({
         ':not(:last-child)': { marginBottom: 20 },
       }}
     >
-      <SquareImage
-        size="small"
-        src={image ? image.sizes.large.url : POI_IMAGE_PLACEHOLDERS_SMALL[type]}
-        alt={name || ''}
-        borderRadius={12}
-      />
+      {image ? (
+        <SquareImage
+          size="small"
+          src={image.sizes.large.url}
+          alt={name || ''}
+          borderRadius={BORDER_RADIUS_PX}
+        />
+      ) : (
+        <Container
+          css={{
+            position: 'relative',
+            width: 60,
+            height: 60,
+            backgroundColor: 'var(--color-kint5-gray10)',
+            border: '1px solid rgba(0, 0, 0, 0.05)',
+            borderRadius: BORDER_RADIUS_PX,
+          }}
+        >
+          <img
+            src={POI_IMAGE_PLACEHOLDERS_SMALL[type]}
+            alt={name || ''}
+            width={36}
+            height={36}
+            css={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              borderRadius: BORDER_RADIUS_PX,
+            }}
+          />
+        </Container>
+      )}
       <FlexBox
         flex
         css={{

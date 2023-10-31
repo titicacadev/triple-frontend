@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import {
   ButtonProps,
   Button,
-  ResourceListItem,
   SquareImage,
   SimpleLink,
   Text,
+  Container,
+  FlexBox,
+  List,
 } from '@titicaca/kint5-core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -107,11 +109,17 @@ function BlockLink({
 }
 
 const ImageLinkItem = styled.a`
+  display: flex;
+  gap: 12px;
   text-decoration: none;
+
+  & + & {
+    margin-top: 20px;
+  }
 `
 
 const IMAGE_PLACEHOLDER =
-  'https://assets.triple.guide/images/ico_blank_see@2x.png'
+  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg'
 
 function ImageLink({
   href,
@@ -126,23 +134,66 @@ function ImageLink({
   image?: ImageMeta
   onClick?: MouseEventHandler
 }) {
+  const defaultImageUrl = getDefaultImageUrl(image)
+
   return (
-    <ResourceListItem onClick={onClick}>
+    <List.Item onClick={onClick} css={{ cursor: 'pointer', margin: '20px 0' }}>
       <ImageLinkItem href={href}>
-        <SquareImage
-          floated="left"
-          size="small"
-          src={getDefaultImageUrl(image) || IMAGE_PLACEHOLDER}
-          alt={label}
-        />
-        <Text bold ellipsis alpha={1} margin={{ left: 50 }}>
-          {label}
-        </Text>
-        <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
-          {description}
-        </Text>
+        {defaultImageUrl ? (
+          <SquareImage
+            size="small"
+            src={defaultImageUrl}
+            alt={label}
+            borderRadius={12}
+          />
+        ) : (
+          <Container
+            css={{
+              width: 60,
+              height: 60,
+              position: 'relative',
+              border: '1px solid rgba(0, 0, 0, 0.05)',
+              borderRadius: 12,
+              backgroundColor: 'var(--color-kint5-gray10)',
+            }}
+          >
+            <img
+              src={IMAGE_PLACEHOLDER}
+              alt={label}
+              width={36}
+              height={36}
+              css={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+            />
+          </Container>
+        )}
+        <FlexBox
+          flex
+          css={{
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+          }}
+        >
+          <Text ellipsis css={{ fontWeight: 700 }}>
+            {label}
+          </Text>
+          <Text
+            css={{
+              marginTop: 4,
+              color: 'var(--color-kint5-gray60)',
+              fontSize: 13,
+            }}
+          >
+            {description}
+          </Text>
+        </FlexBox>
       </ImageLinkItem>
-    </ResourceListItem>
+    </List.Item>
   )
 }
 
