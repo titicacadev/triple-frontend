@@ -113,22 +113,10 @@ export const Chat = ({
       return
     }
 
-    const unreadRoomResult = await getUnreadRoom?.({
+    await getUnreadRoom?.({
       roomId: room.id,
       lastSeenMessageId: lastMessageId,
     })
-    const { hasUnread = false, others = [] } = unreadRoomResult || {}
-
-    const otherUnreadInfo = others.map(({ memberId, lastSeenMessageId }) => ({
-      memberId,
-      lastSeenMessageId: Number(lastSeenMessageId),
-    }))
-    dispatch({
-      action: ChatActions.UPDATE,
-      otherUnreadInfo,
-    })
-
-    return hasUnread
   }, [lastMessageId, getUnreadRoom, room.id])
 
   useChatMessage({
