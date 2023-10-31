@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v13.9.0
+
+### chat
+
+- [Chat] received, sent 구분 기준 변경 [#2968](https://github.com/titicacadev/triple-frontend/pull/2968)
+- [chat] beforeSentMessages 초기 props만 저장하도록 수정 [#2969](https://github.com/titicacadev/triple-frontend/pull/2969)
+- [chat] beforeSentMessages 기본값 불필요하므로 제거 [#2975](https://github.com/titicacadev/triple-frontend/pull/2975)
+
+### footer
+
+- [footer] Award Footer의 인증마크 변경 [#2974](https://github.com/titicacadev/triple-frontend/pull/2974)
+
 ## v13.8.1
 
 ### chat
