@@ -39,7 +39,6 @@ const Tooltip = styled.div`
   position: absolute;
   bottom: calc(100% + 4px);
   right: 0;
-  width: 135px;
   border: 1px solid var(--color-brightGray);
   border-radius: 6px;
   padding: 8px 11px;
@@ -48,8 +47,7 @@ const Tooltip = styled.div`
   font-weight: 500;
   color: var(--color-gray800);
   line-height: 14px;
-  word-spacing: -0.5px;
-  white-space: pre-line;
+  white-space: pre;
 `
 
 const AwardFlexBox = styled(FlexBox).attrs({
