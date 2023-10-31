@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
-import { List } from '../list'
-
 export const ImageCarouselElementContainer = styled.div<{ maxWidth?: number }>`
   display: inline-block;
   vertical-align: top;
@@ -37,12 +35,6 @@ export const ImageCaption = styled.div`
   text-align: center;
   color: rgba(58, 58, 58, 0.7);
   white-space: pre-wrap;
-`
-
-export const ResourceListItem = styled(List.Item)`
-  height: 40px;
-  margin: 20px 0;
-  cursor: pointer;
 `
 
 export const SquareImage = styled.img<{

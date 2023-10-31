@@ -17,7 +17,7 @@ import { generateCoupon } from './helpers'
 import { PricePolicyCouponInfo } from './price-policy-coupon-info'
 
 const PLACEHOLDER_IMAGE_URL =
-  'https://assets.triple.guide/images/ico_blank_see@2x.png'
+  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg'
 
 function Pricing({
   basePrice, // 판매가

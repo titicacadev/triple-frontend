@@ -24,8 +24,10 @@ const IMAGE_WIDTH = 58
 
 const IMAGE_PLACEHOLDERS = {
   hotel: 'https://assets.triple.guide/images/ico_blank_hotel@3x.png',
-  attraction: 'https://assets.triple.guide/images/ico_blank_see@3x.png',
-  restaurant: 'https://assets.triple.guide/images/ico_blank_eat@3x.png',
+  attraction:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg',
+  restaurant:
+    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-food-line-24.svg',
 } as const
 
 const Card = styled(OriginalCard)`

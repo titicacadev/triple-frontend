@@ -38,6 +38,37 @@ const MOCK_IMAGE_LINKS_VALUE = {
       },
       description: '가이드',
     },
+    {
+      label: 'onion 安国店',
+      href: '/regions/b263b346-9a60-49d5-949a-dc88dfbea53e/restaurants/35412618-bb23-4c1d-9c40-7fe239e7a150',
+      image: {
+        cloudinaryId: '73eee4a9-0f4a-40f0-b963-07720328a1ab',
+        id: '73eee4a9-0f4a-40f0-b963-07720328a1ab',
+        type: 'image',
+        source: {},
+        width: 1080,
+        height: 1080,
+        cloudinaryBucket: 'triple-cms',
+        sizes: {
+          full: {
+            url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/73eee4a9-0f4a-40f0-b963-07720328a1ab.jpeg',
+          },
+          large: {
+            url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/73eee4a9-0f4a-40f0-b963-07720328a1ab.jpeg',
+          },
+          small_square: {
+            url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/73eee4a9-0f4a-40f0-b963-07720328a1ab.jpeg',
+          },
+        },
+        sourceUrl: 'https://www.instagram.com/p/BxL70qeDn7h/',
+      },
+      description: '음식점',
+    },
+    {
+      label: 'スルイクヌンマウル',
+      href: '/regions/b263b346-9a60-49d5-949a-dc88dfbea53e/restaurants/09d436f9-1717-48a6-9228-be0527c3e713',
+      description: '음식점',
+    },
   ],
   display: 'image',
 }
