@@ -3,7 +3,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 import { Translations } from '@titicaca/content-type-definitions'
 
 type SafetyPoi<T> = T & {
-  /** POI Name: primary || ko || en || local || '' */
+  /** POI Name: primary || en || local || '' */
   safeName: string
   /** Large Size Image Url */
   defaultImage?: string
@@ -18,12 +18,10 @@ export type UnSafetyTranslations = Translations & { primary?: string }
 
 export function getSafetyPoiName({
   primary,
-  /** will be @deprecated */
-  ko,
   en,
   local,
 }: UnSafetyTranslations): string {
-  return primary || ko || en || local || ''
+  return primary || en || local || ''
 }
 
 type ImageSizeType = keyof ImageMeta['sizes']
