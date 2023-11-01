@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
+import { MediumBorder } from './elements'
+
 interface Props {
   medium: ImageMeta
 }
@@ -30,7 +32,6 @@ const StyledVideo = styled.video<{ isOncePlayed: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 1px solid rgba(0, 0, 0, 0.05);
   transition: opacity 0.3s;
   opacity: ${({ isOncePlayed }) => (isOncePlayed ? 1 : 0)};
 `
@@ -112,6 +113,7 @@ function Video({ medium }: Props) {
         isOncePlayed={isOncePlayed}
         onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
+      <MediumBorder />
       {!videoAutoplay && <PlayPauseButtonBase />}
     </Container>
   )

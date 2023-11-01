@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const GridWrapper = styled(Container)`
   display: grid;
-  grid-gap: 1px;
+  grid-gap: 2px;
 `
 
 export const MediumWrapper = styled(Container)`
@@ -24,4 +24,13 @@ export const MediumWrapper = styled(Container)`
     padding-top: 0;
     height: 100%;
   }
+`
+
+export const MediumBorder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 `
