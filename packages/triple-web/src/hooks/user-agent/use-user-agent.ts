@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { UserAgentContext } from '../contexts/user-agent'
+import { UserAgentContext } from '../../contexts/user-agent'
 
 export function useUserAgent() {
   const context = useContext(UserAgentContext)

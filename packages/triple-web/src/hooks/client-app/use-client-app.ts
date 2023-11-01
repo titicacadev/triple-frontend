@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { ClientAppContext } from '../contexts/client-app'
+import { ClientAppContext } from '../../contexts/client-app'
 
 export function useClientApp() {
   const context = useContext(ClientAppContext)
