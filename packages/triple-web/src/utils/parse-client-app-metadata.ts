@@ -1,9 +1,11 @@
 import { ClientApp, ClientAppName } from '../contexts'
 
+import { clientAppRegex } from './regex'
+
 export function parseClientAppMetadata(
   userAgent: string,
 ): NonNullable<ClientApp>['metadata'] | null {
-  const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
+  const matchData = clientAppRegex.exec(userAgent)
 
   if (!matchData) {
     return null
