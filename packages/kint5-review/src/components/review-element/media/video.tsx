@@ -30,6 +30,7 @@ const StyledVideo = styled.video<{ isOncePlayed: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   transition: opacity 0.3s;
   opacity: ${({ isOncePlayed }) => (isOncePlayed ? 1 : 0)};
 `
