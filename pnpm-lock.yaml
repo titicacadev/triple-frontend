@@ -458,6 +458,9 @@ importers:
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web-to-native-interfaces':
+        specifier: 1.9.0
+        version: 1.9.0
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
