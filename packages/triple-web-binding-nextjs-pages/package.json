@@ -39,7 +39,10 @@
     ]
   },
   "dependencies": {
-    "ua-parser-js": "^1.0.36"
+    "@titicaca/fetcher": "^13.8.1",
+    "@titicaca/view-utilities": "^13.8.1",
+    "ua-parser-js": "^1.0.36",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
