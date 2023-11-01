@@ -15,7 +15,7 @@ const UserPhoto = styled.img`
 `
 
 export default function User({
-  user: { photo, name, userBoard, mileage, unregister },
+  user: { photo, name, userBoard, unregister },
   onClick,
 }: {
   onClick?: MouseEventHandler
@@ -24,7 +24,6 @@ export default function User({
   const { t } = useTranslation('common-web')
 
   const { reviewsV2: reviewsCount } = userBoard || {}
-  const { level } = mileage || {}
 
   return (
     <Container
@@ -46,7 +45,6 @@ export default function User({
               marginTop: 4,
             }}
           >
-            Level {level} /{' '}
             {reviewsCount
               ? t(['reviewscount-gaeyi-ribyu', '{{reviewsCount}}개의 리뷰'], {
                   reviewsCount,
