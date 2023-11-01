@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { EnvContext } from '../contexts'
+import { EnvContext } from '../../contexts'
 
 export function useEnv() {
   const context = useContext(EnvContext)
