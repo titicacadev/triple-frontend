@@ -42,7 +42,7 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "@sentry/nextjs": "7.74.1",
+    "@sentry/nextjs": "7.77.0",
     "@titicaca/view-utilities": "workspace:*",
     "@types/node-fetch": "^2.6.7",
     "isomorphic-fetch": "^2.2.1",
