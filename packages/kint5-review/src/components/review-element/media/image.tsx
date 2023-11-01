@@ -2,6 +2,8 @@ import { Container } from '@titicaca/kint5-core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
+import { MediumBorder } from './elements'
+
 interface Props {
   medium: ImageMeta
 }
@@ -21,13 +23,13 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 `
 
 function Image({ medium }: Props) {
   return (
     <Wrapper>
       <Img src={medium.sizes.large.url} />
+      <MediumBorder />
     </Wrapper>
   )
 }
