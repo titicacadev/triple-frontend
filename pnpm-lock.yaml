@@ -890,9 +890,21 @@ importers:
 
   packages/triple-web:
     dependencies:
+      '@titicaca/fetcher':
+        specifier: ^13.9.0
+        version: link:../fetcher
+      '@titicaca/view-utilities':
+        specifier: ^13.9.0
+        version: link:../view-utilities
+      '@types/qs':
+        specifier: ^6.9.8
+        version: 6.9.9
       '@types/semver':
         specifier: ^7.5.3
         version: 7.5.3
+      qs:
+        specifier: ^6.11.2
+        version: 6.11.2
       semver:
         specifier: ^7.5.4
         version: 7.5.4
@@ -909,6 +921,12 @@ importers:
 
   packages/triple-web-binding-nextjs:
     dependencies:
+      '@titicaca/fetcher':
+        specifier: ^13.8.1
+        version: link:../fetcher
+      '@titicaca/view-utilities':
+        specifier: ^13.8.1
+        version: link:../view-utilities
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -928,9 +946,18 @@ importers:
 
   packages/triple-web-binding-nextjs-pages:
     dependencies:
+      '@titicaca/fetcher':
+        specifier: ^13.8.1
+        version: link:../fetcher
+      '@titicaca/view-utilities':
+        specifier: ^13.8.1
+        version: link:../view-utilities
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.36
+      universal-cookie:
+        specifier: ^4.0.4
+        version: 4.0.4
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -8210,7 +8237,6 @@ packages:
 
   /@types/qs@6.9.9:
     resolution: {integrity: sha512-wYLxw35euwqGvTDx6zfY1vokBFnsK0HNrzc6xNHchxfO2hpuRg74GbkEW7e3sSmPvj0TjCDT1VCa6OtHXnubsg==}
-    dev: true
 
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
