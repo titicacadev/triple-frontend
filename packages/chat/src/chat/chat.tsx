@@ -7,7 +7,6 @@ import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { Container } from '@titicaca/core-elements'
 
 import {
-  HasUnreadOfRoomInterface,
   ImagePayload,
   MessageInterface,
   PostMessageType,
@@ -49,7 +48,7 @@ export interface ChatProps {
   getUnreadRoom?: (option: {
     roomId: string
     lastSeenMessageId: number
-  }) => Promise<HasUnreadOfRoomInterface>
+  }) => void
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   showFailToast?: (message: string) => void
