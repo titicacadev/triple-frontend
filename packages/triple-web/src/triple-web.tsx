@@ -9,6 +9,7 @@ import {
   SessionProviderValue,
   UserAgent,
   UserAgentContext,
+  HashRouterProvider,
 } from './contexts'
 import { ClientApp, ClientAppContext } from './contexts/client-app'
 
@@ -31,7 +32,7 @@ export function TripleWeb({
       <EnvContext.Provider value={envProvider}>
         <SessionProvider value={sessionProvider}>
           <UserAgentContext.Provider value={userAgentProvider}>
-            {children}
+            <HashRouterProvider>{children}</HashRouterProvider>
           </UserAgentContext.Provider>
         </SessionProvider>
       </EnvContext.Provider>
