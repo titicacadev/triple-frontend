@@ -22,7 +22,7 @@ importers:
         version: 7.5.1(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/nextjs':
         specifier: ^7.5.1
-        version: 7.5.1(@swc/core@1.3.93)(@types/react-dom@18.2.7)(@types/react@18.2.21)(esbuild@0.18.20)(next@13.4.13)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.88.1)
+        version: 7.5.1(@swc/core@1.3.93)(@types/react-dom@18.2.7)(@types/react@18.2.21)(esbuild@0.18.20)(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.88.1)
       '@storybook/react':
         specifier: ^7.5.1
         version: 7.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
@@ -52,7 +52,7 @@ importers:
         version: 5.1.0(eslint-plugin-n@15.7.0)(eslint@8.52.0)(typescript@5.2.2)
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/prettier-config-triple':
         specifier: 1.1.0
         version: 1.1.0(prettier@3.0.3)
@@ -132,8 +132,8 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0(msw@1.3.2)
       next:
-        specifier: 13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       nx-cloud:
         specifier: 16.4.0
         version: 16.4.0
@@ -184,8 +184,8 @@ importers:
         specifier: workspace:*
         version: link:../react-contexts
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -238,7 +238,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -246,8 +246,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -266,7 +266,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -297,7 +297,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -353,7 +353,7 @@ importers:
         version: link:../modals
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -361,8 +361,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -493,7 +493,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -543,7 +543,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -581,7 +581,7 @@ importers:
     devDependencies:
       '@sentry/nextjs':
         specifier: 7.74.1
-        version: 7.74.1(next@13.4.13)(react@18.2.0)(webpack@5.88.1)
+        version: 7.74.1(next@13.5.6)(react@18.2.0)(webpack@5.88.1)
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -592,8 +592,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       next:
-        specifier: 13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       node-fetch:
         specifier: ^2.7.0
         version: 2.7.0
@@ -615,7 +615,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -626,8 +626,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -658,7 +658,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@types/react-input-mask':
         specifier: ^2.0.5
         version: 2.0.5
@@ -731,7 +731,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -752,8 +752,8 @@ importers:
         version: 0.12.2
     devDependencies:
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -791,7 +791,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -825,7 +825,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -833,8 +833,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -852,7 +852,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -874,7 +874,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -917,7 +917,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -925,8 +925,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -978,7 +978,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1018,7 +1018,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1062,7 +1062,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1084,7 +1084,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1141,8 +1141,8 @@ importers:
         specifier: ^9.15.0
         version: 9.15.0
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1200,8 +1200,8 @@ importers:
         specifier: ^7.5.4
         version: 7.5.4
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1254,7 +1254,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1265,8 +1265,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1297,7 +1297,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1370,7 +1370,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1384,8 +1384,8 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1413,7 +1413,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1424,8 +1424,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1528,7 +1528,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1536,8 +1536,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1571,7 +1571,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1582,8 +1582,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1615,7 +1615,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1697,7 +1697,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1708,8 +1708,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1762,7 +1762,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1770,8 +1770,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1825,8 +1825,8 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1854,7 +1854,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-contexts':
         specifier: workspace:*
         version: link:../react-contexts
@@ -1862,8 +1862,8 @@ importers:
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
       next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^13.5.6
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1894,7 +1894,7 @@ importers:
         version: link:../i18n
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@types/haversine':
         specifier: ^1.1.7
         version: 1.1.7
@@ -1922,7 +1922,7 @@ importers:
         version: link:../modals
       '@titicaca/next-i18next':
         specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5506,12 +5506,12 @@ packages:
       tar-fs: 2.1.1
     dev: true
 
-  /@next/env@13.4.13:
-    resolution: {integrity: sha512-fwz2QgVg08v7ZL7KmbQBLF2PubR/6zQdKBgmHEl3BCyWTEDsAQEijjw2gbFhI1tcKfLdOOJUXntz5vZ4S0Polg==}
+  /@next/env@13.5.6:
+    resolution: {integrity: sha512-Yac/bV5sBGkkEXmAX5FWPS9Mmo2rthrOPRQQNfycJPkjUAUclomCPH7QFVCDQ4Mp2k2K1SSM6m0zrxYrOwtFQw==}
     dev: true
 
-  /@next/swc-darwin-arm64@13.4.13:
-    resolution: {integrity: sha512-ZptVhHjzUuivnXMNCJ6lER33HN7lC+rZ01z+PM10Ows21NHFYMvGhi5iXkGtBDk6VmtzsbqnAjnx4Oz5um0FjA==}
+  /@next/swc-darwin-arm64@13.5.6:
+    resolution: {integrity: sha512-5nvXMzKtZfvcu4BhtV0KH1oGv4XEW+B+jOfmBdpFI3C7FrB/MfujRpWYSBBO64+qbW8pkZiSyQv9eiwnn5VIQA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -5519,8 +5519,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-darwin-x64@13.4.13:
-    resolution: {integrity: sha512-t9nTiWCLApw8W4G1kqJyYP7y6/7lyal3PftmRturIxAIBlZss9wrtVN8nci50StDHmIlIDxfguYIEGVr9DbFTg==}
+  /@next/swc-darwin-x64@13.5.6:
+    resolution: {integrity: sha512-6cgBfxg98oOCSr4BckWjLLgiVwlL3vlLj8hXg2b+nDgm4bC/qVXXLfpLB9FHdoDu4057hzywbxKvmYGmi7yUzA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -5528,8 +5528,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-linux-arm64-gnu@13.4.13:
-    resolution: {integrity: sha512-xEHUqC8eqR5DHe8SOmMnDU1K3ggrJ28uIKltrQAwqFSSSmzjnN/XMocZkcVhuncuxYrpbri0iMQstRyRVdQVWg==}
+  /@next/swc-linux-arm64-gnu@13.5.6:
+    resolution: {integrity: sha512-txagBbj1e1w47YQjcKgSU4rRVQ7uF29YpnlHV5xuVUsgCUf2FmyfJ3CPjZUvpIeXCJAoMCFAoGnbtX86BK7+sg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -5537,8 +5537,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-linux-arm64-musl@13.4.13:
-    resolution: {integrity: sha512-sNf3MnLAm8rquSSAoeD9nVcdaDeRYOeey4stOWOyWIgbBDtP+C93amSgH/LPTDoUV7gNiU6f+ghepTjTjRgIUQ==}
+  /@next/swc-linux-arm64-musl@13.5.6:
+    resolution: {integrity: sha512-cGd+H8amifT86ZldVJtAKDxUqeFyLWW+v2NlBULnLAdWsiuuN8TuhVBt8ZNpCqcAuoruoSWynvMWixTFcroq+Q==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -5546,8 +5546,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-linux-x64-gnu@13.4.13:
-    resolution: {integrity: sha512-WhcRaJJSHyx9OWmKjjz+OWHumiPZWRqmM/09Bt7Up4UqUJFFhGExeztR4trtv3rflvULatu9IH/nTV8fUUgaMA==}
+  /@next/swc-linux-x64-gnu@13.5.6:
+    resolution: {integrity: sha512-Mc2b4xiIWKXIhBy2NBTwOxGD3nHLmq4keFk+d4/WL5fMsB8XdJRdtUlL87SqVCTSaf1BRuQQf1HvXZcy+rq3Nw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -5555,8 +5555,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-linux-x64-musl@13.4.13:
-    resolution: {integrity: sha512-+Y4LLhOWWZQIDKVwr2R17lq2KSN0F1c30QVgGIWfnjjHpH8nrIWHEndhqYU+iFuW8It78CiJjQKTw4f51HD7jA==}
+  /@next/swc-linux-x64-musl@13.5.6:
+    resolution: {integrity: sha512-CFHvP9Qz98NruJiUnCe61O6GveKKHpJLloXbDSWRhqhkJdZD2zU5hG+gtVJR//tyW897izuHpM6Gtf6+sNgJPQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -5564,8 +5564,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-win32-arm64-msvc@13.4.13:
-    resolution: {integrity: sha512-rWurdOR20uxjfqd1X9vDAgv0Jb26KjyL8akF9CBeFqX8rVaBAnW/Wf6A2gYEwyYY4Bai3T7p1kro6DFrsvBAAw==}
+  /@next/swc-win32-arm64-msvc@13.5.6:
+    resolution: {integrity: sha512-aFv1ejfkbS7PUa1qVPwzDHjQWQtknzAZWGTKYIAaS4NMtBlk3VyA6AYn593pqNanlicewqyl2jUhQAaFV/qXsg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -5573,8 +5573,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-win32-ia32-msvc@13.4.13:
-    resolution: {integrity: sha512-E8bSPwRuY5ibJ3CzLQmJEt8qaWrPYuUTwnrwygPUEWoLzD5YRx9SD37oXRdU81TgGwDzCxpl7z5Nqlfk50xAog==}
+  /@next/swc-win32-ia32-msvc@13.5.6:
+    resolution: {integrity: sha512-XqqpHgEIlBHvzwG8sp/JXMFkLAfGLqkbVsyN+/Ih1mR8INb6YCc2x/Mbwi6hsAgUnqQztz8cvEbHJUbSl7RHDg==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
@@ -5582,8 +5582,8 @@ packages:
     dev: true
     optional: true
 
-  /@next/swc-win32-x64-msvc@13.4.13:
-    resolution: {integrity: sha512-4KlyC6jWRubPnppgfYsNTPeWfGCxtWLh5vaOAW/kdzAk9widqho8Qb5S4K2vHmal1tsURi7Onk2MMCV1phvyqA==}
+  /@next/swc-win32-x64-msvc@13.5.6:
+    resolution: {integrity: sha512-Cqfe1YmOS7k+5mGu92nl5ULkzpKuxJrP3+4AEuPmrpFZ3BHxTY3TnHmU1On3bFmFFs6FbTcdF58CCUProGpIGQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -6893,7 +6893,7 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@sentry/nextjs@7.74.1(next@13.4.13)(react@18.2.0)(webpack@5.88.1):
+  /@sentry/nextjs@7.74.1(next@13.5.6)(react@18.2.0)(webpack@5.88.1):
     resolution: {integrity: sha512-1RySEs3WBEqlpQCAFQ/XwV+oW4wEAtpYglvAyDBwPen/s6KnkkZ0za0l3Ug0O6S9HvMiNll1rPhvnkH5nM37Tg==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -6914,7 +6914,7 @@ packages:
       '@sentry/vercel-edge': 7.74.1
       '@sentry/webpack-plugin': 1.20.0
       chalk: 3.0.0
-      next: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       resolve: 1.22.8
       rollup: 2.78.0
@@ -7915,7 +7915,7 @@ packages:
     resolution: {integrity: sha512-TXJJd5RAKakWx4BtpwvSNdgTDkKM6RkXU8GK34S/LhidQ5Pjz3wcnqb0TxEkfhK/ztbP8nKHqXFwLfa2CYkvQw==}
     dev: true
 
-  /@storybook/nextjs@7.5.1(@swc/core@1.3.93)(@types/react-dom@18.2.7)(@types/react@18.2.21)(esbuild@0.18.20)(next@13.4.13)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.88.1):
+  /@storybook/nextjs@7.5.1(@swc/core@1.3.93)(@types/react-dom@18.2.7)(@types/react@18.2.21)(esbuild@0.18.20)(next@13.5.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)(webpack@5.88.1):
     resolution: {integrity: sha512-DezMv3UZYzqltzOgLw1TOQOct3IQ9zGffvfP3T/mRQxmW7UOYXDbAtmD/d3Ud6Fi59HuEnu4hEwyJNacZvuNqw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -7962,7 +7962,7 @@ packages:
       fs-extra: 11.1.1
       image-size: 1.0.2
       loader-utils: 3.2.1
-      next: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       node-polyfill-webpack-plugin: 2.0.1(webpack@5.88.1)
       pnp-webpack-plugin: 1.7.0(typescript@5.2.2)
       postcss: 8.4.27
@@ -8410,8 +8410,8 @@ packages:
     resolution: {integrity: sha512-9F4ys4C74eSTEUNndnER3VJ15oru2NumfQxS8geE+f3eB5xvfxpWyqE5XlVnxb/R14uoXi6SLbBwwiDSkv+XEw==}
     dev: true
 
-  /@swc/helpers@0.5.1:
-    resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
+  /@swc/helpers@0.5.2:
+    resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
     dependencies:
       tslib: 2.6.2
     dev: true
@@ -8551,7 +8551,7 @@ packages:
       - typescript
     dev: true
 
-  /@titicaca/next-i18next@13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0):
+  /@titicaca/next-i18next@13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0):
     resolution: {integrity: sha512-a82XOklU3sZSDy7j5czxipBOJvhfRNmAJE4HzYiZ7AAzc3x8B49U053mjuIMo4KwqiN5voCkP8os6HuiR00ovg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -8566,7 +8566,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       i18next: 22.5.1
       i18next-fs-backend: 2.1.5
-      next: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
     dev: true
@@ -11425,12 +11425,12 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.27)
-      postcss: 8.4.27
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.27)
-      postcss-modules-local-by-default: 4.0.3(postcss@8.4.27)
-      postcss-modules-scope: 3.0.0(postcss@8.4.27)
-      postcss-modules-values: 4.0.0(postcss@8.4.27)
+      icss-utils: 5.1.0(postcss@8.4.31)
+      postcss: 8.4.31
+      postcss-modules-extract-imports: 3.0.0(postcss@8.4.31)
+      postcss-modules-local-by-default: 4.0.3(postcss@8.4.31)
+      postcss-modules-scope: 3.0.0(postcss@8.4.31)
+      postcss-modules-values: 4.0.0(postcss@8.4.31)
       postcss-value-parser: 4.2.0
       semver: 7.5.4
       webpack: 5.88.1(@swc/core@1.3.93)(esbuild@0.18.20)
@@ -14254,13 +14254,13 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
-  /icss-utils@5.1.0(postcss@8.4.27):
+  /icss-utils@5.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.27
+      postcss: 8.4.31
     dev: true
 
   /idb@7.0.1:
@@ -17110,9 +17110,9 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next@13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-A3YVbVDNeXLhWsZ8Nf6IkxmNlmTNz0yVg186NJ97tGZqPDdPzTrHotJ+A1cuJm2XfuWPrKOUZILl5iBQkIf8Jw==}
-    engines: {node: '>=16.8.0'}
+  /next@13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Y2wTcTbO4WwEsVb4A8VSnOsG1I9ok+h74q0ZdxkwM3EODqrs4pasq7O0iUxbcS9VtWMicG7f3+HAj0r1+NtKSw==}
+    engines: {node: '>=16.14.0'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -17125,26 +17125,25 @@ packages:
       sass:
         optional: true
     dependencies:
-      '@next/env': 13.4.13
-      '@swc/helpers': 0.5.1
+      '@next/env': 13.5.6
+      '@swc/helpers': 0.5.2
       busboy: 1.6.0
       caniuse-lite: 1.0.30001512
-      postcss: 8.4.14
+      postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       styled-jsx: 5.1.1(@babel/core@7.22.11)(react@18.2.0)
       watchpack: 2.4.0
-      zod: 3.21.4
     optionalDependencies:
-      '@next/swc-darwin-arm64': 13.4.13
-      '@next/swc-darwin-x64': 13.4.13
-      '@next/swc-linux-arm64-gnu': 13.4.13
-      '@next/swc-linux-arm64-musl': 13.4.13
-      '@next/swc-linux-x64-gnu': 13.4.13
-      '@next/swc-linux-x64-musl': 13.4.13
-      '@next/swc-win32-arm64-msvc': 13.4.13
-      '@next/swc-win32-ia32-msvc': 13.4.13
-      '@next/swc-win32-x64-msvc': 13.4.13
+      '@next/swc-darwin-arm64': 13.5.6
+      '@next/swc-darwin-x64': 13.5.6
+      '@next/swc-linux-arm64-gnu': 13.5.6
+      '@next/swc-linux-arm64-musl': 13.5.6
+      '@next/swc-linux-x64-gnu': 13.5.6
+      '@next/swc-linux-x64-musl': 13.5.6
+      '@next/swc-win32-arm64-msvc': 13.5.6
+      '@next/swc-win32-ia32-msvc': 13.5.6
+      '@next/swc-win32-x64-msvc': 13.5.6
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -18203,45 +18202,45 @@ packages:
       webpack: 5.88.1(@swc/core@1.3.93)(esbuild@0.18.20)
     dev: true
 
-  /postcss-modules-extract-imports@3.0.0(postcss@8.4.27):
+  /postcss-modules-extract-imports@3.0.0(postcss@8.4.31):
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.27
+      postcss: 8.4.31
     dev: true
 
-  /postcss-modules-local-by-default@4.0.3(postcss@8.4.27):
+  /postcss-modules-local-by-default@4.0.3(postcss@8.4.31):
     resolution: {integrity: sha512-2/u2zraspoACtrbFRnTijMiQtb4GW4BvatjaG/bCjYQo8kLTdevCUlwuBHx2sCnSyrI3x3qj4ZK1j5LQBgzmwA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.27)
-      postcss: 8.4.27
+      icss-utils: 5.1.0(postcss@8.4.31)
+      postcss: 8.4.31
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-modules-scope@3.0.0(postcss@8.4.27):
+  /postcss-modules-scope@3.0.0(postcss@8.4.31):
     resolution: {integrity: sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.27
+      postcss: 8.4.31
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /postcss-modules-values@4.0.0(postcss@8.4.27):
+  /postcss-modules-values@4.0.0(postcss@8.4.31):
     resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.27)
-      postcss: 8.4.27
+      icss-utils: 5.1.0(postcss@8.4.31)
+      postcss: 8.4.31
     dev: true
 
   /postcss-resolve-nested-selector@0.1.1:
@@ -18280,15 +18279,6 @@ packages:
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-
-  /postcss@8.4.14:
-    resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
 
   /postcss@8.4.27:
     resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
@@ -19298,7 +19288,7 @@ packages:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.4.27
+      postcss: 8.4.31
       source-map: 0.6.1
     dev: true
 
@@ -21898,10 +21888,6 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-    dev: true
-
-  /zod@3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
 
   /zwitch@2.0.4:
