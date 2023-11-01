@@ -39,6 +39,8 @@
     ]
   },
   "dependencies": {
+    "@titicaca/fetcher": "^13.8.1",
+    "@titicaca/view-utilities": "^13.8.1",
     "server-only": "^0.0.1",
     "ua-parser-js": "^1.0.36"
   },
