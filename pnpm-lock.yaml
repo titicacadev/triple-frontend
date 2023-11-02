@@ -906,7 +906,7 @@ importers:
         version: link:../react-triple-client-interfaces
       '@types/qs':
         specifier: ^6.9.8
-        version: 6.9.8
+        version: 6.9.9
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
@@ -1001,7 +1001,7 @@ importers:
         version: link:../react-triple-client-interfaces
       '@types/qs':
         specifier: ^6.9.8
-        version: 6.9.8
+        version: 6.9.9
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1096,7 +1096,7 @@ importers:
     devDependencies:
       '@graphql-codegen/cli':
         specifier: 4.0.1
-        version: 4.0.1(@babel/core@7.22.11)(@types/node@18.17.18)(graphql@16.8.0)
+        version: 4.0.1(@babel/core@7.22.11)(@types/node@18.18.7)(graphql@16.8.0)
       '@graphql-codegen/typescript':
         specifier: 4.0.1
         version: 4.0.1(graphql@16.8.0)
@@ -1120,7 +1120,7 @@ importers:
         version: link:../react-triple-client-interfaces
       '@types/qs':
         specifier: ^6.9.8
-        version: 6.9.8
+        version: 6.9.9
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
@@ -8897,8 +8897,24 @@ packages:
       '@testing-library/dom': 9.3.1
     dev: true
 
+  /@titicaca/content-type-definitions@8.12.0:
+    resolution: {integrity: sha512-0m4htvgTTJno0RMEUuNmJSzGqtuSG9dEPdLHqV7Drj09xb/vm2zC+MFkoj3qN6wSN2t2XEBBc+kFjobkowbxoQ==}
+    dev: false
+
   /@titicaca/content-type-definitions@8.16.0:
     resolution: {integrity: sha512-yGoD18SBY6dx10tPAG+c2/Fzr0qI9bTwtvced0CrifX4oyH9d8ag+ezdCh7Om9mH+kHJx/UO4g63vEquvtKJ7w==}
+    dev: false
+
+  /@titicaca/content-utilities@8.12.0:
+    resolution: {integrity: sha512-QlGSDxrsIkRY+gLmRFOdRXyav6J6UNhiHU7dasDAtQxhAnerDm3f2lfC0pLQNqHarGosG4lFLhovTRy9n634Kg==}
+    dependencies:
+      '@titicaca/content-type-definitions': 8.16.0
+      isomorphic-fetch: 3.0.0
+      lodash.camelcase: 4.3.0
+      lodash.snakecase: 4.1.1
+      qs: 6.11.2
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@titicaca/content-utilities@8.16.0:
@@ -21207,6 +21223,7 @@ packages:
 
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
