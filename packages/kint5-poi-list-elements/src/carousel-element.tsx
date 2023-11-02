@@ -5,6 +5,7 @@ import {
   Text,
   Container,
   Image,
+  ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
@@ -66,7 +67,6 @@ function PoiCarouselElement<T extends PoiListElementType>({
       <Image>
         <Container
           css={{
-            border: '1px solid rgba(0, 0, 0, 0.05)',
             borderRadius: BORDER_RADIUS_PX,
           }}
         >
@@ -74,6 +74,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
             frame={imageFrame || 'large'}
             borderRadius={BORDER_RADIUS_PX}
           >
+            <ThumbnailBorder />
             {image ? (
               optimized ? (
                 <Image.OptimizedImg

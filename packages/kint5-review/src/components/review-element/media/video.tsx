@@ -1,11 +1,9 @@
 import { ImageMeta } from '@titicaca/type-definitions'
-import { Container } from '@titicaca/kint5-core-elements'
+import { Container, ThumbnailBorder } from '@titicaca/kint5-core-elements'
 import { useIntersection } from '@titicaca/intersection-observer'
 import { useEffect, useState } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
-
-import { MediumBorder } from './elements'
 
 interface Props {
   medium: ImageMeta
@@ -113,7 +111,7 @@ function Video({ medium }: Props) {
         isOncePlayed={isOncePlayed}
         onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
-      <MediumBorder />
+      <ThumbnailBorder />
       {!videoAutoplay && <PlayPauseButtonBase />}
     </Container>
   )

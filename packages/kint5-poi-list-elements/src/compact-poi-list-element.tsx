@@ -5,6 +5,7 @@ import {
   Container,
   FlexBox,
   List,
+  ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
 
@@ -71,24 +72,23 @@ export function CompactPoiListElement<T extends PoiListElementType>({
         ':not(:last-child)': { marginBottom: 20 },
       }}
     >
-      {image ? (
-        <SquareImage
-          size="small"
-          src={image.sizes.large.url}
-          alt={name || ''}
-          borderRadius={BORDER_RADIUS_PX}
-        />
-      ) : (
-        <Container
-          css={{
-            position: 'relative',
-            width: 60,
-            height: 60,
-            backgroundColor: 'var(--color-kint5-gray10)',
-            border: '1px solid rgba(0, 0, 0, 0.05)',
-            borderRadius: BORDER_RADIUS_PX,
-          }}
-        >
+      <Container
+        css={{
+          position: 'relative',
+          width: 60,
+          height: 60,
+          backgroundColor: 'var(--color-kint5-gray10)',
+          borderRadius: BORDER_RADIUS_PX,
+        }}
+      >
+        {image ? (
+          <SquareImage
+            size="small"
+            src={image.sizes.large.url}
+            alt={name || ''}
+            borderRadius={BORDER_RADIUS_PX}
+          />
+        ) : (
           <img
             src={POI_IMAGE_PLACEHOLDERS_SMALL[type]}
             alt={name || ''}
@@ -102,8 +102,14 @@ export function CompactPoiListElement<T extends PoiListElementType>({
               borderRadius: BORDER_RADIUS_PX,
             }}
           />
-        </Container>
-      )}
+        )}
+        <ThumbnailBorder
+          css={{
+            borderRadius: BORDER_RADIUS_PX,
+          }}
+        />
+      </Container>
+
       <FlexBox
         flex
         css={{

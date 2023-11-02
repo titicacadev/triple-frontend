@@ -9,6 +9,7 @@ import {
   Container,
   FlexBox,
   List,
+  ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -120,6 +121,7 @@ const ImageLinkItem = styled.a`
 
 const IMAGE_PLACEHOLDER =
   'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg'
+const BORDER_RADIUS_PX = 12
 
 function ImageLink({
   href,
@@ -139,24 +141,23 @@ function ImageLink({
   return (
     <List.Item onClick={onClick} css={{ cursor: 'pointer', margin: '20px 0' }}>
       <ImageLinkItem href={href}>
-        {defaultImageUrl ? (
-          <SquareImage
-            size="small"
-            src={defaultImageUrl}
-            alt={label}
-            borderRadius={12}
-          />
-        ) : (
-          <Container
-            css={{
-              width: 60,
-              height: 60,
-              position: 'relative',
-              border: '1px solid rgba(0, 0, 0, 0.05)',
-              borderRadius: 12,
-              backgroundColor: 'var(--color-kint5-gray10)',
-            }}
-          >
+        <Container
+          css={{
+            width: 60,
+            height: 60,
+            position: 'relative',
+            borderRadius: BORDER_RADIUS_PX,
+            backgroundColor: 'var(--color-kint5-gray10)',
+          }}
+        >
+          {defaultImageUrl ? (
+            <SquareImage
+              size="small"
+              src={defaultImageUrl}
+              alt={label}
+              borderRadius={BORDER_RADIUS_PX}
+            />
+          ) : (
             <img
               src={IMAGE_PLACEHOLDER}
               alt={label}
@@ -169,8 +170,10 @@ function ImageLink({
                 transform: 'translate(-50%, -50%)',
               }}
             />
-          </Container>
-        )}
+          )}
+          <ThumbnailBorder css={{ borderRadius: BORDER_RADIUS_PX }} />
+        </Container>
+
         <FlexBox
           flex
           css={{
