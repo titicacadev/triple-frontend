@@ -38,7 +38,6 @@ const ChatBubble = ({
   onRetryCancelButtonClick,
   disableUnreadCount = false,
   blindedText,
-  bubbleStyle,
 }: ChatBubbleProps) => {
   const unreadCount =
     !disableUnreadCount && otherReadInfo
@@ -86,6 +85,7 @@ const ChatBubble = ({
 
   return (
     <ChatBubbleUI
+      id={message.id.toString()}
       type={my ? 'sent' : 'received'}
       profileImageUrl={my ? undefined : getProfileImageUrl(sender)}
       profileName={sender.profile.name}
@@ -96,7 +96,7 @@ const ChatBubble = ({
       onCancel={onCancel}
       blindedAt={message.blindedAt}
       blindedText={blindedText}
-      bubbleStyle={bubbleStyle}
+      // bubbleStyle={bubbleStyle}
     />
   )
 }
