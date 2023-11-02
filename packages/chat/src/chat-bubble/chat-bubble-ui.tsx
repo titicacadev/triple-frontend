@@ -8,7 +8,6 @@ import {
   RichPayload,
   TextPayload,
 } from '../types'
-import { ChatBubbleStyle } from '../types/ui'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -149,6 +148,7 @@ function ReceivedChatContainer({
 }
 
 export interface ChatBubbleUIProps {
+  id: string
   type: 'sent' | 'received'
   /**
    * `Text`: 텍스트로 이루어진 메시지 타입,
@@ -173,10 +173,11 @@ export interface ChatBubbleUIProps {
   onCancel?: () => void
   onThanksClick?: () => void
   thanks?: { count: number; haveMine: boolean }
-  bubbleStyle?: ChatBubbleStyle
+  // bubbleStyle?: ChatBubbleStyle
 }
 
 export function ChatBubbleUI({
+  id,
   type,
   payload,
   unreadCount,
@@ -185,16 +186,15 @@ export function ChatBubbleUI({
   profileName,
   blindedAt,
   blindedText,
-  onRetry,
   thanks,
   onThanksClick,
-  bubbleStyle,
+  onRetry, // bubbleStyle,
 }: ChatBubbleUIProps) {
   const showThanks = !blindedAt
 
   switch (type) {
     case 'sent': {
-      const sentBubbleStyle = bubbleStyle?.sent
+      // const sentBubbleStyle = bubbleStyle?.sent
       return (
         <SentChatContainer
           createdAt={createdAt}
@@ -207,38 +207,39 @@ export function ChatBubbleUI({
             <BlindedBubble
               my
               blindedText={blindedText}
-              bubbleStyle={
-                sentBubbleStyle
-                  ? {
-                      ...sentBubbleStyle,
-                      textColor:
-                        sentBubbleStyle.textColor.blinded ||
-                        sentBubbleStyle.textColor.normal,
-                    }
-                  : undefined
-              }
+              // bubbleStyle={
+              //   sentBubbleStyle
+              //     ? {
+              //         ...sentBubbleStyle,
+              //         textColor:
+              //           sentBubbleStyle.textColor.blinded ||
+              //           sentBubbleStyle.textColor.normal,
+              //       }
+              //     : undefined
+              // }
             />
           ) : (
             <BubblePayload
+              id={id}
               payload={payload}
               my
-              bubbleStyle={
-                sentBubbleStyle
-                  ? {
-                      ...sentBubbleStyle,
-                      textColor: sentBubbleStyle.textColor.normal,
-                      linkColor: sentBubbleStyle.link?.color,
-                      linkUnderline: sentBubbleStyle.link?.underline,
-                    }
-                  : undefined
-              }
+              // bubbleStyle={
+              //   sentBubbleStyle
+              //     ? {
+              //         ...sentBubbleStyle,
+              //         textColor: sentBubbleStyle.textColor.normal,
+              //         linkColor: sentBubbleStyle.link?.color,
+              //         linkUnderline: sentBubbleStyle.link?.underline,
+              //       }
+              //     : undefined
+              // }
             />
           )}
         </SentChatContainer>
       )
     }
     case 'received': {
-      const receivedBubbleStyle = bubbleStyle?.received
+      // const receivedBubbleStyle = bubbleStyle?.received
       return (
         <ReceivedChatContainer
           unreadCount={unreadCount}
@@ -252,31 +253,32 @@ export function ChatBubbleUI({
             <BlindedBubble
               my={false}
               blindedText={blindedText}
-              bubbleStyle={
-                receivedBubbleStyle
-                  ? {
-                      ...receivedBubbleStyle,
-                      textColor:
-                        receivedBubbleStyle.textColor.blinded ||
-                        receivedBubbleStyle.textColor.normal,
-                    }
-                  : undefined
-              }
+              // bubbleStyle={
+              //   receivedBubbleStyle
+              //     ? {
+              //         ...receivedBubbleStyle,
+              //         textColor:
+              //           receivedBubbleStyle.textColor.blinded ||
+              //           receivedBubbleStyle.textColor.normal,
+              //       }
+              //     : undefined
+              // }
             />
           ) : (
             <BubblePayload
+              id={id}
               payload={payload}
               my={false}
-              bubbleStyle={
-                receivedBubbleStyle
-                  ? {
-                      ...receivedBubbleStyle,
-                      textColor: receivedBubbleStyle.textColor.normal,
-                      linkColor: receivedBubbleStyle.link?.color,
-                      linkUnderline: receivedBubbleStyle.link?.underline,
-                    }
-                  : undefined
-              }
+              // bubbleStyle={
+              //   receivedBubbleStyle
+              //     ? {
+              //         ...receivedBubbleStyle,
+              //         textColor: receivedBubbleStyle.textColor.normal,
+              //         linkColor: receivedBubbleStyle.link?.color,
+              //         linkUnderline: receivedBubbleStyle.link?.underline,
+              //       }
+              //     : undefined
+              // }
             />
           )}
         </ReceivedChatContainer>

@@ -1,6 +1,4 @@
-import { Autolinker } from 'autolinker'
-
-import { ImageBubble, RichBubble, TextBubble, ProductBubble } from '../bubble'
+import { ImageBubble, RichBubble, ProductBubble, TextBubble } from '../bubble'
 import { useChat } from '../chat'
 import {
   ImagePayload,
@@ -12,6 +10,7 @@ import {
 import { BackgroundColor } from '../types/ui'
 
 interface BubblePayloadProps {
+  id: string
   payload: TextPayload | ImagePayload | RichPayload | ProductPayload
   my: boolean
   bubbleStyle?: {
@@ -22,9 +21,13 @@ interface BubblePayloadProps {
   }
 }
 
-const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
-  const { textBubbleFontSize, textBubbleMaxWidthOffset, onTextBubbleClick } =
-    useChat()
+const BubblePayload = ({
+  id,
+  payload,
+  my,
+  bubbleStyle,
+}: BubblePayloadProps) => {
+  const { textBubbleFontSize, textBubbleMaxWidthOffset } = useChat()
 
   switch (payload.type) {
     case MessageType.IMAGES:
@@ -32,23 +35,15 @@ const BubblePayload = ({ payload, my, bubbleStyle }: BubblePayloadProps) => {
     case MessageType.TEXT:
       return (
         <TextBubble
+          id={id}
           my={my}
-          size={textBubbleFontSize}
           maxWidthOffset={textBubbleMaxWidthOffset}
-          margin={my ? { left: 8 } : undefined}
-          bubbleStyle={bubbleStyle}
-        >
-          <div
-            onClick={onTextBubbleClick}
-            aria-hidden
-            dangerouslySetInnerHTML={{
-              __html: Autolinker.link(payload.message, {
-                newWindow: true,
-                stripPrefix: false,
-              }),
-            }}
-          />
-        </TextBubble>
+          css={{
+            margin: my ? '0 0 0 8px' : undefined,
+            size: textBubbleFontSize,
+          }}
+          text={payload.message}
+        />
       )
     case MessageType.RICH:
       return (

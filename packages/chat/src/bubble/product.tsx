@@ -4,7 +4,6 @@ import { FlexBox, Text } from '@titicaca/core-elements'
 import { useChat } from '../chat'
 import { CustomerBookingStatus, ProductItem } from '../types'
 
-import { TextBubble } from './text'
 import {
   Badge,
   ProductHr,
@@ -12,6 +11,7 @@ import {
   ProductInfo,
   ProductName,
 } from './elements'
+import { Bubble } from './bubble'
 
 interface ProductBubbleProps {
   my: boolean
@@ -47,11 +47,14 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
   } = product
 
   return (
-    <TextBubble
+    <Bubble
       my={my}
-      size={textBubbleFontSize}
-      margin={my ? { left: 8 } : undefined}
-      css={{ width: 'calc(100% - 15px)', maxWidth: '768px' }}
+      css={{
+        width: 'calc(100% - 15px)',
+        maxWidth: '768px',
+        margin: my ? '0 0 0 8px' : undefined,
+        size: textBubbleFontSize,
+      }}
     >
       {customerBookingStatus && (
         <Badge backgroundColor={PRODUCT_BADGE_COLOR[customerBookingStatus]}>
@@ -93,6 +96,6 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
       <ProductInfo title="선택옵션" label={optionName} />
       <ProductInfo title="이용예정" label={dateOfUse} />
       <ProductInfo title="예약번호" label={bookingId?.toString()} />
-    </TextBubble>
+    </Bubble>
   )
 }
