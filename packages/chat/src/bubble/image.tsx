@@ -1,10 +1,11 @@
-import { MouseEvent } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useLongPress } from 'use-long-press'
 
 import { ImageMessage } from '../message/image'
 import { MetaDataInterface } from '../types'
+
+import { ImageBubbleProp } from './type'
 
 const DEFAULT_IMAGE_NUM_IN_ROW = 3
 
@@ -16,19 +17,7 @@ const ImageRow = styled.div`
 
 const MAX_IMAGE_WIDTH = 247
 
-export function ImageBubble({
-  images,
-  onClick,
-  onLongPress,
-}: {
-  images: MetaDataInterface[]
-  onClick?: (
-    e: MouseEvent,
-    images: MetaDataInterface[],
-    clickedImageIndex?: number,
-  ) => void
-  onLongPress?: () => void
-}) {
+export function ImageBubble({ images, onClick, onLongPress }: ImageBubbleProp) {
   const allocatedImages = allocateImages(images)
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
