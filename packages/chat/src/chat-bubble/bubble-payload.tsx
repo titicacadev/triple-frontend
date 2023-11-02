@@ -24,7 +24,7 @@ const BubblePayload = ({ id, payload, my, ...props }: BubblePayloadProps) => {
 
   switch (payload.type) {
     case MessageType.IMAGES:
-      return <ImageBubble imageInfos={payload.images} {...props} />
+      return <ImageBubble images={payload.images} {...props} />
     case MessageType.TEXT:
       return (
         <TextBubble
