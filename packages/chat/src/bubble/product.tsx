@@ -11,12 +11,12 @@ import {
   ProductInfo,
   ProductName,
 } from './elements'
-import { Bubble } from './bubble'
+import { Bubble, BubbleProp } from './bubble'
 
-interface ProductBubbleProps {
+type ProductBubbleProps = {
   my: boolean
   product: ProductItem
-}
+} & BubbleProp
 
 const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
   BOOKED: 'blue',
@@ -34,7 +34,12 @@ const PRODUCT_BADGE_LABEL: Record<CustomerBookingStatus, string> = {
   CANCELED: '예약취소',
 }
 
-export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
+export const ProductBubble = ({
+  id,
+  my,
+  product,
+  ...props
+}: ProductBubbleProps) => {
   const { textBubbleFontSize } = useChat()
   const {
     customerBookingStatus,
@@ -48,6 +53,7 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
 
   return (
     <Bubble
+      id={id}
       my={my}
       css={{
         width: 'calc(100% - 15px)',
@@ -55,6 +61,7 @@ export const ProductBubble = ({ my, product }: ProductBubbleProps) => {
         margin: my ? '0 0 0 8px' : undefined,
         size: textBubbleFontSize,
       }}
+      {...props}
     >
       {customerBookingStatus && (
         <Badge backgroundColor={PRODUCT_BADGE_COLOR[customerBookingStatus]}>
