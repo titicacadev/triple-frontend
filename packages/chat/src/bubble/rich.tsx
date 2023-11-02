@@ -1,9 +1,17 @@
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 
 import { useChat } from '../chat'
-import { MessageType, ButtonPayload, TextPayload, ImagePayload } from '../types'
+import {
+  MessageType,
+  ButtonPayload,
+  TextPayload,
+  ImagePayload,
+  MetaDataInterface,
+} from '../types'
+import { generatePreviewImage } from '../utils'
+import { ImageMessage } from '../message/image'
+import { TextMessage } from '../message/text'
 
-import { ImageBubble } from './image'
 import { Bubble, BubbleProp } from './bubble'
 
 const Button = styled.a`
@@ -31,11 +39,23 @@ const Button = styled.a`
 type RichBubbleProp = {
   my: boolean
   items: (TextPayload | ImagePayload | ButtonPayload)[]
+  cloudinaryName: string
+  mediaUrlBase: string
+  onImageClick?: (imageInfos: MetaDataInterface[]) => void
+  textItemStyle?: CSSProp
+  imageItemStyle?: CSSProp
+  buttonItemStyle?: CSSProp
 } & BubbleProp
 
 export function RichBubble({
   my,
   items, // bubbleStyle,
+  cloudinaryName,
+  mediaUrlBase,
+  onImageClick,
+  textItemStyle,
+  imageItemStyle,
+  buttonItemStyle,
   ...props
 }: RichBubbleProp) {
   const {
@@ -48,24 +68,40 @@ export function RichBubble({
     <Bubble
       my={my}
       maxWidthOffset={textBubbleMaxWidthOffset}
-      // bubbleStyle={bubbleStyle}
       css={{ margin: my ? '0 0 0 8px' : undefined, size: textBubbleFontSize }}
       {...props}
     >
       {items.map((item, index) => {
         switch (item.type) {
           case MessageType.TEXT:
-            return <div key={index}>{item.message}</div>
-          case MessageType.IMAGES:
+            return <TextMessage text={item.message} css={textItemStyle} />
+          case MessageType.IMAGES: {
+            if (item.images.length === 0) {
+              return null
+            }
+            const imageUrl = generatePreviewImage({
+              imageInfo: item.images[0],
+              cloudinaryName,
+              mediaUrlBase,
+            })
             return (
-              <ImageBubble key={index} isRichBubble imageInfos={item.images} />
+              <ImageMessage
+                key={index}
+                src={imageUrl}
+                onClick={() => {
+                  onImageClick?.(item.images)
+                }}
+                css={imageItemStyle}
+              />
             )
+          }
           case MessageType.BUTTON:
             return (
               <Button
                 key={index}
                 href={item.action.param}
                 onClick={onButtonBeforeRouting}
+                css={buttonItemStyle}
               >
                 {item.label}
               </Button>
