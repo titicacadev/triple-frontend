@@ -8,7 +8,6 @@ export const horizontalScrollMixin = ({ horizontalScroll }: Params) =>
   horizontalScroll
     ? css`
         white-space: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: auto hidden;
       `
     : undefined
