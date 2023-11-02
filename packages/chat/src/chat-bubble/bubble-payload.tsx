@@ -1,6 +1,6 @@
 import { Autolinker } from 'autolinker'
 
-import { ImageBubble, RichBubble, TextBubble, ProductBubble } from '../bubbles'
+import { ImageBubble, RichBubble, TextBubble, ProductBubble } from '../bubble'
 import { useChat } from '../chat'
 import {
   ImagePayload,
