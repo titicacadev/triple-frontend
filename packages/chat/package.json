@@ -48,7 +48,8 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.0.0",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "use-long-press": "^3.2.0"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
