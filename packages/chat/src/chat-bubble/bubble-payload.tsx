@@ -7,31 +7,19 @@ import {
   TextPayload,
   ProductPayload,
 } from '../types'
-import { BackgroundColor } from '../types/ui'
 
 interface BubblePayloadProps {
   id: string
   payload: TextPayload | ImagePayload | RichPayload | ProductPayload
   my: boolean
-  bubbleStyle?: {
-    backgroundColor: BackgroundColor
-    textColor: string
-    linkColor?: string
-    linkUnderline?: boolean
-  }
 }
 
-const BubblePayload = ({
-  id,
-  payload,
-  my,
-  bubbleStyle,
-}: BubblePayloadProps) => {
+const BubblePayload = ({ id, payload, my, ...props }: BubblePayloadProps) => {
   const { textBubbleFontSize, textBubbleMaxWidthOffset } = useChat()
 
   switch (payload.type) {
     case MessageType.IMAGES:
-      return <ImageBubble imageInfos={payload.images} />
+      return <ImageBubble imageInfos={payload.images} {...props} />
     case MessageType.TEXT:
       return (
         <TextBubble
@@ -46,11 +34,9 @@ const BubblePayload = ({
         />
       )
     case MessageType.RICH:
-      return (
-        <RichBubble my={my} items={payload.items} bubbleStyle={bubbleStyle} />
-      )
+      return <RichBubble id={id} my={my} items={payload.items} />
     case MessageType.PRODUCT:
-      return <ProductBubble my={my} product={payload.product} />
+      return <ProductBubble id={id} my={my} product={payload.product} />
     default:
       return null
   }

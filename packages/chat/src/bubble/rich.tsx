@@ -2,10 +2,9 @@ import styled from 'styled-components'
 
 import { useChat } from '../chat'
 import { MessageType, ButtonPayload, TextPayload, ImagePayload } from '../types'
-import { BackgroundColor } from '../types/ui'
 
 import { ImageBubble } from './image'
-import { Bubble } from './bubble'
+import { Bubble, BubbleProp } from './bubble'
 
 const Button = styled.a`
   box-sizing: border-box;
@@ -29,19 +28,16 @@ const Button = styled.a`
   }
 `
 
+type RichBubbleProp = {
+  my: boolean
+  items: (TextPayload | ImagePayload | ButtonPayload)[]
+} & BubbleProp
+
 export function RichBubble({
   my,
   items, // bubbleStyle,
-}: {
-  my: boolean
-  items: (TextPayload | ImagePayload | ButtonPayload)[]
-  bubbleStyle?: {
-    backgroundColor: BackgroundColor
-    textColor: string
-    linkColor?: string
-    linkUnderline?: boolean
-  }
-}) {
+  ...props
+}: RichBubbleProp) {
   const {
     textBubbleFontSize,
     textBubbleMaxWidthOffset,
@@ -54,6 +50,7 @@ export function RichBubble({
       maxWidthOffset={textBubbleMaxWidthOffset}
       // bubbleStyle={bubbleStyle}
       css={{ margin: my ? '0 0 0 8px' : undefined, size: textBubbleFontSize }}
+      {...props}
     >
       {items.map((item, index) => {
         switch (item.type) {
