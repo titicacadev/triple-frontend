@@ -1,12 +1,7 @@
 import { TextMessage } from '../message/text'
 
-import { Bubble, BubbleProp } from './bubble'
-
-type TextBubbleProp = {
-  id: string
-  text: string
-  my: boolean
-} & BubbleProp
+import { Bubble } from './bubble'
+import { TextBubbleProp } from './type'
 
 /**
  * 

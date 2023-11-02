@@ -2,7 +2,7 @@ import { Color } from '@titicaca/color-palette'
 import { FlexBox, Text } from '@titicaca/core-elements'
 
 import { useChat } from '../chat'
-import { CustomerBookingStatus, ProductItem } from '../types'
+import { CustomerBookingStatus } from '../types'
 
 import {
   Badge,
@@ -11,12 +11,8 @@ import {
   ProductInfo,
   ProductName,
 } from './elements'
-import { Bubble, BubbleProp } from './bubble'
-
-type ProductBubbleProps = {
-  my: boolean
-  product: ProductItem
-} & BubbleProp
+import { Bubble } from './bubble'
+import { ProductBubbleProps } from './type'
 
 const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
   BOOKED: 'blue',
