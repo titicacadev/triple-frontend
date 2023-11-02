@@ -1,5 +1,5 @@
 export * from './types'
-export * from './bubbles'
+export * from './bubble'
 export * as ChatBubble from './chat-bubble'
 export * from './chat'
 export * from './utils'
