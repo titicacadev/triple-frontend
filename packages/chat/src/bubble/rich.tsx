@@ -1,18 +1,13 @@
-import styled, { CSSProp } from 'styled-components'
+import styled from 'styled-components'
 
 import { useChat } from '../chat'
-import {
-  MessageType,
-  ButtonPayload,
-  TextPayload,
-  ImagePayload,
-  MetaDataInterface,
-} from '../types'
+import { MessageType } from '../types'
 import { generatePreviewImage } from '../utils'
 import { ImageMessage } from '../message/image'
 import { TextMessage } from '../message/text'
 
-import { Bubble, BubbleProp } from './bubble'
+import { Bubble } from './bubble'
+import { RichBubbleProp } from './type'
 
 const Button = styled.a`
   box-sizing: border-box;
@@ -35,17 +30,6 @@ const Button = styled.a`
     background-size: 16px 18px;
   }
 `
-
-type RichBubbleProp = {
-  my: boolean
-  items: (TextPayload | ImagePayload | ButtonPayload)[]
-  cloudinaryName: string
-  mediaUrlBase: string
-  onImageClick?: (imageInfos: MetaDataInterface[]) => void
-  textItemStyle?: CSSProp
-  imageItemStyle?: CSSProp
-  buttonItemStyle?: CSSProp
-} & BubbleProp
 
 export function RichBubble({
   my,
