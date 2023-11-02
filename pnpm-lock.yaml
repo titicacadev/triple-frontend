@@ -430,6 +430,9 @@ importers:
       moment:
         specifier: ^2.29.4
         version: 2.29.4
+      use-long-press:
+        specifier: ^3.2.0
+        version: 3.2.0(react@18.2.0)
     devDependencies:
       '@titicaca/react-contexts':
         specifier: workspace:*
@@ -21238,6 +21241,14 @@ packages:
       react: 18.2.0
       tslib: 2.6.2
     dev: true
+
+  /use-long-press@3.2.0(react@18.2.0):
+    resolution: {integrity: sha512-uq5o2qFR1VRjHn8Of7Fl344/AGvgk7C5Mcb4aSb1ZRVp6PkgdXJJLdRrlSTJQVkkQcDuqFbFc3mDX4COg7mRTA==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-resize-observer@9.1.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-R25VqO9Wb3asSD4eqtcxk8sJalvIOYBqS8MNZlpDSQ4l4xMQxC/J7Id9HoTqPq8FwULIn0PVW+OAqF2dyYbjow==}
