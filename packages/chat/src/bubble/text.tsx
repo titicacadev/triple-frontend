@@ -1,5 +1,4 @@
-import { Text } from '@titicaca/core-elements'
-import { Autolinker } from 'autolinker'
+import { TextMessage } from '../message/text'
 
 import { Bubble, BubbleProp } from './bubble'
 
@@ -49,24 +48,7 @@ function getDefaultBackgroundColor(my: boolean) {
 export function TextBubble({ text, ...props }: TextBubbleProp) {
   return (
     <Bubble {...props}>
-      <Text
-        css={{
-          display: '-webkit-box',
-          lineHeight: '21px',
-          paddingLeft: 5,
-          paddingRight: 5,
-          userSelect: 'none',
-          wordBreak: 'break-word',
-          color: 'inherit',
-        }}
-        aria-hidden
-        dangerouslySetInnerHTML={{
-          __html: Autolinker.link(text, {
-            newWindow: true,
-            stripPrefix: false,
-          }),
-        }}
-      />
+      <TextMessage text={text} />
     </Bubble>
   )
 }
