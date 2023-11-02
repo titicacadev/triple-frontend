@@ -1,8 +1,6 @@
-import { Container } from '@titicaca/kint5-core-elements'
+import { Container, ThumbnailBorder } from '@titicaca/kint5-core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
-
-import { MediumBorder } from './elements'
 
 interface Props {
   medium: ImageMeta
@@ -29,7 +27,7 @@ function Image({ medium }: Props) {
   return (
     <Wrapper>
       <Img src={medium.sizes.large.url} />
-      <MediumBorder />
+      <ThumbnailBorder />
     </Wrapper>
   )
 }
