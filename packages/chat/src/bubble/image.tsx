@@ -1,52 +1,111 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import { MouseEvent } from 'react'
+import { Container } from '@titicaca/core-elements'
+import styled from 'styled-components'
+import { useLongPress } from 'use-long-press'
 
+import { ImageMessage } from '../message/image'
 import { MetaDataInterface } from '../types'
-import { generatePreviewImage } from '../utils'
-import { useChat } from '../chat'
 
-const PreviewImage = styled.img<{ isRichBubble: boolean }>`
-  ${({ isRichBubble }) =>
-    isRichBubble
-      ? css`
-          width: 100%;
-          margin-top: 14px;
-        `
-      : css`
-          border-radius: 10px;
-        `}
+const DEFAULT_IMAGE_NUM_IN_ROW = 3
+
+const ImageRow = styled.div`
+  :not(:last-child) {
+    margin-bottom: 5px;
+  }
 `
 
+const MAX_IMAGE_WIDTH = 247
+
 export function ImageBubble({
-  imageInfos,
-  isRichBubble = false,
+  images,
+  onClick,
+  onLongPress,
 }: {
-  imageInfos: MetaDataInterface[]
-  isRichBubble?: boolean
+  images: MetaDataInterface[]
+  onClick?: (
+    e: MouseEvent,
+    images: MetaDataInterface[],
+    clickedImageIndex?: number,
+  ) => void
+  onLongPress?: () => void
 }) {
-  const {
-    mediaUrlBase,
-    cloudinaryName,
-    onImageBubbleClick: onClick,
-  } = useChat()
+  const allocatedImages = allocateImages(images)
 
-  if (imageInfos.length === 0) {
-    return null
-  }
-
-  const imageUrl = generatePreviewImage({
-    imageInfo: imageInfos[0],
-    cloudinaryName,
-    mediaUrlBase,
-  })
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const bind = useLongPress(
+    () => {
+      onLongPress?.()
+    },
+    {
+      threshold: 500,
+      cancelOnMovement: true,
+    },
+  )
 
   return (
-    <PreviewImage
-      src={imageUrl}
-      isRichBubble={isRichBubble}
-      onClick={() => {
-        onClick?.(imageInfos)
-      }}
-    />
+    <Container
+      display="inline-block"
+      css={{ maxWidth: MAX_IMAGE_WIDTH, verticalAlign: 'bottom' }}
+      {...bind()}
+    >
+      {allocatedImages.map((imagesInRow, index) => (
+        <ImageRow key={index} css={{ display: 'flex', gap: 5 }}>
+          {imagesInRow.map((image) => (
+            <ImageMessage
+              key={image.id}
+              src={image.sizes.large.url}
+              onClick={(e) => {
+                onClick?.(e, images, image.index)
+              }}
+              css={
+                images.length === 2 || images.length === 4
+                  ? { height: 121, width: 121 }
+                  : imagesInRow.length > 1
+                  ? { height: 79, width: 79, flexGrow: 1 }
+                  : {
+                      width: Math.min(MAX_IMAGE_WIDTH, image.width),
+                      height: Math.min(
+                        Math.floor(
+                          (MAX_IMAGE_WIDTH * image.height) / image.width,
+                        ),
+                        image.height,
+                      ),
+                    }
+              }
+            />
+          ))}
+        </ImageRow>
+      ))}
+    </Container>
   )
+}
+
+function allocateImages(
+  images: Array<MetaDataInterface>,
+): Array<Array<MetaDataInterface & { index: number }>> {
+  if (images.length === 1) {
+    return [[{ ...images[0], index: 0 }]]
+  }
+  const imagesWithIndex = images.map((image, index) => ({ ...image, index }))
+  const allocatedImages: Array<Array<MetaDataInterface & { index: number }>> =
+    []
+  let i = 0
+  let row = 0
+  while (i < imagesWithIndex.length) {
+    row += 1
+    if (
+      row ===
+        Math.ceil(imagesWithIndex.length / DEFAULT_IMAGE_NUM_IN_ROW) - 1 &&
+      images.length % DEFAULT_IMAGE_NUM_IN_ROW === 1
+    ) {
+      allocatedImages.push(
+        imagesWithIndex.slice(i, i + DEFAULT_IMAGE_NUM_IN_ROW - 1),
+      )
+      i += DEFAULT_IMAGE_NUM_IN_ROW - 1
+      continue
+    }
+    allocatedImages.push(imagesWithIndex.slice(i, i + DEFAULT_IMAGE_NUM_IN_ROW))
+    i += DEFAULT_IMAGE_NUM_IN_ROW
+  }
+  return allocatedImages
 }
