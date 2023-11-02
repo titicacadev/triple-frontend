@@ -205,6 +205,7 @@ export function ChatBubbleUI({
         >
           {blindedAt ? (
             <BlindedBubble
+              id={id}
               my
               blindedText={blindedText}
               // bubbleStyle={
@@ -251,6 +252,7 @@ export function ChatBubbleUI({
         >
           {blindedAt ? (
             <BlindedBubble
+              id={id}
               my={false}
               blindedText={blindedText}
               // bubbleStyle={
