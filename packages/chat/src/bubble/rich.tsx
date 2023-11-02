@@ -5,7 +5,7 @@ import { MessageType, ButtonPayload, TextPayload, ImagePayload } from '../types'
 import { BackgroundColor } from '../types/ui'
 
 import { ImageBubble } from './image'
-import { TextBubble } from './text'
+import { Bubble } from './bubble'
 
 const Button = styled.a`
   box-sizing: border-box;
@@ -31,8 +31,7 @@ const Button = styled.a`
 
 export function RichBubble({
   my,
-  items,
-  bubbleStyle,
+  items, // bubbleStyle,
 }: {
   my: boolean
   items: (TextPayload | ImagePayload | ButtonPayload)[]
@@ -50,12 +49,11 @@ export function RichBubble({
   } = useChat()
 
   return (
-    <TextBubble
+    <Bubble
       my={my}
-      size={textBubbleFontSize}
       maxWidthOffset={textBubbleMaxWidthOffset}
-      margin={my ? { left: 8 } : undefined}
-      bubbleStyle={bubbleStyle}
+      // bubbleStyle={bubbleStyle}
+      css={{ margin: my ? '0 0 0 8px' : undefined, size: textBubbleFontSize }}
     >
       {items.map((item, index) => {
         switch (item.type) {
@@ -79,6 +77,6 @@ export function RichBubble({
             return null
         }
       })}
-    </TextBubble>
+    </Bubble>
   )
 }

@@ -2,8 +2,7 @@ import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 import { useChat } from '../chat'
-import { TextBubble } from '../bubble/text'
-import { BackgroundColor } from '../types/ui'
+import { Bubble } from '../bubble/bubble'
 
 const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
   ${({ color = 'gray' }) =>
@@ -15,19 +14,18 @@ const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
 export default function BlindedBubble({
   my,
   blindedText,
-  bubbleStyle,
+  ...props
 }: {
   my: boolean
   blindedText?: string
-  bubbleStyle?: { backgroundColor: BackgroundColor; textColor: string }
 }) {
   const { textBubbleMaxWidthOffset } = useChat()
   return (
-    <TextBubble
+    <Bubble
       maxWidthOffset={textBubbleMaxWidthOffset}
       my={my}
-      margin={my ? { left: 8 } : undefined}
-      bubbleStyle={bubbleStyle}
+      css={{ margin: my ? '0 0 0 8px' : undefined }}
+      {...props}
     >
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon
@@ -36,6 +34,6 @@ export default function BlindedBubble({
         />
         <span>{blindedText ?? '관리자에 의해 삭제되었습니다'}</span>
       </FlexBox>
-    </TextBubble>
+    </Bubble>
   )
 }
