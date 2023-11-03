@@ -84,6 +84,18 @@ export const TwoGridImages: StoryObj = {
   },
 }
 
+export const FiveImages: StoryObj = {
+  name: '5개',
+  args: {
+    value: {
+      images: IMAGES.slice(0, 5).map((value) => ({
+        ...value,
+        title: '',
+      })),
+    },
+  },
+}
+
 export const FiveGridImages: StoryObj = {
   name: '5개, 분할',
   args: {
