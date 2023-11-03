@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import { Carousel, Container } from '@titicaca/kint5-core-elements'
-import TripleMedia from '@titicaca/triple-media'
+import Kint5Media from '@titicaca/kint5-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { TripleElementData, ElementSet } from '../types'
@@ -40,7 +40,7 @@ function EmbeddedImage({
 
     return (
       <Container {...props}>
-        <TripleMedia
+        <Kint5Media
           frame="large"
           optimized={optimized}
           media={image}
