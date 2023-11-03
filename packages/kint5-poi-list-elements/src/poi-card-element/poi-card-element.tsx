@@ -14,7 +14,7 @@ import {
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useScrapsContext } from '@titicaca/react-contexts'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
+import { OverlayScrapButton } from '@titicaca/kint5-scrap-button'
 
 import { PoiListElementType } from '../types'
 
