@@ -4,6 +4,7 @@ import {
 } from '@titicaca/react-contexts'
 import { Attributes, ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
+import { EmptyHeartIcon, FilledHeartIcon } from '@titicaca/kint5-core-elements'
 
 import { withMask } from './scrap-button-mask'
 
@@ -28,19 +29,15 @@ interface ScrapIconProps {
   size: number
 }
 
-const OUTLINE_HEART_ON =
-  'https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png'
-const OUTLINE_HEART_OFF =
-  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-heart-line-24.svg'
-
 function OutlineHeart({ pressed, size }: ScrapIconProps) {
   return (
-    <img
-      src={pressed ? OUTLINE_HEART_ON : OUTLINE_HEART_OFF}
-      width={size}
-      height={size}
-      alt={pressed ? 'OUTLINE_HEART_ON' : 'OUTLINE_HEART_OFF'}
-    />
+    <>
+      {pressed ? (
+        <FilledHeartIcon width={size} height={size} color="#EB147B" />
+      ) : (
+        <EmptyHeartIcon width={size} height={size} />
+      )}
+    </>
   )
 }
 
