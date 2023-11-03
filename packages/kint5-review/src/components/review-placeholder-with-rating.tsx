@@ -1,7 +1,13 @@
 import { SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Button, Container, Rating, Text } from '@titicaca/kint5-core-elements'
+import {
+  Button,
+  Container,
+  FlexBox,
+  StarIcon,
+  Text,
+} from '@titicaca/kint5-core-elements'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
@@ -148,7 +154,16 @@ export function ReviewsPlaceholder({
         resourceType === 'article' ? (
           <GuideImage />
         ) : (
-          <Rating size="medium" onClick={(_, rating) => handleClick(rating)} />
+          <FlexBox
+            flex
+            css={{ alignItems: 'center', justifyContent: 'center', gap: 12 }}
+          >
+            <StarIcon color="#F1F3F5" width={40} height={40} />
+            <StarIcon color="#F1F3F5" width={40} height={40} />
+            <StarIcon color="#F1F3F5" width={40} height={40} />
+            <StarIcon color="#F1F3F5" width={40} height={40} />
+            <StarIcon color="#F1F3F5" width={40} height={40} />
+          </FlexBox>
         )
       ) : null}
 
@@ -170,21 +185,16 @@ function DefaultPlaceholder({
 }: {
   placeholderText: string | undefined
 }) {
-  const { t } = useTranslation('common-web')
-
   return (
     <Text
-      margin={{ top: 8 }}
-      size="large"
-      color="gray"
-      alpha={1}
-      lineHeight={1.5}
+      css={{
+        fontSize: 14,
+        fontWeight: 500,
+        color: 'var(--color-kint5-gray40)',
+        marginTop: 16,
+      }}
     >
-      {placeholderText ??
-        t([
-          'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.',
-          '이곳의 첫 번째 리뷰를 올려주세요.',
-        ])}
+      {placeholderText ?? '이곳에 다녀오셨나요?'}
     </Text>
   )
 }
