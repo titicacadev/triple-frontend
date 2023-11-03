@@ -7,6 +7,7 @@ import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { Container } from '@titicaca/core-elements'
 
 import {
+  HasUnreadOfRoomInterface,
   ImagePayload,
   MessageInterface,
   PostMessageType,
@@ -48,7 +49,7 @@ export interface ChatProps {
   getUnreadRoom?: (option: {
     roomId: string
     lastSeenMessageId: number
-  }) => void
+  }) => Promise<HasUnreadOfRoomInterface>
   room: RoomInterface
   notifyNewMessage?: (lastMessage: MessageInterface) => void
   showFailToast?: (message: string) => void
@@ -112,10 +113,22 @@ export const Chat = ({
       return
     }
 
-    await getUnreadRoom?.({
+    const unreadRoomResult = await getUnreadRoom?.({
       roomId: room.id,
       lastSeenMessageId: lastMessageId,
     })
+    const { hasUnread = false, others = [] } = unreadRoomResult || {}
+
+    const otherUnreadInfo = others.map(({ memberId, lastSeenMessageId }) => ({
+      memberId,
+      lastSeenMessageId: Number(lastSeenMessageId),
+    }))
+    dispatch({
+      action: ChatActions.UPDATE,
+      otherUnreadInfo,
+    })
+
+    return hasUnread
   }, [lastMessageId, getUnreadRoom, room.id])
 
   useChatMessage({
