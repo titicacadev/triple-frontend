@@ -38,11 +38,13 @@ export const Video = forwardRef<HTMLVideoElement, Props>(
       frame,
       fallbackImageUrl,
       removeFrame,
+      borderRadius,
     },
     ref,
   ) => {
     return (
       <VideoFrame
+        borderRadius={borderRadius}
         removeFrame={removeFrame}
         frame={frame}
         fallbackImageUrl={fallbackImageUrl}
