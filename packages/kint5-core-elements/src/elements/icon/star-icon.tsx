@@ -1,14 +1,10 @@
-interface StarIconProps {
-  width?: number
-  height?: number
-  color?: string
-}
+import { BaseIconProps } from './type'
 
 export function StarIcon({
   width = 12,
   height = 12,
   color = '#FFF',
-}: StarIconProps) {
+}: BaseIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
