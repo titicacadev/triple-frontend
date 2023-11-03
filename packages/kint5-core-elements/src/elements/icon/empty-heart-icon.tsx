@@ -1,14 +1,10 @@
-interface EmptyHeartIconProps {
-  width?: number
-  height?: number
-  color?: string
-}
+import { BaseIconProps } from './type'
 
 export function EmptyHeartIcon({
   width = 24,
   height = 24,
   color = '#000',
-}: EmptyHeartIconProps) {
+}: BaseIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
