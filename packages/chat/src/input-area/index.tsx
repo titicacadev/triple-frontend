@@ -17,6 +17,7 @@ import {
 
 const MIN_TEXTAREA_HEIGHT = 20
 const MAX_TEXTAREA_HEIGHT = 100
+const MAX_TEXT_LENGTH = 2000
 
 function textAreaAutoResize(e: SyntheticEvent) {
   const textareaElement = e.target as HTMLTextAreaElement
@@ -35,11 +36,13 @@ export interface InputAreaUIProps {
   onInputKeydown?: KeyboardEventHandler
   buttonColor?: 'mint' | 'blue'
   buttonText?: string
+  buttonDisabled?: boolean
 }
 
 export function InputAreaUI({
   buttonColor = 'blue',
   buttonText,
+  buttonDisabled,
   inputValue,
   setInputValue,
   placeholder,
@@ -75,6 +78,7 @@ export function InputAreaUI({
           onClick={onInputClick}
           ref={textareaRef}
           placeholder={placeholder}
+          maxLength={MAX_TEXT_LENGTH}
         />
         <SendMessageButton
           color={buttonColor}
@@ -86,6 +90,7 @@ export function InputAreaUI({
               onSendMessage()
             }
           }}
+          disabled={buttonDisabled}
         >
           {buttonText || '보내기'}
         </SendMessageButton>
