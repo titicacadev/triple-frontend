@@ -2,7 +2,8 @@ import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 import { useChat } from '../chat'
-import { Bubble, BubbleProp } from '../bubble/bubble'
+
+import { Bubble, BubbleProp } from './bubble'
 
 const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
   ${({ color = 'gray' }) =>
