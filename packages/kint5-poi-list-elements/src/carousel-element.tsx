@@ -7,7 +7,7 @@ import {
   Image,
   ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
+import { OverlayScrapButton } from '@titicaca/kint5-scrap-button'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'

@@ -7,7 +7,7 @@ import {
   List,
   ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
-import { OutlineScrapButton } from '@titicaca/scrap-button'
+import { OutlineScrapButton } from '@titicaca/kint5-scrap-button'
 
 import {
   PoiListElementBaseProps,
