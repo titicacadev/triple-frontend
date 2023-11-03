@@ -93,7 +93,7 @@ function DetailHeaderV2({
         {...props}
       >
         <TextTitle margin={{ bottom: 6 }}>
-          {names.primary || names.ko || names.en}
+          {names.primary || names.en || names.local || names.ko}
         </TextTitle>
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}

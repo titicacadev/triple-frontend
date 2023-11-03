@@ -70,7 +70,7 @@ export function RegionListElement({
       >
         <Image src={style && style.backgroundImageUrl} />
         <Text css={{ fontSize: 14, fontWeight: 700 }}>
-          {nameOverride || names.primary || names.en || names.local}
+          {nameOverride || names.primary || names.en || names.local || names.ko}
         </Text>
         <Text
           css={{
