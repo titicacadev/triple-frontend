@@ -1154,6 +1154,10 @@ importers:
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/kint5-scrap-button:
+    dependencies:
+      '@titicaca/kint5-core-elements':
+        specifier: workspace:*
+        version: link:../kint5-core-elements
     devDependencies:
       '@titicaca/react-contexts':
         specifier: workspace:*

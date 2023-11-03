@@ -39,6 +39,9 @@
       "eslint"
     ]
   },
+  "dependencies": {
+    "@titicaca/kint5-core-elements": "workspace:*"
+  },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
     "react": "^18.2.0",
