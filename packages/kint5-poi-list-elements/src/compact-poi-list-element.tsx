@@ -155,8 +155,9 @@ export function CompactPoiListElement<T extends PoiListElementType>({
         <Container
           position="absolute"
           css={{
-            top: 0,
+            top: '50%',
             right: 0,
+            transform: 'translateY(-50%)',
           }}
         >
           <OutlineScrapButton resource={poi} size={34} />
