@@ -1,5 +1,6 @@
 import { Text } from '../text'
 import { FlexBox } from '../flex-box'
+import { StarIcon } from '../icon/star-icon'
 
 export function RatingV2({
   score: initScore = 0,
@@ -15,12 +16,7 @@ export function RatingV2({
 
   return (
     <FlexBox flex css={{ alignItems: 'center', gap: 2 }}>
-      <img
-        src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ico-star-fill.svg"
-        alt="Rating"
-        width={12}
-        height={12}
-      />
+      <StarIcon color="#FFBD14" />
       <Text css={{ fontSize: 13, fontWeight: 700, marginTop: 1 }}>
         {formattedScore}
       </Text>
