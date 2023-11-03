@@ -35,6 +35,9 @@ const POI_IMAGE_PLACEHOLDERS_SMALL: {
   hotel: 'https://assets.triple.guide/images/ico_blank_hotel_small@2x.png',
 }
 
+const IMAGE_CONTAINER_SIZE_PX = 60
+const LIST_ITEM_GAP_PX = 12
+const SCRAP_ICON_SIZE_PX = 24
 const BORDER_RADIUS_PX = 12
 
 export function CompactPoiListElement<T extends PoiListElementType>({
@@ -69,15 +72,15 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       onClick={onClick}
       css={{
         display: 'flex',
-        gap: 12,
+        gap: LIST_ITEM_GAP_PX,
         ':not(:last-child)': { marginBottom: 20 },
       }}
     >
       <Container
         css={{
           position: 'relative',
-          width: 60,
-          height: 60,
+          width: IMAGE_CONTAINER_SIZE_PX,
+          height: IMAGE_CONTAINER_SIZE_PX,
           backgroundColor: 'var(--color-kint5-gray10)',
           borderRadius: BORDER_RADIUS_PX,
         }}
@@ -114,6 +117,9 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       <FlexBox
         flex
         css={{
+          width: `calc(100% - ${IMAGE_CONTAINER_SIZE_PX}px - ${
+            SCRAP_ICON_SIZE_PX + 10 // 간격 보정값 10px
+          }px - ${LIST_ITEM_GAP_PX}px)`,
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
@@ -122,6 +128,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       >
         <Text
           ellipsis
+          maxLines={1}
           css={{
             fontSize: 14,
             fontWeight: 700,
@@ -131,6 +138,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           {name}
         </Text>
         <Text
+          maxLines={2}
           css={{
             fontSize: 13,
             fontWeight: 400,
@@ -160,7 +168,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
             transform: 'translateY(-50%)',
           }}
         >
-          <OutlineScrapButton resource={poi} size={34} />
+          <OutlineScrapButton resource={poi} size={SCRAP_ICON_SIZE_PX} />
         </Container>
       )}
     </List.Item>
