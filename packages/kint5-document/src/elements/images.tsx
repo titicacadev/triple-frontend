@@ -2,7 +2,7 @@ import {
   ImageCarouselElementContainer,
   ImageCaption,
 } from '@titicaca/kint5-core-elements'
-import TripleMedia from '@titicaca/triple-media'
+import Kint5Media from '@titicaca/kint5-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'
 
@@ -58,7 +58,7 @@ export default function Images({
             key={i}
             {...(isHorizontalLayout && images.length > 1 && { maxWidth: 320 })}
           >
-            <TripleMedia
+            <Kint5Media
               frame="large"
               optimized={optimized}
               borderRadius={isOnlyImage ? 0 : 16}
