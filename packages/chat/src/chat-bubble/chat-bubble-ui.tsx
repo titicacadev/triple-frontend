@@ -8,6 +8,7 @@ import {
   RichPayload,
   TextPayload,
 } from '../types'
+import BlindedBubble from '../bubble/blinded'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -18,7 +19,6 @@ import {
   SendingFailureHandlerContainer,
 } from './elements'
 import BubblePayload from './bubble-payload'
-import BlindedBubble from './blinded'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
