@@ -17,8 +17,8 @@ import {
   UserInterface,
   UserType,
 } from '../types'
-import ChatBubble from '../chat-bubble'
-import { HiddenElement } from '../chat-bubble/elements'
+import ChatBubble from '../bubble-container'
+import { HiddenElement } from '../bubble-container/elements'
 import { ChatBubbleStyle } from '../types/ui'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
