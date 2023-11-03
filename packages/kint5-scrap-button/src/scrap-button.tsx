@@ -31,7 +31,7 @@ interface ScrapIconProps {
 const OUTLINE_HEART_ON =
   'https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png'
 const OUTLINE_HEART_OFF =
-  'https://assets.triple.guide/images/btn-content-scrap-list-off@2x.png'
+  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-heart-line-24.svg'
 
 function OutlineHeart({ pressed, size }: ScrapIconProps) {
   return (
