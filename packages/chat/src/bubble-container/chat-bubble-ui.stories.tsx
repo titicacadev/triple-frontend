@@ -4,7 +4,7 @@ import { ChatContext } from '../chat'
 import { MessageType } from '../types'
 import { MEDIA_ARGS, SAMPLE_IMAGES } from '../utils/constants'
 
-import { ChatBubbleUI, ChatBubbleUIProps } from './chat-bubble-ui'
+import { ChatBubbleUI, ChatBubbleUIProps } from './bubble-container'
 
 export default {
   title: 'chat / ChatBubbleUI',

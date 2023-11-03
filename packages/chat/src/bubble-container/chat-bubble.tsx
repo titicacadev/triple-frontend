@@ -12,7 +12,7 @@ import {
 import { getProfileImageUrl } from '../utils'
 import { ChatBubbleStyle } from '../types/ui'
 
-import { ChatBubbleUI } from './chat-bubble-ui'
+import { ChatBubbleUI } from './bubble-container'
 
 interface ChatBubbleProps {
   my: boolean
