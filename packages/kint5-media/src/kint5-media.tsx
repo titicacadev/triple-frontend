@@ -5,6 +5,8 @@ import {
   Image,
   MarginPadding,
   OptimizedImgProps,
+  Container,
+  ThumbnailBorder,
 } from '@titicaca/kint5-core-elements'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
@@ -49,51 +51,56 @@ export default function Media({
     description,
   } = media
 
-  if (type && type === 'video' && video) {
-    return (
-      <Video
-        borderRadius={borderRadius}
-        frame={mediaFrame || frame || 'large'}
-        fallbackImageUrl={sizes.large.url}
-        src={video.large.url}
-        cloudinaryBucket={cloudinaryBucket}
-        cloudinaryId={cloudinaryId}
-        autoPlay={autoPlay}
-        loop={loop}
-        hideControls={!!hideControls}
-        showNativeControls={showNativeControls}
-      />
-    )
-  }
-
   return (
-    <Image borderRadius={borderRadius}>
-      <Image.FixedRatioFrame
-        margin={margin}
-        frame={mediaFrame || frame}
-        onClick={onClick && ((e: SyntheticEvent) => onClick(e, media))}
-      >
-        {sourceUrl ? (
-          <Image.SourceUrl>
-            {ImageSource ? <ImageSource sourceUrl={sourceUrl} /> : sourceUrl}
-          </Image.SourceUrl>
-        ) : null}
+    <Container css={{ position: 'relative' }}>
+      {type === 'video' && video ? (
+        <Video
+          borderRadius={borderRadius}
+          frame={mediaFrame || frame || 'large'}
+          fallbackImageUrl={sizes.large.url}
+          src={video.large.url}
+          cloudinaryBucket={cloudinaryBucket}
+          cloudinaryId={cloudinaryId}
+          autoPlay={autoPlay}
+          loop={loop}
+          hideControls={!!hideControls}
+          showNativeControls={showNativeControls}
+        />
+      ) : (
+        <Image borderRadius={borderRadius}>
+          <Image.FixedRatioFrame
+            margin={margin}
+            frame={mediaFrame || frame}
+            onClick={onClick && ((e: SyntheticEvent) => onClick(e, media))}
+          >
+            {sourceUrl ? (
+              <Image.SourceUrl>
+                {ImageSource ? (
+                  <ImageSource sourceUrl={sourceUrl} />
+                ) : (
+                  sourceUrl
+                )}
+              </Image.SourceUrl>
+            ) : null}
 
-        {media && optimized ? (
-          <Image.OptimizedImg
-            cloudinaryId={cloudinaryId || id}
-            cloudinaryBucket={cloudinaryBucket}
-            alt={title || description || undefined}
-            {...props}
-          />
-        ) : (
-          <Image.Img
-            src={sizes.large.url}
-            alt={title || description || undefined}
-            css={{ display: 'block' }}
-          />
-        )}
-      </Image.FixedRatioFrame>
-    </Image>
+            {media && optimized ? (
+              <Image.OptimizedImg
+                cloudinaryId={cloudinaryId || id}
+                cloudinaryBucket={cloudinaryBucket}
+                alt={title || description || undefined}
+                {...props}
+              />
+            ) : (
+              <Image.Img
+                src={sizes.large.url}
+                alt={title || description || undefined}
+                css={{ display: 'block' }}
+              />
+            )}
+          </Image.FixedRatioFrame>
+        </Image>
+      )}
+      <ThumbnailBorder css={{ borderRadius }} />
+    </Container>
   )
 }
