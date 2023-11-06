@@ -31,7 +31,7 @@ export interface ScrollOptions {
 }
 
 export interface ScrollContextValue {
-  /** ChatContainer의 최하단(bottomRef)으로 이동합니다. */
+  /** ChatScrollContainer의 최하단(bottomRef)으로 이동합니다. */
   scrollToBottom: (options?: ScrollOptions) => void
   /** 해당 message로 이동합니다. 사용하기 전, 메세지 노드에 messageIdPrefix를 넣은 id를 추가해야 합니다. */
   scrollToMessage: (messageId: string, options?: ScrollOptions) => void
@@ -39,13 +39,13 @@ export interface ScrollContextValue {
   setScrollY: Dispatch<SetStateAction<number | null>>
   /** 상대적인 좌표로 스크롤합니다. input resize 이벤트, 키보드 이벤트 등에 사용할 수 있습니다. */
   setScrollBy: Dispatch<SetStateAction<number | null>>
-  /** 스크롤을 하기위한 element ref입니다. ChatContainer 컴포넌트에서 사용합니다.  */
+  /** 스크롤을 하기위한 element ref입니다. ChatScrollContainer 컴포넌트에서 사용합니다.  */
   chatContainerRef: MutableRefObject<HTMLDivElement | null>
-  /** 스크롤값을 계산하기 위한 ref입니다. ChatContainer 컴포넌트에서 사용합니다.  */
+  /** 스크롤값을 계산하기 위한 ref입니다. ChatScrollContainer 컴포넌트에서 사용합니다.  */
   scrollContainerRef: MutableRefObject<HTMLDivElement | null>
-  /** 최하단으로 이동하기 위한 ref입니다. ChatContainer 컴포넌트에서 사용합니다. */
+  /** 최하단으로 이동하기 위한 ref입니다. ChatScrollContainer 컴포넌트에서 사용합니다. */
   bottomRef: MutableRefObject<HTMLDivElement | null>
-  /** scrollContainerRef 걸린 ChatContainer의 height를 반환합니다 */
+  /** scrollContainerRef가 걸린 element의 height를 반환합니다 */
   getScrollContainerHeight: () => number
 }
 
