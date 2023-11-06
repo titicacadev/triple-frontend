@@ -1,5 +1,6 @@
 export * from './calendar-icon'
 export * from './empty-heart-icon'
 export * from './filled-heart-icon'
+export * from './flag-icon'
 export * from './icon'
 export * from './star-icon'
