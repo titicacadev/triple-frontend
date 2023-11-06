@@ -3,6 +3,7 @@ import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useCallback } from 'react'
+import { useTranslation } from '@titicaca/next-i18next'
 
 import { useClientActions } from '../services'
 
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
+  const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
   const { writeReview } = useClientActions()
 
@@ -54,7 +56,7 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
       }}
       onClick={handleClick}
     >
-      리뷰쓰기
+      {t(['ribyusseugi', '리뷰쓰기'])}
     </ButtonBase>
   )
 }
