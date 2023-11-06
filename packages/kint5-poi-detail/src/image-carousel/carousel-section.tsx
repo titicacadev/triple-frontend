@@ -18,6 +18,7 @@ export interface CarouselSectionProps extends CarouselProps {
   onBusinessHoursClick?: () => void
   onPlaceholderClick: () => void
   height?: number
+  poiType: 'attraction' | 'restaurant'
 }
 
 export default function CarouselSection({
@@ -29,6 +30,7 @@ export default function CarouselSection({
   onPlaceholderClick,
   onBusinessHoursClick,
   borderRadius,
+  poiType,
   ...props
 }: CarouselSectionProps) {
   return (
@@ -45,7 +47,11 @@ export default function CarouselSection({
         {images.length > 0 ? (
           <Carousel images={images} borderRadius={borderRadius} {...props} />
         ) : (
-          <Placeholder onClick={onPlaceholderClick} noContent={loading} />
+          <Placeholder
+            onClick={onPlaceholderClick}
+            noContent={loading}
+            poiType={poiType}
+          />
         )}
         {!permanentlyClosed && onBusinessHoursClick ? (
           <BusinessHoursNote

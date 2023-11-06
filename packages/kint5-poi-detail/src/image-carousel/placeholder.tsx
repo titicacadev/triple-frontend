@@ -1,6 +1,11 @@
-import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
-import { Text, Responsive } from '@titicaca/kint5-core-elements'
+import {
+  FlagIcon,
+  Responsive,
+  SpoonAndForkIcon,
+} from '@titicaca/kint5-core-elements'
+
+import { CarouselSectionProps } from './carousel-section'
 
 const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
   width: 100%;
@@ -17,12 +22,6 @@ const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
         `};
 `
 
-const PlaceholderIcon = styled.img`
-  width: 60px;
-  height: 60px;
-  vertical-align: baseline;
-`
-
 const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
   text-align: center;
   transform: translate(0, -50%);
@@ -36,54 +35,66 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
         `};
 `
 
-interface ImagePlaceholderProps {
+interface ImagePlaceholderProps extends Pick<CarouselSectionProps, 'poiType'> {
   large?: boolean
   noContent?: boolean
   onClick: () => void
 }
 
+function PlaceholderIcon({ poiType }: Pick<ImagePlaceholderProps, 'poiType'>) {
+  return (
+    <>
+      {poiType === 'attraction' ? (
+        <FlagIcon width={60} height={60} />
+      ) : (
+        <SpoonAndForkIcon width={60} height={60} />
+      )}
+    </>
+  )
+}
+
 function ImagePlaceholder({
   large,
   noContent,
+  poiType,
   onClick,
 }: ImagePlaceholderProps) {
-  const { t } = useTranslation('common-web')
-
   return (
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
-        {noContent ? null : (
-          <>
-            <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
-            <Text size="small" color="gray" alpha={0.3}>
-              {t([
-                'igosyi-ceos-beonjjae-sajineul-olryeojuseyo.',
-                '이곳의 첫 번째 사진을 올려주세요.',
-              ])}
-            </Text>
-          </>
-        )}
+        {noContent ? null : <PlaceholderIcon poiType={poiType} />}
       </ImagePlaceholderContent>
     </ImagePlaceholderContainer>
   )
 }
 
-interface ResponsiveImagePlaceholderProps {
+interface ResponsiveImagePlaceholderProps
+  extends Pick<CarouselSectionProps, 'poiType'> {
   onClick: () => void
   noContent?: boolean
 }
 
 export default function ResponsiveImagePlaceholder({
-  onClick,
   noContent,
+  poiType,
+  onClick,
 }: ResponsiveImagePlaceholderProps) {
   return (
     <>
       <Responsive maxWidth={706}>
-        <ImagePlaceholder noContent={noContent} onClick={onClick} />
+        <ImagePlaceholder
+          noContent={noContent}
+          poiType={poiType}
+          onClick={onClick}
+        />
       </Responsive>
       <Responsive minWidth={707}>
-        <ImagePlaceholder noContent={noContent} large onClick={onClick} />
+        <ImagePlaceholder
+          large
+          noContent={noContent}
+          poiType={poiType}
+          onClick={onClick}
+        />
       </Responsive>
     </>
   )
