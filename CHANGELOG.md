@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.9.1
+
+### chat
+
+- [Chat] Message에 sender 정보를 포함하는 api 변경에 대응합니다. [#2973](https://github.com/titicacadev/triple-frontend/pull/2973)
+
 ## v13.9.0
 
 ### chat
