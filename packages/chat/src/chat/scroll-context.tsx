@@ -2,54 +2,127 @@ import {
   createContext,
   Dispatch,
   MutableRefObject,
-  ReactNode,
   SetStateAction,
   useLayoutEffect,
   useRef,
   useState,
   useContext,
+  PropsWithChildren,
 } from 'react'
 
-import { CHAT_CONTAINER_ID } from './chat'
+import { DEFAULT_MESSAGE_ID_PREFIX } from './constants'
+
+export interface ScrollContextProps {
+  /**
+    메세지로 스크롤을 하기 위한 id의 prefix입니다.
+    메세지 노드에 messageIdPrefix를 넣은 id를 추가해야 합니다. 
+  */
+  messageIdPrefix?: string
+}
+
+export interface ScrollOptions {
+  /** 최하단으로 이동하기 위해 페이지네이션 fetching이 필요할 경우 true로 설정해주세요. */
+  shouldFetchRecentPage?: boolean
+  /**
+    메세지 스크롤 시 해당 메세지가 화면에 존재하지 않을 경우 실행하는 함수입니다.
+    페이지네이션 등에 활용할 수 있습니다.
+  */
+  handleNonExistentMessage?: (messageId?: string | number) => void
+}
 
 export interface ScrollContextValue {
-  scrollToBottom: () => void
+  /** ChatContainer의 최하단(bottomRef)으로 이동합니다. */
+  scrollToBottom: (options?: ScrollOptions) => void
+  /** 해당 message로 이동합니다. 사용하기 전, 메세지 노드에 messageIdPrefix를 넣은 id를 추가해야 합니다. */
+  scrollToMessage: (messageId: string, options?: ScrollOptions) => void
+  /** 절대적인 좌표로 스크롤합니다. 페이지네이션, 메세지 이동 등에 사용할 수 있습니다. */
   setScrollY: Dispatch<SetStateAction<number | null>>
+  /** 상대적인 좌표로 스크롤합니다. input resize 이벤트, 키보드 이벤트 등에 사용할 수 있습니다. */
+  setScrollBy: Dispatch<SetStateAction<number | null>>
+  /** 스크롤을 하기위한 element ref입니다. ChatContainer 컴포넌트에서 사용합니다.  */
+  chatContainerRef: MutableRefObject<HTMLDivElement | null>
+  /** 스크롤값을 계산하기 위한 ref입니다. ChatContainer 컴포넌트에서 사용합니다.  */
+  scrollContainerRef: MutableRefObject<HTMLDivElement | null>
+  /** 최하단으로 이동하기 위한 ref입니다. ChatContainer 컴포넌트에서 사용합니다. */
   bottomRef: MutableRefObject<HTMLDivElement | null>
-  chatRoomRef: MutableRefObject<HTMLDivElement | null>
+  /** scrollContainerRef 걸린 ChatContainer의 height를 반환합니다 */
+  getScrollContainerHeight: () => number
 }
 
 export const ScrollContext = createContext<ScrollContextValue | null>(null)
 
-export default function ScrollProvider({ children }: { children: ReactNode }) {
-  const chatRoomRef = useRef<HTMLDivElement | null>(null)
+export default function ScrollProvider({
+  messageIdPrefix = DEFAULT_MESSAGE_ID_PREFIX,
+  children,
+}: PropsWithChildren<ScrollContextProps>) {
+  const chatContainerRef = useRef<HTMLDivElement | null>(null)
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   const bottomRef = useRef<HTMLDivElement | null>(null)
 
   const [scrollY, setScrollY] = useState<number | null>(null)
+  const [scrollBy, setScrollBy] = useState<number | null>(null)
 
-  const scrollToBottom = () => {
+  const scrollToBottom = ({
+    shouldFetchRecentPage,
+    handleNonExistentMessage,
+  }: ScrollOptions = {}) => {
+    if (shouldFetchRecentPage) {
+      return handleNonExistentMessage?.()
+    }
+
     if (bottomRef && bottomRef.current) {
-      bottomRef.current.scrollIntoView()
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
-  useLayoutEffect(() => {
-    if (scrollY !== null && chatRoomRef.current?.parentElement) {
-      // iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가 ref: https://github.com/titicacadev/triple-geochat-web/pull/99
-      chatRoomRef.current.parentElement.style.overflowY = 'hidden'
-      chatRoomRef.current.parentElement.scrollTo({
-        top: getChatListHeight() - scrollY,
-      })
-      chatRoomRef.current.parentElement.style.overflowY = 'scroll'
-      window.scrollTo(0, getChatListHeight() - scrollY)
+  const scrollToMessage = (
+    messageId: string,
+    options: Pick<ScrollOptions, 'handleNonExistentMessage'> = {},
+  ) => {
+    const messageElement = document.getElementById(
+      `${messageIdPrefix}-${messageId}`,
+    )
+
+    if (messageElement) {
+      messageElement.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      options.handleNonExistentMessage?.(messageId)
     }
-  }, [chatRoomRef, scrollY])
+  }
+
+  const getScrollContainerHeight = () => {
+    return scrollContainerRef.current?.getBoundingClientRect().height || 0
+  }
+
+  useLayoutEffect(() => {
+    if (scrollY !== null && chatContainerRef.current) {
+      /* 
+        iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가합니다.
+        ref: https://github.com/titicacadev/triple-geochat-web/pull/99  
+      */
+      chatContainerRef.current.style.overflowY = 'hidden'
+      chatContainerRef.current.scrollTo(0, getScrollContainerHeight() - scrollY)
+      chatContainerRef.current.style.overflowY = 'scroll'
+    }
+  }, [chatContainerRef, scrollY])
+
+  useLayoutEffect(() => {
+    /** 역스크롤 예외처리는 각 프로젝트에서 처리합니다. */
+    if (scrollBy !== null && chatContainerRef.current) {
+      chatContainerRef.current.scrollBy({ top: scrollBy })
+      setScrollBy(null)
+    }
+  }, [chatContainerRef, scrollBy])
 
   const value = {
     scrollToBottom,
+    scrollToMessage,
     setScrollY,
+    setScrollBy,
+    chatContainerRef,
+    scrollContainerRef,
     bottomRef,
-    chatRoomRef,
+    getScrollContainerHeight,
   }
 
   return (
@@ -57,18 +130,11 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useScrollContext() {
+export function useScroll() {
   const context = useContext(ScrollContext)
 
   if (!context) {
     throw new Error('Scroll context가 존재하지 않습니다.')
   }
   return context
-}
-
-export function getChatListHeight() {
-  return (
-    document.getElementById(CHAT_CONTAINER_ID)?.getBoundingClientRect()
-      .height || 0
-  )
 }
