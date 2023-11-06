@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 
-export enum ChatActions {
+export enum MessagesActions {
   INIT = 'INIT', // 최초 메시지 세팅
   PAST = 'PAST', // 이전 메세지 추가
   NEW = 'NEW', // 최신 메세지 추가
@@ -17,7 +17,7 @@ export interface MessageBase<Id = string> {
   parentMessage?: MessageBase<Id>
 }
 
-export interface ChatState<Message extends MessageBase<Id>, Id = string> {
+export interface MessagesState<Message extends MessageBase<Id>, Id = string> {
   messages: Message[]
   pendingMessages: Omit<Message, 'createdAt'>[]
   failedMessages: Omit<Message, 'createdAt'>[]
@@ -25,7 +25,7 @@ export interface ChatState<Message extends MessageBase<Id>, Id = string> {
   hasNextMessage: boolean
 }
 
-export const initialChatState = {
+export const initialMessagesState = {
   messages: [],
   pendingMessages: [],
   failedMessages: [],
@@ -33,59 +33,59 @@ export const initialChatState = {
   hasNextMessage: true,
 }
 
-export type ChatAction<Message extends MessageBase<Id>, Id = string> =
+export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
   | {
-      action: ChatActions.INIT
+      action: MessagesActions.INIT
       messages: Message[]
     }
   | {
-      action: ChatActions.PAST
+      action: MessagesActions.PAST
       messages: Message[]
     }
   | {
-      action: ChatActions.NEW
+      action: MessagesActions.NEW
       messages: Message[]
     }
   | {
-      action: ChatActions.UPDATE
+      action: MessagesActions.UPDATE
       message: Message
     }
   | {
-      action: ChatActions.MULTIPLE_UPDATE
+      action: MessagesActions.MULTIPLE_UPDATE
       messages: Message[]
     }
   | {
-      action: ChatActions.PENDING
+      action: MessagesActions.PENDING
       message: Message
     }
   | {
-      action: ChatActions.FAIL
+      action: MessagesActions.FAIL
       message: Message
     }
   | {
-      action: ChatActions.REMOVE
+      action: MessagesActions.REMOVE
       message: Message
     }
 
-function ChatReducer<Message extends MessageBase<Id>, Id = string>(
-  state: ChatState<Message, Id>,
-  action: ChatAction<Message, Id>,
-): ChatState<Message, Id> {
+function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
+  state: MessagesState<Message, Id>,
+  action: MessagesAction<Message, Id>,
+): MessagesState<Message, Id> {
   switch (action.action) {
-    case ChatActions.INIT:
+    case MessagesActions.INIT:
       return {
         ...state,
         messages: action.messages,
       }
 
-    case ChatActions.PAST:
+    case MessagesActions.PAST:
       return {
         ...state,
         messages: [...action.messages, ...state.messages],
         hasPrevMessage: action.messages.length > 0,
       }
 
-    case ChatActions.NEW:
+    case MessagesActions.NEW:
       return {
         ...state,
         messages: deduplicateAndSortMessages<Message, Id>(
@@ -95,7 +95,7 @@ function ChatReducer<Message extends MessageBase<Id>, Id = string>(
         hasNextMessage: action.messages.length > 0,
       }
 
-    case ChatActions.UPDATE:
+    case MessagesActions.UPDATE:
       return {
         ...state,
         messages: state.messages.map((message) => {
@@ -114,7 +114,7 @@ function ChatReducer<Message extends MessageBase<Id>, Id = string>(
         }),
       }
 
-    case ChatActions.MULTIPLE_UPDATE:
+    case MessagesActions.MULTIPLE_UPDATE:
       return {
         ...state,
         messages: state.messages.map((message) => {
@@ -125,7 +125,7 @@ function ChatReducer<Message extends MessageBase<Id>, Id = string>(
         }),
       }
 
-    case ChatActions.PENDING:
+    case MessagesActions.PENDING:
       return {
         ...state,
         pendingMessages: [...state.pendingMessages, action.message],
@@ -134,7 +134,7 @@ function ChatReducer<Message extends MessageBase<Id>, Id = string>(
         ),
       }
 
-    case ChatActions.FAIL:
+    case MessagesActions.FAIL:
       return {
         ...state,
         pendingMessages: state.pendingMessages.filter(
@@ -143,7 +143,7 @@ function ChatReducer<Message extends MessageBase<Id>, Id = string>(
         failedMessages: [...state.failedMessages, action.message],
       }
 
-    case ChatActions.REMOVE:
+    case MessagesActions.REMOVE:
       return {
         ...state,
         pendingMessages: state.pendingMessages.filter(
@@ -164,8 +164,8 @@ export function useMessagesReducer<
   Id = string,
 >() {
   return useReducer<
-    React.Reducer<ChatState<Message, Id>, ChatAction<Message, Id>>
-  >(ChatReducer, initialChatState)
+    React.Reducer<MessagesState<Message, Id>, MessagesAction<Message, Id>>
+  >(MessagesReducer, initialMessagesState)
 }
 
 function deduplicateAndSortMessages<
