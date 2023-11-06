@@ -4,6 +4,7 @@ import {
   List,
   RatingV2,
   Text,
+  ThumbsUpIcon,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
@@ -289,12 +290,7 @@ export function ReviewElement({
         >
           {!blinded ? (
             <LikeButton onClick={handleLikeButtonClick}>
-              <img
-                src="https://assets.triple-dev.titicaca-corp.com/images/kint5-thumb-up.svg"
-                alt="Likes count"
-                width={16}
-                height={16}
-              />
+              <ThumbsUpIcon />
               {likesCount}
             </LikeButton>
           ) : null}
