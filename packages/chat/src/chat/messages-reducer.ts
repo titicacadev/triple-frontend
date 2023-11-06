@@ -138,7 +138,7 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
       return {
         ...state,
         pendingMessages: state.pendingMessages.filter(
-          (message) => message.id === action.message.id,
+          (message) => message.id !== action.message.id,
         ),
         failedMessages: [...state.failedMessages, action.message],
       }
@@ -147,7 +147,7 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
       return {
         ...state,
         pendingMessages: state.pendingMessages.filter(
-          (message) => message.id === action.message.id,
+          (message) => message.id !== action.message.id,
         ),
         failedMessages: state.failedMessages.filter(
           (message) => message.id !== action.message.id,
