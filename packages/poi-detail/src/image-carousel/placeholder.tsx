@@ -2,6 +2,8 @@ import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
 import { Text, Responsive } from '@titicaca/core-elements'
 
+import { PoiType } from './carousel-section'
+
 const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
   width: 100%;
   overflow: hidden;
@@ -40,6 +42,7 @@ interface ImagePlaceholderProps {
   large?: boolean
   noContent?: boolean
   guestMode?: boolean
+  type?: PoiType
   onClick: () => void
 }
 
