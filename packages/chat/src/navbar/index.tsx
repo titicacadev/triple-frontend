@@ -6,12 +6,12 @@ export enum NavbarItemType {
   MORE = 'more',
 }
 
-interface NavbarItem {
+export interface NavbarItem {
   type: NavbarItemType
   onClick: () => void
 }
 
-interface ChatNavbarUIProps {
+export interface ChatNavbarUIProps {
   title: JSX.Element
   items?: NavbarItem[]
 }
@@ -22,8 +22,15 @@ export function ChatNavbarUI({
   children,
   ...props
 }: PropsWithChildren<ChatNavbarUIProps>) {
+  const isTextTitle = typeof title === 'string'
+
   return (
-    <Navbar position="fixed" renderTitle={() => title} {...props}>
+    <Navbar
+      position="fixed"
+      title={isTextTitle ? title : undefined}
+      renderTitle={isTextTitle ? undefined : () => title}
+      {...props}
+    >
       {items
         ? items.map(({ type, ...props }) => {
             switch (type) {
