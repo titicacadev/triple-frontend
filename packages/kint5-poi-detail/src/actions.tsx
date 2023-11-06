@@ -110,7 +110,7 @@ function Actions({
             onClick={onScrapedChange}
           >
             <ActionButtonText>
-              {scraped ? t(['jeojangcwiso', '저장취소']) : t(['jjim', '찜'])}
+              {scraped ? t(['jjim-cwiso', '찜 취소']) : t(['jjim', '찜'])}
             </ActionButtonText>
           </ActionButton>
         ) : null}

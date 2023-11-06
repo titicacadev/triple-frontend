@@ -197,4 +197,6 @@ export const jaCommonWeb = {
   'sajin-dongyeongsang': '写真/動画',
   'byeoljeom-nopeunsun': '星の高い順',
   'byeoljeom-najeunsun': '星の低い順',
+  jjim: '保存する',
+  'jjim-cwiso': '保存取り消し',
 }
