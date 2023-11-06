@@ -127,7 +127,10 @@ function Actions({
         >
           {!isReviewTooltipExposed ? (
             <ReviewTooltip
-              label="이제 영상도 올릴 수 있어요!"
+              label={t([
+                'ije-yeongsangdo-olril-su-isseoyo',
+                '이제 영상도 올릴 수 있어요!',
+              ])}
               pointing={{
                 vertical: 'bottom',
                 horizontal: 'right',

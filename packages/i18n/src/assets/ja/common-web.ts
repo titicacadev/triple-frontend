@@ -199,4 +199,5 @@ export const jaCommonWeb = {
   'byeoljeom-najeunsun': '星の低い順',
   jjim: '保存する',
   'jjim-cwiso': '保存取り消し',
+  'ije-yeongsangdo-olril-su-isseoyo': 'これで映像もアップできます！',
 }
