@@ -4,6 +4,13 @@ import { Text, Responsive } from '@titicaca/core-elements'
 
 import { PoiType } from './carousel-section'
 
+const DEFAULT_ICON_URLS: Record<PoiType, string> = {
+  attraction: 'https://assets.triple.guide/images/seoulcon/default/ic_spot.svg',
+  hotel: 'https://assets.triple.guide/images/seoulcon/default/ic_hotel.svg',
+  restaurant:
+    'https://assets.triple.guide/images/seoulcon/default/ic_restaurant.svg',
+}
+
 const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
   width: 100%;
   overflow: hidden;
@@ -49,8 +56,9 @@ interface ImagePlaceholderProps {
 function ImagePlaceholder({
   large,
   noContent,
-  onClick,
   guestMode,
+  type,
+  onClick,
 }: ImagePlaceholderProps) {
   const { t } = useTranslation('common-web')
 
@@ -58,8 +66,10 @@ function ImagePlaceholder({
     <ImagePlaceholderContainer large={large} onClick={onClick}>
       <ImagePlaceholderContent large={large}>
         {noContent ? null : guestMode ? (
-          /** TODO : 아이콘 이미지 guestMode 용으로 교체  */
-          <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
+          <PlaceholderIcon
+            src={DEFAULT_ICON_URLS[type || 'attraction']}
+            css={{ opacity: 0.3 }}
+          />
         ) : (
           <>
             <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
@@ -77,9 +87,10 @@ function ImagePlaceholder({
 }
 
 export default function ResponsiveImagePlaceholder({
-  onClick,
   noContent,
   guestMode,
+  type,
+  onClick,
 }: Omit<ImagePlaceholderProps, 'large'>) {
   return (
     <>
@@ -87,6 +98,7 @@ export default function ResponsiveImagePlaceholder({
         <ImagePlaceholder
           noContent={noContent}
           guestMode={guestMode}
+          type={type}
           onClick={onClick}
         />
       </Responsive>
@@ -94,6 +106,7 @@ export default function ResponsiveImagePlaceholder({
         <ImagePlaceholder
           noContent={noContent}
           guestMode={guestMode}
+          type={type}
           large
           onClick={onClick}
         />
