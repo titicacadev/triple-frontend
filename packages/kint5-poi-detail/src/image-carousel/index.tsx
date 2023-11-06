@@ -14,6 +14,7 @@ type ImageCarouselProps = Pick<
   | 'optimized'
   | 'borderRadius'
   | 'height'
+  | 'poiType'
 >
 
 export default function ImageCarousel(props: ImageCarouselProps) {
