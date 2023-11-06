@@ -7,7 +7,7 @@ import {
 } from '../types'
 
 import { ChatAction, ChatActions } from './reducer'
-import { useScrollContext } from './scroll-context'
+import { useScroll } from './scroll-context'
 
 interface ChatMessageProps {
   roomId: string
@@ -24,7 +24,7 @@ export const useChatMessage = ({
   dispatch,
   updateChatData,
 }: ChatMessageProps) => {
-  const { scrollToBottom } = useScrollContext()
+  const { scrollToBottom } = useScroll()
 
   useEffect(() => {
     updateChatData?.message &&
