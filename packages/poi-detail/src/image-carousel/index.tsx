@@ -15,6 +15,7 @@ type ImageCarouselProps = Pick<
   | 'borderRadius'
   | 'height'
   | 'guestMode'
+  | 'type'
 >
 
 export default function ImageCarousel(props: ImageCarouselProps) {
