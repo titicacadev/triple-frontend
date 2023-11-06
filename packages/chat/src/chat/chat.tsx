@@ -26,7 +26,7 @@ import { ChatBubbleStyle } from '../types/ui'
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
 import { useChat } from './chat-context'
 import { useChatMessage } from './use-chat-message'
-import { getChatListHeight, useScrollContext } from './scroll-context'
+import { useScroll } from './scroll-context'
 
 export const CHAT_CONTAINER_ID = 'chat-inner-container'
 
@@ -97,8 +97,13 @@ export const Chat = ({
   bubbleStyle,
   ...props
 }: ChatProps) => {
-  const { chatRoomRef, bottomRef, setScrollY, scrollToBottom } =
-    useScrollContext()
+  const {
+    chatContainerRef,
+    bottomRef,
+    setScrollY,
+    scrollToBottom,
+    getScrollContainerHeight,
+  } = useScroll()
 
   const { setPostMessage } = useChat()
   const [
@@ -149,7 +154,7 @@ export const Chat = ({
   })
 
   useEffect(() => {
-    const chatListDiv = chatRoomRef.current
+    const chatListDiv = chatContainerRef.current
     const hideKeyboard = () => closeKeyboard()
     if (chatListDiv && isIos) {
       chatListDiv.addEventListener('touchmove', hideKeyboard)
@@ -261,7 +266,7 @@ export const Chat = ({
     isIntersecting,
   }: IntersectionObserverEntry) => {
     if (isIntersecting) {
-      const prevScrollY = getChatListHeight()
+      const prevScrollY = getScrollContainerHeight()
 
       if (isScrollReady.current && hasPrevMessage) {
         const pastMessages = await fetchPastMessages()
@@ -337,7 +342,7 @@ export const Chat = ({
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
-      <Container ref={chatRoomRef} id={CHAT_CONTAINER_ID} {...props}>
+      <Container ref={chatContainerRef} id={CHAT_CONTAINER_ID} {...props}>
         <ul id="messages_list">
           {[...messages, ...beforeSentMessages].map(
             (message: MessageInterface) => (
