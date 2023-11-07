@@ -197,5 +197,4 @@ export const koCommonWeb = {
   'byeoljeom-najeunsun': '별점 낮은순',
   jjim: '찜',
   'jjim-cwiso': '찜 취소',
-  'ije-yeongsangdo-olril-su-isseoyo': '이제 영상도 올릴 수 있어요!',
 } as const
