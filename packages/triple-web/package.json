@@ -40,18 +40,23 @@
   },
   "dependencies": {
     "@titicaca/fetcher": "^13.9.0",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/view-utilities": "^13.9.0",
-    "@types/qs": "^6.9.8",
-    "@types/semver": "^7.5.3",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
     "ua-parser-js": "^1.0.36"
   },
   "devDependencies": {
+    "@titicaca/tds-theme": "workspace:*",
+    "@types/qs": "^6.9.9",
+    "@types/semver": "^7.5.3",
     "@types/ua-parser-js": "^0.7.37",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "styled-components": "^5.3.11"
   },
   "peerDependencies": {
-    "react": "^18.0"
+    "@titicaca/tds-theme": "*",
+    "react": "^18.0",
+    "styled-components": "^5.3.9"
   }
 }
