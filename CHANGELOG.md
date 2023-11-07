@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.10.1
+
+### chat
+
+- [chat] beforeSendMessages를 리듀서에서 제거합니다. [#2988](https://github.com/titicacadev/triple-frontend/pull/2988)
+
 ## v13.10.0
 
 ### action-sheet
