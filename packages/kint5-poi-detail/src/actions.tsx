@@ -4,12 +4,9 @@ import {
   Section,
   HR1,
   MarginPadding,
-  Tooltip,
   FlexBox,
   Text,
 } from '@titicaca/kint5-core-elements'
-import { useEffect, useState } from 'react'
-import { getWebStorage } from '@titicaca/web-storage'
 
 import { ActionButtonIcon } from './action-button-icon'
 
@@ -27,20 +24,6 @@ const ActionButtonText = styled(Text)`
   font-weight: 400;
   padding-top: 32px;
 `
-
-const ReviewTooltip = styled(Tooltip)`
-  width: max-content;
-  padding: 9px 15px 8px;
-  transform: translateX(-50%);
-  left: 50%;
-
-  &::after {
-    transform: translateX(-50%);
-    left: 50%;
-  }
-`
-
-const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 
 function Actions({
   scraped,
@@ -64,18 +47,6 @@ function Actions({
   noDivider?: boolean
 }) {
   const { t } = useTranslation('common-web')
-
-  const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useState(true)
-
-  useEffect(() => {
-    const webStorage = getWebStorage('localStorage', { unavailable: () => {} })
-    setIsReviewTooltipExposed(
-      JSON.parse(
-        webStorage.getItem(REVIEW_TOOLTIP_EXPOSED) || 'false',
-      ) as boolean,
-    )
-    webStorage.setItem(REVIEW_TOOLTIP_EXPOSED, 'true')
-  }, [])
 
   return (
     <Section {...props}>
@@ -103,22 +74,6 @@ function Actions({
           </ActionButton>
         ) : null}
         <ActionButton onClick={onReviewEdit}>
-          {!isReviewTooltipExposed ? (
-            <ReviewTooltip
-              label={t([
-                'ije-yeongsangdo-olril-su-isseoyo',
-                '이제 영상도 올릴 수 있어요!',
-              ])}
-              pointing={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              nowrap={false}
-              borderRadius="16.17"
-              backgroundColor="var(--color-blue)"
-              positioning={{ top: -26 }}
-            />
-          ) : null}
           <ActionButtonText>
             {reviewed
               ? t(['ribyusujeong', '리뷰수정'])
