@@ -12,6 +12,7 @@ import {
   HashRouterProvider,
 } from './contexts'
 import { ClientApp, ClientAppContext } from './contexts/client-app'
+import { LoginCtaModal, TransitionModal } from './components'
 
 export interface TripleWebProps extends PropsWithChildren {
   clientAppProvider?: ClientApp
@@ -33,6 +34,8 @@ export function TripleWeb({
         <SessionProvider value={sessionProvider}>
           <UserAgentContext.Provider value={userAgentProvider}>
             <HashRouterProvider>{children}</HashRouterProvider>
+            <LoginCtaModal />
+            <TransitionModal />
           </UserAgentContext.Provider>
         </SessionProvider>
       </EnvContext.Provider>
