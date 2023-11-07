@@ -1,1 +1,1 @@
-export { default } from './chat-bubble'
+export { default } from './bubble-container'
