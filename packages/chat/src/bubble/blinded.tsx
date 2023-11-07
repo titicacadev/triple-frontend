@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 import { useChat } from '../chat'
 
-import { Bubble, BubbleProp } from './bubble'
+import { Bubble } from './bubble'
+import { BlindedBubbleProp } from './type'
 
 const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
   ${({ color = 'gray' }) =>
@@ -12,11 +13,6 @@ const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
   width: 16px;
   height: 16px;
 `
-
-type BlindedBubbleProp = {
-  my: boolean
-  blindedText?: string
-} & BubbleProp
 
 export default function BlindedBubble({
   my,
