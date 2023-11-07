@@ -20,6 +20,7 @@ export function FilledHeartIcon({
         y="0"
         width="16"
         height="16"
+        css={{ maskType: 'alpha' }}
       >
         <rect width="16" height="16" fill="#D9D9D9" />
       </mask>
