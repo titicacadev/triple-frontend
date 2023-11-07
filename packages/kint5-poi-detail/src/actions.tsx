@@ -11,32 +11,14 @@ import {
 import { useEffect, useState } from 'react'
 import { getWebStorage } from '@titicaca/web-storage'
 
-const ACTION_BUTTON_ICON_URLS = {
-  saveEmpty:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-heart-line-24.svg',
-  saveFilled: 'https://assets.triple.guide/images/btn-end-save-on@4x.png',
-  starEmpty:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-bubble-line-24.svg',
-  starFilled: 'https://assets.triple.guide/images/btn-end-review-on@4x.png',
-  map: 'https://assets.triple.guide/images/btn-end-search-place@2x.png',
-  share:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-share-line-24.svg',
-  schedule:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-calendar-2-line-24.svg',
-} as const
+import { ActionButtonIcon } from './action-button-icon'
 
-type IconType = keyof typeof ACTION_BUTTON_ICON_URLS
-
-const ActionButton = styled.button<{ icon: IconType }>`
+const ActionButton = styled.button`
   position: relative;
   font-size: 12px;
   font-weight: 400;
   color: var(--color-kint5-gray60);
   width: 45px;
-  background-size: 24px;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-image: ${({ icon }) => `url('${ACTION_BUTTON_ICON_URLS[icon]}')`};
 `
 
 const ActionButtonText = styled(Text)`
@@ -105,26 +87,22 @@ function Actions({
         }}
       >
         {onScrapedChange ? (
-          <ActionButton
-            icon={scraped ? 'saveFilled' : 'saveEmpty'}
-            onClick={onScrapedChange}
-          >
+          <ActionButton onClick={onScrapedChange}>
             <ActionButtonText>
               {scraped ? t(['jjim-cwiso', '찜 취소']) : t(['jjim', '찜'])}
             </ActionButtonText>
+            <ActionButtonIcon type={scraped ? 'scraped' : 'notScraped'} />
           </ActionButton>
         ) : null}
         {onScheduleAdd ? (
-          <ActionButton icon="schedule" onClick={onScheduleAdd}>
+          <ActionButton onClick={onScheduleAdd}>
             <ActionButtonText>
               {t(['iljeongcuga', '일정추가'])}
             </ActionButtonText>
+            <ActionButtonIcon type="schedule" />
           </ActionButton>
         ) : null}
-        <ActionButton
-          icon={reviewed ? 'starFilled' : 'starEmpty'}
-          onClick={onReviewEdit}
-        >
+        <ActionButton onClick={onReviewEdit}>
           {!isReviewTooltipExposed ? (
             <ReviewTooltip
               label={t([
@@ -146,9 +124,11 @@ function Actions({
               ? t(['ribyusujeong', '리뷰수정'])
               : t(['ribyusseugi', '리뷰쓰기'])}
           </ActionButtonText>
+          <ActionButtonIcon type="review" />
         </ActionButton>
-        <ActionButton icon="share" onClick={onContentShare}>
+        <ActionButton onClick={onContentShare}>
           <ActionButtonText>{t(['gongyuhagi', '공유하기'])}</ActionButtonText>
+          <ActionButtonIcon type="share" />
         </ActionButton>
       </FlexBox>
       {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}
