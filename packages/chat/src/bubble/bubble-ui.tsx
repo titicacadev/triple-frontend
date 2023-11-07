@@ -1,6 +1,6 @@
 import {
   ImagePayload,
-  MessageType as OriginMessageType,
+  MessageType,
   ProductPayload,
   RichPayload,
   TextPayload,
@@ -15,35 +15,31 @@ import {
   ProductBubbleProps,
   RichBubbleProp,
   TextBubbleProp,
+  CustomMessageType,
 } from './type'
 import { ProductBubble } from './product'
 import BlindedBubble from './blinded'
 
-enum MessageUIType {
-  BLINDED = 'blinded',
-  DELETED = 'deleted',
-}
-
-const MessageType = { ...MessageUIType, ...OriginMessageType }
+export const MessageUIType = { ...CustomMessageType, ...MessageType }
 
 type BubbleUIProps =
   | (TextPayload & TextBubbleProp)
   | (ImagePayload & ImageBubbleProp)
   | (RichPayload & RichBubbleProp)
   | (ProductPayload & ProductBubbleProps)
-  | ({ type: MessageUIType.BLINDED } & BlindedBubbleProp)
+  | ({ type: CustomMessageType.BLINDED } & BlindedBubbleProp)
 
 export default function BubbleUI({ ...bubble }: BubbleUIProps) {
   switch (bubble.type) {
-    case MessageType.BLINDED:
+    case MessageUIType.BLINDED:
       return <BlindedBubble {...bubble} />
-    case MessageType.TEXT:
+    case MessageUIType.TEXT:
       return <TextBubble {...bubble} />
-    case MessageType.IMAGES:
+    case MessageUIType.IMAGES:
       return <ImageBubble {...bubble} />
-    case MessageType.RICH:
+    case MessageUIType.RICH:
       return <RichBubble {...bubble} />
-    case MessageType.PRODUCT:
+    case MessageUIType.PRODUCT:
       return <ProductBubble {...bubble} />
     //   case MessageType.DELETED:
     //     return <DeletedBubble />
