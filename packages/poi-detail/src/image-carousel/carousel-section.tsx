@@ -4,6 +4,8 @@ import Carousel, { CarouselProps } from './carousel'
 import Placeholder from './placeholder'
 import { BusinessHoursNote, PermanentlyClosedNote } from './note'
 
+export type PoiType = 'attraction' | 'hotel' | 'restaurant'
+
 export interface CarouselSectionProps extends CarouselProps {
   loading: boolean
   currentBusinessHours?:
@@ -20,6 +22,7 @@ export interface CarouselSectionProps extends CarouselProps {
   height?: number
   /** true인 경우, 로그인이 필요한 일부 동작을 막고, 트리플앱으로 연결되는 루트를 차단합니다 */
   guestMode?: boolean
+  type?: PoiType
 }
 
 export default function CarouselSection({
@@ -32,6 +35,7 @@ export default function CarouselSection({
   onBusinessHoursClick,
   borderRadius,
   guestMode,
+  type,
   ...props
 }: CarouselSectionProps) {
   return (
@@ -57,6 +61,7 @@ export default function CarouselSection({
             onClick={onPlaceholderClick}
             noContent={loading}
             guestMode={guestMode}
+            type={type}
           />
         )}
         {!permanentlyClosed && onBusinessHoursClick ? (
