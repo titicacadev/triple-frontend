@@ -134,7 +134,9 @@ export function useScroll() {
   const context = useContext(ScrollContext)
 
   if (!context) {
-    throw new Error('Scroll context가 존재하지 않습니다.')
+    throw new Error(
+      'ChatScrollContainer 사용 시 컴포넌트 상위에 ScrollProvider를 등록해야 합니다',
+    )
   }
   return context
 }
