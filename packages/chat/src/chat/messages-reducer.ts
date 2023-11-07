@@ -171,8 +171,8 @@ export function useMessagesReducer<
 function deduplicateAndSortMessages<
   Message extends MessageBase<Id>,
   Id = string,
->(prev: Message[], next: Message[]) {
-  const copiedMessages = [...prev, ...next]
+>(messagesA: Message[], messagesB: Message[]) {
+  const copiedMessages = [...messagesA, ...messagesB]
 
   const deduplicatedMessages = copiedMessages.filter(
     (messageInFilter, index) =>
