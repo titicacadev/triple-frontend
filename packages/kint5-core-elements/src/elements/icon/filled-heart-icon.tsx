@@ -3,7 +3,7 @@ import { BaseIconProps } from './type'
 export function FilledHeartIcon({
   width = 16,
   height = 16,
-  color = '#000',
+  color = '#E9446B',
 }: BaseIconProps) {
   return (
     <svg
