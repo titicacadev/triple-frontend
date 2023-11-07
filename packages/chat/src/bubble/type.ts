@@ -60,3 +60,8 @@ export type BlindedBubbleProp = {
   my: boolean
   blindedText?: string
 } & BubbleProp
+
+export enum CustomMessageType {
+  BLINDED = 'blinded',
+  DELETED = 'deleted',
+}
