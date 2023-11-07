@@ -146,11 +146,11 @@ function PoiCarouselElement<T extends PoiListElementType>({
         <Container
           position="absolute"
           css={{
-            top: '3px',
-            right: '3px',
+            top: '8px',
+            right: '8px',
           }}
         >
-          <OverlayScrapButton resource={poi} size={36} />
+          <OverlayScrapButton resource={poi} size={24} />
         </Container>
       )}
 
