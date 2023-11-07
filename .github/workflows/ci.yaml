@@ -150,7 +150,7 @@ jobs:
 
       - name: Generate coverage report
         id: test
-        run: pnpm run test:coverage -- --ci --reporters github-actions --reporters summary
+        run: pnpm run test:coverage -- --ci --reporters github-actions --reporters summary --maxWorkers 2
 
       - name: Notify testing failure
         if: failure() && steps.test.outcome == 'failure'
