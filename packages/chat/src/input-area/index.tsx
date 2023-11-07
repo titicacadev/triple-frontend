@@ -3,7 +3,6 @@ import {
   KeyboardEventHandler,
   SyntheticEvent,
   useRef,
-  useState,
 } from 'react'
 
 import {
@@ -19,13 +18,6 @@ const MIN_TEXTAREA_HEIGHT = 20
 const MAX_TEXTAREA_HEIGHT = 100
 const MAX_TEXT_LENGTH = 2000
 
-function textAreaAutoResize(e: SyntheticEvent) {
-  const textareaElement = e.target as HTMLTextAreaElement
-  textareaElement.style.height = ''
-  textareaElement.style.height =
-    Math.min(textareaElement.scrollHeight, MAX_TEXTAREA_HEIGHT) + 'px'
-}
-
 export interface InputAreaUIProps {
   inputValue: string
   placeholder?: string
@@ -37,6 +29,7 @@ export interface InputAreaUIProps {
   buttonColor?: 'mint' | 'blue'
   buttonText?: string
   buttonDisabled?: boolean
+  maxTextLength?: number
 }
 
 export function InputAreaUI({
@@ -50,12 +43,13 @@ export function InputAreaUI({
   onSendMessage,
   onInputClick,
   onInputKeydown,
+  maxTextLength = MAX_TEXT_LENGTH,
+  ...props
 }: InputAreaUIProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const [focus, setFocus] = useState<boolean>(false)
 
   return (
-    <MainContainer focusOnKeyboard={focus} css={{ paddingBottom: 10 }}>
+    <MainContainer {...props}>
       <UploadImageButton htmlFor="image_upload" />
       <FileInput
         id="image_upload"
@@ -73,12 +67,10 @@ export function InputAreaUI({
             textAreaAutoResize(e)
           }}
           onKeyDown={onInputKeydown}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
           onClick={onInputClick}
           ref={textareaRef}
           placeholder={placeholder}
-          maxLength={MAX_TEXT_LENGTH}
+          maxLength={maxTextLength}
         />
         <SendMessageButton
           color={buttonColor}
@@ -97,4 +89,11 @@ export function InputAreaUI({
       </InputArea>
     </MainContainer>
   )
+}
+
+function textAreaAutoResize(e: SyntheticEvent) {
+  const textareaElement = e.target as HTMLTextAreaElement
+  textareaElement.style.height = ''
+  textareaElement.style.height =
+    Math.min(textareaElement.scrollHeight, MAX_TEXTAREA_HEIGHT) + 'px'
 }
