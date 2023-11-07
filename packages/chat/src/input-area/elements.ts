@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
+import { Container } from '@titicaca/core-elements'
 
-export const MainContainer = styled(Container)<{ focusOnKeyboard?: boolean }>`
+export const MainContainer = styled(Container)`
   position: sticky;
   bottom: 0;
   display: flex;
@@ -10,7 +10,6 @@ export const MainContainer = styled(Container)<{ focusOnKeyboard?: boolean }>`
   border-top: 1px solid var(--color-gray100);
   padding: 10px 12px;
   background-color: var(--color-white);
-  ${({ focusOnKeyboard }) => (!focusOnKeyboard ? safeAreaInsetMixin : null)};
 `
 
 export const InputArea = styled(Container)`
