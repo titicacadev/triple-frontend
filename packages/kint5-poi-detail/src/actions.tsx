@@ -53,7 +53,7 @@ function Actions({
       <FlexBox
         flex
         css={{
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
         }}
       >
