@@ -4,7 +4,11 @@ import {
 } from '@titicaca/react-contexts'
 import { Attributes, ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
-import { EmptyHeartIcon, FilledHeartIcon } from '@titicaca/kint5-core-elements'
+import {
+  EmptyHeartIcon,
+  FilledHeartIcon,
+  LineFillHeartIcon,
+} from '@titicaca/kint5-core-elements'
 
 import { withMask } from './scrap-button-mask'
 
@@ -41,19 +45,15 @@ function OutlineHeart({ pressed, size }: ScrapIconProps) {
   )
 }
 
-const OVERLAY_HEART_ON =
-  'https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png'
-const OVERLAY_HEART_OFF =
-  'https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png'
-
 function OverlayHeart({ pressed, size }: ScrapIconProps) {
   return (
-    <img
-      src={pressed ? OVERLAY_HEART_ON : OVERLAY_HEART_OFF}
-      width={size}
-      height={size}
-      alt={pressed ? 'OVERLAY_HEART_ON' : 'OVERLAY_HEART_OFF'}
-    />
+    <>
+      {pressed ? (
+        <FilledHeartIcon width={size} height={size} />
+      ) : (
+        <LineFillHeartIcon width={size} height={size} />
+      )}
+    </>
   )
 }
 
