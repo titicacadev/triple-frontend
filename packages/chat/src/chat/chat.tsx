@@ -72,7 +72,7 @@ export const Chat = ({
   me,
   room,
   messages: initMessages,
-  beforeSentMessages: initBeforeSentMessages,
+  beforeSentMessages = [],
 
   postMessage,
   getMessages,
@@ -95,7 +95,6 @@ export const Chat = ({
     {
       messages,
       failedMessages,
-      beforeSentMessages,
       hasPrevMessage,
       otherUnreadInfo,
       lastMessageId,
@@ -151,14 +150,6 @@ export const Chat = ({
   }, [isIos])
 
   useEffect(() => {
-    initBeforeSentMessages &&
-      dispatch({
-        action: ChatActions.BEFORE_SEND,
-        message: initBeforeSentMessages,
-      })
-  }, [])
-
-  useEffect(() => {
     ;(async function () {
       if (!room.id) {
         return
@@ -211,11 +202,6 @@ export const Chat = ({
     }
 
     if (success) {
-      beforeSentMessages.length > 0 &&
-        dispatch({
-          action: ChatActions.BEFORE_SEND,
-          message: [],
-        })
       dispatch({
         action: ChatActions.POST,
         messages: newMessages,
