@@ -27,8 +27,6 @@ const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
 `
 
 const PlaceholderIcon = styled.img`
-  width: 60px;
-  height: 60px;
   vertical-align: baseline;
 `
 
@@ -68,11 +66,15 @@ function ImagePlaceholder({
         {noContent ? null : guestMode ? (
           <PlaceholderIcon
             src={DEFAULT_ICON_URLS[type || 'attraction']}
+            width={40}
             css={{ opacity: 0.3 }}
           />
         ) : (
           <>
-            <PlaceholderIcon src="https://assets.triple.guide/images/img-empty-photo-m@4x.png" />
+            <PlaceholderIcon
+              src="https://assets.triple.guide/images/img-empty-photo-m@4x.png"
+              width={60}
+            />
             <Text size="small" color="gray" alpha={0.3}>
               {t([
                 'igosyi-ceos-beonjjae-sajineul-olryeojuseyo.',
