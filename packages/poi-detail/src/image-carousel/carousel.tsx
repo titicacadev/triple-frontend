@@ -153,9 +153,7 @@ export default function Carousel({
   const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    !app && !guestMode && currentIndex === SHOW_CTA_FROM_INDEX ? (
-      <CtaOverlay />
-    ) : null
+    !app && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
 
   return (
     <>
