@@ -292,7 +292,7 @@ export const Chat = ({
       <IntersectionObserver onChange={onChangeScroll}>
         <HiddenElement />
       </IntersectionObserver>
-      <Container ref={chatRoomRef} id={CHAT_CONTAINER_ID} {...props}>
+      <Container ref={chatContainerRef} id={CHAT_CONTAINER_ID} {...props}>
         <ul id="messages_list">
           {[...messages, ...beforeSentMessages].map(
             (message: MessageInterface) => (
