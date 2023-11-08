@@ -9,7 +9,6 @@ import {
   RetryButton,
   SendingFailureHandlerContainer,
 } from './elements'
-import BubblePayload from './bubble-payload'
 import Thanks from './thanks'
 
 const CHAT_CONTAINER_STYLES = {
@@ -70,7 +69,7 @@ type ReceivedBubbleContainerProp = PropsWithChildren<{
   createdAt?: string // Date?
   /** 메시지 발신인 정보 */
   profile?: {
-    imageUrl: string
+    thumbnailUrl?: string
     name: string
     userId: string
     unregister?: boolean
@@ -96,7 +95,7 @@ function ReceivedBubbleContainer({
 }: ReceivedBubbleContainerProp) {
   return (
     <Container css={{ ...CHAT_CONTAINER_STYLES }}>
-      <ProfileImage src={profile?.imageUrl} />
+      <ProfileImage src={profile?.thumbnailUrl} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
           {profile?.name || ''}

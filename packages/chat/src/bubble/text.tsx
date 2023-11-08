@@ -40,10 +40,10 @@ function getDefaultBackgroundColor(my: boolean) {
  * 
  */
 
-export function TextBubble({ text, ...props }: TextBubbleProp) {
+export function TextBubble({ message, ...props }: TextBubbleProp) {
   return (
     <Bubble {...props}>
-      <TextMessage text={text} />
+      <TextMessage text={message} />
     </Bubble>
   )
 }

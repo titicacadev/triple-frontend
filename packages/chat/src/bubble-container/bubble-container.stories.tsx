@@ -12,7 +12,7 @@ export default {
 const Template: StoryFn<BubbleContainerProp> = (args) => (
   <BubbleContainer {...args}>
     <TextBubble
-      text={'안녕하세요\nhttps://www.google.com'}
+      message={'안녕하세요\nhttps://www.google.com'}
       my={args.my}
       id="text-bubble"
     />

@@ -2,8 +2,8 @@ import type { StoryFn } from '@storybook/react'
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
-import { MessageType, TextPayload } from '../types'
 import { CHAT_ARGS } from '../utils/constants'
+import { RichItemText } from '../bubble/type'
 
 import { Chat } from './chat'
 import { ChatContainer, ChatContainerProps } from './chat-container'
@@ -28,10 +28,10 @@ const ChatMessagesContainer = styled(FlexBox).attrs({
 const Input = ({
   postMessage,
 }: {
-  postMessage: (payload: TextPayload) => void
+  postMessage: (payload: RichItemText) => void
 }) => {
   const onClick = () => {
-    postMessage({ type: MessageType.TEXT, message: 'zz' })
+    postMessage({ type: 'text', message: 'zz' })
   }
 
   return (
