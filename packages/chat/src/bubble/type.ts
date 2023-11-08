@@ -2,13 +2,48 @@ import { MouseEvent } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
-import {
-  ButtonPayload,
-  ImagePayload,
-  MetaDataInterface,
-  ProductItem,
-  TextPayload,
-} from '../types'
+import { MetaDataInterface } from '../types'
+
+type CustomerBookingStatus =
+  | 'BOOKED'
+  | 'ONGOING'
+  | 'COMPLETED'
+  | 'CANCEL_REQUESTED'
+  | 'CANCELED'
+
+interface ProductItem {
+  customerBookingStatus?: CustomerBookingStatus
+  productName: string
+  productThumbnail?: string
+  itemName?: string
+  optionName?: string
+  dateOfUse?: string
+  bookingId?: number
+}
+
+type RichItemType = 'text' | 'images' | 'button'
+
+interface RichItem {
+  type: RichItemType
+}
+
+export interface RichItemText extends RichItem {
+  type: 'text'
+  message: string
+}
+export interface RichItemImages extends RichItem {
+  type: 'images'
+  images: MetaDataInterface[]
+}
+
+export interface RichItemButton extends RichItem {
+  type: 'button'
+  label: string
+  action: {
+    param: string
+    type: 'link'
+  }
+}
 
 interface BubbleCSSProp {
   maxWidthOffset?: number
@@ -26,13 +61,13 @@ export type BubbleProp = BubbleCSSProp & {
 }
 
 export type TextBubbleProp = {
-  text: string
+  message: string
   my: boolean
 } & BubbleProp
 
 export type RichBubbleProp = {
   my: boolean
-  items: (TextPayload | ImagePayload | ButtonPayload)[]
+  items: (RichItemText | RichItemImages | RichItemButton)[]
   cloudinaryName: string
   mediaUrlBase: string
   onImageClick?: (imageInfos: MetaDataInterface[]) => void
@@ -51,7 +86,7 @@ export interface ImageBubbleProp {
   onLongPress?: () => void
 }
 
-export type ProductBubbleProps = {
+export type ProductBubbleProp = {
   my: boolean
   product: ProductItem
 } & BubbleProp
@@ -60,8 +95,3 @@ export type BlindedBubbleProp = {
   my: boolean
   blindedText?: string
 } & BubbleProp
-
-export enum CustomMessageType {
-  BLINDED = 'blinded',
-  DELETED = 'deleted',
-}
