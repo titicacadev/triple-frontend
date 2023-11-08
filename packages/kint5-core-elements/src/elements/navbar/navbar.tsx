@@ -4,6 +4,7 @@ import { CSSObject } from 'styled-components'
 import { Button } from '../button'
 import { Container } from '../container'
 import { FlexBox } from '../flex-box'
+import { LeftArrowIcon } from '../icon'
 
 interface NavbarProps {
   centerContent?: ReactNode
@@ -46,13 +47,7 @@ export function Navbar({
           transform: 'translateY(-50%)',
         }}
       >
-        <img
-          src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-2-line-24.svg"
-          alt="Back"
-          width={24}
-          height={24}
-          draggable={false}
-        />
+        <LeftArrowIcon />
       </Button>
       {centerContent}
       {rightContent ? (
