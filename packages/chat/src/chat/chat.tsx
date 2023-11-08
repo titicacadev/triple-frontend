@@ -1,6 +1,13 @@
 import { IncomingMessage } from 'http'
 
-import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
+import {
+  ComponentProps,
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+} from 'react'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
@@ -8,18 +15,18 @@ import { Container } from '@titicaca/core-elements'
 
 import {
   HasUnreadOfRoomInterface,
-  ImagePayload,
   MessageInterface,
   PostMessageType,
   RoomInterface,
-  TextPayload,
   UpdateChatData,
   UserInterface,
   UserType,
 } from '../types'
-import ChatBubble from '../bubble-container'
+import BubbleContainer from '../bubble-container'
 import { HiddenElement } from '../bubble-container/elements'
 import { ChatBubbleStyle } from '../types/ui'
+import BubbleUI from '../bubble/bubble-ui'
+import { RichItemImages, RichItemText } from '../bubble/type'
 
 import { ChatActions, ChatReducer, initialChatState } from './reducer'
 import { useChat } from './chat-context'
@@ -101,7 +108,7 @@ export const Chat = ({
       messages,
       failedMessages,
       hasPrevMessage,
-      otherUnreadInfo,
+      // otherUnreadInfo,
       lastMessageId,
       firstMessageId,
     },
@@ -197,7 +204,7 @@ export const Chat = ({
   }
 
   const postMessageAction = async (
-    payload: TextPayload | ImagePayload,
+    payload: RichItemText | RichItemImages,
     retry = false,
   ): Promise<boolean> => {
     const result = await postMessage?.(payload)
@@ -295,46 +302,129 @@ export const Chat = ({
       <Container ref={chatContainerRef} id={CHAT_CONTAINER_ID} {...props}>
         <ul id="messages_list">
           {[...messages, ...beforeSentMessages].map(
-            (message: MessageInterface) => (
-              <li key={message.id}>
-                <ChatBubble
-                  my={me.id === message.sender.id}
-                  displayTarget={displayTarget}
-                  message={message}
-                  postMessageAction={
-                    postMessage ? postMessageAction : undefined
+            (message: MessageInterface) => {
+              const my = message.senderId === me.id
+              const senderInfo = my
+                ? me
+                : room.members.find((member) => member.id === message.senderId)
+              const payload = (function getDisplayedPayload() {
+                if (!message.displayTarget || message.displayTarget === 'all') {
+                  return message.payload
+                }
+                if (message.displayTarget.includes(displayTarget)) {
+                  return message.payload
+                }
+                return message.alternative ?? message.payload
+              })()
+              const bubbleProp = getBubbleProp({
+                messageId: message.id.toString(),
+                messagePayload: payload,
+                my,
+                blinded: !!message.blindedAt,
+              })
+              return (
+                <BubbleContainer
+                  key={message.id}
+                  my={message.senderId === me.id}
+                  createdAt={message.createdAt}
+                  unreadCount={0}
+                  profile={
+                    senderInfo && {
+                      thumbnailUrl: senderInfo.profile.thumbnail,
+                      userId: senderInfo.id,
+                      unregister: false, // TODO
+                      name: senderInfo.profile.name,
+                    }
                   }
-                  otherReadInfo={otherUnreadInfo}
-                  onRetryButtonClick={onRetry}
-                  onRetryCancelButtonClick={onRetryCancel}
-                  disableUnreadCount={disableUnreadCount}
-                  blindedText={blindedText}
-                  bubbleStyle={bubbleStyle}
-                />
-              </li>
-            ),
+                  // disableUnreadCount={disableUnreadCount}
+                  // unreadCount={}
+                >
+                  <BubbleUI {...bubbleProp} />
+                </BubbleContainer>
+              )
+            },
           )}
         </ul>
         <ul id="failed_messages_list">
-          {failedMessages.map((message: MessageInterface) => (
-            <li key={message.id}>
-              <ChatBubble
+          {failedMessages.map((message: MessageInterface) => {
+            const bubbleProp = getBubbleProp({
+              messageId: message.id.toString(),
+              messagePayload: message.payload,
+              my: true,
+              blinded: false,
+            })
+
+            return (
+              <BubbleContainer
+                key={message.id}
                 my
-                displayTarget={displayTarget}
-                message={message}
-                postMessageAction={postMessage ? postMessageAction : undefined}
-                otherReadInfo={otherUnreadInfo}
-                onRetryButtonClick={onRetry}
-                onRetryCancelButtonClick={onRetryCancel}
-                disableUnreadCount={disableUnreadCount}
-                blindedText={blindedText}
-                bubbleStyle={bubbleStyle}
-              />
-            </li>
-          ))}
+                unreadCount={null}
+                onRetry={() => {
+                  onRetry(message)
+                }}
+                onRetryCancel={() => onRetryCancel(message)}
+              >
+                <BubbleUI {...bubbleProp} />
+              </BubbleContainer>
+            )
+          })}
         </ul>
       </Container>
       <HiddenElement ref={bottomRef} />
     </>
   )
+}
+
+function getBubbleProp({
+  messageId,
+  messagePayload,
+  my,
+  blinded,
+}: {
+  messageId: string
+  messagePayload: MessageInterface['payload']
+  my: boolean
+  blinded: boolean
+}): ComponentProps<typeof BubbleUI> {
+  if (blinded) {
+    return {
+      type: 'blinded',
+      id: messageId,
+      my,
+    }
+  }
+  switch (messagePayload.type) {
+    case 'text':
+      return {
+        type: 'text',
+        id: messageId,
+        my,
+        maxWidthOffset: 100,
+        message: messagePayload.message,
+      }
+    case 'images':
+      return {
+        type: 'images',
+        images: messagePayload.images,
+      }
+    case 'rich':
+      return {
+        type: 'rich',
+        id: messageId,
+        my,
+        maxWidthOffset: 100,
+        items: messagePayload.items,
+        mediaUrlBase:
+          process.env.NEXT_PUBLIC_MEDIA_URL_BASE ||
+          'https://media.triple.guide',
+        cloudinaryName: process.env.NEXT_PUBLIC_CLOUDINARY_NAME || 'triple-cms',
+      }
+    case 'product':
+      return {
+        type: 'product',
+        id: messageId,
+        my,
+        product: messagePayload.product,
+      }
+  }
 }

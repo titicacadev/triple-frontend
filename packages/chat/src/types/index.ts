@@ -1,32 +1,30 @@
+import { RichItemButton, RichItemImages, RichItemText } from '../bubble/type'
+
 export enum UserType {
   TRIPLE_USER = 'TRIPLE_USER',
   TRIPLE_OPERATOR = 'TRIPLE_OPERATOR',
   TNA_PARTNER = 'TNA_PARTNER',
 }
 
-export enum MessageType {
-  WELCOME = 'welcome',
-  LINK = 'link',
-  TEXT = 'text',
-  IMAGES = 'images',
-  FORM = 'form',
-  SUBMIT = 'submit',
-  BUTTON = 'button',
-  RICH = 'rich',
-  PRODUCT = 'product',
-}
-
+export type MessageType =
+  | 'WELCOME'
+  | 'LINK'
+  | 'TEXT'
+  | 'IMAGES'
+  | 'BUTTON'
+  | 'RICH'
+  | 'PRODUCT'
 export enum RoomType {
   DEFAULT = 'default', // 기존 파트너센터 챗
   EVENT = 'event', // 행사용 그룹 챗
 }
 
 export type PostMessageType = (
-  payload: TextPayload | ImagePayload,
+  payload: RichItemText | RichItemImages,
 ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
 
 export type PostMessageActionType = (
-  payload: TextPayload | ImagePayload,
+  payload: RichItemText | RichItemImages,
   retry?: boolean,
 ) => Promise<boolean> | undefined
 
@@ -66,10 +64,10 @@ export interface MessageInterface {
   id: number
   roomId: string
   senderId: string
-  payload: TextPayload | ImagePayload | RichPayload | ProductPayload
+  payload: RichItemText | RichItemImages | RichPayload | ProductPayload
   createdAt?: string
   displayTarget?: UserType[] | DisplayTargetAll
-  alternative?: TextPayload | ImagePayload | RichPayload
+  alternative?: RichItemText | RichItemImages | RichPayload
   blindedAt?: string
   sender: UserInterface
 }
@@ -99,32 +97,13 @@ export interface UserAgentProps {
   }
 }
 
-export interface TextPayload extends RichItem {
-  type: MessageType.TEXT
-  message: string
-}
-
-export interface ImagePayload extends RichItem {
-  type: MessageType.IMAGES
-  images: MetaDataInterface[]
-}
-
-export interface ButtonPayload extends RichItem {
-  type: MessageType.BUTTON
-  label: string
-  action: {
-    param: string
-    type: MessageType.LINK
-  }
-}
-
 export interface RichPayload {
-  type: MessageType.RICH
-  items: (TextPayload | ImagePayload | ButtonPayload)[]
+  type: 'rich'
+  items: (RichItemText | RichItemImages | RichItemButton)[]
 }
 
 export interface ProductPayload {
-  type: MessageType.PRODUCT
+  type: 'product'
   product: ProductItem
 }
 

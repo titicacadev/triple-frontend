@@ -1,4 +1,4 @@
-import { MessageType, MetaDataInterface, RoomType, UserType } from '../types'
+import { MetaDataInterface, RoomType, UserType } from '../types'
 import { ChatContextValue, ChatProps } from '../chat'
 
 export const SAMPLE_IMAGES: MetaDataInterface[] = [
@@ -58,25 +58,25 @@ export const CHAT_ARGS: ChatProps = {
         senderId: '61ea67f0de3e37001997a80f',
         displayTarget: [UserType.TRIPLE_USER],
         payload: {
-          type: MessageType.RICH,
+          type: 'rich',
           items: [
             {
               message:
                 '안녕하세요.\nTNA_BPM입니다. 예약해주셔서 감사합니다!\n\n궁금한 점이 있으시면 TNA_BPM 문의를 편하게 이용해주세요.',
-              type: MessageType.TEXT,
+              type: 'text',
             },
             {
               label: '예약상세 바로가기',
               action: {
-                type: MessageType.LINK,
+                type: 'link',
                 param: 'https://triple.guide/',
               },
-              type: MessageType.BUTTON,
+              type: 'button',
             },
           ],
         },
         alternative: {
-          type: MessageType.TEXT,
+          type: 'text',
           message:
             '안녕하세요.\nTNA_BPM입니다. 예약해주셔서 감사합니다!\n\n궁금한 점이 있으시면 TNA_BPM 문의를 편하게 이용해주세요.',
         },
@@ -100,7 +100,7 @@ export const CHAT_ARGS: ChatProps = {
         createdAt: '2022-11-03T06:44:57.017Z',
         displayTarget: 'all',
         payload: {
-          type: MessageType.TEXT,
+          type: 'text',
           message: '테스트 메시지',
         },
         sender: {
@@ -158,7 +158,7 @@ export const CHAT_ARGS: ChatProps = {
       senderId: '6344be9953749900140bca42',
       displayTarget: 'all',
       payload: {
-        type: MessageType.TEXT,
+        type: 'text',
         message: '테스트 메시지',
       },
       sender: {
