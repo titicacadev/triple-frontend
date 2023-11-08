@@ -121,7 +121,9 @@ function ReceivedBubbleContainer({
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
           {user?.name || ''}
         </ProfileName>
+
         {children}
+
         {createdAt && showInfo ? (
           <BubbleInfo
             unreadCount={unreadCount}

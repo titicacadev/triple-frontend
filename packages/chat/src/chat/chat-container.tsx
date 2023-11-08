@@ -2,12 +2,11 @@ import React, { ElementType, PropsWithChildren, useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import {
-  ImagePayload,
   MessageInterface,
   MetaDataInterface,
   PostMessageActionType,
-  TextPayload,
 } from '../types'
+import { RichItemImages, RichItemText } from '../bubble/type'
 
 import { ChatContext, ChatContextValue } from './chat-context'
 
@@ -28,7 +27,7 @@ export interface ChatContainerProps extends ChatContextValue {
    * 메시지를 전송하는 api를 래핑하는 함수
    */
   postMessage?: (
-    payload: TextPayload | ImagePayload,
+    payload: RichItemText | RichItemImages,
   ) => Promise<{ success: boolean; newMessages: MessageInterface[] }>
 }
 

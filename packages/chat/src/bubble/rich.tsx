@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { useChat } from '../chat'
-import { MessageType } from '../types'
 import { generatePreviewImage } from '../utils'
 import { ImageMessage } from '../message/image'
 import { TextMessage } from '../message/text'
@@ -57,9 +56,9 @@ export function RichBubble({
     >
       {items.map((item, index) => {
         switch (item.type) {
-          case MessageType.TEXT:
+          case 'text':
             return <TextMessage text={item.message} css={textItemStyle} />
-          case MessageType.IMAGES: {
+          case 'images': {
             if (item.images.length === 0) {
               return null
             }
@@ -79,7 +78,7 @@ export function RichBubble({
               />
             )
           }
-          case MessageType.BUTTON:
+          case 'button':
             return (
               <Button
                 key={index}
