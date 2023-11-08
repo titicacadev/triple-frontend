@@ -12,7 +12,7 @@ import {
   ProductName,
 } from './elements'
 import { Bubble } from './bubble'
-import { ProductBubbleProps } from './type'
+import { ProductBubbleProp } from './type'
 
 const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
   BOOKED: 'blue',
@@ -35,7 +35,7 @@ export const ProductBubble = ({
   my,
   product,
   ...props
-}: ProductBubbleProps) => {
+}: ProductBubbleProp) => {
   const { textBubbleFontSize } = useChat()
   const {
     customerBookingStatus,
