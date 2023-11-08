@@ -30,7 +30,7 @@ export const jaCommonWeb = {
   ribyusujeong: 'レビューを編集',
   ribyusseugi: 'レビューを書く',
   iljeongcuga: '日程を作成',
-  gongyuhagi: '共有する',
+  gongyuhagi: '共有',
   'geunceoyi-cuceon-jangso': '近所のおすすめ',
   'jangsoga-eobsseubnida.': '場所がありません。',
   'deo-manheun-jangso-bogi': '場所をもっと見る',
@@ -197,6 +197,6 @@ export const jaCommonWeb = {
   'sajin-dongyeongsang': '写真/動画',
   'byeoljeom-nopeunsun': '星の高い順',
   'byeoljeom-najeunsun': '星の低い順',
-  jjim: '保存する',
-  'jjim-cwiso': '保存取り消し',
+  jjim: '保存',
+  'jjim-cwiso': '保存を取り消す',
 }
