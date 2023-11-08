@@ -1,45 +1,40 @@
-import {
-  ImagePayload,
-  MessageType,
-  ProductPayload,
-  RichPayload,
-  TextPayload,
-} from '../types'
-
 import { TextBubble } from './text'
 import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
   BlindedBubbleProp,
   ImageBubbleProp,
-  ProductBubbleProps,
+  ProductBubbleProp,
   RichBubbleProp,
   TextBubbleProp,
-  CustomMessageType,
 } from './type'
 import { ProductBubble } from './product'
 import BlindedBubble from './blinded'
 
-export const MessageUIType = { ...CustomMessageType, ...MessageType }
+type BubbleType = 'blinded' | 'text' | 'images' | 'rich' | 'product'
+
+interface BubbleUIProp<Type extends BubbleType> {
+  type: Type
+}
 
 type BubbleUIProps =
-  | (TextPayload & TextBubbleProp)
-  | (ImagePayload & ImageBubbleProp)
-  | (RichPayload & RichBubbleProp)
-  | (ProductPayload & ProductBubbleProps)
-  | ({ type: CustomMessageType.BLINDED } & BlindedBubbleProp)
+  | (BubbleUIProp<'blinded'> & BlindedBubbleProp)
+  | (BubbleUIProp<'text'> & TextBubbleProp)
+  | (BubbleUIProp<'images'> & ImageBubbleProp)
+  | (BubbleUIProp<'rich'> & RichBubbleProp)
+  | (BubbleUIProp<'product'> & ProductBubbleProp)
 
 export default function BubbleUI({ ...bubble }: BubbleUIProps) {
   switch (bubble.type) {
-    case MessageUIType.BLINDED:
+    case 'blinded':
       return <BlindedBubble {...bubble} />
-    case MessageUIType.TEXT:
+    case 'text':
       return <TextBubble {...bubble} />
-    case MessageUIType.IMAGES:
+    case 'images':
       return <ImageBubble {...bubble} />
-    case MessageUIType.RICH:
+    case 'rich':
       return <RichBubble {...bubble} />
-    case MessageUIType.PRODUCT:
+    case 'product':
       return <ProductBubble {...bubble} />
     //   case MessageType.DELETED:
     //     return <DeletedBubble />
