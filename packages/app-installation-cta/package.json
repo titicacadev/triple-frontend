@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/app-installation-cta",
-  "version": "13.9.0",
+  "version": "13.10.1",
   "description": "Call to action components for app installation",
   "keywords": [
     "cta",
@@ -49,8 +49,8 @@
   "dependencies": {
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/react-hooks": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
-    "@titicaca/web-storage": "workspace:*",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {

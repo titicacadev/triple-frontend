@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react'
 
-import useDebouncedState from './use-debounce'
+import { useDebouncedState } from './use-debounce'
 
 describe('state debounce 훅', () => {
   it('should return same value with input.', () => {

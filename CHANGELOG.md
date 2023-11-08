@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v13.10.1
+
+### chat
+
+- [chat] beforeSendMessages를 리듀서에서 제거합니다. [#2988](https://github.com/titicacadev/triple-frontend/pull/2988)
+
+## v13.10.0
+
+### action-sheet
+
+- [action-sheet] action sheet item에 아이콘 추가 [#2979](https://github.com/titicacadev/triple-frontend/pull/2979)
+
+### app-installation-cta
+
+- [react-hooks] useLocalStorage, useSessionStorage 추가 [#2961](https://github.com/titicacadev/triple-frontend/pull/2961)
+
+### chat
+
+- [Chat] Message에 sender 정보를 포함하는 api 변경에 대응합니다. [#2973](https://github.com/titicacadev/triple-frontend/pull/2973)
+
+### poi-detail
+
+- [react-hooks] useLocalStorage, useSessionStorage 추가 [#2961](https://github.com/titicacadev/triple-frontend/pull/2961)
+
+### react-hooks
+
+- [react-hooks] useLocalStorage, useSessionStorage 추가 [#2961](https://github.com/titicacadev/triple-frontend/pull/2961)
+
 ## v13.9.0
 
 ### chat

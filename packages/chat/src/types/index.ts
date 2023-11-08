@@ -71,6 +71,7 @@ export interface MessageInterface {
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: TextPayload | ImagePayload | RichPayload
   blindedAt?: string
+  sender: UserInterface
 }
 
 export interface UserInterface {

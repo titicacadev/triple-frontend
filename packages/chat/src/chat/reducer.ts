@@ -5,7 +5,6 @@ export enum ChatActions {
   PAST, // 과거 메시지
   NEW, // 메시지 수신
   POST, // 메시지 전송
-  BEFORE_SEND, // 메시지 전송 완료 전
   FAILED_TO_POST, // 메시지 전송 실패
   UPDATE, // 읽음 표시 업데이트
   REMOVE_FROM_FAILED, // 전송 실패 메세지 재전송 또는 삭제
@@ -38,10 +37,6 @@ export type ChatAction =
   | {
       action: ChatActions.POST
       messages: MessageInterface[]
-    }
-  | {
-      action: ChatActions.BEFORE_SEND
-      message: MessageInterface[]
     }
   | {
       action: ChatActions.FAILED_TO_POST
@@ -87,13 +82,6 @@ export const ChatReducer = (
         messages: mergeMessages(state.messages, action.messages),
         lastMessageId: Number(action.messages[action.messages.length - 1].id),
       }
-
-    case ChatActions.BEFORE_SEND: {
-      return {
-        ...state,
-        beforeSentMessages: [...action.message],
-      }
-    }
 
     case ChatActions.NEW:
       return {

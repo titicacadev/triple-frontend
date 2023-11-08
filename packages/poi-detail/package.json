@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-detail",
-  "version": "13.9.0",
+  "version": "13.10.1",
   "description": "Components for POI detail page",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-detail",
@@ -48,9 +48,9 @@
     "@titicaca/image-carousel": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/modals": "workspace:*",
+    "@titicaca/react-hooks": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
-    "@titicaca/web-storage": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {
