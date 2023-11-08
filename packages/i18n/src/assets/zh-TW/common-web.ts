@@ -187,4 +187,6 @@ export const zhTwCommonWeb = {
   'sajin-dongyeongsang': '攝影/錄像',
   'byeoljeom-nopeunsun': '評分高的順序',
   'byeoljeom-najeunsun': '評分低的順序',
+  jjim: '收藏',
+  'jjim-cwiso': '取消收藏',
 }
