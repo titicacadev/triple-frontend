@@ -31,7 +31,7 @@ const Button = styled.a`
 
 export function RichBubble({
   my,
-  items, // bubbleStyle,
+  blocks,
   cloudinaryName,
   mediaUrlBase,
   onImageClick,
@@ -53,16 +53,16 @@ export function RichBubble({
       css={{ margin: my ? '0 0 0 8px' : undefined, size: textBubbleFontSize }}
       {...props}
     >
-      {items.map((item, index) => {
-        switch (item.type) {
+      {blocks.map((block, index) => {
+        switch (block.type) {
           case 'text':
-            return <TextItem text={item.message} css={textItemStyle} />
+            return <TextItem text={block.message} css={textItemStyle} />
           case 'images': {
-            if (item.images.length === 0) {
+            if (block.images.length === 0) {
               return null
             }
             const imageUrl = generatePreviewImage({
-              imageInfo: item.images[0],
+              imageInfo: block.images[0],
               cloudinaryName,
               mediaUrlBase,
             })
@@ -71,7 +71,7 @@ export function RichBubble({
                 key={index}
                 src={imageUrl}
                 onClick={() => {
-                  onImageClick?.(item.images)
+                  onImageClick?.(block.images)
                 }}
                 css={imageItemStyle}
               />
@@ -81,11 +81,11 @@ export function RichBubble({
             return (
               <Button
                 key={index}
-                href={item.action.param}
+                href={block.action.param}
                 onClick={onButtonBeforeRouting}
                 css={buttonItemStyle}
               >
-                {item.label}
+                {block.label}
               </Button>
             )
           default:
