@@ -1,5 +1,4 @@
-import { TextMessage } from '../message/text'
-
+import { TextItem } from './item'
 import { Bubble } from './bubble'
 import { TextBubbleProp } from './type'
 
@@ -43,7 +42,7 @@ function getDefaultBackgroundColor(my: boolean) {
 export function TextBubble({ message, ...props }: TextBubbleProp) {
   return (
     <Bubble {...props}>
-      <TextMessage text={message} />
+      <TextItem text={message} />
     </Bubble>
   )
 }
