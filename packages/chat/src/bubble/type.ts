@@ -67,7 +67,7 @@ export type TextBubbleProp = {
 
 export type RichBubbleProp = {
   my: boolean
-  items: (RichItemText | RichItemImages | RichItemButton)[]
+  blocks: (RichItemText | RichItemImages | RichItemButton)[]
   cloudinaryName: string
   mediaUrlBase: string
   onImageClick?: (imageInfos: MetaDataInterface[]) => void
