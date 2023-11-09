@@ -2,9 +2,9 @@ import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useLongPress } from 'use-long-press'
 
-import { ImageMessage } from '../message/image'
 import { MetaDataInterface } from '../types'
 
+import { ImageItem } from './item'
 import { ImageBubbleProp } from './type'
 
 const DEFAULT_IMAGE_NUM_IN_ROW = 3
@@ -40,7 +40,7 @@ export function ImageBubble({ images, onClick, onLongPress }: ImageBubbleProp) {
       {allocatedImages.map((imagesInRow, index) => (
         <ImageRow key={index} css={{ display: 'flex', gap: 5 }}>
           {imagesInRow.map((image) => (
-            <ImageMessage
+            <ImageItem
               key={image.id}
               src={image.sizes.large.url}
               onClick={(e) => {
