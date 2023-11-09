@@ -413,7 +413,7 @@ function getBubbleProp({
         id: messageId,
         my,
         maxWidthOffset: 100,
-        items: messagePayload.items,
+        blocks: messagePayload.items,
         mediaUrlBase:
           process.env.NEXT_PUBLIC_MEDIA_URL_BASE ||
           'https://media.triple.guide',
