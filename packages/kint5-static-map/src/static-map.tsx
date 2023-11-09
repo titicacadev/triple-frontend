@@ -1,6 +1,11 @@
 import { SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { Container, Image, marginMixin } from '@titicaca/kint5-core-elements'
+import {
+  Container,
+  Image,
+  ThumbnailBorder,
+  marginMixin,
+} from '@titicaca/kint5-core-elements'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
 export interface ResponsiveVariant {
@@ -34,7 +39,7 @@ const StaticMapContainer = styled.div`
 const StaticMapImage = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 16px;
   object-fit: cover;
   z-index: 0;
   position: absolute;
@@ -44,7 +49,7 @@ const StaticMapImage = styled.img`
 const StaticMapPicture = styled.picture`
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 16px;
   object-fit: cover;
   z-index: 0;
   position: absolute;
@@ -104,6 +109,7 @@ function StaticMap({
             src={`/api/maps/static-map?size=${mapSize}&scale=${mapScale}&center=${lat}%2C${lon}&zoom=${zoom}`}
           />
         </StaticMapPicture>
+        <ThumbnailBorder css={{ borderRadius: 16 }} />
       </StaticMapContainer>
       <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
     </Container>
