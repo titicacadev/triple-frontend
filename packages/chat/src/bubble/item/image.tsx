@@ -6,7 +6,7 @@ const PreviewImage = styled.img`
   border-radius: 4px;
 `
 
-export function ImageMessage({
+export default function ImageItem({
   src,
   onClick,
   ...props

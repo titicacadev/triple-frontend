@@ -1,8 +1,8 @@
 import { Autolinker } from 'autolinker'
 import { MouseEventHandler } from 'react'
-import { Text } from '@titicaca/core-elements'
+import { Text as CoreText } from '@titicaca/core-elements'
 
-export function TextMessage({
+export default function TextItem({
   text,
   onClick,
 }: {
@@ -10,7 +10,7 @@ export function TextMessage({
   onClick?: MouseEventHandler
 }) {
   return (
-    <Text
+    <CoreText
       css={{
         display: '-webkit-box',
         lineHeight: '21px',
