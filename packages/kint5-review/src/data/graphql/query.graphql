@@ -1,0 +1,163 @@
+fragment BaseReview on Review {
+  id
+  resourceId
+  resourceType
+  comment
+  media
+  rating
+  visitDate
+  recentTrip
+  likesCount
+  blinded
+  reviewedAt
+  user {
+    ...BaseUser
+  }
+  replyBoard {
+    id
+    resourceId
+    resourceType
+    rootMessagesCount
+    childMessagesCount
+    pinnedMessagesCount
+    pinnedMessages {
+      ...BasePinnedMessage
+    }
+  }
+  liked
+}
+
+fragment BaseUser on User {
+  unregister
+  uid
+  photo
+  mileage {
+    level
+    point
+    badges {
+      label
+      icon {
+        image_url
+      }
+    }
+  }
+  name
+  userBoard {
+    trips
+    reviews
+    thanks
+    reports
+    reviewsV2
+    itineraries
+  }
+}
+
+fragment BasePinnedMessage on ReplyMessage {
+  content {
+    text
+    markdownText
+  }
+  createdAt
+  updatedAt
+  writer {
+    name
+  }
+}
+
+fragment BaseReviewSpecification on ReviewSpecification {
+  rating {
+    required
+    description
+  }
+}
+
+query GetPopularReviews(
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $hasMedia: Boolean
+  $from: Int
+  $size: Int
+) {
+  popularReviews: getPopularReviews(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    hasMedia: $hasMedia
+    from: $from
+    size: $size
+  ) {
+    ...BaseReview
+  }
+}
+
+query GetLatestReviews(
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $hasMedia: Boolean
+  $from: Int
+  $size: Int
+) {
+  latestReviews: getLatestReviews(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    hasMedia: $hasMedia
+    from: $from
+    size: $size
+  ) {
+    ...BaseReview
+  }
+}
+
+query GetReviewsByRating(
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $hasMedia: Boolean
+  $from: Int
+  $size: Int
+  $sortBy: SortByRatingsInput
+) {
+  ratingReviews: getReviewsByRating(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    hasMedia: $hasMedia
+    from: $from
+    size: $size
+    sortBy: $sortBy
+  ) {
+    ...BaseReview
+  }
+}
+
+query GetMyReview($resourceType: String!, $resourceId: String!) {
+  myReview: getMyReview(resourceType: $resourceType, resourceId: $resourceId) {
+    ...BaseReview
+  }
+}
+
+query GetReviewSpecification($resourceType: String!, $resourceId: String!) {
+  reviewsSpecification: getReviewSpecification(
+    resourceType: $resourceType
+    resourceId: $resourceId
+  ) {
+    ...BaseReviewSpecification
+  }
+}
+
+query GetReviewsCount(
+  $resourceType: String!
+  $resourceId: String!
+  $recentTrip: Boolean
+  $hasMedia: Boolean
+) {
+  reviewsCount: getReviewsCount(
+    resourceType: $resourceType
+    resourceId: $resourceId
+    recentTrip: $recentTrip
+    hasMedia: $hasMedia
+  )
+}
