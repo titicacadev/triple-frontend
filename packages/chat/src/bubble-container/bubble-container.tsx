@@ -27,7 +27,7 @@ type SentBubbleContainerProp = PropsWithChildren<{
   onRetryCancel?: () => void
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
-  /** 시간 정보 등의 정보의 노춮 여부 */
+  /** 시간 정보 등의 정보의 노출 여부 */
   showInfo?: boolean
   /** 좋아요 정보 */
   thanks?: { count: number; haveMine: boolean }
@@ -76,7 +76,7 @@ type ReceivedBubbleContainerProp = PropsWithChildren<{
   }
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
-  /** 시간 정보 등의 정보의 노춮 여부 */
+  /** 시간 정보 등의 정보의 노출 여부 */
   showInfo?: boolean
   /** 좋아요 정보 */
   thanks?: { count: number; haveMine: boolean }
