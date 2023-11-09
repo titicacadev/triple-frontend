@@ -4,6 +4,8 @@ import { Modal } from '@titicaca/modals'
 
 import { WebActionParams } from './types'
 
+const HASH_CONVERSE_MODAL = 'hash.converse-modal'
+
 export default async function converse({
   url: { path, query } = {},
 }: WebActionParams) {
@@ -13,11 +15,30 @@ export default async function converse({
     const { title, description } = await fetchApi(pathFromQuery)
 
     if (title && description) {
+      window.history.pushState(null, '', `#${HASH_CONVERSE_MODAL}`)
+
       const container = document.createElement('div')
       const root = createRoot(container)
 
+      const closeModal = () => {
+        window.history.back()
+      }
+
+      const handlePopstate = () => {
+        root.unmount()
+        container.remove()
+
+        window.removeEventListener('popstate', handlePopstate)
+      }
+
+      window.addEventListener('popstate', handlePopstate)
+
       root.render(
-        OpenModal({ title, description, onClose: () => root.unmount() }),
+        OpenModal({
+          title,
+          description,
+          onClose: closeModal,
+        }),
       )
 
       return true
@@ -29,7 +50,7 @@ export default async function converse({
   return false
 }
 
-function OpenModal({
+export function OpenModal({
   title,
   description,
   onClose,
