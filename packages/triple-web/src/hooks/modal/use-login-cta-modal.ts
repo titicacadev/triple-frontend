@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react'
 
-import { LoginCtaModalRef, useEventTracking } from '../../contexts'
-
-import { useModal } from './use-modal'
+import { useEventTracking, useModal } from '../../contexts'
+import { LoginCtaModalRef } from '../../types'
 
 type OpenOptions = LoginCtaModalRef
 

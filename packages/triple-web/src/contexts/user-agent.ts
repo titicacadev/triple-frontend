@@ -1,6 +1,17 @@
-import { createContext } from 'react'
-import { IResult } from 'ua-parser-js'
+import { createContext, useContext } from 'react'
 
-export interface UserAgent extends IResult {}
+import { UserAgentValue } from '../types'
 
-export const UserAgentContext = createContext<UserAgent | undefined>(undefined)
+export const UserAgentContext = createContext<UserAgentValue | undefined>(
+  undefined,
+)
+
+export function useUserAgent() {
+  const context = useContext(UserAgentContext)
+
+  if (context === undefined) {
+    throw new Error('UserAgentContext가 없습니다.')
+  }
+
+  return context
+}
