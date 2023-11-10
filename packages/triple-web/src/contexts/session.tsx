@@ -26,16 +26,6 @@ export function useSession() {
   return context
 }
 
-export function useSession() {
-  const context = useContext(SessionStateContext)
-
-  if (context === undefined) {
-    throw new Error('SessionContext가 없습니다.')
-  }
-
-  return context
-}
-
 export interface SessionProviderProps extends PropsWithChildren {
   initialSession: SessionValue | undefined
 }
