@@ -1,7 +1,7 @@
 import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
-import { useTransitionModalRef } from '../refs'
+import { useModal } from '../hooks/modal/use-modal'
 
 const IconImage = styled.img`
   display: block;
@@ -99,7 +99,7 @@ const MODAL_CONTENT: {
 }
 
 export function TransitionModal() {
-  const ref = useTransitionModalRef()
+  const { transitionModalRef } = useModal()
 
   // TODO: hash-router-context와 연결
   const uriHash = ''
@@ -140,7 +140,7 @@ export function TransitionModal() {
         <Modal.Action
           color="blue"
           onClick={() => {
-            ref.current.onActionClick?.()
+            transitionModalRef.current.onActionClick?.()
 
             // TODO: event-tracking context와 연결
             // trackEvent({
@@ -154,9 +154,9 @@ export function TransitionModal() {
             //   },
             // })
 
-            if (ref.current.deepLink) {
+            if (transitionModalRef.current.deepLink) {
               // TODO: default deepLink를 app home으로 정의하기?
-              window.location.href = ref.current.deepLink
+              window.location.href = transitionModalRef.current.deepLink
             }
           }}
         >
