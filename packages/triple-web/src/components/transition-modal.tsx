@@ -1,7 +1,9 @@
 import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
+import { useEffect } from 'react'
 
 import { useModal } from '../hooks/modal/use-modal'
+import { trackEvent } from '../utils'
 
 const IconImage = styled.img`
   display: block;
@@ -99,23 +101,66 @@ const MODAL_CONTENT: {
 }
 
 export function TransitionModal() {
-  const { transitionModalRef } = useModal()
+  const { transitionModalRef, eventTrackingContextForkRef } = useModal()
+
+  let open = false
+  let content:
+    | {
+        description?: string[]
+        eventLabel?: string
+      }
+    | undefined
 
   // TODO: hash-router-context와 연결
   const uriHash = ''
   const matchData = uriHash.match(/^transition\.(.+)$/)
 
-  let open = false
-  let content
-
   if (matchData) {
     const transitionType = matchData[1]
     content = MODAL_CONTENT[transitionType]
+    open = !!content
   }
 
-  if (content) {
-    open = true
+  const handleClick = () => {
+    transitionModalRef.current.onActionClick?.()
+
+    // TODO: event-tracking context와 연결
+    trackEvent(
+      {
+        ga: [
+          '설치유도팝업_선택',
+          ['선택_트리플가기', content?.eventLabel].filter((v) => v).join('_'),
+        ],
+        fa: {
+          action: '설치유도팝업_선택',
+          referrer_event: content?.eventLabel,
+        },
+      },
+      eventTrackingContextForkRef.current,
+    )
+
+    if (transitionModalRef.current.deepLink) {
+      // TODO: default deepLink를 app home으로 정의하기?
+      window.location.href = transitionModalRef.current.deepLink
+    }
   }
+
+  useEffect(() => {
+    if (content) {
+      const triggeredEventLabel = content.eventLabel ?? ''
+
+      trackEvent(
+        {
+          ga: ['설치유도팝업_노출', triggeredEventLabel],
+          fa: {
+            action: '설치유도팝업_노출',
+            referrer_event: triggeredEventLabel,
+          },
+        },
+        eventTrackingContextForkRef.current,
+      )
+    }
+  }, [content, eventTrackingContextForkRef])
 
   return (
     <Modal open={open} onClose={removeUriHash}>
@@ -137,29 +182,7 @@ export function TransitionModal() {
         <Modal.Action color="gray" onClick={removeUriHash}>
           {t(['cwiso', '취소'])}
         </Modal.Action>
-        <Modal.Action
-          color="blue"
-          onClick={() => {
-            transitionModalRef.current.onActionClick?.()
-
-            // TODO: event-tracking context와 연결
-            // trackEvent({
-            //   ga: [
-            //     '설치유도팝업_선택',
-            //     ['선택_트리플가기', eventLabel].filter((v) => v).join('_'),
-            //   ],
-            //   fa: {
-            //     action: '설치유도팝업_선택',
-            //     referrer_event: eventLabel,
-            //   },
-            // })
-
-            if (transitionModalRef.current.deepLink) {
-              // TODO: default deepLink를 app home으로 정의하기?
-              window.location.href = transitionModalRef.current.deepLink
-            }
-          }}
-        >
+        <Modal.Action color="blue" onClick={handleClick}>
           {t(['teuripeul-gagi', '트리플 가기'])}
         </Modal.Action>
       </Modal.Actions>
