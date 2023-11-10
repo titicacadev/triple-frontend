@@ -1,13 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
-import { LoginCtaModalRef } from '../../contexts'
+import { EventTracking, LoginCtaModalRef } from '../../contexts'
 
 import { useModal } from './use-modal'
 
 type OpenOptions = LoginCtaModalRef
 
-export function useLoginCtaModal() {
-  const { loginCtaModalRef } = useModal()
+export function useLoginCtaModal(eventTrackingContext: EventTracking) {
+  const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
 
   const open = useCallback(
     (options?: OpenOptions) => {
@@ -25,6 +25,15 @@ export function useLoginCtaModal() {
 
     loginCtaModalRef.current = {}
   }, [loginCtaModalRef])
+
+  useEffect(() => {
+    const previous = eventTrackingContextForkRef.current
+    eventTrackingContextForkRef.current = eventTrackingContext
+
+    return () => {
+      eventTrackingContextForkRef.current = previous
+    }
+  }, [eventTrackingContext, eventTrackingContextForkRef])
 
   return {
     open,
