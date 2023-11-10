@@ -1,10 +1,10 @@
-import { ClientApp, ClientAppName } from '../contexts'
+import { ClientAppName, ClientAppValue } from '@titicaca/triple-web'
 
 import { clientAppRegex } from './regex'
 
 export function parseClientAppMetadata(
   userAgent: string,
-): NonNullable<ClientApp>['metadata'] | null {
+): NonNullable<ClientAppValue>['metadata'] | null {
   const matchData = clientAppRegex.exec(userAgent)
 
   if (!matchData) {

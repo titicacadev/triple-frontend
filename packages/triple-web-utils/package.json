@@ -1,8 +1,8 @@
 {
-  "name": "@titicaca/triple-web-binding-nextjs",
+  "name": "@titicaca/triple-web-utils",
   "version": "13.7.0",
   "license": "MIT",
-  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-web-binding-nextjs",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-web-utils",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -38,20 +38,10 @@
       "eslint"
     ]
   },
-  "dependencies": {
-    "@titicaca/fetcher": "workspace:*",
-    "@titicaca/triple-web-utils": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
-    "server-only": "^0.0.1",
-    "ua-parser-js": "^1.0.36"
-  },
   "devDependencies": {
-    "@titicaca/triple-web": "workspace:*",
-    "@types/ua-parser-js": "^0.7.37",
-    "next": "^13.5.5"
+    "@titicaca/triple-web": "workspace:*"
   },
   "peerDependencies": {
-    "@titicaca/triple-web": "*",
-    "next": "^13.4"
+    "@titicaca/triple-web": "*"
   }
 }

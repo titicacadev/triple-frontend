@@ -2,11 +2,11 @@ import { trackEvent as nativeTrackEvent } from '@titicaca/triple-web-to-native-i
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
 import { firebaseAnalytics } from '../libs'
-import { EventTracking } from '../contexts'
+import { EventTrackingValue } from '../types'
 
-export type GoogleAnalyticsParams = (string | undefined)[]
+type GoogleAnalyticsParams = (string | undefined)[]
 
-export interface FirebaseAnalyticsParams {
+interface FirebaseAnalyticsParams {
   category?: string
   event_name?: string
   [key: string]: unknown
@@ -45,7 +45,7 @@ interface PixelCustomEvent {
   payload?: PixelPayload
 }
 
-export type PixelParams =
+type PixelParams =
   | PixelStandardEvent
   | PixelCustomEvent
   | (Omit<PixelCustomEvent, 'type'> & { type?: never })
@@ -64,7 +64,7 @@ export interface TrackEventParams {
 
 export function trackEvent(
   { ga, fa, pixel }: TrackEventParams,
-  context: EventTracking | undefined,
+  context: EventTrackingValue | undefined,
 ) {
   const pageLabel = context?.page?.label
 

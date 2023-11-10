@@ -39,8 +39,9 @@
     ]
   },
   "dependencies": {
-    "@titicaca/fetcher": "^13.8.1",
-    "@titicaca/view-utilities": "^13.8.1",
+    "@titicaca/fetcher": "workspace:*",
+    "@titicaca/triple-web-utils": "workspace:*",
+    "@titicaca/view-utilities": "workspace:*",
     "ua-parser-js": "^1.0.36",
     "universal-cookie": "^4.0.4"
   },
