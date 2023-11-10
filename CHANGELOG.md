@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v13.11.0
+
+### poi-detail
+
+- [Poi-detail] image carousel 서울콘 대응 [#2991](https://github.com/titicacadev/triple-frontend/pull/2991)
+
+### poi-list-elements
+
+- [Poi-list-elements] POI의 이름과 리전명 영역에 대표어값이 가장 우선적으로 표기되도록 함 [#2989](https://github.com/titicacadev/triple-frontend/pull/2989)
+- [Poi-list-elements] POI 리스트에서 스크랩 버튼을 숨길 수 있도록 함 [#2990](https://github.com/titicacadev/triple-frontend/pull/2990)
+
+### standard-action-handler
+
+- [standard-action-handler] API 응답 일반화 노출 기능을 추가합니다. [#2947](https://github.com/titicacadev/triple-frontend/pull/2947)
+
+### triple-document
+
+- [Poi-list-elements] POI 리스트에서 스크랩 버튼을 숨길 수 있도록 함 [#2990](https://github.com/titicacadev/triple-frontend/pull/2990)
+
 ## v13.10.1
 
 ### chat
