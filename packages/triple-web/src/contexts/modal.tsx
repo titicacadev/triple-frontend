@@ -9,6 +9,7 @@ import { EventTracking } from './event-tracking'
 
 export interface LoginCtaModalRef {
   returnUrl?: string
+  triggeredEventLabel?: string
 }
 
 export interface TransitionModalRef {
