@@ -1,28 +1,30 @@
 import { useCallback } from 'react'
 
-import { TransitionModalRef, useTransitionModalRef } from '../../refs'
+import { TransitionModalRef } from '../../contexts'
+
+import { useModal } from './use-modal'
 
 type OpenOptions = TransitionModalRef
 
 export function useTransitionModal() {
-  const ref = useTransitionModalRef()
+  const { transitionModalRef } = useModal()
 
   const open = useCallback(
-    (options: OpenOptions) => {
+    (options?: OpenOptions) => {
       // TODO: push transition hash
 
       if (options) {
-        ref.current = options
+        transitionModalRef.current = options
       }
     },
-    [ref],
+    [transitionModalRef],
   )
 
   const close = useCallback(() => {
     // TODO: pop transition hash
 
-    ref.current = {}
-  }, [ref])
+    transitionModalRef.current = {}
+  }, [transitionModalRef])
 
   return {
     open,

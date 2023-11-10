@@ -1,5 +1,6 @@
 export * from './client-app'
 export * from './env'
+export * from './modal'
 export * from './session'
 export * from './user-agent'
 export * from './hash-router'

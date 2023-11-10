@@ -5,6 +5,7 @@ import { PropsWithChildren } from 'react'
 import {
   Env,
   EnvContext,
+  ModalProvider,
   SessionProvider,
   SessionProviderValue,
   UserAgent,
@@ -33,9 +34,13 @@ export function TripleWeb({
       <EnvContext.Provider value={envProvider}>
         <SessionProvider value={sessionProvider}>
           <UserAgentContext.Provider value={userAgentProvider}>
-            <HashRouterProvider>{children}</HashRouterProvider>
-            <LoginCtaModal />
-            <TransitionModal />
+            <HashRouterProvider>
+              <ModalProvider>
+                {children}
+                <LoginCtaModal />
+                <TransitionModal />
+              </ModalProvider>
+            </HashRouterProvider>
           </UserAgentContext.Provider>
         </SessionProvider>
       </EnvContext.Provider>

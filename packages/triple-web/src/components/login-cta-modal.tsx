@@ -1,6 +1,6 @@
 import { Confirm } from '@titicaca/tds-ui'
 
-import { useLoginCtaModalRef } from '../refs'
+import { useModal } from '../hooks/modal/use-modal'
 
 // TODO: i18n 연결
 function t(keys: string[]) {
@@ -13,7 +13,7 @@ function removeUriHash() {}
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 export function LoginCtaModal() {
-  const ref = useLoginCtaModalRef()
+  const { loginCtaModalRef } = useModal()
 
   // TODO: hash-router-context와 연결
   const uriHash: string = ''
@@ -37,7 +37,7 @@ export function LoginCtaModal() {
         // TODO: router와 연결
         // navigate(
         //   `/login?returnUrl=${encodeURIComponent(
-        //     ref.current.returnUrl || document.location.href,
+        //     loginCtaModalRef.current.returnUrl || document.location.href,
         //   )}`,
         // )
 
