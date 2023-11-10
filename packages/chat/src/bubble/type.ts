@@ -71,6 +71,7 @@ export type RichBubbleProp = {
   cloudinaryName: string
   mediaUrlBase: string
   onImageClick?: (imageInfos: MetaDataInterface[]) => void
+  onButtonClickBeforeRouting?: () => void
   textItemStyle?: CSSProp
   imageItemStyle?: CSSProp
   buttonItemStyle?: CSSProp
