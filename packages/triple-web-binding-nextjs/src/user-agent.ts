@@ -2,9 +2,9 @@ import 'server-only'
 
 import { headers } from 'next/headers'
 import UAParser from 'ua-parser-js'
-import { UserAgent } from '@titicaca/triple-web'
+import { UserAgentValue } from '@titicaca/triple-web'
 
-export function getUserAgent(): UserAgent {
+export function getUserAgent(): UserAgentValue {
   const headersList = headers()
   const userAgent = headersList.get('user-agent')
   const parser = new UAParser(userAgent ?? undefined)
