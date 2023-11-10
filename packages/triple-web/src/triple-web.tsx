@@ -2,7 +2,10 @@
 
 import { PropsWithChildren } from 'react'
 
+import { LoginCtaModal, TransitionModal } from './components'
 import {
+  ClientApp,
+  ClientAppContext,
   Env,
   EnvContext,
   ModalProvider,
@@ -12,8 +15,6 @@ import {
   UserAgentContext,
   HashRouterProvider,
 } from './contexts'
-import { ClientApp, ClientAppContext } from './contexts/client-app'
-import { LoginCtaModal, TransitionModal } from './components'
 
 export interface TripleWebProps extends PropsWithChildren {
   clientAppProvider?: ClientApp

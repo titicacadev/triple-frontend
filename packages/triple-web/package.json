@@ -41,6 +41,7 @@
   "dependencies": {
     "@titicaca/fetcher": "^13.9.0",
     "@titicaca/tds-ui": "workspace:*",
+    "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "^13.9.0",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
@@ -51,11 +52,13 @@
     "@types/qs": "^6.9.9",
     "@types/semver": "^7.5.3",
     "@types/ua-parser-js": "^0.7.37",
+    "firebase": "9.15.0",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
     "@titicaca/tds-theme": "*",
+    "firebase": "^9.0",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
