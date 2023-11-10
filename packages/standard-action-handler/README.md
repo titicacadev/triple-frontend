@@ -40,6 +40,11 @@
   - parameter
     - {path, query}
       - query : href=[이동할 URL]
+- ### `/web-action/converse`
+  - 입력한 API 호출하고 반환된 값을 이용해 모달을 노출합니다.
+  - parameter
+    - {path, query}
+      - query : path=[API endpoint]
 
 ### How to make URL
 
