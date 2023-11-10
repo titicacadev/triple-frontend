@@ -2,12 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import {
-  LoginCtaModal,
-  TransitionModal,
-  LoginCtaModal,
-  TransitionModal,
-} from './components'
+import { LoginCtaModal, TransitionModal } from './components'
 import {
   ClientAppContext,
   EnvContext,
