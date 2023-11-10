@@ -1,6 +1,6 @@
 import * as semver from 'semver'
 
-import { useClientApp } from './use-client-app'
+import { useClientApp } from '../../contexts'
 
 type Operator = 'lt' | 'lte' | 'gt' | 'gte'
 
