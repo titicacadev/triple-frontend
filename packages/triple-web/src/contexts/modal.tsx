@@ -1,34 +1,28 @@
+import { PropsWithChildren, createContext, useContext, useRef } from 'react'
+
 import {
-  MutableRefObject,
-  PropsWithChildren,
-  createContext,
-  useRef,
-} from 'react'
+  EventTrackingValue,
+  ModalValue,
+  LoginCtaModalRef,
+  TransitionModalRef,
+} from '../types'
 
-import { EventTracking } from './event-tracking'
+export const ModalContext = createContext<ModalValue | undefined>(undefined)
 
-export interface LoginCtaModalRef {
-  returnUrl?: string
-  triggeredEventLabel?: string
+export function useModal() {
+  const modalContext = useContext(ModalContext)
+
+  if (modalContext === undefined) {
+    throw new Error('ModalContext가 없습니다.')
+  }
+
+  return modalContext
 }
-
-export interface TransitionModalRef {
-  deepLink?: string
-  onActionClick?: () => void
-}
-
-export interface ModalState {
-  loginCtaModalRef: MutableRefObject<LoginCtaModalRef>
-  transitionModalRef: MutableRefObject<TransitionModalRef>
-  eventTrackingContextForkRef: MutableRefObject<EventTracking | undefined>
-}
-
-export const ModalContext = createContext<ModalState | undefined>(undefined)
 
 export function ModalProvider({ children }: PropsWithChildren) {
   const loginCtaModalRef = useRef<LoginCtaModalRef>({})
   const transitionModalRef = useRef<TransitionModalRef>({})
-  const eventTrackingContextForkRef = useRef<EventTracking>()
+  const eventTrackingContextForkRef = useRef<EventTrackingValue>()
 
   return (
     <ModalContext.Provider
