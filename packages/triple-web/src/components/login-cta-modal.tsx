@@ -1,6 +1,8 @@
 import { Confirm } from '@titicaca/tds-ui'
+import { useEffect } from 'react'
 
 import { useModal } from '../hooks/modal/use-modal'
+import { trackEvent } from '../utils'
 
 // TODO: i18n 연결
 function t(keys: string[]) {
@@ -13,11 +15,49 @@ function removeUriHash() {}
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 export function LoginCtaModal() {
-  const { loginCtaModalRef } = useModal()
+  const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
 
   // TODO: hash-router-context와 연결
   const uriHash: string = ''
   const open = uriHash === LOGIN_CTA_MODAL_HASH
+
+  const handleConfirm = () => {
+    trackEvent(
+      {
+        ga: ['로그인유도팝업_로그인선택'],
+        fa: {
+          action: '로그인유도팝업_로그인선택',
+        },
+      },
+      eventTrackingContextForkRef.current,
+    )
+
+    // TODO: router와 연결
+    // navigate(
+    //   `/login?returnUrl=${encodeURIComponent(
+    //     loginCtaModalRef.current.returnUrl || document.location.href,
+    //   )}`,
+    // )
+    return true
+  }
+
+  useEffect(() => {
+    if (open) {
+      const triggeredEventLabel =
+        loginCtaModalRef.current.triggeredEventLabel ?? ''
+
+      trackEvent(
+        {
+          ga: ['로그인유도팝업_노출', triggeredEventLabel],
+          fa: {
+            action: '로그인유도팝업_노출',
+            referrer_event: triggeredEventLabel,
+          },
+        },
+        eventTrackingContextForkRef.current,
+      )
+    }
+  }, [eventTrackingContextForkRef, loginCtaModalRef, open])
 
   return (
     <Confirm
@@ -25,24 +65,7 @@ export function LoginCtaModal() {
       title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
       onClose={removeUriHash}
       onCancel={removeUriHash}
-      onConfirm={() => {
-        // TODO: event-tracking context와 연결
-        // trackEvent({
-        //   ga: ['로그인유도팝업_로그인선택'],
-        //   fa: {
-        //     action: '로그인유도팝업_로그인선택',
-        //   },
-        // })
-
-        // TODO: router와 연결
-        // navigate(
-        //   `/login?returnUrl=${encodeURIComponent(
-        //     loginCtaModalRef.current.returnUrl || document.location.href,
-        //   )}`,
-        // )
-
-        return true
-      }}
+      onConfirm={handleConfirm}
     >
       {t([
         'rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo',
