@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import { SessionUser } from '@titicaca/triple-web'
+import { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
   ssrFetcherize,
   captureHttpError,
@@ -20,9 +20,7 @@ import {
  * - browser (client-side) refresh O
  * @returns
  */
-export async function getSession(
-  ctx: NextPageContext,
-): Promise<SessionProviderValue> {
+export async function getSession(ctx: NextPageContext): Promise<SessionValue> {
   const userAgent = ctx.req
     ? ctx.req.headers['user-agent'] ?? ''
     : window.navigator.userAgent
@@ -32,9 +30,7 @@ export async function getSession(
   const user = await fetchUser(ctx, isClientApp)
 
   return {
-    initialSession: {
-      user,
-    },
+    user,
   }
 }
 
