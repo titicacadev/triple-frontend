@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { useChat } from '../chat'
 import { generatePreviewImage } from '../utils'
 
 import { ImageItem, TextItem } from './item'
@@ -35,24 +34,14 @@ export function RichBubble({
   cloudinaryName,
   mediaUrlBase,
   onImageClick,
+  onButtonClickBeforeRouting,
   textItemStyle,
   imageItemStyle,
   buttonItemStyle,
   ...props
 }: RichBubbleProp) {
-  const {
-    textBubbleFontSize,
-    textBubbleMaxWidthOffset,
-    onRichBubbleButtonBeforeRouting: onButtonBeforeRouting,
-  } = useChat()
-
   return (
-    <Bubble
-      my={my}
-      maxWidthOffset={textBubbleMaxWidthOffset}
-      css={{ margin: my ? '0 0 0 8px' : undefined, size: textBubbleFontSize }}
-      {...props}
-    >
+    <Bubble my={my} css={{ margin: my ? '0 0 0 8px' : undefined }} {...props}>
       {blocks.map((block, index) => {
         switch (block.type) {
           case 'text':
@@ -82,7 +71,7 @@ export function RichBubble({
               <Button
                 key={index}
                 href={block.action.param}
-                onClick={onButtonBeforeRouting}
+                onClick={onButtonClickBeforeRouting}
                 css={buttonItemStyle}
               >
                 {block.label}
