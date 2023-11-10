@@ -1,12 +1,13 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { setUserId } from 'firebase/analytics'
 
-import { EventTracking, EventTrackingContext } from '../contexts'
+import { EventTrackingContext } from '../contexts'
 import { useSession } from '../hooks'
 import { firebaseAnalytics } from '../libs'
 import { trackScreen } from '../utils'
+import { EventTrackingValue } from '../types'
 
-export type EventTrackingProviderProps = EventTracking & PropsWithChildren
+export type EventTrackingProviderProps = EventTrackingValue & PropsWithChildren
 
 export function EventTrackingProvider({
   children,

@@ -9,24 +9,21 @@ import {
   TransitionModal,
 } from './components'
 import {
-  ClientApp,
   ClientAppContext,
-  Env,
   EnvContext,
   ModalProvider,
   SessionProvider,
   SessionProviderValue,
-  UserAgent,
   UserAgentContext,
   HashRouterProvider,
 } from './contexts'
-import { ClientApp, ClientAppContext } from './contexts/client-app'
+import { ClientAppValue, EnvValue, UserAgentValue } from './types'
 
 export interface TripleWebProps extends PropsWithChildren {
-  clientAppProvider?: ClientApp
-  envProvider?: Env
+  clientAppProvider?: ClientAppValue
+  envProvider?: EnvValue
   sessionProvider?: SessionProviderValue
-  userAgentProvider?: UserAgent
+  userAgentProvider?: UserAgentValue
 }
 
 export function TripleWeb({
