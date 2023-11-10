@@ -21,12 +21,12 @@ interface Os {
  * @returns 앱 이름과 버전
  */
 export function parseApp(userAgent: string): App | null {
-  const matchData = userAgent.match(/Triple-(iOS|Android)\/([^ ]+)/i)
+  const matchData = userAgent.match(/Triple(-Global)?-(iOS|Android)\/([^ ]+)/i)
 
   if (matchData) {
     return {
-      name: AppName[matchData[1] as 'iOS' | 'Android'],
-      version: matchData[2] || 'unknown',
+      name: AppName[matchData[2] as 'iOS' | 'Android'],
+      version: matchData[3] || 'unknown',
     }
   }
 

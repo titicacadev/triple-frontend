@@ -40,3 +40,25 @@ it('should parse Triple iOS client as an app', () => {
     appVersion: '5.10.0',
   })
 })
+
+it('should parse Triple Global iOS client as an app', () => {
+  expect(
+    parseTripleClientUserAgent(
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Global-iOS/5.10.0',
+    ),
+  ).toEqual({
+    appName: 'Triple-iOS',
+    appVersion: '5.10.0',
+  })
+})
+
+it('should parse Triple Global Android client as an app', () => {
+  expect(
+    parseTripleClientUserAgent(
+      'Mozilla/5.0 (Linux; Android 10; SM-N960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/96.0.4664.92 Mobile Safari/537.36 Triple-Global-Android/5.10.0',
+    ),
+  ).toEqual({
+    appName: 'Triple-Android',
+    appVersion: '5.10.0',
+  })
+})
