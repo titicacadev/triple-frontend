@@ -73,4 +73,26 @@ describe('generateUserAgentValues', () => {
       version: '3.0.0',
     })
   })
+
+  it('should parse iOS Triple Global native client properly', () => {
+    expect(
+      generateUserAgentValues(
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Global-iOS/3.0.0',
+      ).app,
+    ).toEqual({
+      name: 'Triple-iOS',
+      version: '3.0.0',
+    })
+  })
+
+  it('should parse Android Triple Global native client properly', () => {
+    expect(
+      generateUserAgentValues(
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-Global-Android/3.0.0',
+      ).app,
+    ).toEqual({
+      name: 'Triple-Android',
+      version: '3.0.0',
+    })
+  })
 })
