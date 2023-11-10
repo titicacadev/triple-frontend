@@ -13,16 +13,15 @@ import {
   EnvContext,
   ModalProvider,
   SessionProvider,
-  SessionProviderValue,
   UserAgentContext,
   HashRouterProvider,
 } from './contexts'
-import { ClientAppValue, EnvValue, UserAgentValue } from './types'
+import { ClientAppValue, EnvValue, SessionValue, UserAgentValue } from './types'
 
 export interface TripleWebProps extends PropsWithChildren {
   clientAppProvider?: ClientAppValue
   envProvider?: EnvValue
-  sessionProvider?: SessionProviderValue
+  sessionProvider?: SessionValue
   userAgentProvider?: UserAgentValue
 }
 
@@ -36,7 +35,7 @@ export function TripleWeb({
   return (
     <ClientAppContext.Provider value={clientAppProvider}>
       <EnvContext.Provider value={envProvider}>
-        <SessionProvider value={sessionProvider}>
+        <SessionProvider initialSession={sessionProvider}>
           <UserAgentContext.Provider value={userAgentProvider}>
             <HashRouterProvider>
               <ModalProvider>
