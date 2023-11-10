@@ -3,43 +3,31 @@ import {
   PropsWithChildren,
   SetStateAction,
   createContext,
+  useContext,
   useState,
 } from 'react'
 
-export interface SessionUser {
-  name: string
-  provider: Provider
-  country: string
-  lang: string
-  unregister: boolean | null
-  photo: string
-  mileage: Mileage
-  uid: string
-}
+import { SessionValue } from '../types'
 
-type Provider = 'TRIPLE' | 'NAVER' | 'KAKAO' | 'FACEBOOK' | 'APPLE'
-
-interface Mileage {
-  badges: {
-    icon: {
-      imageUrl: string
-    }
-  }[]
-  level: number
-  point: number
-}
-
-export interface Session {
-  user: SessionUser | null
-}
-
-export const SessionStateContext = createContext<Session | undefined>(undefined)
+export const SessionStateContext = createContext<SessionValue | undefined>(
+  undefined,
+)
 export const SessionUpdaterContext = createContext<
-  Dispatch<SetStateAction<Session>> | undefined
+  Dispatch<SetStateAction<SessionValue>> | undefined
 >(undefined)
 
+export function useSession() {
+  const context = useContext(SessionStateContext)
+
+  if (context === undefined) {
+    throw new Error('SessionContext가 없습니다.')
+  }
+
+  return context
+}
+
 export interface SessionProviderValue {
-  initialSession: Session
+  initialSession: SessionValue
 }
 
 export interface SessionProviderProps extends PropsWithChildren {

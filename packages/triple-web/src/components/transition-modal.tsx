@@ -2,7 +2,7 @@ import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useEffect } from 'react'
 
-import { useModal } from '../hooks/modal/use-modal'
+import { useModal } from '../contexts'
 import { trackEvent } from '../utils'
 
 const IconImage = styled.img`

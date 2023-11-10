@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react'
 
-import { TransitionModalRef, useEventTracking } from '../../contexts'
-
-import { useModal } from './use-modal'
+import { useEventTracking, useModal } from '../../contexts'
+import { TransitionModalRef } from '../../types'
 
 type OpenOptions = TransitionModalRef
 

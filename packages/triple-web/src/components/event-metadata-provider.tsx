@@ -1,9 +1,10 @@
 import { PropsWithChildren, useContext } from 'react'
 
-import { EventMetadata, EventMetadataContext } from '../contexts'
+import { EventMetadataContext } from '../contexts'
+import { EventMetadataValue } from '../types'
 
 export interface EventMetadataProviderProps extends PropsWithChildren {
-  eventMetadataContext?: EventMetadata
+  eventMetadataContext?: EventMetadataValue
 }
 
 export function EventMetadataProvider({

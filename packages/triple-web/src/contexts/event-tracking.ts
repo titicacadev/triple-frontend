@@ -1,16 +1,10 @@
 import { createContext, useContext } from 'react'
 
-export interface EventTracking {
-  page: {
-    label: string
-    path: string
-  }
-  onError?: (error: Error) => void
-}
+import { EventTrackingValue } from '../types'
 
-export const EventTrackingContext = createContext<EventTracking | undefined>(
-  undefined,
-)
+export const EventTrackingContext = createContext<
+  EventTrackingValue | undefined
+>(undefined)
 
 export function useEventTracking() {
   const context = useContext(EventTrackingContext)

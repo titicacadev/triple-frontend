@@ -1,12 +1,10 @@
 import { createContext, useContext } from 'react'
 
-export interface EventMetadata {
-  [key: string]: string
-}
+import { EventMetadataValue } from '../types'
 
-export const EventMetadataContext = createContext<EventMetadata | undefined>(
-  undefined,
-)
+export const EventMetadataContext = createContext<
+  EventMetadataValue | undefined
+>(undefined)
 
 export function useEventMetadata() {
   return useContext(EventMetadataContext)

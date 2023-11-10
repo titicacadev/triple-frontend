@@ -1,7 +1,7 @@
 import { Confirm } from '@titicaca/tds-ui'
 import { useEffect } from 'react'
 
-import { useModal } from '../hooks/modal/use-modal'
+import { useModal } from '../contexts'
 import { trackEvent } from '../utils'
 
 // TODO: i18n 연결
