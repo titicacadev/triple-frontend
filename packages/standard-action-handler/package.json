@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/standard-action-handler",
-  "version": "13.10.1",
+  "version": "13.11.0",
   "description": "Standard action handler for Triple service applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/standard-action-handler",
@@ -38,9 +38,9 @@
     ]
   },
   "dependencies": {
+    "@titicaca/modals": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/scroll-to-element": "workspace:*",
-    "@titicaca/modals": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2"
