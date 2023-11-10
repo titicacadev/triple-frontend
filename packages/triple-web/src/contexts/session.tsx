@@ -26,28 +26,34 @@ export function useSession() {
   return context
 }
 
-export interface SessionProviderValue {
-  initialSession: SessionValue
-}
-
 export interface SessionProviderProps extends PropsWithChildren {
-  value: SessionProviderValue | undefined
+  initialSession: SessionValue | undefined
 }
 
-export function SessionProvider({ children, value }: SessionProviderProps) {
-  if (value === undefined) {
+export function SessionProvider({
+  children,
+  initialSession,
+}: SessionProviderProps) {
+  if (initialSession === undefined) {
     return <>{children}</>
   }
 
-  return <InnerSessionProvider value={value}>{children}</InnerSessionProvider>
+  return (
+    <InnerSessionProvider initialSession={initialSession}>
+      {children}
+    </InnerSessionProvider>
+  )
 }
 
 interface InnerSessionProviderProps extends PropsWithChildren {
-  value: SessionProviderValue
+  initialSession: SessionValue
 }
 
-function InnerSessionProvider({ children, value }: InnerSessionProviderProps) {
-  const [session, setSession] = useState(value.initialSession)
+function InnerSessionProvider({
+  children,
+  initialSession,
+}: InnerSessionProviderProps) {
+  const [session, setSession] = useState(initialSession)
 
   return (
     <SessionStateContext.Provider value={session}>
