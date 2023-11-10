@@ -2,13 +2,13 @@ import { trackScreen as nativeTrackScreen } from '@titicaca/triple-web-to-native
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
 import { firebaseAnalytics } from '../libs'
-import { EventTracking } from '../contexts'
+import { EventTrackingValue } from '../types'
 
 export function trackScreen(
   path: string,
   label: string | undefined,
   additionalMetadata: { [key: string]: string } | undefined,
-  context: EventTracking | undefined,
+  context: EventTrackingValue | undefined,
 ) {
   try {
     if (window.ga) {

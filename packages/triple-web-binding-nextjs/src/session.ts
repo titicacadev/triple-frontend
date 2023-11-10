@@ -8,19 +8,18 @@ import {
   post,
   get,
 } from '@titicaca/fetcher'
+import { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
   GET_USER_REQUEST_URL,
   checkClientApp,
-  SessionUser,
-  Session,
-} from '@titicaca/triple-web'
+} from '@titicaca/triple-web-utils'
 
 /**
  * - app: refresh X
  * - browser: refresh O
  * @returns
  */
-export async function getSession(): Promise<Session> {
+export async function getSession(): Promise<SessionValue> {
   const headersList = headers()
   const userAgent = headersList.get('user-agent') ?? ''
 

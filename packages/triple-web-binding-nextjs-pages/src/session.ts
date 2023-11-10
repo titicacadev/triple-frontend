@@ -1,10 +1,5 @@
 import { NextPageContext } from 'next'
-import {
-  GET_USER_REQUEST_URL,
-  SessionProviderValue,
-  SessionUser,
-  checkClientApp,
-} from '@titicaca/triple-web'
+import { SessionUser } from '@titicaca/triple-web'
 import {
   ssrFetcherize,
   captureHttpError,
@@ -13,6 +8,10 @@ import {
   get,
 } from '@titicaca/fetcher'
 import Cookies from 'universal-cookie'
+import {
+  GET_USER_REQUEST_URL,
+  checkClientApp,
+} from '@titicaca/triple-web-utils'
 
 /**
  * - app (server-side): refresh X
