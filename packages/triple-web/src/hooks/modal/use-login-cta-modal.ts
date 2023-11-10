@@ -1,28 +1,30 @@
 import { useCallback } from 'react'
 
-import { LoginCtaModalRef, useLoginCtaModalRef } from '../../refs'
+import { LoginCtaModalRef } from '../../contexts'
+
+import { useModal } from './use-modal'
 
 type OpenOptions = LoginCtaModalRef
 
 export function useLoginCtaModal() {
-  const ref = useLoginCtaModalRef()
+  const { loginCtaModalRef } = useModal()
 
   const open = useCallback(
     (options?: OpenOptions) => {
       // TODO: push login cta hash
 
       if (options) {
-        ref.current = options
+        loginCtaModalRef.current = options
       }
     },
-    [ref],
+    [loginCtaModalRef],
   )
 
   const close = useCallback(() => {
     // TODO: pop login cta hash
 
-    ref.current = {}
-  }, [ref])
+    loginCtaModalRef.current = {}
+  }, [loginCtaModalRef])
 
   return {
     open,
