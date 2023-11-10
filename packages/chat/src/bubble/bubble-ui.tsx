@@ -13,7 +13,7 @@ import {
 import { ProductBubble } from './product'
 import BlindedBubble from './blinded'
 
-type BubbleType = 'blinded' | 'text' | 'images' | 'rich' | 'product'
+export type BubbleType = 'blinded' | 'text' | 'images' | 'rich' | 'product'
 
 interface BubbleUIPropBase {
   type: BubbleType
