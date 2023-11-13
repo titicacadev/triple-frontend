@@ -5,12 +5,11 @@ import {
   SetStateAction,
   useContext,
 } from 'react'
-import { GlobalSizes } from '@titicaca/type-definitions'
 
 import { MetaDataInterface, PostMessageActionType } from '../types'
 
 export interface ChatContextValue {
-  textBubbleFontSize: GlobalSizes | number
+  textBubbleFontSize: number
   textBubbleMaxWidthOffset: number
   mediaUrlBase: string
   cloudinaryName: string
