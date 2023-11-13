@@ -1,8 +1,6 @@
 import { FlexBox } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
-import { useChat } from '../chat'
-
 import { Bubble } from './bubble'
 import { BlindedBubbleProp } from './type'
 
@@ -19,14 +17,8 @@ export default function BlindedBubble({
   blindedText,
   ...props
 }: BlindedBubbleProp) {
-  const { textBubbleMaxWidthOffset } = useChat()
   return (
-    <Bubble
-      maxWidthOffset={textBubbleMaxWidthOffset}
-      my={my}
-      css={{ margin: my ? '0 0 0 8px' : undefined }}
-      {...props}
-    >
+    <Bubble my={my} css={{ margin: my ? '0 0 0 8px' : undefined }} {...props}>
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon
           color={my ? 'white' : 'gray'}

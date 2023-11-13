@@ -112,7 +112,8 @@ export const Chat = ({
     getScrollContainerHeight,
   } = useScroll()
 
-  const { setPostMessage } = useChat()
+  const { setPostMessage, textBubbleFontSize, textBubbleMaxWidthOffset } =
+    useChat()
   const [
     {
       messages,
@@ -371,6 +372,8 @@ export const Chat = ({
                 messagePayload: payload,
                 my,
                 blinded: !!message.blindedAt,
+                textBubbleFontSize,
+                textBubbleMaxWidthOffset,
               })
               return (
                 <BubbleContainer
@@ -450,11 +453,15 @@ function getBubbleProp({
   messagePayload,
   my,
   blinded,
+  textBubbleFontSize,
+  textBubbleMaxWidthOffset,
 }: {
   messageId: string
   messagePayload: MessageInterface['payload']
   my: boolean
   blinded: boolean
+  textBubbleFontSize?: number
+  textBubbleMaxWidthOffset?: number
 }): ComponentProps<typeof BubbleUI> {
   if (blinded) {
     return {
@@ -469,8 +476,9 @@ function getBubbleProp({
         type: 'text',
         id: messageId,
         my,
-        maxWidthOffset: 100,
+        maxWidthOffset: textBubbleMaxWidthOffset,
         message: messagePayload.message,
+        css: { size: textBubbleFontSize },
       }
     case 'images':
       return {
@@ -482,12 +490,13 @@ function getBubbleProp({
         type: 'rich',
         id: messageId,
         my,
-        maxWidthOffset: 100,
+        maxWidthOffset: textBubbleMaxWidthOffset,
         blocks: messagePayload.items,
         mediaUrlBase:
           process.env.NEXT_PUBLIC_MEDIA_URL_BASE ||
           'https://media.triple.guide',
         cloudinaryName: process.env.NEXT_PUBLIC_CLOUDINARY_NAME || 'triple-cms',
+        css: { size: textBubbleFontSize },
       }
     case 'product':
       return {
