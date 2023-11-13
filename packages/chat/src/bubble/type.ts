@@ -45,11 +45,12 @@ export interface RichItemButton extends RichItem {
   }
 }
 
-interface BubbleCSSProp {
+export interface BubbleCSSProp {
   maxWidthOffset?: number
   my: boolean
   hasArrow?: boolean
 }
+
 export type BubbleProp = BubbleCSSProp & {
   id: string
   onClick?: (messageId: string, e: MouseEvent) => void
@@ -58,6 +59,7 @@ export type BubbleProp = BubbleCSSProp & {
     target: LongPressReactEvents<Element>,
     context: LongPressCallbackMeta<unknown>,
   ) => void
+  css?: CSSProp
 }
 
 export type TextBubbleProp = {

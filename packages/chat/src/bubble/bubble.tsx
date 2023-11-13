@@ -1,30 +1,13 @@
 import styled, { css } from 'styled-components'
 import { Text } from '@titicaca/core-elements'
-import { PropsWithChildren, MouseEvent } from 'react'
-import {
-  LongPressCallbackMeta,
-  LongPressReactEvents,
-  useLongPress,
-} from 'use-long-press'
+import { PropsWithChildren } from 'react'
+import { useLongPress } from 'use-long-press'
+
+import { BubbleCSSProp, BubbleProp } from './type'
 
 const BACKGROUND_COLORS: { [key: string]: string } = {
   mint: '#00BB92',
   white: '#ffffff',
-}
-
-interface BubbleCSSProp {
-  maxWidthOffset?: number
-  my: boolean
-  hasArrow?: boolean
-}
-export type BubbleProp = BubbleCSSProp & {
-  id: string
-  onClick?: (messageId: string, e: MouseEvent) => void
-  onLongPress?: (
-    messageId: string,
-    target: LongPressReactEvents<Element>,
-    context: LongPressCallbackMeta<unknown>,
-  ) => void
 }
 
 const StyledBubble = styled(Text).attrs({

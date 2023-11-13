@@ -1,7 +1,6 @@
 import { Color } from '@titicaca/color-palette'
 import { FlexBox, Text } from '@titicaca/core-elements'
 
-import { useChat } from '../chat'
 import { CustomerBookingStatus } from '../types'
 
 import {
@@ -36,7 +35,6 @@ export const ProductBubble = ({
   product,
   ...props
 }: ProductBubbleProp) => {
-  const { textBubbleFontSize } = useChat()
   const {
     customerBookingStatus,
     productName,
@@ -55,7 +53,6 @@ export const ProductBubble = ({
         width: 'calc(100% - 15px)',
         maxWidth: '768px',
         margin: my ? '0 0 0 8px' : undefined,
-        size: textBubbleFontSize,
       }}
       {...props}
     >
