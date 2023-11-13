@@ -15,7 +15,7 @@ const ActionButton = styled.button`
   font-size: 12px;
   font-weight: 400;
   color: var(--color-kint5-gray60);
-  width: 45px;
+  width: 74px;
 `
 
 const ActionButtonText = styled(Text)`
@@ -54,7 +54,7 @@ function Actions({
         flex
         css={{
           alignItems: 'flex-start',
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
         }}
       >
         {onScrapedChange ? (
