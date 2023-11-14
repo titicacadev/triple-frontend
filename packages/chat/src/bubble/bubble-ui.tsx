@@ -60,7 +60,7 @@ type BubbleUIProps = (
   richBubbleStyle?: {
     textItemStyle?: CSSProp
     imageItemStyle?: CSSProp
-    buttonITemStyle?: CSSProp
+    buttonItemStyle?: CSSProp
   }
   maxWidthOffset?: BubbleProp['maxWidthOffset']
   cloudinaryName?: string
@@ -138,7 +138,7 @@ export default function BubbleUI({
           onButtonClickBeforeRouting={
             onRichBubbleBlockClick?.beforeButtonRouting
           }
-          buttonItemStyle={richBubbleStyle?.buttonITemStyle}
+          buttonItemStyle={richBubbleStyle?.buttonItemStyle}
           imageItemStyle={richBubbleStyle?.imageItemStyle}
           textItemStyle={richBubbleStyle?.textItemStyle}
           hasArrow={hasArrow}
