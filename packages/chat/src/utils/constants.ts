@@ -28,7 +28,7 @@ const empty = () => {}
 export const MEDIA_ARGS: ChatContextValue = {
   cloudinaryName: 'triple-cms',
   mediaUrlBase: 'https://media.triple.guide',
-  textBubbleFontSize: 'medium',
+  textBubbleFontSize: 16,
   textBubbleMaxWidthOffset: 100,
   onRichBubbleButtonBeforeRouting: empty,
   onImageBubbleClick: empty,

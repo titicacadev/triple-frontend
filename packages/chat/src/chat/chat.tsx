@@ -393,47 +393,40 @@ function getBubbleProp({
   textBubbleFontSize?: number
   textBubbleMaxWidthOffset?: number
 }): ComponentProps<typeof BubbleUI> {
-  if (blinded) {
-    return {
-      type: 'blinded',
-      id: messageId,
-      my,
-    }
+  const bla = {
+    id: messageId,
+    my,
+    blinded,
+    maxWidthOffset: textBubbleMaxWidthOffset,
+    mediaUrlBase:
+      process.env.NEXT_PUBLIC_MEDIA_URL_BASE || 'https://media.triple.guide',
+    cloudinaryName: process.env.NEXT_PUBLIC_CLOUDINARY_NAME || 'triple-cms',
+    css: { size: textBubbleFontSize },
   }
   switch (messagePayload.type) {
     case 'text':
       return {
         type: 'text',
-        id: messageId,
-        my,
-        maxWidthOffset: textBubbleMaxWidthOffset,
-        message: messagePayload.message,
-        css: { size: textBubbleFontSize },
+        value: { message: messagePayload.message },
+        ...bla,
       }
     case 'images':
       return {
         type: 'images',
-        images: messagePayload.images,
+        value: { images: messagePayload.images },
+        ...bla,
       }
     case 'rich':
       return {
         type: 'rich',
-        id: messageId,
-        my,
-        maxWidthOffset: textBubbleMaxWidthOffset,
-        blocks: messagePayload.items,
-        mediaUrlBase:
-          process.env.NEXT_PUBLIC_MEDIA_URL_BASE ||
-          'https://media.triple.guide',
-        cloudinaryName: process.env.NEXT_PUBLIC_CLOUDINARY_NAME || 'triple-cms',
-        css: { size: textBubbleFontSize },
+        value: { blocks: messagePayload.items },
+        ...bla,
       }
     case 'product':
       return {
         type: 'product',
-        id: messageId,
-        my,
-        product: messagePayload.product,
+        value: { product: messagePayload.product },
+        ...bla,
       }
   }
 }
