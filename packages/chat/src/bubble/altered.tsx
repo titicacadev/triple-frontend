@@ -12,9 +12,9 @@ const ExclamationMarkIcon = styled.span<{ color?: 'gray' | 'white' }>`
   height: 16px;
 `
 
-export default function BlindedBubble({
+export default function AlteredBubble({
   my,
-  blindedText,
+  alternativeText,
   ...props
 }: BlindedBubbleProp) {
   return (
@@ -24,7 +24,7 @@ export default function BlindedBubble({
           color={my ? 'white' : 'gray'}
           style={{ flex: '0 0 16px' }}
         />
-        <span>{blindedText ?? '관리자에 의해 삭제되었습니다'}</span>
+        <span>{alternativeText ?? '관리자에 의해 삭제되었습니다'}</span>
       </FlexBox>
     </Bubble>
   )

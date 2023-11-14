@@ -96,5 +96,5 @@ export type ProductBubbleProp = {
 
 export type BlindedBubbleProp = {
   my: boolean
-  blindedText?: string
+  alternativeText?: string
 } & BubbleProp
