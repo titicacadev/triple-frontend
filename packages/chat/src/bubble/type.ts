@@ -53,7 +53,7 @@ export interface BubbleCSSProp {
 
 export type BubbleProp = BubbleCSSProp & {
   id: string
-  onClick?: (messageId: string, e: MouseEvent) => void
+  onClick?: (e: MouseEvent, messageId: string) => void
   onLongPress?: (
     messageId: string,
     target: LongPressReactEvents<Element>,

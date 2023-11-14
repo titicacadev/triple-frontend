@@ -1,8 +1,10 @@
+import { CSSProp } from 'styled-components'
+
 import { TextBubble } from './text'
 import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
-  BlindedBubbleProp,
+  BubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -13,29 +15,148 @@ import BlindedBubble from './blinded'
 
 type BubbleType = 'blinded' | 'text' | 'images' | 'rich' | 'product'
 
-interface BubbleUIProp<Type extends BubbleType> {
-  type: Type
+interface BubbleTypeType {
+  type: BubbleType
 }
 
-type BubbleUIProps =
-  | (BubbleUIProp<'blinded'> & BlindedBubbleProp)
-  | (BubbleUIProp<'text'> & TextBubbleProp)
-  | (BubbleUIProp<'images'> & ImageBubbleProp)
-  | (BubbleUIProp<'rich'> & RichBubbleProp)
-  | (BubbleUIProp<'product'> & ProductBubbleProp)
+interface TextBubbleUIProp extends BubbleTypeType {
+  type: 'text'
+  value: Pick<TextBubbleProp, 'message'>
+}
 
-export default function BubbleUI({ ...bubble }: BubbleUIProps) {
-  switch (bubble.type) {
-    case 'blinded':
-      return <BlindedBubble {...bubble} />
+interface ImageBubbleUIProp extends BubbleTypeType {
+  type: 'images'
+  value: Pick<ImageBubbleProp, 'images'>
+}
+
+interface RichBubbleUIProp extends BubbleTypeType {
+  type: 'rich'
+  value: Pick<RichBubbleProp, 'blocks'>
+}
+
+interface ProductBubbleUIProp extends BubbleTypeType {
+  type: 'product'
+  value: Pick<ProductBubbleProp, 'product'>
+}
+
+type BubbleUIProps = (
+  | TextBubbleUIProp
+  | ImageBubbleUIProp
+  | RichBubbleUIProp
+  | ProductBubbleUIProp
+) & {
+  id: string
+  my: boolean
+  blinded?: boolean
+  blindedText?: string
+  onBubbleClick?: BubbleProp['onClick']
+  onImageBubbleClick?: ImageBubbleProp['onClick']
+  onBubbleLongPress?: BubbleProp['onLongPress']
+  onImageBubbleLongPress?: ImageBubbleProp['onLongPress']
+  onRichBubbleBlockClick?: {
+    image?: RichBubbleProp['onImageClick']
+    beforeButtonRouting?: RichBubbleProp['onButtonClickBeforeRouting']
+  }
+  richBubbleStyle?: {
+    textItemStyle?: CSSProp
+    imageItemStyle?: CSSProp
+    buttonITemStyle?: CSSProp
+  }
+  maxWidthOffset?: BubbleProp['maxWidthOffset']
+  cloudinaryName?: string
+  mediaUrlBase?: string
+  hasArrow?: boolean
+  css?: CSSProp
+}
+
+export default function BubbleUI({
+  type,
+  value,
+  id,
+  my,
+  blinded,
+  blindedText,
+  onBubbleClick,
+  onImageBubbleClick,
+  onBubbleLongPress,
+  onImageBubbleLongPress,
+  onRichBubbleBlockClick,
+  richBubbleStyle,
+  maxWidthOffset,
+  cloudinaryName,
+  mediaUrlBase,
+  hasArrow,
+  css,
+}: BubbleUIProps) {
+  if (blinded) {
+    return (
+      <BlindedBubble
+        id={id}
+        my={my}
+        blindedText={blindedText}
+        hasArrow={hasArrow}
+        css={css}
+      />
+    )
+  }
+  switch (type) {
     case 'text':
-      return <TextBubble {...bubble} />
+      return (
+        <TextBubble
+          id={id}
+          my={my}
+          message={value.message}
+          onClick={onBubbleClick}
+          onLongPress={onBubbleLongPress}
+          hasArrow={hasArrow}
+          css={css}
+        />
+      )
     case 'images':
-      return <ImageBubble {...bubble} />
+      return (
+        <ImageBubble
+          images={value.images}
+          onClick={onImageBubbleClick}
+          onLongPress={onImageBubbleLongPress}
+          css={css}
+        />
+      )
     case 'rich':
-      return <RichBubble {...bubble} />
+      if (!cloudinaryName || !mediaUrlBase) {
+        throw new Error('cloudinaryName 또는 mediaUrlBase가 존재하지 않습니다.')
+      }
+      return (
+        <RichBubble
+          id={id}
+          my={my}
+          blocks={value.blocks}
+          cloudinaryName={cloudinaryName}
+          mediaUrlBase={mediaUrlBase}
+          onClick={onBubbleClick}
+          onLongPress={onBubbleLongPress}
+          onImageClick={onRichBubbleBlockClick?.image}
+          onButtonClickBeforeRouting={
+            onRichBubbleBlockClick?.beforeButtonRouting
+          }
+          buttonItemStyle={richBubbleStyle?.buttonITemStyle}
+          imageItemStyle={richBubbleStyle?.imageItemStyle}
+          textItemStyle={richBubbleStyle?.textItemStyle}
+          hasArrow={hasArrow}
+          maxWidthOffset={maxWidthOffset}
+        />
+      )
     case 'product':
-      return <ProductBubble {...bubble} />
+      return (
+        <ProductBubble
+          id={id}
+          my={my}
+          product={value.product}
+          onClick={onBubbleClick}
+          onLongPress={onBubbleLongPress}
+          maxWidthOffset={maxWidthOffset}
+          css={css}
+        />
+      )
     //   case MessageType.DELETED:
     //     return <DeletedBubble />
     default:

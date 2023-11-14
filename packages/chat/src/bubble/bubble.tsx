@@ -59,7 +59,7 @@ export function Bubble({
   )
 
   return (
-    <StyledBubble onClick={(e) => onClick?.(id, e)} {...props} {...bind()}>
+    <StyledBubble onClick={(e) => onClick?.(e, id)} {...props} {...bind()}>
       {children}
     </StyledBubble>
   )
