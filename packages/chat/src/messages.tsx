@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import { BubbleType } from './bubble/bubble-ui'
 
 const BubbleElement: { [key: string]: BubbleType } = {
-  blinded: 'blinded',
   text: 'text',
   images: 'images',
   rich: 'rich',
