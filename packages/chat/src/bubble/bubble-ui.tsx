@@ -11,9 +11,15 @@ import {
   TextBubbleProp,
 } from './type'
 import { ProductBubble } from './product'
-import BlindedBubble from './blinded'
+import AlteredBubble from './altered'
 
 export type BubbleType = 'text' | 'images' | 'rich' | 'product'
+
+const ALTERNATIVE_TEXT_MESSAGE = {
+  blinded: '관리자에 의해 삭제된 메세지입니다.',
+  deleted: '삭제된 메세지입니다.',
+  unfriended: '차단한 사용자의 메세지입니다.',
+}
 
 interface BubbleUIPropBase {
   type: BubbleType
@@ -48,7 +54,9 @@ type BubbleUIProps = (
   id: string
   my: boolean
   blinded?: boolean
-  blindedText?: string
+  deleted?: boolean
+  unfriended?: boolean
+  alternativeText?: string
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
@@ -75,7 +83,9 @@ export default function BubbleUI({
   id,
   my,
   blinded,
-  blindedText,
+  deleted,
+  unfriended,
+  alternativeText,
   onBubbleClick,
   onImageBubbleClick,
   onBubbleLongPress,
@@ -88,12 +98,18 @@ export default function BubbleUI({
   hasArrow,
   css,
 }: BubbleUIProps) {
-  if (blinded) {
+  if (blinded || deleted || unfriended) {
     return (
-      <BlindedBubble
+      <AlteredBubble
         id={id}
         my={my}
-        blindedText={blindedText}
+        alternativeText={
+          alternativeText || unfriended
+            ? ALTERNATIVE_TEXT_MESSAGE.unfriended
+            : blinded
+            ? ALTERNATIVE_TEXT_MESSAGE.blinded
+            : ALTERNATIVE_TEXT_MESSAGE.deleted
+        }
         hasArrow={hasArrow}
         css={css}
       />
