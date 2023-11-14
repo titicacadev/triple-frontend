@@ -15,26 +15,26 @@ import BlindedBubble from './blinded'
 
 type BubbleType = 'blinded' | 'text' | 'images' | 'rich' | 'product'
 
-interface BubbleTypeType {
+interface BubbleUIPropBase {
   type: BubbleType
 }
 
-interface TextBubbleUIProp extends BubbleTypeType {
+interface TextBubbleUIProp extends BubbleUIPropBase {
   type: 'text'
   value: Pick<TextBubbleProp, 'message'>
 }
 
-interface ImageBubbleUIProp extends BubbleTypeType {
+interface ImageBubbleUIProp extends BubbleUIPropBase {
   type: 'images'
   value: Pick<ImageBubbleProp, 'images'>
 }
 
-interface RichBubbleUIProp extends BubbleTypeType {
+interface RichBubbleUIProp extends BubbleUIPropBase {
   type: 'rich'
   value: Pick<RichBubbleProp, 'blocks'>
 }
 
-interface ProductBubbleUIProp extends BubbleTypeType {
+interface ProductBubbleUIProp extends BubbleUIPropBase {
   type: 'product'
   value: Pick<ProductBubbleProp, 'product'>
 }
