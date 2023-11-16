@@ -7,18 +7,10 @@ import {
   useRef,
   useState,
   useContext,
-  PropsWithChildren,
+  ReactNode,
 } from 'react'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from './constants'
-
-export interface ScrollContextProps {
-  /**
-    메세지로 스크롤을 하기 위한 id의 prefix입니다.
-    메세지 노드에 messageIdPrefix를 넣은 id를 추가해야 합니다. 
-  */
-  messageIdPrefix?: string
-}
 
 export interface ScrollOptions {
   /** 최하단으로 이동하기 위해 페이지네이션 fetching이 필요할 경우 true로 설정해주세요. */
@@ -51,10 +43,7 @@ export interface ScrollContextValue {
 
 export const ScrollContext = createContext<ScrollContextValue | null>(null)
 
-export function ScrollProvider({
-  messageIdPrefix = DEFAULT_MESSAGE_ID_PREFIX,
-  children,
-}: PropsWithChildren<ScrollContextProps>) {
+export function ScrollProvider({ children }: { children: ReactNode }) {
   const chatContainerRef = useRef<HTMLDivElement | null>(null)
   const scrollContainerRef = useRef<HTMLDivElement | null>(null)
   const bottomRef = useRef<HTMLDivElement | null>(null)
@@ -80,7 +69,7 @@ export function ScrollProvider({
     options: Pick<ScrollOptions, 'handleNonExistentMessage'> = {},
   ) => {
     const messageElement = document.getElementById(
-      `${messageIdPrefix}-${messageId}`,
+      `${DEFAULT_MESSAGE_ID_PREFIX}-${messageId}`,
     )
 
     if (messageElement) {
