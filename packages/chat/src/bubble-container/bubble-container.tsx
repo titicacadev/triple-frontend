@@ -1,6 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { Container } from '@titicaca/core-elements'
 
+import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
+
 import { BubbleInfo } from './bubble-info'
 import {
   DeleteButton,
@@ -19,6 +21,7 @@ const CHAT_CONTAINER_STYLES = {
 } as const
 
 type SentBubbleContainerProp = PropsWithChildren<{
+  id: string
   /** 메시지 생성 시간 */
   createdAt?: string // Date?
   /** 전송 실패한 메시지 재전송 시도 함수 */
@@ -36,6 +39,7 @@ type SentBubbleContainerProp = PropsWithChildren<{
 }>
 
 function SentBubbleContainer({
+  id,
   createdAt,
   onRetry,
   onRetryCancel,
@@ -46,7 +50,10 @@ function SentBubbleContainer({
   children,
 }: SentBubbleContainerProp) {
   return (
-    <Container css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}>
+    <Container
+      id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
+      css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
+    >
       {!createdAt ? (
         <SendingFailureHandlerContainer>
           <RetryButton onClick={onRetry} />
@@ -65,6 +72,7 @@ function SentBubbleContainer({
 }
 
 type ReceivedBubbleContainerProp = PropsWithChildren<{
+  id: string
   /** 메시지 생성 시간 */
   createdAt?: string // Date?
   /** 메시지 발신인 정보 */
@@ -85,6 +93,7 @@ type ReceivedBubbleContainerProp = PropsWithChildren<{
 }>
 
 function ReceivedBubbleContainer({
+  id,
   profile,
   unreadCount,
   createdAt,
@@ -94,7 +103,10 @@ function ReceivedBubbleContainer({
   children,
 }: ReceivedBubbleContainerProp) {
   return (
-    <Container css={{ ...CHAT_CONTAINER_STYLES }}>
+    <Container
+      id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
+      css={{ ...CHAT_CONTAINER_STYLES }}
+    >
       <ProfileImage src={profile?.thumbnailUrl} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
