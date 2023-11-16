@@ -51,7 +51,7 @@ export interface ScrollContextValue {
 
 export const ScrollContext = createContext<ScrollContextValue | null>(null)
 
-export default function ScrollProvider({
+export function ScrollProvider({
   messageIdPrefix = DEFAULT_MESSAGE_ID_PREFIX,
   children,
 }: PropsWithChildren<ScrollContextProps>) {
