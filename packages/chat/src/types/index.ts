@@ -14,6 +14,7 @@ export type MessageType =
   | 'BUTTON'
   | 'RICH'
   | 'PRODUCT'
+
 export enum RoomType {
   DEFAULT = 'default', // 기존 파트너센터 챗
   EVENT = 'event', // 행사용 그룹 챗
@@ -61,11 +62,18 @@ export interface RoomInterface {
 export type DisplayTargetAll = 'all'
 
 export type ReactionType = 'thanks'
+
+export type MessagePayload =
+  | RichItemText
+  | RichItemImages
+  | RichPayload
+  | ProductPayload
+
 export interface MessageInterface {
   id: number
   roomId: string
   senderId: string
-  payload: RichItemText | RichItemImages | RichPayload | ProductPayload
+  payload: MessagePayload
   createdAt?: string
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: RichItemText | RichItemImages | RichPayload
