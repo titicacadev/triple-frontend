@@ -1,1 +1,1 @@
-export { default } from './bubble-container'
+export { default as BubbleContainer } from './bubble-container'
