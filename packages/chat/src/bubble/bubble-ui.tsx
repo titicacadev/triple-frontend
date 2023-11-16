@@ -25,27 +25,27 @@ interface BubbleUIPropBase {
   type: BubbleType
 }
 
-interface TextBubbleUIProp extends BubbleUIPropBase {
+export interface TextBubbleUIProp extends BubbleUIPropBase {
   type: 'text'
   value: Pick<TextBubbleProp, 'message'>
 }
 
-interface ImageBubbleUIProp extends BubbleUIPropBase {
+export interface ImageBubbleUIProp extends BubbleUIPropBase {
   type: 'images'
   value: Pick<ImageBubbleProp, 'images'>
 }
 
-interface RichBubbleUIProp extends BubbleUIPropBase {
+export interface RichBubbleUIProp extends BubbleUIPropBase {
   type: 'rich'
   value: Pick<RichBubbleProp, 'blocks'>
 }
 
-interface ProductBubbleUIProp extends BubbleUIPropBase {
+export interface ProductBubbleUIProp extends BubbleUIPropBase {
   type: 'product'
   value: Pick<ProductBubbleProp, 'product'>
 }
 
-type BubbleUIProps = (
+export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
