@@ -1,44 +1,44 @@
-import { ReactNode } from 'react'
+import BubbleUI, {
+  ImageBubbleUIProp,
+  ProductBubbleUIProp,
+  RichBubbleUIProp,
+  TextBubbleUIProp,
+} from './bubble/bubble-ui'
+import { UserInterface } from './types'
 
-import { BubbleType } from './bubble/bubble-ui'
-
-const BubbleElement: { [key: string]: BubbleType } = {
-  text: 'text',
-  images: 'images',
-  rich: 'rich',
-  product: 'product',
-}
-
-interface MessageInterface<
-  MessageId = string,
-  MessageType extends BubbleType = BubbleType,
-> {
+type MessageInterface<MessageId = string, T = Record<string, never>> = {
   id: MessageId
-  type: MessageType
   key?: string
-}
+  sender: UserInterface
+  blinded?: boolean
+  deleted?: boolean
+  unfriended?: boolean
+} & (
+  | TextBubbleUIProp
+  | ImageBubbleUIProp
+  | RichBubbleUIProp
+  | ProductBubbleUIProp
+) &
+  T
 
 interface MessagesProp<
-  MessageId = string,
-  MessageType extends BubbleType = BubbleType,
+  MessageId extends string | number = string,
+  T = Record<string, never>,
 > {
-  messages: MessageInterface<MessageId, MessageType>[]
-  failedMessages: MessageInterface<MessageId, MessageType>[]
-  customBubble?: { [type: string]: ReactNode }
-  onRetry: () => void
-  onRetryCancel: () => void
+  messages: MessageInterface<MessageId, T>[]
+  failedMessages: MessageInterface<MessageId>[]
+  me: UserInterface
+  onRetry?: () => void
+  onRetryCancel?: () => void
 }
 
-export default function Messages({ messages, customBubble }: MessagesProp) {
-  return messages.map((message, idx) => {
-    const Bubble = BubbleElement[message.type]
-    const CustomBubble = customBubble?.[message.type]
-    const Element = Bubble || CustomBubble
+export default function Messages<MessageId extends string | number = string>({
+  messages,
+  me,
+}: MessagesProp<MessageId>) {
+  return messages.map(({ id, sender, ...message }) => {
+    const my = sender.id === me.id
 
-    if (!Element) {
-      throw new Error(`${message.type}에 일치하는 Bubble이 존재하지 않습니다.`)
-    }
-
-    return <div key={idx}>메시지</div>
+    return <BubbleUI key={id} id={id.toString()} my={my} {...message} />
   })
 }
