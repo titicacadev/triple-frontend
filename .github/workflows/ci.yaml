@@ -144,13 +144,9 @@ jobs:
 
       - run: pnpm install
 
-      - name: Get number of CPU cores
-        id: cpu-cores
-        uses: SimenB/github-actions-cpu-cores@v1
-
       - name: Generate coverage report
         id: test
-        run: pnpm run test:coverage -- --ci --reporters github-actions --reporters summary --maxWorkers ${{ steps.cpu-cores.outputs.count }}
+        run: pnpm run test:coverage -- --ci --reporters github-actions --reporters summary --maxWorkers 2
 
       - name: Notify testing failure
         if: failure() && steps.test.outcome == 'failure'
