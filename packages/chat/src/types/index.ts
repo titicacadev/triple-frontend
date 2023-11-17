@@ -81,16 +81,17 @@ export interface MessageInterface {
 
 export interface UserInterface {
   id: string
-  type: UserType
-  code: string
+  // type: UserType
+  // code: string
   profile: ProfileInterface
-  identifier: string
+  unregistered?: boolean
+  unfriended?: boolean
+  // identifier: string
 }
 
 export interface ProfileInterface {
   name: string
-  thumbnail: string
-  message: string
+  photo: string
 }
 
 export interface UserAgentProps {
