@@ -70,10 +70,10 @@ type ReceivedBubbleContainerProp = PropsWithChildren<{
   createdAt?: string // Date?
   /** 메시지 발신인 정보 */
   profile?: {
-    thumbnailUrl?: string
+    photo?: string
     name: string
     userId: string
-    unregister?: boolean
+    unregistered?: boolean
   }
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
@@ -94,7 +94,7 @@ function ReceivedBubbleContainer({
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
     >
-      <ProfileImage src={profile?.thumbnailUrl} />
+      <ProfileImage src={profile?.photo} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
           {profile?.name || ''}
