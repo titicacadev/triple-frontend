@@ -29,7 +29,7 @@ export function Navbar({
         top: 0,
         left: 0,
         right: 0,
-        height: 52,
+        height: 44,
         padding: '0 16px',
         backgroundColor: 'var(--color-kint5-gray0)',
         ...containerCss,
