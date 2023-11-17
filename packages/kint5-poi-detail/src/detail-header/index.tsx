@@ -87,7 +87,14 @@ function DetailHeader({
         <TextTitle>
           {names.primary || names.en || names.local || names.ko}
         </TextTitle>
-        <Text size="tiny" alpha={0.5}>
+        <Text
+          css={{
+            fontSize: 14,
+            fontWeight: 400,
+            color: 'var(--color-kint5-gray60)',
+            marginTop: 4,
+          }}
+        >
           {names.local || names.en}
         </Text>
 
