@@ -1,8 +1,8 @@
 import { BaseIconProps } from './type'
 
 export function SearchIcon({
-  width = 16,
-  height = 16,
+  width = 24,
+  height = 24,
   color = '#000',
 }: BaseIconProps) {
   return (
