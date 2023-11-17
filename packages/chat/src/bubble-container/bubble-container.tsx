@@ -19,19 +19,24 @@ const CHAT_CONTAINER_STYLES = {
   width: '100%',
 } as const
 
-type SentBubbleContainerProp = PropsWithChildren<{
+interface ContainerBaseProp {
   id: string
   /** 메시지 생성 시간 */
   createdAt?: string // Date?
-  /** 전송 실패한 메시지 재전송 시도 함수 */
-  onRetry?: () => void
-  /** 전송 실패한 메시지 삭제 함수 */
-  onRetryCancel?: () => void
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
   /** 시간 정보 등의 정보의 노출 여부 */
   showInfo?: boolean
-}>
+}
+
+type SentBubbleContainerProp = PropsWithChildren<
+  ContainerBaseProp & {
+    /** 전송 실패한 메시지 재전송 시도 함수 */
+    onRetry?: () => void
+    /** 전송 실패한 메시지 삭제 함수 */
+    onRetryCancel?: () => void
+  }
+>
 
 function SentBubbleContainer({
   id,
@@ -64,26 +69,21 @@ function SentBubbleContainer({
   )
 }
 
-type ReceivedBubbleContainerProp = PropsWithChildren<{
-  id: string
-  /** 메시지 생성 시간 */
-  createdAt?: string // Date?
-  /** 메시지 발신인 정보 */
-  profile?: {
-    photo?: string
-    name: string
-    userId: string
-    unregistered?: boolean
+type ReceivedBubbleContainerProp = PropsWithChildren<
+  ContainerBaseProp & {
+    /** 메시지 발신인 정보 */
+    user?: {
+      photo?: string
+      name: string
+      userId: string
+      unregistered?: boolean
+    }
   }
-  /** 해당 메시지를 읽지 않은 유저의 수 */
-  unreadCount: number | null
-  /** 시간 정보 등의 정보의 노출 여부 */
-  showInfo?: boolean
-}>
+>
 
 function ReceivedBubbleContainer({
   id,
-  profile,
+  user,
   unreadCount,
   createdAt,
   showInfo,
@@ -94,10 +94,10 @@ function ReceivedBubbleContainer({
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
     >
-      <ProfileImage src={profile?.photo} />
+      <ProfileImage src={user?.photo} />
       <Container css={{ marginLeft: 50 }}>
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
-          {profile?.name || ''}
+          {user?.name || ''}
         </ProfileName>
         {children}
         {createdAt && showInfo ? (
@@ -112,9 +112,8 @@ function ReceivedBubbleContainer({
   )
 }
 
-export type BubbleContainerProp =
-  | ({ my: true } & SentBubbleContainerProp)
-  | ({ my: false } & ReceivedBubbleContainerProp)
+export type BubbleContainerProp = { my: boolean } & SentBubbleContainerProp &
+  ReceivedBubbleContainerProp
 
 export default function BubbleContainer({
   my,
