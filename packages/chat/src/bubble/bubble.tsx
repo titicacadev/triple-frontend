@@ -5,11 +5,6 @@ import { useLongPress } from 'use-long-press'
 
 import { BubbleCSSProp, BubbleProp } from './type'
 
-const BACKGROUND_COLORS: { [key: string]: string } = {
-  mint: '#00BB92',
-  white: '#ffffff',
-}
-
 const StyledBubble = styled(Text).attrs({
   textAlign: 'left',
   inlineBlock: true,
@@ -34,7 +29,7 @@ const StyledBubble = styled(Text).attrs({
   ${({ maxWidthOffset }) =>
     `max-width: calc(100% - ${maxWidthOffset || 100}px);`}
   ${({ my, hasArrow = true }) => css`
-    background-color: ${BACKGROUND_COLORS[my ? 'mint' : 'white']};
+    background-color: ${my ? '#00BB92' : 'rgb(246,246,246)'};
     ${my && 'color:  var(--color-white);'}
     ${hasArrow &&
     (my ? 'border-top-right-radius: 4px;' : 'border-top-left-radius: 4px;')};
