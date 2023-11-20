@@ -133,7 +133,7 @@ export function PublicHeader({
         <ExtraActionsContainer>
           {children}
           <ExtraActionItem href={linkHref} onClick={onClick}>
-            {linkLabel ?? t(['nae-yeyag', '내 예약'])}
+            {linkLabel ?? t('내 예약')}
           </ExtraActionItem>
           {deeplinkPath && (
             <PublicHeaderDeeplink

@@ -1,4 +1,4 @@
-import { getTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 import type { Category } from './types'
 
@@ -16,37 +16,33 @@ export function getCategoryHref(category?: Category) {
 }
 
 export function getCategoryTitle(category?: Category) {
-  const t = getTranslation('common-web')
-
   switch (category) {
     case 'air':
-      return t(['triple-hanggong-hom', 'Triple 항공 홈'])
+      return t('Triple 항공 홈', { ns: 'triple-frontend' })
     case 'hotels':
-      return t(['triple-sugso-hom', 'Triple 숙소 홈'])
+      return t('Triple 숙소 홈', { ns: 'triple-frontend' })
     case 'tna':
-      return t(['triple-tueo-tikes-hom', 'Triple 투어 티켓 홈'])
+      return t('Triple 투어 티켓 홈', { ns: 'triple-frontend' })
     default:
-      return t(['triple-hom', 'Triple 홈'])
+      return t('Triple 홈', { ns: 'triple-frontend' })
   }
 }
 
 export function getCategoryImageProps(category?: Category) {
-  const t = getTranslation('common-web')
-
   switch (category) {
     case 'air':
       return {
-        alt: t(['hanggong', '항공']),
+        alt: t('항공', { ns: 'triple-frontend' }),
         src: 'https://assets.triple.guide/images/img_intro_logo_air.svg',
       }
     case 'hotels':
       return {
-        alt: t(['sugso', '숙소']),
+        alt: t('숙소', { ns: 'triple-frontend' }),
         src: 'https://assets.triple.guide/images/img_intro_logo_hotels.svg',
       }
     case 'tna':
       return {
-        alt: t(['tueo-tikes', '투어 티켓']),
+        alt: t('투어 티켓', { ns: 'triple-frontend' }),
         src: 'https://assets.triple.guide/images/img_intro_logo_tna.svg',
       }
     default:

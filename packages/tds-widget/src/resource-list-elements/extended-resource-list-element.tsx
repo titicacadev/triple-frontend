@@ -145,7 +145,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                   padding: '1px 2px',
                 }}
               >
-                {t(['gwanggo', '광고'])}
+                {t('광고')}
               </Text>
             ) : null}
           </FlexBox>

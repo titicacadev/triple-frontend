@@ -78,14 +78,12 @@ function Actions({
             icon={scraped ? 'saveFilled' : 'saveEmpty'}
             onClick={onScrapedChange}
           >
-            {scraped
-              ? t(['jeojangcwiso', '저장취소'])
-              : t(['jeojanghagi', '저장하기'])}
+            {scraped ? t('저장취소') : t('저장하기')}
           </ActionButton>
         ) : null}
         {onScheduleAdd ? (
           <ActionButton icon="schedule" onClick={onScheduleAdd}>
-            {t(['iljeongcuga', '일정추가'])}
+            {t('일정추가')}
           </ActionButton>
         ) : null}
         <ActionButton
@@ -105,12 +103,10 @@ function Actions({
               positioning={{ top: -26 }}
             />
           ) : null}
-          {reviewed
-            ? t(['ribyusujeong', '리뷰수정'])
-            : t(['ribyusseugi', '리뷰쓰기'])}
+          {reviewed ? t('리뷰수정') : t('리뷰쓰기')}
         </ActionButton>
         <ActionButton icon="share" onClick={onContentShare}>
-          {t(['gongyuhagi', '공유하기'])}
+          {t('공유하기')}
         </ActionButton>
       </ButtonGroup>
       {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}

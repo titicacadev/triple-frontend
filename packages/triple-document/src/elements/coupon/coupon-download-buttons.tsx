@@ -201,7 +201,7 @@ export function CouponDownloadButton({
         disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
-        {t(['kupon-badgi', '쿠폰 받기'])}
+        {t('쿠폰 받기')}
       </BaseCouponDownloadButton>
       <CouponAlertModal identifier={slugId} errorMessage={errorMessage} />
     </>
@@ -374,7 +374,7 @@ export function CouponGroupDownloadButton({
         disabled={buttonDisabled}
         onClick={handleCouponDownloadButtonClick}
       >
-        {t(['kupon-badgi', '쿠폰 받기'])}
+        {t('쿠폰 받기')}
       </BaseCouponDownloadButton>
       <CouponAlertModal identifier={groupId} errorMessage={errorMessage} />
     </>

@@ -38,7 +38,7 @@ export const FullListButton = ({
   sortingType,
   sortingOption,
 }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('triple-frontend')
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
 
@@ -100,13 +100,9 @@ export const FullListButton = ({
       }}
       onClick={handleClick}
     >
-      {t(
-        [
-          'numofrestreviews-gae-ribyu-deobogi',
-          '{{numOfRestReviews}}개 리뷰 더보기',
-        ],
-        { numOfRestReviews: restReviewsCount },
-      )}
+      {t('{{numOfRestReviews}}개 리뷰 더보기', {
+        numOfRestReviews: restReviewsCount,
+      })}
     </Button>
   )
 }

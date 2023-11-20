@@ -9,13 +9,6 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-jest.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-  getTranslation: () => (key: string) => key,
-}))
-
 it('renders nothing inside triple client', () => {
   ;(
     useTripleClientMetadata as jest.MockedFunction<

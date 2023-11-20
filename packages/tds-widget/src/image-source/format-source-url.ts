@@ -1,10 +1,9 @@
-import { getTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 export default function formatSourceUrl(url: string) {
-  const t = getTranslation('common-web')
-
   const httpsSchemeRemovedUrl = url.replace(/^https?:\/\//, '')
-  return t(['culceo-httpsschemeremovedurl', '출처 {{httpsSchemeRemovedUrl}}'], {
+  return t('출처 {{httpsSchemeRemovedUrl}}', {
+    ns: 'triple-frontend',
     httpsSchemeRemovedUrl,
   })
 }

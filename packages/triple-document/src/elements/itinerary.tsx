@@ -277,7 +277,7 @@ export default function ItineraryElement({ value }: Props) {
           >
             <Download />
             <Text inline size={14} margin={{ left: 3 }} color="white">
-              {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
+              {t('내 일정으로 담기')}
             </Text>
           </SaveToItineraryButton>
         )}
