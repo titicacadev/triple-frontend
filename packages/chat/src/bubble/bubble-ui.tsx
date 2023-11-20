@@ -12,16 +12,11 @@ import {
 } from './type'
 import { ProductBubble } from './product'
 import AlteredBubble from './altered'
+import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 
 export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
 
 export type BubbleType = (typeof BubbleTypeArray)[number]
-
-const ALTERNATIVE_TEXT_MESSAGE = {
-  blinded: '관리자에 의해 삭제된 메세지입니다.',
-  deleted: '삭제된 메세지입니다.',
-  unfriended: '차단한 사용자의 메세지입니다.',
-}
 
 interface BubbleUIPropBase {
   type: BubbleType
