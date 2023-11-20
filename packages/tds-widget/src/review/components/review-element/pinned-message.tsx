@@ -1,7 +1,7 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import moment from 'moment'
 import { Button, FlexBox, Text } from '@titicaca/tds-ui'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { BasePinnedMessageFragment } from '../../data/graphql'
 
@@ -14,7 +14,7 @@ export function PinnedMessage({
   pinnedMessage,
   onPinnedMessageClick,
 }: PinnedMessageProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
   const textRef = useRef<HTMLDivElement>(null)
   const [isTextClamped, setIsTextClamped] = useState(false)
 

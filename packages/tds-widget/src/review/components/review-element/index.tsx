@@ -1,7 +1,7 @@
 import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -110,7 +110,7 @@ export function ReviewElement({
   regionId,
   onMenuClick,
 }: ReviewElementProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
@@ -467,7 +467,7 @@ function RecentReviewInfo({
   visitDate?: string | null
   recentTrip: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const startDate = moment('2000-01')
   const endDate = moment().subtract(180, 'days').format('YYYY-MM')

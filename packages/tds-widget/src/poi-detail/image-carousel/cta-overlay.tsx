@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 
 const MoreImageOverlayLink = styled.a`
   display: block;
@@ -21,7 +21,7 @@ const MoreImageOverlayLinkIcon = styled.img`
 `
 
 export default function CtaOverlay() {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <MoreImageOverlayLink>

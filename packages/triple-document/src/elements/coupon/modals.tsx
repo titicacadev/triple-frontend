@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Text, Modal, Alert } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
@@ -40,7 +40,7 @@ const CouponIcon = styled.img`
 `
 
 export function CouponModal({ identifier }: { identifier: string }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
@@ -165,7 +165,7 @@ export function CouponAlertModal({
   identifier: string
   errorMessage?: string
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()

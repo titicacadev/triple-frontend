@@ -1,6 +1,6 @@
 import { Container, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 
 const StyledContainer = styled(Container)`
   margin-top: 4px;
@@ -18,7 +18,7 @@ export function PricePolicyCouponInfo({
   hasAmountAfterUsingCouponPrice?: boolean | 0
   displayPricePolicy?: string
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <StyledContainer {...props}>
