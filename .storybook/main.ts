@@ -13,6 +13,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
+    'storybook-react-i18next',
   ],
   typescript: {
     reactDocgenTypescriptOptions: {
