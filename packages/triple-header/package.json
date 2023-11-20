@@ -47,8 +47,6 @@
     "framer-motion": "^7.10.3"
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "^13.8.5",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "next": "^13.4.13",
@@ -56,8 +54,6 @@
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "@titicaca/react-triple-client-interfaces": "*",
     "next": "^13.0",
