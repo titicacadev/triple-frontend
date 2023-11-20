@@ -47,19 +47,17 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.9",
-    "next": "^13.4.13",
+    "i18next": "^23.7.6",
     "react": "^18.2.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "*",
     "@titicaca/react-triple-client-interfaces": "*",
-    "next": "^13.0",
+    "i18next": "*",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
