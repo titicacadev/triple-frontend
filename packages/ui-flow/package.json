@@ -50,7 +50,6 @@
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.9",
