@@ -1,5 +1,5 @@
-import { getTranslation } from 'react-i18next'
 import { formatNumber } from '@titicaca/view-utilities'
+import { t } from 'i18next'
 
 import { TnaCoupon } from './types'
 
@@ -10,8 +10,6 @@ export function generateCoupon({
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
 }) {
-  const t = getTranslation('common-web')
-
   const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
     applicableCoupon || {}
 
@@ -26,15 +24,10 @@ export function generateCoupon({
   )
   const displayPricePolicy =
     applicableCoupon &&
-    t(
-      [
-        'formattedapplicableamountafterusingcoupon-weon',
-        '{{formattedApplicableAmountAfterUsingCoupon}}원',
-      ],
-      {
-        formattedApplicableAmountAfterUsingCoupon,
-      },
-    )
+    t('{{formattedApplicableAmountAfterUsingCoupon}}원', {
+      formattedApplicableAmountAfterUsingCoupon,
+      ns: 'triple-frontend',
+    })
 
   return {
     hasCoupon,

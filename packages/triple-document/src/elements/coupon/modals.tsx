@@ -49,53 +49,32 @@ export function CouponModal({ identifier }: { identifier: string }) {
   const modalHash = uriHash.replace(`${identifier}.`, '')
 
   const titleTypes: HashKeyValue = {
-    [HASH_ALREADY_DOWNLOAD_COUPON]: t([
-      'imi-badeun-kuponibnida.',
-      '이미 받은 쿠폰입니다.',
-    ]),
-    [HASH_COMPLETE_DOWNLOAD_COUPON]: t([
-      'kupon-badgi-wanryo',
-      '쿠폰 받기 완료',
-    ]),
-    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t([
-      'kupon-badgi-wanryo',
-      '쿠폰 받기 완료',
-    ]),
-    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t([
-      'kupon-badgi-wanryo',
-      '쿠폰 받기 완료',
-    ]),
+    [HASH_ALREADY_DOWNLOAD_COUPON]: t('이미 받은 쿠폰입니다.'),
+    [HASH_COMPLETE_DOWNLOAD_COUPON]: t('쿠폰 받기 완료'),
+    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t('쿠폰 받기 완료'),
+    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t('쿠폰 받기 완료'),
   }
 
   const messageTypes: HashKeyValue = {
-    [HASH_COMPLETE_DOWNLOAD_COUPON]: t([
-      'kuponeul-badassseubnida-kuponhameseo-hwaginhal-su-isseoyo~',
-      '쿠폰을 받았습니다!\n쿠폰함에서 확인할 수 있어요~!',
-    ]),
+    [HASH_COMPLETE_DOWNLOAD_COUPON]: t(
+      '쿠폰을 받았습니다! 쿠폰함에서 확인할 수 있어요~!',
+    ),
 
-    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t([
-      'kuponeul-modu-badassseubnida.-kuponhameseo-hwaginhal-su-isseoyo~',
-      '쿠폰을 모두 받았습니다.\n쿠폰함에서 확인할 수 있어요~!',
-    ]),
+    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t(
+      '쿠폰을 모두 받았습니다. 쿠폰함에서 확인할 수 있어요~!',
+    ),
 
-    [HASH_ALREADY_DOWNLOAD_COUPON]: t([
-      'kuponhameseo-kuponeul-hwaginhaseyo.',
-      '쿠폰함에서 쿠폰을 확인하세요.',
-    ]),
-    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t([
-      'kuponeul-modu-badassseubnida.-imi-badeun-kupon-jeoe-kuponhameseo-hwaginhal-su-isseoyo~',
-      '쿠폰을 모두 받았습니다.\n(이미 받은 쿠폰 제외)\n쿠폰함에서 확인할 수 있어요~!',
-    ]),
+    [HASH_ALREADY_DOWNLOAD_COUPON]: t('쿠폰함에서 쿠폰을 확인하세요.'),
+    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t(
+      '쿠폰을 모두 받았습니다. (이미 받은 쿠폰 제외) 쿠폰함에서 확인할 수 있어요~!',
+    ),
   }
 
   const confirmMessageTypes: HashKeyValue = {
-    [HASH_ALREADY_DOWNLOAD_COUPON]: t(['kuponham-gagi', '쿠폰함 가기']),
-    [HASH_COMPLETE_DOWNLOAD_COUPON]: t(['kupon-hwagin', '쿠폰 확인']),
-    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t(['kupon-hwagin', '쿠폰 확인']),
-    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t([
-      'kupon-hwagin',
-      '쿠폰 확인',
-    ]),
+    [HASH_ALREADY_DOWNLOAD_COUPON]: t('쿠폰함 가기'),
+    [HASH_COMPLETE_DOWNLOAD_COUPON]: t('쿠폰 확인'),
+    [HASH_COMPLETE_DOWNLOAD_COUPON_GROUP]: t('쿠폰 확인'),
+    [HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP]: t('쿠폰 확인'),
   }
 
   return (
@@ -138,7 +117,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
 
       <Modal.Actions>
         <Modal.Action color="gray" onClick={back}>
-          {t(['cwiso', '취소'])}
+          {t('취소')}
         </Modal.Action>
         <Modal.Action
           color="blue"
@@ -172,7 +151,7 @@ export function CouponAlertModal({
 
   return (
     <Alert
-      title={t(['kupon-daunrodeu-annae', '쿠폰 다운로드 안내'])}
+      title={t('쿠폰 다운로드 안내')}
       open={uriHash === `${identifier}.${HASH_ERROR_COUPON}`}
       onConfirm={back}
     >

@@ -51,7 +51,7 @@ export function LocationProperties({
 
     addressValue &&
       allValues.set('addresses', {
-        title: t(['juso', '주소']),
+        title: t('주소'),
         value: addressValue,
         onClick: onAddressesClick,
         eventActionFragment: '기본정보_주소',
@@ -59,7 +59,7 @@ export function LocationProperties({
 
     phoneNumber &&
       allValues.set('phoneNumber', {
-        title: t(['jeonhwa', '전화']),
+        title: t('전화'),
         value: phoneNumber,
         onClick: onPhoneNumberClick,
         eventActionFragment: '기본정보_전화번호',
@@ -67,7 +67,7 @@ export function LocationProperties({
 
     officialSiteUrl &&
       allValues.set('officialSiteUrl', {
-        title: t(['hompeiji', '홈페이지']),
+        title: t('홈페이지'),
         value: officialSiteUrl,
         singleLine: true,
         onClick: onOfficialSiteUrlClick,
@@ -115,14 +115,11 @@ export function LocationProperties({
         </List>
       </Segment>
       <ActionSheet
-        title={t(['bogsahagi', '복사하기'])}
+        title={t('복사하기')}
         open={isActionSheetOpen}
         onClose={back}
       >
-        <ActionSheetItem
-          buttonLabel={t(['bogsa', '복사'])}
-          onClick={handleClick}
-        >
+        <ActionSheetItem buttonLabel={t('복사')} onClick={handleClick}>
           {value}
         </ActionSheetItem>
       </ActionSheet>

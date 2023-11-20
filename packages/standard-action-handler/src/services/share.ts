@@ -1,8 +1,8 @@
-import { getTranslation } from 'react-i18next'
 import {
   hasAccessibleTripleNativeClients,
   shareLink,
 } from '@titicaca/triple-web-to-native-interfaces'
+import { t } from 'i18next'
 
 import { createClipboardCopier } from './copy'
 
@@ -55,7 +55,6 @@ function copyUrlToClipboard({
 }
 
 function shareNativeInterface({ params }: { params: SharingParams }) {
-  const t = getTranslation('common-web')
   const { title, description, image, webUrl, appUrl } = params
 
   return shareLink({
@@ -65,11 +64,11 @@ function shareNativeInterface({ params }: { params: SharingParams }) {
     imageUrl: image || DEFAULT_IMAGE,
     buttons: [
       {
-        title: t(['webeseo-bogi', '웹에서 보기']),
+        title: t('웹에서 보기', { ns: 'triple-frontend' }),
         webUrl: webUrl as string,
       },
       {
-        title: t(['teuripeuleseo-bogi', '트리플에서 보기']),
+        title: t('트리플에서 보기', { ns: 'triple-frontend' }),
         webUrl: webUrl as string,
         appUrl,
       },

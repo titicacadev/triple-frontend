@@ -69,11 +69,11 @@ export function MyReviewActionSheet({
       >
         {!reviewBlinded ? (
           <ActionSheetItem icon="review" onClick={handleEditReview}>
-            {t(['sujeonghagi', '수정하기'])}
+            {t('수정하기')}
           </ActionSheetItem>
         ) : null}
         <ActionSheetItem icon="delete" onClick={handleDeleteMenuClick}>
-          {t(['sagjehagi', '삭제하기'])}
+          {t('삭제하기')}
         </ActionSheetItem>
       </ActionSheet>
 
@@ -82,10 +82,7 @@ export function MyReviewActionSheet({
         onClose={back}
         onConfirm={handleDeleteReview}
       >
-        {t([
-          'sagjehagessseubnigga-sagjehamyeon-jeogribdoen-ribyu-pointeudo-hamgge-sarajibnida.',
-          '삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.',
-        ])}
+        {t('삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.')}
       </Confirm>
     </>
   )

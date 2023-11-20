@@ -19,10 +19,7 @@ export default function NotExistReplies() {
         }}
       >
         <Text size={14} lineHeight={1.2} color="gray300">
-          {t([
-            'ajig-daesgeuli-eobseoyo.-gajang-meonjeo-daesgeuleul-jagseonghaeboseyo',
-            '아직 댓글이 없어요.\n가장 먼저 댓글을 작성해보세요!',
-          ])}
+          {t('아직 댓글이 없어요. 가장 먼저 댓글을 작성해보세요!')}
         </Text>
       </Container>
 

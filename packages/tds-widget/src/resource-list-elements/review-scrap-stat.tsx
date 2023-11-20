@@ -32,13 +32,7 @@ function ReviewScrapStat({
         stats={[
           reviewsCount ? `(${formatNumber(reviewsCount)})` : null,
           scrapsCount
-            ? t(
-                [
-                  'jeojang-formattedscrapscount',
-                  '저장 {{formattedScrapsCount}}',
-                ],
-                { formattedScrapsCount },
-              )
+            ? t('저장 {{formattedScrapsCount}}', { formattedScrapsCount })
             : null,
         ]}
         inline

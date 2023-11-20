@@ -151,7 +151,7 @@ function ReviewsShortenComponent({
       <FlexBox flex alignItems="center">
         <div>
           <Text bold size="huge" color="gray" alpha={1} inline>
-            {t(['ribyu', '리뷰'])}
+            {t('리뷰')}
           </Text>
           {(reviewsCountData?.reviewsCount ?? 0) > 0 ? (
             <Text bold size="huge" color="blue" alpha={1} inline>

@@ -59,12 +59,12 @@ export function LoginCtaModal() {
   return (
     <Confirm
       open={open}
-      title={t('rogeuini-pilyohabnida.')}
+      title={t('로그인이 필요합니다.')}
       onClose={removeUriHash}
       onCancel={removeUriHash}
       onConfirm={handleConfirm}
     >
-      {t('rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo')}
+      {t('로그인하고 트리플을 더 편하게 이용하세요')}
     </Confirm>
   )
 }

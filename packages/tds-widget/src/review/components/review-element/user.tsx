@@ -58,7 +58,7 @@ export default function User({
           >
             {level && level > 0 ? `LEVEL${level} / ` : null}
             {reviewsCount
-              ? t(['reviewscount-gaeyi-ribyu', '{{reviewsCount}}개의 리뷰'], {
+              ? t('{{reviewsCount}}개의 리뷰', {
                   reviewsCount,
                 })
               : null}

@@ -85,9 +85,7 @@ export function PinnedMessage({
         {text ?? markdownText}
       </Text>
       {isTextClamped ? (
-        <Text css={{ color: 'var(--color-blue)' }}>
-          {t(['deobogi', '더보기'])}
-        </Text>
+        <Text css={{ color: 'var(--color-blue)' }}>{t('더보기')}</Text>
       ) : null}
     </Button>
   )
