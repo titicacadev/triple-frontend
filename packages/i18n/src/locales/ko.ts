@@ -1,4 +1,4 @@
-export const koCommonWeb = {
+export default {
   'aebeseo-bogi': '앱에서 보기',
   dadgi: '닫기',
   teuripeul: '트리플',

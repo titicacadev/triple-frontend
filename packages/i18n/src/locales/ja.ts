@@ -1,4 +1,4 @@
-export const jaCommonWeb = {
+export default {
   'aebeseo-bogi': 'アプリで見る',
   dadgi: '閉じる',
   teuripeul: 'TRIPLE',

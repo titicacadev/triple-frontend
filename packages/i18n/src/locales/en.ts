@@ -1,4 +1,4 @@
-export const enCommonWeb = {
+export default {
   'aebeseo-bogi': 'View in app',
   dadgi: 'Close',
   teuripeul: 'Triple',
