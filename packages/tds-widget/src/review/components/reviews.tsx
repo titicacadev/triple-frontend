@@ -1,6 +1,6 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
-import { Trans } from '@titicaca/next-i18next'
+import { Trans } from 'react-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'

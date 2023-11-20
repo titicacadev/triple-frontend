@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
 
@@ -80,7 +80,7 @@ export function AppBanner({
   zIndex = 1,
   ...props
 }: Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>

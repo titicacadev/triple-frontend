@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Container, Rating } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -14,7 +14,7 @@ function ReviewScrapStat({
   reviewsCount: number | undefined
   scrapsCount: number | undefined
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   if (!reviewsCount && !scrapsCount) {
     return null

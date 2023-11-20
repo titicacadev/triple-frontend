@@ -1,5 +1,5 @@
 import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
@@ -28,7 +28,7 @@ export default function ReplyList({
   onReplyDelete: (response: ReplyType) => void
   onReplyEdit: (response: ReplyType) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     currentMessageId,
@@ -125,7 +125,7 @@ export default function ReplyList({
 }
 
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()

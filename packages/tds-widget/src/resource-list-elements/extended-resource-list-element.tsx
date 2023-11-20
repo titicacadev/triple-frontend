@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
@@ -113,7 +113,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
   optimized,
   ...props
 }: PropsWithChildren<ResourceListElementProps<R>>) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []

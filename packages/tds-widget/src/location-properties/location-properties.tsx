@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Segment, List, ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
@@ -36,7 +36,7 @@ export function LocationProperties({
   onExtraPropertyClick?: (extraProperty: ExtraProperty) => void
   onCopy: (value: string) => void
 } & Parameters<typeof Segment>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()

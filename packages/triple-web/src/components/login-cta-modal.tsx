@@ -11,7 +11,7 @@ function removeUriHash() {}
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 export function LoginCtaModal() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('triple-frontend')
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
 
   // TODO: hash-router-context와 연결
@@ -59,15 +59,12 @@ export function LoginCtaModal() {
   return (
     <Confirm
       open={open}
-      title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
+      title={t('rogeuini-pilyohabnida.')}
       onClose={removeUriHash}
       onCancel={removeUriHash}
       onConfirm={handleConfirm}
     >
-      {t([
-        'rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo',
-        '로그인하고 트리플을\n더 편하게 이용하세요🙂',
-      ])}
+      {t('rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo')}
     </Confirm>
   )
 }

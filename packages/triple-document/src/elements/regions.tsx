@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/tds-ui'
 
@@ -65,7 +65,7 @@ export function RegionListElement({
   value: RegionData | null
   onClick?: MouseEventHandler
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   if (value) {
     const {

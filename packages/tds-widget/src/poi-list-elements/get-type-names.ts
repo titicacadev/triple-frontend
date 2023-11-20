@@ -1,4 +1,4 @@
-import { getTranslation } from '@titicaca/next-i18next'
+import { getTranslation } from 'react-i18next'
 import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import { PoiListElementType } from './types'

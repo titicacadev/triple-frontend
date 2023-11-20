@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Section,
@@ -52,7 +52,7 @@ function Actions({
   padding?: MarginPadding
   noDivider?: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useLocalStorage(
     REVIEW_TOOLTIP_EXPOSED,
