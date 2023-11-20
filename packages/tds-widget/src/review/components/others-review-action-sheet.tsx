@@ -29,7 +29,7 @@ export function OthersReviewActionSheet({
   return (
     <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
       <ActionSheetItem icon="report" onClick={handleReportClick}>
-        {t(['singohagi', '신고하기'])}
+        {t('신고하기')}
       </ActionSheetItem>
     </ActionSheet>
   )

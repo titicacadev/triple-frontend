@@ -79,7 +79,7 @@ const MODAL_CONTENT: {
   },
   [TransitionType.View]: {
     description:
-      'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.',
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '컨텐츠_연속보기',
   },
   [TransitionType.AddPoisToTripSelect]: {
@@ -163,7 +163,7 @@ export function TransitionModal() {
     <Modal open={open} onClose={removeUriHash}>
       <Modal.Body>
         <IconImage src="https://assets.triple.guide/images/ico-popup-app@4x.png" />
-        <Modal.Title>{t('yeogineun-teuripeul-aebi-pilyohaeyo')}</Modal.Title>
+        <Modal.Title>{t('여기는 트리플 앱이 필요해요')}</Modal.Title>
         {content?.description ? (
           <Text center alpha={0.7} size="small">
             {t(content.description)}
@@ -172,10 +172,10 @@ export function TransitionModal() {
       </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="gray" onClick={removeUriHash}>
-          {t('cwiso')}
+          {t('취소')}
         </Modal.Action>
         <Modal.Action color="blue" onClick={handleClick}>
-          {t('teuripeul-gagi')}
+          {t('트리플 가기')}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
