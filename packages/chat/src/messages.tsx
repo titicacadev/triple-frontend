@@ -1,5 +1,6 @@
 import BubbleContainer from './bubble-container/bubble-container'
 import BubbleUI, {
+  BubbleUIProps,
   ImageBubbleUIProp,
   ProductBubbleUIProp,
   RichBubbleUIProp,
@@ -48,7 +49,12 @@ export default function Messages<
   me,
   onRetry,
   onRetryCancel,
-}: MessagesProp<Message, User>) {
+  ...bubbleProps
+}: MessagesProp<Message, User> &
+  Omit<
+    BubbleUIProps,
+    'id' | 'my' | 'blinded' | 'deleted' | 'unfriended' | 'type' | 'value'
+  >) {
   function renderMessages(
     type: 'normal' | 'failed' | 'pending',
     messages: MessageInterface<Message, User>[],
@@ -71,16 +77,21 @@ export default function Messages<
           }}
           showInfo={message.type !== 'product'}
           {...(type === 'failed' && {
-            onRetry,
-            onRetryCancel,
+            onRetry: () => {
+              onRetry?.()
+            },
+            onRetryCancel: () => {
+              onRetryCancel?.()
+            },
           })}
         >
           <BubbleUI
             key={id}
             id={id.toString()}
             my={my}
-            {...message}
             unfriended={sender.unfriended}
+            {...message}
+            {...bubbleProps}
           />
         </BubbleContainer>
       )
