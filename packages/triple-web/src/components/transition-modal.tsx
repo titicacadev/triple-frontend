@@ -1,6 +1,8 @@
 import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ParseKeys } from 'i18next'
 
 import { useModal } from '../contexts'
 import { trackEvent } from '../utils'
@@ -11,10 +13,6 @@ const IconImage = styled.img`
   height: 66px;
   margin: 0 auto 10px;
 `
-// TODO: i18n 연결
-function t(keys: string[]) {
-  return keys[keys.length - 1]
-}
 
 // TODO: hash-router-context 사용
 function removeUriHash() {}
@@ -41,7 +39,7 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [key: string]: {
-    description?: string[]
+    description?: ParseKeys[]
     eventLabel?: string
   }
 } = {
@@ -101,12 +99,13 @@ const MODAL_CONTENT: {
 }
 
 export function TransitionModal() {
+  const { t } = useTranslation()
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
 
   let open = false
   let content:
     | {
-        description?: string[]
+        description?: ParseKeys[]
         eventLabel?: string
       }
     | undefined
