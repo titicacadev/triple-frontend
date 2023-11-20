@@ -59,12 +59,13 @@ function SentBubbleContainer({
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
     >
-      {!createdAt ? (
+      {!createdAt && onRetry && onRetryCancel ? (
         <SendingFailureHandlerContainer>
           <RetryButton onClick={onRetry} />
           <DeleteButton onClick={onRetryCancel} />
         </SendingFailureHandlerContainer>
-      ) : showInfo ? (
+      ) : null}
+      {createdAt && showInfo ? (
         <BubbleInfo
           unreadCount={unreadCount}
           date={createdAt}
