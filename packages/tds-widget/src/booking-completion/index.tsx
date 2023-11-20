@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { Container, Text, Button, ButtonGroup } from '@titicaca/tds-ui'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
@@ -75,7 +75,7 @@ export function BookingCompletion({
   descriptions,
   region,
 }: BookingCompletionProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const regionName = region?.names.ko || region?.names.en
   const navigate = useNavigate()

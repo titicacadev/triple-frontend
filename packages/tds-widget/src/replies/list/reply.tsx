@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useTranslation, getTranslation } from '@titicaca/next-i18next'
+import { useTranslation, getTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Container,
@@ -90,7 +90,7 @@ export default function Reply({
   focusInput: () => void
   fetchMoreReplies: (reply?: ReplyType) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
@@ -408,7 +408,7 @@ function Content({
   blinded: boolean
   deleted: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
@@ -484,7 +484,7 @@ function FeatureActionSheet({
   onDeleteClick: () => void
   onReportClick: () => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()

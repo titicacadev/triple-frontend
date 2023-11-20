@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -37,7 +37,7 @@ export function DirectionButtons({
   onCallGrabButtonClick?: () => void
   onCallGrabButtonIntersecting?: (entry: IntersectionObserverEntry) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()

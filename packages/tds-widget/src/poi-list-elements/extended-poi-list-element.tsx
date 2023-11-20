@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
@@ -55,7 +55,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   notes,
   optimized,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { deriveCurrentStateAndCount } = useScrapsContext()
   const {

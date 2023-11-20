@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { FlexBox, Text, Icon } from '@titicaca/tds-ui'
 import { useHistoryFunctions } from '@titicaca/react-contexts'
 
@@ -7,7 +7,7 @@ import { useRepliesContext } from './context'
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export default function GuideText() {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     currentMessageId,

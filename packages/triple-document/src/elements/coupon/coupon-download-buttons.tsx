@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import {
@@ -113,7 +113,7 @@ export function CouponDownloadButton({
   enabledAt?: string
   onClick?: () => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [couponFetched, setCouponFetched] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -278,7 +278,7 @@ export function CouponGroupDownloadButton({
   enabledAt?: string
   onClick?: () => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [coupons, setCoupons] = useState<CouponData[]>([])
   const [errorMessage, setErrorMessage] = useState<string | undefined>(

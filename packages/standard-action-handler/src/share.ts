@@ -1,4 +1,4 @@
-import { getTranslation } from '@titicaca/next-i18next'
+import { getTranslation } from 'react-i18next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { createShareUrl } from './services/share'

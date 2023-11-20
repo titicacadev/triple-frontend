@@ -7,7 +7,7 @@ import {
   formatMarginPadding,
   Carousel,
 } from '@titicaca/tds-ui'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
@@ -56,7 +56,7 @@ function RecommendedArticles({
     onClick?: () => void
   }
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]

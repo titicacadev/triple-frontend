@@ -1,5 +1,5 @@
 import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -20,7 +20,7 @@ function Pricing({
   basePrice?: number
   salePrice: number
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedBasePrice = formatNumber(basePrice)
   const formattedSalePrice = formatNumber(salePrice)
@@ -104,7 +104,7 @@ export function TnaProductWithPrice({
   onClick: (e: SyntheticEvent, product: TnaProductData, index: number) => void
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { isPublic } = useUserAgentContext()
 

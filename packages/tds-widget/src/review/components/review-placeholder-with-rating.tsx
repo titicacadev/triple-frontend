@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
@@ -170,7 +170,7 @@ function DefaultPlaceholder({
 }: {
   placeholderText: string | undefined
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <Text
@@ -198,7 +198,7 @@ function FilterPlaceholder({
   hasReviews: boolean
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return isMorePage ? (
     <RecentTripContainer>

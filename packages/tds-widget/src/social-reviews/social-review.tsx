@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Section } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
@@ -22,7 +22,7 @@ function SocialReviews({
   socialReviews,
   ...props
 }: SocialReviewsProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { trackSimpleEvent } = useEventTrackingContext()
   const navigate = useNavigate()

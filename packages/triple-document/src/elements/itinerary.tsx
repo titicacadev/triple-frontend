@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Container, Card, Text, FlexBox, FlexBoxItem } from '@titicaca/tds-ui'
 import type {
@@ -83,6 +84,7 @@ const Duration = styled(Container)`
 
 export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
+  const { t } = useTranslation('triple-frontend')
 
   const guestMode = useGuestMode()
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =

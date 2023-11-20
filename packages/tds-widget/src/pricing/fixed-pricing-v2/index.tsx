@@ -1,6 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Container,
   Drawer,
@@ -121,7 +121,7 @@ function FixedPricingV2({
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
 }: FixedPricingV2Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedSalePrice = formatNumber(salePrice)
   const pricingLabel = label ? (

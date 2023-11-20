@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren } from 'react'
@@ -105,7 +105,7 @@ export function PublicHeader({
   linkLabel,
   children,
 }: PropsWithChildren<PublicHeaderProps>) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
