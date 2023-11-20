@@ -148,7 +148,7 @@ export function ReviewElement({
       })
 
       if (unregister) {
-        showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
+        showToast?.(t('탈퇴한 사용자입니다.'))
       } else {
         navigateUserDetail(uid)
       }
@@ -295,10 +295,7 @@ export function ReviewElement({
         ) : null}
         <Content onClick={handleReviewClick}>
           {blinded ? (
-            t([
-              'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
-              '신고가 접수되어 블라인드 처리되었습니다.',
-            ])
+            t('신고가 접수되어 블라인드 처리되었습니다.')
           ) : comment ? (
             unfolded ? (
               comment
@@ -493,22 +490,16 @@ function RecentReviewInfo({
             alt="recent-trip-icon"
           />
           <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
-            {t(['coegeun-yeohaeng', '최근여행'])}
+            {t('최근여행')}
           </Text>
         </>
       ) : null}
       {visitDate ? (
         <Text size={14} color="gray700">
-          {t(
-            [
-              'visityear-nyeon-visitmonth-weol-yeohaeng',
-              '{{visitYear}}년 {{visitMonth}}월 여행',
-            ],
-            {
-              visitYear,
-              visitMonth,
-            },
-          )}
+          {t('{{visitYear}}년 {{visitMonth}}월 여행', {
+            visitYear,
+            visitMonth,
+          })}
         </Text>
       ) : null}
     </FlexBox>

@@ -39,7 +39,7 @@ export function PublicHeaderDeeplink({
           })
         }
       >
-        {t(['aebeseo-bogi', '앱에서 보기'])}
+        {t('앱에서 보기')}
       </ExtraActionItem>
     </>
   )

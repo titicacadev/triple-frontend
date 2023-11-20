@@ -1,4 +1,3 @@
-import { getTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   PoiListElement,
@@ -7,6 +6,7 @@ import {
   PoiListElementType,
 } from '@titicaca/poi-list-elements'
 import { Text } from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 
@@ -43,6 +43,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
     pois: T[]
   }
 }) {
+  const { t } = useTranslation('triple-frontend')
   const onResourceClick = useResourceClickHandler()
 
   const Container = display === 'list' ? ResourceList : DocumentCarousel
@@ -56,6 +57,34 @@ export default function Pois<T extends ExtendedPoiListElementData>({
           return <PoiListElement compact {...props} />
         }
       : PoiCarouselElement
+
+  function renderPoiListActionButton({
+    display,
+    poi,
+  }: {
+    display: PoisDisplay
+    poi: ExtendedPoiListElementData
+  }) {
+    const {
+      source: { pricing },
+    } = poi
+
+    if (display === 'list' && pricing) {
+      const { nightlyPrice } = pricing
+
+      return (
+        <PoiPrice>
+          <Text bold size="mini">
+            {nightlyPrice
+              ? `₩${nightlyPrice.toLocaleString()}`
+              : t('bogi', '보기')}
+          </Text>
+        </PoiPrice>
+      )
+    }
+
+    return null
+  }
 
   return (
     <Container margin={margin}>
@@ -78,33 +107,4 @@ export default function Pois<T extends ExtendedPoiListElementData>({
       ))}
     </Container>
   )
-}
-
-function renderPoiListActionButton({
-  display,
-  poi,
-}: {
-  display: PoisDisplay
-  poi: ExtendedPoiListElementData
-}) {
-  const t = getTranslation('common-web')
-  const {
-    source: { pricing },
-  } = poi
-
-  if (display === 'list' && pricing) {
-    const { nightlyPrice } = pricing
-
-    return (
-      <PoiPrice>
-        <Text bold size="mini">
-          {nightlyPrice
-            ? `₩${nightlyPrice.toLocaleString()}`
-            : t(['bogi', '보기'])}
-        </Text>
-      </PoiPrice>
-    )
-  }
-
-  return null
 }

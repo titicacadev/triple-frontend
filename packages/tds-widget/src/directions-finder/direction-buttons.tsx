@@ -49,7 +49,7 @@ export function DirectionButtons({
             size="small"
             onClick={handleAskToLocalsClick}
           >
-            {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
+            {t('현지에서 길묻기')}
           </Button>
         ) : null}
         <Button
@@ -59,7 +59,7 @@ export function DirectionButtons({
           size="small"
           onClick={onDirectionsClick}
         >
-          {t(['gilcajgi', '길찾기'])}
+          {t('길찾기')}
         </Button>
       </ButtonGroup>
 
