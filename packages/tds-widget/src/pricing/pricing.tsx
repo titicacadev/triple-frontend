@@ -166,7 +166,7 @@ function RichPricing({
 
         <Text size={20} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
           {priceLabelOverride ||
-            t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+            t('{{formattedSalePrice}}원', {
               formattedSalePrice,
             })}
         </Text>
@@ -203,7 +203,7 @@ const RegularPricing = ({
       )}
       <Text size={18} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
         {priceLabelOverride ||
-          t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+          t('{{formattedSalePrice}}원', {
             formattedSalePrice,
           })}
       </Text>

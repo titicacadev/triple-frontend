@@ -131,7 +131,7 @@ export default function FixedPricing({
               color={isSoldOut ? 'gray300' : 'gray'}
             >
               {priceLabelOverride ||
-                t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+                t('{{formattedSalePrice}}원', {
                   formattedSalePrice,
                 })}
               {discountRate}

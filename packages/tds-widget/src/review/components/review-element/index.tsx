@@ -172,7 +172,7 @@ export function ReviewElement({
         })
 
         if (unregister) {
-          showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
+          showToast?.(t('탈퇴한 사용자입니다.'))
         } else {
           navigateUserDetail(uid)
         }
@@ -335,10 +335,7 @@ export function ReviewElement({
 
         <Content onClick={handleReviewClick}>
           {blinded ? (
-            t([
-              'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
-              '신고가 접수되어 블라인드 처리되었습니다.',
-            ])
+            t('신고가 접수되어 블라인드 처리되었습니다.')
           ) : comment ? (
             unfolded ? (
               comment
@@ -488,16 +485,10 @@ function ReviewDayInfo({ visitDate }: { visitDate: Date }) {
 
   return (
     <Text size={13} color="gray700" lineHeight="13px">
-      {t(
-        [
-          'visityear-nyeon-visitmonth-weol-yeohaeng',
-          '{{visitYear}}년 {{visitMonth}}월 여행',
-        ],
-        {
-          visitYear,
-          visitMonth,
-        },
-      )}
+      {t('{{visitYear}}년 {{visitMonth}}월 여행', {
+        visitYear,
+        visitMonth,
+      })}
     </Text>
   )
 }

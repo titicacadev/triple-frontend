@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { useTranslation, getTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Container,
@@ -201,6 +201,32 @@ export default function Reply({
     ),
   )
 
+  function deriveContent({
+    text,
+    deleted,
+    blinded,
+    childrenCount,
+  }: {
+    text: string
+    deleted: boolean
+    blinded: boolean
+    childrenCount: number
+  }) {
+    const contentText = {
+      deleted: t('작성자가 삭제한 댓글입니다.'),
+      blinded: t('다른 사용자의 신고로 블라인드 되었습니다.'),
+    }
+
+    const type =
+      deleted || blinded
+        ? deleted && childrenCount >= 0
+          ? 'deleted'
+          : 'blinded'
+        : 'default'
+
+    return type === 'default' ? text : contentText[type]
+  }
+
   const derivedText = deriveContent({
     text: text || markdownText || '',
     deleted,
@@ -315,10 +341,7 @@ export default function Reply({
 
             {likeReactionCount && likeReactionCount > 0 ? (
               <Text padding={{ left: 2 }} size={12} color="gray300" bold>
-                {t(
-                  ['johayo-likereactioncount', '좋아요 {{likeReactionCount}}'],
-                  { likeReactionCount },
-                )}
+                {t('좋아요 {{likeReactionCount}}', { likeReactionCount })}
               </Text>
             ) : null}
 
@@ -329,7 +352,7 @@ export default function Reply({
               bold
               onClick={() => handleWriteReplyClick(actionReply)}
             >
-              {t(['dabgeuldalgi', '답글달기'])}
+              {t('답글달기')}
             </Text>
           </ReactionBox>
         ) : null}
@@ -345,7 +368,7 @@ export default function Reply({
           inlineBlock
           onClick={() => fetchMoreReplies(reply)}
         >
-          {t(['ijeon-dabgeul-deobogi', '이전 답글 더보기'])}
+          {t('이전 답글 더보기')}
         </Text>
       ) : null}
 
@@ -368,11 +391,11 @@ export default function Reply({
         title={
           isMine
             ? parentId
-              ? t(['nae-dabgeul', '내 답글'])
-              : t(['nae-daesgeul', '내 댓글'])
+              ? t('내 답글')
+              : t('내 댓글')
             : parentId
-            ? t(['dabgeul', '답글'])
-            : t(['daesgeul', '댓글'])
+            ? t('답글')
+            : t('댓글')
         }
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onEditClick={() =>
@@ -462,7 +485,7 @@ function Content({
           cursor="pointer"
           onClick={() => setUnfolded((prevState) => !prevState)}
         >
-          {t(['...deobogi', '…더보기'])}
+          {t('...더보기')}
         </Text>
       ) : null}
     </Container>
@@ -498,51 +521,17 @@ function FeatureActionSheet({
       {isMine ? (
         <>
           <ActionSheetItem onClick={onEditClick}>
-            {t(['sujeonghagi', '수정하기'])}
+            {t('수정하기')}
           </ActionSheetItem>
           <ActionSheetItem onClick={onDeleteClick}>
-            {t(['sagjehagi', '삭제하기'])}
+            {t('삭제하기')}
           </ActionSheetItem>
         </>
       ) : (
         <ActionSheetItem onClick={onReportClick}>
-          {t(['singohagi', '신고하기'])}
+          {t('신고하기')}
         </ActionSheetItem>
       )}
     </ActionSheet>
   )
-}
-
-function deriveContent({
-  text,
-  deleted,
-  blinded,
-  childrenCount,
-}: {
-  text: string
-  deleted: boolean
-  blinded: boolean
-  childrenCount: number
-}) {
-  const t = getTranslation('common-web')
-
-  const contentText = {
-    deleted: t([
-      'jagseongjaga-sagjehan-daesgeulibnida.',
-      '작성자가 삭제한 댓글입니다.',
-    ]),
-    blinded: t([
-      'dareun-sayongjayi-singoro-beulraindeu-doeeossseubnida.',
-      '다른 사용자의 신고로 블라인드 되었습니다.',
-    ]),
-  }
-
-  const type =
-    deleted || blinded
-      ? deleted && childrenCount >= 0
-        ? 'deleted'
-        : 'blinded'
-      : 'default'
-
-  return type === 'default' ? text : contentText[type]
 }

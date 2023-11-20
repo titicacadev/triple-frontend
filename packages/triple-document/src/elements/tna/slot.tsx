@@ -104,7 +104,7 @@ export function Slot({
           margin={{ top: 20 }}
           onClick={handleShowMoreClick}
         >
-          {t(['deobogi', '더보기'])}
+          {t('더보기')}
         </Button>
       ) : null}
     </Container>

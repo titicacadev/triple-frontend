@@ -1,18 +1,17 @@
-import { getTranslation } from 'react-i18next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { t } from 'i18next'
 
 import { createShareUrl } from './services/share'
 import { WebActionParams } from './types'
 
 export default async function share({ url: { path } = {} }: WebActionParams) {
   if (path === '/web-action/share') {
-    const t = getTranslation('common-web')
     const params = getSharingParams()
     const shareUrl = createShareUrl()
 
     shareUrl({
       params,
-      message: t(['ringkeureul-bogsahaessseubnida.', '링크를 복사했습니다.']),
+      message: t('링크를 복사했습니다.', { ns: 'triple-frontend' }),
     })
 
     return true

@@ -100,7 +100,7 @@ export function AppBanner({
         </Text>
       </ContentContainer>
       <CallToAction href={href} onClick={onCtaClick}>
-        {cta || t(['aebeseo-bogi', '앱에서 보기'])}
+        {cta || t('앱에서 보기')}
       </CallToAction>
     </AppBannerFrame>
   )
