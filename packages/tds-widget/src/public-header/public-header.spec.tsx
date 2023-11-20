@@ -9,7 +9,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-jest.mock('@titicaca/next-i18next', () => ({
+jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
   }),

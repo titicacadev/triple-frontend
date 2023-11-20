@@ -1,5 +1,5 @@
 import { useReducer, useCallback, useEffect } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Section,
   Button,
@@ -61,7 +61,7 @@ export function NearbyPois({
   geolocation: PointGeoJson
   optimized?: boolean
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
     ...INITIAL_STATE,

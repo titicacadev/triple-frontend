@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { Container, H1, List, Button } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
@@ -17,7 +17,7 @@ export function Slot({
   title: string
   products: TnaProductData[]
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
   const { colors } = useTheme()
 
   const { trackEvent } = useEventTrackingContext()

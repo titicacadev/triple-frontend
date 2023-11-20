@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -26,7 +26,7 @@ export function DirectionButtons({
   phoneNumber?: string
   isDomestic?: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()

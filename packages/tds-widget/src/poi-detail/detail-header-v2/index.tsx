@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Section,
@@ -74,7 +74,7 @@ function DetailHeaderV2({
    */
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()

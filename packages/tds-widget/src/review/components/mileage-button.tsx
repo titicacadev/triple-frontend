@@ -41,7 +41,7 @@ interface Props {
 }
 
 export function MileageButton({ resourceId }: Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
   const { trackEvent } = useEventTrackingContext()
   const app = useTripleClientMetadata()
   const { navigateMileageIntro } = useClientActions()

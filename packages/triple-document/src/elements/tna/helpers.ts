@@ -1,4 +1,4 @@
-import { getTranslation } from '@titicaca/next-i18next'
+import { getTranslation } from 'react-i18next'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { TnaCoupon } from './types'

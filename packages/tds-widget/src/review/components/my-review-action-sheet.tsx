@@ -1,5 +1,5 @@
 import { ActionSheet, ActionSheetItem, Confirm } from '@titicaca/tds-ui'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   useHistoryFunctions,
   useUriHash,
@@ -30,7 +30,7 @@ export function MyReviewActionSheet({
   resourceId,
   regionId,
 }: MyReviewActionSheetProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { appUrlScheme } = useEnv()
   const uriHash = useUriHash()

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { FlexBox, Text, Container } from '@titicaca/tds-ui'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
@@ -70,7 +70,7 @@ export function Filters() {
     handleMediaChange,
   } = useReviewFilters()
 
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <FlexBox flex alignItems="center" position="relative">
@@ -119,7 +119,7 @@ function Filter({
 }
 
 function ToolTip() {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [visible, setVisible] = useState(false)
 
