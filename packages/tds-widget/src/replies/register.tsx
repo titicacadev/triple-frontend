@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 import { useLoginCtaModal } from '@titicaca/modals'
@@ -38,7 +38,7 @@ function Register(
   },
   ref: ForwardedRef<TextAreaHandle>,
 ) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     parentMessageId,

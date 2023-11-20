@@ -2,7 +2,7 @@ import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
 import { LoginCtaModalProvider } from '@titicaca/modals'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -103,7 +103,7 @@ function ReviewsShortenComponent({
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
     useTripleClientActions()

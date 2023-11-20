@@ -1,5 +1,5 @@
 import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 
 import {
   ImageBannerWrapper,
@@ -26,7 +26,7 @@ function ImageBanner({
   onClick,
   onDismiss,
 }: ImageBannerProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const imgSrc =
     (imgUrl ?? '').trim() ||

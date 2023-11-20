@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Button,
@@ -55,7 +55,7 @@ export default function AskToTheLocal({
   phoneNumber?: string
   isDomestic?: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const handleCall = useCallback(() => {
     if (phoneNumber) {
