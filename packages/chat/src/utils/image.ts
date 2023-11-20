@@ -1,8 +1,8 @@
 import { UserInterface, MetaDataInterface } from '../types'
 
 export function getProfileImageUrl(user: UserInterface) {
-  if (user.profile.thumbnail) {
-    return user.profile.thumbnail
+  if (user.profile.photo) {
+    return user.profile.photo
   } else {
     let imageNumber = 0
     try {
