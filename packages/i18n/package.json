@@ -36,11 +36,5 @@
     "*.{js,ts,tsx}": [
       "eslint"
     ]
-  },
-  "dependencies": {
-    "node-fetch": "2.7.0"
-  },
-  "devDependencies": {
-    "@types/node-fetch": "2.x"
   }
 }
