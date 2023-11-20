@@ -1,5 +1,9 @@
+import { ComponentType } from 'react'
+
 import BubbleContainer from './bubble-container/bubble-container'
 import BubbleUI, {
+  BubbleType,
+  BubbleTypeArray,
   BubbleUIProps,
   ImageBubbleUIProp,
   ProductBubbleUIProp,
@@ -25,7 +29,10 @@ type MessageInterface<
     | ImageBubbleUIProp
     | RichBubbleUIProp
     | ProductBubbleUIProp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | { type: string; value: any }
   )
+//
 
 interface MessagesProp<
   Message extends MessageBase<User>,
@@ -34,6 +41,8 @@ interface MessagesProp<
   messages: MessageInterface<Message, User>[]
   pendingMessages: MessageInterface<Message, User>[]
   failedMessages: MessageInterface<Message, User>[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  customBubble?: { [key: string]: ComponentType<any> }
   me: UserInterface
   onRetry?: () => void
   onRetryCancel?: () => void
@@ -49,17 +58,50 @@ export default function Messages<
   me,
   onRetry,
   onRetryCancel,
+  customBubble,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
     BubbleUIProps,
     'id' | 'my' | 'blinded' | 'deleted' | 'unfriended' | 'type' | 'value'
   >) {
+  function getBubble({
+    message,
+    my,
+  }: {
+    message: MessageInterface<Message, User>
+    my: boolean
+  }) {
+    const { id, sender, type, value, ...rest } = message
+    const CustomBubble = customBubble?.[type]
+    if (CustomBubble) {
+      return <CustomBubble {...message} />
+    }
+
+    if (!isBubbleType(type)) {
+      throw new Error(`${type}에 해당하는 Bubble이 존재하지 않습니다.`)
+    }
+
+    return (
+      <BubbleUI
+        key={id}
+        id={id.toString()}
+        my={my}
+        unfriended={sender.unfriended}
+        type={type}
+        value={value}
+        {...rest}
+        {...bubbleProps}
+      />
+    )
+  }
+
   function renderMessages(
-    type: 'normal' | 'failed' | 'pending',
+    listType: 'normal' | 'failed' | 'pending',
     messages: MessageInterface<Message, User>[],
   ) {
-    return messages.map(({ id, sender, createdAt, ...message }) => {
+    return messages.map((message) => {
+      const { id, sender, createdAt, type } = message
       const my = sender.id === me.id
 
       return (
@@ -75,8 +117,8 @@ export default function Messages<
             userId: sender.id,
             unregistered: sender.unregistered,
           }}
-          showInfo={message.type !== 'product'}
-          {...(type === 'failed' && {
+          showInfo={type !== 'product'}
+          {...(listType === 'failed' && {
             onRetry: () => {
               onRetry?.()
             },
@@ -85,14 +127,7 @@ export default function Messages<
             },
           })}
         >
-          <BubbleUI
-            key={id}
-            id={id.toString()}
-            my={my}
-            unfriended={sender.unfriended}
-            {...message}
-            {...bubbleProps}
-          />
+          {getBubble({ message, my })}
         </BubbleContainer>
       )
     })
@@ -109,4 +144,8 @@ export default function Messages<
       </div>
     </>
   )
+}
+
+function isBubbleType(type: string): type is BubbleType {
+  return BubbleTypeArray.includes(type as BubbleType)
 }

@@ -13,7 +13,9 @@ import {
 import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 
-export type BubbleType = 'text' | 'images' | 'rich' | 'product'
+export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
+
+export type BubbleType = (typeof BubbleTypeArray)[number]
 
 const ALTERNATIVE_TEXT_MESSAGE = {
   blinded: '관리자에 의해 삭제된 메세지입니다.',

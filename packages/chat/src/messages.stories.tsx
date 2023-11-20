@@ -25,6 +25,22 @@ export const Message = {
         createdAt: new Date(2022, 10, 1).toISOString(),
       },
       {
+        type: 'another',
+        value: { text: 'Another Message.' },
+        id: 'another message',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+      {
         type: 'text',
         value: {
           message: '안녕하세요. 이 메시지는 삭제된 메시지 테스트용입니다.',
@@ -185,6 +201,15 @@ export const Message = {
         name: '테스트',
         photo:
           'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+      },
+    },
+    customBubble: {
+      another: (message: { id: string; value: { text: string } }) => {
+        return (
+          <div key={message.id} css={{ display: 'inline-block' }}>
+            {message.value.text}
+          </div>
+        )
       },
     },
   },
