@@ -29,7 +29,7 @@ const StyledBubble = styled(Text).attrs({
   ${({ maxWidthOffset }) =>
     `max-width: calc(100% - ${maxWidthOffset || 100}px);`}
   ${({ my, hasArrow = true }) => css`
-    background-color: ${my ? '#00BB92' : 'rgb(246,246,246)'};
+    background-color: ${my ? '#00BB92' : '#F6F6F6'};
     ${my && 'color:  var(--color-white);'}
     ${hasArrow &&
     (my ? 'border-top-right-radius: 4px;' : 'border-top-left-radius: 4px;')};
