@@ -1,13 +1,9 @@
 import { Confirm } from '@titicaca/tds-ui'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useModal } from '../contexts'
 import { trackEvent } from '../utils'
-
-// TODO: i18n 연결
-function t(keys: string[]) {
-  return keys[keys.length - 1]
-}
 
 // TODO: hash-router-context 사용
 function removeUriHash() {}
@@ -15,6 +11,7 @@ function removeUriHash() {}
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 export function LoginCtaModal() {
+  const { t } = useTranslation()
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
 
   // TODO: hash-router-context와 연결
