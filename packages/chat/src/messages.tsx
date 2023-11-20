@@ -11,6 +11,8 @@ import BubbleUI, {
   TextBubbleUIProp,
 } from './bubble/bubble-ui'
 import { UserInterface } from './types'
+import AlteredBubble from './bubble/altered'
+import { ALTERNATIVE_TEXT_MESSAGE } from './bubble/constants'
 
 interface MessageBase<User extends UserInterface> {
   id: string | number
@@ -30,9 +32,8 @@ type MessageInterface<
     | RichBubbleUIProp
     | ProductBubbleUIProp
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    | { type: string; value: any }
+    | { type: string; value?: any }
   )
-//
 
 interface MessagesProp<
   Message extends MessageBase<User>,
@@ -72,9 +73,26 @@ export default function Messages<
     message: MessageInterface<Message, User>
     my: boolean
   }) {
-    const { id, sender, type, value, ...rest } = message
+    const { id, sender, type, value, blinded, deleted, ...rest } = message
+
     const CustomBubble = customBubble?.[type]
     if (CustomBubble) {
+      if (blinded || deleted || sender.unfriended) {
+        return (
+          <AlteredBubble
+            key={id}
+            id={id.toString()}
+            my={my}
+            alternativeText={
+              sender.unfriended
+                ? ALTERNATIVE_TEXT_MESSAGE.unfriended
+                : blinded
+                ? ALTERNATIVE_TEXT_MESSAGE.blinded
+                : ALTERNATIVE_TEXT_MESSAGE.deleted
+            }
+          />
+        )
+      }
       return <CustomBubble {...message} />
     }
 
@@ -87,6 +105,8 @@ export default function Messages<
         key={id}
         id={id.toString()}
         my={my}
+        blinded={blinded}
+        deleted={deleted}
         unfriended={sender.unfriended}
         type={type}
         value={value}
