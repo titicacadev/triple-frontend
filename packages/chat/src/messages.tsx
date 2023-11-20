@@ -136,10 +136,10 @@ export default function Messages<
   return (
     <>
       <div id="messages_list">{renderMessages('normal', messages)}</div>
-      <div id="failed_messages_list">
+      <div id="pending_messages_list">
         {renderMessages('pending', pendingMessages)}
       </div>
-      <div id="pending_messages_list">
+      <div id="failed_messages_list">
         {renderMessages('failed', failedMessages)}
       </div>
     </>
