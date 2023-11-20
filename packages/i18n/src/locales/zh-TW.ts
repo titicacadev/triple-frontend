@@ -1,5 +1,4 @@
-/* eslint-disable */
-export const zhTwCommonWeb = {
+export default {
   'aebeseo-bogi': '在App裡查看',
   dadgi: '關閉',
   teuripeul: 'Triple',
