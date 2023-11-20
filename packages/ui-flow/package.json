@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "@titicaca/fetcher": "workspace:*",
-    "@titicaca/modals": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2"
   },
