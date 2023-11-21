@@ -101,11 +101,12 @@ export default function BubbleUI({
         id={id}
         my={my}
         alternativeText={
-          alternativeText || unfriended
+          alternativeText ||
+          (unfriended
             ? ALTERNATIVE_TEXT_MESSAGE.unfriended
             : blinded
             ? ALTERNATIVE_TEXT_MESSAGE.blinded
-            : ALTERNATIVE_TEXT_MESSAGE.deleted
+            : ALTERNATIVE_TEXT_MESSAGE.deleted)
         }
         hasArrow={hasArrow}
         css={css}
