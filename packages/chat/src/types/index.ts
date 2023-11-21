@@ -84,12 +84,9 @@ export interface MessageInterface {
 
 export interface UserInterface {
   id: string
-  // type: UserType
-  // code: string
   profile: ProfileInterface
   unregistered?: boolean
   unfriended?: boolean
-  // identifier: string
 }
 
 export interface ProfileInterface {
