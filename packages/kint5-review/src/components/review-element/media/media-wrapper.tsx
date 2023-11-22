@@ -22,10 +22,6 @@ const MonoMediaWrapper = styled(GridWrapper)`
   & img {
     height: 200px;
   }
-
-  @media (min-width: 500px) {
-    grid-template-rows: 293px;
-  }
 `
 
 const DuoMediaWrapper = styled(GridWrapper)`
