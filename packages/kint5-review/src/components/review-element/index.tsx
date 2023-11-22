@@ -268,7 +268,7 @@ export function ReviewElement({
         {!blinded && media && media.length > 0 ? (
           <Container
             css={{
-              margin: '20px 0 0',
+              margin: '16px 0 0',
             }}
           >
             <Media media={media} reviewId={review.id} />
