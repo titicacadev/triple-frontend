@@ -2,7 +2,7 @@ import {
   Container,
   FlexBox,
   List,
-  RatingV2,
+  Rating,
   Text,
   ThumbsUpIcon,
 } from '@titicaca/kint5-core-elements'
@@ -227,8 +227,8 @@ export function ReviewElement({
     >
       <List.Item style={{ paddingTop: 6 }}>
         {user ? <User user={user} onClick={handleUserClick} /> : null}
-        <FlexBox flex css={{ alignItems: 'center', gap: 8, marginTop: 18 }}>
-          {!blinded && !!rating ? <RatingV2 score={rating} /> : null}
+        <FlexBox flex css={{ alignItems: 'center', gap: 16, marginTop: 18 }}>
+          {!blinded && !!rating ? <Rating score={rating} /> : null}
           {!blinded ? <RecentReviewInfo visitDate={visitDate} /> : null}
         </FlexBox>
         <Content onClick={handleReviewClick}>
