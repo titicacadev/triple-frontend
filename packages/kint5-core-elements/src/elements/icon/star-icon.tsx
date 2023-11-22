@@ -3,7 +3,7 @@ import { BaseIconProps } from './type'
 export function StarIcon({
   width = 12,
   height = 12,
-  color = '#FFF',
+  color = '#FCC038',
 }: BaseIconProps) {
   return (
     <svg
