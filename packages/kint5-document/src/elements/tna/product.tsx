@@ -218,7 +218,7 @@ export function TnaProductWithPrice({
                 margin: '4px 0 0',
               }}
             >
-              <Rating size="tiny" score={reviewRating} />
+              <Rating size={16} score={reviewRating} />
               <Text
                 inlineBlock
                 size="tiny"
