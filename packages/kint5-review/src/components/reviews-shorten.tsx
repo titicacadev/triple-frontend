@@ -31,6 +31,7 @@ interface ReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
+  isGlobalReview: boolean
 }
 
 export function ReviewsShorten({
@@ -44,6 +45,7 @@ export function ReviewsShorten({
   sortingType = 'default',
   placeholderText,
   receiverId,
+  isGlobalReview,
 }: ReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -64,6 +66,7 @@ export function ReviewsShorten({
             initialReviewsCount={initialReviewsCount}
             placeholderText={placeholderText}
             sortingType={sortingType}
+            isGlobalReview={isGlobalReview}
           />
         </SortingOptionsProvider>
       </FilterProvider>
@@ -85,6 +88,7 @@ function ReviewsShortenComponent({
   initialReviewsCount,
   placeholderText,
   sortingType,
+  isGlobalReview,
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
@@ -135,7 +139,9 @@ function ReviewsShortenComponent({
     <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
       <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
         <Text css={{ fontSize: 18, fontWeight: 700 }}>
-          {t(['ribyu', '리뷰'])}
+          {isGlobalReview
+            ? t(['ribyu', '리뷰'])
+            : t(['hyeonjiin-ribyu', '현지인 리뷰'])}
         </Text>
         {reviewsCountData !== undefined && reviewsCountData.reviewsCount > 0 ? (
           <Text css={{ fontSize: 18, fontWeight: 700 }}>
