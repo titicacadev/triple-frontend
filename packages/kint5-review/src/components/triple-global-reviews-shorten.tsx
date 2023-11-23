@@ -15,6 +15,7 @@ import {
   useReviewSortingOptions,
 } from './sorting-context'
 import type { SortingType } from './sorting-context'
+import { Filters } from './filter'
 
 const REVIEWS_SECTION_ID = 'triple-global-reviews'
 
@@ -136,6 +137,17 @@ function TripleGlobalReviewsShortenComponent({
           resourceType={resourceType}
           regionId={regionId}
         />
+      </FlexBox>
+      <FlexBox
+        flex
+        css={{
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          width: '100%',
+          marginTop: 16,
+        }}
+      >
+        <Filters />
       </FlexBox>
       <LatestReviews value={value} />
     </Section>
