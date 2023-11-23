@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { Text } from '../text'
 import { FilledStarIcon } from '../icon'
 import { FlexBox } from '../flex-box'
+import { EmptyStarIcon } from '../icon/empty-star-icon'
 
 /**
  * **최솟값 0, 최댓값 5**로 설정되는 별점 컴포넌트입니다. score에 최소,최대보다 작거나 큰 값을 넣어도 동작합니다.
@@ -22,6 +23,7 @@ export function Rating({
     () => Math.floor(Math.max(Math.min(initScore, 5), 0)),
     [initScore],
   )
+  const empty = 5 - score
 
   return (
     <FlexBox flex css={{ alignItems: 'center', gap: 4 }}>
@@ -34,6 +36,9 @@ export function Rating({
       >
         {[...Array(score)].map((_, i: number) => (
           <FilledStarIcon key={i} width={size} height={size} />
+        ))}
+        {[...Array(empty)].map((_, i: number) => (
+          <EmptyStarIcon key={i} width={size} height={size} />
         ))}
       </FlexBox>
       {showRatingScore && (
