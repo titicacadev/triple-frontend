@@ -27,7 +27,6 @@ interface ReviewsShortenProps {
   initialReviewsCount: number
   initialMediaFilter?: boolean
   initialRecentTrip?: boolean
-  initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
@@ -41,12 +40,15 @@ export function ReviewsShorten({
   initialReviewsCount,
   initialRecentTrip,
   initialMediaFilter,
-  initialSortingOption = 'recommendation',
   sortingType = 'default',
   placeholderText,
   receiverId,
   isGlobalReview,
 }: ReviewsShortenProps) {
+  const sortingOption: SortingOption = isGlobalReview
+    ? 'latest'
+    : 'recommendation'
+
   return (
     <LoginCtaModalProvider>
       <FilterProvider
@@ -57,7 +59,7 @@ export function ReviewsShorten({
         <SortingOptionsProvider
           type={sortingType}
           resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
+          initialSortingOption={sortingOption}
         >
           <ReviewsShortenComponent
             resourceId={resourceId}
@@ -156,7 +158,7 @@ function ReviewsShortenComponent({
           />
         ) : null}
       </FlexBox>
-      <SortingOptions />
+      {isGlobalReview ? null : <SortingOptions />}
       <ListElement value={value} />
     </Section>
   )
