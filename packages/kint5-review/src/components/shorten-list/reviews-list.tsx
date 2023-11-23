@@ -7,7 +7,7 @@ import { useDescriptions, useMyReview } from '../../services'
 import { FullListButton } from '../full-list-button'
 import { MyReviewActionSheet } from '../my-review-action-sheet'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
-import { ReviewElement } from '../review-element'
+import { TripleReviewElement } from '../review-element'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
 import type { SortingType, SortingOption } from '../sorting-context'
 
@@ -104,7 +104,7 @@ export function ReviewsList({
     <>
       <List divided margin={{ top: 26 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
-          <ReviewElement
+          <TripleReviewElement
             key={i}
             isFullList={false}
             isMyReview={myReviewData.myReview?.id === review.id}
