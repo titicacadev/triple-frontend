@@ -412,6 +412,12 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/react-triple-client-interfaces':
+        specifier: workspace:*
+        version: link:../react-triple-client-interfaces
+      '@titicaca/router':
+        specifier: workspace:*
+        version: link:../router
       '@titicaca/triple-fallback-action':
         specifier: workspace:*
         version: link:../triple-fallback-action
