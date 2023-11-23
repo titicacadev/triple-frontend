@@ -1,4 +1,5 @@
 export * from './components/triple-reviews-shorten'
+export * from './components/triple-global-reviews-shorten'
 export * from './components/reviews'
 export * from './utils'
 export * from './services'
