@@ -5,7 +5,7 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { useDescriptions, useMyReview } from '../../services'
 import { BaseReviewFragment } from '../../data/graphql'
-import { ReviewElement } from '../review-element'
+import { TripleReviewElement } from '../review-element'
 import { MyReviewActionSheet } from '../my-review-action-sheet'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
@@ -104,7 +104,7 @@ export function InfiniteList({
     <>
       <List divided margin={{ top: 24 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
-          <ReviewElement
+          <TripleReviewElement
             key={i}
             isFullList
             isMyReview={myReviewData.myReview?.id === review.id}
