@@ -1,0 +1,6 @@
+export const START_SCRAPE = 'START_SCRAPE'
+export const SCRAPE = 'SCRAPE'
+export const SCRAPE_FAILED = 'SCRAPE_FAILED'
+export const START_UNSCRAPE = 'START_UNSCRAPE'
+export const UNSCRAPE = 'UNSCRAPE'
+export const UNSCRAPE_FAILED = 'UNSCRAPE_FAILED'
