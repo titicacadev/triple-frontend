@@ -1,6 +1,6 @@
 import { post, del } from '@titicaca/fetcher'
 
-import { Target } from './use-scrap'
+import type { Target } from '../../types'
 
 function mapTypes(type: unknown) {
   switch (type) {
