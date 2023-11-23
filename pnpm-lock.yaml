@@ -409,6 +409,9 @@ importers:
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer

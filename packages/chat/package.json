@@ -42,6 +42,7 @@
   "dependencies": {
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
+    "@titicaca/i18n": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@titicaca/router": "workspace:*",
