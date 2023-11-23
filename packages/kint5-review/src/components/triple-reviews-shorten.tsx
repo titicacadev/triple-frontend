@@ -7,8 +7,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
 
-import { PopularReviews, LatestReviews, RatingReviews } from './shorten-list'
-import { WriteButton } from './write-button'
+import { PopularReviews, LatestReviews } from './shorten-list'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import {
   SortingOptionsProvider,
@@ -20,7 +19,7 @@ import type { ShortenReviewValue } from './shorten-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
-interface ReviewsShortenProps {
+interface TripleReviewsShortenProps {
   resourceId: string
   resourceType: string
   regionId?: string
@@ -33,7 +32,9 @@ interface ReviewsShortenProps {
   receiverId?: string
 }
 
-export function ReviewsShorten({
+/** 트리플 리뷰 (현지인 리뷰) 컴포넌트
+ */
+export function TripleReviewsShorten({
   resourceId,
   resourceType,
   regionId,
@@ -44,7 +45,7 @@ export function ReviewsShorten({
   sortingType = 'default',
   placeholderText,
   receiverId,
-}: ReviewsShortenProps) {
+}: TripleReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider
@@ -57,7 +58,7 @@ export function ReviewsShorten({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewsShortenComponent
+          <TripleReviewsShortenComponent
             resourceId={resourceId}
             resourceType={resourceType}
             regionId={regionId}
@@ -74,18 +75,21 @@ export function ReviewsShorten({
 const REVIEW_SHORTEN_LIST_TYPES = {
   recommendation: PopularReviews,
   latest: LatestReviews,
-  'star-rating-desc': RatingReviews,
-  'star-rating-asc': RatingReviews,
+  'star-rating-desc': null,
+  'star-rating-asc': null,
 }
 
-function ReviewsShortenComponent({
+function TripleReviewsShortenComponent({
   resourceId,
   resourceType,
   regionId,
   initialReviewsCount,
   placeholderText,
   sortingType,
-}: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
+}: Omit<
+  TripleReviewsShortenProps,
+  'initialRecentTrip' | 'initialSortingOption'
+>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
   const { t } = useTranslation('common-web')
@@ -135,18 +139,13 @@ function ReviewsShortenComponent({
     <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
       <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
         <Text css={{ fontSize: 18, fontWeight: 700 }}>
-          {t(['ribyu', '리뷰'])}
+          {t(['hyeonjiin-ribyu', '현지인 리뷰'])}
         </Text>
         {reviewsCountData !== undefined && reviewsCountData.reviewsCount > 0 ? (
           <Text css={{ fontSize: 18, fontWeight: 700 }}>
             {` ${formatNumber(reviewsCountData.reviewsCount)}`}
           </Text>
         ) : null}
-        <WriteButton
-          resourceId={resourceId}
-          resourceType={resourceType}
-          regionId={regionId}
-        />
       </FlexBox>
       <SortingOptions />
       <ListElement value={value} />

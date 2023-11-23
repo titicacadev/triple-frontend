@@ -11,13 +11,13 @@ import { authHandlers, handlers } from './mocks/reviews'
 import { FilterProvider } from './components/filter-context'
 import { SortingOptionsProvider } from './components/sorting-context'
 
-import { ReviewsShorten } from '.'
+import { TripleReviewsShorten } from '.'
 
 const queryClient = new QueryClient()
 
-const meta: Meta<typeof ReviewsShorten> = {
-  title: 'kint5-review / ReviewsShorten',
-  component: ReviewsShorten,
+const meta: Meta<typeof TripleReviewsShorten> = {
+  title: 'kint5-review / TripleReviewsShorten',
+  component: TripleReviewsShorten,
   decorators: [
     (Story) => (
       <>
@@ -58,7 +58,7 @@ const meta: Meta<typeof ReviewsShorten> = {
 
 export default meta
 
-export const Basic: StoryObj<typeof ReviewsShorten> = {
+export const Basic: StoryObj<typeof TripleReviewsShorten> = {
   name: '일반',
   args: {
     initialReviewsCount: 120,
@@ -73,7 +73,7 @@ export const Basic: StoryObj<typeof ReviewsShorten> = {
   },
 }
 
-export const HasMyReview: StoryObj<typeof ReviewsShorten> = {
+export const HasMyReview: StoryObj<typeof TripleReviewsShorten> = {
   name: '내 리뷰 작성됨',
   args: {
     ...Basic.args,
