@@ -102,7 +102,7 @@ export function ReviewsList({
 
   return (
     <>
-      <List divided margin={{ top: 40 }} verticalGap={48}>
+      <List divided margin={{ top: 26 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
           <ReviewElement
             key={i}
