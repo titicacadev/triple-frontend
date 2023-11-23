@@ -144,13 +144,11 @@ function ReviewsShortenComponent({
             {` ${formatNumber(reviewsCountData.reviewsCount)}`}
           </Text>
         ) : null}
-        {isGlobalReview ? (
-          <WriteButton
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-          />
-        ) : null}
+        <WriteButton
+          resourceId={resourceId}
+          resourceType={resourceType}
+          regionId={regionId}
+        />
       </FlexBox>
       {isGlobalReview ? null : <SortingOptions />}
       <ListElement value={value} />
