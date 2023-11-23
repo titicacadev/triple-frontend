@@ -1,6 +1,6 @@
 import { BaseIconProps } from './type'
 
-export function ThumbsUpIcon({
+export function EmptyThumbsUpIcon({
   width = 16,
   height = 16,
   color = '#1C1B1F',

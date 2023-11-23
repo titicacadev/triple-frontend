@@ -4,7 +4,7 @@ import {
   List,
   Rating,
   Text,
-  ThumbsUpIcon,
+  EmptyThumbsUpIcon,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
@@ -280,7 +280,7 @@ export function TripleGlobalReviewElement({
         >
           {!blinded ? (
             <LikeButton onClick={handleLikeButtonClick}>
-              <ThumbsUpIcon />
+              <EmptyThumbsUpIcon />
               {likesCount}
             </LikeButton>
           ) : null}
