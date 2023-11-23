@@ -35,7 +35,6 @@ import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
-import { PinnedMessage } from './pinned-message'
 import User from './user'
 
 const LikeButton = styled.button`
@@ -46,8 +45,6 @@ const LikeButton = styled.button`
   font-weight: 400;
   color: var(--color-kint5-gray100);
 `
-
-const MoreButton = styled.button``
 
 export interface TripleGlobalReviewElementProps {
   review: BaseReviewFragment
@@ -69,7 +66,6 @@ export function TripleGlobalReviewElement({
     reviewedAt: originReviewedAt,
     rating,
     media,
-    replyBoard,
     visitDate,
     liked,
     likesCount,
@@ -274,12 +270,6 @@ export function TripleGlobalReviewElement({
             <Media media={media} reviewId={review.id} />
           </Container>
         ) : null}
-        {replyBoard?.pinnedMessages[0] ? (
-          <PinnedMessage
-            pinnedMessage={replyBoard?.pinnedMessages[0]}
-            onPinnedMessageClick={handleReviewClick}
-          />
-        ) : null}
         <FlexBox
           flex
           css={{
@@ -307,14 +297,14 @@ export function TripleGlobalReviewElement({
               >
                 {formatTimestamp(reviewedAt)}
               </Text>
-              <MoreButton onClick={handleMenuClick}>
+              <button onClick={handleMenuClick}>
                 <img
                   src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-dot-line-24.svg"
                   alt="Show more"
                   width={24}
                   height={24}
                 />
-              </MoreButton>
+              </button>
             </FlexBox>
           ) : null}
         </FlexBox>

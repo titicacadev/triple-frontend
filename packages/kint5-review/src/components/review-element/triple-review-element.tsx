@@ -21,7 +21,6 @@ import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { formatTimestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
-import styled from 'styled-components'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { useClientActions } from '../../services'
@@ -31,10 +30,7 @@ import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
-import { PinnedMessage } from './pinned-message'
 import User from './user'
-
-const MoreButton = styled.button``
 
 export interface TripleReviewElementProps {
   review: BaseReviewFragment
@@ -56,7 +52,6 @@ export function TripleReviewElement({
     reviewedAt: originReviewedAt,
     rating,
     media,
-    replyBoard,
     visitDate,
     likesCount,
   },
@@ -229,12 +224,6 @@ export function TripleReviewElement({
             <Media media={media} reviewId={review.id} />
           </Container>
         ) : null}
-        {replyBoard?.pinnedMessages[0] ? (
-          <PinnedMessage
-            pinnedMessage={replyBoard?.pinnedMessages[0]}
-            onPinnedMessageClick={handleReviewClick}
-          />
-        ) : null}
         <FlexBox
           flex
           css={{
@@ -277,14 +266,14 @@ export function TripleReviewElement({
               >
                 {formatTimestamp(reviewedAt)}
               </Text>
-              <MoreButton onClick={handleMenuClick}>
+              <button onClick={handleMenuClick}>
                 <img
                   src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-dot-line-24.svg"
                   alt="Show more"
                   width={24}
                   height={24}
                 />
-              </MoreButton>
+              </button>
             </FlexBox>
           ) : null}
         </FlexBox>
