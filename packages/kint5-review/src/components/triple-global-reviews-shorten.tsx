@@ -144,7 +144,7 @@ function TripleGlobalReviewsShortenComponent({
           alignItems: 'center',
           justifyContent: 'flex-end',
           width: '100%',
-          marginTop: 16,
+          marginTop: 21,
         }}
       >
         <Filters />
