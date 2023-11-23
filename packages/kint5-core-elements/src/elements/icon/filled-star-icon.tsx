@@ -1,6 +1,6 @@
 import { BaseIconProps } from './type'
 
-export function StarIcon({
+export function FilledStarIcon({
   width = 12,
   height = 12,
   color = '#FCC038',
