@@ -4,7 +4,7 @@ import {
   List,
   Rating,
   Text,
-  ThumbsUpIcon,
+  EmptyThumbsUpIcon,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
@@ -241,7 +241,7 @@ export function TripleReviewElement({
                 gap: 4,
               }}
             >
-              <ThumbsUpIcon />
+              <EmptyThumbsUpIcon />
               <Text
                 css={{
                   fontSize: 12,
