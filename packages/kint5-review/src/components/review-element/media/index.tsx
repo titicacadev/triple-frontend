@@ -15,9 +15,10 @@ import Medium from './medium'
 interface Props {
   media: ImageMeta[]
   reviewId: string
+  allowNavigateImages: boolean
 }
 
-function Media({ media, reviewId }: Props) {
+function Media({ media, reviewId, allowNavigateImages }: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { navigateImages } = useClientActions()
 
@@ -55,6 +56,10 @@ function Media({ media, reviewId }: Props) {
           <MediumWrapper
             key={medium.id}
             onClick={() => {
+              if (!allowNavigateImages) {
+                return
+              }
+
               trackEvent({
                 ga: ['리뷰_리뷰썸네일_클릭', thumbnailType],
                 fa: {
