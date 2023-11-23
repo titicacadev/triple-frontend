@@ -1,17 +1,13 @@
-import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Container, FlexBox, Text } from '@titicaca/kint5-core-elements'
+import {
+  Container,
+  EmptyCheckboxIcon,
+  FilledCheckboxIcon,
+  FlexBox,
+  Text,
+} from '@titicaca/kint5-core-elements'
 
 import { useReviewFilters } from './filter-context'
-
-const CheckBox = styled.input`
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  background-size: 100% 100%;
-  border: 1px solid hotpink;
-`
 
 export function Filters() {
   const { isMediaCollection, handleMediaChange } = useReviewFilters()
@@ -49,14 +45,35 @@ function Filter({
       }}
     >
       <Container css={{ position: 'relative' }}>
-        <CheckBox readOnly type="checkbox" checked={checked} />
+        <input
+          readOnly
+          type="checkbox"
+          checked={checked}
+          css={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            appearance: 'none',
+            width: 24,
+            height: 24,
+            cursor: 'pointer',
+          }}
+        />
         {checked ? (
-          <Container
-            css={{ width: 24, height: 24, backgroundColor: 'black' }}
+          <FilledCheckboxIcon
+            css={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
           />
         ) : (
-          <Container
-            css={{ width: 24, height: 24, backgroundColor: 'white' }}
+          <EmptyCheckboxIcon
+            css={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
           />
         )}
       </Container>
