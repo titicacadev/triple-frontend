@@ -267,7 +267,7 @@ export function TripleGlobalReviewElement({
               margin: '16px 0 0',
             }}
           >
-            <Media media={media} reviewId={review.id} />
+            <Media allowNavigateImages media={media} reviewId={review.id} />
           </Container>
         ) : null}
         <FlexBox
