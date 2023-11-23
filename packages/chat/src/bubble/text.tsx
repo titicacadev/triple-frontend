@@ -1,3 +1,5 @@
+import useATagNavigator from '../utils/a-tag-navigator'
+
 import { TextItem } from './item'
 import { Bubble } from './bubble'
 import { TextBubbleProp } from './type'
@@ -40,9 +42,11 @@ function getDefaultBackgroundColor(my: boolean) {
  */
 
 export function TextBubble({ message, ...props }: TextBubbleProp) {
+  const aTagNavigator = useATagNavigator()
+
   return (
     <Bubble {...props}>
-      <TextItem text={message} />
+      <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
     </Bubble>
   )
 }
