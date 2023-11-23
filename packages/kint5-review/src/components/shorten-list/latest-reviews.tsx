@@ -6,6 +6,7 @@ import type { ShortenReview } from './types'
 
 export function LatestReviews({
   value: {
+    isGlobal,
     resourceId,
     resourceType,
     regionId,
@@ -27,6 +28,7 @@ export function LatestReviews({
 
   return (
     <ReviewsList
+      isGlobal={isGlobal}
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}

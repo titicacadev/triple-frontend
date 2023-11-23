@@ -6,6 +6,7 @@ import type { ExtendShortenReview } from './types'
 
 export function RatingReviews({
   value: {
+    isGlobal,
     resourceId,
     resourceType,
     regionId,
@@ -33,6 +34,7 @@ export function RatingReviews({
 
   return (
     <ReviewsList
+      isGlobal={isGlobal}
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}
