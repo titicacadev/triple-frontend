@@ -65,23 +65,6 @@ export const Basic: StoryObj<typeof ReviewsShorten> = {
     resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
     resourceType: 'tna',
     placeholderText: '이 투어·티켓 어떠셨나요?',
-    isGlobalReview: false,
-  },
-  parameters: {
-    msw: {
-      handlers,
-    },
-  },
-}
-
-export const Global: StoryObj<typeof ReviewsShorten> = {
-  name: '글로벌 리뷰',
-  args: {
-    initialReviewsCount: 120,
-    resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
-    resourceType: 'tna',
-    placeholderText: '이 투어·티켓 어떠셨나요?',
-    isGlobalReview: true,
   },
   parameters: {
     msw: {
