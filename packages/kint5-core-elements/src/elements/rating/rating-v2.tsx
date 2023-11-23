@@ -1,6 +1,6 @@
 import { Text } from '../text'
 import { FlexBox } from '../flex-box'
-import { StarIcon } from '../icon/star-icon'
+import { FilledStarIcon } from '../icon/filled-star-icon'
 
 export function RatingV2({
   score: initScore = 0,
@@ -16,7 +16,7 @@ export function RatingV2({
 
   return (
     <FlexBox flex css={{ alignItems: 'center', gap: 2 }}>
-      <StarIcon color="#FFBD14" />
+      <FilledStarIcon color="#FFBD14" />
       <Text css={{ fontSize: 13, fontWeight: 700, marginTop: 1 }}>
         {formattedScore}
       </Text>

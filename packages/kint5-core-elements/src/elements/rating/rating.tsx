@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { Text } from '../text'
-import { StarIcon } from '../icon'
+import { FilledStarIcon } from '../icon'
 import { FlexBox } from '../flex-box'
 
 /**
@@ -33,7 +33,7 @@ export function Rating({
         }}
       >
         {[...Array(score)].map((_, i: number) => (
-          <StarIcon key={i} width={size} height={size} />
+          <FilledStarIcon key={i} width={size} height={size} />
         ))}
       </FlexBox>
       {showRatingScore && (

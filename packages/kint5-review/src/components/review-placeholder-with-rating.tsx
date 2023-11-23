@@ -5,7 +5,7 @@ import {
   Button,
   Container,
   FlexBox,
-  StarIcon,
+  FilledStarIcon,
   Text,
 } from '@titicaca/kint5-core-elements'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
@@ -158,11 +158,11 @@ export function ReviewsPlaceholder({
             flex
             css={{ alignItems: 'center', justifyContent: 'center', gap: 12 }}
           >
-            <StarIcon color="#F1F3F5" width={40} height={40} />
-            <StarIcon color="#F1F3F5" width={40} height={40} />
-            <StarIcon color="#F1F3F5" width={40} height={40} />
-            <StarIcon color="#F1F3F5" width={40} height={40} />
-            <StarIcon color="#F1F3F5" width={40} height={40} />
+            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
           </FlexBox>
         )
       ) : null}
