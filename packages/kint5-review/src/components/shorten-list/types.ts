@@ -1,4 +1,5 @@
 export interface ShortenReview {
+  isGlobal: boolean
   resourceId: string
   resourceType: string
   regionId?: string
