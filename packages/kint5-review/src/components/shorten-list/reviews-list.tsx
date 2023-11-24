@@ -13,6 +13,7 @@ import {
 } from '../review-element'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
 import type { SortingType, SortingOption } from '../sorting-context'
+import { useReviewLanguage } from '../language-context'
 
 interface Props {
   isGlobal: boolean
@@ -43,6 +44,7 @@ export function ReviewsList({
   reviews,
   refetch,
 }: Props) {
+  const { lang } = useReviewLanguage()
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
     undefined,
   )
@@ -52,10 +54,12 @@ export function ReviewsList({
   const { data: myReviewData } = useMyReview({
     resourceId,
     resourceType,
+    lang,
   })
   const { data: descriptionsData } = useDescriptions({
     resourceId,
     resourceType,
+    lang,
   })
 
   const sortedReviews = useMemo(() => {
@@ -146,6 +150,7 @@ export function ReviewsList({
           resourceType={resourceType}
           resourceId={resourceId}
           regionId={regionId}
+          lang={lang}
         />
       ) : null}
 

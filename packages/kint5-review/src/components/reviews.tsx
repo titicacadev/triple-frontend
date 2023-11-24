@@ -27,6 +27,7 @@ import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import { Filters } from './filter'
 import type { InfinityReviewValue } from './infinite-list'
+import { useReviewLanguage } from './language-context'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -111,6 +112,7 @@ function ReviewsComponent({
   sortingType,
 }: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
+  const { lang } = useReviewLanguage()
   const { selectedOption } = useReviewSortingOptions()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -123,6 +125,7 @@ function ReviewsComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
+        lang,
       },
       initialReviewsCount,
     )

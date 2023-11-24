@@ -32,6 +32,7 @@ import {
 } from '../../services'
 import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
+import { useReviewLanguage } from '../language-context'
 
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
@@ -80,6 +81,7 @@ export function TripleGlobalReviewElement({
 }: TripleGlobalReviewElementProps) {
   const { t } = useTranslation('common-web')
 
+  const { lang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -87,8 +89,8 @@ export function TripleGlobalReviewElement({
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview } = useLikeReviewMutation()
-  const { mutate: unlikeReview } = useUnlikeReviewMutation()
+  const { mutate: likeReview } = useLikeReviewMutation({ lang })
+  const { mutate: unlikeReview } = useUnlikeReviewMutation({ lang })
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 

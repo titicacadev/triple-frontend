@@ -16,7 +16,7 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { SortingOptions } from './sorting-options'
 import type { ShortenReviewValue } from './shorten-list'
-import { ReviewLanguageProvider } from './language-context'
+import { ReviewLanguageProvider, useReviewLanguage } from './language-context'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -95,6 +95,7 @@ function TripleReviewsShortenComponent({
 >) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
+  const { lang } = useReviewLanguage()
   const { t } = useTranslation('common-web')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -107,6 +108,7 @@ function TripleReviewsShortenComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
+        lang,
       },
       initialReviewsCount,
     )

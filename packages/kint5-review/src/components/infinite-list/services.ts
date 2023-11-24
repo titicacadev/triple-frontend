@@ -7,13 +7,13 @@ import {
   getClient,
 } from '../../data/graphql'
 import { DEFAULT_REVIEWS_COUNT_PER_PAGE } from '../../constants'
-import { useReviewLanguage } from '../language-context'
 
-export function useInfinitePopularReviews(
-  params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function useInfinitePopularReviews({
+  lang,
+  ...params
+}: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'> & {
+  lang: string
+}) {
   return useInfiniteQuery(
     [
       'review/getInfinitePopularReviews',
@@ -41,11 +41,10 @@ export function useInfinitePopularReviews(
   )
 }
 
-export function useInfiniteLatestReviews(
-  params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function useInfiniteLatestReviews({
+  lang,
+  ...params
+}: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'> & { lang: string }) {
   return useInfiniteQuery(
     [
       'review/getInfiniteLatestReviews',
@@ -73,11 +72,10 @@ export function useInfiniteLatestReviews(
   )
 }
 
-export function useInfiniteRatingReviews(
-  params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function useInfiniteRatingReviews({
+  lang,
+  ...params
+}: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'> & { lang: string }) {
   return useInfiniteQuery(
     [
       'review/getInfiniteRatingReviews',

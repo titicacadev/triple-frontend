@@ -1,3 +1,4 @@
+import { useReviewLanguage } from '../language-context'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
@@ -22,6 +23,7 @@ export function RatingReviews({
 }) {
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
+  const { lang } = useReviewLanguage()
   const { data, refetch } = useRatingReviews({
     resourceId,
     resourceType,
@@ -30,6 +32,7 @@ export function RatingReviews({
     sortBy: {
       rating: sort,
     },
+    lang,
   })
 
   return (

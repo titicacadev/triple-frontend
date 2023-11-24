@@ -1,3 +1,4 @@
+import { useReviewLanguage } from '../language-context'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
@@ -19,11 +20,13 @@ export function PopularReviews({
 }: {
   value: ShortenReview & { sortingType?: SortingType }
 }) {
+  const { lang } = useReviewLanguage()
   const { data, refetch } = usePopularReviews({
     resourceId,
     resourceType,
     recentTrip,
     hasMedia,
+    lang,
   })
 
   return (

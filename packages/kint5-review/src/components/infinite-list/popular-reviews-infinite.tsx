@@ -1,3 +1,4 @@
+import { useReviewLanguage } from '../language-context'
 import type { SortingType } from '../sorting-context'
 
 import { InfiniteList } from './infinite-list'
@@ -18,12 +19,14 @@ export function PopularReviewsInfinite({
 }: {
   value: InfiniteReviewProps & { sortingType?: SortingType }
 }) {
+  const { lang } = useReviewLanguage()
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfinitePopularReviews({
       resourceId,
       resourceType,
       recentTrip,
       hasMedia,
+      lang,
     })
 
   return (

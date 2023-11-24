@@ -20,14 +20,11 @@ import {
   UnlikeReviewMutationVariables,
   getClient,
 } from '../data/graphql'
-import { useReviewLanguage } from '../components/language-context'
 
 export function useReviewCount(
-  params: GetReviewsCountQueryVariables,
+  { lang, ...params }: GetReviewsCountQueryVariables & { lang: string },
   initialValue?: number,
 ) {
-  const { lang } = useReviewLanguage()
-
   return useQuery(
     ['reviews/getReviewCount', { ...params }],
     () => getClient({ lang }).GetReviewsCount(params),
@@ -42,26 +39,27 @@ export function useReviewCount(
   )
 }
 
-export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
-  const { lang } = useReviewLanguage()
-
+export function useDescriptions({
+  lang,
+  ...params
+}: GetReviewSpecificationQueryVariables & { lang: string }) {
   return useQuery(['review/getReviewSpecification', params], () =>
     getClient({ lang }).GetReviewSpecification(params),
   )
 }
 
-export function useMyReview(params: GetMyReviewQueryVariables) {
-  const { lang } = useReviewLanguage()
-
+export function useMyReview({
+  lang,
+  ...params
+}: GetMyReviewQueryVariables & { lang: string }) {
   return useQuery(['review/getMyReview', params], () =>
     getClient({ lang }).GetMyReview(params),
   )
 }
 
-export function useLikeReviewMutation() {
+export function useLikeReviewMutation({ lang }: { lang: string }) {
   const { notifyReviewLiked } = useTripleClientActions()
   const queryClient = useQueryClient()
-  const { lang } = useReviewLanguage()
 
   return useMutation(
     (variables: LikeReviewMutationVariables & { resourceId: string }) =>
@@ -154,10 +152,9 @@ export function useLikeReviewMutation() {
   )
 }
 
-export function useUnlikeReviewMutation() {
+export function useUnlikeReviewMutation({ lang }: { lang: string }) {
   const { notifyReviewUnliked } = useTripleClientActions()
   const queryClient = useQueryClient()
-  const { lang } = useReviewLanguage()
 
   return useMutation(
     (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
@@ -249,10 +246,9 @@ export function useUnlikeReviewMutation() {
   )
 }
 
-export function useDeleteReviewMutation() {
+export function useDeleteReviewMutation({ lang }: { lang: string }) {
   const { notifyReviewDeleted } = useTripleClientActions()
   const queryClient = useQueryClient()
-  const { lang } = useReviewLanguage()
 
   return useMutation(
     (variables: DeleteReviewMutationVariables & { resourceId: string }) =>
