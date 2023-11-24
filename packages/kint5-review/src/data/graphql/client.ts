@@ -9,8 +9,6 @@ interface GetClientArgs {
 const cachedClient: Record<string, ReturnType<typeof getSdk>> = {}
 
 export function getClient({ lang }: GetClientArgs) {
-  // eslint-disable-next-line no-console
-  console.log(cachedClient)
   if (cachedClient[lang]) {
     return cachedClient[lang]
   }
