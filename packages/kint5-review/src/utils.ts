@@ -7,6 +7,7 @@ export function writeReview({
   regionId,
   rating = 0,
   photoFirst,
+  lang,
 }: {
   appUrlScheme: string
   resourceType: string
@@ -14,12 +15,14 @@ export function writeReview({
   regionId?: string
   rating?: number
   photoFirst?: boolean
+  lang: string
 }) {
   const params = qs.stringify({
     region_id: regionId,
     resource_type: resourceType,
     resource_id: resourceId,
     rating,
+    lang,
     ...(photoFirst && { photo_first: 'true' }),
   })
   window.location.href = `${appUrlScheme}:///reviews/new?${params}`

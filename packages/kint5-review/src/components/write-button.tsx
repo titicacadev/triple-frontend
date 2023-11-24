@@ -7,6 +7,8 @@ import { useTranslation } from '@titicaca/next-i18next'
 
 import { useClientActions } from '../services'
 
+import { useReviewLanguage } from './language-context'
+
 interface Props {
   resourceId: string
   resourceType: string
@@ -15,6 +17,7 @@ interface Props {
 
 export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   const { t } = useTranslation('common-web')
+  const { lang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { writeReview } = useClientActions()
 
@@ -34,8 +37,9 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
           resourceType,
           resourceId,
           regionId,
+          lang,
         })
-      }, [trackEvent, resourceId, writeReview, resourceType, regionId]),
+      }, [trackEvent, resourceId, writeReview, resourceType, regionId, lang]),
       { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
   )
