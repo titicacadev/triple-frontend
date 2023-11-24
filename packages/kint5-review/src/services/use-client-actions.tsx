@@ -21,6 +21,7 @@ export function useClientActions() {
         regionId?: string
         rating?: number
         photoFirst?: boolean
+        lang: string
       }) {
         writeReview({ appUrlScheme, ...params })
       },

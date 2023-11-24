@@ -123,9 +123,10 @@ export function ReviewsPlaceholder({
             resourceId,
             regionId,
             rating,
+            lang,
           })
         },
-        [regionId, resourceId, resourceType, trackEvent, writeReview],
+        [regionId, resourceId, resourceType, lang, trackEvent, writeReview],
       ),
       { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
