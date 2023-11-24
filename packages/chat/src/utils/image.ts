@@ -1,3 +1,7 @@
+import qs from 'querystring'
+
+import { generateUrl } from '@titicaca/view-utilities'
+
 import { UserInterface, MetaDataInterface } from '../types'
 
 export function getProfileImageUrl(user: UserInterface) {
@@ -36,4 +40,20 @@ export function generatePreviewImage({
     width,
     customWidth,
   )},q_auto,f_auto/${cloudinaryId}.jpeg`
+}
+
+export function navigateToImage({
+  appUrlScheme,
+  images,
+  index = 0,
+}: {
+  appUrlScheme: string
+  images: MetaDataInterface[]
+  index?: number
+}) {
+  window.location.href = generateUrl({
+    scheme: appUrlScheme,
+    path: '/images',
+    query: qs.stringify({ images: JSON.stringify(images), index }),
+  })
 }

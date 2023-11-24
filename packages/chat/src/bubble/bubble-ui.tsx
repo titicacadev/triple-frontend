@@ -70,6 +70,7 @@ export type BubbleUIProps = (
   maxWidthOffset?: BubbleProp['maxWidthOffset']
   cloudinaryName?: string
   mediaUrlBase?: string
+  appUrlScheme?: string
   hasArrow?: boolean
   css?: CSSProp
 }
@@ -92,6 +93,7 @@ export default function BubbleUI({
   maxWidthOffset,
   cloudinaryName,
   mediaUrlBase,
+  appUrlScheme,
   hasArrow,
   css,
 }: BubbleUIProps) {
@@ -130,6 +132,7 @@ export default function BubbleUI({
       return (
         <ImageBubble
           images={value.images}
+          appUrlScheme={appUrlScheme}
           onClick={onImageBubbleClick}
           onLongPress={onImageBubbleLongPress}
           css={css}
@@ -171,8 +174,6 @@ export default function BubbleUI({
           css={css}
         />
       )
-    //   case MessageType.DELETED:
-    //     return <DeletedBubble />
     default:
       throw new Error('지원하지 않는 메시지 타입입니다.')
   }
