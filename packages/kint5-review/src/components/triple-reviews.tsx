@@ -1,23 +1,13 @@
 import { ComponentType, useEffect } from 'react'
-import styled from 'styled-components'
 import { Trans } from '@titicaca/next-i18next'
-import {
-  FlexBox,
-  Section,
-  Container,
-  Text,
-} from '@titicaca/kint5-core-elements'
+import { Section, Container, Text } from '@titicaca/kint5-core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 
 import { useReviewCount } from '../services'
 
-import {
-  PopularReviewsInfinite,
-  LatestReviewsInfinite,
-  RatingReviewsInfinite,
-} from './infinite-list'
+import { PopularReviewsInfinite, LatestReviewsInfinite } from './infinite-list'
 import {
   SortingOptionsProvider,
   useReviewSortingOptions,
@@ -25,26 +15,12 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
-import { Filters } from './filter'
 import type { InfinityReviewValue } from './infinite-list'
-import { useReviewLanguage } from './language-context'
+import { ReviewLanguageProvider, useReviewLanguage } from './language-context'
 
-const REVIEWS_SECTION_ID = 'reviews'
+const REVIEWS_SECTION_ID = 'triple-reviews'
 
-const OptionContainer = styled(FlexBox)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 23px 0 0;
-
-  @media (max-width: 359px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-`
-
-interface ReviewsProps {
+interface TripleReviewsProps {
   resourceId: string
   resourceType: string
   regionId?: string
@@ -57,7 +33,7 @@ interface ReviewsProps {
   receiverId?: string
 }
 
-export function Reviews({
+export function TripleReviews({
   resourceId,
   resourceType,
   regionId,
@@ -68,7 +44,7 @@ export function Reviews({
   sortingType = 'poi',
   placeholderText,
   receiverId,
-}: ReviewsProps) {
+}: TripleReviewsProps) {
   return (
     <LoginCtaModalProvider>
       <FilterProvider
@@ -82,14 +58,16 @@ export function Reviews({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewsComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
+          <ReviewLanguageProvider lang="ko">
+            <TripleReviewsComponent
+              resourceId={resourceId}
+              resourceType={resourceType}
+              regionId={regionId}
+              initialReviewsCount={initialReviewsCount}
+              placeholderText={placeholderText}
+              sortingType={sortingType}
+            />
+          </ReviewLanguageProvider>
         </SortingOptionsProvider>
       </FilterProvider>
     </LoginCtaModalProvider>
@@ -99,18 +77,18 @@ export function Reviews({
 const REVIEW_INFINITY_LIST_TYPES = {
   recommendation: PopularReviewsInfinite,
   latest: LatestReviewsInfinite,
-  'star-rating-desc': RatingReviewsInfinite,
-  'star-rating-asc': RatingReviewsInfinite,
+  'star-rating-desc': null,
+  'star-rating-asc': null,
 }
 
-function ReviewsComponent({
+function TripleReviewsComponent({
   resourceId,
   resourceType,
   regionId,
   initialReviewsCount,
   placeholderText,
   sortingType,
-}: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
+}: Omit<TripleReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { lang } = useReviewLanguage()
   const { selectedOption } = useReviewSortingOptions()
@@ -158,32 +136,33 @@ function ReviewsComponent({
   }
 
   return (
-    <Section anchor={REVIEWS_SECTION_ID}>
+    <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
       <Container>
         <Trans
           i18nKey={[
-            'totalreviewscount-gaeyi-ribyu',
-            '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
+            'totalreviewscount-gaeyi-hyeonjiin-ribyu',
+            '<0> {{totalReviewsCount}}</0><1>개의 현지인 리뷰</1>',
           ]}
           ns="common-web"
         >
-          <Text bold size="huge" color="blue" alpha={1} inline>
+          <Text
+            css={{
+              fontSize: 21,
+              fontWeight: 700,
+              display: 'inline',
+              color: 'var(--color-kint5-brand1)',
+            }}
+          >
             <>
               {{
                 totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
               }}
             </>
           </Text>
-          <Text bold size="huge" color="gray" alpha={1} inline />
+          <Text css={{ fontSize: 21, fontWeight: 700, display: 'inline' }} />
         </Trans>
       </Container>
-
-      <OptionContainer>
-        <SortingOptions />
-
-        <Filters />
-      </OptionContainer>
-
+      <SortingOptions />
       <ListElement value={value} />
     </Section>
   )

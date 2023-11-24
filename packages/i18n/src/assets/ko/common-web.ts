@@ -198,4 +198,6 @@ export const koCommonWeb = {
   jjim: '찜',
   'jjim-cwiso': '찜 취소',
   'hyeonjiin-ribyu': '현지인 리뷰',
+  'totalreviewscount-gaeyi-hyeonjiin-ribyu':
+    '<0> {{totalReviewsCount}}</0><1>개의 현지인 리뷰</1>',
 } as const

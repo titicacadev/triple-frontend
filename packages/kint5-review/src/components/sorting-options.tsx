@@ -30,7 +30,7 @@ export function SortingOptions() {
 
   return (
     <List
-      css={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 20 }}
+      css={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 24 }}
     >
       {sortingOptions.map(({ key, text }) => (
         <List.Item key={key}>

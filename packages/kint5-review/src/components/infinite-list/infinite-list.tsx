@@ -106,7 +106,7 @@ export function InfiniteList({
 
   return (
     <>
-      <List divided margin={{ top: 24 }} verticalGap={48}>
+      <List divided margin={{ top: 26 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
           <TripleReviewElement
             key={i}
