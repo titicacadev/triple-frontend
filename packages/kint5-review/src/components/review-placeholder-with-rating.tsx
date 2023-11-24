@@ -15,6 +15,7 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useClientActions } from '../services'
 
 import type { SortingOption, SortingType } from './sorting-context'
+import { useReviewLanguage } from './language-context'
 
 const PlaceholderContainer = styled(Container)`
   width: 100%;
@@ -75,6 +76,7 @@ export function ReviewsPlaceholder({
   sortingType,
   sortingOption,
 }: ReviewsPlaceholderProps) {
+  const { lang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { writeReview, navigateReviewList } = useClientActions()
 
@@ -89,6 +91,7 @@ export function ReviewsPlaceholder({
           recentTrip: false,
           sortingType,
           sortingOption,
+          lang,
         })
       }, [
         navigateReviewList,
@@ -96,6 +99,7 @@ export function ReviewsPlaceholder({
         resourceType,
         sortingType,
         sortingOption,
+        lang,
       ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
