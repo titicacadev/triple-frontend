@@ -1,11 +1,10 @@
-import { useExternalHrefHandler } from '@titicaca/router/src/external/href-handler'
 import { MouseEvent } from 'react'
 import { useEnv } from '@titicaca/react-contexts'
-import { useHrefToProps } from '@titicaca/router'
+import { useExternalRouter, useHrefToProps } from '@titicaca/router'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 export default function useATagNavigator() {
-  const handleHrefExternally = useExternalHrefHandler()
+  const routeExternally = useExternalRouter()
   const { webUrlBase } = useEnv()
   const convertHrefToProps = useHrefToProps()
   const app = useTripleClientMetadata()
@@ -22,14 +21,10 @@ export default function useATagNavigator() {
           : originHref
 
       if (href) {
-        handleHrefExternally({
+        routeExternally({
           href,
           target: 'new',
           noNavbar: true,
-          stopDefaultHandler: () => {
-            event.preventDefault()
-            event.stopPropagation()
-          },
         })
       }
     }
