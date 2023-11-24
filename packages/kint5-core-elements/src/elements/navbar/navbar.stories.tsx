@@ -44,3 +44,16 @@ export function NavbarExample3() {
 }
 
 NavbarExample3.storyName = 'center, right content 전부 렌더링'
+
+export function NavbarExample4() {
+  return (
+    <Navbar
+      leftButtonIconType="close"
+      centerContent={<Text>타이틀</Text>}
+      onBackButtonClick={() => {
+        alert('close button clicked')
+      }}
+    />
+  )
+}
+NavbarExample4.storyName = 'Close 아이콘'
