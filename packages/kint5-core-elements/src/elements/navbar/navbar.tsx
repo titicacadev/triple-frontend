@@ -4,9 +4,10 @@ import { CSSObject } from 'styled-components'
 import { Button } from '../button'
 import { Container } from '../container'
 import { FlexBox } from '../flex-box'
-import { LeftArrowIcon } from '../icon'
+import { CloseIcon, LeftArrowIcon } from '../icon'
 
 interface NavbarProps {
+  leftButtonIconType?: 'back' | 'close'
   centerContent?: ReactNode
   rightContent?: ReactNode
   containerCss?: CSSObject
@@ -14,6 +15,7 @@ interface NavbarProps {
 }
 
 export function Navbar({
+  leftButtonIconType = 'back',
   centerContent,
   rightContent,
   containerCss,
@@ -47,7 +49,7 @@ export function Navbar({
           transform: 'translateY(-50%)',
         }}
       >
-        <LeftArrowIcon />
+        {leftButtonIconType === 'back' ? <LeftArrowIcon /> : <CloseIcon />}
       </Button>
       {centerContent}
       {rightContent ? (
