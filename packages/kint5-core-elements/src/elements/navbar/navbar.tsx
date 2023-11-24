@@ -11,7 +11,7 @@ interface NavbarProps {
   centerContent?: ReactNode
   rightContent?: ReactNode
   containerCss?: CSSObject
-  onBackButtonClick?: MouseEventHandler<HTMLButtonElement>
+  onLeftButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export function Navbar({
@@ -19,7 +19,7 @@ export function Navbar({
   centerContent,
   rightContent,
   containerCss,
-  onBackButtonClick,
+  onLeftButtonClick,
 }: NavbarProps) {
   return (
     <FlexBox
@@ -38,7 +38,7 @@ export function Navbar({
       }}
     >
       <Button
-        onClick={onBackButtonClick}
+        onClick={onLeftButtonClick}
         css={{
           background: 'none',
           margin: 0,
