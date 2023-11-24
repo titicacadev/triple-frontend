@@ -1,11 +1,6 @@
 import { useEffect } from 'react'
-import { Trans } from '@titicaca/next-i18next'
-import {
-  FlexBox,
-  Section,
-  Container,
-  Text,
-} from '@titicaca/kint5-core-elements'
+import { useTranslation } from '@titicaca/next-i18next'
+import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { LoginCtaModalProvider } from '@titicaca/modals'
@@ -89,6 +84,7 @@ function TripleGlobalReviewsComponent({
   TripleGlobalReviewsProps,
   'initialRecentTrip' | 'initialSortingOption' | 'lang'
 >) {
+  const { t } = useTranslation('common-web')
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { lang } = useReviewLanguage()
   const { selectedOption } = useReviewSortingOptions()
@@ -133,31 +129,14 @@ function TripleGlobalReviewsComponent({
 
   return (
     <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
-      <Container>
-        <Trans
-          i18nKey={[
-            'totalreviewscount-gaeyi-ribyu',
-            '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
-          ]}
-          ns="common-web"
-        >
-          <Text
-            css={{
-              fontSize: 21,
-              fontWeight: 700,
-              display: 'inline',
-              color: 'var(--color-kint5-brand1)',
-            }}
-          >
-            <>
-              {{
-                totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
-              }}
-            </>
-          </Text>
-          <Text css={{ fontSize: 21, fontWeight: 700, display: 'inline' }} />
-        </Trans>
-      </Container>
+      <Text css={{ fontSize: 21, fontWeight: 700 }}>
+        {t(
+          ['totalreviewscount-gaeyi--ribyu', '{{totalReviewsCount}}개의 리뷰'],
+          {
+            totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
+          },
+        )}
+      </Text>
       <FlexBox
         flex
         css={{
