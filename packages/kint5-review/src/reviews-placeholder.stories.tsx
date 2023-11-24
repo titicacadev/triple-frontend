@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
+import { ReviewLanguageProvider } from './components/language-context'
 
 const meta: Meta<typeof ReviewsPlaceholder> = {
   title: 'kint5-review / Review Placeholder',
   component: ReviewsPlaceholder,
+  decorators: [
+    (Story) => (
+      <ReviewLanguageProvider lang="ja">
+        <Story />
+      </ReviewLanguageProvider>
+    ),
+  ],
 }
 
 export default meta
@@ -15,6 +23,7 @@ export const Basic: StoryObj<typeof ReviewsPlaceholder> = {
     recentTrip: false,
     hasReviews: false,
     isMorePage: false,
+    lang: 'ko',
   },
 }
 
