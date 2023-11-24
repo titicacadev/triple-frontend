@@ -1,6 +1,7 @@
 export * from './components/triple-reviews-shorten'
 export * from './components/triple-global-reviews-shorten'
-export * from './components/reviews'
+export * from './components/triple-reviews'
+export * from './components/triple-global-reviews'
 export * from './utils'
 export * from './services'
 export type { SortingOption, SortingType } from './components/sorting-context'

@@ -12,13 +12,13 @@ import { FilterProvider } from './components/filter-context'
 import { SortingOptionsProvider } from './components/sorting-context'
 import { ReviewLanguageProvider } from './components/language-context'
 
-import { Reviews } from '.'
+import { TripleGlobalReviews } from '.'
 
 const queryClient = new QueryClient()
 
-const meta: Meta<typeof Reviews> = {
-  title: 'kint5-review / Reviews',
-  component: Reviews,
+const meta: Meta<typeof TripleGlobalReviews> = {
+  title: 'kint5-review / Triple Global Reviews',
+  component: TripleGlobalReviews,
   decorators: [
     (Story) => (
       <>
@@ -61,13 +61,14 @@ const meta: Meta<typeof Reviews> = {
 
 export default meta
 
-export const Basic: StoryObj<typeof Reviews> = {
+export const Basic: StoryObj<typeof TripleGlobalReviews> = {
   name: '일반',
   args: {
     initialReviewsCount: 120,
     resourceId: 'f939b4cb-ea3b-34b6-b430-eb5d28fbf467',
     resourceType: 'tna',
     placeholderText: '이 투어·티켓 어떠셨나요?',
+    lang: 'ja',
   },
   parameters: {
     msw: {
@@ -76,7 +77,7 @@ export const Basic: StoryObj<typeof Reviews> = {
   },
 }
 
-export const HasMyReview: StoryObj<typeof Reviews> = {
+export const HasMyReview: StoryObj<typeof TripleGlobalReviews> = {
   name: '내 리뷰 작성됨',
   args: {
     ...Basic.args,
