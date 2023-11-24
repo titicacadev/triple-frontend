@@ -10,8 +10,8 @@ export function NavbarExample1() {
   return (
     <Navbar
       centerContent={<Text>타이틀</Text>}
-      onBackButtonClick={() => {
-        alert('back button clicked')
+      onLeftButtonClick={() => {
+        alert('left button clicked')
       }}
     />
   )
@@ -22,8 +22,8 @@ export function NavbarExample2() {
   return (
     <Navbar
       rightContent={<Text css={{ color: '#7743EE' }}>완료</Text>}
-      onBackButtonClick={() => {
-        alert('back button clicked')
+      onLeftButtonClick={() => {
+        alert('left button clicked')
       }}
     />
   )
@@ -36,8 +36,8 @@ export function NavbarExample3() {
     <Navbar
       centerContent={<Text>타이틀</Text>}
       rightContent={<Text css={{ color: '#7743EE' }}>완료</Text>}
-      onBackButtonClick={() => {
-        alert('back button clicked')
+      onLeftButtonClick={() => {
+        alert('left button clicked')
       }}
     />
   )
@@ -50,7 +50,7 @@ export function NavbarExample4() {
     <Navbar
       leftButtonIconType="close"
       centerContent={<Text>타이틀</Text>}
-      onBackButtonClick={() => {
+      onLeftButtonClick={() => {
         alert('close button clicked')
       }}
     />
