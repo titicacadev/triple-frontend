@@ -16,6 +16,7 @@ import {
 import type { SortingOption, SortingType } from './sorting-context'
 import { SortingOptions } from './sorting-options'
 import type { ShortenReviewValue } from './shorten-list'
+import { ReviewLanguageProvider } from './language-context'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -58,14 +59,16 @@ export function TripleReviewsShorten({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <TripleReviewsShortenComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
+          <ReviewLanguageProvider lang="ko">
+            <TripleReviewsShortenComponent
+              resourceId={resourceId}
+              resourceType={resourceType}
+              regionId={regionId}
+              initialReviewsCount={initialReviewsCount}
+              placeholderText={placeholderText}
+              sortingType={sortingType}
+            />
+          </ReviewLanguageProvider>
         </SortingOptionsProvider>
       </FilterProvider>
     </LoginCtaModalProvider>

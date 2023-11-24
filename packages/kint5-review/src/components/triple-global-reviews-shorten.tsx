@@ -16,6 +16,7 @@ import {
 } from './sorting-context'
 import type { SortingType } from './sorting-context'
 import { Filters } from './filter'
+import { ReviewLanguageProvider } from './language-context'
 
 const REVIEWS_SECTION_ID = 'triple-global-reviews'
 
@@ -29,6 +30,7 @@ interface TripleGlobalReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
+  lang: string
 }
 
 export function TripleGlobalReviewsShorten({
@@ -41,6 +43,7 @@ export function TripleGlobalReviewsShorten({
   sortingType = 'default',
   placeholderText,
   receiverId,
+  lang,
 }: TripleGlobalReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -54,14 +57,16 @@ export function TripleGlobalReviewsShorten({
           resourceId={resourceId}
           initialSortingOption="latest"
         >
-          <TripleGlobalReviewsShortenComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
+          <ReviewLanguageProvider lang={lang}>
+            <TripleGlobalReviewsShortenComponent
+              resourceId={resourceId}
+              resourceType={resourceType}
+              regionId={regionId}
+              initialReviewsCount={initialReviewsCount}
+              placeholderText={placeholderText}
+              sortingType={sortingType}
+            />
+          </ReviewLanguageProvider>
         </SortingOptionsProvider>
       </FilterProvider>
     </LoginCtaModalProvider>
@@ -77,7 +82,7 @@ function TripleGlobalReviewsShortenComponent({
   sortingType,
 }: Omit<
   TripleGlobalReviewsShortenProps,
-  'initialRecentTrip' | 'initialSortingOption'
+  'initialRecentTrip' | 'initialSortingOption' | 'lang'
 >) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
