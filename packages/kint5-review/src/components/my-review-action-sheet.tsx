@@ -60,6 +60,7 @@ export function MyReviewActionSheet({
       region_id: regionId,
       resource_type: resourceType,
       resource_id: resourceId,
+      lang,
     })
     window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
   }

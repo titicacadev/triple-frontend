@@ -29,15 +29,18 @@ export function useClientActions() {
         regionId,
         resourceId,
         resourceType,
+        lang,
       }: {
         regionId?: string
         resourceId: string
         resourceType: string
+        lang: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
           resource_type: resourceType,
           resource_id: resourceId,
+          lang,
         })
         window.location.href = `${appUrlScheme}:///reviews/edit?${params}`
       },
