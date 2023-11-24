@@ -22,6 +22,7 @@ interface MyReviewActionSheetProps {
   resourceType: string
   resourceId: string
   regionId: string | undefined
+  lang: string
 }
 
 export function MyReviewActionSheet({
@@ -30,6 +31,7 @@ export function MyReviewActionSheet({
   resourceType,
   resourceId,
   regionId,
+  lang,
 }: MyReviewActionSheetProps) {
   const { t } = useTranslation('common-web')
 
@@ -38,7 +40,7 @@ export function MyReviewActionSheet({
   const { replace, back } = useHistoryFunctions()
   const { notifyReviewDeleted } = useTripleClientActions()
 
-  const { mutate } = useDeleteReviewMutation()
+  const { mutate } = useDeleteReviewMutation({ lang })
 
   const handleDeleteMenuClick = () => {
     replace(HASH_DELETION_MODAL)

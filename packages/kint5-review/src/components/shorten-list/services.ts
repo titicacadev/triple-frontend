@@ -7,13 +7,13 @@ import {
   GetReviewsByRatingQueryVariables,
   getClient,
 } from '../../data/graphql'
-import { useReviewLanguage } from '../language-context'
 
-export function usePopularReviews(
-  params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function usePopularReviews({
+  lang,
+  ...params
+}: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'> & {
+  lang: string
+}) {
   return useQuery(
     [
       'review/getPopularReviews',
@@ -27,11 +27,12 @@ export function usePopularReviews(
   )
 }
 
-export function useLatestReviews(
-  params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function useLatestReviews({
+  lang,
+  ...params
+}: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'> & {
+  lang: string
+}) {
   return useQuery(
     [
       'review/getLatestReviews',
@@ -45,11 +46,12 @@ export function useLatestReviews(
   )
 }
 
-export function useRatingReviews(
-  params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
-) {
-  const { lang } = useReviewLanguage()
-
+export function useRatingReviews({
+  lang,
+  ...params
+}: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'> & {
+  lang: string
+}) {
   return useQuery(
     [
       'review/getReviewsByRating',

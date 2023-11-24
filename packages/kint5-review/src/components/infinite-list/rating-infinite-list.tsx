@@ -1,3 +1,4 @@
+import { useReviewLanguage } from '../language-context'
 import type { SortingType } from '../sorting-context'
 
 import { InfiniteList } from './infinite-list'
@@ -21,6 +22,7 @@ export function RatingReviewsInfinite({
 }) {
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
+  const { lang } = useReviewLanguage()
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfiniteRatingReviews({
       resourceId,
@@ -30,6 +32,7 @@ export function RatingReviewsInfinite({
       sortBy: {
         rating: sort,
       },
+      lang,
     })
 
   return (

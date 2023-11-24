@@ -16,7 +16,7 @@ import {
 } from './sorting-context'
 import type { SortingType } from './sorting-context'
 import { Filters } from './filter'
-import { ReviewLanguageProvider } from './language-context'
+import { ReviewLanguageProvider, useReviewLanguage } from './language-context'
 
 const REVIEWS_SECTION_ID = 'triple-global-reviews'
 
@@ -86,6 +86,7 @@ function TripleGlobalReviewsShortenComponent({
 >) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
+  const { lang } = useReviewLanguage()
   const { t } = useTranslation('common-web')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -98,6 +99,7 @@ function TripleGlobalReviewsShortenComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
+        lang,
       },
       initialReviewsCount,
     )

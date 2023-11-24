@@ -10,6 +10,7 @@ import { MyReviewActionSheet } from '../my-review-action-sheet'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
 import type { SortingType, SortingOption } from '../sorting-context'
+import { useReviewLanguage } from '../language-context'
 
 interface Props {
   resourceId: string
@@ -42,6 +43,7 @@ export function InfiniteList({
   fetchNextPage,
   refetch,
 }: Props) {
+  const { lang } = useReviewLanguage()
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
     undefined,
   )
@@ -51,10 +53,12 @@ export function InfiniteList({
   const { data: myReviewData } = useMyReview({
     resourceId,
     resourceType,
+    lang,
   })
   const { data: descriptionsData } = useDescriptions({
     resourceId,
     resourceType,
+    lang,
   })
 
   const sortedReviews = useMemo(() => {
@@ -138,6 +142,7 @@ export function InfiniteList({
           resourceType={resourceType}
           resourceId={resourceId}
           regionId={regionId}
+          lang={lang}
         />
       ) : null}
 
