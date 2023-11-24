@@ -1,13 +1,7 @@
 import { useCallback, useEffect } from 'react'
-import {
-  notifyScraped,
-  notifyUnscraped,
-  subscribeScrapedChangeEvent,
-  unsubscribeScrapedChangeEvent,
-} from '@titicaca/triple-web-to-native-interfaces'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
-import type { ScrapProps, Target } from '../../types'
-
+import type { ScrapProps, Target } from './types'
 import { useScrapsReducer } from './use-reducer'
 import { fetchScrape, fetchUnscrape } from './services'
 import {
@@ -25,6 +19,12 @@ export function useScrap({
   beforeScrapedChange,
   afterScrapedChange,
 }: ScrapProps) {
+  const {
+    notifyScraped,
+    notifyUnscraped,
+    subscribeScrapedChangeEvent,
+    unsubscribeScrapedChangeEvent,
+  } = useTripleClientActions()
   const { scraps, updating, dispatch } = useScrapsReducer({ initialScraps })
 
   const deriveCurrentStateAndCount = useCallback(
@@ -80,7 +80,7 @@ export function useScrap({
       const response = await fetchScrape({ id, type })
 
       if (response.ok) {
-        notifyScraped(id)
+        notifyScraped && notifyScraped(id)
 
         afterScrapedChange && afterScrapedChange({ id, type }, true)
 
@@ -110,7 +110,7 @@ export function useScrap({
       const response = await fetchUnscrape({ id, type })
 
       if (response.ok) {
-        notifyUnscraped(id)
+        notifyUnscraped && notifyUnscraped(id)
 
         afterScrapedChange && afterScrapedChange({ id, type }, false)
 
@@ -131,9 +131,12 @@ export function useScrap({
       scraped: boolean
     }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id })
 
-    subscribeScrapedChangeEvent(handleSubscribeEvent)
+    subscribeScrapedChangeEvent &&
+      subscribeScrapedChangeEvent(handleSubscribeEvent)
 
-    return () => unsubscribeScrapedChangeEvent(handleSubscribeEvent)
+    return () =>
+      unsubscribeScrapedChangeEvent &&
+      unsubscribeScrapedChangeEvent(handleSubscribeEvent)
   }, [dispatch])
 
   return { deriveCurrentStateAndCount, onScrape, onUnscrape, enableTrackEvent }
