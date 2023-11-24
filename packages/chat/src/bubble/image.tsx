@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useLongPress } from 'use-long-press'
 
 import { MetaDataInterface } from '../types'
+import { navigateToImage } from '../utils'
 
 import { ImageItem } from './item'
 import { ImageBubbleProp } from './type'
@@ -17,7 +18,12 @@ const ImageRow = styled.div`
 
 const MAX_IMAGE_WIDTH = 247
 
-export function ImageBubble({ images, onClick, onLongPress }: ImageBubbleProp) {
+export function ImageBubble({
+  images,
+  appUrlScheme,
+  onClick,
+  onLongPress,
+}: ImageBubbleProp) {
   const allocatedImages = allocateImages(images)
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
@@ -44,7 +50,11 @@ export function ImageBubble({ images, onClick, onLongPress }: ImageBubbleProp) {
               key={image.id}
               src={image.sizes.large.url}
               onClick={(e) => {
-                onClick?.(e, images, image.index)
+                if (onClick) {
+                  onClick?.(e, images, image.index)
+                } else if (appUrlScheme) {
+                  navigateToImage({ appUrlScheme, images, index })
+                }
               }}
               css={
                 images.length === 2 || images.length === 4
