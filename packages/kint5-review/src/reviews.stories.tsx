@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { authHandlers, handlers } from './mocks/reviews'
 import { FilterProvider } from './components/filter-context'
 import { SortingOptionsProvider } from './components/sorting-context'
+import { ReviewLanguageProvider } from './components/language-context'
 
 import { Reviews } from '.'
 
@@ -49,7 +50,9 @@ const meta: Meta<typeof Reviews> = {
     (Story) => (
       <FilterProvider>
         <SortingOptionsProvider resourceId="">
-          <Story />
+          <ReviewLanguageProvider lang="ko">
+            <Story />
+          </ReviewLanguageProvider>
         </SortingOptionsProvider>
       </FilterProvider>
     ),
