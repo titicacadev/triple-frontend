@@ -45,8 +45,8 @@ interface MessagesProp<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customBubble?: { [key: string]: ComponentType<any> }
   me: UserInterface
-  onRetry?: () => void
-  onRetryCancel?: () => void
+  onRetry?: (message: MessageInterface<Message, User>) => void
+  onRetryCancel?: (message: MessageInterface<Message, User>) => void
 }
 
 export default function Messages<
@@ -140,10 +140,10 @@ export default function Messages<
           showInfo={type !== 'product'}
           {...(listType === 'failed' && {
             onRetry: () => {
-              onRetry?.()
+              onRetry?.(message)
             },
             onRetryCancel: () => {
-              onRetryCancel?.()
+              onRetryCancel?.(message)
             },
           })}
         >
