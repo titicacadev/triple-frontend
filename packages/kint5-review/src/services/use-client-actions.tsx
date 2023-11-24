@@ -48,6 +48,7 @@ export function useClientActions() {
         recentTrip,
         sortingType,
         sortingOption,
+        lang,
       }: {
         regionId?: string
         resourceId: string
@@ -56,6 +57,7 @@ export function useClientActions() {
         recentTrip: boolean
         sortingType?: SortingType
         sortingOption: SortingOption
+        lang: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
@@ -66,6 +68,7 @@ export function useClientActions() {
           sorting_option: sortingOption,
           has_media: hasMedia,
           opener_id: getWindowId && getWindowId(),
+          lang,
         })
 
         navigate(

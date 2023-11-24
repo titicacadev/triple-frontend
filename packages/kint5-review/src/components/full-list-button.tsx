@@ -9,6 +9,7 @@ import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
 import { useClientActions } from '../services'
 
 import type { SortingType, SortingOption } from './sorting-context'
+import { useReviewLanguage } from './language-context'
 
 interface Props {
   reviewsCount: number | undefined
@@ -39,6 +40,7 @@ export const FullListButton = ({
   sortingOption,
 }: Props) => {
   const { t } = useTranslation()
+  const { lang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
 
@@ -54,6 +56,7 @@ export const FullListButton = ({
           recentTrip,
           sortingType,
           sortingOption,
+          lang,
         })
       }, [
         navigateReviewList,
@@ -64,6 +67,7 @@ export const FullListButton = ({
         recentTrip,
         sortingType,
         sortingOption,
+        lang,
       ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
