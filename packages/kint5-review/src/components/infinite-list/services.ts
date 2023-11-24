@@ -4,20 +4,23 @@ import {
   GetPopularReviewsQueryVariables,
   GetLatestReviewsQueryVariables,
   GetReviewsByRatingQueryVariables,
-  client,
+  getClient,
 } from '../../data/graphql'
 import { DEFAULT_REVIEWS_COUNT_PER_PAGE } from '../../constants'
+import { useReviewLanguage } from '../language-context'
 
 export function useInfinitePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
 ) {
+  const { lang } = useReviewLanguage()
+
   return useInfiniteQuery(
     [
       'review/getInfinitePopularReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
     ({ pageParam = 1 }) =>
-      client.GetPopularReviews({
+      getClient({ lang }).GetPopularReviews({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
@@ -41,13 +44,15 @@ export function useInfinitePopularReviews(
 export function useInfiniteLatestReviews(
   params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
 ) {
+  const { lang } = useReviewLanguage()
+
   return useInfiniteQuery(
     [
       'review/getInfiniteLatestReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
     ({ pageParam = 1 }) =>
-      client.GetLatestReviews({
+      getClient({ lang }).GetLatestReviews({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
@@ -71,13 +76,15 @@ export function useInfiniteLatestReviews(
 export function useInfiniteRatingReviews(
   params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
 ) {
+  const { lang } = useReviewLanguage()
+
   return useInfiniteQuery(
     [
       'review/getInfiniteRatingReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
     ({ pageParam = 1 }) =>
-      client.GetReviewsByRating({
+      getClient({ lang }).GetReviewsByRating({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
