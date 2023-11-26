@@ -1,5 +1,3 @@
-import { URLSearchParams } from 'url'
-
 import { EventTrackingUtmValue } from '@titicaca/triple-web'
 
 export function getEventTrackingUtm(
