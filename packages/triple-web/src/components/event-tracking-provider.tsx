@@ -12,6 +12,7 @@ export type EventTrackingProviderProps = EventTrackingValue & PropsWithChildren
 export function EventTrackingProvider({
   children,
   page,
+  utm,
   onError,
 }: EventTrackingProviderProps) {
   const { user } = useSession()
@@ -21,23 +22,11 @@ export function EventTrackingProvider({
   }, [user?.uid])
 
   useEffect(() => {
-    // TODO: next 의존성 없이 query 값 가져오기
-    // const utmParams = Object.keys(query || {})
-    //   .filter((key) => key.match(/^utm_/i))
-    //   .reduce(
-    //     (params, key) => ({
-    //       ...params,
-    //       [key.replace(/^utm_/, '')]: query[key],
-    //     }),
-    //     {},
-    //   )
-    const utmParams = {}
-
-    trackScreen(page.path, page.label, utmParams, { page, onError })
-  }, [onError, page])
+    trackScreen(page.path, page.label, { ...utm }, { page, utm, onError })
+  }, [onError, page, utm])
 
   return (
-    <EventTrackingContext.Provider value={{ page, onError }}>
+    <EventTrackingContext.Provider value={{ page, utm, onError }}>
       {children}
     </EventTrackingContext.Provider>
   )
