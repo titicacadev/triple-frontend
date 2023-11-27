@@ -41,7 +41,6 @@
   "dependencies": {
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
     "server-only": "^0.0.1",
     "ua-parser-js": "^1.0.36"
   },
