@@ -954,9 +954,6 @@ importers:
       '@titicaca/triple-web-utils':
         specifier: workspace:*
         version: link:../triple-web-utils
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
