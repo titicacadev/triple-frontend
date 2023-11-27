@@ -26,7 +26,7 @@ export function useReviewCount(
   initialValue?: number,
 ) {
   return useQuery(
-    ['reviews/getReviewCount', { ...params }],
+    ['reviews/getReviewCount', { lang, ...params }],
     () => getClient({ lang }).GetReviewsCount(params),
     {
       initialData: initialValue
@@ -43,7 +43,7 @@ export function useDescriptions({
   lang,
   ...params
 }: GetReviewSpecificationQueryVariables & { lang: string }) {
-  return useQuery(['review/getReviewSpecification', params], () =>
+  return useQuery(['review/getReviewSpecification', lang, params], () =>
     getClient({ lang }).GetReviewSpecification(params),
   )
 }
@@ -52,7 +52,7 @@ export function useMyReview({
   lang,
   ...params
 }: GetMyReviewQueryVariables & { lang: string }) {
-  return useQuery(['review/getMyReview', params], () =>
+  return useQuery(['review/getMyReview', lang, params], () =>
     getClient({ lang }).GetMyReview(params),
   )
 }

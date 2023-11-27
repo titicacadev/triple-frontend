@@ -17,7 +17,7 @@ export function usePopularReviews({
   return useQuery(
     [
       'review/getPopularReviews',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
       getClient({ lang }).GetPopularReviews({
@@ -36,7 +36,7 @@ export function useLatestReviews({
   return useQuery(
     [
       'review/getLatestReviews',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
       getClient({ lang }).GetLatestReviews({
@@ -55,7 +55,7 @@ export function useRatingReviews({
   return useQuery(
     [
       'review/getReviewsByRating',
-      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
       getClient({ lang }).GetReviewsByRating({
