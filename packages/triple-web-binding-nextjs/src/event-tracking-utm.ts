@@ -24,5 +24,6 @@ export function getEventTrackingUtm(
       searchParams.get('utm_content') ||
       searchParams.get('utmContent') ||
       undefined,
+    partner: searchParams.get('prt') || undefined,
   }
 }

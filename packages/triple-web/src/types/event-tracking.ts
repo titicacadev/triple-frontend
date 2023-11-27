@@ -4,6 +4,8 @@ export interface EventTrackingUtmValue {
   campaign?: string
   term?: string
   content?: string
+
+  partner?: string
 }
 
 export interface EventTrackingValue {

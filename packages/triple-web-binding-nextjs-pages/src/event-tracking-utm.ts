@@ -16,6 +16,7 @@ export function getEventTrackingUtm(
     utmCampaign,
     utmTerm,
     utmContent,
+    prt,
   } = strictQuery(query)
     .string('utm_source')
     .string('utm_medium')
@@ -27,6 +28,7 @@ export function getEventTrackingUtm(
     .string('utmCampaign')
     .string('utmTerm')
     .string('utmContent')
+    .string('prt')
     .use()
 
   return {
@@ -35,5 +37,6 @@ export function getEventTrackingUtm(
     campaign: utm_campaign || utmCampaign,
     term: utm_term || utmTerm,
     content: utm_content || utmContent,
+    partner: prt,
   }
 }
