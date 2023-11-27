@@ -245,7 +245,7 @@ function FilterPlaceholder({
   ) : (
     <Container
       css={{
-        padding: '60px 0',
+        padding: '28px 0',
       }}
     >
       <Text size={14} color="gray500">
