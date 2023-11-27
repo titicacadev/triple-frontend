@@ -42,6 +42,7 @@
   "dependencies": {
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
+    "@react-google-maps/api": "^2.19.2",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-contexts": "workspace:*",
@@ -88,6 +89,7 @@
     "next": "^13.4.13",
     "react": "^18.0",
     "react-query": "^3.39.3",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "utility-types": "^3.10.0"
   }
 }
