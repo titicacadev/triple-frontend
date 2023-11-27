@@ -841,6 +841,9 @@ importers:
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
+      '@titicaca/tds-widget':
+        specifier: workspace:*
+        version: link:../tds-widget
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities

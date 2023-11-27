@@ -46,6 +46,7 @@
   "dependencies": {
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
+    "@titicaca/tds-widget": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {
