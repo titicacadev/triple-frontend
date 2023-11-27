@@ -246,46 +246,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/map:
-    dependencies:
-      '@react-google-maps/api':
-        specifier: ^2.19.2
-        version: 2.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      utility-types:
-        specifier: ^3.10.0
-        version: 3.10.0
-
   packages/meta-tags:
     devDependencies:
       '@titicaca/i18n':
@@ -539,37 +499,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/static-map:
-    dependencies:
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/static-page-contents:
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
   packages/tds-theme:
     devDependencies:
       react:
@@ -633,6 +562,9 @@ importers:
       '@egjs/react-flicking':
         specifier: ^3.8.3
         version: 3.8.3
+      '@react-google-maps/api':
+        specifier: ^2.19.2
+        version: 2.19.2(react-dom@18.2.0)(react@18.2.0)
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -687,6 +619,9 @@ importers:
       scroll-to-element:
         specifier: ^2.0.3
         version: 2.0.3
+      utility-types:
+        specifier: ^3.10.0
+        version: 3.10.0
     devDependencies:
       '@graphql-codegen/cli':
         specifier: 4.0.1
@@ -745,9 +680,6 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
-      '@titicaca/map':
-        specifier: workspace:*
-        version: link:../map
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
@@ -20609,7 +20541,6 @@ packages:
   /utility-types@3.10.0:
     resolution: {integrity: sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==}
     engines: {node: '>= 4'}
-    dev: true
 
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
@@ -21215,4 +21146,3 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-    
