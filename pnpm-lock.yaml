@@ -183,9 +183,9 @@ importers:
         specifier: workspace:*
         version: link:../fetcher
     devDependencies:
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
@@ -241,51 +241,14 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-<<<<<<< v14
-=======
-  packages/map:
-    dependencies:
-      '@react-google-maps/api':
-        specifier: ^2.19.2
-        version: 2.19.2(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-    devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      '@titicaca/react-triple-client-interfaces':
-        specifier: workspace:*
-        version: link:../react-triple-client-interfaces
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      utility-types:
-        specifier: ^3.10.0
-        version: 3.10.0
-
->>>>>>> chore: update lockfile
   packages/meta-tags:
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
       i18next:
         specifier: ^23.7.6
         version: 23.7.6
@@ -295,61 +258,6 @@ importers:
       react-i18next:
         specifier: ^13.5.0
         version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/react-contexts:
-    dependencies:
-      '@titicaca/constants':
-        specifier: workspace:*
-        version: link:../constants
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
-      ua-parser-js:
-        specifier: ^1.0.36
-        version: 1.0.36
-      universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
-    devDependencies:
-      '@types/qs':
-        specifier: ^6.9.9
-        version: 6.9.9
-      '@types/semver':
-        specifier: ^7.5.4
-        version: 7.5.4
-      '@types/ua-parser-js':
-        specifier: ^0.7.38
-        version: 0.7.38
-      firebase:
-        specifier: ^9.15.0
-        version: 9.15.0
-      next:
-        specifier: ^13.4.13
-        version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      utility-types:
-        specifier: ^3.10.0
-        version: 3.10.0
 
   packages/react-hooks:
     dependencies:
@@ -385,9 +293,9 @@ importers:
         specifier: ^7.5.4
         version: 7.5.4
     devDependencies:
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.9.0
         version: 1.9.0
@@ -413,12 +321,12 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -481,12 +389,12 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -497,43 +405,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-<<<<<<< v14
-=======
-  packages/static-map:
-    dependencies:
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
-  packages/static-page-contents:
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      i18next:
-        specifier: ^23.7.6
-        version: 23.7.6
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-i18next:
-        specifier: ^13.5.0
-        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
->>>>>>> chore: update lockfile
   packages/tds-theme:
     devDependencies:
       react:
@@ -606,9 +477,6 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
@@ -618,6 +486,9 @@ importers:
       '@titicaca/tds-ui':
         specifier: workspace:*
         version: link:../tds-ui
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -715,15 +586,6 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
-<<<<<<< v14
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-=======
-      '@titicaca/map':
-        specifier: workspace:*
-        version: link:../map
->>>>>>> chore: update lockfile
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
@@ -758,12 +620,12 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -823,12 +685,12 @@ importers:
         specifier: ^7.10.3
         version: 7.10.3(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
@@ -986,12 +848,12 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -8228,10 +8090,6 @@ packages:
 
   /@types/ua-parser-js@0.7.37:
     resolution: {integrity: sha512-4sOxS3ZWXC0uHJLYcWAaLMxTvjRX3hT96eF4YWUh1ovTaenvibaZOE5uXtIp4mksKMLRwo7YDiCBCw6vBiUPVg==}
-    dev: true
-
-  /@types/ua-parser-js@0.7.38:
-    resolution: {integrity: sha512-59CA5oavBEWSNLtS/BChj9xntiWMsIf9IytjxmBo9OuZEYuRzRf3K1ARzFPlXTOz5Zm2wXI38AP9RlLqDYMToQ==}
     dev: true
 
   /@types/unist@2.0.6:
@@ -20536,6 +20394,7 @@ packages:
   /utility-types@3.10.0:
     resolution: {integrity: sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==}
     engines: {node: '>= 4'}
+    dev: false
 
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
