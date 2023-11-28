@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
@@ -69,7 +69,7 @@ export function ReviewsPlaceholder({
   sortingType,
   sortingOption,
 }: ReviewsPlaceholderProps) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { writeReview, navigateReviewList } = useClientActions()
 
   const handleFullClick = useAppCallback(

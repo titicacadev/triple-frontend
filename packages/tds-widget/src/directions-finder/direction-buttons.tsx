@@ -1,11 +1,7 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -40,14 +36,19 @@ export function DirectionButtons({
   const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
-  const uriHash = useUriHash()
-  const { push, back, showTransitionModal } = useHistoryFunctions()
-  const { trackEvent } = useEventTrackingContext()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const trackEvent = useTrackEvent()
 
   const handleAskToLocalsClick = useCallback(() => {
-    trackEvent({ fa: { action: '기본정보_현지에서길묻기' } })
-    app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
-  }, [trackEvent, push, showTransitionModal, app])
+    trackEvent({
+      ga: ['기본정보_현지에서길묻기'],
+      fa: {
+        action: '기본정보_현지에서길묻기',
+      },
+    })
+
+    app ? addUriHash(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
+  }, [trackEvent, app, addUriHash])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
   const hasLineBreak = hasAskToLocalsButton && !!onCallGrabButtonClick
@@ -98,7 +99,7 @@ export function DirectionButtons({
       {hasAskToLocalsButton ? (
         <AskToTheLocal
           open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
-          onClose={back}
+          onClose={removeUriHash}
           localName={localName}
           localAddress={localAddress}
           primaryName={primaryName}

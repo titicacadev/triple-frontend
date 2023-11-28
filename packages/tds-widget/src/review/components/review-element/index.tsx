@@ -2,10 +2,7 @@ import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from 'react-i18next'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 import {
   useTripleClientActions,
   useTripleClientMetadata,
@@ -113,8 +110,8 @@ export function ReviewElement({
   const { t } = useTranslation('triple-frontend')
 
   const [unfolded, setUnfolded] = useState(false)
-  const { trackEvent } = useEventTrackingContext()
-  const { push } = useHistoryFunctions()
+  const trackEvent = useTrackEvent()
+  const { addUriHash } = useHashRouter()
   const app = useTripleClientMetadata()
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
@@ -171,12 +168,12 @@ export function ReviewElement({
       }
 
       if (isMyReview) {
-        push(HASH_MY_REVIEW_ACTION_SHEET)
+        addUriHash(HASH_MY_REVIEW_ACTION_SHEET)
       } else {
         onMenuClick?.(review.id)
-        push(HASH_REVIEW_ACTION_SHEET)
+        addUriHash(HASH_REVIEW_ACTION_SHEET)
       }
-    }, [app, isMyReview, onMenuClick, push, review.id]),
+    }, [app, isMyReview, onMenuClick, addUriHash, review.id]),
   )
 
   const handleReviewClick = useAppCallback(
