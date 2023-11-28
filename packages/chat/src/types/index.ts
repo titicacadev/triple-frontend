@@ -62,6 +62,7 @@ export interface RoomInterface {
 
 export type DisplayTargetAll = 'all'
 
+export type ReactionType = 'thanks'
 export interface MessageInterface {
   id: number
   roomId: string
@@ -72,6 +73,7 @@ export interface MessageInterface {
   alternative?: TextPayload | ImagePayload | RichPayload
   blindedAt?: string
   sender: UserInterface
+  reactions?: { [type in ReactionType]?: { count: number; haveMine: boolean } }
 }
 
 export interface UserInterface {
