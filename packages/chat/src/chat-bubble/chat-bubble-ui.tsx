@@ -33,6 +33,7 @@ function SentChatContainer({
   unreadCount,
   onRetry,
   onCancel,
+  thanks,
   children,
   showBubbleInfo,
 }: PropsWithChildren<{
@@ -40,6 +41,7 @@ function SentChatContainer({
   unreadCount: number | null
   onRetry?: () => Promise<boolean> | undefined
   onCancel?: () => void
+  thanks?: { count: number; haveMine: boolean }
   showBubbleInfo: boolean
 }>) {
   const [show, setShow] = useState<boolean>(true)
@@ -68,6 +70,7 @@ function SentChatContainer({
             <BubbleInfo
               unreadCount={unreadCount}
               date={createdAt}
+              thanks={thanks}
               css={{ marginRight: 8, textAlign: 'right' }}
             />
           )}
@@ -84,6 +87,7 @@ function ReceivedChatContainer({
   profileName,
   unreadCount,
   createdAt,
+  thanks,
   showBubbleInfo,
   children,
 }: {
@@ -92,6 +96,7 @@ function ReceivedChatContainer({
   unreadCount: number | null
   createdAt?: string
   showBubbleInfo: boolean
+  thanks?: { count: number; haveMine: boolean }
   children: React.ReactNode
 }) {
   return (
@@ -108,6 +113,7 @@ function ReceivedChatContainer({
           <BubbleInfo
             unreadCount={unreadCount}
             date={createdAt}
+            thanks={thanks}
             css={{ marginLeft: 8, textAlign: 'left' }}
           />
         ) : null}
@@ -139,6 +145,7 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
    */
   onCancel?: () => void
+  thanks?: { count: number; haveMine: boolean }
   bubbleStyle?: ChatBubbleStyle
 }
 
@@ -152,6 +159,7 @@ export function ChatBubbleUI({
   blindedAt,
   blindedText,
   onRetry,
+  thanks,
   bubbleStyle,
 }: ChatBubbleUIProps) {
   switch (type) {
@@ -163,6 +171,7 @@ export function ChatBubbleUI({
           showBubbleInfo={payload.type !== MessageType.PRODUCT}
           unreadCount={unreadCount}
           onRetry={onRetry}
+          thanks={thanks}
         >
           {blindedAt ? (
             <BlindedBubble
@@ -207,6 +216,7 @@ export function ChatBubbleUI({
           showBubbleInfo={payload.type !== MessageType.PRODUCT}
           profileImageUrl={profileImageUrl}
           profileName={profileName}
+          thanks={thanks}
         >
           {blindedAt ? (
             <BlindedBubble

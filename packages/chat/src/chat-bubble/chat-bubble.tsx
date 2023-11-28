@@ -96,6 +96,7 @@ const ChatBubble = ({
       onCancel={onCancel}
       blindedAt={message.blindedAt}
       blindedText={blindedText}
+      thanks={message.reactions?.thanks}
       bubbleStyle={bubbleStyle}
     />
   )
