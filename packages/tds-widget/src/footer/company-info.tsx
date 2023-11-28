@@ -6,8 +6,8 @@ import {
   FlexBox,
   AccordionTitle,
 } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import {
-  useEventTrackingContext,
   useSessionAvailability,
   useSessionControllers,
 } from '@titicaca/react-contexts'
@@ -88,7 +88,7 @@ export function CompanyInfo({
 }: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
   const { login, logout } = useSessionControllers()
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   return (
     <Accordion

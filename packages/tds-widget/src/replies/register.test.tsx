@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { EnvProvider, SessionContextProvider } from '@titicaca/react-contexts'
+import { TripleWeb } from '@titicaca/triple-web'
 import { PropsWithChildren } from 'react'
 
 import { RepliesProvider } from './context'
@@ -54,27 +54,23 @@ describe('Reply 등록 버튼을 테스트합니다.', () => {
 
 function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
   return (
-    <EnvProvider
-      appUrlScheme=""
-      webUrlBase=""
-      authBasePath="/"
-      facebookAppId=""
-      defaultPageTitle=""
-      defaultPageDescription=""
-      googleMapsApiKey=""
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
+    <TripleWeb
+      envProvider={{
+        appUrlScheme: '',
+        webUrlBase: '',
+        facebookAppId: '',
+        defaultPageTitle: '',
+        defaultPageDescription: '',
+        googleMapsApiKey: '',
+        afOnelinkId: '',
+        afOnelinkPid: '',
+        afOnelinkSubdomain: '',
+      }}
+      sessionProvider={{
+        user: null,
+      }}
     >
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: undefined,
-          initialSessionAvailability: true,
-        }}
-      >
-        <RepliesProvider>{children}</RepliesProvider>
-      </SessionContextProvider>
-    </EnvProvider>
+      <RepliesProvider>{children}</RepliesProvider>
+    </TripleWeb>
   )
 }

@@ -1,6 +1,6 @@
 import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { Reply as ReplyType } from '../types'
@@ -127,13 +127,12 @@ export default function ReplyList({
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
   const { t } = useTranslation('triple-frontend')
 
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
       open={uriHash === HASH_EDIT_CLOSE_MODAL}
-      onClose={back}
+      onClose={removeUriHash}
       onConfirm={onConfirm}
     >
       {t('수정을 취소하시겠습니까? 수정한 내용은 저장되지 않습니다.')}
@@ -148,13 +147,12 @@ function ConfirmDeleteModal({
   description: string
   onConfirm: () => void
 }) {
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
       open={uriHash === HASH_DELETE_CLOSE_MODAL}
-      onClose={back}
+      onClose={removeUriHash}
       onConfirm={onConfirm}
     >
       {description}

@@ -6,7 +6,7 @@ import ImageCarousel, {
 } from '@titicaca/image-carousel'
 import { Container, Responsive } from '@titicaca/tds-ui'
 import { ImageSource } from '@titicaca/image-source'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -53,7 +53,7 @@ export default function Carousel({
   height,
 }: CarouselProps) {
   const app = useTripleClientMetadata()
-  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const [currentPage, setCurrentPage] = useState(0)
   const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
@@ -89,7 +89,12 @@ export default function Carousel({
       setCurrentPage(index)
 
       if (!app && index === SHOW_CTA_FROM_INDEX) {
-        return trackSimpleEvent({ action: '대표사진_앱에서더보기_노출' })
+        trackEvent({
+          ga: ['대표사진_앱에서더보기_노출'],
+          fa: { action: '대표사진_앱에서더보기_노출' },
+        })
+
+        return
       }
 
       const currentImage = images[index]
@@ -115,15 +120,7 @@ export default function Carousel({
         onImagesFetch()
       }
     },
-    [
-      setCurrentPage,
-      currentPage,
-      images,
-      app,
-      onImagesFetch,
-      trackEvent,
-      trackSimpleEvent,
-    ],
+    [setCurrentPage, currentPage, images, app, onImagesFetch, trackEvent],
   )
 
   const ConditionalPageLabel = app

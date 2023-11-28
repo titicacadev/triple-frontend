@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
 import { useClientActions } from '../services'
@@ -39,7 +39,7 @@ export const FullListButton = ({
   sortingOption,
 }: Props) => {
   const { t } = useTranslation('triple-frontend')
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { navigateReviewList } = useClientActions()
 
   const fullListButtonClickCallback = useAppCallback(

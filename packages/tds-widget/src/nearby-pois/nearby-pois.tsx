@@ -11,7 +11,7 @@ import {
   H1,
   Paragraph,
 } from '@titicaca/tds-ui'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { PointGeoJson } from '@titicaca/type-definitions'
 
 import { NearByPoiType } from './types'
@@ -68,7 +68,7 @@ export function NearbyPois({
     ...(initialTab && { currentTab: initialTab }),
   })
   const { pois, hasMore, fetching } = state[currentTab]
-  const { trackSimpleEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   useEffect(() => {
     async function fetchAndSetPois() {
@@ -106,9 +106,12 @@ export function NearbyPois({
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLoadMore = useCallback(async () => {
-    trackSimpleEvent({
-      action: '근처추천장소_장소더보기',
-      label: EVENT_LABELS[currentTab],
+    trackEvent({
+      ga: ['근처추천장소_장소더보기', EVENT_LABELS[currentTab]],
+      fa: {
+        action: '근처추천장소_장소더보기',
+        label: EVENT_LABELS[currentTab],
+      },
     })
 
     const additionalPois = await fetchPois({
@@ -128,19 +131,22 @@ export function NearbyPois({
         hasMore: additionalPois.length === SUBSEQUENT_PAGE_SIZE,
       }),
     )
-  }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackSimpleEvent])
+  }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackEvent])
 
   const handleTabChange = useCallback(
     (newTab: string) => {
-      trackSimpleEvent({
-        action: '근처추천장소_탭선택',
-        label: EVENT_LABELS[newTab as NearByPoiType],
-        tab_name: EVENT_LABELS[newTab as NearByPoiType],
+      trackEvent({
+        ga: ['근처추천장소_탭선택', EVENT_LABELS[newTab as NearByPoiType]],
+        fa: {
+          action: '근처추천장소_탭선택',
+          label: EVENT_LABELS[newTab as NearByPoiType],
+          tab_name: EVENT_LABELS[newTab as NearByPoiType],
+        },
       })
 
       dispatch(setCurrentTab({ type: newTab as NearByPoiType }))
     },
-    [trackSimpleEvent, dispatch],
+    [trackEvent, dispatch],
   )
 
   return (
