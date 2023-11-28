@@ -44,6 +44,10 @@ function DirectionButtons({
   const { push, back, showTransitionModal } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
 
+  // const onCallGrabButtonClick = useCallback(() => {
+  //   // TODO
+  // }, [])
+
   const handleAskToLocalsClick = useCallback(() => {
     trackEvent({ fa: { action: '기본정보_현지에서길묻기' } })
     app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
@@ -84,6 +88,15 @@ function DirectionButtons({
           </StaticIntersectionObserver>
         ) : null}
 
+        <Button
+          basic
+          inverted
+          color="blue"
+          size="small"
+          // onClick={onCallGrabButtonClick}
+        >
+          {t(['grab-hocul', 'Grab 호출'])}
+        </Button>
         <Button
           basic
           inverted
