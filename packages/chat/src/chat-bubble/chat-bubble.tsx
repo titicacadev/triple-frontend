@@ -23,6 +23,7 @@ interface ChatBubbleProps {
   disableUnreadCount?: boolean
   onRetryButtonClick?: (message: MessageInterface) => void
   onRetryCancelButtonClick?: (message: MessageInterface) => void
+  onThanksClick?: (id: number, haveMyThanks: boolean) => void
   blindedText?: string
   bubbleStyle?: ChatBubbleStyle
 }
@@ -36,6 +37,7 @@ const ChatBubble = ({
   postMessageAction,
   onRetryButtonClick,
   onRetryCancelButtonClick,
+  onThanksClick,
   disableUnreadCount = false,
   blindedText,
   bubbleStyle,
@@ -97,6 +99,11 @@ const ChatBubble = ({
       blindedAt={message.blindedAt}
       blindedText={blindedText}
       thanks={message.reactions?.thanks}
+      onThanksClick={() => {
+        if (message.reactions?.thanks) {
+          onThanksClick?.(message.id, message.reactions.thanks.haveMine)
+        }
+      }}
       bubbleStyle={bubbleStyle}
     />
   )
