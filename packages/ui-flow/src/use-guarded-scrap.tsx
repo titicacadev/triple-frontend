@@ -10,7 +10,7 @@ import { useScrap } from '@titicaca/tds-widget'
 /**
  * 모웹이거나 세션ID가 없을 때 스크랩이 작동하면 안된다.
  */
-export function useGuardedScraps({
+export function useGuardedScrap({
   beforeScrapedChange,
   ...props
 }: Parameters<typeof useScrap>[0]) {
