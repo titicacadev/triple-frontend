@@ -5,7 +5,7 @@ import { useTripleClientNavigate } from './use-triple-client-navigate'
 
 const MOCK_APP_SCHEME = 'test-triple'
 
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/triple-web')
 ;(
   useEnv as unknown as jest.MockedFunction<
     () => Pick<ReturnType<typeof useEnv>, 'appUrlScheme'>

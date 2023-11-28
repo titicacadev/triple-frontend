@@ -2,7 +2,7 @@ import { IncomingMessage } from 'http'
 
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useUserAgent } from '@titicaca/triple-web'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { Container } from '@titicaca/tds-ui'
 
@@ -105,7 +105,7 @@ export const Chat = ({
 
   const isScrollReady = useRef(false)
 
-  const { os } = useUserAgentContext()
+  const { os } = useUserAgent()
   const isIos = useMemo(() => os.name === 'iOS', [os.name])
   const updateUnread = useCallback(async () => {
     if (!lastMessageId) {

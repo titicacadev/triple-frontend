@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Text, Modal, Alert } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 interface HashKeyValue {
@@ -41,9 +41,7 @@ const CouponIcon = styled.img`
 
 export function CouponModal({ identifier }: { identifier: string }) {
   const { t } = useTranslation('triple-frontend')
-
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
   const navigate = useNavigate()
 
   const modalHash = uriHash.replace(`${identifier}.`, '')
@@ -80,7 +78,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
   return (
     <Modal
       open={uriHash.includes(identifier) && MODAL_HASHES.includes(modalHash)}
-      onClose={back}
+      onClose={removeUriHash}
     >
       {ICON_TYPES[modalHash] ? (
         <CouponIcon src={ICON_TYPES[modalHash]} />
@@ -122,7 +120,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
         <Modal.Action
           color="blue"
           onClick={() => {
-            back()
+            removeUriHash()
             navigate(
               `/inlink?path=${encodeURIComponent(
                 '/benefit/coupons/my?_triple_no_navbar',
@@ -145,15 +143,12 @@ export function CouponAlertModal({
   errorMessage?: string
 }) {
   const { t } = useTranslation('triple-frontend')
-
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
-
+  const { uriHash, removeUriHash } = useHashRouter()
   return (
     <Alert
       title={t('쿠폰 다운로드 안내')}
       open={uriHash === `${identifier}.${HASH_ERROR_COUPON}`}
-      onConfirm={back}
+      onConfirm={removeUriHash}
     >
       {errorMessage}
     </Alert>

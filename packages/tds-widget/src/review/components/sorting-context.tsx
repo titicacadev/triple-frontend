@@ -7,7 +7,7 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useTranslation } from 'react-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
@@ -57,7 +57,7 @@ export function SortingOptionsProvider({
   const [selectedOption, setSelectedOption] = useState(initialSortingOption)
 
   const { t } = useTranslation('triple-frontend')
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { isRecentTrip } = useReviewFilters()
   const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
 
