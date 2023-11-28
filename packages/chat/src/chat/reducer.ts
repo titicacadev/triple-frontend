@@ -7,6 +7,7 @@ export enum ChatActions {
   POST, // 메시지 전송
   FAILED_TO_POST, // 메시지 전송 실패
   UPDATE, // 읽음 표시 업데이트
+  UPDATE_MESSAGE, // 메시지 하나 업데이트
   REMOVE_FROM_FAILED, // 전송 실패 메세지 재전송 또는 삭제
 }
 
@@ -46,6 +47,7 @@ export type ChatAction =
       action: ChatActions.UPDATE
       otherUnreadInfo: OtherUnreadInterface[]
     }
+  | { action: ChatActions.UPDATE_MESSAGE; message: MessageInterface }
   | { action: ChatActions.REMOVE_FROM_FAILED; message: MessageInterface }
 
 export const ChatReducer = (
@@ -101,7 +103,13 @@ export const ChatReducer = (
         ...state,
         otherUnreadInfo: action.otherUnreadInfo,
       }
-
+    case ChatActions.UPDATE_MESSAGE:
+      return {
+        ...state,
+        messages: state.messages.map((message) =>
+          message.id === action.message.id ? action.message : message,
+        ),
+      }
     case ChatActions.REMOVE_FROM_FAILED:
       return {
         ...state,
