@@ -28,22 +28,29 @@ const CHAT_CONTAINER_STYLES = {
   width: '100%',
 } as const
 
+interface ChatContainerProps {
+  createdAt?: string
+  unreadCount: number | null
+  thanks?: { count: number; haveMine: boolean }
+  onThanksClick?: () => void
+  showBubbleInfo: boolean
+}
+
 function SentChatContainer({
   createdAt,
   unreadCount,
   onRetry,
   onCancel,
   thanks,
+  onThanksClick,
   children,
   showBubbleInfo,
-}: PropsWithChildren<{
-  createdAt?: string
-  unreadCount: number | null
-  onRetry?: () => Promise<boolean> | undefined
-  onCancel?: () => void
-  thanks?: { count: number; haveMine: boolean }
-  showBubbleInfo: boolean
-}>) {
+}: PropsWithChildren<
+  {
+    onRetry?: () => Promise<boolean> | undefined
+    onCancel?: () => void
+  } & ChatContainerProps
+>) {
   const [show, setShow] = useState<boolean>(true)
 
   return show ? (
@@ -71,6 +78,7 @@ function SentChatContainer({
               unreadCount={unreadCount}
               date={createdAt}
               thanks={thanks}
+              onThanksClick={onThanksClick}
               css={{ marginRight: 8, textAlign: 'right' }}
             />
           )}
@@ -88,17 +96,14 @@ function ReceivedChatContainer({
   unreadCount,
   createdAt,
   thanks,
+  onThanksClick,
   showBubbleInfo,
   children,
 }: {
   profileImageUrl?: string
   profileName?: string
-  unreadCount: number | null
-  createdAt?: string
-  showBubbleInfo: boolean
-  thanks?: { count: number; haveMine: boolean }
   children: React.ReactNode
-}) {
+} & ChatContainerProps) {
   return (
     <Container css={{ ...CHAT_CONTAINER_STYLES }}>
       <ProfileImage src={profileImageUrl} />
@@ -114,6 +119,7 @@ function ReceivedChatContainer({
             unreadCount={unreadCount}
             date={createdAt}
             thanks={thanks}
+            onThanksClick={onThanksClick}
             css={{ marginLeft: 8, textAlign: 'left' }}
           />
         ) : null}
@@ -145,6 +151,7 @@ export interface ChatBubbleUIProps {
    * 'sent' 타입일 때, 메시지 전송 실패할 경우 재시도를 취소하는 함수
    */
   onCancel?: () => void
+  onThanksClick?: () => void
   thanks?: { count: number; haveMine: boolean }
   bubbleStyle?: ChatBubbleStyle
 }
@@ -160,6 +167,7 @@ export function ChatBubbleUI({
   blindedText,
   onRetry,
   thanks,
+  onThanksClick,
   bubbleStyle,
 }: ChatBubbleUIProps) {
   switch (type) {
@@ -172,6 +180,7 @@ export function ChatBubbleUI({
           unreadCount={unreadCount}
           onRetry={onRetry}
           thanks={thanks}
+          onThanksClick={onThanksClick}
         >
           {blindedAt ? (
             <BlindedBubble
@@ -217,6 +226,7 @@ export function ChatBubbleUI({
           profileImageUrl={profileImageUrl}
           profileName={profileName}
           thanks={thanks}
+          onThanksClick={onThanksClick}
         >
           {blindedAt ? (
             <BlindedBubble

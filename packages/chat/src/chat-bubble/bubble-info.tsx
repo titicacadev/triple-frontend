@@ -1,6 +1,6 @@
 import moment from 'moment'
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Button, Container, Text } from '@titicaca/core-elements'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -17,11 +17,13 @@ export function BubbleInfo({
   unreadCount,
   date,
   thanks,
+  onThanksClick,
   ...props
 }: {
   unreadCount: number | null
   date: string
   thanks?: { count: number; haveMine: boolean }
+  onThanksClick?: () => void
 }) {
   const showDate = !moment().isSame(date, 'day')
   const showYear = !moment().isSame(date, 'year')
@@ -29,7 +31,11 @@ export function BubbleInfo({
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
       {thanks ? (
-        <Thanks count={thanks.count} haveMine={thanks.haveMine} />
+        <Thanks
+          count={thanks.count}
+          haveMine={thanks.haveMine}
+          onClick={onThanksClick}
+        />
       ) : null}
 
       {unreadCount ? (
@@ -49,6 +55,21 @@ export function BubbleInfo({
   )
 }
 
-function Thanks({ count, haveMine }: { count: number; haveMine: boolean }) {
-  return <Text css={{ color: haveMine ? 'pink' : 'black' }}>{count}</Text>
+function Thanks({
+  count,
+  haveMine,
+  onClick,
+}: {
+  count: number
+  haveMine: boolean
+  onClick?: () => void
+}) {
+  return (
+    <Button
+      css={{ color: haveMine ? 'pink' : 'black' }}
+      onClick={() => onClick?.()}
+    >
+      {count}
+    </Button>
+  )
 }

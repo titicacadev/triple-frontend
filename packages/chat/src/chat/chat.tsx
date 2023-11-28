@@ -55,7 +55,7 @@ export interface ChatProps {
   showFailToast?: (message: string) => void
   onRetryButtonClick?: () => void
   onRetryCancelButtonClick?: () => void
-
+  onThanksClick?: (id: number, haveMyThanks: boolean) => void
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
@@ -73,7 +73,6 @@ export const Chat = ({
   room,
   messages: initMessages,
   beforeSentMessages = [],
-
   postMessage,
   getMessages,
   getUnreadRoom,
@@ -81,6 +80,7 @@ export const Chat = ({
   showFailToast,
   onRetryButtonClick,
   onRetryCancelButtonClick,
+  onThanksClick,
   updateChatData,
   disableUnreadCount = false,
   blindedText,
