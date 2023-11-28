@@ -8,10 +8,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import {
-  useEventTrackingContext,
-  useSessionAvailability,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useSession } from '@titicaca/triple-web'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
@@ -79,7 +76,7 @@ function useTripleABExperimentMeta(
   slug: string,
   onError?: (error: Error) => void,
 ) {
-  const sessionAvailable = useSessionAvailability()
+  const sessionAvailable = useSession()
 
   const metas = useContext(TripleABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
@@ -90,7 +87,7 @@ function useTripleABExperimentMeta(
     }
     return meta
   } catch (error) {
-    if (sessionAvailable === true && onError) {
+    if (sessionAvailable?.user && onError) {
       // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
       onError(error as Error)
     }
@@ -126,7 +123,7 @@ export function useTripleABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
@@ -160,7 +157,7 @@ export function useTripleABExperimentImpressionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
@@ -199,7 +196,7 @@ export function useTripleABExperimentVariant<T, U = OptionalAttributes>(
   onError?: (error: Error) => void,
   eventAttributesFromProps?: EventAttributes<U>,
 ): T {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
   const eventAttributesRef = useRef(eventAttributesFromProps)
 
