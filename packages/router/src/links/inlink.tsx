@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 import {
   useTripleClientMetadata,
   AppSpecificLinkProps,

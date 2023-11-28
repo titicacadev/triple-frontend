@@ -1,11 +1,11 @@
-import {
-  TransitionType,
-  useLoginCtaModal,
-  useTransitionModal,
-} from '@titicaca/modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
-import { useEnv, useSessionAvailability } from '@titicaca/react-contexts'
+import {
+  useEnv,
+  useSession,
+  useLoginCtaModal,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 import {
   OutlinkOptions,
   useTripleClientMetadata,
@@ -18,9 +18,9 @@ export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
 }: { changeLocationHref?: (href: string) => void } = {}) {
   const { webUrlBase } = useEnv()
-  const sessionAvailable = useSessionAvailability()
-  const { show: showTransitionModal } = useTransitionModal()
-  const { show: showLoginCtaModal } = useLoginCtaModal()
+  const sessionAvailable = useSession()
+  const { open: showTransitionModal } = useTransitionModal()
+  const { open: showLoginCtaModal } = useLoginCtaModal()
   const app = useTripleClientMetadata()
   const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
@@ -37,7 +37,7 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal(TransitionType.General)
+      showTransitionModal()
     },
     [changeLocationHref, showTransitionModal, webUrlBase],
   )
@@ -52,10 +52,7 @@ export function useNavigate({
         allowRawOutlink: false,
       })
 
-      if (
-        sessionAvailable === false &&
-        !checkIfRoutable({ href: canonizedHref })
-      ) {
+      if (sessionAvailable?.user && !checkIfRoutable({ href: canonizedHref })) {
         showLoginCtaModal()
 
         return
