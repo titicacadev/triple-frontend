@@ -11,6 +11,7 @@ import {
   ImagePayload,
   MessageInterface,
   PostMessageType,
+  ReactionType,
   RoomInterface,
   TextPayload,
   UpdateChatData,
@@ -55,7 +56,10 @@ export interface ChatProps {
   showFailToast?: (message: string) => void
   onRetryButtonClick?: () => void
   onRetryCancelButtonClick?: () => void
-  onThanksClick?: (id: number, haveMyThanks: boolean) => void
+  addReactions?: (
+    messageId: number,
+    reaction: ReactionType,
+  ) => Promise<{ success: boolean }>
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
@@ -80,7 +84,7 @@ export const Chat = ({
   showFailToast,
   onRetryButtonClick,
   onRetryCancelButtonClick,
-  onThanksClick,
+  addReactions,
   updateChatData,
   disableUnreadCount = false,
   blindedText,
@@ -282,6 +286,27 @@ export const Chat = ({
     onRetryButtonClick?.()
   }
 
+  async function onThanksClick(messageId: number, haveMyThanks: boolean) {
+    if (haveMyThanks || !addReactions) return
+
+    const { success } = await addReactions(messageId, 'thanks')
+    const message = messages.find((message) => message.id === messageId)
+    if (success && message) {
+      dispatch({
+        action: ChatActions.UPDATE_MESSAGE,
+        message: {
+          ...message,
+          reactions: {
+            thanks: {
+              count: (message.reactions?.thanks?.count || 0) + 1,
+              haveMine: true,
+            },
+          },
+        },
+      })
+    }
+  }
+
   return (
     <>
       <IntersectionObserver onChange={onChangeScroll}>
@@ -304,6 +329,7 @@ export const Chat = ({
                   onRetryCancelButtonClick={onRetryCancel}
                   disableUnreadCount={disableUnreadCount}
                   blindedText={blindedText}
+                  onThanksClick={onThanksClick}
                   bubbleStyle={bubbleStyle}
                 />
               </li>
@@ -323,6 +349,7 @@ export const Chat = ({
                 onRetryCancelButtonClick={onRetryCancel}
                 disableUnreadCount={disableUnreadCount}
                 blindedText={blindedText}
+                onThanksClick={onThanksClick}
                 bubbleStyle={bubbleStyle}
               />
             </li>
