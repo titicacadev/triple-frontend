@@ -16,16 +16,22 @@ moment.locale('ko')
 export function BubbleInfo({
   unreadCount,
   date,
+  thanks,
   ...props
 }: {
   unreadCount: number | null
   date: string
+  thanks?: { count: number; haveMine: boolean }
 }) {
   const showDate = !moment().isSame(date, 'day')
   const showYear = !moment().isSame(date, 'year')
 
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
+      {thanks ? (
+        <Thanks count={thanks.count} haveMine={thanks.haveMine} />
+      ) : null}
+
       {unreadCount ? (
         <UnreadMessageCountText>{unreadCount}</UnreadMessageCountText>
       ) : null}
@@ -41,4 +47,8 @@ export function BubbleInfo({
       </Text>
     </BubbleInfoContainer>
   )
+}
+
+function Thanks({ count, haveMine }: { count: number; haveMine: boolean }) {
+  return <Text css={{ color: haveMine ? 'pink' : 'black' }}>{count}</Text>
 }
