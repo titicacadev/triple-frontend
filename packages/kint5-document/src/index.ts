@@ -1,6 +1,6 @@
 import { TripleDocument } from './triple-document'
 
-export { default as ELEMENTS } from './elements'
+export { default as ELEMENTS, ElementSet } from './elements'
 export { TripleElementData as TripleDocumentElementData } from './types'
 export * from './elements/text'
 export { generateCoupon } from './elements/tna/helpers'
