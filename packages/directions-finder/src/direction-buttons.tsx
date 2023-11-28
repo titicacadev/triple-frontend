@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
 import {
   useEventTrackingContext,
@@ -6,10 +7,15 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, ButtonGroup } from '@titicaca/core-elements'
+import { Button, ButtonGroup, Container } from '@titicaca/core-elements'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
+
+const LinkBreak = styled(Container)`
+  flex-basis: 100%;
+  height: 0;
+`
 
 function DirectionButtons({
   onDirectionsClick,
@@ -18,6 +24,7 @@ function DirectionButtons({
   localAddress,
   phoneNumber,
   isDomestic = false,
+  isGrabSupported = false,
 }: {
   onDirectionsClick: () => void
   primaryName: string
@@ -25,6 +32,7 @@ function DirectionButtons({
   localAddress?: string
   phoneNumber?: string
   isDomestic?: boolean
+  isGrabSupported?: boolean
 }) {
   const { t } = useTranslation('common-web')
 
@@ -43,10 +51,13 @@ function DirectionButtons({
     app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
   }, [trackSimpleEvent, push, showTransitionModal, app])
 
+  const hasAskToLocalsButton = !!(localName && localAddress)
+  const hasLineBreak = hasAskToLocalsButton && isGrabSupported
+
   return (
     <>
-      <ButtonGroup horizontalGap={10}>
-        {localName && localAddress ? (
+      <ButtonGroup css={{ flexWrap: 'wrap', gap: '5px 10px' }}>
+        {hasAskToLocalsButton ? (
           <Button
             basic
             color="gray"
@@ -56,15 +67,21 @@ function DirectionButtons({
             {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
           </Button>
         ) : null}
-        <Button
-          basic
-          inverted
-          color="blue"
-          size="small"
-          // onClick={onCallGrabButtonClick}
-        >
-          {t(['grab-hocul', 'Grab 호출'])}
-        </Button>
+
+        {hasLineBreak ? <LinkBreak /> : null}
+
+        {isGrabSupported ? (
+          <Button
+            basic
+            inverted
+            color="blue"
+            size="small"
+            // onClick={onCallGrabButtonClick}
+          >
+            {t(['grab-hocul', 'Grab 호출'])}
+          </Button>
+        ) : null}
+
         <Button
           basic
           inverted
@@ -76,7 +93,7 @@ function DirectionButtons({
         </Button>
       </ButtonGroup>
 
-      {localName && localAddress ? (
+      {hasAskToLocalsButton ? (
         <AskToTheLocal
           open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
           onClose={back}
