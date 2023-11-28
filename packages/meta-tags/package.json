@@ -55,14 +55,14 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "i18next": "^23.7.6",
     "react": "^18.2.0",
     "react-i18next": "^13.5.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/react-contexts": "*",
+    "@titicaca/triple-web": "*",
     "i18next": "*",
     "react": "^18.0",
     "react-i18next": "*"
