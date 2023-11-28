@@ -294,7 +294,6 @@ export function TripleGlobalReviewElement({
                 inline
                 css={{
                   fontSize: 12,
-                  fontWeight: 400,
                   color: 'var(--color-kint5-gray50)',
                 }}
               >
@@ -357,7 +356,7 @@ function RecentReviewInfo({ visitDate }: { visitDate?: string | null }) {
   }
 
   return (
-    <Text css={{ fontSize: 13, fontWeight: 400 }}>
+    <Text css={{ fontSize: 13 }}>
       {t(
         [
           'visityear-nyeon-visitmonth-weol-yeohaeng',

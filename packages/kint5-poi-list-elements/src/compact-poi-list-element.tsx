@@ -141,7 +141,6 @@ export function CompactPoiListElement<T extends PoiListElementType>({
           maxLines={2}
           css={{
             fontSize: 13,
-            fontWeight: 400,
             color: 'var(--color-kint5-gray60)',
           }}
         >

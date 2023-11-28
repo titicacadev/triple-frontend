@@ -14,7 +14,7 @@ export default function Note({
       }}
     >
       <Text css={{ fontSize: 14, fontWeight: 700 }}>{title}</Text>
-      <Text css={{ fontSize: 14, fontWeight: 400, marginTop: 12 }}>{body}</Text>
+      <Text css={{ fontSize: 14, marginTop: 12 }}>{body}</Text>
     </Segment>
   )
 }

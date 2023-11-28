@@ -120,7 +120,6 @@ function PoiCarouselElement<T extends PoiListElementType>({
       <Text
         css={{
           fontSize: 13,
-          fontWeight: 400,
           color: 'var(--color-kint5-gray60)',
           marginTop: 8,
         }}
@@ -130,7 +129,6 @@ function PoiCarouselElement<T extends PoiListElementType>({
       <Text
         css={{
           fontSize: 13,
-          fontWeight: 400,
           color: 'var(--color-kint5-gray60)',
           marginTop: 4,
         }}
