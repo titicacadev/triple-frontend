@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { FlexBox, Text, Icon } from '@titicaca/tds-ui'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 
 import { useRepliesContext } from './context'
 
@@ -16,11 +16,11 @@ export default function GuideText() {
     initializeEditingMessage,
   } = useRepliesContext()
 
-  const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
 
   const handleClose =
     currentMessageId && parentMessageId
-      ? () => push(HASH_EDIT_CLOSE_MODAL)
+      ? () => addUriHash(HASH_EDIT_CLOSE_MODAL)
       : () => initializeEditingMessage()
 
   return (

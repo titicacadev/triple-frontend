@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useEnv, useUtmContext } from '@titicaca/react-contexts'
+import { useEnv, useUtm } from '@titicaca/triple-web'
 import {
   injectIsSearchAd,
   injectUTMContext,
@@ -14,7 +14,7 @@ export function useDeeplinkHref(path: string) {
     afOnelinkPid,
     afOnelinkId,
   } = useEnv()
-  const utmContext = useUtmContext()
+  const utmContext = useUtm()
 
   const deeplinkGenerator = useMemo(
     () =>

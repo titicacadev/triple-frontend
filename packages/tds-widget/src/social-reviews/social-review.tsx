@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Section } from '@titicaca/tds-ui'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import { ExternalLinks } from './external-links'
@@ -24,7 +24,7 @@ function SocialReviews({
 }: SocialReviewsProps) {
   const { t } = useTranslation('triple-frontend')
 
-  const { trackSimpleEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const navigate = useNavigate()
 
   if (!socialReviews || socialReviews.length === 0) {
@@ -53,7 +53,11 @@ function SocialReviews({
         }),
       )}
       onItemClick={(_, { data: url, title }) => {
-        trackSimpleEvent({ action: '소셜리뷰선택' })
+        trackEvent({
+          ga: ['소셜리뷰선택'],
+          fa: { action: '소셜리뷰선택' },
+        })
+
         navigate(url, { title })
       }}
       {...props}

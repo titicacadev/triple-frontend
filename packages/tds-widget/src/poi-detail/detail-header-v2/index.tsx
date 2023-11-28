@@ -10,11 +10,7 @@ import {
   Rating,
   TextTitle,
 } from '@titicaca/tds-ui'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
@@ -77,14 +73,13 @@ function DetailHeaderV2({
   const { t } = useTranslation('triple-frontend')
 
   const app = useTripleClientMetadata()
-  const uriHash = useUriHash()
-  const { push, back } = useHistoryFunctions()
-  const { trackEvent } = useEventTrackingContext()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const trackEvent = useTrackEvent()
 
   const handleLongClick = useCallback(() => {
     trackEvent({ fa: { action: '장소명_복사하기_노출' } })
-    push(HASH_COPY_ACTION_SHEET)
-  }, [push, trackEvent])
+    addUriHash(HASH_COPY_ACTION_SHEET)
+  }, [addUriHash, trackEvent])
 
   return (
     <>
@@ -136,7 +131,7 @@ function DetailHeaderV2({
         open={uriHash === HASH_COPY_ACTION_SHEET}
         names={names}
         onCopy={onCopy}
-        onClose={back}
+        onClose={removeUriHash}
       />
     </>
   )

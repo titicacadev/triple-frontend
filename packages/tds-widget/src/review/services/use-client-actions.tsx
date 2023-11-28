@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import qs from 'qs'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
