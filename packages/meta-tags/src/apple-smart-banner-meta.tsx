@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 
 import { DEFAULT_APP_ID } from './constants'
 
