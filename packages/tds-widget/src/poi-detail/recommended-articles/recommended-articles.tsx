@@ -8,7 +8,7 @@ import {
   Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { TransitionType, useTransitionModal } from '@titicaca/modals'
 import {
   ArticleCardCTA,
@@ -65,7 +65,7 @@ function RecommendedArticles({
     useState<InventoryItemMeta | null>(null)
 
   const { show } = useTransitionModal()
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   useEffect(() => {
     async function fetchAndSetRecommendedArticles() {

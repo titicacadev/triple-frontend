@@ -2,10 +2,7 @@ import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from 'react-i18next'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
@@ -138,8 +135,8 @@ export function ReviewElement({
   const visitDate = visitDateString ? new Date(visitDateString) : null
 
   const [unfolded, setUnfolded] = useState(false)
-  const { trackEvent } = useEventTrackingContext()
-  const { push } = useHistoryFunctions()
+  const trackEvent = useTrackEvent()
+  const { addUriHash } = useHashRouter()
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
@@ -194,12 +191,12 @@ export function ReviewElement({
     useSessionCallback(
       useCallback(() => {
         if (isMyReview) {
-          push(HASH_MY_REVIEW_ACTION_SHEET)
+          addUriHash(HASH_MY_REVIEW_ACTION_SHEET)
         } else {
           onMenuClick?.(review.id)
-          push(HASH_REVIEW_ACTION_SHEET)
+          addUriHash(HASH_REVIEW_ACTION_SHEET)
         }
-      }, [isMyReview, onMenuClick, push, review.id]),
+      }, [isMyReview, onMenuClick, addUriHash, review.id]),
     ),
   )
 

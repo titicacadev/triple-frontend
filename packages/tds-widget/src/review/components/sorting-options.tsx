@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Text } from '@titicaca/tds-ui'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 
 import { useReviewSortingOptions } from './sorting-context'
 import {
@@ -18,14 +18,14 @@ const ArrowIcon = styled.div`
 
 export function SortingOptions() {
   const { selectedOption, sortingOptions } = useReviewSortingOptions()
-  const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
 
   const { text } =
     sortingOptions.find(({ key }) => key === selectedOption) || {}
 
   const handleActionSheetOpen = useCallback(() => {
-    push(HASH_SORTING_OPTIONS_ACTION_SHEET)
-  }, [push])
+    addUriHash(HASH_SORTING_OPTIONS_ACTION_SHEET)
+  }, [addUriHash])
 
   return (
     <>

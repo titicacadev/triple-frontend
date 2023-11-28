@@ -7,7 +7,7 @@ import {
   RestaurantCircleMarker,
   DotPolyline,
 } from '@titicaca/tds-widget'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 import {
   Itinerary,
   ItineraryItemType,

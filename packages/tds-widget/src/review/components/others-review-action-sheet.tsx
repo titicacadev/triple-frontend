@@ -1,6 +1,6 @@
 import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
@@ -16,18 +16,20 @@ export function OthersReviewActionSheet({
 }: OthersReviewActionSheetProps) {
   const { t } = useTranslation('triple-frontend')
 
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
   const { reportReview } = useClientActions()
 
   const handleReportClick = () => {
     reportReview(reviewId)
 
-    back()
+    removeUriHash()
   }
 
   return (
-    <ActionSheet open={uriHash === HASH_REVIEW_ACTION_SHEET} onClose={back}>
+    <ActionSheet
+      open={uriHash === HASH_REVIEW_ACTION_SHEET}
+      onClose={removeUriHash}
+    >
       <ActionSheetItem icon="report" onClick={handleReportClick}>
         {t('신고하기')}
       </ActionSheetItem>

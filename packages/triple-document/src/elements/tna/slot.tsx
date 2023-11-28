@@ -1,7 +1,7 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Container, H1, List, Button } from '@titicaca/tds-ui'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { useTheme } from 'styled-components'
 
@@ -19,8 +19,7 @@ export function Slot({
 }) {
   const { t } = useTranslation('triple-frontend')
   const { colors } = useTheme()
-
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const navigate = useNavigate()
 
   const [showMore, setShowMore] = useState(false)

@@ -8,7 +8,7 @@ import type {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { useGuestMode } from '../prop-context/guest-mode'
 
@@ -83,7 +83,7 @@ const Duration = styled(Container)`
 `
 
 export default function ItineraryElement({ value }: Props) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { t } = useTranslation('triple-frontend')
 
   const guestMode = useGuestMode()

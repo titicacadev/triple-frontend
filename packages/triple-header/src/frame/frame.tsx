@@ -3,7 +3,7 @@ import { Container } from '@titicaca/tds-ui'
 import { initialize } from '@titicaca/standard-action-handler'
 import styled, { css } from 'styled-components'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 
 import { FrameData, LinkEventHandler } from '../types'

@@ -1,11 +1,12 @@
 import { useCallback } from 'react'
 import { List } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { PoiListElement } from '@titicaca/poi-list-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import { ListingPoi } from './types'
+
+import { PoiListElement } from '../poi-list-elements'
 
 export default function PoiEntry({
   index,
@@ -23,7 +24,7 @@ export default function PoiEntry({
   eventLabel: string
   optimized?: boolean
 }) {
-  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const navigate = useNavigate()
 
   const handleIntersectionChange = useCallback(
@@ -42,15 +43,18 @@ export default function PoiEntry({
   )
 
   const handleClick = useCallback(() => {
-    trackSimpleEvent({
-      action: '근처추천장소_POI선택',
-      label: `${eventLabel}_${index + 1}_${id}`,
+    trackEvent({
+      ga: ['근처추천장소_POI선택', `${eventLabel}_${index + 1}_${id}`],
+      fa: {
+        action: '근처추천장소_POI선택',
+        label: `${eventLabel}_${index + 1}_${id}`,
+      },
     })
 
     navigate(
       regionId ? `/regions/${regionId}/${type}s/${id}` : `/${type}s/${id}`,
     )
-  }, [eventLabel, id, index, navigate, regionId, trackSimpleEvent, type])
+  }, [eventLabel, id, index, navigate, regionId, trackEvent, type])
 
   return (
     <IntersectionObserver key={id} onChange={handleIntersectionChange}>

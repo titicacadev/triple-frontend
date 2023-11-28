@@ -2,10 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import {
-  useHistoryFunctions,
-  useSessionControllers,
-} from '@titicaca/react-contexts'
+import { useHashRouter, useSessionControllers } from '@titicaca/triple-web'
 import {
   useUserVerification,
   VerificationType,
@@ -120,7 +117,7 @@ export function CouponDownloadButton({
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   )
-  const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
   const { initiateVerification } = useUserVerification({
     verificationType,
     forceVerification: false,
@@ -160,7 +157,7 @@ export function CouponDownloadButton({
   }, [slugId, timePassed])
 
   const raiseDownloadedAlert = () =>
-    push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+    addUriHash(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   const handleCouponDownloadButtonClick = async () => {
     if (buttonDisabled === false) {
@@ -173,7 +170,7 @@ export function CouponDownloadButton({
 
         const responseHandlers = {
           SUCCESS: () => {
-            push(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
+            addUriHash(`${slugId}.${HASH_COMPLETE_DOWNLOAD_COUPON}`)
             setDownloaded(true)
           },
           NEED_LOGIN: () => {
@@ -182,7 +179,7 @@ export function CouponDownloadButton({
           NEED_USER_VERIFICATION: () => initiateVerification(),
           UNKNOWN_ERROR: ({ message }: { message?: string }) => {
             setErrorMessage(message)
-            push(`${slugId}.${HASH_ERROR_COUPON}`)
+            addUriHash(`${slugId}.${HASH_ERROR_COUPON}`)
           },
           /* eslint-enable @typescript-eslint/naming-convention */
         }
@@ -284,7 +281,7 @@ export function CouponGroupDownloadButton({
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined,
   )
-  const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
   const { initiateVerification } = useUserVerification({
     verificationType,
     forceVerification: false,
@@ -300,7 +297,7 @@ export function CouponGroupDownloadButton({
     (coupons.length === 0 && needLogin === false) || !timePassed
 
   const raiseDownloadedAlert = () =>
-    push(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+    addUriHash(`${groupId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
 
   useEffect(() => {
     async function fetchCoupons() {
@@ -342,10 +339,12 @@ export function CouponGroupDownloadButton({
             login()
           },
           EVERY_COUPONS_DOWNLOADED: () => {
-            push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
+            addUriHash(`${groupId}.${HASH_COMPLETE_DOWNLOAD_COUPON_GROUP}`)
           },
           SOME_COUPONS_DOWNLOADED: () => {
-            push(`${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`)
+            addUriHash(
+              `${groupId}.${HASH_COMPLETE_DOWNLOAD_PART_OF_COUPON_GROUP}`,
+            )
           },
           NO_DOWNLOADABLE_COUPONS: () => {
             raiseDownloadedAlert()
@@ -355,7 +354,7 @@ export function CouponGroupDownloadButton({
           },
           UNKNOWN_ERROR: ({ message }: { message?: string }) => {
             setErrorMessage(message)
-            push(`${groupId}.${HASH_ERROR_COUPON}`)
+            addUriHash(`${groupId}.${HASH_ERROR_COUPON}`)
           },
           /* eslint-enable @typescript-eslint/naming-convention */
         }

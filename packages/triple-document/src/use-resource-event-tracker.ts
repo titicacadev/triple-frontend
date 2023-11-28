@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
 
 enum Resource {
   Region = 'region',

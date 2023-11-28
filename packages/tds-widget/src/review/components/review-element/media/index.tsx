@@ -1,5 +1,5 @@
 import { TransitionType } from '@titicaca/modals'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'
@@ -17,7 +17,7 @@ interface Props {
 }
 
 function Media({ media, reviewId }: Props) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { navigateImages } = useClientActions()
 
   const hasVideo = media.some((medium) => medium.type === 'video')

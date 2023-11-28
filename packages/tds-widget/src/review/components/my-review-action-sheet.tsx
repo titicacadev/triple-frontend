@@ -1,10 +1,6 @@
 import { ActionSheet, ActionSheetItem, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import {
-  useHistoryFunctions,
-  useUriHash,
-  useEnv,
-} from '@titicaca/react-contexts'
+import { useEnv, useHashRouter } from '@titicaca/triple-web'
 import qs from 'qs'
 
 import { useDeleteReviewMutation } from '../services'
@@ -32,13 +28,12 @@ export function MyReviewActionSheet({
   const { t } = useTranslation('triple-frontend')
 
   const { appUrlScheme } = useEnv()
-  const uriHash = useUriHash()
-  const { replace, back } = useHistoryFunctions()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
 
   const { mutate } = useDeleteReviewMutation()
 
   const handleDeleteMenuClick = () => {
-    replace(HASH_DELETION_MODAL)
+    addUriHash(HASH_DELETION_MODAL, 'replace')
 
     return true
   }
@@ -46,7 +41,7 @@ export function MyReviewActionSheet({
   const handleDeleteReview = () => {
     mutate({ id: reviewId, resourceId, resourceType })
 
-    back()
+    removeUriHash('replace')
   }
 
   const handleEditReview = () => {
@@ -62,7 +57,7 @@ export function MyReviewActionSheet({
     <>
       <ActionSheet
         open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
-        onClose={back}
+        onClose={() => removeUriHash('replace')}
       >
         {!reviewBlinded ? (
           <ActionSheetItem icon="review" onClick={handleEditReview}>
@@ -76,7 +71,7 @@ export function MyReviewActionSheet({
 
       <Confirm
         open={uriHash === HASH_DELETION_MODAL}
-        onClose={back}
+        onClose={() => removeUriHash('replace')}
         onConfirm={handleDeleteReview}
       >
         {t('삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.')}

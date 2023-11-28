@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Segment, List, ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
-import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import PropertyItem, {
@@ -38,8 +38,7 @@ export function LocationProperties({
 } & Parameters<typeof Segment>['0']) {
   const { t } = useTranslation('triple-frontend')
 
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   const properties: Map<
     string,
@@ -117,7 +116,7 @@ export function LocationProperties({
       <ActionSheet
         title={t('복사하기')}
         open={isActionSheetOpen}
-        onClose={back}
+        onClose={removeUriHash}
       >
         <ActionSheetItem buttonLabel={t('복사')} onClick={handleClick}>
           {value}

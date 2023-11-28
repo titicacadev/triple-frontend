@@ -14,11 +14,8 @@ import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
 import { useNavigate } from '@titicaca/router'
-import {
-  useUriHash,
-  useHistoryFunctions,
-  useIsomorphicNavigation,
-} from '@titicaca/react-contexts'
+import { useHashRouter } from '@titicaca/triple-web'
+import { useIsomorphicNavigation } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -94,16 +91,16 @@ export default function Reply({
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
-  const { push, back } = useHistoryFunctions()
+  const { addUriHash, removeUriHash } = useHashRouter()
   const { asyncBack } = useIsomorphicNavigation()
   const navigate = useNavigate()
   const likeReactionCount = likeReaction?.count
 
   const handleMoreClick = useCallback(
     (id: string) => {
-      push(`${HASH_MORE_ACTION_SHEET}.${id}`, { useRouter: true })
+      addUriHash(`${HASH_MORE_ACTION_SHEET}.${id}`)
     },
-    [push],
+    [addUriHash],
   )
 
   const handleWriteReplyClick = useSessionCallback(
@@ -159,13 +156,13 @@ export default function Reply({
         },
       })
 
-      await asyncBack(back)
+      await asyncBack(removeUriHash)
 
-      push(HASH_DELETE_CLOSE_MODAL)
+      addUriHash(HASH_DELETE_CLOSE_MODAL)
 
       return true
     },
-    [setEditingMessage, asyncBack, back, push],
+    [setEditingMessage, asyncBack, removeUriHash, addUriHash],
   )
 
   const handleLikeReplyClick = useSessionCallback(
@@ -412,7 +409,7 @@ export default function Reply({
           })
         }
         onReportClick={async () => {
-          await asyncBack(back)
+          await asyncBack(removeUriHash)
           handleReportReplyClick(id)
         }}
       />
@@ -508,14 +505,12 @@ function FeatureActionSheet({
   onReportClick: () => void
 }) {
   const { t } = useTranslation('triple-frontend')
-
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   return (
     <ActionSheet
       open={uriHash === actionSheetHash}
-      onClose={back}
+      onClose={removeUriHash}
       title={title}
     >
       {isMine ? (

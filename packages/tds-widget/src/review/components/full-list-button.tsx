@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
 import { useSessionCallback } from '@titicaca/ui-flow'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
@@ -40,7 +40,7 @@ export const FullListButton = ({
   sortingOption,
 }: Props) => {
   const { t } = useTranslation('triple-frontend')
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const navigate = useNavigate()
   const { getWindowId } = useTripleClientActions()
 

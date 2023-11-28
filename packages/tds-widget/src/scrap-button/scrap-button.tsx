@@ -1,7 +1,5 @@
-import {
-  useEventTrackerWithMetadata,
-  useScrapsContext,
-} from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
+import { useScrapsContext } from '@titicaca/react-contexts'
 import { Attributes, ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 

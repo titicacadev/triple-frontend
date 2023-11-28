@@ -1,8 +1,8 @@
+import { PropsWithChildren } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { EnvProvider } from '@titicaca/react-contexts'
+import { TripleWeb } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { PropsWithChildren } from 'react'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
@@ -12,6 +12,7 @@ interface I18nExpressions {
   likeReactionCount: number
 }
 
+jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/router')
 jest.mock('@titicaca/ui-flow')
 jest.mock('./replies-api-client')
@@ -231,19 +232,20 @@ function generateMockReply(reactions: Pick<ReplyType, 'reactions'>) {
 
 function ReplyWithLoginWrapper({ children }: PropsWithChildren<unknown>) {
   return (
-    <EnvProvider
-      appUrlScheme=""
-      webUrlBase=""
-      authBasePath="/"
-      facebookAppId=""
-      defaultPageTitle=""
-      defaultPageDescription=""
-      googleMapsApiKey=""
-      afOnelinkId=""
-      afOnelinkPid=""
-      afOnelinkSubdomain=""
+    <TripleWeb
+      envProvider={{
+        appUrlScheme: '',
+        webUrlBase: '',
+        facebookAppId: '',
+        defaultPageTitle: '',
+        defaultPageDescription: '',
+        googleMapsApiKey: '',
+        afOnelinkId: '',
+        afOnelinkPid: '',
+        afOnelinkSubdomain: '',
+      }}
     >
       <RepliesProvider>{children}</RepliesProvider>
-    </EnvProvider>
+    </TripleWeb>
   )
 }

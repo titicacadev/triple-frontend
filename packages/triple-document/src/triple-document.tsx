@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
