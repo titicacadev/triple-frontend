@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv, useUserAgentContext } from '@titicaca/react-contexts'
+import { useEnv, useUserAgent } from '@titicaca/triple-web'
 
 import { useTripleClientNavigate } from './use-triple-client-navigate'
 
@@ -213,8 +213,8 @@ describe('openNativeLink', () => {
 
 function mockUserAgentContext(isPublic = true) {
   ;(
-    useUserAgentContext as unknown as jest.MockedFunction<
-      () => Pick<ReturnType<typeof useUserAgentContext>, 'isPublic'>
+    useUserAgent as unknown as jest.MockedFunction<
+      () => Pick<ReturnType<typeof useUserAgent>, 'isPublic'>
     >
   ).mockReturnValue({
     isPublic,
