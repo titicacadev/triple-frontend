@@ -10,6 +10,7 @@ export const koCommonWeb = {
   'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.':
     '국제 전화 요금이 부과될 수 있습니다.',
   'hyeonjieseo-gilmudgi': '현지에서 길묻기',
+  'grab-hocul': 'Grab 호출',
   gilcajgi: '길찾기',
   juso: '주소',
   jeonhwa: '전화',
