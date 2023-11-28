@@ -1,7 +1,5 @@
 import { HR1, HR2, HR3, HR4, HR5, HR6 } from '@titicaca/kint5-core-elements'
 
-import { ElementSet } from '../types'
-
 import Anchor from './anchor'
 import Coupon from './coupon'
 import Embedded from './embedded'
@@ -16,6 +14,33 @@ import Regions from './regions'
 import Table from './table'
 import { MH1, MH2, MH3, MH4, Text } from './text'
 import { TnaProducts } from './tna'
+
+export interface ElementSet {
+  heading1: typeof MH1
+  heading2: typeof MH2
+  heading3: typeof MH3
+  heading4: typeof MH4
+  text: typeof Text
+  images: typeof Images
+  hr1: typeof HR1
+  hr2: typeof HR2
+  hr3: typeof HR3
+  hr4: typeof HR4
+  hr5: typeof HR5
+  hr6: typeof HR6
+  pois: typeof Pois
+  links: typeof Links
+  embedded: typeof Embedded
+  note: typeof Note
+  list: typeof List
+  regions: typeof Regions
+  video: typeof ExternalVideo
+  tnaProducts: typeof TnaProducts
+  table: typeof Table
+  coupon: typeof Coupon
+  itinerary: typeof ItineraryElement
+  anchor: typeof Anchor
+}
 
 const ELEMENTS: ElementSet = {
   heading1: MH1,
