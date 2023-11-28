@@ -18,6 +18,7 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/tna\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+\/display$/,
   /^\/trips\/lounge\/itineraries\/[^/]+$/,
+  /^\/trips\/plan(\/.*)?$/,
 ]
 
 export function checkIfRoutable({ href }: { href: string }) {
