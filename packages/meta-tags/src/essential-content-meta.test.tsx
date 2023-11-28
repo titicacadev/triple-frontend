@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-node-access */
 import { render } from '@testing-library/react'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 
 import { EssentialContentMeta } from './essential-content-meta'
 
