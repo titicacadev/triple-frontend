@@ -3,14 +3,14 @@ import { useCallback, useEffect } from 'react'
 import { useEventTracking, useModal } from '../../contexts'
 import { LoginCtaModalRef } from '../../types'
 
-type OpenOptions = LoginCtaModalRef
+type ShowOptions = LoginCtaModalRef
 
 export function useLoginCtaModal() {
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useEventTracking()
 
-  const open = useCallback(
-    (options?: OpenOptions) => {
+  const show = useCallback(
+    (options?: ShowOptions) => {
       // TODO: push login cta hash
 
       if (options) {
@@ -36,7 +36,7 @@ export function useLoginCtaModal() {
   }, [eventTrackingContext, eventTrackingContextForkRef])
 
   return {
-    open,
+    show,
     close,
   }
 }
