@@ -30,7 +30,7 @@ export function BubbleInfo({
 
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
-      {thanks ? (
+      {thanks && onThanksClick ? (
         <Thanks
           count={thanks.count}
           haveMine={thanks.haveMine}

@@ -13,6 +13,7 @@ import {
   PostMessageType,
   ReactionType,
   RoomInterface,
+  RoomType,
   TextPayload,
   UpdateChatData,
   UserInterface,
@@ -329,7 +330,9 @@ export const Chat = ({
                   onRetryCancelButtonClick={onRetryCancel}
                   disableUnreadCount={disableUnreadCount}
                   blindedText={blindedText}
-                  onThanksClick={onThanksClick}
+                  onThanksClick={
+                    room.type === RoomType.EVENT ? onThanksClick : undefined
+                  }
                   bubbleStyle={bubbleStyle}
                 />
               </li>
@@ -349,7 +352,9 @@ export const Chat = ({
                 onRetryCancelButtonClick={onRetryCancel}
                 disableUnreadCount={disableUnreadCount}
                 blindedText={blindedText}
-                onThanksClick={onThanksClick}
+                onThanksClick={
+                  room.type === RoomType.EVENT ? onThanksClick : undefined
+                }
                 bubbleStyle={bubbleStyle}
               />
             </li>
