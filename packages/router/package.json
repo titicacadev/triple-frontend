@@ -44,7 +44,7 @@
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.9",
     "next": "^13.4.13",
@@ -52,7 +52,7 @@
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
-    "@titicaca/react-contexts": "*",
+    "@titicaca/triple-web": "*",
     "@titicaca/react-triple-client-interfaces": "*",
     "next": "^13.0",
     "react": "^18.0",

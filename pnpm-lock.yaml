@@ -50,9 +50,6 @@ importers:
       '@titicaca/eslint-config-triple':
         specifier: 5.1.1
         version: 5.1.1(eslint-plugin-n@15.7.0)(eslint@8.52.0)(typescript@5.2.2)
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/prettier-config-triple':
         specifier: 1.1.0
         version: 1.1.0(prettier@3.0.3)
@@ -108,8 +105,11 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3
       i18next:
-        specifier: 22.5.1
-        version: 22.5.1
+        specifier: 23.7.6
+        version: 23.7.6
+      i18next-resources-to-backend:
+        specifier: ^1.2.0
+        version: 1.2.0
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@18.18.8)
@@ -147,8 +147,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-i18next:
-        specifier: 12.3.1
-        version: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 13.5.0
+        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -158,6 +158,9 @@ importers:
       storybook-mock-date-decorator:
         specifier: ^1.0.1
         version: 1.0.2(@storybook/addons@7.6.17)
+      storybook-react-i18next:
+        specifier: ^2.0.9
+        version: 2.1.2(i18next-browser-languagedetector@7.2.0)(i18next-http-backend@2.5.0)(i18next@23.7.6)(react-i18next@13.5.0)
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -180,9 +183,9 @@ importers:
         specifier: workspace:*
         version: link:../fetcher
     devDependencies:
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
       next:
         specifier: ^13.4.13
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
@@ -220,15 +223,7 @@ importers:
         specifier: ^2.7.0
         version: 2.7.0
 
-  packages/i18n:
-    dependencies:
-      node-fetch:
-        specifier: 2.7.0
-        version: 2.7.0
-    devDependencies:
-      '@types/node-fetch':
-        specifier: 2.x
-        version: 2.6.8
+  packages/i18n: {}
 
   packages/intersection-observer:
     dependencies:
@@ -251,98 +246,18 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
+      i18next:
+        specifier: ^23.7.6
+        version: 23.7.6
       react:
         specifier: ^18.2.0
         version: 18.2.0
-
-  packages/modals:
-    dependencies:
-      '@floating-ui/react':
-        specifier: ^0.26.6
-        version: 0.26.10(react-dom@18.2.0)(react@18.2.0)
-      '@titicaca/tds-ui':
-        specifier: workspace:*
-        version: link:../tds-ui
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      utility-types:
-        specifier: ^3.10.0
-        version: 3.10.0
-
-  packages/react-contexts:
-    dependencies:
-      '@titicaca/constants':
-        specifier: workspace:*
-        version: link:../constants
-      '@titicaca/fetcher':
-        specifier: workspace:*
-        version: link:../fetcher
-      '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@titicaca/type-definitions':
-        specifier: workspace:*
-        version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
-      qs:
-        specifier: ^6.11.2
-        version: 6.11.2
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
-      ua-parser-js:
-        specifier: ^1.0.37
-        version: 1.0.37
-      universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
-    devDependencies:
-      '@types/qs':
-        specifier: ^6.9.9
-        version: 6.9.9
-      '@types/semver':
-        specifier: ^7.5.4
-        version: 7.5.4
-      '@types/ua-parser-js':
-        specifier: ^0.7.38
-        version: 0.7.39
-      firebase:
-        specifier: ^9.15.0
-        version: 9.15.0
-      next:
-        specifier: ^13.4.13
-        version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-      utility-types:
-        specifier: ^3.10.0
-        version: 3.10.0
+      react-i18next:
+        specifier: ^13.5.0
+        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
 
   packages/react-hooks:
     dependencies:
@@ -378,9 +293,9 @@ importers:
         specifier: ^7.5.4
         version: 7.5.4
     devDependencies:
-      '@titicaca/react-contexts':
+      '@titicaca/triple-web':
         specifier: workspace:*
-        version: link:../react-contexts
+        version: link:../triple-web
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.9.0
         version: 1.9.0
@@ -399,9 +314,6 @@ importers:
 
   packages/router:
     dependencies:
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -409,18 +321,12 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -461,15 +367,15 @@ importers:
 
   packages/standard-action-handler:
     dependencies:
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
       '@titicaca/scroll-to-element':
         specifier: workspace:*
         version: link:../scroll-to-element
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: link:../tds-ui
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.9.0
         version: 1.9.0
@@ -486,21 +392,18 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
-      next:
-        specifier: ^13.4.13
-        version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
+      i18next:
+        specifier: ^23.7.6
+        version: 23.7.6
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -577,9 +480,6 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
@@ -589,6 +489,9 @@ importers:
       '@titicaca/tds-ui':
         specifier: workspace:*
         version: link:../tds-ui
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -598,9 +501,6 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
-      '@titicaca/web-storage':
-        specifier: workspace:*
-        version: link:../web-storage
       autolinker:
         specifier: ^4.0.0
         version: 4.0.0
@@ -644,9 +544,6 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
@@ -662,12 +559,18 @@ importers:
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
+      i18next:
+        specifier: ^23.7.6
+        version: 23.7.6
       next:
         specifier: ^13.4.13
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-i18next:
+        specifier: ^13.5.0
+        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
       react-query:
         specifier: ^3.39.3
         version: 3.39.3(react-dom@18.2.0)(react@18.2.0)
@@ -686,9 +589,6 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
@@ -723,24 +623,27 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
+      i18next:
+        specifier: ^23.7.6
+        version: 23.7.6
       next:
         specifier: ^13.4.13
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      react-i18next:
+        specifier: ^13.5.0
+        version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -785,18 +688,12 @@ importers:
         specifier: ^10.16.9
         version: 10.16.12(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/next-i18next':
-        specifier: ^13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       next:
         specifier: ^13.4.13
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
@@ -947,9 +844,6 @@ importers:
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -957,15 +851,12 @@ importers:
         specifier: ^6.11.2
         version: 6.11.2
     devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/react-contexts':
-        specifier: workspace:*
-        version: link:../react-contexts
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -1004,31 +895,6 @@ importers:
         specifier: ^6.9.9
         version: 6.9.9
 
-  packages/web-storage:
-    dependencies:
-      ts-custom-error:
-        specifier: ^3.3.1
-        version: 3.3.1
-      universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
-    devDependencies:
-      '@titicaca/i18n':
-        specifier: workspace:*
-        version: link:../i18n
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
-      '@titicaca/next-i18next':
-        specifier: 13.8.5
-        version: 13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      styled-components:
-        specifier: ^5.3.11
-        version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -1056,7 +922,7 @@ packages:
       '@babel/core': 7.23.5
       '@babel/generator': 7.23.5
       '@babel/parser': 7.23.5
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@babel/traverse': 7.23.5(supports-color@5.5.0)
       '@babel/types': 7.23.5
       babel-preset-fbjs: 3.4.0(@babel/core@7.23.5)
@@ -3337,25 +3203,8 @@ packages:
       tabbable: 6.2.0
     dev: false
 
-  /@floating-ui/react@0.26.10(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-sh6f9gVvWQdEzLObrWbJ97c0clJObiALsFe0LiR/kb3tDRKwEhObASEH2QyfdoO/ZBPzwxa9j+nYFo+sqgbioA==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
-      '@floating-ui/utils': 0.2.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      tabbable: 6.2.0
-    dev: false
-
   /@floating-ui/utils@0.1.1:
     resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
-
-  /@floating-ui/utils@0.2.1:
-    resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
-    dev: false
 
   /@googlemaps/js-api-loader@1.16.2:
     resolution: {integrity: sha512-psGw5u0QM6humao48Hn4lrChOM2/rA43ZCm3tKK9qQsEj1/VzqkCqnvGfEOshDbBQflydfaRovbKwZMF4AyqbA==}
@@ -5289,13 +5138,13 @@ packages:
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
     dev: true
 
   /@radix-ui/primitive@1.0.1:
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
     dev: true
 
   /@radix-ui/react-arrow@1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0):
@@ -5311,7 +5160,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.72
       '@types/react-dom': 18.2.22
@@ -5332,7 +5181,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
@@ -5352,7 +5201,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5366,7 +5215,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5380,7 +5229,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5398,7 +5247,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
@@ -5419,7 +5268,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5437,7 +5286,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5456,7 +5305,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5475,7 +5324,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@floating-ui/react-dom': 2.0.2(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5505,7 +5354,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.72
       '@types/react-dom': 18.2.22
@@ -5526,7 +5375,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       '@types/react-dom': 18.2.22
@@ -5547,7 +5396,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-collection': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5576,7 +5425,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/number': 1.0.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-collection': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
@@ -5617,7 +5466,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.72
       '@types/react-dom': 18.2.22
@@ -5634,7 +5483,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5653,7 +5502,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-direction': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5680,7 +5529,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5703,7 +5552,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@radix-ui/react-direction': 1.0.1(@types/react@18.2.72)(react@18.2.0)
@@ -5726,7 +5575,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5740,7 +5589,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5755,7 +5604,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5770,7 +5619,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5784,7 +5633,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@types/react': 18.2.72
       react: 18.2.0
     dev: true
@@ -5798,7 +5647,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/rect': 1.0.1
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5813,7 +5662,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.72)(react@18.2.0)
       '@types/react': 18.2.72
       react: 18.2.0
@@ -5832,7 +5681,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.22)(@types/react@18.2.72)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.72
       '@types/react-dom': 18.2.22
@@ -5843,7 +5692,7 @@ packages:
   /@radix-ui/rect@1.0.1:
     resolution: {integrity: sha512-fyrgCaedtvMg9NK3en0pnOYJdtfwxUcNolezkNPUsoX57X8oQk+NkqcvzHXD2uKNij6GXmWU9NDru2IWjrO4BQ==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
     dev: true
 
   /@react-google-maps/api@2.19.2(react-dom@18.2.0)(react@18.2.0):
@@ -7369,46 +7218,6 @@ packages:
       - eslint-plugin-n
       - supports-color
       - typescript
-    dev: true
-
-  /@titicaca/next-i18next@13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0):
-    resolution: {integrity: sha512-a82XOklU3sZSDy7j5czxipBOJvhfRNmAJE4HzYiZ7AAzc3x8B49U053mjuIMo4KwqiN5voCkP8os6HuiR00ovg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      i18next: ^22.0.6
-      next: '>= 12.0.0'
-      react: '>= 17.0.2'
-      react-i18next: ^12.0.0
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@types/hoist-non-react-statics': 3.3.1
-      core-js: 3.36.1
-      hoist-non-react-statics: 3.3.2
-      i18next: 22.5.1
-      i18next-fs-backend: 2.3.1
-      next: 13.4.13(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
-    dev: true
-
-  /@titicaca/next-i18next@13.8.5(i18next@22.5.1)(next@13.5.6)(react-i18next@12.3.1)(react@18.2.0):
-    resolution: {integrity: sha512-a82XOklU3sZSDy7j5czxipBOJvhfRNmAJE4HzYiZ7AAzc3x8B49U053mjuIMo4KwqiN5voCkP8os6HuiR00ovg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      i18next: ^22.0.6
-      next: '>= 12.0.0'
-      react: '>= 17.0.2'
-      react-i18next: ^12.0.0
-    dependencies:
-      '@babel/runtime': 7.23.2
-      '@types/hoist-non-react-statics': 3.3.1
-      core-js: 3.36.1
-      hoist-non-react-statics: 3.3.2
-      i18next: 22.5.1
-      i18next-fs-backend: 2.3.1
-      next: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
     dev: true
 
   /@titicaca/prettier-config-triple@1.1.0(prettier@3.0.3):
@@ -10129,11 +9938,6 @@ packages:
     requiresBuild: true
     dev: true
 
-  /core-js@3.36.1:
-    resolution: {integrity: sha512-BTvUrwxVBezj5SZ3f10ImnX2oRByMxql3EimVqMysepbC9EeMUOpLwdy6Eoili2x6E4kf+ZUB5k/+Jv55alPfA==}
-    requiresBuild: true
-    dev: true
-
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
@@ -10212,6 +10016,14 @@ packages:
       node-fetch: 2.7.0
     transitivePeerDependencies:
       - encoding
+
+  /cross-fetch@4.0.0:
+    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
+    dependencies:
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+    dev: true
 
   /cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
@@ -13231,20 +13043,30 @@ packages:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
     dev: false
 
-  /i18next-fs-backend@2.3.1:
-    resolution: {integrity: sha512-tvfXskmG/9o+TJ5Fxu54sSO5OkY6d+uMn+K6JiUGLJrwxAVfer+8V3nU8jq3ts9Pe5lXJv4b1N7foIjJ8Iy2Gg==}
+  /i18next-browser-languagedetector@7.2.0:
+    resolution: {integrity: sha512-U00DbDtFIYD3wkWsr2aVGfXGAj2TgnELzOX9qv8bT0aJtvPV9CRO77h+vgmHFBMe7LAxdwvT/7VkCWGya6L3tA==}
+    dependencies:
+      '@babel/runtime': 7.24.1
     dev: true
 
-  /i18next@22.5.1:
-    resolution: {integrity: sha512-8TGPgM3pAD+VRsMtUMNknRz3kzqwp/gPALrWMsDnmC1mKqJwpWyooQRLMcbTwq8z8YwSmuj+ZYvc+xCuEpkssA==}
+  /i18next-http-backend@2.5.0:
+    resolution: {integrity: sha512-Z/aQsGZk1gSxt2/DztXk92DuDD20J+rNudT7ZCdTrNOiK8uQppfvdjq9+DFQfpAnFPn3VZS+KQIr1S/W1KxhpQ==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      cross-fetch: 4.0.0
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
+  /i18next-resources-to-backend@1.2.0:
+    resolution: {integrity: sha512-8f1l03s+QxDmCfpSXCh9V+AFcxAwIp0UaroWuyOx+hmmv8484GcELHs+lnu54FrNij8cDBEXvEwhzZoXsKcVpg==}
+    dependencies:
+      '@babel/runtime': 7.24.1
     dev: true
 
   /i18next@23.7.6:
     resolution: {integrity: sha512-O66BhXBw0fH4bEJMA0/klQKPEbcwAp5wjXEL803pdAynNbg2f4qhLIYlNHJyE7icrL6XmSZKPYaaXwy11kJ6YQ==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
     dev: true
 
   /iconv-lite@0.4.24:
@@ -17884,26 +17706,6 @@ packages:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
 
-  /react-i18next@12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-5v8E2XjZDFzK7K87eSwC7AJcAkcLt5xYZ4+yTPDAW1i7C93oOY1dnr4BaQM7un4Hm+GmghuiPvevWwlca5PwDA==}
-    peerDependencies:
-      i18next: '>= 19.0.0'
-      react: '>= 16.8.0'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.23.2
-      html-parse-stringify: 3.0.1
-      i18next: 22.5.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
   /react-i18next@13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==}
     peerDependencies:
@@ -17917,7 +17719,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.24.1
       html-parse-stringify: 3.0.1
       i18next: 23.7.6
       react: 18.2.0
@@ -18280,7 +18082,7 @@ packages:
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
     dev: true
 
   /regex-parser@2.2.11:
@@ -18338,7 +18140,7 @@ packages:
   /relay-runtime@12.0.0:
     resolution: {integrity: sha512-QU6JKr1tMsry22DXNy9Whsq5rmvwr3LSZiiWV/9+DFpuTWvp+WFhobWMc8TC4OjKFfNhEZy7mOiqUAn5atQtug==}
     dependencies:
-      '@babel/runtime': 7.23.2
+      '@babel/runtime': 7.24.1
       fbjs: 3.0.5
       invariant: 2.2.4
     transitivePeerDependencies:
@@ -19220,6 +19022,11 @@ packages:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
     dev: true
 
+  /storybook-i18n@2.1.2:
+    resolution: {integrity: sha512-jPIxaluHrIS0IChEyhM8G+maTdsIaKukJXzVZ4TneacCETpLq2Lnx9Ni7z2LZhrBvZLQUWXgtMSMGSCwDWYNSQ==}
+    deprecated: storybook 8 support in v3
+    dev: true
+
   /storybook-mock-date-decorator@1.0.2(@storybook/addons@7.6.17):
     resolution: {integrity: sha512-aLM/mRtrgQIiBrgtaWI8r+Jo66pRvlxTYdRoZ3uX3+uMFHGvjIf2AJ7/fAJsQVhTwSQpQ3JBKMiBGqjgRXefYA==}
     peerDependencies:
@@ -19227,6 +19034,22 @@ packages:
     dependencies:
       '@storybook/addons': 7.6.17(react-dom@18.2.0)(react@18.2.0)
       mockdate: 3.0.5
+    dev: true
+
+  /storybook-react-i18next@2.1.2(i18next-browser-languagedetector@7.2.0)(i18next-http-backend@2.5.0)(i18next@23.7.6)(react-i18next@13.5.0):
+    resolution: {integrity: sha512-M1/sEm+AlZXeSe+9kVW1blM1cCKjgHqxvplrd0n+ehIPEYqJ8NTF/9KW3xWjgQIrteYKkVcabzYxwKxg6MzSMg==}
+    deprecated: storybook 8 support in v3
+    peerDependencies:
+      i18next: ^22.0.0 || ^23.0.0 || ^24.0.0
+      i18next-browser-languagedetector: ^7.0.0
+      i18next-http-backend: ^2.0.0
+      react-i18next: ^12.0.0 || ^13.0.0 || ^14.0.0
+    dependencies:
+      i18next: 23.7.6
+      i18next-browser-languagedetector: 7.2.0
+      i18next-http-backend: 2.5.0
+      react-i18next: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
+      storybook-i18n: 2.1.2
     dev: true
 
   /storybook@7.6.7:
@@ -20630,6 +20453,7 @@ packages:
   /utility-types@3.10.0:
     resolution: {integrity: sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==}
     engines: {node: '>= 4'}
+    dev: false
 
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}

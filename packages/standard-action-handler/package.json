@@ -38,7 +38,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/modals": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/scroll-to-element": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.9",
     "i18next": "^23.7.6",
@@ -55,7 +55,7 @@
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/react-contexts": "*",
+    "@titicaca/triple-web": "*",
     "@titicaca/react-triple-client-interfaces": "*",
     "i18next": "*",
     "react": "^18.0",
