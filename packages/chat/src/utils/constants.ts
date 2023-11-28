@@ -92,6 +92,9 @@ export const CHAT_ARGS: ChatProps = {
             message: '',
           },
         },
+        reactions: {
+          thanks: { count: 0, haveMine: false },
+        },
       },
       {
         id: 5749,
@@ -206,5 +209,8 @@ export const CHAT_ARGS: ChatProps = {
         },
       ],
     }
+  },
+  addReactions: async () => {
+    return { success: true }
   },
 }

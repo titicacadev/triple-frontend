@@ -40,7 +40,7 @@ export const Text = {
     unreadCount: 1,
     createdAt: new Date(2022, 10, 1).toISOString(),
     profileName: '테스트계정',
-    thanks: { count: 1, haveMine: true },
+    thanks: { count: 1, haveMine: false },
   },
 }
 
