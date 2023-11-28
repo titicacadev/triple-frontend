@@ -1,9 +1,9 @@
-import { ComponentType } from 'react'
+import { ComponentType, ElementType } from 'react'
 import { Carousel, Container } from '@titicaca/kint5-core-elements'
 import Kint5Media from '@titicaca/kint5-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import { TripleElementData, ElementSet } from '../types'
+import { TripleElementData } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
 import { useImageSource } from '../prop-context/image-source'
@@ -13,6 +13,8 @@ import DocumentCarousel from './shared/document-carousel'
 import generateClickHandler from './shared/generate-click-handler'
 import { Text, MH3 } from './text'
 import Links from './links'
+
+import { ElementSet } from './index'
 
 function Compact<P extends { compact?: boolean }>(Component: ComponentType<P>) {
   return function CompactedComponent({ ...rest }: P) {
@@ -55,13 +57,22 @@ function EmbeddedImage({
   return null
 }
 
-const EMBEDDED_ELEMENTS: ElementSet = {
+type ElmbeddedElementType =
+  | 'heading2'
+  | 'heading3'
+  | 'text'
+  | 'links'
+  | 'images'
+
+const EMBEDDED_ELEMENTS: {
+  [key in keyof Pick<ElementSet, ElmbeddedElementType>]: ElementType
+} = {
   heading2: Compact(MH3), // POI의 featuredContent에서 embedded entry의 제목이 heading2로 옵니다.
   heading3: Compact(MH3),
   text: Compact(Text),
   links: Compact(Links),
   images: EmbeddedImage,
-}
+} as const
 
 export default function Embedded({
   value: { entries },
@@ -85,12 +96,19 @@ export default function Embedded({
           css={{ ':last-child': { marginRight: 16 } }}
         >
           {elements.map(({ type, value }, j) => {
-            const Element = EMBEDDED_ELEMENTS[type]
+            if (!isEmbeddedElementType(type)) {
+              return null
+            }
 
-            return Element && <Element key={j} value={value} embedded />
+            const Element = EMBEDDED_ELEMENTS[type]
+            return <Element key={j} value={value} embedded />
           })}
         </Carousel.Item>
       ))}
     </DocumentCarousel>
   )
+}
+
+function isEmbeddedElementType(type: string): type is ElmbeddedElementType {
+  return type in EMBEDDED_ELEMENTS
 }

@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react'
+import { useMemo, useCallback, ElementType } from 'react'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
@@ -6,7 +6,6 @@ import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
 
 import {
   TripleElementData,
-  ElementSet,
   TripleDocumentContext,
   LinkEventHandler,
 } from './types'
@@ -19,12 +18,12 @@ import { LinkClickHandlerProvider } from './prop-context/link-click-handler'
 import { ImageSourceProvider } from './prop-context/image-source'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
-import ELEMENTS from './elements'
+import ELEMENTS, { ElementSet } from './elements'
 import useEventResourceTracker from './use-resource-event-tracker'
 
 export function TripleDocument({
   children,
-  customElements = {},
+  customElements,
   onResourceClick,
   onImageClick,
   onLinkClick,
@@ -98,10 +97,15 @@ export function TripleDocument({
                 optimized={optimized}
               >
                 {children.map(({ type, value }, i) => {
-                  const RegularElement = ELEMENTS[type]
-                  const CustomElement = customElements[type]
+                  if (!isTripleGlobalDocumentType(type)) {
+                    return null
+                  }
 
-                  const Element = CustomElement || RegularElement
+                  const RegularElement = ELEMENTS[type]
+                  const CustomElement = customElements?.[type] ?? null
+
+                  const Element = (CustomElement ||
+                    RegularElement) as ElementType
 
                   return (
                     Element && (
@@ -156,4 +160,8 @@ function composeResourceUrl(resource: Parameters<ResourceClickHandler>[1]) {
     default:
       return null
   }
+}
+
+function isTripleGlobalDocumentType(type: string): type is keyof ElementSet {
+  return type in ELEMENTS
 }
