@@ -57,7 +57,7 @@ export const Text = styled.div<TextProps>(
       ? 'inline'
       : undefined,
     float: props.floated ?? 'none',
-    fontWeight: props.bold ? 'bold' : 500,
+    fontWeight: props.bold ? 'bold' : 400,
     textAlign: props.textAlign
       ? props.textAlign
       : props.center

@@ -73,7 +73,6 @@ export default function PropertyItem({
           ellipsis={singleLine}
           css={{
             fontSize: 14,
-            fontWeight: 400,
             ...(identifier === 'officialSiteUrl' && {
               color: 'var(--color-kint5-brand1)',
             }),

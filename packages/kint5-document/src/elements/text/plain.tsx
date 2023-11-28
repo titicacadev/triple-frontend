@@ -81,7 +81,6 @@ export default function TextElement({
     <Paragraph
       css={{
         color: 'var(--color-kint5-gray100)',
-        fontWeight: 400,
         margin: embedded ? '4px 0 0' : compact ? '4px 16px 0' : '10px 16px 0',
       }}
       {...props}

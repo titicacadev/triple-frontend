@@ -90,7 +90,6 @@ function DetailHeader({
         <Text
           css={{
             fontSize: 14,
-            fontWeight: 400,
             color: 'var(--color-kint5-gray60)',
             marginTop: 4,
           }}
@@ -126,7 +125,7 @@ function DetailHeader({
                 onClick={onReviewsRatingClick}
               >
                 <RatingV2 score={reviewsRating} />
-                <Text css={{ fontSize: 13, fontWeight: 400, marginTop: 1 }}>
+                <Text css={{ fontSize: 13, marginTop: 1 }}>
                   ({formatNumber(reviewsCount)})
                 </Text>
               </Button>

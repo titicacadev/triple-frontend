@@ -93,7 +93,6 @@ export default function Coupon({
         <Text
           css={{
             fontSize: 14,
-            fontWeight: 400,
             marginTop: 16,
             color: safeParseHexColor(
               color.description || DEFAULT_COLOR.description,

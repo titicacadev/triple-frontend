@@ -133,7 +133,7 @@ function HorizontalTable({ head, body }: TableBodyProps) {
                 }),
               }}
             >
-              <Text css={{ fontSize: 13, fontWeight: 400 }}>{text}</Text>
+              <Text css={{ fontSize: 13 }}>{text}</Text>
             </Column>
           ))}
         </Row>

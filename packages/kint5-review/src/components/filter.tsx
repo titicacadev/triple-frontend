@@ -80,7 +80,6 @@ function Filter({
       <Text
         css={{
           fontSize: 14,
-          fontWeight: 400,
           color: 'var(--color-kint5-gray60)',
         }}
       >
