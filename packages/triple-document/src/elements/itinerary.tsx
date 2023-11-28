@@ -15,7 +15,7 @@ import type {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
@@ -94,9 +94,8 @@ const SaveToItineraryButton = styled(Button)`
 `
 
 export default function ItineraryElement({ value }: Props) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { t } = useTranslation('triple-frontend')
-
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
     useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
