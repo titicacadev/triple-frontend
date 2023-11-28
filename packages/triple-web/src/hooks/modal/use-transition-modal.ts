@@ -3,14 +3,14 @@ import { useCallback, useEffect } from 'react'
 import { useEventTracking, useModal } from '../../contexts'
 import { TransitionModalRef } from '../../types'
 
-type OpenOptions = TransitionModalRef
+type ShowOptions = TransitionModalRef
 
 export function useTransitionModal() {
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useEventTracking()
 
-  const open = useCallback(
-    (options?: OpenOptions) => {
+  const show = useCallback(
+    (options?: ShowOptions) => {
       // TODO: push transition hash
 
       if (options) {
@@ -36,7 +36,7 @@ export function useTransitionModal() {
   }, [eventTrackingContext, eventTrackingContextForkRef])
 
   return {
-    open,
+    show,
     close,
   }
 }
