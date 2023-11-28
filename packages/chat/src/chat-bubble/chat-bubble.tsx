@@ -99,11 +99,15 @@ const ChatBubble = ({
       blindedAt={message.blindedAt}
       blindedText={blindedText}
       thanks={message.reactions?.thanks}
-      onThanksClick={() => {
-        if (message.reactions?.thanks) {
-          onThanksClick?.(message.id, message.reactions.thanks.haveMine)
-        }
-      }}
+      onThanksClick={
+        onThanksClick
+          ? () => {
+              if (message.reactions?.thanks) {
+                onThanksClick?.(message.id, message.reactions.thanks.haveMine)
+              }
+            }
+          : undefined
+      }
       bubbleStyle={bubbleStyle}
     />
   )
