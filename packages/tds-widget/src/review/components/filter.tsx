@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { FlexBox, Text, Container } from '@titicaca/tds-ui'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { useReviewFilters } from './filter-context'
 
@@ -123,7 +123,7 @@ function ToolTip() {
 
   const [visible, setVisible] = useState(false)
 
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   return (
     <Container>

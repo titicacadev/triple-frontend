@@ -2,13 +2,10 @@ import { FC, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
 import '@titicaca/core-elements'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { render, screen } from '@testing-library/react'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/core-elements', () => ({
   ...jest.requireActual('@titicaca/core-elements'),
   longClickable: (Component: FC<{ children?: ReactNode; onClick: unknown }>) =>
@@ -49,19 +46,20 @@ describe('when user is on app', () => {
     const mockPush = jest.fn()
 
     ;(
-      useEventTrackingContext as unknown as jest.MockedFunction<
-        () => Pick<ReturnType<typeof useEventTrackingContext>, 'trackEvent'>
+      useTrackEvent as unknown as jest.MockedFunction<
+        () => ReturnType<typeof useTrackEvent>
       >
-    ).mockImplementation(() => ({
-      trackEvent: mockTrackEvent,
-    }))
+    ).mockImplementation(() => mockTrackEvent)
     ;(
-      useHistoryFunctions as unknown as jest.MockedFunction<
-        () => Pick<ReturnType<typeof useHistoryFunctions>, 'push' | 'back'>
+      useHashRouter as unknown as jest.MockedFunction<
+        () => Pick<
+          ReturnType<typeof useHashRouter>,
+          'addUriHash' | 'removeUriHash'
+        >
       >
     ).mockImplementation(() => ({
-      push: mockPush,
-      back: jest.fn(),
+      addUriHash: mockPush,
+      removeUriHash: jest.fn(),
     }))
 
     render(
@@ -96,19 +94,20 @@ describe('when user is on web', () => {
     const mockPush = jest.fn()
 
     ;(
-      useEventTrackingContext as unknown as jest.MockedFunction<
-        () => Pick<ReturnType<typeof useEventTrackingContext>, 'trackEvent'>
+      useTrackEvent as unknown as jest.MockedFunction<
+        () => ReturnType<typeof useTrackEvent>
       >
-    ).mockImplementation(() => ({
-      trackEvent: mockTrackEvent,
-    }))
+    ).mockImplementation(() => mockTrackEvent)
     ;(
-      useHistoryFunctions as unknown as jest.MockedFunction<
-        () => Pick<ReturnType<typeof useHistoryFunctions>, 'push' | 'back'>
+      useHashRouter as unknown as jest.MockedFunction<
+        () => Pick<
+          ReturnType<typeof useHashRouter>,
+          'addUriHash' | 'removeUriHash'
+        >
       >
     ).mockImplementation(() => ({
-      push: mockPush,
-      back: jest.fn(),
+      addUriHash: mockPush,
+      removeUriHash: jest.fn(),
     }))
 
     render(

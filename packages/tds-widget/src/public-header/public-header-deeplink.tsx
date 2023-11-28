@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'

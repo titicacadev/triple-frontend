@@ -13,7 +13,7 @@ jest.mock('next/head', () => {
     default: MockHead,
   }
 })
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/triple-web')
 
 describe('EssentialContentMeta', () => {
   const title = '모바일 여행 가이드북 - 트리플'

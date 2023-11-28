@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 import {
   useTripleClientActions,
   useTripleClientMetadata,
@@ -10,7 +10,7 @@ import {
   useVerifiedMessageListener,
 } from './verified-message'
 
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/react-triple-client-interfaces')
 
 afterEach(() => {
