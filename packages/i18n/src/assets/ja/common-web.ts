@@ -11,6 +11,7 @@ export const jaCommonWeb = {
   'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.':
     '国際電話料金が請求される場合があります。',
   'hyeonjieseo-gilmudgi': '現地で道を尋ねる',
+  'grab-hocul': 'Grab 호출',
   gilcajgi: 'ルートを探す',
   juso: '住所',
   jeonhwa: '電話',

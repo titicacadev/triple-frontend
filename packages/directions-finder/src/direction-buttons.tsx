@@ -33,6 +33,10 @@ function DirectionButtons({
   const { push, back, showTransitionModal } = useHistoryFunctions()
   const { trackSimpleEvent } = useEventTrackingContext()
 
+  // const onCallGrabButtonClick = useCallback(() => {
+  //   // TODO
+  // }, [])
+
   const handleAskToLocalsClick = useCallback(() => {
     trackSimpleEvent({ action: '기본정보_현지에서길묻기' })
 
@@ -52,6 +56,15 @@ function DirectionButtons({
             {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
           </Button>
         ) : null}
+        <Button
+          basic
+          inverted
+          color="blue"
+          size="small"
+          // onClick={onCallGrabButtonClick}
+        >
+          {t(['grab-hocul', 'Grab 호출'])}
+        </Button>
         <Button
           basic
           inverted

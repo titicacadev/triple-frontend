@@ -10,6 +10,7 @@ export const zhTwCommonWeb = {
   jeonhwahagi: '致電',
   'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.': '可能需追加國際電話費用',
   'hyeonjieseo-gilmudgi': '在當地問路',
+  'grab-hocul': 'Grab 호출',
   gilcajgi: '路線導航',
   juso: '地址',
   jeonhwa: '電話',
