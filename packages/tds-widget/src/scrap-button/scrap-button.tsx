@@ -1,4 +1,4 @@
-import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 import { useScrapsContext } from '@titicaca/react-contexts'
 import { Attributes, ComponentType, MouseEventHandler } from 'react'
 import styled from 'styled-components'
@@ -61,7 +61,7 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
 function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
   const { scrape, unscrape, deriveCurrentStateAndCount, enableTrackEvent } =
     useScrapsContext()
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
 
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
 

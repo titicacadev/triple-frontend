@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 
 enum Resource {
   Region = 'region',
@@ -25,7 +25,7 @@ function getObjectNamesProperty(source: unknown) {
 }
 
 export default function useResourceEventTracker() {
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
 
   return useCallback(
     ({ id, type, source }: { id: string; type: string; source: unknown }) => {

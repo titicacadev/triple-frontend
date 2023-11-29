@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useEventTrackerWithMetadata } from '@titicaca/triple-web'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'
@@ -17,7 +17,7 @@ export function PublicHeaderDeeplink({
 }: Props) {
   const { t } = useTranslation('triple-frontend')
 
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
   const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
   return DeeplinkComponent ? (
