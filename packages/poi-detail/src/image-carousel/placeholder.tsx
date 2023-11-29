@@ -1,6 +1,7 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import styled, { css } from 'styled-components'
 import { Text, Responsive } from '@titicaca/core-elements'
+import { GuestModeType } from '@titicaca/type-definitions'
 
 import { PoiType } from './carousel-section'
 
@@ -46,7 +47,7 @@ const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
 interface ImagePlaceholderProps {
   large?: boolean
   noContent?: boolean
-  guestMode?: boolean
+  guestMode?: GuestModeType
   type?: PoiType
   onClick: () => void
 }

@@ -4,12 +4,13 @@ import {
   Itinerary,
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
+import { GuestModeType } from '@titicaca/type-definitions'
 
 import { getSafetyPoiName, UnSafetyTranslations } from './use-safety-poi'
 
 interface Props {
   itinerary: Itinerary
-  guestMode?: boolean
+  guestMode?: GuestModeType
 }
 
 interface Course {
@@ -69,7 +70,7 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
       const areaNames =
         regionId && source?.regionId && source?.areas && source.areas.length > 0
           ? source.areas.map((area) => area.name).join(',')
-          : guestMode
+          : guestMode === 'seoul-con'
           ? null
           : source?.vicinity
 
@@ -90,7 +91,7 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
         isLast: items.length - 1 === i,
       }
     })
-  }, [items, regionId])
+  }, [items, regionId, guestMode])
 
   return {
     day,

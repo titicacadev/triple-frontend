@@ -7,7 +7,7 @@ import {
   Image,
 } from '@titicaca/core-elements'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
-import { FrameRatioAndSizes } from '@titicaca/type-definitions'
+import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'
@@ -44,7 +44,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
   imageFrame?: FrameRatioAndSizes
   onImpress?: () => void
   optimized?: boolean
-  guestMode?: boolean
+  guestMode?: GuestModeType
 }) {
   if (!poi) {
     return null

@@ -6,6 +6,7 @@ import {
   Container,
 } from '@titicaca/core-elements'
 import { OutlineScrapButton } from '@titicaca/scrap-button'
+import { GuestModeType } from '@titicaca/type-definitions'
 
 import {
   PoiListElementBaseProps,
@@ -17,7 +18,7 @@ import { getTypeNames } from './get-type-names'
 interface CompactPoiListElementBaseProps<T extends PoiListElementType>
   extends PoiListElementBaseProps<T> {
   actionButtonElement?: ActionButtonElement
-  guestMode?: boolean
+  guestMode?: GuestModeType
 }
 
 export type CompactPoiListElementProps<T extends PoiListElementType> =
