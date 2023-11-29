@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Container } from '@titicaca/tds-ui'
 import { useIntersection } from '@titicaca/intersection-observer'
-import { useEffect, useState } from 'react'
-import { useDeviceContext } from '@titicaca/react-contexts'
+import { useClientApp } from '@titicaca/triple-web'
 import styled from 'styled-components'
 
 interface Props {
@@ -62,13 +62,12 @@ function Video({ medium }: Props) {
     threshold: 0.5,
   })
 
-  const {
-    deviceState: { autoplay, networkType },
-  } = useDeviceContext()
+  const clientApp = useClientApp()
 
   const [videoAutoplay, setVideoAutoPlay] = useState(
-    autoplay === 'always' ||
-      (autoplay === 'wifi_only' && networkType === 'wifi'),
+    clientApp?.device.autoplay === 'always' ||
+      (clientApp?.device.autoplay === 'wifi_only' &&
+        clientApp?.device.networkType === 'wifi'),
   )
 
   useEffect(() => {
