@@ -2,21 +2,18 @@ import { Confirm } from '@titicaca/tds-ui'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { LOGIN_CTA_MODAL_HASH } from '../constants'
 import { useModal } from '../contexts'
+import { useHashRouter } from '../hooks'
 import { trackEvent } from '../utils'
-
-// TODO: hash-router-context 사용
-function removeUriHash() {}
-
-export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 
 export function LoginCtaModal() {
   const { t } = useTranslation('triple-frontend')
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
-
-  // TODO: hash-router-context와 연결
-  const uriHash: string = ''
+  const { removeUriHash, uriHash } = useHashRouter()
   const open = uriHash === LOGIN_CTA_MODAL_HASH
+
+  const handleCancelOrClose = () => removeUriHash()
 
   const handleConfirm = () => {
     trackEvent(
@@ -60,8 +57,8 @@ export function LoginCtaModal() {
     <Confirm
       open={open}
       title={t('로그인이 필요합니다.')}
-      onClose={removeUriHash}
-      onCancel={removeUriHash}
+      onClose={handleCancelOrClose}
+      onCancel={handleCancelOrClose}
       onConfirm={handleConfirm}
     >
       {t('로그인하고 트리플을 더 편하게 이용하세요')}

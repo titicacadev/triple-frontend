@@ -4,7 +4,9 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ParseKeys } from 'i18next'
 
+import { TransitionType } from '../constants'
 import { useModal } from '../contexts'
+import { useHashRouter } from '../hooks'
 import { trackEvent } from '../utils'
 
 const IconImage = styled.img`
@@ -13,29 +15,6 @@ const IconImage = styled.img`
   height: 66px;
   margin: 0 auto 10px;
 `
-
-// TODO: hash-router-context 사용
-function removeUriHash() {}
-
-export enum TransitionType {
-  General = 'general',
-  Gallery = 'gallery',
-  Scrap = 'scrap',
-  Review = 'review',
-  ReviewWrite = 'reviewWrite',
-  ReviewThumbnail = 'reviewThumbnail',
-  ReviewSelect = 'reviewSelect',
-  ReviewCommentSelect = 'reviewCommentSelect',
-  OpenReviewList = 'openReviewList',
-  Article = 'article',
-  Tna = 'tna',
-  Hotel = 'hotel',
-  View = 'view',
-  AddPoisToTripSelect = 'addPoisToTripSelect',
-  Link = 'link',
-  LoungeHome = 'loungeHome',
-  Community = 'community',
-}
 
 const MODAL_CONTENT: {
   [key: string]: {
@@ -99,6 +78,7 @@ const MODAL_CONTENT: {
 export function TransitionModal() {
   const { t } = useTranslation('triple-frontend')
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
+  const { removeUriHash, uriHash } = useHashRouter()
 
   let open = false
   let content:
@@ -108,8 +88,6 @@ export function TransitionModal() {
       }
     | undefined
 
-  // TODO: hash-router-context와 연결
-  const uriHash = ''
   const matchData = uriHash.match(/^transition\.(.+)$/)
 
   if (matchData) {
@@ -118,10 +96,11 @@ export function TransitionModal() {
     open = !!content
   }
 
+  const handleCancelOrClose = () => removeUriHash()
+
   const handleClick = () => {
     transitionModalRef.current.onActionClick?.()
 
-    // TODO: event-tracking context와 연결
     trackEvent(
       {
         ga: [
@@ -160,7 +139,7 @@ export function TransitionModal() {
   }, [content, eventTrackingContextForkRef])
 
   return (
-    <Modal open={open} onClose={removeUriHash}>
+    <Modal open={open} onClose={handleCancelOrClose}>
       <Modal.Body>
         <IconImage src="https://assets.triple.guide/images/ico-popup-app@4x.png" />
         <Modal.Title>{t('여기는 트리플 앱이 필요해요')}</Modal.Title>
@@ -171,7 +150,7 @@ export function TransitionModal() {
         ) : null}
       </Modal.Body>
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={removeUriHash}>
+        <Modal.Action color="gray" onClick={handleCancelOrClose}>
           {t('취소')}
         </Modal.Action>
         <Modal.Action color="blue" onClick={handleClick}>
