@@ -1,8 +1,6 @@
 import { PropsWithChildren } from 'react'
-import {
-  ScrapsProvider,
-  useSessionAvailability,
-} from '@titicaca/react-contexts'
+import { ScrapsProvider } from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import {
   useTransitionModal,
