@@ -1,9 +1,10 @@
-import { EventMetadata, useEventMetadata } from '../../contexts'
+import { useEventMetadata } from '../../contexts'
+import { EventMetadataValue } from '../../types'
 import { TrackEventParams } from '../../utils'
 
 import { useTrackEvent } from './use-track-event'
 
-export function useEventTrackerWithMetadata() {
+export function useTrackEventWithMetadata() {
   const trackEvent = useTrackEvent()
   const eventMetadata = useEventMetadata()
 
@@ -18,7 +19,7 @@ export function useEventTrackerWithMetadata() {
 
 function getFirebaseAnalyticsWithMetadata(
   fa?: TrackEventParams['fa'],
-  eventMetaContext?: EventMetadata,
+  eventMetaContext?: EventMetadataValue,
 ) {
   if (!fa) {
     return
@@ -32,7 +33,7 @@ function getFirebaseAnalyticsWithMetadata(
 
 function getGoogleAnalyticsWithMetadata(
   ga?: TrackEventParams['ga'],
-  eventMetaContext?: EventMetadata,
+  eventMetaContext?: EventMetadataValue,
 ) {
   if (!ga) {
     return
@@ -53,7 +54,7 @@ function getGoogleAnalyticsWithMetadata(
 
 function getPixelWithMetadata(
   pixel?: TrackEventParams['pixel'],
-  eventMetaContext?: EventMetadata,
+  eventMetaContext?: EventMetadataValue,
 ) {
   if (!pixel) {
     return
