@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useTrackEvent, useSession } from '@titicaca/triple-web'
+import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
@@ -76,7 +76,7 @@ function useTripleABExperimentMeta(
   slug: string,
   onError?: (error: Error) => void,
 ) {
-  const sessionAvailable = useSession()
+  const sessionAvailable = useSessionAvailability()
 
   const metas = useContext(TripleABExperimentContext)
   const meta = useMemo(() => metas[slug], [metas, slug])
@@ -87,7 +87,7 @@ function useTripleABExperimentMeta(
     }
     return meta
   } catch (error) {
-    if (sessionAvailable?.user && onError) {
+    if (sessionAvailable === true && onError) {
       // session이 없을 때 발생한 에러는 리포팅 할 필요 없습니다.
       onError(error as Error)
     }
