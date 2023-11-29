@@ -314,6 +314,9 @@ importers:
 
   packages/router:
     dependencies:
+      '@titicaca/triple-web-to-native-interfaces':
+        specifier: 1.9.0
+        version: 1.9.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities

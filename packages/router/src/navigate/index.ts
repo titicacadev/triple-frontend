@@ -1,4 +1,8 @@
-import { checkIfRoutable, parseUrl } from '@titicaca/view-utilities'
+import {
+  checkIfRoutable,
+  generateUrl,
+  parseUrl,
+} from '@titicaca/view-utilities'
 import { useCallback } from 'react'
 import {
   useEnv,
@@ -11,16 +15,18 @@ import {
   useTripleClientMetadata,
   useTripleClientNavigate,
 } from '@titicaca/react-triple-client-interfaces'
+import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
+import qs from 'qs'
 
 import canonizeTargetAddress from './canonization'
 
 export function useNavigate({
   changeLocationHref = defaultChangeLocationHref,
 }: { changeLocationHref?: (href: string) => void } = {}) {
-  const { webUrlBase } = useEnv()
+  const { webUrlBase, appUrlScheme } = useEnv()
   const sessionAvailable = useSessionAvailability()
-  const { open: showTransitionModal } = useTransitionModal()
-  const { open: showLoginCtaModal } = useLoginCtaModal()
+  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showLoginCtaModal } = useLoginCtaModal()
   const app = useTripleClientMetadata()
   const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
@@ -78,7 +84,49 @@ export function useNavigate({
     ],
   )
 
-  return app ? navigateInApp : navigateInBrowser
+  const openWindow = useCallback(
+    (rawHref: string, params?: OutlinkOptions) => {
+      if (!hasAccessibleTripleNativeClients()) {
+        window.open(rawHref, undefined, 'noopener')
+        return
+      }
+
+      if (!appUrlScheme) {
+        return
+      }
+
+      const { href, scheme, host = '' } = parseUrl(rawHref)
+
+      if (scheme === 'http' || scheme === 'https') {
+        const outlinkParams = qs.stringify({
+          url: href,
+          ...(params || {}),
+        })
+
+        window.location.href = generateUrl({
+          scheme: appUrlScheme,
+          path: '/outlink',
+          query: outlinkParams,
+        })
+      } else if (!scheme && !host) {
+        if (sessionAvailable === true || checkIfRoutable({ href: rawHref })) {
+          window.location.href = generateUrl({
+            scheme: appUrlScheme,
+            path: '/inlink',
+            query: `path=${encodeURIComponent(rawHref)}`,
+          })
+        } else {
+          showLoginCtaModal()
+        }
+      }
+    },
+    [appUrlScheme, sessionAvailable],
+  )
+
+  return {
+    navigate: app ? navigateInApp : navigateInBrowser,
+    openWindow,
+  }
 }
 
 function defaultChangeLocationHref(href: string) {
