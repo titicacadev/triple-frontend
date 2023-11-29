@@ -41,7 +41,7 @@ export function TripleDocument({
 } & TripleDocumentContext) {
   const trackEventWithMetadata = useTrackEventWithMetadata()
   const trackResourceEvent = useEventResourceTracker()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const routeExternally = useExternalRouter()
 
   const handleAction = useMemo(

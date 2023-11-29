@@ -20,7 +20,7 @@ export function Slot({
   const { t } = useTranslation('triple-frontend')
   const { colors } = useTheme()
   const trackEvent = useTrackEvent()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const [showMore, setShowMore] = useState(false)
 

@@ -10,7 +10,7 @@ import type { SortingType, SortingOption } from '../components/sorting-context'
 
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const { getWindowId } = useTripleClientActions()
 
   return useMemo(() => {

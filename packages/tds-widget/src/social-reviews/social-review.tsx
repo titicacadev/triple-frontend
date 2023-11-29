@@ -25,7 +25,7 @@ function SocialReviews({
   const { t } = useTranslation('triple-frontend')
 
   const trackEvent = useTrackEvent()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   if (!socialReviews || socialReviews.length === 0) {
     return null
