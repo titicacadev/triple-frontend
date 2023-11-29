@@ -1,30 +1,33 @@
 import { useCallback, useEffect } from 'react'
 
+import { TransitionType } from '../../constants'
 import { useEventTracking, useModal } from '../../contexts'
 import { TransitionModalRef } from '../../types'
+import { useHashRouter } from '../hash-router'
 
 type ShowOptions = TransitionModalRef
 
 export function useTransitionModal() {
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useEventTracking()
+  const { addUriHash, removeUriHash } = useHashRouter()
 
   const show = useCallback(
-    (options?: ShowOptions) => {
-      // TODO: push transition hash
+    (transitionType: TransitionType, options?: ShowOptions) => {
+      addUriHash(transitionType)
 
       if (options) {
         transitionModalRef.current = options
       }
     },
-    [transitionModalRef],
+    [addUriHash, transitionModalRef],
   )
 
   const close = useCallback(() => {
-    // TODO: pop transition hash
+    removeUriHash()
 
     transitionModalRef.current = {}
-  }, [transitionModalRef])
+  }, [removeUriHash, transitionModalRef])
 
   useEffect(() => {
     const previous = eventTrackingContextForkRef.current
