@@ -10,7 +10,7 @@ import {
   I18nValue,
   ModalProvider,
   SessionProvider,
-  UserAgentContext,
+  UserAgentProvider,
   HashRouterProvider,
   GeolocationContext,
 } from './contexts'
@@ -46,7 +46,7 @@ export function TripleWeb({
         <GeolocationContext.Provider value={geolocationProvider}>
           <I18nProvider {...i18nProvider}>
             <SessionProvider initialSession={sessionProvider}>
-              <UserAgentContext.Provider value={userAgentProvider}>
+              <UserAgentProvider initialUserAgent={userAgentProvider}>
                 <HashRouterProvider>
                   <ModalProvider>
                     {children}
@@ -54,7 +54,7 @@ export function TripleWeb({
                     <TransitionModal />
                   </ModalProvider>
                 </HashRouterProvider>
-              </UserAgentContext.Provider>
+              </UserAgentProvider>
             </SessionProvider>
           </I18nProvider>
         </GeolocationContext.Provider>
