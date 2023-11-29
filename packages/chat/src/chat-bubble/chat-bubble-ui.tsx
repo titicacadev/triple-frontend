@@ -20,6 +20,7 @@ import {
 } from './elements'
 import BubblePayload from './bubble-payload'
 import BlindedBubble from './blinded'
+import Thanks from './thanks'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
@@ -54,7 +55,12 @@ function SentChatContainer({
   const [show, setShow] = useState<boolean>(true)
 
   return show ? (
-    <Container css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}>
+    <Container
+      css={{
+        textAlign: 'right',
+        ...CHAT_CONTAINER_STYLES,
+      }}
+    >
       {!createdAt ? (
         <SendingFailureHandlerContainer>
           <RetryButton
@@ -77,8 +83,6 @@ function SentChatContainer({
             <BubbleInfo
               unreadCount={unreadCount}
               date={createdAt}
-              thanks={thanks}
-              onThanksClick={onThanksClick}
               css={{ marginRight: 8, textAlign: 'right' }}
             />
           )}
@@ -86,6 +90,14 @@ function SentChatContainer({
       )}
 
       {children}
+      {thanks && onThanksClick ? (
+        <Thanks
+          count={thanks.count}
+          haveMine={thanks.haveMine}
+          onClick={onThanksClick}
+          css={{ position: 'absolute', right: 10, marginTop: 6 }}
+        />
+      ) : null}
     </Container>
   ) : null
 }
@@ -118,9 +130,16 @@ function ReceivedChatContainer({
           <BubbleInfo
             unreadCount={unreadCount}
             date={createdAt}
-            thanks={thanks}
-            onThanksClick={onThanksClick}
             css={{ marginLeft: 8, textAlign: 'left' }}
+          />
+        ) : null}
+
+        {thanks && onThanksClick ? (
+          <Thanks
+            count={thanks.count}
+            haveMine={thanks.haveMine}
+            onClick={onThanksClick}
+            css={{ marginTop: 6 }}
           />
         ) : null}
       </Container>
