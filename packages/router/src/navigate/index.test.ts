@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useSessionAvailability, useEnv } from '@titicaca/react-contexts'
+import { useSessionAvailability, useEnv } from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 import {
   useTripleClientMetadata,
@@ -14,7 +14,7 @@ jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
-jest.mock('@titicaca/react-contexts')
+jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/react-triple-client-interfaces')
 
 const webUrlBase = mockWebUrlBase()

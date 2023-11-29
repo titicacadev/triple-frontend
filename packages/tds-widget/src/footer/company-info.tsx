@@ -6,11 +6,8 @@ import {
   FlexBox,
   AccordionTitle,
 } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
-import {
-  useSessionAvailability,
-  useSessionControllers,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
+import { useSessionControllers } from '@titicaca/react-contexts'
 import { Dispatch, SetStateAction } from 'react'
 
 const MAX_PHONE_WIDTH = 360
