@@ -9,6 +9,7 @@ import { getSafetyPoiName, UnSafetyTranslations } from './use-safety-poi'
 
 interface Props {
   itinerary: Itinerary
+  guestMode?: boolean
 }
 
 interface Course {
@@ -44,7 +45,7 @@ const DEFAULT_TRANSPORTATION = {
 /**
  * @param param0 TripleDocument Element Structure
  */
-export default function useItinerary({ itinerary }: Props) {
+export default function useItinerary({ itinerary, guestMode }: Props) {
   const { day, items, hideAddButton } = itinerary
 
   const hasItineraries = items.length > 0
@@ -68,6 +69,8 @@ export default function useItinerary({ itinerary }: Props) {
       const areaNames =
         regionId && source?.regionId && source?.areas && source.areas.length > 0
           ? source.areas.map((area) => area.name).join(',')
+          : guestMode
+          ? null
           : source?.vicinity
 
       const description = [categoryNames, areaNames]

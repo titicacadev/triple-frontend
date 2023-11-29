@@ -99,11 +99,11 @@ export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { t } = useTranslation('common-web')
 
+  const guestMode = useGuestMode()
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
-    useItinerary(value)
+    useItinerary({ itinerary: value.itinerary, guestMode })
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
   const navigate = useNavigate()
-  const guestMode = useGuestMode()
 
   const generatePoiClickHandler = useCallback(
     ({
