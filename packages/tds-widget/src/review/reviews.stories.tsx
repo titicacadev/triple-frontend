@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TransitionModal } from '@titicaca/modals'
-import {
-  SessionContextProvider,
-  UserAgentProvider,
-  generateUserAgentValues,
-} from '@titicaca/react-contexts'
+import { SessionContextProvider } from '@titicaca/react-contexts'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
@@ -24,11 +20,6 @@ const meta: Meta<typeof Reviews> = {
         <Story />
         <TransitionModal deepLink="/" />
       </>
-    ),
-    (Story) => (
-      <UserAgentProvider value={generateUserAgentValues(navigator.userAgent)}>
-        <Story />
-      </UserAgentProvider>
     ),
     (Story) => (
       <SessionContextProvider
