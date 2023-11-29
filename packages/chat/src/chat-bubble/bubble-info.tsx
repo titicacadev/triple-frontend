@@ -55,6 +55,18 @@ export function BubbleInfo({
   )
 }
 
+const ThanksButton = styled(Button)<{ haveMine: boolean }>`
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  background-color: ${({ haveMine }) =>
+    haveMine ? 'var(--color-white)' : 'var(--color-gray50)'};
+  color: ${({ haveMine }) => (haveMine ? '#1DBEB2' : 'var(--color-gray700)')};
+  ${({ haveMine }) => (haveMine ? 'border: 1px solid #1DBEB2' : '')};
+  padding: 3.5px 8px 4.5px 8px;
+  font-weight: normal;
+`
+
 function Thanks({
   count,
   haveMine,
@@ -65,11 +77,12 @@ function Thanks({
   onClick?: () => void
 }) {
   return (
-    <Button
-      css={{ color: haveMine ? 'pink' : 'black' }}
-      onClick={() => onClick?.()}
-    >
-      {count}
-    </Button>
+    <ThanksButton haveMine={haveMine} onClick={() => onClick?.()}>
+      <img
+        src="https://assets.triple-dev.titicaca-corp.com/images/ic_chat_thumbsup_on.svg"
+        alt="좋아요 아이콘"
+      />
+      {count === 0 ? null : count}
+    </ThanksButton>
   )
 }
