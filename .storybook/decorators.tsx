@@ -3,8 +3,8 @@ import {
   EnvProvider,
   HistoryProvider,
   SessionContextProvider,
-  UserAgentProvider,
 } from '../packages/react-contexts/src'
+import { TripleWeb } from '../packages/triple-web'
 import { defaultTheme, GlobalStyle } from '../packages/tds-theme/src'
 import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
 import { ThemeProvider } from 'styled-components'
@@ -65,16 +65,18 @@ export function sessionContextProviderDecorator(Story) {
 
 export function userAgentProviderDecorator(Story) {
   return (
-    <UserAgentProvider
-      value={{
-        isPublic: true,
-        isMobile: false,
-        os: {},
-        app: null,
+    <TripleWeb
+      userAgentProvider={{
+        ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
+        browser: { name: 'WebKit', version: '605.1.15', major: '605' },
+        engine: { name: 'WebKit', version: '605.1.15' },
+        os: { name: 'iOS', version: '13.3.1' },
+        device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
+        cpu: { architecture: undefined },
       }}
     >
       <Story />
-    </UserAgentProvider>
+    </TripleWeb>
   )
 }
 
