@@ -1,6 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useSessionAvailability, useEnv } from '@titicaca/triple-web'
+import {
+  useSessionAvailability,
+  useEnv,
+  useLoginCtaModal,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 import {
   useTripleClientMetadata,
@@ -9,7 +13,6 @@ import {
 
 import { useNavigate } from '.'
 
-jest.mock('@titicaca/modals')
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
@@ -36,7 +39,9 @@ describe('브라우저', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
       navigate(href)
@@ -58,7 +63,9 @@ describe('브라우저', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
       navigate(href)
 
@@ -72,7 +79,9 @@ describe('브라우저', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(`/inlink?path=${encodeURIComponent(routablePath)}`)
@@ -102,7 +111,9 @@ describe('앱', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
       navigate(href)
@@ -121,7 +132,9 @@ describe('앱', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(href)
@@ -137,7 +150,9 @@ describe('앱', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(href)
@@ -186,10 +201,10 @@ function prepareTest({
 
   ;(
     useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ).mockImplementation(() => ({ show: showTransitionModal, close }))
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ).mockImplementation(() => ({ show: showLoginCtaModal, close }))
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
