@@ -17,6 +17,8 @@ import type {
 import { useNavigate } from '@titicaca/router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
+import { useGuestMode } from '../prop-context/guest-mode'
+
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import {
@@ -101,6 +103,7 @@ export default function ItineraryElement({ value }: Props) {
     useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
   const navigate = useNavigate()
+  const guestMode = useGuestMode()
 
   const generatePoiClickHandler = useCallback(
     ({
@@ -262,7 +265,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {!hideAddButton ? (
+        {hideAddButton || guestMode ? null : (
           <SaveToItineraryButton
             fluid
             basic
@@ -277,7 +280,7 @@ export default function ItineraryElement({ value }: Props) {
               {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
             </Text>
           </SaveToItineraryButton>
-        ) : null}
+        )}
       </Container>
     </Container>
   )
