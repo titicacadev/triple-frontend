@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { UserAgentProvider } from '@titicaca/react-contexts'
+import { TripleWeb } from '@titicaca/triple-web'
 
 import DetailHeader from './detail-header'
 
@@ -8,16 +8,18 @@ export default {
   component: DetailHeader,
   decorators: [
     (Story) => (
-      <UserAgentProvider
-        value={{
-          isPublic: true,
-          isMobile: true,
-          os: {},
-          app: null,
+      <TripleWeb
+        userAgentProvider={{
+          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
+          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
+          engine: { name: 'WebKit', version: '605.1.15' },
+          os: { name: 'iOS', version: '13.3.1' },
+          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
+          cpu: { architecture: undefined },
         }}
       >
         <Story />
-      </UserAgentProvider>
+      </TripleWeb>
     ),
   ],
 } as Meta

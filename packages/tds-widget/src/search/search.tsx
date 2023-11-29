@@ -11,7 +11,7 @@ import {
 } from 'react'
 import styled, { css } from 'styled-components'
 import { Container, LayeringMixinProps, SearchNavbar } from '@titicaca/tds-ui'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useUserAgent } from '@titicaca/triple-web'
 import {
   openKeyboard,
   closeKeyboard,
@@ -94,7 +94,7 @@ export function FullScreenSearchView({
 >) {
   const {
     os: { name },
-  } = useUserAgentContext()
+  } = useUserAgent()
   const isIos = name === 'iOS'
 
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
