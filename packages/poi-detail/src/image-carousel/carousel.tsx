@@ -7,7 +7,7 @@ import ImageCarousel, {
 import { Container, Responsive, ImageSource } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { ImageMeta } from '@titicaca/type-definitions'
+import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
 
@@ -39,7 +39,7 @@ export interface CarouselProps {
   optimized?: boolean
   borderRadius?: number
   height?: number
-  guestMode?: boolean
+  guestMode?: GuestModeType
 }
 
 export default function Carousel({
