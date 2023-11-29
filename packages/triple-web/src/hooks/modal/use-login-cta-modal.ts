@@ -1,30 +1,33 @@
 import { useCallback, useEffect } from 'react'
 
+import { LOGIN_CTA_MODAL_HASH } from '../../constants'
 import { useEventTracking, useModal } from '../../contexts'
 import { LoginCtaModalRef } from '../../types'
+import { useHashRouter } from '../hash-router'
 
 type ShowOptions = LoginCtaModalRef
 
 export function useLoginCtaModal() {
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useEventTracking()
+  const { addUriHash, removeUriHash } = useHashRouter()
 
   const show = useCallback(
     (options?: ShowOptions) => {
-      // TODO: push login cta hash
+      addUriHash(LOGIN_CTA_MODAL_HASH)
 
       if (options) {
         loginCtaModalRef.current = options
       }
     },
-    [loginCtaModalRef],
+    [addUriHash, loginCtaModalRef],
   )
 
   const close = useCallback(() => {
-    // TODO: pop login cta hash
+    removeUriHash()
 
     loginCtaModalRef.current = {}
-  }, [loginCtaModalRef])
+  }, [loginCtaModalRef, removeUriHash])
 
   useEffect(() => {
     const previous = eventTrackingContextForkRef.current
