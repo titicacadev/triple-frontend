@@ -30,6 +30,7 @@ export interface InputAreaUIProps {
   buttonText?: string
   buttonDisabled?: boolean
   maxTextLength?: number
+  multipleImageUpload?: boolean
 }
 
 export function InputAreaUI({
@@ -44,6 +45,7 @@ export function InputAreaUI({
   onInputClick,
   onInputKeydown,
   maxTextLength = MAX_TEXT_LENGTH,
+  multipleImageUpload = false,
   ...props
 }: InputAreaUIProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -55,7 +57,7 @@ export function InputAreaUI({
         id="image_upload"
         type="file"
         name="file"
-        multiple={false}
+        multiple={multipleImageUpload}
         onChange={onImageUpload}
       />
 
