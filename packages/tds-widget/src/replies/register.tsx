@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 import { useLoginCtaModal } from '@titicaca/modals'
-import { useSessionAvailability } from '@titicaca/react-contexts'
+import { useSessionAvailability } from '@titicaca/triple-web'
 import { useSessionCallback } from '@titicaca/ui-flow'
 
 import { authorMessage } from './replies-api-client'
