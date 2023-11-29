@@ -1,7 +1,10 @@
 import { ComponentType, SyntheticEvent } from 'react'
-import { TranslatedProperty, ImageMeta } from '@titicaca/type-definitions'
+import {
+  GuestModeType,
+  TranslatedProperty,
+  ImageMeta,
+} from '@titicaca/type-definitions'
 import { ImageSourceType } from '@titicaca/core-elements'
-import { GuestModeType } from '@titicaca/type-definitions/src/triple-document'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
