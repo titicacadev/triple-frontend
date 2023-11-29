@@ -6,7 +6,10 @@ import {
   useHistoryFunctions,
   useUriHash,
 } from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTripleClientMetadata,
+  useTripleClientNavigate,
+} from '@titicaca/react-triple-client-interfaces'
 import { Button, ButtonGroup, Container } from '@titicaca/core-elements'
 
 import AskToTheLocal from './ask-to-the-local'
@@ -16,6 +19,9 @@ const LinkBreak = styled(Container)`
   flex-basis: 100%;
   height: 0;
 `
+
+// TODO 그랩 아웃링크 추가하기
+const GRAB_OUTLINK = 'grab'
 
 function DirectionButtons({
   onDirectionsClick,
@@ -39,17 +45,18 @@ function DirectionButtons({
   const app = useTripleClientMetadata()
   const uriHash = useUriHash()
   const { push, back, showTransitionModal } = useHistoryFunctions()
-  const { trackSimpleEvent } = useEventTrackingContext()
-
-  // const onCallGrabButtonClick = useCallback(() => {
-  //   // TODO
-  // }, [])
+  const { trackEvent } = useEventTrackingContext()
+  const { openOutlink } = useTripleClientNavigate()
 
   const handleAskToLocalsClick = useCallback(() => {
-    trackSimpleEvent({ action: '기본정보_현지에서길묻기' })
-
+    trackEvent({ fa: { action: '기본정보_현지에서길묻기' } })
     app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
-  }, [trackSimpleEvent, push, showTransitionModal, app])
+  }, [trackEvent, push, showTransitionModal, app])
+
+  const onCallGrabButtonClick = useCallback(() => {
+    trackEvent({ fa: { action: '기본정보_그랩호출하기' } })
+    app ? openOutlink(GRAB_OUTLINK) : showTransitionModal()
+  }, [trackEvent, showTransitionModal, app])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
   const hasLineBreak = hasAskToLocalsButton && isGrabSupported
@@ -76,7 +83,7 @@ function DirectionButtons({
             inverted
             color="blue"
             size="small"
-            // onClick={onCallGrabButtonClick}
+            onClick={onCallGrabButtonClick}
           >
             {t(['grab-hocul', 'Grab 호출'])}
           </Button>
