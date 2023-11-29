@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.12.0
+
+### view-utilities
+
+- [view-utilities] 로그인 없이 이동할 수 있는 페이지 주소 목록에 웹일정판 path 추가 [#3015](https://github.com/titicacadev/triple-frontend/pull/3015)
+
 ## v13.11.0
 
 ### poi-detail
