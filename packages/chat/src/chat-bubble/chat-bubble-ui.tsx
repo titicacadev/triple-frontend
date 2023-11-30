@@ -61,41 +61,42 @@ function SentChatContainer({
         ...CHAT_CONTAINER_STYLES,
       }}
     >
-      {!createdAt ? (
-        <SendingFailureHandlerContainer>
-          <RetryButton
-            onClick={async () => {
-              if (await onRetry?.()) {
-                setShow(false)
-              }
-            }}
-          />
-          <DeleteButton
-            onClick={() => {
-              onCancel?.()
-              setShow(false)
-            }}
-          />
-        </SendingFailureHandlerContainer>
-      ) : (
-        <>
-          {showBubbleInfo && (
-            <BubbleInfo
-              unreadCount={unreadCount}
-              date={createdAt}
-              css={{ marginRight: 8, textAlign: 'right' }}
+      <div>
+        {!createdAt ? (
+          <SendingFailureHandlerContainer>
+            <RetryButton
+              onClick={async () => {
+                if (await onRetry?.()) {
+                  setShow(false)
+                }
+              }}
             />
-          )}
-        </>
-      )}
-
-      {children}
+            <DeleteButton
+              onClick={() => {
+                onCancel?.()
+                setShow(false)
+              }}
+            />
+          </SendingFailureHandlerContainer>
+        ) : (
+          <>
+            {showBubbleInfo && (
+              <BubbleInfo
+                unreadCount={unreadCount}
+                date={createdAt}
+                css={{ marginRight: 8, textAlign: 'right' }}
+              />
+            )}
+          </>
+        )}
+        {children}
+      </div>
       {thanks && onThanksClick ? (
         <Thanks
           count={thanks.count}
           haveMine={thanks.haveMine}
           onClick={onThanksClick}
-          css={{ position: 'absolute', right: 10, marginTop: 6 }}
+          css={{ display: 'inline-flex', marginTop: 6, marginRight: 10 }}
         />
       ) : null}
     </Container>
