@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v13.13.0
+
+### poi-detail
+
+- [type-definitions] GuestModeType 타입 추가 및 적용 [#3028](https://github.com/titicacadev/triple-frontend/pull/3028)
+
+### poi-list-elements
+
+- [type-definitions] GuestModeType 타입 추가 및 적용 [#3028](https://github.com/titicacadev/triple-frontend/pull/3028)
+
+### triple-document
+
+- [triple-document] 가이드 일정영역 서울콘 대응 [#3025](https://github.com/titicacadev/triple-frontend/pull/3025)
+- [type-definitions] GuestModeType 타입 추가 및 적용 [#3028](https://github.com/titicacadev/triple-frontend/pull/3028)
+
+### type-definitions
+
+- [type-definitions] GuestModeType 타입 추가 및 적용 [#3028](https://github.com/titicacadev/triple-frontend/pull/3028)
+
 ## v13.12.0
 
 ### view-utilities
