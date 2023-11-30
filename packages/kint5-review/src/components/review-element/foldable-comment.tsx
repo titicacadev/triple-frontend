@@ -18,15 +18,19 @@ export default function FoldableComment({
   comment,
   hasImage,
   onUnfoldButtonClick,
+  maxCommentLines: maxCommentLinesProp,
 }: {
   comment: string
   hasImage: boolean
   onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
+  maxCommentLines?: number
 }) {
-  const foldedPosition = findFoldedPosition(
-    hasImage ? MAX_COMMENT_WITH_IMAGE_LINES : MAX_COMMENT_LINES,
-    comment,
-  )
+  const maxCommentLines =
+    maxCommentLinesProp || hasImage
+      ? MAX_COMMENT_WITH_IMAGE_LINES
+      : MAX_COMMENT_LINES
+
+  const foldedPosition = findFoldedPosition(maxCommentLines, comment)
 
   return foldedPosition ? (
     <FoldedComment
