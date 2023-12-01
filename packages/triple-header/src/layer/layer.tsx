@@ -50,7 +50,7 @@ export function Layer({
               frame={frame}
               index={index}
               calculateFrameRatio={calculateFrameRatio}
-              totalFramesCount={frames.length}
+              frameCount={frames.length}
             />
           )
         })}

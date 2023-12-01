@@ -8,7 +8,7 @@ import { EFFECTS, Effect } from './effects'
 
 export type TextFrame = { type: 'text' } & Omit<
   TextFrameProps,
-  'index' | 'totalFramesCount'
+  'index' | 'frameCount'
 >
 
 interface TextFrameProps {
@@ -22,7 +22,7 @@ interface TextFrameProps {
   height?: number
   effect?: Effect
   index: number
-  totalFramesCount: number
+  frameCount: number
   onLinkClick?: LinkEventHandler
 }
 
@@ -30,7 +30,7 @@ export function TextFrame({
   value: { text },
   effect,
   index,
-  totalFramesCount,
+  frameCount,
   onLinkClick,
 }: TextFrameProps) {
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
@@ -39,7 +39,7 @@ export function TextFrame({
     <EffectElement
       options={effect?.options}
       index={index}
-      totalFramesCount={totalFramesCount}
+      frameCount={frameCount}
     >
       <Text
         onClick={(e) => generateLinkClickHandler(onLinkClick)(e, text.link)}

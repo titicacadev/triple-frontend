@@ -11,22 +11,22 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 
 export type RotateEffect = { type: 'rotate' } & Omit<
   RotateProps,
-  'index' | 'totalFramesCount'
+  'index' | 'frameCount'
 >
 
 interface RotateProps {
   options?: ExtendedEffectOptions
   index: number
-  totalFramesCount: number
+  frameCount: number
 }
 
 export function Rotate({
   children,
   options = {},
   index,
-  totalFramesCount,
+  frameCount,
 }: PropsWithChildren<RotateProps>) {
-  const transition = generateTransition(options, index, totalFramesCount)
+  const transition = generateTransition(options, index, frameCount)
 
   return (
     <MotionContainer

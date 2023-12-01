@@ -11,25 +11,25 @@ type ExtendedEffectOptions = InitialEffectOptions & {
 
 export type FlyingEffect = { type: 'flying' } & Omit<
   FlyingProps,
-  'index' | 'totalFramesCount'
+  'index' | 'frameCount'
 >
 
 interface FlyingProps {
   options?: ExtendedEffectOptions
   index: number
-  totalFramesCount: number
+  frameCount: number
 }
 
 export function Flying({
   children,
   options = {},
   index,
-  totalFramesCount,
+  frameCount,
 }: PropsWithChildren<FlyingProps>) {
   const transition = generateTransition(
     { ...options, duration: 0.3 },
     index,
-    totalFramesCount,
+    frameCount,
   )
 
   return (
