@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { MarginPadding } from '@titicaca/tds-ui'
-import { useGeolocation, useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import {
@@ -23,6 +23,8 @@ interface AdSystemBannerProps {
   contentType: ContentType
   contentRegionId: string
   contentId?: string
+  latitude: number | null
+  longitude: number | null
   eventAttributes?: EventAttributes
 }
 
@@ -53,7 +55,6 @@ function isPropsForInventoryApi(
 }
 
 function useAdBannerProps(props: AdBannersProps) {
-  const { latitude, longitude } = useGeolocation()
   const trackEvent = useTrackEvent()
   const navigate = useNavigate()
 
@@ -76,6 +77,8 @@ function useAdBannerProps(props: AdBannersProps) {
       contentType,
       contentId,
       contentRegionId,
+      latitude,
+      longitude,
       eventAttributes: { title } = { title: undefined },
     } = props
 
