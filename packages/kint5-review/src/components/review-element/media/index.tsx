@@ -9,16 +9,22 @@ import { useClientActions } from '../../../services'
 
 import { compareMedia } from './compare-media'
 import { MediumWrapper } from './elements'
-import MediaWrapper from './media-wrapper'
+import DefaultMediaWrapper from './media-wrapper'
 import Medium from './medium'
 
 interface Props {
   media: ImageMeta[]
   reviewId: string
   allowNavigateImages?: boolean
+  customMediaWrapper?: typeof DefaultMediaWrapper
 }
 
-function Media({ media, reviewId, allowNavigateImages = true }: Props) {
+function Media({
+  media,
+  reviewId,
+  allowNavigateImages = true,
+  customMediaWrapper: MediaWrapper = DefaultMediaWrapper,
+}: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { navigateImages } = useClientActions()
 
