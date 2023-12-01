@@ -8,8 +8,11 @@ import {
   Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useTrackEvent } from '@titicaca/triple-web'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import {
+  useTrackEvent,
+  TransitionType,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 import {
   ArticleCardCTA,
   fetchInventoryItems,

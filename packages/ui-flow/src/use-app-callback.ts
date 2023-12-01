@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import { TransitionType, useTransitionModal } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 /**

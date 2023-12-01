@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react'
 import { ScrapsProvider } from '@titicaca/react-contexts'
-import { useSessionAvailability } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import {
+  useSessionAvailability,
   useTransitionModal,
   TransitionType,
   useLoginCtaModal,
-} from '@titicaca/modals'
+} from '@titicaca/triple-web'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 /**
  * 전역 스크랩 context에 가드를 추가하는 컴포넌트

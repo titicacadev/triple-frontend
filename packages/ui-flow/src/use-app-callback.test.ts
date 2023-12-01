@@ -1,11 +1,11 @@
 import { renderHook, act } from '@testing-library/react'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import { TransitionType, useTransitionModal } from '@titicaca/triple-web'
 
 import { useAppCallback } from './use-app-callback'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
-jest.mock('@titicaca/modals')
+jest.mock('@titicaca/triple-web')
 
 test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니다.', () => {
   mockTripleClientMetadata(null)
@@ -63,6 +63,7 @@ function mockTransitionModalContext() {
 
   mockedUseTransitionModal.mockImplementation(() => ({
     show: mockShow,
+    close: () => {},
   }))
 
   return mockShow
