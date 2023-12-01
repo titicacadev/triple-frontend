@@ -1,3 +1,5 @@
+'use client'
+
 import { PropsWithChildren, useContext } from 'react'
 
 import { EventMetadataContext } from '../contexts'
