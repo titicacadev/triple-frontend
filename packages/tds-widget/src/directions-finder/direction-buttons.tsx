@@ -1,7 +1,12 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  useHashRouter,
+  useTransitionModal,
+  TransitionType,
+} from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -37,6 +42,7 @@ export function DirectionButtons({
 
   const app = useTripleClientMetadata()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { show: showTransitionModal } = useTransitionModal()
   const trackEvent = useTrackEvent()
 
   const handleAskToLocalsClick = useCallback(() => {
@@ -47,8 +53,10 @@ export function DirectionButtons({
       },
     })
 
-    app ? addUriHash(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
-  }, [trackEvent, app, addUriHash])
+    app
+      ? addUriHash(HASH_ASK_TO_LOCALS_POPUP)
+      : showTransitionModal(TransitionType.General)
+  }, [trackEvent, app, addUriHash, showTransitionModal])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
   const hasLineBreak = hasAskToLocalsButton && !!onCallGrabButtonClick

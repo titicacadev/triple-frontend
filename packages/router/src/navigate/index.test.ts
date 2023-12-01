@@ -1,6 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useSessionAvailability, useEnv } from '@titicaca/triple-web'
+import {
+  useSessionAvailability,
+  useEnv,
+  useTransitionModal,
+  useLoginCtaModal,
+} from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 import {
   useTripleClientMetadata,
@@ -186,10 +190,10 @@ function prepareTest({
 
   ;(
     useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ).mockImplementation(() => ({ show: showTransitionModal, close: () => {} }))
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ).mockImplementation(() => ({ show: showLoginCtaModal, close: () => {} }))
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
