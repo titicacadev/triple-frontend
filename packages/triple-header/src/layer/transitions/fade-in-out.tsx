@@ -1,40 +1,29 @@
-import { useEffect, useState, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import { MotionContainer } from '../../motion-container'
 
 const variants = {
-  fadeIn: {
-    opacity: [0, 1],
-    transition: { duration: 1.5 },
-  },
-  fadeOut: { opacity: 0, transition: { duration: 1 } },
+  fadeInOut: ({ index, length }: { index: number; length: number }) => ({
+    opacity: [0, 1, 1, 0],
+    transition: {
+      repeat: Infinity,
+      duration: 4,
+      times: [0, 0.375, 0.75, 1],
+      delay: 3 * index,
+      repeatDelay: 3 * length - 4,
+    },
+  }),
 }
 
 export function FadeInOut({ children }: { children: ReactNode[] }) {
-  const [visibleFrameIndex, setVisibleFrameIndex] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(
-      () =>
-        setVisibleFrameIndex((prevVisibleFrameIndex) => {
-          return prevVisibleFrameIndex === children.length - 1
-            ? 0
-            : prevVisibleFrameIndex + 1
-        }),
-      3000,
-    )
-
-    return () => clearInterval(timer)
-  }, [children, visibleFrameIndex])
-
   return (
     <>
       {children.map((slide, index) => (
         <MotionContainer
           key={index}
-          initial="fadeOut"
+          custom={{ index, length: children.length }}
+          animate="fadeInOut"
           variants={variants}
-          animate={index === visibleFrameIndex ? 'fadeIn' : 'fadeOut'}
         >
           {slide}
         </MotionContainer>
