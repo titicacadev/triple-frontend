@@ -36,17 +36,17 @@ export function Frame({
   frame: { type, width, height, value, effect },
   index,
   calculateFrameRatio,
-  totalFramesCount,
+  frameCount,
   onLinkClick,
 }: {
   frame: FrameData
   index: number
   calculateFrameRatio: (length?: number) => number
-  totalFramesCount: number
+  frameCount: number
   onLinkClick?: LinkEventHandler
 }) {
   const FrameElement = FRAMES[type] as ComponentType<
-    Omit<FrameData, 'type'> & { index: number; totalFramesCount: number }
+    Omit<FrameData, 'type'> & { index: number; frameCount: number }
   >
 
   const widthRatio = calculateFrameRatio(width)
@@ -90,7 +90,7 @@ export function Frame({
         value={value}
         effect={effect}
         index={index}
-        totalFramesCount={totalFramesCount}
+        frameCount={frameCount}
         onLinkClick={linkClickHandler}
       />
     </FrameContainer>

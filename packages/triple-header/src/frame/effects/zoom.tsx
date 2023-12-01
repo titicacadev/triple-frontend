@@ -7,22 +7,22 @@ import { generateTransition, stringifyTransition } from './common'
 
 export type ZoomEffect = { type: 'zoom' } & Omit<
   ZoomProps,
-  'index' | 'totalFramesCount'
+  'index' | 'frameCount'
 >
 
 interface ZoomProps {
   options?: InitialEffectOptions
   index: number
-  totalFramesCount: number
+  frameCount: number
 }
 
 export function Zoom({
   children,
   options = {},
   index,
-  totalFramesCount,
+  frameCount,
 }: PropsWithChildren<ZoomProps>) {
-  const transition = generateTransition(options, index, totalFramesCount)
+  const transition = generateTransition(options, index, frameCount)
 
   return (
     <MotionContainer

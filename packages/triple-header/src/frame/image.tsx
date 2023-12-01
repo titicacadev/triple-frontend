@@ -9,7 +9,7 @@ import { generateLinkClickHandler } from './common'
 
 export type ImageFrame = { type: 'image' } & Omit<
   ImageFrameProps,
-  'index' | 'totalFramesCount'
+  'index' | 'frameCount'
 >
 
 interface ImageFrameProps {
@@ -20,7 +20,7 @@ interface ImageFrameProps {
   height?: number
   effect?: Effect
   index: number
-  totalFramesCount: number
+  frameCount: number
   onLinkClick?: LinkEventHandler
 }
 
@@ -34,7 +34,7 @@ export function ImageFrame({
   value: { image },
   effect,
   index,
-  totalFramesCount,
+  frameCount,
   onLinkClick,
 }: ImageFrameProps) {
   const EffectElement = effect ? EFFECTS[effect.type] : MotionContainer
@@ -43,7 +43,7 @@ export function ImageFrame({
     <EffectElement
       options={effect?.options}
       index={index}
-      totalFramesCount={totalFramesCount}
+      frameCount={frameCount}
     >
       <Image
         src={image.sizes.full.url}
