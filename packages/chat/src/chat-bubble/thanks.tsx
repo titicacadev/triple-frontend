@@ -2,7 +2,7 @@ import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
 const ThanksButton = styled(Button)<{ haveMine: boolean }>`
-  display: inline-flex;
+  display: flex;
   gap: 3px;
   height: 20px;
   align-items: center;
