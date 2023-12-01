@@ -15,10 +15,10 @@ import Medium from './medium'
 interface Props {
   media: ImageMeta[]
   reviewId: string
-  allowNavigateImages: boolean
+  allowNavigateImages?: boolean
 }
 
-function Media({ media, reviewId, allowNavigateImages }: Props) {
+function Media({ media, reviewId, allowNavigateImages = true }: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { navigateImages } = useClientActions()
 
