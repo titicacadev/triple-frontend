@@ -5,6 +5,7 @@ import {
   useSessionAvailability,
   useLoginCtaModal,
   useTransitionModal,
+  TransitionType,
 } from '@titicaca/triple-web'
 import {
   OutlinkOptions,
@@ -19,8 +20,8 @@ export function useNavigate({
 }: { changeLocationHref?: (href: string) => void } = {}) {
   const { webUrlBase } = useEnv()
   const sessionAvailable = useSessionAvailability()
-  const { open: showTransitionModal } = useTransitionModal()
-  const { open: showLoginCtaModal } = useLoginCtaModal()
+  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showLoginCtaModal } = useLoginCtaModal()
   const app = useTripleClientMetadata()
   const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
@@ -37,7 +38,7 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal()
+      showTransitionModal(TransitionType.General)
     },
     [changeLocationHref, showTransitionModal, webUrlBase],
   )
