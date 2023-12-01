@@ -62,7 +62,6 @@ function useScraped<R extends ScrapableResource>({ id, type, scraped }: R) {
   const { scrape, unscrape, deriveCurrentStateAndCount, enableTrackEvent } =
     useScrapsContext()
   const trackEventWithMetadata = useTrackEventWithMetadata()
-
   const { scraped: actualScraped } = deriveCurrentStateAndCount({ id, scraped })
 
   const handleToggleScrape = () => {
