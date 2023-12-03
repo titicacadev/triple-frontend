@@ -1757,7 +1757,7 @@ importers:
         specifier: workspace:*
         version: link:../type-definitions
       framer-motion:
-        specifier: ^10.16.12
+        specifier: ^10.16.9
         version: 10.16.12(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@titicaca/i18n':
