@@ -72,7 +72,6 @@ export type BubbleUIProps = (
   mediaUrlBase?: string
   appUrlScheme?: string
   hasArrow?: boolean
-  css?: CSSProp
 }
 
 export default function BubbleUI({
@@ -95,7 +94,7 @@ export default function BubbleUI({
   mediaUrlBase,
   appUrlScheme,
   hasArrow,
-  css,
+  ...props
 }: BubbleUIProps) {
   if (blinded || deleted || unfriended) {
     return (
@@ -111,7 +110,7 @@ export default function BubbleUI({
             : ALTERNATIVE_TEXT_MESSAGE.deleted)
         }
         hasArrow={hasArrow}
-        css={css}
+        {...props}
       />
     )
   }
@@ -125,7 +124,7 @@ export default function BubbleUI({
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
           hasArrow={hasArrow}
-          css={css}
+          {...props}
         />
       )
     case 'images':
@@ -135,7 +134,7 @@ export default function BubbleUI({
           appUrlScheme={appUrlScheme}
           onClick={onImageBubbleClick}
           onLongPress={onImageBubbleLongPress}
-          css={css}
+          {...props}
         />
       )
     case 'rich':
@@ -160,6 +159,7 @@ export default function BubbleUI({
           textItemStyle={richBubbleStyle?.textItemStyle}
           hasArrow={hasArrow}
           maxWidthOffset={maxWidthOffset}
+          {...props}
         />
       )
     case 'product':
@@ -171,7 +171,7 @@ export default function BubbleUI({
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
-          css={css}
+          {...props}
         />
       )
     default:

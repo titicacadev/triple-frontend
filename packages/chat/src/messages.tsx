@@ -1,4 +1,5 @@
 import { ComponentType } from 'react'
+import { CSSProp } from 'styled-components'
 
 import BubbleContainer from './bubble-container/bubble-container'
 import BubbleUI, {
@@ -49,6 +50,10 @@ interface MessagesProp<
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
+  bubbleStyle?: {
+    received?: CSSProp
+    sent?: CSSProp
+  }
 }
 
 export default function Messages<
@@ -63,11 +68,19 @@ export default function Messages<
   onRetryCancel,
   onThanksClick,
   customBubble,
+  bubbleStyle,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
     BubbleUIProps,
-    'id' | 'my' | 'blinded' | 'deleted' | 'unfriended' | 'type' | 'value'
+    | 'id'
+    | 'my'
+    | 'blinded'
+    | 'deleted'
+    | 'unfriended'
+    | 'type'
+    | 'value'
+    | 'css'
   >) {
   function getBubble({
     message,
@@ -103,6 +116,8 @@ export default function Messages<
       throw new Error(`${type}에 해당하는 Bubble이 존재하지 않습니다.`)
     }
 
+    const css = my ? bubbleStyle?.sent : bubbleStyle?.received
+
     return (
       <BubbleUI
         key={id}
@@ -113,6 +128,7 @@ export default function Messages<
         unfriended={sender.unfriended}
         type={type}
         value={value}
+        css={css}
         {...rest}
         {...bubbleProps}
       />
