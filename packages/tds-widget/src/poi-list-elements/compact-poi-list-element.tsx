@@ -5,7 +5,8 @@ import {
   ResourceListItem,
   Container,
 } from '@titicaca/tds-ui'
-import { OutlineScrapButton } from '@titicaca/scrap-button'
+
+import { OutlineScrapButton } from '../scrap-button'
 
 import {
   PoiListElementBaseProps,

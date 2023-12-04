@@ -8,10 +8,10 @@ import {
   ResourceListElementStats,
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 
 import { PoiListElementType } from '../types'
 import { useScrap } from '../../scrap'
+import { OverlayScrapButton } from '../../scrap-button'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
