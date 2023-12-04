@@ -51,8 +51,8 @@ interface MessagesProp<
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
   bubbleStyle?: {
-    received?: CSSProp
-    sent?: CSSProp
+    received?: { css?: CSSProp; alteredTextColor?: string }
+    sent?: { css?: CSSProp; alteredTextColor?: string }
   }
 }
 
@@ -106,6 +106,11 @@ export default function Messages<
                 ? ALTERNATIVE_TEXT_MESSAGE.blinded
                 : ALTERNATIVE_TEXT_MESSAGE.deleted
             }
+            textColor={
+              my
+                ? bubbleStyle?.sent?.alteredTextColor
+                : bubbleStyle?.received?.alteredTextColor
+            }
           />
         )
       }
@@ -115,8 +120,6 @@ export default function Messages<
     if (!isBubbleType(type)) {
       throw new Error(`${type}에 해당하는 Bubble이 존재하지 않습니다.`)
     }
-
-    const css = my ? bubbleStyle?.sent : bubbleStyle?.received
 
     return (
       <BubbleUI
@@ -128,7 +131,7 @@ export default function Messages<
         unfriended={sender.unfriended}
         type={type}
         value={value}
-        css={css}
+        css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
         {...rest}
         {...bubbleProps}
       />
