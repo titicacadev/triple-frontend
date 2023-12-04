@@ -61,6 +61,10 @@ export interface ChatProps {
     messageId: number,
     reaction: ReactionType,
   ) => Promise<{ success: boolean }>
+  removeReactions?: (
+    messageId: number,
+    reaction: ReactionType,
+  ) => Promise<{ success: boolean }>
   updateChatData?: UpdateChatData
   disableUnreadCount?: boolean
   blindedText?: string
@@ -86,6 +90,7 @@ export const Chat = ({
   onRetryButtonClick,
   onRetryCancelButtonClick,
   addReactions,
+  removeReactions,
   updateChatData,
   disableUnreadCount = false,
   blindedText,
@@ -288,23 +293,42 @@ export const Chat = ({
   }
 
   async function onThanksClick(messageId: number, haveMyThanks: boolean) {
-    if (haveMyThanks || !addReactions) return
-
-    const { success } = await addReactions(messageId, 'thanks')
-    const message = messages.find((message) => message.id === messageId)
-    if (success && message) {
-      dispatch({
-        action: ChatActions.UPDATE_MESSAGE,
-        message: {
-          ...message,
-          reactions: {
-            thanks: {
-              count: (message.reactions?.thanks?.count || 0) + 1,
-              haveMine: true,
+    if (!haveMyThanks && addReactions) {
+      const { success } = await addReactions(messageId, 'thanks')
+      const message = messages.find((message) => message.id === messageId)
+      if (success && message) {
+        dispatch({
+          action: ChatActions.UPDATE_MESSAGE,
+          message: {
+            ...message,
+            reactions: {
+              thanks: {
+                count: (message.reactions?.thanks?.count || 0) + 1,
+                haveMine: true,
+              },
             },
           },
-        },
-      })
+        })
+      }
+    }
+    if (haveMyThanks && removeReactions) {
+      const { success } = await removeReactions(messageId, 'thanks')
+      const message = messages.find((message) => message.id === messageId)
+      if (success && message) {
+        const thanksCount = message.reactions?.thanks?.count
+        dispatch({
+          action: ChatActions.UPDATE_MESSAGE,
+          message: {
+            ...message,
+            reactions: {
+              thanks: {
+                count: thanksCount ? thanksCount - 1 : 0,
+                haveMine: true,
+              },
+            },
+          },
+        })
+      }
     }
   }
 
