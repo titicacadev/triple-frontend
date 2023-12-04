@@ -6,8 +6,9 @@ import {
   Carousel,
   CarouselSizes,
 } from '@titicaca/tds-ui'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
+
+import { OverlayScrapButton } from '../scrap-button'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'

@@ -1,9 +1,9 @@
 import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
+import { OverlayScrapButton } from '@titicaca/tds-widget'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { TnaProductData, DomesticArea } from './types'
