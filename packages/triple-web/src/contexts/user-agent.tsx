@@ -1,8 +1,6 @@
 import { createContext, useContext } from 'react'
 
-import { type UserAgentValue as InitialUserAgentValue } from '../types'
-
-type UserAgentValue = Partial<InitialUserAgentValue> & { isMobile: boolean }
+import { type UserAgentValue } from '../types'
 
 export const UserAgentContext = createContext<UserAgentValue | undefined>(
   undefined,

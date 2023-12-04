@@ -1,6 +1,7 @@
 import { NextPageContext } from 'next'
 import { UserAgentValue } from '@titicaca/triple-web'
 import { UAParser } from 'ua-parser-js'
+import { isMobile } from '@titicaca/triple-web-utils'
 
 export function getUserAgent(ctx: NextPageContext): UserAgentValue {
   const userAgent = ctx.req
@@ -10,5 +11,6 @@ export function getUserAgent(ctx: NextPageContext): UserAgentValue {
 
   return {
     ...parser.getResult(),
+    isMobile: isMobile(userAgent),
   }
 }

@@ -41,7 +41,6 @@
   "dependencies": {
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
-    "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2",
