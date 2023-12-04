@@ -18,7 +18,7 @@ export function useScrap({
   enableTrackEvent,
   beforeScrapedChange,
   afterScrapedChange,
-}: ScrapProps) {
+}: ScrapProps = {}) {
   const {
     notifyScraped,
     notifyUnscraped,

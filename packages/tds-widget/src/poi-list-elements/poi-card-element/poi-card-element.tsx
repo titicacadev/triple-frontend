@@ -8,10 +8,10 @@ import {
   ResourceListElementStats,
 } from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useScrapsContext } from '@titicaca/react-contexts'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 
 import { PoiListElementType } from '../types'
+import { useScrap } from '../../scrap'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
@@ -97,7 +97,7 @@ function PoiCardElement({
   const { t } = useTranslation('triple-frontend')
 
   const formattedNightlyPrice = formatNumber(nightlyPrice)
-  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { deriveCurrentStateAndCount } = useScrap()
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
     scraped,
