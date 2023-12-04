@@ -48,7 +48,7 @@
     "@titicaca/prettier-config-triple": "1.1.0",
     "@titicaca/stylelint-config-triple": "1.2.1",
     "@types/jest": "^29.5.10",
-    "@types/node": "^18.18.7",
+    "@types/node": "^20.10.3",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "@types/styled-components": "^5.1.29",
