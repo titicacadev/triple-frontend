@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next'
 import ExtendedResourceListElement, {
   ResourceListElementProps,
 } from '@titicaca/resource-list-element'
-import { useScrapsContext } from '@titicaca/react-contexts'
+
+import { useScrap } from '../scrap'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
@@ -57,7 +58,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
   const { t } = useTranslation('triple-frontend')
 
-  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { deriveCurrentStateAndCount } = useScrap()
   const {
     source: { starRating },
   } =
