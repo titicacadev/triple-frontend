@@ -1,35 +1,19 @@
-import { PropsWithChildren, createContext } from 'react'
+import { createContext, useContext } from 'react'
 
 import { type UserAgentValue as InitialUserAgentValue } from '../types'
-import { validateMobile } from '../utils/user-agent'
 
-interface UserAgentProviderProps extends PropsWithChildren {
-  initialUserAgent: InitialUserAgentValue | undefined
-}
-
-type UserAgentValue = InitialUserAgentValue & { isMobile: boolean }
+type UserAgentValue = Partial<InitialUserAgentValue> & { isMobile: boolean }
 
 export const UserAgentContext = createContext<UserAgentValue | undefined>(
   undefined,
 )
 
-export function UserAgentProvider({
-  initialUserAgent,
-  children,
-}: UserAgentProviderProps) {
-  if (initialUserAgent === undefined) {
-    return <>{children}</>
+export function useUserAgent() {
+  const context = useContext(UserAgentContext)
+
+  if (context === undefined) {
+    throw new Error('UserAgentContext가 없습니다.')
   }
 
-  const isMobile = validateMobile(initialUserAgent.ua)
-  const values = {
-    ...initialUserAgent,
-    isMobile,
-  }
-
-  return (
-    <UserAgentContext.Provider value={values}>
-      {children}
-    </UserAgentContext.Provider>
-  )
+  return context
 }
