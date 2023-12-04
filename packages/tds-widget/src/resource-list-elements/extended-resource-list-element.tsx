@@ -1,7 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
   Label,
@@ -12,6 +11,8 @@ import {
   FlexBox,
 } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
+
+import { OverlayScrapButton } from '../scrap-button'
 
 import ReviewScrapStat from './review-scrap-stat'
 
