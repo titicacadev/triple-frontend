@@ -734,6 +734,9 @@ importers:
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.9.0
         version: 1.9.0
+      '@titicaca/triple-web-utils':
+        specifier: workspace:*
+        version: link:../triple-web-utils
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -832,6 +835,10 @@ importers:
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
 
   packages/triple-web-utils:
+    dependencies:
+      ua-parser-js:
+        specifier: ^1.0.36
+        version: 1.0.36
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
