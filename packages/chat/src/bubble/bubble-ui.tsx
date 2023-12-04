@@ -72,6 +72,7 @@ export type BubbleUIProps = (
   mediaUrlBase?: string
   appUrlScheme?: string
   hasArrow?: boolean
+  alteredTextColor?: string
 }
 
 export default function BubbleUI({
@@ -94,6 +95,7 @@ export default function BubbleUI({
   mediaUrlBase,
   appUrlScheme,
   hasArrow,
+  alteredTextColor,
   ...props
 }: BubbleUIProps) {
   if (blinded || deleted || unfriended) {
@@ -109,6 +111,7 @@ export default function BubbleUI({
             ? ALTERNATIVE_TEXT_MESSAGE.blinded
             : ALTERNATIVE_TEXT_MESSAGE.deleted)
         }
+        textColor={alteredTextColor}
         hasArrow={hasArrow}
         {...props}
       />
