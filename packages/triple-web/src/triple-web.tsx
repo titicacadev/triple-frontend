@@ -1,7 +1,6 @@
 'use client'
 
 import { PropsWithChildren } from 'react'
-import { isMobile } from '@titicaca/triple-web-utils'
 
 import { LoginCtaModal, TransitionModal } from './components'
 import {
@@ -47,12 +46,7 @@ export function TripleWeb({
         <GeolocationContext.Provider value={geolocationProvider}>
           <I18nProvider {...i18nProvider}>
             <SessionProvider initialSession={sessionProvider}>
-              <UserAgentContext.Provider
-                value={{
-                  ...userAgentProvider,
-                  isMobile: isMobile(userAgentProvider),
-                }}
-              >
+              <UserAgentContext.Provider value={userAgentProvider}>
                 <HashRouterProvider>
                   <ModalProvider>
                     {children}
