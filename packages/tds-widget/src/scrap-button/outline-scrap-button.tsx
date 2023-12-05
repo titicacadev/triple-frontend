@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { createIsolatedClickHandler } from './utils'
 import type { ScrapButtonProps, ScrapIconProps } from './types'
+import { withControls } from './scrap-button-controls'
 import { withMask } from './scrap-button-mask'
 import { useScraped } from './hooks'
 
@@ -55,7 +56,7 @@ function OutlineHeart({ pressed, size }: ScrapIconProps) {
 }
 
 function composedHocs<P>(Component: ComponentType<P & Attributes>) {
-  return withMask(Component)
+  return withMask(withControls(Component))
 }
 
 export const ComposedOutlineScrapButton = composedHocs(OutlineScrapButton)
