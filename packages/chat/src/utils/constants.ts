@@ -123,7 +123,7 @@ export const CHAT_ARGS: ChatProps = {
   },
   room: {
     id: '6344c73a53749900140bca43',
-    type: RoomType.DEFAULT,
+    type: RoomType.DEFAULT, // RoomType.EVENT로 수정 시 좋아요 버튼을 확인할 수 있습니다.
     createdAt: '2022-10-11T01:30:34.519Z',
     name: '',
     isDirect: true,
@@ -211,6 +211,9 @@ export const CHAT_ARGS: ChatProps = {
     }
   },
   addReactions: async () => {
+    return { success: true }
+  },
+  removeReactions: async () => {
     return { success: true }
   },
 }
