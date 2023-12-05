@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
-import ExtendedResourceListElement, {
-  ResourceListElementProps,
-} from '@titicaca/resource-list-element'
 
 import { useScrap } from '../scrap'
+import {
+  ExtendedResourceListElement,
+  ResourceListElementProps,
+} from '../resource-list-elements'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
