@@ -10,7 +10,6 @@ import { PoiListElementBaseProps, PoiListElementType } from './types'
 
 interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
   extends PoiListElementBaseProps<T> {
-  hideScrapButton?: boolean
   maxCommentLines?: number
   distance?: string | number
   distanceSuffix?: string
@@ -47,7 +46,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     distance,
   },
   onClick,
-  hideScrapButton,
   distance: distanceOverride,
   distanceSuffix,
   maxCommentLines,
@@ -106,7 +104,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       reviewsRating={reviewsRatingWithGraphql ?? rawReviewsRating}
       scrapsCount={scrapsCount}
       onClick={onClick}
-      hideScrapButton={hideScrapButton}
       maxCommentLines={maxCommentLines}
       isAdvertisement={isAdvertisement}
       optimized={optimized}
