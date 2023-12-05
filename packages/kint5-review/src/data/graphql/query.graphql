@@ -13,17 +13,6 @@ fragment BaseReview on Review {
   user {
     ...BaseUser
   }
-  replyBoard {
-    id
-    resourceId
-    resourceType
-    rootMessagesCount
-    childMessagesCount
-    pinnedMessagesCount
-    pinnedMessages {
-      ...BasePinnedMessage
-    }
-  }
   liked
 }
 
