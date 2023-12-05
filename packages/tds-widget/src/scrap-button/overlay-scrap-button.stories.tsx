@@ -1,19 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ScrapsProvider } from '@titicaca/react-contexts'
 
-import { OverlayScrapButton } from './scrap-button'
+import { OverlayScrapButton } from '.'
 
-export default {
+const meta: Meta<typeof OverlayScrapButton> = {
   title: 'ScrapButton / OverlayScrapButton',
   component: OverlayScrapButton,
-  decorators: [
-    (Story) => (
-      <ScrapsProvider>
-        <Story />
-      </ScrapsProvider>
-    ),
-  ],
-} as Meta
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof OverlayScrapButton> = {
   args: {
