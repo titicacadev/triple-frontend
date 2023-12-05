@@ -3,15 +3,15 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Container, Text, Card as OriginalCard, Image } from '@titicaca/tds-ui'
 import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
-import {
-  ReviewScrapStat,
-  ResourceListElementStats,
-} from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import { PoiListElementType } from '../types'
 import { useScrap } from '../../scrap'
 import { OverlayScrapButton } from '../../scrap-button'
+import {
+  ResourceListElementStats,
+  ReviewScrapStat,
+} from '../../resource-list-elements'
+import type { PoiListElementType } from '../types'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
