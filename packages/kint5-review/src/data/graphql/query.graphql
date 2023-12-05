@@ -31,25 +31,7 @@ fragment BaseUser on User {
   unregister
   uid
   photo
-  mileage {
-    level
-    point
-    badges {
-      label
-      icon {
-        image_url
-      }
-    }
-  }
   name
-  userBoard {
-    trips
-    reviews
-    thanks
-    reports
-    reviewsV2
-    itineraries
-  }
 }
 
 fragment BasePinnedMessage on ReplyMessage {
