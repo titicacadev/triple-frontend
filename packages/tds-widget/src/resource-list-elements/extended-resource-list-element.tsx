@@ -26,7 +26,6 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   /** @deprecated */
   resource?: R
   scrapResource?: R
-  hideScrapButton?: boolean
   image?: ImageMeta
   imagePlaceholder?: string
   name?: string
@@ -64,7 +63,6 @@ const LabelContainer = styled.div`
 function ExtendedResourceListElement<R extends ResourceMeta>({
   resource,
   scrapResource,
-  hideScrapButton,
   image,
   imagePlaceholder,
   name,
@@ -198,7 +196,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
               </Image.FixedDimensionsFrame>
             </Image>
 
-            {!hideScrapButton && id && type ? (
+            {id && type ? (
               <Container
                 position="absolute"
                 css={{
