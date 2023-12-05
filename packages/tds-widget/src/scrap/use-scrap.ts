@@ -15,7 +15,6 @@ import {
 
 export function useScrap({
   scraps: initialScraps = {},
-  enableTrackEvent,
   beforeScrapedChange,
   afterScrapedChange,
 }: ScrapProps = {}) {
@@ -151,5 +150,5 @@ export function useScrap({
       unsubscribeScrapedChangeEvent(handleSubscribeEvent)
   }, [dispatch, subscribeScrapedChangeEvent, unsubscribeScrapedChangeEvent])
 
-  return { deriveCurrentStateAndCount, onScrape, onUnscrape, enableTrackEvent }
+  return { deriveCurrentStateAndCount, onScrape, onUnscrape }
 }

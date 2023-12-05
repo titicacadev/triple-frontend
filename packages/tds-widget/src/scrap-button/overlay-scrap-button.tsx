@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useScraped } from './hooks'
 import type { ScrapButtonProps, ScrapIconProps } from './types'
 import { createIsolatedClickHandler } from './utils'
-import { withControls } from './scrap-button-controls'
 import { withMask } from './scrap-button-mask'
 
 const OVERLAY_HEART_ON =
@@ -22,16 +21,9 @@ const ScrapingButton = styled.button<{ size: number }>`
   `}
 `
 
-function OverlayScrapButton({
-  resource,
-  size = 36,
-  onScrape,
-  onUnscrape,
-}: ScrapButtonProps) {
+function OverlayScrapButton({ resource, size = 36 }: ScrapButtonProps) {
   const [actualScraped, setScraped] = useScraped({
     resource,
-    onScrape,
-    onUnscrape,
   })
 
   return (
@@ -56,7 +48,7 @@ function OverlayHeart({ pressed, size }: ScrapIconProps) {
 }
 
 function composedHocs<P>(Component: ComponentType<P & Attributes>) {
-  return withMask(withControls(Component))
+  return withMask(Component)
 }
 
 export const ComposedOverlayScrapButton = composedHocs(OverlayScrapButton)
