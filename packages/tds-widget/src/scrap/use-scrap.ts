@@ -89,7 +89,13 @@ export function useScrap({
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
+    [
+      updating,
+      beforeScrapedChange,
+      dispatch,
+      notifyScraped,
+      afterScrapedChange,
+    ],
   )
 
   const onUnscrape = useCallback(
@@ -119,7 +125,13 @@ export function useScrap({
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
+    [
+      updating,
+      beforeScrapedChange,
+      dispatch,
+      notifyUnscraped,
+      afterScrapedChange,
+    ],
   )
 
   useEffect(() => {
@@ -137,7 +149,7 @@ export function useScrap({
     return () =>
       unsubscribeScrapedChangeEvent &&
       unsubscribeScrapedChangeEvent(handleSubscribeEvent)
-  }, [dispatch])
+  }, [dispatch, subscribeScrapedChangeEvent, unsubscribeScrapedChangeEvent])
 
   return { deriveCurrentStateAndCount, onScrape, onUnscrape, enableTrackEvent }
 }
