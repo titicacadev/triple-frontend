@@ -81,7 +81,7 @@ export function TripleReviewElement({
         return
       }
 
-      const { uid, mileage, unregister } = review.user
+      const { uid, unregister } = review.user
 
       trackEvent({
         ga: ['리뷰 프로필'],
@@ -90,7 +90,7 @@ export function TripleReviewElement({
           item_id: resourceId,
           user_id: uid,
           review_id: review.id,
-          level: mileage?.level ?? 0,
+          level: 0,
         },
       })
 

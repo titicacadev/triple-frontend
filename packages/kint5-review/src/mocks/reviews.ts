@@ -297,20 +297,7 @@ export const authHandlers = {
               uid: 'random-uid-2',
               photo:
                 'https://media.triple.guide/titicaca-imgs/image/upload/v1490937645/defaul_profile01_yuj1eh.png',
-              mileage: {
-                level: 1,
-                point: 7,
-                badges: [],
-              },
               name: 'Me',
-              userBoard: {
-                trips: 4,
-                reviews: 0,
-                thanks: 0,
-                reports: 0,
-                reviewsV2: 1,
-                itineraries: 1,
-              },
             },
             replyBoard: {
               id: `REVIEW.${2}`,
