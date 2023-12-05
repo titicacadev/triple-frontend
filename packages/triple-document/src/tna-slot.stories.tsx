@@ -1,5 +1,4 @@
 import type { Meta } from '@storybook/react'
-import { ScrapsProvider } from '@titicaca/react-contexts'
 import { rest } from 'msw'
 
 import ELEMENTS from './elements'
@@ -14,13 +13,11 @@ export default {
 
 export function InTripleDocument() {
   return (
-    <ScrapsProvider>
-      <TnaProducts
-        value={{
-          slotId: 1546,
-        }}
-      />
-    </ScrapsProvider>
+    <TnaProducts
+      value={{
+        slotId: 1546,
+      }}
+    />
   )
 }
 InTripleDocument.storyName = 'Triple-document에 포함된 Slot'
