@@ -190,6 +190,8 @@ export function ChatBubbleUI({
   onThanksClick,
   bubbleStyle,
 }: ChatBubbleUIProps) {
+  const showThanks = !blindedAt
+
   switch (type) {
     case 'sent': {
       const sentBubbleStyle = bubbleStyle?.sent
@@ -199,8 +201,7 @@ export function ChatBubbleUI({
           showBubbleInfo={payload.type !== MessageType.PRODUCT}
           unreadCount={unreadCount}
           onRetry={onRetry}
-          thanks={thanks}
-          onThanksClick={onThanksClick}
+          {...(showThanks && { thanks, onThanksClick })}
         >
           {blindedAt ? (
             <BlindedBubble
@@ -245,8 +246,7 @@ export function ChatBubbleUI({
           showBubbleInfo={payload.type !== MessageType.PRODUCT}
           profileImageUrl={profileImageUrl}
           profileName={profileName}
-          thanks={thanks}
-          onThanksClick={onThanksClick}
+          {...(showThanks && { thanks, onThanksClick })}
         >
           {blindedAt ? (
             <BlindedBubble
