@@ -323,7 +323,7 @@ export const Chat = ({
             reactions: {
               thanks: {
                 count: thanksCount ? thanksCount - 1 : 0,
-                haveMine: true,
+                haveMine: false,
               },
             },
           },
