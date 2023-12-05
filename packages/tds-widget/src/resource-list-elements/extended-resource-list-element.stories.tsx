@@ -1,13 +1,32 @@
 import type { Meta, StoryFn } from '@storybook/react'
 import { Container } from '@titicaca/tds-ui'
-import Pricing from '@titicaca/pricing'
+
+import Pricing from '../pricing'
+import { ScrapButtonMask } from '../scrap-button'
 
 import ExtendedResourceListElement from './extended-resource-list-element'
 
-export default {
+const meta: Meta<typeof ExtendedResourceListElement> = {
   title: 'resource-list-element / extended-resource-list-element',
   component: ExtendedResourceListElement,
-} as Meta<typeof ExtendedResourceListElement>
+}
+
+const defaultArgs = {
+  scrapResource: {
+    id: 'scrapable_id',
+    type: 'scrapable_type',
+  },
+  name: '카멜리아 힐 입장권',
+  comment: '500여 품종 동백나무로 사계절 내내 아름다운 포토 스팟 수목원',
+  note: '현장에서 입장권 확인이 필요합니다.',
+  reviewsCount: 5,
+  reviewsRating: 3,
+  scrapsCount: 2,
+  partnerName: '브이패스',
+  areaName: '서울특별시',
+}
+
+export default meta
 
 const Template: StoryFn<typeof ExtendedResourceListElement> = (args) => {
   return (
@@ -23,21 +42,22 @@ const Template: StoryFn<typeof ExtendedResourceListElement> = (args) => {
   )
 }
 
-const defaultArgs = {
-  name: '카멜리아 힐 입장권',
-  comment: '500여 품종 동백나무로 사계절 내내 아름다운 포토 스팟 수목원',
-  note: '현장에서 입장권 확인이 필요합니다.',
-  reviewsCount: 5,
-  reviewsRating: 3,
-  scrapsCount: 2,
-  hideScrapButton: true,
-  partnerName: '브이패스',
-  areaName: '서울특별시',
-}
-
 export const Basic = {
   render: Template,
+  args: {
+    ...defaultArgs,
+  },
+}
 
+export const NoScrap = {
+  render: Template,
+  decorators: [
+    (Story: StoryFn) => (
+      <ScrapButtonMask masked>
+        <Story />
+      </ScrapButtonMask>
+    ),
+  ],
   args: {
     ...defaultArgs,
   },
@@ -45,7 +65,6 @@ export const Basic = {
 
 export const Tags = {
   render: Template,
-
   args: {
     ...defaultArgs,
     tags: [
@@ -72,7 +91,6 @@ export const Tags = {
 
 export const Advertisement = {
   render: Template,
-
   args: {
     ...defaultArgs,
     isAdvertisement: true,
