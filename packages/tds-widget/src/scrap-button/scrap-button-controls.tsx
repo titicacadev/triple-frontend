@@ -1,17 +1,11 @@
-import {
-  Attributes,
-  ComponentType,
-  PropsWithChildren,
-  createContext,
-  useContext,
-  useMemo,
-} from 'react'
+import { PropsWithChildren, createContext, useContext, useMemo } from 'react'
 
 import { ScrapProps } from '../scrap/types'
 import { useScrap } from '../scrap/use-scrap'
 
-const ScrapButtonControlContext =
-  createContext<Parameters<typeof useScrap>[0]>(undefined)
+const ScrapButtonControlContext = createContext<
+  ReturnType<typeof useScrap> | undefined
+>(undefined)
 
 export function ScrapButtonControls({
   scraps: initialScraps = {},
@@ -19,21 +13,19 @@ export function ScrapButtonControls({
   afterScrapedChange,
   children,
 }: PropsWithChildren<ScrapProps>) {
-  const { deriveCurrentStateAndCount, onScrape, onUnscrape, enableTrackEvent } =
-    useScrap({
-      scraps: initialScraps,
-      beforeScrapedChange,
-      afterScrapedChange,
-    })
+  const { deriveCurrentStateAndCount, onScrape, onUnscrape } = useScrap({
+    scraps: initialScraps,
+    beforeScrapedChange,
+    afterScrapedChange,
+  })
 
   const values = useMemo(
     () => ({
       deriveCurrentStateAndCount,
       onScrape,
       onUnscrape,
-      enableTrackEvent,
     }),
-    [deriveCurrentStateAndCount, enableTrackEvent, onScrape, onUnscrape],
+    [deriveCurrentStateAndCount, onScrape, onUnscrape],
   )
 
   return (
@@ -43,14 +35,12 @@ export function ScrapButtonControls({
   )
 }
 
-export function withControls<P extends Attributes>(
-  Component: ComponentType<P>,
-) {
-  function ComponentWithControls(props: P) {
-    const controls = useContext(ScrapButtonControlContext)
+export function useScrapControl() {
+  const context = useContext(ScrapButtonControlContext)
 
-    return <Component {...props} {...controls} />
+  if (!context) {
+    return undefined
   }
 
-  return ComponentWithControls
+  return context
 }

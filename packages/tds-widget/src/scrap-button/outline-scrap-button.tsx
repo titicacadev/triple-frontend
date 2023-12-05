@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { createIsolatedClickHandler } from './utils'
 import type { ScrapButtonProps, ScrapIconProps } from './types'
-import { withControls } from './scrap-button-controls'
 import { withMask } from './scrap-button-mask'
 import { useScraped } from './hooks'
 
@@ -22,16 +21,9 @@ const ScrapingButton = styled.button<{ size: number }>`
   `}
 `
 
-function OutlineScrapButton({
-  resource,
-  size = 34,
-  onScrape,
-  onUnscrape,
-}: ScrapButtonProps) {
+function OutlineScrapButton({ resource, size = 34 }: ScrapButtonProps) {
   const [actualScraped, setScraped] = useScraped({
     resource,
-    onScrape,
-    onUnscrape,
   })
 
   return (
@@ -56,7 +48,7 @@ function OutlineHeart({ pressed, size }: ScrapIconProps) {
 }
 
 function composedHocs<P>(Component: ComponentType<P & Attributes>) {
-  return withMask(withControls(Component))
+  return withMask(Component)
 }
 
 export const ComposedOutlineScrapButton = composedHocs(OutlineScrapButton)

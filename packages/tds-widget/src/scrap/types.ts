@@ -9,7 +9,6 @@ export interface Target {
 
 export interface ScrapProps {
   scraps?: Scraps
-  enableTrackEvent?: boolean
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
   afterScrapedChange?: (target: Target, scraped: boolean) => void
 }
