@@ -12,6 +12,6 @@ export function getUserAgent(): UserAgentValue {
 
   return {
     ...parser.getResult(),
-    isMobile: isMobile(userAgent),
+    isMobile: isMobile(parser),
   }
 }
