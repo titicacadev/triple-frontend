@@ -19,13 +19,6 @@ const StyledBubble = styled(Text).attrs({
     white-space: pre-wrap;
   }
 
-  a {
-    ${({ my }) => css`
-      color: ${my ? '#B5FFFB' : 'var(--color-blue)'} !important;
-    `}
-    text-decoration: underline !important;
-  }
-
   ${({ maxWidthOffset }) =>
     `max-width: calc(100% - ${maxWidthOffset || 100}px);`}
   ${({ my, hasArrow = true }) => css`
