@@ -1,6 +1,5 @@
 import { ButtonBase } from '@titicaca/tds-ui'
-import { TransitionType } from '@titicaca/modals'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useCallback } from 'react'
 import styled from 'styled-components'
