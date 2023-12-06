@@ -47,6 +47,7 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
+    "@titicaca/triple-web-binding-nextjs-pages": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {
