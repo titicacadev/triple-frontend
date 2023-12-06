@@ -1,7 +1,8 @@
 import { MouseEvent, ReactNode, useRef } from 'react'
-import { ImageSource } from '@titicaca/image-source'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
 import Flicking from '@egjs/react-flicking'
+
+import { ImageSource } from '../image-source'
 
 import Carousel, { CarouselProps } from './carousel'
 import { CarouselImageMeta, RendererParams } from './types'
