@@ -41,11 +41,20 @@ function getDefaultBackgroundColor(my: boolean) {
  * 
  */
 
-export function TextBubble({ message, ...props }: TextBubbleProp) {
+export function TextBubble({ message, my, ...props }: TextBubbleProp) {
   const aTagNavigator = useATagNavigator()
 
   return (
-    <Bubble {...props}>
+    <Bubble
+      css={`
+        a {
+          color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
+          text-decoration: underline;
+        }
+      `}
+      my={my}
+      {...props}
+    >
       <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
     </Bubble>
   )
