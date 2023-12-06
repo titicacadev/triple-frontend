@@ -12,9 +12,8 @@ import {
 } from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
 import { useNavigate } from '@titicaca/router'
-import { useHashRouter } from '@titicaca/triple-web'
+import { useHashRouter, TransitionType } from '@titicaca/triple-web'
 import { useIsomorphicNavigation } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType, Writer } from '../types'

@@ -1,6 +1,9 @@
 import { useCallback } from 'react'
-import { useLoginCtaModal } from '@titicaca/modals'
-import { useSessionAvailability, useLogin } from '@titicaca/triple-web'
+import {
+  useSessionAvailability,
+  useLogin,
+  useLoginCtaModal,
+} from '@titicaca/triple-web'
 
 /**
  * sessionId가 있는 환경에서만 주어진 콜백을 실행하는 함수를 반환하는 훅

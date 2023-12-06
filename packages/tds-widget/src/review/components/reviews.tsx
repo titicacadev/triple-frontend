@@ -4,7 +4,6 @@ import { Trans } from 'react-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { LoginCtaModalProvider } from '@titicaca/modals'
 
 import { useReviewCount } from '../services'
 
@@ -64,29 +63,27 @@ export function Reviews({
   receiverId,
 }: ReviewsProps) {
   return (
-    <LoginCtaModalProvider>
-      <FilterProvider
-        initialRecentTrip={initialRecentTrip}
-        initialMediaFilter={initialMediaFilter}
+    <FilterProvider
+      initialRecentTrip={initialRecentTrip}
+      initialMediaFilter={initialMediaFilter}
+      receiverId={receiverId}
+    >
+      <SortingOptionsProvider
+        type={sortingType}
         receiverId={receiverId}
+        resourceId={resourceId}
+        initialSortingOption={initialSortingOption}
       >
-        <SortingOptionsProvider
-          type={sortingType}
-          receiverId={receiverId}
+        <ReviewsComponent
           resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
-          <ReviewsComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
-        </SortingOptionsProvider>
-      </FilterProvider>
-    </LoginCtaModalProvider>
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          placeholderText={placeholderText}
+          sortingType={sortingType}
+        />
+      </SortingOptionsProvider>
+    </FilterProvider>
   )
 }
 

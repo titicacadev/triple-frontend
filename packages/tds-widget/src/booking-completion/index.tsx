@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 interface Region {
