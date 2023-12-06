@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import { useHashRouter, useSessionControllers } from '@titicaca/triple-web'
+import { useHashRouter, useLogin } from '@titicaca/triple-web'
 import {
   useUserVerification,
   VerificationType,
@@ -122,7 +122,7 @@ export function CouponDownloadButton({
     verificationType,
     forceVerification: false,
   })
-  const { login } = useSessionControllers()
+  const login = useLogin()
 
   const [needLogin, setNeedLogin] = useState(false)
   const timePassed = useDownloadTimePassed(enabledAt)
@@ -286,7 +286,7 @@ export function CouponGroupDownloadButton({
     verificationType,
     forceVerification: false,
   })
-  const { login } = useSessionControllers()
+  const login = useLogin()
 
   const [needLogin, setNeedLogin] = useState(false)
   const timePassed = useDownloadTimePassed(enabledAt)
