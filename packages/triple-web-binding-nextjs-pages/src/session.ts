@@ -1,3 +1,5 @@
+import { IncomingMessage } from 'http'
+
 import { NextPageContext } from 'next'
 import { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
@@ -21,36 +23,43 @@ import {
  * @returns
  */
 export async function getSession(ctx: NextPageContext): Promise<SessionValue> {
-  const userAgent = ctx.req
-    ? ctx.req.headers['user-agent'] ?? ''
-    : window.navigator.userAgent
-
-  const isClientApp = checkClientApp(userAgent)
-
-  const user = await fetchUser(ctx, isClientApp)
+  const user = await fetchUser(ctx.req)
 
   return {
     user,
   }
 }
 
-async function fetchUser(ctx: NextPageContext, isClientApp: boolean) {
-  if (ctx.req) {
+export function getSessionAvailabilityFromRequest(
+  req: IncomingMessage | undefined,
+): boolean {
+  const userAgent = getUserAgent(req)
+  const isClientApp = checkClientApp(userAgent)
+  const cookies = new Cookies(req?.headers.cookie)
+
+  let hasSession = false
+
+  if (isClientApp) {
+    hasSession = !!cookies.get('x-soto-session')
+  } else {
+    hasSession = !!req?.headers['x-triple-web-login']
+    if (process.env.NODE_ENV !== 'production') {
+      hasSession = !!cookies.get('TP_SE')
+    }
+  }
+
+  return hasSession
+}
+
+async function fetchUser(req: IncomingMessage | undefined) {
+  const userAgent = getUserAgent(req)
+  const isClientApp = checkClientApp(userAgent)
+
+  if (req) {
     // Server-side
 
     // 세션이 없으면 fetch를 스킵합니다.
-    const cookies = new Cookies(ctx.req.headers.cookie)
-
-    let hasSession = false
-
-    if (isClientApp) {
-      hasSession = !!cookies.get('x-soto-session')
-    } else {
-      hasSession = !!ctx.req.headers['x-triple-web-login']
-      if (process.env.NODE_ENV !== 'production') {
-        hasSession = !!cookies.get('TP_SE')
-      }
-    }
+    const hasSession = getSessionAvailabilityFromRequest(req)
 
     if (!hasSession) {
       return null
@@ -59,7 +68,7 @@ async function fetchUser(ctx: NextPageContext, isClientApp: boolean) {
     // fetch 시작
     const ssrFetcherizeOptions = {
       apiUriBase: process.env.API_URI_BASE || '',
-      cookie: ctx.req.headers.cookie,
+      cookie: req.headers.cookie,
     }
 
     if (isClientApp) {
@@ -138,4 +147,8 @@ async function fetchUser(ctx: NextPageContext, isClientApp: boolean) {
       return response.parsedBody
     }
   }
+}
+
+function getUserAgent(req: IncomingMessage | undefined): string {
+  return req ? req.headers['user-agent'] ?? '' : window.navigator.userAgent
 }
