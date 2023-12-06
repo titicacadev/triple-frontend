@@ -848,6 +848,9 @@ importers:
       '@titicaca/triple-web':
         specifier: workspace:*
         version: link:../triple-web
+      '@titicaca/triple-web-binding-nextjs-pages':
+        specifier: workspace:*
+        version: link:../triple-web-binding-nextjs-pages
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
