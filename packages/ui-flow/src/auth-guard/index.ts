@@ -3,7 +3,7 @@ import { get } from '@titicaca/fetcher'
 import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
-import { getSessionAvailabilityFromRequest } from '@titicaca/react-contexts'
+import { getSessionAvailabilityFromRequest } from '@titicaca/triple-web-binding-nextjs-pages'
 
 interface UserResponse {
   uid: string
@@ -59,7 +59,7 @@ export function authGuard<Props>(
         if (
           userAgentString &&
           parseTripleClientUserAgent(userAgentString) &&
-          getSessionAvailabilityFromRequest(req)
+          getSessionAvailabilityFromRequest(ctx)
         ) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
         }
