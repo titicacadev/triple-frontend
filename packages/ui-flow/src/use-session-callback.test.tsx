@@ -1,15 +1,14 @@
 import { renderHook, act } from '@testing-library/react'
-import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
   useLogin,
   useLogout,
   useHashRouter,
+  useLoginCtaModal,
 } from '@titicaca/triple-web'
 
 import { useSessionCallback } from './use-session-callback'
 
-jest.mock('@titicaca/modals')
 jest.mock('@titicaca/triple-web')
 
 describe('useSessionCallback', () => {
