@@ -4,7 +4,7 @@ import {
   TranslatedProperty,
   ImageMeta,
 } from '@titicaca/type-definitions'
-import { ImageSource } from '@titicaca/image-source'
+import { ImageSource } from '@titicaca/tds-widget'
 
 import { MediaConfig } from './prop-context/media-config'
 import { ResourceClickHandler } from './prop-context/resource-click-handler'
