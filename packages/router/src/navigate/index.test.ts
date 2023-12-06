@@ -13,12 +13,11 @@ import {
 
 import { useNavigate } from '.'
 
-jest.mock('@titicaca/modals')
+jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
-jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/react-triple-client-interfaces')
 
 const webUrlBase = mockWebUrlBase()

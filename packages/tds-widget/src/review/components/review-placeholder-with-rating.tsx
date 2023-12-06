@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
