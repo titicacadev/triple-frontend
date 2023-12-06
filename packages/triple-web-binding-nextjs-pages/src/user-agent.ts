@@ -11,6 +11,6 @@ export function getUserAgent(ctx: NextPageContext): UserAgentValue {
 
   return {
     ...parser.getResult(),
-    isMobile: isMobile(userAgent),
+    isMobile: isMobile(parser),
   }
 }
