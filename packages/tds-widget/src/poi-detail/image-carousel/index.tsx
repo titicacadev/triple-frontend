@@ -1,6 +1,5 @@
-import { useImagesContext } from '@titicaca/react-contexts'
-
 import CarouselSection, { CarouselSectionProps } from './carousel-section'
+import { useImageCarousel } from './provider'
 
 type ImageCarouselProps = Pick<
   CarouselSectionProps,
@@ -24,7 +23,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
     loading,
     total,
     actions: { fetch },
-  } = useImagesContext()
+  } = useImageCarousel()
 
   return (
     <CarouselSection
