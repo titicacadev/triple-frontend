@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { TransitionModal } from '@titicaca/modals'
-import { SessionContextProvider } from '@titicaca/react-contexts'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
@@ -20,17 +19,6 @@ const meta: Meta<typeof Reviews> = {
         <Story />
         <TransitionModal deepLink="/" />
       </>
-    ),
-    (Story) => (
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: { uid: 'random-uid' },
-          initialSessionAvailability: true,
-        }}
-      >
-        <Story />
-      </SessionContextProvider>
     ),
     (Story) => (
       <QueryClientProvider client={queryClient}>
