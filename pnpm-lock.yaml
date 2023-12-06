@@ -845,6 +845,9 @@ importers:
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -855,9 +858,6 @@ importers:
       '@titicaca/react-triple-client-interfaces':
         specifier: workspace:*
         version: link:../react-triple-client-interfaces
-      '@titicaca/triple-web':
-        specifier: workspace:*
-        version: link:../triple-web
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
