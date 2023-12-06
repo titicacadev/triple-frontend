@@ -1,10 +1,11 @@
-import { ImageSource } from '@titicaca/image-source'
 import {
   FrameRatioAndSizes,
   GlobalSizes,
   ImageMeta,
 } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode } from 'react'
+
+import { ImageSource } from '../image-source'
 
 import ImageContent from './image-content'
 import VideoContent from './video-content'
