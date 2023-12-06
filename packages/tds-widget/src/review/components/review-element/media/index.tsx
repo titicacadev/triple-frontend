@@ -1,5 +1,4 @@
-import { TransitionType } from '@titicaca/modals'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'

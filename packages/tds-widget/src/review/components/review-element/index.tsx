@@ -1,8 +1,11 @@
 import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from 'react-i18next'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  useHashRouter,
+  TransitionType,
+} from '@titicaca/triple-web'
 import {
   useTripleClientActions,
   useTripleClientMetadata,

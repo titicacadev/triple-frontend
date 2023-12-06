@@ -1,7 +1,6 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
-import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from 'react-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -61,28 +60,26 @@ export function ReviewsShorten({
   receiverId,
 }: ReviewsShortenProps) {
   return (
-    <LoginCtaModalProvider>
-      <FilterProvider
-        receiverId={receiverId}
-        initialRecentTrip={initialRecentTrip}
-        initialMediaFilter={initialMediaFilter}
+    <FilterProvider
+      receiverId={receiverId}
+      initialRecentTrip={initialRecentTrip}
+      initialMediaFilter={initialMediaFilter}
+    >
+      <SortingOptionsProvider
+        type={sortingType}
+        resourceId={resourceId}
+        initialSortingOption={initialSortingOption}
       >
-        <SortingOptionsProvider
-          type={sortingType}
+        <ReviewsShortenComponent
           resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
-          <ReviewsShortenComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
-        </SortingOptionsProvider>
-      </FilterProvider>
-    </LoginCtaModalProvider>
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          placeholderText={placeholderText}
+          sortingType={sortingType}
+        />
+      </SortingOptionsProvider>
+    </FilterProvider>
   )
 }
 
