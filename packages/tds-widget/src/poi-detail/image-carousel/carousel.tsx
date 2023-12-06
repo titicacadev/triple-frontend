@@ -1,14 +1,15 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
-import ImageCarousel, {
-  PageLabel,
-  CarouselImageMeta,
-} from '@titicaca/image-carousel'
 import { Container, Responsive } from '@titicaca/tds-ui'
-import { ImageSource } from '@titicaca/image-source'
 import { useTrackEvent } from '@titicaca/triple-web'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
+
+import ImageCarousel, {
+  CarouselImageMeta,
+  PageLabel,
+} from '../../image-carousel'
+import { ImageSource } from '../../image-source'
 
 import CtaOverlay from './cta-overlay'
 
