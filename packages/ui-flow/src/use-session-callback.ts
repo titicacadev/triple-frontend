@@ -1,9 +1,6 @@
 import { useCallback } from 'react'
 import { useLoginCtaModal } from '@titicaca/modals'
-import {
-  useSessionAvailability,
-  useSessionControllers,
-} from '@titicaca/react-contexts'
+import { useSessionAvailability, useLogin } from '@titicaca/triple-web'
 
 /**
  * sessionId가 있는 환경에서만 주어진 콜백을 실행하는 함수를 반환하는 훅
@@ -30,7 +27,7 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
     | []
 ): (...args: Parameters<T>) => ReturnType<T> | boolean | void {
   const sessionAvailable = useSessionAvailability()
-  const { login } = useSessionControllers()
+  const login = useLogin()
   const { show } = useLoginCtaModal()
 
   return useCallback(

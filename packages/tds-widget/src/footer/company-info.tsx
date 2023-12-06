@@ -6,8 +6,12 @@ import {
   FlexBox,
   AccordionTitle,
 } from '@titicaca/tds-ui'
-import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
-import { useSessionControllers } from '@titicaca/react-contexts'
+import {
+  useTrackEvent,
+  useSessionAvailability,
+  useLogin,
+  useLogout,
+} from '@titicaca/triple-web'
 import { Dispatch, SetStateAction } from 'react'
 
 const MAX_PHONE_WIDTH = 360
@@ -84,7 +88,8 @@ export function CompanyInfo({
   setBusinessExpanded,
 }: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
-  const { login, logout } = useSessionControllers()
+  const login = useLogin()
+  const logout = useLogout()
   const trackEvent = useTrackEvent()
 
   return (
