@@ -2,22 +2,28 @@ import { renderHook, act } from '@testing-library/react'
 import { useLoginCtaModal } from '@titicaca/modals'
 import {
   useSessionAvailability,
-  useSessionControllers,
-  useUriHash,
-} from '@titicaca/react-contexts'
+  useLogin,
+  useLogout,
+  useHashRouter,
+} from '@titicaca/triple-web'
 
 import { useSessionCallback } from './use-session-callback'
 
-jest.mock('@titicaca/react-contexts')
 jest.mock('@titicaca/modals')
+jest.mock('@titicaca/triple-web')
 
 describe('useSessionCallback', () => {
   beforeEach(() => {
     ;(
-      useSessionControllers as unknown as jest.MockedFunction<
-        () => Pick<ReturnType<typeof useSessionControllers>, 'login'>
+      useLogin as unknown as jest.MockedFunction<
+        () => ReturnType<typeof useLogin>
       >
-    ).mockImplementation(() => ({ login: jest.fn() }))
+    ).mockImplementation(() => jest.fn())
+    ;(
+      useLogout as unknown as jest.MockedFunction<
+        () => ReturnType<typeof useLogout>
+      >
+    ).mockImplementation(() => jest.fn())
     ;(
       useLoginCtaModal as unknown as jest.MockedFunction<
         () => Pick<ReturnType<typeof useLoginCtaModal>, 'show'>
@@ -35,7 +41,7 @@ describe('useSessionCallback', () => {
     it('returns undefined value', () => {
       const { result } = renderHook(() => {
         const doAction = useSessionCallback(() => 'login')
-        const uriHash = useUriHash()
+        const { uriHash } = useHashRouter()
 
         return { uriHash, doAction }
       })
@@ -50,7 +56,7 @@ describe('useSessionCallback', () => {
           returnValue: 'fallback',
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any)
-        const uriHash = useUriHash()
+        const { uriHash } = useHashRouter()
 
         return { uriHash, doAction }
       })
@@ -69,7 +75,7 @@ describe('useSessionCallback', () => {
     it('returns the return value of fn', () => {
       const { result } = renderHook(() => {
         const doAction = useSessionCallback(() => 'login')
-        const uriHash = useUriHash()
+        const { uriHash } = useHashRouter()
 
         return { uriHash, doAction }
       })
