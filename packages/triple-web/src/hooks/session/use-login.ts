@@ -14,11 +14,11 @@ export function useLogin() {
   const env = useEnv()
 
   return useCallback(
-    (options: LoginOptions) => {
+    (options?: LoginOptions) => {
       if (clientApp) {
         handleClientApp(env.appUrlScheme)
       } else {
-        handleBrowser(options.returnUrl)
+        handleBrowser(options?.returnUrl)
       }
     },
     [clientApp, env.appUrlScheme],
