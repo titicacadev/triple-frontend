@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react'
-import { ImageSource } from '@titicaca/image-source'
 import styled from 'styled-components'
+
+import { ImageSource } from '../image-source'
 
 import ImageCarousel from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'

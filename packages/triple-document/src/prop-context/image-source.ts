@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { ImageSource } from '@titicaca/image-source'
+import { ImageSource } from '@titicaca/tds-widget'
 
 const ImageSourceContext = createContext<typeof ImageSource | undefined>(
   undefined,

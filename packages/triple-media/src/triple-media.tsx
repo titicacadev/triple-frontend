@@ -5,7 +5,7 @@ import {
   MarginPadding,
   OptimizedImgProps,
 } from '@titicaca/tds-ui'
-import { ImageSource } from '@titicaca/image-source'
+import { ImageSource } from '@titicaca/tds-widget'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type MediaMeta = ImageMeta
