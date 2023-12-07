@@ -47,7 +47,7 @@
     "@titicaca/next-i18next": "13.8.5",
     "@titicaca/prettier-config-triple": "1.1.0",
     "@titicaca/stylelint-config-triple": "1.2.1",
-    "@types/jest": "^29.5.10",
+    "@types/jest": "^29.5.11",
     "@types/node": "^18.18.7",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
