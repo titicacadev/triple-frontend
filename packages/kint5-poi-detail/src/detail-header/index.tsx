@@ -124,7 +124,7 @@ function DetailHeader({
                 }}
                 onClick={onReviewsRatingClick}
               >
-                <RatingV2 score={reviewsRating} />
+                <RatingV2 score={reviewsRating} fractionDigits={1} />
                 <Text css={{ fontSize: 13, marginTop: 1 }}>
                   ({formatNumber(reviewsCount)})
                 </Text>
