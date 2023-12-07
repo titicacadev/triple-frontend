@@ -1,16 +1,16 @@
 import styled, { css } from 'styled-components'
 import {
-  MarginPadding,
-  formatMarginPadding,
-  Text,
-  HR1,
   FlexBox,
+  HR1,
   HrProps,
-} from '@titicaca/core-elements'
-import { Color } from '@titicaca/color-palette'
+  MarginPadding,
+  Text,
+  formatMarginPadding,
+} from '@titicaca/tds-ui'
+import { Theme } from '@titicaca/tds-theme'
 
 interface BadgeProps {
-  backgroundColor?: Color
+  backgroundColor?: keyof Theme['colors']
   margin?: MarginPadding
 }
 
