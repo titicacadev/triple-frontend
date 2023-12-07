@@ -1,13 +1,13 @@
 import { FC, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
-import '@titicaca/core-elements'
+import '@titicaca/tds-ui'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { render, screen } from '@testing-library/react'
 import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('@titicaca/triple-web')
-jest.mock('@titicaca/core-elements', () => ({
-  ...jest.requireActual('@titicaca/core-elements'),
+jest.mock('@titicaca/tds-ui', () => ({
+  ...jest.requireActual('@titicaca/tds-ui'),
   longClickable: (Component: FC<{ children?: ReactNode; onClick: unknown }>) =>
     function WrappedLongClickable({
       onLongClick,
