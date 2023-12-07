@@ -1,11 +1,11 @@
 import styled from 'styled-components'
+import { Text } from '@titicaca/tds-ui'
 import {
   PoiListElement,
   PoiCarouselElement,
-  PoiListElementProps,
-  PoiListElementType,
-} from '@titicaca/poi-list-elements'
-import { Text } from '@titicaca/tds-ui'
+  type PoiListElementProps,
+  type PoiListElementType,
+} from '@titicaca/tds-widget'
 import { useTranslation } from 'react-i18next'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
