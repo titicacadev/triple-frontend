@@ -13,11 +13,9 @@ import {
   TransitionType,
   useTransitionModal,
 } from '@titicaca/triple-web'
-import {
-  ArticleCardCTA,
-  fetchInventoryItems,
-} from '@titicaca/app-installation-cta'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
+
+import { ArticleCardCTA, fetchInventoryItems } from '../../app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
