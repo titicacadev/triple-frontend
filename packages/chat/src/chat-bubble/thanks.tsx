@@ -33,7 +33,7 @@ export default function Thanks({
   return (
     <ThanksButton haveMine={haveMine} onClick={() => onClick?.()} {...props}>
       <img
-        src="https://assets.triple-dev.titicaca-corp.com/images/ic_chat_thumbsup_on.svg"
+        src="https://assets.triple.guide/images/ic_chat_thumbsup_on.svg"
         alt="좋아요 아이콘"
         width={11}
         height={11}
