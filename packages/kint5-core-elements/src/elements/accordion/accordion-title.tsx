@@ -1,49 +1,51 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { CSSObject } from 'styled-components'
+
+import { FlexBox } from '../flex-box'
+import { CaretDownIcon, CaretUpIcon } from '../icon'
 
 import { useAccordion } from './accordion-context'
 
-const folded =
-  'https://assets.triple.guide/images/ico-accordion-expand-fold@4x.png'
-const unfolded =
-  'https://assets.triple.guide/images/ico-accordion-expand-more@4x.png'
+export interface AccordionTitleProps {
+  foldIconPosition?: 'left' | 'right'
+  containerCss?: CSSObject
+}
 
-const Title = styled.button<{ active: boolean }>`
-  position: relative;
-  display: block;
-  width: 100%;
-  text-align: start;
+const CARET_ICON_SIZE_PX = 16
 
-  &::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 34px;
-    height: 34px;
-    background-image: ${({ active }) =>
-      active ? `url(${folded}) ` : `url(${unfolded}) `};
-    background-size: 34px 34px;
-    background-position: 0 -7px;
-    background-repeat: no-repeat;
-    content: '';
-    cursor: pointer;
-  }
-`
-
-export type AccordionTitleProps = PropsWithChildren
-
-export const AccordionTitle = ({ children, ...props }: AccordionTitleProps) => {
+export const AccordionTitle = ({
+  children,
+  foldIconPosition = 'left',
+  containerCss,
+  ...props
+}: PropsWithChildren<AccordionTitleProps>) => {
   const { active, contentId, foldedId, onActiveChange } = useAccordion()
 
   return (
-    <Title
-      active={active}
-      aria-controls={`${contentId} ${foldedId}`}
-      aria-expanded={active}
-      onClick={onActiveChange}
-      {...props}
+    <FlexBox
+      flex
+      css={{
+        alignItems: 'center',
+        justifyContent:
+          foldIconPosition === 'left' ? 'flex-start' : 'space-between',
+        ...(foldIconPosition === 'left' && { gap: 4 }),
+        ...containerCss,
+      }}
     >
-      {children}
-    </Title>
+      <button
+        aria-controls={`${contentId} ${foldedId}`}
+        aria-expanded={active}
+        onClick={onActiveChange}
+        css={{ display: 'flex', textAlign: 'start' }}
+        {...props}
+      >
+        {children}
+      </button>
+      {active ? (
+        <CaretUpIcon width={CARET_ICON_SIZE_PX} height={CARET_ICON_SIZE_PX} />
+      ) : (
+        <CaretDownIcon width={CARET_ICON_SIZE_PX} height={CARET_ICON_SIZE_PX} />
+      )}
+    </FlexBox>
   )
 }
