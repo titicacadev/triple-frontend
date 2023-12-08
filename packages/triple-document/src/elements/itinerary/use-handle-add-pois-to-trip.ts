@@ -16,7 +16,7 @@ interface Geotag {
 
 export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
   const { appUrlScheme } = useEnv()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleFn = useCallback(
     (poiId: string | string[]) => {

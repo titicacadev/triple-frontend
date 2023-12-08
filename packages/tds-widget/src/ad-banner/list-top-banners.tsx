@@ -62,7 +62,7 @@ function isPropsForInventoryApi(
 function useAdBannerProps(props: AdBannersProps) {
   const { latitude, longitude } = useGeolocation()
   const trackEvent = useTrackEvent()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   if (isPropsForInventoryApi(props)) {
     const { onBannersFetch, onBannerIntersect, onBannerClick } = props

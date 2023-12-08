@@ -5,7 +5,7 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { initialize } from './index'
 
 export function useStandardActionHandler() {
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const routeExternally = useExternalRouter()
   const { show } = useTransitionModal()
   const app = useTripleClientMetadata()

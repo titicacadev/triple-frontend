@@ -23,7 +23,7 @@ beforeEach(() => {
       () => ReturnType<typeof useNavigate>
     >
   ).mockImplementation(() => {
-    return () => {}
+    return { navigate: () => {}, openWindow: () => {} }
   })
   ;(
     useAppCallback as unknown as jest.MockedFunction<typeof useAppCallback>

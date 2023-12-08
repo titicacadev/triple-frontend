@@ -78,7 +78,7 @@ export function BookingCompletion({
   const { t } = useTranslation('triple-frontend')
 
   const regionName = region?.names.ko || region?.names.en
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleMoveToRegion = useAppCallback(
     TransitionType.General,

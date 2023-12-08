@@ -90,7 +90,7 @@ export default function ItineraryElement({ value }: Props) {
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
     useItinerary({ itinerary: value.itinerary, guestMode })
 
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const generatePoiClickHandler = useCallback(
     ({

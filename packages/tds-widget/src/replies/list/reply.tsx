@@ -92,7 +92,7 @@ export default function Reply({
   const { setEditingMessage } = useRepliesContext()
   const { addUriHash, removeUriHash } = useHashRouter()
   const { asyncBack } = useIsomorphicNavigation()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const likeReactionCount = likeReaction?.count
 
   const handleMoreClick = useCallback(
@@ -431,7 +431,7 @@ function Content({
 
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleMentiondUserNameClick = useAppCallback(
     TransitionType.General,

@@ -25,7 +25,7 @@ export default function PoiEntry({
   optimized?: boolean
 }) {
   const trackEvent = useTrackEvent()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleIntersectionChange = useCallback(
     ({ isIntersecting }: { isIntersecting: boolean }) => {

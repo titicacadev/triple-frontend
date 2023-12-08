@@ -42,7 +42,7 @@ const CouponIcon = styled.img`
 export function CouponModal({ identifier }: { identifier: string }) {
   const { t } = useTranslation('triple-frontend')
   const { uriHash, removeUriHash } = useHashRouter()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const modalHash = uriHash.replace(`${identifier}.`, '')
 
