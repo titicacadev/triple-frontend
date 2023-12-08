@@ -151,14 +151,9 @@ function ReviewsComponent({
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
         <Text bold size="huge" color="blue" alpha={1} inline>
-          <>
-            {
-              (t('{{totalReviewsCount}}개의 리뷰'),
-              {
-                totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
-              })
-            }
-          </>
+          {t('{{totalReviewsCount}}개의 리뷰', {
+            totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
+          })}
         </Text>
         <Text bold size="huge" color="gray" alpha={1} inline />
       </Container>
