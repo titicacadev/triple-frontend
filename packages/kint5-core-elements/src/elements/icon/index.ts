@@ -1,5 +1,6 @@
 export * from './bubble-icon'
 export * from './calendar-icon'
+export * from './caret-up-icon'
 export * from './close-icon'
 export * from './empty-checkbox-icon'
 export * from './empty-heart-icon'
