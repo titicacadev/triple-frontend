@@ -17,7 +17,7 @@ const meta: Meta<typeof Reviews> = {
     (Story) => (
       <>
         <Story />
-        <TransitionModal deepLink="/" />
+        <TransitionModal />
       </>
     ),
     (Story) => (
