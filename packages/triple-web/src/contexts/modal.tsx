@@ -6,6 +6,7 @@ import {
   LoginCtaModalRef,
   TransitionModalRef,
 } from '../types'
+import { LoginCtaModal, TransitionModal } from '../internal-components'
 
 export const ModalContext = createContext<ModalValue | undefined>(undefined)
 
@@ -33,6 +34,8 @@ export function ModalProvider({ children }: PropsWithChildren) {
       }}
     >
       {children}
+      <LoginCtaModal />
+      <TransitionModal />
     </ModalContext.Provider>
   )
 }
