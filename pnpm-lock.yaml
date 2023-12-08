@@ -781,7 +781,7 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.23.5)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
-  packages/triple-web-binding-nextjs:
+  packages/triple-web-nextjs:
     dependencies:
       '@titicaca/fetcher':
         specifier: workspace:*
@@ -806,7 +806,7 @@ importers:
         specifier: ^13.5.5
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
 
-  packages/triple-web-binding-nextjs-pages:
+  packages/triple-web-nextjs-pages:
     dependencies:
       '@titicaca/fetcher':
         specifier: workspace:*
