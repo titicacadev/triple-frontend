@@ -9,6 +9,7 @@ import {
   useSessionAvailability,
   useLoginCtaModal,
   useTransitionModal,
+  TransitionType,
 } from '@titicaca/triple-web'
 import {
   OutlinkOptions,
@@ -21,8 +22,12 @@ import qs from 'qs'
 import canonizeTargetAddress from './canonization'
 
 export function useNavigate({
+  transitionType = TransitionType.General,
   changeLocationHref = defaultChangeLocationHref,
-}: { changeLocationHref?: (href: string) => void } = {}) {
+}: {
+  changeLocationHref?: (href: string) => void
+  transitionType?: TransitionType
+} = {}) {
   const { webUrlBase, appUrlScheme } = useEnv()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
@@ -43,7 +48,7 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal()
+      showTransitionModal(transitionType)
     },
     [changeLocationHref, showTransitionModal, webUrlBase],
   )
