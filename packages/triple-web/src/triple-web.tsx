@@ -6,22 +6,25 @@ import {
   ClientAppContext,
   EnvContext,
   I18nProvider,
-  I18nValue,
   ModalProvider,
   SessionProvider,
   UserAgentContext,
   HashRouterProvider,
 } from './contexts'
-import { ClientAppValue, EnvValue, SessionValue, UserAgentValue } from './types'
-import { LoginCtaModal } from './internal-components/login-cta-modal'
-import { TransitionModal } from './internal-components/transition-modal'
+import {
+  ClientAppValue,
+  EnvValue,
+  I18nValue,
+  SessionValue,
+  UserAgentValue,
+} from './types'
 
 export interface TripleWebProps extends PropsWithChildren {
-  clientAppProvider?: ClientAppValue
-  envProvider?: EnvValue
-  i18nProvider?: I18nValue
-  sessionProvider?: SessionValue
-  userAgentProvider?: UserAgentValue
+  clientAppProvider: ClientAppValue
+  envProvider: EnvValue
+  i18nProvider: I18nValue
+  sessionProvider: SessionValue
+  userAgentProvider: UserAgentValue
 }
 
 export function TripleWeb({
@@ -35,15 +38,11 @@ export function TripleWeb({
   return (
     <ClientAppContext.Provider value={clientAppProvider}>
       <EnvContext.Provider value={envProvider}>
-        <I18nProvider {...i18nProvider}>
+        <I18nProvider i18n={i18nProvider.i18n} lang={i18nProvider.lang}>
           <SessionProvider initialSession={sessionProvider}>
             <UserAgentContext.Provider value={userAgentProvider}>
               <HashRouterProvider>
-                <ModalProvider>
-                  {children}
-                  <LoginCtaModal />
-                  <TransitionModal />
-                </ModalProvider>
+                <ModalProvider>{children}</ModalProvider>
               </HashRouterProvider>
             </UserAgentContext.Provider>
           </SessionProvider>
