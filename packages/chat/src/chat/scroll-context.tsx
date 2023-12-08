@@ -31,6 +31,10 @@ export interface ScrollContextValue {
   setScrollY: Dispatch<SetStateAction<number | null>>
   /** 상대적인 좌표로 스크롤합니다. input resize 이벤트, 키보드 이벤트 등에 사용할 수 있습니다. */
   setScrollBy: Dispatch<SetStateAction<number | null>>
+  /** setScrollY, setScrollBy가 실행되지 않도록 설정했는지의 여부입니다. */
+  scrollPrevented: boolean
+  /** setScrollY, setScrollBy가 실행되지 않도록 설정할 수 있습니다. */
+  preventScroll: () => void
   /** 스크롤을 하기위한 element ref입니다. ChatScrollContainer 컴포넌트에서 사용합니다.  */
   chatContainerRef: MutableRefObject<HTMLDivElement | null>
   /** 스크롤값을 계산하기 위한 ref입니다. ChatScrollContainer 컴포넌트에서 사용합니다.  */
@@ -50,6 +54,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 
   const [scrollY, setScrollY] = useState<number | null>(null)
   const [scrollBy, setScrollBy] = useState<number | null>(null)
+  const [scrollPrevented, setScrollPrevented] = useState<boolean>(false)
 
   const scrollToBottom = ({
     shouldFetchRecentPage,
@@ -83,8 +88,12 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     return scrollContainerRef.current?.getBoundingClientRect().height || 0
   }
 
+  const preventScroll = () => {
+    setScrollPrevented(true)
+  }
+
   useLayoutEffect(() => {
-    if (scrollY !== null && chatContainerRef.current) {
+    if (scrollY !== null && chatContainerRef.current && !scrollPrevented) {
       /* 
         iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가합니다.
         ref: https://github.com/titicacadev/triple-geochat-web/pull/99  
@@ -93,13 +102,20 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
       chatContainerRef.current.scrollTo(0, getScrollContainerHeight() - scrollY)
       chatContainerRef.current.style.overflowY = 'scroll'
     }
+
+    if (scrollPrevented) {
+      setScrollPrevented(false)
+    }
   }, [chatContainerRef, scrollY])
 
   useLayoutEffect(() => {
-    /** 역스크롤 예외처리는 각 프로젝트에서 처리합니다. */
-    if (scrollBy !== null && chatContainerRef.current) {
+    if (scrollBy !== null && chatContainerRef.current && !scrollPrevented) {
       chatContainerRef.current.scrollBy({ top: scrollBy })
       setScrollBy(null)
+    }
+
+    if (scrollPrevented) {
+      setScrollPrevented(false)
     }
   }, [chatContainerRef, scrollBy])
 
@@ -108,6 +124,8 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     scrollToMessage,
     setScrollY,
     setScrollBy,
+    scrollPrevented,
+    preventScroll,
     chatContainerRef,
     scrollContainerRef,
     bottomRef,
