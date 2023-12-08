@@ -78,3 +78,15 @@ export const Advertisement = {
     isAdvertisement: true,
   },
 }
+
+export const Badge = {
+  render: Template,
+
+  args: {
+    ...defaultArgs,
+    badge: {
+      icon: 'https://assets.triple.guide/images/seoulcon/default/ic_spot.svg',
+      text: '즉시확정',
+    },
+  },
+}
