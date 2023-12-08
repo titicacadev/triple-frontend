@@ -39,7 +39,9 @@ describe('브라우저', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
       navigate(href)
@@ -61,7 +63,9 @@ describe('브라우저', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
       navigate(href)
 
@@ -75,7 +79,9 @@ describe('브라우저', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(`/inlink?path=${encodeURIComponent(routablePath)}`)
@@ -105,7 +111,9 @@ describe('앱', () => {
       const changeLocationHref = jest.fn()
 
       const {
-        result: { current: navigate },
+        result: {
+          current: { navigate },
+        },
       } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
       navigate(href)
@@ -124,7 +132,9 @@ describe('앱', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(href)
@@ -140,7 +150,9 @@ describe('앱', () => {
     const changeLocationHref = jest.fn()
 
     const {
-      result: { current: navigate },
+      result: {
+        current: { navigate },
+      },
     } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
 
     navigate(href)
