@@ -10,7 +10,7 @@ import { useNavigate } from '@titicaca/router'
  */
 export default function useHandleAddPoiToTrip(regionId?: string) {
   const { appUrlScheme } = useEnv()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleFn = useCallback(
     (poiId: string | string[]) => {

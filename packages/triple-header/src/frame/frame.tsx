@@ -53,7 +53,7 @@ export function Frame({
   const heightRatio = calculateFrameRatio(height)
 
   const trackEventWithMetadata = useTrackEventWithMetadata()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const routeExternally = useExternalRouter()
 
   const handleAction = useMemo(
