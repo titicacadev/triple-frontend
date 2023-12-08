@@ -199,7 +199,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
           {badge ? (
             <Container css={{ margin: '7px 0 0' }}>
               <Badge icon={badge.icon}>
-                <Text bold size={12} lineHeight="24px">
+                <Text bold inline size={12} lineHeight="24px">
                   {badge.text}
                 </Text>
               </Badge>
