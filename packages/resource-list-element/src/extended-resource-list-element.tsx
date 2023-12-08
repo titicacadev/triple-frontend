@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
@@ -38,6 +38,10 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
     color?: LabelColor
     emphasized?: boolean
   }[]
+  badge?: {
+    text: string
+    icon?: string
+  }
   scrapsCount?: number
   reviewsCount?: number
   reviewsRating?: number
@@ -60,6 +64,29 @@ const LabelContainer = styled.div`
   bottom: 20px;
 `
 
+const Badge = styled.div<{ icon?: string }>`
+  padding: 0 5px;
+  border-radius: 4px;
+  border: 1px solid var(--color-gray100);
+  display: inline-block;
+
+  ${({ icon }) =>
+    icon &&
+    css`
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+        background-image: url(${icon});
+        background-size: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    `};
+`
+
 function ExtendedResourceListElement<R extends ResourceMeta>({
   resource,
   scrapResource,
@@ -72,6 +99,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
   distanceSuffix = 'm',
   note,
   tags,
+  badge,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -165,6 +193,16 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                   {note}
                 </Text>
               ) : null}
+            </Container>
+          ) : null}
+
+          {badge ? (
+            <Container css={{ margin: '7px 0 0' }}>
+              <Badge icon={badge.icon}>
+                <Text bold size={12} lineHeight="24px">
+                  {badge.text}
+                </Text>
+              </Badge>
             </Container>
           ) : null}
         </Container>
