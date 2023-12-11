@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
-import {
-  useSessionAvailability,
-  useLogin,
-  useLoginCtaModal,
-} from '@titicaca/triple-web'
+
+import { useLoginCtaModal } from '../modal'
+
+import { useSessionAvailability } from './use-session-availability'
+import { useLogin } from './use-login'
 
 /**
  * sessionId가 있는 환경에서만 주어진 콜백을 실행하는 함수를 반환하는 훅
@@ -47,14 +47,14 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
           if (skipTransitionModal) {
             login({ returnUrl })
           } else {
-            show(returnUrl, triggeredEventAction)
+            show({ returnUrl, triggeredEventAction })
           }
 
           return returnValue
         } else {
           const [returnValue, returnUrl] = options
 
-          show(returnUrl)
+          show({ returnUrl })
 
           return returnValue
         }
