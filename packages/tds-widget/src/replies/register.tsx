@@ -2,8 +2,11 @@ import { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
-import { useSessionAvailability, useLoginCtaModal } from '@titicaca/triple-web'
-import { useSessionCallback } from '@titicaca/ui-flow'
+import {
+  useSessionAvailability,
+  useLoginCtaModal,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 
 import { authorMessage } from './replies-api-client'
 import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'

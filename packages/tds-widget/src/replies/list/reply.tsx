@@ -11,9 +11,13 @@ import {
   ActionSheetItem,
 } from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useNavigate } from '@titicaca/router'
-import { useHashRouter, TransitionType } from '@titicaca/triple-web'
+import {
+  useHashRouter,
+  TransitionType,
+  useSessionCallback,
+  useClientAppCallback,
+} from '@titicaca/triple-web'
 import { useIsomorphicNavigation } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType, Writer } from '../types'
@@ -187,7 +191,7 @@ export default function Reply({
     false,
   )
 
-  const handleReportReplyClick = useAppCallback(
+  const handleReportReplyClick = useClientAppCallback(
     TransitionType.General,
     useCallback(
       (id: string) => {
@@ -230,7 +234,7 @@ export default function Reply({
     childrenCount,
   })
 
-  const handleUserClick = useAppCallback(
+  const handleUserClick = useClientAppCallback(
     TransitionType.General,
     useSessionCallback(
       useCallback(
@@ -433,7 +437,7 @@ function Content({
   const foldedPosition = findFoldedPosition(5, text)
   const { navigate } = useNavigate()
 
-  const handleMentiondUserNameClick = useAppCallback(
+  const handleMentiondUserNameClick = useClientAppCallback(
     TransitionType.General,
     useCallback(
       (href: string) => {

@@ -1,8 +1,11 @@
 import { PropsWithChildren } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { TripleWeb } from '@titicaca/triple-web'
+import {
+  TripleWeb,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 
 import { RepliesProvider } from './context'
 import Reply from './list/reply'
@@ -26,7 +29,9 @@ beforeEach(() => {
     return { navigate: () => {}, openWindow: () => {} }
   })
   ;(
-    useAppCallback as unknown as jest.MockedFunction<typeof useAppCallback>
+    useClientAppCallback as unknown as jest.MockedFunction<
+      typeof useClientAppCallback
+    >
   ).mockImplementation((_, fn) => fn)
   ;(
     useSessionCallback as unknown as jest.MockedFunction<

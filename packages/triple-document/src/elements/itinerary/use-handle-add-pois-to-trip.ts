@@ -1,8 +1,12 @@
 import qs from 'qs'
 import { useCallback } from 'react'
 import { generateUrl } from '@titicaca/view-utilities'
-import { useEnv, TransitionType } from '@titicaca/triple-web'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import {
+  useEnv,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 /**
@@ -34,7 +38,7 @@ export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
     [navigate, geotag, appUrlScheme],
   )
 
-  return useAppCallback(
+  return useClientAppCallback(
     TransitionType.AddPoisToTripSelect,
     useSessionCallback(handleFn),
   )
