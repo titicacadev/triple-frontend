@@ -1,8 +1,12 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
 import { useClientActions } from '../services'
@@ -41,7 +45,7 @@ export const FullListButton = ({
   const trackEvent = useTrackEvent()
   const { navigateReviewList } = useClientActions()
 
-  const fullListButtonClickCallback = useAppCallback(
+  const fullListButtonClickCallback = useClientAppCallback(
     TransitionType.OpenReviewList,
     useSessionCallback(
       useCallback(() => {

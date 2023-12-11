@@ -5,12 +5,13 @@ import {
   useTrackEvent,
   useHashRouter,
   TransitionType,
+  useSessionCallback,
+  useClientAppCallback,
 } from '@titicaca/triple-web'
 import {
   useTripleClientActions,
   useTripleClientMetadata,
 } from '@titicaca/react-triple-client-interfaces'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
 import * as CSS from 'csstype'
 import moment from 'moment'
@@ -179,7 +180,7 @@ export function ReviewElement({
     }, [app, isMyReview, onMenuClick, addUriHash, review.id]),
   )
 
-  const handleReviewClick = useAppCallback(
+  const handleReviewClick = useClientAppCallback(
     TransitionType.ReviewSelect,
     useCallback(() => {
       trackEvent({
@@ -233,7 +234,7 @@ export function ReviewElement({
     { triggeredEventAction: likeButtonAction },
   )
 
-  const handleMessageCountClick = useAppCallback(
+  const handleMessageCountClick = useClientAppCallback(
     TransitionType.ReviewCommentSelect,
     useSessionCallback(
       useCallback(() => {

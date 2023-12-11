@@ -1,6 +1,10 @@
 import { ButtonBase } from '@titicaca/tds-ui'
-import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import {
+  useTrackEvent,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 import { useCallback } from 'react'
 import styled from 'styled-components'
 
@@ -21,7 +25,7 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   const trackEvent = useTrackEvent()
   const { writeReview } = useClientActions()
 
-  const handleClick = useAppCallback(
+  const handleClick = useClientAppCallback(
     TransitionType.ReviewWrite,
     useSessionCallback(
       useCallback(() => {

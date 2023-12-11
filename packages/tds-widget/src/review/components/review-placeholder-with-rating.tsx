@@ -2,8 +2,12 @@ import { SyntheticEvent, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
@@ -71,7 +75,7 @@ export function ReviewsPlaceholder({
   const trackEvent = useTrackEvent()
   const { writeReview, navigateReviewList } = useClientActions()
 
-  const handleFullClick = useAppCallback(
+  const handleFullClick = useClientAppCallback(
     TransitionType.OpenReviewList,
     useSessionCallback(
       useCallback(() => {
@@ -94,7 +98,7 @@ export function ReviewsPlaceholder({
     ),
   )
 
-  const handleWriteClick = useAppCallback(
+  const handleWriteClick = useClientAppCallback(
     TransitionType.ReviewWrite,
     useSessionCallback(
       useCallback(
