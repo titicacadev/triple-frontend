@@ -12,7 +12,7 @@ import { useClientApp } from './use-client-app'
  *
  * Usage
  *
- * const invokeNativeFn= useAppCallback(TransitionType.Some, () => {})
+ * const invokeNativeFn= useClientAppCallback(TransitionType.Some, () => {})
  */
 export function useClientAppCallback<T extends (...args: any[]) => any, V>(
   transitionType: TransitionType,
