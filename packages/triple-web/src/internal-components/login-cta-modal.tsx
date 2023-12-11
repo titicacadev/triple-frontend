@@ -37,15 +37,15 @@ export function LoginCtaModal() {
 
   useEffect(() => {
     if (open) {
-      const triggeredEventLabel =
-        loginCtaModalRef.current.triggeredEventLabel ?? ''
+      const triggeredEventAction =
+        loginCtaModalRef.current.triggeredEventAction ?? ''
 
       trackEvent(
         {
-          ga: ['로그인유도팝업_노출', triggeredEventLabel],
+          ga: ['로그인유도팝업_노출', triggeredEventAction],
           fa: {
             action: '로그인유도팝업_노출',
-            referrer_event: triggeredEventLabel,
+            referrer_event: triggeredEventAction,
           },
         },
         eventTrackingContextForkRef.current,
