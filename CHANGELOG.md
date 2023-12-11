@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.14.0
+
+### chat
+
+- [Chat] 좋아요 기능 추가 [#3017](https://github.com/titicacadev/triple-frontend/pull/3017)
+
+### react-contexts
+
+- [react-contexts] 틱톡 pixel 이벤트를 추가합니다. [#3053](https://github.com/titicacadev/triple-frontend/pull/3053)
+
 ## v13.13.0
 
 ### poi-detail
