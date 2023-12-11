@@ -213,7 +213,7 @@ export function EventTrackingProvider({
   )
 
   const trackEvent: EventTrackingContextValue['trackEvent'] = useCallback(
-    ({ ga, fa, pixel }) => {
+    ({ ga, fa, pixel, tiktokPixel }) => {
       try {
         if (window.ga && ga) {
           const [action, label] = ga
@@ -224,6 +224,10 @@ export function EventTrackingProvider({
           const { type = 'trackCustom', action, payload } = pixel
 
           window.fbq(type, action, { pageLabel, ...payload })
+        }
+
+        if (window.ttq && tiktokPixel) {
+          window.ttq(tiktokPixel.type, tiktokPixel.params)
         }
 
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
