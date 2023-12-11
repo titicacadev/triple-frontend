@@ -28,7 +28,7 @@ import { useUser } from '../session-context'
 import {
   FirebaseAnalyticsParams,
   GoogleAnalyticsParams,
-  PixelParams,
+  FacebookPixelParams,
 } from './types'
 
 const NOOP = () => {}
@@ -48,7 +48,7 @@ export interface EventTrackingContextValue {
      * type을 "track"으로 설정하면 주어진 action만 사용할 수 있습니다.
      * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
      */
-    pixel?: PixelParams
+    pixel?: FacebookPixelParams
   }) => void
   /**
    * 하나의 파라미터로 GA, FA 이벤트를 기록합니다.
