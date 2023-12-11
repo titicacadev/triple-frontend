@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback } from 'react'
-import { TransitionType, useTransitionModal } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+
+import { useTransitionModal } from '../modal'
+import { TransitionType } from '../../constants'
+
+import { useClientApp } from './use-client-app'
 
 /**
  * User Agent가 앱 환경일 때만 주어진 콜백을 실행하는 함수를 반환하는 훅
@@ -10,19 +14,17 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
  *
  * const invokeNativeFn= useAppCallback(TransitionType.Some, () => {})
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useAppCallback<T extends (...args: any[]) => any, V>(
+export function useClientAppCallback<T extends (...args: any[]) => any, V>(
   transitionType: TransitionType,
   fn: T,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   returnValue?: V,
-): (...args: Parameters<T>) => ReturnType<T> | void | V {
-  const app = useTripleClientMetadata()
+): (...args: Parameters<T>) => ReturnType<T> {
+  const clientApp = useClientApp()
   const { show } = useTransitionModal()
 
   return useCallback(
     (...args) => {
-      if (app) {
+      if (clientApp) {
         return fn(...args)
       }
 
@@ -30,6 +32,6 @@ export function useAppCallback<T extends (...args: any[]) => any, V>(
 
       return returnValue
     },
-    [fn, app, show, transitionType, returnValue],
+    [clientApp, show, transitionType, returnValue, fn],
   )
 }
