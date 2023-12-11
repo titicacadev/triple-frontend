@@ -29,6 +29,9 @@ import {
   FirebaseAnalyticsParams,
   GoogleAnalyticsParams,
   FacebookPixelParams,
+  TiktokPixelEvent,
+  TiktokPixelEventType,
+  TiktokPixelEventParams,
 } from './types'
 
 const NOOP = () => {}
@@ -49,6 +52,10 @@ export interface EventTrackingContextValue {
      * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
      */
     pixel?: FacebookPixelParams
+    /**
+     * tiktok pixel 이벤트 파라미터
+     */
+    tiktokPixel?: TiktokPixelEvent
   }) => void
   /**
    * 하나의 파라미터로 GA, FA 이벤트를 기록합니다.
@@ -149,6 +156,7 @@ declare global {
       action: string,
       payload?: { [key: string]: unknown },
     ) => void
+    ttq?: (type: TiktokPixelEventType, params?: TiktokPixelEventParams) => void
   }
 }
 
