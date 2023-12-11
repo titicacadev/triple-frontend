@@ -18,7 +18,7 @@ const ActionButton = styled.button`
 
 const ActionButtonText = styled(Text)`
   color: var(--color-kint5-gray100);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   padding-top: 32px;
 `
