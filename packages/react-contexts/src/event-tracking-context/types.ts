@@ -86,5 +86,5 @@ export interface TiktokPixelEventParams {
 
 export interface TiktokPixelEvent {
   type: TiktokPixelEventType
-  params: TiktokPixelEventParams
+  params?: TiktokPixelEventParams
 }
