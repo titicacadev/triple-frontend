@@ -1,21 +1,14 @@
 import styled, { css } from 'styled-components'
-import { PropsWithChildren, useRef, useEffect, useState } from 'react'
-import { useUserAgentContext } from '@titicaca/react-contexts'
-import { FlickingOptions } from '@egjs/flicking'
-import Flicking from '@egjs/react-flicking'
+import { PropsWithChildren, useRef } from 'react'
 
-import { MarginPadding } from '../../commons'
-import { formatMarginPadding, marginMixin } from '../../mixins'
-import { Container } from '../container'
+import { marginMixin } from '../../mixins'
+import type { MarginPadding } from '../../commons'
 
-import ArrowIcon from './arrow-icon'
-import CarouselItem from './carousel-item'
+import { CarouselItem } from './carousel-item'
 
 interface CarouselBaseProps {
-  noFlicking?: boolean
   margin?: MarginPadding
   containerPadding?: { left: number; right: number }
-  className?: string
 }
 
 const CarouselBase = styled.ul<CarouselBaseProps>`
@@ -42,109 +35,16 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
     `};
 `
 
-const FlickingScrollButton = styled.button<{
-  direction: 'left' | 'right'
-  containerPadding?: { left: number; right: number }
-}>`
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  top: calc(50% - 30px);
-  ${({ direction, containerPadding }) => css`
-    ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
-  `}
-  z-index: 60;
-  outline: none;
-`
-
-const FLICK_ATTRIBUTES: Partial<FlickingOptions> = {
-  deceleration: 0.0075,
-  horizontal: true,
-  circular: true,
-  infinite: false,
-  infiniteThreshold: 0,
-  lastIndex: Infinity,
-  threshold: 40,
-  duration: 100,
-  panelEffect: (x: number) => 1 - Math.pow(1 - x, 3),
-  defaultIndex: 0,
-  thresholdAngle: 45,
-  bounce: 10,
-  autoResize: false,
-  adaptive: false,
-  bound: false,
-  overflow: false,
-  hanger: '50%',
-  anchor: '50%',
-  gap: 10,
-  moveType: { type: 'snap', count: 1 },
-  collectStatistics: false,
-  zIndex: 50,
-  classPrefix: 'eg-flick',
-}
-
-const FlickingContainer = styled.div`
-  .eg-flick-panel {
-    margin-left: 0 !important;
-  }
-`
-
-function Carousel({
-  noFlicking,
+export function Carousel({
   margin,
   containerPadding,
   children,
-  className,
 }: PropsWithChildren<CarouselBaseProps>) {
   const carouselRef = useRef<HTMLUListElement>(null)
-  const flickingRef = useRef<Flicking>(null)
-  const [scrollable, setScrollable] = useState(false)
-  const { isMobile } = useUserAgentContext()
 
-  useEffect(() => {
-    const carouselElement = carouselRef.current
-
-    if (!carouselElement) {
-      return
-    }
-
-    if (carouselElement.scrollWidth > carouselElement.clientWidth) {
-      setScrollable(true)
-    }
-  }, [carouselRef])
-
-  return !noFlicking && !isMobile && scrollable ? (
-    <Container
-      position="relative"
-      css={css`
-        ${formatMarginPadding(margin, 'margin')}
-        ${formatMarginPadding(containerPadding, 'padding')}
-      `}
-    >
-      <FlickingScrollButton
-        containerPadding={containerPadding}
-        direction="left"
-        onClick={() => flickingRef.current?.prev()}
-      >
-        <ArrowIcon direction="left" />
-      </FlickingScrollButton>
-      <FlickingContainer>
-        <Flicking ref={flickingRef} {...FLICK_ATTRIBUTES}>
-          {children}
-        </Flicking>
-      </FlickingContainer>
-      <FlickingScrollButton
-        containerPadding={containerPadding}
-        direction="right"
-        onClick={() => flickingRef.current?.next()}
-      >
-        <ArrowIcon direction="right" />
-      </FlickingScrollButton>
-    </Container>
-  ) : (
+  return (
     <CarouselBase
       ref={carouselRef}
-      className={className}
       margin={margin}
       containerPadding={containerPadding}
     >
@@ -154,5 +54,3 @@ function Carousel({
 }
 
 Carousel.Item = CarouselItem
-
-export default Carousel
