@@ -1,6 +1,9 @@
-import { useTrackEvent, TransitionType } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  TransitionType,
+  useClientAppCallback,
+} from '@titicaca/triple-web'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'
 
 import { useClientActions } from '../../../services'
@@ -30,7 +33,7 @@ function Media({ media, reviewId }: Props) {
   const length = Math.min(sortedMedia.length, limit)
   const restLength = sortedMedia.length - length
 
-  const onMediumClick = useAppCallback(
+  const onMediumClick = useClientAppCallback(
     TransitionType.ReviewThumbnail,
     (medium: ImageMeta) => {
       const originalIndex = media.findIndex(
