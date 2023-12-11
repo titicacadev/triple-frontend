@@ -14,8 +14,8 @@ const ActionButton = styled.button`
   position: relative;
   font-weight: 400;
   color: var(--color-kint5-gray60);
-  width: 74px;
-  flex: 0 0 74px;
+  width: 80px;
+  flex: 0 0 80px;
 `
 
 const ActionButtonText = styled(Text)`
