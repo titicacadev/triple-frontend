@@ -6,16 +6,16 @@ export interface FirebaseAnalyticsParams {
 
 export type GoogleAnalyticsParams = (string | undefined)[]
 
-interface PixelPayload {
+interface FacebookPixelPayload {
   [key: string]: unknown
 }
 
 /**
- * Pixel 표준 이벤트입니다.
+ * Facebook Pixel 표준 이벤트입니다.
  *
  * ref: https://www.facebook.com/business/help/402791146561655?id=1205376682832142
  */
-interface PixelStandardEvent {
+interface FacebookPixelStandardEvent {
   type: 'track'
   action:
     | 'AddPaymentInfo'
@@ -35,16 +35,16 @@ interface PixelStandardEvent {
     | 'SubmitApplication'
     | 'Subscribe'
     | 'ViewContent'
-  payload?: PixelPayload
+  payload?: FacebookPixelPayload
 }
 
-interface PixelCustomEvent {
+interface FacebookPixelCustomEvent {
   type: 'trackCustom'
   action: string
-  payload?: PixelPayload
+  payload?: FacebookPixelPayload
 }
 
-export type PixelParams =
-  | PixelStandardEvent
-  | PixelCustomEvent
-  | (Omit<PixelCustomEvent, 'type'> & { type?: never })
+export type FacebookPixelParams =
+  | FacebookPixelStandardEvent
+  | FacebookPixelCustomEvent
+  | (Omit<FacebookPixelCustomEvent, 'type'> & { type?: never })
