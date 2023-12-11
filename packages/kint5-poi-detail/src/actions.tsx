@@ -12,15 +12,15 @@ import { ActionButtonIcon } from './action-button-icon'
 
 const ActionButton = styled.button`
   position: relative;
-  font-size: 12px;
   font-weight: 400;
   color: var(--color-kint5-gray60);
   width: 74px;
+  flex: 0 0 74px;
 `
 
 const ActionButtonText = styled(Text)`
   color: var(--color-kint5-gray100);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
   padding-top: 32px;
 `
