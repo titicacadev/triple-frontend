@@ -1,1 +1,2 @@
-export { default as Carousel } from './carousel'
+export * from './carousel'
+export * from './flicking-carousel'

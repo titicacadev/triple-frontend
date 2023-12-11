@@ -31,7 +31,7 @@ const Item = styled.li<{ size?: CarouselSizes }>`
   }
 `
 
-export default function CarouselItem({
+export function CarouselItem({
   size,
   children,
   threshold,
