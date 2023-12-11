@@ -4,7 +4,8 @@ import { useEventTrackingContext } from './event-tracking-context'
 import {
   FirebaseAnalyticsParams,
   GoogleAnalyticsParams,
-  PixelParams,
+  FacebookPixelParams,
+  TiktokPixelEvent,
 } from './types'
 
 interface EventMetadataContext {
@@ -41,12 +42,14 @@ export function useEventTrackerWithMetadata() {
   return (params: {
     ga?: GoogleAnalyticsParams
     fa?: Partial<FirebaseAnalyticsParams>
-    pixel?: PixelParams
+    pixel?: FacebookPixelParams
+    tiktokPixel?: TiktokPixelEvent
   }) => {
     trackEvent({
       ga: getGoogleAnalyticsWithMetadata(params.ga, eventMetadata),
       fa: getFirebaseAnalyticsWithMetadata(params.fa, eventMetadata),
-      pixel: getPixelWithMetadata(params.pixel, eventMetadata),
+      pixel: getFacebookPixelWithMetadata(params.pixel, eventMetadata),
+      tiktokPixel: params.tiktokPixel,
     })
   }
 }
@@ -86,8 +89,8 @@ function getGoogleAnalyticsWithMetadata(
   return ga
 }
 
-function getPixelWithMetadata(
-  pixel?: PixelParams,
+function getFacebookPixelWithMetadata(
+  pixel?: FacebookPixelParams,
   eventMetaContext?: EventMetadataContext,
 ) {
   if (!pixel) {
