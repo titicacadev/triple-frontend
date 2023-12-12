@@ -42,7 +42,8 @@
     "ua-parser-js": "^1.0.36"
   },
   "devDependencies": {
-    "@titicaca/triple-web": "workspace:*"
+    "@titicaca/triple-web": "workspace:*",
+    "@types/ua-parser-js": "^0.7.37"
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*"
