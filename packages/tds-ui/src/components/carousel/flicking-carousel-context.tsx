@@ -1,33 +1,49 @@
-import { PropsWithChildren, createContext, useContext, useMemo } from 'react'
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useMemo,
+  forwardRef,
+  ForwardedRef,
+} from 'react'
 import type { FlickingProps } from '@egjs/react-flicking'
 import type { FlickingOptions } from '@egjs/flicking'
+import Flicking from '@egjs/react-flicking'
 
-interface FlickingEvent {
+interface FlickingCarouselBase {
+  flickingRef: ForwardedRef<Flicking>
+}
+
+interface FlickingEvents {
   onMoveStart?: FlickingProps['onMoveStart']
   onMove?: FlickingProps['onMove']
   onMoveEnd?: FlickingProps['onMoveEnd']
   options?: Partial<FlickingOptions>
 }
 
-const FlickingCarouselContext = createContext<FlickingEvent | undefined>(
-  undefined,
-)
+const FlickingCarouselContext = createContext<
+  (FlickingCarouselBase & FlickingEvents) | undefined
+>(undefined)
 
-export function FlickingCarouselProvider({
-  onMoveStart,
-  onMove,
-  onMoveEnd,
-  options,
-  children,
-}: PropsWithChildren<FlickingEvent>) {
+function FlickingCarouselProvider(
+  {
+    onMoveStart,
+    onMove,
+    onMoveEnd,
+    options,
+    children,
+  }: PropsWithChildren<FlickingEvents>,
+  flickingRef: ForwardedRef<Flicking>,
+) {
   const values = useMemo(
     () => ({
+      flickingRef,
       onMoveStart,
       onMove,
       onMoveEnd,
       options,
     }),
-    [onMove, onMoveEnd, onMoveStart, options],
+    [flickingRef, onMove, onMoveEnd, onMoveStart, options],
   )
 
   return (
@@ -36,6 +52,8 @@ export function FlickingCarouselProvider({
     </FlickingCarouselContext.Provider>
   )
 }
+
+export default forwardRef(FlickingCarouselProvider)
 
 export function useFlickingCarousel() {
   const context = useContext(FlickingCarouselContext)
