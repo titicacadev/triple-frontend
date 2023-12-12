@@ -1,4 +1,4 @@
-import { PropsWithChildren, forwardRef, ForwardedRef } from 'react'
+import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import Flicking from '@egjs/react-flicking'
 import type { FlickingOptions } from '@egjs/flicking'
@@ -37,18 +37,18 @@ const FLICKING_OPTIONS: Partial<FlickingOptions> = {
   classPrefix: 'eg-flick',
 }
 
-function FlickingCarousel(
-  { children }: PropsWithChildren<unknown>,
-  ref: ForwardedRef<Flicking>,
-) {
-  const { options, onMoveStart, onMove, onMoveEnd } = useFlickingCarousel()
+export function FlickingCarouselContent({
+  children,
+}: PropsWithChildren<unknown>) {
+  const { flickingRef, options, onMoveStart, onMove, onMoveEnd } =
+    useFlickingCarousel()
 
   const flickingOptions = options ?? FLICKING_OPTIONS
 
   return (
     <FlickingContainer>
       <Flicking
-        ref={ref}
+        ref={flickingRef}
         onMoveStart={onMoveStart}
         onMove={onMove}
         onMoveEnd={onMoveEnd}
@@ -59,5 +59,3 @@ function FlickingCarousel(
     </FlickingContainer>
   )
 }
-
-export default forwardRef(FlickingCarousel)
