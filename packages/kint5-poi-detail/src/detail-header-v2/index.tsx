@@ -39,15 +39,10 @@ const ArrowButton = styled.button`
 
 const LongClickableSection = longClickable(Section)
 
-interface Area {
-  id: number | string
-  name: string
-}
-
 function DetailHeaderV2({
   names,
   areaName,
-  areas = [],
+  regionName,
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -59,10 +54,7 @@ function DetailHeaderV2({
 }: {
   names: TranslatedProperty
   areaName?: string
-  /**
-   * @deprecated areaName 으로 통합됩니다.
-   */
-  areas?: Area[]
+  regionName?: string
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
@@ -123,8 +115,7 @@ function DetailHeaderV2({
         )}
         <AreaNames
           areaName={areaName}
-          areas={areas}
-          vicinity={vicinity}
+          regionName={regionName}
           arrowAction={
             onAreaClick ? (
               <ArrowButton onClick={onAreaClick}>
