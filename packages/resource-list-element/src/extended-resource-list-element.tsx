@@ -67,7 +67,7 @@ const LabelContainer = styled.div`
 const Badge = styled.div<{ icon?: string }>`
   padding: 0 5px 0 ${({ icon }) => (icon ? 4 : 5)}px;
   border-radius: 4px;
-  border: 1px solid var(--color-gray100);
+  box-shadow: 0 0 0 1px var(--color-gray100) inset;
   display: inline-block;
 
   ${({ icon }) =>
