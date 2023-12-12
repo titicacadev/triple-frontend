@@ -26,16 +26,10 @@ import BusinessHoursNote from './business-hours-note'
 
 const LongClickableSection = longClickable(Section)
 
-interface Area {
-  id: number | string
-  name: string
-}
-
 function DetailHeader({
   names,
   areaName,
   regionName,
-  areas = [],
   scrapsCount,
   reviewsCount,
   reviewsRating,
@@ -51,10 +45,6 @@ function DetailHeader({
   names: TranslatedProperty
   areaName?: string
   regionName?: string
-  /**
-   * @deprecated areaName 으로 통합됩니다.
-   */
-  areas?: Area[]
   scrapsCount: number
   reviewsCount: number
   reviewsRating: number
@@ -96,11 +86,7 @@ function DetailHeader({
             marginTop: 4,
           }}
         >
-          {areaName
-            ? regionName
-              ? `${areaName} (${regionName})`
-              : areaName
-            : regionName || null}
+          {names.local || names.en}
         </Text>
 
         {!permanentlyClosed && onBusinessHoursClick && !currentBusinessHours ? (
@@ -152,7 +138,7 @@ function DetailHeader({
             )}
           </FlexBox>
         )}
-        <AreaNames areaName={areaName} areas={areas} vicinity={vicinity} />
+        <AreaNames areaName={areaName} regionName={regionName} />
       </LongClickableSection>
       <CopyActionSheet
         open={uriHash === HASH_COPY_ACTION_SHEET}

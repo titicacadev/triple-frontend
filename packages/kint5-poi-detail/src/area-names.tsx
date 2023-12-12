@@ -5,25 +5,16 @@ import {
   Text,
 } from '@titicaca/kint5-core-elements'
 
-interface Area {
-  id: number | string
-  name: string
-}
-
 export default function AreaNames({
   areaName,
-  areas = [],
-  vicinity,
+  regionName,
   arrowAction,
 }: {
   areaName?: string
-  areas?: Area[]
-  vicinity?: string
+  regionName?: string
   arrowAction?: ReactNode
 }) {
-  const names = areaName || areas[0]?.name || vicinity
-
-  return names ? (
+  return areaName || regionName ? (
     <FlexBox flex css={{ alignItems: 'center', marginTop: 12, gap: 4 }}>
       <FilledLocationIcon />
       <Text
@@ -32,7 +23,11 @@ export default function AreaNames({
           color: 'var(--color-kint5-gray60)',
         }}
       >
-        {names}
+        {areaName
+          ? regionName
+            ? `${areaName} (${regionName})`
+            : areaName
+          : regionName}
         {arrowAction}
       </Text>
     </FlexBox>
