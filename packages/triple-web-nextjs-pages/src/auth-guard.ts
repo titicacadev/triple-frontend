@@ -1,9 +1,10 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
-import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
-import { getSessionAvailabilityFromRequest } from '@titicaca/react-contexts'
+import { checkClientApp } from '@titicaca/triple-web-utils'
+
+import { getSessionAvailability } from './get-session-availability'
 
 interface UserResponse {
   uid: string
@@ -58,8 +59,8 @@ export function authGuard<Props>(
       if (status === 401) {
         if (
           userAgentString &&
-          parseTripleClientUserAgent(userAgentString) &&
-          getSessionAvailabilityFromRequest(req)
+          checkClientApp(userAgentString) &&
+          getSessionAvailability(ctx)
         ) {
           return refreshInAppSession({ resolvedUrl, returnUrl })
         }

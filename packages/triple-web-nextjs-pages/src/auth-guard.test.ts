@@ -1,7 +1,7 @@
 import { get, HttpResponse } from '@titicaca/fetcher'
 import { generateUrl } from '@titicaca/view-utilities'
 
-import { authGuard } from './index'
+import { authGuard } from './auth-guard'
 
 const validMemberCookie = 'VALID_MEMBER_COOKIE'
 const validNonMemberCookie = 'VALID_NON_MEMBER_COOKIE'
