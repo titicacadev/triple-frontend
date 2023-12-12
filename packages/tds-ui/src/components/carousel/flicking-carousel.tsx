@@ -11,6 +11,7 @@ import FlickingCarouselProvider from './flicking-carousel-context'
 import { FlickingPageLabel } from './flicking-page-label'
 import { FlickingCarouselContent } from './flicking-carousel-content'
 import { FlickingCarouselControls } from './flicking-carousel-controls'
+import { CarouselItem } from './carousel-item'
 
 interface CarouselBaseProps {
   margin?: MarginPadding
@@ -68,3 +69,4 @@ export function FlickingCarousel({
 FlickingCarousel.PageLabel = FlickingPageLabel
 FlickingCarousel.Content = FlickingCarouselContent
 FlickingCarousel.Controls = FlickingCarouselControls
+FlickingCarousel.Item = CarouselItem

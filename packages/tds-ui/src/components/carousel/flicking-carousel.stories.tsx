@@ -58,13 +58,14 @@ export const PageLabel: Story = {
 
       <FlickingCarousel.Content>
         {IMAGES.map((image, key) => (
-          <img
-            key={key}
-            src={image.sizes.large.url}
-            alt="test"
-            width={400}
-            height={400}
-          />
+          <FlickingCarousel.Item key={key} size="large">
+            <img
+              src={image.sizes.large.url}
+              alt="test"
+              width={400}
+              height={400}
+            />
+          </FlickingCarousel.Item>
         ))}
       </FlickingCarousel.Content>
     </FlickingCarousel>
@@ -81,13 +82,15 @@ export const ArrowControl: Story = {
         />
         <FlickingCarousel.Content>
           {IMAGES.map((image, key) => (
-            <img
-              key={key}
-              src={image.sizes.large.url}
-              alt="test"
-              width={400}
-              height={400}
-            />
+            <FlickingCarousel.Item key={key} size="large">
+              <img
+                key={key}
+                src={image.sizes.large.url}
+                alt="test"
+                width={400}
+                height={400}
+              />
+            </FlickingCarousel.Item>
           ))}
         </FlickingCarousel.Content>
       </FlickingCarousel>
@@ -118,13 +121,15 @@ export const CustomArrowControl: Story = {
       />
       <FlickingCarousel.Content>
         {IMAGES.map((image, key) => (
-          <img
-            key={key}
-            src={image.sizes.large.url}
-            alt="test"
-            width={400}
-            height={400}
-          />
+          <FlickingCarousel.Item key={key} size="large">
+            <img
+              key={key}
+              src={image.sizes.large.url}
+              alt="test"
+              width={400}
+              height={400}
+            />
+          </FlickingCarousel.Item>
         ))}
       </FlickingCarousel.Content>
     </FlickingCarousel>
