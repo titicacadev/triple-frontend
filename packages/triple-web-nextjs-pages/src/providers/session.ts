@@ -7,11 +7,12 @@ import {
   post,
   get,
 } from '@titicaca/fetcher'
-import Cookies from 'universal-cookie'
 import {
   GET_USER_REQUEST_URL,
   checkClientApp,
 } from '@titicaca/triple-web-utils'
+
+import { checkClientAppSession, checkWebSession } from '../helpers/session'
 
 /**
  * - app (server-side): refresh X
@@ -38,20 +39,11 @@ async function fetchUser(ctx: NextPageContext, isClientApp: boolean) {
   if (ctx.req) {
     // Server-side
 
+    const hasSession = isClientApp
+      ? checkClientAppSession(ctx.req)
+      : checkWebSession(ctx.req)
+
     // 세션이 없으면 fetch를 스킵합니다.
-    const cookies = new Cookies(ctx.req.headers.cookie)
-
-    let hasSession = false
-
-    if (isClientApp) {
-      hasSession = !!cookies.get('x-soto-session')
-    } else {
-      hasSession = !!ctx.req.headers['x-triple-web-login']
-      if (process.env.NODE_ENV !== 'production') {
-        hasSession = !!cookies.get('TP_SE')
-      }
-    }
-
     if (!hasSession) {
       return null
     }
