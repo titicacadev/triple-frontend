@@ -34,6 +34,7 @@ interface Area {
 function DetailHeader({
   names,
   areaName,
+  regionName,
   areas = [],
   scrapsCount,
   reviewsCount,
@@ -49,6 +50,7 @@ function DetailHeader({
 }: {
   names: TranslatedProperty
   areaName?: string
+  regionName?: string
   /**
    * @deprecated areaName 으로 통합됩니다.
    */
@@ -94,7 +96,11 @@ function DetailHeader({
             marginTop: 4,
           }}
         >
-          {names.local || names.en}
+          {areaName
+            ? regionName
+              ? `${areaName} (${regionName})`
+              : areaName
+            : regionName || null}
         </Text>
 
         {!permanentlyClosed && onBusinessHoursClick && !currentBusinessHours ? (
