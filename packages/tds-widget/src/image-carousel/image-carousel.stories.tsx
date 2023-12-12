@@ -1,17 +1,10 @@
-import type { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
-
-import { ImageSource } from '../image-source'
 
 import ImageCarousel from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'
 import VIDEOS from './mocks/video-carousel.sample.json'
 import { PageLabel } from './page-label'
-
-export default {
-  title: 'image-carousel / Image Carousel',
-  component: ImageCarousel,
-} as Meta<typeof ImageCarousel>
 
 const MoreImageOverlayLink = styled.a`
   width: 100%;
@@ -29,6 +22,16 @@ const MoreImageOverlayLinkIcon = styled.img`
   height: 20px;
   vertical-align: sub;
 `
+
+const meta: Meta<typeof ImageCarousel> = {
+  title: 'image-carousel / Image Carousel',
+  component: ImageCarousel,
+}
+
+export default meta
+
+type Story = StoryObj<typeof ImageCarousel>
+
 const OverlayContent = () => {
   return (
     <MoreImageOverlayLink href="https://triple.guide">
@@ -38,14 +41,13 @@ const OverlayContent = () => {
   )
 }
 
-export const Basic: StoryFn<typeof ImageCarousel> = () => {
-  return (
+export const Basic: Story = {
+  render: () => (
     <ImageCarousel
-      size="medium"
       images={IMAGES}
-      currentPage={0}
-      borderRadius={6}
-      ImageSource={ImageSource}
+      options={{
+        size: 'medium',
+      }}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -56,18 +58,20 @@ export const Basic: StoryFn<typeof ImageCarousel> = () => {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
+      css={{
+        borderRadius: 6,
+      }}
     />
-  )
+  ),
 }
 
-export const Video: StoryFn<typeof ImageCarousel> = () => {
-  return (
+export const Video: Story = {
+  render: () => (
     <ImageCarousel
-      size="medium"
       images={VIDEOS}
-      currentPage={0}
-      borderRadius={6}
-      ImageSource={ImageSource}
+      options={{
+        size: 'medium',
+      }}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -78,6 +82,9 @@ export const Video: StoryFn<typeof ImageCarousel> = () => {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
+      css={{
+        borderRadius: 6,
+      }}
     />
-  )
+  ),
 }
