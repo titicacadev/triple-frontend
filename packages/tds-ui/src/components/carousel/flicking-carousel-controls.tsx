@@ -2,6 +2,7 @@ import { ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
 import ArrowIcon from './arrow-icon'
+import { useFlickingCarousel } from './flicking-carousel-context'
 
 const FlickingScrollButton = styled.button<{
   direction: 'left' | 'right'
@@ -29,11 +30,25 @@ export function FlickingCarouselControls({
   onPrevClick?: () => void
   onNextClick?: () => void
 }) {
+  const { flickingRef } = useFlickingCarousel()
+
+  const handlePrevClick = () => {
+    flickingRef.current?.prev()
+
+    onPrevClick && onPrevClick()
+  }
+
+  const handleNextClick = () => {
+    flickingRef.current?.next()
+
+    onNextClick && onNextClick()
+  }
+
   const prevButtonElement = customPrevButton ?? (
     <FlickingScrollButton
       //   containerPadding={containerPadding}
       direction="left"
-      onClick={onPrevClick}
+      onClick={handlePrevClick}
     >
       <ArrowIcon direction="left" />
     </FlickingScrollButton>
@@ -43,7 +58,7 @@ export function FlickingCarouselControls({
     <FlickingScrollButton
       //   containerPadding={containerPadding}
       direction="right"
-      onClick={onNextClick}
+      onClick={handleNextClick}
     >
       <ArrowIcon direction="right" />
     </FlickingScrollButton>
