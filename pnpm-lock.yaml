@@ -817,6 +817,9 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
+      qs:
+        specifier: ^6.11.2
+        version: 6.11.2
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.36
@@ -827,6 +830,9 @@ importers:
       '@titicaca/triple-web':
         specifier: workspace:*
         version: link:../triple-web
+      '@types/qs':
+        specifier: ^6.9.9
+        version: 6.9.9
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.37
@@ -843,6 +849,9 @@ importers:
       '@titicaca/triple-web':
         specifier: workspace:*
         version: link:../triple-web
+      '@types/ua-parser-js':
+        specifier: ^0.7.37
+        version: 0.7.37
 
   packages/type-definitions: {}
 
