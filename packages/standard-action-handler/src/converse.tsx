@@ -1,6 +1,6 @@
 import qs from 'qs'
 import { createRoot } from 'react-dom/client'
-import { Modal } from '@titicaca/modals'
+import { Modal } from '@titicaca/tds-ui'
 
 import { WebActionParams } from './types'
 
