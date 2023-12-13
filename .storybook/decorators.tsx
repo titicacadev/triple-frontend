@@ -1,8 +1,13 @@
 import React from 'react'
-import { ClientAppName, TripleWeb } from '../packages/triple-web'
+import {
+  ClientAppName,
+  EventTrackingProvider,
+  TripleWeb,
+} from '../packages/triple-web'
 import { defaultTheme, GlobalStyle } from '../packages/tds-theme/src'
 import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
 import { ThemeProvider } from 'styled-components'
+import i18n from './i18next'
 
 export function themeDecorator(Story) {
   return (
@@ -36,6 +41,10 @@ export function tripleWebProviderDecorator(Story) {
         afOnelinkId: '',
         afOnelinkPid: '',
         afOnelinkSubdomain: '',
+      }}
+      i18nProvider={{
+        i18n: i18n,
+        lang: 'ko',
       }}
       sessionProvider={{
         user: null,
