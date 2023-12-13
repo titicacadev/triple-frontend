@@ -13,6 +13,7 @@ import Content from './content'
 interface ImageCarouselBaseProps {
   images: CarouselImageMeta[]
   displayedTotalCount?: number
+  currentPage?: number
   options: {
     size?: GlobalSizes
     height?: number
@@ -54,6 +55,7 @@ const FLICKING_OPTIONS = {
 function ImageCarousel({
   images,
   displayedTotalCount,
+  currentPage,
   options: { size: globalSize, height, frame: globalFrame, optimized },
   showMoreRenderer,
   pageLabelRenderer = (props) => PageLabel(props),
@@ -64,7 +66,7 @@ function ImageCarousel({
   onMoveEnd,
   ...cssProps
 }: ImageCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(currentPage || 0)
   const flickingRef = useRef<Flicking>(null)
 
   // check: https://github.com/titicacadev/triple-frontend/pull/213
@@ -110,7 +112,7 @@ function ImageCarousel({
           />
         }
       />
-      <FlickingCarousel.Content ref={flickingRef}>
+      <FlickingCarousel.Content>
         {images.map((image, index) => {
           const overlay = showMoreRenderer
             ? showMoreRenderer({ currentIndex: index, totalCount })
