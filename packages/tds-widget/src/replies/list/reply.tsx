@@ -11,14 +11,13 @@ import {
   ActionSheetItem,
 } from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
-import { useNavigate } from '@titicaca/router'
+import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
 import {
   useHashRouter,
   TransitionType,
   useSessionCallback,
   useClientAppCallback,
 } from '@titicaca/triple-web'
-import { useIsomorphicNavigation } from '@titicaca/react-contexts'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -95,7 +94,7 @@ export default function Reply({
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
   const { addUriHash, removeUriHash } = useHashRouter()
-  const { asyncBack } = useIsomorphicNavigation()
+  const { asyncBack } = useIsomorphicNavigate()
   const { navigate } = useNavigate()
   const likeReactionCount = likeReaction?.count
 
