@@ -9,7 +9,6 @@ import ImageCarousel, {
   CarouselImageMeta,
   PageLabel,
 } from '../../image-carousel'
-import { ImageSource } from '../../image-source'
 
 import CtaOverlay from './cta-overlay'
 
@@ -160,16 +159,19 @@ export default function Carousel({
         <FixedRatio ratio={0.6}>
           <ImageCarousel
             images={visibleImages}
-            currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
-            borderRadius={borderRadius}
-            onImageClick={handleImageClick}
-            onMoveEnd={handlePageChange}
-            ImageSource={ImageSource}
+            currentPage={currentPage}
+            options={{
+              height,
+              optimized,
+            }}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
-            optimized={optimized}
-            height={height}
+            onImageClick={handleImageClick}
+            onMoveEnd={handlePageChange}
+            css={{
+              borderRadius,
+            }}
           />
         </FixedRatio>
       </Responsive>
@@ -181,16 +183,19 @@ export default function Carousel({
         >
           <ImageCarousel
             images={visibleImages}
-            currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
-            borderRadius={borderRadius}
-            size="large"
+            currentPage={currentPage}
+            options={{
+              size: 'large',
+              optimized,
+            }}
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}
-            ImageSource={ImageSource}
             showMoreRenderer={CTA}
             pageLabelRenderer={ConditionalPageLabel}
-            optimized={optimized}
+            css={{
+              borderRadius,
+            }}
           />
         </Container>
       </Responsive>
