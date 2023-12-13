@@ -4,5 +4,5 @@ export { default as ResourceListElementStats } from './resource-list-element-sta
 
 export {
   default as ExtendedResourceListElement,
-  ResourceListElementProps,
+  type ResourceListElementProps,
 } from './extended-resource-list-element'
