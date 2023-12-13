@@ -4142,11 +4142,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
