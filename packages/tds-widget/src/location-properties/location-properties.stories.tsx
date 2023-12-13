@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import LocationProperties from './location-properties'
+import { LocationProperties } from './location-properties'
 
 export default {
   title: 'Location-Properties / LocationProperties',

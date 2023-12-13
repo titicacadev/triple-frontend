@@ -1,1 +1,1 @@
-export { default as EmailPreview, PreviewDocument } from './preview'
+export { default as EmailPreview, type PreviewDocument } from './preview'

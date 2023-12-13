@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import DirectionsFinder from '.'
+import { DirectionButtons } from './direction-buttons'
 
 export default {
-  title: 'directions-finder / DirectionsFinder',
-  component: DirectionsFinder,
-} as Meta<typeof DirectionsFinder>
+  title: 'directions-finder / DirectionButtons',
+  component: DirectionButtons,
+} as Meta<typeof DirectionButtons>
 
-export const Basic: StoryObj<typeof DirectionsFinder> = {
+export const Basic: StoryObj<typeof DirectionButtons> = {
   args: {
     primaryName: '도쿄 디즈니 랜드',
     localName: '東京ディズニーランド',

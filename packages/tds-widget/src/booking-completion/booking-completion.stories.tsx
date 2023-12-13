@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import BookingCompletion from '.'
+import { BookingCompletion } from '.'
 
 export default {
   title: 'booking-completion / Booking Complete',

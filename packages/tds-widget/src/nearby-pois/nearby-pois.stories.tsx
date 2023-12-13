@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import NearbyPois from './nearby-pois'
+import { NearbyPois } from './nearby-pois'
 
 export default {
   title: 'Nearby-Pois / NearbyPois',
