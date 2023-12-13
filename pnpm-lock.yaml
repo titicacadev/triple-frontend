@@ -437,6 +437,9 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/tds-ui':
+        specifier: workspace:*
+        version: 'link:'
       '@titicaca/triple-fallback-action':
         specifier: workspace:*
         version: link:../triple-fallback-action
