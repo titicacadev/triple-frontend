@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useScrap } from '../scrap'
 import {
   ExtendedResourceListElement,
-  ResourceListElementProps,
+  type ResourceListElementProps,
 } from '../resource-list-elements'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'

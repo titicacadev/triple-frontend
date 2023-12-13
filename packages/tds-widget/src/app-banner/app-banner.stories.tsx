@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import AppBanner from '.'
+import { AppBanner } from './app-banner'
 
 export default {
   title: 'app-banner / AppBanner',
