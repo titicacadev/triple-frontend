@@ -45,6 +45,7 @@
     "@floating-ui/react": "^0.25.4",
     "@titicaca/content-utilities": "^8.12.0",
     "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-fallback-action": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "react-compound-slider": "^3.4.0",
