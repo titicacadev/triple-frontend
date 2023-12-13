@@ -5,7 +5,7 @@ import {
   Container,
   H1,
   formatMarginPadding,
-  Carousel,
+  FlickingCarousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
 import {
@@ -78,12 +78,14 @@ function RecommendedArticles({
       const items = await fetchInventoryItems({
         inventoryId: appInstallationCta?.inventoryId,
       })
+
       if (items && items.length > 0) {
         setArticleCardCta(items[0])
       }
     }
 
     fetchAndSetRecommendedArticles()
+
     if (appInstallationCta?.inventoryId) {
       fetchAndSetArticleCardCta()
     }
@@ -130,29 +132,35 @@ function RecommendedArticles({
           {t('놓치기 아까운 이 지역 꿀 정보 2')}
         </H1>
 
-        <Carousel
-          margin={{ top: 20 }}
-          containerPadding={deskTopPadding || { left: 110, right: 110 }}
+        <FlickingCarousel
+          css={{
+            marginTop: 20,
+            paddingLeft: deskTopPadding?.left || 110,
+            paddingRight: deskTopPadding?.right || 110,
+          }}
         >
-          {articleCardCta && (
-            <Carousel.Item size="medium">
-              <ArticleCardCTA
-                cta={articleCardCta}
-                href={appInstallationCta?.href}
-                onClick={appInstallationCta?.onClick}
-              />
-            </Carousel.Item>
-          )}
-          {recommendedArticles.map((article) => (
-            <Carousel.Item key={article.id} size="medium">
-              <ArticleEntry
-                article={article}
-                onClick={onArticleClick}
-                onIntersect={handleIntersect}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+          <FlickingCarousel.Controls />
+          <FlickingCarousel.Content>
+            {articleCardCta && (
+              <FlickingCarousel.Item size="medium">
+                <ArticleCardCTA
+                  cta={articleCardCta}
+                  href={appInstallationCta?.href}
+                  onClick={appInstallationCta?.onClick}
+                />
+              </FlickingCarousel.Item>
+            )}
+            {recommendedArticles.map((article) => (
+              <FlickingCarousel.Item key={article.id} size="medium">
+                <ArticleEntry
+                  article={article}
+                  onClick={onArticleClick}
+                  onIntersect={handleIntersect}
+                />
+              </FlickingCarousel.Item>
+            ))}
+          </FlickingCarousel.Content>
+        </FlickingCarousel>
 
         <Container
           css={formatMarginPadding(
@@ -174,29 +182,35 @@ function RecommendedArticles({
           {t('놓치기 아까운 이 지역 꿀 정보')}
         </H1>
 
-        <Carousel
-          margin={{ top: 20 }}
-          containerPadding={mobilePadding || { left: 30, right: 30 }}
+        <FlickingCarousel
+          css={{
+            marginTop: 20,
+            paddingLeft: mobilePadding?.left || 30,
+            paddingRight: mobilePadding?.right || 30,
+          }}
         >
-          {articleCardCta && (
-            <Carousel.Item size="medium">
-              <ArticleCardCTA
-                cta={articleCardCta}
-                href={appInstallationCta?.href}
-                onClick={appInstallationCta?.onClick}
-              />
-            </Carousel.Item>
-          )}
-          {recommendedArticles.map((article) => (
-            <Carousel.Item key={article.id} size="medium">
-              <ArticleEntry
-                article={article}
-                onClick={onArticleClick}
-                onIntersect={handleIntersect}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+          <FlickingCarousel.Controls />
+          <FlickingCarousel.Content>
+            {articleCardCta && (
+              <FlickingCarousel.Item size="medium">
+                <ArticleCardCTA
+                  cta={articleCardCta}
+                  href={appInstallationCta?.href}
+                  onClick={appInstallationCta?.onClick}
+                />
+              </FlickingCarousel.Item>
+            )}
+            {recommendedArticles.map((article) => (
+              <FlickingCarousel.Item key={article.id} size="medium">
+                <ArticleEntry
+                  article={article}
+                  onClick={onArticleClick}
+                  onIntersect={handleIntersect}
+                />
+              </FlickingCarousel.Item>
+            ))}
+          </FlickingCarousel.Content>
+        </FlickingCarousel>
 
         <Container
           css={formatMarginPadding(
