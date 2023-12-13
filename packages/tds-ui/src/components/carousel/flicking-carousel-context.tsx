@@ -3,15 +3,15 @@ import {
   createContext,
   useContext,
   useMemo,
-  forwardRef,
-  ForwardedRef,
+  useRef,
+  RefObject,
 } from 'react'
 import type { FlickingProps } from '@egjs/react-flicking'
 import type { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
 interface FlickingCarouselBase {
-  flickingRef: ForwardedRef<Flicking>
+  flickingRef: RefObject<Flicking>
 }
 
 interface FlickingEvents {
@@ -25,16 +25,15 @@ const FlickingCarouselContext = createContext<
   (FlickingCarouselBase & FlickingEvents) | undefined
 >(undefined)
 
-function FlickingCarouselProvider(
-  {
-    onMoveStart,
-    onMove,
-    onMoveEnd,
-    options,
-    children,
-  }: PropsWithChildren<FlickingEvents>,
-  flickingRef: ForwardedRef<Flicking>,
-) {
+export function FlickingCarouselProvider({
+  onMoveStart,
+  onMove,
+  onMoveEnd,
+  options,
+  children,
+}: PropsWithChildren<FlickingEvents>) {
+  const flickingRef = useRef<Flicking>(null)
+
   const values = useMemo(
     () => ({
       flickingRef,
@@ -52,8 +51,6 @@ function FlickingCarouselProvider(
     </FlickingCarouselContext.Provider>
   )
 }
-
-export default forwardRef(FlickingCarouselProvider)
 
 export function useFlickingCarousel() {
   const context = useContext(FlickingCarouselContext)
