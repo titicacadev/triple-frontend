@@ -10,12 +10,6 @@
 
 - [TFC-52] 트리플 헤더 블링크 이슈 [#2783](https://github.com/titicacadev/triple-frontend/pull/2783)
 
-## v13.14.1
-
-### resource-list-element
-
-- ExtendedResourceListElement badge 디자인 수정 [#3057](https://github.com/titicacadev/triple-frontend/pull/3057)
-
 ## v13.14.0
 
 ### chat
@@ -4152,11 +4146,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
