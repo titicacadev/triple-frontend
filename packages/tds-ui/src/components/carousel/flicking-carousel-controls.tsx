@@ -20,8 +20,8 @@ const FlickingScrollButton = styled.button<{
 `
 
 export function FlickingCarouselControls({
-  prevButton: customPrevButton,
-  nextButton: customNextButton,
+  prevButton = <ArrowIcon direction="left" />,
+  nextButton = <ArrowIcon direction="right" />,
   onPrevClick,
   onNextClick,
 }: {
@@ -44,23 +44,15 @@ export function FlickingCarouselControls({
     onNextClick && onNextClick()
   }
 
-  const prevButtonElement = customPrevButton ?? (
-    <FlickingScrollButton
-      //   containerPadding={containerPadding}
-      direction="left"
-      onClick={handlePrevClick}
-    >
-      <ArrowIcon direction="left" />
+  const prevButtonElement = (
+    <FlickingScrollButton direction="left" onClick={handlePrevClick}>
+      {prevButton}
     </FlickingScrollButton>
   )
 
-  const nextButtonElement = customNextButton ?? (
-    <FlickingScrollButton
-      //   containerPadding={containerPadding}
-      direction="right"
-      onClick={handleNextClick}
-    >
-      <ArrowIcon direction="right" />
+  const nextButtonElement = (
+    <FlickingScrollButton direction="right" onClick={handleNextClick}>
+      {nextButton}
     </FlickingScrollButton>
   )
 
