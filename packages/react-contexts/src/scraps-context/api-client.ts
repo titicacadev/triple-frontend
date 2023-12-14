@@ -8,6 +8,8 @@ function mapTypes(type: unknown) {
       return 'articles'
     case 'tna':
       return 'tna'
+    case 'festa':
+      return 'festa'
     default:
       return 'pois'
   }
