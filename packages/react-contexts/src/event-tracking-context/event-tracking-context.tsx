@@ -156,7 +156,12 @@ declare global {
       action: string,
       payload?: { [key: string]: unknown },
     ) => void
-    ttq?: (type: TiktokPixelEventType, params?: TiktokPixelEventParams) => void
+    ttq?: {
+      track: (
+        type: TiktokPixelEventType,
+        params?: TiktokPixelEventParams,
+      ) => void
+    }
   }
 }
 
@@ -227,7 +232,7 @@ export function EventTrackingProvider({
         }
 
         if (window.ttq && tiktokPixel) {
-          window.ttq(tiktokPixel.type, tiktokPixel.params)
+          window.ttq.track(tiktokPixel.type, tiktokPixel.params)
         }
 
         const firebaseAnalyticsWebInstance = getFirebaseAnalyticsWebInstance()
