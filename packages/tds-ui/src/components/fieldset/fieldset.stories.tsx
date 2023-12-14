@@ -5,7 +5,7 @@ import { FieldsetLegend } from './fieldset-legend'
 import { useFieldset } from './use-fieldset'
 
 export default {
-  title: 'core-elements / Fieldset',
+  title: 'tds-ui / Fieldset',
   component: Fieldset,
 } as Meta<typeof Fieldset>
 

@@ -6,7 +6,7 @@ import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 
 export default {
-  title: 'core-elements / Button',
+  title: 'tds-ui / Button',
   component: Button,
   subcomponents: {
     ButtonContainer,

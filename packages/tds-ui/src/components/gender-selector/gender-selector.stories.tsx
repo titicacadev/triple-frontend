@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { GenderSelector } from './gender-selector'
 
 export default {
-  title: 'core-elements / GenderSelector',
+  title: 'tds-ui / GenderSelector',
   component: GenderSelector,
 } as Meta<typeof GenderSelector>
 

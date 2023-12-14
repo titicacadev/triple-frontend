@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Label } from './label'
 
 export default {
-  title: 'core-elements / Label',
+  title: 'tds-ui / Label',
   component: Label,
 } as Meta
 

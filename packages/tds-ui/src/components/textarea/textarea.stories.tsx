@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Textarea } from './textarea'
 
 export default {
-  title: 'core-elements / Textarea',
+  title: 'tds-ui / Textarea',
   component: Textarea,
 } as Meta<typeof Textarea>
 

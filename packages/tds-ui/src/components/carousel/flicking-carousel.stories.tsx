@@ -19,7 +19,7 @@ const FlickingScrollButton = styled.button<{
 `
 
 const meta: Meta<typeof FlickingCarousel> = {
-  title: 'core-elements / Carousel / FlickingCarousel',
+  title: 'tds-ui / Carousel / FlickingCarousel',
   component: FlickingCarousel,
 }
 

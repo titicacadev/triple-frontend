@@ -8,7 +8,7 @@ import { AccordionFolded } from './accordion-folded'
 import { AccordionTitle } from './accordion-title'
 
 export default {
-  title: 'core-elements / Accordion',
+  title: 'tds-ui / Accordion',
   component: Accordion,
   subcomponents: {
     AccordionContent,

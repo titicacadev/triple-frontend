@@ -7,7 +7,7 @@ import { FormFieldHelp } from './form-field-help'
 import { FormFieldLabel } from './form-field-label'
 
 export default {
-  title: 'core-elements / FormField',
+  title: 'tds-ui / FormField',
   component: FormField,
 } as Meta<typeof FormField>
 
