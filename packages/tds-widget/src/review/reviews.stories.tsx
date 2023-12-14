@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TransitionModal } from '@titicaca/triple-web'
+import { EventTrackingProvider, TransitionModal } from '@titicaca/triple-web'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
@@ -31,6 +31,12 @@ const meta: Meta<typeof Reviews> = {
           <Story />
         </SortingOptionsProvider>
       </FilterProvider>
+    ),
+
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
     ),
   ],
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import HOTELS from './mocks/hotels.sample.json'
 import POIS from './mocks/pois.sample.json'
@@ -7,6 +8,13 @@ import { PoiListElement } from './poi-list-element'
 export default {
   title: 'poi-list-elements / PoiList',
   component: PoiListElement,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta<typeof PoiListElement>
 
 const [POI] = POIS

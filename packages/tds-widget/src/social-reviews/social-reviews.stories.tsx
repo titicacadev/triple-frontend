@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import SocialReviews from './social-review'
 
 export default {
   title: 'Social-Reviews / SocialReviews',
   component: SocialReviews,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta<typeof SocialReviews>
 
 export const Basic: StoryObj<typeof SocialReviews> = {

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { SessionContextProvider } from '@titicaca/react-contexts'
 import { rest } from 'msw'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import Replies from './replies'
 
@@ -45,6 +46,13 @@ export default {
       ],
     },
   },
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
   argTypes: {
     resourceId: {
       type: 'string',

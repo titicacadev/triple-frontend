@@ -1,10 +1,18 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { PublicHeader } from './public-header'
 
 export default {
   title: 'public-header / PublicHeader',
   component: PublicHeader,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
   argTypes: {
     category: {
       control: { type: 'select' },

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { ReviewElement } from './components/review-element'
 import duoImagesData from './mocks/review-element.duo-images.json'
@@ -23,6 +24,11 @@ const meta: Meta<typeof ReviewElement> = {
       <QueryClientProvider client={queryClient}>
         <Story />
       </QueryClientProvider>
+    ),
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
     ),
   ],
 }

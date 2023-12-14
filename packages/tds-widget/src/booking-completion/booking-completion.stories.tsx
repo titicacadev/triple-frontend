@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { BookingCompletion } from '.'
 
 export default {
   title: 'booking-completion / Booking Complete',
   component: BookingCompletion,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta
 
 export const Basic: StoryObj<typeof BookingCompletion> = {
