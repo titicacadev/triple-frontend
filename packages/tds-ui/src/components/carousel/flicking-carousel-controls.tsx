@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import ArrowIcon from './arrow-icon'
 import { useFlickingCarousel } from './flicking-carousel-context'
@@ -12,9 +12,7 @@ const FlickingScrollButton = styled.button<{
   width: 60px;
   height: 60px;
   top: calc(50% - 30px);
-  ${({ direction, containerPadding }) => css`
-    ${direction}: ${(containerPadding?.[direction] || 0) - 30}px;
-  `}
+  ${({ direction }) => `${direction}: -30px;`}
   z-index: 60;
   outline: none;
 `
