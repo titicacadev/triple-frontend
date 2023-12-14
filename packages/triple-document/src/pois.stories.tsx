@@ -1,4 +1,5 @@
 import type { Meta } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import POIS from './mocks/pois.sample.json'
 import HOTEL from './mocks/hotel.sample.json'
@@ -9,6 +10,13 @@ const { pois: Pois } = ELEMENTS
 export default {
   title: 'triple-document / POI',
   component: Pois,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta
 
 export function Normal() {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { rest } from 'msw'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import RECOMMNEDED_ARTICLES from './mocks/recommended-articles.json'
 import INVENTORY_ITEMS from './mocks/inventory-item.json'
@@ -8,6 +9,13 @@ import RecommendedArticles from './recommended-articles/recommended-articles'
 const meta: Meta<typeof RecommendedArticles> = {
   title: 'poi-detail / RecommendedArticles',
   component: RecommendedArticles,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 }
 
 export default meta
