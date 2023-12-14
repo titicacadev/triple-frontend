@@ -7,7 +7,7 @@ import { Text } from '../text'
 import { Drawer } from './drawer'
 
 export default {
-  title: 'core-elements / Drawer',
+  title: 'tds-ui / Drawer',
   component: Drawer,
 } as Meta
 

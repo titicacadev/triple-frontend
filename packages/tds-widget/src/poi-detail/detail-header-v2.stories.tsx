@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import DetailHeaderV2 from './detail-header-v2'
 
 export default {
   title: 'poi-detail / DetailHeader V2',
   component: DetailHeaderV2,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta<typeof DetailHeaderV2>
 
 export const Basic: StoryObj<typeof DetailHeaderV2> = {
