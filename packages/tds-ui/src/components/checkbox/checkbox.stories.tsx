@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Checkbox } from './checkbox'
 
 export default {
-  title: 'core-elements / Checkbox',
+  title: 'tds-ui / Checkbox',
   component: Checkbox,
 } as Meta<typeof Checkbox>
 

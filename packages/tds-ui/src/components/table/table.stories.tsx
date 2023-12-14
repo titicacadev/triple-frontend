@@ -3,7 +3,7 @@ import SAMPLE from '../../mocks/table.sample.json'
 import { Table, TableProps } from './table'
 
 export default {
-  title: 'core-elements / Table',
+  title: 'tds-ui / Table',
   component: Table,
 }
 

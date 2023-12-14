@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react'
 import { Container } from './container'
 
 export default {
-  title: 'core-elements / Container',
+  title: 'tds-ui / Container',
   component: Container,
 } as Meta
 

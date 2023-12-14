@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Select } from './select'
 
 export default {
-  title: 'core-elements / Select',
+  title: 'tds-ui / Select',
   component: Select,
 } as Meta<typeof Select>
 

@@ -7,7 +7,7 @@ import { Tab } from './tab'
 import { TabPanel } from './tab-panel'
 
 export default {
-  title: 'core-elements / Tabs',
+  title: 'tds-ui / Tabs',
   component: Tabs,
   subcomponents: {
     TabList,

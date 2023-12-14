@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FlexBox, FlexBoxItem } from '../flex-box'
 
 export default {
-  title: 'core-elements / FlexBox',
+  title: 'tds-ui / FlexBox',
   components: FlexBox,
   subcomponents: {
     FlexBoxItem,

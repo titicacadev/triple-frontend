@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { NumericSpinner } from './numeric-spinner'
 
 export default {
-  title: 'core-elements / NumericSpinner',
+  title: 'tds-ui / NumericSpinner',
   component: NumericSpinner,
 } as Meta<typeof NumericSpinner>
 

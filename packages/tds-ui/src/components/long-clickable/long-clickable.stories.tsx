@@ -4,7 +4,7 @@ import { HR1 } from '../hr'
 import { longClickable } from './long-clickable'
 
 export default {
-  title: 'core-elements / longClickable',
+  title: 'tds-ui / longClickable',
   component: longClickable,
 }
 

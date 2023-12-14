@@ -4,7 +4,7 @@ import { Carousel } from './carousel'
 import IMAGES from './mocks/carousel.sample.json'
 
 const meta: Meta<typeof Carousel> = {
-  title: 'core-elements / Carousel / default',
+  title: 'tds-ui / Carousel / default',
   component: Carousel,
 }
 

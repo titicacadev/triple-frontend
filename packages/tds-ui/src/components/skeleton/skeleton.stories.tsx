@@ -8,7 +8,7 @@ import {
 } from './skeleton'
 
 export default {
-  title: 'core-elements / Skeleton',
+  title: 'tds-ui / Skeleton',
 }
 
 export function BaseSkeleton() {
