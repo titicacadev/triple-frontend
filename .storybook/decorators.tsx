@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  ClientAppName,
-  EventTrackingProvider,
-  TripleWeb,
-} from '../packages/triple-web'
+import { ClientAppName, TripleWeb } from '../packages/triple-web'
 import { defaultTheme, GlobalStyle } from '../packages/tds-theme/src'
 import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
 import { ThemeProvider } from 'styled-components'
@@ -47,7 +43,9 @@ export function tripleWebProviderDecorator(Story) {
         lang: 'ko',
       }}
       sessionProvider={{
-        user: null,
+        user: {
+          id: 'FA1243567',
+        },
       }}
       userAgentProvider={{
         ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
