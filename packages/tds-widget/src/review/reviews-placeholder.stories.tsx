@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
 
 const meta: Meta<typeof ReviewsPlaceholder> = {
   title: 'Review / Review Placeholder',
   component: ReviewsPlaceholder,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 }
 
 export default meta

@@ -1,5 +1,6 @@
 import type { Meta } from '@storybook/react'
 import { rest } from 'msw'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import ELEMENTS from './elements'
 import SLOTS from './mocks/slots.sample.json'
@@ -9,6 +10,13 @@ const { tnaProducts: TnaProducts } = ELEMENTS
 export default {
   title: 'triple-document / T&A Slot',
   component: TnaProducts,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta
 
 export function InTripleDocument() {

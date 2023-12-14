@@ -1,5 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react'
 import { Container } from '@titicaca/tds-ui'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import Pricing from '../pricing'
 import { ScrapButtonMask } from '../scrap-button'
@@ -9,6 +10,13 @@ import ExtendedResourceListElement from './extended-resource-list-element'
 const meta: Meta<typeof ExtendedResourceListElement> = {
   title: 'resource-list-element / extended-resource-list-element',
   component: ExtendedResourceListElement,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 }
 
 const defaultArgs = {

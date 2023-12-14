@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { NearbyPois } from './nearby-pois'
 
 export default {
   title: 'Nearby-Pois / NearbyPois',
   component: NearbyPois,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta<typeof NearbyPois>
 
 // TODO: 서버에 데이터가 없어서 mocking 해야 할 듯
