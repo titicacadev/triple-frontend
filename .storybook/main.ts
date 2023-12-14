@@ -14,6 +14,18 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     'storybook-react-i18next',
+    {
+      name: 'storybook-addon-swc',
+      options: {
+        swcLoaderOptions: {
+          jsc: {
+            experimental: {
+              plugins: [['@swc/plugin-styled-components', {}]],
+            },
+          },
+        },
+      },
+    },
   ],
   typescript: {
     reactDocgenTypescriptOptions: {
