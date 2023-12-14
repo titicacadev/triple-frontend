@@ -33,14 +33,12 @@
       ],
       "@titicaca/triple-header": ["./packages/triple-header/src"],
       "@titicaca/triple-media": ["./packages/triple-media/src"],
-      "@titicaca/triple-web-binding-nextjs-pages": [
-        "./packages/triple-web-binding-nextjs-pages"
-      ],
-      "@titicaca/triple-web-binding-nextjs": [
-        "./packages/triple-web-binding-nextjs"
-      ],
-      "@titicaca/triple-web-utils": ["./packages/triple-web-utils"],
       "@titicaca/triple-web": ["./packages/triple-web"],
+      "@titicaca/triple-web-nextjs-pages": [
+        "./packages/triple-web-nextjs-pages"
+      ],
+      "@titicaca/triple-web-nextjs": ["./packages/triple-web-nextjs"],
+      "@titicaca/triple-web-utils": ["./packages/triple-web-utils"],
       "@titicaca/type-definitions": ["./packages/type-definitions/src"],
       "@titicaca/ui-flow": ["./packages/ui-flow/src"],
       "@titicaca/view-utilities": ["./packages/view-utilities/src"]
