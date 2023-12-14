@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { LocationProperties } from './location-properties'
 
 export default {
   title: 'Location-Properties / LocationProperties',
   component: LocationProperties,
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta<typeof LocationProperties>
 
 export const Basic: StoryObj<typeof LocationProperties> = {

@@ -3,6 +3,7 @@ import { Container } from '@titicaca/tds-ui'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { rest } from 'msw'
 import { useEffect } from 'react'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import ELEMENTS from './elements'
 import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
@@ -27,6 +28,13 @@ const {
 
 export default {
   title: 'triple-document / TripleDocument',
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
 } as Meta
 
 export const Sample: StoryObj<typeof TripleDocument> = {
