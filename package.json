@@ -79,6 +79,7 @@
     "react-i18next": "13.5.0",
     "rimraf": "^5.0.5",
     "storybook": "^7.5.3",
+    "storybook-addon-swc": "^1.2.0",
     "storybook-mock-date-decorator": "^1.0.1",
     "storybook-react-i18next": "^2.0.9",
     "styled-components": "^5.3.11",
