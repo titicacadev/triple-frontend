@@ -20,7 +20,9 @@ export function EventTrackingProvider({
   const { user } = useSession()
 
   useEffect(() => {
-    setUserId(firebaseAnalytics, user?.uid ?? null)
+    if (firebaseAnalytics) {
+      setUserId(firebaseAnalytics, user?.uid ?? null)
+    }
   }, [user?.uid])
 
   useEffect(() => {
