@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import Popup from './popup'
+import { Popup } from './popup'
 
 test('올바른 aria attributes를 가집니다.', () => {
   const onClose = jest.fn()
