@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Stack } from './stack'
 
 export default {
-  title: 'core-elements / Stack',
+  title: 'tds-ui / Stack',
   component: Stack,
 } as Meta<typeof Stack>
 

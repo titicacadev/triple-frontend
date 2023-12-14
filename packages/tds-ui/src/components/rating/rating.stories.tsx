@@ -3,7 +3,7 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import { Rating } from './rating'
 
 export default {
-  title: 'core-elements / Rating',
+  title: 'tds-ui / Rating',
   component: Rating,
 } as Meta<typeof Rating>
 

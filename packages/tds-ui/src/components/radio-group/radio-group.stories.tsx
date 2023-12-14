@@ -6,7 +6,7 @@ import { Radio } from '../radio/radio'
 import { RadioGroup } from './radio-group'
 
 export default {
-  title: 'core-elements / RadioGroup',
+  title: 'tds-ui / RadioGroup',
   component: RadioGroup,
 } as Meta<typeof RadioGroup>
 

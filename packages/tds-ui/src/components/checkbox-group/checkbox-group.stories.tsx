@@ -6,7 +6,7 @@ import { Checkbox } from '../checkbox'
 import { CheckboxGroup } from './checkbox-group'
 
 export default {
-  title: 'core-elements / CheckboxGroup',
+  title: 'tds-ui / CheckboxGroup',
   component: CheckboxGroup,
 } as Meta<typeof CheckboxGroup>
 

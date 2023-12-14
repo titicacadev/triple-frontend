@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { List } from './list'
 
 export default {
-  title: 'core-elements / List',
+  title: 'tds-ui / List',
   component: List,
 } as Meta<typeof List>
 

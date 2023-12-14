@@ -5,7 +5,7 @@ import { List } from '../list'
 import { Input } from './input'
 
 export default {
-  title: 'core-elements / Input',
+  title: 'tds-ui / Input',
   component: Input,
 } as Meta<typeof Input>
 

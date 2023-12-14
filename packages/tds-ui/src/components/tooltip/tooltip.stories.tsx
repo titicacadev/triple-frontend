@@ -6,7 +6,7 @@ import { Navbar } from '../navbar'
 import { Tooltip } from './tooltip'
 
 export default {
-  title: 'core-elements / Tooltip',
+  title: 'tds-ui / Tooltip',
   component: Tooltip,
 } as Meta
 

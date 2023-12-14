@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { CheckboxBase } from './checkbox-base'
 
 export default {
-  title: 'core-elements / CheckboxBase',
+  title: 'tds-ui / CheckboxBase',
   component: CheckboxBase,
 } as Meta<typeof CheckboxBase>
 

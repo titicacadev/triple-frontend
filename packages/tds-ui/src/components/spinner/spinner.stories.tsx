@@ -2,7 +2,7 @@ import { RollingSpinner } from './rolling-spinner'
 import { Spinner } from './spinner'
 
 export default {
-  title: 'core-elements / Spinner',
+  title: 'tds-ui / Spinner',
 }
 
 export function BaseSpinner() {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { StickyHeader } from './sticky-header'
 
 export default {
-  title: 'core-elements / StickyHeader',
+  title: 'tds-ui / StickyHeader',
   component: StickyHeader,
 } as Meta
 
