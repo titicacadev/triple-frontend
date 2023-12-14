@@ -75,7 +75,7 @@ export interface PopupProps extends PropsWithChildren {
 /**
  * 밑에서 올라오는 팝업입니다.
  */
-function Popup({
+export function Popup({
   open = false,
   borderless = false,
   icon = 'close',
@@ -140,5 +140,3 @@ function Popup({
     </FloatingPortal>
   )
 }
-
-export default Popup
