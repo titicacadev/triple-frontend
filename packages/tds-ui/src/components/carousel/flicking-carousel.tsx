@@ -4,18 +4,12 @@ import type { FlickingOptions } from '@egjs/flicking'
 import styled from 'styled-components'
 
 import { Container } from '../container'
-import type { MarginPadding } from '../../commons'
 
 import { FlickingCarouselProvider } from './flicking-carousel-context'
 import { FlickingPageLabel } from './flicking-page-label'
 import { FlickingCarouselContent } from './flicking-carousel-content'
 import { FlickingCarouselControls } from './flicking-carousel-controls'
 import { CarouselItem } from './carousel-item'
-
-interface CarouselBaseProps {
-  margin?: MarginPadding
-  containerPadding?: { left: number; right: number }
-}
 
 interface FlickingEvents {
   onMoveStart?: FlickingProps['onMoveStart']
@@ -24,7 +18,7 @@ interface FlickingEvents {
   options?: Partial<FlickingOptions>
 }
 
-type FlickingCarouselProps = CarouselBaseProps & FlickingEvents
+type FlickingCarouselProps = FlickingEvents
 
 const CarouselContainer = styled(Container)`
   overflow: visible;
@@ -39,8 +33,6 @@ const CarouselContainer = styled(Container)`
  * 기능: 가로 스크롤 지원, 좌/우 화살표 지원
  */
 export function FlickingCarousel({
-  margin,
-  containerPadding,
   onMoveStart,
   onMove,
   onMoveEnd,
