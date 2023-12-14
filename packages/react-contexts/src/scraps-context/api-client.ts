@@ -15,14 +15,14 @@ function mapTypes(type: unknown) {
   }
 }
 
-export function scrape({ id, type }: Target) {
+export function scrape({ id, type, lang = 'ko' }: Target) {
   return post(`/api/scraps/${mapTypes(type)}/${id}`, {
-    headers: { 'X-Service-Origin': 'global' },
+    headers: { 'X-Service-Origin': 'global', 'X-Triple-User-Lang': lang },
   })
 }
 
-export function unscrape({ id, type }: Target) {
+export function unscrape({ id, type, lang = 'ko' }: Target) {
   return del(`/api/scraps/${mapTypes(type)}/${id}`, {
-    headers: { 'X-Service-Origin': 'global' },
+    headers: { 'X-Service-Origin': 'global', 'X-Triple-User-Lang': lang },
   })
 }

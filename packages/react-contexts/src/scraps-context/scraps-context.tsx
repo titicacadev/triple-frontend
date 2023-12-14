@@ -137,26 +137,26 @@ export function ScrapsProvider({
     )
 
   const scrape = useCallback(
-    async ({ id, type }: Target) => {
+    async ({ id, type, lang }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
 
       if (
         beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, true) === false
+        beforeScrapedChange({ id, type, lang }, true) === false
       ) {
         return
       }
 
       dispatch({ type: START_SCRAPE, id })
 
-      const response = await nativeScrape({ id, type })
+      const response = await nativeScrape({ id, type, lang })
 
       if (response.ok) {
         notifyScraped(id)
 
-        afterScrapedChange && afterScrapedChange({ id, type }, true)
+        afterScrapedChange && afterScrapedChange({ id, type, lang }, true)
 
         dispatch({ type: SCRAPE, id })
       } else {
@@ -167,26 +167,26 @@ export function ScrapsProvider({
   )
 
   const unscrape = useCallback(
-    async ({ id, type }: Target) => {
+    async ({ id, type, lang }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
 
       if (
         beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, false) === false
+        beforeScrapedChange({ id, type, lang }, false) === false
       ) {
         return
       }
 
       dispatch({ type: START_UNSCRAPE, id })
 
-      const response = await nativeUnscrape({ id, type })
+      const response = await nativeUnscrape({ id, type, lang })
 
       if (response.ok) {
         notifyUnscraped(id)
 
-        afterScrapedChange && afterScrapedChange({ id, type }, false)
+        afterScrapedChange && afterScrapedChange({ id, type, lang }, false)
 
         dispatch({ type: UNSCRAPE, id })
       } else {
