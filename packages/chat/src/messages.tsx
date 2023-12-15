@@ -131,6 +131,11 @@ export default function Messages<
         unfriended={sender.unfriended}
         type={type}
         value={value}
+        alteredTextColor={
+          my
+            ? bubbleStyle?.sent?.alteredTextColor
+            : bubbleStyle?.received?.alteredTextColor
+        }
         css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
         {...rest}
         {...bubbleProps}
