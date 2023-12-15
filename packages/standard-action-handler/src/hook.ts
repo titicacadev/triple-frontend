@@ -1,10 +1,23 @@
-import { useNavigate, useExternalRouter } from '@titicaca/router'
+import { useNavigate } from '@titicaca/router'
+import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp } from '@titicaca/triple-web'
 
-import { initialize } from './index'
+import { initialize } from './initialize'
 
-export function useStandardActionHandler() {
+interface Params {
+  cta?: string
+}
+
+export function useStandardActionHandler(params?: Params) {
   const { navigate } = useNavigate()
-  const routeExternally = useExternalRouter()
+  const { openInlink, openOutlink } = useTripleClientNavigate()
+  const app = useClientApp()
 
-  return initialize({ navigate, routeExternally })
+  return initialize({
+    cta: params?.cta,
+    navigate,
+    openInlink,
+    openOutlink,
+    app,
+  })
 }
