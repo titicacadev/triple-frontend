@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.14.2
+
+### react-contexts
+
+- [react-contexts] 틱톡 픽셀의 누락된 track 메소드를 추가합니다. [#3064](https://github.com/titicacadev/triple-frontend/pull/3064)
+
 ## v13.14.1
 
 ### resource-list-element
@@ -4146,11 +4152,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
