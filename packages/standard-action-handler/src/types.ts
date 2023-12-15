@@ -1,5 +1,5 @@
 import { UrlElements } from '@titicaca/view-utilities'
-import { App } from '@titicaca/react-triple-client-interfaces'
+import { ClientAppValue } from '@titicaca/triple-web'
 
 export interface NavigateOptions {
   target?: 'browser'
@@ -7,22 +7,15 @@ export interface NavigateOptions {
   [key: string]: unknown
 }
 
-type TargetType = 'current' | 'new' | 'browser'
-
 export interface ContextOptions {
   cta?: string
   navigate?: (
     rawHref: string,
     params?: NavigateOptions,
   ) => string | undefined | void
-  routeExternally?: ({
-    href,
-    target,
-  }: {
-    href: string
-    target: TargetType
-  }) => void
-  app?: App | null
+  openInlink?: (path: string) => void
+  openOutlink?: (url: string) => void
+  app?: ClientAppValue
 }
 
 export interface WebActionParams {
