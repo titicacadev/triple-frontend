@@ -4,6 +4,8 @@ import { Target } from './types'
 
 function mapTypes(type: unknown) {
   switch (type) {
+    case 'magazine':
+    case 'guide':
     case 'article':
       return 'articles'
     case 'tna':
