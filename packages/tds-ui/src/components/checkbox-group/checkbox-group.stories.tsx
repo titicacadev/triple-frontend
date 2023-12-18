@@ -1,74 +1,141 @@
-import type { Meta, StoryFn } from '@storybook/react'
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react'
+import { useArgs } from '@storybook/preview-api'
 
 import { Checkbox } from '../checkbox'
 
 import { CheckboxGroup } from './checkbox-group'
 
-export default {
+const meta: Meta<typeof CheckboxGroup> = {
   title: 'tds-ui / CheckboxGroup',
   component: CheckboxGroup,
-} as Meta<typeof CheckboxGroup>
-
-export const Default: StoryFn<typeof CheckboxGroup> = () => {
-  return (
-    <CheckboxGroup name="options" label="Label" help="Help message">
-      <Checkbox value="a">Option A</Checkbox>
-      <Checkbox value="b">Option B</Checkbox>
-      <Checkbox value="c">Option C</Checkbox>
-    </CheckboxGroup>
-  )
+  parameters: {
+    docs: {
+      description: {
+        component: 'Checkbox를 그룹화하는 컴포넌트입니다.',
+      },
+    },
+  },
 }
 
-export const Disabled: StoryFn<typeof CheckboxGroup> = () => {
-  return (
-    <CheckboxGroup name="options" label="Label" help="Help message" disabled>
-      <Checkbox value="a">Option A</Checkbox>
-      <Checkbox value="b">Option B</Checkbox>
-      <Checkbox value="c">Option C</Checkbox>
-    </CheckboxGroup>
-  )
+export default meta
+
+type Story = StoryObj<typeof CheckboxGroup>
+
+export const Default: Story = {
+  name: '기본',
+  args: {
+    name: 'options',
+    label: 'Label',
+    value: [],
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const onChange = (value: string[]) => {
+      updateArgs({ value })
+    }
+    return (
+      <CheckboxGroup {...args} value={value} onChange={onChange}>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </CheckboxGroup>
+    )
+  },
 }
 
-export const Required: StoryFn<typeof CheckboxGroup> = () => {
-  return (
-    <CheckboxGroup name="options" label="Label" help="Help message" required>
-      <Checkbox value="a">Option A</Checkbox>
-      <Checkbox value="b">Option B</Checkbox>
-      <Checkbox value="c">Option C</Checkbox>
-    </CheckboxGroup>
-  )
+export const Disabled: Story = {
+  name: '비활성화',
+  args: {
+    name: 'options',
+    label: 'Label',
+    value: [],
+    disabled: true,
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const onChange = (value: string[]) => {
+      updateArgs({ value })
+    }
+    return (
+      <CheckboxGroup {...args} value={value} onChange={onChange}>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </CheckboxGroup>
+    )
+  },
 }
 
-export const Error: StoryFn<typeof CheckboxGroup> = () => {
-  return (
-    <CheckboxGroup
-      name="options"
-      label="Label"
-      help="Help message"
-      error="Error message"
-    >
-      <Checkbox value="a">Option A</Checkbox>
-      <Checkbox value="b">Option B</Checkbox>
-      <Checkbox value="c">Option C</Checkbox>
-    </CheckboxGroup>
-  )
+export const Required: Story = {
+  name: '필수',
+  args: {
+    name: 'options',
+    label: 'Label',
+    value: [],
+    required: true,
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const onChange = (value: string[]) => {
+      updateArgs({ value })
+    }
+    return (
+      <CheckboxGroup {...args} value={value} onChange={onChange}>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </CheckboxGroup>
+    )
+  },
 }
 
-export const Controlled: StoryFn<typeof CheckboxGroup> = () => {
-  const [value, setValue] = useState<string[]>([])
+export const WithHelpMessage: Story = {
+  name: '가이드 메시지',
+  args: {
+    name: 'options',
+    label: 'Label',
+    value: [],
+    help: 'Help message',
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
 
-  return (
-    <CheckboxGroup
-      name="options"
-      label="Label"
-      help="Help message"
-      value={value}
-      onChange={(value) => setValue(value)}
-    >
-      <Checkbox value="a">Option A</Checkbox>
-      <Checkbox value="b">Option B</Checkbox>
-      <Checkbox value="c">Option C</Checkbox>
-    </CheckboxGroup>
-  )
+    const onChange = (value: string[]) => {
+      updateArgs({ value })
+    }
+    return (
+      <CheckboxGroup {...args} value={value} onChange={onChange}>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </CheckboxGroup>
+    )
+  },
+}
+
+export const WithErrorMessage: Story = {
+  name: '에러 메시지',
+  args: {
+    name: 'options',
+    label: 'Label',
+    value: [],
+    error: 'Error message',
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const onChange = (value: string[]) => {
+      updateArgs({ value })
+    }
+    return (
+      <CheckboxGroup {...args} value={value} onChange={onChange}>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </CheckboxGroup>
+    )
+  },
 }
