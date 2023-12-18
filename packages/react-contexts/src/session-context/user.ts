@@ -23,7 +23,7 @@ interface Mileage {
   point: number
 }
 
-export const GET_USER_REQUEST_URL = '/api/users/me'
+export const GET_USER_REQUEST_URL = '/api/users'
 
 const UserContext = createContext<User | null>(null)
 
