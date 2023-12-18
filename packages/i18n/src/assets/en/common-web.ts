@@ -205,4 +205,5 @@ export const enCommonWeb = {
   'sajin-dongyeongsang': 'Photos/Videos',
   'byeoljeom-nopeunsun': 'Highest rating',
   'byeoljeom-najeunsun': 'Lowest rating',
+  'gumae-injeung-review': 'Certified Purchase Review',
 } as const
