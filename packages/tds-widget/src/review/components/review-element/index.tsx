@@ -7,11 +7,9 @@ import {
   TransitionType,
   useSessionCallback,
   useClientAppCallback,
+  useClientApp,
 } from '@titicaca/triple-web'
-import {
-  useTripleClientActions,
-  useTripleClientMetadata,
-} from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { Timestamp } from '@titicaca/view-utilities'
 import * as CSS from 'csstype'
 import moment from 'moment'
@@ -116,7 +114,7 @@ export function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const trackEvent = useTrackEvent()
   const { addUriHash } = useHashRouter()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 

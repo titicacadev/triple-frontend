@@ -10,8 +10,11 @@ import {
   Rating,
   TextTitle,
 } from '@titicaca/tds-ui'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
@@ -72,7 +75,7 @@ function DetailHeaderV2({
 } & Parameters<typeof Section>['0']) {
   const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 

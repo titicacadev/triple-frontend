@@ -4,16 +4,14 @@ import {
   useEnv,
   useTransitionModal,
   useLoginCtaModal,
+  TestWrapper,
+  ClientAppName,
 } from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
-import {
-  useTripleClientMetadata,
-  useTripleClientNavigate,
-} from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 
 import { useNavigate } from '.'
 
-jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
@@ -24,10 +22,6 @@ const webUrlBase = mockWebUrlBase()
 const routablePath = mockRoutablePath()
 
 describe('브라우저', () => {
-  beforeEach(() => {
-    mockTripleClientMetadata({ isPublic: true })
-  })
-
   describe('routable한 href를 가진 URL로 호출하면 현재 창에서 라우팅합니다.', () => {
     test.each([
       [routablePath],
@@ -42,7 +36,12 @@ describe('브라우저', () => {
         result: {
           current: { navigate },
         },
-      } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+      } = renderHook(useNavigate, {
+        initialProps: { changeLocationHref },
+        wrapper: TestWrapper({
+          clientAppProvider: null,
+        }),
+      })
 
       navigate(href)
 
@@ -66,7 +65,12 @@ describe('브라우저', () => {
         result: {
           current: { navigate },
         },
-      } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+      } = renderHook(useNavigate, {
+        initialProps: { changeLocationHref },
+        wrapper: TestWrapper({
+          clientAppProvider: null,
+        }),
+      })
       navigate(href)
 
       expect(changeLocationHref).not.toHaveBeenCalled()
@@ -82,7 +86,12 @@ describe('브라우저', () => {
       result: {
         current: { navigate },
       },
-    } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+    } = renderHook(useNavigate, {
+      initialProps: { changeLocationHref },
+      wrapper: TestWrapper({
+        clientAppProvider: null,
+      }),
+    })
 
     navigate(`/inlink?path=${encodeURIComponent(routablePath)}`)
 
@@ -92,10 +101,6 @@ describe('브라우저', () => {
 })
 
 describe('앱', () => {
-  beforeEach(() => {
-    mockTripleClientMetadata({ isPublic: false })
-  })
-
   describe('세션이 없고 routable하지 않은 href를 가지고 있는 URL로 호출하면 로그인 유도 모달을 표시합니다.', () => {
     const href = '/i/am/not/routable/url'
 
@@ -114,7 +119,15 @@ describe('앱', () => {
         result: {
           current: { navigate },
         },
-      } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+      } = renderHook(useNavigate, {
+        initialProps: { changeLocationHref },
+        wrapper: TestWrapper({
+          clientAppProvider: {
+            device: { autoplay: 'always', networkType: 'unknown' },
+            metadata: { name: ClientAppName.Android, version: '1.0.0' },
+          },
+        }),
+      })
 
       navigate(href)
 
@@ -135,7 +148,15 @@ describe('앱', () => {
       result: {
         current: { navigate },
       },
-    } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+    } = renderHook(useNavigate, {
+      initialProps: { changeLocationHref },
+      wrapper: TestWrapper({
+        clientAppProvider: {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.Android, version: '1.0.0' },
+        },
+      }),
+    })
 
     navigate(href)
 
@@ -153,23 +174,21 @@ describe('앱', () => {
       result: {
         current: { navigate },
       },
-    } = renderHook(useNavigate, { initialProps: { changeLocationHref } })
+    } = renderHook(useNavigate, {
+      initialProps: { changeLocationHref },
+      wrapper: TestWrapper({
+        clientAppProvider: {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.Android, version: '1.0.0' },
+        },
+      }),
+    })
 
     navigate(href)
 
     expect(openNativeLink).toHaveBeenCalledWith(href)
   })
 })
-
-function mockTripleClientMetadata({ isPublic }: { isPublic: boolean }) {
-  ;(
-    useTripleClientMetadata as unknown as jest.MockedFunction<
-      () => ReturnType<typeof useTripleClientMetadata>
-    >
-  ).mockImplementation(() =>
-    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },
-  )
-}
 
 function mockWebUrlBase() {
   const webUrlBase = 'https://triple.guide'

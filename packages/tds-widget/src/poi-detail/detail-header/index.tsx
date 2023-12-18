@@ -8,8 +8,11 @@ import {
   Icon,
   TextTitle,
 } from '@titicaca/tds-ui'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -62,7 +65,7 @@ function DetailHeader({
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
 } & Parameters<typeof Section>['0']) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
