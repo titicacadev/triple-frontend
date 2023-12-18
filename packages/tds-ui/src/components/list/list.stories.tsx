@@ -2,12 +2,25 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { List } from './list'
 
-export default {
+const meta: Meta<typeof List> = {
   title: 'tds-ui / List',
   component: List,
-} as Meta<typeof List>
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '사용자에게 목록 형식으로 정보를 전닿할 때 사용되는 뷰 컴포넌트입니다.',
+      },
+    },
+  },
+}
 
-export const Default: StoryObj<typeof List> = {
+export default meta
+
+type Story = StoryObj<typeof List>
+
+export const Default: Story = {
+  name: '기본',
   args: {
     children: (
       <>
@@ -19,7 +32,8 @@ export const Default: StoryObj<typeof List> = {
   },
 }
 
-export const Marker: StoryObj<typeof List> = {
+export const Marker: Story = {
+  name: '점',
   args: {
     marker: true,
     children: (
@@ -32,7 +46,8 @@ export const Marker: StoryObj<typeof List> = {
   },
 }
 
-export const Divided: StoryObj<typeof List> = {
+export const Divided: Story = {
+  name: '구분선',
   args: {
     divided: true,
     dividerWeight: 10,
