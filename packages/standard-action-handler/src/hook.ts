@@ -1,5 +1,4 @@
-import { useNavigate } from '@titicaca/router'
-import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
+import { useNavigate, useTripleClientNavigate } from '@titicaca/router'
 import { useClientApp } from '@titicaca/triple-web'
 
 import { initialize } from './initialize'

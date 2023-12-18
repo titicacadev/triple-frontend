@@ -10,14 +10,12 @@ import {
   useLoginCtaModal,
   useTransitionModal,
   TransitionType,
+  useClientApp,
 } from '@titicaca/triple-web'
-import {
-  OutlinkOptions,
-  useTripleClientMetadata,
-  useTripleClientNavigate,
-} from '@titicaca/react-triple-client-interfaces'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import qs from 'qs'
+
+import { OutlinkOptions, useTripleClientNavigate } from '../app-bridge'
 
 import canonizeTargetAddress from './canonization'
 
@@ -32,7 +30,7 @@ export function useNavigate({
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { openOutlink, openNativeLink } = useTripleClientNavigate()
 
   const navigateInBrowser = useCallback(
@@ -50,7 +48,7 @@ export function useNavigate({
 
       showTransitionModal(transitionType)
     },
-    [changeLocationHref, showTransitionModal, webUrlBase],
+    [changeLocationHref, showTransitionModal, transitionType, webUrlBase],
   )
 
   const navigateInApp = useCallback(
@@ -125,7 +123,7 @@ export function useNavigate({
         }
       }
     },
-    [appUrlScheme, sessionAvailable],
+    [appUrlScheme, sessionAvailable, showLoginCtaModal],
   )
 
   return {
