@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { EventTrackingProvider, TransitionModal } from '@titicaca/triple-web'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
@@ -14,12 +14,6 @@ const meta: Meta<typeof ReviewsShorten> = {
   title: 'Review / ReviewsShorten',
   component: ReviewsShorten,
   decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <TransitionModal />
-      </>
-    ),
     (Story) => (
       <QueryClientProvider client={queryClient}>
         <Story />
