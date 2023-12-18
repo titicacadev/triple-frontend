@@ -1,19 +1,26 @@
 import type { PropsWithChildren } from 'react'
 import { renderHook } from '@testing-library/react'
 
-import { TripleClientMetadataProvider } from './triple-client-metadata-context'
-import { useTripleClientFeatureFlag } from './use-triple-client-feature-flag'
+import { ClientAppContext } from '../../contexts'
+import { ClientAppName } from '../../types'
+
+import { useFeatureFlag } from './use-feature-flag'
 
 it('returns true if app version meets the version operator requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
-    <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
+    <ClientAppContext.Provider
+      value={{
+        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        device: { autoplay: 'always', networkType: 'unknown' },
+      }}
+    >
       {children}
-    </TripleClientMetadataProvider>
+    </ClientAppContext.Provider>
   )
 
   const { result } = renderHook(
     () =>
-      useTripleClientFeatureFlag({
+      useFeatureFlag({
         operator: 'gte',
         appVersion: '5.11.0',
         availableOnPublic: true,
@@ -26,14 +33,19 @@ it('returns true if app version meets the version operator requirements', () => 
 
 it('returns false if app version does not meet the version operator requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
-    <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
+    <ClientAppContext.Provider
+      value={{
+        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        device: { autoplay: 'always', networkType: 'unknown' },
+      }}
+    >
       {children}
-    </TripleClientMetadataProvider>
+    </ClientAppContext.Provider>
   )
 
   const { result } = renderHook(
     () =>
-      useTripleClientFeatureFlag({
+      useFeatureFlag({
         operator: 'gte',
         appVersion: '5.12.0',
         availableOnPublic: true,
@@ -46,14 +58,19 @@ it('returns false if app version does not meet the version operator requirements
 
 it('returns false if app name does not meet the requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
-    <TripleClientMetadataProvider appName="Triple-iOS" appVersion="5.11.0">
+    <ClientAppContext.Provider
+      value={{
+        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        device: { autoplay: 'always', networkType: 'unknown' },
+      }}
+    >
       {children}
-    </TripleClientMetadataProvider>
+    </ClientAppContext.Provider>
   )
 
   const { result } = renderHook(
     () =>
-      useTripleClientFeatureFlag({
+      useFeatureFlag({
         operator: 'gte',
         appName: 'Triple-Android',
         appVersion: '5.12.0',
@@ -66,38 +83,26 @@ it('returns false if app name does not meet the requirements', () => {
 })
 
 it('returns false if app does not exist and is not avilable on public', () => {
-  const wrapper = ({ children }: PropsWithChildren) => (
-    <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
-  )
-
-  const { result } = renderHook(
-    () =>
-      useTripleClientFeatureFlag({
-        operator: 'gte',
-        appName: 'Triple-Android',
-        appVersion: '5.12.0',
-        availableOnPublic: false,
-      }),
-    { wrapper },
+  const { result } = renderHook(() =>
+    useFeatureFlag({
+      operator: 'gte',
+      appName: 'Triple-Android',
+      appVersion: '5.12.0',
+      availableOnPublic: false,
+    }),
   )
 
   expect(result.current).toBeFalsy()
 })
 
 it('returns true if app does not exist and is avilable on public', () => {
-  const wrapper = ({ children }: PropsWithChildren) => (
-    <TripleClientMetadataProvider>{children}</TripleClientMetadataProvider>
-  )
-
-  const { result } = renderHook(
-    () =>
-      useTripleClientFeatureFlag({
-        operator: 'gte',
-        appName: 'Triple-Android',
-        appVersion: '5.12.0',
-        availableOnPublic: true,
-      }),
-    { wrapper },
+  const { result } = renderHook(() =>
+    useFeatureFlag({
+      operator: 'gte',
+      appName: 'Triple-Android',
+      appVersion: '5.12.0',
+      availableOnPublic: true,
+    }),
   )
 
   expect(result.current).toBeTruthy()
