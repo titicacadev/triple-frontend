@@ -21,6 +21,13 @@ const FlickingScrollButton = styled.button<{
 const meta: Meta<typeof FlickingCarousel> = {
   title: 'tds-ui / Carousel / FlickingCarousel',
   component: FlickingCarousel,
+  parameters: {
+    docs: {
+      description: {
+        component: '@egjs/flicking를 적용한 Carousel 컴포넌트입니다.',
+      },
+    },
+  },
 }
 
 export default meta

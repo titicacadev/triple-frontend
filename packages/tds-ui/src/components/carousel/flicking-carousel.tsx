@@ -20,10 +20,6 @@ const CarouselContainer = styled(Container)`
   }
 `
 
-/**
- * 정의: @egjs/flicking를 적용한 Carousel입니다.
- * 기능: 가로 스크롤 지원, 좌/우 화살표 지원
- */
 export function FlickingCarousel({
   currentPage,
   onMoveStart,

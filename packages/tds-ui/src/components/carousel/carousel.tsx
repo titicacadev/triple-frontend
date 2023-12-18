@@ -14,10 +14,6 @@ const CarouselBase = styled.ul`
   }
 `
 
-/**
- * 정의: Only CSS Carousel입니다.
- * 기능: 가로 스크롤만 지원합니다.
- */
 export function Carousel({
   children,
   ...cssProps
