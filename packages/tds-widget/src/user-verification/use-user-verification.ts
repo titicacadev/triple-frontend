@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect, useCallback } from 'react'
 import { useVisibilityChange } from '@titicaca/react-hooks'
-import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 import { useClientApp } from '@titicaca/triple-web'
+import { useTripleClientNavigate } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 import { confirmVerification } from './confirmation-services'
