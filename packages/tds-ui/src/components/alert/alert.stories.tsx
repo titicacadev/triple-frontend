@@ -41,7 +41,7 @@ export const Default: StoryObj<typeof Alert> = {
 
     if (!open) {
       return (
-        <button onClick={() => updateArgs({ open: true })}>모달 열기</button>
+        <button onClick={() => updateArgs({ open: true })}>얼럿 열기</button>
       )
     }
 
