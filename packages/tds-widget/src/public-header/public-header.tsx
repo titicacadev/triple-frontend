@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren } from 'react'
+import { useClientApp } from '@titicaca/triple-web'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -107,7 +107,7 @@ export function PublicHeader({
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
 
   if (app) {

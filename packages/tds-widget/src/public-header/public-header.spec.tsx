@@ -1,37 +1,27 @@
 import { render } from '@testing-library/react'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { ClientAppName, TestWrapper } from '@titicaca/triple-web'
 
 import { PublicHeader } from './public-header'
 
-jest.mock('@titicaca/react-triple-client-interfaces')
-
-afterEach(() => {
-  jest.clearAllMocks()
-})
-
 it('renders nothing inside triple client', () => {
-  ;(
-    useTripleClientMetadata as jest.MockedFunction<
-      typeof useTripleClientMetadata
-    >
-  ).mockReturnValue({
-    appVersion: '5.11.0',
-    appName: 'Triple-iOS',
+  const { container } = render(<PublicHeader />, {
+    wrapper: TestWrapper({
+      clientAppProvider: {
+        device: { autoplay: 'always', networkType: 'unknown' },
+        metadata: { name: ClientAppName.Android, version: '1.0.0' },
+      },
+    }),
   })
-
-  const { container } = render(<PublicHeader />)
 
   expect(container.childNodes).toHaveLength(0)
 })
 
 it('renders header outside triple client', () => {
-  ;(
-    useTripleClientMetadata as jest.MockedFunction<
-      typeof useTripleClientMetadata
-    >
-  ).mockReturnValue(null)
-
-  const { container } = render(<PublicHeader />)
+  const { container } = render(<PublicHeader />, {
+    wrapper: TestWrapper({
+      clientAppProvider: null,
+    }),
+  })
 
   expect(container.childNodes).toHaveLength(1)
 })

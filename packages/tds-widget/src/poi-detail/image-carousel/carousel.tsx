@@ -1,8 +1,7 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
 import { Container, Responsive } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useTrackEvent } from '@titicaca/triple-web'
 import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
 import ImageCarousel, {
@@ -54,7 +53,7 @@ export default function Carousel({
   height,
   guestMode,
 }: CarouselProps) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const trackEvent = useTrackEvent()
   const [currentPage, setCurrentPage] = useState(0)
   const visibleImages = app

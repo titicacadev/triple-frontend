@@ -7,6 +7,7 @@ import {
   TransitionType,
   useSessionCallback,
   useClientAppCallback,
+  useClientApp,
 } from '@titicaca/triple-web'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { Timestamp } from '@titicaca/view-utilities'

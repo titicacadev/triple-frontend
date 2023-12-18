@@ -1,7 +1,6 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
-import { useEnv } from '@titicaca/triple-web'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 import {
-  useTripleClientMetadata,
   AppSpecificLinkProps,
   appSpecificLinkOptions,
 } from '@titicaca/react-triple-client-interfaces'
@@ -25,7 +24,7 @@ export const Inlink = ({
   ...props
 }: InlinkProps) => {
   const { appUrlScheme } = useEnv()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const href = app
     ? generateUrl({

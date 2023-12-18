@@ -1,6 +1,5 @@
 import { Text } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useTrackEvent } from '@titicaca/triple-web'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -43,7 +42,7 @@ interface Props {
 export function MileageButton({ resourceId }: Props) {
   const { t } = useTranslation('triple-frontend')
   const trackEvent = useTrackEvent()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { navigateMileageIntro } = useClientActions()
 
   return (

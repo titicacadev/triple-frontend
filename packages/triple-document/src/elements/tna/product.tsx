@@ -4,7 +4,7 @@ import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
 import { OverlayScrapButton } from '@titicaca/tds-widget'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp } from '@titicaca/triple-web'
 
 import { TnaProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
@@ -105,7 +105,7 @@ export function TnaProductWithPrice({
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
   const { t } = useTranslation('triple-frontend')
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const salePrice =
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice

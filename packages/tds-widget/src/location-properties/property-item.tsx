@@ -7,8 +7,11 @@ import {
   LongClickableComponentProps,
   FlexBoxProps,
 } from '@titicaca/tds-ui'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 
 export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
 
@@ -35,7 +38,7 @@ export default function PropertyItem({
   onClick,
   eventActionFragment,
 }: PropertyItemProps) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const trackEvent = useTrackEvent()
   const { addUriHash } = useHashRouter()
 
