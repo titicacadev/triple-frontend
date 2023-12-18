@@ -34,9 +34,6 @@ export interface ActionSheetProps
   onExited?: () => void
 }
 
-/**
- * ActionSheet
- */
 export const ActionSheet = ({
   children,
   open = false,
