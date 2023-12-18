@@ -4,23 +4,33 @@ import styled, { css } from 'styled-components'
 import { ActionSheet } from './action-sheet'
 import { ActionSheetItem } from './action-sheet-item'
 
-export default {
-  title: 'action-sheet / action-sheet',
+const meta: Meta<typeof ActionSheet> = {
+  title: 'tds-ui / ActionSheet',
   component: ActionSheet,
-  subcomponents: { Item: ActionSheetItem },
+  args: {
+    open: true,
+  },
   parameters: {
     docs: {
+      description: {
+        component:
+          '사용자에게 선택지를 제공하는 팝업 형태의 뷰 컴포넌트입니다.',
+      },
       story: {
         inline: false,
         iframeHeight: 500,
       },
     },
   },
-} as Meta<typeof ActionSheet>
+}
 
-export const Basic: StoryObj<typeof ActionSheet> = {
+export default meta
+
+type Story = StoryObj<typeof ActionSheet>
+
+export const Basic: Story = {
+  name: '기본 메뉴',
   args: {
-    open: true,
     children: (
       <>
         <ActionSheetItem>메뉴 1</ActionSheetItem>
@@ -36,10 +46,9 @@ export const Basic: StoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithTextMenu: StoryObj<typeof ActionSheet> = {
+export const WithTextMenu: Story = {
   name: '텍스트 메뉴',
   args: {
-    open: true,
     title: '샘플 액션 시트',
     children: (
       <>
@@ -52,10 +61,16 @@ export const WithTextMenu: StoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithIconMenu: StoryObj<typeof ActionSheet> = {
+export const WithIconMenu: Story = {
   name: '아이콘 메뉴',
+  parameters: {
+    docs: {
+      description: {
+        story: '아이콘 메뉴가 포함된 ActionSheet 입니다.',
+      },
+    },
+  },
   args: {
-    open: true,
     title: '샘플 액션 시트',
     children: (
       <>
@@ -66,10 +81,16 @@ export const WithIconMenu: StoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithForm: StoryObj<typeof ActionSheet> = {
+export const WithForm: Story = {
   name: '액션시트 방향 조절',
+  parameters: {
+    docs: {
+      description: {
+        story: 'ActionSheet는 방향을 조절할 수 있습니다.',
+      },
+    },
+  },
   args: {
-    open: true,
     title: '샘플 액션 시트',
     borderRadius: 0,
     from: 'top',
@@ -100,7 +121,7 @@ const CustomHeader = ({ title, help }: { title: string; help: string }) => (
   </>
 )
 
-export const WithCustomHeader: StoryObj<typeof ActionSheet> = {
+export const WithCustomHeader: Story = {
   name: '커스텀 헤더',
   args: {
     open: true,
@@ -116,7 +137,7 @@ export const WithCustomHeader: StoryObj<typeof ActionSheet> = {
   },
 }
 
-export const WithExtendStyle: StoryObj<typeof ActionSheet> = {
+export const WithExtendStyle: Story = {
   render: () => {
     return (
       <ActionSheet
@@ -147,7 +168,6 @@ export const WithExtendStyle: StoryObj<typeof ActionSheet> = {
   },
 
   name: '스타일 확장',
-
   parameters: {
     docs: {
       description: {
