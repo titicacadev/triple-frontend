@@ -5,8 +5,8 @@ import {
   useHashRouter,
   useTransitionModal,
   TransitionType,
+  useClientApp,
 } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { Button, ButtonGroup } from '@titicaca/tds-ui'
 
 import AskToTheLocal from './ask-to-the-local'
@@ -29,7 +29,7 @@ export function DirectionButtons({
 }) {
   const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
   const { show: showTransitionModal } = useTransitionModal()
   const trackEvent = useTrackEvent()
