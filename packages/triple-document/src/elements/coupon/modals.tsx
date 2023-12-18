@@ -114,7 +114,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
       </Text>
 
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={back}>
+        <Modal.Action color="gray" onClick={() => removeUriHash()}>
           {t('취소')}
         </Modal.Action>
         <Modal.Action
