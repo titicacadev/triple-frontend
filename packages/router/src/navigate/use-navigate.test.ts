@@ -8,9 +8,10 @@ import {
   ClientAppName,
 } from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
-import { useTripleClientNavigate } from '@titicaca/react-triple-client-interfaces'
 
-import { useNavigate } from '.'
+import { useTripleClientNavigate } from '../app-bridge'
+
+import { useNavigate } from './use-navigate'
 
 jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
