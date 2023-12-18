@@ -4,10 +4,12 @@ import { Fieldset } from './fieldset'
 import { FieldsetLegend } from './fieldset-legend'
 import { useFieldset } from './use-fieldset'
 
-export default {
+const meta: Meta<typeof Fieldset> = {
   title: 'tds-ui / Fieldset',
   component: Fieldset,
-} as Meta<typeof Fieldset>
+}
+
+export default meta
 
 const CustomInputGroup = () => {
   const { isRequired } = useFieldset()
@@ -26,7 +28,10 @@ const CustomInputGroup = () => {
   )
 }
 
-export const Default: StoryObj<typeof Fieldset> = {
+type Story = StoryObj<typeof Fieldset>
+
+export const Default: Story = {
+  name: '기본',
   render: (args) => {
     return (
       <Fieldset {...args}>
@@ -37,22 +42,11 @@ export const Default: StoryObj<typeof Fieldset> = {
   },
 }
 
-export const Disabled: StoryObj<typeof Fieldset> = {
-  render: (args) => {
-    return (
-      <Fieldset {...args}>
-        <FieldsetLegend>Label</FieldsetLegend>
-        <CustomInputGroup />
-      </Fieldset>
-    )
-  },
-
+export const Disabled: Story = {
+  name: '비활성화',
   args: {
     isDisabled: true,
   },
-}
-
-export const Required: StoryObj<typeof Fieldset> = {
   render: (args) => {
     return (
       <Fieldset {...args}>
@@ -61,8 +55,19 @@ export const Required: StoryObj<typeof Fieldset> = {
       </Fieldset>
     )
   },
+}
 
+export const Required: Story = {
+  name: '필수',
   args: {
     isRequired: true,
+  },
+  render: (args) => {
+    return (
+      <Fieldset {...args}>
+        <FieldsetLegend>Label</FieldsetLegend>
+        <CustomInputGroup />
+      </Fieldset>
+    )
   },
 }
