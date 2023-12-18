@@ -40,9 +40,6 @@ export interface DrawerProps extends PropsWithChildren {
   onExited?: () => void
 }
 
-/**
- * Drawer
- */
 export function Drawer({
   active,
   duration = TRANSITION_DURATION,
