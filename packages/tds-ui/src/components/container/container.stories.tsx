@@ -1,23 +1,39 @@
-import type { Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
 import { Container } from './container'
 
-export default {
+const meta: Meta<typeof Container> = {
   title: 'tds-ui / Container',
   component: Container,
-} as Meta
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '레이아웃 구성 시 컴포넌트를 묶거나 스타일을 추가할 때 사용하는 뷰 컴포는넌트입니다.',
+      },
+    },
+  },
+}
 
-export const Basic = {
+export default meta
+
+type Story = StoryObj<typeof Container>
+
+export const Default: Story = {
+  name: '기본',
   args: { children: 'Basic Container' },
 }
 
-export const CustomCss = () => {
-  return (
-    <Container
-      css={{ padding: 50, backgroundColor: 'gray', color: 'white' }}
-      borderRadius={10}
-    >
-      Custom CSS Container
-    </Container>
-  )
+export const CustomCss: Story = {
+  name: '커스텀',
+  render: () => {
+    return (
+      <Container
+        css={{ padding: 50, backgroundColor: 'gray', color: 'white' }}
+        borderRadius={10}
+      >
+        Custom CSS Container
+      </Container>
+    )
+  },
 }
