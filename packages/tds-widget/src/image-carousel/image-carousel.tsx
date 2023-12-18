@@ -1,6 +1,6 @@
-import { MouseEvent, ReactNode, useState } from 'react'
+import { MouseEvent, ReactNode } from 'react'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
-import { FlickingCarousel } from '@titicaca/tds-ui'
+import { FlickingCarousel, useFlickingCarousel } from '@titicaca/tds-ui'
 import type { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 
 import { ImageSource } from '../image-source'
@@ -65,43 +65,26 @@ function ImageCarousel({
   onMoveEnd,
   ...cssProps
 }: ImageCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(currentPage || 0)
-
   // check: https://github.com/titicacadev/triple-frontend/pull/213
   const totalCount = displayedTotalCount ?? images.length
 
-  const handleMoveStart = (e: FlickingEvent) => {
-    onMoveStart?.(e)
+  const PageLabelElement = ({ totalCount }: { totalCount: number }) => {
+    const { currentPage } = useFlickingCarousel()
+
+    return pageLabelRenderer({ currentIndex: currentPage, totalCount })
   }
-
-  const handleMove = (e: FlickingEvent) => {
-    onMove?.(e)
-  }
-
-  const handleMoveEnd = (e: FlickingEvent) => {
-    setCurrentIndex(e.index)
-
-    onMoveEnd?.(e)
-  }
-
-  const PageLabelElement = ({ currentIndex, totalCount }: RendererParams) =>
-    pageLabelRenderer({ currentIndex, totalCount })
 
   return (
     <FlickingCarousel
-      onMoveStart={handleMoveStart}
-      onMove={handleMove}
-      onMoveEnd={handleMoveEnd}
+      currentPage={currentPage}
+      onMoveStart={onMoveStart}
+      onMove={onMove}
+      onMoveEnd={onMoveEnd}
       options={FLICKING_OPTIONS}
       {...cssProps}
     >
       <FlickingCarousel.PageLabel
-        labelElement={
-          <PageLabelElement
-            currentIndex={currentIndex}
-            totalCount={totalCount}
-          />
-        }
+        labelElement={<PageLabelElement totalCount={totalCount} />}
       />
       <FlickingCarousel.Content>
         {images.map((image, index) => {
