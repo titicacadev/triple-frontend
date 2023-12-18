@@ -40,18 +40,19 @@ const FLICKING_OPTIONS: Partial<FlickingOptions> = {
 export function FlickingCarouselContent({
   children,
 }: PropsWithChildren<unknown>) {
-  const { flickingRef, options, onMoveStart, onMove, onMoveEnd } =
+  const { flickingRef, options, handleMoveStart, handleMove, handleMoveEnd } =
     useFlickingCarousel()
 
-  const flickingOptions = options ?? FLICKING_OPTIONS
+  const flickingOptions =
+    Object.keys(options).length === 0 ? FLICKING_OPTIONS : options
 
   return (
     <FlickingContainer>
       <Flicking
         ref={flickingRef}
-        onMoveStart={onMoveStart}
-        onMove={onMove}
-        onMoveEnd={onMoveEnd}
+        onMoveStart={handleMoveStart}
+        onMove={handleMove}
+        onMoveEnd={handleMoveEnd}
         {...flickingOptions}
       >
         {children}
