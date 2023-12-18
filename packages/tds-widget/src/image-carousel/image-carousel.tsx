@@ -1,7 +1,6 @@
-import { MouseEvent, ReactNode, useRef, useState } from 'react'
+import { MouseEvent, ReactNode, useState } from 'react'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
 import { FlickingCarousel } from '@titicaca/tds-ui'
-import Flicking from '@egjs/react-flicking'
 import type { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 
 import { ImageSource } from '../image-source'
@@ -67,17 +66,9 @@ function ImageCarousel({
   ...cssProps
 }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(currentPage || 0)
-  const flickingRef = useRef<Flicking>(null)
 
   // check: https://github.com/titicacadev/triple-frontend/pull/213
   const totalCount = displayedTotalCount ?? images.length
-
-  const handleContentClick = (
-    event?: MouseEvent,
-    media?: CarouselImageMeta,
-  ) => {
-    !flickingRef.current?.isPlaying() && onImageClick?.(event, media)
-  }
 
   const handleMoveStart = (e: FlickingEvent) => {
     onMoveStart?.(e)
@@ -128,7 +119,7 @@ function ImageCarousel({
               optimized={optimized}
               overlay={overlay}
               ImageSource={imageSourceRenderer}
-              onClick={(event) => handleContentClick(event, image)}
+              onClick={onImageClick}
             />
           )
         })}
