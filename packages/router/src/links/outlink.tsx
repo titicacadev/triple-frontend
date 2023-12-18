@@ -1,6 +1,5 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
-import { useEnv } from '@titicaca/triple-web'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
@@ -13,7 +12,7 @@ export interface OutlinkProps
 
 export const Outlink = ({ children, url, title, ...props }: OutlinkProps) => {
   const { appUrlScheme } = useEnv()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const href = app
     ? generateUrl({

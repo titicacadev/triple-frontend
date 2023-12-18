@@ -1,9 +1,6 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv } from '@titicaca/triple-web'
-import {
-  useTripleClientActions,
-  useTripleClientMetadata,
-} from '@titicaca/react-triple-client-interfaces'
+import { ClientAppName, TestWrapper, useEnv } from '@titicaca/triple-web'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import {
   useSendVerifiedMessage,
@@ -33,18 +30,17 @@ describe('useSendVerifiedMessage', () => {
     ).mockReturnValue({
       broadcastMessage,
     })
-    ;(
-      useTripleClientMetadata as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockReturnValue({
-      appVersion: '5.11.0',
-      appName: 'Triple-iOS',
-    })
 
     const {
       result: { current: sendVerifiedMessage },
-    } = renderHook(() => useSendVerifiedMessage())
+    } = renderHook(() => useSendVerifiedMessage(), {
+      wrapper: TestWrapper({
+        clientAppProvider: {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.Android, version: '1.0.0' },
+        },
+      }),
+    })
 
     sendVerifiedMessage({ type: 'USER_VERIFIED', phoneNumber: '010-1234-5678' })
 
@@ -60,11 +56,6 @@ describe('useSendVerifiedMessage', () => {
         return null
       },
     })
-    ;(
-      useTripleClientMetadata as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockReturnValue(null)
 
     const openerSpy = jest.spyOn(global.window, 'opener', 'get')
     const postMessage = jest.fn()
@@ -75,7 +66,11 @@ describe('useSendVerifiedMessage', () => {
 
     const {
       result: { current: sendVerifiedMessage },
-    } = renderHook(() => useSendVerifiedMessage())
+    } = renderHook(() => useSendVerifiedMessage(), {
+      wrapper: TestWrapper({
+        clientAppProvider: null,
+      }),
+    })
 
     sendVerifiedMessage({ type: 'USER_VERIFIED', phoneNumber: '010-1234-5678' })
 
@@ -99,16 +94,15 @@ describe('useVerifiedMessageListener', () => {
       subscribe,
       unsubscribe,
     })
-    ;(
-      useTripleClientMetadata as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockReturnValue({
-      appVersion: '5.11.0',
-      appName: 'Triple-iOS',
-    })
 
-    renderHook(() => useVerifiedMessageListener(handleVerifiedMessage))
+    renderHook(() => useVerifiedMessageListener(handleVerifiedMessage), {
+      wrapper: TestWrapper({
+        clientAppProvider: {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.Android, version: '1.0.0' },
+        },
+      }),
+    })
 
     expect(subscribe).toHaveBeenCalled()
   })
@@ -119,13 +113,11 @@ describe('useVerifiedMessageListener', () => {
       typeof useVerifiedMessageListener
     >['0']
 
-    ;(
-      useTripleClientMetadata as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockReturnValue(null)
-
-    renderHook(() => useVerifiedMessageListener(handleVerifiedMessage))
+    renderHook(() => useVerifiedMessageListener(handleVerifiedMessage), {
+      wrapper: TestWrapper({
+        clientAppProvider: null,
+      }),
+    })
 
     expect(addEventListenerSpy).toHaveBeenLastCalledWith(
       'message',

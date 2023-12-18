@@ -1,8 +1,12 @@
 import { FC, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
 import '@titicaca/tds-ui'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { render, screen } from '@testing-library/react'
-import { useTrackEvent, useHashRouter } from '@titicaca/triple-web'
+import {
+  useTrackEvent,
+  useHashRouter,
+  TestWrapper,
+  ClientAppName,
+} from '@titicaca/triple-web'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('@titicaca/triple-web')
@@ -30,17 +34,6 @@ jest.mock('@titicaca/tds-ui', () => ({
 import DetailHeaderV2 from '.'
 
 describe('when user is on app', () => {
-  beforeEach(() => {
-    ;(
-      useTripleClientMetadata as unknown as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockImplementation(() => ({
-      appName: 'Triple-iOS',
-      appVersion: '5.13.0',
-    }))
-  })
-
   it('attaches long-click handler to the outermost section', () => {
     const mockTrackEvent = jest.fn()
     const mockPush = jest.fn()
@@ -72,6 +65,14 @@ describe('when user is on app', () => {
         onReviewsRatingClick={jest.fn()}
         onCopy={jest.fn()}
       />,
+      {
+        wrapper: TestWrapper({
+          clientAppProvider: {
+            device: { autoplay: 'always', networkType: 'unknown' },
+            metadata: { name: ClientAppName.Android, version: '1.0.0' },
+          },
+        }),
+      },
     )
 
     screen.getByTestId('mock-clickable-section').click()
@@ -81,14 +82,6 @@ describe('when user is on app', () => {
 })
 
 describe('when user is on web', () => {
-  beforeEach(() => {
-    ;(
-      useTripleClientMetadata as unknown as jest.MockedFunction<
-        typeof useTripleClientMetadata
-      >
-    ).mockImplementation(() => null)
-  })
-
   it('attaches long-click handler to the outermost section', () => {
     const mockTrackEvent = jest.fn()
     const mockPush = jest.fn()
@@ -120,6 +113,11 @@ describe('when user is on web', () => {
         onReviewsRatingClick={jest.fn()}
         onCopy={jest.fn()}
       />,
+      {
+        wrapper: TestWrapper({
+          clientAppProvider: null,
+        }),
+      },
     )
 
     screen.getByTestId('mock-clickable-section').click()

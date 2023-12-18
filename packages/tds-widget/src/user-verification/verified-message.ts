@@ -1,8 +1,5 @@
-import { useEnv } from '@titicaca/triple-web'
-import {
-  useTripleClientMetadata,
-  useTripleClientActions,
-} from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useCallback, useEffect } from 'react'
 
 /**
@@ -16,7 +13,7 @@ export interface VerifiedMessage {
 
 export function useSendVerifiedMessage() {
   const { webUrlBase } = useEnv()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { broadcastMessage } = useTripleClientActions()
 
   const sendVerifiedMessage = useCallback(
@@ -44,7 +41,7 @@ export function useSendVerifiedMessage() {
 export function useVerifiedMessageListener(
   handleVerifiedMessage: (message: VerifiedMessage) => void,
 ) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const { subscribe, unsubscribe } = useTripleClientActions()
 
   useEffect(() => {
