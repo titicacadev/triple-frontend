@@ -1,46 +1,105 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
+import { useArgs } from '@storybook/preview-api'
 
 import { Popup } from './popup'
 
-export default {
-  title: 'popup / Popup',
+const meta: Meta<typeof Popup> = {
+  title: 'tds-ui / Popup',
   component: Popup,
   parameters: {
-    story: {
-      inline: false,
-      iframeHeight: 500,
+    docs: {
+      description: {
+        component:
+          '사용자에게 내용을 표시하기 위해 갑자기 생성되는 뷰 컴포넌트입니다.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
     },
   },
-} as Meta<typeof Popup>
+}
+
+export default meta
+
+type Story = StoryObj<typeof Popup>
 
 const EmptyScroll = styled.div`
   height: 200vh;
 `
 
-export const Basic: StoryObj<typeof Popup> = {
+export const Default: Story = {
+  name: '기본',
   args: {
     open: true,
-    title: '테스트',
-    children: <EmptyScroll>Scroll........</EmptyScroll>,
+    title: '제목',
+    children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
+  },
+  render: function Render(args) {
+    const [{ open }, updateArgs] = useArgs()
+
+    const onClose = () => {
+      updateArgs({ open: !open })
+    }
+
+    if (!open) {
+      return (
+        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
+      )
+    }
+
+    return <Popup {...args} onClose={onClose} />
   },
 }
 
-export const Borderless: StoryObj<typeof Popup> = {
+export const Borderless: Story = {
+  name: '커스텀 (밑줄 X)',
   args: {
     open: true,
     borderless: true,
-    title: '테스트',
-    children: <EmptyScroll>Scroll........</EmptyScroll>,
+    title: '제목',
+    children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
+  },
+  render: function Render(args) {
+    const [{ open }, updateArgs] = useArgs()
+
+    const onClose = () => {
+      updateArgs({ open: !open })
+    }
+
+    if (!open) {
+      return (
+        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
+      )
+    }
+
+    return <Popup {...args} onClose={onClose} />
   },
 }
 
-export const NoNavbar: StoryObj<typeof Popup> = {
+export const NoNavbar: Story = {
+  name: '커스텀 (헤더 X)',
   args: {
     open: true,
     noNavbar: true,
-    title: '테스트',
-    children: <EmptyScroll>Scroll........</EmptyScroll>,
+    title: '제목',
+    children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
+  },
+  render: function Render(args) {
+    const [{ open }, updateArgs] = useArgs()
+
+    const onClose = () => {
+      updateArgs({ open: !open })
+    }
+
+    if (!open) {
+      return (
+        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
+      )
+    }
+
+    return <Popup {...args} onClose={onClose} />
   },
 }
 
