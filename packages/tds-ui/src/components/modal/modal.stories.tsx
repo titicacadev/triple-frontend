@@ -1,65 +1,94 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { useArgs } from '@storybook/preview-api'
 
 import { Modal } from './modal'
 
-export default {
-  title: 'modals / Modal',
+const meta: Meta<typeof Modal> = {
+  title: 'tds-ui / Modal',
   component: Modal,
   parameters: {
-    story: {
-      inline: false,
-      iframeHeight: 500,
+    docs: {
+      description: {
+        component:
+          '같은 브라우저 내부에서 상위 레이어를 띄우는 뷰 컴포넌트입니다.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
     },
   },
-} as Meta<typeof Modal>
+}
 
-export const Default: StoryObj<typeof Modal> = {
-  render: (args) => {
+export default meta
+
+type Story = StoryObj<typeof Modal>
+
+export const Default: Story = {
+  name: '기본',
+  args: {
+    open: true,
+  },
+  render: function Render(args) {
+    const [{ open }, updateArgs] = useArgs()
+
+    const onClose = () => {
+      updateArgs({ open: !open })
+    }
+
+    if (!open) {
+      return (
+        <button onClick={() => updateArgs({ open: true })}>모달 열기</button>
+      )
+    }
+
     return (
-      <Modal {...args}>
+      <Modal {...args} onClose={onClose}>
         <Modal.Body>
-          <Modal.Title>안녕</Modal.Title>
-          <Modal.Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Modal.Description>
+          <Modal.Title>제목</Modal.Title>
+          <Modal.Description>부연설명 영역입니다.</Modal.Description>
         </Modal.Body>
         <Modal.Actions>
-          <Modal.Action color="blue">Close</Modal.Action>
+          <Modal.Action color="blue" onClick={onClose}>
+            닫기
+          </Modal.Action>
         </Modal.Actions>
       </Modal>
     )
   },
-
-  args: {
-    open: true,
-  },
 }
 
-export const Flexible: StoryObj<typeof Modal> = {
-  render: (args) => (
-    <Modal {...args}>
-      <Modal.Body css={{ maxWidth: '500px' }}>
-        <Modal.Title>Title</Modal.Title>
-        <Modal.Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </Modal.Description>
-      </Modal.Body>
-      <Modal.Actions>
-        <Modal.Action color="blue">Close</Modal.Action>
-      </Modal.Actions>
-    </Modal>
-  ),
+export const Flexible: Story = {
+  name: '유연성',
   args: {
     open: true,
     flexible: true,
+  },
+  render: function Render(args) {
+    const [{ open }, updateArgs] = useArgs()
+
+    const onClose = () => {
+      updateArgs({ open: !open })
+    }
+
+    if (!open) {
+      return (
+        <button onClick={() => updateArgs({ open: true })}>모달 열기</button>
+      )
+    }
+
+    return (
+      <Modal {...args} onClose={onClose}>
+        <Modal.Body css={{ maxWidth: '500px' }}>
+          <Modal.Title>제목</Modal.Title>
+          <Modal.Description>부연설명 영역입니다.</Modal.Description>
+        </Modal.Body>
+        <Modal.Actions>
+          <Modal.Action color="blue" onClick={onClose}>
+            닫기
+          </Modal.Action>
+        </Modal.Actions>
+      </Modal>
+    )
   },
 }
