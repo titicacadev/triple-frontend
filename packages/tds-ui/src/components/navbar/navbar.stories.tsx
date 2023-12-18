@@ -1,151 +1,122 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
 import { Text } from '../text'
 
 import { Navbar, NavbarWrapper } from './navbar'
-import { SearchNavbar } from './search-navbar'
 
 const Toc = styled.div`
   position: absolute;
   left: 52px;
 `
 
-// const ICON_LIST = [
-//   'more',
-//   'map',
-//   'write',
-//   'scraped',
-//   'unscraped',
-//   'share',
-//   'route',
-//   'search',
-//   'list',
-//   'hamburger',
-// ] as const
-
-export default {
-  title: 'tds-ui / Navbar',
+const meta: Meta<typeof Navbar> = {
+  title: 'tds-ui / Navbar / Navbar',
+  component: Navbar,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '최상단에 Navigation 기능을 제공해야할 때 사용되는 뷰 컴포넌트입니다.',
+      },
+    },
+  },
 }
 
-export function twoButtons() {
-  return (
-    <Navbar title="도쿄 관광지" borderless backgroundColor="white">
-      <Navbar.Item className="boxer gg" icon="back" />
-      <Navbar.Item floated="right" className="boxer gg" icon="more" />
-    </Navbar>
-  )
-}
-twoButtons.storyName = '버튼 2개 (좌1+우1)'
+export default meta
 
-export function threeButtons() {
-  return (
-    <Navbar title="도쿄 관광지" borderless>
-      <Navbar.Item icon="back" />
-      <Navbar.Item floated="right" icon="more" />
-      <Navbar.Item floated="right" icon="route" />
-    </Navbar>
-  )
-}
-threeButtons.storyName = '버튼 3개 (좌1+우2)'
+type Story = StoryObj<typeof Navbar>
 
-export function fourButtons() {
-  return (
-    <Navbar title="도쿄 관광지" borderless>
-      <Navbar.Item icon="back" />
-      <Navbar.Item floated="right" icon="more" />
-      <Navbar.Item floated="right" icon="route" />
-      <Navbar.Item floated="right" icon="list" />
-    </Navbar>
-  )
-}
-fourButtons.storyName = '버튼 4개 (좌1+우3)'
-
-export function secondaryNavbar() {
-  return (
-    <>
-      <Navbar title="도쿄 관광지" borderless>
+export const TwoButtons: Story = {
+  name: '버튼 2개 (좌1+우1)',
+  render: () => {
+    return (
+      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon="more" />
+        <Navbar.Item icon="more" floated="right" />
       </Navbar>
-      <Navbar.Secondary>
-        {/* <ListingFilter>
-          <ListingFilter.FilterEntry active>전 지역</ListingFilter.FilterEntry>
-        </ListingFilter> */}
-      </Navbar.Secondary>
-    </>
-  )
+    )
+  },
 }
-secondaryNavbar.storyName = '보조 Navbar (리스트 필터링)'
 
-export function wrappedNavbar() {
-  return (
-    <NavbarWrapper>
-      <Navbar title="도쿄 관광지" borderless>
+export const ThreeButtons: Story = {
+  name: '버튼 3개 (좌1+우2)',
+  render: () => {
+    return (
+      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon="more" />
+        <Navbar.Item icon="more" floated="right" />
+        <Navbar.Item icon="route" floated="right" />
       </Navbar>
-      <Navbar.Secondary>
-        {/* <ListingFilter>
-          <ListingFilter.FilterEntry active>전 지역</ListingFilter.FilterEntry>
-        </ListingFilter> */}
-      </Navbar.Secondary>
-    </NavbarWrapper>
-  )
+    )
+  },
 }
-wrappedNavbar.storyName = 'wrapper로 감싼 Navbar'
 
-export function toc() {
-  return (
-    <Navbar
-      renderTitle={() => (
-        <Toc>
-          <Text size="small" bold alpha={1}>
-            도쿄에서 반드시 먹어봐야 할 음식
-          </Text>
-
-          <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
-            라멘
-          </Text>
-        </Toc>
-      )}
-    >
-      <Navbar.Item icon="back" />
-      <Navbar.Item floated="right" icon="more" />
-    </Navbar>
-  )
-}
-toc.storyName = '목차'
-
-export function backgroundExample() {
-  return (
-    <>
-      <Navbar borderless backgroundColor="azul" title="컬러가 적용된 Navbar">
+export const FourButtons: Story = {
+  name: '버튼 4개 (좌1+우3)',
+  render: () => {
+    return (
+      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon="more" />
+        <Navbar.Item icon="more" floated="right" />
+        <Navbar.Item icon="route" floated="right" />
+        <Navbar.Item icon="list" floated="right" />
       </Navbar>
-      <Navbar borderless backgroundColor="teal" title="컬러가 적용된 Navbar">
+    )
+  },
+}
+
+export const SecondaryNavbar: Story = {
+  name: '보조 Navbar',
+  render: () => {
+    return (
+      <>
+        <Navbar title="도쿄 관광지" borderless>
+          <Navbar.Item icon="back" />
+          <Navbar.Item floated="right" icon="more" />
+        </Navbar>
+        <Navbar.Secondary>
+          <div>test</div>
+        </Navbar.Secondary>
+      </>
+    )
+  },
+}
+
+export const WrappedNavbar: Story = {
+  name: 'Wrapper로 감싼 Navbar',
+  render: () => {
+    return (
+      <NavbarWrapper>
+        <Navbar title="도쿄 관광지" borderless>
+          <Navbar.Item icon="back" />
+          <Navbar.Item icon="more" floated="right" />
+        </Navbar>
+      </NavbarWrapper>
+    )
+  },
+}
+
+export const RenderTitle: Story = {
+  name: '커스텀 (타이틀)',
+  render: () => {
+    return (
+      <Navbar
+        renderTitle={() => (
+          <Toc>
+            <Text size="small" bold alpha={1}>
+              도쿄에서 반드시 먹어봐야 할 음식
+            </Text>
+
+            <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
+              라멘
+            </Text>
+          </Toc>
+        )}
+      >
         <Navbar.Item icon="back" />
-        <Navbar.Item floated="right" icon="more" />
+        <Navbar.Item icon="more" floated="right" />
       </Navbar>
-    </>
-  )
+    )
+  },
 }
-backgroundExample.storyName = 'backgroundColor'
-
-export function searchExample() {
-  return (
-    <SearchNavbar
-      placeholder="“호텔예약” 도시이름으로 검색"
-      borderless={false}
-      onBackClick={() => {}}
-      onDeleteClick={() => {}}
-      onInputChange={() => {}}
-      onKeyUp={() => {}}
-      onBlur={() => {}}
-      onFocus={() => {}}
-      onSearch={() => {}}
-    />
-  )
-}
-
-searchExample.storyName = '검색'
