@@ -5,13 +5,15 @@ import {
   useMemo,
   useRef,
   RefObject,
+  useState,
+  useCallback,
 } from 'react'
 import type { FlickingProps } from '@egjs/react-flicking'
-import type { FlickingOptions } from '@egjs/flicking'
+import type { FlickingEvent, FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 
 interface FlickingCarouselBase {
-  flickingRef: RefObject<Flicking>
+  currentPage?: number
 }
 
 interface FlickingEvents {
@@ -21,28 +23,74 @@ interface FlickingEvents {
   options?: Partial<FlickingOptions>
 }
 
+export type FlickingCarouselProps = FlickingCarouselBase & FlickingEvents
+
+interface FlickingCarouselContextProps {
+  flickingRef: RefObject<Flicking>
+  currentPage: number
+  handleMoveStart: FlickingProps['onMoveStart']
+  handleMove: FlickingProps['onMove']
+  handleMoveEnd: FlickingProps['onMoveEnd']
+  options: Partial<FlickingOptions>
+}
+
 const FlickingCarouselContext = createContext<
-  (FlickingCarouselBase & FlickingEvents) | undefined
+  FlickingCarouselContextProps | undefined
 >(undefined)
 
 export function FlickingCarouselProvider({
+  currentPage: initialCurrentPage,
   onMoveStart,
   onMove,
   onMoveEnd,
-  options,
+  options = {},
   children,
-}: PropsWithChildren<FlickingEvents>) {
+}: PropsWithChildren<FlickingCarouselProps>) {
+  const [currentPage, setCurrentPage] = useState(initialCurrentPage || 0)
   const flickingRef = useRef<Flicking>(null)
+
+  const handleMoveStart = useCallback(
+    (e: FlickingEvent) => {
+      onMoveStart?.(e)
+    },
+    [onMoveStart],
+  )
+
+  const handleMove = useCallback(
+    (e: FlickingEvent) => {
+      onMove?.(e)
+    },
+    [onMove],
+  )
+
+  const handleMoveEnd = useCallback(
+    (e: FlickingEvent) => {
+      setCurrentPage(e.index)
+
+      onMoveEnd?.(e)
+    },
+    [onMoveEnd],
+  )
 
   const values = useMemo(
     () => ({
       flickingRef,
-      onMoveStart,
-      onMove,
-      onMoveEnd,
+      currentPage,
+      setCurrentPage,
+      handleMoveStart,
+      handleMove,
+      handleMoveEnd,
       options,
     }),
-    [flickingRef, onMove, onMoveEnd, onMoveStart, options],
+    [
+      flickingRef,
+      currentPage,
+      setCurrentPage,
+      handleMoveStart,
+      handleMove,
+      handleMoveEnd,
+      options,
+    ],
   )
 
   return (

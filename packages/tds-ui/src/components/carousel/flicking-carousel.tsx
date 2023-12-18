@@ -1,24 +1,16 @@
 import { PropsWithChildren } from 'react'
-import type { FlickingProps } from '@egjs/react-flicking'
-import type { FlickingOptions } from '@egjs/flicking'
 import styled from 'styled-components'
 
 import { Container } from '../container'
 
-import { FlickingCarouselProvider } from './flicking-carousel-context'
+import {
+  type FlickingCarouselProps,
+  FlickingCarouselProvider,
+} from './flicking-carousel-context'
 import { FlickingPageLabel } from './flicking-page-label'
 import { FlickingCarouselContent } from './flicking-carousel-content'
 import { FlickingCarouselControls } from './flicking-carousel-controls'
 import { CarouselItem } from './carousel-item'
-
-interface FlickingEvents {
-  onMoveStart?: FlickingProps['onMoveStart']
-  onMove?: FlickingProps['onMove']
-  onMoveEnd?: FlickingProps['onMoveEnd']
-  options?: Partial<FlickingOptions>
-}
-
-type FlickingCarouselProps = FlickingEvents
 
 const CarouselContainer = styled(Container)`
   overflow: visible;
@@ -33,6 +25,7 @@ const CarouselContainer = styled(Container)`
  * 기능: 가로 스크롤 지원, 좌/우 화살표 지원
  */
 export function FlickingCarousel({
+  currentPage,
   onMoveStart,
   onMove,
   onMoveEnd,
@@ -42,6 +35,7 @@ export function FlickingCarousel({
 }: PropsWithChildren<FlickingCarouselProps>) {
   return (
     <FlickingCarouselProvider
+      currentPage={currentPage}
       onMoveStart={onMoveStart}
       onMove={onMove}
       onMoveEnd={onMoveEnd}
