@@ -43,9 +43,6 @@ const RatingStar = styled.span<{
   `};
 `
 
-/**
- * **최솟값 0, 최댓값 5**로 설정되는 별점 컴포넌트입니다. score에 최소,최대보다 작거나 큰 값을 넣어도 동작합니다.
- */
 export function Rating({
   size,
   score: initScore = 0,
