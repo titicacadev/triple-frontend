@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
 import { Tabs } from './tabs'
@@ -6,15 +6,22 @@ import { TabList } from './tab-list'
 import { Tab } from './tab'
 import { TabPanel } from './tab-panel'
 
-export default {
+const meta: Meta<typeof Tabs> = {
   title: 'tds-ui / Tabs',
   component: Tabs,
-  subcomponents: {
-    TabList,
-    Tab,
-    TabPanel,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '좁은 화면에 많은 수의 컴포넌트를 배치할 필요가 있을 때 사용되는 뷰 컴포넌트입니다.',
+      },
+    },
   },
-} as Meta<typeof Tabs>
+}
+
+export default meta
+
+type Story = StoryObj<typeof Tabs>
 
 const Template: StoryFn<typeof Tabs> = (args) => {
   const [value, setValue] = useState('a')
@@ -33,44 +40,44 @@ const Template: StoryFn<typeof Tabs> = (args) => {
   )
 }
 
-export const Basic = {
-  render: Template,
-
+export const Basic: Story = {
+  name: '기본',
   args: {
     variant: 'basic',
   },
+  render: Template,
 }
 
-export const Pointing = {
-  render: Template,
-
+export const Pointing: Story = {
+  name: '포인트',
   args: {
     variant: 'pointing',
   },
+  render: Template,
 }
 
-export const PointingScroll = {
-  render: Template,
-
+export const PointingScroll: Story = {
+  name: '포인트 + 스크롤',
   args: {
-    ...Pointing.args,
+    variant: 'pointing',
     scroll: true,
   },
+  render: Template,
 }
 
-export const Rounded = {
-  render: Template,
-
+export const Rounded: Story = {
+  name: '라운드',
   args: {
     variant: 'rounded',
   },
+  render: Template,
 }
 
-export const RoundedScroll = {
-  render: Template,
-
+export const RoundedScroll: Story = {
+  name: '라운드 + 스크롤',
   args: {
-    ...Rounded.args,
+    variant: 'rounded',
     scroll: true,
   },
+  render: Template,
 }
