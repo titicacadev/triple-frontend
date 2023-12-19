@@ -1,16 +1,29 @@
+import { ChangeEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { useArgs } from '@storybook/preview-api'
 
 import { Select } from './select'
 
-export default {
+const meta: Meta<typeof Select> = {
   title: 'tds-ui / Select',
   component: Select,
-} as Meta<typeof Select>
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '사용자에게 옵션 선택을 제공할 때 사용되는 뷰 컴포넌트입니다.',
+      },
+    },
+  },
+}
+export default meta
 
-export const Default: StoryObj<typeof Select> = {
+type Story = StoryObj<typeof Select>
+
+export const Default: Story = {
+  name: '기본',
   args: {
-    label: '투어티켓 시간',
-    help: '고객님의 요청사항은 해당 호텔에 전달됩니다만 호텔 사정에 따라 필요하신 내용이 이루어지지 않을 수 있으니 많은 양해 바랍니다.',
+    value: '',
     placeholder: '시간을 선택해주세요',
     options: [
       {
@@ -27,11 +40,111 @@ export const Default: StoryObj<typeof Select> = {
       },
     ],
   },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+      updateArgs({ value: event.target.value })
+    }
+
+    return <Select {...args} value={value} onChange={handleChange} />
+  },
 }
 
-export const Error: StoryObj<typeof Select> = {
+export const WithLabel: Story = {
+  name: '스티커',
   args: {
-    ...Default.args,
-    error: '선택할 수 없는 시간입니다.',
+    value: '',
+    label: '투어티켓 시간',
+    placeholder: '시간을 선택해주세요',
+    options: [
+      {
+        label: '12:00',
+        value: '12:00',
+      },
+      {
+        label: '12:10',
+        value: '12:10',
+      },
+      {
+        label: '12:20',
+        value: '12:20',
+      },
+    ],
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+      updateArgs({ value: event.target.value })
+    }
+
+    return <Select {...args} value={value} onChange={handleChange} />
+  },
+}
+
+export const WithHelpMessage: Story = {
+  name: '가이드 메시지',
+  args: {
+    value: '',
+    label: '투어티켓 시간',
+    placeholder: '시간을 선택해주세요',
+    help: 'Help text',
+    options: [
+      {
+        label: '12:00',
+        value: '12:00',
+      },
+      {
+        label: '12:10',
+        value: '12:10',
+      },
+      {
+        label: '12:20',
+        value: '12:20',
+      },
+    ],
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+      updateArgs({ value: event.target.value })
+    }
+
+    return <Select {...args} value={value} onChange={handleChange} />
+  },
+}
+
+export const WithErrorMessage: Story = {
+  name: '에러 메시지',
+  args: {
+    value: '',
+    label: '투어티켓 시간',
+    placeholder: '시간을 선택해주세요',
+    error: 'Error text',
+    options: [
+      {
+        label: '12:00',
+        value: '12:00',
+      },
+      {
+        label: '12:10',
+        value: '12:10',
+      },
+      {
+        label: '12:20',
+        value: '12:20',
+      },
+    ],
+  },
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs()
+
+    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+      updateArgs({ value: event.target.value })
+    }
+
+    return <Select {...args} value={value} onChange={handleChange} />
   },
 }
