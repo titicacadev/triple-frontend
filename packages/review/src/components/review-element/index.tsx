@@ -31,6 +31,7 @@ import Media from './media'
 import { PinnedMessage } from './pinned-message'
 import User from './user'
 import { ReviewBadges } from './badges'
+import PurchaseInfo from './purchaseInfo'
 
 const MetaContainer = styled.div`
   margin-top: 5px;
@@ -122,6 +123,7 @@ export function ReviewElement({
     visitDate: visitDateString,
     liked,
     likesCount,
+    purchaseInfo,
   },
   isFullList,
   isMyReview,
@@ -324,6 +326,14 @@ export function ReviewElement({
             verifiedPurchase
           />
         ) : null}
+
+        {!blinded && purchaseInfo ? (
+          <PurchaseInfo
+            displayName={purchaseInfo.displayName}
+            purchaseCount={purchaseInfo.purchaseCount}
+          />
+        ) : null}
+
         <Content onClick={handleReviewClick}>
           {blinded ? (
             t([
