@@ -12,7 +12,6 @@ import {
 } from '@titicaca/react-triple-client-interfaces'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
-import * as CSS from 'csstype'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
@@ -31,6 +30,7 @@ import FoldableComment from './foldable-comment'
 import Media from './media'
 import { PinnedMessage } from './pinned-message'
 import User from './user'
+import { ReviewBadges } from './badges'
 
 const MetaContainer = styled.div`
   margin-top: 5px;
@@ -77,6 +77,26 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
 `
 
+const ReviewMetadataInfo = styled(FlexBox)`
+  > * {
+    height: 16px;
+    display: inline-block;
+    line-height: 16px;
+  }
+  > :not(:last-child)::after {
+    display: block;
+    float: right;
+    content: '';
+    background: url('https://assets.triple-dev.titicaca-corp.com/images/dot-gray.svg')
+      0 0 no-repeat;
+    background-position: center;
+    width: 3px;
+    height: 16px;
+    margin-left: 4px;
+    margin-right: 6px;
+  }
+`
+
 export interface ReviewElementProps {
   review: BaseReviewFragment
   isFullList: boolean
@@ -99,7 +119,7 @@ export function ReviewElement({
     media,
     replyBoard,
     resourceType,
-    visitDate,
+    visitDate: visitDateString,
     liked,
     likesCount,
   },
@@ -111,6 +131,8 @@ export function ReviewElement({
   onMenuClick,
 }: ReviewElementProps) {
   const { t } = useTranslation('common-web')
+
+  const visitDate = visitDateString ? new Date(visitDateString) : null
 
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
@@ -289,9 +311,18 @@ export function ReviewElement({
     >
       <List.Item style={{ paddingTop: 6 }}>
         {user ? <User user={user} onClick={handleUserClick} /> : null}
-        {!blinded && !!rating ? <Score score={rating} /> : null}
         {!blinded ? (
-          <RecentReviewInfo visitDate={visitDate} recentTrip={recentTrip} />
+          <ReviewMetadataInfo flex css={{ alignItems: 'center' }}>
+            {rating ? <Score score={rating} /> : null}
+            {visitDate ? <ReviewDayInfo visitDate={visitDate} /> : null}
+          </ReviewMetadataInfo>
+        ) : null}
+
+        {!blinded ? (
+          <ReviewBadges
+            recentTrip={!!visitDate && recentTrip}
+            verifiedPurchase
+          />
         ) : null}
         <Content onClick={handleReviewClick}>
           {blinded ? (
@@ -377,13 +408,18 @@ export function ReviewElement({
           </MessageCount>
 
           {!blinded || (blinded && isMyReview) ? (
-            <Date floated="right">
+            <Container
+              floated="right"
+              css={{
+                margin: '2px 0 0',
+              }}
+            >
               <Timestamp date={reviewedAt} />
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
                 onClick={handleMenuClick}
               />
-            </Date>
+            </Container>
           ) : null}
         </Meta>
       </List.Item>
@@ -393,12 +429,8 @@ export function ReviewElement({
 
 function Score({ score }: { score?: number }) {
   return (
-    <Container
-      css={{
-        margin: '18px 0 0',
-      }}
-    >
-      <Rating size="tiny" score={score} />
+    <Container css={{ height: '16px' }}>
+      <Rating score={score} verticalAlign="top" />
     </Container>
   )
 }
@@ -432,22 +464,6 @@ function Meta({ children }: PropsWithChildren<unknown>) {
   )
 }
 
-function Date({
-  floated,
-  children,
-}: PropsWithChildren<{ floated?: CSS.Property.Float }>) {
-  return (
-    <Container
-      floated={floated}
-      css={{
-        margin: '2px 0 0',
-      }}
-    >
-      {children}
-    </Container>
-  )
-}
-
 function RateDescription({
   rating,
   reviewRateDescriptions,
@@ -460,57 +476,24 @@ function RateDescription({
   return <Comment>{comment}</Comment>
 }
 
-function RecentReviewInfo({
-  visitDate,
-  recentTrip,
-}: {
-  visitDate?: string | null
-  recentTrip: boolean
-}) {
+function ReviewDayInfo({ visitDate }: { visitDate: Date }) {
   const { t } = useTranslation('common-web')
 
-  const startDate = moment('2000-01')
-  const endDate = moment().subtract(180, 'days').format('YYYY-MM')
-  const isOldReview =
-    visitDate && moment(visitDate).isBetween(startDate, endDate)
-
-  const [visitYear, visitMonth] = visitDate?.split('-') || []
+  const visitYear = moment(visitDate).year()
+  const visitMonth = moment(visitDate).month() + 1
 
   return (
-    <FlexBox
-      flex
-      alignItems="center"
-      css={{
-        padding: '8px 0 0',
-      }}
-    >
-      {recentTrip && !isOldReview ? (
-        <>
-          <img
-            width={16}
-            height={16}
-            src="https://assets.triple.guide/images/ico_recently_badge@4x.png"
-            alt="recent-trip-icon"
-          />
-          <Text padding={{ left: 4, right: 8 }} size={14} color="blue" bold>
-            {t(['coegeun-yeohaeng', '최근여행'])}
-          </Text>
-        </>
-      ) : null}
-      {visitDate ? (
-        <Text size={14} color="gray700">
-          {t(
-            [
-              'visityear-nyeon-visitmonth-weol-yeohaeng',
-              '{{visitYear}}년 {{visitMonth}}월 여행',
-            ],
-            {
-              visitYear,
-              visitMonth,
-            },
-          )}
-        </Text>
-      ) : null}
-    </FlexBox>
+    <Text size={13} color="gray700" lineHeight="13px">
+      {t(
+        [
+          'visityear-nyeon-visitmonth-weol-yeohaeng',
+          '{{visitYear}}년 {{visitMonth}}월 여행',
+        ],
+        {
+          visitYear,
+          visitMonth,
+        },
+      )}
+    </Text>
   )
 }
