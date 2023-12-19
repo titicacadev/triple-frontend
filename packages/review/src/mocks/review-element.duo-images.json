@@ -43,9 +43,9 @@
     }
   ],
   "rating": 4,
-  "visitDate": "2022-04",
+  "visitDate": "2023-12",
   "likesCount": 3,
-  "reviewedAt": "2022-05-30T05:09:41.416Z",
+  "reviewedAt": "2023-12-15T05:09:41.416Z",
   "user": {
     "unregister": false,
     "uid": "LKfR6Z3QGLb3rgKHXuJhpdgvfeS2",
@@ -74,5 +74,11 @@
   },
   "comment": "미디어 2개",
   "liked": false,
-  "recentTrip": false
+  "recentTrip": false,
+  "purchaseInfo": {
+    "orderId": "11",
+    "purchaseCount": 2,
+    "displayName": "디럭스 트윈룸, 호수 전망 + 조식 성인2 포함 + 워터파크 + 골프장 스페셜 골드 프리미엄 얼리버드 특가 (키즈 라운지 추가금 발생)",
+    "purchaseDate": "2023-12-12"
+  }
 }

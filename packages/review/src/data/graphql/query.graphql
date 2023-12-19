@@ -25,6 +25,12 @@ fragment BaseReview on Review {
     }
   }
   liked
+  purchaseInfo {
+    orderId
+    displayName
+    purchaseDate
+    purchaseCount
+  }
 }
 
 fragment BaseUser on User {
