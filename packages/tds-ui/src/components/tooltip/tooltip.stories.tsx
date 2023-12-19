@@ -1,14 +1,23 @@
-import type { Meta } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
-
-import { Navbar } from '../navbar'
 
 import { Tooltip } from './tooltip'
 
-export default {
+const meta: Meta<typeof Tooltip> = {
   title: 'tds-ui / Tooltip',
   component: Tooltip,
-} as Meta
+  parameters: {
+    docs: {
+      description: {
+        component: '말풍선을 노출하는 뷰 컴포넌트입니다.',
+      },
+    },
+  },
+}
+
+export default meta
+
+type Story = StoryObj<typeof Tooltip>
 
 const Base = styled.div`
   position: relative;
@@ -17,72 +26,42 @@ const Base = styled.div`
   padding: 10px;
 `
 
-export const Basic = {
-  render: () => {
+export const ArrowTop: Story = {
+  name: '위쪽 표시',
+  args: {
+    label: '모든 호텔 보기',
+    pointing: {
+      vertical: 'top',
+      horizontal: 'left',
+      horizontalOffset: 26,
+    },
+    nowrap: false,
+    backgroundColor: 'rgba(13, 208, 175, 1)',
+  },
+  render: (args) => {
     return (
       <Base>
         툴팁 표시 대상
-        <Tooltip
-          label="모든 호텔 보기"
-          pointing={{
-            vertical: 'bottom',
-            horizontal: 'left',
-            horizontalOffset: 26,
-          }}
-          backgroundColor="rgba(13, 208, 175, 1)"
-          nowrap={false}
-        />
+        <Tooltip {...args} />
       </Base>
     )
   },
-
-  name: '기본',
-  args: {},
 }
 
-export const Price = {
-  render: () => {
+export const ArrowBottom: Story = {
+  name: '아래쪽 표시',
+  args: {
+    label: '쿠폰사용시 -15,000원 더 할인!',
+    positioning: { top: -25 },
+    borderRadius: '30',
+    onClick: () => {},
+  },
+  render: (args) => {
     return (
       <Base>
         툴팁 표시 대상
-        <Tooltip
-          borderRadius="30"
-          positioning={{ top: -12 }}
-          label="쿠폰사용시 -15,000원 더 할인!"
-          onClick={() => {}}
-        />
+        <Tooltip {...args} />
       </Base>
     )
   },
-
-  name: '가격',
-}
-
-export const HotelListIcon = {
-  render: () => {
-    return (
-      <Navbar>
-        <Navbar.Item floated="right" icon="list" position="relative">
-          <Tooltip
-            label={`${'호찌민'} 모든 호텔 보기`}
-            borderRadius="12"
-            positioning={{
-              bottom: -25,
-              right: -14,
-            }}
-            pointing={{
-              vertical: 'top',
-              horizontal: 'right',
-              horizontalOffset: 24,
-            }}
-            hasShadow
-            backgroundColor="#368fff"
-            nowrap
-          />
-        </Navbar.Item>
-      </Navbar>
-    )
-  },
-
-  name: '호텔 목록 아이콘',
 }
