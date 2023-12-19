@@ -84,6 +84,7 @@ const ReviewMetadataInfo = styled(FlexBox)`
     display: inline-block;
     line-height: 16px;
   }
+
   > :not(:last-child)::after {
     display: block;
     float: right;
