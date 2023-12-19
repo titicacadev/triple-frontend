@@ -1,23 +1,48 @@
+import type { StoryObj } from '@storybook/react'
+
 import { RollingSpinner } from './rolling-spinner'
 import { Spinner } from './spinner'
 
-export default {
+const meta = {
   title: 'tds-ui / Spinner',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '사용자에게 데이터를 불러오고 있음을 알려주는 뷰 컴포넌트입니다.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: 300,
+      },
+    },
+  },
 }
 
-export function BaseSpinner() {
-  return <Spinner full={false} />
+export default meta
+
+export const Default: StoryObj<typeof Spinner> = {
+  name: '기본',
+  args: {
+    full: false,
+  },
+  render: (args) => {
+    return <Spinner {...args} />
+  },
 }
 
-BaseSpinner.storyName = '기본 스피너'
-
-export function BaseRollingSpinner() {
-  const logos = [
-    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/7C.png',
-    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/TW.png',
-    'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
-  ]
-  return <RollingSpinner imageUrls={logos} duration={50} size={36} />
+export const Rolling: StoryObj<typeof RollingSpinner> = {
+  name: '롤링',
+  args: {
+    imageUrls: [
+      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/7C.png',
+      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/TW.png',
+      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
+    ],
+    duration: 50,
+    size: 36,
+  },
+  render: (args) => {
+    return <RollingSpinner {...args} />
+  },
 }
-
-BaseRollingSpinner.storyName = '롤링 스피너'
