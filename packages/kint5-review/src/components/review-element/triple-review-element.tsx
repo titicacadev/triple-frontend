@@ -4,7 +4,6 @@ import {
   List,
   Rating,
   Text,
-  EmptyThumbsUpIcon,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
@@ -53,7 +52,6 @@ export function TripleReviewElement({
     rating,
     media,
     visitDate,
-    likesCount,
   },
   isFullList,
   isMyReview,
@@ -232,31 +230,10 @@ export function TripleReviewElement({
           flex
           css={{
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             marginTop: 20,
           }}
         >
-          {!blinded ? (
-            <FlexBox
-              flex
-              css={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 4,
-              }}
-            >
-              <EmptyThumbsUpIcon />
-              <Text
-                css={{
-                  fontSize: 12,
-                  color: 'var(--color-kint5-gray100)',
-                }}
-              >
-                {likesCount}
-              </Text>
-            </FlexBox>
-          ) : null}
-
           {!blinded || (blinded && isMyReview) ? (
             <FlexBox flex css={{ alignItems: 'center', gap: 5 }}>
               <Text
