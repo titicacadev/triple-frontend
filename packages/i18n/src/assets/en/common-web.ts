@@ -11,7 +11,7 @@ export const enCommonWeb = {
   'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.':
     'International call rates may apply.',
   'hyeonjieseo-gilmudgi': 'Ask for directions locally',
-  'grab-hocul': 'Call Grab',
+  'grab-hocul': 'Grab Taxi',
   gilcajgi: 'Get Directions',
   juso: 'Address',
   jeonhwa: 'Phone call',
