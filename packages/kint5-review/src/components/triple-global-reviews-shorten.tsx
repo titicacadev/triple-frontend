@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CSSObject } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -31,6 +32,7 @@ interface TripleGlobalReviewsShortenProps {
   placeholderText?: string
   receiverId?: string
   lang: string
+  containerCss?: CSSObject
 }
 
 export function TripleGlobalReviewsShorten({
@@ -44,6 +46,7 @@ export function TripleGlobalReviewsShorten({
   placeholderText,
   receiverId,
   lang,
+  containerCss,
 }: TripleGlobalReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -65,6 +68,7 @@ export function TripleGlobalReviewsShorten({
               initialReviewsCount={initialReviewsCount}
               placeholderText={placeholderText}
               sortingType={sortingType}
+              containerCss={containerCss}
             />
           </ReviewLanguageProvider>
         </SortingOptionsProvider>
@@ -80,6 +84,7 @@ function TripleGlobalReviewsShortenComponent({
   initialReviewsCount,
   placeholderText,
   sortingType,
+  containerCss,
 }: Omit<
   TripleGlobalReviewsShortenProps,
   'initialRecentTrip' | 'initialSortingOption' | 'lang'
@@ -130,7 +135,10 @@ function TripleGlobalReviewsShortenComponent({
   }
 
   return (
-    <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
+    <Section
+      anchor={REVIEWS_SECTION_ID}
+      css={{ margin: '0 16px', padding: 0, ...containerCss }}
+    >
       <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
         <Text css={{ fontSize: 18, fontWeight: 700 }}>
           {t(['ribyu', '리뷰'])}
