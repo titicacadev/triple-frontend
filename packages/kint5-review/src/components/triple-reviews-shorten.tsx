@@ -141,6 +141,10 @@ function TripleReviewsShortenComponent({
     ...(isRatingOption && { sortingLabel: selectedOption }),
   }
 
+  if (reviewsCountData?.reviewsCount === 0) {
+    return null
+  }
+
   return (
     <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
       <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
