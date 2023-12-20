@@ -1,4 +1,5 @@
 import { ComponentType, useEffect } from 'react'
+import { CSSObject } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -31,6 +32,7 @@ interface TripleReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
+  containerCss?: CSSObject
 }
 
 /** 트리플 리뷰 (현지인 리뷰) 컴포넌트
@@ -46,6 +48,7 @@ export function TripleReviewsShorten({
   sortingType = 'default',
   placeholderText,
   receiverId,
+  containerCss,
 }: TripleReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -67,6 +70,7 @@ export function TripleReviewsShorten({
               initialReviewsCount={initialReviewsCount}
               placeholderText={placeholderText}
               sortingType={sortingType}
+              containerCss={containerCss}
             />
           </ReviewLanguageProvider>
         </SortingOptionsProvider>
@@ -89,6 +93,7 @@ function TripleReviewsShortenComponent({
   initialReviewsCount,
   placeholderText,
   sortingType,
+  containerCss,
 }: Omit<
   TripleReviewsShortenProps,
   'initialRecentTrip' | 'initialSortingOption'
@@ -146,7 +151,10 @@ function TripleReviewsShortenComponent({
   }
 
   return (
-    <Section anchor={REVIEWS_SECTION_ID} css={{ margin: '0 16px', padding: 0 }}>
+    <Section
+      anchor={REVIEWS_SECTION_ID}
+      css={{ margin: '0 16px', padding: 0, ...containerCss }}
+    >
       <FlexBox flex css={{ alignItems: 'center', gap: 8 }}>
         <Text css={{ fontSize: 18, fontWeight: 700 }}>
           {t(['hyeonjiin-ribyu', '현지인 리뷰'])}
