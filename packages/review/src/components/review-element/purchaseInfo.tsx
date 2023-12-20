@@ -44,7 +44,7 @@ export default function PurchaseInfo({
       flex
       css={{
         width: '100%',
-        marginTop: 6,
+        marginBottom: 6,
         color: 'var(--color-gray500)',
         fontSize: 14,
       }}
@@ -55,7 +55,7 @@ export default function PurchaseInfo({
             {displayName}
           </RepresentativePurchaseName>
           {purchaseCount > 0 ? (
-            <ExtraInfo>{` 외 ${purchaseCount}건`}</ExtraInfo>
+            <ExtraInfo>&nbsp;{`외 ${purchaseCount}건`}</ExtraInfo>
           ) : null}
           {isEllipsis ? (
             <ShowMoreButton onClick={() => setShowFullName(true)} />
