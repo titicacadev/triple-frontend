@@ -324,7 +324,7 @@ export function ReviewElement({
         {!blinded ? (
           <ReviewBadges
             recentTrip={!!visitDate && recentTrip}
-            verifiedPurchase
+            verifiedPurchase={!!purchaseInfo}
           />
         ) : null}
 
