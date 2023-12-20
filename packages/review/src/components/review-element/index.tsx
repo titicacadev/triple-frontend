@@ -79,6 +79,9 @@ const LikeButton = styled(Container)<{ liked?: boolean }>`
 `
 
 const ReviewMetadataInfo = styled(FlexBox)`
+  margin-top: 16px;
+  margin-bottom: 16px;
+
   > * {
     height: 16px;
     display: inline-block;
@@ -451,12 +454,7 @@ function Content({
   children,
 }: PropsWithChildren<{ onClick?: () => void }>) {
   return (
-    <Container
-      clearing
-      css={{
-        margin: '6px 0 0',
-      }}
-    >
+    <Container clearing>
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <a onClick={onClick}>
         <Comment>{children}</Comment>
