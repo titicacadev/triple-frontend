@@ -8,12 +8,12 @@ export function ReviewBadges({
   recentTrip: boolean
   verifiedPurchase: boolean
 }) {
-  return (
-    <FlexBox flex gap="5px" css={{ marginTop: 16 }}>
+  return recentTrip || verifiedPurchase ? (
+    <FlexBox flex gap="5px" css={{ marginBottom: 6 }}>
       {recentTrip ? <RecentTripBadge /> : null}
       {verifiedPurchase ? <VerifiedPurchaseBadge /> : null}
     </FlexBox>
-  )
+  ) : null
 }
 
 export function RecentTripBadge() {
