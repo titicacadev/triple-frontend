@@ -39,6 +39,8 @@ export default function PurchaseInfo({
     }
   }, [])
 
+  const displayPurchaseCount = purchaseCount > 1 ? purchaseCount - 1 : null
+
   return (
     <FlexBox
       flex
@@ -54,8 +56,8 @@ export default function PurchaseInfo({
           <RepresentativePurchaseName ref={ref} overflow>
             {displayName}
           </RepresentativePurchaseName>
-          {purchaseCount > 0 ? (
-            <ExtraInfo>&nbsp;{`외 ${purchaseCount}건`}</ExtraInfo>
+          {displayPurchaseCount ? (
+            <ExtraInfo>&nbsp;{`외 ${displayPurchaseCount}건`}</ExtraInfo>
           ) : null}
           {isEllipsis ? (
             <ShowMoreButton onClick={() => setShowFullName(true)} />
@@ -64,7 +66,7 @@ export default function PurchaseInfo({
       ) : (
         <>
           {displayName}
-          {purchaseCount > 0 ? ` 외 ${purchaseCount}건` : null}
+          {displayPurchaseCount ? ` 외 ${displayPurchaseCount}건` : null}
         </>
       )}
     </FlexBox>
