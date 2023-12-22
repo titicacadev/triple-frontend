@@ -5,7 +5,7 @@ import {
   useTransitionModal,
 } from '@titicaca/triple-web'
 
-export interface UseOpenNativeLinkOptions {
+export interface OpenNativeLinkOptions {
   /**
    * Transition modal 종류.
    */
@@ -22,7 +22,7 @@ export function useOpenNativeLink() {
      * 딥링크 path.
      */
     path: string,
-    options: UseOpenNativeLinkOptions = {
+    options: OpenNativeLinkOptions = {
       transitionType: TransitionType.General,
     },
   ) => {

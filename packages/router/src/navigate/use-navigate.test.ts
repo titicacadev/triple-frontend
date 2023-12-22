@@ -9,8 +9,6 @@ import {
 } from '@titicaca/triple-web'
 import { checkIfRoutable } from '@titicaca/view-utilities'
 
-import { useTripleClientNavigate } from '../app-bridge'
-
 import { useNavigate } from './use-navigate'
 
 jest.mock('@titicaca/view-utilities', () => ({
@@ -228,11 +226,6 @@ function prepareTest({
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
   ).mockImplementation(() => sessionAvailable)
-  ;(
-    useTripleClientNavigate as jest.MockedFunction<
-      typeof useTripleClientNavigate
-    >
-  ).mockImplementation(() => ({ openInlink, openOutlink, openNativeLink }))
 
   return {
     showTransitionModal,
