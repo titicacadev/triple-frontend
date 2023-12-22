@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import type { ScrapProps, Target } from './types'
 import { useScrapsReducer } from './use-reducer'
@@ -23,7 +23,7 @@ export function useScrap({
     notifyUnscraped,
     subscribeScrapedChangeEvent,
     unsubscribeScrapedChangeEvent,
-  } = useTripleClientActions()
+  } = useClientAppActions()
   const { scraps, updating, dispatch } = useScrapsReducer({ initialScraps })
 
   const deriveCurrentStateAndCount = useCallback(

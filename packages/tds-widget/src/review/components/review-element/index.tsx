@@ -8,8 +8,8 @@ import {
   useSessionCallback,
   useClientAppCallback,
   useClientApp,
+  useClientAppActions,
 } from '@titicaca/triple-web'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { Timestamp } from '@titicaca/view-utilities'
 import * as CSS from 'csstype'
 import moment from 'moment'
@@ -115,7 +115,7 @@ export function ReviewElement({
   const trackEvent = useTrackEvent()
   const { addUriHash } = useHashRouter()
   const app = useClientApp()
-  const { showToast } = useTripleClientActions()
+  const { showToast } = useClientAppActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
   const { mutate: likeReview } = useLikeReviewMutation()
