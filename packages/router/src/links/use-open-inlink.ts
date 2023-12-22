@@ -2,7 +2,7 @@ import { useClientApp, useEnv } from '@titicaca/triple-web'
 
 import { InlinkParams, makeInlink } from './make-inlink'
 
-export type UseOpenInlinkOptions = Omit<InlinkParams, 'path'>
+export type OpenInlinkOptions = Omit<InlinkParams, 'path'>
 
 export function useOpenInlink() {
   const clientApp = useClientApp()
@@ -13,7 +13,7 @@ export function useOpenInlink() {
      * Inlink로 만들 relative URL.
      */
     path: string,
-    options?: UseOpenInlinkOptions,
+    options?: OpenInlinkOptions,
   ) => {
     const href = clientApp
       ? makeInlink(appUrlScheme, { path, ...options })

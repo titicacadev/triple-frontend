@@ -15,7 +15,7 @@ import {
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import qs from 'qs'
 
-import { OutlinkOptions, useTripleClientNavigate } from '../app-bridge'
+import { OpenOutlinkOptions, useOpenNativeLink, useOpenOutlink } from '../links'
 
 import canonizeTargetAddress from './canonization'
 
@@ -31,7 +31,8 @@ export function useNavigate({
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
   const app = useClientApp()
-  const { openOutlink, openNativeLink } = useTripleClientNavigate()
+  const openOutlink = useOpenOutlink()
+  const openNativeLink = useOpenNativeLink()
 
   const navigateInBrowser = useCallback(
     (rawHref: string) => {
@@ -52,7 +53,7 @@ export function useNavigate({
   )
 
   const navigateInApp = useCallback(
-    (rawHref: string, params?: OutlinkOptions) => {
+    (rawHref: string, options?: OpenOutlinkOptions) => {
       const canonizedHref = canonizeTargetAddress({
         href: rawHref,
         webUrlBase,
@@ -73,7 +74,7 @@ export function useNavigate({
       const { scheme } = parseUrl(rawHref)
 
       if (scheme === 'http' || scheme === 'https') {
-        openOutlink(rawHref, params)
+        openOutlink(rawHref, options)
       } else {
         openNativeLink(rawHref)
       }
@@ -88,7 +89,7 @@ export function useNavigate({
   )
 
   const openWindow = useCallback(
-    (rawHref: string, params?: OutlinkOptions) => {
+    (rawHref: string, options?: OpenOutlinkOptions) => {
       if (!hasAccessibleTripleNativeClients()) {
         window.open(rawHref, undefined, 'noopener')
         return
@@ -103,7 +104,7 @@ export function useNavigate({
       if (scheme === 'http' || scheme === 'https') {
         const outlinkParams = qs.stringify({
           url: href,
-          ...(params || {}),
+          ...(options || {}),
         })
 
         window.location.href = generateUrl({

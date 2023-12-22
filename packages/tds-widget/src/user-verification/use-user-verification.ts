@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { useState, useEffect, useCallback } from 'react'
 import { useVisibilityChange } from '@titicaca/react-hooks'
-import { useClientApp } from '@titicaca/triple-web'
-import { useTripleClientNavigate } from '@titicaca/router'
+import { useOpenInlink } from '@titicaca/router'
 
 import { useVerifiedMessageListener, VerifiedMessage } from './verified-message'
 import { confirmVerification } from './confirmation-services'
@@ -38,8 +36,7 @@ export function useUserVerification({
    */
   forceVerification: boolean
 }) {
-  const app = useClientApp()
-  const { openInlink } = useTripleClientNavigate()
+  const openInlink = useOpenInlink()
 
   const [verificationState, setVerificationState] = useState<VerificationState>(
     {
@@ -58,12 +55,8 @@ export function useUserVerification({
       verificationContext,
     })
 
-    if (app) {
-      openInlink(href, { noNavbar: true })
-    } else {
-      window.open(href)
-    }
-  }, [app, openInlink, verificationContext, verificationType])
+    openInlink(href, { noNavbar: true })
+  }, [openInlink, verificationContext, verificationType])
 
   const handleVerifiedMessageReceive = useCallback(
     ({ type, phoneNumber }: VerifiedMessage) => {
