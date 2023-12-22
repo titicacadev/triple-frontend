@@ -51,14 +51,12 @@
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.9",
     "next": "^13.4.13",
     "react": "^18.2.0"
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*",
-    "@titicaca/react-triple-client-interfaces": "*",
     "next": "^13.0",
     "react": "^18.0"
   }

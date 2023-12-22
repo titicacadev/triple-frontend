@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { List, Spinner } from '@titicaca/tds-ui'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import { useDescriptions, useMyReview } from '../../services'
 import { BaseReviewFragment } from '../../data/graphql'
@@ -46,7 +46,7 @@ export function InfiniteList({
     undefined,
   )
   const { subscribeLikedChangeEvent, unsubscribeLikedChangeEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: myReviewData } = useMyReview({
     resourceId,

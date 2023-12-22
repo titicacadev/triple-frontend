@@ -1,6 +1,6 @@
 import { List, Spinner } from '@titicaca/tds-ui'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useEffect, useMemo, useState } from 'react'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { useDescriptions, useMyReview } from '../../services'
@@ -43,7 +43,7 @@ export function ReviewsList({
     undefined,
   )
   const { subscribeLikedChangeEvent, unsubscribeLikedChangeEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: myReviewData } = useMyReview({
     resourceId,

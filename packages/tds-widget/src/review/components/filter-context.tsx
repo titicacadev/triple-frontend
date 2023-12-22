@@ -7,8 +7,7 @@ import {
   useContext,
   useEffect,
 } from 'react'
-import { useTrackEvent } from '@titicaca/triple-web'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useClientAppActions, useTrackEvent } from '@titicaca/triple-web'
 
 interface FilterValues {
   isRecentTrip: boolean
@@ -35,7 +34,7 @@ export function FilterProvider({
   const [isMediaCollection, setIsMediaCollection] = useState(initialMediaFilter)
 
   const trackEvent = useTrackEvent()
-  const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
+  const { broadcastMessage, subscribe, unsubscribe } = useClientAppActions()
 
   const handleRecentTripChange = useCallback(() => {
     setIsRecentTrip((prevState) => !prevState)

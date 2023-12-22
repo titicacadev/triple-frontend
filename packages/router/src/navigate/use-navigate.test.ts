@@ -17,7 +17,6 @@ jest.mock('@titicaca/view-utilities', () => ({
   ...jest.requireActual('@titicaca/view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
-jest.mock('@titicaca/react-triple-client-interfaces')
 
 const webUrlBase = mockWebUrlBase()
 const routablePath = mockRoutablePath()

@@ -1,9 +1,8 @@
 import { useMemo } from 'react'
 import qs from 'qs'
-import { useEnv } from '@titicaca/triple-web'
+import { useClientAppActions, useEnv } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { writeReview } from '../utils'
 import type { SortingType, SortingOption } from '../components/sorting-context'
@@ -11,7 +10,7 @@ import type { SortingType, SortingOption } from '../components/sorting-context'
 export function useClientActions() {
   const { appUrlScheme } = useEnv()
   const { navigate } = useNavigate()
-  const { getWindowId } = useTripleClientActions()
+  const { getWindowId } = useClientAppActions()
 
   return useMemo(() => {
     return {

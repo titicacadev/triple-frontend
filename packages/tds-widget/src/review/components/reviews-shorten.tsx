@@ -2,8 +2,8 @@ import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 
@@ -103,7 +103,7 @@ function ReviewsShortenComponent({
   const { t } = useTranslation('triple-frontend')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: reviewsCountData, refetch: refetchReviewsCount } =
     useReviewCount(

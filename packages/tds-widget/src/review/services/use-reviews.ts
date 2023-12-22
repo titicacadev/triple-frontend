@@ -1,10 +1,10 @@
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import {
   InfiniteData,
   useMutation,
   useQuery,
   useQueryClient,
 } from 'react-query'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import {
   BaseReviewFragment,
@@ -52,7 +52,7 @@ export function useMyReview(params: GetMyReviewQueryVariables) {
 }
 
 export function useLikeReviewMutation() {
-  const { notifyReviewLiked } = useTripleClientActions()
+  const { notifyReviewLiked } = useClientAppActions()
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -147,7 +147,7 @@ export function useLikeReviewMutation() {
 }
 
 export function useUnlikeReviewMutation() {
-  const { notifyReviewUnliked } = useTripleClientActions()
+  const { notifyReviewUnliked } = useClientAppActions()
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -241,7 +241,7 @@ export function useUnlikeReviewMutation() {
 }
 
 export function useDeleteReviewMutation() {
-  const { notifyReviewDeleted } = useTripleClientActions()
+  const { notifyReviewDeleted } = useClientAppActions()
   const queryClient = useQueryClient()
 
   return useMutation(
