@@ -1,6 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import { ClientAppName, TestWrapper, useEnv } from '@titicaca/triple-web'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import {
+  ClientAppName,
+  TestWrapper,
+  useClientAppActions,
+  useEnv,
+} from '@titicaca/triple-web'
 
 import {
   useSendVerifiedMessage,
@@ -8,7 +12,6 @@ import {
 } from './verified-message'
 
 jest.mock('@titicaca/triple-web')
-jest.mock('@titicaca/react-triple-client-interfaces')
 
 afterEach(() => {
   jest.clearAllMocks()
@@ -24,9 +27,7 @@ describe('useSendVerifiedMessage', () => {
   it('should call broadcastMessage if it is running on triple client', () => {
     const broadcastMessage = jest.fn()
     ;(
-      useTripleClientActions as jest.MockedFunction<
-        typeof useTripleClientActions
-      >
+      useClientAppActions as jest.MockedFunction<typeof useClientAppActions>
     ).mockReturnValue({
       broadcastMessage,
     })
@@ -87,9 +88,7 @@ describe('useVerifiedMessageListener', () => {
     >['0']
 
     ;(
-      useTripleClientActions as jest.MockedFunction<
-        typeof useTripleClientActions
-      >
+      useClientAppActions as jest.MockedFunction<typeof useClientAppActions>
     ).mockReturnValue({
       subscribe,
       unsubscribe,

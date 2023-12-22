@@ -7,9 +7,8 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useClientAppActions, useTrackEvent } from '@titicaca/triple-web'
 import { useTranslation } from 'react-i18next'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 
 import { useReviewFilters } from './filter-context'
 
@@ -59,7 +58,7 @@ export function SortingOptionsProvider({
   const { t } = useTranslation('triple-frontend')
   const trackEvent = useTrackEvent()
   const { isRecentTrip } = useReviewFilters()
-  const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
+  const { broadcastMessage, subscribe, unsubscribe } = useClientAppActions()
 
   const defaultOptions = [
     { key: 'recommendation' as const, text: t('추천순') },

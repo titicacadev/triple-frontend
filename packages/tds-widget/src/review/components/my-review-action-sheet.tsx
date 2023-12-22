@@ -1,7 +1,10 @@
 import { ActionSheet, ActionSheetItem, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useEnv, useHashRouter } from '@titicaca/triple-web'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import {
+  useClientAppActions,
+  useEnv,
+  useHashRouter,
+} from '@titicaca/triple-web'
 import qs from 'qs'
 
 import { useDeleteReviewMutation } from '../services'
@@ -30,7 +33,7 @@ export function MyReviewActionSheet({
 
   const { appUrlScheme } = useEnv()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
-  const { notifyReviewDeleted } = useTripleClientActions()
+  const { notifyReviewDeleted } = useClientAppActions()
 
   const { mutate } = useDeleteReviewMutation()
 

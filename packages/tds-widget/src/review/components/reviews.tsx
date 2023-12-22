@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 
@@ -107,7 +107,7 @@ function ReviewsComponent({
   const { t } = useTranslation('triple-frontend')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: reviewsCountData, refetch: refetchReviewsCount } =
     useReviewCount(

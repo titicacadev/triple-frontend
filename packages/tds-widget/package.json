@@ -67,7 +67,6 @@
     "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
     "@graphql-codegen/typescript-operations": "4.0.1",
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@titicaca/tds-theme": "workspace:*",
     "@types/qs": "^6.9.8",
@@ -83,7 +82,6 @@
   "peerDependencies": {
     "@titicaca/i18n": "*",
     "@titicaca/triple-web": "*",
-    "@titicaca/react-triple-client-interfaces": "*",
     "@titicaca/tds-theme": "*",
     "i18next": "*",
     "next": "^13.4.13",
