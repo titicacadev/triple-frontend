@@ -1,16 +1,25 @@
-import { useEnv } from '@titicaca/triple-web'
-import { generateUrl } from '@titicaca/view-utilities'
-import qs from 'qs'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 
-function useOpenOutlink(url: string, params?: OutlinkOptions) {
+import { OutlinkParams, makeOutlink } from './make-outlink'
+
+export type UseOpenOutlinkOptions = Omit<OutlinkParams, 'url'>
+
+export function useOpenOutlink() {
+  const clientApp = useClientApp()
   const { appUrlScheme } = useEnv()
 
-  window.location.href = generateUrl({
-    scheme: appUrlScheme,
-    path: '/outlink',
-    query: qs.stringify({
-      url,
-      ...params,
-    }),
-  })
+  const openOutlink = (
+    /**
+     * Outlink로 만들 absolute URL.
+     */
+    url: string,
+    options?: UseOpenOutlinkOptions,
+  ) => {
+    const href = clientApp
+      ? makeOutlink(appUrlScheme, { url, ...options })
+      : url
+    window.location.href = href
+  }
+
+  return openOutlink
 }

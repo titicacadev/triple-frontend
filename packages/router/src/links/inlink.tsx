@@ -1,50 +1,45 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import Link from 'next/link'
 import { useClientApp, useEnv } from '@titicaca/triple-web'
-import {
-  AppSpecificLinkProps,
-  appSpecificLinkOptions,
-} from '@titicaca/react-triple-client-interfaces'
-import { generateUrl } from '@titicaca/view-utilities'
-import qs from 'qs'
+
+import { InlinkParams, makeInlink } from './make-inlink'
 
 export interface InlinkProps
   extends PropsWithChildren,
-    AppSpecificLinkProps,
-    Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
-  path: string
-}
+    InlinkParams,
+    Exclude<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {}
 
+/**
+ * 인 앱 웹뷰에서 누르면 `/inlink`를 사용해서 새로운 웹뷰 인스턴스를 생성합니다.
+ * 인 앱 웹뷰가 아니라면 Next.js `<Link>` 컴포넌트로 작동합니다.
+ */
 export const Inlink = ({
   children,
   path,
-  lnbTarget,
+  lnb,
   noNavbar,
   shouldPresent,
   swipeToClose,
   ...props
 }: InlinkProps) => {
+  const clientApp = useClientApp()
   const { appUrlScheme } = useEnv()
-  const app = useClientApp()
 
-  const href = app
-    ? generateUrl({
-        scheme: appUrlScheme,
-        path: '/inlink',
-        query: qs.stringify({
-          path: appSpecificLinkOptions({
-            href: path,
-            lnbTarget,
-            noNavbar,
-            shouldPresent,
-            swipeToClose,
-          }),
-        }),
+  const href = clientApp
+    ? makeInlink(appUrlScheme, {
+        path,
+        lnb,
+        noNavbar,
+        shouldPresent,
+        swipeToClose,
       })
     : path
 
   return (
-    <a {...props} href={href}>
+    // path prop이 local URL일 수도 있기 때문에 Next.js <Link>를 사용합니다.
+    // <Link>는 href가 local URL이 아니면 내부적으로 아무 동작도 하지 않으므로 <a> 태그와 동일합니다.
+    <Link {...props} href={href}>
       {children}
-    </a>
+    </Link>
   )
 }
