@@ -8,7 +8,6 @@ import {
   ClientAppName,
 } from '@titicaca/triple-web'
 
-jest.mock('@titicaca/react-triple-client-interfaces')
 jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/tds-ui', () => ({
   ...jest.requireActual('@titicaca/tds-ui'),

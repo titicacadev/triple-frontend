@@ -1,7 +1,6 @@
 import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import { useHashRouter } from '@titicaca/triple-web'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useHashRouter, useClientAppActions } from '@titicaca/triple-web'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -36,7 +35,7 @@ export default function ReplyList({
     initializeEditingMessage,
   } = useRepliesContext()
 
-  const { showToast } = useTripleClientActions()
+  const { showToast } = useClientAppActions()
 
   const description = mentioningUserName
     ? t('답글을 삭제하시겠습니까?')
