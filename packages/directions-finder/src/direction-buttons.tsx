@@ -24,7 +24,6 @@ function DirectionButtons({
   localAddress,
   phoneNumber,
   isDomestic = false,
-  isGrabSupported = false,
   onCallGrabButtonClick,
 }: {
   onDirectionsClick: () => void
@@ -33,7 +32,6 @@ function DirectionButtons({
   localAddress?: string
   phoneNumber?: string
   isDomestic?: boolean
-  isGrabSupported?: boolean
   onCallGrabButtonClick?: () => void
 }) {
   const { t } = useTranslation('common-web')
@@ -49,7 +47,7 @@ function DirectionButtons({
   }, [trackEvent, push, showTransitionModal, app])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
-  const hasLineBreak = hasAskToLocalsButton && isGrabSupported
+  const hasLineBreak = hasAskToLocalsButton && !!onCallGrabButtonClick
 
   return (
     <>
@@ -67,7 +65,7 @@ function DirectionButtons({
 
         {hasLineBreak ? <LinkBreak /> : null}
 
-        {isGrabSupported ? (
+        {onCallGrabButtonClick ? (
           <Button
             basic
             inverted
