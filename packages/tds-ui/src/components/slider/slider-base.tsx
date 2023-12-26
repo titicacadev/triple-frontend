@@ -162,19 +162,17 @@ export default function SliderBase({
                 <>
                   {handles.map(({ id, percent }, i) => (
                     <Handle
-                      key={i}
+                      key={id}
+                      id={id}
                       percent={percent}
-                      {...getHandleProps(id)}
-                      tabIndex={0}
-                      role="slider"
-                      aria-valuemax={
+                      max={
                         i === 0 && adjustedValues.length > 1
                           ? adjustedValues[1] - step
                           : max
                       }
-                      aria-valuemin={i === 0 ? min : adjustedValues[0] + step}
-                      aria-valuenow={adjustedValues[i]}
-                      aria-orientation="horizontal"
+                      min={i === 0 ? min : adjustedValues[0] + step}
+                      value={adjustedValues[i]}
+                      getHandleProps={getHandleProps}
                     />
                   ))}
                 </>

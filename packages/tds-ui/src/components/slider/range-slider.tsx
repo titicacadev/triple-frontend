@@ -30,21 +30,15 @@ function RangeSlider({
       <Tracks>
         {({ tracks, getTrackProps }) => (
           <>
-            {tracks.map(
-              ({
-                id,
-                source: { id: sourceId, percent: sourcePercent },
-                target: { id: targetId, percent: targetPercent },
-              }) => (
-                <Track
-                  key={id}
-                  left={sourcePercent}
-                  right={targetPercent}
-                  {...getTrackProps()}
-                  active={sourceId !== '$' && targetId !== '$'}
-                />
-              ),
-            )}
+            {tracks.map(({ id, source, target }) => (
+              <Track
+                key={id}
+                active={source.id !== '$' && target.id !== '$'}
+                left={source.percent}
+                right={target.percent}
+                getTrackProps={getTrackProps}
+              />
+            ))}
           </>
         )}
       </Tracks>

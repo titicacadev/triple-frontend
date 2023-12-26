@@ -1,12 +1,7 @@
-import styled, { StyledComponentProps } from 'styled-components'
+import { GetHandleProps } from 'react-compound-slider'
+import styled from 'styled-components'
 
-const HandleContainer = styled.div.attrs<{ percent: number }>(
-  ({ percent }) => ({
-    style: {
-      left: `${percent}%`,
-    },
-  }),
-)`
+const HandleContainer = styled.div`
   position: absolute;
   width: 70px;
   height: 90px;
@@ -27,11 +22,36 @@ const HandlePeg = styled.div`
   z-index: 1;
 `
 
-export default function Handle(
-  props: StyledComponentProps<'div', object, { percent: number }, never>,
-) {
+interface Props {
+  id: string
+  percent: number
+  value: number
+  max: number
+  min: number
+  getHandleProps: GetHandleProps
+}
+
+export default function Handle({
+  id,
+  percent,
+  value,
+  max,
+  min,
+  getHandleProps,
+}: Props) {
   return (
-    <HandleContainer {...props}>
+    <HandleContainer
+      tabIndex={0}
+      role="slider"
+      aria-valuemax={max}
+      aria-valuemin={min}
+      aria-valuenow={value}
+      aria-orientation="horizontal"
+      style={{
+        left: `${percent}%`,
+      }}
+      {...getHandleProps(id)}
+    >
       <HandlePeg />
     </HandleContainer>
   )
