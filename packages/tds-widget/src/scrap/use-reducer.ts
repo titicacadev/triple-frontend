@@ -1,7 +1,3 @@
-import { useReducer, useMemo } from 'react'
-
-import type { Scraps } from '../../types'
-
 import {
   START_SCRAPE,
   SCRAPE,
@@ -10,6 +6,7 @@ import {
   UNSCRAPE,
   UNSCRAPE_FAILED,
 } from './constants'
+import type { Scraps } from './types'
 
 type ActionType =
   | typeof START_SCRAPE
@@ -19,7 +16,7 @@ type ActionType =
   | typeof UNSCRAPE
   | typeof UNSCRAPE_FAILED
 
-const reducer = (
+export const reducer = (
   {
     scraps,
     updating,
@@ -64,17 +61,4 @@ const reducer = (
     case UNSCRAPE_FAILED:
       return { scraps, updating: restUpdating }
   }
-}
-
-export function useScrapsReducer({
-  initialScraps,
-}: {
-  initialScraps?: Scraps
-}) {
-  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
-    scraps: initialScraps || {},
-    updating: {},
-  })
-
-  return useMemo(() => ({ scraps, updating, dispatch }), [scraps, updating])
 }

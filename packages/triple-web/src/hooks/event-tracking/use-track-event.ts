@@ -1,7 +1,9 @@
 import { useCallback } from 'react'
 
 import { useEventTracking } from '../../contexts'
-import { TrackEventParams, trackEvent } from '../../utils'
+import { type TrackEventParams, trackEvent } from '../../utils'
+
+export type { TrackEventParams }
 
 export function useTrackEvent() {
   const context = useEventTracking()

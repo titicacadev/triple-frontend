@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { createIsolatedClickHandler } from './utils'
 import type { ScrapButtonProps, ScrapIconProps } from './types'
 import { withMask } from './scrap-button-mask'
-import { useScraped } from './hooks'
+import { useScrapButton } from './hooks'
 
 const OUTLINE_HEART_ON =
   'https://assets.triple.guide/images/btn-content-scrap-list-on@2x.png'
@@ -21,15 +21,20 @@ const ScrapingButton = styled.button<{ size: number }>`
   `}
 `
 
-function OutlineScrapButton({ resource, size = 34 }: ScrapButtonProps) {
-  const [actualScraped, setScraped] = useScraped({
+function OutlineScrapButton({
+  resource,
+  size = 34,
+  eventParams,
+}: ScrapButtonProps) {
+  const [actualScraped, toggleScraped] = useScrapButton({
     resource,
+    eventParams,
   })
 
   return (
     <ScrapingButton
       size={size}
-      onClick={createIsolatedClickHandler(setScraped)}
+      onClick={createIsolatedClickHandler(toggleScraped)}
     >
       <OutlineHeart pressed={actualScraped} size={size} />
     </ScrapingButton>
