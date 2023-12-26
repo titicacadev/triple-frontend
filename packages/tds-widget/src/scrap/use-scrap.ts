@@ -1,8 +1,16 @@
-import { useCallback, useEffect } from 'react'
-import { useClientAppActions } from '@titicaca/triple-web'
+import { useCallback, useEffect, useReducer } from 'react'
+import {
+  TransitionType,
+  useClientApp,
+  useClientAppActions,
+  useLoginCtaModal,
+  useSessionAvailability,
+  useTrackEventWithMetadata,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 
-import type { ScrapProps, Target } from './types'
-import { useScrapsReducer } from './use-reducer'
+import type { Scraps, Target } from './types'
+import { reducer } from './use-reducer'
 import { fetchScrape, fetchUnscrape } from './services'
 import {
   START_SCRAPE,
@@ -13,18 +21,27 @@ import {
   UNSCRAPE_FAILED,
 } from './constants'
 
-export function useScrap({
-  scraps: initialScraps = {},
-  beforeScrapedChange,
-  afterScrapedChange,
-}: ScrapProps = {}) {
+export interface UseScrapParams {
+  initialScraps?: Scraps
+}
+
+export function useScrap(params?: UseScrapParams) {
+  const app = useClientApp()
   const {
     notifyScraped,
     notifyUnscraped,
     subscribeScrapedChangeEvent,
     unsubscribeScrapedChangeEvent,
   } = useClientAppActions()
-  const { scraps, updating, dispatch } = useScrapsReducer({ initialScraps })
+  const sessionAvailable = useSessionAvailability()
+  const { show: showLoginCta } = useLoginCtaModal()
+  const { show: showTransitionModal } = useTransitionModal()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
+
+  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
+    scraps: params?.initialScraps ?? {},
+    updating: {},
+  })
 
   const deriveCurrentStateAndCount = useCallback(
     ({
@@ -62,16 +79,28 @@ export function useScrap({
   )
 
   const onScrape = useCallback(
-    async ({ id, type }: Target) => {
+    async ({
+      id,
+      type,
+      eventParams = {
+        ga: ['POI저장', `${id}`],
+        fa: {
+          action: 'POI저장',
+          item_id: id,
+          content_type: type,
+        },
+      },
+    }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
 
-      if (
-        beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, true) === false
-      ) {
-        return
+      if (!app) {
+        return showTransitionModal(TransitionType.Scrap)
+      }
+
+      if (!sessionAvailable) {
+        return showLoginCta({ triggeredEventAction: 'POI저장' })
       }
 
       dispatch({ type: START_SCRAPE, id })
@@ -79,10 +108,8 @@ export function useScrap({
       const response = await fetchScrape({ id, type })
 
       if (response.ok) {
-        notifyScraped && notifyScraped(id)
-
-        afterScrapedChange && afterScrapedChange({ id, type }, true)
-
+        notifyScraped?.(id)
+        trackEventWithMetadata(eventParams)
         dispatch({ type: SCRAPE, id })
       } else {
         dispatch({ type: SCRAPE_FAILED, id })
@@ -90,24 +117,38 @@ export function useScrap({
     },
     [
       updating,
-      beforeScrapedChange,
-      dispatch,
+      app,
+      sessionAvailable,
+      showTransitionModal,
+      showLoginCta,
       notifyScraped,
-      afterScrapedChange,
+      trackEventWithMetadata,
     ],
   )
 
   const onUnscrape = useCallback(
-    async ({ id, type }: Target) => {
+    async ({
+      id,
+      type,
+      eventParams = {
+        ga: ['POI저장취소', `${id}`],
+        fa: {
+          action: 'POI저장취소',
+          item_id: id,
+          content_type: type,
+        },
+      },
+    }: Target) => {
       if (typeof updating[id] !== 'undefined') {
         return
       }
 
-      if (
-        beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, false) === false
-      ) {
-        return
+      if (!app) {
+        return showTransitionModal(TransitionType.Scrap)
+      }
+
+      if (!sessionAvailable) {
+        return showLoginCta({ triggeredEventAction: 'POI저장취소' })
       }
 
       dispatch({ type: START_UNSCRAPE, id })
@@ -115,10 +156,8 @@ export function useScrap({
       const response = await fetchUnscrape({ id, type })
 
       if (response.ok) {
-        notifyUnscraped && notifyUnscraped(id)
-
-        afterScrapedChange && afterScrapedChange({ id, type }, false)
-
+        notifyUnscraped?.(id)
+        trackEventWithMetadata(eventParams)
         dispatch({ type: UNSCRAPE, id })
       } else {
         dispatch({ type: UNSCRAPE_FAILED, id })
@@ -126,10 +165,12 @@ export function useScrap({
     },
     [
       updating,
-      beforeScrapedChange,
-      dispatch,
+      app,
+      sessionAvailable,
+      showTransitionModal,
+      showLoginCta,
       notifyUnscraped,
-      afterScrapedChange,
+      trackEventWithMetadata,
     ],
   )
 
@@ -142,12 +183,9 @@ export function useScrap({
       scraped: boolean
     }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id })
 
-    subscribeScrapedChangeEvent &&
-      subscribeScrapedChangeEvent(handleSubscribeEvent)
+    subscribeScrapedChangeEvent?.(handleSubscribeEvent)
 
-    return () =>
-      unsubscribeScrapedChangeEvent &&
-      unsubscribeScrapedChangeEvent(handleSubscribeEvent)
+    return () => unsubscribeScrapedChangeEvent?.(handleSubscribeEvent)
   }, [dispatch, subscribeScrapedChangeEvent, unsubscribeScrapedChangeEvent])
 
   return { deriveCurrentStateAndCount, onScrape, onUnscrape }
