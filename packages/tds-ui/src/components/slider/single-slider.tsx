@@ -40,21 +40,15 @@ function SingleSlider({
       <Tracks>
         {({ tracks, getTrackProps }) => (
           <>
-            {tracks.map(
-              ({
-                id,
-                source: { percent: sourcePercent },
-                target: { id: targetId, percent: targetPercent },
-              }) => (
-                <Track
-                  key={id}
-                  left={sourcePercent}
-                  right={targetPercent}
-                  {...getTrackProps()}
-                  active={targetId !== '$'}
-                />
-              ),
-            )}
+            {tracks.map(({ id, source, target }) => (
+              <Track
+                key={id}
+                active={target.id !== '$'}
+                left={source.percent}
+                right={target.percent}
+                getTrackProps={getTrackProps}
+              />
+            ))}
           </>
         )}
       </Tracks>
