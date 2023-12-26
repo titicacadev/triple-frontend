@@ -50,6 +50,7 @@ export interface ReviewSchema {
   publisher?: Author
   description?: string
   datePublished?: string
+  inLanguage?: string
   reviewRating: Pick<AggregateRatingSchema, 'ratingValue'>
 }
 
