@@ -1,10 +1,10 @@
 import { Attributes, ComponentType } from 'react'
 import styled from 'styled-components'
 
-import { useScraped } from './hooks'
 import type { ScrapButtonProps, ScrapIconProps } from './types'
 import { createIsolatedClickHandler } from './utils'
 import { withMask } from './scrap-button-mask'
+import { useScrapButton } from './hooks'
 
 const OVERLAY_HEART_ON =
   'https://assets.triple.guide/images/btn-content-scrap-overlay-on@3x.png'
@@ -21,15 +21,20 @@ const ScrapingButton = styled.button<{ size: number }>`
   `}
 `
 
-function OverlayScrapButton({ resource, size = 36 }: ScrapButtonProps) {
-  const [actualScraped, setScraped] = useScraped({
+function OverlayScrapButton({
+  resource,
+  size = 36,
+  eventParams,
+}: ScrapButtonProps) {
+  const [actualScraped, toggleScraped] = useScrapButton({
     resource,
+    eventParams,
   })
 
   return (
     <ScrapingButton
       size={size}
-      onClick={createIsolatedClickHandler(setScraped)}
+      onClick={createIsolatedClickHandler(toggleScraped)}
     >
       <OverlayHeart pressed={actualScraped} size={size} />
     </ScrapingButton>

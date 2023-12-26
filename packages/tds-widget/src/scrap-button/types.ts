@@ -1,3 +1,5 @@
+import type { TrackEventParams } from '@titicaca/triple-web'
+
 export interface ScrapableResource {
   id: string
   type: string
@@ -12,4 +14,5 @@ export interface ScrapIconProps {
 export interface ScrapButtonProps {
   resource: ScrapableResource
   size?: number
+  eventParams?: TrackEventParams
 }
