@@ -1,13 +1,7 @@
-import styled, { StyledComponentProps } from 'styled-components'
+import { GetTrackProps } from 'react-compound-slider'
+import styled from 'styled-components'
 
-export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
-  ({ left, right }) => ({
-    style: {
-      left: `${left}%`,
-      right: `${100 - right}%`,
-    },
-  }),
-)`
+export const TrackContainer = styled.div<{ left: number; right: number }>`
   position: absolute;
   padding: 20px 0;
   margin-top: -20px;
@@ -20,16 +14,23 @@ export const ActiveTrack = styled.div`
   transform: translate(0, -50%);
 `
 
-export default function Track({
-  active,
-  ...rest
-}: { active: boolean } & StyledComponentProps<
-  'div',
-  object,
-  { left: number; right: number },
-  never
->) {
+interface Props {
+  active: boolean
+  left: number
+  right: number
+  getTrackProps: GetTrackProps
+}
+
+export default function Track({ active, left, right, getTrackProps }: Props) {
   return (
-    <TrackContainer {...rest}>{active ? <ActiveTrack /> : null}</TrackContainer>
+    <TrackContainer
+      style={{
+        left: `${left}%`,
+        right: `${100 - right}%`,
+      }}
+      {...getTrackProps()}
+    >
+      {active ? <ActiveTrack /> : null}
+    </TrackContainer>
   )
 }
