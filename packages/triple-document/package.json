@@ -48,7 +48,6 @@
     "@titicaca/standard-action-handler": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/tds-widget": "workspace:*",
-    "@titicaca/triple-media": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/ui-flow": "workspace:*",
     "moment": "^2.29.4",
@@ -56,6 +55,7 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
+    "@titicaca/tds-theme": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
     "i18next": "^23.7.6",
@@ -66,6 +66,7 @@
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
+    "@titicaca/tds-theme": "*",
     "@titicaca/triple-web": "*",
     "i18next": "*",
     "next": "^13.0",

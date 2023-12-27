@@ -67,28 +67,26 @@
     "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
     "@graphql-codegen/typescript-operations": "4.0.1",
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/triple-web": "workspace:*",
     "@titicaca/tds-theme": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.8",
     "@types/react-transition-group": "^4.4.6",
     "csstype": "^3.1.2",
     "i18next": "^23.7.6",
-    "next": "^13.4.13",
     "react": "^18.2.0",
     "react-i18next": "^13.5.0",
     "react-query": "^3.39.3",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "utility-types": "^3.10.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/triple-web": "*",
     "@titicaca/tds-theme": "*",
+    "@titicaca/triple-web": "*",
     "i18next": "*",
-    "next": "^13.4.13",
     "react": "^18.0",
     "react-i18next": "*",
     "react-query": "^3.39.3",
-    "styled-components": "^5.3.9",
-    "utility-types": "^3.10.0"
+    "styled-components": "^5.3.9"
   }
 }
