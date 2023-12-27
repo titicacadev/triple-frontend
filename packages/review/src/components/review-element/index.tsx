@@ -92,8 +92,8 @@ const ReviewMetadataInfo = styled(FlexBox)`
     display: block;
     float: right;
     content: '';
-    background: url('https://assets.triple-dev.titicaca-corp.com/images/dot-gray.svg')
-      0 0 no-repeat;
+    background: url('https://assets.triple.guide/images/dot-gray.svg') 0 0
+      no-repeat;
     background-position: center;
     width: 3px;
     height: 16px;
