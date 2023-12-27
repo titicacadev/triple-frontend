@@ -51,7 +51,10 @@ export interface ReviewSchema {
   description?: string
   datePublished?: string
   inLanguage?: string
-  reviewRating: Pick<AggregateRatingSchema, 'ratingValue'>
+  reviewRating: Pick<
+    AggregateRatingSchema,
+    'ratingValue' | 'bestRating' | 'worstRating'
+  >
 }
 
 export enum ItemAvailability {
