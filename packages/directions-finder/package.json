@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/directions-finder",
-  "version": "13.14.2",
+  "version": "13.15.0",
   "description": "POI directions finder",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/directions-finder",
