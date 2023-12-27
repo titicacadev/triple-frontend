@@ -16,7 +16,7 @@ const ExtraInfo = styled.span`
 
 const ShowMoreButton = styled.button`
   margin-left: 5px;
-  background: url('https://assets.triple-dev.titicaca-corp.com/images/ico_arrow_down_gray30.svg')
+  background: url('https://assets.triple.guide/images/ico_arrow_down_gray30.svg')
     center center no-repeat;
   width: 18px;
   height: 18px;
