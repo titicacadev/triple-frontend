@@ -11,13 +11,8 @@ import { RepliesProvider } from './context'
 import Reply from './list/reply'
 import { Reply as ReplyType } from './types'
 
-interface I18nExpressions {
-  likeReactionCount: number
-}
-
 jest.mock('@titicaca/triple-web')
 jest.mock('@titicaca/router')
-jest.mock('@titicaca/ui-flow')
 jest.mock('./replies-api-client')
 
 beforeEach(() => {

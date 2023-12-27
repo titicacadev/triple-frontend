@@ -49,7 +49,6 @@
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/tds-widget": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
-    "@titicaca/ui-flow": "workspace:*",
     "moment": "^2.29.4",
     "qs": "^6.11.2"
   },
