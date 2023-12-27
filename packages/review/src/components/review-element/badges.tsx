@@ -55,7 +55,7 @@ export function VerifiedPurchaseBadge() {
       <img
         width={14}
         height={14}
-        src="https://assets.triple-dev.titicaca-corp.com/images/ico_certified.svg"
+        src="https://assets.triple.guide/images/ico_certified.svg"
         alt="recent-trip-icon"
       />
       <Text size={12} bold style={{ color: '#18BFC0' }}>
