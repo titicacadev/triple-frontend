@@ -47,14 +47,14 @@
     "framer-motion": "^10.16.9"
   },
   "devDependencies": {
+    "@titicaca/tds-theme": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
-    "next": "^13.4.13",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
+    "@titicaca/tds-theme": "*",
     "@titicaca/triple-web": "*",
-    "next": "^13.0",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
