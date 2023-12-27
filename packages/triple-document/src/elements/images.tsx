@@ -1,7 +1,7 @@
 import { ImageCarouselElementContainer, ImageCaption } from '@titicaca/tds-ui'
-import TripleMedia from '@titicaca/triple-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DocumentImageDisplayType } from '@titicaca/content-type-definitions'
+import { Media } from '@titicaca/tds-widget'
 
 import { useImageClickHandler } from '../prop-context/image-click-handler'
 import { useLinkClickHandler } from '../prop-context/link-click-handler'
@@ -50,7 +50,7 @@ export default function Images({
       {images.map((image, i) => {
         return (
           <ElementContainer key={i}>
-            <TripleMedia
+            <Media
               frame="small"
               optimized={optimized}
               borderRadius={isOnlyImage ? 0 : undefined}
