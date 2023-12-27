@@ -14,12 +14,6 @@
 
 - [meta-tags] 리뷰 스니펫에 inLanguage 항목을 추가합니다. [#3074](https://github.com/titicacadev/triple-frontend/pull/3074)
 
-## v13.15.0
-
-###
-
-No data available.
-
 ## v13.14.2
 
 ### react-contexts
@@ -4172,11 +4166,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
