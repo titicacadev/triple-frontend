@@ -25,11 +25,11 @@ interface FirebaseAnalyticsParams {
   [key: string]: unknown
 }
 
-interface PixelPayload {
+interface FacebookPixelPayload {
   [key: string]: unknown
 }
 
-interface PixelStandardEvent {
+interface FacebookPixelStandardEvent {
   type: 'track'
   action:
     | 'AddPaymentInfo'
@@ -49,19 +49,19 @@ interface PixelStandardEvent {
     | 'SubmitApplication'
     | 'Subscribe'
     | 'ViewContent'
-  payload?: PixelPayload
+  payload?: FacebookPixelPayload
 }
 
-interface PixelCustomEvent {
+interface FacebookPixelCustomEvent {
   type: 'trackCustom'
   action: string
-  payload?: PixelPayload
+  payload?: FacebookPixelPayload
 }
 
-type PixelParams =
-  | PixelStandardEvent
-  | PixelCustomEvent
-  | (Omit<PixelCustomEvent, 'type'> & { type?: never })
+type FacebookPixelParams =
+  | FacebookPixelStandardEvent
+  | FacebookPixelCustomEvent
+  | (Omit<FacebookPixelCustomEvent, 'type'> & { type?: never })
 
 export interface TrackEventParams {
   ga?: GoogleAnalyticsParams
@@ -72,11 +72,11 @@ export interface TrackEventParams {
    * type을 "track"으로 설정하면 주어진 action만 사용할 수 있습니다.
    * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
    */
-  pixel?: PixelParams
+  facebookPixel?: FacebookPixelParams
 }
 
 export function trackEvent(
-  { ga, fa, pixel }: TrackEventParams,
+  { ga, fa, facebookPixel }: TrackEventParams,
   context: EventTrackingValue | undefined,
 ) {
   const pageLabel = context?.page?.label
@@ -87,8 +87,8 @@ export function trackEvent(
       window.ga('send', 'event', pageLabel, action, label)
     }
 
-    if (window.fbq && pixel) {
-      const { type = 'trackCustom', action, payload } = pixel
+    if (window.fbq && facebookPixel) {
+      const { type = 'trackCustom', action, payload } = facebookPixel
       window.fbq(type, action, { pageLabel, ...payload })
     }
 
