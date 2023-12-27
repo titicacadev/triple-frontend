@@ -2,6 +2,20 @@
 
 ## v13.15.0
 
+### directions-finder
+
+- [directions-finder] grab 호출 버튼을 추가합니다. [#3032](https://github.com/titicacadev/triple-frontend/pull/3032)
+
+### i18n
+
+- [directions-finder] grab 호출 버튼을 추가합니다. [#3032](https://github.com/titicacadev/triple-frontend/pull/3032)
+
+### meta-tags
+
+- [meta-tags] 리뷰 스니펫에 inLanguage 항목을 추가합니다. [#3074](https://github.com/titicacadev/triple-frontend/pull/3074)
+
+## v13.15.0
+
 ###
 
 No data available.
