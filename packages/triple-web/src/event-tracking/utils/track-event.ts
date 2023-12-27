@@ -63,6 +63,41 @@ type FacebookPixelParams =
   | FacebookPixelCustomEvent
   | (Omit<FacebookPixelCustomEvent, 'type'> & { type?: never })
 
+type TiktokPixelEventType =
+  | 'AddPaymentInfo'
+  | 'AddToCart'
+  | 'AddToWishlist'
+  | 'ClickButton'
+  | 'CompletePayment'
+  | 'CompleteRegistration'
+  | 'Contact'
+  | 'Download'
+  | 'InitiateCheckout'
+  | 'PlaceAnOrder'
+  | 'Search'
+  | 'SubmitForm'
+  | 'Subscribe'
+  | 'ViewContent'
+
+interface TiktokPixelEventParams {
+  content_type?: string
+  contents?: {
+    content_id?: string
+    content_name?: string
+    content_category?: string
+    price?: string
+    quantity?: number
+    brand?: string
+  }[]
+  currency?: string // ISO 4217
+  value?: number // total price of the order
+}
+
+interface TiktokPixelEvent {
+  type: TiktokPixelEventType
+  params?: TiktokPixelEventParams
+}
+
 export interface TrackEventParams {
   ga?: GoogleAnalyticsParams
   fa?: Partial<FirebaseAnalyticsParams>
@@ -73,10 +108,36 @@ export interface TrackEventParams {
    * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
    */
   facebookPixel?: FacebookPixelParams
+  /**
+   * Tiktok Pixel 이벤트 파라미터
+   */
+  tiktokPixel?: TiktokPixelEvent
+}
+
+// TODO @types/google.analytics, @types/facebook-pixel 대체
+declare global {
+  interface Window {
+    ga?: (
+      method: 'send' | 'set',
+      type: 'pageview' | 'event' | 'page',
+      ...data: (string | undefined)[]
+    ) => void
+    fbq?: (
+      type: 'track' | 'trackCustom',
+      action: string,
+      payload?: { [key: string]: unknown },
+    ) => void
+    ttq?: {
+      track: (
+        type: TiktokPixelEventType,
+        params?: TiktokPixelEventParams,
+      ) => void
+    }
+  }
 }
 
 export function trackEvent(
-  { ga, fa, facebookPixel }: TrackEventParams,
+  { ga, fa, facebookPixel, tiktokPixel }: TrackEventParams,
   context: EventTrackingValue | undefined,
 ) {
   const pageLabel = context?.page?.label
@@ -90,6 +151,10 @@ export function trackEvent(
     if (window.fbq && facebookPixel) {
       const { type = 'trackCustom', action, payload } = facebookPixel
       window.fbq(type, action, { pageLabel, ...payload })
+    }
+
+    if (window.ttq && tiktokPixel) {
+      window.ttq.track(tiktokPixel.type, tiktokPixel.params)
     }
 
     if (firebaseAnalytics && fa) {

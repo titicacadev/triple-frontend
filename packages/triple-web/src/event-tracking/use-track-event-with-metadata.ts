@@ -15,6 +15,7 @@ export function useTrackEventWithMetadata() {
         params.facebookPixel,
         eventMetadata,
       ),
+      tiktokPixel: params.tiktokPixel,
     })
   }
 }
