@@ -11,7 +11,10 @@ export function useTrackEventWithMetadata() {
     trackEvent({
       ga: getGoogleAnalyticsWithMetadata(params.ga, eventMetadata),
       fa: getFirebaseAnalyticsWithMetadata(params.fa, eventMetadata),
-      pixel: getPixelWithMetadata(params.pixel, eventMetadata),
+      facebookPixel: getFacebookPixelWithMetadata(
+        params.facebookPixel,
+        eventMetadata,
+      ),
     })
   }
 }
@@ -51,18 +54,18 @@ function getGoogleAnalyticsWithMetadata(
   return ga
 }
 
-function getPixelWithMetadata(
-  pixel?: TrackEventParams['pixel'],
+function getFacebookPixelWithMetadata(
+  facebookPixel?: TrackEventParams['facebookPixel'],
   eventMetaContext?: EventMetadataValue,
 ) {
-  if (!pixel) {
+  if (!facebookPixel) {
     return
   }
 
-  const { payload } = pixel
+  const { payload } = facebookPixel
   const payloadWithMetadata = { ...eventMetaContext, ...payload }
   return {
-    ...pixel,
+    ...facebookPixel,
     payload: payloadWithMetadata,
   }
 }

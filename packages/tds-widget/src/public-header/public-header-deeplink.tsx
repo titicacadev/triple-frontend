@@ -33,7 +33,7 @@ export function PublicHeaderDeeplink({
             fa: {
               action: '헤더_설치유도_선택',
             },
-            pixel: {
+            facebookPixel: {
               action: '헤더_설치유도_선택',
             },
           })
