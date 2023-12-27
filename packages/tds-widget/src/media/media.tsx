@@ -5,12 +5,13 @@ import {
   MarginPadding,
   OptimizedImgProps,
 } from '@titicaca/tds-ui'
-import { ImageSource } from '@titicaca/tds-widget'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
+
+import { ImageSource } from '../image-source'
 
 export type MediaMeta = ImageMeta
 
-type Props = {
+export type MediaProps = {
   optimized?: boolean
   media: ImageMeta
   autoPlay?: boolean
@@ -24,7 +25,7 @@ type Props = {
   onClick?: (e: SyntheticEvent, media: ImageMeta) => void
 } & Omit<OptimizedImgProps, 'cloudinaryBucket' | 'cloudinaryId'>
 
-export default function Media({
+export function Media({
   optimized = false,
   media,
   autoPlay,
@@ -37,7 +38,7 @@ export default function Media({
   frame,
   onClick,
   ...props
-}: Props) {
+}: MediaProps) {
   const {
     id,
     type,
