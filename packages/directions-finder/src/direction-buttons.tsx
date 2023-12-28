@@ -8,6 +8,7 @@ import {
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { Button, ButtonGroup, Container } from '@titicaca/core-elements'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -25,6 +26,7 @@ function DirectionButtons({
   phoneNumber,
   isDomestic = false,
   onCallGrabButtonClick,
+  onCallGrabButtonIntersecting,
 }: {
   onDirectionsClick: () => void
   primaryName: string
@@ -33,6 +35,7 @@ function DirectionButtons({
   phoneNumber?: string
   isDomestic?: boolean
   onCallGrabButtonClick?: () => void
+  onCallGrabButtonIntersecting?: (entry: IntersectionObserverEntry) => void
 }) {
   const { t } = useTranslation('common-web')
 
@@ -66,15 +69,19 @@ function DirectionButtons({
         {hasLineBreak ? <LinkBreak /> : null}
 
         {onCallGrabButtonClick ? (
-          <Button
-            basic
-            inverted
-            color="blue"
-            size="small"
-            onClick={onCallGrabButtonClick}
+          <StaticIntersectionObserver
+            onChange={(entry) => onCallGrabButtonIntersecting?.(entry)}
           >
-            {t(['grab-hocul', 'Grab 호출'])}
-          </Button>
+            <Button
+              basic
+              inverted
+              color="blue"
+              size="small"
+              onClick={onCallGrabButtonClick}
+            >
+              {t(['grab-hocul', 'Grab 호출'])}
+            </Button>
+          </StaticIntersectionObserver>
         ) : null}
 
         <Button

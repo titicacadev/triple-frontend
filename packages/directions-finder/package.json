@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
+    "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
