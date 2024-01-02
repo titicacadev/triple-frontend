@@ -4,9 +4,9 @@ import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/in
 import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
-import { ListingPoi } from './types'
-
 import { PoiListElement } from '../poi-list-elements'
+
+import { ListingPoi } from './types'
 
 export default function PoiEntry({
   index,
