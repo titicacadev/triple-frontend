@@ -25,11 +25,11 @@ interface FirebaseAnalyticsParams {
   [key: string]: unknown
 }
 
-interface FacebookPixelPayload {
+interface MetaPixelPayload {
   [key: string]: unknown
 }
 
-interface FacebookPixelStandardEvent {
+interface MetaPixelStandardEvent {
   type: 'track'
   action:
     | 'AddPaymentInfo'
@@ -49,19 +49,19 @@ interface FacebookPixelStandardEvent {
     | 'SubmitApplication'
     | 'Subscribe'
     | 'ViewContent'
-  payload?: FacebookPixelPayload
+  payload?: MetaPixelPayload
 }
 
-interface FacebookPixelCustomEvent {
+interface MetaPixelCustomEvent {
   type: 'trackCustom'
   action: string
-  payload?: FacebookPixelPayload
+  payload?: MetaPixelPayload
 }
 
-type FacebookPixelParams =
-  | FacebookPixelStandardEvent
-  | FacebookPixelCustomEvent
-  | (Omit<FacebookPixelCustomEvent, 'type'> & { type?: never })
+type MetaPixelParams =
+  | MetaPixelStandardEvent
+  | MetaPixelCustomEvent
+  | (Omit<MetaPixelCustomEvent, 'type'> & { type?: never })
 
 type TiktokPixelEventType =
   | 'AddPaymentInfo'
@@ -102,19 +102,19 @@ export interface TrackEventParams {
   ga?: GoogleAnalyticsParams
   fa?: Partial<FirebaseAnalyticsParams>
   /**
-   * Facebook Pixel 이벤트 파라미터
+   * Meta Pixel 이벤트 파라미터 (구 Facebook Pixel)
    *
    * type을 "track"으로 설정하면 주어진 action만 사용할 수 있습니다.
    * 그리고 type을 생략하면 맞춤 이벤트를 사용합니다.
    */
-  facebookPixel?: FacebookPixelParams
+  metaPixel?: MetaPixelParams
   /**
    * Tiktok Pixel 이벤트 파라미터
    */
   tiktokPixel?: TiktokPixelEvent
 }
 
-// TODO @types/google.analytics, @types/facebook-pixel 대체
+// TODO @types/google.analytics, @types/meta-pixel 대체
 declare global {
   interface Window {
     ga?: (
@@ -137,7 +137,7 @@ declare global {
 }
 
 export function trackEvent(
-  { ga, fa, facebookPixel, tiktokPixel }: TrackEventParams,
+  { ga, fa, metaPixel, tiktokPixel }: TrackEventParams,
   context: EventTrackingValue | undefined,
 ) {
   const pageLabel = context?.page?.label
@@ -148,8 +148,8 @@ export function trackEvent(
       window.ga('send', 'event', pageLabel, action, label)
     }
 
-    if (window.fbq && facebookPixel) {
-      const { type = 'trackCustom', action, payload } = facebookPixel
+    if (window.fbq && metaPixel) {
+      const { type = 'trackCustom', action, payload } = metaPixel
       window.fbq(type, action, { pageLabel, ...payload })
     }
 
