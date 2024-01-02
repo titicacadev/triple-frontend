@@ -114,7 +114,7 @@ export interface TrackEventParams {
   tiktokPixel?: TiktokPixelEvent
 }
 
-// TODO @types/google.analytics, @types/meta-pixel 대체
+// TODO @types/google.analytics, @types/facebook-pixel 대체
 declare global {
   interface Window {
     ga?: (
