@@ -13,6 +13,7 @@ interface UserResponse {
 interface AuthGuardOptions {
   authType?: string
   allowNonMembers?: boolean
+  userInfoApiPath?: string
   resolveReturnUrl?: (
     ctx: GetServerSidePropsContext & {
       customContext?: { [key: string]: unknown }
@@ -47,10 +48,13 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const response = await get<UserResponse>('/api/users/me', {
-      req,
-      retryable: true,
-    })
+    const response = await get<UserResponse>(
+      options?.userInfoApiPath ?? '/api/users/me',
+      {
+        req,
+        retryable: true,
+      },
+    )
 
     if (response.ok === false) {
       const { status } = response
