@@ -455,6 +455,9 @@ importers:
       '@titicaca/triple-web':
         specifier: workspace:*
         version: link:../triple-web
+      '@titicaca/triple-web-to-native-interfaces':
+        specifier: 1.9.0
+        version: 1.9.0
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -561,6 +564,9 @@ importers:
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
       moment:
         specifier: ^2.29.4
         version: 2.29.4
