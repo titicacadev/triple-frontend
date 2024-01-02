@@ -1,7 +1,14 @@
+import { PropsWithChildren } from 'react'
+import { ThemeProvider } from 'styled-components'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { defaultTheme } from '@titicaca/tds-theme'
 
 import { Modal } from './modal'
+
+function ThemeWrapper({ children }: PropsWithChildren<unknown>) {
+  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+}
 
 test('올바른 aria attributes를 가집니다.', () => {
   const onClose = jest.fn()
@@ -16,6 +23,7 @@ test('올바른 aria attributes를 가집니다.', () => {
         <Modal.Action>Close</Modal.Action>
       </Modal.Actions>
     </Modal>,
+    { wrapper: ThemeWrapper },
   )
 
   const modal = screen.getByRole('dialog')
@@ -47,6 +55,7 @@ test('외부를 클릭하면 닫습니다.', async () => {
         </Modal.Actions>
       </Modal>
     </>,
+    { wrapper: ThemeWrapper },
   )
 
   await user.click(screen.getByText('outside'))
@@ -69,6 +78,7 @@ test('ESC 키를 누르면 닫습니다.', async () => {
         <Modal.Action>Close</Modal.Action>
       </Modal.Actions>
     </Modal>,
+    { wrapper: ThemeWrapper },
   )
 
   await user.keyboard('{Escape}')
