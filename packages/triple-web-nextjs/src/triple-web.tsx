@@ -3,8 +3,8 @@
 import {
   TripleWeb as TripleWebBase,
   type TripleWebProps as TripleWebBaseProps,
-} from '@titicaca/triple-web/providers'
-import type { I18nValue } from '@titicaca/triple-web/i18n'
+  type I18nValue,
+} from '@titicaca/triple-web'
 
 import { useLang } from './hooks'
 
