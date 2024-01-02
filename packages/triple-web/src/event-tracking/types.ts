@@ -20,3 +20,5 @@ export interface EventTrackingValue {
 export interface EventMetadataValue {
   [key: string]: string
 }
+
+export type { TrackEventParams } from './utils/track-event'
