@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import type { SessionUser, SessionValue } from '@titicaca/triple-web/session'
+import type { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
   ssrFetcherize,
   captureHttpError,

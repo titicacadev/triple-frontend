@@ -1,7 +1,6 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
 import Link from 'next/link'
-import { useClientApp } from '@titicaca/triple-web/client-app'
-import { useEnv } from '@titicaca/triple-web/env'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 
 import { InlinkParams, makeInlink } from './make-inlink'
 

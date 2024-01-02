@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import type { EventTrackingUtmValue } from '@titicaca/triple-web/event-tracking'
+import type { EventTrackingUtmValue } from '@titicaca/triple-web'
 import { strictQuery } from '@titicaca/view-utilities'
 
 export function getEventTrackingUtm(

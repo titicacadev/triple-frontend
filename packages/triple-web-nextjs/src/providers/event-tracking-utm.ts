@@ -1,4 +1,4 @@
-import type { EventTrackingUtmValue } from '@titicaca/triple-web/event-tracking'
+import type { EventTrackingUtmValue } from '@titicaca/triple-web'
 
 export function getEventTrackingUtm(
   searchParams: URLSearchParams,
