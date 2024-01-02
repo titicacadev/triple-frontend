@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEnv } from '@titicaca/triple-web'
+import { useEnv } from '@titicaca/triple-web/env'
 
 /**
  * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateEssentialContentMeta를 사용해주세요
