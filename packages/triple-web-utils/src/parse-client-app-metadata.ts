@@ -1,4 +1,7 @@
-import { ClientAppName, ClientAppValue } from '@titicaca/triple-web'
+import {
+  ClientAppName,
+  type ClientAppValue,
+} from '@titicaca/triple-web/client-app'
 
 import { clientAppRegex } from './regex'
 

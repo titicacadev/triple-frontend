@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEnv } from '@titicaca/triple-web'
+import { useEnv } from '@titicaca/triple-web/env'
 
 import { DEFAULT_OG_IMAGE } from './constants'
 

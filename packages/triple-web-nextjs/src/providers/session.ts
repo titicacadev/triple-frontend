@@ -8,7 +8,7 @@ import {
   post,
   get,
 } from '@titicaca/fetcher'
-import { SessionUser, SessionValue } from '@titicaca/triple-web'
+import type { SessionUser, SessionValue } from '@titicaca/triple-web/session'
 import {
   GET_USER_REQUEST_URL,
   checkClientApp,

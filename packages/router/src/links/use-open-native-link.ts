@@ -1,9 +1,6 @@
-import {
-  TransitionType,
-  useClientApp,
-  useEnv,
-  useTransitionModal,
-} from '@titicaca/triple-web'
+import { useClientApp } from '@titicaca/triple-web/client-app'
+import { useEnv } from '@titicaca/triple-web/env'
+import { TransitionType, useTransitionModal } from '@titicaca/triple-web/modal'
 
 export interface OpenNativeLinkOptions {
   /**

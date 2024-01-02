@@ -4,14 +4,14 @@ import {
   parseUrl,
 } from '@titicaca/view-utilities'
 import { useCallback } from 'react'
+import { useClientApp } from '@titicaca/triple-web/client-app'
+import { useEnv } from '@titicaca/triple-web/env'
+import { useSessionAvailability } from '@titicaca/triple-web/session'
 import {
-  useEnv,
-  useSessionAvailability,
   useLoginCtaModal,
   useTransitionModal,
   TransitionType,
-  useClientApp,
-} from '@titicaca/triple-web'
+} from '@titicaca/triple-web/modal'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import qs from 'qs'
 

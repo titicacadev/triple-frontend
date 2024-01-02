@@ -1,5 +1,5 @@
 import { NextPageContext } from 'next'
-import { ClientAppValue } from '@titicaca/triple-web'
+import type { ClientAppValue } from '@titicaca/triple-web/client-app'
 import { parseClientAppMetadata } from '@titicaca/triple-web-utils'
 
 export function getClientApp(ctx: NextPageContext): ClientAppValue {
