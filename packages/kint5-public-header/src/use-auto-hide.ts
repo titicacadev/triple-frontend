@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import {
-  HEADER_DESKTOP_HEIGHT,
-  HEADER_MOBILE_HEIGHT,
-  MIN_DESKTOP_WIDTH,
-  TRANSITION_TIME,
-} from './constants'
+import { HEADER_HEIGHT, TRANSITION_TIME } from './constants'
 
 export function useAutoHide(disabled = false) {
   const [publicHeaderVisible, setPublicHeaderVisible] = useState(disabled)
@@ -20,11 +15,7 @@ export function useAutoHide(disabled = false) {
       scrollTop: getScrollTop(),
     })
 
-    const headerHeight: number =
-      1 +
-      (window.innerWidth >= MIN_DESKTOP_WIDTH
-        ? HEADER_DESKTOP_HEIGHT
-        : HEADER_MOBILE_HEIGHT)
+    const headerHeight = 1 + HEADER_HEIGHT
     let lastTimeStamp: number | null = null
     let isVisible = false
 
