@@ -5,7 +5,7 @@ import { useFeatureFlag } from './use-feature-flag'
 import { ClientAppContext } from './context'
 import { ClientAppName } from './types'
 
-it('returns true if app version meets the version operator requirements', () => {
+test('returns true if app version meets the version operator requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
@@ -30,7 +30,7 @@ it('returns true if app version meets the version operator requirements', () => 
   expect(result.current).toBeTruthy()
 })
 
-it('returns false if app version does not meet the version operator requirements', () => {
+test('returns false if app version does not meet the version operator requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
@@ -55,7 +55,7 @@ it('returns false if app version does not meet the version operator requirements
   expect(result.current).toBeFalsy()
 })
 
-it('returns false if app name does not meet the requirements', () => {
+test('returns false if app name does not meet the requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
@@ -81,27 +81,43 @@ it('returns false if app name does not meet the requirements', () => {
   expect(result.current).toBeFalsy()
 })
 
-it('returns false if app does not exist and is not avilable on public', () => {
-  const { result } = renderHook(() =>
-    useFeatureFlag({
-      operator: 'gte',
-      appName: 'Triple-Android',
-      appVersion: '5.12.0',
-      availableOnPublic: false,
-    }),
+test('returns false if app does not exist and is not available on public', () => {
+  const wrapper = ({ children }: PropsWithChildren) => (
+    <ClientAppContext.Provider value={null}>
+      {children}
+    </ClientAppContext.Provider>
+  )
+
+  const { result } = renderHook(
+    () =>
+      useFeatureFlag({
+        operator: 'gte',
+        appName: 'Triple-Android',
+        appVersion: '5.12.0',
+        availableOnPublic: false,
+      }),
+    { wrapper },
   )
 
   expect(result.current).toBeFalsy()
 })
 
-it('returns true if app does not exist and is avilable on public', () => {
-  const { result } = renderHook(() =>
-    useFeatureFlag({
-      operator: 'gte',
-      appName: 'Triple-Android',
-      appVersion: '5.12.0',
-      availableOnPublic: true,
-    }),
+test('returns true if app does not exist and is available on public', () => {
+  const wrapper = ({ children }: PropsWithChildren) => (
+    <ClientAppContext.Provider value={null}>
+      {children}
+    </ClientAppContext.Provider>
+  )
+
+  const { result } = renderHook(
+    () =>
+      useFeatureFlag({
+        operator: 'gte',
+        appName: 'Triple-Android',
+        appVersion: '5.12.0',
+        availableOnPublic: true,
+      }),
+    { wrapper },
   )
 
   expect(result.current).toBeTruthy()
