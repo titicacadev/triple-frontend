@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
-import { useClientApp, useEnv } from '@titicaca/triple-web'
+import { useClientApp } from '@titicaca/triple-web/client-app'
+import { useEnv } from '@titicaca/triple-web/env'
 
 import { OutlinkParams, makeOutlink } from './make-outlink'
 

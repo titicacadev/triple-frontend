@@ -1,4 +1,4 @@
-import { IResult } from 'ua-parser-js'
+import type { IResult } from 'ua-parser-js'
 
 export function isMobile(userAgent: IResult) {
   const { device } = userAgent
