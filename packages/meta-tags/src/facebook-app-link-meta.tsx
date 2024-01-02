@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useTranslation } from 'react-i18next'
-import { useEnv } from '@titicaca/triple-web'
+import { useEnv } from '@titicaca/triple-web/env'
 
 import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
 

@@ -1,9 +1,6 @@
-import {
-  ClientAppName,
-  useClientApp,
-  useEnv,
-  useTransitionModal,
-} from '@titicaca/triple-web'
+import { ClientAppName, useClientApp } from '@titicaca/triple-web/client-app'
+import { useEnv } from '@titicaca/triple-web/env'
+import { useTransitionModal } from '@titicaca/triple-web/modal'
 import { renderHook } from '@testing-library/react'
 
 import { useOpenNativeLink } from './use-open-native-link'
