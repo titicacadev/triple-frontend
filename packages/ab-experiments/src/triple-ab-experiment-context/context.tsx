@@ -8,8 +8,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useTrackEvent } from '@titicaca/triple-web/event-tracking'
-import { useSessionAvailability } from '@titicaca/triple-web/session'
+import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 

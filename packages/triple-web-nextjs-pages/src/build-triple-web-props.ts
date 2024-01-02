@@ -1,4 +1,4 @@
-import type { TripleWebProps } from '@titicaca/triple-web/providers'
+import type { TripleWebProps } from '@titicaca/triple-web'
 import { NextPageContext } from 'next'
 
 import { getClientApp, getSession, getUserAgent } from './providers'
