@@ -1,10 +1,10 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { appWithTranslation } from '@titicaca/next-i18next'
 import { koCommonWeb } from '@titicaca/i18n/src/assets/ko/common-web'
 import { jaCommonWeb } from '@titicaca/i18n/src/assets/ja/common-web'
 import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
 
-import { PublicHeader } from './public-header'
+import { TripleGlobalPublicHeader } from './triple-global-public-header'
 
 const locales = ['ko', 'ja', 'zh-TW']
 const resources = {
@@ -20,8 +20,8 @@ const resources = {
 }
 
 export default {
-  title: 'kint5-public-header / PublicHeader',
-  component: PublicHeader,
+  title: 'kint5-public-header / TripleGlobalPublicHeader',
+  component: TripleGlobalPublicHeader,
   argTypes: {
     category: {
       control: { type: 'select' },
@@ -42,27 +42,17 @@ export default {
       return <App pageProps={{}} />
     },
   ],
-} as Meta<typeof PublicHeader>
+} as Meta<typeof TripleGlobalPublicHeader>
 
-export const Basic: StoryObj<typeof PublicHeader> = {
+export const Basic: StoryObj<typeof TripleGlobalPublicHeader> = {
   args: {
     disableAutoHide: true,
   },
 }
 
-export const DeeplinkPath: StoryObj<typeof PublicHeader> = {
+export const DeeplinkPath: StoryObj<typeof TripleGlobalPublicHeader> = {
   args: {
     ...Basic.args,
     deeplinkPath: 'https://triple.guide',
   },
-}
-
-export const Categories: StoryFn<typeof PublicHeader> = () => {
-  return (
-    <>
-      <PublicHeader disableAutoHide category="air" />
-      <PublicHeader disableAutoHide category="hotels" />
-      <PublicHeader disableAutoHide category="tna" />
-    </>
-  )
 }

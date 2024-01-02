@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
-import { PublicHeader } from './public-header'
+import { TripleGlobalPublicHeader } from './triple-global-public-header'
 
 jest.mock('@titicaca/react-triple-client-interfaces')
 
@@ -26,7 +26,7 @@ it('renders nothing inside triple client', () => {
     appName: 'Triple-iOS',
   })
 
-  const { container } = render(<PublicHeader />)
+  const { container } = render(<TripleGlobalPublicHeader />)
 
   expect(container.childNodes).toHaveLength(0)
 })
@@ -38,7 +38,7 @@ it('renders header outside triple client', () => {
     >
   ).mockReturnValue(null)
 
-  const { container } = render(<PublicHeader />)
+  const { container } = render(<TripleGlobalPublicHeader />)
 
   expect(container.childNodes).toHaveLength(1)
 })
