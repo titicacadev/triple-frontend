@@ -10,11 +10,28 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "types": "./src/*/index.ts",
+      "default": "./src/*/index.ts"
+    }
+  },
   "publishConfig": {
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts"
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
+      },
+      "./*": {
+        "types": "./src/*/index.d.ts",
+        "default": "./src/*/index.js"
+      }
+    }
   },
   "files": [
     "lib"
@@ -49,7 +66,6 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/tds-theme": "workspace:*",
     "@types/qs": "^6.9.9",
     "@types/semver": "^7.5.3",
     "@types/ua-parser-js": "^0.7.37",
@@ -61,7 +77,6 @@
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/tds-theme": "*",
     "firebase": "^9.0",
     "i18next": "*",
     "react": "^18.0",
