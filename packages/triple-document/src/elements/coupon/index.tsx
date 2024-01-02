@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Text, Container } from '@titicaca/tds-ui'
 import { useTrackEventWithMetadata } from '@titicaca/triple-web'
-import { VerificationType } from '@titicaca/user-verification'
+import { VerificationType } from '@titicaca/tds-widget'
 
 import { useDeepLink } from '../../prop-context/deep-link'
 
