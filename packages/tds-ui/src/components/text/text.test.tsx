@@ -1,9 +1,16 @@
+import { PropsWithChildren } from 'react'
+import { ThemeProvider } from 'styled-components'
 import { render, screen } from '@testing-library/react'
+import { defaultTheme } from '@titicaca/tds-theme'
 
 import { Text } from './text'
 
-it('should have default styles', () => {
-  render(<Text>text</Text>)
+function ThemeWrapper({ children }: PropsWithChildren<unknown>) {
+  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+}
+
+test('should have default styles', () => {
+  render(<Text>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
@@ -13,7 +20,7 @@ it('should have default styles', () => {
   expect(element).toHaveStyleRule('white-space', 'pre-line')
 })
 
-it('should accept style shortcut props', () => {
+test('should accept style shortcut props', () => {
   render(
     <Text
       cursor="pointer"
@@ -24,6 +31,7 @@ it('should accept style shortcut props', () => {
     >
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -35,27 +43,28 @@ it('should accept style shortcut props', () => {
   expect(element).toHaveStyleRule('word-break', 'keep-all')
 })
 
-it('should accept inline prop', () => {
-  render(<Text inline>text</Text>)
+test('should accept inline prop', () => {
+  render(<Text inline>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('display', 'inline')
 })
 
-it('should accept inlineBlock prop', () => {
-  render(<Text inlineBlock>text</Text>)
+test('should accept inlineBlock prop', () => {
+  render(<Text inlineBlock>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('display', 'inline-block')
 })
 
-it('should take on inlineBlock than inline when both are passed', () => {
+test('should take on inlineBlock than inline when both are passed', () => {
   render(
     <Text inline inlineBlock>
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -63,27 +72,28 @@ it('should take on inlineBlock than inline when both are passed', () => {
   expect(element).toHaveStyleRule('display', 'inline-block')
 })
 
-it('should accept bold prop', () => {
-  render(<Text bold>text</Text>)
+test('should accept bold prop', () => {
+  render(<Text bold>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('font-weight', 'bold')
 })
 
-it('should take center prop', () => {
-  render(<Text center>text</Text>)
+test('should take center prop', () => {
+  render(<Text center>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('text-align', 'center')
 })
 
-it('should take on textAlign than center when both are passed', () => {
+test('should take on textAlign than center when both are passed', () => {
   render(
     <Text center textAlign="right">
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -91,27 +101,28 @@ it('should take on textAlign than center when both are passed', () => {
   expect(element).toHaveStyleRule('text-align', 'right')
 })
 
-it('should accept strikethrough prop', () => {
-  render(<Text strikethrough>text</Text>)
+test('should accept strikethrough prop', () => {
+  render(<Text strikethrough>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('text-decoration', 'line-through')
 })
 
-it('should accept underline prop', () => {
-  render(<Text underline>text</Text>)
+test('should accept underline prop', () => {
+  render(<Text underline>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('text-decoration', 'underline')
 })
 
-it('should take on strikethrough than underline when both are passed', () => {
+test('should take on strikethrough than underline when both are passed', () => {
   render(
     <Text strikethrough underline>
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -119,19 +130,20 @@ it('should take on strikethrough than underline when both are passed', () => {
   expect(element).toHaveStyleRule('text-decoration', 'line-through')
 })
 
-it('should accept color prop', () => {
-  render(<Text color="white">text</Text>)
+test('should accept color prop', () => {
+  render(<Text color="white">text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
   expect(element).toHaveStyleRule('color', 'rgba(255,255,255,1)')
 })
 
-it('should accept color prop with alpha', () => {
+test('should accept color prop with alpha', () => {
   render(
     <Text alpha={0.5} color="white">
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -139,7 +151,7 @@ it('should accept color prop with alpha', () => {
   expect(element).toHaveStyleRule('color', 'rgba(255,255,255,0.5)')
 })
 
-it('should accept spacing props', () => {
+test('should accept spacing props', () => {
   render(
     <Text
       margin={{ top: 10, right: 20, bottom: 30, left: 40 }}
@@ -147,6 +159,7 @@ it('should accept spacing props', () => {
     >
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -155,8 +168,8 @@ it('should accept spacing props', () => {
   expect(element).toHaveStyleRule('padding', '50px 60px 70px 80px')
 })
 
-it('should accept ellipsis mixin', () => {
-  render(<Text ellipsis>text</Text>)
+test('should accept ellipsis mixin', () => {
+  render(<Text ellipsis>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
@@ -165,8 +178,8 @@ it('should accept ellipsis mixin', () => {
   expect(element).toHaveStyleRule('overflow', 'hidden')
 })
 
-it('should accept maxLines mixin', () => {
-  render(<Text maxLines={2}>text</Text>)
+test('should accept maxLines mixin', () => {
+  render(<Text maxLines={2}>text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
@@ -177,11 +190,12 @@ it('should accept maxLines mixin', () => {
   expect(element).toHaveStyleRule('overflow', 'hidden')
 })
 
-it('should accept legacy typography props', () => {
+test('should accept legacy typography props', () => {
   render(
     <Text size="large" lineHeight={1} letterSpacing={0.1}>
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')
@@ -191,8 +205,8 @@ it('should accept legacy typography props', () => {
   expect(element).toHaveStyleRule('letter-spacing', '0.1px')
 })
 
-it('should accept textStyle mixin', () => {
-  render(<Text textStyle="M">text</Text>)
+test('should accept textStyle mixin', () => {
+  render(<Text textStyle="M">text</Text>, { wrapper: ThemeWrapper })
 
   const element = screen.getByText('text')
 
@@ -201,11 +215,12 @@ it('should accept textStyle mixin', () => {
   expect(element).toHaveStyleRule('letter-spacing', '-0.2px')
 })
 
-it('should ignore legacy typography props when textStyle mixin is passed', () => {
+test('should ignore legacy typography props when textStyle mixin is passed', () => {
   render(
     <Text textStyle="M" size="large" lineHeight={1} letterSpacing={0.1}>
       text
     </Text>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('text')

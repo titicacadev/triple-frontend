@@ -1,7 +1,14 @@
+import { PropsWithChildren } from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from '@titicaca/tds-theme'
 
 import { ActionSheet } from './action-sheet'
+
+function ThemeWrapper({ children }: PropsWithChildren<unknown>) {
+  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+}
 
 test('올바른 aria attributes를 가집니다.', () => {
   const onClose = jest.fn()
@@ -10,6 +17,7 @@ test('올바른 aria attributes를 가집니다.', () => {
     <ActionSheet open title="Title" onClose={onClose}>
       contents
     </ActionSheet>,
+    { wrapper: ThemeWrapper },
   )
 
   const modal = screen.getByRole('dialog')
@@ -31,6 +39,7 @@ test('외부를 클릭하면 닫습니다.', async () => {
         contents
       </ActionSheet>
     </>,
+    { wrapper: ThemeWrapper },
   )
 
   await user.click(screen.getByText('outside'))
@@ -47,6 +56,7 @@ test('ESC 키를 누르면 닫습니다.', async () => {
     <ActionSheet open title="Title" onClose={onClose}>
       contents
     </ActionSheet>,
+    { wrapper: ThemeWrapper },
   )
 
   await user.keyboard('{Escape}')
@@ -64,6 +74,7 @@ test('focus trap을 사용합니다.', async () => {
       <button>Button 1</button>
       <button>Button 2</button>
     </ActionSheet>,
+    { wrapper: ThemeWrapper },
   )
 
   await waitFor(() => expect(screen.getByRole('dialog')).toHaveFocus())

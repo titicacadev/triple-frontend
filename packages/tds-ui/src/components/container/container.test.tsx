@@ -1,8 +1,15 @@
+import { PropsWithChildren } from 'react'
 import { render, screen } from '@testing-library/react'
+import { ThemeProvider } from 'styled-components'
+import { defaultTheme } from '@titicaca/tds-theme'
 
 import { Container } from './container'
 
-it('should accept style shortcut props', () => {
+function ThemeWrapper({ children }: PropsWithChildren<unknown>) {
+  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+}
+
+test('should accept style shortcut props', () => {
   render(
     <Container
       position="absolute"
@@ -18,6 +25,7 @@ it('should accept style shortcut props', () => {
     >
       container
     </Container>,
+    { wrapper: ThemeWrapper },
   )
 
   const element = screen.getByText('container')
@@ -32,7 +40,7 @@ it('should accept style shortcut props', () => {
   expect(element).toHaveStyleRule('background-color', 'rgba(255,255,255,1)')
 })
 
-it('should accept spacing props', () => {
+test('should accept spacing props', () => {
   render(
     <Container
       css={{
@@ -50,7 +58,7 @@ it('should accept spacing props', () => {
   expect(element).toHaveStyleRule('padding', '50px 60px 70px 80px')
 })
 
-it('should accept sizing props', () => {
+test('should accept sizing props', () => {
   render(
     <Container
       css={{
@@ -76,7 +84,7 @@ it('should accept sizing props', () => {
   expect(element).toHaveStyleRule('max-height', '60px')
 })
 
-it('should accept centered mixin', () => {
+test('should accept centered mixin', () => {
   render(<Container centered>container</Container>)
 
   const element = screen.getByText('container')
@@ -85,7 +93,7 @@ it('should accept centered mixin', () => {
   expect(element).toHaveStyleRule('margin-right', 'auto')
 })
 
-it('should accept borderRadius mixin', () => {
+test('should accept borderRadius mixin', () => {
   render(<Container borderRadius={10}>container</Container>)
 
   const element = screen.getByText('container')
@@ -93,7 +101,7 @@ it('should accept borderRadius mixin', () => {
   expect(element).toHaveStyleRule('border-radius', '10px')
 })
 
-it('should accept clearing mixin', () => {
+test('should accept clearing mixin', () => {
   render(
     <Container data-testid="test" clearing>
       container
@@ -107,17 +115,16 @@ it('should accept clearing mixin', () => {
   expect(element).toHaveStyleRule('clear', 'both', { modifier: '::after' })
 })
 
-it('should accept horizontalScroll mixin', () => {
+test('should accept horizontalScroll mixin', () => {
   render(<Container horizontalScroll>container</Container>)
 
   const element = screen.getByText('container')
 
   expect(element).toHaveStyleRule('white-space', 'nowrap')
-  expect(element).toHaveStyleRule('overflow-x', 'auto')
-  expect(element).toHaveStyleRule('overflow-y', 'hidden')
+  expect(element).toHaveStyleRule('overflow', 'auto hidden')
 })
 
-it('should accept shadow mixin', () => {
+test('should accept shadow mixin', () => {
   render(<Container shadow="large">container</Container>)
 
   const element = screen.getByText('container')
@@ -125,7 +132,7 @@ it('should accept shadow mixin', () => {
   expect(element).toHaveStyleRule('box-shadow', '0 0 30px 0 rgba(0,0,0,0.1)')
 })
 
-it('should override style with css prop', () => {
+test('should override style with css prop', () => {
   render(
     <Container position="absolute" css={{ position: 'fixed' }}>
       container
