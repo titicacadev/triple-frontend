@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { ScrapsProvider } from '@titicaca/react-contexts'
 
-import { OutlineScrapButton, OverlayScrapButton } from './scrap-button'
 import { ScrapButtonMask } from './scrap-button-mask'
+import { ComposedOutlineScrapButton as OutlineScrapButton } from './outline-scrap-button'
+import { ComposedOverlayScrapButton as OverlayScrapButton } from './overlay-scrap-button'
 
 describe('ScrapButtonMask 컴포넌트', () => {
   it('should not render child scrap button.', () => {
@@ -25,7 +25,6 @@ describe('ScrapButtonMask 컴포넌트', () => {
           size={36}
         />
       </ScrapButtonMask>,
-      { wrapper: ScrapsProvider },
     )
 
     expect(container).toBeEmptyDOMElement()
@@ -53,7 +52,6 @@ describe('ScrapButtonMask 컴포넌트', () => {
           data-testid="scrap-button-2"
         />
       </ScrapButtonMask>,
-      { wrapper: ScrapsProvider },
     )
 
     expect(screen.getAllByRole('button')).toHaveLength(2)
