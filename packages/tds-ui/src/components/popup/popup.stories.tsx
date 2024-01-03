@@ -30,7 +30,6 @@ const EmptyScroll = styled.div`
 `
 
 export const Default: Story = {
-  name: '기본',
   args: {
     open: true,
     title: '제목',
@@ -54,7 +53,6 @@ export const Default: Story = {
 }
 
 export const Borderless: Story = {
-  name: '커스텀 (밑줄 X)',
   args: {
     open: true,
     borderless: true,
@@ -79,7 +77,6 @@ export const Borderless: Story = {
 }
 
 export const NoNavbar: Story = {
-  name: '커스텀 (헤더 X)',
   args: {
     open: true,
     noNavbar: true,

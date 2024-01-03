@@ -4,10 +4,12 @@ import { List } from '../list'
 
 import { Input } from './input'
 
-export default {
+const meta: Meta<typeof Input> = {
   title: 'tds-ui / Input',
   component: Input,
-} as Meta<typeof Input>
+}
+
+export default meta
 
 export const Default: StoryObj<typeof Input> = {
   args: {

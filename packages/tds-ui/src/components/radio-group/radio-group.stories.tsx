@@ -22,7 +22,6 @@ export default meta
 type Story = StoryObj<typeof RadioGroup>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     name: 'option',
     value: 'a',
@@ -45,7 +44,6 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  name: '비활성화',
   args: {
     name: 'option',
     value: 'a',
@@ -69,7 +67,6 @@ export const Disabled: Story = {
 }
 
 export const Required: Story = {
-  name: '필수',
   args: {
     name: 'option',
     value: 'a',
@@ -93,7 +90,6 @@ export const Required: Story = {
 }
 
 export const WithLabel: Story = {
-  name: '스티커',
   args: {
     name: 'option',
     value: 'a',
@@ -117,7 +113,6 @@ export const WithLabel: Story = {
 }
 
 export const WithHelpMessage: Story = {
-  name: '가이드 메시지',
   args: {
     name: 'option',
     value: 'a',
@@ -142,7 +137,6 @@ export const WithHelpMessage: Story = {
 }
 
 export const WithErrorMessage: Story = {
-  name: '에러 메시지',
   args: {
     name: 'option',
     value: 'a',

@@ -29,7 +29,6 @@ export default meta
 type Story = StoryObj<typeof ActionSheet>
 
 export const Basic: Story = {
-  name: '기본 메뉴',
   args: {
     children: (
       <>
@@ -47,7 +46,6 @@ export const Basic: Story = {
 }
 
 export const WithTextMenu: Story = {
-  name: '텍스트 메뉴',
   args: {
     title: '샘플 액션 시트',
     children: (
@@ -62,7 +60,6 @@ export const WithTextMenu: Story = {
 }
 
 export const WithIconMenu: Story = {
-  name: '아이콘 메뉴',
   parameters: {
     docs: {
       description: {
@@ -82,7 +79,6 @@ export const WithIconMenu: Story = {
 }
 
 export const WithForm: Story = {
-  name: '액션시트 방향 조절',
   parameters: {
     docs: {
       description: {
@@ -122,7 +118,6 @@ const CustomHeader = ({ title, help }: { title: string; help: string }) => (
 )
 
 export const WithCustomHeader: Story = {
-  name: '커스텀 헤더',
   args: {
     open: true,
     title: (
@@ -166,8 +161,6 @@ export const WithExtendStyle: Story = {
       </ActionSheet>
     )
   },
-
-  name: '스타일 확장',
   parameters: {
     docs: {
       description: {

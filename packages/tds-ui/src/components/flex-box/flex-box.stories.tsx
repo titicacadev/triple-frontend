@@ -27,7 +27,6 @@ const Item = styled(FlexBoxItem)`
 type Story = StoryObj<typeof FlexBox>
 
 export const Flex: Story = {
-  name: '기본',
   args: {
     flex: true,
     flexDirection: 'row',
@@ -58,7 +57,6 @@ export const Flex: Story = {
 }
 
 export const FlexItem: Story = {
-  name: '커스텀 (FlexItem)',
   args: {
     flex: true,
   },
@@ -82,7 +80,6 @@ export const FlexItem: Story = {
 }
 
 export const Grow: Story = {
-  name: '커스텀 (FlexGrow)',
   args: {
     flex: true,
   },
@@ -98,7 +95,6 @@ export const Grow: Story = {
 }
 
 export const Order: Story = {
-  name: '커스텀 (FlexOrder)',
   args: {
     flex: true,
   },
@@ -114,7 +110,6 @@ export const Order: Story = {
 }
 
 export const Shrink: Story = {
-  name: '커스텀 (FlexShrink)',
   args: {
     flex: true,
   },
@@ -137,7 +132,6 @@ export const Shrink: Story = {
 }
 
 export const Direction: Story = {
-  name: '커스텀 (FlexDirection)',
   args: {
     flex: true,
     flexDirection: 'column',
@@ -154,7 +148,6 @@ export const Direction: Story = {
 }
 
 export const Wrap: Story = {
-  name: '커스텀 (FlexWrap)',
   args: {
     flex: true,
     flexWrap: 'wrap',
@@ -194,7 +187,6 @@ export const Wrap: Story = {
 }
 
 export const JustifyContent: Story = {
-  name: '커스텀 (JustifyContent)',
   args: {
     flex: true,
     flexDirection: 'row',
@@ -212,7 +204,6 @@ export const JustifyContent: Story = {
 }
 
 export const AlignItems: Story = {
-  name: '커스텀 (AlignItems)',
   args: {
     flex: true,
     flexDirection: 'column',
@@ -230,7 +221,6 @@ export const AlignItems: Story = {
 }
 
 export const Gap: Story = {
-  name: '커스텀 (Gap)',
   args: {
     flex: true,
     gap: '10px',

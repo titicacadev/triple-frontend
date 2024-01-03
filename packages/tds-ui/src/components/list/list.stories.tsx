@@ -20,7 +20,6 @@ export default meta
 type Story = StoryObj<typeof List>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     children: (
       <>
@@ -33,7 +32,6 @@ export const Default: Story = {
 }
 
 export const Marker: Story = {
-  name: '점',
   args: {
     marker: true,
     children: (
@@ -47,7 +45,6 @@ export const Marker: Story = {
 }
 
 export const Divided: Story = {
-  name: '구분선',
   args: {
     divided: true,
     dividerWeight: 10,

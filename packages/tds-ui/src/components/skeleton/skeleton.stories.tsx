@@ -22,7 +22,6 @@ const meta: Meta<typeof Skeleton> = {
 export default meta
 
 export const Box: StoryObj<typeof Skeleton> = {
-  name: '기본 (박스)',
   render: () => {
     return (
       <Skeleton
@@ -37,7 +36,6 @@ export const Box: StoryObj<typeof Skeleton> = {
 }
 
 export const Text: StoryObj<typeof SkeletonText> = {
-  name: '기본 (텍스트)',
   render: () => {
     return (
       <SkeletonText
@@ -51,14 +49,12 @@ export const Text: StoryObj<typeof SkeletonText> = {
 }
 
 export const Button: StoryObj<typeof SkeletonButton> = {
-  name: '기본 (버튼)',
   render: () => {
     return <SkeletonButton borderRadius={4} />
   },
 }
 
 export const Circle: StoryObj<typeof SkeletonButton> = {
-  name: '기본 (원형)',
   render: () => {
     return (
       <SkeletonCircle
