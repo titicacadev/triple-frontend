@@ -13,7 +13,7 @@ import {
 } from '../../resource-list-elements'
 import type { PoiListElementType } from '../types'
 
-import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
+import { DIRECTION_BUTTON_WIDTH, DirectionButton } from './direction-button'
 
 const IMAGE_WIDTH = 58
 
@@ -50,7 +50,7 @@ const ScrapButtonContainer = styled(Container)`
   right: 0;
 `
 
-function PoiCardElement({
+export function PoiCardElement({
   id,
   type,
   names: { ko, en, local },
@@ -217,5 +217,3 @@ function PoiCardElement({
     </Card>
   )
 }
-
-export default PoiCardElement

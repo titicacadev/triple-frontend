@@ -41,7 +41,7 @@ interface Props {
   onPlayPause: (e?: SyntheticEvent) => void
 }
 
-export default function PlayPauseButton({
+export function PlayPauseButton({
   playing,
   visible,
   videoRef,

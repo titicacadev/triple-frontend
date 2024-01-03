@@ -13,7 +13,7 @@ const Html = styled.div`
   }
 `
 
-export default function AuthorIntro({
+export function AuthorIntro({
   value: { rawHTML, text },
 }: {
   value: { text?: string; rawHTML?: string }

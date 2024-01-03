@@ -4,7 +4,7 @@ import { useTrackEvent } from '@titicaca/triple-web'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
-export default function ArticleCardCta({
+export function ArticleCardCta({
   href,
   cta,
   onClick,

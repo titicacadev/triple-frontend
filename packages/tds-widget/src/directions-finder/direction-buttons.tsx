@@ -9,7 +9,7 @@ import {
 } from '@titicaca/triple-web'
 import { Button, ButtonGroup } from '@titicaca/tds-ui'
 
-import AskToTheLocal from './ask-to-the-local'
+import { AskToTheLocal } from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
 
 export function DirectionButtons({

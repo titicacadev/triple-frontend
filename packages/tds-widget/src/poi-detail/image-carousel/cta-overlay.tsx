@@ -20,7 +20,7 @@ const MoreImageOverlayLinkIcon = styled.img`
   vertical-align: sub;
 `
 
-export default function CtaOverlay() {
+export function CtaOverlay() {
   const { t } = useTranslation('triple-frontend')
 
   return (

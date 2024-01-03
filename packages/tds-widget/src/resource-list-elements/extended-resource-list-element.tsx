@@ -14,7 +14,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 
 import { OverlayScrapButton } from '../scrap-button'
 
-import ReviewScrapStat from './review-scrap-stat'
+import { ReviewScrapStat } from './review-scrap-stat'
 
 interface ResourceMeta {
   id: string
@@ -60,7 +60,7 @@ const LabelContainer = styled.div`
   bottom: 20px;
 `
 
-function ExtendedResourceListElement<R extends ResourceMeta>({
+export function ExtendedResourceListElement<R extends ResourceMeta>({
   resource,
   scrapResource,
   image,
@@ -229,5 +229,3 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
     </ResourceListItem>
   )
 }
-
-export default ExtendedResourceListElement

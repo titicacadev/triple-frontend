@@ -118,5 +118,3 @@ function AwardGroup() {
     </AwardFlexBox>
   )
 }
-
-export default AwardFooter

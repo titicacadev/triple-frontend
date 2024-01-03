@@ -8,7 +8,12 @@ interface TextBannerProps extends CtaProps {
   installUrl: string
 }
 
-function TextBanner({ message, installUrl, onShow, onClick }: TextBannerProps) {
+export function TextBanner({
+  message,
+  installUrl,
+  onShow,
+  onClick,
+}: TextBannerProps) {
   const inventoryItem = useMemo(
     () => (message ? { desc: message } : undefined),
     [message],
@@ -29,5 +34,3 @@ function TextBanner({ message, installUrl, onShow, onClick }: TextBannerProps) {
     </TextBannerWrapper>
   )
 }
-
-export default TextBanner

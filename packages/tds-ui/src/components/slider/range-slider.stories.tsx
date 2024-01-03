@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import RangeSlider from './range-slider'
+import { RangeSlider } from './range-slider'
 
 export default {
   title: 'slider / RangeSlider',

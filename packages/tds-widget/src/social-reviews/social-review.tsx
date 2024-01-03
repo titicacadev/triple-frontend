@@ -17,7 +17,7 @@ export type SocialReviewsProps = {
   socialReviews?: SocialReview[]
 } & Parameters<typeof Section>['0']
 
-function SocialReviews({
+export function SocialReviews({
   placeholderImageUrl,
   socialReviews,
   ...props
@@ -64,5 +64,3 @@ function SocialReviews({
     />
   )
 }
-
-export default SocialReviews

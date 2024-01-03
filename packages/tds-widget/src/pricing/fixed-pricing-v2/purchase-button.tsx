@@ -1,8 +1,8 @@
 import { Button } from '@titicaca/tds-ui'
 
-import PurchaseButtonLoadingIndicator from './purchase-button-loading-indicator'
+import { PurchaseButtonLoadingIndicator } from './purchase-button-loading-indicator'
 
-export default function PurchaseButton({
+export function PurchaseButton({
   loading,
   disabled,
   buttonText,

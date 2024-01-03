@@ -28,7 +28,7 @@ const DayInfoContainer = styled.div`
   color: var(--color-gray);
 `
 
-function DatePicker({
+export function DatePicker({
   day,
   beforeBlock,
   afterBlock,
@@ -158,5 +158,3 @@ function DatePicker({
     </DayContainer>
   )
 }
-
-export default DatePicker

@@ -1,3 +1,1 @@
-import TripleHeader from './triple-header'
-
-export default TripleHeader
+export * from './triple-header'

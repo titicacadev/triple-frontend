@@ -13,7 +13,7 @@ import {
 } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import PurchaseButton from './purchase-button'
+import { PurchaseButton } from './purchase-button'
 
 export interface FixedPricingV2Props {
   loading: boolean
@@ -102,7 +102,7 @@ function LoadingSkeleton() {
   )
 }
 
-function FixedPricingV2({
+export function FixedPricingV2({
   emptyOverride,
   loading,
   active,
@@ -202,5 +202,3 @@ function FixedPricingV2({
     </Drawer>
   )
 }
-
-export default FixedPricingV2

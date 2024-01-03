@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import styled from 'styled-components'
 
-import ArrowIcon from './arrow-icon'
+import { ArrowIcon } from './arrow-icon'
 import { useFlickingCarousel } from './flicking-carousel-context'
 
 const FlickingScrollButton = styled.button<{

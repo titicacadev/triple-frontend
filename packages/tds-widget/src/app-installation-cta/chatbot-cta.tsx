@@ -33,7 +33,7 @@ interface ChatbotCtaProps extends CtaProps {
  * @param installUrl 앱 설치 URL
  * @param unmountOnExit 표시되지 않는 상태일 때 컴포넌트 마운트 해제
  */
-export default function ChatbotCta({
+export function ChatbotCta({
   available = false,
   inventoryId,
   installUrl,

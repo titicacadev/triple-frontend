@@ -9,7 +9,7 @@ const IconBox = styled.div`
   height: 16px;
 `
 
-export default function BusinessHoursNote({
+export function BusinessHoursNote({
   todayBusinessHours,
   onClick,
 }: {

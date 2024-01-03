@@ -10,8 +10,8 @@ import {
   BannerTypes,
 } from './api'
 import { Banner, ListDirection } from './typing'
-import HorizontalListView from './horizontal-list-view'
-import VerticalListView from './vertical-list-view'
+import { HorizontalListView } from './horizontal-list-view'
+import { VerticalListView } from './vertical-list-view'
 
 interface EventAttributes {
   title?: string

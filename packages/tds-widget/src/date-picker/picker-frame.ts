@@ -77,7 +77,7 @@ interface PickerFrameProps {
   canChangeMonth?: boolean
 }
 
-const PickerFrame = styled.div<PickerFrameProps>`
+export const PickerFrame = styled.div<PickerFrameProps>`
   border-top: 1px solid var(--color-gray100);
   border-bottom: 1px solid var(--color-gray100);
 
