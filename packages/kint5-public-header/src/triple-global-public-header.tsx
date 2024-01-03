@@ -4,7 +4,7 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { PropsWithChildren } from 'react'
 import { TripleGlobalBi } from '@titicaca/kint5-core-elements'
 
-import { HEADER_HEIGHT, TRANSITION_TIME } from './constants'
+import { HEADER_HEIGHT_PX, TRANSITION_TIME } from './constants'
 import type { DeeplinkComponent } from './types'
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
@@ -15,10 +15,10 @@ const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
   overflow: hidden;
   top: 0;
-  height: ${({ visible }) => (visible ? `${HEADER_HEIGHT}px` : '0px')};
+  height: ${({ visible }) => (visible ? `${HEADER_HEIGHT_PX}px` : '0px')};
 
   &:focus-within {
-    height: ${HEADER_HEIGHT}px;
+    height: ${HEADER_HEIGHT_PX}px;
   }
 `
 
@@ -27,8 +27,8 @@ const HeaderFrame = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-brightGray);
-  padding: 0 16px;
-  height: ${HEADER_HEIGHT}px;
+  padding: 18px 16px 13px;
+  height: ${HEADER_HEIGHT_PX}px;
 `
 
 export interface TripleGlobalPublicHeaderProps {
@@ -65,7 +65,7 @@ export function TripleGlobalPublicHeader({
     <Wrapper visible={visible}>
       <HeaderFrame>
         <a href="/">
-          <TripleGlobalBi width={75} height={30} />
+          <TripleGlobalBi width={60} height={24} />
         </a>
 
         <ExtraActionsContainer>

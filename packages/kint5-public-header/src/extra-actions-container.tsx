@@ -4,4 +4,5 @@ export const ExtraActionsContainer = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+  padding-bottom: 5px;
 `
