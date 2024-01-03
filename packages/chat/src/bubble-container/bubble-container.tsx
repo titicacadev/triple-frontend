@@ -59,20 +59,31 @@ function SentBubbleContainer({
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
     >
-      {!createdAt && onRetry && onRetryCancel ? (
-        <SendingFailureHandlerContainer>
-          <RetryButton onClick={onRetry} />
-          <DeleteButton onClick={onRetryCancel} />
-        </SendingFailureHandlerContainer>
-      ) : null}
-      {createdAt && showInfo ? (
-        <BubbleInfo
-          unreadCount={unreadCount}
-          date={createdAt}
-          css={{ marginRight: 8, textAlign: 'right' }}
+      <div>
+        {!createdAt && onRetry && onRetryCancel ? (
+          <SendingFailureHandlerContainer>
+            <RetryButton onClick={onRetry} />
+            <DeleteButton onClick={onRetryCancel} />
+          </SendingFailureHandlerContainer>
+        ) : null}
+        {createdAt && showInfo ? (
+          <BubbleInfo
+            unreadCount={unreadCount}
+            date={createdAt}
+            css={{ marginRight: 8, textAlign: 'right' }}
+          />
+        ) : null}
+        {children}
+      </div>
+
+      {thanks && onThanksClick ? (
+        <Thanks
+          count={thanks.count}
+          haveMine={thanks.haveMine}
+          onClick={onThanksClick}
+          css={{ marginTop: 6 }}
         />
       ) : null}
-      {children}
     </Container>
   )
 }
