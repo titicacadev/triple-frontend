@@ -12,9 +12,6 @@
       ],
       "@titicaca/meta-tags": ["./packages/meta-tags/src"],
       "@titicaca/react-hooks": ["./packages/react-hooks/src"],
-      "@titicaca/react-triple-client-interfaces": [
-        "./packages/react-triple-client-interfaces/src"
-      ],
       "@titicaca/router": ["./packages/router/src"],
       "@titicaca/scroll-spy": ["./packages/scroll-spy/src"],
       "@titicaca/scroll-to-element": ["./packages/scroll-to-element/src"],
@@ -32,15 +29,13 @@
         "./packages/triple-fallback-action/src"
       ],
       "@titicaca/triple-header": ["./packages/triple-header/src"],
-      "@titicaca/triple-media": ["./packages/triple-media/src"],
-      "@titicaca/triple-web": ["./packages/triple-web"],
+      "@titicaca/triple-web": ["./packages/triple-web/src"],
       "@titicaca/triple-web-nextjs-pages": [
-        "./packages/triple-web-nextjs-pages"
+        "./packages/triple-web-nextjs-pages/src"
       ],
-      "@titicaca/triple-web-nextjs": ["./packages/triple-web-nextjs"],
-      "@titicaca/triple-web-utils": ["./packages/triple-web-utils"],
+      "@titicaca/triple-web-nextjs": ["./packages/triple-web-nextjs/src"],
+      "@titicaca/triple-web-utils": ["./packages/triple-web-utils/src"],
       "@titicaca/type-definitions": ["./packages/type-definitions/src"],
-      "@titicaca/ui-flow": ["./packages/ui-flow/src"],
       "@titicaca/view-utilities": ["./packages/view-utilities/src"]
     }
   },
