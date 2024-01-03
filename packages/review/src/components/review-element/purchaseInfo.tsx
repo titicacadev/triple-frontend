@@ -2,7 +2,7 @@ import { FlexBox } from '@titicaca/core-elements'
 import { useCallback, useState } from 'react'
 import styled from 'styled-components'
 
-const RepresentativePurchaseName = styled.span<{ overflow: boolean }>`
+const RepresentativePurchaseName = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -54,7 +54,7 @@ export default function PurchaseInfo({
     >
       {!showFullName ? (
         <>
-          <RepresentativePurchaseName ref={ref} overflow>
+          <RepresentativePurchaseName ref={ref}>
             {displayName}
           </RepresentativePurchaseName>
           {displayPurchaseCount ? (
