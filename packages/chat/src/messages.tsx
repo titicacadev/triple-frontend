@@ -20,6 +20,7 @@ interface MessageBase<User extends UserInterface> {
   createdAt?: string
   blinded?: boolean
   deleted?: boolean
+  thanks?: { count: number; haveMine: boolean }
 }
 
 type MessageInterface<
@@ -47,6 +48,7 @@ interface MessagesProp<
   me: UserInterface
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
+  onThanksClick?: (message: MessageInterface<Message, User>) => void
 }
 
 export default function Messages<
@@ -59,6 +61,7 @@ export default function Messages<
   me,
   onRetry,
   onRetryCancel,
+  onThanksClick,
   customBubble,
   ...bubbleProps
 }: MessagesProp<Message, User> &
@@ -121,7 +124,7 @@ export default function Messages<
     messages: MessageInterface<Message, User>[],
   ) {
     return messages.map((message) => {
-      const { id, sender, createdAt, type } = message
+      const { id, sender, createdAt, type, thanks } = message
       const my = sender.id === me.id
 
       return (
@@ -146,6 +149,10 @@ export default function Messages<
               onRetryCancel?.(message)
             },
           })}
+          thanks={thanks}
+          onThanksClick={() => {
+            onThanksClick?.(message)
+          }}
         >
           {getBubble({ message, my })}
         </BubbleContainer>

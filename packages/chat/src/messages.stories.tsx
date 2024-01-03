@@ -23,6 +23,7 @@ export const Message = {
           unfriended: false,
         },
         createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
       },
       {
         type: 'another',
