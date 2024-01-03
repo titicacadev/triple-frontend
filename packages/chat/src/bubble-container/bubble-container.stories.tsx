@@ -44,6 +44,7 @@ export const SentBubbleContainer = {
     unreadCount: null,
     showInfo: true,
   },
+  thanks: { count: 1, haveMine: false },
 }
 
 export const ReceivedBubbleContainer = {
