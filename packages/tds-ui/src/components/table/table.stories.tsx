@@ -19,7 +19,6 @@ export default meta
 type Story = StoryObj<typeof Table>
 
 export const Horizontal: Story = {
-  name: '가로 테이블',
   args: {
     type: 'horizontal',
     head: [
@@ -41,7 +40,6 @@ export const Horizontal: Story = {
 }
 
 export const Vertical: Story = {
-  name: '세로 테이블',
   args: {
     type: 'vertical',
     head: [

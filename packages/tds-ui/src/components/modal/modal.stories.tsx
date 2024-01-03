@@ -25,7 +25,6 @@ export default meta
 type Story = StoryObj<typeof Modal>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     open: true,
   },
@@ -59,7 +58,6 @@ export const Default: Story = {
 }
 
 export const Flexible: Story = {
-  name: '유연성',
   args: {
     open: true,
     flexible: true,

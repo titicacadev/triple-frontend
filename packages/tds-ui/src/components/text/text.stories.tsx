@@ -19,14 +19,12 @@ export default meta
 type Story = StoryObj<typeof Text>
 
 export const Default: Story = {
-  name: '기본',
   render: (args) => {
     return <Text {...args}>기본</Text>
   },
 }
 
 export const Custom: Story = {
-  name: '커스텀',
   args: {
     bold: true,
     color: 'mint',
@@ -38,7 +36,6 @@ export const Custom: Story = {
 }
 
 export const MaxLines: Story = {
-  name: '최대 N줄 표시',
   args: {
     maxLines: 2,
   },

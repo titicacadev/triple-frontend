@@ -22,8 +22,6 @@ const COLORS: TagColors[] = ['special', 'pink', 'purple', 'default']
 const PADDING_SIZES: GlobalSizes[] = ['tiny', 'mini', 'small', 'medium']
 
 export const Default: StoryObj<typeof Tag> = {
-  name: '기본',
-
   render: () => {
     return (
       <>

@@ -21,14 +21,12 @@ export default meta
 type Story = StoryObj<typeof Label>
 
 export const Default: Story = {
-  name: '기본',
   render: (args) => {
     return <Label {...args}>최신순</Label>
   },
 }
 
 export const Radio: Story = {
-  name: '라디오',
   args: {
     radio: true,
   },
@@ -70,7 +68,6 @@ const SIZES: ['tiny', 'small', 'medium', 'large'] = [
 ]
 
 export const Promo: Story = {
-  name: '프로모션',
   args: {
     promo: true,
   },

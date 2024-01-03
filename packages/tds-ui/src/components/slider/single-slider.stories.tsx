@@ -2,10 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { SingleSlider } from './single-slider'
 
-export default {
+const meta: Meta<typeof SingleSlider> = {
   title: 'slider / SingleSlider',
   component: SingleSlider,
-} as Meta<typeof SingleSlider>
+}
+
+export default meta
 
 export const Baisc: StoryObj<typeof SingleSlider> = {
   args: {
