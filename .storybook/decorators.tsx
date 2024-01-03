@@ -1,8 +1,9 @@
 import React from 'react'
-import { ClientAppName, TripleWeb } from '../packages/triple-web'
-import { defaultTheme, GlobalStyle } from '../packages/tds-theme/src'
-import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
 import { ThemeProvider } from 'styled-components'
+
+import { GlobalStyle, defaultTheme } from '../packages/tds-theme/src'
+import { TripleWeb, ClientAppName } from '../packages/triple-web/src'
+
 import i18n from './i18next'
 
 export function themeDecorator(Story) {
@@ -44,7 +45,18 @@ export function tripleWebProviderDecorator(Story) {
       }}
       sessionProvider={{
         user: {
-          id: 'FA1243567',
+          name: 'TripleTester',
+          provider: 'TRIPLE',
+          country: 'ko',
+          lang: 'ko',
+          unregister: null,
+          photo: 'images.source',
+          mileage: {
+            badges: [{ icon: { imageUrl: '' } }],
+            level: 1,
+            point: 30,
+          },
+          uid: 'test',
         },
       }}
       userAgentProvider={{
@@ -59,13 +71,5 @@ export function tripleWebProviderDecorator(Story) {
     >
       <Story />
     </TripleWeb>
-  )
-}
-
-export function tripleClientMetadataDecorator(Story) {
-  return (
-    <TripleClientMetadataProvider>
-      <Story />
-    </TripleClientMetadataProvider>
   )
 }

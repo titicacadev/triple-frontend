@@ -1,11 +1,7 @@
 import type { Preview } from '@storybook/react'
 import { initialize, mswLoader } from 'msw-storybook-addon'
 import { mockDateDecorator } from 'storybook-mock-date-decorator'
-import {
-  themeDecorator,
-  tripleWebProviderDecorator,
-  tripleClientMetadataDecorator,
-} from './decorators'
+import { themeDecorator, tripleWebProviderDecorator } from './decorators'
 import i18n from './i18next'
 
 // Initialize MSW
@@ -20,12 +16,7 @@ const preview: Preview = {
     i18n,
   },
   loaders: [mswLoader],
-  decorators: [
-    mockDateDecorator,
-    themeDecorator,
-    tripleWebProviderDecorator,
-    tripleClientMetadataDecorator,
-  ],
+  decorators: [mockDateDecorator, themeDecorator, tripleWebProviderDecorator],
   globals: {
     locale: 'ko',
     locales: {
