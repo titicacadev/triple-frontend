@@ -17,7 +17,6 @@ const meta: Meta<typeof StickyHeader> = {
 export default meta
 
 export const Default: StoryObj<typeof StickyHeader> = {
-  name: '기본',
   render: (args) => {
     return <StickyHeader {...args}>Basic StickyHeader</StickyHeader>
   },

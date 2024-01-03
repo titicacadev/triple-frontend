@@ -20,7 +20,6 @@ export default meta
 type Story = StoryObj<typeof DrawerButton>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     active: true,
     children: '선택 완료',
@@ -28,7 +27,6 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  name: '비활성화',
   args: {
     ...Default.args,
     disabled: true,

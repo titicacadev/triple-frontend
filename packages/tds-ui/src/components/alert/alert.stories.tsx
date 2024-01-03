@@ -26,7 +26,6 @@ const meta: Meta<typeof Alert> = {
 export default meta
 
 export const Default: StoryObj<typeof Alert> = {
-  name: '기본',
   args: {
     open: true,
     title: '항공사 예약번호',

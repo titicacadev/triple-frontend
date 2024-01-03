@@ -44,5 +44,4 @@ export const BusinessHours: StoryObj<typeof Accordion> = {
       </Accordion>
     )
   },
-  name: '영업시간',
 }

@@ -20,12 +20,10 @@ export default meta
 type Story = StoryObj<typeof Container>
 
 export const Default: Story = {
-  name: '기본',
   args: { children: 'Basic Container' },
 }
 
-export const CustomCss: Story = {
-  name: '커스텀',
+export const Custom: Story = {
   render: () => {
     return (
       <Container

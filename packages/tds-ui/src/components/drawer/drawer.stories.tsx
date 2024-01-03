@@ -31,7 +31,6 @@ export default meta
 type Story = StoryObj<typeof Drawer>
 
 export const Default: Story = {
-  name: '기본',
   render: function Render(args) {
     const [{ active }, updateArgs] = useArgs()
 

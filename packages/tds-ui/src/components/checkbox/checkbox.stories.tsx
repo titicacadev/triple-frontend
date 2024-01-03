@@ -21,7 +21,6 @@ export default meta
 type Story = StoryObj<typeof Checkbox>
 
 export const Square: Story = {
-  name: '사각형 모양',
   render: (args) => {
     return (
       <div css={{ display: 'inline-block' }}>
@@ -33,7 +32,6 @@ export const Square: Story = {
 }
 
 export const Round: Story = {
-  name: '둥근 모양',
   render: (args) => {
     return (
       <div css={{ display: 'inline-block' }}>
@@ -45,7 +43,6 @@ export const Round: Story = {
 }
 
 export const WithText: Story = {
-  name: '제목',
   args: {
     variant: 'square',
     checked: true,

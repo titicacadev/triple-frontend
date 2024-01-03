@@ -20,7 +20,6 @@ export default meta
 type Story = StoryObj<typeof Textarea>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     error: false,
     placeholder: '요청사항을 입력해주세요.',
@@ -28,7 +27,6 @@ export const Default: Story = {
 }
 
 export const Required: Story = {
-  name: '필수',
   args: {
     label: '요청사항',
     required: true,
@@ -37,7 +35,6 @@ export const Required: Story = {
 }
 
 export const WithLabel: Story = {
-  name: '스티커',
   args: {
     label: '요청사항',
     placeholder: '요청사항을 입력해주세요.',
@@ -45,7 +42,6 @@ export const WithLabel: Story = {
 }
 
 export const WithHelpMessage: Story = {
-  name: '가이드 메시지',
   args: {
     label: '요청사항',
     placeholder: '요청사항을 입력해주세요.',
@@ -54,7 +50,6 @@ export const WithHelpMessage: Story = {
 }
 
 export const WithErrorMessage: Story = {
-  name: '에러 메시지',
   args: {
     label: '요청사항',
     placeholder: '요청사항을 입력해주세요.',

@@ -50,7 +50,6 @@ const CustomInput = () => {
 type Story = StoryObj<typeof FormField>
 
 export const Default: Story = {
-  name: '기본',
   render: (args) => {
     return (
       <FormField {...args}>
@@ -62,7 +61,6 @@ export const Default: Story = {
 }
 
 export const Required: Story = {
-  name: '필수',
   args: {
     isRequired: true,
   },
@@ -77,7 +75,6 @@ export const Required: Story = {
 }
 
 export const WithHelpMessage: Story = {
-  name: '가이드 메시지',
   render: (args) => {
     return (
       <FormField {...args}>
@@ -90,7 +87,6 @@ export const WithHelpMessage: Story = {
 }
 
 export const WithErrorMessage: Story = {
-  name: '에러 메시지',
   args: {
     isError: true,
   },

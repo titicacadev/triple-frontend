@@ -28,7 +28,6 @@ export default meta
 type Story = StoryObj<typeof Navbar>
 
 export const TwoButtons: Story = {
-  name: '버튼 2개 (좌1+우1)',
   render: () => {
     return (
       <Navbar title="도쿄 관광지" borderless backgroundColor="white">
@@ -40,7 +39,6 @@ export const TwoButtons: Story = {
 }
 
 export const ThreeButtons: Story = {
-  name: '버튼 3개 (좌1+우2)',
   render: () => {
     return (
       <Navbar title="도쿄 관광지" borderless backgroundColor="white">
@@ -53,7 +51,6 @@ export const ThreeButtons: Story = {
 }
 
 export const FourButtons: Story = {
-  name: '버튼 4개 (좌1+우3)',
   render: () => {
     return (
       <Navbar title="도쿄 관광지" borderless backgroundColor="white">
@@ -67,7 +64,6 @@ export const FourButtons: Story = {
 }
 
 export const SecondaryNavbar: Story = {
-  name: '보조 Navbar',
   render: () => {
     return (
       <>
@@ -84,7 +80,6 @@ export const SecondaryNavbar: Story = {
 }
 
 export const WrappedNavbar: Story = {
-  name: 'Wrapper로 감싼 Navbar',
   render: () => {
     return (
       <NavbarWrapper>
@@ -98,7 +93,6 @@ export const WrappedNavbar: Story = {
 }
 
 export const RenderTitle: Story = {
-  name: '커스텀 (타이틀)',
   render: () => {
     return (
       <Navbar

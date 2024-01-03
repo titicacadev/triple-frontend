@@ -43,7 +43,6 @@ const Box2 = styled(Box)`
 type Story = StoryObj<typeof Stack>
 
 export const Default: Story = {
-  name: '기본',
   render: () => {
     return (
       <>
@@ -67,7 +66,6 @@ export const Default: Story = {
 }
 
 export const Horizontal: Story = {
-  name: '수평',
   args: {
     horizontal: true,
   },
@@ -98,7 +96,6 @@ export const Horizontal: Story = {
 }
 
 export const Vertical: Story = {
-  name: '수직',
   args: {
     vertical: true,
   },

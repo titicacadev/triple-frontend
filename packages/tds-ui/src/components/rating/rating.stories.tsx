@@ -20,7 +20,6 @@ export default meta
 type Story = StoryObj<typeof Rating>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     size: 'tiny',
     score: 5,
@@ -31,7 +30,6 @@ export const Default: Story = {
 }
 
 export const Score: Story = {
-  name: '점수',
   render: () => {
     return (
       <>
@@ -46,7 +44,6 @@ export const Score: Story = {
 }
 
 export const Size: Story = {
-  name: '크기',
   render: () => {
     return (
       <>

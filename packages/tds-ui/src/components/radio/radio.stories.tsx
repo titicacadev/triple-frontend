@@ -19,7 +19,6 @@ const meta: Meta<typeof Radio> = {
 export default meta
 
 export const Default: StoryObj<typeof Radio> = {
-  name: '기본',
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs()
 

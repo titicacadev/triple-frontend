@@ -23,7 +23,6 @@ const meta: Meta<typeof Confirm> = {
 export default meta
 
 export const Default: StoryObj<typeof Confirm> = {
-  name: '기본',
   args: {
     open: true,
     title: '요금 변동을 확인해주세요',

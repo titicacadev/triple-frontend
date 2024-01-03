@@ -21,7 +21,6 @@ export default meta
 type Story = StoryObj<typeof NumericSpinner>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     label: '성인',
     value: 0,
@@ -38,7 +37,6 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  name: '비활성화',
   args: {
     label: '성인',
     disabled: true,
@@ -55,7 +53,6 @@ export const Disabled: Story = {
 }
 
 export const Label: Story = {
-  name: '스티커',
   args: {
     label: '성인',
     value: 0,
@@ -74,7 +71,6 @@ export const Label: Story = {
 }
 
 export const Size: Story = {
-  name: '글자 크기',
   args: {
     label: '성인',
     value: 0,

@@ -21,7 +21,6 @@ export default meta
 type Story = StoryObj<typeof Select>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     value: '',
     placeholder: '시간을 선택해주세요',
@@ -52,7 +51,6 @@ export const Default: Story = {
 }
 
 export const WithLabel: Story = {
-  name: '스티커',
   args: {
     value: '',
     label: '투어티켓 시간',
@@ -84,7 +82,6 @@ export const WithLabel: Story = {
 }
 
 export const WithHelpMessage: Story = {
-  name: '가이드 메시지',
   args: {
     value: '',
     label: '투어티켓 시간',
@@ -117,7 +114,6 @@ export const WithHelpMessage: Story = {
 }
 
 export const WithErrorMessage: Story = {
-  name: '에러 메시지',
   args: {
     value: '',
     label: '투어티켓 시간',

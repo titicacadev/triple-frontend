@@ -20,7 +20,6 @@ export default meta
 type Story = StoryObj<typeof GenderSelector>
 
 export const Default: Story = {
-  name: '기본',
   args: {
     name: 'gender',
     value: 'MALE',
@@ -37,7 +36,6 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  name: '비활성화',
   args: {
     name: 'gender',
     value: 'MALE',
@@ -55,7 +53,6 @@ export const Disabled: Story = {
 }
 
 export const Required: Story = {
-  name: '필수',
   args: {
     name: 'gender',
     value: 'MALE',
@@ -73,7 +70,6 @@ export const Required: Story = {
 }
 
 export const WithLabel: Story = {
-  name: '스티커',
   args: {
     name: 'gender',
     value: 'MALE',
@@ -91,7 +87,6 @@ export const WithLabel: Story = {
 }
 
 export const WithHelpMessage: Story = {
-  name: '가이드 메시지',
   args: {
     name: 'gender',
     value: 'MALE',
@@ -109,7 +104,6 @@ export const WithHelpMessage: Story = {
 }
 
 export const WithErrorMessage: Story = {
-  name: '에러 메시지',
   args: {
     name: 'gender',
     value: 'MALE',

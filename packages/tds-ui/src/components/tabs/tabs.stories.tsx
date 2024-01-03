@@ -41,7 +41,6 @@ const Template: StoryFn<typeof Tabs> = (args) => {
 }
 
 export const Basic: Story = {
-  name: '기본',
   args: {
     variant: 'basic',
   },
@@ -49,7 +48,6 @@ export const Basic: Story = {
 }
 
 export const Pointing: Story = {
-  name: '포인트',
   args: {
     variant: 'pointing',
   },
@@ -57,7 +55,6 @@ export const Pointing: Story = {
 }
 
 export const PointingScroll: Story = {
-  name: '포인트 + 스크롤',
   args: {
     variant: 'pointing',
     scroll: true,
@@ -66,7 +63,6 @@ export const PointingScroll: Story = {
 }
 
 export const Rounded: Story = {
-  name: '라운드',
   args: {
     variant: 'rounded',
   },
@@ -74,7 +70,6 @@ export const Rounded: Story = {
 }
 
 export const RoundedScroll: Story = {
-  name: '라운드 + 스크롤',
   args: {
     variant: 'rounded',
     scroll: true,
