@@ -6,4 +6,5 @@ export const ExtraActionItem = styled.a`
   align-items: center;
   color: var(--kint5-color-gray100);
   font-size: 14px;
+  padding: 0 8px;
 `
