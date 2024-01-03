@@ -46,7 +46,7 @@ export interface TripleGlobalPublicHeaderProps {
 export function TripleGlobalPublicHeader({
   deeplinkPath,
   DeeplinkComponent,
-  disableAutoHide,
+  disableAutoHide = true,
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
