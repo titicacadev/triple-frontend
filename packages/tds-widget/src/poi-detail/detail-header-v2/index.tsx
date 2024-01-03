@@ -18,8 +18,8 @@ import {
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import CopyActionSheet from '../copy-action-sheet'
-import AreaNames from '../area-names'
+import { CopyActionSheet } from '../copy-action-sheet'
+import { AreaNames } from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const ArrowButton = styled.button`
@@ -43,7 +43,7 @@ interface Area {
   name: string
 }
 
-function DetailHeaderV2({
+export function PoiDetailHeaderV2({
   names,
   areaName,
   areas = [],
@@ -139,5 +139,3 @@ function DetailHeaderV2({
     </>
   )
 }
-
-export default DetailHeaderV2

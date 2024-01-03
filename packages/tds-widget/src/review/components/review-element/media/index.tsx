@@ -10,15 +10,15 @@ import { useClientActions } from '../../../services'
 
 import { compareMedia } from './compare-media'
 import { Dimmer, MediumWrapper } from './elements'
-import MediaWrapper from './media-wrapper'
-import Medium from './medium'
+import { MediaWrapper } from './media-wrapper'
+import { Medium } from './medium'
 
 interface Props {
   media: ImageMeta[]
   reviewId: string
 }
 
-function Media({ media, reviewId }: Props) {
+export function Media({ media, reviewId }: Props) {
   const trackEvent = useTrackEvent()
   const { navigateImages } = useClientActions()
 
@@ -86,5 +86,3 @@ function Media({ media, reviewId }: Props) {
     </MediaWrapper>
   )
 }
-
-export default Media

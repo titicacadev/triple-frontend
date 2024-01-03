@@ -1,8 +1,8 @@
 import { Section, Container } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
 
-import Carousel, { CarouselProps } from './carousel'
-import Placeholder from './placeholder'
+import { CarouselProps, Carousel } from './carousel'
+import { ResponsiveImagePlaceholder as Placeholder } from './placeholder'
 import { BusinessHoursNote, PermanentlyClosedNote } from './note'
 
 export type PoiType = 'attraction' | 'hotel' | 'restaurant'
@@ -25,7 +25,7 @@ export interface CarouselSectionProps extends CarouselProps {
   type?: PoiType
 }
 
-export default function CarouselSection({
+export function CarouselSection({
   images,
   loading,
   currentBusinessHours,

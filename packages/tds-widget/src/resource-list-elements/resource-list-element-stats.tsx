@@ -1,6 +1,6 @@
 import { Text } from '@titicaca/tds-ui'
 
-function ResourceListElementStats({
+export function ResourceListElementStats({
   stats,
   ...textProps
 }: {
@@ -12,5 +12,3 @@ function ResourceListElementStats({
 
   return <Text {...textProps}>{stats.filter((stat) => stat).join(' · ')}</Text>
 }
-
-export default ResourceListElementStats

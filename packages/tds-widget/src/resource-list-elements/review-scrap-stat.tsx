@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { Container, Rating } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import ResourceListElementStats from './resource-list-element-stats'
+import { ResourceListElementStats } from './resource-list-element-stats'
 
-function ReviewScrapStat({
+export function ReviewScrapStat({
   reviewsCount,
   scrapsCount,
   reviewsRating,
@@ -42,5 +42,3 @@ function ReviewScrapStat({
     </Container>
   )
 }
-
-export default ReviewScrapStat

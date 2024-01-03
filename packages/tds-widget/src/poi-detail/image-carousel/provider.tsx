@@ -18,7 +18,7 @@ import reducer, {
   reinitializeImages,
 } from './reducer'
 
-interface ImageCarouselContext {
+interface PoiDetailImageCarouselContext {
   images: ImageMeta[]
   total: number
   loading: boolean
@@ -29,7 +29,7 @@ interface ImageCarouselContext {
   }
 }
 
-export interface ImageCarouselProviderProps extends PropsWithChildren {
+export interface PoiDetailImageCarouselProviderProps extends PropsWithChildren {
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
@@ -38,7 +38,7 @@ export interface ImageCarouselProviderProps extends PropsWithChildren {
   total?: number
 }
 
-const Context = createContext<ImageCarouselContext>({
+const Context = createContext<PoiDetailImageCarouselContext>({
   images: [],
   total: 0,
   loading: false,
@@ -55,12 +55,12 @@ const TYPE_MAPPING = {
   hotel: 'hotel',
 }
 
-export function ImageCarouselProvider({
+export function PoiDetailImageCarouselProvider({
   images: initialImages,
   total: initialTotal,
   source: { id, type },
   children,
-}: ImageCarouselProviderProps) {
+}: PoiDetailImageCarouselProviderProps) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: !initialImages,
     images: initialImages || [],
@@ -191,6 +191,6 @@ async function fetchImages(
   }
 }
 
-export function useImageCarousel() {
+export function usePoiDetailImageCarousel() {
   return useContext(Context)
 }

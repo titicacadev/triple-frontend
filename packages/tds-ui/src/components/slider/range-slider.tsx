@@ -1,8 +1,8 @@
 import { ComponentType } from 'react'
 import { Tracks } from 'react-compound-slider'
 
-import Track from './track'
-import SliderBase, { SliderBaseProps } from './slider-base'
+import { Track } from './track'
+import { SliderBaseProps, SliderBase } from './slider-base'
 import { SliderValue } from './types'
 
 interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
@@ -12,7 +12,7 @@ interface RangeSliderProps extends Omit<SliderBaseProps, 'labelComponent'> {
   }>
 }
 
-function RangeSlider({
+export function RangeSlider({
   labelComponent: LabelComponent,
   ...restProps
 }: RangeSliderProps) {
@@ -45,5 +45,3 @@ function RangeSlider({
     </SliderBase>
   )
 }
-
-export default RangeSlider

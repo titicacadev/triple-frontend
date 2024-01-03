@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { ActionSheetItem } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
 
-export default function CopyActionSheetItem({
+export function CopyActionSheetItem({
   value,
   onCopy,
 }: {

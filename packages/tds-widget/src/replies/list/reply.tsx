@@ -67,7 +67,7 @@ const ThanksIcon = styled.img`
 const HASH_MORE_ACTION_SHEET = 'reply.more-action-sheet'
 export const HASH_DELETE_CLOSE_MODAL = 'reply.delete-close-modal'
 
-export default function Reply({
+export function Reply({
   reply,
   reply: {
     writer: { profileImage, name, href: writeHref },

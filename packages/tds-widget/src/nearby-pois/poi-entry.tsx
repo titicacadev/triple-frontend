@@ -8,7 +8,7 @@ import { PoiListElement } from '../poi-list-elements'
 
 import { ListingPoi } from './types'
 
-export default function PoiEntry({
+export function PoiEntry({
   index,
   poi,
   poi: {

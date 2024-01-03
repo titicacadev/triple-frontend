@@ -56,7 +56,7 @@ const PlayPauseButtonBase = styled.span`
   transition: opacity 0.3s;
 `
 
-function Video({ medium }: Props) {
+export function Video({ medium }: Props) {
   const [isOncePlayed, setIsOncePlayed] = useState(false)
   const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
     threshold: 0.5,
@@ -114,5 +114,3 @@ function Video({ medium }: Props) {
     </Container>
   )
 }
-
-export default Video

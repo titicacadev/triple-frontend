@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { css } from 'styled-components'
 import { formatMarginPadding, MarginPadding } from '@titicaca/tds-ui'
 
-import VerticalEntity from './vertical-entity'
+import { VerticalEntity } from './vertical-entity'
 import { Banner } from './typing'
 import ListSection from './list-section'
 
@@ -18,7 +18,7 @@ interface VerticalListViewProps {
   ) => void
 }
 
-const VerticalListView: FC<VerticalListViewProps> = ({
+export const VerticalListView: FC<VerticalListViewProps> = ({
   banners,
   padding,
   margin,
@@ -61,5 +61,3 @@ const VerticalListView: FC<VerticalListViewProps> = ({
     </ListSection>
   )
 }
-
-export default VerticalListView

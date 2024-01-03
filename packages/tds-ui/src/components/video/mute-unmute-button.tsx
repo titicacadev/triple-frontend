@@ -37,7 +37,7 @@ interface Props {
   onMuteUnmute: (e: SyntheticEvent) => void
 }
 
-export default function MuteUnmuteButton({
+export function MuteUnmuteButton({
   muted,
   visible,
   videoRef,

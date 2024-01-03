@@ -1,1 +1,1 @@
-export { default } from './poi-card-element'
+export * from './poi-card-element'

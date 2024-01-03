@@ -63,7 +63,7 @@ interface PickerFrameProps {
   hideTodayLabel: boolean
 }
 
-const PickerFrame = styled.div<PickerFrameProps>`
+export const PickerFrameV2 = styled.div<PickerFrameProps>`
   border-top: 1px solid var(--color-gray100);
   border-bottom: 1px solid var(--color-gray100);
 
@@ -161,4 +161,3 @@ const PickerFrame = styled.div<PickerFrameProps>`
     color: var(--color-gray500);
   }
 `
-export default PickerFrame

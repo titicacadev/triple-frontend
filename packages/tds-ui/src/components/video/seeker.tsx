@@ -58,7 +58,7 @@ const SeekerBase = styled.input<{ handleVisible: boolean }>`
   }
 `
 
-export default function Seeker({
+export function Seeker({
   seek,
   duration,
   visible,

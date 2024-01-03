@@ -4,9 +4,10 @@ import { Segment, List, ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
 import { useHashRouter } from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import PropertyItem, {
+import {
   ACTION_SHEET_PREFIX,
   PropertyItemProps,
+  PropertyItem,
 } from './property-item'
 
 interface ExtraProperty {

@@ -22,7 +22,7 @@ import nearbyPoisReducer, {
   setFetchingStatus,
 } from './reducer'
 import { fetchPois } from './service'
-import PoiEntry from './poi-entry'
+import { PoiEntry } from './poi-entry'
 
 const INITIAL_STATE: NearbyPoisState = {
   attraction: {

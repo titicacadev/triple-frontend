@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '@titicaca/tds-ui'
 
-export default styled(Button)`
+export const MoreButton = styled(Button)`
   width: 100%;
   text-align: center;
   padding: 8px 0;

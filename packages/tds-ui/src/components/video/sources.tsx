@@ -3,7 +3,7 @@ import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
 const MEDIA_CDN_URL_BASE = 'https://media.triple.guide'
 const FORMATS = ['webm', 'mp4', 'ogv']
 
-export default function Sources({
+export function Sources({
   src,
   srcType,
   cloudinaryBucket,

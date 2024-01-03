@@ -1,9 +1,9 @@
 import { ActionSheet } from '@titicaca/tds-ui'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import CopyActionSheetItem from './copy-action-sheet-item'
+import { CopyActionSheetItem } from './copy-action-sheet-item'
 
-export default function CopyActionSheet({
+export function CopyActionSheet({
   open,
   names: { primary, ko, en, local },
   onCopy,

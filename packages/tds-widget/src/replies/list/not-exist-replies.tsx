@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Container, HR1, Text } from '@titicaca/tds-ui'
 
-export default function NotExistReplies() {
+export function NotExistReplies() {
   const { t } = useTranslation('triple-frontend')
 
   return (

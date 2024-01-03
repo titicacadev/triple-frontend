@@ -15,14 +15,14 @@ import {
 } from '@titicaca/triple-web'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
-import { ArticleCardCTA, fetchInventoryItems } from '../../app-installation-cta'
+import { ArticleCardCta, fetchInventoryItems } from '../../app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
-import ArticleEntry from './article-entry'
-import MoreButton from './more-button'
+import { ArticleEntry } from './article-entry'
+import { MoreButton } from './more-button'
 
-function RecommendedArticles({
+export function PoiDetailRecommendedArticles({
   regionId,
   zoneId,
   mobilePadding,
@@ -143,7 +143,7 @@ function RecommendedArticles({
           <FlickingCarousel.Content>
             {articleCardCta && (
               <FlickingCarousel.Item size="medium">
-                <ArticleCardCTA
+                <ArticleCardCta
                   cta={articleCardCta}
                   href={appInstallationCta?.href}
                   onClick={appInstallationCta?.onClick}
@@ -193,7 +193,7 @@ function RecommendedArticles({
           <FlickingCarousel.Content>
             {articleCardCta && (
               <FlickingCarousel.Item size="medium">
-                <ArticleCardCTA
+                <ArticleCardCta
                   cta={articleCardCta}
                   href={appInstallationCta?.href}
                   onClick={appInstallationCta?.onClick}
@@ -226,5 +226,3 @@ function RecommendedArticles({
     </Section>
   )
 }
-
-export default RecommendedArticles

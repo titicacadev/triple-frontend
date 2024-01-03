@@ -30,7 +30,7 @@ type LongClickableItemContainerProps = LongClickableComponentProps &
 const LongClickableItemContainer =
   longClickable<LongClickableItemContainerProps>(FlexBox)
 
-export default function PropertyItem({
+export function PropertyItem({
   identifier,
   title,
   value,

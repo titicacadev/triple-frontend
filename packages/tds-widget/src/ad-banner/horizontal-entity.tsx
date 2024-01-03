@@ -23,7 +23,7 @@ const BannerItem = styled.a<{ widthOffset: number }>`
   }
 `
 
-const HorizontalEntity: FC<HorizontalEntityProps> = ({
+export const HorizontalEntity: FC<HorizontalEntityProps> = ({
   banner,
   onLoad,
   onClick,
@@ -42,5 +42,3 @@ const HorizontalEntity: FC<HorizontalEntityProps> = ({
     </BannerItem>
   )
 }
-
-export default HorizontalEntity

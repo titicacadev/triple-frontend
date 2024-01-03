@@ -38,7 +38,7 @@ const CallButton = styled(Button)`
   padding-bottom: 15px;
 `
 
-export default function AskToTheLocal({
+export function AskToTheLocal({
   open,
   onClose,
   localName,

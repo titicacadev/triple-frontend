@@ -6,12 +6,12 @@ import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
 import { deleteReply } from '../replies-api-client'
 
-import NotExistReplies from './not-exist-replies'
-import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
+import { NotExistReplies } from './not-exist-replies'
+import { HASH_DELETE_CLOSE_MODAL, Reply } from './reply'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
-export default function ReplyList({
+export function ReplyList({
   replies,
   isMoreButtonActive,
   fetchMoreReplies,

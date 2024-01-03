@@ -13,7 +13,7 @@ export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
 }
 
-function DefaultFooter({
+export function DefaultFooter({
   hideAppDownloadButton = false,
   ...props
 }: DefaultFooterProps) {
@@ -49,5 +49,3 @@ function DefaultFooter({
     </FooterFrame>
   )
 }
-
-export default DefaultFooter

@@ -24,11 +24,11 @@ import {
 import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 
-import Comment from './comment'
-import FoldableComment from './foldable-comment'
-import Media from './media'
+import { Comment } from './comment'
+import { FoldableComment } from './foldable-comment'
+import { Media } from './media'
 import { PinnedMessage } from './pinned-message'
-import User from './user'
+import { User } from './user'
 import { ReviewBadges } from './badges'
 import PurchaseInfo from './purchaseInfo'
 

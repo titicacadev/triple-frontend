@@ -12,7 +12,7 @@ import { debounce } from '@titicaca/view-utilities'
 
 import { Container } from '../container'
 
-import Handle from './handle'
+import { Handle } from './handle'
 import { ValueTransformer, SliderValue } from './types'
 
 export interface SliderBaseProps {
@@ -80,7 +80,7 @@ const adjustMax = (maxVal: number, step: number) =>
 const adjustMin = (minVal: number, step: number) =>
   minVal % step ? Math.floor(minVal / step) * step : minVal
 
-export default function SliderBase({
+export function SliderBase({
   step = 1,
   initialValues,
   min = 0,

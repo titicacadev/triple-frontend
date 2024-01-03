@@ -62,7 +62,7 @@ const PurchaseButtonContainer = styled(Container)`
   height: 47px;
 `
 
-export default function FixedPricing({
+export function FixedPricing({
   active,
   label,
   buttonText,

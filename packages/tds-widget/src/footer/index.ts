@@ -1,6 +1,3 @@
-import DefaultFooter from './default-footer'
-
-export { default as LogoFooter } from './logo-footer'
-export { default as AwardFooter } from './award-footer'
-
-export default DefaultFooter
+export * from './award-footer'
+export * from './default-footer'
+export * from './logo-footer'

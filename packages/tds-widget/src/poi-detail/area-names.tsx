@@ -15,7 +15,7 @@ interface Area {
   name: string
 }
 
-export default function AreaNames({
+export function AreaNames({
   areaName,
   areas = [],
   vicinity,

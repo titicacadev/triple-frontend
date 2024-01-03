@@ -6,7 +6,7 @@ import Flicking from '@egjs/react-flicking'
 import { css } from 'styled-components'
 
 import { Banner } from './typing'
-import HorizontalEntity from './horizontal-entity'
+import { HorizontalEntity } from './horizontal-entity'
 import ListSection from './list-section'
 
 interface HorizontalListViewProps {
@@ -33,7 +33,7 @@ const FLICKING_CONFIG: Partial<FlickingOptions> = {
   gap: 10,
 }
 
-const HorizontalListView: FC<HorizontalListViewProps> = ({
+export const HorizontalListView: FC<HorizontalListViewProps> = ({
   banners,
   padding = {},
   margin,
@@ -124,5 +124,3 @@ const HorizontalListView: FC<HorizontalListViewProps> = ({
     </IntersectionObserver>
   )
 }
-
-export default HorizontalListView

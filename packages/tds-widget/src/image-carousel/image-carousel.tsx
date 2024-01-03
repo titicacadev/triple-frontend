@@ -7,7 +7,7 @@ import { ImageSource } from '../image-source'
 
 import { CarouselImageMeta, RendererParams } from './types'
 import { PageLabel } from './page-label'
-import Content from './content'
+import { Content } from './content'
 
 interface ImageCarouselBaseProps {
   images: CarouselImageMeta[]
@@ -51,7 +51,7 @@ const FLICKING_OPTIONS = {
 /**
  * [egjs-flicking](https://github.com/naver/egjs-flicking)을 기반으로 제작된 이미지 캐러셀입니다.
  */
-function ImageCarousel({
+export function ImageCarousel({
   images,
   displayedTotalCount,
   currentPage,
@@ -110,5 +110,3 @@ function ImageCarousel({
     </FlickingCarousel>
   )
 }
-
-export default ImageCarousel

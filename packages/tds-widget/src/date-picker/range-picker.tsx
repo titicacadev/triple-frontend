@@ -50,7 +50,7 @@ function getInitialMonth() {
   return moment().startOf('day').toDate()
 }
 
-function RangePicker({
+export function RangePicker({
   startDate,
   endDate,
   startDateLabel,
@@ -191,5 +191,3 @@ function RangePicker({
     </RangeContainer>
   )
 }
-
-export default RangePicker

@@ -16,7 +16,7 @@ const BannerImage = styled.img`
   vertical-align: top;
 `
 
-const VerticalEntity: FC<VerticalEntityProps> = ({
+export const VerticalEntity: FC<VerticalEntityProps> = ({
   banner,
   onClick,
   onIntersect,
@@ -43,5 +43,3 @@ const VerticalEntity: FC<VerticalEntityProps> = ({
     </IntersectionObserver>
   )
 }
-
-export default VerticalEntity

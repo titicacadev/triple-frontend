@@ -1,8 +1,8 @@
 import { ComponentType } from 'react'
 import { Tracks } from 'react-compound-slider'
 
-import Track from './track'
-import SliderBase, { SliderBaseProps } from './slider-base'
+import { Track } from './track'
+import { SliderBaseProps, SliderBase } from './slider-base'
 
 interface SingleSliderProps
   extends Omit<
@@ -20,7 +20,7 @@ interface SingleSliderProps
   onChange: (value: number) => void
 }
 
-function SingleSlider({
+export function SingleSlider({
   initialValue,
   labelComponent: LabelComponent,
   onChange,
@@ -55,5 +55,3 @@ function SingleSlider({
     </SliderBase>
   )
 }
-
-export default SingleSlider

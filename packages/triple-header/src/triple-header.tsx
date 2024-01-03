@@ -3,7 +3,7 @@ import { Container } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 
 import { Layer } from './layer'
-import { TripleHeader as TripleHeaderProps } from './types'
+import { TripleHeaderProps } from './types'
 
 const MAX_WIDTH = 768
 
@@ -24,11 +24,7 @@ const Canvas = styled(Container).attrs({
     `}
 `
 
-export default function TripleHeader({
-  children,
-}: {
-  children: TripleHeaderProps
-}) {
+export function TripleHeader({ children }: { children: TripleHeaderProps }) {
   const [clientWidth, setClientWidth] = useState<number | undefined>(undefined)
   const [node, setNode] = useState<HTMLDivElement | null>(null)
 

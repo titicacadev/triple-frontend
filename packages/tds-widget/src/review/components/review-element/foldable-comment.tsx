@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { findFoldedPosition } from '@titicaca/view-utilities'
 
-import Comment from './comment'
+import { Comment } from './comment'
 
 const MAX_COMMENT_WITH_IMAGE_LINES = 3
 const MAX_COMMENT_LINES = 6
@@ -14,7 +14,7 @@ const Unfold = styled.button`
   outline: 0;
 `
 
-export default function FoldableComment({
+export function FoldableComment({
   comment,
   hasImage,
   onUnfoldButtonClick,

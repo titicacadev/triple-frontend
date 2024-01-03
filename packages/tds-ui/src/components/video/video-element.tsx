@@ -3,8 +3,8 @@ import { forwardRef } from 'react'
 
 import { mergeRefs } from '../../utils/merge-refs'
 
-import Sources from './sources'
-import Controls from './controls'
+import { Sources } from './sources'
+import { Controls } from './controls'
 import { useVideoState } from './context'
 import { useVideoRef } from './use-video-ref'
 

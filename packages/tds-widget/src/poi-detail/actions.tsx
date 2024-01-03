@@ -31,7 +31,7 @@ const ReviewTooltip = styled(Tooltip)`
 
 const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 
-function Actions({
+export function PoiDetailActions({
   scraped,
   reviewed,
   onScheduleAdd,
@@ -113,5 +113,3 @@ function Actions({
     </Section>
   )
 }
-
-export default Actions

@@ -14,11 +14,7 @@ const SVG_ATTRIBUTES_BY_DIRECTION = {
   },
 }
 
-export default function ArrowIcon({
-  direction,
-}: {
-  direction: 'left' | 'right'
-}) {
+export function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
   const { colors } = useContext(ThemeContext) || { colors: {} }
   const stroke = colors.gray

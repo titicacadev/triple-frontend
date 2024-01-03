@@ -4,7 +4,7 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { ArticleListingData } from './types'
 
-export default function ArticleEntry({
+export function ArticleEntry({
   article,
   article: {
     source: { title, image },

@@ -9,9 +9,9 @@ import {
 import styled from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
-import Seeker from './seeker'
-import PlayPauseButton from './play-pause-button'
-import MuteUnmuteButton from './mute-unmute-button'
+import { Seeker } from './seeker'
+import { PlayPauseButton } from './play-pause-button'
+import { MuteUnmuteButton } from './mute-unmute-button'
 import { formatTime } from './utils'
 import { useVideoControl } from './use-video-control'
 
@@ -75,7 +75,7 @@ interface Props {
   videoRef: RefObject<HTMLVideoElement>
 }
 
-export default function Controls({
+export function Controls({
   hideControls,
   initialHidden,
   initialMuted,

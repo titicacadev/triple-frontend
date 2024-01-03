@@ -31,7 +31,7 @@ interface Props {
   getHandleProps: GetHandleProps
 }
 
-export default function Handle({
+export function Handle({
   id,
   percent,
   value,

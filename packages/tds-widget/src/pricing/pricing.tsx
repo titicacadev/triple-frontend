@@ -5,7 +5,7 @@ import { formatNumber } from '@titicaca/view-utilities'
 import { Container, Text, MarginPadding, GlobalColors } from '@titicaca/tds-ui'
 import { GlobalSizes } from '@titicaca/type-definitions'
 
-import FixedPricing, { FixedPricingProps } from './fixed-pricing'
+import { FixedPricingProps, FixedPricing } from './fixed-pricing'
 
 export type BasePrice = number | null
 
@@ -211,7 +211,7 @@ const RegularPricing = ({
   )
 }
 
-function Pricing(props: PricingProps) {
+export function Pricing(props: PricingProps) {
   const { salePrice, priceLabelOverride } = props
 
   if (props.rich) {
@@ -287,5 +287,3 @@ function Pricing(props: PricingProps) {
     )
   }
 }
-
-export default Pricing
