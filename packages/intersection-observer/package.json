@@ -56,16 +56,10 @@
       "eslint"
     ]
   },
-  "dependencies": {
-    "@titicaca/react-intersection-observer": "1.7.0",
-    "intersection-observer": "^0.12.2"
-  },
   "devDependencies": {
-    "next": "^13.4.13",
     "react": "^18.2.0"
   },
   "peerDependencies": {
-    "next": "^13.0",
     "react": "^18.0"
   }
 }
