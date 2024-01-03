@@ -6,7 +6,7 @@ import { useRepliesContext } from './context'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
-export default function GuideText() {
+export function GuideText() {
   const { t } = useTranslation('triple-frontend')
 
   const {

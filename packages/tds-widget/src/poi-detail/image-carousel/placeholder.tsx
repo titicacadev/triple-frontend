@@ -86,7 +86,7 @@ function ImagePlaceholder({
   )
 }
 
-export default function ResponsiveImagePlaceholder({
+export function ResponsiveImagePlaceholder({
   noContent,
   guestMode,
   type,

@@ -24,12 +24,10 @@ const Img = styled.img`
   object-fit: cover;
 `
 
-function Image({ medium }: Props) {
+export function Image({ medium }: Props) {
   return (
     <Wrapper>
       <Img src={medium.sizes.large.url} />
     </Wrapper>
   )
 }
-
-export default Image

@@ -1,7 +1,7 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
 import { Button } from '@titicaca/tds-ui'
 
-function Cta({
+export function Cta({
   available,
   onSubmit,
   children,
@@ -22,5 +22,3 @@ function Cta({
     </Button>
   )
 }
-
-export default Cta

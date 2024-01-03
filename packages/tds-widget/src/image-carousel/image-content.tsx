@@ -17,7 +17,7 @@ interface Props {
   onImageClick?: MouseEventHandler
 }
 
-function ImageContent({
+export function ImageContent({
   medium,
   height,
   optimized,
@@ -75,5 +75,3 @@ function ImageContent({
     </Image>
   )
 }
-
-export default ImageContent

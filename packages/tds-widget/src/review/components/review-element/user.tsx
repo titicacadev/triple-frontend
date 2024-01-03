@@ -23,7 +23,7 @@ const Badge = styled.img`
   height: 18px;
 `
 
-export default function User({
+export function User({
   user: { photo, name, userBoard, mileage, unregister },
   onClick,
 }: {

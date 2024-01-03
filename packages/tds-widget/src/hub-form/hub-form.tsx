@@ -16,7 +16,11 @@ const HubFormFrame = styled(CardFrame)`
   }
 `
 
-function HubForm({ children, shadow, ...props }: PropsWithChildren<CardProps>) {
+export function HubForm({
+  children,
+  shadow,
+  ...props
+}: PropsWithChildren<CardProps>) {
   return (
     <HubFormFrame
       shadow={shadow || 'medium'}
@@ -34,5 +38,3 @@ function HubForm({ children, shadow, ...props }: PropsWithChildren<CardProps>) {
     </HubFormFrame>
   )
 }
-
-export default HubForm

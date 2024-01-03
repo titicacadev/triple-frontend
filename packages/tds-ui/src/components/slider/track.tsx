@@ -21,7 +21,7 @@ interface Props {
   getTrackProps: GetTrackProps
 }
 
-export default function Track({ active, left, right, getTrackProps }: Props) {
+export function Track({ active, left, right, getTrackProps }: Props) {
   return (
     <TrackContainer
       style={{

@@ -10,7 +10,7 @@ import {
   BannerTypes,
 } from './api'
 import { Banner } from './typing'
-import VerticalListView from './vertical-list-view'
+import { VerticalListView } from './vertical-list-view'
 
 interface EventAttributes {
   title?: string
@@ -151,7 +151,7 @@ function useAdBannerProps(props: AdBannersProps) {
   }
 }
 
-export default function ContentDetailsBanner(props: AdBannersProps) {
+export function ContentDetailsBanner(props: AdBannersProps) {
   const { margin, padding } = props
   const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
     useAdBannerProps(props)

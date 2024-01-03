@@ -8,7 +8,7 @@ import {
 import { useNavigate } from '@titicaca/router'
 
 import { RepliesProvider } from './context'
-import Reply from './list/reply'
+import { Reply } from './list/reply'
 import { Reply as ReplyType } from './types'
 
 jest.mock('@titicaca/triple-web')

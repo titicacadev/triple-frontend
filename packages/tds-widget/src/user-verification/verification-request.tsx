@@ -8,7 +8,7 @@ import { useUserVerification } from './use-user-verification'
  * 구매 동선 등에서 인증 단계를 추가할 때 mount하는 컴포넌트입니다. 사용자가 인증 단계를 거치지 않았을 경우 Modal을 표시하고 인증을 요구합니다.
 
  */
-function VerificationRequest({
+export function VerificationRequest({
   forceVerification,
   verificationContext,
   onCancel,
@@ -98,5 +98,3 @@ function Icon() {
     </SvgWithPositioning>
   )
 }
-
-export default VerificationRequest

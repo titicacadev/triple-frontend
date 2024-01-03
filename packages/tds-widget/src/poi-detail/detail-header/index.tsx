@@ -16,11 +16,11 @@ import {
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import CopyActionSheet from '../copy-action-sheet'
-import AreaNames from '../area-names'
+import { CopyActionSheet } from '../copy-action-sheet'
+import { AreaNames } from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
-import BusinessHoursNote from './business-hours-note'
+import { BusinessHoursNote } from './business-hours-note'
 
 const LongClickableSection = longClickable(Section)
 
@@ -29,7 +29,7 @@ interface Area {
   name: string
 }
 
-function DetailHeader({
+export function PoiDetailHeader({
   names,
   areaName,
   areas = [],
@@ -130,5 +130,3 @@ function DetailHeader({
     </>
   )
 }
-
-export default DetailHeader

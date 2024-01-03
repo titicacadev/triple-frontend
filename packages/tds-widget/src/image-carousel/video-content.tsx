@@ -83,7 +83,7 @@ const PlayPauseButtonBase = styled.span`
   transition: opacity 0.3s;
 `
 
-function VideoContent({
+export function VideoContent({
   medium,
   height,
   globalSize,
@@ -150,5 +150,3 @@ function VideoContent({
     </Frame>
   )
 }
-
-export default VideoContent
