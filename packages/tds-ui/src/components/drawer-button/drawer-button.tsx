@@ -12,7 +12,7 @@ const ButtonWithSafeAreaInset = styled(Button)`
 
 export type DrawerButtonProps = Omit<DrawerProps, 'overflow'> & ButtonProps
 
-function DrawerButton({
+export function DrawerButton({
   children,
   active = false,
   duration,
@@ -46,5 +46,3 @@ function DrawerButton({
     </Drawer>
   )
 }
-
-export default DrawerButton

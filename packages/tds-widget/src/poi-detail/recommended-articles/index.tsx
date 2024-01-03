@@ -1,3 +1,1 @@
-import RecommendedArticles from './recommended-articles'
-
-export default RecommendedArticles
+export * from './recommended-articles'

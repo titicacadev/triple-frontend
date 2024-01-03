@@ -4,12 +4,13 @@ import { Container, Responsive } from '@titicaca/tds-ui'
 import { useClientApp, useTrackEvent } from '@titicaca/triple-web'
 import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
-import ImageCarousel, {
+import {
+  ImageCarousel,
   CarouselImageMeta,
   PageLabel,
 } from '../../image-carousel'
 
-import CtaOverlay from './cta-overlay'
+import { CtaOverlay } from './cta-overlay'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -42,7 +43,7 @@ export interface CarouselProps {
   guestMode?: GuestModeType
 }
 
-export default function Carousel({
+export function Carousel({
   images,
   totalImagesCount,
   onImageClick,

@@ -37,7 +37,7 @@ export interface TextAreaHandle {
   focusInput: () => void
 }
 
-function AutoResizingTextarea(
+export const AutoResizingTextarea = forwardRef(function AutoResizingTextarea(
   { value, minRows, maxRows, readOnly, placeholder, onChange }: TextareaProps,
   ref: ForwardedRef<TextAreaHandle>,
 ) {
@@ -86,6 +86,4 @@ function AutoResizingTextarea(
       readOnly={readOnly}
     />
   )
-}
-
-export default forwardRef(AutoResizingTextarea)
+})

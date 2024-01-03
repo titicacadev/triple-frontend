@@ -139,7 +139,7 @@ const PentaMediaWrapper = styled(GridWrapper)`
   }
 `
 
-function MediaWrapper({ length, children }: Props) {
+export function MediaWrapper({ length, children }: Props) {
   switch (length) {
     case 0:
       return null
@@ -155,5 +155,3 @@ function MediaWrapper({ length, children }: Props) {
       return <PentaMediaWrapper>{children}</PentaMediaWrapper>
   }
 }
-
-export default MediaWrapper

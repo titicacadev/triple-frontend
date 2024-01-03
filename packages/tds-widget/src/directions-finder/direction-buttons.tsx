@@ -11,7 +11,7 @@ import {
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-import AskToTheLocal from './ask-to-the-local'
+import { AskToTheLocal } from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
 
 const LinkBreak = styled(Container)`

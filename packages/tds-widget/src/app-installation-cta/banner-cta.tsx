@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
 import { BottomFixedContainer } from './elements'
-import ImageBanner from './image-banner'
-import TextBanner from './text-banner'
+import { ImageBanner } from './image-banner'
+import { TextBanner } from './text-banner'
 import { CtaProps } from './interfaces'
 import { fetchInventoryItems } from './service'
 
@@ -24,7 +24,7 @@ interface BannerCtaProps extends CtaProps {
 /**
  * 이미지가 포함된 배너를 띄우고 dismiss 시에는 텍스트 배너로 바뀌는 CTA 컴포넌트
  */
-function BannerCta({
+export function BannerCta({
   inventoryId,
   installUrl,
   onShow,
@@ -85,5 +85,3 @@ function BannerCta({
     ) : null
   ) : null
 }
-
-export default BannerCta

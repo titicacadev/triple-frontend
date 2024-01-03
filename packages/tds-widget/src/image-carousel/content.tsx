@@ -8,8 +8,8 @@ import { useFlickingCarousel } from '@titicaca/tds-ui'
 
 import { ImageSource } from '../image-source'
 
-import ImageContent from './image-content'
-import VideoContent from './video-content'
+import { ImageContent } from './image-content'
+import { VideoContent } from './video-content'
 import type { CarouselImageMeta } from './types'
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
   onClick?: (e?: MouseEvent, image?: CarouselImageMeta) => void
 }
 
-function Content({
+export function Content({
   medium,
   optimized,
   height,
@@ -66,5 +66,3 @@ function Content({
     />
   )
 }
-
-export default Content

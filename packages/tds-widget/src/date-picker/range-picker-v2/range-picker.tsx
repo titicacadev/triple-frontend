@@ -9,11 +9,11 @@ import useDisabledDays, { DislableDaysProps } from '../use-disabled-days'
 import { isValidDate, generatePaddedRange } from '../utils'
 import { rangeMixin, dateLabelMixin } from '../mixins'
 
-import PickerFrame, { generateSelectedStyle } from './picker-frame'
+import { PickerFrameV2, generateSelectedStyle } from './picker-frame'
 
 const MemoDayPicker = memo(DayPicker)
 
-const RangeContainer = styled(PickerFrame)<{
+const RangeContainer = styled(PickerFrameV2)<{
   selectedAll: boolean
   enableSameDay?: boolean
   startDateLabel?: string
@@ -49,7 +49,7 @@ function getInitialMonth() {
   return moment().startOf('day').toDate()
 }
 
-function RangePicker({
+export function RangePickerV2({
   startDate,
   endDate,
   startDateLabel,
@@ -197,5 +197,3 @@ function RangePicker({
     </RangeContainer>
   )
 }
-
-export default RangePicker

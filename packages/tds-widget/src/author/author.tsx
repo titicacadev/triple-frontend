@@ -1,7 +1,7 @@
 import { Container, Text, Image } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import AuthorIntro from './author-intro'
+import { AuthorIntro } from './author-intro'
 
 export function Author({
   source: { name, bio, image, intro },

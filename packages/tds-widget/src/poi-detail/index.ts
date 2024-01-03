@@ -1,10 +1,6 @@
-export { default as Actions } from './actions'
-export { default as DetailHeader } from './detail-header'
-export { default as ImageCarousel } from './image-carousel'
-export {
-  ImageCarouselProvider,
-  type ImageCarouselProviderProps,
-  useImageCarousel,
-} from './image-carousel/provider'
-export { default as RecommendedArticles } from './recommended-articles'
-export { default as DetailHeaderV2 } from './detail-header-v2'
+export * from './actions'
+export * from './detail-header'
+export * from './detail-header-v2'
+export * from './image-carousel'
+export * from './image-carousel/provider'
+export * from './recommended-articles'

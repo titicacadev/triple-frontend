@@ -50,7 +50,7 @@ const Indicator = styled.span<{
   animation-name: ${pulse};
 `
 
-export default function PurchaseButtonLoadingIndicator({
+export function PurchaseButtonLoadingIndicator({
   loading,
   indicatorCount = 3,
   color = 'var(--color-white)',

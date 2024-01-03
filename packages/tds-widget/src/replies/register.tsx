@@ -9,7 +9,7 @@ import {
 } from '@titicaca/triple-web'
 
 import { authorMessage } from './replies-api-client'
-import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
+import { AutoResizingTextarea, TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply, Placeholders } from './types'
 
@@ -24,7 +24,7 @@ const RegisterButton = styled.button<{ active: boolean }>`
   outline: none;
 `
 
-function Register(
+export const Register = forwardRef(function Register(
   {
     resourceId,
     resourceType,
@@ -121,6 +121,4 @@ function Register(
       <HR1 compact />
     </Container>
   )
-}
-
-export default forwardRef(Register)
+})
