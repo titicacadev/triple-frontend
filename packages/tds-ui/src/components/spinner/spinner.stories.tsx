@@ -22,7 +22,6 @@ const meta = {
 export default meta
 
 export const Default: StoryObj<typeof Spinner> = {
-  name: '기본',
   args: {
     full: false,
   },
@@ -32,7 +31,6 @@ export const Default: StoryObj<typeof Spinner> = {
 }
 
 export const Rolling: StoryObj<typeof RollingSpinner> = {
-  name: '롤링',
   args: {
     imageUrls: [
       'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/7C.png',

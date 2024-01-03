@@ -31,7 +31,6 @@ const CustomInputGroup = () => {
 type Story = StoryObj<typeof Fieldset>
 
 export const Default: Story = {
-  name: '기본',
   render: (args) => {
     return (
       <Fieldset {...args}>
@@ -43,7 +42,6 @@ export const Default: Story = {
 }
 
 export const Disabled: Story = {
-  name: '비활성화',
   args: {
     isDisabled: true,
   },
@@ -58,7 +56,6 @@ export const Disabled: Story = {
 }
 
 export const Required: Story = {
-  name: '필수',
   args: {
     isRequired: true,
   },

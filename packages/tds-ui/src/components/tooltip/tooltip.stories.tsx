@@ -27,7 +27,6 @@ const Base = styled.div`
 `
 
 export const ArrowTop: Story = {
-  name: '위쪽 표시',
   args: {
     label: '모든 호텔 보기',
     pointing: {
@@ -49,7 +48,6 @@ export const ArrowTop: Story = {
 }
 
 export const ArrowBottom: Story = {
-  name: '아래쪽 표시',
   args: {
     label: '쿠폰사용시 -15,000원 더 할인!',
     positioning: { top: -25 },
