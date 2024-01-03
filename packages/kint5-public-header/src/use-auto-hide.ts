@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { HEADER_HEIGHT, TRANSITION_TIME } from './constants'
+import { HEADER_HEIGHT_PX, TRANSITION_TIME } from './constants'
 
 export function useAutoHide(disabled = false) {
   const [publicHeaderVisible, setPublicHeaderVisible] = useState(disabled)
@@ -15,7 +15,7 @@ export function useAutoHide(disabled = false) {
       scrollTop: getScrollTop(),
     })
 
-    const headerHeight = 1 + HEADER_HEIGHT
+    const headerHeight = 1 + HEADER_HEIGHT_PX
     let lastTimeStamp: number | null = null
     let isVisible = false
 
