@@ -150,9 +150,9 @@ export default function Messages<
             },
           })}
           thanks={thanks}
-          onThanksClick={() => {
-            onThanksClick?.(message)
-          }}
+          onThanksClick={
+            thanks && onThanksClick ? () => onThanksClick(message) : undefined
+          }
         >
           {getBubble({ message, my })}
         </BubbleContainer>

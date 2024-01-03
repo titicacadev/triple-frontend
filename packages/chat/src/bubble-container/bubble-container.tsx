@@ -83,7 +83,7 @@ function SentBubbleContainer({
           count={thanks.count}
           haveMine={thanks.haveMine}
           onClick={onThanksClick}
-          css={{ marginTop: 6 }}
+          css={{ display: 'inline-flex', marginTop: 6, marginRight: 10 }}
         />
       ) : null}
     </Container>
