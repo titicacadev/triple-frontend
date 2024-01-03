@@ -10,8 +10,8 @@ import {
   ProfileName,
   RetryButton,
   SendingFailureHandlerContainer,
+  Thanks,
 } from './elements'
-import Thanks from './thanks'
 
 const CHAT_CONTAINER_STYLES = {
   marginTop: 20,
@@ -66,6 +66,7 @@ function SentBubbleContainer({
             <DeleteButton onClick={onRetryCancel} />
           </SendingFailureHandlerContainer>
         ) : null}
+
         {createdAt && showInfo ? (
           <BubbleInfo
             unreadCount={unreadCount}
@@ -73,6 +74,7 @@ function SentBubbleContainer({
             css={{ marginRight: 8, textAlign: 'right' }}
           />
         ) : null}
+
         {children}
       </div>
 
@@ -120,7 +122,9 @@ function ReceivedBubbleContainer({
         <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
           {user?.name || ''}
         </ProfileName>
+
         {children}
+
         {createdAt && showInfo ? (
           <BubbleInfo
             unreadCount={unreadCount}
