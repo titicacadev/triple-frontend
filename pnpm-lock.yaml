@@ -470,8 +470,8 @@ importers:
         specifier: workspace:*
         version: link:../color-palette
       '@titicaca/content-utilities':
-        specifier: 8.17.0
-        version: 8.17.0
+        specifier: 8.22.0
+        version: 8.22.0
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -1644,8 +1644,8 @@ importers:
         specifier: workspace:*
         version: link:../color-palette
       '@titicaca/content-type-definitions':
-        specifier: 8.17.0
-        version: 8.17.0
+        specifier: 8.22.0
+        version: 8.22.0
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
@@ -8449,14 +8449,14 @@ packages:
       '@testing-library/dom': 9.3.1
     dev: true
 
-  /@titicaca/content-type-definitions@8.17.0:
-    resolution: {integrity: sha512-3AV+EWD55E1f86H+0WvHgNB9Mkwnw342ASvDnG3G6HkvbbbjM5Ik3nWPWDCuFHon5R8wE4xzFJnrwuOzdBsVmA==}
+  /@titicaca/content-type-definitions@8.22.0:
+    resolution: {integrity: sha512-W34j2tG0fHP/Wf0aXibUhAsiUnxVyD+W8RVNr8UgyyXra73nULZL3Vsker2Ljawt4c2Qfl9izSinGfBP0UXFUw==}
     dev: false
 
-  /@titicaca/content-utilities@8.17.0:
-    resolution: {integrity: sha512-zFtV9ATb/F9khDvMDo/iLu0FvX24lCT2Ee6ltfXkUpSECkUGTR7g9UdnzlmRrXZQaskg0BXhEgsrtoUGxzrAWw==}
+  /@titicaca/content-utilities@8.22.0:
+    resolution: {integrity: sha512-iTW7kRURQo78sXX59xx9KBdXfSmaB312AwZLNpFZVqXQoBOMRjgrELfI1lGCxAKtrPoRfNafXGve7dCoTayM3Q==}
     dependencies:
-      '@titicaca/content-type-definitions': 8.17.0
+      '@titicaca/content-type-definitions': 8.22.0
       isomorphic-fetch: 3.0.0
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
