@@ -1,8 +1,8 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
-import Cell from './cell'
-import Cta from './cta'
-import HubForm from './hub-form'
+import { Cell } from './cell'
+import { Cta } from './cta'
+import { HubForm } from './hub-form'
 
 export default {
   title: 'hub-form / HubForm',

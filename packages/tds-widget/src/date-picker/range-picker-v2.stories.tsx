@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { PickerFrame, RangePickerV2 } from './range-picker-v2'
+import { PickerFrameV2, RangePickerV2 } from './range-picker-v2'
 
 export default {
   title: 'date-picker / RangePickerV2',
@@ -27,13 +27,13 @@ export const Basic: StoryObj<typeof RangePickerV2> = {
 
 Basic.decorators = [
   (Story) => (
-    <PickerFrame
+    <PickerFrameV2
       height="300px"
       sideSpacing={10}
       monthPadding="30px"
       hideTodayLabel={false}
     >
       <Story />
-    </PickerFrame>
+    </PickerFrameV2>
   ),
 ]

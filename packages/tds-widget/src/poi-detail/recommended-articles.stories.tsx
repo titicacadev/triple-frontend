@@ -4,11 +4,11 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import RECOMMNEDED_ARTICLES from './mocks/recommended-articles.json'
 import INVENTORY_ITEMS from './mocks/inventory-item.json'
-import RecommendedArticles from './recommended-articles/recommended-articles'
+import { PoiDetailRecommendedArticles } from './recommended-articles/recommended-articles'
 
-const meta: Meta<typeof RecommendedArticles> = {
+const meta: Meta<typeof PoiDetailRecommendedArticles> = {
   title: 'poi-detail / RecommendedArticles',
-  component: RecommendedArticles,
+  component: PoiDetailRecommendedArticles,
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
@@ -20,7 +20,7 @@ const meta: Meta<typeof RecommendedArticles> = {
 
 export default meta
 
-type Story = StoryObj<typeof RecommendedArticles>
+type Story = StoryObj<typeof PoiDetailRecommendedArticles>
 
 export const Basic: Story = {
   args: {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
-import ImageCarousel from './image-carousel'
+import { ImageCarousel } from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'
 import VIDEOS from './mocks/video-carousel.sample.json'
 import { PageLabel } from './page-label'

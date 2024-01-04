@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import DayPicker from './day-picker'
+import { DayPicker } from './day-picker'
 
 export default {
   title: 'date-picker / DayPicker',

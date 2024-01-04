@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import RangePicker from './range-picker'
+import { RangePicker } from './range-picker'
 
 export default {
   title: 'date-picker / RangePicker',

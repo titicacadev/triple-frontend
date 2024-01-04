@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import Replies from './replies'
+import { Replies } from './replies'
 
 export default {
   title: 'replies / Replies',
