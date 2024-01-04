@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Text } from '../text'
 
@@ -11,23 +10,34 @@ import { AccordionTitle } from './accordion-title'
 const meta: Meta<typeof Accordion> = {
   title: 'tds-ui / Accordion',
   component: Accordion,
-  args: {
-    active: false,
+  argTypes: {
+    active: { control: 'boolean' },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '콘텐츠를 확장하고 축소하는 뷰 컴포넌트입니다.',
+      },
+      story: {
+        inline: false,
+        iframeHeight: 200,
+      },
+    },
   },
 }
 
 export default meta
 
 export const BusinessHours: StoryObj<typeof Accordion> = {
-  render: function Render(args) {
-    const [{ active }, updateArgs] = useArgs()
-
-    const onActiveChange = () => {
-      updateArgs({ active: !active })
-    }
-
-    return (
-      <Accordion {...args} onActiveChange={onActiveChange}>
+  args: {
+    active: true,
+    children: (
+      <>
         <AccordionTitle>
           <Text bold>이용가능시간, 휴무일</Text>
         </AccordionTitle>
@@ -41,7 +51,7 @@ export const BusinessHours: StoryObj<typeof Accordion> = {
             월<br />화<br />수<br />목<br />금<br />토<br />일
           </Text>
         </AccordionContent>
-      </Accordion>
-    )
+      </>
+    ),
   },
 }

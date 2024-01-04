@@ -6,6 +6,60 @@ import { FlexBox, FlexBoxItem } from '../flex-box'
 const meta: Meta<typeof FlexBox> = {
   title: 'tds-ui / FlexBox',
   component: FlexBox,
+  argTypes: {
+    flex: { type: 'boolean' },
+    flexDirection: {
+      control: 'select',
+      options: ['column', 'column-reverse', 'row', 'row-reverse'],
+    },
+    flexWrap: {
+      control: 'select',
+      options: ['nowrap', 'wrap', 'wrap-reverse'],
+    },
+    justifyContent: {
+      control: 'select',
+      options: [
+        'start',
+        'center',
+        'end',
+        'flex-start',
+        'flex-end',
+        'left',
+        'right',
+        'normal',
+        'space-between',
+        'space-around',
+        'space-evenly',
+        'stretch',
+        'inherit',
+        'initial',
+        'revert',
+        'revert-layer',
+        'unset',
+      ],
+    },
+    alignItems: {
+      control: 'select',
+      options: [
+        'inherit',
+        'initial',
+        'revert',
+        'revert-layer',
+        'unset',
+        'center',
+        'end',
+        'flex-end',
+        'flex-start',
+        'self-end',
+        'self-start',
+        'start',
+        'baseline',
+        'normal',
+        'stretch',
+      ],
+    },
+    gap: { type: 'string' },
+  },
   parameters: {
     docs: {
       description: {
@@ -29,6 +83,19 @@ type Story = StoryObj<typeof FlexBox>
 export const Flex: Story = {
   args: {
     flex: true,
+    children: (
+      <>
+        <FlexBoxItem>Item1</FlexBoxItem>
+        <FlexBoxItem>Item2</FlexBoxItem>
+        <FlexBoxItem>Item3</FlexBoxItem>
+      </>
+    ),
+  },
+}
+
+export const FlexItem: Story = {
+  args: {
+    flex: true,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -37,10 +104,8 @@ export const Flex: Story = {
     gap: 'normal',
     columnGap: 'normal',
     rowGap: 'normal',
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <FlexBoxItem>
           <Item>Item1</Item>
           <Item>Item2</Item>
@@ -51,83 +116,49 @@ export const Flex: Story = {
           <Item>Item5</Item>
           <Item>Item6</Item>
         </FlexBoxItem>
-      </FlexBox>
-    )
-  },
-}
-
-export const FlexItem: Story = {
-  args: {
-    flex: true,
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
-        <FlexBoxItem
-          css={`
-            border: 2px solid #e91e63;
-            padding: 10px;
-            border-radius: 10px;
-          `}
-        >
-          Item1
-        </FlexBoxItem>
-        <FlexBoxItem>Item2</FlexBoxItem>
-        <FlexBoxItem>Item3</FlexBoxItem>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
 export const Grow: Story = {
   args: {
     flex: true,
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item flexGrow={1}>Item1</Item>
         <Item flexGrow={1}>Item2</Item>
         <Item flexGrow={1}>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
 export const Order: Story = {
   args: {
     flex: true,
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item order={3}>Item1</Item>
         <Item order={2}>Item2</Item>
         <Item order={1}>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
 export const Shrink: Story = {
   args: {
     flex: true,
-  },
-  render: (args) => {
-    return (
-      <FlexBox
-        {...args}
-        css={{
-          width: 300,
-        }}
-      >
+    children: (
+      <>
         <Item flexBasis="500px" flexShrink={1}>
           Item1
         </Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
@@ -135,15 +166,13 @@ export const Direction: Story = {
   args: {
     flex: true,
     flexDirection: 'column',
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
@@ -151,38 +180,13 @@ export const Wrap: Story = {
   args: {
     flex: true,
     flexWrap: 'wrap',
-  },
-  render: (args) => {
-    return (
-      <FlexBox
-        {...args}
-        css={{
-          width: 200,
-        }}
-      >
-        <Item
-          css={{
-            width: 100,
-          }}
-        >
-          Item1
-        </Item>
-        <Item
-          css={{
-            width: 100,
-          }}
-        >
-          Item2
-        </Item>
-        <Item
-          css={{
-            width: 100,
-          }}
-        >
-          Item3
-        </Item>
-      </FlexBox>
-    )
+    children: (
+      <>
+        <Item>Item1</Item>
+        <Item>Item2</Item>
+        <Item>Item3</Item>
+      </>
+    ),
   },
 }
 
@@ -191,15 +195,13 @@ export const JustifyContent: Story = {
     flex: true,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
@@ -208,15 +210,13 @@ export const AlignItems: Story = {
     flex: true,
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }
 
@@ -224,14 +224,12 @@ export const Gap: Story = {
   args: {
     flex: true,
     gap: '10px',
-  },
-  render: (args) => {
-    return (
-      <FlexBox {...args}>
+    children: (
+      <>
         <Item>Item1</Item>
         <Item>Item2</Item>
         <Item>Item3</Item>
-      </FlexBox>
-    )
+      </>
+    ),
   },
 }

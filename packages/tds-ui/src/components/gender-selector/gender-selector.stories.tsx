@@ -1,11 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { GenderSelector } from './gender-selector'
 
 const meta: Meta<typeof GenderSelector> = {
   title: 'tds-ui / GenderSelector',
   component: GenderSelector,
+  args: {
+    disabled: false,
+    required: false,
+  },
+  argTypes: {
+    name: { type: 'string' },
+    value: { control: 'radio', options: ['MALE', 'FEMALE'] },
+    disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
+    label: { type: 'string' },
+    help: { type: 'string' },
+    error: { type: 'string' },
+  },
   parameters: {
     docs: {
       description: {
@@ -20,19 +32,7 @@ export default meta
 type Story = StoryObj<typeof GenderSelector>
 
 export const Default: Story = {
-  args: {
-    name: 'gender',
-    value: 'MALE',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
-  },
+  args: { name: 'gender', value: 'MALE' },
 }
 
 export const Disabled: Story = {
@@ -41,32 +41,10 @@ export const Disabled: Story = {
     value: 'MALE',
     disabled: true,
   },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
-  },
 }
 
 export const Required: Story = {
-  args: {
-    name: 'gender',
-    value: 'MALE',
-    required: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
-  },
+  args: { name: 'gender', value: 'MALE', required: true },
 }
 
 export const WithLabel: Story = {
@@ -74,15 +52,6 @@ export const WithLabel: Story = {
     name: 'gender',
     value: 'MALE',
     label: '성별 선택',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
   },
 }
 
@@ -92,15 +61,6 @@ export const WithHelpMessage: Story = {
     value: 'MALE',
     help: '가이드 메시지',
   },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
-  },
 }
 
 export const WithErrorMessage: Story = {
@@ -108,14 +68,5 @@ export const WithErrorMessage: Story = {
     name: 'gender',
     value: 'MALE',
     error: '에러 메시지',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return <GenderSelector {...args} value={value} onChange={handleChange} />
   },
 }

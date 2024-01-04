@@ -5,6 +5,17 @@ import { Rating } from './rating'
 const meta: Meta<typeof Rating> = {
   title: 'tds-ui / Rating',
   component: Rating,
+  args: {
+    size: 'tiny',
+    score: 0,
+  },
+  argTypes: {
+    score: { type: 'number' },
+    size: {
+      control: 'select',
+      options: ['tiny', 'small', 'medium'],
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -20,39 +31,5 @@ export default meta
 type Story = StoryObj<typeof Rating>
 
 export const Default: Story = {
-  args: {
-    size: 'tiny',
-    score: 5,
-  },
-  render: (args) => {
-    return <Rating {...args} />
-  },
-}
-
-export const Score: Story = {
-  render: () => {
-    return (
-      <>
-        <Rating size="tiny" score={3} />
-        <br />
-        <Rating size="tiny" score={-6} />
-        <br />
-        <Rating size="tiny" score={11} />
-      </>
-    )
-  },
-}
-
-export const Size: Story = {
-  render: () => {
-    return (
-      <>
-        <Rating size="tiny" score={3} />
-        <br />
-        <Rating size="small" score={3} />
-        <br />
-        <Rating size="medium" score={3} />
-      </>
-    )
-  },
+  args: {},
 }

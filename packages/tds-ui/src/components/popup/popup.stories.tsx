@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
-import { useArgs } from '@storybook/preview-api'
 
 import { Popup } from './popup'
 
@@ -35,21 +34,6 @@ export const Default: Story = {
     title: '제목',
     children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
   },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
-      )
-    }
-
-    return <Popup {...args} onClose={onClose} />
-  },
 }
 
 export const Borderless: Story = {
@@ -59,21 +43,6 @@ export const Borderless: Story = {
     title: '제목',
     children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
   },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
-      )
-    }
-
-    return <Popup {...args} onClose={onClose} />
-  },
 }
 
 export const NoNavbar: Story = {
@@ -82,21 +51,6 @@ export const NoNavbar: Story = {
     noNavbar: true,
     title: '제목',
     children: <EmptyScroll>팝업 내용입니다</EmptyScroll>,
-  },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>팝업 열기</button>
-      )
-    }
-
-    return <Popup {...args} onClose={onClose} />
   },
 }
 

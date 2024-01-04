@@ -1,10 +1,15 @@
 import type { StoryObj } from '@storybook/react'
 
-import { RollingSpinner } from './rolling-spinner'
 import { Spinner } from './spinner'
 
 const meta = {
-  title: 'tds-ui / Spinner',
+  title: 'tds-ui / Spinner / Spinner',
+  component: Spinner,
+  argTypes: {
+    full: { type: 'boolean' },
+    zTier: { type: 'number' },
+    zIndex: { type: 'number' },
+  },
   parameters: {
     docs: {
       description: {
@@ -24,23 +29,5 @@ export default meta
 export const Default: StoryObj<typeof Spinner> = {
   args: {
     full: false,
-  },
-  render: (args) => {
-    return <Spinner {...args} />
-  },
-}
-
-export const Rolling: StoryObj<typeof RollingSpinner> = {
-  args: {
-    imageUrls: [
-      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/7C.png',
-      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/TW.png',
-      'https://triple-dev.titicaca-corp.com/air/static/images/airline-logos/AC.png',
-    ],
-    duration: 50,
-    size: 36,
-  },
-  render: (args) => {
-    return <RollingSpinner {...args} />
   },
 }
