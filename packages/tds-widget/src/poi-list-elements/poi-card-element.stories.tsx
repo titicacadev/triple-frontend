@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import PoiCardElement from './poi-card-element'
+import { PoiCardElement } from './poi-card-element'
 
 export default {
   title: 'poi-list-elements / PoiCardElement',

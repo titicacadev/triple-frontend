@@ -3,7 +3,7 @@ import { SessionContextProvider } from '@titicaca/react-contexts'
 import { rest } from 'msw'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import Replies from './replies'
+import { Replies } from './replies'
 
 export default {
   title: 'replies / Replies',

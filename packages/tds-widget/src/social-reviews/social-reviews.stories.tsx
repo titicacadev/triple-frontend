@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import SocialReviews from './social-review'
+import { SocialReviews } from './social-review'
 
 export default {
   title: 'Social-Reviews / SocialReviews',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ReviewScrapStat from './review-scrap-stat'
+import { ReviewScrapStat } from './review-scrap-stat'
 
 const meta: Meta<typeof ReviewScrapStat> = {
   title: 'resource-list-element / review-scrap-stat',

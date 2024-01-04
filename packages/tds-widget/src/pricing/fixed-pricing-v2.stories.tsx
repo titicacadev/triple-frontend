@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import FixedPricingV2 from './fixed-pricing-v2'
+import { FixedPricingV2 } from './fixed-pricing-v2'
 
 export default {
   title: 'pricing / FixedPricingV2',
