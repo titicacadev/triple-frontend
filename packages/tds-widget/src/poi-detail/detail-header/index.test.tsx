@@ -1,11 +1,9 @@
 import { FC, MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
-import { ThemeProvider } from 'styled-components'
 import '@titicaca/tds-ui'
 import { render, screen } from '@testing-library/react'
 import { ClientAppName, TestWrapper } from '@titicaca/triple-web'
-import { defaultTheme } from '@titicaca/tds-theme'
 
-import DetailHeader from './index'
+import { PoiDetailHeader } from './index'
 
 const addUriHashMockFn = jest.fn()
 const removeUriHashMockFn = jest.fn()
@@ -45,18 +43,15 @@ beforeEach(() => {
 describe('when user is on app', () => {
   test('attaches long-click handler to the outermost section', () => {
     render(
-      <ThemeProvider theme={defaultTheme}>
-        <DetailHeader
-          names={{ ko: 'test', en: 'test', local: 'test' }}
-          areaName="테스트 지역"
-          scrapsCount={1}
-          reviewsCount={0}
-          reviewsRating={0}
-          onReviewsRatingClick={jest.fn()}
-          onCopy={jest.fn()}
-        />
-        ,
-      </ThemeProvider>,
+      <PoiDetailHeader
+        names={{ ko: 'test', en: 'test', local: 'test' }}
+        areaName="테스트 지역"
+        scrapsCount={1}
+        reviewsCount={0}
+        reviewsRating={0}
+        onReviewsRatingClick={jest.fn()}
+        onCopy={jest.fn()}
+      />,
       {
         wrapper: TestWrapper({
           clientAppProvider: {
@@ -85,17 +80,15 @@ describe('when user is on app', () => {
 describe('when user is on web', () => {
   test('attaches long-click handler to the outermost section', () => {
     render(
-      <ThemeProvider theme={defaultTheme}>
-        <DetailHeader
-          names={{ ko: 'test', en: 'test', local: 'test' }}
-          areaName="테스트 지역"
-          scrapsCount={1}
-          reviewsCount={0}
-          reviewsRating={0}
-          onReviewsRatingClick={jest.fn()}
-          onCopy={jest.fn()}
-        />
-      </ThemeProvider>,
+      <PoiDetailHeader
+        names={{ ko: 'test', en: 'test', local: 'test' }}
+        areaName="테스트 지역"
+        scrapsCount={1}
+        reviewsCount={0}
+        reviewsRating={0}
+        onReviewsRatingClick={jest.fn()}
+        onCopy={jest.fn()}
+      />,
       {
         wrapper: TestWrapper({
           clientAppProvider: null,

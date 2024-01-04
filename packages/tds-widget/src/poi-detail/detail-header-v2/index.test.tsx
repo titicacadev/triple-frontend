@@ -5,7 +5,7 @@ import '@titicaca/tds-ui'
 import { render, screen } from '@testing-library/react'
 import { TestWrapper, ClientAppName } from '@titicaca/triple-web'
 
-import DetailHeaderV2 from './index'
+import { PoiDetailHeaderV2 } from './index'
 
 const addUriHashMockFn = jest.fn()
 const removeUriHashMockFn = jest.fn()
@@ -48,7 +48,7 @@ describe('when user is on app', () => {
   it('attaches long-click handler to the outermost section', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
-        <DetailHeaderV2
+        <PoiDetailHeaderV2
           names={{ ko: 'test', en: 'test', local: 'test' }}
           areaName="테스트 지역"
           scrapsCount={1}
@@ -87,7 +87,7 @@ describe('when user is on web', () => {
   it('attaches long-click handler to the outermost section', () => {
     render(
       <ThemeProvider theme={defaultTheme}>
-        <DetailHeaderV2
+        <PoiDetailHeaderV2
           names={{ ko: 'test', en: 'test', local: 'test' }}
           areaName="테스트 지역"
           scrapsCount={1}
