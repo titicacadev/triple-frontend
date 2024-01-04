@@ -21,6 +21,9 @@ const FlickingScrollButton = styled.button<{
 const meta: Meta<typeof FlickingCarousel> = {
   title: 'tds-ui / Carousel / FlickingCarousel',
   component: FlickingCarousel,
+  argTypes: {
+    currentPage: { type: 'number' },
+  },
   parameters: {
     docs: {
       description: {
@@ -34,9 +37,9 @@ export default meta
 
 type Story = StoryObj<typeof FlickingCarousel>
 
-export const Basic: Story = {
-  render: () => (
-    <FlickingCarousel>
+export const Default: Story = {
+  args: {
+    children: (
       <FlickingCarousel.Content>
         {IMAGES.map((image, key) => (
           <img
@@ -48,41 +51,43 @@ export const Basic: Story = {
           />
         ))}
       </FlickingCarousel.Content>
-    </FlickingCarousel>
-  ),
+    ),
+  },
 }
 
 export const PageLabel: Story = {
-  render: () => (
-    <FlickingCarousel>
-      <FlickingCarousel.PageLabel
-        labelElement={
-          <Text color="red" bold>
-            10
-          </Text>
-        }
-      />
+  args: {
+    children: (
+      <>
+        <FlickingCarousel.PageLabel
+          labelElement={
+            <Text color="red" bold>
+              10
+            </Text>
+          }
+        />
 
-      <FlickingCarousel.Content>
-        {IMAGES.map((image, key) => (
-          <FlickingCarousel.Item key={key} size="large">
-            <img
-              src={image.sizes.large.url}
-              alt="test"
-              width={400}
-              height={400}
-            />
-          </FlickingCarousel.Item>
-        ))}
-      </FlickingCarousel.Content>
-    </FlickingCarousel>
-  ),
+        <FlickingCarousel.Content>
+          {IMAGES.map((image, key) => (
+            <FlickingCarousel.Item key={key} size="large">
+              <img
+                src={image.sizes.large.url}
+                alt="test"
+                width={400}
+                height={400}
+              />
+            </FlickingCarousel.Item>
+          ))}
+        </FlickingCarousel.Content>
+      </>
+    ),
+  },
 }
 
 export const ArrowControl: Story = {
-  render: () => {
-    return (
-      <FlickingCarousel>
+  args: {
+    children: (
+      <>
         <FlickingCarousel.Controls
           onPrevClick={() => {}}
           onNextClick={() => {}}
@@ -100,45 +105,47 @@ export const ArrowControl: Story = {
             </FlickingCarousel.Item>
           ))}
         </FlickingCarousel.Content>
-      </FlickingCarousel>
-    )
+      </>
+    ),
   },
 }
 
 export const CustomArrowControl: Story = {
-  render: () => (
-    <FlickingCarousel>
-      <FlickingCarousel.Controls
-        prevButton={
-          <FlickingScrollButton direction="left">
-            <Text color="blue" bold>
-              Prev
-            </Text>
-          </FlickingScrollButton>
-        }
-        nextButton={
-          <FlickingScrollButton direction="right">
-            <Text color="blue" bold>
-              Next
-            </Text>
-          </FlickingScrollButton>
-        }
-        onPrevClick={() => {}}
-        onNextClick={() => {}}
-      />
-      <FlickingCarousel.Content>
-        {IMAGES.map((image, key) => (
-          <FlickingCarousel.Item key={key} size="large">
-            <img
-              key={key}
-              src={image.sizes.large.url}
-              alt="test"
-              width={400}
-              height={400}
-            />
-          </FlickingCarousel.Item>
-        ))}
-      </FlickingCarousel.Content>
-    </FlickingCarousel>
-  ),
+  args: {
+    children: (
+      <>
+        <FlickingCarousel.Controls
+          prevButton={
+            <FlickingScrollButton direction="left">
+              <Text color="blue" bold>
+                Prev
+              </Text>
+            </FlickingScrollButton>
+          }
+          nextButton={
+            <FlickingScrollButton direction="right">
+              <Text color="blue" bold>
+                Next
+              </Text>
+            </FlickingScrollButton>
+          }
+          onPrevClick={() => {}}
+          onNextClick={() => {}}
+        />
+        <FlickingCarousel.Content>
+          {IMAGES.map((image, key) => (
+            <FlickingCarousel.Item key={key} size="large">
+              <img
+                key={key}
+                src={image.sizes.large.url}
+                alt="test"
+                width={400}
+                height={400}
+              />
+            </FlickingCarousel.Item>
+          ))}
+        </FlickingCarousel.Content>
+      </>
+    ),
+  },
 }

@@ -1,12 +1,16 @@
-import { ChangeEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Select } from './select'
 
 const meta: Meta<typeof Select> = {
   title: 'tds-ui / Select',
   component: Select,
+  argTypes: {
+    placeholder: { type: 'string' },
+    label: { type: 'string' },
+    error: { if: { arg: 'help', truthy: false }, type: 'string' },
+    help: { if: { arg: 'error', truthy: false }, type: 'string' },
+  },
   parameters: {
     docs: {
       description: {
@@ -20,33 +24,34 @@ export default meta
 
 type Story = StoryObj<typeof Select>
 
+const STORY_OPTIONS = [
+  {
+    label: '12:00',
+    value: '12:00',
+  },
+  {
+    label: '12:10',
+    value: '12:10',
+  },
+  {
+    label: '12:20',
+    value: '12:20',
+  },
+]
+
 export const Default: Story = {
   args: {
     value: '',
     placeholder: '시간을 선택해주세요',
-    options: [
-      {
-        label: '12:00',
-        value: '12:00',
-      },
-      {
-        label: '12:10',
-        value: '12:10',
-      },
-      {
-        label: '12:20',
-        value: '12:20',
-      },
-    ],
+    options: STORY_OPTIONS,
   },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
+}
 
-    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-      updateArgs({ value: event.target.value })
-    }
-
-    return <Select {...args} value={value} onChange={handleChange} />
+export const Selected: Story = {
+  args: {
+    value: '12:00',
+    placeholder: '시간을 선택해주세요',
+    options: STORY_OPTIONS,
   },
 }
 
@@ -55,29 +60,7 @@ export const WithLabel: Story = {
     value: '',
     label: '투어티켓 시간',
     placeholder: '시간을 선택해주세요',
-    options: [
-      {
-        label: '12:00',
-        value: '12:00',
-      },
-      {
-        label: '12:10',
-        value: '12:10',
-      },
-      {
-        label: '12:20',
-        value: '12:20',
-      },
-    ],
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-      updateArgs({ value: event.target.value })
-    }
-
-    return <Select {...args} value={value} onChange={handleChange} />
+    options: STORY_OPTIONS,
   },
 }
 
@@ -87,29 +70,7 @@ export const WithHelpMessage: Story = {
     label: '투어티켓 시간',
     placeholder: '시간을 선택해주세요',
     help: 'Help text',
-    options: [
-      {
-        label: '12:00',
-        value: '12:00',
-      },
-      {
-        label: '12:10',
-        value: '12:10',
-      },
-      {
-        label: '12:20',
-        value: '12:20',
-      },
-    ],
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-      updateArgs({ value: event.target.value })
-    }
-
-    return <Select {...args} value={value} onChange={handleChange} />
+    options: STORY_OPTIONS,
   },
 }
 
@@ -119,28 +80,6 @@ export const WithErrorMessage: Story = {
     label: '투어티켓 시간',
     placeholder: '시간을 선택해주세요',
     error: 'Error text',
-    options: [
-      {
-        label: '12:00',
-        value: '12:00',
-      },
-      {
-        label: '12:10',
-        value: '12:10',
-      },
-      {
-        label: '12:20',
-        value: '12:20',
-      },
-    ],
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-      updateArgs({ value: event.target.value })
-    }
-
-    return <Select {...args} value={value} onChange={handleChange} />
+    options: STORY_OPTIONS,
   },
 }

@@ -34,9 +34,6 @@ export const Horizontal: Story = {
       [{ text: '난코' }, { text: '1,550엔 / 45분' }, { text: '70분' }],
     ],
   },
-  render: (args) => {
-    return <Table {...args} />
-  },
 }
 
 export const Vertical: Story = {
@@ -54,8 +51,5 @@ export const Vertical: Story = {
       [{ text: '1시간 15분' }],
       [{ text: '시간당 급행 2대 / 일반 3대' }],
     ],
-  },
-  render: (args) => {
-    return <Table {...args} />
   },
 }

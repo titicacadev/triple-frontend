@@ -13,9 +13,6 @@ export interface AccordionProps extends PropsWithChildren {
   onActiveChange?: () => void
 }
 
-/**
- * 콘텐츠를 확장하고 축소할 수 있는 영역입니다.
- */
 export const Accordion = ({
   children,
   active,
