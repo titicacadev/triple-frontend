@@ -1,3 +1,4 @@
+import React from 'react'
 import { ClientAppName, TestWrapper } from '@titicaca/triple-web'
 import { renderHook } from '@testing-library/react'
 
@@ -20,21 +21,16 @@ beforeEach(() => {
   Object.defineProperty(window, 'location', {
     value: {
       href: '/',
-      hash: jest.fn(),
     },
     writable: true,
   })
-  // ;(useEnv as jest.MockedFunction<typeof useEnv>).mockReturnValue({
-  //   appUrlScheme: 'triple-test',
-  //   afOnelinkId: '',
-  //   afOnelinkPid: '',
-  //   afOnelinkSubdomain: '',
-  //   defaultPageDescription: '',
-  //   defaultPageTitle: '',
-  //   facebookAppId: '',
-  //   webUrlBase: '',
-  // })
 })
+
+afterEach(() => {
+  jest.clearAllMocks()
+})
+
+jest.spyOn(React, 'useEffect').mockImplementation(() => jest.fn())
 
 test('인 앱 웹뷰에서는 딥링크로 이동합니다.', () => {
   const { result } = renderHook(() => useOpenNativeLink(), {
