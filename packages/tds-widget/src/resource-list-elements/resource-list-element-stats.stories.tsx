@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ResourceListElementStats from './resource-list-element-stats'
+import { ResourceListElementStats } from './resource-list-element-stats'
 
 const meta: Meta<typeof ResourceListElementStats> = {
   title: 'resource-list-element / resource-list-element-stats',

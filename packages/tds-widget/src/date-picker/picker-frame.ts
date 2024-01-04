@@ -180,4 +180,3 @@ export const PickerFrame = styled.div<PickerFrameProps>`
     color: var(--color-gray500);
   }
 `
-export default PickerFrame

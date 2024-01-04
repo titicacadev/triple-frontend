@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import DrawerButton from './drawer-button'
+import { DrawerButton } from './drawer-button'
 
 const meta: Meta<typeof DrawerButton> = {
   title: 'tds-ui / DrawerButton',
