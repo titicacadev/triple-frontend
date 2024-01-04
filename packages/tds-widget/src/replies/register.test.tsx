@@ -8,7 +8,7 @@ import {
 } from '@titicaca/triple-web'
 
 import { RepliesProvider } from './context'
-import Register from './register'
+import { Register } from './register'
 
 const mockedOnReplyAdd = jest.fn()
 const mockedOnReplyEdit = jest.fn()
