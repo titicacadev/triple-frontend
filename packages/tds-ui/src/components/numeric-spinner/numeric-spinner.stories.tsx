@@ -1,11 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { NumericSpinner } from './numeric-spinner'
 
 const meta: Meta<typeof NumericSpinner> = {
   title: 'tds-ui / NumericSpinner',
   component: NumericSpinner,
+  args: {
+    size: 'small',
+    value: 0,
+    min: 0,
+    // Infinity를 못읽어서 9999로 표현
+    max: 9999,
+    step: 1,
+  },
+  argTypes: {
+    label: { type: 'string' },
+    sublabel: { type: 'string' },
+    strikeLabel: { type: 'string' },
+    value: { type: 'number' },
+    disabled: { type: 'boolean' },
+    min: { type: 'number' },
+    max: { type: 'number' },
+    step: { type: 'number' },
+    size: {
+      control: 'select',
+      options: [
+        'mini',
+        'tiny',
+        'big',
+        'huge',
+        'massive',
+        'small',
+        'medium',
+        'large',
+      ],
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -23,16 +53,19 @@ type Story = StoryObj<typeof NumericSpinner>
 export const Default: Story = {
   args: {
     label: '성인',
-    value: 0,
   },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
+}
 
-    const handleChange = (value: number) => {
-      updateArgs({ value })
-    }
-
-    return <NumericSpinner {...args} value={value} onChange={handleChange} />
+export const SubLabel: Story = {
+  args: {
+    label: '성인',
+    sublabel: '탑승객 수를 의미합니다.',
+  },
+}
+export const StrikeLabel: Story = {
+  args: {
+    label: '성인',
+    strikeLabel: '중앙에 줄이 그어집니다.',
   },
 }
 
@@ -40,69 +73,5 @@ export const Disabled: Story = {
   args: {
     label: '성인',
     disabled: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: number) => {
-      updateArgs({ value })
-    }
-
-    return <NumericSpinner {...args} value={value} onChange={handleChange} />
-  },
-}
-
-export const Label: Story = {
-  args: {
-    label: '성인',
-    value: 0,
-    sublabel: '10,000원',
-    strikeLabel: '20,000원',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: number) => {
-      updateArgs({ value })
-    }
-
-    return <NumericSpinner {...args} value={value} onChange={handleChange} />
-  },
-}
-
-export const Size: Story = {
-  args: {
-    label: '성인',
-    value: 0,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: number) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <>
-        <NumericSpinner
-          {...args}
-          value={value}
-          size="tiny"
-          onChange={handleChange}
-        />
-        <NumericSpinner
-          {...args}
-          value={value}
-          size="medium"
-          onChange={handleChange}
-        />
-        <NumericSpinner
-          {...args}
-          value={value}
-          size="big"
-          onChange={handleChange}
-        />
-      </>
-    )
   },
 }

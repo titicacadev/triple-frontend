@@ -7,6 +7,20 @@ import { Input } from './input'
 const meta: Meta<typeof Input> = {
   title: 'tds-ui / Input',
   component: Input,
+  argTypes: {
+    label: { type: 'string' },
+    placeholder: { type: 'string' },
+    disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
+    error: { type: 'string' },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '사용자에게 입력값을 받는 뷰 컴포넌트입니다.',
+      },
+    },
+  },
 }
 
 export default meta

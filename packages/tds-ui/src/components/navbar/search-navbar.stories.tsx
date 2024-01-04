@@ -7,6 +7,15 @@ import { SearchNavbar } from './search-navbar'
 const meta: Meta<typeof SearchNavbar> = {
   title: 'tds-ui / Navbar / Search',
   component: SearchNavbar,
+  args: {
+    backIconType: 'back',
+    borderless: false,
+  },
+  argTypes: {
+    backIconType: { control: 'select', options: ['back', 'close'] },
+    placeholder: { type: 'string' },
+    borderless: { type: 'boolean' },
+  },
   parameters: {
     docs: {
       description: {
@@ -21,12 +30,9 @@ export default meta
 
 type Story = StoryObj<typeof SearchNavbar>
 
-export const Default: Story = {
-  name: '기본 (뒤로가기)',
+export const Back: Story = {
   args: {
-    value: '',
     placeholder: '키워드를 입력해보세요',
-    borderless: false,
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs()
@@ -37,29 +43,17 @@ export const Default: Story = {
 
     return (
       <>
-        <SearchNavbar
-          {...args}
-          onBackClick={() => {}}
-          onDeleteClick={() => {}}
-          onInputChange={handleChange}
-          onKeyUp={() => {}}
-          onBlur={() => {}}
-          onFocus={() => {}}
-          onSearch={() => {}}
-        />
+        <SearchNavbar {...args} onInputChange={handleChange} />
         <div>{value}</div>
       </>
     )
   },
 }
 
-export const Back: Story = {
-  name: '기본 (닫기)',
+export const Close: Story = {
   args: {
-    value: '',
     placeholder: '키워드를 입력해보세요',
     backIconType: 'close',
-    borderless: false,
   },
   render: function Render(args) {
     const [{ value }, updateArgs] = useArgs()

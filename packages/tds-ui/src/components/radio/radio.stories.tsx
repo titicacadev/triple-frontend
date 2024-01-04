@@ -1,12 +1,14 @@
-import type { ChangeEvent } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
-import { Radio } from './radio'
+import { Radio as RadioComponent } from './radio'
 
-const meta: Meta<typeof Radio> = {
+const meta: Meta<typeof RadioComponent> = {
   title: 'tds-ui / Radio',
-  component: Radio,
+  component: RadioComponent,
+  argTypes: {
+    name: { type: 'string' },
+    checked: { type: 'boolean' },
+  },
   parameters: {
     docs: {
       description: {
@@ -18,32 +20,18 @@ const meta: Meta<typeof Radio> = {
 
 export default meta
 
-export const Default: StoryObj<typeof Radio> = {
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
+export const Radio: StoryObj<typeof RadioComponent> = {
+  args: {
+    value: 'radio',
+    children: '라디오 버튼',
+    checked: false,
+  },
+}
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      updateArgs({ value: event.target.value })
-    }
-    return (
-      <>
-        <Radio
-          {...args}
-          value="radio-1"
-          checked={value === 'radio-1'}
-          onChange={handleChange}
-        >
-          Radio-1
-        </Radio>
-        <Radio
-          {...args}
-          value="radio-2"
-          checked={value === 'radio-2'}
-          onChange={handleChange}
-        >
-          Radio-2
-        </Radio>
-      </>
-    )
+export const RadioChecked: StoryObj<typeof RadioComponent> = {
+  args: {
+    value: 'radio',
+    children: '라디오 버튼',
+    checked: true,
   },
 }

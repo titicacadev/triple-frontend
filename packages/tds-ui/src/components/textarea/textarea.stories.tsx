@@ -5,6 +5,13 @@ import { Textarea } from './textarea'
 const meta: Meta<typeof Textarea> = {
   title: 'tds-ui / Textarea',
   component: Textarea,
+  args: { required: false },
+  argTypes: {
+    required: { type: 'boolean' },
+    label: { type: 'string' },
+    error: { if: { arg: 'help', truthy: false }, type: 'string' },
+    help: { if: { arg: 'error', truthy: false }, type: 'string' },
+  },
   parameters: {
     docs: {
       description: {
@@ -21,7 +28,6 @@ type Story = StoryObj<typeof Textarea>
 
 export const Default: Story = {
   args: {
-    error: false,
     placeholder: '요청사항을 입력해주세요.',
   },
 }

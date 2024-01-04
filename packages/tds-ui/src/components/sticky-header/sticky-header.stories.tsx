@@ -5,6 +5,13 @@ import { StickyHeader } from './sticky-header'
 const meta: Meta<typeof StickyHeader> = {
   title: 'tds-ui / StickyHeader',
   component: StickyHeader,
+  args: {
+    zIndex: 3,
+  },
+  argTypes: {
+    zTier: { type: 'number' },
+    zIndex: { type: 'number' },
+  },
   parameters: {
     docs: {
       description: {
@@ -17,7 +24,7 @@ const meta: Meta<typeof StickyHeader> = {
 export default meta
 
 export const Default: StoryObj<typeof StickyHeader> = {
-  render: (args) => {
-    return <StickyHeader {...args}>Basic StickyHeader</StickyHeader>
+  args: {
+    children: 'Basic StickyHeader',
   },
 }

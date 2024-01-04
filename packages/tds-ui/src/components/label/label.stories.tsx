@@ -1,11 +1,40 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import styled from 'styled-components'
 
-import { Label, LabelColor } from './label'
+import { Label } from './label'
 
 const meta: Meta<typeof Label> = {
   title: 'tds-ui / Label',
   component: Label,
+  argTypes: {
+    radio: { type: 'boolean' },
+    selected: {
+      if: { arg: 'radio' },
+      type: 'boolean',
+    },
+    promo: { type: 'boolean' },
+    color: {
+      if: { arg: 'promo' },
+      control: 'select',
+      options: [
+        'blue',
+        'red',
+        'purple',
+        'orange',
+        'gray',
+        'green',
+        'white',
+        'skyblue',
+        'lightpurple',
+        'black',
+      ],
+    },
+    size: {
+      if: { arg: 'promo' },
+      control: 'select',
+      options: ['tiny', 'small', 'medium', 'large'],
+    },
+    emphasized: { if: { arg: 'promo' }, type: 'boolean' },
+  },
   parameters: {
     docs: {
       description: {
@@ -21,77 +50,23 @@ export default meta
 type Story = StoryObj<typeof Label>
 
 export const Default: Story = {
-  render: (args) => {
-    return <Label {...args}>최신순</Label>
+  args: {
+    children: '최신순',
   },
 }
 
 export const Radio: Story = {
   args: {
     radio: true,
-  },
-  render: (args) => {
-    return (
-      <>
-        <Label {...args} selected margin={{ right: 10 }}>
-          최신순
-        </Label>
-        <Label {...args}>인기순</Label>
-      </>
-    )
+    children: '최신순',
   },
 }
-
-const LabelContainer = styled.div`
-  display: flex;
-  gap: 5px;
-`
-
-const COLORS: LabelColor[] = [
-  'blue',
-  'red',
-  'purple',
-  'orange',
-  'gray',
-  'green',
-  'white',
-  'skyblue',
-  'lightpurple',
-  'black',
-]
-
-const SIZES: ['tiny', 'small', 'medium', 'large'] = [
-  'tiny',
-  'small',
-  'medium',
-  'large',
-]
 
 export const Promo: Story = {
   args: {
     promo: true,
-  },
-  render: (args) => {
-    return (
-      <>
-        <div>색상</div>
-        <LabelContainer>
-          {COLORS.map((color, idx) => (
-            <Label {...args} key={idx} color={color} size="large">
-              {color}
-            </Label>
-          ))}
-        </LabelContainer>
-
-        <div>글자 크기</div>
-        <LabelContainer>
-          {SIZES.map((size, idx) => (
-            <Label {...args} key={idx} size={size}>
-              {size}
-            </Label>
-          ))}
-        </LabelContainer>
-      </>
-    )
+    size: 'large',
+    color: 'blue',
+    children: '프로모션',
   },
 }

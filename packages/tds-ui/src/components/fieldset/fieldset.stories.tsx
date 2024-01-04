@@ -4,13 +4,6 @@ import { Fieldset } from './fieldset'
 import { FieldsetLegend } from './fieldset-legend'
 import { useFieldset } from './use-fieldset'
 
-const meta: Meta<typeof Fieldset> = {
-  title: 'tds-ui / Fieldset',
-  component: Fieldset,
-}
-
-export default meta
-
 const CustomInputGroup = () => {
   const { isRequired } = useFieldset()
 
@@ -28,43 +21,39 @@ const CustomInputGroup = () => {
   )
 }
 
-type Story = StoryObj<typeof Fieldset>
-
-export const Default: Story = {
-  render: (args) => {
-    return (
-      <Fieldset {...args}>
+const meta: Meta<typeof Fieldset> = {
+  title: 'tds-ui / Fieldset',
+  component: Fieldset,
+  args: {
+    isDisabled: false,
+    isRequired: false,
+    children: (
+      <>
         <FieldsetLegend>Label</FieldsetLegend>
         <CustomInputGroup />
-      </Fieldset>
-    )
+      </>
+    ),
+  },
+  argTypes: {
+    isDisabled: { type: 'boolean' },
+    isRequired: { type: 'boolean' },
   },
 }
+
+export default meta
+
+type Story = StoryObj<typeof Fieldset>
+
+export const Default: Story = {}
 
 export const Disabled: Story = {
   args: {
     isDisabled: true,
-  },
-  render: (args) => {
-    return (
-      <Fieldset {...args}>
-        <FieldsetLegend>Label</FieldsetLegend>
-        <CustomInputGroup />
-      </Fieldset>
-    )
   },
 }
 
 export const Required: Story = {
   args: {
     isRequired: true,
-  },
-  render: (args) => {
-    return (
-      <Fieldset {...args}>
-        <FieldsetLegend>Label</FieldsetLegend>
-        <CustomInputGroup />
-      </Fieldset>
-    )
   },
 }

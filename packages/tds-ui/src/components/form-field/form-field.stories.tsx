@@ -9,6 +9,16 @@ import { FormFieldLabel } from './form-field-label'
 const meta: Meta<typeof FormField> = {
   title: 'tds-ui / FormField',
   component: FormField,
+  args: {
+    isError: false,
+    isDisabled: false,
+    isRequired: false,
+  },
+  argTypes: {
+    isError: { type: 'boolean' },
+    isDisabled: { type: 'boolean' },
+    isRequired: { type: 'boolean' },
+  },
   parameters: {
     docs: {
       description: {
@@ -50,53 +60,49 @@ const CustomInput = () => {
 type Story = StoryObj<typeof FormField>
 
 export const Default: Story = {
-  render: (args) => {
-    return (
-      <FormField {...args}>
+  args: {
+    children: (
+      <>
         <FormFieldLabel>Label</FormFieldLabel>
         <CustomInput />
-      </FormField>
-    )
+      </>
+    ),
   },
 }
 
 export const Required: Story = {
   args: {
     isRequired: true,
-  },
-  render: (args) => {
-    return (
-      <FormField {...args}>
+    children: (
+      <>
         <FormFieldLabel>Label</FormFieldLabel>
         <CustomInput />
-      </FormField>
-    )
+      </>
+    ),
   },
 }
 
 export const WithHelpMessage: Story = {
-  render: (args) => {
-    return (
-      <FormField {...args}>
+  args: {
+    children: (
+      <>
         <FormFieldLabel>Label</FormFieldLabel>
         <CustomInput />
         <FormFieldHelp>Helper text.</FormFieldHelp>
-      </FormField>
-    )
+      </>
+    ),
   },
 }
 
 export const WithErrorMessage: Story = {
   args: {
     isError: true,
-  },
-  render: (args) => {
-    return (
-      <FormField {...args}>
+    children: (
+      <>
         <FormFieldLabel>Label</FormFieldLabel>
         <CustomInput />
         <FormFieldError>Helper text.</FormFieldError>
-      </FormField>
-    )
+      </>
+    ),
   },
 }

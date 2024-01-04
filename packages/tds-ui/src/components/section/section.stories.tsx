@@ -5,6 +5,15 @@ import { Section } from './section'
 const meta: Meta<typeof Section> = {
   title: 'tds-ui / Section',
   component: Section,
+  argTypes: {
+    divider: {
+      control: 'select',
+      options: ['none', 'top', 'bottom'],
+    },
+    anchor: {
+      type: 'string',
+    },
+  },
   parameters: {
     docs: {
       description: {

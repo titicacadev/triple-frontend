@@ -10,7 +10,7 @@ const meta: Meta<typeof ConfirmSelector> = {
 export default meta
 
 export const Default: StoryObj<typeof ConfirmSelector> = {
-  render: () => {
-    return <ConfirmSelector>이용약관 동의</ConfirmSelector>
+  args: {
+    children: '이용약관 동의',
   },
 }

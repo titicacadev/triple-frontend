@@ -6,16 +6,20 @@ import { ActionSheetSelectButton } from './action-sheet-select-button'
 import { ActionSheetSelectOption } from './action-sheet-select-option'
 import { ActionSheetSelectOptions } from './action-sheet-select-options'
 
-export default {
-  title: 'action-sheet / action-sheet-select',
+const meta: Meta<typeof ActionSheetSelect> = {
+  title: 'tds-ui / ActionSheetSelect',
   component: ActionSheetSelect,
   parameters: {
     docs: {
-      inlineStories: false,
-      iframeHeight: 500,
+      story: {
+        inline: false,
+        iframeHeight: 500,
+      },
     },
   },
-} as Meta<typeof ActionSheetSelect>
+}
+
+export default meta
 
 const list = [
   ['a', 'Option A'],

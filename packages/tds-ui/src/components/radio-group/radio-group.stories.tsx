@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Radio } from '../radio/radio'
 
@@ -8,6 +7,19 @@ import { RadioGroup } from './radio-group'
 const meta: Meta<typeof RadioGroup> = {
   title: 'tds-ui / RadioGroup',
   component: RadioGroup,
+  args: {
+    disabled: false,
+    required: false,
+  },
+  argTypes: {
+    name: { type: 'string' },
+    value: { type: 'string' },
+    disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
+    label: { type: 'string' },
+    error: { type: 'string' },
+    help: { type: 'string' },
+  },
   parameters: {
     docs: {
       description: {
@@ -25,21 +37,13 @@ export const Default: Story = {
   args: {
     name: 'option',
     value: 'a',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -48,21 +52,13 @@ export const Disabled: Story = {
     name: 'option',
     value: 'a',
     disabled: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -71,21 +67,13 @@ export const Required: Story = {
     name: 'option',
     value: 'a',
     required: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -94,21 +82,13 @@ export const WithLabel: Story = {
     name: 'option',
     value: 'a',
     label: '라디오',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -118,21 +98,13 @@ export const WithHelpMessage: Story = {
     value: 'a',
     label: '라디오',
     help: 'Help text',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -142,20 +114,12 @@ export const WithErrorMessage: Story = {
     value: 'a',
     label: '라디오',
     error: 'Error text',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const handleChange = (value: string) => {
-      updateArgs({ value })
-    }
-
-    return (
-      <RadioGroup {...args} value={value} onChange={handleChange}>
+    children: (
+      <>
         <Radio value="a">Option A</Radio>
         <Radio value="b">Option B</Radio>
         <Radio value="c">Option C</Radio>
-      </RadioGroup>
-    )
+      </>
+    ),
   },
 }

@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Modal } from './modal'
 
 const meta: Meta<typeof Modal> = {
   title: 'tds-ui / Modal',
   component: Modal,
+  args: {
+    open: false,
+    flexible: false,
+  },
+  argTypes: {
+    open: { type: 'boolean' },
+    flexible: { type: 'boolean' },
+  },
   parameters: {
     docs: {
       description: {
@@ -27,33 +34,17 @@ type Story = StoryObj<typeof Modal>
 export const Default: Story = {
   args: {
     open: true,
-  },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>모달 열기</button>
-      )
-    }
-
-    return (
-      <Modal {...args} onClose={onClose}>
+    children: (
+      <>
         <Modal.Body>
           <Modal.Title>제목</Modal.Title>
           <Modal.Description>부연설명 영역입니다.</Modal.Description>
         </Modal.Body>
         <Modal.Actions>
-          <Modal.Action color="blue" onClick={onClose}>
-            닫기
-          </Modal.Action>
+          <Modal.Action color="blue">닫기</Modal.Action>
         </Modal.Actions>
-      </Modal>
-    )
+      </>
+    ),
   },
 }
 
@@ -61,32 +52,16 @@ export const Flexible: Story = {
   args: {
     open: true,
     flexible: true,
-  },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>모달 열기</button>
-      )
-    }
-
-    return (
-      <Modal {...args} onClose={onClose}>
-        <Modal.Body css={{ maxWidth: '500px' }}>
+    children: (
+      <>
+        <Modal.Body>
           <Modal.Title>제목</Modal.Title>
           <Modal.Description>부연설명 영역입니다.</Modal.Description>
         </Modal.Body>
         <Modal.Actions>
-          <Modal.Action color="blue" onClick={onClose}>
-            닫기
-          </Modal.Action>
+          <Modal.Action color="blue">닫기</Modal.Action>
         </Modal.Actions>
-      </Modal>
-    )
+      </>
+    ),
   },
 }

@@ -24,11 +24,14 @@ export const Default: Story = {
 }
 
 export const Custom: Story = {
-  render: () => {
+  args: {
+    borderRadius: 10,
+  },
+  render: (args) => {
     return (
       <Container
         css={{ padding: 50, backgroundColor: 'gray', color: 'white' }}
-        borderRadius={10}
+        {...args}
       >
         Custom CSS Container
       </Container>
