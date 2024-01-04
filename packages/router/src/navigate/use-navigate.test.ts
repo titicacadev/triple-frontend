@@ -21,12 +21,10 @@ jest.mock('@titicaca/triple-web', () => ({
   })),
 }))
 
-jest.mock('../app-bridge', () => ({
-  useTripleClientNavigate: jest.fn().mockImplementation(() => ({
-    openInlink: jest.fn(),
-    openOutlink: openOutlinkMockFn,
-    openNativeLink: openNativeLinkMockFn,
-  })),
+jest.mock('../links', () => ({
+  ...jest.requireActual('../links'),
+  useOpenOutlink: jest.fn().mockImplementation(() => openOutlinkMockFn),
+  useOpenNativeLink: jest.fn().mockImplementation(() => openNativeLinkMockFn),
 }))
 
 describe('브라우저', () => {
