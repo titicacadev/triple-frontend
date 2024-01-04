@@ -13,7 +13,6 @@
       "@titicaca/meta-tags": ["./packages/meta-tags/src"],
       "@titicaca/react-hooks": ["./packages/react-hooks/src"],
       "@titicaca/router": ["./packages/router/src"],
-      "@titicaca/scroll-spy": ["./packages/scroll-spy/src"],
       "@titicaca/scroll-to-element": ["./packages/scroll-to-element/src"],
       "@titicaca/standard-action-handler": [
         "./packages/standard-action-handler/src"
