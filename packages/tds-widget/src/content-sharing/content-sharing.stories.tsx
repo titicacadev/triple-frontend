@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import ContentSharing from './content-sharing'
+import { ContentSharing } from './content-sharing'
 
 export default {
   title: 'content-sharing / ContentSharing',

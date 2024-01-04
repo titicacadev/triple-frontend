@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import LogoFooter from './logo-footer'
+import { LogoFooter } from './logo-footer'
 
 export default {
   title: 'footer / LogoFooter',
