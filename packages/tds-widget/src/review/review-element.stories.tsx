@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { EventTrackingProvider } from '@titicaca/triple-web'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { ReviewElement } from './components/review-element'
 import duoImagesData from './mocks/review-element.duo-images.json'

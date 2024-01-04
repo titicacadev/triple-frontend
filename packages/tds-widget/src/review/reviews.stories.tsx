@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
 import { FilterProvider } from './components/filter-context'
