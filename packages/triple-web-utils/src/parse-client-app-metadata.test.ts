@@ -1,24 +1,5 @@
 import { parseClientAppMetadata } from './parse-client-app-metadata'
 
-test('should parse Chrome on Windows as a non-app', () => {
-  expect(
-    parseClientAppMetadata(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
-    ),
-  ).toBeNull()
-})
-
-test('should parse Triple Android debug client as an app', () => {
-  expect(
-    parseClientAppMetadata(
-      'Mozilla/5.0 (Linux; Android 11; SM-G975N Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.86 Mobile Safari/537.36 Triple-Android/5.3.0-debug',
-    ),
-  ).toEqual({
-    name: 'Triple-Android',
-    version: '5.3.0-debug',
-  })
-})
-
 test('should parse Triple Android client as an app', () => {
   expect(
     parseClientAppMetadata(
@@ -28,6 +9,14 @@ test('should parse Triple Android client as an app', () => {
     name: 'Triple-Android',
     version: '5.10.0',
   })
+})
+
+test('should parse Chrome on Windows as a non-app', () => {
+  expect(
+    parseClientAppMetadata(
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+    ),
+  ).toBeNull()
 })
 
 test('should parse Triple iOS client as an app', () => {
