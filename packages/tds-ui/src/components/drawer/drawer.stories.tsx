@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Button } from '../button'
 import { Container } from '../container'
@@ -11,7 +10,16 @@ const meta: Meta<typeof Drawer> = {
   title: 'tds-ui / Drawer',
   component: Drawer,
   args: {
-    active: true,
+    duration: 300,
+    overflow: 'hidden',
+  },
+  argTypes: {
+    active: { type: 'boolean' },
+    duration: { type: 'number' },
+    overflow: {
+      control: 'radio',
+      options: ['visible', 'clip', 'scroll', 'auto', 'hidden'],
+    },
   },
   parameters: {
     docs: {
@@ -20,7 +28,7 @@ const meta: Meta<typeof Drawer> = {
       },
       story: {
         inline: false,
-        iframeHeight: 200,
+        iframeHeight: 100,
       },
     },
   },
@@ -31,64 +39,33 @@ export default meta
 type Story = StoryObj<typeof Drawer>
 
 export const Default: Story = {
-  render: function Render(args) {
-    const [{ active }, updateArgs] = useArgs()
-
-    const onToggle = () => {
-      return updateArgs({ active: !active })
-    }
-
-    return (
-      <>
-        <Button onClick={onToggle}>Drawer {active ? '닫기' : '열기'}</Button>
-
-        <Drawer {...args}>
-          <Button fluid borderRadius={0}>
-            결제하기
-          </Button>
-        </Drawer>
-      </>
-    )
+  args: {
+    active: true,
+    children: (
+      <Button fluid borderRadius={0}>
+        결제하기
+      </Button>
+    ),
   },
 }
 
-export const PriceInfoDrawer: Story = {
-  name: '커스텀 (가격정보)',
-  render: function Render(args) {
-    const [{ active }, updateArgs] = useArgs()
-
-    const onToggle = () => {
-      return updateArgs({ active: !active })
-    }
-
-    return (
-      <>
-        <Button onClick={onToggle}>Drawer {active ? '닫기' : '열기'}</Button>
-
-        <Drawer {...args}>
-          <Container
-            clearing
-            css={{
-              padding: '10px 25px 10px 30px',
-            }}
-          >
-            <Container floated="left">
-              <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
-                트리플 클럽가
-              </Text>
-              <Text size="large" bold>
-                50,000원
-              </Text>
-            </Container>
-            <Container floated="right">
-              <Button borderRadius={4}>객실예약</Button>
-            </Container>
-          </Container>
-        </Drawer>
-      </>
-    )
-  },
+export const Custom: Story = {
   args: {
     active: true,
+    children: (
+      <Container clearing>
+        <Container floated="left">
+          <Text color="blue" size="mini" margin={{ top: 7, bottom: 4 }}>
+            트리플 클럽가
+          </Text>
+          <Text size="large" bold>
+            50,000원
+          </Text>
+        </Container>
+        <Container floated="right">
+          <Button borderRadius={4}>객실예약</Button>
+        </Container>
+      </Container>
+    ),
   },
 }

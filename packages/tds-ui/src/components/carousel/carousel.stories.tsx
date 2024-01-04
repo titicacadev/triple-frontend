@@ -19,19 +19,20 @@ export default meta
 
 type Story = StoryObj<typeof Carousel>
 
-export const Basic: Story = {
-  name: '기본 Carousel',
-  render: () => (
-    <Carousel>
-      {IMAGES.map((image, key) => (
-        <img
-          key={key}
-          src={image.sizes.large.url}
-          alt="test"
-          width={400}
-          height={400}
-        />
-      ))}
-    </Carousel>
-  ),
+export const Default: Story = {
+  args: {
+    children: (
+      <>
+        {IMAGES.map((image, key) => (
+          <img
+            key={key}
+            src={image.sizes.large.url}
+            alt="test"
+            width={400}
+            height={400}
+          />
+        ))}
+      </>
+    ),
+  },
 }

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Checkbox } from '../checkbox'
 
@@ -8,6 +7,31 @@ import { CheckboxGroup } from './checkbox-group'
 const meta: Meta<typeof CheckboxGroup> = {
   title: 'tds-ui / CheckboxGroup',
   component: CheckboxGroup,
+  args: {
+    value: [],
+    disabled: false,
+    required: false,
+    children: (
+      <>
+        <Checkbox value="a">Option A</Checkbox>
+        <Checkbox value="b">Option B</Checkbox>
+        <Checkbox value="c">Option C</Checkbox>
+      </>
+    ),
+  },
+  argTypes: {
+    name: { type: 'string' },
+    disabled: { type: 'boolean' },
+    required: { type: 'boolean' },
+    label: { type: 'string' },
+    error: { if: { arg: 'help', truthy: false }, type: 'string' },
+    help: { if: { arg: 'error', truthy: false }, type: 'string' },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -25,21 +49,6 @@ export const Default: Story = {
   args: {
     name: 'options',
     label: 'Label',
-    value: [],
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const onChange = (value: string[]) => {
-      updateArgs({ value })
-    }
-    return (
-      <CheckboxGroup {...args} value={value} onChange={onChange}>
-        <Checkbox value="a">Option A</Checkbox>
-        <Checkbox value="b">Option B</Checkbox>
-        <Checkbox value="c">Option C</Checkbox>
-      </CheckboxGroup>
-    )
   },
 }
 
@@ -47,22 +56,7 @@ export const Disabled: Story = {
   args: {
     name: 'options',
     label: 'Label',
-    value: [],
     disabled: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const onChange = (value: string[]) => {
-      updateArgs({ value })
-    }
-    return (
-      <CheckboxGroup {...args} value={value} onChange={onChange}>
-        <Checkbox value="a">Option A</Checkbox>
-        <Checkbox value="b">Option B</Checkbox>
-        <Checkbox value="c">Option C</Checkbox>
-      </CheckboxGroup>
-    )
   },
 }
 
@@ -70,22 +64,7 @@ export const Required: Story = {
   args: {
     name: 'options',
     label: 'Label',
-    value: [],
     required: true,
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const onChange = (value: string[]) => {
-      updateArgs({ value })
-    }
-    return (
-      <CheckboxGroup {...args} value={value} onChange={onChange}>
-        <Checkbox value="a">Option A</Checkbox>
-        <Checkbox value="b">Option B</Checkbox>
-        <Checkbox value="c">Option C</Checkbox>
-      </CheckboxGroup>
-    )
   },
 }
 
@@ -93,22 +72,14 @@ export const WithHelpMessage: Story = {
   args: {
     name: 'options',
     label: 'Label',
-    value: [],
     help: 'Help message',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const onChange = (value: string[]) => {
-      updateArgs({ value })
-    }
-    return (
-      <CheckboxGroup {...args} value={value} onChange={onChange}>
+    children: (
+      <>
         <Checkbox value="a">Option A</Checkbox>
         <Checkbox value="b">Option B</Checkbox>
         <Checkbox value="c">Option C</Checkbox>
-      </CheckboxGroup>
-    )
+      </>
+    ),
   },
 }
 
@@ -116,21 +87,13 @@ export const WithErrorMessage: Story = {
   args: {
     name: 'options',
     label: 'Label',
-    value: [],
     error: 'Error message',
-  },
-  render: function Render(args) {
-    const [{ value }, updateArgs] = useArgs()
-
-    const onChange = (value: string[]) => {
-      updateArgs({ value })
-    }
-    return (
-      <CheckboxGroup {...args} value={value} onChange={onChange}>
+    children: (
+      <>
         <Checkbox value="a">Option A</Checkbox>
         <Checkbox value="b">Option B</Checkbox>
         <Checkbox value="c">Option C</Checkbox>
-      </CheckboxGroup>
-    )
+      </>
+    ),
   },
 }

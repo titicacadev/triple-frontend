@@ -8,7 +8,25 @@ const meta: Meta<typeof ActionSheet> = {
   title: 'tds-ui / ActionSheet',
   component: ActionSheet,
   args: {
-    open: true,
+    open: false,
+    from: 'bottom',
+    borderRadius: 12,
+    bottomSpacing: 13,
+    maxContentHeight: 'calc(100vh - 256px)',
+  },
+  argTypes: {
+    open: { control: 'boolean' },
+    borderRadius: { control: 'number' },
+    bottomSpacing: { control: 'number' },
+    from: {
+      control: 'radio',
+      options: ['top', 'bottom'],
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
   },
   parameters: {
     docs: {
@@ -28,8 +46,9 @@ export default meta
 
 type Story = StoryObj<typeof ActionSheet>
 
-export const Basic: Story = {
+export const Default: Story = {
   args: {
+    open: true,
     children: (
       <>
         <ActionSheetItem>메뉴 1</ActionSheetItem>
@@ -47,6 +66,7 @@ export const Basic: Story = {
 
 export const WithTextMenu: Story = {
   args: {
+    open: true,
     title: '샘플 액션 시트',
     children: (
       <>
@@ -68,6 +88,7 @@ export const WithIconMenu: Story = {
     },
   },
   args: {
+    open: true,
     title: '샘플 액션 시트',
     children: (
       <>
@@ -87,6 +108,7 @@ export const WithForm: Story = {
     },
   },
   args: {
+    open: true,
     title: '샘플 액션 시트',
     borderRadius: 0,
     from: 'top',
@@ -133,11 +155,22 @@ export const WithCustomHeader: Story = {
 }
 
 export const WithExtendStyle: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
+      },
+    },
+  },
+  args: {
+    open: true,
+    title: '샘플 액션 시트',
+  },
   render: () => {
     return (
       <ActionSheet
         open
-        title="샘플 액션 시트"
         css={css`
           background-color: gray;
 
@@ -160,13 +193,5 @@ export const WithExtendStyle: Story = {
         <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
       </ActionSheet>
     )
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          '스타일을 확장하여 사용할 때에는 ActionSheet의 css prop이나 ActionSheetItem의 css prop을 사용합니다. ',
-      },
-    },
   },
 }

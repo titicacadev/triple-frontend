@@ -5,15 +5,12 @@ import { ButtonContainer } from './button-container'
 import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'tds-ui / Button',
   component: Button,
-  subcomponents: {
-    ButtonContainer,
-    ButtonGroup,
-    ButtonIcon,
-  },
-} as Meta<typeof Button>
+}
+
+export default meta
 
 export const Normal: StoryObj<typeof Button> = {
   args: {

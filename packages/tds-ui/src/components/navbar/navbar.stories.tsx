@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
+import { defaultTheme } from '@titicaca/tds-theme'
 
 import { Text } from '../text'
 
@@ -13,6 +14,26 @@ const Toc = styled.div`
 const meta: Meta<typeof Navbar> = {
   title: 'tds-ui / Navbar / Navbar',
   component: Navbar,
+  args: {
+    zIndex: 2,
+    borderless: false,
+    backgroundColor: 'white',
+    position: 'fixed',
+  },
+  argTypes: {
+    zIndex: { type: 'number' },
+    title: { type: 'string' },
+    borderless: { type: 'boolean' },
+    maxWidth: { type: 'number' },
+    backgroundColor: {
+      control: 'select',
+      options: Object.keys(defaultTheme.colors),
+    },
+    position: {
+      control: 'select',
+      options: ['absolute', 'fixed', 'relative', 'static', 'sticky'],
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -28,46 +49,53 @@ export default meta
 type Story = StoryObj<typeof Navbar>
 
 export const TwoButtons: Story = {
-  render: () => {
-    return (
-      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
+  args: {
+    title: '도쿄 관광지',
+    children: (
+      <>
         <Navbar.Item icon="back" />
         <Navbar.Item icon="more" floated="right" />
-      </Navbar>
-    )
+      </>
+    ),
   },
 }
 
 export const ThreeButtons: Story = {
-  render: () => {
-    return (
-      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
+  args: {
+    title: '도쿄 관광지',
+    children: (
+      <>
         <Navbar.Item icon="back" />
         <Navbar.Item icon="more" floated="right" />
         <Navbar.Item icon="route" floated="right" />
-      </Navbar>
-    )
+      </>
+    ),
   },
 }
 
 export const FourButtons: Story = {
-  render: () => {
-    return (
-      <Navbar title="도쿄 관광지" borderless backgroundColor="white">
+  args: {
+    title: '도쿄 관광지',
+    children: (
+      <>
         <Navbar.Item icon="back" />
         <Navbar.Item icon="more" floated="right" />
         <Navbar.Item icon="route" floated="right" />
         <Navbar.Item icon="list" floated="right" />
-      </Navbar>
-    )
+      </>
+    ),
   },
 }
 
 export const SecondaryNavbar: Story = {
-  render: () => {
+  args: {
+    title: '도쿄 관광지',
+    borderless: true,
+  },
+  render: (args) => {
     return (
       <>
-        <Navbar title="도쿄 관광지" borderless>
+        <Navbar {...args}>
           <Navbar.Item icon="back" />
           <Navbar.Item floated="right" icon="more" />
         </Navbar>
@@ -80,10 +108,14 @@ export const SecondaryNavbar: Story = {
 }
 
 export const WrappedNavbar: Story = {
-  render: () => {
+  args: {
+    title: '도쿄 관광지',
+    borderless: true,
+  },
+  render: (args) => {
     return (
       <NavbarWrapper>
-        <Navbar title="도쿄 관광지" borderless>
+        <Navbar {...args}>
           <Navbar.Item icon="back" />
           <Navbar.Item icon="more" floated="right" />
         </Navbar>
@@ -93,24 +125,23 @@ export const WrappedNavbar: Story = {
 }
 
 export const RenderTitle: Story = {
-  render: () => {
-    return (
-      <Navbar
-        renderTitle={() => (
-          <Toc>
-            <Text size="small" bold alpha={1}>
-              도쿄에서 반드시 먹어봐야 할 음식
-            </Text>
+  args: {
+    renderTitle: () => (
+      <Toc>
+        <Text size="small" bold alpha={1}>
+          도쿄에서 반드시 먹어봐야 할 음식
+        </Text>
 
-            <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
-              라멘
-            </Text>
-          </Toc>
-        )}
-      >
+        <Text size="mini" alpha={0.5} margin={{ top: 1 }}>
+          라멘
+        </Text>
+      </Toc>
+    ),
+    children: (
+      <>
         <Navbar.Item icon="back" />
         <Navbar.Item icon="more" floated="right" />
-      </Navbar>
-    )
+      </>
+    ),
   },
 }

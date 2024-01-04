@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/preview-api'
 
 import { Alert } from './alert'
 
@@ -7,7 +6,11 @@ const meta: Meta<typeof Alert> = {
   title: 'tds-ui / Alert',
   component: Alert,
   args: {
-    open: true,
+    confirmText: '확인',
+  },
+  argTypes: {
+    open: { type: 'boolean' },
+    title: { type: 'string' },
   },
   parameters: {
     docs: {
@@ -30,20 +33,5 @@ export const Default: StoryObj<typeof Alert> = {
     open: true,
     title: '항공사 예약번호',
     children: '대한항공 L5W4NW',
-  },
-  render: function Render(args) {
-    const [{ open }, updateArgs] = useArgs()
-
-    const onClose = () => {
-      updateArgs({ open: !open })
-    }
-
-    if (!open) {
-      return (
-        <button onClick={() => updateArgs({ open: true })}>얼럿 열기</button>
-      )
-    }
-
-    return <Alert {...args} onClose={onClose} />
   },
 }
