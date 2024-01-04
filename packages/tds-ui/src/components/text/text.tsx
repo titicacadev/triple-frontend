@@ -47,7 +47,7 @@ export const Text = styled.div<TextProps>(
     overflowWrap: 'break-word',
     color: props.alpha
       ? rgba({ color: props.color, alpha: props.alpha })
-      : props.theme.colors[(props.color as keyof Theme['colors']) ?? 'gray'],
+      : props.theme.colors?.[(props.color as keyof Theme['colors']) ?? 'gray'],
     cursor: props.cursor,
     display: props.inlineBlock
       ? 'inline-block'
