@@ -43,7 +43,6 @@
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/triple-fallback-action": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
@@ -55,6 +54,7 @@
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
     "@types/isomorphic-fetch": "^0.0.38",
@@ -63,6 +63,7 @@
   },
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
+    "@titicaca/react-triple-client-interfaces": "*",
     "react": "^18.0",
     "styled-components": "^5.3.9"
   }
