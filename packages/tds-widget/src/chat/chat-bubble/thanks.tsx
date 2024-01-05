@@ -1,4 +1,4 @@
-import { Button } from '@titicaca/core-elements'
+import { Button } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 const ThanksButton = styled(Button)<{ haveMine: boolean }>`
