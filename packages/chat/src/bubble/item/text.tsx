@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const StyledText = styled.span`
   display: -webkit-box;
-  line-height: 21px;
   padding-left: 5px;
   padding-right: 5px;
   user-select: none;
