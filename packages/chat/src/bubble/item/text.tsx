@@ -1,6 +1,15 @@
 import { Autolinker } from 'autolinker'
 import { MouseEventHandler } from 'react'
-import { Text as CoreText } from '@titicaca/core-elements'
+import styled from 'styled-components'
+
+const StyledText = styled.span`
+  display: -webkit-box;
+  line-height: 21px;
+  padding-left: 5px;
+  padding-right: 5px;
+  user-select: none;
+  word-break: break-word;
+`
 
 export default function TextItem({
   text,
@@ -10,16 +19,7 @@ export default function TextItem({
   onClick?: MouseEventHandler
 }) {
   return (
-    <CoreText
-      css={{
-        display: '-webkit-box',
-        lineHeight: '21px',
-        paddingLeft: 5,
-        paddingRight: 5,
-        userSelect: 'none',
-        wordBreak: 'break-word',
-        color: 'inherit',
-      }}
+    <StyledText
       dangerouslySetInnerHTML={{
         __html: Autolinker.link(text, {
           newWindow: true,
