@@ -88,7 +88,7 @@ export function DirectionButtons({
               size="small"
               onClick={onCallGrabButtonClick}
             >
-              {t(['grab-hocul', 'Grab 호출'])}
+              {t('grab-hocul')}
             </Button>
           </StaticIntersectionObserver>
         ) : null}
