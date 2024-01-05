@@ -15,6 +15,9 @@ declare const window: {
     action: string,
     payload?: { [key: string]: unknown },
   ) => void
+  ttq?: {
+    track: (type: TiktokPixelEventType, params?: TiktokPixelEventParams) => void
+  }
 } & Window
 
 type GoogleAnalyticsParams = (string | undefined)[]
@@ -112,28 +115,6 @@ export interface TrackEventParams {
    * Tiktok Pixel 이벤트 파라미터
    */
   tiktokPixel?: TiktokPixelEvent
-}
-
-// TODO @types/google.analytics, @types/facebook-pixel 대체
-declare global {
-  interface Window {
-    ga?: (
-      method: 'send' | 'set',
-      type: 'pageview' | 'event' | 'page',
-      ...data: (string | undefined)[]
-    ) => void
-    fbq?: (
-      type: 'track' | 'trackCustom',
-      action: string,
-      payload?: { [key: string]: unknown },
-    ) => void
-    ttq?: {
-      track: (
-        type: TiktokPixelEventType,
-        params?: TiktokPixelEventParams,
-      ) => void
-    }
-  }
 }
 
 export function trackEvent(
