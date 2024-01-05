@@ -1,16 +1,26 @@
-import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
+import {
+  InfiniteData,
+  UseInfiniteQueryResult,
+  keepPreviousData,
+  useInfiniteQuery,
+} from '@tanstack/react-query'
 
 import {
   GetPopularReviewsQueryVariables,
   GetLatestReviewsQueryVariables,
   GetReviewsByRatingQueryVariables,
   client,
+  GetReviewsByRatingQuery,
+  GetLatestReviewsQuery,
+  GetPopularReviewsQuery,
 } from '../../data/graphql'
 import { DEFAULT_REVIEWS_COUNT_PER_PAGE } from '../../constants'
 
 export function useInfinitePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
-) {
+): UseInfiniteQueryResult<
+  InfiniteData<GetPopularReviewsQuery['popularReviews']>
+> {
   return useInfiniteQuery({
     queryKey: [
       'review/getInfinitePopularReviews',
@@ -39,7 +49,9 @@ export function useInfinitePopularReviews(
 
 export function useInfiniteLatestReviews(
   params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
-) {
+): UseInfiniteQueryResult<
+  InfiniteData<GetLatestReviewsQuery['latestReviews']>
+> {
   return useInfiniteQuery({
     queryKey: [
       'review/getInfiniteLatestReviews',
@@ -68,7 +80,9 @@ export function useInfiniteLatestReviews(
 
 export function useInfiniteRatingReviews(
   params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
-) {
+): UseInfiniteQueryResult<
+  InfiniteData<GetReviewsByRatingQuery['ratingReviews']>
+> {
   return useInfiniteQuery({
     queryKey: [
       'review/getInfiniteRatingReviews',

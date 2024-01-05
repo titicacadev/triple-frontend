@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { UseQueryResult, useQuery } from '@tanstack/react-query'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../../constants'
 import {
@@ -6,11 +6,14 @@ import {
   GetLatestReviewsQueryVariables,
   GetReviewsByRatingQueryVariables,
   client,
+  GetPopularReviewsQuery,
+  GetLatestReviewsQuery,
+  GetReviewsByRatingQuery,
 } from '../../data/graphql'
 
 export function usePopularReviews(
   params: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'>,
-) {
+): UseQueryResult<GetPopularReviewsQuery> {
   return useQuery({
     queryKey: [
       'review/getPopularReviews',
@@ -26,7 +29,7 @@ export function usePopularReviews(
 
 export function useLatestReviews(
   params: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'>,
-) {
+): UseQueryResult<GetLatestReviewsQuery> {
   return useQuery({
     queryKey: [
       'review/getLatestReviews',
@@ -42,7 +45,7 @@ export function useLatestReviews(
 
 export function useRatingReviews(
   params: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'>,
-) {
+): UseQueryResult<GetReviewsByRatingQuery> {
   return useQuery({
     queryKey: [
       'review/getReviewsByRating',
