@@ -1,6 +1,9 @@
 import { useClientAppActions } from '@titicaca/triple-web'
 import {
+  DefaultError,
   InfiniteData,
+  UseMutationResult,
+  UseQueryResult,
   useMutation,
   useQuery,
   useQueryClient,
@@ -19,12 +22,16 @@ import {
   LikeReviewMutationVariables,
   UnlikeReviewMutationVariables,
   client,
+  GetReviewsCountQuery,
+  GetReviewSpecificationQuery,
+  LikeReviewMutation,
+  UnlikeReviewMutation,
 } from '../data/graphql'
 
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
   initialValue?: number,
-) {
+): UseQueryResult<GetReviewsCountQuery> {
   return useQuery({
     queryKey: ['reviews/getReviewCount', { ...params }],
     queryFn: () => client.GetReviewsCount(params),
@@ -37,28 +44,35 @@ export function useReviewCount(
   })
 }
 
-export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
+export function useDescriptions(
+  params: GetReviewSpecificationQueryVariables,
+): UseQueryResult<GetReviewSpecificationQuery> {
   return useQuery({
     queryKey: ['review/getReviewSpecification', params],
     queryFn: () => client.GetReviewSpecification(params),
   })
 }
 
-export function useMyReview(params: GetMyReviewQueryVariables) {
+export function useMyReview(
+  params: GetMyReviewQueryVariables,
+): UseQueryResult<GetMyReviewQuery> {
   return useQuery({
     queryKey: ['review/getMyReview', params],
     queryFn: () => client.GetMyReview(params),
   })
 }
 
-export function useLikeReviewMutation() {
+export function useLikeReviewMutation(): UseMutationResult<
+  LikeReviewMutation,
+  DefaultError,
+  LikeReviewMutationVariables & { resourceId: string }
+> {
   const { notifyReviewLiked } = useClientAppActions()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (
-      variables: LikeReviewMutationVariables & { resourceId: string },
-    ) => client.LikeReview({ reviewId: variables.reviewId }),
+    mutationFn: (variables) =>
+      client.LikeReview({ reviewId: variables.reviewId }),
     onSuccess: (data, variables) => {
       notifyReviewLiked?.(variables.resourceId, variables.reviewId)
 
@@ -145,14 +159,17 @@ export function useLikeReviewMutation() {
   })
 }
 
-export function useUnlikeReviewMutation() {
+export function useUnlikeReviewMutation(): UseMutationResult<
+  UnlikeReviewMutation,
+  DefaultError,
+  UnlikeReviewMutationVariables & { resourceId: string }
+> {
   const { notifyReviewUnliked } = useClientAppActions()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (
-      variables: UnlikeReviewMutationVariables & { resourceId: string },
-    ) => client.UnlikeReview({ reviewId: variables.reviewId }),
+    mutationFn: (variables) =>
+      client.UnlikeReview({ reviewId: variables.reviewId }),
     onSuccess: (data, variables) => {
       notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
 
