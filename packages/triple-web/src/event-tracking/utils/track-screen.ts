@@ -4,7 +4,18 @@ import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 import { firebaseAnalytics } from '../libs/firebase-analytics'
 import type { EventTrackingValue } from '../types'
 
-import { window } from './types'
+declare const window: {
+  ga?: (
+    method: 'send' | 'set',
+    type: 'pageview' | 'event' | 'page',
+    ...data: (string | undefined)[]
+  ) => void
+  fbq?: (
+    type: 'track' | 'trackCustom',
+    action: string,
+    payload?: { [key: string]: unknown },
+  ) => void
+} & Window
 
 export function trackScreen(
   path: string,
