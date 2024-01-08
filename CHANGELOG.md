@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v13.16.0
+
+### directions-finder
+
+- [directions-finder] grab 호출 버튼에 Intersecting Observer를 추가합니다. [#3082](https://github.com/titicacadev/triple-frontend/pull/3082)
+
+### i18n
+
+- [Review] 예약 상품 상세 정보 노출 [#3070](https://github.com/titicacadev/triple-frontend/pull/3070)
+
+### meta-tags
+
+- [meta-tags] reviewRating에 bestRating, worstRating을 추가합니다. [#3079](https://github.com/titicacadev/triple-frontend/pull/3079)
+
+### review
+
+- [Review] 예약 상품 상세 정보 노출 [#3070](https://github.com/titicacadev/triple-frontend/pull/3070)
+
 ## v13.15.0
 
 ### directions-finder
@@ -4166,11 +4184,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
