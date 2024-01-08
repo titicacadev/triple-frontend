@@ -22,14 +22,6 @@ const PlaceholderContainer = styled(Container)`
   text-align: center;
 `
 
-const GuideImage = styled.img`
-  content: url('https://assets.triple.guide/images/img-card-guide-review@3x.png');
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-`
-
 const NavigateToReviewsListButton = styled(Button)`
   padding: 10px 20px;
 `
@@ -155,21 +147,17 @@ export function ReviewsPlaceholder({
       }}
       onClick={!isMorePage ? () => handleClick() : undefined}
     >
-      {!recentTrip && !hasMedia ? (
-        resourceType === 'article' ? (
-          <GuideImage />
-        ) : (
-          <FlexBox
-            flex
-            css={{ alignItems: 'center', justifyContent: 'center', gap: 12 }}
-          >
-            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
-            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
-            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
-            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
-            <FilledStarIcon color="#F1F3F5" width={40} height={40} />
-          </FlexBox>
-        )
+      {!recentTrip && !hasMedia && resourceType !== 'article' ? (
+        <FlexBox
+          flex
+          css={{ alignItems: 'center', justifyContent: 'center', gap: 12 }}
+        >
+          <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+          <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+          <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+          <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+          <FilledStarIcon color="#F1F3F5" width={40} height={40} />
+        </FlexBox>
       ) : null}
 
       {recentTrip || hasMedia ? (
