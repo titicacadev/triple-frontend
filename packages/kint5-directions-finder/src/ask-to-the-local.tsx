@@ -6,7 +6,8 @@ import {
   Container,
   Drawer,
   HR1,
-  Section,
+  Navbar,
+  StickyHeader,
   Text,
   safeAreaInsetMixin,
 } from '@titicaca/kint5-core-elements'
@@ -33,9 +34,12 @@ const Icon = styled.svg`
 
 const CallButton = styled(Button)`
   font-size: 14px;
+  font-weight: 700;
+  color: var(--color-kint5-gray0);
   line-height: 17px;
-  padding-top: 16px;
-  padding-bottom: 15px;
+  padding: 16px 0;
+  border-radius: 28px;
+  background-color: var(--color-kint5-brand1);
 `
 
 export default function AskToTheLocal({
@@ -64,18 +68,34 @@ export default function AskToTheLocal({
   }, [phoneNumber])
 
   return (
-    <Popup open={open} onClose={onClose} borderless>
-      <Section
+    <Popup open={open} onClose={onClose} noNavbar>
+      <StickyHeader>
+        <Navbar
+          leftButtonIconType="close"
+          onLeftButtonClick={onClose}
+          centerContent={
+            <Text css={{ fontSize: 14, fontWeight: 700 }}>
+              {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
+            </Text>
+          }
+        />
+      </StickyHeader>
+      <Container
         css={{
           marginTop: 20,
+          padding: '0 16px',
         }}
       >
-        <Text color="blue" size={36}>
+        <Text
+          css={{
+            fontSize: 28,
+            fontWeight: 700,
+            color: 'var(--color-kint5-poi-tour)',
+          }}
+        >
           {localName}
         </Text>
-        <Text margin={{ top: 10 }} size={28} css={{ lineHeight: '38px' }}>
-          {localAddress}
-        </Text>
+        <Text css={{ fontSize: 20, marginTop: 8 }}>{localAddress}</Text>
         <HR1 compact css={{ marginTop: 20, marginBottom: 20 }} />
         <Text textStyle="M" alpha={0.7} css={{ marginBottom: 150 }}>
           {primaryName}
@@ -117,7 +137,7 @@ export default function AskToTheLocal({
             </DrawerContentContainer>
           </Drawer>
         ) : null}
-      </Section>
+      </Container>
     </Popup>
   )
 }
