@@ -1,3 +1,5 @@
+import { css } from 'styled-components'
+
 import useATagNavigator from '../utils/a-tag-navigator'
 
 import { TextItem } from './item'
@@ -46,7 +48,7 @@ export function TextBubble({ message, my, ...props }: TextBubbleProp) {
 
   return (
     <Bubble
-      css={`
+      css={css`
         a {
           color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
           text-decoration: underline;
