@@ -99,7 +99,7 @@ export const FullListButton = ({
         width: '100%',
         margin: '40px 0 0',
         padding: '16px 0',
-        borderRadius: 12,
+        borderRadius: 28,
         backgroundColor: 'var(--color-kint5-gray20)',
         fontSize: 14,
         fontWeight: 700,
