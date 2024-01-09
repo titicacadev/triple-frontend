@@ -34,7 +34,7 @@ type CouponErrorCode =
   | 'NO_CI_AUTHENTICATION'
 
 const BaseCouponDownloadButton = styled(Button)`
-  border-radius: 6px;
+  border-radius: 28px;
   width: 100%;
 `
 
