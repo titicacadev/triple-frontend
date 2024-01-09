@@ -69,7 +69,7 @@ function ButtonLink({ children, ...props }: PropsWithChildren<ButtonProps>) {
       css={{
         width: '100%',
         backgroundColor: 'var(--color-kint5-brand1)',
-        borderRadius: 12,
+        borderRadius: 28,
         fontSize: 14,
         color: 'var(--color-kint5-gray0)',
         textAlign: 'center',
@@ -99,7 +99,7 @@ function BlockLink({
           level === 'primary'
             ? 'var(--color-kint5-gray0)'
             : 'var(--color-kint5-gray100)',
-        borderRadius: 12,
+        borderRadius: 28,
         marginTop: 12,
       }}
       {...props}
