@@ -77,7 +77,7 @@ function DirectionButtons({
             fontWeight: 700,
             backgroundColor: 'var(--color-kint5-brand1)',
             color: 'var(--color-kint5-gray0)',
-            borderRadius: 12,
+            borderRadius: 28,
             padding: '16px 0',
             textAlign: 'center',
           }}
