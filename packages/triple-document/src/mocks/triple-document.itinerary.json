@@ -31,6 +31,10 @@
         {
           "type": "itinerary",
           "value": {
+            "geotag": {
+              "type": "triple-region",
+              "id": "be72875a-8b3f-41ad-98d4-42b2e0939bea"
+            },
             "itinerary": {
               "day": 1,
               "items": [
