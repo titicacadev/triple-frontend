@@ -51,7 +51,8 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
 
   const hasItineraries = items.length > 0
   /** NOTE: 일정을 일정판에 저장하기 위해 regionId 를 특정하기 위한 로직 */
-  const regionId = items[0]?.poi.source?.regionId
+  const regionId = items.find((item) => item.poi.source?.regionId)?.poi.source
+    ?.regionId
 
   const poiIds = useMemo(() => items.map(({ poi }) => poi.id), [items])
 
