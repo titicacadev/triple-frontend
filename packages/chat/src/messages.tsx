@@ -50,6 +50,7 @@ interface MessagesProp<
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
+  calculateUnreadCount?: (message: MessageInterface<Message, User>) => number
   bubbleStyle?: {
     received?: { css?: CSSProp; alteredTextColor?: string }
     sent?: { css?: CSSProp; alteredTextColor?: string }
@@ -67,6 +68,7 @@ export default function Messages<
   onRetry,
   onRetryCancel,
   onThanksClick,
+  calculateUnreadCount,
   customBubble,
   bubbleStyle,
   ...bubbleProps
@@ -156,7 +158,9 @@ export default function Messages<
           key={id}
           id={id.toString()}
           my={my}
-          unreadCount={null}
+          unreadCount={
+            calculateUnreadCount ? calculateUnreadCount(message) : null
+          }
           createdAt={createdAt}
           user={{
             photo: sender.profile.photo,
