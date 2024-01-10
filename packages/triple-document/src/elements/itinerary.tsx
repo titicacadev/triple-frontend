@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Container,
@@ -7,7 +6,6 @@ import {
   Text,
   FlexBox,
   FlexBoxItem,
-  Button,
 } from '@titicaca/core-elements'
 import type {
   TransportationType,
@@ -36,13 +34,13 @@ import {
   Cable,
   Plane,
   Ship,
-  Download,
 } from './itinerary/icons'
-import useHandleAddPoisToTrip from './itinerary/use-handle-add-pois-to-trip'
+import SaveToItinerary, { Geotag } from './itinerary/save-to-itinerary'
 
 interface Props {
   value: {
     itinerary: Itinerary
+    geotag?: Geotag
   }
 }
 
@@ -89,20 +87,13 @@ const Duration = styled(Container)`
   flex-shrink: 0;
 `
 
-const SaveToItineraryButton = styled(Button)`
-  > * {
-    vertical-align: middle;
-  }
-`
-
 export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
-  const { t } = useTranslation('common-web')
 
   const guestMode = useGuestMode()
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
     useItinerary({ itinerary: value.itinerary, guestMode })
-  const addPoisToTrip = useHandleAddPoisToTrip(regionId || '')
+
   const navigate = useNavigate()
 
   const generatePoiClickHandler = useCallback(
@@ -141,15 +132,9 @@ export default function ItineraryElement({ value }: Props) {
     [navigate, regionId],
   )
 
-  const handleSaveToItinerary = useCallback(() => {
-    trackEvent({
-      ga: ['내일정으로담기_선택'],
-      fa: {
-        action: '내일정으로담기_선택',
-      },
-    })
-    addPoisToTrip(poiIds)
-  }, [poiIds, addPoisToTrip, trackEvent])
+  const itineraryGeotag =
+    value.geotag ||
+    (regionId ? { type: 'triple-region', id: regionId } : undefined)
 
   return (
     <Container
@@ -265,21 +250,12 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {hideAddButton || guestMode ? null : (
-          <SaveToItineraryButton
-            fluid
-            basic
-            bold
-            inverted
-            margin={{ top: 20 }}
-            onClick={handleSaveToItinerary}
+        {hideAddButton || guestMode || !itineraryGeotag ? null : (
+          <SaveToItinerary
+            poiIds={poiIds}
+            geotag={itineraryGeotag}
             disabled={!hasItineraries}
-          >
-            <Download />
-            <Text inline size={14} margin={{ left: 3 }} color="white">
-              {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
-            </Text>
-          </SaveToItineraryButton>
+          />
         )}
       </Container>
     </Container>
