@@ -57,3 +57,8 @@ export function NavbarExample4() {
   )
 }
 NavbarExample4.storyName = 'Close 아이콘'
+
+export function NavbarExample5() {
+  return <Navbar centerContent={<Text>타이틀</Text>} />
+}
+NavbarExample5.storyName = '왼쪽 버튼 렌더링 X'

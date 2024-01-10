@@ -11,6 +11,7 @@ interface NavbarProps {
   centerContent?: ReactNode
   rightContent?: ReactNode
   containerCss?: CSSObject
+  disableLeftButton?: boolean
   onLeftButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
@@ -37,20 +38,22 @@ export function Navbar({
         ...containerCss,
       }}
     >
-      <Button
-        onClick={onLeftButtonClick}
-        css={{
-          background: 'none',
-          margin: 0,
-          padding: 0,
-          position: 'absolute',
-          top: '50%',
-          left: 16,
-          transform: 'translateY(-50%)',
-        }}
-      >
-        {leftButtonIconType === 'back' ? <LeftArrowIcon /> : <CloseIcon />}
-      </Button>
+      {onLeftButtonClick ? (
+        <Button
+          onClick={onLeftButtonClick}
+          css={{
+            background: 'none',
+            margin: 0,
+            padding: 0,
+            position: 'absolute',
+            top: '50%',
+            left: 16,
+            transform: 'translateY(-50%)',
+          }}
+        >
+          {leftButtonIconType === 'back' ? <LeftArrowIcon /> : <CloseIcon />}
+        </Button>
+      ) : null}
       {centerContent}
       {rightContent ? (
         <Container
