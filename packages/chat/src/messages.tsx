@@ -50,7 +50,9 @@ interface MessagesProp<
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
-  calculateUnreadCount?: (message: MessageInterface<Message, User>) => number
+  calculateUnreadCount?: (
+    message: MessageInterface<Message, User>,
+  ) => number | null
   bubbleStyle?: {
     received?: { css?: CSSProp; alteredTextColor?: string }
     sent?: { css?: CSSProp; alteredTextColor?: string }
