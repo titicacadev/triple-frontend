@@ -45,22 +45,7 @@ export const WithTextMenu: StoryObj<typeof ActionSheet> = {
       <>
         <ActionSheetItem checked>메뉴 1</ActionSheetItem>
         <ActionSheetItem checked={false}>메뉴 2</ActionSheetItem>
-        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
-        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
-      </>
-    ),
-  },
-}
-
-export const WithIconMenu: StoryObj<typeof ActionSheet> = {
-  name: '아이콘 메뉴',
-  args: {
-    open: true,
-    title: '샘플 액션 시트',
-    children: (
-      <>
-        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
-        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem>샘플 메뉴</ActionSheetItem>
       </>
     ),
   },
@@ -76,8 +61,8 @@ export const WithForm: StoryObj<typeof ActionSheet> = {
     maxContentHeight: 100,
     children: (
       <>
-        <ActionSheetItem icon="save">샘플 메뉴</ActionSheetItem>
-        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem checked>샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem>샘플 메뉴</ActionSheetItem>
       </>
     ),
   },
@@ -133,7 +118,6 @@ export const WithExtendStyle: StoryObj<typeof ActionSheet> = {
         `}
       >
         <ActionSheetItem
-          icon="save"
           css={css`
             padding: 0 40px;
             background-color: aqua;
@@ -141,7 +125,7 @@ export const WithExtendStyle: StoryObj<typeof ActionSheet> = {
         >
           샘플 메뉴
         </ActionSheetItem>
-        <ActionSheetItem buttonLabel="액션">샘플 메뉴</ActionSheetItem>
+        <ActionSheetItem checked>샘플 메뉴</ActionSheetItem>
       </ActionSheet>
     )
   },

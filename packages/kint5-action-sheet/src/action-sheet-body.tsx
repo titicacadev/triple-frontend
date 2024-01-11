@@ -99,7 +99,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
         <Content
           css={{
             maxHeight: maxContentHeight,
-            padding: '0 25px',
+            padding: '0 16px',
           }}
         >
           {children}
