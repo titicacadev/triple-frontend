@@ -17,11 +17,10 @@ export const ActionSheetTitle = ({
     return (
       <Container
         css={{
-          height: '16px',
-          margin: '0 0 10px 27px',
+          padding: '14px 0 14px 16px',
         }}
       >
-        <Text id={labelId} size="tiny" bold color="gray700">
+        <Text id={labelId} css={{ fontSize: 20, fontWeight: 700 }}>
           {children}
         </Text>
       </Container>
