@@ -21,9 +21,7 @@ const Sheet = styled.div<SheetProps>`
   width: 100%;
   max-width: 768px;
   background-color: var(--color-white);
-  padding-bottom: ${({ $from, $bottomSpacing }) =>
-    $from === 'top' ? 30 : $bottomSpacing}px;
-  padding-top: ${({ $from }) => ($from === 'bottom' ? 30 : 20)}px;
+  padding: 20px 0;
   z-index: 9999;
   outline: none;
   ${({ $from, $borderRadius }) => {
