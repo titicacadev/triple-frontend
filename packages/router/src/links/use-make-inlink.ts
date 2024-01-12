@@ -35,7 +35,7 @@ export interface MakeInlinkOptions {
 
 export function useMakeInlink() {
   const clientApp = useClientApp()
-  const { appUrlScheme, webUrlBase } = useEnv()
+  const { appUrlScheme, basePath } = useEnv()
 
   const makeInlink = (
     /**
@@ -53,7 +53,7 @@ export function useMakeInlink() {
       path: '/inlink',
       query: qs.stringify({
         path: generateUrl({
-          path: options?.local ? webUrlBase + path : path,
+          path: options?.local ? basePath + path : path,
           query: qs.stringify({
             ...(options?.lnb
               ? getLnb(options.lnb.type, options.lnb.id)
