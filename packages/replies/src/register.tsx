@@ -29,12 +29,14 @@ function Register(
     placeholders,
     onReplyAdd,
     onReplyEdit,
+    onCompleteReplyAdd,
   }: {
     resourceId: string
     resourceType: ResourceType
     placeholders?: Placeholders
     onReplyAdd: (response: Reply) => void
     onReplyEdit: (response: Reply) => void
+    onCompleteReplyAdd?: (reply: Reply) => void
   },
   ref: ForwardedRef<TextAreaHandle>,
 ) {
@@ -69,6 +71,7 @@ function Register(
       onReplyEdit(response)
     } else {
       onReplyAdd(response)
+      onCompleteReplyAdd?.(response)
     }
 
     initializeEditingMessage()
