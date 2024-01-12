@@ -18,6 +18,9 @@ const config: StorybookConfig = {
       name: 'storybook-addon-swc',
       options: {
         swcLoaderOptions: {
+          module: {
+            type: 'es6',
+          },
           jsc: {
             experimental: {
               plugins: [['@swc/plugin-styled-components', {}]],
