@@ -39,6 +39,7 @@ function Replies({
   isFormFixed,
   size = 10,
   initialSize,
+  onCompleteReplyAdd,
   ...props
 }: {
   /**
@@ -61,6 +62,7 @@ function Replies({
    */
   size?: number
   initialSize?: number
+  onCompleteReplyAdd?: (reply: Reply) => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
 
@@ -216,6 +218,7 @@ function Replies({
           placeholders={placeholders}
           onReplyAdd={handleReplyAdd}
           onReplyEdit={handleReplyEdit}
+          onCompleteReplyAdd={onCompleteReplyAdd}
         />
       </InputContainer>
     </RepliesProvider>
