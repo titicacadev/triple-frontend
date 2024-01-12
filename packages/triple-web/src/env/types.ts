@@ -1,5 +1,9 @@
 export interface EnvValue {
   /**
+   * 서비스 웹의 basePath
+   */
+  basePath: string
+  /**
    * 앱을 여는데 필요한 scheme
    */
   appUrlScheme: string
@@ -20,7 +24,7 @@ export interface EnvValue {
    */
   defaultPageDescription: string
   /**
-   *  구글 맵 API Key
+   * 구글 맵 API Key
    */
   googleMapsApiKey?: string
   /**
