@@ -1,12 +1,9 @@
-import { useClientApp, useEnv } from '@titicaca/triple-web'
+import { useMakeInlink, MakeInlinkOptions } from './use-make-inlink'
 
-import { InlinkParams, makeInlink } from './make-inlink'
-
-export type OpenInlinkOptions = Omit<InlinkParams, 'path'>
+export type OpenInlinkOptions = MakeInlinkOptions
 
 export function useOpenInlink() {
-  const clientApp = useClientApp()
-  const { appUrlScheme } = useEnv()
+  const makeInlik = useMakeInlink()
 
   const openInlink = (
     /**
@@ -15,9 +12,7 @@ export function useOpenInlink() {
     path: string,
     options?: OpenInlinkOptions,
   ) => {
-    const href = clientApp
-      ? makeInlink(appUrlScheme, { path, ...options })
-      : path
+    const href = makeInlik(path, options)
     window.location.href = href
   }
 

@@ -1,12 +1,9 @@
-import { useClientApp, useEnv } from '@titicaca/triple-web'
+import { MakeOutlinkOptions, useMakeOutlink } from './use-make-outlink'
 
-import { OutlinkParams, makeOutlink } from './make-outlink'
-
-export type OpenOutlinkOptions = Omit<OutlinkParams, 'url'>
+export type OpenOutlinkOptions = MakeOutlinkOptions
 
 export function useOpenOutlink() {
-  const clientApp = useClientApp()
-  const { appUrlScheme } = useEnv()
+  const makeOutlink = useMakeOutlink()
 
   const openOutlink = (
     /**
@@ -15,9 +12,7 @@ export function useOpenOutlink() {
     url: string,
     options?: OpenOutlinkOptions,
   ) => {
-    const href = clientApp
-      ? makeOutlink(appUrlScheme, { url, ...options })
-      : url
+    const href = makeOutlink(url, options)
     window.location.href = href
   }
 
