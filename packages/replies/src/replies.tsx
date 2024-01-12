@@ -40,6 +40,7 @@ function Replies({
   size = 10,
   initialSize,
   onCompleteReplyAdd,
+  onCompleteReplyDelete,
   ...props
 }: {
   /**
@@ -63,6 +64,7 @@ function Replies({
   size?: number
   initialSize?: number
   onCompleteReplyAdd?: (reply: Reply) => void
+  onCompleteReplyDelete?: (reply: Reply) => void
 }) {
   const [replies, setReplies] = useState<Reply[]>([])
 
@@ -84,6 +86,7 @@ function Replies({
       .filter(Boolean) as Reply[]
 
     setReplies(deletedReplies)
+    onCompleteReplyDelete?.(response)
   }
 
   const handleReplyEdit = (response: Reply): void => {
