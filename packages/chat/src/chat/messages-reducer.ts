@@ -14,7 +14,7 @@ export enum MessagesActions {
 export interface MessageBase<Id = string> {
   id: Id
   createdAt?: string
-  parentMessage?: MessageBase<Id>
+  parentMessage?: MessageBase<Id> | null
 }
 
 export interface MessagesState<Message extends MessageBase<Id>, Id = string> {
@@ -56,15 +56,15 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
     }
   | {
       action: MessagesActions.PENDING
-      message: Message
+      message: Omit<Message, 'createdAt'>
     }
   | {
       action: MessagesActions.FAIL
-      message: Message
+      message: Omit<Message, 'createdAt'>
     }
   | {
       action: MessagesActions.REMOVE
-      message: Message
+      message: Omit<Message, 'createdAt'>
     }
 
 function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
