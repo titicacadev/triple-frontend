@@ -9,6 +9,8 @@ export enum MessagesActions {
   PENDING = 'PENDING', // 메세지 전송 응답 대기
   FAIL = 'FAIL', // 메시지 전송 실패
   REMOVE = 'REMOVE', // 전송 실패 메세지 삭제
+  HAS_PREV = 'HAS_PREV', // 이전 메세지 페이지네이션 플래그 설정
+  HAS_NEXT = 'HAS_NEXT', // 다음 메세지 페이지네이션 플래그 설정
 }
 
 export interface MessageBase<Id = string> {
@@ -66,6 +68,14 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
       action: MessagesActions.REMOVE
       message: Omit<Message, 'createdAt'>
     }
+  | {
+      action: MessagesActions.HAS_PREV
+      hasPrevMessage: boolean
+    }
+  | {
+      action: MessagesActions.HAS_NEXT
+      hasNextMessage: boolean
+    }
 
 function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
   state: MessagesState<Message, Id>,
@@ -92,7 +102,6 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
           state.messages,
           action.messages,
         ),
-        hasNextMessage: action.messages.length > 0,
       }
 
     case MessagesActions.UPDATE:
@@ -152,6 +161,18 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
         failedMessages: state.failedMessages.filter(
           (message) => message.id !== action.message.id,
         ),
+      }
+
+    case MessagesActions.HAS_PREV:
+      return {
+        ...state,
+        hasPrevMessage: action.hasPrevMessage,
+      }
+
+    case MessagesActions.HAS_NEXT:
+      return {
+        ...state,
+        hasNextMessage: action.hasNextMessage,
       }
 
     default:
