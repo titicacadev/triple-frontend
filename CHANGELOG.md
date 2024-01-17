@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v13.17.0
+
+### replies
+
+- 댓글 작성, 삭제 handle function prop을 추가합니다 [#3098](https://github.com/titicacadev/triple-frontend/pull/3098)
+
+### reply
+
+- 댓글 작성, 삭제 handle function prop을 추가합니다 [#3098](https://github.com/titicacadev/triple-frontend/pull/3098)
+
+### triple-document
+
+- [triple-document] 추천 일정의 '내 일정으로 담기' 로직을 수정합니다. [#3096](https://github.com/titicacadev/triple-frontend/pull/3096)
+
 ## v13.16.0
 
 ### directions-finder
