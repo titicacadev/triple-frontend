@@ -40,7 +40,10 @@ interface NavigateFunctionConfig {
 
 interface HistoryContextValue {
   uriHash: UriHash
-  push: (hash: string, config?: NavigateFunctionConfig) => Promise<boolean>
+  push: (
+    hash: string,
+    config?: NavigateFunctionConfig,
+  ) => Promise<boolean> | void
   replace: (hash: string, config?: NavigateFunctionConfig) => void
   back: () => void
   /**
