@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.5",
+    "@floating-ui/react": "^0.26.6",
     "@titicaca/core-elements": "workspace:*"
   },
   "devDependencies": {
