@@ -40,10 +40,7 @@ interface NavigateFunctionConfig {
 
 interface HistoryContextValue {
   uriHash: UriHash
-  push: (
-    hash: string,
-    config?: NavigateFunctionConfig,
-  ) => Promise<boolean> | void
+  push: (hash: string, config?: NavigateFunctionConfig) => Promise<boolean>
   replace: (hash: string, config?: NavigateFunctionConfig) => void
   back: () => void
   /**
@@ -79,7 +76,9 @@ const UriHashContext = createContext<UriHash>('')
 const HistoryFunctionsContext = createContext<
   Omit<HistoryContextValue, 'uriHash'>
 >({
-  push: NOOP,
+  push: () => {
+    return new Promise((resolve) => resolve(true))
+  },
   replace: NOOP,
   back: NOOP,
   navigate: NOOP,
