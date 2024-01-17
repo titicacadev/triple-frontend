@@ -36,6 +36,8 @@ interface ContainerBaseProp {
   onThanksClick?: () => void
   /** 답장하기 아이콘 클릭 시 작동하는 함수 */
   onReplyClick?: () => void
+  /** 메세지 ref에 주입되는 callback 함수 */
+  messageRefCallback?: (id: string) => void
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -59,6 +61,7 @@ function SentBubbleContainer({
   thanks,
   onThanksClick,
   onReplyClick,
+  messageRefCallback,
   children,
   ...props
 }: SentBubbleContainerProp) {
@@ -66,6 +69,7 @@ function SentBubbleContainer({
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
+      ref={() => messageRefCallback?.(id)}
       {...props}
     >
       <div>
@@ -129,6 +133,7 @@ function ReceivedBubbleContainer({
   thanks,
   onThanksClick,
   onReplyClick,
+  messageRefCallback,
   children,
   ...props
 }: ReceivedBubbleContainerProp) {
@@ -136,6 +141,7 @@ function ReceivedBubbleContainer({
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
+      ref={() => messageRefCallback?.(id)}
       {...props}
     >
       {showProfile ? <ProfileImage src={user?.photo} /> : null}
