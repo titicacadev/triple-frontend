@@ -65,7 +65,7 @@ export const ReceivedBubbleContainer = {
         type: 'boolean',
       },
     },
-    profile: {
+    user: {
       control: {
         type: 'object',
       },
@@ -76,12 +76,12 @@ export const ReceivedBubbleContainer = {
     createdAt: new Date(2022, 10, 1).toISOString(),
     unreadCount: null,
     showInfo: true,
-    profile: {
-      imageUrl:
+    user: {
+      photo:
         'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
       name: '테스트계정',
       userId: 'test',
-      unregister: false,
+      unregistered: false,
     },
   },
 }

@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
+import { DEFAULT_MAX_USERNAME_LENGTH, formatUsername } from '../utils/profile'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -132,11 +133,25 @@ function ReceivedBubbleContainer({
       css={{ ...CHAT_CONTAINER_STYLES }}
       {...props}
     >
-      {showProfile ? <ProfileImage src={user?.photo} /> : null}
-      <Container css={{ marginLeft: 40 }}>
+      {showProfile ? (
+        <ProfileImage
+          src={
+            user && !user.unregistered && user.photo
+              ? user.photo
+              : 'https://assets.triple.guide/images/ico-default-profile.svg'
+          }
+        />
+      ) : null}
+      <Container css={{ marginLeft: 50 }}>
         {showProfile ? (
-          <ProfileName alpha={0.7} margin={{ bottom: 5 }}>
-            {user?.name || ''}
+          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
+            {user
+              ? formatUsername({
+                  name: user?.name,
+                  unregistered: user?.unregistered,
+                  maxLength: DEFAULT_MAX_USERNAME_LENGTH,
+                })
+              : ''}
           </ProfileName>
         ) : null}
 
