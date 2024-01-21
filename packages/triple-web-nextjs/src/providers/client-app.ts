@@ -1,14 +1,14 @@
 import 'server-only'
 
 import { headers } from 'next/headers'
-import type { ClientAppValue } from '@titicaca/triple-web'
-import { parseClientAppMetadata } from '@titicaca/triple-web-utils'
+import { ClientAppName, ClientAppValue } from '@titicaca/triple-web'
+import { clientAppRegex } from '@titicaca/triple-web-utils'
 
 export function getClientApp(): ClientAppValue {
   const headersList = headers()
 
   const userAgent = headersList.get('user-agent') ?? ''
-  const metadata = parseClientAppMetadata(userAgent)
+  const metadata = clientAppRegex.exec(userAgent)
 
   if (!metadata) {
     return null
@@ -24,7 +24,12 @@ export function getClientApp(): ClientAppValue {
       | null) ?? 'unknown'
 
   return {
-    metadata,
+    metadata: {
+      name: (metadata[1] as keyof typeof ClientAppName)
+        ? ClientAppName.Android
+        : ClientAppName.iOS,
+      version: metadata[2],
+    },
     device: {
       autoplay,
       networkType,
