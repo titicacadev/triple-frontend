@@ -640,6 +640,9 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
+      '@types/ua-parser-js':
+        specifier: ^0.7.37
+        version: 0.7.37
       qs:
         specifier: ^6.11.2
         version: 6.11.2
@@ -659,9 +662,6 @@ importers:
       '@types/semver':
         specifier: ^7.5.3
         version: 7.5.4
-      '@types/ua-parser-js':
-        specifier: ^0.7.37
-        version: 0.7.37
       firebase:
         specifier: 9.15.0
         version: 9.15.0
@@ -717,6 +717,9 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.37
@@ -730,6 +733,9 @@ importers:
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
+      '@types/semver':
+        specifier: ^7.5.3
+        version: 7.5.4
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.37
@@ -739,16 +745,12 @@ importers:
 
   packages/triple-web-utils:
     dependencies:
-      ua-parser-js:
-        specifier: ^1.0.36
-        version: 1.0.37
-    devDependencies:
-      '@titicaca/triple-web':
-        specifier: workspace:*
-        version: link:../triple-web
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.37
+      ua-parser-js:
+        specifier: ^1.0.36
+        version: 1.0.37
 
   packages/type-definitions: {}
 
@@ -7513,7 +7515,6 @@ packages:
 
   /@types/ua-parser-js@0.7.37:
     resolution: {integrity: sha512-4sOxS3ZWXC0uHJLYcWAaLMxTvjRX3hT96eF4YWUh1ovTaenvibaZOE5uXtIp4mksKMLRwo7YDiCBCw6vBiUPVg==}
-    dev: true
 
   /@types/unist@2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
