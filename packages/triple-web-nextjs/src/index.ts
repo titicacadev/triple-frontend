@@ -1,2 +1,5 @@
 export * from './providers'
+export * from './build-triple-web-props'
+export * from './event-metadata-provider'
+export * from './event-tracking-provider'
 export * from './triple-web'
