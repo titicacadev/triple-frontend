@@ -1,7 +1,7 @@
 import { checkClientApp } from '@titicaca/triple-web-utils'
 import { GetServerSidePropsContext } from 'next'
 
-import { checkClientAppSession, checkWebSession } from './helpers'
+import { checkClientAppSession, checkWebSession } from './helpers/session'
 
 export function getSessionAvailability(
   ctx: GetServerSidePropsContext,
