@@ -6,7 +6,7 @@ import {
   type I18nValue,
 } from '@titicaca/triple-web'
 
-import { useLang } from './hooks'
+import { useLang } from './hooks/use-lang'
 
 export interface TripleWebProps
   extends Omit<TripleWebBaseProps, 'i18nProvider'> {
