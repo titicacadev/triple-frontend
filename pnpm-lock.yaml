@@ -717,9 +717,6 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.37
@@ -733,9 +730,6 @@ importers:
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
-      '@types/semver':
-        specifier: ^7.5.3
-        version: 7.5.4
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.37
