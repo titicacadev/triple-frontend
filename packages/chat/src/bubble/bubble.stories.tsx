@@ -1,3 +1,5 @@
+import { ScrollProvider } from '../chat'
+
 import {
   ImageBubbleProp,
   ProductBubbleProp,
@@ -12,7 +14,11 @@ export default {
 }
 
 export const Text = {
-  render: (args: TextBubbleProp) => <TextBubble {...args} />,
+  render: (args: TextBubbleProp) => (
+    <ScrollProvider>
+      <TextBubble {...args} />
+    </ScrollProvider>
+  ),
   argTypes: {
     message: {
       type: 'text',
@@ -31,6 +37,16 @@ export const Text = {
     message: '안녕하세요',
     my: true,
     id: 'text_bubble',
+    parentMessage: {
+      id: 'parent_message',
+      type: 'text',
+      blinded: false,
+      value: { message: '안녕하세요' },
+      sender: {
+        name: '트리플',
+        unregistered: false,
+      },
+    },
   },
 }
 
