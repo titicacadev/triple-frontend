@@ -24,7 +24,7 @@ interface BubbleUIPropBase {
 
 export interface TextBubbleUIProp extends BubbleUIPropBase {
   type: 'text'
-  value: Pick<TextBubbleProp, 'message'>
+  value: Pick<TextBubbleProp, 'message' | 'parentMessage'>
 }
 
 export interface ImageBubbleUIProp extends BubbleUIPropBase {
