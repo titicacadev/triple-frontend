@@ -1,6 +1,6 @@
-import { Container, Text, FlexBox } from '@titicaca/core-elements'
+import { Container, Text, FlexBox } from '@titicaca/tds-ui'
 import { MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useScroll } from '../../chat/scroll-context'
 

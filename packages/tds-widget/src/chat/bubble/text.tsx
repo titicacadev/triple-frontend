@@ -3,7 +3,7 @@ import { css } from 'styled-components'
 import useATagNavigator from '../utils/a-tag-navigator'
 
 import { TextItem } from './item'
-import { Bubble } from './bubble'
+import Bubble from './bubble'
 import { TextBubbleProp } from './type'
 
 export function TextBubble({ message, my, ...props }: TextBubbleProp) {
