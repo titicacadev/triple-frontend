@@ -1,3 +1,5 @@
+import { ScrollProvider } from '../chat'
+
 import {
   ImageBubbleProp,
   ProductBubbleProp,
@@ -9,6 +11,13 @@ import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
 
 export default {
   title: 'tds-widget / chat / Bubble',
+  decorators: [
+    (Story: () => JSX.Element) => (
+      <ScrollProvider>
+        <Story />
+      </ScrollProvider>
+    ),
+  ],
 }
 
 export const Text = {
@@ -31,6 +40,16 @@ export const Text = {
     message: '안녕하세요',
     my: true,
     id: 'text_bubble',
+    parentMessage: {
+      id: 'parent_message',
+      type: 'text',
+      blinded: false,
+      value: { message: '안녕하세요' },
+      sender: {
+        name: '트리플',
+        unregistered: false,
+      },
+    },
   },
 }
 

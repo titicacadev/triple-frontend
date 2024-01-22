@@ -2,7 +2,7 @@ import { FlexBox } from '@titicaca/tds-ui'
 
 import ExclamationMarkIcon from '../icons/ExclamationMarkIcon'
 
-import { Bubble } from './bubble'
+import Bubble from './bubble'
 import { BlindedBubbleProp } from './type'
 
 export default function AlteredBubble({
