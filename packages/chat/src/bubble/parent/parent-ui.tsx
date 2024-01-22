@@ -6,21 +6,21 @@ import {
 
 import ParentMessage from './parent-message'
 
-export interface TextParentMessage {
+interface ParentMessageInterface {
   id: string
+  sender: { name: string; unregistered: boolean }
+}
+export interface TextParentMessage extends ParentMessageInterface {
   type: 'text'
   value: {
     message: string
-    sender: { name: string; unregistered: boolean }
   }
 }
 
-export interface ImageParentMessage {
-  id: string
+export interface ImageParentMessage extends ParentMessageInterface {
   type: 'image'
   value: {
     images: MetaDataInterface[]
-    sender: { name: string; unregistered: boolean }
   }
 }
 
@@ -33,9 +33,8 @@ export default function ParentMessageUI({
   type,
   value,
   blinded,
+  sender,
 }: ParentMessageUIProp) {
-  const { sender } = value
-
   const senderName = formatUsername({
     name: sender.name,
     unregistered: sender.unregistered,

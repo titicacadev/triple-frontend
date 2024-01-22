@@ -39,8 +39,8 @@ export const Image = {
   args: {
     id: 'parent-message',
     type: 'image',
+    sender: { name: '트리플', unregistered: false },
     value: {
-      sender: { name: '트리플', unregistered: false },
       images: [
         {
           cloudinaryBucket: 'triple-dev',
@@ -70,8 +70,8 @@ export const Text = {
   args: {
     id: 'parent-message',
     type: 'text',
+    sender: { name: '트리플', unregistered: false },
     value: {
-      sender: { name: '트리플', unregistered: false },
       message: '반가워요',
     },
     blinded: false,
