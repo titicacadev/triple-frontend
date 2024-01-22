@@ -4,7 +4,7 @@ import { CSSProp } from 'styled-components'
 
 import { MetaDataInterface } from '../types'
 
-import { ImageParentMessage, TextParentMessage } from './parent/parent-ui'
+import { ParentMessageUIProp } from './parent/parent-ui'
 
 type CustomerBookingStatus =
   | 'BOOKED'
@@ -67,7 +67,7 @@ export type BubbleProp = BubbleCSSProp & {
 export type TextBubbleProp = {
   message: string
   my: boolean
-  parentMessage?: TextParentMessage | ImageParentMessage
+  parentMessage?: ParentMessageUIProp
 } & BubbleProp
 
 export type RichBubbleProp = {
