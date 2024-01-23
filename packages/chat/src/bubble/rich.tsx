@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { generatePreviewImage } from '../utils'
 
 import { ImageItem, TextItem } from './item'
-import { Bubble } from './bubble'
+import Bubble from './bubble'
 import { RichBubbleProp } from './type'
 
 const Button = styled.a`

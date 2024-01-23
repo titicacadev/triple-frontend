@@ -10,7 +10,7 @@ import {
   ProductInfo,
   ProductName,
 } from './elements'
-import { Bubble } from './bubble'
+import Bubble from './bubble'
 import { ProductBubbleProp } from './type'
 
 const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
