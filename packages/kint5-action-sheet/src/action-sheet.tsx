@@ -24,6 +24,7 @@ export interface ActionSheetProps
     | 'from'
     | 'maxContentHeight'
     | 'title'
+    | 'bodyContainerCss'
   > {
   open?: boolean
   onClose?: () => void
@@ -44,6 +45,7 @@ export const ActionSheet = ({
   bottomSpacing = 13,
   from = 'bottom',
   maxContentHeight = 'calc(100vh - 256px)',
+  bodyContainerCss,
   onClose,
   onEnter,
   onEntered,
@@ -109,6 +111,7 @@ export const ActionSheet = ({
                 title={title}
                 labelId={labelId}
                 transitionStatus={status}
+                bodyContainerCss={bodyContainerCss}
                 aria-modal
                 {...getFloatingProps(props)}
               >
