@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/chat",
-  "version": "13.17.0",
+  "version": "13.18.0",
   "description": "via triple-chat-frontend",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/chat",
@@ -53,10 +53,10 @@
     "use-long-press": "^3.2.0"
   },
   "devDependencies": {
-    "@titicaca/react-contexts": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/isomorphic-fetch": "^0.0.38",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"
