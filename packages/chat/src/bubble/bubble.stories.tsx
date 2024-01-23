@@ -11,14 +11,17 @@ import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
 
 export default {
   title: 'chat / Bubble',
+  decorators: [
+    (Story) => (
+      <ScrollProvider>
+        <Story />
+      </ScrollProvider>
+    ),
+  ],
 }
 
 export const Text = {
-  render: (args: TextBubbleProp) => (
-    <ScrollProvider>
-      <TextBubble {...args} />
-    </ScrollProvider>
-  ),
+  render: (args: TextBubbleProp) => <TextBubble {...args} />,
   argTypes: {
     message: {
       type: 'text',

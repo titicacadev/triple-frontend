@@ -13,6 +13,7 @@ import {
 import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
+import { ParentMessageUIProp } from './parent/parent-ui'
 
 export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
 
@@ -20,11 +21,12 @@ export type BubbleType = (typeof BubbleTypeArray)[number]
 
 interface BubbleUIPropBase {
   type: BubbleType
+  parentMessage?: ParentMessageUIProp
 }
 
 export interface TextBubbleUIProp extends BubbleUIPropBase {
   type: 'text'
-  value: Pick<TextBubbleProp, 'message' | 'parentMessage'>
+  value: Pick<TextBubbleProp, 'message'>
 }
 
 export interface ImageBubbleUIProp extends BubbleUIPropBase {
@@ -54,6 +56,7 @@ export type BubbleUIProps = (
   deleted?: boolean
   unfriended?: boolean
   alternativeText?: string
+  parentMessage?: ParentMessageUIProp
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
