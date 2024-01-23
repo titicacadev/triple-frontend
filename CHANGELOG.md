@@ -20,23 +20,6 @@
 - [chat refactor] 메세지에 unreadCount를 계산하기 위한 prop을 추가합니다. [#3095](https://github.com/titicacadev/triple-frontend/pull/3095)
 - [Chat Refactor] MessagesReducer의 액션을 추가하고 타입을 수정합니다. [#3104](https://github.com/titicacadev/triple-frontend/pull/3104)
 
-### refactoring
-
-- [Chat refactor] Bubble 리팩토링 [#2980](https://github.com/titicacadev/triple-frontend/pull/2980)
-- [Chat refactor] 채팅의 default 네브바와 input ui를 추가합니다. [#2982](https://github.com/titicacadev/triple-frontend/pull/2982)
-- [Chat refactor] 스크롤을 위한 context와 container를 작성합니다. [#2985](https://github.com/titicacadev/triple-frontend/pull/2985)
-- [Chat refactor] messagesReducer를 추가합니다. [#2986](https://github.com/titicacadev/triple-frontend/pull/2986)
-- [Chat refactor] BubbleUI의 prop 변경 [#2998](https://github.com/titicacadev/triple-frontend/pull/2998)
-- [Chat refactor] 사용하지 않는 파일을 제거합니다. [#2999](https://github.com/titicacadev/triple-frontend/pull/2999)
-- [Chat refactor] 메시지 리스트를 렌더링하는 Messages 컴포넌트 생성 [#3003](https://github.com/titicacadev/triple-frontend/pull/3003)
-- [Chat refactor] Bubble의 default click 설정 [#3008](https://github.com/titicacadev/triple-frontend/pull/3008)
-- [chat refactor] constants의 export를 추가하고 다중 이미지 업로드 옵션을 추가합니다. [#3031](https://github.com/titicacadev/triple-frontend/pull/3031)
-- [Chat refactor] Bubble 스타일 설정 추가 및 스토리북 추가 [#3044](https://github.com/titicacadev/triple-frontend/pull/3044)
-- [chat refactor] scroll context에 스크롤 방지 옵션을 추가합니다. [#3051](https://github.com/titicacadev/triple-frontend/pull/3051)
-- [Chat] react-triple-client-interfaces의 Dependencies 수정 [#3088](https://github.com/titicacadev/triple-frontend/pull/3088)
-- [chat refactor] 메세지에 unreadCount를 계산하기 위한 prop을 추가합니다. [#3095](https://github.com/titicacadev/triple-frontend/pull/3095)
-- [Chat Refactor] MessagesReducer의 액션을 추가하고 타입을 수정합니다. [#3104](https://github.com/titicacadev/triple-frontend/pull/3104)
-
 ## v13.17.0
 
 ### replies
@@ -4235,11 +4218,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
