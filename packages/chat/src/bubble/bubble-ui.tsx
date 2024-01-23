@@ -21,7 +21,7 @@ export type BubbleType = (typeof BubbleTypeArray)[number]
 
 interface BubbleUIPropBase {
   type: BubbleType
-  parentMessage?: ParentMessageUIProp
+  parentMessage?: ParentMessageUIProp | null
 }
 
 export interface TextBubbleUIProp extends BubbleUIPropBase {
