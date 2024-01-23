@@ -4,7 +4,7 @@ import {
   safeAreaInsetMixin,
 } from '@titicaca/kint5-core-elements'
 import { PropsWithChildren, ReactNode, forwardRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { CSSObject, css } from 'styled-components'
 
 import { ActionSheetTitle } from './action-sheet-title'
 import { TRANSITION_DURATION } from './constants'
@@ -63,6 +63,7 @@ export interface ActionSheetBodyProps extends PropsWithChildren {
   title?: ReactNode
   labelId: string
   transitionStatus: string
+  bodyContainerCss?: CSSObject
 }
 
 export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
@@ -76,6 +77,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
       title,
       labelId,
       transitionStatus,
+      bodyContainerCss,
       ...props
     },
     ref,
@@ -98,6 +100,7 @@ export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(
           css={{
             maxHeight: maxContentHeight,
             padding: '0 16px',
+            ...bodyContainerCss,
           }}
         >
           {children}
