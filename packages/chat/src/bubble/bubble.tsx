@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react'
 import { useLongPress } from 'use-long-press'
 
 import { BubbleCSSProp, BubbleProp } from './type'
+import ParentMessageUI, { ParentMessageUIProp } from './parent/parent-ui'
 
 const StyledBubble = styled(Text).attrs({
   textAlign: 'left',
@@ -29,7 +30,7 @@ const StyledBubble = styled(Text).attrs({
   `}
 `
 
-export function Bubble({
+export function BaseBubble({
   id,
   onClick,
   onLongPress,
@@ -50,5 +51,18 @@ export function Bubble({
     <StyledBubble onClick={(e) => onClick?.(e, id)} {...props} {...bind()}>
       {children}
     </StyledBubble>
+  )
+}
+
+export default function BubbleWithParentMessage({
+  parentMessage,
+  children,
+  ...props
+}: PropsWithChildren<BubbleProp> & { parentMessage?: ParentMessageUIProp }) {
+  return (
+    <BaseBubble {...props}>
+      {parentMessage ? <ParentMessageUI {...parentMessage} /> : null}
+      {children}
+    </BaseBubble>
   )
 }
