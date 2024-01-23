@@ -1,20 +1,20 @@
 import { StoryFn } from '@storybook/react'
 
-import { Bubble } from '../bubble'
+import Bubble from '../bubble'
 import { TextItem } from '../item'
 import { ScrollProvider } from '../../chat'
 
 import ParentMessage from './parent-message'
-import ParentMessageUI, { ParentMessageUIProp } from './parent-ui'
+import { ParentMessageUIProp } from './parent-ui'
 
 const Template: StoryFn<ParentMessageUIProp> = (args) => (
   <ScrollProvider>
-    <Bubble id="bubble" my={false}>
-      <ParentMessageUI {...args} />
+    <Bubble id="bubble" my={false} parentMessage={args}>
       <TextItem text="안녕하세요" />
     </Bubble>
   </ScrollProvider>
 )
+
 export default {
   title: 'chat / BubbleWithParent',
   component: ParentMessage,

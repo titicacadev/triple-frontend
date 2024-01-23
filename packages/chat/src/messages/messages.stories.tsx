@@ -1,8 +1,15 @@
+import { ScrollProvider } from '../chat'
+
 import Messages from './'
 
 export default {
   title: 'chat / Messages',
   component: Messages,
+  render: (args) => (
+    <ScrollProvider>
+      <Messages {...args} />
+    </ScrollProvider>
+  ),
 }
 
 export const Message = {
@@ -24,6 +31,16 @@ export const Message = {
         },
         createdAt: new Date(2022, 10, 1).toISOString(),
         thanks: { count: 1, haveMine: false },
+        parentMessage: {
+          id: 'parent_message',
+          type: 'text',
+          blinded: false,
+          value: { message: '안녕하세요' },
+          sender: {
+            name: '트리플',
+            unregistered: false,
+          },
+        },
       },
       {
         type: 'another',
