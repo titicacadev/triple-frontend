@@ -6,13 +6,16 @@ export const HiddenElement = styled.div`
 `
 
 export const ProfileImage = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 26.8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 0px 1px;
+  outline-offset: -1px;
   float: left;
 `
 
 export const ProfileName = styled(Text)`
+  font-size: 11px;
   font-weight: 600;
 `
 

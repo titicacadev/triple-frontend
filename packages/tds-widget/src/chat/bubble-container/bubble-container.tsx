@@ -14,7 +14,6 @@ import {
 } from './elements'
 
 const CHAT_CONTAINER_STYLES = {
-  marginTop: 20,
   position: 'relative',
   minHeight: 46,
   width: '100%',
@@ -59,11 +58,13 @@ function SentBubbleContainer({
   thanks,
   onThanksClick,
   children,
+  ...props
 }: SentBubbleContainerProp) {
   return (
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
+      {...props}
     >
       <div>
         {!createdAt && onRetry && onRetryCancel ? (
@@ -124,16 +125,18 @@ function ReceivedBubbleContainer({
   thanks,
   onThanksClick,
   children,
+  ...props
 }: ReceivedBubbleContainerProp) {
   return (
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
+      {...props}
     >
       {showProfile ? <ProfileImage src={user?.photo} /> : null}
-      <Container css={{ marginLeft: 50 }}>
+      <Container css={{ marginLeft: 40 }}>
         {showProfile ? (
-          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
+          <ProfileName alpha={0.7} margin={{ bottom: 5 }}>
             {user?.name || ''}
           </ProfileName>
         ) : null}
@@ -146,7 +149,7 @@ function ReceivedBubbleContainer({
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
             date={createdAt}
-            css={{ marginLeft: 8, textAlign: 'left' }}
+            css={{ marginLeft: 4, textAlign: 'left' }}
           />
         ) : null}
 
