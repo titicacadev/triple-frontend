@@ -1,4 +1,4 @@
-import { ComponentType } from 'react'
+import { ComponentType, Fragment } from 'react'
 import { CSSProp } from 'styled-components'
 
 import BubbleContainer from '../bubble-container/bubble-container'
@@ -8,7 +8,8 @@ import AlteredBubble from '../bubble/altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
 
 import { MessageBase, MessageInterface } from './type'
-import { isBubbleType, isSameSender, isSameDate } from './utils'
+import { isBubbleType, compareSender, compareDate } from './utils'
+import { DateDivider } from './date-divider'
 
 interface MessagesProp<
   Message extends MessageBase<User>,
@@ -139,12 +140,12 @@ export default function Messages<
         index === 0 ? lastMessageOfPrevList : messages[index - 1]
       const nextMessage = messages[index + 1] || null
 
-      const { isSameSenderAsPrevMessage } = isSameSender(
+      const { isSameSenderAsPrevMessage } = compareSender(
         prevMessage,
         message,
         nextMessage,
       )
-      const { isFirstMessageOfDate, isSameMinuteAsNextMessage } = isSameDate(
+      const { isFirstMessageOfDate, isSameMinuteAsNextMessage } = compareDate(
         prevMessage,
         message,
         nextMessage,
@@ -157,39 +158,44 @@ export default function Messages<
       // && (isSameSenderAsNextMessage ? nextMessage?.type !== 'product' : true)
 
       return (
-        <BubbleContainer
-          key={id}
-          id={id.toString()}
-          my={my}
-          unreadCount={
-            calculateUnreadCount ? calculateUnreadCount(message) : null
-          }
-          createdAt={createdAt}
-          user={{
-            photo: sender.profile.photo,
-            name: sender.profile.name,
-            userId: sender.id,
-            unregistered: sender.unregistered,
-          }}
-          showInfo={type !== 'product'}
-          showProfile={isFirstMessageOfDate || !isSameSenderAsPrevMessage}
-          // showDateInfo={!hasDateDivider}
-          showTimeInfo={showTimeInfo}
-          {...(listType === 'failed' && {
-            onRetry: () => {
-              onRetry?.(message)
-            },
-            onRetryCancel: () => {
-              onRetryCancel?.(message)
-            },
-          })}
-          thanks={thanks}
-          onThanksClick={
-            thanks && onThanksClick ? () => onThanksClick(message) : undefined
-          }
-        >
-          {getBubble({ message, my })}
-        </BubbleContainer>
+        <Fragment key={id}>
+          {hasDateDivider && message.createdAt && isFirstMessageOfDate ? (
+            <DateDivider date={new Date(message.createdAt)} />
+          ) : null}
+
+          <BubbleContainer
+            id={id.toString()}
+            my={my}
+            unreadCount={
+              calculateUnreadCount ? calculateUnreadCount(message) : null
+            }
+            createdAt={createdAt}
+            user={{
+              photo: sender.profile.photo,
+              name: sender.profile.name,
+              userId: sender.id,
+              unregistered: sender.unregistered,
+            }}
+            showInfo={type !== 'product'}
+            showProfile={isFirstMessageOfDate || !isSameSenderAsPrevMessage}
+            showDateInfo={!hasDateDivider}
+            showTimeInfo={showTimeInfo}
+            {...(listType === 'failed' && {
+              onRetry: () => {
+                onRetry?.(message)
+              },
+              onRetryCancel: () => {
+                onRetryCancel?.(message)
+              },
+            })}
+            thanks={thanks}
+            onThanksClick={
+              thanks && onThanksClick ? () => onThanksClick(message) : undefined
+            }
+          >
+            {getBubble({ message, my })}
+          </BubbleContainer>
+        </Fragment>
       )
     })
   }
