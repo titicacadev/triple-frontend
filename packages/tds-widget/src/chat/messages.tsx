@@ -147,10 +147,14 @@ export default function Messages<
     )
   }
 
-  function renderMessages(
-    listType: 'normal' | 'failed' | 'pending',
-    messages: MessageInterface<Message, User>[],
-  ) {
+  function renderMessages({
+    listType,
+    messages, // lastMessageOfPrevList: prevMessage,
+  }: {
+    listType: 'normal' | 'failed' | 'pending'
+    messages: MessageInterface<Message, User>[]
+    lastMessageOfPrevList?: MessageInterface<Message, User> | null
+  }) {
     return messages.map((message) => {
       const { id, sender, createdAt, type, thanks } = message
       const my = sender.id === me.id
@@ -192,12 +196,29 @@ export default function Messages<
 
   return (
     <>
-      <div id="messages_list">{renderMessages('normal', messages)}</div>
+      <div id="messages_list">
+        {renderMessages({
+          listType: 'normal',
+          messages,
+          lastMessageOfPrevList: null,
+        })}
+      </div>
       <div id="pending_messages_list">
-        {renderMessages('pending', pendingMessages)}
+        {renderMessages({
+          listType: 'pending',
+          messages: pendingMessages,
+          lastMessageOfPrevList: messages[messages.length - 1],
+        })}
       </div>
       <div id="failed_messages_list">
-        {renderMessages('failed', failedMessages)}
+        {renderMessages({
+          listType: 'failed',
+          messages: failedMessages,
+          lastMessageOfPrevList:
+            pendingMessages.length > 0
+              ? pendingMessages[pendingMessages.length - 1]
+              : messages[messages.length - 1],
+        })}
       </div>
     </>
   )
