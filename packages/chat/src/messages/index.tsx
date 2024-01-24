@@ -49,6 +49,7 @@ export default function Messages<
   customBubble,
   bubbleStyle,
   hasDateDivider,
+  hasArrow,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -65,9 +66,11 @@ export default function Messages<
   function getBubble({
     message,
     my,
+    hasArrow = true,
   }: {
     message: MessageInterface<Message, User>
     my: boolean
+    hasArrow?: boolean
   }) {
     const { id, sender, type, value, blinded, deleted, ...rest } = message
 
@@ -91,6 +94,7 @@ export default function Messages<
                 ? bubbleStyle?.sent?.alteredTextColor
                 : bubbleStyle?.received?.alteredTextColor
             }
+            hasArrow={hasArrow}
           />
         )
       }
@@ -116,6 +120,7 @@ export default function Messages<
             ? bubbleStyle?.sent?.alteredTextColor
             : bubbleStyle?.received?.alteredTextColor
         }
+        hasArrow={hasArrow}
         css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
         {...rest}
         {...bubbleProps}
@@ -155,7 +160,8 @@ export default function Messages<
         listType === 'normal' &&
         isSameSenderAsPrevMessage &&
         !isSameMinuteAsNextMessage
-      // && (isSameSenderAsNextMessage ? nextMessage?.type !== 'product' : true)
+
+      const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
 
       return (
         <Fragment key={id}>
@@ -177,7 +183,7 @@ export default function Messages<
               unregistered: sender.unregistered,
             }}
             showInfo={type !== 'product'}
-            showProfile={isFirstMessageOfDate || !isSameSenderAsPrevMessage}
+            showProfile={showProfile}
             showDateInfo={!hasDateDivider}
             showTimeInfo={showTimeInfo}
             {...(listType === 'failed' && {
@@ -192,8 +198,11 @@ export default function Messages<
             onThanksClick={
               thanks && onThanksClick ? () => onThanksClick(message) : undefined
             }
+            css={{
+              marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
+            }}
           >
-            {getBubble({ message, my })}
+            {getBubble({ message, my, hasArrow: showProfile })}
           </BubbleContainer>
         </Fragment>
       )

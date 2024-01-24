@@ -53,6 +53,7 @@ export const ProductBubble = ({
         width: 'calc(100% - 15px)',
         maxWidth: '768px',
         margin: my ? '0 0 0 8px' : undefined,
+        padding: '12px 14px',
       }}
       {...props}
     >
