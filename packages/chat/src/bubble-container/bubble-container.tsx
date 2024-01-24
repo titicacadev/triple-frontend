@@ -26,8 +26,12 @@ interface ContainerBaseProp {
   createdAt?: string // Date?
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
-  /** 시간 정보 등의 정보의 노출 여부 */
+  /** 시간 정보, 안읽음 숫자 등의 정보의 노출 여부 */
   showInfo?: boolean
+  /** 날짜 정보의 노출 여부 */
+  showDateInfo?: boolean
+  /** 시간 정보의 노출 여부 */
+  showTimeInfo?: boolean
   /** 좋아요 정보 */
   thanks?: { count: number; haveMine: boolean }
   /** 좋아요 아이콘 클릭 시 작동하는 함수 */
@@ -50,6 +54,8 @@ function SentBubbleContainer({
   onRetryCancel,
   unreadCount,
   showInfo = true,
+  showDateInfo,
+  showTimeInfo,
   thanks,
   onThanksClick,
   children,
@@ -71,6 +77,8 @@ function SentBubbleContainer({
           <BubbleInfo
             unreadCount={unreadCount}
             date={createdAt}
+            showDateInfo={showDateInfo}
+            showTimeInfo={showTimeInfo}
             css={{ marginRight: 8, textAlign: 'right' }}
           />
         ) : null}
@@ -99,6 +107,8 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
       userId: string
       unregistered?: boolean
     }
+    /** 프로필 노출 여부 */
+    showProfile?: boolean
   }
 >
 
@@ -108,6 +118,9 @@ function ReceivedBubbleContainer({
   unreadCount,
   createdAt,
   showInfo,
+  showDateInfo,
+  showTimeInfo,
+  showProfile = true,
   thanks,
   onThanksClick,
   children,
@@ -117,17 +130,21 @@ function ReceivedBubbleContainer({
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
     >
-      <ProfileImage src={user?.photo} />
+      {showProfile ? <ProfileImage src={user?.photo} /> : null}
       <Container css={{ marginLeft: 50 }}>
-        <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
-          {user?.name || ''}
-        </ProfileName>
+        {showProfile ? (
+          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
+            {user?.name || ''}
+          </ProfileName>
+        ) : null}
 
         {children}
 
         {createdAt && showInfo ? (
           <BubbleInfo
             unreadCount={unreadCount}
+            showDateInfo={showDateInfo}
+            showTimeInfo={showTimeInfo}
             date={createdAt}
             css={{ marginLeft: 8, textAlign: 'left' }}
           />
