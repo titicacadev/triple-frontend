@@ -430,9 +430,9 @@ importers:
       autolinker:
         specifier: ^4.0.0
         version: 4.0.0
-      moment:
-        specifier: ^2.29.4
-        version: 2.29.4
+      date-fns:
+        specifier: ^3.3.1
+        version: 3.3.1
       use-long-press:
         specifier: ^3.2.0
         version: 3.2.0(react@18.2.0)
@@ -11561,6 +11561,10 @@ packages:
   /dataloader@2.2.2:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
     dev: true
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+    dev: false
 
   /dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
