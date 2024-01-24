@@ -9,7 +9,7 @@ export function isBubbleType(type: string): type is BubbleType {
   return BubbleTypeArray.includes(type as BubbleType)
 }
 
-export function isSameSender<
+export function compareSender<
   Message extends MessageBase<User>,
   User extends UserInterface,
 >(
@@ -25,7 +25,7 @@ export function isSameSender<
   }
 }
 
-export function isSameDate<
+export function compareDate<
   Message extends MessageBase<User>,
   User extends UserInterface,
 >(
@@ -33,14 +33,21 @@ export function isSameDate<
   currentMessage: Message,
   nextMessage: Message | null,
 ) {
-  const prevMessageCreatedAt = prevMessage?.createdAt
-    ? new Date(prevMessage?.createdAt)
+  /** createdAt이 없는 경우는 pending, failed 메세지임을 가정합니다. */
+  const prevMessageCreatedAt = prevMessage
+    ? prevMessage.createdAt
+      ? new Date(prevMessage?.createdAt)
+      : new Date()
     : null
+
   const currentMessageCreatedAt = currentMessage.createdAt
     ? new Date(currentMessage.createdAt)
-    : null
-  const nextMessageCreatedAt = nextMessage?.createdAt
-    ? new Date(nextMessage?.createdAt)
+    : new Date()
+
+  const nextMessageCreatedAt = nextMessage
+    ? nextMessage.createdAt
+      ? new Date(nextMessage?.createdAt)
+      : new Date()
     : null
 
   const isSameDateAsPrevMessage = !!(

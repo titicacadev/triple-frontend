@@ -159,7 +159,7 @@ export const Message = {
           unregistered: false,
           unfriended: false,
         },
-        createdAt: new Date(2022, 10, 1).toISOString(),
+        createdAt: new Date(2022, 10, 2).toISOString(),
       },
     ],
     pendingMessages: [
@@ -213,5 +213,6 @@ export const Message = {
         )
       },
     },
+    hasDateDivider: true,
   },
 }
