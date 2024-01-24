@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import { CSSProp } from 'styled-components'
 import { isSameDay, isSameMinute } from 'date-fns'
 
-import BubbleContainer from './bubble-container/bubble-container'
+import BubbleContainer from '../bubble-container/bubble-container'
 import BubbleUI, {
   BubbleType,
   BubbleTypeArray,
@@ -11,10 +11,10 @@ import BubbleUI, {
   ProductBubbleUIProp,
   RichBubbleUIProp,
   TextBubbleUIProp,
-} from './bubble/bubble-ui'
-import { UserInterface } from './types'
-import AlteredBubble from './bubble/altered'
-import { ALTERNATIVE_TEXT_MESSAGE } from './bubble/constants'
+} from '../bubble/bubble-ui'
+import { UserInterface } from '../types'
+import AlteredBubble from '../bubble/altered'
+import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
 
 interface MessageBase<User extends UserInterface> {
   id: string | number
