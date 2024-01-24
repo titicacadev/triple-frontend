@@ -433,9 +433,9 @@ importers:
       autolinker:
         specifier: ^4.0.0
         version: 4.0.0
-      moment:
-        specifier: ^2.29.4
-        version: 2.29.4
+      date-fns:
+        specifier: ^3.3.1
+        version: 3.6.0
       use-long-press:
         specifier: ^3.2.0
         version: 3.2.0(react@18.2.0)
@@ -6504,6 +6504,9 @@ packages:
 
   dataloader@2.2.2:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
+
+  date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
 
   dateformat@3.0.3:
     resolution: {integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==}
@@ -18138,6 +18141,8 @@ snapshots:
       whatwg-url: 11.0.0
 
   dataloader@2.2.2: {}
+
+  date-fns@3.6.0: {}
 
   dateformat@3.0.3: {}
 

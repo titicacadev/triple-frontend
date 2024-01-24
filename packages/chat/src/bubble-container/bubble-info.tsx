@@ -1,6 +1,7 @@
-import moment from 'moment'
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
+import { isSameDay, isSameYear, format, setDefaultOptions } from 'date-fns'
+import { ko } from 'date-fns/locale'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -11,7 +12,7 @@ const UnreadMessageCountText = styled.div`
   font-size: 10px;
 `
 
-moment.locale('ko')
+setDefaultOptions({ locale: ko })
 
 export function BubbleInfo({
   unreadCount,
@@ -21,8 +22,8 @@ export function BubbleInfo({
   unreadCount: number | null
   date: string
 }) {
-  const showDate = !moment().isSame(date, 'day')
-  const showYear = !moment().isSame(date, 'year')
+  const showDate = !isSameDay(new Date(), new Date(date))
+  const showYear = !isSameYear(new Date(), new Date(date))
 
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
@@ -32,12 +33,12 @@ export function BubbleInfo({
 
       {showDate ? (
         <Text size={10} alpha={0.51}>
-          {moment(date).format(showYear ? 'YYYY.MM.DD' : 'MM.DD')}
+          {format(new Date(date), showYear ? 'yyyy.MM.dd' : 'MM.dd')}
         </Text>
       ) : null}
 
       <Text size={10} alpha={0.51}>
-        {moment(date).format('A hh:mm')}
+        {format(new Date(date), 'a h:mm')}
       </Text>
     </BubbleInfoContainer>
   )
