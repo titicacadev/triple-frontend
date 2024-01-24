@@ -66,7 +66,7 @@ const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
     `}
 `
 
-const LikeButton = styled(Container)<{ liked?: boolean }>`
+const LikeButton = styled.button<{ liked?: boolean }>`
   font-weight: bold;
   text-decoration: none;
   background-size: 18px 18px;
@@ -147,7 +147,8 @@ export function ReviewElement({
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview } = useLikeReviewMutation()
+  const { mutate: likeReview, isLoading: isLikeLoading } =
+    useLikeReviewMutation()
   const { mutate: unlikeReview } = useUnlikeReviewMutation()
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
@@ -245,7 +246,6 @@ export function ReviewElement({
           resource_id: resourceId,
         },
       })
-
       liked
         ? unlikeReview({ reviewId: review.id, resourceId })
         : likeReview({ reviewId: review.id, resourceId })
@@ -390,7 +390,6 @@ export function ReviewElement({
         <Meta>
           {!blinded ? (
             <LikeButton
-              display="inline-block"
               liked={liked}
               css={{
                 marginTop: 5,
@@ -398,6 +397,7 @@ export function ReviewElement({
                 height: 18,
               }}
               onClick={handleLikeButtonClick}
+              disabled={isLikeLoading}
             >
               {likesCount}
             </LikeButton>
