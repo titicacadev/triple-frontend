@@ -12,7 +12,7 @@ const StyledBubble = styled(Text).attrs({
   border-radius: 20px;
   position: relative;
   margin: 0;
-  padding: 12px 14px;
+  padding: 11px;
 
   > div {
     word-break: break-word;

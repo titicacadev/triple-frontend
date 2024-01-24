@@ -174,6 +174,7 @@ export default function BubbleUI({
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
+          hasArrow={hasArrow}
           {...props}
         />
       )
