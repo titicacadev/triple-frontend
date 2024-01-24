@@ -1,4 +1,4 @@
-import Messages from './messages'
+import { Messages } from './'
 
 export default {
   title: 'tds-widget / chat / Messages',
