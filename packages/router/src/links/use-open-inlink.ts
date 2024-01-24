@@ -3,7 +3,7 @@ import { useMakeInlink, MakeInlinkOptions } from './use-make-inlink'
 export type OpenInlinkOptions = MakeInlinkOptions
 
 export function useOpenInlink() {
-  const makeInlik = useMakeInlink()
+  const makeInlink = useMakeInlink()
 
   const openInlink = (
     /**
@@ -12,7 +12,7 @@ export function useOpenInlink() {
     path: string,
     options?: OpenInlinkOptions,
   ) => {
-    const href = makeInlik(path, options)
+    const href = makeInlink(path, options)
     window.location.href = href
   }
 
