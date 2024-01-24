@@ -72,7 +72,7 @@ export function useLikeReviewMutation() {
             : review
 
         queryClient.setQueriesData<GetMyReviewQuery | undefined>(
-          ['review/getMyReviews'],
+          ['review/getMyReview'],
           (old) =>
             old
               ? {
@@ -176,6 +176,16 @@ export function useUnlikeReviewMutation() {
               }
             : review
 
+        queryClient.setQueriesData<GetMyReviewQuery | undefined>(
+          ['review/getMyReview'],
+          (old) =>
+            old
+              ? {
+                  ...old,
+                  ...(old.myReview && { myReview: updater(old.myReview) }),
+                }
+              : old,
+        )
         queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
           ['review/getPopularReviews'],
           (old) =>
