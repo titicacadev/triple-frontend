@@ -1,5 +1,6 @@
 import { ComponentType } from 'react'
 import { CSSProp } from 'styled-components'
+import { isSameDay, isSameMinute } from 'date-fns'
 
 import BubbleContainer from './bubble-container/bubble-container'
 import BubbleUI, {
@@ -57,6 +58,7 @@ interface MessagesProp<
     received?: { css?: CSSProp; alteredTextColor?: string }
     sent?: { css?: CSSProp; alteredTextColor?: string }
   }
+  hasDateDivider?: boolean
 }
 
 export default function Messages<
@@ -73,6 +75,7 @@ export default function Messages<
   calculateUnreadCount,
   customBubble,
   bubbleStyle,
+  hasDateDivider,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -149,15 +152,37 @@ export default function Messages<
 
   function renderMessages({
     listType,
-    messages, // lastMessageOfPrevList: prevMessage,
+    messages,
+    lastMessageOfPrevList,
   }: {
     listType: 'normal' | 'failed' | 'pending'
     messages: MessageInterface<Message, User>[]
-    lastMessageOfPrevList?: MessageInterface<Message, User> | null
+    lastMessageOfPrevList: MessageInterface<Message, User> | null
   }) {
-    return messages.map((message) => {
+    return messages.map((message, index) => {
       const { id, sender, createdAt, type, thanks } = message
       const my = sender.id === me.id
+
+      const prevMessage =
+        index === 0 ? lastMessageOfPrevList : messages[index - 1]
+      const nextMessage = messages[index + 1] || null
+
+      const { isSameSenderAsPrevMessage } = isSameSender(
+        prevMessage,
+        message,
+        nextMessage,
+      )
+      const { isFirstMessageOfDate, isSameMinuteAsNextMessage } = isSameDate(
+        prevMessage,
+        message,
+        nextMessage,
+      )
+
+      const showTimeInfo =
+        listType === 'normal' &&
+        isSameSenderAsPrevMessage &&
+        !isSameMinuteAsNextMessage
+      // && (isSameSenderAsNextMessage ? nextMessage?.type !== 'product' : true)
 
       return (
         <BubbleContainer
@@ -175,6 +200,9 @@ export default function Messages<
             unregistered: sender.unregistered,
           }}
           showInfo={type !== 'product'}
+          showProfile={isFirstMessageOfDate || !isSameSenderAsPrevMessage}
+          // showDateInfo={!hasDateDivider}
+          showTimeInfo={showTimeInfo}
           {...(listType === 'failed' && {
             onRetry: () => {
               onRetry?.(message)
@@ -226,4 +254,65 @@ export default function Messages<
 
 function isBubbleType(type: string): type is BubbleType {
   return BubbleTypeArray.includes(type as BubbleType)
+}
+
+function isSameSender<
+  Message extends MessageBase<User>,
+  User extends UserInterface,
+>(
+  prevMessage: Message | null,
+  currentMessage: Message,
+  nextMessage: Message | null,
+) {
+  return {
+    isSameSenderAsPrevMessage:
+      prevMessage?.sender.id === currentMessage.sender.id,
+    isSameSenderAsNextMessage:
+      nextMessage?.sender.id === currentMessage.sender.id,
+  }
+}
+
+function isSameDate<
+  Message extends MessageBase<User>,
+  User extends UserInterface,
+>(
+  prevMessage: Message | null,
+  currentMessage: Message,
+  nextMessage: Message | null,
+) {
+  const prevMessageCreatedAt = prevMessage?.createdAt
+    ? new Date(prevMessage?.createdAt)
+    : null
+  const currentMessageCreatedAt = currentMessage.createdAt
+    ? new Date(currentMessage.createdAt)
+    : null
+  const nextMessageCreatedAt = nextMessage?.createdAt
+    ? new Date(nextMessage?.createdAt)
+    : null
+
+  const isSameDateAsPrevMessage = !!(
+    prevMessageCreatedAt &&
+    currentMessageCreatedAt &&
+    isSameDay(prevMessageCreatedAt, currentMessageCreatedAt)
+  )
+  const isSameMinuteAsPrevMessage = !!(
+    prevMessageCreatedAt &&
+    currentMessageCreatedAt &&
+    isSameMinute(prevMessageCreatedAt, currentMessageCreatedAt)
+  )
+
+  const isSameMinuteAsNextMessage = !!(
+    nextMessageCreatedAt &&
+    currentMessageCreatedAt &&
+    isSameMinute(nextMessageCreatedAt, currentMessageCreatedAt)
+  )
+
+  const isFirstMessageOfDate =
+    !!currentMessage.createdAt && (!prevMessage || !isSameDateAsPrevMessage)
+
+  return {
+    isSameMinuteAsPrevMessage,
+    isSameMinuteAsNextMessage,
+    isFirstMessageOfDate,
+  }
 }
