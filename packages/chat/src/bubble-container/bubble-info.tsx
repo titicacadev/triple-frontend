@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
-import { isSameDay, isSameYear, format, setDefaultOptions } from 'date-fns'
+import { format, setDefaultOptions } from 'date-fns'
 import { ko } from 'date-fns/locale'
 
 const BubbleInfoContainer = styled(Container)`
@@ -17,29 +17,32 @@ setDefaultOptions({ locale: ko })
 export function BubbleInfo({
   unreadCount,
   date,
+  showTimeInfo = true,
+  showDateInfo = false,
   ...props
 }: {
   unreadCount: number | null
   date: string
+  showTimeInfo?: boolean
+  showDateInfo?: boolean
 }) {
-  const showDate = !isSameDay(new Date(), new Date(date))
-  const showYear = !isSameYear(new Date(), new Date(date))
-
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
       {unreadCount ? (
         <UnreadMessageCountText>{unreadCount}</UnreadMessageCountText>
       ) : null}
 
-      {showDate ? (
+      {showDateInfo ? (
         <Text size={10} alpha={0.51}>
-          {format(new Date(date), showYear ? 'yyyy.MM.dd' : 'MM.dd')}
+          {format(new Date(date), 'MM.dd')}
         </Text>
       ) : null}
 
-      <Text size={10} alpha={0.51}>
-        {format(new Date(date), 'a h:mm')}
-      </Text>
+      {showTimeInfo ? (
+        <Text size={10} alpha={0.51}>
+          {format(new Date(date), 'a h:mm')}
+        </Text>
+      ) : null}
     </BubbleInfoContainer>
   )
 }
