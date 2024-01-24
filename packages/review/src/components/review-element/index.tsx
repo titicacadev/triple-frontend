@@ -149,7 +149,8 @@ export function ReviewElement({
 
   const { mutate: likeReview, isLoading: isLikeLoading } =
     useLikeReviewMutation()
-  const { mutate: unlikeReview } = useUnlikeReviewMutation()
+  const { mutate: unlikeReview, isLoading: isUnlikeLoading } =
+    useUnlikeReviewMutation()
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
@@ -397,7 +398,7 @@ export function ReviewElement({
                 height: 18,
               }}
               onClick={handleLikeButtonClick}
-              disabled={isLikeLoading}
+              disabled={isLikeLoading || isUnlikeLoading}
             >
               {likesCount}
             </LikeButton>
