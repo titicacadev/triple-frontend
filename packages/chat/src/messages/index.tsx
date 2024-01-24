@@ -1,42 +1,14 @@
 import { ComponentType } from 'react'
 import { CSSProp } from 'styled-components'
-import { isSameDay, isSameMinute } from 'date-fns'
 
 import BubbleContainer from '../bubble-container/bubble-container'
-import BubbleUI, {
-  BubbleType,
-  BubbleTypeArray,
-  BubbleUIProps,
-  ImageBubbleUIProp,
-  ProductBubbleUIProp,
-  RichBubbleUIProp,
-  TextBubbleUIProp,
-} from '../bubble/bubble-ui'
+import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
 import { UserInterface } from '../types'
 import AlteredBubble from '../bubble/altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
 
-interface MessageBase<User extends UserInterface> {
-  id: string | number
-  sender: User
-  createdAt?: string
-  blinded?: boolean
-  deleted?: boolean
-  thanks?: { count: number; haveMine: boolean }
-}
-
-type MessageInterface<
-  Message extends MessageBase<User>,
-  User extends UserInterface,
-> = Message &
-  (
-    | TextBubbleUIProp
-    | ImageBubbleUIProp
-    | RichBubbleUIProp
-    | ProductBubbleUIProp
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    | { type: string; value?: any }
-  )
+import { MessageBase, MessageInterface } from './type'
+import { isBubbleType, isSameSender, isSameDate } from './utils'
 
 interface MessagesProp<
   Message extends MessageBase<User>,
@@ -250,69 +222,4 @@ export default function Messages<
       </div>
     </>
   )
-}
-
-function isBubbleType(type: string): type is BubbleType {
-  return BubbleTypeArray.includes(type as BubbleType)
-}
-
-function isSameSender<
-  Message extends MessageBase<User>,
-  User extends UserInterface,
->(
-  prevMessage: Message | null,
-  currentMessage: Message,
-  nextMessage: Message | null,
-) {
-  return {
-    isSameSenderAsPrevMessage:
-      prevMessage?.sender.id === currentMessage.sender.id,
-    isSameSenderAsNextMessage:
-      nextMessage?.sender.id === currentMessage.sender.id,
-  }
-}
-
-function isSameDate<
-  Message extends MessageBase<User>,
-  User extends UserInterface,
->(
-  prevMessage: Message | null,
-  currentMessage: Message,
-  nextMessage: Message | null,
-) {
-  const prevMessageCreatedAt = prevMessage?.createdAt
-    ? new Date(prevMessage?.createdAt)
-    : null
-  const currentMessageCreatedAt = currentMessage.createdAt
-    ? new Date(currentMessage.createdAt)
-    : null
-  const nextMessageCreatedAt = nextMessage?.createdAt
-    ? new Date(nextMessage?.createdAt)
-    : null
-
-  const isSameDateAsPrevMessage = !!(
-    prevMessageCreatedAt &&
-    currentMessageCreatedAt &&
-    isSameDay(prevMessageCreatedAt, currentMessageCreatedAt)
-  )
-  const isSameMinuteAsPrevMessage = !!(
-    prevMessageCreatedAt &&
-    currentMessageCreatedAt &&
-    isSameMinute(prevMessageCreatedAt, currentMessageCreatedAt)
-  )
-
-  const isSameMinuteAsNextMessage = !!(
-    nextMessageCreatedAt &&
-    currentMessageCreatedAt &&
-    isSameMinute(nextMessageCreatedAt, currentMessageCreatedAt)
-  )
-
-  const isFirstMessageOfDate =
-    !!currentMessage.createdAt && (!prevMessage || !isSameDateAsPrevMessage)
-
-  return {
-    isSameMinuteAsPrevMessage,
-    isSameMinuteAsNextMessage,
-    isFirstMessageOfDate,
-  }
 }
