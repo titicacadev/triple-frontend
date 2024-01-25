@@ -15,7 +15,6 @@ import {
 
 const CHAT_CONTAINER_STYLES = {
   position: 'relative',
-  minHeight: 46,
   width: '100%',
 } as const
 
