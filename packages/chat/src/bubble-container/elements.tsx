@@ -9,7 +9,7 @@ export const ProfileImage = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px;
   outline-offset: -1px;
   float: left;
 `
