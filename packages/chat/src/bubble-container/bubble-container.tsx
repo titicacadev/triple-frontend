@@ -24,7 +24,7 @@ interface ContainerBaseProp {
   createdAt?: string // Date?
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
-  /** 시간 정보, 안읽음 숫자 등의 정보의 노출 여부 */
+  /** 정보 영역 노출 여부 (시간, 안읽음 등) */
   showInfo?: boolean
   /** 날짜 정보의 노출 여부 */
   showDateInfo?: boolean
