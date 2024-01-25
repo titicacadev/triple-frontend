@@ -162,11 +162,19 @@ export default function Messages<
         !isSameMinuteAsNextMessage
 
       const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
+      const isFirstPendingOrFailedMessageOfDate =
+        listType !== 'normal' && isFirstMessageOfDate
 
       return (
         <Fragment key={id}>
-          {hasDateDivider && message.createdAt && isFirstMessageOfDate ? (
-            <DateDivider date={new Date(message.createdAt)} />
+          {hasDateDivider && isFirstMessageOfDate ? (
+            <DateDivider
+              date={
+                isFirstPendingOrFailedMessageOfDate || !message.createdAt
+                  ? new Date()
+                  : new Date(message.createdAt)
+              }
+            />
           ) : null}
 
           <BubbleContainer
