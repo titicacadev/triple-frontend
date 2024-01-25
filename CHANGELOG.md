@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.18.1
+
+### review
+
+- [review] 좋아요 카운트 버그 수정 [#3115](https://github.com/titicacadev/triple-frontend/pull/3115)
+
 ## v13.18.0
 
 ### chat
@@ -4218,11 +4224,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
