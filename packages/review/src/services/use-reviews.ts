@@ -265,11 +265,19 @@ export function useDeleteReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (variables: DeleteReviewMutationVariables & { resourceId: string }) =>
-      client.DeleteReview(variables),
+    (
+      variables: DeleteReviewMutationVariables & {
+        resourceId: string
+        resourceType: string
+      },
+    ) => client.DeleteReview(variables),
     {
       onSuccess: (data, variables) => {
-        notifyReviewDeleted?.(variables.resourceId, variables.id)
+        notifyReviewDeleted?.(
+          variables.resourceId,
+          variables.id,
+          variables.resourceType,
+        )
 
         const updater = (review: BaseReviewFragment) =>
           review.id !== variables.id

@@ -6,7 +6,6 @@ import {
   useUriHash,
   useEnv,
 } from '@titicaca/react-contexts'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 
 import { useDeleteReviewMutation } from '../services'
@@ -36,7 +35,6 @@ export function MyReviewActionSheet({
   const { appUrlScheme } = useEnv()
   const uriHash = useUriHash()
   const { replace, back } = useHistoryFunctions()
-  const { notifyReviewDeleted } = useTripleClientActions()
 
   const { mutate } = useDeleteReviewMutation()
 
@@ -47,8 +45,7 @@ export function MyReviewActionSheet({
   }
 
   const handleDeleteReview = () => {
-    mutate({ id: reviewId, resourceId })
-    notifyReviewDeleted?.(resourceId, reviewId, resourceType)
+    mutate({ id: reviewId, resourceId, resourceType })
 
     back()
   }
