@@ -67,8 +67,7 @@ export function compareDate<
     isSameMinute(nextMessageCreatedAt, currentMessageCreatedAt)
   )
 
-  const isFirstMessageOfDate =
-    !!currentMessage.createdAt && (!prevMessage || !isSameDateAsPrevMessage)
+  const isFirstMessageOfDate = !prevMessage || !isSameDateAsPrevMessage
 
   return {
     isSameMinuteAsPrevMessage,
