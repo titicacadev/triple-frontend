@@ -30,6 +30,7 @@ export enum TransitionType {
   ReviewThumbnail = 'reviewThumbnail',
   ReviewSelect = 'reviewSelect',
   ReviewCommentSelect = 'reviewCommentSelect',
+  ReviewMenuSelect = 'reviewMenuSelect',
   OpenReviewList = 'openReviewList',
   Article = 'article',
   Tna = 'tna',
@@ -68,6 +69,9 @@ const MODAL_CONTENT: {
   },
   [TransitionType.ReviewCommentSelect]: {
     eventLabel: '리뷰_댓글_선택',
+  },
+  [TransitionType.ReviewMenuSelect]: {
+    eventLabel: '리뷰_메뉴_선택',
   },
   [TransitionType.OpenReviewList]: {
     eventLabel: '리뷰_리스트더보기_선택',

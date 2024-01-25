@@ -194,19 +194,18 @@ export function ReviewElement({
     ]),
   )
 
-  const handleMenuClick = useSessionCallback(
-    useCallback(() => {
-      if (!app) {
-        return
-      }
-
-      if (isMyReview) {
-        push(HASH_MY_REVIEW_ACTION_SHEET)
-      } else {
-        onMenuClick?.(review.id)
-        push(HASH_REVIEW_ACTION_SHEET)
-      }
-    }, [app, isMyReview, onMenuClick, push, review.id]),
+  const handleMenuClick = useAppCallback(
+    TransitionType.ReviewMenuSelect,
+    useSessionCallback(
+      useCallback(() => {
+        if (isMyReview) {
+          push(HASH_MY_REVIEW_ACTION_SHEET)
+        } else {
+          onMenuClick?.(review.id)
+          push(HASH_REVIEW_ACTION_SHEET)
+        }
+      }, [app, isMyReview, onMenuClick, push, review.id]),
+    ),
   )
 
   const handleReviewClick = useAppCallback(
