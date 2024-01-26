@@ -25,6 +25,13 @@ function getServerSnapshot(initialValue: string | undefined) {
 
 export function useSessionStorage(
   key: string,
+): [string | null, (value: string) => void, () => void]
+export function useSessionStorage(
+  key: string,
+  initialValue: string,
+): [string, (value: string) => void, () => void]
+export function useSessionStorage(
+  key: string,
   initialValue?: string,
 ): [string | null, (value: string) => void, () => void] {
   const value = useSyncExternalStore(
