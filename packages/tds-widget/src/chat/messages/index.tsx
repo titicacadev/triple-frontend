@@ -145,11 +145,9 @@ export default function Messages<
         index === 0 ? lastMessageOfPrevList : messages[index - 1]
       const nextMessage = messages[index + 1] || null
 
-      const { isSameSenderAsPrevMessage } = compareSender(
-        prevMessage,
-        message,
-        nextMessage,
-      )
+      const { isSameSenderAsPrevMessage, isSameSenderAsNextMessage } =
+        compareSender(prevMessage, message, nextMessage)
+
       const { isFirstMessageOfDate, isSameMinuteAsNextMessage } = compareDate(
         prevMessage,
         message,
@@ -157,9 +155,9 @@ export default function Messages<
       )
 
       const showTimeInfo =
-        listType === 'normal' &&
-        isSameSenderAsPrevMessage &&
-        (!isSameMinuteAsNextMessage || !nextMessage.createdAt)
+        !isSameSenderAsNextMessage ||
+        !isSameMinuteAsNextMessage ||
+        !nextMessage.createdAt
 
       const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
       const isFirstPendingOrFailedMessageOfDate =
@@ -193,7 +191,7 @@ export default function Messages<
             showInfo={type !== 'product'}
             showProfile={showProfile}
             showDateInfo={!hasDateDivider}
-            showTimeInfo={showTimeInfo}
+            showTimeInfo={listType === 'normal' && showTimeInfo}
             {...(listType === 'failed' && {
               onRetry: () => {
                 onRetry?.(message)
