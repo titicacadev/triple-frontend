@@ -48,7 +48,7 @@ export default function Messages<
   calculateUnreadCount,
   customBubble,
   bubbleStyle,
-  hasDateDivider,
+  hasDateDivider = true,
   hasArrow,
   ...bubbleProps
 }: MessagesProp<Message, User> &
@@ -159,7 +159,7 @@ export default function Messages<
       const showTimeInfo =
         listType === 'normal' &&
         isSameSenderAsPrevMessage &&
-        !isSameMinuteAsNextMessage
+        (!isSameMinuteAsNextMessage || !nextMessage.createdAt)
 
       const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
       const isFirstPendingOrFailedMessageOfDate =
