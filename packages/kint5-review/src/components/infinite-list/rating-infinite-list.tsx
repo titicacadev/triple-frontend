@@ -7,6 +7,7 @@ import type { ExtendInfiniteReviewProps } from './types'
 
 export function RatingReviewsInfinite({
   value: {
+    isGlobal,
     resourceId,
     resourceType,
     regionId,
@@ -37,6 +38,7 @@ export function RatingReviewsInfinite({
 
   return (
     <InfiniteList
+      isGlobal={isGlobal}
       resourceId={resourceId}
       resourceType={resourceType}
       regionId={regionId}

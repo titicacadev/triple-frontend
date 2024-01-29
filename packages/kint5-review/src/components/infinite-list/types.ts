@@ -1,4 +1,5 @@
 export interface InfiniteReviewProps {
+  isGlobal: boolean
   resourceId: string
   resourceType: string
   regionId?: string

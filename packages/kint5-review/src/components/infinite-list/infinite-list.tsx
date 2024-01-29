@@ -5,7 +5,10 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { useDescriptions, useMyReview } from '../../services'
 import { BaseReviewFragment } from '../../data/graphql'
-import { TripleReviewElement } from '../review-element'
+import {
+  TripleGlobalReviewElement,
+  TripleReviewElement,
+} from '../review-element'
 import { MyReviewActionSheet } from '../my-review-action-sheet'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
@@ -13,6 +16,7 @@ import type { SortingType, SortingOption } from '../sorting-context'
 import { useReviewLanguage } from '../language-context'
 
 interface Props {
+  isGlobal: boolean
   resourceId: string
   resourceType: string
   regionId: string | undefined
@@ -29,6 +33,7 @@ interface Props {
 }
 
 export function InfiniteList({
+  isGlobal,
   resourceId,
   resourceType,
   regionId,
@@ -104,11 +109,15 @@ export function InfiniteList({
     )
   }
 
+  const ReviewElement = isGlobal
+    ? TripleGlobalReviewElement
+    : TripleReviewElement
+
   return (
     <>
       <List divided margin={{ top: 26 }} verticalGap={48}>
         {sortedReviews.map((review, i) => (
-          <TripleReviewElement
+          <ReviewElement
             key={i}
             isFullList
             isMyReview={myReviewData.myReview?.id === review.id}

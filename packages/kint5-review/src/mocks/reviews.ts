@@ -101,7 +101,65 @@ export const handlers = {
             resourceId,
             resourceType,
             comment: '리뷰 내용',
-            media: [],
+            media: [
+              {
+                cloudinaryId: '86dc0526-2752-4382-bcf3-a462af6d1f3a',
+                id: 'b6374985-7cca-4b78-bf43-cc6f9d04ecc1',
+                type: 'image',
+                sizes: {
+                  full: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg',
+                  },
+                  large: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg',
+                  },
+                  small_square: {
+                    url: 'https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/86dc0526-2752-4382-bcf3-a462af6d1f3a.jpeg',
+                  },
+                },
+                width: 1078,
+                height: 1440,
+                cloudinaryBucket: 'triple-dev',
+              },
+              {
+                cloudinaryId: '91d9c1d0-300d-4fea-9146-31e339262344',
+                id: '3f66edb6-b97d-420c-bfd4-54e3deb64e0d',
+                type: 'image',
+                sizes: {
+                  full: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/91d9c1d0-300d-4fea-9146-31e339262344.jpeg',
+                  },
+                  large: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/91d9c1d0-300d-4fea-9146-31e339262344.jpeg',
+                  },
+                  small_square: {
+                    url: 'https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/91d9c1d0-300d-4fea-9146-31e339262344.jpeg',
+                  },
+                },
+                width: 1080,
+                height: 1440,
+                cloudinaryBucket: 'triple-dev',
+              },
+              {
+                cloudinaryId: 'b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f',
+                id: '7c6205d7-de16-4451-9057-083001e4bb9d',
+                type: 'image',
+                sizes: {
+                  full: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_2048,w_2048/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg',
+                  },
+                  large: {
+                    url: 'https://media.triple.guide/triple-dev/c_limit,f_auto,h_1024,w_1024/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg',
+                  },
+                  small_square: {
+                    url: 'https://media.triple.guide/triple-dev/c_fill,f_auto,h_256,w_256/b1a6446b-cfb4-4fa9-9b08-d4ceeea6252f.jpeg',
+                  },
+                },
+                width: 1080,
+                height: 1440,
+                cloudinaryBucket: 'triple-dev',
+              },
+            ],
             rating: 3,
             visitDate: null,
             recentTrip: recentTrip ?? false,
