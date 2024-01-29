@@ -1,6 +1,7 @@
 export * from './bubble-icon'
 export * from './calendar-icon'
 export * from './caret-down-icon'
+export * from './caret-left-icon'
 export * from './caret-right-icon'
 export * from './caret-up-icon'
 export * from './check-icon-bold'
