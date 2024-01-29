@@ -1,4 +1,5 @@
 import { useReviewLanguage } from '../language-context'
+import { ReviewMediaPopup } from '../review-media-popup'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
@@ -29,20 +30,25 @@ export function LatestReviews({
     lang,
   })
 
+  const reviews = data?.latestReviews ?? []
+
   return (
-    <ReviewsList
-      isGlobal={isGlobal}
-      resourceId={resourceId}
-      resourceType={resourceType}
-      regionId={regionId}
-      hasMedia={hasMedia}
-      recentTrip={recentTrip}
-      placeholderText={placeholderText}
-      sortingType={sortingType}
-      sortingOption="latest"
-      reviewsCount={reviewsCount}
-      reviews={data?.latestReviews}
-      refetch={refetch}
-    />
+    <>
+      <ReviewsList
+        isGlobal={isGlobal}
+        resourceId={resourceId}
+        resourceType={resourceType}
+        regionId={regionId}
+        hasMedia={hasMedia}
+        recentTrip={recentTrip}
+        placeholderText={placeholderText}
+        sortingType={sortingType}
+        sortingOption="latest"
+        reviewsCount={reviewsCount}
+        reviews={reviews}
+        refetch={refetch}
+      />
+      <ReviewMediaPopup reviews={reviews} />
+    </>
   )
 }

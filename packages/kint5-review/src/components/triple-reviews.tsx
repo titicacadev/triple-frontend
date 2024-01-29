@@ -125,6 +125,7 @@ function TripleReviewsComponent({
 
   const isRatingOption = selectedOption.startsWith('star-rating')
   const value = {
+    isGlobal: false,
     resourceId,
     resourceType,
     regionId,

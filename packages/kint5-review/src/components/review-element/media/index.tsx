@@ -1,11 +1,13 @@
-import { TransitionType } from '@titicaca/modals'
 import { FlexBox } from '@titicaca/kint5-core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useHistoryFunctions,
+} from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'
 
-import { useClientActions } from '../../../services'
+import { HASH_EXTRA_INFO_SPLIT_STRING } from '../../constants'
+import { REVIEW_MEDIA_POPUP_HASH } from '../../review-media-popup'
 
 import { compareMedia } from './compare-media'
 import { MediumWrapper } from './elements'
@@ -25,8 +27,8 @@ function Media({
   allowNavigateImages = true,
   customMediaWrapper: MediaWrapper = DefaultMediaWrapper,
 }: Props) {
+  const { push } = useHistoryFunctions()
   const { trackEvent } = useEventTrackingContext()
-  const { navigateImages } = useClientActions()
 
   const hasVideo = media.some((medium) => medium.type === 'video')
 
@@ -38,16 +40,6 @@ function Media({
   const limit = hasVideo ? 3 : 5
   const length = Math.min(sortedMedia.length, limit)
   const restLength = sortedMedia.length - length
-
-  const onMediumClick = useAppCallback(
-    TransitionType.ReviewThumbnail,
-    (medium: ImageMeta) => {
-      const originalIndex = media.findIndex(
-        (originalMedium) => originalMedium.id === medium.id,
-      )
-      navigateImages(media, originalIndex)
-    },
-  )
 
   if (sortedMedia.length === 0) {
     return null
@@ -76,7 +68,9 @@ function Media({
                 },
               })
 
-              onMediumClick(medium)
+              push(
+                `${REVIEW_MEDIA_POPUP_HASH}${HASH_EXTRA_INFO_SPLIT_STRING}${reviewId}${HASH_EXTRA_INFO_SPLIT_STRING}${index}`,
+              )
             }}
           >
             <Medium medium={medium} />
