@@ -79,7 +79,7 @@ function SentBubbleContainer({
             date={createdAt}
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
-            css={{ marginRight: 8, textAlign: 'right' }}
+            css={{ marginRight: 4, textAlign: 'right' }}
           />
         ) : null}
 
