@@ -14,6 +14,7 @@ export const MH1 = tripleDocumentHeading(
       headlineCss={{
         fontSize: 14,
         color: 'var(--color-kint5-poi-tour)',
+        marginBottom: 7,
       }}
       textCss={{ fontSize: 18 }}
       css={{
