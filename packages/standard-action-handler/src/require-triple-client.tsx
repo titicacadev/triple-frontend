@@ -7,14 +7,17 @@ export default async function requireTripleClient({
   url: { path, query } = {},
   options: { navigate, app, showTransitionModal } = {},
 }: WebActionParams) {
-  if (path === '/web-action/require-triple-client' && query && navigate) {
-    const { url } = qs.parse(query)
+  if (path === '/web-action/require-triple-client') {
     if (!app) {
       if (showTransitionModal) {
         showTransitionModal(TransitionType.General)
         return true
       }
     } else {
+      if (!query) {
+        return true
+      }
+      const { url } = qs.parse(query)
       if (navigate && typeof url === 'string') {
         navigate(url)
         return true
