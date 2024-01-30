@@ -143,7 +143,8 @@ export default function Messages<
 
       const prevMessage =
         index === 0 ? lastMessageOfPrevList : messages[index - 1]
-      const nextMessage = messages[index + 1] || null
+      const nextMessage =
+        index < messages.length - 1 ? messages[index + 1] : null
 
       const { isSameSenderAsPrevMessage, isSameSenderAsNextMessage } =
         compareSender(prevMessage, message, nextMessage)
@@ -157,7 +158,7 @@ export default function Messages<
       const showTimeInfo =
         !isSameSenderAsNextMessage ||
         !isSameMinuteAsNextMessage ||
-        !nextMessage.createdAt
+        !nextMessage?.createdAt
 
       const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
       const isFirstPendingOrFailedMessageOfDate =
