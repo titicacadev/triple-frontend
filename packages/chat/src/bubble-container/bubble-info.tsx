@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Container, Text } from '@titicaca/core-elements'
 import { format, setDefaultOptions } from 'date-fns'
 import { ko } from 'date-fns/locale'
+import { ReactNode } from 'react'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -19,15 +20,19 @@ export function BubbleInfo({
   date,
   showTimeInfo = true,
   showDateInfo = false,
+  sideActions: SideActions,
   ...props
 }: {
   unreadCount: number | null
   date: string
   showTimeInfo?: boolean
   showDateInfo?: boolean
+  sideActions?: ReactNode
 }) {
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
+      {SideActions || null}
+
       {unreadCount ? (
         <UnreadMessageCountText>{unreadCount}</UnreadMessageCountText>
       ) : null}

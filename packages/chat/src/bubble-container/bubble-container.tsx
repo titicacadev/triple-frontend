@@ -29,6 +29,8 @@ interface ContainerBaseProp {
   showDateInfo?: boolean
   /** 시간 정보의 노출 여부 */
   showTimeInfo?: boolean
+  /** 메세지의 bubbleInfo 영역에 들어갈 컴포넌트 */
+  sideActions?: ReactNode
   /** 메세지 하단의 액션 영역에 들어갈 컴포넌트 */
   bottomActions?: ReactNode
 }
@@ -51,6 +53,7 @@ function SentBubbleContainer({
   showInfo = true,
   showDateInfo,
   showTimeInfo,
+  sideActions,
   bottomActions: BottomActions,
   children,
   ...props
@@ -75,6 +78,7 @@ function SentBubbleContainer({
             date={createdAt}
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
+            sideActions={sideActions}
             css={{ marginRight: 4, textAlign: 'right' }}
           />
         ) : null}
@@ -110,6 +114,7 @@ function ReceivedBubbleContainer({
   showDateInfo,
   showTimeInfo,
   showProfile = true,
+  sideActions,
   bottomActions: BottomActions,
   children,
   ...props
@@ -136,6 +141,7 @@ function ReceivedBubbleContainer({
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
             date={createdAt}
+            sideActions={sideActions}
             css={{ marginLeft: 4, textAlign: 'left' }}
           />
         ) : null}
