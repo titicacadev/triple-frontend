@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
@@ -10,7 +10,6 @@ import {
   ProfileName,
   RetryButton,
   SendingFailureHandlerContainer,
-  Thanks,
 } from './elements'
 
 const CHAT_CONTAINER_STYLES = {
@@ -30,10 +29,8 @@ interface ContainerBaseProp {
   showDateInfo?: boolean
   /** 시간 정보의 노출 여부 */
   showTimeInfo?: boolean
-  /** 좋아요 정보 */
-  thanks?: { count: number; haveMine: boolean }
-  /** 좋아요 아이콘 클릭 시 작동하는 함수 */
-  onThanksClick?: () => void
+  /** 메세지 하단의 액션 영역에 들어갈 컴포넌트 */
+  bottomActions?: ReactNode
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -54,8 +51,7 @@ function SentBubbleContainer({
   showInfo = true,
   showDateInfo,
   showTimeInfo,
-  thanks,
-  onThanksClick,
+  bottomActions: BottomActions,
   children,
   ...props
 }: SentBubbleContainerProp) {
@@ -86,14 +82,7 @@ function SentBubbleContainer({
         {children}
       </div>
 
-      {thanks && onThanksClick ? (
-        <Thanks
-          count={thanks.count}
-          haveMine={thanks.haveMine}
-          onClick={onThanksClick}
-          css={{ display: 'inline-flex', marginTop: 6, marginRight: 10 }}
-        />
-      ) : null}
+      {BottomActions || null}
     </Container>
   )
 }
@@ -121,8 +110,7 @@ function ReceivedBubbleContainer({
   showDateInfo,
   showTimeInfo,
   showProfile = true,
-  thanks,
-  onThanksClick,
+  bottomActions: BottomActions,
   children,
   ...props
 }: ReceivedBubbleContainerProp) {
@@ -152,14 +140,7 @@ function ReceivedBubbleContainer({
           />
         ) : null}
 
-        {thanks && onThanksClick ? (
-          <Thanks
-            count={thanks.count}
-            haveMine={thanks.haveMine}
-            onClick={onThanksClick}
-            css={{ marginTop: 6 }}
-          />
-        ) : null}
+        {BottomActions || null}
       </Container>
     </Container>
   )

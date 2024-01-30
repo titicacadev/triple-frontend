@@ -12,7 +12,6 @@ export interface MessageBase<User extends UserInterface> {
   createdAt?: string
   blinded?: boolean
   deleted?: boolean
-  thanks?: { count: number; haveMine: boolean }
 }
 
 export type MessageInterface<

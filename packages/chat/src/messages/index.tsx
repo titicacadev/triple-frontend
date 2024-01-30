@@ -23,7 +23,6 @@ interface MessagesProp<
   me: UserInterface
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
-  onThanksClick?: (message: MessageInterface<Message, User>) => void
   calculateUnreadCount?: (
     message: MessageInterface<Message, User>,
   ) => number | null
@@ -44,7 +43,6 @@ export default function Messages<
   me,
   onRetry,
   onRetryCancel,
-  onThanksClick,
   calculateUnreadCount,
   customBubble,
   bubbleStyle,
@@ -138,7 +136,7 @@ export default function Messages<
     lastMessageOfPrevList: MessageInterface<Message, User> | null
   }) {
     return messages.map((message, index) => {
-      const { id, sender, createdAt, type, thanks } = message
+      const { id, sender, createdAt, type } = message
       const my = sender.id === me.id
 
       const prevMessage =
@@ -201,10 +199,6 @@ export default function Messages<
                 onRetryCancel?.(message)
               },
             })}
-            thanks={thanks}
-            onThanksClick={
-              thanks && onThanksClick ? () => onThanksClick(message) : undefined
-            }
             css={{
               marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
             }}
