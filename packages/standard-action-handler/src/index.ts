@@ -10,6 +10,7 @@ import imageDownload from './image-download'
 import scrollToElement from './scroll-to-element'
 import converse from './converse'
 import { ContextOptions } from './types'
+import requireTripleClient from './require-triple-client'
 
 export function initialize(options: ContextOptions) {
   const handler = new Handler({
@@ -24,6 +25,7 @@ export function initialize(options: ContextOptions) {
       imageDownload,
       scrollToElement,
       converse,
+      requireTripleClient,
     ],
     options,
   })
