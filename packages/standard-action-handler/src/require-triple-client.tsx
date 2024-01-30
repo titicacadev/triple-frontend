@@ -11,7 +11,6 @@ export default async function requireTripleClient({
     if (!app) {
       if (showTransitionModal) {
         showTransitionModal(TransitionType.General)
-        return true
       }
     } else {
       if (!query) {
