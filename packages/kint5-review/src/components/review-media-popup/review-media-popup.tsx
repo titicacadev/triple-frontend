@@ -31,6 +31,7 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
   )
   const targetReview = reviews.find(({ id }) => id === reviewId)
   const media = sortVideosToFront(targetReview?.media ?? [])
+  const numOfMedia = media.length
 
   const handleMediaGridClick = (clickedMediaIndex: number) => {
     setCurrentMediaIndex(clickedMediaIndex)
@@ -55,11 +56,29 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
         centerContent={
           currentMediaIndex !== null ? (
             <FlexBox flex alignItems="center">
-              <Text>사진&nbsp;</Text>
-              <Text css={{ color: 'var(--color-kint5-gray20)' }}>
-                {media.length}
+              <Text>
+                {renderMediaGrid ? '사진' : currentMediaIndex + 1}&nbsp;
+              </Text>
+              <Text css={{ color: 'var(--color-kint5-gray40)' }}>
+                {renderMediaGrid ? '' : '/ '}
+                {numOfMedia}
               </Text>
             </FlexBox>
+          ) : null
+        }
+        rightContent={
+          !renderMediaGrid && numOfMedia > 1 ? (
+            <button
+              onClick={() => setRenderMediaGrid(true)}
+              aria-label="전체 리뷰 미디어 보기"
+            >
+              <img
+                src="https://assets.triple.guide/images/btn-end-view-all@3x.png"
+                alt="전체 리뷰 미디어 보기"
+                width={34}
+                height={34}
+              />
+            </button>
           ) : null
         }
       />
