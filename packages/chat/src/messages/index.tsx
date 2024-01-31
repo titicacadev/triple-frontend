@@ -1,4 +1,4 @@
-import { ComponentType, Fragment, ReactNode } from 'react'
+import { ComponentType, Fragment } from 'react'
 import { CSSProp } from 'styled-components'
 
 import BubbleContainer from '../bubble-container/bubble-container'
@@ -31,8 +31,8 @@ interface MessagesProp<
     sent?: { css?: CSSProp; alteredTextColor?: string }
   }
   hasDateDivider?: boolean
-  bottomActions?: ReactNode
-  sideActions?: ReactNode
+  bottomActions?: ComponentType<{ message: MessageInterface<Message, User> }>
+  sideActions?: ComponentType<{ message: MessageInterface<Message, User> }>
 }
 
 export default function Messages<
@@ -50,8 +50,8 @@ export default function Messages<
   bubbleStyle,
   hasDateDivider = true,
   hasArrow,
-  bottomActions,
-  sideActions,
+  bottomActions: BottomActions,
+  sideActions: SideActions,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -203,8 +203,12 @@ export default function Messages<
                 onRetryCancel?.(message)
               },
             })}
-            bottomActions={bottomActions}
-            sideActions={sideActions}
+            bottomActions={
+              BottomActions ? <BottomActions message={message} /> : undefined
+            }
+            sideActions={
+              SideActions ? <SideActions message={message} /> : undefined
+            }
             css={{
               marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
             }}
