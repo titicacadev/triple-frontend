@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.18.2
+
+### modals
+
+- [Review] notifyReviewDeleted 중복 호출 제거 및 리뷰 메뉴 선택 시 앱 설치 유도팝업 노출 [#3118](https://github.com/titicacadev/triple-frontend/pull/3118)
+
+### review
+
+- [Review] notifyReviewDeleted 중복 호출 제거 및 리뷰 메뉴 선택 시 앱 설치 유도팝업 노출 [#3118](https://github.com/titicacadev/triple-frontend/pull/3118)
+
 ## v13.18.1
 
 ### review
