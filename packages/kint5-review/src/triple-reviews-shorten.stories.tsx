@@ -50,7 +50,7 @@ const meta: Meta<typeof TripleReviewsShorten> = {
     (Story) => (
       <FilterProvider>
         <SortingOptionsProvider resourceId="">
-          <ReviewLanguageProvider lang="ko">
+          <ReviewLanguageProvider reviewLang="ko">
             <Story />
           </ReviewLanguageProvider>
         </SortingOptionsProvider>

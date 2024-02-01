@@ -57,7 +57,7 @@ export function TripleGlobalReviews({
           resourceId={resourceId}
           initialSortingOption="latest"
         >
-          <ReviewLanguageProvider lang={lang}>
+          <ReviewLanguageProvider reviewLang={lang}>
             <TripleGlobalReviewsComponent
               resourceId={resourceId}
               resourceType={resourceType}
@@ -86,7 +86,7 @@ function TripleGlobalReviewsComponent({
 >) {
   const { t } = useTranslation('common-web')
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { selectedOption } = useReviewSortingOptions()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -99,7 +99,7 @@ function TripleGlobalReviewsComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
-        lang,
+        lang: reviewLang,
       },
       initialReviewsCount,
     )

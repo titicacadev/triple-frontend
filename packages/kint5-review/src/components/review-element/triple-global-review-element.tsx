@@ -81,7 +81,7 @@ export function TripleGlobalReviewElement({
 }: TripleGlobalReviewElementProps) {
   const { t } = useTranslation('common-web')
 
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -89,8 +89,8 @@ export function TripleGlobalReviewElement({
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview } = useLikeReviewMutation({ lang })
-  const { mutate: unlikeReview } = useUnlikeReviewMutation({ lang })
+  const { mutate: likeReview } = useLikeReviewMutation({ lang: reviewLang })
+  const { mutate: unlikeReview } = useUnlikeReviewMutation({ lang: reviewLang })
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 

@@ -8,7 +8,7 @@ const meta: Meta<typeof ReviewsPlaceholder> = {
   component: ReviewsPlaceholder,
   decorators: [
     (Story) => (
-      <ReviewLanguageProvider lang="ja">
+      <ReviewLanguageProvider reviewLang="ja">
         <Story />
       </ReviewLanguageProvider>
     ),

@@ -48,7 +48,7 @@ export function InfiniteList({
   fetchNextPage,
   refetch,
 }: Props) {
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
     undefined,
   )
@@ -58,12 +58,12 @@ export function InfiniteList({
   const { data: myReviewData } = useMyReview({
     resourceId,
     resourceType,
-    lang,
+    lang: reviewLang,
   })
   const { data: descriptionsData } = useDescriptions({
     resourceId,
     resourceType,
-    lang,
+    lang: reviewLang,
   })
 
   const sortedReviews = useMemo(() => {
@@ -151,7 +151,7 @@ export function InfiniteList({
           resourceType={resourceType}
           resourceId={resourceId}
           regionId={regionId}
-          lang={lang}
+          lang={reviewLang}
         />
       ) : null}
 
