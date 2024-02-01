@@ -219,11 +219,7 @@ export function TripleReviewElement({
               margin: '16px 0 0',
             }}
           >
-            <Media
-              allowNavigateImages={false}
-              media={media}
-              reviewId={review.id}
-            />
+            <Media media={media} reviewId={review.id} />
           </Container>
         ) : null}
         <FlexBox
