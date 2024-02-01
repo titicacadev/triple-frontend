@@ -32,6 +32,7 @@ interface TripleReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
+  lang: string
   containerCss?: CSSObject
 }
 
@@ -49,6 +50,7 @@ export function TripleReviewsShorten({
   placeholderText,
   receiverId,
   containerCss,
+  lang,
 }: TripleReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -62,7 +64,7 @@ export function TripleReviewsShorten({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewLanguageProvider reviewLang="ko">
+          <ReviewLanguageProvider reviewLang="ko" userLang={lang}>
             <TripleReviewsShortenComponent
               resourceId={resourceId}
               resourceType={resourceType}
@@ -96,7 +98,7 @@ function TripleReviewsShortenComponent({
   containerCss,
 }: Omit<
   TripleReviewsShortenProps,
-  'initialRecentTrip' | 'initialSortingOption'
+  'initialRecentTrip' | 'initialSortingOption' | 'lang'
 >) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()

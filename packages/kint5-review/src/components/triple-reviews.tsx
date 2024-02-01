@@ -30,6 +30,7 @@ interface TripleReviewsProps {
   initialSortingOption?: SortingOption
   sortingType?: SortingType
   placeholderText?: string
+  lang: string
   receiverId?: string
 }
 
@@ -44,6 +45,7 @@ export function TripleReviews({
   sortingType = 'poi',
   placeholderText,
   receiverId,
+  lang,
 }: TripleReviewsProps) {
   return (
     <LoginCtaModalProvider>
@@ -58,7 +60,7 @@ export function TripleReviews({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewLanguageProvider reviewLang="ko">
+          <ReviewLanguageProvider reviewLang="ko" userLang={lang}>
             <TripleReviewsComponent
               resourceId={resourceId}
               resourceType={resourceType}
@@ -88,7 +90,10 @@ function TripleReviewsComponent({
   initialReviewsCount,
   placeholderText,
   sortingType,
-}: Omit<TripleReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
+}: Omit<
+  TripleReviewsProps,
+  'initialRecentTrip' | 'initialSortingOption' | 'lang'
+>) {
   const { t } = useTranslation('common-web')
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { reviewLang } = useReviewLanguage()

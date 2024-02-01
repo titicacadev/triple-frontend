@@ -2,6 +2,7 @@ import { PropsWithChildren, createContext, useContext } from 'react'
 
 interface ReviewLanguageContextValue {
   reviewLang: string
+  userLang: string
 }
 
 const ReviewLanguageContext = createContext<ReviewLanguageContextValue | null>(
@@ -11,9 +12,10 @@ const ReviewLanguageContext = createContext<ReviewLanguageContextValue | null>(
 export function ReviewLanguageProvider({
   children,
   reviewLang,
+  userLang,
 }: PropsWithChildren<ReviewLanguageContextValue>) {
   return (
-    <ReviewLanguageContext.Provider value={{ reviewLang }}>
+    <ReviewLanguageContext.Provider value={{ reviewLang, userLang }}>
       {children}
     </ReviewLanguageContext.Provider>
   )
