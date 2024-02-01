@@ -39,7 +39,7 @@ export const FullListButton = ({
   sortingType,
   sortingOption,
 }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common-web')
   const { userLang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
