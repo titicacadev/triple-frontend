@@ -158,7 +158,8 @@ export default function Messages<
       const showTimeInfo =
         !isSameSenderAsNextMessage ||
         !isSameMinuteAsNextMessage ||
-        !nextMessage?.createdAt
+        !nextMessage?.createdAt ||
+        nextMessage?.type === 'product'
 
       const showProfile = isFirstMessageOfDate || !isSameSenderAsPrevMessage
       const isFirstPendingOrFailedMessageOfDate =
