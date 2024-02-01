@@ -52,6 +52,7 @@ export type BubbleUIProps = (
 ) & {
   id: string
   my: boolean
+  created?: boolean
   blinded?: boolean
   deleted?: boolean
   unfriended?: boolean
@@ -76,6 +77,8 @@ export type BubbleUIProps = (
   appUrlScheme?: string
   hasArrow?: boolean
   alteredTextColor?: string
+  fullTextViewAvailable?: boolean
+  onOpenMenu?: () => void
 }
 
 export default function BubbleUI({
@@ -83,6 +86,7 @@ export default function BubbleUI({
   value,
   id,
   my,
+  created,
   blinded,
   deleted,
   unfriended,
@@ -99,6 +103,8 @@ export default function BubbleUI({
   appUrlScheme,
   hasArrow,
   alteredTextColor,
+  fullTextViewAvailable = false,
+  onOpenMenu,
   ...props
 }: BubbleUIProps) {
   if (blinded || deleted || unfriended) {
@@ -127,9 +133,12 @@ export default function BubbleUI({
           id={id}
           my={my}
           message={value.message}
+          created={created}
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
+          onOpenMenu={onOpenMenu}
           hasArrow={hasArrow}
+          fullTextViewAvailable={fullTextViewAvailable}
           {...props}
         />
       )
