@@ -34,6 +34,8 @@ interface ContainerBaseProp {
   thanks?: { count: number; haveMine: boolean }
   /** 좋아요 아이콘 클릭 시 작동하는 함수 */
   onThanksClick?: () => void
+  /** 답장하기 아이콘 클릭 시 작동하는 함수 */
+  onReplyClick?: () => void
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -56,6 +58,7 @@ function SentBubbleContainer({
   showTimeInfo,
   thanks,
   onThanksClick,
+  onReplyClick,
   children,
   ...props
 }: SentBubbleContainerProp) {
@@ -75,10 +78,12 @@ function SentBubbleContainer({
 
         {createdAt && showInfo ? (
           <BubbleInfo
+            align="right"
             unreadCount={unreadCount}
             date={createdAt}
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
+            onReplyClick={onReplyClick}
             css={{ marginRight: 4, textAlign: 'right' }}
           />
         ) : null}
@@ -123,6 +128,7 @@ function ReceivedBubbleContainer({
   showProfile = true,
   thanks,
   onThanksClick,
+  onReplyClick,
   children,
   ...props
 }: ReceivedBubbleContainerProp) {
@@ -144,9 +150,11 @@ function ReceivedBubbleContainer({
 
         {createdAt && showInfo ? (
           <BubbleInfo
+            align="left"
             unreadCount={unreadCount}
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
+            onReplyClick={onReplyClick}
             date={createdAt}
             css={{ marginLeft: 4, textAlign: 'left' }}
           />
