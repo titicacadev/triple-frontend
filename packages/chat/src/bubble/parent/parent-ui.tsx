@@ -1,4 +1,4 @@
-import { MetaDataInterface } from '../../types'
+import { MetaDataInterface, UserInterface } from '../../types'
 import {
   DEFAULT_MAX_USERNAME_LENGTH,
   formatUsername,
@@ -8,7 +8,7 @@ import ParentMessage from './parent-message'
 
 interface ParentMessageInterface {
   id: string
-  sender: { name: string; unregistered: boolean }
+  sender: UserInterface
 }
 export interface TextParentMessage extends ParentMessageInterface {
   type: 'text'
@@ -36,7 +36,7 @@ export default function ParentMessageUI({
   sender,
 }: ParentMessageUIProp) {
   const senderName = formatUsername({
-    name: sender.name,
+    name: sender.profile.name,
     unregistered: sender.unregistered,
     maxLength: DEFAULT_MAX_USERNAME_LENGTH,
   })

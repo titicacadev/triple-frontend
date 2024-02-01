@@ -39,7 +39,7 @@ export const Image = {
   args: {
     id: 'parent-message',
     type: 'image',
-    sender: { name: '트리플', unregistered: false },
+    sender: { profile: { name: '트리플', photo: '' }, unregistered: false },
     value: {
       images: [
         {
@@ -70,7 +70,7 @@ export const Text = {
   args: {
     id: 'parent-message',
     type: 'text',
-    sender: { name: '트리플', unregistered: false },
+    sender: { profile: { name: '트리플' }, unregistered: false },
     value: {
       message: '반가워요',
     },

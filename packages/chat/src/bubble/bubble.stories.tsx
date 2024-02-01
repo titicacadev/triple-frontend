@@ -46,7 +46,7 @@ export const Text = {
       blinded: false,
       value: { message: '안녕하세요' },
       sender: {
-        name: '트리플',
+        profile: { name: '트리플' },
         unregistered: false,
       },
     },
