@@ -72,6 +72,9 @@ export type TextBubbleProp = {
   message: string
   my: boolean
   parentMessage?: ParentMessageUIProp
+  created?: boolean
+  fullTextViewAvailable?: boolean
+  onOpenMenu?: () => void
 } & BubbleProp
 
 export type RichBubbleProp = {
