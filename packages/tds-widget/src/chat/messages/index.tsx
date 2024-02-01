@@ -24,6 +24,7 @@ interface MessagesProp<
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
+  onReplyClick?: (message: MessageInterface<Message, User>) => void
   calculateUnreadCount?: (
     message: MessageInterface<Message, User>,
   ) => number | null
@@ -45,6 +46,7 @@ export default function Messages<
   onRetry,
   onRetryCancel,
   onThanksClick,
+  onReplyClick,
   calculateUnreadCount,
   customBubble,
   bubbleStyle,
@@ -206,6 +208,7 @@ export default function Messages<
             onThanksClick={
               thanks && onThanksClick ? () => onThanksClick(message) : undefined
             }
+            onReplyClick={() => onReplyClick?.(message)}
             css={{
               marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
             }}
