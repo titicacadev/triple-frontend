@@ -199,4 +199,8 @@ export const jaCommonWeb = {
   'byeoljeom-najeunsun': '星の低い順',
   jjim: '保存',
   'jjim-cwiso': '保存を取り消す',
+  'hyeonjiin-ribyu': '現地人レビュー',
+  'totalreviewscount-gaeyi--ribyu': '{{totalReviewsCount}}個のレビュー',
+  'totalreviewscount-gaeyi-hyeonjiin-ribyu':
+    '{{totalReviewsCount}}個の 現地人レビュー',
 }

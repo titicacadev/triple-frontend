@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/next-i18next'
 import { Button } from '@titicaca/kint5-core-elements'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { TransitionType } from '@titicaca/modals'
