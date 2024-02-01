@@ -39,6 +39,8 @@ interface MessagesProp<
   }
   hasDateDivider?: boolean
   messageRefCallback?: (id: MessageInterface<Message, User>['id']) => void
+  fullTextViewAvailable?: boolean
+  onOpenMenu?: (message: MessageInterface<Message, User>) => void
 }
 
 export default function Messages<
@@ -60,6 +62,8 @@ export default function Messages<
   hasDateDivider = true,
   hasArrow,
   messageRefCallback,
+  fullTextViewAvailable,
+  onOpenMenu,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -82,7 +86,8 @@ export default function Messages<
     my: boolean
     hasArrow?: boolean
   }) {
-    const { id, sender, type, value, blinded, deleted, ...rest } = message
+    const { id, sender, type, value, blinded, deleted, createdAt, ...rest } =
+      message
 
     const CustomBubble = customBubble?.[type]
     if (CustomBubble) {
@@ -120,6 +125,7 @@ export default function Messages<
         key={id}
         id={id.toString()}
         my={my}
+        created={!!createdAt}
         blinded={blinded}
         deleted={deleted}
         unfriended={sender.unfriended}
@@ -131,6 +137,8 @@ export default function Messages<
             : bubbleStyle?.received?.alteredTextColor
         }
         hasArrow={hasArrow}
+        onOpenMenu={() => onOpenMenu?.(message)}
+        fullTextViewAvailable={fullTextViewAvailable}
         css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
         {...rest}
         {...bubbleProps}
