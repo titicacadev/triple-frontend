@@ -60,7 +60,7 @@ export function TripleGlobalReviewsShorten({
           resourceId={resourceId}
           initialSortingOption="latest"
         >
-          <ReviewLanguageProvider reviewLang={lang}>
+          <ReviewLanguageProvider reviewLang={lang} userLang={lang}>
             <TripleGlobalReviewsShortenComponent
               resourceId={resourceId}
               resourceType={resourceType}

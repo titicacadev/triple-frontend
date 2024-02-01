@@ -8,7 +8,7 @@ const meta: Meta<typeof ReviewsPlaceholder> = {
   component: ReviewsPlaceholder,
   decorators: [
     (Story) => (
-      <ReviewLanguageProvider reviewLang="ja">
+      <ReviewLanguageProvider reviewLang="ja" userLang="ja">
         <Story />
       </ReviewLanguageProvider>
     ),
@@ -23,7 +23,6 @@ export const Basic: StoryObj<typeof ReviewsPlaceholder> = {
     recentTrip: false,
     hasReviews: false,
     isMorePage: false,
-    lang: 'ko',
   },
 }
 

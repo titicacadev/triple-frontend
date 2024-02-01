@@ -57,7 +57,7 @@ export function TripleGlobalReviews({
           resourceId={resourceId}
           initialSortingOption="latest"
         >
-          <ReviewLanguageProvider reviewLang={lang}>
+          <ReviewLanguageProvider reviewLang={lang} userLang={lang}>
             <TripleGlobalReviewsComponent
               resourceId={resourceId}
               resourceType={resourceType}
