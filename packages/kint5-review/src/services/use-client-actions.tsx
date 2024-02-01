@@ -53,6 +53,7 @@ export function useClientActions() {
         sortingType,
         sortingOption,
         lang,
+        reviewLang,
       }: {
         regionId?: string
         resourceId: string
@@ -62,6 +63,7 @@ export function useClientActions() {
         sortingType?: SortingType
         sortingOption: SortingOption
         lang: string
+        reviewLang: string
       }) {
         const params = qs.stringify({
           region_id: regionId,
@@ -73,6 +75,7 @@ export function useClientActions() {
           has_media: hasMedia,
           opener_id: getWindowId && getWindowId(),
           lang,
+          isGlobalReview: reviewLang !== 'ko',
         })
 
         navigate(

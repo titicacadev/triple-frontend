@@ -68,7 +68,7 @@ export function ReviewsPlaceholder({
   sortingType,
   sortingOption,
 }: ReviewsPlaceholderProps) {
-  const { reviewLang } = useReviewLanguage()
+  const { reviewLang, userLang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { writeReview, navigateReviewList } = useClientActions()
 
@@ -83,7 +83,8 @@ export function ReviewsPlaceholder({
           recentTrip: false,
           sortingType,
           sortingOption,
-          lang: reviewLang,
+          reviewLang,
+          lang: userLang,
         })
       }, [
         navigateReviewList,
@@ -92,6 +93,7 @@ export function ReviewsPlaceholder({
         sortingType,
         sortingOption,
         reviewLang,
+        userLang,
       ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
