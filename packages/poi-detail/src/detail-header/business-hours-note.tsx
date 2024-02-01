@@ -5,6 +5,9 @@ import { Container, FlexBox, Text } from '@titicaca/core-elements'
 import { TimeIcon, RightArrowIcon } from './business-hours-icons'
 
 const IconBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 16px;
   height: 16px;
 `
