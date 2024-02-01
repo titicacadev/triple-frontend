@@ -40,7 +40,7 @@ export const FullListButton = ({
   sortingOption,
 }: Props) => {
   const { t } = useTranslation()
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
 
@@ -56,7 +56,7 @@ export const FullListButton = ({
           recentTrip,
           sortingType,
           sortingOption,
-          lang,
+          lang: reviewLang,
         })
       }, [
         navigateReviewList,
@@ -67,7 +67,7 @@ export const FullListButton = ({
         recentTrip,
         sortingType,
         sortingOption,
-        lang,
+        reviewLang,
       ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),

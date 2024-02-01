@@ -23,7 +23,7 @@ export function RatingReviewsInfinite({
 }) {
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { data, hasNextPage, fetchNextPage, refetch } =
     useInfiniteRatingReviews({
       resourceId,
@@ -33,7 +33,7 @@ export function RatingReviewsInfinite({
       sortBy: {
         rating: sort,
       },
-      lang,
+      lang: reviewLang,
     })
 
   return (

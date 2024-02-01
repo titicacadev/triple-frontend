@@ -62,7 +62,7 @@ export function TripleReviewsShorten({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewLanguageProvider lang="ko">
+          <ReviewLanguageProvider reviewLang="ko">
             <TripleReviewsShortenComponent
               resourceId={resourceId}
               resourceType={resourceType}
@@ -100,7 +100,7 @@ function TripleReviewsShortenComponent({
 >) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { t } = useTranslation('common-web')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -113,7 +113,7 @@ function TripleReviewsShortenComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
-        lang,
+        lang: reviewLang,
       },
       initialReviewsCount,
     )

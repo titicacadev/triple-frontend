@@ -23,7 +23,7 @@ export function RatingReviews({
 }) {
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { data, refetch } = useRatingReviews({
     resourceId,
     resourceType,
@@ -32,7 +32,7 @@ export function RatingReviews({
     sortBy: {
       rating: sort,
     },
-    lang,
+    lang: reviewLang,
   })
 
   return (

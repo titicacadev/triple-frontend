@@ -17,7 +17,7 @@ interface Props {
 
 export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   const { t } = useTranslation('common-web')
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { trackEvent } = useEventTrackingContext()
   const { writeReview } = useClientActions()
 
@@ -37,9 +37,16 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
           resourceType,
           resourceId,
           regionId,
-          lang,
+          lang: reviewLang,
         })
-      }, [trackEvent, resourceId, writeReview, resourceType, regionId, lang]),
+      }, [
+        trackEvent,
+        resourceId,
+        writeReview,
+        resourceType,
+        regionId,
+        reviewLang,
+      ]),
       { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
   )

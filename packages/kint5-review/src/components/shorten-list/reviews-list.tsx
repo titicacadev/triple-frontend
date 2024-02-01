@@ -44,7 +44,7 @@ export function ReviewsList({
   reviews,
   refetch,
 }: Props) {
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
     undefined,
   )
@@ -54,12 +54,12 @@ export function ReviewsList({
   const { data: myReviewData } = useMyReview({
     resourceId,
     resourceType,
-    lang,
+    lang: reviewLang,
   })
   const { data: descriptionsData } = useDescriptions({
     resourceId,
     resourceType,
-    lang,
+    lang: reviewLang,
   })
 
   const sortedReviews = useMemo(() => {
@@ -150,7 +150,7 @@ export function ReviewsList({
           resourceType={resourceType}
           resourceId={resourceId}
           regionId={regionId}
-          lang={lang}
+          lang={reviewLang}
         />
       ) : null}
 

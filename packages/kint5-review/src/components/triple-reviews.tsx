@@ -58,7 +58,7 @@ export function TripleReviews({
           resourceId={resourceId}
           initialSortingOption={initialSortingOption}
         >
-          <ReviewLanguageProvider lang="ko">
+          <ReviewLanguageProvider reviewLang="ko">
             <TripleReviewsComponent
               resourceId={resourceId}
               resourceType={resourceType}
@@ -91,7 +91,7 @@ function TripleReviewsComponent({
 }: Omit<TripleReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { t } = useTranslation('common-web')
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { selectedOption } = useReviewSortingOptions()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
@@ -104,7 +104,7 @@ function TripleReviewsComponent({
         resourceType,
         recentTrip: isRecentTrip,
         hasMedia: isMediaCollection,
-        lang,
+        lang: reviewLang,
       },
       initialReviewsCount,
     )

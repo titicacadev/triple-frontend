@@ -21,13 +21,13 @@ export function LatestReviews({
 }: {
   value: ShortenReview & { sortingType?: SortingType }
 }) {
-  const { lang } = useReviewLanguage()
+  const { reviewLang } = useReviewLanguage()
   const { data, refetch } = useLatestReviews({
     resourceId,
     resourceType,
     recentTrip,
     hasMedia,
-    lang,
+    lang: reviewLang,
   })
 
   const reviews = data?.latestReviews ?? []
