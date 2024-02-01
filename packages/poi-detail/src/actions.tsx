@@ -57,11 +57,12 @@ function Actions({
   const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useLocalStorage(
     REVIEW_TOOLTIP_EXPOSED,
   )
+
   const isReviewTooltipExposedCopy = useRef(isReviewTooltipExposed)
 
   useEffect(() => {
     setIsReviewTooltipExposed('true')
-  }, [setIsReviewTooltipExposed])
+  }, [])
 
   return (
     <Section {...props}>
