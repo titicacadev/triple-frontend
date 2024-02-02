@@ -20,7 +20,7 @@ export default function useHandleAddPoiToTrip(regionId?: string) {
       navigate(
         generateUrl({
           scheme: appUrlScheme,
-          path: '/action/add_trip_plan',
+          path: '/action/add_trip_schedule',
           query: qs.stringify({
             region_id: regionId,
             pois,
