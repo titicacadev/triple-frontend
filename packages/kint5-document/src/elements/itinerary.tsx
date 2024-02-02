@@ -97,19 +97,16 @@ export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { t } = useTranslation('common-web')
 
-  const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
-    useItinerary(value)
+  const { courses, poiIds, hasItineraries, hideAddButton } = useItinerary(value)
   const addPoisToTrip = useHandleAddPoisToTrip()
   const navigate = useNavigate()
 
   const generatePoiClickHandler = useCallback(
     ({
-      regionId,
       type,
       id,
       name,
     }: {
-      regionId: string
       type: ItineraryItemType['poi']['type']
       id: string
       name: string
@@ -124,18 +121,16 @@ export default function ItineraryElement({ value }: Props) {
             type,
           },
         })
-        navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
+        navigate(`/pois/${id}`)
       },
     [navigate, trackEvent],
   )
 
   const handleMarkerClick = useCallback(
-    ({ id, type, source }: ItineraryItemType['poi']) => {
-      navigate(
-        `${source?.regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`,
-      )
+    ({ id }: ItineraryItemType['poi']) => {
+      navigate(`/poi/${id}`)
     },
-    [navigate, regionId],
+    [navigate],
   )
 
   const handleSaveToItinerary = useCallback(() => {
@@ -164,7 +159,6 @@ export default function ItineraryElement({ value }: Props) {
           {courses.map((course, index) => {
             const {
               id,
-              regionId,
               name,
               type,
               description,
@@ -224,7 +218,6 @@ export default function ItineraryElement({ value }: Props) {
                   flexGrow={1}
                   as="a"
                   onClick={generatePoiClickHandler({
-                    regionId,
                     type,
                     id,
                     name,
