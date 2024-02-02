@@ -9,7 +9,7 @@ import { useNavigate } from '@titicaca/router'
 /**
  * TODO: hotels-web, content-web 일정추가 액션 중복코드
  */
-export default function useHandleAddPoiToTrip(regionId?: string) {
+export default function useHandleAddPoiToTrip() {
   const { appUrlScheme } = useEnv()
   const navigate = useNavigate()
 
@@ -22,14 +22,13 @@ export default function useHandleAddPoiToTrip(regionId?: string) {
           scheme: appUrlScheme,
           path: '/action/add_trip_schedule',
           query: qs.stringify({
-            region_id: regionId,
             pois,
           }),
         }),
       )
       return true
     },
-    [navigate, regionId, appUrlScheme],
+    [navigate, appUrlScheme],
   )
 
   return useAppCallback(
