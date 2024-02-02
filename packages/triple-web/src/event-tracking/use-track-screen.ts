@@ -1,10 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useContext } from 'react'
 
-import { useEventTracking } from './context'
+import { EventTrackingContext } from './context'
 import { trackScreen } from './utils/track-screen'
 
 export function useTrackScreen() {
-  const context = useEventTracking()
+  const context = useContext(EventTrackingContext)
 
   return useCallback(
     (
