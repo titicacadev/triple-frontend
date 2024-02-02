@@ -13,7 +13,7 @@ export const MH1 = tripleDocumentHeading(
     <H1
       headlineCss={{
         fontSize: 14,
-        color: 'var(--color-kint5-brand1)',
+        color: 'var(--color-kint5-poi-tour)',
         marginBottom: 7,
       }}
       textCss={{ fontSize: 18 }}
@@ -59,7 +59,7 @@ export const MH4 = tripleDocumentHeading(
     <H4
       css={{
         fontSize: 18,
-        color: 'var(--color-kint5-brand1)',
+        color: 'var(--color-kint5-poi-tour)',
         margin: '20px 16px 0',
       }}
       {...props}
