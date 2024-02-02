@@ -61,6 +61,9 @@ function Actions({
   const isReviewTooltipExposedCopy = useRef(isReviewTooltipExposed)
 
   useEffect(() => {
+    if (isReviewTooltipExposedCopy.current === null) {
+      isReviewTooltipExposedCopy.current = isReviewTooltipExposed
+    }
     setIsReviewTooltipExposed('true')
   }, [])
 
