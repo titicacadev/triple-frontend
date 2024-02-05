@@ -13,18 +13,19 @@ export function getClient({ lang }: GetClientArgs) {
     return cachedClient[lang]
   }
 
-  const requestHeaders =
-    lang === 'ko'
-      ? undefined
-      : {
-          'X-Service-Origin': 'global',
-          'X-Triple-User-Lang': lang,
-        }
+  const isKorean = lang === 'ko'
+
+  const requestHeaders = {
+    'X-Service-Origin': isKorean ? 'triple' : 'global',
+    'X-Triple-User-Lang': lang,
+  }
+
+  const reqUrl = isKorean ? '/api/triple-graphql' : '/api/graphql'
 
   const requester: Requester = (doc, vars) =>
     request({
       document: doc,
-      url: '/api/graphql',
+      url: reqUrl,
       variables: vars ?? undefined,
       requestHeaders,
     })
