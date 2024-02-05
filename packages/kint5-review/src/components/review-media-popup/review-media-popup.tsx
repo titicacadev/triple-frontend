@@ -25,11 +25,12 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
   )
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
 
-  const open = uriHash.includes(REVIEW_MEDIA_POPUP_HASH)
   const [, reviewId, rawCurrentMediaIndex] = uriHash.split(
     HASH_EXTRA_INFO_SPLIT_STRING,
   )
   const targetReview = reviews.find(({ id }) => id === reviewId)
+  const open =
+    uriHash.includes(REVIEW_MEDIA_POPUP_HASH) && targetReview !== undefined
   const media = sortVideosToFront(targetReview?.media ?? [])
   const numOfMedia = media.length
 
