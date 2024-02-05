@@ -25,6 +25,7 @@ import { BaseReviewFragment } from '../../data/graphql'
 import { useClientActions } from '../../services'
 import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
+import { useReviewLanguage } from '../language-context'
 
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
@@ -46,7 +47,8 @@ export function TripleReviewElement({
   review: {
     user,
     blinded,
-    comment,
+    comment: originalComment,
+    translatedComment,
     recentTrip,
     reviewedAt: originReviewedAt,
     rating,
@@ -62,6 +64,7 @@ export function TripleReviewElement({
 }: TripleReviewElementProps) {
   const { t } = useTranslation('common-web')
 
+  const { userLang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -156,6 +159,8 @@ export function TripleReviewElement({
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
   }`
+  const comment =
+    translatedComment?.[userLang as 'ko' | 'ja' | 'en'] || originalComment
 
   return (
     <IntersectionObserver
