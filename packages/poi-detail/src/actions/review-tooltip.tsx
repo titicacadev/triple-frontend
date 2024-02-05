@@ -21,18 +21,11 @@ export default function ReviewTooltip() {
   const [isReviewTooltipExposed, setIsReviewTooltipExposed] = useLocalStorage(
     REVIEW_TOOLTIP_EXPOSED,
   )
-
   const isReviewTooltipExposedCopy = useRef(isReviewTooltipExposed)
 
   useEffect(() => {
     setIsReviewTooltipExposed('true')
-  }, [])
-
-  useEffect(() => {
-    if (isReviewTooltipExposedCopy.current === null) {
-      isReviewTooltipExposedCopy.current = isReviewTooltipExposed
-    }
-  }, [isReviewTooltipExposed])
+  }, [setIsReviewTooltipExposed])
 
   return isReviewTooltipExposedCopy.current !== 'true' ? (
     <Tooltip
