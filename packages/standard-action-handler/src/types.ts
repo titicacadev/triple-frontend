@@ -1,5 +1,6 @@
 import { UrlElements } from '@titicaca/view-utilities'
 import { App } from '@titicaca/react-triple-client-interfaces'
+import { TransitionType } from '@titicaca/modals'
 
 export interface NavigateOptions {
   target?: 'browser'
@@ -23,6 +24,7 @@ export interface ContextOptions {
     target: TargetType
   }) => void
   app?: App | null
+  showTransitionModal?: (type: TransitionType) => void
 }
 
 export interface WebActionParams {
