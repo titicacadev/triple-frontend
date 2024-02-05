@@ -3,6 +3,11 @@ fragment BaseReview on Review {
   resourceId
   resourceType
   comment
+  translatedComment {
+    ko
+    en
+    ja
+  }
   media
   rating
   visitDate

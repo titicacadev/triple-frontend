@@ -63,7 +63,8 @@ export function TripleGlobalReviewElement({
   review: {
     user,
     blinded,
-    comment,
+    comment: originalComment,
+    translatedComment,
     recentTrip,
     reviewedAt: originReviewedAt,
     rating,
@@ -81,7 +82,7 @@ export function TripleGlobalReviewElement({
 }: TripleGlobalReviewElementProps) {
   const { t } = useTranslation('common-web')
 
-  const { reviewLang } = useReviewLanguage()
+  const { reviewLang, userLang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -207,6 +208,8 @@ export function TripleGlobalReviewElement({
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
   }`
+  const comment =
+    translatedComment?.[userLang as 'ko' | 'ja' | 'en'] || originalComment
 
   return (
     <IntersectionObserver
