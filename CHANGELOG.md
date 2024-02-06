@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v13.18.3
+
+### poi-detail
+
+- [poi-detail] DetailHeader의 아이콘을 정렬합니다. [#3126](https://github.com/titicacadev/triple-frontend/pull/3126)
+- [poi-detail] 리뷰 영상 관련 툴팁 노출 버그를 수정합니다 [#3129](https://github.com/titicacadev/triple-frontend/pull/3129)
+
 ## v13.18.2
 
 ### modals
