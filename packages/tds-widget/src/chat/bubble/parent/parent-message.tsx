@@ -16,19 +16,11 @@ interface ParentMessageType {
   senderName: string
   previewImageUrl?: string
   text: string
-  backgroundColor?: string
   titleColor?: string
   previewTextColor?: string
   onClick?: MouseEventHandler
   css?: CSSProp
 }
-
-const ParentMessageContainer = styled(FlexBox)`
-  padding: 8px 11px;
-  margin-bottom: 11px;
-  align-items: center;
-  background-color: var(--color-white);
-`
 
 export default function ParentMessage({
   id,
@@ -38,19 +30,25 @@ export default function ParentMessage({
   titleColor,
   previewTextColor,
   onClick,
-  css,
+  ...props
 }: ParentMessageType) {
   const { scrollToMessage } = useScroll()
 
   return (
-    <ParentMessageContainer
+    <FlexBox
       onClick={(e) => {
         scrollToMessage(id)
         onClick?.(e)
       }}
       flex
       borderRadius={13}
-      css={css}
+      css={{
+        padding: '8px 11px',
+        marginBottom: 11,
+        alignItems: 'center',
+        backgroundColor: 'var(--color-white)',
+      }}
+      {...props}
     >
       {previewImageUrl ? <PreviewImage src={previewImageUrl} /> : null}
       <Container>
@@ -79,6 +77,6 @@ export default function ParentMessage({
           {text}
         </Text>
       </Container>
-    </ParentMessageContainer>
+    </FlexBox>
   )
 }
