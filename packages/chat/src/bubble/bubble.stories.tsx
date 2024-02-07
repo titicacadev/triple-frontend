@@ -6,6 +6,7 @@ import {
   RichBubbleProp,
   TextBubbleProp,
 } from './type'
+import AlteredBubble from './altered'
 
 import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
 
@@ -113,5 +114,16 @@ export const Image = {
       },
     ],
     appUrlScheme: '',
+  },
+}
+
+export const Altered = {
+  render: (args: React.ComponentProps<typeof AlteredBubble>) => (
+    <AlteredBubble {...args} />
+  ),
+  args: {
+    my: true,
+    alternativeText: '관리자에 의해 가려진 메세지입니다.',
+    textColor: 'gray',
   },
 }
