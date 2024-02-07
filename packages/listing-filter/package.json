@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/listing-filter",
-  "version": "13.18.2",
+  "version": "13.18.3",
   "description": "Listing filter UI",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/listing-filter",

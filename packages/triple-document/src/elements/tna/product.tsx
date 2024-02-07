@@ -177,7 +177,7 @@ export function TnaProductWithPrice({
             margin: '0 0 0 104px',
           }}
         >
-          <Text bold size="large" color="gray" ellipsis>
+          <Text bold size="large" color="gray" ellipsis maxLines={2}>
             {title}
           </Text>
 
