@@ -26,6 +26,7 @@ const FullTextViewButton = styled(Button)<{ my: boolean }>`
 `
 
 export function TextBubble({
+  id,
   message,
   my,
   created,
@@ -35,7 +36,8 @@ export function TextBubble({
 }: TextBubbleProp) {
   const { back, push } = useHistoryFunctions()
   const uriHash = useUriHash()
-  const isFullTextViewOpen = uriHash === SHOW_FULL_TEXT_VIEW
+  const fullTextViewHash = `${SHOW_FULL_TEXT_VIEW}-${id}`
+  const isFullTextViewOpen = uriHash === fullTextViewHash
 
   const aTagNavigator = useATagNavigator()
   const isEllipsis =
@@ -44,6 +46,7 @@ export function TextBubble({
   return (
     <>
       <Bubble
+        id={id}
         css={css`
           a {
             color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
@@ -62,7 +65,7 @@ export function TextBubble({
           onClick={(e) => aTagNavigator(e)}
         />
         {isEllipsis ? (
-          <FullTextViewButton my={my} onClick={() => push(SHOW_FULL_TEXT_VIEW)}>
+          <FullTextViewButton my={my} onClick={() => push(fullTextViewHash)}>
             전체보기
             <ArrowRight
               color={my ? 'var(--color-white900)' : 'var(--color-gray500)'}
