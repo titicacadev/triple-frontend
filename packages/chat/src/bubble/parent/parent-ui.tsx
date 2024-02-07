@@ -28,7 +28,7 @@ export interface ImageParentMessage extends ParentMessageInterface {
 
 export type ParentMessageUIProp = (TextParentMessage | ImageParentMessage) & {
   blinded: boolean
-  css?: CSSProp
+  style?: { css?: CSSProp; titleColor?: string; previewTextColor?: string }
 }
 
 export default function ParentMessageUI({
@@ -37,7 +37,7 @@ export default function ParentMessageUI({
   value,
   blinded,
   sender,
-  ...props
+  style,
 }: ParentMessageUIProp) {
   const senderName = formatUsername({
     name: sender.profile.name,
@@ -51,7 +51,9 @@ export default function ParentMessageUI({
         id={id}
         text="삭제된 메세지입니다."
         senderName={senderName}
-        {...props}
+        previewTextColor={style?.previewTextColor}
+        titleColor={style?.titleColor}
+        css={style?.css}
       />
     )
   }
@@ -62,7 +64,9 @@ export default function ParentMessageUI({
         id={id}
         senderName={senderName}
         text={value.message}
-        {...props}
+        previewTextColor={style?.previewTextColor}
+        titleColor={style?.titleColor}
+        css={style?.css}
       />
     )
   } else {
@@ -72,7 +76,9 @@ export default function ParentMessageUI({
         senderName={senderName}
         text="사진"
         previewImageUrl={value.images[0]?.sizes.large.url}
-        {...props}
+        previewTextColor={style?.previewTextColor}
+        titleColor={style?.titleColor}
+        css={style?.css}
       />
     )
   }
