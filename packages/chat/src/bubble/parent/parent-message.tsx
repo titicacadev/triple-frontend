@@ -1,6 +1,6 @@
 import { Container, Text, FlexBox } from '@titicaca/core-elements'
 import { MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 
 import { useScroll } from '../../chat/scroll-context'
 
@@ -20,37 +20,37 @@ interface ParentMessageType {
   titleColor?: string
   previewTextColor?: string
   onClick?: MouseEventHandler
+  css?: CSSProp
 }
+
+const ParentMessageContainer = styled(FlexBox)`
+  padding: 8px 11px;
+  margin-bottom: 11px;
+  align-items: center;
+  background-color: var(--color-white);
+`
 
 export default function ParentMessage({
   id,
   senderName,
   previewImageUrl,
   text,
-  backgroundColor,
   titleColor,
   previewTextColor,
   onClick,
+  css,
 }: ParentMessageType) {
   const { scrollToMessage } = useScroll()
 
   return (
-    <FlexBox
+    <ParentMessageContainer
       onClick={(e) => {
         scrollToMessage(id)
         onClick?.(e)
       }}
       flex
       borderRadius={13}
-      css={{
-        paddingLeft: 11,
-        paddingRight: 11,
-        paddingTop: 8,
-        paddingBottom: 8,
-        marginBottom: 11,
-        backgroundColor: backgroundColor || 'var(--color-white)',
-        alignItems: 'center',
-      }}
+      css={css}
     >
       {previewImageUrl ? <PreviewImage src={previewImageUrl} /> : null}
       <Container>
@@ -79,6 +79,6 @@ export default function ParentMessage({
           {text}
         </Text>
       </Container>
-    </FlexBox>
+    </ParentMessageContainer>
   )
 }
