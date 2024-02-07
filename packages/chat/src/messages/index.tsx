@@ -230,7 +230,9 @@ export default function Messages<
                     ? () => onThanksClick(message)
                     : undefined
                 }
-                onReplyClick={() => onReplyClick?.(message)}
+                onReplyClick={
+                  onReplyClick ? () => onReplyClick(message) : undefined
+                }
                 messageRefCallback={messageRefCallback}
                 css={{
                   marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
