@@ -1,3 +1,5 @@
+import { CSSProp } from 'styled-components'
+
 import { MetaDataInterface, UserInterface } from '../../types'
 import {
   DEFAULT_MAX_USERNAME_LENGTH,
@@ -26,6 +28,7 @@ export interface ImageParentMessage extends ParentMessageInterface {
 
 export type ParentMessageUIProp = (TextParentMessage | ImageParentMessage) & {
   blinded: boolean
+  css?: CSSProp
 }
 
 export default function ParentMessageUI({
@@ -34,6 +37,7 @@ export default function ParentMessageUI({
   value,
   blinded,
   sender,
+  ...props
 }: ParentMessageUIProp) {
   const senderName = formatUsername({
     name: sender.profile.name,
@@ -47,13 +51,19 @@ export default function ParentMessageUI({
         id={id}
         text="삭제된 메세지입니다."
         senderName={senderName}
+        {...props}
       />
     )
   }
 
   if (type === 'text') {
     return (
-      <ParentMessage id={id} senderName={senderName} text={value.message} />
+      <ParentMessage
+        id={id}
+        senderName={senderName}
+        text={value.message}
+        {...props}
+      />
     )
   } else {
     return (
@@ -62,6 +72,7 @@ export default function ParentMessageUI({
         senderName={senderName}
         text="사진"
         previewImageUrl={value.images[0]?.sizes.large.url}
+        {...props}
       />
     )
   }
