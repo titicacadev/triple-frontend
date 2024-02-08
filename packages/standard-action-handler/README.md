@@ -40,6 +40,11 @@
   - parameter
     - {path, query}
       - query : href=[이동할 URL]
+- ### `/web-action/require-triple-client`
+  - 페이지가 트리플 앱 내에서 열렸는 지 확인합니다. 트리플 앱 외부에서 열린 경우 앱 설치 유도 모달을 띄웁니다.
+  - parameter
+    - { path, query }
+      - query: url=[이동할 URL, web-action url도 가능]
 
 ### How to make URL
 
