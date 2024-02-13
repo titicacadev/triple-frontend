@@ -32,7 +32,7 @@ function Pricing({
   return (
     <Container
       css={{
-        margin: '8px 0 0',
+        margin: '10px 0 0',
       }}
     >
       {rate ? (

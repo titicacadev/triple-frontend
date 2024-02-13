@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useTranslation } from '@titicaca/next-i18next'
 
 const StyledContainer = styled(Container)`
-  margin-top: 4px;
+  margin-top: 2px;
 `
 
 export function PricePolicyCouponInfo({
