@@ -12,6 +12,7 @@ import pentaImagesData from './mocks/review-element.penta-images.json'
 import quadImagesData from './mocks/review-element.quad-images.json'
 import triImagesData from './mocks/review-element.tri-images.json'
 import triVideosData from './mocks/review-element.tri-videos.json'
+import { ReviewLanguageProvider } from './components/language-context'
 
 const queryClient = new QueryClient()
 
@@ -21,7 +22,9 @@ const meta: Meta<typeof TripleReviewElement> = {
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
-        <Story />
+        <ReviewLanguageProvider reviewLang="ja" userLang="ja">
+          <Story />
+        </ReviewLanguageProvider>
       </QueryClientProvider>
     ),
   ],
