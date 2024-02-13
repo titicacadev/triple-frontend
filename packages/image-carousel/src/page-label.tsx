@@ -12,7 +12,7 @@ const PageLabelContainer = styled.div`
   padding: 5px 7px;
   color: #fff;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
 `
 
 export function PageLabel({ currentIndex, totalCount }: RendererParams) {
