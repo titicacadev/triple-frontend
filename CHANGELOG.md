@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.19.0
+
+### standard-action-handler
+
+- [standard-action-handler] requireTripleClient 함수 추가 [#3121](https://github.com/titicacadev/triple-frontend/pull/3121)
+
+### triple-document
+
+- [triple-document] tna slot의 타이틀을 두줄 노출하도록 수정 [#3133](https://github.com/titicacadev/triple-frontend/pull/3133)
+
 ## v13.18.3
 
 ### poi-detail
