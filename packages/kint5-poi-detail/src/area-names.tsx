@@ -20,7 +20,7 @@ export default function AreaNames({
       <Text
         css={{
           fontSize: 13,
-          color: 'var(--color-kint5-gray60)',
+          color: 'var(--color-kint5-gray100)',
         }}
       >
         {areaName
