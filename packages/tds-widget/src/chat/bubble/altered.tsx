@@ -7,6 +7,7 @@ import { BlindedBubbleProp } from './type'
 
 export default function AlteredBubble({
   my,
+  parentMessage,
   alternativeText,
   textColor,
   ...props
