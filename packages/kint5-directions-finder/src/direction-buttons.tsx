@@ -18,6 +18,7 @@ function DirectionButtons({
   localAddress,
   phoneNumber,
   isDomestic = false,
+  ...props
 }: {
   onDirectionsClick: () => void
   primaryName: string
@@ -48,6 +49,7 @@ function DirectionButtons({
           alignItems: 'flex-start',
           margin: '0 16px',
         }}
+        {...props}
       >
         {localName && localAddress ? (
           <Button
