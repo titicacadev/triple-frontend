@@ -13,6 +13,7 @@ import {
   SendingFailureHandlerContainer,
   Thanks,
 } from './elements'
+import { DeleteIcon, RetryIcon } from './icons'
 
 const CHAT_CONTAINER_STYLES = {
   position: 'relative',
@@ -76,8 +77,12 @@ function SentBubbleContainer({
       <div>
         {!createdAt && onRetry && onRetryCancel ? (
           <SendingFailureHandlerContainer>
-            <RetryButton onClick={onRetry} />
-            <DeleteButton onClick={onRetryCancel} />
+            <RetryButton onClick={onRetry}>
+              <RetryIcon />
+            </RetryButton>
+            <DeleteButton onClick={onRetryCancel}>
+              <DeleteIcon />
+            </DeleteButton>
           </SendingFailureHandlerContainer>
         ) : null}
 
