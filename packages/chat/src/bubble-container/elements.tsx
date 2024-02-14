@@ -44,7 +44,6 @@ export const RetryButton = styled.button`
   ${sendingFailureHandlerStyle};
 
   width: 23.5px;
-  background-image: url('https://assets.triple.guide/images/btn-message-resend@3x.png');
 `
 
 export const DeleteButton = styled.button`
@@ -52,7 +51,6 @@ export const DeleteButton = styled.button`
 
   width: 24.5px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
-  background-image: url('https://assets.triple.guide/images/btn-message-delete@3x.png');
 `
 
 const ThanksButton = styled(Button)<{ haveMine: boolean }>`
