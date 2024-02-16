@@ -11,7 +11,10 @@ export function useTrackScreen() {
       path: string,
       label?: string,
       additionalMetadata?: { [key: string]: string },
-    ) => trackScreen(path, label, additionalMetadata, context),
+    ) =>
+      context
+        ? trackScreen(path, label, additionalMetadata, context)
+        : undefined,
     [context],
   )
 }
