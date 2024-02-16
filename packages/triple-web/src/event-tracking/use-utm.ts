@@ -1,7 +1,13 @@
-import { useEventTracking } from './context'
+import { useContext } from 'react'
+
+import { EventTrackingContext } from './context'
 
 export function useUtm() {
-  const { utm } = useEventTracking()
+  const context = useContext(EventTrackingContext)
 
-  return utm
+  if (context) {
+    return context.utm
+  }
+
+  return {}
 }
