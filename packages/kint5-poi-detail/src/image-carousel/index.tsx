@@ -8,8 +8,6 @@ type ImageCarouselProps = Pick<
   | 'currentBusinessHours'
   | 'todayBusinessHours'
   | 'onBusinessHoursClick'
-  | 'onImageClick'
-  | 'onCtaClick'
   | 'onPlaceholderClick'
   | 'optimized'
   | 'borderRadius'

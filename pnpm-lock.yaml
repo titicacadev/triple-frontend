@@ -1012,6 +1012,9 @@ importers:
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
+      '@titicaca/popup':
+        specifier: workspace:*
+        version: link:../popup
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions

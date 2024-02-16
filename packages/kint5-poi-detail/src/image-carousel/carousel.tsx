@@ -14,6 +14,7 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
+import { ImagesPopup } from './images-popup'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -37,8 +38,6 @@ function FixedRatio({ ratio, children }: PropsWithChildren<{ ratio: number }>) {
 export interface CarouselProps {
   images: CarouselImageMeta[]
   totalImagesCount: number
-  onImageClick: (image: ImageMeta) => void
-  onCtaClick: () => void
   onImagesFetch: () => void
   optimized?: boolean
   borderRadius?: number
@@ -48,8 +47,6 @@ export interface CarouselProps {
 export default function Carousel({
   images,
   totalImagesCount,
-  onImageClick,
-  onCtaClick,
   onImagesFetch,
   optimized,
   borderRadius = 6,
@@ -58,18 +55,15 @@ export default function Carousel({
   const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
+  const [shouldOpenImagesPopup, setShouldOpenImagesPopup] = useState(false)
   const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
-      if (!app && currentPage === SHOW_CTA_FROM_INDEX) {
-        return onCtaClick()
-      }
-
-      onImageClick(images[currentPage])
-
       const action = '대표사진선택'
       const label = '선택'
+
+      setShouldOpenImagesPopup(true)
 
       trackEvent({
         fa: {
@@ -80,7 +74,7 @@ export default function Carousel({
         },
       })
     },
-    [app, currentPage, onImageClick, images, trackEvent, onCtaClick],
+    [trackEvent],
   )
 
   const handlePageChange = useCallback(
@@ -179,6 +173,21 @@ export default function Carousel({
           />
         </Container>
       </Responsive>
+      <ImagesPopup
+        images={visibleImages}
+        currentPage={currentPage}
+        displayedTotalCount={totalImagesCount}
+        borderRadius={borderRadius}
+        onImageClick={handleImageClick}
+        onMoveEnd={handlePageChange}
+        ImageSource={ImageSource}
+        showMoreRenderer={CTA}
+        pageLabelRenderer={() => null}
+        optimized={optimized}
+        height={height}
+        open={shouldOpenImagesPopup}
+        onClose={() => setShouldOpenImagesPopup(false)}
+      />
     </>
   )
 }
