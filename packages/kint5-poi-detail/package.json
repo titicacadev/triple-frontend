@@ -48,6 +48,7 @@
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/kint5-core-elements": "workspace:*",
     "@titicaca/modals": "workspace:*",
+    "@titicaca/popup": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@titicaca/web-storage": "workspace:*",
