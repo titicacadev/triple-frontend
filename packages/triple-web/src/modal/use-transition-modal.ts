@@ -1,7 +1,7 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 
-import { useEventTracking } from '../event-tracking/context'
 import { useHashRouter } from '../hash-router/use-hash-router'
+import { EventTrackingContext } from '../event-tracking/context'
 
 import { TransitionType } from './constants'
 import { useModal } from './context'
@@ -11,7 +11,7 @@ type ShowOptions = TransitionModalRef
 
 export function useTransitionModal() {
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
-  const eventTrackingContext = useEventTracking()
+  const eventTrackingContext = useContext(EventTrackingContext)
   const { addUriHash, removeUriHash } = useHashRouter()
 
   const show = useCallback(
