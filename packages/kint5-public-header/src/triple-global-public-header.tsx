@@ -1,4 +1,3 @@
-import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren } from 'react'
@@ -8,7 +7,6 @@ import { HEADER_HEIGHT_PX, TRANSITION_TIME } from './constants'
 import type { DeeplinkComponent } from './types'
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
-import { ExtraActionItem } from './extra-action-item'
 import { PublicHeaderDeeplink } from './public-header-deeplink'
 
 const Wrapper = styled.div<{ visible: boolean }>`
@@ -38,22 +36,14 @@ export interface TripleGlobalPublicHeaderProps {
   deeplinkPath?: string
   DeeplinkComponent?: DeeplinkComponent
   disableAutoHide?: boolean
-  onClick?: () => void
-  linkHref?: string
-  linkLabel?: string
 }
 
 export function TripleGlobalPublicHeader({
   deeplinkPath,
   DeeplinkComponent,
   disableAutoHide = true,
-  onClick,
-  linkHref = '/my-bookings',
-  linkLabel,
   children,
 }: PropsWithChildren<TripleGlobalPublicHeaderProps>) {
-  const { t } = useTranslation('common-web')
-
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
 
@@ -70,9 +60,6 @@ export function TripleGlobalPublicHeader({
 
         <ExtraActionsContainer>
           {children}
-          <ExtraActionItem href={linkHref} onClick={onClick}>
-            {linkLabel ?? t(['nae-yeyag', '내 예약'])}
-          </ExtraActionItem>
           {deeplinkPath && (
             <PublicHeaderDeeplink
               deeplinkPath={deeplinkPath}
