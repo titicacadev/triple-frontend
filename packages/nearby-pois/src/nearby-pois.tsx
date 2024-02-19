@@ -19,6 +19,7 @@ import nearbyPoisReducer, {
   NearbyPoisState,
   setCurrentTab,
   appendPois,
+  setFetchingStatus,
 } from './reducer'
 import { fetchPois } from './service'
 import PoiEntry from './poi-entry'
@@ -73,16 +74,18 @@ function NearbyPois({
   useEffect(() => {
     async function fetchAndSetPois() {
       const [attractions, restaurants] = await Promise.all(
-        (['attraction', 'restaurant'] as NearByPoiType[]).map((type) =>
-          fetchPois({
+        (['attraction', 'restaurant'] as NearByPoiType[]).map((type) => {
+          setFetchingStatus({ type })
+
+          return fetchPois({
             type,
             excludedIds: [poiId],
             regionId,
             lon,
             lat,
             size: DEFAULT_PAGE_SIZE,
-          }),
-        ),
+          })
+        }),
       )
 
       dispatch(
