@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { List, Spinner } from '@titicaca/kint5-core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useEffect, useMemo, useState } from 'react'
@@ -88,10 +87,6 @@ export function ReviewsList({
 
     return () => unsubscribeLikedChangeEvent?.(refetch)
   }, [refetch, subscribeLikedChangeEvent, unsubscribeLikedChangeEvent])
-
-  console.log('myReviewData', myReviewData)
-  console.log('descriptionsData', descriptionsData)
-  console.log('sortedReviews', sortedReviews)
 
   if (!myReviewData || !descriptionsData || !sortedReviews) {
     return <Spinner />
