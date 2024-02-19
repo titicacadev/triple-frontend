@@ -50,9 +50,6 @@ export default function Images({
 
   const isHorizontalLayout = display === undefined || display === 'default'
 
-  // eslint-disable-next-line no-console
-  console.log(images)
-
   return (
     <ImagesContainer images={images}>
       {images.map((image, i) => {
