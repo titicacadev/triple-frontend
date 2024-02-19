@@ -154,7 +154,7 @@ function ReceivedBubbleContainer({
           }
         />
       ) : null}
-      <Container css={{ marginLeft: 50 }}>
+      <Container css={{ marginLeft: 40 }}>
         {showProfile ? (
           <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
             {user
