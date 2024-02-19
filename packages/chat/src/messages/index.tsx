@@ -75,6 +75,7 @@ export default function Messages<
     | 'unfriended'
     | 'type'
     | 'value'
+    | 'onOpenMenu'
     | 'css'
   >) {
   function getBubble({
