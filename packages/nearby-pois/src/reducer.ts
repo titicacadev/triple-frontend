@@ -5,7 +5,7 @@ const APPEND_POIS = 'nearby-pois/APPEND_POIS'
 const SET_CURRENT_TAB = 'nearby-pois/SET_CURRENT_TAB'
 
 type NearbyPoisAction = ReturnType<
-  typeof fetchPois | typeof appendPois | typeof setCurrentTab
+  typeof setFetchingStatus | typeof appendPois | typeof setCurrentTab
 >
 
 export interface NearbyPoisState {
@@ -22,7 +22,7 @@ export interface NearbyPoisState {
   currentTab: NearByPoiType
 }
 
-export function fetchPois({ type }: { type: NearByPoiType }) {
+export function setFetchingStatus({ type }: { type: NearByPoiType }) {
   return {
     type: FETCH_POIS,
     payload: { type },
