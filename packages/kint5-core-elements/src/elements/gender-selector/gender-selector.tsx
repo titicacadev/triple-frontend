@@ -1,17 +1,21 @@
+import { useTranslation } from '@titicaca/next-i18next'
+
 import { RadioGroup, RadioGroupProps } from '../radio-group'
 
 import { GenderSelectorItem } from './gender-selector-item'
 
 export type GenderSelectorProps = Omit<RadioGroupProps, 'children'>
 
-export const GenderSelector = ({ ...props }: GenderSelectorProps) => {
+export function GenderSelector({ ...props }: GenderSelectorProps) {
+  const { t } = useTranslation('common-web')
+
   return (
     <RadioGroup {...props}>
       <GenderSelectorItem disabled={props.disabled} value="MALE">
-        남자
+        {t(['namja', '남자'])}
       </GenderSelectorItem>
       <GenderSelectorItem disabled={props.disabled} value="FEMALE">
-        여자
+        {t(['yeoja', '여자'])}
       </GenderSelectorItem>
     </RadioGroup>
   )
