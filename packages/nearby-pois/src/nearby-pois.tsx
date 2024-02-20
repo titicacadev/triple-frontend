@@ -114,6 +114,8 @@ function NearbyPois({
       label: EVENT_LABELS[currentTab],
     })
 
+    setFetchingStatus({ type: currentTab })
+
     const additionalPois = await fetchPois({
       regionId,
       lat,
