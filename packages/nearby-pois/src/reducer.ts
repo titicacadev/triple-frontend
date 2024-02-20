@@ -74,7 +74,7 @@ export default function nearbyPoisReducer(
         [action.payload.type]: {
           ...state[action.payload.type],
           fetching: false,
-          pois: deduplicateAndMerge(
+          pois: deduplicateAndMergePoiList(
             state[action.payload.type].pois,
             action.payload.pois,
           ),
@@ -89,6 +89,13 @@ export default function nearbyPoisReducer(
   }
 }
 
-function deduplicateAndMerge<T>(array1: Array<T>, array2: Array<T>) {
-  return [...new Set([...array1, ...array2])]
+function deduplicateAndMergePoiList(
+  prevPoiList: ListingPoi[],
+  nextPoiList: ListingPoi[],
+) {
+  const mergedPoiList = [...prevPoiList, ...nextPoiList]
+  return mergedPoiList.filter(
+    (poiInFilter, index) =>
+      index === mergedPoiList.findIndex((poi) => poi.id === poiInFilter.id),
+  )
 }
