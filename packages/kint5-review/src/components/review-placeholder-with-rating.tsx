@@ -187,6 +187,8 @@ function DefaultPlaceholder({
 }: {
   placeholderText: string | undefined
 }) {
+  const { t } = useTranslation('common-web')
+
   return (
     <Text
       css={{
@@ -196,7 +198,8 @@ function DefaultPlaceholder({
         marginTop: 16,
       }}
     >
-      {placeholderText ?? '이곳에 다녀오셨나요?'}
+      {placeholderText ??
+        t(['igose-danyeoosyeossnayo', '이곳에 다녀오셨나요?'])}
     </Text>
   )
 }

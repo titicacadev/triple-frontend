@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Popup from '@titicaca/popup'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { FlexBox, Navbar, Text } from '@titicaca/kint5-core-elements'
+import { useTranslation } from '@titicaca/next-i18next'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { HASH_EXTRA_INFO_SPLIT_STRING } from '../constants'
@@ -18,6 +19,8 @@ interface ReviewMediaPopupProps {
 export const REVIEW_MEDIA_POPUP_HASH = 'hash.popup.review-media'
 
 export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
+  const { t } = useTranslation('common-web')
+
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
   const [currentMediaIndex, setCurrentMediaIndex] = useState<number | null>(
@@ -58,7 +61,8 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
           currentMediaIndex !== null ? (
             <FlexBox flex alignItems="center">
               <Text>
-                {renderMediaGrid ? '사진' : currentMediaIndex + 1}&nbsp;
+                {renderMediaGrid ? t(['sajin', '사진']) : currentMediaIndex + 1}
+                &nbsp;
               </Text>
               <Text css={{ color: 'var(--color-kint5-gray40)' }}>
                 {renderMediaGrid ? '' : '/ '}

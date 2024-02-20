@@ -1,5 +1,5 @@
-import { Container, Text } from '@titicaca/kint5-core-elements'
 import styled from 'styled-components'
+import { Container, Text } from '@titicaca/kint5-core-elements'
 
 import { ReviewMedia } from './types'
 
