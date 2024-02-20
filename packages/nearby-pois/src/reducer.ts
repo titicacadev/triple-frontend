@@ -74,7 +74,10 @@ export default function nearbyPoisReducer(
         [action.payload.type]: {
           ...state[action.payload.type],
           fetching: false,
-          pois: [...state[action.payload.type].pois, ...action.payload.pois],
+          pois: deduplicateAndMerge(
+            state[action.payload.type].pois,
+            action.payload.pois,
+          ),
           hasMore: action.payload.hasMore,
         },
       }
@@ -84,4 +87,8 @@ export default function nearbyPoisReducer(
         currentTab: action.payload.type,
       }
   }
+}
+
+function deduplicateAndMerge<T>(array1: Array<T>, array2: Array<T>) {
+  return [...new Set([...array1, ...array2])]
 }
