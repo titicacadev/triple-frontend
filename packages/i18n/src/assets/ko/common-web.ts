@@ -201,4 +201,6 @@ export const koCommonWeb = {
   'totalreviewscount-gaeyi--ribyu': '{{totalReviewsCount}}개의 리뷰',
   'totalreviewscount-gaeyi-hyeonjiin-ribyu':
     '{{totalReviewsCount}}개의 현지인 리뷰',
+  'igose-danyeoosyeossnayo': '이곳에 다녀오셨나요?',
+  sajin: '사진',
 } as const
