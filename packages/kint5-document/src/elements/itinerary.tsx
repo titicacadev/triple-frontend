@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Container,
@@ -7,7 +6,6 @@ import {
   Text,
   FlexBox,
   FlexBoxItem,
-  Button,
 } from '@titicaca/kint5-core-elements'
 import type {
   TransportationType,
@@ -34,9 +32,7 @@ import {
   Cable,
   Plane,
   Ship,
-  Download,
 } from './itinerary/icons'
-import useHandleAddPoisToTrip from './itinerary/use-handle-add-pois-to-trip'
 
 interface Props {
   value: {
@@ -87,18 +83,9 @@ const Duration = styled(Container)`
   flex-shrink: 0;
 `
 
-const SaveToItineraryButton = styled(Button)`
-  > * {
-    vertical-align: middle;
-  }
-`
-
 export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
-  const { t } = useTranslation('common-web')
-
-  const { courses, poiIds, hasItineraries, hideAddButton } = useItinerary(value)
-  const addPoisToTrip = useHandleAddPoisToTrip()
+  const { courses } = useItinerary(value)
   const navigate = useNavigate()
 
   const generatePoiClickHandler = useCallback(
@@ -132,16 +119,6 @@ export default function ItineraryElement({ value }: Props) {
     },
     [navigate],
   )
-
-  const handleSaveToItinerary = useCallback(() => {
-    trackEvent({
-      ga: ['내일정으로담기_선택'],
-      fa: {
-        action: '내일정으로담기_선택',
-      },
-    })
-    addPoisToTrip(poiIds)
-  }, [poiIds, addPoisToTrip, trackEvent])
 
   return (
     <Container
@@ -255,22 +232,6 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {!hideAddButton ? (
-          <SaveToItineraryButton
-            fluid
-            basic
-            bold
-            inverted
-            margin={{ top: 20 }}
-            onClick={handleSaveToItinerary}
-            disabled={!hasItineraries}
-          >
-            <Download />
-            <Text inline size={14} margin={{ left: 3 }} color="white">
-              {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
-            </Text>
-          </SaveToItineraryButton>
-        ) : null}
       </Container>
     </Container>
   )
