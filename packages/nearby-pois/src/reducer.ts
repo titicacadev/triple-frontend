@@ -92,7 +92,7 @@ export default function nearbyPoisReducer(
 function deduplicateAndMergePoiList(
   prevPoiList: ListingPoi[],
   nextPoiList: ListingPoi[],
-) {
+): ListingPoi[] {
   const mergedPoiList = [...prevPoiList, ...nextPoiList]
 
   const poiListMap = new Map<string, ListingPoi>()
@@ -103,5 +103,5 @@ function deduplicateAndMergePoiList(
     }
   }
 
-  return poiListMap.values
+  return Array.from(poiListMap.values())
 }
