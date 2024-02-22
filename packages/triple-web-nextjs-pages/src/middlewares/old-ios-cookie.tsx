@@ -2,7 +2,9 @@ import { clientAppRegex } from '@titicaca/triple-web-utils'
 import { NextMiddleware, NextRequest, NextResponse } from 'next/server'
 import satisfies from 'semver/functions/satisfies'
 
-export const middleware: NextMiddleware = (request: NextRequest) => {
+export const oldIosCookiesMiddleware: NextMiddleware = (
+  request: NextRequest,
+) => {
   const response = NextResponse.next()
 
   const userAgent = request.headers.get('User-Agent')
