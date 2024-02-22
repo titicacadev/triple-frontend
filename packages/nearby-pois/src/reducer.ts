@@ -95,13 +95,10 @@ function deduplicateAndMergePoiList(
 ): ListingPoi[] {
   const mergedPoiList = [...prevPoiList, ...nextPoiList]
 
-  const poiListMap = new Map<string, ListingPoi>()
-
-  for (const poi of mergedPoiList) {
-    if (!poiListMap.has(poi.id)) {
-      poiListMap.set(poi.id, poi)
-    }
-  }
-
-  return Array.from(poiListMap.values())
+  const poiMap = new Map([
+    ...prevPoiList.map(poi => [poi.id, poi]),
+    ...nextPoiList.map(poi => [poi.id, poi])
+  ]);
+ 
+  return Array.from(poiMap.values())
 }
