@@ -773,6 +773,9 @@ importers:
       '@types/semver':
         specifier: ^7.5.3
         version: 7.5.4
+      '@types/set-cookie-parser':
+        specifier: ^2.4.7
+        version: 2.4.7
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.38
@@ -7707,6 +7710,12 @@ packages:
     resolution: {integrity: sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==}
     dependencies:
       '@types/node': 18.18.7
+    dev: true
+
+  /@types/set-cookie-parser@2.4.7:
+    resolution: {integrity: sha512-+ge/loa0oTozxip6zmhRIk8Z/boU51wl9Q6QdLZcokIGMzY5lFXYy/x7Htj2HTC6/KZP1hUbZ1ekx8DYXICvWg==}
+    dependencies:
+      '@types/node': 18.18.8
     dev: true
 
   /@types/stack-utils@2.0.1:
