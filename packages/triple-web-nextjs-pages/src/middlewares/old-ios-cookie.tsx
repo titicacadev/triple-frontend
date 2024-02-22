@@ -4,14 +4,14 @@ import satisfies from 'semver/functions/satisfies'
 
 import { CustomMiddleware } from './chain'
 
-export function oldIosCookiesMiddleware(_: CustomMiddleware) {
-  return async function middleware(request: NextRequest, _: NextFetchEvent) {
+export function oldIosCookiesMiddleware(customMiddleware: CustomMiddleware) {
+  return function middleware(request: NextRequest, event: NextFetchEvent) {
     const response = NextResponse.next()
 
     const userAgent = request.headers.get('User-Agent')
 
     if (!userAgent) {
-      return response
+      return customMiddleware(request, event, response)
     }
 
     const metadata = clientAppRegex.exec(userAgent)
@@ -36,6 +36,6 @@ export function oldIosCookiesMiddleware(_: CustomMiddleware) {
       // semver 파싱 에러가 발생하면 ignore 합니다.
     }
 
-    return response
+    return customMiddleware(request, event, response)
   }
 }
