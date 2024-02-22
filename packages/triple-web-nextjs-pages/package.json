@@ -54,6 +54,7 @@
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
     "@types/semver": "^7.5.3",
+    "@types/set-cookie-parser": "^2.4.7",
     "@types/ua-parser-js": "^0.7.37",
     "next": "^13.5.5"
   },
