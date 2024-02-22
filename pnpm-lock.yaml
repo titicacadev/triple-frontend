@@ -720,6 +720,9 @@ importers:
       semver:
         specifier: ^7.5.4
         version: 7.5.4
+      set-cookie-parser:
+        specifier: ^2.6.0
+        version: 2.6.0
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.37
@@ -17859,7 +17862,6 @@ packages:
 
   /set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
-    dev: true
 
   /setimmediate@1.0.5:
     resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
