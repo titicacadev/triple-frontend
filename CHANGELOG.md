@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v13.19.1
+
+```
+### nearby-pois
+
+- [nearby-pois] 더보기 버튼 클릭 시 api 호출이 중복되는 이슈 수정 [#3140](https://github.com/titicacadev/triple-frontend/pull/3140)
+- [nearby-pois] pois 중복을 제거하는 로직을 수정합니다. [#3141](https://github.com/titicacadev/triple-frontend/pull/3141)
+```
+
 ## v13.19.0
 
 ### standard-action-handler
