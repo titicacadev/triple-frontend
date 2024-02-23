@@ -24,6 +24,8 @@ export const koCommonWeb = {
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
   'teuripeul-gagi': '트리플 가기',
+  'yeogineun-triple-korea-aebi-pilyohaeyo': '여기는 TRIPLE Korea 앱이 필요해요',
+  'triple-korea-gagi': 'TRIPLE Korea 가기',
   jeojangcwiso: '저장취소',
   jeojanghagi: '저장하기',
   ribyusujeong: '리뷰수정',
