@@ -75,18 +75,18 @@ export function PoiImagesPopup({
         />
       </StickyHeader>
 
-      <Container
-        css={{
-          position: 'absolute',
-          top: '50%',
-          left: 0,
-          transform: 'translateY(-50%)',
-          width: '100%',
-        }}
-      >
-        {renderMediaGrid ? (
-          <PoiImageGrid images={images} onMediaClick={handleMediaGridClick} />
-        ) : (
+      {renderMediaGrid ? (
+        <PoiImageGrid images={images} onMediaClick={handleMediaGridClick} />
+      ) : (
+        <Container
+          css={{
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            transform: 'translateY(-50%)',
+            width: '100%',
+          }}
+        >
           <ImageCarousel
             images={images}
             {...{
@@ -94,8 +94,8 @@ export function PoiImagesPopup({
               defaultIndex: currentPage,
             }}
           />
-        )}
-      </Container>
+        </Container>
+      )}
     </Popup>
   )
 }
