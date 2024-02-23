@@ -19,7 +19,6 @@ type ImagesPopupProps = Parameters<typeof ImageCarousel>[0] & {
 }
 
 export const POI_IMAGES_POPUP_HASH = 'hash.popup.poi-images'
-export const HASH_EXTRA_INFO_SPLIT_STRING = '+'
 
 export function PoiImagesPopup({
   images,
@@ -36,7 +35,7 @@ export function PoiImagesPopup({
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
 
   const numOfImages = images.length
-  const shouldOpen = uriHash.includes(POI_IMAGES_POPUP_HASH)
+  const shouldOpen = uriHash === POI_IMAGES_POPUP_HASH
 
   const handleMediaGridClick = (clickedMediaIndex: number) => {
     setCurrentPage(clickedMediaIndex)

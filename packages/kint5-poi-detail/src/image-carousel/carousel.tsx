@@ -17,11 +17,7 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
-import {
-  PoiImagesPopup,
-  POI_IMAGES_POPUP_HASH,
-  HASH_EXTRA_INFO_SPLIT_STRING,
-} from './poi-images-popup'
+import { PoiImagesPopup, POI_IMAGES_POPUP_HASH } from './poi-images-popup'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -68,10 +64,7 @@ export default function Carousel({
     const action = '대표사진선택'
     const label = '선택'
 
-    push(
-      `${POI_IMAGES_POPUP_HASH}${HASH_EXTRA_INFO_SPLIT_STRING}${currentPage}`,
-      { useRouter: true },
-    )
+    push(POI_IMAGES_POPUP_HASH, { useRouter: true })
 
     trackEvent({
       fa: {
