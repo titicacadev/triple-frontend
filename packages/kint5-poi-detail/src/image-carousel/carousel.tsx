@@ -64,7 +64,6 @@ export default function Carousel({
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
   const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
-
   const handleImageClick = (event?: MouseEvent, media?: ImageMeta) => {
     const action = '대표사진선택'
     const label = '선택'
@@ -182,6 +181,7 @@ export default function Carousel({
       <PoiImagesPopup
         images={visibleImages}
         currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
         displayedTotalCount={totalImagesCount}
         borderRadius={borderRadius}
         onImageClick={handleImageClick}

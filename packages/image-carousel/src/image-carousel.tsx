@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, useRef } from 'react'
+import { MouseEvent, ReactNode, useEffect, useRef } from 'react'
 import { ImageSourceType } from '@titicaca/core-elements'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
 import Flicking from '@egjs/react-flicking'
@@ -19,6 +19,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   pageLabelRenderer?: (params: RendererParams) => ReactNode
   displayedTotalCount?: number
   optimized?: boolean
+  currentPage?: number
 }
 
 /**
@@ -41,6 +42,7 @@ function ImageCarousel({
   onMoveStart,
   onMove,
   onMoveEnd,
+  currentPage,
 }: ImageCarouselProps) {
   const flickingRef = useRef<Flicking>(null)
 
@@ -52,6 +54,12 @@ function ImageCarousel({
   ) => {
     !flickingRef.current?.isPlaying() && onImageClick?.(event, media)
   }
+
+  useEffect(() => {
+    if (currentPage !== undefined && flickingRef.current) {
+      flickingRef.current.moveTo(currentPage)
+    }
+  }, [currentPage])
 
   return (
     <Carousel
