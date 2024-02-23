@@ -68,7 +68,7 @@ export default function useItinerary({ itinerary }: Props) {
       const areaNames =
         regionId && source?.regionId && source?.areas && source.areas.length > 0
           ? source.areas.map((area) => area.name).join(',')
-          : source?.vicinity
+          : ''
 
       const description = [categoryNames, areaNames]
         .filter((i) => i)
