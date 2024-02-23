@@ -9,12 +9,19 @@ import {
   Responsive,
   ImageSource,
 } from '@titicaca/kint5-core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useHistoryFunctions,
+} from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
-import { ImagesPopup } from './images-popup'
+import {
+  PoiImagesPopup,
+  POI_IMAGES_POPUP_HASH,
+  HASH_EXTRA_INFO_SPLIT_STRING,
+} from './poi-images-popup'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -53,29 +60,28 @@ export default function Carousel({
   height,
 }: CarouselProps) {
   const app = useTripleClientMetadata()
+  const { push } = useHistoryFunctions()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const [shouldOpenImagesPopup, setShouldOpenImagesPopup] = useState(false)
   const visibleImages = app ? images : images.slice(0, SHOW_CTA_FROM_INDEX + 1)
 
-  const handleImageClick = useCallback(
-    (event?: MouseEvent, media?: ImageMeta) => {
-      const action = '대표사진선택'
-      const label = '선택'
+  const handleImageClick = (event?: MouseEvent, media?: ImageMeta) => {
+    const action = '대표사진선택'
+    const label = '선택'
 
-      setShouldOpenImagesPopup(true)
+    push(
+      `${POI_IMAGES_POPUP_HASH}${HASH_EXTRA_INFO_SPLIT_STRING}${currentPage}`,
+    )
 
-      trackEvent({
-        fa: {
-          action,
-          label,
-          media_id: media?.id,
-          type: media?.type === 'video' ? '비디오' : '이미지',
-        },
-      })
-    },
-    [trackEvent],
-  )
+    trackEvent({
+      fa: {
+        action,
+        label,
+        media_id: media?.id,
+        type: media?.type === 'video' ? '비디오' : '이미지',
+      },
+    })
+  }
 
   const handlePageChange = useCallback(
     ({ index }: { index: number }) => {
@@ -173,7 +179,7 @@ export default function Carousel({
           />
         </Container>
       </Responsive>
-      <ImagesPopup
+      <PoiImagesPopup
         images={visibleImages}
         currentPage={currentPage}
         displayedTotalCount={totalImagesCount}
@@ -185,8 +191,6 @@ export default function Carousel({
         pageLabelRenderer={() => null}
         optimized={optimized}
         height={height}
-        open={shouldOpenImagesPopup}
-        onClose={() => setShouldOpenImagesPopup(false)}
       />
     </>
   )
