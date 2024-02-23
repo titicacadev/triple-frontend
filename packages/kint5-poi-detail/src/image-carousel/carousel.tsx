@@ -70,6 +70,7 @@ export default function Carousel({
 
     push(
       `${POI_IMAGES_POPUP_HASH}${HASH_EXTRA_INFO_SPLIT_STRING}${currentPage}`,
+      { useRouter: true },
     )
 
     trackEvent({
