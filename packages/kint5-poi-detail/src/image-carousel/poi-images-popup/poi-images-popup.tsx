@@ -42,11 +42,16 @@ export function PoiImagesPopup({
     setRenderMediaGrid(false)
   }
 
+  const handleOnClose = () => {
+    setRenderMediaGrid(false)
+    back()
+  }
+
   return (
-    <Popup open={shouldOpen} onClose={back} noNavbar>
+    <Popup open={shouldOpen} onClose={handleOnClose} noNavbar>
       <StickyHeader>
         <Navbar
-          onLeftButtonClick={back}
+          onLeftButtonClick={handleOnClose}
           leftButtonIconType="close"
           centerContent={
             currentPage !== undefined ? (
