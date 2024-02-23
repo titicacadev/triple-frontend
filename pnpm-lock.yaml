@@ -986,6 +986,34 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
+  packages/kint5-modals:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+      '@titicaca/kint5-core-elements':
+        specifier: workspace:*
+        version: link:../kint5-core-elements
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+      utility-types:
+        specifier: ^3.10.0
+        version: 3.10.0
+
   packages/kint5-poi-detail:
     dependencies:
       '@titicaca/action-sheet':
