@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
 import {
   Container,
@@ -22,34 +22,23 @@ export const HASH_EXTRA_INFO_SPLIT_STRING = '+'
 
 export function PoiImagesPopup({
   images,
+  currentPage,
+  setCurrentPage,
   ...imageCarouselProps
 }: ImagesPopupProps) {
   const { t } = useTranslation('common-web')
   const uriHash = useUriHash()
   const { back } = useHistoryFunctions()
 
-  const [currentMediaIndex, setCurrentMediaIndex] = useState<number | null>(
-    null,
-  )
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
 
-  const [, rawCurrentMediaIndex] = uriHash.split(HASH_EXTRA_INFO_SPLIT_STRING)
   const numOfImages = images.length
   const shouldOpen = uriHash.includes(POI_IMAGES_POPUP_HASH)
 
   const handleMediaGridClick = (clickedMediaIndex: number) => {
-    setCurrentMediaIndex(clickedMediaIndex)
+    setCurrentPage(clickedMediaIndex)
     setRenderMediaGrid(false)
   }
-
-  useEffect(() => {
-    if (!shouldOpen || !rawCurrentMediaIndex) {
-      setCurrentMediaIndex(null)
-      return
-    }
-
-    setCurrentMediaIndex(parseInt(rawCurrentMediaIndex))
-  }, [shouldOpen, rawCurrentMediaIndex])
 
   return (
     <Popup open={shouldOpen} onClose={back} noNavbar>
@@ -58,12 +47,10 @@ export function PoiImagesPopup({
           onLeftButtonClick={back}
           leftButtonIconType="close"
           centerContent={
-            currentMediaIndex !== null ? (
+            currentPage !== undefined ? (
               <FlexBox flex alignItems="center">
                 <Text>
-                  {renderMediaGrid
-                    ? t(['sajin', '사진'])
-                    : currentMediaIndex + 1}
+                  {renderMediaGrid ? t(['sajin', '사진']) : currentPage + 1}
                   &nbsp;
                 </Text>
                 <Text css={{ color: 'var(--color-kint5-gray40)' }}>
@@ -99,12 +86,15 @@ export function PoiImagesPopup({
       >
         {renderMediaGrid ? (
           <PoiImageGrid images={images} onMediaClick={handleMediaGridClick} />
-        ) : currentMediaIndex !== null ? (
+        ) : (
           <ImageCarousel
             images={images}
-            {...{ ...imageCarouselProps, defaultIndex: currentMediaIndex }}
+            {...{
+              ...imageCarouselProps,
+              defaultIndex: currentPage,
+            }}
           />
-        ) : null}
+        )}
       </Container>
     </Popup>
   )
