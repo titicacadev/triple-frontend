@@ -8,7 +8,7 @@ import {
 } from '@titicaca/kint5-core-elements'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+import { TransitionType, useTransitionModal } from '@titicaca/kint5-modals'
 import {
   ArticleCardCTA,
   fetchInventoryItems,

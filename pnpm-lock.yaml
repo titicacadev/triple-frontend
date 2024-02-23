@@ -1037,9 +1037,9 @@ importers:
       '@titicaca/kint5-core-elements':
         specifier: workspace:*
         version: link:../kint5-core-elements
-      '@titicaca/modals':
+      '@titicaca/kint5-modals':
         specifier: workspace:*
-        version: link:../modals
+        version: link:../kint5-modals
       '@titicaca/popup':
         specifier: workspace:*
         version: link:../popup
