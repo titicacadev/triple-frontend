@@ -28,7 +28,6 @@ const Frame = styled(Container)<{
   height?: number
   frame?: FrameRatioAndSizes
 }>`
-  border-radius: 6px;
   position: relative;
   overflow: hidden;
   width: 100%;
