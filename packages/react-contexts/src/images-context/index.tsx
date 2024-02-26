@@ -64,7 +64,7 @@ export function ImagesProvider({
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: !initialImages,
+    loading: true,
     images: initialImages || [],
     total: initialTotal || 0,
     hasMore: true,
