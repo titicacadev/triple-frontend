@@ -40,6 +40,8 @@ export enum TransitionType {
   Link = 'link',
   LoungeHome = 'loungeHome',
   Community = 'community',
+  Share = 'share',
+  AddPoiToSchedule = 'addPoiToSchedule',
 }
 
 const MODAL_CONTENT: {
@@ -103,6 +105,12 @@ const MODAL_CONTENT: {
   },
   [TransitionType.Community]: {
     eventLabel: '커뮤니티',
+  },
+  [TransitionType.AddPoiToSchedule]: {
+    eventLabel: '일정추가',
+  },
+  [TransitionType.Share]: {
+    eventLabel: '공유하기',
   },
 }
 
