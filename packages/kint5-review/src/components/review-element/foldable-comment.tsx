@@ -57,7 +57,7 @@ function FoldedComment({
         onClick={onUnfoldButtonClick}
         css={{
           display: 'inline-block',
-          color: '#2987f0',
+          color: 'var(--color-kint5-gray60)',
           outline: '',
           ...unfoldTextCss,
         }}
