@@ -133,6 +133,7 @@ export function TripleGlobalReviewElement({
       t,
       navigateUserDetail,
     ]),
+    { skipTransitionModal: true },
   )
 
   const handleMenuClick = useSessionCallback(
@@ -148,6 +149,7 @@ export function TripleGlobalReviewElement({
         push(HASH_REVIEW_ACTION_SHEET)
       }
     }, [app, isMyReview, onMenuClick, push, review.id]),
+    { skipTransitionModal: true },
   )
 
   const handleReviewClick = useAppCallback(
@@ -201,7 +203,7 @@ export function TripleGlobalReviewElement({
       trackEvent,
       unlikeReview,
     ]),
-    { triggeredEventAction: likeButtonAction },
+    { triggeredEventAction: likeButtonAction, skipTransitionModal: true },
   )
 
   const reviewedAt = moment(originReviewedAt).format()

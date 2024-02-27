@@ -71,7 +71,10 @@ export const FullListButton = ({
         reviewLang,
         userLang,
       ]),
-      { triggeredEventAction: '리뷰_리스트더보기_선택' },
+      {
+        triggeredEventAction: '리뷰_리스트더보기_선택',
+        skipTransitionModal: true,
+      },
     ),
   )
 
