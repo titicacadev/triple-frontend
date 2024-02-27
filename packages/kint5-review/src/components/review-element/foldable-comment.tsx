@@ -14,12 +14,14 @@ export default function FoldableComment({
   onUnfoldButtonClick,
   maxCommentLines: maxCommentLinesProp,
   unfoldTextCss,
+  viewMoreButtonText,
 }: {
   comment: string
   hasImage: boolean
   onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
   maxCommentLines?: number
   unfoldTextCss?: CSSObject
+  viewMoreButtonText?: string
 }) {
   const maxCommentLines =
     maxCommentLinesProp || hasImage
@@ -33,6 +35,7 @@ export default function FoldableComment({
       comment={comment.slice(0, foldedPosition)}
       unfoldTextCss={unfoldTextCss}
       onUnfoldButtonClick={onUnfoldButtonClick}
+      viewMoreButtonText={viewMoreButtonText}
     />
   ) : (
     <Comment>{comment}</Comment>
@@ -43,10 +46,12 @@ function FoldedComment({
   comment,
   onUnfoldButtonClick,
   unfoldTextCss,
+  viewMoreButtonText,
 }: {
   comment: string
   onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
   unfoldTextCss?: CSSObject
+  viewMoreButtonText?: string
 }) {
   const { t } = useTranslation('common-web')
 
@@ -62,7 +67,7 @@ function FoldedComment({
           ...unfoldTextCss,
         }}
       >
-        {t(['deobogi', '더보기'])}
+        {viewMoreButtonText || t(['deobogi', '더보기'])}
       </button>
     </Comment>
   )
