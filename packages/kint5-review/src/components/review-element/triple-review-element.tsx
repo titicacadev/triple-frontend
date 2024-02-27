@@ -110,6 +110,7 @@ export function TripleReviewElement({
       t,
       navigateUserDetail,
     ]),
+    { skipTransitionModal: true },
   )
 
   const handleMenuClick = useSessionCallback(
@@ -125,6 +126,7 @@ export function TripleReviewElement({
         push(HASH_REVIEW_ACTION_SHEET)
       }
     }, [app, isMyReview, onMenuClick, push, review.id]),
+    { skipTransitionModal: true },
   )
 
   const handleReviewClick = useAppCallback(

@@ -129,7 +129,7 @@ export function ReviewsPlaceholder({
           writeReview,
         ],
       ),
-      { triggeredEventAction: '리뷰_리뷰쓰기' },
+      { triggeredEventAction: '리뷰_리뷰쓰기', skipTransitionModal: true },
     ),
   )
 

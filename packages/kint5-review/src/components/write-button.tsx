@@ -47,7 +47,7 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
         regionId,
         reviewLang,
       ]),
-      { triggeredEventAction: '리뷰_리뷰쓰기' },
+      { triggeredEventAction: '리뷰_리뷰쓰기', skipTransitionModal: true },
     ),
   )
 
