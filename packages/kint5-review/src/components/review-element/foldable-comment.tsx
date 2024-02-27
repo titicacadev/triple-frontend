@@ -6,7 +6,7 @@ import { findFoldedPosition } from '@titicaca/view-utilities'
 import Comment from './comment'
 
 const MAX_COMMENT_WITH_IMAGE_LINES = 3
-const MAX_COMMENT_LINES = 6
+const MAX_COMMENT_LINES = 3
 
 export default function FoldableComment({
   comment,
