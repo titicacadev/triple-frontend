@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.19.2
+
+```
+### modals
+
+- TransitionModal에 타입을 추가합니다. [#3144](https://github.com/titicacadev/triple-frontend/pull/3144)
+```
+
 ## v13.19.1
 
 ```
