@@ -93,6 +93,7 @@ export type RichBubbleProp = {
 } & BubbleProp
 
 export interface ImageBubbleProp {
+  id: string
   images: MetaDataInterface[]
   appUrlScheme?: string
   onClick?: (
