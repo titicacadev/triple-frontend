@@ -45,7 +45,7 @@ function RenderImageBubble() {
         css={{ marginBottom: 5 }}
       />
 
-      <ImageBubble images={images.slice(0, imageNumber)} />
+      <ImageBubble id="test-image-id" images={images.slice(0, imageNumber)} />
     </>
   )
 }

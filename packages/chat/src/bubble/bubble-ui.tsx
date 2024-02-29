@@ -145,6 +145,7 @@ export default function BubbleUI({
     case 'images':
       return (
         <ImageBubble
+          id={id}
           images={value.images}
           appUrlScheme={appUrlScheme}
           onClick={onImageBubbleClick}
