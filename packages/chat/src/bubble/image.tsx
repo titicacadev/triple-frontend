@@ -19,6 +19,7 @@ const ImageRow = styled.div`
 const MAX_IMAGE_WIDTH = 247
 
 export function ImageBubble({
+  id,
   images,
   appUrlScheme,
   onClick,
@@ -28,8 +29,8 @@ export function ImageBubble({
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const bind = useLongPress(
-    () => {
-      onLongPress?.()
+    (target, context) => {
+      onLongPress?.(id, target, context)
     },
     {
       threshold: 500,
