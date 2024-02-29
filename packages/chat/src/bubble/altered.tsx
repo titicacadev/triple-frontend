@@ -16,7 +16,6 @@ export default function AlteredBubble({
     <Bubble
       my={my}
       css={{
-        margin: my ? '0 0 0 8px' : undefined,
         ...(textColor && { color: textColor }),
       }}
       {...props}
