@@ -15,10 +15,8 @@ export default function AlteredBubble({
   return (
     <Bubble
       my={my}
-      css={{
-        ...(textColor && { color: textColor }),
-      }}
-      {...props}
+      css={{ ...(textColor && { color: textColor }) }}
+      {...omitColorCssProp(props)}
     >
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon color={textColor} />
@@ -26,4 +24,19 @@ export default function AlteredBubble({
       </FlexBox>
     </Bubble>
   )
+}
+
+function omitColorCssProp(
+  props: Omit<
+    BlindedBubbleProp,
+    'my' | 'parentMessage' | 'alternativeText' | 'textColor'
+  >,
+) {
+  const copiedProps = { ...props }
+  if (copiedProps.css) {
+    if (typeof copiedProps.css === 'object' && 'color' in copiedProps.css) {
+      delete copiedProps.css.color
+    }
+  }
+  return copiedProps
 }
