@@ -38,7 +38,7 @@ export const textStyle = (
  */
 export const _unsafeTextStyle = (
   fontSize: GlobalSizes | number = 'large',
-  lineHeight: number | string = 1.2,
+  lineHeight: number | string = 1.5,
   letterSpacing = 0,
 ) => {
   const size = typeof fontSize === 'string' ? SIZES[fontSize] : `${fontSize}px`
