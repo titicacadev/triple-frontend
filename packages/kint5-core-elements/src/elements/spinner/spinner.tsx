@@ -47,14 +47,16 @@ export function Spinner({
   children,
   zTier,
   zIndex,
+  disableDefaultIcon = false,
 }: {
   full?: boolean
   children?: ReactNode
+  disableDefaultIcon?: boolean
 } & LayeringMixinProps) {
   return (
     <Container full={full} zTier={zTier} zIndex={zIndex}>
       <Wrapper className={TRIPLE_FALLBACK_ACTION_CLASS_NAME}>
-        <Icon />
+        {disableDefaultIcon ? null : <Icon />}
         {children}
       </Wrapper>
     </Container>
