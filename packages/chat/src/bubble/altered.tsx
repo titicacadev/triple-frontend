@@ -15,11 +15,11 @@ export default function AlteredBubble({
   return (
     <Bubble
       my={my}
+      {...props}
       css={{
         margin: my ? '0 0 0 8px' : undefined,
         ...(textColor && { color: textColor }),
       }}
-      {...props}
     >
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon color={textColor} />
