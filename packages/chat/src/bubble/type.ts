@@ -90,6 +90,7 @@ export type RichBubbleProp = {
 } & BubbleProp
 
 export interface ImageBubbleProp {
+  id: string
   images: MetaDataInterface[]
   appUrlScheme?: string
   onClick?: (
@@ -97,7 +98,11 @@ export interface ImageBubbleProp {
     images: MetaDataInterface[],
     clickedImageIndex?: number,
   ) => void
-  onLongPress?: () => void
+  onLongPress?: (
+    messageId: string,
+    target: LongPressReactEvents<Element>,
+    context: LongPressCallbackMeta<unknown>,
+  ) => void
 }
 
 export type ProductBubbleProp = {

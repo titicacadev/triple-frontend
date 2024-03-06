@@ -13,14 +13,7 @@ export default function AlteredBubble({
   ...props
 }: BlindedBubbleProp) {
   return (
-    <Bubble
-      my={my}
-      css={{
-        margin: my ? '0 0 0 8px' : undefined,
-        ...(textColor && { color: textColor }),
-      }}
-      {...props}
-    >
+    <Bubble my={my} css={{ ...(textColor && { color: textColor }) }} {...props}>
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon color={textColor} />
         <span>{alternativeText ?? '관리자에 의해 삭제되었습니다'}</span>

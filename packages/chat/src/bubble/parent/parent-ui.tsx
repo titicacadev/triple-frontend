@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { CSSProp } from 'styled-components'
 
 import { MetaDataInterface, UserInterface } from '../../types'
@@ -5,6 +6,7 @@ import {
   DEFAULT_MAX_USERNAME_LENGTH,
   formatUsername,
 } from '../../utils/profile'
+import { ALTERNATIVE_TEXT_MESSAGE } from '../constants'
 
 import ParentMessage from './parent-message'
 
@@ -28,7 +30,9 @@ export interface ImageParentMessage extends ParentMessageInterface {
 
 export type ParentMessageUIProp = (TextParentMessage | ImageParentMessage) & {
   blinded: boolean
+  deleted: boolean
   style?: { css?: CSSProp; titleColor?: string; previewTextColor?: string }
+  onClick?: (e: MouseEvent<Element>, id: string) => void
 }
 
 export default function ParentMessageUI({
@@ -36,8 +40,10 @@ export default function ParentMessageUI({
   type,
   value,
   blinded,
+  deleted,
   sender,
   style,
+  ...props
 }: ParentMessageUIProp) {
   const senderName = formatUsername({
     name: sender.profile.name,
@@ -45,15 +51,20 @@ export default function ParentMessageUI({
     maxLength: DEFAULT_MAX_USERNAME_LENGTH,
   })
 
-  if (blinded) {
+  if (blinded || deleted || sender.unfriended) {
     return (
       <ParentMessage
         id={id}
-        text="삭제된 메세지입니다."
+        text={getTextPreview({
+          deleted,
+          blinded,
+          unfriended: sender.unfriended,
+        })}
         senderName={senderName}
         previewTextColor={style?.previewTextColor}
         titleColor={style?.titleColor}
         css={style?.css}
+        {...props}
       />
     )
   }
@@ -67,6 +78,7 @@ export default function ParentMessageUI({
         previewTextColor={style?.previewTextColor}
         titleColor={style?.titleColor}
         css={style?.css}
+        {...props}
       />
     )
   } else {
@@ -79,7 +91,27 @@ export default function ParentMessageUI({
         previewTextColor={style?.previewTextColor}
         titleColor={style?.titleColor}
         css={style?.css}
+        {...props}
       />
     )
   }
+}
+
+function getTextPreview({
+  deleted,
+  blinded,
+  unfriended,
+}: {
+  deleted?: boolean
+  blinded?: boolean
+  unfriended?: boolean
+}) {
+  if (unfriended) {
+    return ALTERNATIVE_TEXT_MESSAGE.unfriended
+  } else if (blinded) {
+    return ALTERNATIVE_TEXT_MESSAGE.blinded
+  } else if (deleted) {
+    return ALTERNATIVE_TEXT_MESSAGE.deleted
+  }
+  return ''
 }
