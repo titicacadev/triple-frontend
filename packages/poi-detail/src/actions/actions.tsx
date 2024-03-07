@@ -7,17 +7,20 @@ import {
   MarginPadding,
   ButtonGroup,
 } from '@titicaca/core-elements'
-import dynamic from 'next/dynamic'
 
-const ReviewTooltip = dynamic(() => import('./review-tooltip'), {
-  ssr: false,
-})
+import useTooltip from './tooltip/use-tooltip'
+import Tooltip from './tooltip/tooltip'
 
 const ActionButton = styled(Button)`
   position: relative;
   padding-left: 0;
   padding-right: 0;
 `
+
+type TOOLTIP_TYPE = 'SCRAPE' | 'REVIEW'
+
+const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
+const SCRAPE_TOOLTIP_EXPOSED = 'SCRAPE_TOOLTIP_EXPOSED'
 
 function Actions({
   scraped,
@@ -27,6 +30,7 @@ function Actions({
   onContentShare,
   onReviewEdit,
   noDivider = false,
+  tooltips = ['REVIEW'],
   ...props
 }: {
   poiId: string
@@ -39,8 +43,25 @@ function Actions({
   margin?: MarginPadding
   padding?: MarginPadding
   noDivider?: boolean
+  tooltips?: Array<TOOLTIP_TYPE>
 }) {
   const { t } = useTranslation('common-web')
+  const initialShowScrapeTooltip = tooltips.includes('SCRAPE')
+  const initialShowReviewTooltip = tooltips.includes('REVIEW')
+
+  const {
+    tooltipShownBefore: scrapeTooltipShownBefore,
+    updateCurrentIsTooltipExposed,
+  } = useTooltip(SCRAPE_TOOLTIP_EXPOSED)
+
+  const { tooltipShownBefore: reviewTooltipShownBefore } = useTooltip(
+    REVIEW_TOOLTIP_EXPOSED,
+  )
+
+  const showScrapeTooltip =
+    initialShowScrapeTooltip && !scrapeTooltipShownBefore
+  const showReviewTooltip =
+    initialShowReviewTooltip && !reviewTooltipShownBefore
 
   return (
     <Section {...props}>
@@ -57,6 +78,14 @@ function Actions({
             icon={scraped ? 'saveFilled' : 'saveEmpty'}
             onClick={onScrapedChange}
           >
+            {showScrapeTooltip ? (
+              <Tooltip
+                label="저장해보세요!!"
+                onClick={() => {
+                  updateCurrentIsTooltipExposed('true')
+                }}
+              />
+            ) : null}
             {scraped
               ? t(['jeojangcwiso', '저장취소'])
               : t(['jeojanghagi', '저장하기'])}
@@ -71,7 +100,9 @@ function Actions({
           icon={reviewed ? 'starFilled' : 'starEmpty'}
           onClick={onReviewEdit}
         >
-          <ReviewTooltip />
+          {showReviewTooltip && !showScrapeTooltip ? (
+            <Tooltip label="이제 영상도 올릴 수 있어요!" />
+          ) : null}
           {reviewed
             ? t(['ribyusujeong', '리뷰수정'])
             : t(['ribyusseugi', '리뷰쓰기'])}
