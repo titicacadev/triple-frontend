@@ -46,7 +46,7 @@ function Actions({
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
   const { t } = useTranslation('common-web')
-  const initialShowScrapeTooltip = tooltips.includes('SCRAPE')
+  const initialShowScrapeTooltip = tooltips.includes('SCRAPE') && !scraped
   const initialShowReviewTooltip = tooltips.includes('REVIEW')
 
   const {
