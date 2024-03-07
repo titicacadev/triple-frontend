@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useMemo } from 'react'
 import {
   TransportationType,
@@ -65,21 +66,12 @@ export default function useItinerary({ itinerary }: Props) {
         .map((category) => category.name)
         .join(',')
 
-      const areaNames =
-        regionId && source?.regionId && source?.areas && source.areas.length > 0
-          ? source.areas.map((area) => area.name).join(',')
-          : ''
-
-      const description = [categoryNames, areaNames]
-        .filter((i) => i)
-        .join(' · ')
-
       return {
         id,
         regionId: regionId || source?.regionId || '',
         name,
         type,
-        description,
+        description: categoryNames,
         ...transportation,
         memo,
         schedule,
