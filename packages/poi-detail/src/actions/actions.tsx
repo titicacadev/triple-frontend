@@ -80,7 +80,7 @@ function Actions({
           >
             {showScrapeTooltip ? (
               <Tooltip
-                label="저장해보세요!!"
+                label="저장할 수 있어요!"
                 onClick={() => {
                   updateCurrentIsTooltipExposed('true')
                 }}
