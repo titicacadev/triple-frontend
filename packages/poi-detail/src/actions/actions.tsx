@@ -17,7 +17,7 @@ const ActionButton = styled(Button)`
   padding-right: 0;
 `
 
-type TOOLTIP_TYPE = 'SCRAPE' | 'REVIEW'
+export type TOOLTIP_TYPE = 'SCRAPE' | 'REVIEW'
 
 const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 const SCRAPE_TOOLTIP_EXPOSED = 'SCRAPE_TOOLTIP_EXPOSED'
