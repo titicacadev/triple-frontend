@@ -8,6 +8,7 @@ const StyledTooltip = styled(CoreTooltip)`
   transform: translateX(-50%);
   left: 50%;
   cursor: default;
+
   &::after {
     transform: translateX(-50%);
     left: 50%;
