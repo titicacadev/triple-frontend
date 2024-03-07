@@ -25,7 +25,7 @@ export default function AreaNames({
       >
         {areaName
           ? regionName
-            ? `${areaName} (${regionName})`
+            ? `${areaName} · ${regionName}`
             : areaName
           : regionName}
         {arrowAction}
