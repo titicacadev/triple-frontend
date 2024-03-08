@@ -144,8 +144,10 @@ function PoiCarouselElement<T extends PoiListElementType>({
         <Container
           position="absolute"
           css={{
-            top: '8px',
-            right: '8px',
+            top: 4,
+            right: 4,
+            padding: 4,
+            zIndex: 1,
           }}
         >
           <OverlayScrapButton resource={poi} size={24} />
