@@ -283,6 +283,14 @@ function Content({
   )
 }
 
+type RateDescriptionText =
+  | '별점을 선택해주세요!'
+  | '별로예요'
+  | '조금 아쉬워요'
+  | '주위에 있다면 가볼만해요'
+  | '꽤 가볼만해요'
+  | '꼭 가야 하는 곳이에요'
+
 function RateDescription({
   rating,
   reviewRateDescriptions,
@@ -290,8 +298,11 @@ function RateDescription({
   rating?: number | null | undefined
   reviewRateDescriptions: string[] | null | undefined
 }) {
+  const { t } = useTranslation('common-web')
   const comment =
-    rating && reviewRateDescriptions ? reviewRateDescriptions[rating] : ''
+    rating && reviewRateDescriptions
+      ? t(reviewRateDescriptions[rating] as RateDescriptionText)
+      : ''
   return <Comment>{comment}</Comment>
 }
 
