@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 import Popup from '@titicaca/popup'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
-import { FlexBox, Navbar, Text } from '@titicaca/kint5-core-elements'
+import {
+  FlexBox,
+  GridLineIcon,
+  Navbar,
+  Text,
+} from '@titicaca/kint5-core-elements'
 import { useTranslation } from '@titicaca/next-i18next'
 
 import { BaseReviewFragment } from '../../data/graphql'
@@ -77,12 +82,7 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
               onClick={() => setRenderMediaGrid(true)}
               aria-label="전체 리뷰 미디어 보기"
             >
-              <img
-                src="https://assets.triple.guide/images/btn-end-view-all@3x.png"
-                alt="전체 리뷰 미디어 보기"
-                width={34}
-                height={34}
-              />
+              <GridLineIcon />
             </button>
           ) : null
         }
