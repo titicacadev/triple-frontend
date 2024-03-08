@@ -55,6 +55,7 @@ const ScrapButtonContainer = styled(Container)`
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1;
 `
 
 function PoiCardElement({
