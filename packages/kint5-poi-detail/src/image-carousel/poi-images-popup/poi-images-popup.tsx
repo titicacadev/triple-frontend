@@ -3,6 +3,7 @@ import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
 import {
   Container,
   FlexBox,
+  GridLineIcon,
   Navbar,
   StickyHeader,
   Text,
@@ -70,12 +71,7 @@ export function PoiImagesPopup({
           rightContent={
             !renderMediaGrid && numOfImages > 1 ? (
               <button onClick={() => setRenderMediaGrid(true)}>
-                <img
-                  src="https://assets.triple.guide/images/btn-end-view-all@3x.png"
-                  alt="View all"
-                  width={34}
-                  height={34}
-                />
+                <GridLineIcon />
               </button>
             ) : null
           }
