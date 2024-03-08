@@ -18,9 +18,7 @@ const PageLabelContainer = styled.div`
 export function PageLabel({ currentIndex, totalCount }: RendererParams) {
   return (
     <PageLabelContainer>
-      <PageLabelText>{`${currentIndex + 1} / ${
-        totalCount < 0 ? '-' : totalCount
-      }`}</PageLabelText>
+      <PageLabelText>{`${currentIndex + 1} / ${totalCount}`}</PageLabelText>
     </PageLabelContainer>
   )
 }

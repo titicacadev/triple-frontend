@@ -27,9 +27,7 @@ export default function ImageCarousel(props: ImageCarouselProps) {
     <CarouselSection
       images={images}
       loading={loading}
-      totalImagesCount={
-        loading && total === 0 ? -1 : Math.max(total, images.length)
-      }
+      totalImagesCount={total}
       onImagesFetch={fetch}
       {...props}
     />
