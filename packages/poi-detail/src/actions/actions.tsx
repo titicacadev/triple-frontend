@@ -81,7 +81,8 @@ function Actions({
             {showScrapeTooltip ? (
               <Tooltip
                 label="저장할 수 있어요!"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   updateCurrentIsTooltipExposed('true')
                 }}
               />
