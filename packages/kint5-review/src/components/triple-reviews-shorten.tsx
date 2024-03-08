@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ComponentType, useEffect } from 'react'
 import { CSSObject } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
@@ -35,7 +34,6 @@ interface TripleReviewsShortenProps {
   receiverId?: string
   lang: string
   containerCss?: CSSObject
-  disable?: boolean
 }
 
 /** 트리플 리뷰 (현지인 리뷰) 컴포넌트
@@ -53,7 +51,6 @@ export function TripleReviewsShorten({
   receiverId,
   containerCss,
   lang,
-  disable = false,
 }: TripleReviewsShortenProps) {
   return (
     <LoginCtaModalProvider>
@@ -76,7 +73,6 @@ export function TripleReviewsShorten({
               placeholderText={placeholderText}
               sortingType={sortingType}
               containerCss={containerCss}
-              disable={disable}
             />
           </ReviewLanguageProvider>
         </SortingOptionsProvider>
@@ -100,7 +96,6 @@ function TripleReviewsShortenComponent({
   placeholderText,
   sortingType,
   containerCss,
-  disable,
 }: Omit<
   TripleReviewsShortenProps,
   'initialRecentTrip' | 'initialSortingOption' | 'lang'
@@ -173,7 +168,7 @@ function TripleReviewsShortenComponent({
         ) : null}
       </FlexBox>
       <SortingOptions />
-      {disable ? null : <ListElement value={value} />}
+      <ListElement value={value} />
     </Section>
   )
 }
