@@ -143,9 +143,9 @@ function TripleGlobalReviewsShortenComponent({
         <Text css={{ fontSize: 18, fontWeight: 700 }}>
           {t(['ribyu', '리뷰'])}
         </Text>
-        {reviewsCountData !== undefined && reviewsCountData.reviewsCount > 0 ? (
+        {(reviewsCountData?.reviewsCount ?? 0) > 0 ? (
           <Text css={{ fontSize: 18, fontWeight: 700 }}>
-            {` ${formatNumber(reviewsCountData.reviewsCount)}`}
+            {` ${formatNumber(reviewsCountData?.reviewsCount)}`}
           </Text>
         ) : null}
         <WriteButton
