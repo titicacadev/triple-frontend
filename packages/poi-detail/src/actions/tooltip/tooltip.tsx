@@ -1,6 +1,6 @@
 import { Tooltip as CoreTooltip } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
-import { ComponentProps, MouseEventHandler } from 'react'
+import { ComponentProps, MouseEventHandler, useEffect, useState } from 'react'
 
 type Position = 'top' | 'bottom'
 
@@ -45,14 +45,20 @@ function getPointing(position: Position): CoreTooltipProps['pointing'] {
 }
 
 export default function Tooltip({
+  localStorageKey,
   label,
   position = 'top',
   onClick,
 }: {
+  localStorageKey: string
   label: string
   position?: Position
   onClick?: MouseEventHandler<HTMLDivElement>
 }) {
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, 'true')
+  }, [])
+
   return (
     <div onClick={onClick} role="presentation">
       <StyledTooltip
@@ -66,4 +72,14 @@ export default function Tooltip({
       />
     </div>
   )
+}
+
+export function useLocalStorageTooltip(key: string) {
+  const [value, setValue] = useState(true)
+
+  useEffect(() => {
+    setValue(JSON.parse(localStorage.getItem(key) || 'false') as boolean)
+  }, [])
+
+  return value
 }

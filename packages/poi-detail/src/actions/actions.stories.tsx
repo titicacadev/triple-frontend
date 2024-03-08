@@ -7,8 +7,6 @@ export default {
   component: Actions,
   decorators: [
     (Story) => {
-      localStorage.setItem('SCRAPE_TOOLTIP_EXPOSED', 'false')
-      localStorage.setItem('REVIEW_TOOLTIP_EXPOSED', 'false')
       return Story()
     },
   ],
