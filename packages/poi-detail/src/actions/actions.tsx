@@ -7,9 +7,9 @@ import {
   MarginPadding,
   ButtonGroup,
 } from '@titicaca/core-elements'
+import { useEffect, useState } from 'react'
 
-import useTooltip from './tooltip/use-tooltip'
-import Tooltip from './tooltip/tooltip'
+import Tooltip, { useLocalStorageTooltip } from './tooltip/tooltip'
 
 const ActionButton = styled(Button)`
   position: relative;
@@ -46,22 +46,29 @@ function Actions({
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
   const { t } = useTranslation('common-web')
-  const initialShowScrapeTooltip = tooltips.includes('SCRAPE') && !scraped
-  const initialShowReviewTooltip = tooltips.includes('REVIEW')
+  const isScrapeTooltipShownBefore = useLocalStorageTooltip(
+    SCRAPE_TOOLTIP_EXPOSED,
+  )
 
-  const {
-    tooltipShownBefore: scrapeTooltipShownBefore,
-    updateCurrentIsTooltipExposed,
-  } = useTooltip(SCRAPE_TOOLTIP_EXPOSED)
-
-  const { tooltipShownBefore: reviewTooltipShownBefore } = useTooltip(
+  const isReviewTooltipShownBefore = useLocalStorageTooltip(
     REVIEW_TOOLTIP_EXPOSED,
   )
 
-  const showScrapeTooltip =
-    initialShowScrapeTooltip && !scrapeTooltipShownBefore
-  const showReviewTooltip =
-    initialShowReviewTooltip && !reviewTooltipShownBefore
+  const [showScrapeTooltip, setShowScrapeTooltip] = useState(false)
+
+  useEffect(() => {
+    setShowScrapeTooltip(
+      tooltips.includes('SCRAPE') && !scraped && !isScrapeTooltipShownBefore,
+    )
+  }, [isScrapeTooltipShownBefore, scraped, tooltips])
+
+  const [showReviewTooltip, setShowReviewTooltip] = useState(false)
+
+  useEffect(() => {
+    setShowReviewTooltip(
+      tooltips.includes('REVIEW') && !isReviewTooltipShownBefore,
+    )
+  }, [isReviewTooltipShownBefore, tooltips])
 
   return (
     <Section {...props}>
@@ -80,11 +87,12 @@ function Actions({
           >
             {showScrapeTooltip ? (
               <Tooltip
+                localStorageKey={SCRAPE_TOOLTIP_EXPOSED}
                 label="저장할 수 있어요!"
                 position="bottom"
                 onClick={(e) => {
                   e.stopPropagation()
-                  updateCurrentIsTooltipExposed('true')
+                  setShowScrapeTooltip(false)
                 }}
               />
             ) : null}
@@ -103,7 +111,10 @@ function Actions({
           onClick={onReviewEdit}
         >
           {showReviewTooltip && !showScrapeTooltip ? (
-            <Tooltip label="이제 영상도 올릴 수 있어요!" />
+            <Tooltip
+              localStorageKey={REVIEW_TOOLTIP_EXPOSED}
+              label="이제 영상도 올릴 수 있어요!"
+            />
           ) : null}
           {reviewed
             ? t(['ribyusujeong', '리뷰수정'])
