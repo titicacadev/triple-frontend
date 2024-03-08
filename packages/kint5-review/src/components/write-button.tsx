@@ -1,4 +1,8 @@
-import { ButtonBase } from '@titicaca/kint5-core-elements'
+import {
+  ButtonBase,
+  CaretRightIcon,
+  FlexBox,
+} from '@titicaca/kint5-core-elements'
 import { TransitionType } from '@titicaca/modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
@@ -52,22 +56,25 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   )
 
   return (
-    <ButtonBase
+    <FlexBox
+      flex
       css={{
+        alignItems: 'center',
+        gap: 2,
         marginLeft: 'auto',
-        fontSize: 14,
-        fontWeight: 700,
-        color: 'var(--color-kint5-brand1)',
-        paddingRight: 14,
-        backgroundImage:
-          "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')",
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right center',
-        backgroundSize: 12,
       }}
-      onClick={handleClick}
     >
-      {t(['ribyusseugi', '리뷰쓰기'])}
-    </ButtonBase>
+      <ButtonBase
+        css={{
+          fontSize: 14,
+          fontWeight: 700,
+          color: 'var(--color-kint5-brand1)',
+        }}
+        onClick={handleClick}
+      >
+        {t(['ribyusseugi', '리뷰쓰기'])}
+      </ButtonBase>
+      <CaretRightIcon color="#7743EE" width={12} height={12} />
+    </FlexBox>
   )
 }
