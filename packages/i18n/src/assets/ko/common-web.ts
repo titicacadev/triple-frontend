@@ -211,4 +211,8 @@ export const koCommonWeb = {
   '주위에 있다면 가볼만해요': '주위에 있다면 가볼만해요',
   '꽤 가볼만해요': '꽤 가볼만해요',
   '꼭 가야 하는 곳이에요': '꼭 가야 하는 곳이에요',
+  'YYYY년 MM월 DD일': 'YYYY년 MM월 DD일',
+  '{{days}}일 전': '{{days}}일 전',
+  '{{hours}}시간 전': '{{hours}}시간 전',
+  '{{minutes}}분 전': '{{minutes}}분 전',
 } as const
