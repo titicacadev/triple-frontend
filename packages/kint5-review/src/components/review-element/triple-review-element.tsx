@@ -24,12 +24,12 @@ import { BaseReviewFragment } from '../../data/graphql'
 import { useClientActions } from '../../services'
 import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
-import { useReviewLanguage } from '../language-context'
+// import { useReviewLanguage } from '../language-context'
 
 import { i18nFormatRelativeTime } from './format-timestamp'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-// import Media from './media'
+import Media from './media'
 import User from './user'
 
 export interface TripleReviewElementProps {
@@ -47,8 +47,8 @@ export function TripleReviewElement({
   review: {
     user,
     blinded,
-    comment: originalComment,
-    translatedComment,
+    // comment: originalComment,
+    // translatedComment,
     recentTrip,
     reviewedAt: originReviewedAt,
     rating,
@@ -64,7 +64,7 @@ export function TripleReviewElement({
 }: TripleReviewElementProps) {
   const { t } = useTranslation('common-web')
 
-  const { userLang } = useReviewLanguage()
+  // const { userLang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
@@ -161,8 +161,9 @@ export function TripleReviewElement({
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
   }`
-  const comment =
-    translatedComment?.[userLang as 'ko' | 'ja' | 'en'] || originalComment
+  const comment = 'test'
+  // const comment =
+  // translatedComment?.[userLang as 'ko' | 'ja' | 'en'] || originalComment
 
   return (
     <IntersectionObserver
@@ -226,8 +227,7 @@ export function TripleReviewElement({
               margin: '16px 0 0',
             }}
           >
-            {/* <Media media={media} reviewId={review.id} /> */}
-            123
+            <Media media={media} reviewId={review.id} />
           </Container>
         ) : null}
         <FlexBox
