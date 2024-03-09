@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { useDescriptions } from '../../services'
-import { FullListButton } from '../full-list-button'
+// import { FullListButton } from '../full-list-button'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
 // import {
 // TripleGlobalReviewElement,
@@ -93,7 +93,7 @@ export function TripleReviewsList({
         ))}
       </List>
 
-      <FullListButton
+      {/* <FullListButton
         reviewsCount={reviewsCount}
         resourceId={resourceId}
         resourceType={resourceType}
@@ -102,7 +102,7 @@ export function TripleReviewsList({
         recentTrip={recentTrip}
         sortingType={sortingType}
         sortingOption={sortingOption}
-      />
+      /> */}
 
       {selectedReviewId ? (
         <OthersReviewActionSheet reviewId={selectedReviewId} />
