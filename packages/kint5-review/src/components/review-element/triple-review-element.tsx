@@ -17,7 +17,6 @@ import {
   useTripleClientMetadata,
 } from '@titicaca/react-triple-client-interfaces'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { formatTimestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
 
@@ -27,6 +26,7 @@ import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 import { useReviewLanguage } from '../language-context'
 
+import { i18nFormatRelativeTime } from './format-timestamp'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
@@ -246,7 +246,7 @@ export function TripleReviewElement({
                   color: 'var(--color-kint5-gray50)',
                 }}
               >
-                {formatTimestamp(reviewedAt)}
+                {i18nFormatRelativeTime(reviewedAt)}
               </Text>
               <button onClick={handleMenuClick}>
                 <img
