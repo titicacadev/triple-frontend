@@ -13,6 +13,7 @@ type ImageCarouselProps = Pick<
   | 'borderRadius'
   | 'height'
   | 'poiType'
+  | 'noPageLabel'
 >
 
 export default function ImageCarousel(props: ImageCarouselProps) {

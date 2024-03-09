@@ -45,6 +45,7 @@ export interface CarouselProps {
   optimized?: boolean
   borderRadius?: number
   height?: number
+  noPageLabel?: boolean
 }
 
 export default function Carousel({
@@ -54,6 +55,7 @@ export default function Carousel({
   optimized,
   borderRadius = 6,
   height,
+  noPageLabel = false,
 }: CarouselProps) {
   const app = useTripleClientMetadata()
   const { push } = useHistoryFunctions()
@@ -145,7 +147,7 @@ export default function Carousel({
             onMoveEnd={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
-            pageLabelRenderer={ConditionalPageLabel}
+            pageLabelRenderer={noPageLabel ? () => null : ConditionalPageLabel}
             optimized={optimized}
             height={height}
           />
@@ -167,7 +169,7 @@ export default function Carousel({
             onMoveEnd={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
-            pageLabelRenderer={ConditionalPageLabel}
+            pageLabelRenderer={noPageLabel ? () => null : ConditionalPageLabel}
             optimized={optimized}
           />
         </Container>
