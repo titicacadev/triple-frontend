@@ -29,7 +29,7 @@ import { useReviewLanguage } from '../language-context'
 import { i18nFormatRelativeTime } from './format-timestamp'
 import Comment from './comment'
 import FoldableComment from './foldable-comment'
-import Media from './media'
+// import Media from './media'
 import User from './user'
 
 export interface TripleReviewElementProps {
@@ -226,7 +226,8 @@ export function TripleReviewElement({
               margin: '16px 0 0',
             }}
           >
-            <Media media={media} reviewId={review.id} />
+            {/* <Media media={media} reviewId={review.id} /> */}
+            123
           </Container>
         ) : null}
         <FlexBox

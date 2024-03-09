@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { useDescriptions } from '../../services'
-// import { FullListButton } from '../full-list-button'
+import { FullListButton } from '../full-list-button'
 import { OthersReviewActionSheet } from '../others-review-action-sheet'
-// import {
-// TripleGlobalReviewElement,
-// TripleReviewElement,
-// } from '../review-element'
+import {
+  TripleGlobalReviewElement,
+  TripleReviewElement,
+} from '../review-element'
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
 import type { SortingType, SortingOption } from '../sorting-context'
 import { useReviewLanguage } from '../language-context'
@@ -30,7 +30,7 @@ interface Props {
 }
 
 export function TripleReviewsList({
-  // isGlobal,
+  isGlobal,
   resourceId,
   resourceType,
   regionId,
@@ -44,7 +44,9 @@ export function TripleReviewsList({
   refetch,
 }: Props) {
   const { reviewLang } = useReviewLanguage()
-  const [selectedReviewId] = useState<string | undefined>(undefined)
+  const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
+    undefined,
+  )
   const { subscribeLikedChangeEvent, unsubscribeLikedChangeEvent } =
     useTripleClientActions()
 
@@ -81,19 +83,30 @@ export function TripleReviewsList({
     )
   }
 
-  // const ReviewElement = isGlobal
-  // ? TripleGlobalReviewElement
-  // : TripleReviewElement
+  const ReviewElement = isGlobal
+    ? TripleGlobalReviewElement
+    : TripleReviewElement
 
   return (
     <>
       <List divided margin={{ top: 26 }} verticalGap={48}>
         {reviews.map((review, i) => (
-          <p key={i}>test</p>
+          <ReviewElement
+            key={i}
+            isFullList={false}
+            isMyReview={false}
+            review={review}
+            reviewRateDescriptions={
+              descriptionsData.reviewsSpecification?.rating?.description
+            }
+            resourceId={resourceId}
+            regionId={regionId}
+            onMenuClick={setSelectedReviewId}
+          />
         ))}
       </List>
 
-      {/* <FullListButton
+      <FullListButton
         reviewsCount={reviewsCount}
         resourceId={resourceId}
         resourceType={resourceType}
@@ -102,7 +115,7 @@ export function TripleReviewsList({
         recentTrip={recentTrip}
         sortingType={sortingType}
         sortingOption={sortingOption}
-      /> */}
+      />
 
       {selectedReviewId ? (
         <OthersReviewActionSheet reviewId={selectedReviewId} />
