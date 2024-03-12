@@ -289,6 +289,9 @@ importers:
       '@types/semver':
         specifier: ^7.5.3
         version: 7.5.4
+      '@types/set-cookie-parser':
+        specifier: ^2.4.6
+        version: 2.4.7
       next:
         specifier: ^13.5.5
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
@@ -4321,7 +4324,7 @@ packages:
     resolution: {integrity: sha512-mlN83YSrcFgk7Dm1Mys40DLssI1KdJji2CMKN8eOlBqsTADYzj2+jWzsANsUTFbxDMWPD5e9bfA1RGqBpS3O1g==}
     engines: {node: '>=14'}
     dependencies:
-      '@types/set-cookie-parser': 2.4.2
+      '@types/set-cookie-parser': 2.4.7
       set-cookie-parser: 2.6.0
     dev: true
 
@@ -7722,8 +7725,8 @@ packages:
       '@types/node': 18.18.7
     dev: true
 
-  /@types/set-cookie-parser@2.4.2:
-    resolution: {integrity: sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==}
+  /@types/set-cookie-parser@2.4.7:
+    resolution: {integrity: sha512-+ge/loa0oTozxip6zmhRIk8Z/boU51wl9Q6QdLZcokIGMzY5lFXYy/x7Htj2HTC6/KZP1hUbZ1ekx8DYXICvWg==}
     dependencies:
       '@types/node': 18.18.7
     dev: true
