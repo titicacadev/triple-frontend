@@ -5,9 +5,12 @@ import { splitCookiesString, parseString } from 'set-cookie-parser'
 import { CustomMiddleware } from './chain'
 
 /**
- * 1. 들어온 요청의 헤더에 포함된 쿠키를 이용해서 /user/me 호출해본다.
- * 2. 만약 401이 떨어지면 refresh 요청을 보내서 토큰 갱신
- * 3. 새로운 토큰을 client-side & request header 에 전달
+ * 해당 미들웨어에서는 다음 순서로 사용자 인증 여부를 확인합니다.
+ *
+ * 1. 요청 헤더에 포함된 쿠키로 /user/me를 호출합니다.
+ * 2. 401 응답을 받으면, refresh 요청을 보내서 토큰을 갱신합니다.
+ * 3. 갱신된 토큰을 response의 _set-cookie_ header와 set-cookie와 request의 _cookie_ header에 전달합니다.
+ * 4. 브라우저는 response의 _set-cookie_ 를 통해 브라우저 쿠키값을 갱신합니다.
  */
 export function sessionCookieMiddleware(paths: string[]) {
   return function withMiddleware(customMiddleware: CustomMiddleware) {
@@ -29,7 +32,7 @@ export function sessionCookieMiddleware(paths: string[]) {
       }
 
       /**
-       * /users/me는 x-soto-session의 유효성을 확인해서 응답한다.
+       * /users/me는 x-soto-session의 유효성을 확인해서 응답합니다.
        */
       const firstTrialResponse = await get('/api/users/me', options)
       if (firstTrialResponse.status !== 401) {
@@ -37,7 +40,7 @@ export function sessionCookieMiddleware(paths: string[]) {
       }
 
       /**
-       * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답한다.
+       * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답합니다.
        */
       const refreshResponse = await post(
         '/api/users/web-session/token',
@@ -77,7 +80,7 @@ export function sessionCookieMiddleware(paths: string[]) {
         }
       }
 
-      // refresh 요청이 실패한 경우
+      // refresh 요청이 실패한 경우 401응답을 반환합니다.
       return customMiddleware(
         request,
         event,
