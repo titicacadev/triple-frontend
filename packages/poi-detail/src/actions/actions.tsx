@@ -116,6 +116,10 @@ function Actions({
             <Tooltip
               localStorageKey={REVIEW_TOOLTIP_EXPOSED}
               label="이제 영상도 올릴 수 있어요!"
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowReviewTooltip(false)
+              }}
             />
           ) : null}
           {reviewed
