@@ -45,16 +45,12 @@
     "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2",
-    "semver": "^7.5.4",
-    "set-cookie-parser": "^2.6.0",
     "ua-parser-js": "^1.0.36",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
-    "@types/semver": "^7.5.3",
-    "@types/set-cookie-parser": "^2.4.7",
     "@types/ua-parser-js": "^0.7.37",
     "next": "^13.5.5"
   },
