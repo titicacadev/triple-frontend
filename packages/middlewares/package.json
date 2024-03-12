@@ -48,6 +48,7 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@types/semver": "^7.5.3",
+    "@types/set-cookie-parser": "^2.4.6",
     "react": "^18.2.0",
     "next": "^13.5.5"
   },
