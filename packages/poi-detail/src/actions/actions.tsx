@@ -46,6 +46,10 @@ function Actions({
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
   const { t } = useTranslation('common-web')
+
+  const hasScrapeTooltip = tooltips.includes('SCRAPE')
+  const hasReviewTooltip = tooltips.includes('REVIEW')
+
   const isScrapeTooltipShownBefore = useLocalStorageTooltip(
     SCRAPE_TOOLTIP_EXPOSED,
   )
@@ -58,17 +62,15 @@ function Actions({
 
   useEffect(() => {
     setShowScrapeTooltip(
-      tooltips.includes('SCRAPE') && !scraped && !isScrapeTooltipShownBefore,
+      hasScrapeTooltip && !scraped && !isScrapeTooltipShownBefore,
     )
-  }, [isScrapeTooltipShownBefore, scraped, tooltips])
+  }, [isScrapeTooltipShownBefore, scraped, hasScrapeTooltip])
 
   const [showReviewTooltip, setShowReviewTooltip] = useState(false)
 
   useEffect(() => {
-    setShowReviewTooltip(
-      tooltips.includes('REVIEW') && !isReviewTooltipShownBefore,
-    )
-  }, [isReviewTooltipShownBefore, tooltips])
+    setShowReviewTooltip(hasReviewTooltip && !isReviewTooltipShownBefore)
+  }, [isReviewTooltipShownBefore, hasReviewTooltip])
 
   return (
     <Section {...props}>
