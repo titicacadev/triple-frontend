@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   Section,
   HR1,
@@ -86,16 +86,28 @@ function Actions({
           <ActionButton
             icon={scraped ? 'saveFilled' : 'saveEmpty'}
             onClick={onScrapedChange}
+            css={{ transform: 'rotate(0deg)' }}
           >
             {showScrapeTooltip ? (
               <Tooltip
                 localStorageKey={SCRAPE_TOOLTIP_EXPOSED}
-                label="저장할 수 있어요!"
+                label="이 장소를 저장할 수 있어요!"
                 position="bottom"
                 onClick={(e) => {
                   e.stopPropagation()
                   setShowScrapeTooltip(false)
                 }}
+                css={css`
+                  transform: initial;
+                  left: 0;
+
+                  &::before {
+                    position: fixed;
+                    left: 50%;
+                    top: initial;
+                    bottom: 0;
+                  }
+                `}
               />
             ) : null}
             {scraped

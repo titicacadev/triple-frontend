@@ -7,6 +7,7 @@ export default {
   component: Actions,
   decorators: [
     (Story) => {
+      localStorage.removeItem('SCRAPE_TOOLTIP_EXPOSED')
       return Story()
     },
   ],

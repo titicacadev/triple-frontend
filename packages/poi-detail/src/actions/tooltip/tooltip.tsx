@@ -49,6 +49,7 @@ export default function Tooltip({
   label,
   position = 'top',
   onClick,
+  ...props
 }: {
   localStorageKey: string
   label: string
@@ -69,6 +70,7 @@ export default function Tooltip({
         backgroundColor="var(--color-blue)"
         position={position}
         positioning={{ top: -26 }}
+        {...props}
       />
     </div>
   )
