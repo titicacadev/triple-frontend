@@ -5,7 +5,6 @@ import { splitCookiesString, parseString } from 'set-cookie-parser'
 import { CustomMiddleware } from './chain'
 
 /**
- *
  * 1. 들어온 요청의 헤더에 포함된 쿠키를 이용해서 /user/me 호출해본다.
  * 2. 만약 401이 떨어지면 refresh 요청을 보내서 토큰 갱신
  * 3. 새로운 토큰을 client-side & request header 에 전달
@@ -16,8 +15,10 @@ export function sessionCookieMiddleware(paths: string[]) {
       request: NextRequest,
       event: NextFetchEvent,
     ) {
-      // paths 에 해당하지 않으면
-      if (!paths.some((path) => request.nextUrl.pathname.startsWith(path))) {
+      const isPathMismatched = !paths.some((path) =>
+        request.nextUrl.pathname.startsWith(path),
+      )
+      if (isPathMismatched) {
         return customMiddleware(request, event, NextResponse.next())
       }
 
@@ -84,13 +85,12 @@ export function sessionCookieMiddleware(paths: string[]) {
           { success: false, message: 'authentication failed' },
           {
             status:
-              refreshResponse.status === 400 || refreshResponse.status === 401
+              refreshResponse.status === 400 || refreshResponse.status === 401 // == NEED_LOGIN
                 ? 401
                 : 500,
           },
         ),
       )
-      // TODO: response의 status를 어떻게 사용하고 있는지 사용부를 확인해보기.
     }
   }
 }
