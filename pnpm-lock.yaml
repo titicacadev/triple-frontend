@@ -286,6 +286,9 @@ importers:
       '@titicaca/triple-web-utils':
         specifier: workspace:*
         version: link:../triple-web-utils
+      '@types/semver':
+        specifier: ^7.5.3
+        version: 7.5.4
       next:
         specifier: ^13.5.5
         version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
@@ -776,12 +779,6 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
-      set-cookie-parser:
-        specifier: ^2.6.0
-        version: 2.6.0
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.37
@@ -795,12 +792,6 @@ importers:
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
-      '@types/semver':
-        specifier: ^7.5.3
-        version: 7.5.4
-      '@types/set-cookie-parser':
-        specifier: ^2.4.7
-        version: 2.4.7
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.38
@@ -7735,12 +7726,6 @@ packages:
     resolution: {integrity: sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==}
     dependencies:
       '@types/node': 18.18.7
-    dev: true
-
-  /@types/set-cookie-parser@2.4.7:
-    resolution: {integrity: sha512-+ge/loa0oTozxip6zmhRIk8Z/boU51wl9Q6QdLZcokIGMzY5lFXYy/x7Htj2HTC6/KZP1hUbZ1ekx8DYXICvWg==}
-    dependencies:
-      '@types/node': 18.18.8
     dev: true
 
   /@types/stack-utils@2.0.1:
