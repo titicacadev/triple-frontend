@@ -19,7 +19,14 @@
 
 - ex. App Directory
 
-TODO: 에러 케이스 설명 추가하기
+해당 미들웨어에서는 다음 순서로 사용자 인증 여부를 확인합니다.
+
+1. 요청 헤더에 포함된 쿠키로 /user/me를 호출합니다.
+2. 401 응답을 받으면, refresh 요청을 보내서 토큰을 갱신합니다.
+3. 갱신된 토큰을 response의 _set-cookie_ header와 set-cookie와 request의 _cookie_ header에 전달합니다.
+4. 브라우저는 response의 _set-cookie_ 를 통해 브라우저 쿠키값을 갱신합니다.
+
+TODO: 인증 에러 케이스 대응 방법 설명 추가하기
 
 ## Usage
 
