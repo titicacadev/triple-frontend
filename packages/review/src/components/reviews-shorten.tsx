@@ -3,10 +3,14 @@ import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTripleClientActions,
+  useTripleClientMetadata,
+} from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
+import CustomizedScheduleBanner from '../customized-schedule-banner'
 
 import { PopularReviews, LatestReviews, RatingReviews } from './shorten-list'
 import { WriteButton } from './write-button'
@@ -106,6 +110,8 @@ function ReviewsShortenComponent({
   const { selectedOption } = useReviewSortingOptions()
   const { t } = useTranslation('common-web')
 
+  const app = useTripleClientMetadata()
+
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
     useTripleClientActions()
 
@@ -166,7 +172,7 @@ function ReviewsShortenComponent({
           regionId={regionId}
         />
       </FlexBox>
-
+      {!app && resourceType !== 'hotel' ? <CustomizedScheduleBanner /> : null}
       <OptionContainer>
         <SortingOptions />
 
