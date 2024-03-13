@@ -6,10 +6,7 @@ import {
   useEventTrackingContext,
   useHistoryFunctions,
 } from '@titicaca/react-contexts'
-import {
-  useTripleClientActions,
-  useTripleClientMetadata,
-} from '@titicaca/react-triple-client-interfaces'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
@@ -143,7 +140,6 @@ export function ReviewElement({
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
   const { push } = useHistoryFunctions()
-  const app = useTripleClientMetadata()
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
@@ -154,44 +150,43 @@ export function ReviewElement({
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
-  const handleUserClick = useSessionCallback(
-    useCallback(() => {
-      if (!app) {
-        return
-      }
+  const handleUserClick = useAppCallback(
+    TransitionType.ReviewProfile,
+    useSessionCallback(
+      useCallback(() => {
+        if (!review.user) {
+          return
+        }
 
-      if (!review.user) {
-        return
-      }
+        const { uid, mileage, unregister } = review.user
 
-      const { uid, mileage, unregister } = review.user
+        trackEvent({
+          ga: ['리뷰 프로필'],
+          fa: {
+            action: '리뷰_프로필',
+            item_id: resourceId,
+            user_id: uid,
+            review_id: review.id,
+            level: mileage?.level ?? 0,
+          },
+        })
 
-      trackEvent({
-        ga: ['리뷰 프로필'],
-        fa: {
-          action: '리뷰_프로필',
-          item_id: resourceId,
-          user_id: uid,
-          review_id: review.id,
-          level: mileage?.level ?? 0,
-        },
-      })
-
-      if (unregister) {
-        showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
-      } else {
-        navigateUserDetail(uid)
-      }
-    }, [
-      app,
-      review.user,
-      review.id,
-      trackEvent,
-      resourceId,
-      showToast,
-      t,
-      navigateUserDetail,
-    ]),
+        if (unregister) {
+          showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
+        } else {
+          navigateUserDetail(uid)
+        }
+      }, [
+        review.user,
+        review.id,
+        trackEvent,
+        resourceId,
+        showToast,
+        t,
+        navigateUserDetail,
+      ]),
+      { triggeredEventAction: '리뷰_프로필_선택' },
+    ),
   )
 
   const handleMenuClick = useAppCallback(
