@@ -6,7 +6,6 @@ import {
   Text,
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import {
   useEventTrackingContext,
@@ -16,7 +15,7 @@ import {
   useTripleClientActions,
   useTripleClientMetadata,
 } from '@titicaca/react-triple-client-interfaces'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import { useSessionCallback } from '@titicaca/ui-flow'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
 
@@ -49,7 +48,6 @@ export function TripleReviewElement({
     blinded,
     comment: originalComment,
     translatedComment,
-    recentTrip,
     reviewedAt: originReviewedAt,
     rating,
     media,
@@ -59,7 +57,6 @@ export function TripleReviewElement({
   isMyReview,
   reviewRateDescriptions,
   resourceId,
-  regionId,
   onMenuClick,
 }: TripleReviewElementProps) {
   const { t } = useTranslation('common-web')
@@ -70,7 +67,7 @@ export function TripleReviewElement({
   const { push } = useHistoryFunctions()
   const app = useTripleClientMetadata()
   const { showToast } = useTripleClientActions()
-  const { navigateReviewDetail, navigateUserDetail } = useClientActions()
+  const { navigateUserDetail } = useClientActions()
 
   const handleUserClick = useSessionCallback(
     useCallback(() => {
@@ -129,34 +126,6 @@ export function TripleReviewElement({
     { skipTransitionModal: true },
   )
 
-  const handleReviewClick = useAppCallback(
-    TransitionType.ReviewSelect,
-    useCallback(() => {
-      trackEvent({
-        ga: ['리뷰_리뷰내용_선택', review.id],
-        fa: {
-          action: '리뷰_리뷰내용_선택',
-          item_id: review.id,
-          resource_id: resourceId,
-          ...(recentTrip && { recent_trip: '최근여행' }),
-        },
-      })
-
-      navigateReviewDetail({ reviewId: review.id, regionId, resourceId })
-
-      unfolded && setUnfolded(false)
-    }, [
-      unfolded,
-      trackEvent,
-      review.id,
-      resourceId,
-      recentTrip,
-      navigateReviewDetail,
-      regionId,
-    ]),
-    false,
-  )
-
   const reviewedAt = moment(originReviewedAt).format()
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
@@ -186,7 +155,7 @@ export function TripleReviewElement({
           {!blinded && !!rating ? <Rating score={rating} /> : null}
           {!blinded ? <RecentReviewInfo visitDate={visitDate} /> : null}
         </FlexBox>
-        <Content onClick={handleReviewClick}>
+        <Content>
           {blinded ? (
             t([
               'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
