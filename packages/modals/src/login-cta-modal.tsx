@@ -21,6 +21,7 @@ export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
 const LoginCtaContext = createContext<
   | {
       setReturnUrl?: (url: string) => void
+      setReferrerEvent?: (referrerEvent: string) => void
     }
   | undefined
 >(undefined)
@@ -36,25 +37,30 @@ export function LoginCtaModalProvider({
   const hasParentModal = useContext(LoginCtaContext)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
   const [returnUrl, setReturnUrl] = useState<string | undefined>()
+  const [referrerEvent, setReferrerEvent] = useState<string | undefined>()
 
   if (hasParentModal) {
     return <>{children}</>
   }
 
   return (
-    <LoginCtaContext.Provider value={{ setReturnUrl }}>
+    <LoginCtaContext.Provider value={{ setReturnUrl, setReferrerEvent }}>
       {children}
 
       <Confirm
         open={open}
         title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
-        onClose={back}
+        onClose={() => {
+          setReferrerEvent(undefined)
+          back()
+        }}
         onCancel={back}
         onConfirm={() => {
           trackEvent({
             ga: ['로그인유도팝업_로그인선택'],
             fa: {
               action: '로그인유도팝업_로그인선택',
+              ...(referrerEvent && { referrer_event: referrerEvent }),
             },
           })
 
@@ -96,6 +102,10 @@ export function useLoginCtaModal() {
       show: (returnUrl?: string, triggeredEventAction = '') => {
         if (contextValue?.setReturnUrl && returnUrl) {
           contextValue.setReturnUrl(returnUrl)
+        }
+
+        if (contextValue?.setReferrerEvent && triggeredEventAction) {
+          contextValue.setReferrerEvent(triggeredEventAction)
         }
 
         trackEvent({
