@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/core-elements'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { useSessionCallback } from '@titicaca/ui-flow'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
@@ -42,21 +41,9 @@ export const FullListButton = ({
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
 
-  const fullListButtonClickCallback = useAppCallback(
-    TransitionType.OpenReviewList,
-    useSessionCallback(
-      useCallback(() => {
-        navigateReviewList({
-          regionId,
-          resourceId,
-          resourceType,
-          hasMedia,
-          recentTrip,
-          sortingType,
-          sortingOption,
-        })
-      }, [
-        navigateReviewList,
+  const fullListButtonClickCallback = useSessionCallback(
+    useCallback(() => {
+      navigateReviewList({
         regionId,
         resourceId,
         resourceType,
@@ -64,9 +51,18 @@ export const FullListButton = ({
         recentTrip,
         sortingType,
         sortingOption,
-      ]),
-      { triggeredEventAction: '리뷰_리스트더보기_선택' },
-    ),
+      })
+    }, [
+      navigateReviewList,
+      regionId,
+      resourceId,
+      resourceType,
+      hasMedia,
+      recentTrip,
+      sortingType,
+      sortingOption,
+    ]),
+    { triggeredEventAction: '리뷰_리스트더보기_선택' },
   )
 
   const restReviewsCount = reviewsCount
