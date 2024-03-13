@@ -8,9 +8,5 @@ export default {
 } as Meta<typeof CheckIconBold>
 
 export const Default: StoryObj<typeof CheckIconBold> = {
-  args: {
-    width: 24,
-    height: 24,
-    color: '#000',
-  },
+  render: () => <CheckIconBold color="#000" css={{ width: 24, height: 24 }} />,
 }
