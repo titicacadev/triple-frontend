@@ -54,15 +54,17 @@ export const ActionSheetItem = ({
         }}
       >
         {checked ? (
-          <Container
+          <CheckIconBold
+            color="#FFF"
             css={{
               position: 'absolute',
-              top: 0,
-              left: 5,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 12,
+              height: 12,
             }}
-          >
-            <CheckIconBold width={12} height={12} color="#FFF" />
-          </Container>
+          />
         ) : null}
       </Container>
     </ActionItemContainer>
