@@ -22,9 +22,10 @@ import type { ShortenReviewValue } from './shorten-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
+type ResourceType = 'article' | 'attraction' | 'restaurant' | 'hotel'
 interface ReviewsShortenProps {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   regionId?: string
   initialReviewsCount: number
   initialMediaFilter?: boolean
