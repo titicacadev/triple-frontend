@@ -38,6 +38,7 @@ interface ImagesProviderProps {
   }
   images?: ImageMeta[]
   total?: number
+  triggerInitialFetch?: boolean
 }
 
 const Context = createContext<ImagesContext>({
@@ -61,6 +62,7 @@ export function ImagesProvider({
   images: initialImages,
   total: initialTotal,
   source: { id, type },
+  triggerInitialFetch = true,
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
@@ -150,8 +152,10 @@ export function ImagesProvider({
   )
 
   useEffect(() => {
-    fetch(undefined, true)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    if (triggerInitialFetch) {
+      fetch(undefined, true)
+    }
+  }, [triggerInitialFetch]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const value = useMemo(
     () => ({
