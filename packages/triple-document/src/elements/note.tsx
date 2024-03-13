@@ -6,7 +6,11 @@ const NoteBodyText = styled(Text).attrs({
   color: 'gray',
   alpha: 0.8,
   lineHeight: 1.57,
-})`
+})``
+
+const MarkdownText = styled(NoteBodyText)`
+  white-space: normal;
+
   a {
     text-decoration: underline;
     color: var(--color-blue);
@@ -24,10 +28,7 @@ export default function Note({
         {title}
       </Text>
       {rawHTML ? (
-        <NoteBodyText
-          dangerouslySetInnerHTML={{ __html: rawHTML }}
-          css={{ whiteSpace: 'normal' }}
-        />
+        <MarkdownText dangerouslySetInnerHTML={{ __html: rawHTML }} />
       ) : (
         <NoteBodyText>{body}</NoteBodyText>
       )}
