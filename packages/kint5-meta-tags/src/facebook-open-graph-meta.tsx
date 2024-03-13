@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import { useEnv } from '@titicaca/react-contexts'
 
-import { DEFAULT_PAGE_DESCRIPTION, OG_LOCALE } from './constants'
+import {
+  DEFAULT_PAGE_DESCRIPTION,
+  OG_LOCALE,
+  DEFAULT_OG_IMAGE,
+} from './constants'
 
 /**
  * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookOpenGraphMeta룰 사용해주세요
@@ -12,7 +16,7 @@ export function FacebookOpenGraphMeta({
   canonicalUrl,
   type = 'website',
   lang = 'ja',
-  image,
+  image: imageProp,
 }: {
   title?: string
   description?: string
@@ -25,6 +29,7 @@ export function FacebookOpenGraphMeta({
 
   const title = titleFromProps || 'TRIPLE Korea'
   const description = descriptionFromProps || DEFAULT_PAGE_DESCRIPTION[lang]
+  const image = imageProp || DEFAULT_OG_IMAGE[lang]
 
   return (
     <Head>
