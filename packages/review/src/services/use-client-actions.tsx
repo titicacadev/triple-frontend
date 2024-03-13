@@ -68,11 +68,7 @@ export function useClientActions() {
           opener_id: getWindowId && getWindowId(),
         })
 
-        navigate(
-          `${appUrlScheme}:///inlink?path=${encodeURIComponent(
-            `/reviews/list?_triple_no_navbar&${params}`,
-          )}`,
-        )
+        navigate(`/reviews/list?_triple_no_navbar&${params}`)
       },
       navigateUserDetail(uid: string) {
         navigate(`${appUrlScheme}:///users/${uid}`)
