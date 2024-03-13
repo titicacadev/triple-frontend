@@ -986,6 +986,21 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
+  packages/kint5-meta-tags:
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/next-i18next':
+        specifier: 13.8.5
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
   packages/kint5-modals:
     dependencies:
       '@floating-ui/react':
