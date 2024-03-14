@@ -48,16 +48,20 @@ export default function Tooltip({
   localStorageKey,
   label,
   position = 'top',
+  rule = 'always',
   onClick,
   ...props
 }: {
   localStorageKey: string
   label: string
   position?: Position
+  rule?: 'always' | 'once'
   onClick?: MouseEventHandler<HTMLDivElement>
 }) {
   useEffect(() => {
-    localStorage.setItem(localStorageKey, 'true')
+    if (rule === 'once') {
+      localStorage.setItem(localStorageKey, 'true')
+    }
   }, [])
 
   return (
