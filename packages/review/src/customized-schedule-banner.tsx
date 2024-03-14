@@ -47,7 +47,7 @@ export default function CustomizedScheduleBanner() {
       <FlexBox flex justifyContent="space-between">
         <FlexBox flex flexDirection="column" justifyContent="center" gap="2px">
           <Text size={16} css={{ fontWeight: 700 }}>
-            여행일정 알아서 다 짜드려요
+            일정 알아서 다 짜드려요
           </Text>
           <Text size={12}>트리플 맞춤 일정 추천 받으러 가기</Text>
         </FlexBox>
