@@ -8,6 +8,7 @@ import {
   ButtonGroup,
 } from '@titicaca/core-elements'
 import { useEffect, useState } from 'react'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import Tooltip, { useLocalStorageTooltip } from './tooltip/tooltip'
 
@@ -46,6 +47,7 @@ function Actions({
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
   const { t } = useTranslation('common-web')
+  const { trackEvent } = useEventTrackingContext()
 
   const hasScrapeTooltip = tooltips.includes('SCRAPE')
   const hasReviewTooltip = tooltips.includes('REVIEW')
@@ -87,6 +89,11 @@ function Actions({
                 position="bottom"
                 onClick={(e) => {
                   e.stopPropagation()
+                  trackEvent({
+                    fa: {
+                      action: '저장유도툴팁_닫기',
+                    },
+                  })
                   setShowScrapeTooltip(false)
                 }}
                 css={css`
