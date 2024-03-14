@@ -1,24 +1,24 @@
 export function findFoldedPosition(
   maxLines: number,
   comment?: string | null,
-  charactersPerLine?: number,
+  charactersPerLine: number = 25,
 ) {
   const lines = (comment || '').split('\n')
 
+  let rest = maxLines * charactersPerLine
   let linesCount = 0
   let foldedIndex = 0
   for (const line of lines) {
-    const rest = (maxLines - linesCount) * (charactersPerLine || 25)
-
-    if (line.length > rest || linesCount === maxLines) {
+    if (linesCount === maxLines) {
+      return foldedIndex
+    }
+    if (line.length > rest) {
       return foldedIndex + rest
     }
 
-    foldedIndex = foldedIndex + line.length
-    linesCount =
-      line.length > 0
-        ? linesCount + 1 + Math.floor(line.length / (charactersPerLine || 25))
-        : linesCount
+    foldedIndex = foldedIndex + line.length + 1
+    linesCount = linesCount + 1 + Math.floor(line.length / charactersPerLine)
+    rest -= line.length
   }
 
   return null
