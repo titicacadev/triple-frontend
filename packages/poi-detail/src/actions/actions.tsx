@@ -50,21 +50,13 @@ function Actions({
   const hasScrapeTooltip = tooltips.includes('SCRAPE')
   const hasReviewTooltip = tooltips.includes('REVIEW')
 
-  const isScrapeTooltipShownBefore = useLocalStorageTooltip(
-    SCRAPE_TOOLTIP_EXPOSED,
-  )
-
   const isReviewTooltipShownBefore = useLocalStorageTooltip(
     REVIEW_TOOLTIP_EXPOSED,
   )
 
-  const [showScrapeTooltip, setShowScrapeTooltip] = useState(false)
-
-  useEffect(() => {
-    setShowScrapeTooltip(
-      hasScrapeTooltip && !scraped && !isScrapeTooltipShownBefore,
-    )
-  }, [isScrapeTooltipShownBefore, scraped, hasScrapeTooltip])
+  const [showScrapeTooltip, setShowScrapeTooltip] = useState(
+    hasScrapeTooltip && !scraped,
+  )
 
   const [showReviewTooltip, setShowReviewTooltip] = useState(false)
 
@@ -128,6 +120,7 @@ function Actions({
             <Tooltip
               localStorageKey={REVIEW_TOOLTIP_EXPOSED}
               label="이제 영상도 올릴 수 있어요!"
+              rule="once"
               onClick={(e) => {
                 e.stopPropagation()
                 setShowReviewTooltip(false)
