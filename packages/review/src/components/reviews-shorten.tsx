@@ -3,10 +3,14 @@ import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import {
+  useTripleClientActions,
+  useTripleClientMetadata,
+} from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
+import CustomizedScheduleBanner from '../customized-schedule-banner'
 
 import { PopularReviews, LatestReviews, RatingReviews } from './shorten-list'
 import { WriteButton } from './write-button'
@@ -22,9 +26,10 @@ import type { ShortenReviewValue } from './shorten-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
+type ResourceType = 'article' | 'attraction' | 'restaurant' | 'hotel' | 'tna'
 interface ReviewsShortenProps {
   resourceId: string
-  resourceType: string
+  resourceType: ResourceType
   regionId?: string
   initialReviewsCount: number
   initialMediaFilter?: boolean
@@ -105,6 +110,8 @@ function ReviewsShortenComponent({
   const { selectedOption } = useReviewSortingOptions()
   const { t } = useTranslation('common-web')
 
+  const app = useTripleClientMetadata()
+
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
     useTripleClientActions()
 
@@ -146,6 +153,12 @@ function ReviewsShortenComponent({
     ...(isRatingOption && { sortingLabel: selectedOption }),
   }
 
+  const showCustomizedScheduleBanner = [
+    'article',
+    'attraction',
+    'restaurant',
+  ].includes(resourceType)
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <FlexBox flex alignItems="center">
@@ -165,7 +178,9 @@ function ReviewsShortenComponent({
           regionId={regionId}
         />
       </FlexBox>
-
+      {!app && showCustomizedScheduleBanner ? (
+        <CustomizedScheduleBanner />
+      ) : null}
       <OptionContainer>
         <SortingOptions />
 
