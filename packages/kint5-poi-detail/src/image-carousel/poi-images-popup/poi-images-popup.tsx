@@ -16,7 +16,6 @@ import { PoiImageGrid } from './poi-image-grid'
 
 type ImagesPopupProps = Parameters<typeof ImageCarousel>[0] & {
   images: CarouselImageMeta[]
-  onFetchMoreImages: () => void
 }
 
 export const POI_IMAGES_POPUP_HASH = 'hash.popup.poi-images'
@@ -26,7 +25,6 @@ export function PoiImagesPopup({
   currentPage,
   setCurrentPage,
   displayedTotalCount,
-  onFetchMoreImages,
   ...imageCarouselProps
 }: ImagesPopupProps) {
   const { t } = useTranslation('common-web')
@@ -79,11 +77,7 @@ export function PoiImagesPopup({
       </StickyHeader>
 
       {renderMediaGrid ? (
-        <PoiImageGrid
-          images={images}
-          onMediaClick={handleMediaGridClick}
-          onFetchMoreImages={onFetchMoreImages}
-        />
+        <PoiImageGrid images={images} onMediaClick={handleMediaGridClick} />
       ) : (
         <Container
           css={{

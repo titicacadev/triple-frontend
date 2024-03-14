@@ -184,7 +184,6 @@ export default function Carousel({
         onMoveEnd={handlePageChange}
         ImageSource={ImageSource}
         showMoreRenderer={CTA}
-        onFetchMoreImages={onImagesFetch}
         pageLabelRenderer={() => null}
         optimized={optimized}
         height={height}
