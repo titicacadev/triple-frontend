@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.20.0
+
+```
+### view-utilities
+
+- [view-utilities] 말줄임 함수 수정 [#3154](https://github.com/titicacadev/triple-frontend/pull/3154)
+```
+
 ## v13.19.2
 
 ```
