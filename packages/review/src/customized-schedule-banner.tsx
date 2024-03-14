@@ -1,8 +1,36 @@
 import { Container, FlexBox, Text } from '@titicaca/core-elements'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useExternalRouter } from '@titicaca/router'
+import { useEffect } from 'react'
 
 export default function CustomizedScheduleBanner() {
   const routeExternally = useExternalRouter()
+  const { trackEvent } = useEventTrackingContext()
+
+  useEffect(() => {
+    trackEvent({
+      ga: ['맞춤일정배너_노출'],
+      fa: {
+        action: '맞춤일정배너_노출',
+      },
+    })
+  }, [])
+
+  function handleClick() {
+    trackEvent({
+      ga: ['맞춤일정배너_선택'],
+      fa: {
+        action: '맞춤일정배너_선택',
+      },
+    })
+
+    routeExternally({
+      href: `${
+        process.env.NEXT_PUBLIC_WEB_URL_BASE || 'https://triple.guide'
+      }/trips/promotion/customized-schedule`,
+      target: 'new',
+    })
+  }
 
   return (
     <Container
@@ -14,14 +42,7 @@ export default function CustomizedScheduleBanner() {
         marginBottom: 28,
         cursor: 'pointer',
       }}
-      onClick={() => {
-        routeExternally({
-          href: `${
-            process.env.NEXT_PUBLIC_WEB_URL_BASE || 'https://triple.guide'
-          }/trips/promotion/customized-schedule`,
-          target: 'new',
-        })
-      }}
+      onClick={() => handleClick()}
     >
       <FlexBox flex justifyContent="space-between">
         <FlexBox flex flexDirection="column" justifyContent="center" gap="2px">
