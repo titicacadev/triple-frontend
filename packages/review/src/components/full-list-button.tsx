@@ -42,7 +42,7 @@ export const FullListButton = ({
   const { trackEvent } = useEventTrackingContext()
   const { navigateReviewList } = useClientActions()
   const returnUrlWithReviewAnchor = generateUrl(
-    { hash: 'reviews' },
+    { query: 'anchor=reviews' },
     window.location.href,
   )
 
