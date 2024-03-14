@@ -37,7 +37,7 @@ export function LoginCtaModalProvider({
   const hasParentModal = useContext(LoginCtaContext)
   const open = uriHash === LOGIN_CTA_MODAL_HASH
   const [returnUrl, setReturnUrl] = useState<string | undefined>()
-  const [referrerEvent, setReferrerEvent] = useState<string | undefined>()
+  const [referrerEvent, setReferrerEvent] = useState<string | null>(null)
 
   if (hasParentModal) {
     return <>{children}</>
@@ -51,7 +51,7 @@ export function LoginCtaModalProvider({
         open={open}
         title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
         onClose={() => {
-          setReferrerEvent(undefined)
+          referrerEvent && setReferrerEvent(null)
           back()
         }}
         onCancel={back}
