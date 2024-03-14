@@ -26,7 +26,7 @@ import type { ShortenReviewValue } from './shorten-list'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
-type ResourceType = 'article' | 'attraction' | 'restaurant' | 'hotel'
+type ResourceType = 'article' | 'attraction' | 'restaurant' | 'hotel' | 'tna'
 interface ReviewsShortenProps {
   resourceId: string
   resourceType: ResourceType
@@ -153,6 +153,12 @@ function ReviewsShortenComponent({
     ...(isRatingOption && { sortingLabel: selectedOption }),
   }
 
+  const showCustomizedScheduleBanner = [
+    'article',
+    'attraction',
+    'restaurant',
+  ].includes(resourceType)
+
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <FlexBox flex alignItems="center">
@@ -172,7 +178,9 @@ function ReviewsShortenComponent({
           regionId={regionId}
         />
       </FlexBox>
-      {!app && resourceType !== 'hotel' ? <CustomizedScheduleBanner /> : null}
+      {!app && showCustomizedScheduleBanner ? (
+        <CustomizedScheduleBanner />
+      ) : null}
       <OptionContainer>
         <SortingOptions />
 
