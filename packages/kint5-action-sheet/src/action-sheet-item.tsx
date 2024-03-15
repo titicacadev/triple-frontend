@@ -41,34 +41,38 @@ export const ActionSheetItem = ({
       >
         {children}
       </Text>
-      <Container
-        css={{
-          position: 'relative',
-          width: 24,
-          height: 24,
-          border: `1px solid ${
-            checked ? 'var(--color-kint5-gray100)' : 'var(--color-kint5-gray30)'
-          }`,
-          borderRadius: '50%',
-          backgroundColor: checked
-            ? 'var(--color-kint5-gray100)'
-            : 'var(--color-kint5-gray0)',
-        }}
-      >
-        {checked ? (
-          <CheckIconBold
-            color="#FFF"
-            css={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 12,
-              height: 12,
-            }}
-          />
-        ) : null}
-      </Container>
+      {typeof checked === 'boolean' ? (
+        <Container
+          css={{
+            position: 'relative',
+            width: 24,
+            height: 24,
+            border: `1px solid ${
+              checked
+                ? 'var(--color-kint5-gray100)'
+                : 'var(--color-kint5-gray30)'
+            }`,
+            borderRadius: '50%',
+            backgroundColor: checked
+              ? 'var(--color-kint5-gray100)'
+              : 'var(--color-kint5-gray0)',
+          }}
+        >
+          {checked ? (
+            <CheckIconBold
+              color="#FFF"
+              css={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 12,
+                height: 12,
+              }}
+            />
+          ) : null}
+        </Container>
+      ) : null}
     </ActionItemContainer>
   )
 }
