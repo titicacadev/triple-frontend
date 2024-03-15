@@ -7,7 +7,7 @@ import { useActionSheet } from './action-sheet-context'
 export const ActionItemContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 22.5px 0;
+  padding: 14px 0;
 `
 
 export interface ActionSheetItemProps extends PropsWithChildren {
