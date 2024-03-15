@@ -46,7 +46,9 @@ export const ActionSheetItem = ({
           position: 'relative',
           width: 24,
           height: 24,
-          border: '1px solid var(--color-kint5-gray30)',
+          border: `1px solid ${
+            checked ? 'var(--color-kint5-gray100)' : 'var(--color-kint5-gray30)'
+          }`,
           borderRadius: '50%',
           backgroundColor: checked
             ? 'var(--color-kint5-gray100)'
