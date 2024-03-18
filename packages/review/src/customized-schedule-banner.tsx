@@ -60,7 +60,7 @@ export default function CustomizedScheduleBanner() {
             <Text size={12}>트리플 맞춤 일정 추천 받으러 가기</Text>
           </FlexBox>
           <img
-            src="http://assets.triple-dev.titicaca-corp.com/images/img-map-with-pin.svg"
+            src="http://assets.triple.guide/images/img-map-with-pin.svg"
             alt=""
             width={52}
           />
