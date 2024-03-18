@@ -8,7 +8,7 @@ import {
 } from './constants'
 import type { Scraps } from './types'
 
-type ActionType =
+export type ActionType =
   | typeof START_SCRAPE
   | typeof SCRAPE
   | typeof SCRAPE_FAILED

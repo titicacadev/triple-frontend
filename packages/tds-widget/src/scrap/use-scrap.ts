@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react'
+import { useCallback, useContext } from 'react'
 import {
   TransitionType,
   useClientApp,
@@ -9,8 +9,7 @@ import {
   useTransitionModal,
 } from '@titicaca/triple-web'
 
-import type { Scraps, Target } from './types'
-import { reducer } from './use-reducer'
+import type { Target } from './types'
 import { fetchScrape, fetchUnscrape } from './services'
 import {
   START_SCRAPE,
@@ -20,28 +19,24 @@ import {
   UNSCRAPE,
   UNSCRAPE_FAILED,
 } from './constants'
+import { ScrapContext, ScrapDispatchContext } from './context'
 
-export interface UseScrapParams {
-  initialScraps?: Scraps
-}
+export function useScrap() {
+  const scrapsContext = useContext(ScrapContext)
+  const dispatch = useContext(ScrapDispatchContext)
 
-export function useScrap(params?: UseScrapParams) {
+  if (!scrapsContext || !dispatch) {
+    throw new Error('ScrapProvider가 없습니다.')
+  }
+
+  const { scraps, updating } = scrapsContext
+
   const app = useClientApp()
-  const {
-    notifyScraped,
-    notifyUnscraped,
-    subscribeScrapedChangeEvent,
-    unsubscribeScrapedChangeEvent,
-  } = useClientAppActions()
+  const { notifyScraped, notifyUnscraped } = useClientAppActions()
   const sessionAvailable = useSessionAvailability()
   const { show: showLoginCta } = useLoginCtaModal()
   const { show: showTransitionModal } = useTransitionModal()
   const trackEventWithMetadata = useTrackEventWithMetadata()
-
-  const [{ scraps, updating }, dispatch] = useReducer(reducer, {
-    scraps: params?.initialScraps ?? {},
-    updating: {},
-  })
 
   const deriveCurrentStateAndCount = useCallback(
     ({
@@ -173,20 +168,6 @@ export function useScrap(params?: UseScrapParams) {
       trackEventWithMetadata,
     ],
   )
-
-  useEffect(() => {
-    const handleSubscribeEvent = ({
-      id,
-      scraped,
-    }: {
-      id: string
-      scraped: boolean
-    }) => dispatch({ type: scraped ? SCRAPE : UNSCRAPE, id })
-
-    subscribeScrapedChangeEvent?.(handleSubscribeEvent)
-
-    return () => unsubscribeScrapedChangeEvent?.(handleSubscribeEvent)
-  }, [dispatch, subscribeScrapedChangeEvent, unsubscribeScrapedChangeEvent])
 
   return { deriveCurrentStateAndCount, onScrape, onUnscrape }
 }
