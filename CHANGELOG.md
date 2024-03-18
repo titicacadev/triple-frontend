@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## v13.21.0
+
+```
+### modals
+
+- [review] 웹에서도 리뷰 더보기 버튼을 통해 리뷰 상세 페이지에 접근할 수 있도록 수정합니다 [#3156](https://github.com/titicacadev/triple-frontend/pull/3156)
+- [modals] loginCtaModal의 로그인 클릭시에도 리퍼럴 이벤트를 기록하도록 수정합니다 [#3157](https://github.com/titicacadev/triple-frontend/pull/3157)
+
+### poi-detail
+
+- [poi-detail] 저장 유도 툴팁을 추가합니다 [#3152](https://github.com/titicacadev/triple-frontend/pull/3152)
+
+### review
+
+- [review] 웹에서도 리뷰 더보기 버튼을 통해 리뷰 상세 페이지에 접근할 수 있도록 수정합니다 [#3156](https://github.com/titicacadev/triple-frontend/pull/3156)
+- [review] 맞춤 일정 배너를 노출합니다 [#3158](https://github.com/titicacadev/triple-frontend/pull/3158)
+
+### triple-document
+
+- [triple-document] note가 markdownText를 지원하도록 수정합니다 [#3148](https://github.com/titicacadev/triple-frontend/pull/3148)
+
+### view-utilities
+
+- [review] 웹에서도 리뷰 더보기 버튼을 통해 리뷰 상세 페이지에 접근할 수 있도록 수정합니다 [#3156](https://github.com/titicacadev/triple-frontend/pull/3156)
+- [view-utilities] 항공 시세 페이지를 routelist에 추가합니다 [#3160](https://github.com/titicacadev/triple-frontend/pull/3160)
+```
+
 ## v13.20.0
 
 ```
