@@ -51,7 +51,6 @@ export const Confirm = ({
           backgroundColor: 'var(--color-kint5-gray20)',
           borderTopLeftRadius: 14,
           borderTopRightRadius: 14,
-          padding: '26px 16px',
         }}
         {...props}
       >
