@@ -53,6 +53,7 @@ export function ImageFixedRatioFrame({
   borderRadius: borderRadiusProp,
   onClick,
   children,
+  ...props
 }: PropsWithChildren<{
   frame?: FrameRatioAndSizes
   floated?: CSS.Property.Float
@@ -72,6 +73,7 @@ export function ImageFixedRatioFrame({
       borderRadius={borderRadiusProp ?? borderRadius}
       margin={margin}
       onClick={onClick}
+      {...props}
     >
       <ContentAbsoluteContext.Provider value={!originalFrame}>
         {children}
