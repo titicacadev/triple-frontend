@@ -1,27 +1,19 @@
-import { Children, ReactNode } from 'react'
-import styled, { css } from 'styled-components'
+import { ReactNode } from 'react'
+import styled from 'styled-components'
 
 export const ModalActions = styled.div<{ children?: ReactNode }>`
-  display: block;
+  display: flex;
   width: 100%;
-  border-top-style: solid;
-  border-width: 1px;
-  border-color: #f5f5f5;
+  background-color: var(--color-kint5-gray20);
+  border-top: 0.5px solid var(--color-kint5-gray40);
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
 
   a {
-    ${({ children }) => {
-      const childrenCount = Children.count(children)
-      return css`
-        width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
-      `
-    }};
-    padding-left: 0;
-    padding-right: 0;
+    flex: 1 0 0;
   }
 
   a:not(:first-child) {
-    border-width: 1px;
-    border-left-style: solid;
-    border-color: #f5f5f5;
+    border-left: 0.5px solid var(--color-kint5-gray40);
   }
 `
