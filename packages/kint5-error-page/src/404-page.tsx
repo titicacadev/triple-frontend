@@ -29,6 +29,7 @@ export function Page404() {
           userSelect: 'none',
           width: '100%',
           height: closeWindow ? 'calc(100dvh - 44px)' : '100dvh',
+          padding: '0 40px',
         }}
       >
         <FlexBox flex css={{ flexDirection: 'column', alignItems: 'center' }}>
