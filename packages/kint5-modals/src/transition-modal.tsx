@@ -121,7 +121,7 @@ export function TransitionModal({
       <Modal open onClose={back}>
         <Modal.Body css={{ padding: '40px 30px 30px' }}>
           <IconImage src={icon} />
-          <Text css={{ fontSize: 19, marginTop: 20, fontWeight: 700 }}>
+          <Text center css={{ fontSize: 18, marginTop: 20, fontWeight: 700 }}>
             {t([
               'yeogineun-triple-korea-aebi-pilyohaeyo',
               '여기는 TRIPLE Korea 앱이 필요해요',
