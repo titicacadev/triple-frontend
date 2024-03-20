@@ -34,26 +34,8 @@ export const Confirm = ({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Modal.Body
-        css={{
-          backgroundColor: 'var(--color-kint5-gray20)',
-          borderTopLeftRadius: 14,
-          borderTopRightRadius: 14,
-        }}
-        {...props}
-      >
-        {title && (
-          <Modal.Title
-            css={{
-              marginBottom: 2,
-              fontSize: 17,
-              fontWeight: 700,
-              lineHeight: 1.5,
-            }}
-          >
-            {title}
-          </Modal.Title>
-        )}
+      <Modal.Body {...props}>
+        {title && <Modal.Title>{title}</Modal.Title>}
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
       <Modal.Actions>
