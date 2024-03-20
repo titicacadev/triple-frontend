@@ -1,6 +1,4 @@
 import { ReactNode } from 'react'
-import { CSSObject } from 'styled-components'
-import { FlexBox } from '@titicaca/kint5-core-elements'
 
 import { Modal } from '../modal'
 
@@ -13,16 +11,6 @@ export interface ConfirmProps {
   onClose?: () => void
   onCancel?: () => boolean | unknown
   onConfirm?: () => boolean | unknown
-}
-
-const CONFIRM_BUTTON_STYLE: CSSObject = {
-  flex: '1 0 0',
-  height: 'inherit',
-  padding: '11px 0',
-  fontSize: 16,
-  fontWeight: 700,
-  lineHeight: 1.5,
-  letterSpacing: '-0.4px',
 }
 
 export const Confirm = ({
@@ -68,36 +56,14 @@ export const Confirm = ({
         )}
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
-      <FlexBox
-        flex
-        css={{
-          alignItems: 'center',
-          backgroundColor: 'var(--color-kint5-gray20)',
-          borderTop: '0.5px solid var(--color-kint5-gray40)',
-          borderBottomLeftRadius: 14,
-          borderBottomRightRadius: 14,
-        }}
-      >
-        <Modal.Action
-          color="blue"
-          onClick={handleCancel}
-          css={{
-            ...CONFIRM_BUTTON_STYLE,
-          }}
-        >
+      <Modal.Actions>
+        <Modal.Action color="blue" onClick={handleCancel}>
           {cancelText}
         </Modal.Action>
-        <Modal.Action
-          color="red"
-          onClick={handleConfirm}
-          css={{
-            ...CONFIRM_BUTTON_STYLE,
-            borderLeft: '0.5px solid var(--color-kint5-gray40)',
-          }}
-        >
+        <Modal.Action color="red" onClick={handleConfirm}>
           {confirmText}
         </Modal.Action>
-      </FlexBox>
+      </Modal.Actions>
     </Modal>
   )
 }

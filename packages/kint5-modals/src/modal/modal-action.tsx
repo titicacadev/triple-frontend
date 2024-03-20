@@ -9,10 +9,10 @@ const ACTION_COLORS = {
 export const ModalAction = styled.a<{ color?: keyof typeof ACTION_COLORS }>`
   display: inline-block;
   white-space: nowrap;
-  height: 50px;
-  line-height: 50px;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  padding: 11px 0;
+  line-height: 1.5;
+  font-weight: 700;
   text-align: center;
   color: ${({ color }) => ACTION_COLORS[color || 'black']};
   cursor: pointer;
