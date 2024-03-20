@@ -42,6 +42,7 @@ export function ImageFixedDimensionsFrame({
   margin,
   onClick,
   children,
+  ...props
 }: PropsWithChildren<{
   size?: GlobalSizes
   width?: number
@@ -61,6 +62,7 @@ export function ImageFixedDimensionsFrame({
       margin={margin}
       borderRadius={borderRadius}
       onClick={onClick}
+      {...props}
     >
       {children}
     </FixedDimensionsFrameContainer>
