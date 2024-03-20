@@ -74,7 +74,7 @@ export const Confirm = ({
         css={{
           alignItems: 'center',
           backgroundColor: 'var(--color-kint5-gray20)',
-          borderTop: '1px solid var(--color-kint5-gray40)',
+          borderTop: '0.5px solid var(--color-kint5-gray40)',
           borderBottomLeftRadius: 20,
           borderBottomRightRadius: 20,
         }}
@@ -93,7 +93,7 @@ export const Confirm = ({
           css={{
             ...CONFIRM_BUTTON_STYLE,
             color: '#FF322E',
-            borderLeft: '1px solid var(--color-kint5-gray40)',
+            borderLeft: '0.5px solid var(--color-kint5-gray40)',
           }}
         >
           {confirmText}
