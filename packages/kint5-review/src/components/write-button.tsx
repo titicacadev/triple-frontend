@@ -3,7 +3,7 @@ import {
   CaretRightIcon,
   FlexBox,
 } from '@titicaca/kint5-core-elements'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/kint5-modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useCallback } from 'react'

@@ -1,6 +1,6 @@
 import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Confirm } from '@titicaca/modals'
+import { Confirm } from '@titicaca/kint5-modals'
 import {
   useHistoryFunctions,
   useUriHash,

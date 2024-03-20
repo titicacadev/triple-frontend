@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Button } from '@titicaca/kint5-core-elements'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/kint5-modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
