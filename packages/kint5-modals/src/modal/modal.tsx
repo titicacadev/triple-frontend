@@ -20,9 +20,9 @@ import { ModalTitle } from './modal-title'
 
 const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
-  background-color: #fff;
+  background-color: var(--color-kint5-gray20);
   outline: none;
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: auto;
   overscroll-behavior-y: none;
 
