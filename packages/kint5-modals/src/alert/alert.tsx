@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useTranslation } from '@titicaca/next-i18next'
 
 import { Modal } from '../modal'
 
@@ -15,11 +16,13 @@ export const Alert = ({
   children,
   title,
   open,
-  confirmText = '확인',
+  confirmText,
   onClose,
   onConfirm,
   ...props
 }: AlertProps) => {
+  const { t } = useTranslation('common-web')
+
   const handleConfirm = () => {
     onConfirm ? !onConfirm() && onClose?.() : onClose?.()
   }
@@ -32,7 +35,7 @@ export const Alert = ({
       </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="blue" onClick={handleConfirm}>
-          {confirmText}
+          {confirmText ?? t('hwagin')}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
