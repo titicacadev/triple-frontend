@@ -232,6 +232,10 @@ importers:
   packages/i18n: {}
 
   packages/intersection-observer:
+    dependencies:
+      '@titicaca/react-intersection-observer':
+        specifier: ^1.7.0
+        version: 1.7.0(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       react:
         specifier: ^18.2.0
@@ -7107,6 +7111,17 @@ packages:
     dependencies:
       prettier: 3.0.3
     dev: true
+
+  /@titicaca/react-intersection-observer@1.7.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OM0oCbjaLwq8CSTNT+rR9YB38g2NJJHoDPqdYX7YMRRpuPNNFQ3dBiqhkjB/XLAA9rdZZbjza45URNu9WQLmcA==}
+    engines: {node: '>=10.18.1'}
+    peerDependencies:
+      react: ^16.3.2 || ^17 || ^18
+      react-dom: ^16.3.2 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@titicaca/stylelint-config-triple@1.2.1(postcss@8.4.31)(stylelint@15.11.0)(typescript@5.2.2):
     resolution: {integrity: sha512-AgaoNvngtYdCY0hNbMQRFZHMLBX6kSmoLzY5cPoOHozVId4UenSfCKBSJSpmb4fM5HoKWNCJ2jxSredcRTdbwA==}
