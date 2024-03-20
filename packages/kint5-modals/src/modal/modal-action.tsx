@@ -7,10 +7,11 @@ const ACTION_COLORS = {
 } as const
 
 export const ModalAction = styled.a<{ color?: keyof typeof ACTION_COLORS }>`
-  display: inline-block;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
-  padding: 11px 0;
+  padding: 11px 4px;
   line-height: 1.5;
   font-weight: 700;
   text-align: center;
