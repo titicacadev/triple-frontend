@@ -18,42 +18,68 @@ const IconImage = styled.img`
 
 const MODAL_CONTENT: {
   [key: string]: {
-    description?: ParseKeys<'triple-frontend'>
-    eventLabel?: string
+    description: ParseKeys<'triple-frontend'>
+    eventLabel: string
   }
 } = {
-  [TransitionType.General]: {},
+  [TransitionType.General]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
+    eventLabel: '',
+  },
   [TransitionType.Gallery]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '대표사진_선택',
   },
   [TransitionType.Scrap]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: 'POI저장',
   },
   [TransitionType.Review]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰글더보기_선택',
   },
   [TransitionType.ReviewWrite]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰쓰기',
   },
   [TransitionType.ReviewThumbnail]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰썸네일_클릭',
   },
   [TransitionType.ReviewSelect]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰내용_선택',
   },
   [TransitionType.ReviewCommentSelect]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_댓글_선택',
   },
   [TransitionType.OpenReviewList]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리스트더보기_선택',
   },
   [TransitionType.Article]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '추천가이드_더보기',
   },
   [TransitionType.Tna]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '투어티켓_상품선택',
   },
   [TransitionType.Hotel]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '호텔_선택',
   },
   [TransitionType.View]: {
@@ -62,15 +88,23 @@ const MODAL_CONTENT: {
     eventLabel: '컨텐츠_연속보기',
   },
   [TransitionType.AddPoisToTripSelect]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '내일정으로담기_선택',
   },
   [TransitionType.Link]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '링크선택',
   },
   [TransitionType.LoungeHome]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '라운지홈',
   },
   [TransitionType.Community]: {
+    description:
+      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '커뮤니티',
   },
 }
@@ -83,8 +117,8 @@ export function TransitionModal() {
   let open = false
   let content:
     | {
-        description?: ParseKeys<'triple-frontend'>
-        eventLabel?: string
+        description: ParseKeys<'triple-frontend'>
+        eventLabel: string
       }
     | undefined
 
@@ -123,7 +157,7 @@ export function TransitionModal() {
 
   useEffect(() => {
     if (content) {
-      const triggeredEventLabel = content.eventLabel ?? ''
+      const triggeredEventLabel = content.eventLabel
 
       trackEvent(
         {
