@@ -12,7 +12,7 @@ function trigger(key: string) {
 
 function getSnapshot(key: string, initialValue: string | undefined) {
   try {
-    return localStorage.getItem(key)
+    return localStorage.getItem(key) ?? initialValue ?? null
   } catch (error) {
     inMemoryStorage.set(key, initialValue ?? null)
     return initialValue ?? null
