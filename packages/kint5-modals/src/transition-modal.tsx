@@ -129,7 +129,7 @@ export function TransitionModal({
           </Text>
         </Modal.Body>
         <Modal.Actions>
-          <Modal.Action color="gray" onClick={back}>
+          <Modal.Action color="black" onClick={back}>
             {t(['cwiso', '취소'])}
           </Modal.Action>
           <Modal.Action
