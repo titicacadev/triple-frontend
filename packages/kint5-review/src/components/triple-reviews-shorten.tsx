@@ -1,7 +1,7 @@
 import { ComponentType, useEffect } from 'react'
 import { CSSObject } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/kint5-core-elements'
-import { LoginCtaModalProvider } from '@titicaca/modals'
+import { LoginCtaModalProvider } from '@titicaca/kint5-modals'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { formatNumber } from '@titicaca/view-utilities'

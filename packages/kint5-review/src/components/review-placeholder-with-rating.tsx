@@ -9,7 +9,7 @@ import {
   Text,
 } from '@titicaca/kint5-core-elements'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/kint5-modals'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
 import { useClientActions } from '../services'

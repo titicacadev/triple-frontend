@@ -3,7 +3,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { Section, Text } from '@titicaca/kint5-core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { LoginCtaModalProvider } from '@titicaca/modals'
+import { LoginCtaModalProvider } from '@titicaca/kint5-modals'
 
 import { useReviewCount } from '../services'
 

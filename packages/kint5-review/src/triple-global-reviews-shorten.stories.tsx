@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TransitionModal } from '@titicaca/modals'
+import { TransitionModal } from '@titicaca/kint5-modals'
 import {
   SessionContextProvider,
   UserAgentProvider,
