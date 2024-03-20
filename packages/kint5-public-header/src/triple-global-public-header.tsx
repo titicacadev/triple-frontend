@@ -55,7 +55,7 @@ export function TripleGlobalPublicHeader({
     <Wrapper visible={visible}>
       <HeaderFrame>
         <a href="/">
-          <TripleKoreaBi width={60} height={24} />
+          <TripleKoreaBi css={{ width: 60, height: 24 }} />
         </a>
 
         <ExtraActionsContainer>
