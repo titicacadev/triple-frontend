@@ -49,9 +49,9 @@ export const Confirm = ({
       <Modal.Body
         css={{
           backgroundColor: 'var(--color-kint5-gray20)',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          padding: 16,
+          borderTopLeftRadius: 14,
+          borderTopRightRadius: 14,
+          padding: '26px 16px',
         }}
         {...props}
       >
@@ -75,8 +75,8 @@ export const Confirm = ({
           alignItems: 'center',
           backgroundColor: 'var(--color-kint5-gray20)',
           borderTop: '0.5px solid var(--color-kint5-gray40)',
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 14,
+          borderBottomRightRadius: 14,
         }}
       >
         <Modal.Action
