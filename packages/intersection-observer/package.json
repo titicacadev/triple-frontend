@@ -39,6 +39,9 @@
       "eslint"
     ]
   },
+  "dependencies": {
+    "@titicaca/react-intersection-observer": "^1.7.0"
+  },
   "devDependencies": {
     "react": "^18.2.0"
   },
