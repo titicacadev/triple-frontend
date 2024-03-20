@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useTranslation } from '@titicaca/next-i18next'
 
 import { Modal } from '../modal'
 
@@ -17,13 +18,15 @@ export const Confirm = ({
   children,
   title,
   open,
-  cancelText = '취소',
-  confirmText = '확인',
+  cancelText,
+  confirmText,
   onClose,
   onCancel,
   onConfirm,
   ...props
 }: ConfirmProps) => {
+  const { t } = useTranslation('common-web')
+
   const handleCancel = () => {
     onCancel ? !onCancel() && onClose?.() : onClose?.()
   }
@@ -40,10 +43,10 @@ export const Confirm = ({
       </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="blue" onClick={handleCancel}>
-          {cancelText}
+          {cancelText || t('cwiso')}
         </Modal.Action>
         <Modal.Action color="red" onClick={handleConfirm}>
-          {confirmText}
+          {confirmText || t('hwagin')}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
