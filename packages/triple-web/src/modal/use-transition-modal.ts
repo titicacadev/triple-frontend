@@ -16,7 +16,7 @@ export function useTransitionModal() {
 
   const show = useCallback(
     (transitionType: TransitionType, options?: ShowOptions) => {
-      addUriHash(transitionType)
+      addUriHash(`transition.${transitionType}`)
 
       if (options) {
         transitionModalRef.current = options
