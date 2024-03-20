@@ -22,7 +22,7 @@ const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
   background-color: #fff;
   outline: none;
-  border-radius: 6px;
+  border-radius: 20px;
   overflow: auto;
   overscroll-behavior-y: none;
 
