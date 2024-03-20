@@ -1,17 +1,17 @@
-import { BaseIconProps } from './type'
+import { SVGProps } from 'react'
 
-export function TripleGlobalBi({
-  width = 120,
-  height = 48,
+export function TripleKoreaBi({
   color = '#7743EE',
-}: BaseIconProps) {
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
+      width="120"
+      height="48"
       viewBox="0 0 120 48"
       fill="none"
+      {...props}
     >
       <path
         d="M53.8637 0.00421143H48.4091C48.3306 0.00421143 48.2686 0.0662268 48.2686 0.14478V26.7576C48.2686 26.8362 48.3306 26.8982 48.4091 26.8982H53.8637C53.9422 26.8982 54.0042 26.8362 54.0042 26.7576V0.14478C54.0042 0.0662268 53.9422 0.00421143 53.8637 0.00421143Z"
