@@ -35,7 +35,7 @@ export const Alert = ({
       </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="blue" onClick={handleConfirm}>
-          {confirmText ?? t('hwagin')}
+          {confirmText || t('hwagin')}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
