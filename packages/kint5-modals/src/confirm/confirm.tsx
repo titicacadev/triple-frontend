@@ -79,19 +79,19 @@ export const Confirm = ({
         }}
       >
         <Modal.Action
+          color="blue"
           onClick={handleCancel}
           css={{
             ...CONFIRM_BUTTON_STYLE,
-            color: '#1769FF',
           }}
         >
           {cancelText}
         </Modal.Action>
         <Modal.Action
+          color="red"
           onClick={handleConfirm}
           css={{
             ...CONFIRM_BUTTON_STYLE,
-            color: '#FF322E',
             borderLeft: '0.5px solid var(--color-kint5-gray40)',
           }}
         >
