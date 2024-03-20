@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren } from 'react'
-import { TripleGlobalBi } from '@titicaca/kint5-core-elements'
+import { TripleKoreaBi } from '@titicaca/kint5-core-elements'
 
 import { HEADER_HEIGHT_PX, TRANSITION_TIME } from './constants'
 import type { DeeplinkComponent } from './types'
@@ -55,7 +55,7 @@ export function TripleGlobalPublicHeader({
     <Wrapper visible={visible}>
       <HeaderFrame>
         <a href="/">
-          <TripleGlobalBi width={60} height={24} />
+          <TripleKoreaBi width={60} height={24} />
         </a>
 
         <ExtraActionsContainer>
