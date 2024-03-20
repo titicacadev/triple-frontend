@@ -1,4 +1,6 @@
 import { ReactNode } from 'react'
+import { CSSObject } from 'styled-components'
+import { FlexBox } from '@titicaca/kint5-core-elements'
 
 import { Modal } from '../modal'
 
@@ -11,6 +13,16 @@ export interface ConfirmProps {
   onClose?: () => void
   onCancel?: () => boolean | unknown
   onConfirm?: () => boolean | unknown
+}
+
+const CONFIRM_BUTTON_STYLE: CSSObject = {
+  flex: '1 0 0',
+  height: 'inherit',
+  padding: '11px 0',
+  fontSize: 16,
+  fontWeight: 700,
+  lineHeight: 1.5,
+  letterSpacing: '-0.4px',
 }
 
 export const Confirm = ({
@@ -34,18 +46,59 @@ export const Confirm = ({
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Modal.Body {...props}>
-        {title && <Modal.Title>{title}</Modal.Title>}
+      <Modal.Body
+        css={{
+          backgroundColor: 'var(--color-kint5-gray20)',
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          padding: 16,
+        }}
+        {...props}
+      >
+        {title && (
+          <Modal.Title
+            css={{
+              marginBottom: 2,
+              fontSize: 17,
+              fontWeight: 700,
+              lineHeight: 1.5,
+            }}
+          >
+            {title}
+          </Modal.Title>
+        )}
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
-      <Modal.Actions>
-        <Modal.Action color="gray" onClick={handleCancel}>
+      <FlexBox
+        flex
+        css={{
+          alignItems: 'center',
+          backgroundColor: 'var(--color-kint5-gray20)',
+          borderTop: '1px solid var(--color-kint5-gray40)',
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20,
+        }}
+      >
+        <Modal.Action
+          onClick={handleCancel}
+          css={{
+            ...CONFIRM_BUTTON_STYLE,
+            color: '#1769FF',
+          }}
+        >
           {cancelText}
         </Modal.Action>
-        <Modal.Action color="blue" onClick={handleConfirm}>
+        <Modal.Action
+          onClick={handleConfirm}
+          css={{
+            ...CONFIRM_BUTTON_STYLE,
+            color: '#FF322E',
+            borderLeft: '1px solid var(--color-kint5-gray40)',
+          }}
+        >
           {confirmText}
         </Modal.Action>
-      </Modal.Actions>
+      </FlexBox>
     </Modal>
   )
 }

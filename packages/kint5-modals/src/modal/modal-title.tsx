@@ -1,21 +1,21 @@
 import { PropsWithChildren } from 'react'
 import { Text } from '@titicaca/kint5-core-elements'
-import styled from 'styled-components'
 
 import { useModal } from './modal-context'
 
-const StyledText = styled(Text)`
-  margin-bottom: 10px;
-`
-
 export type ModalTitleProps = PropsWithChildren
 
-export const ModalTitle = ({ children }: ModalTitleProps) => {
+export const ModalTitle = ({ children, ...props }: ModalTitleProps) => {
   const { labelId } = useModal()
 
   return (
-    <StyledText id={labelId} bold center size="big" color="gray">
+    <Text
+      id={labelId}
+      center
+      css={{ marginBottom: 2, fontSize: 17, fontWeight: 700 }}
+      {...props}
+    >
       {children}
-    </StyledText>
+    </Text>
   )
 }
