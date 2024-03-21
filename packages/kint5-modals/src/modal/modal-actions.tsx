@@ -13,7 +13,7 @@ export const ModalActions = styled.div<{ children?: ReactNode }>`
     ${({ children }) => {
       const childrenCount = Children.count(children)
       return css`
-        width: calc((100% - ${childrenCount - 1}px) / ${childrenCount});
+        width: calc((100% - ${0.5 * (childrenCount - 1)}px) / ${childrenCount});
       `
     }};
   }
