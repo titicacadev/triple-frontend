@@ -764,6 +764,16 @@ importers:
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
   packages/image-viewer:
+    dependencies:
+      '@titicaca/core-elements':
+        specifier: workspace:*
+        version: link:../core-elements
+      '@titicaca/popup':
+        specifier: workspace:*
+        version: link:../popup
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*

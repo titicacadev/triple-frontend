@@ -39,6 +39,11 @@
       "eslint"
     ]
   },
+  "dependencies": {
+    "@titicaca/core-elements": "workspace:*",
+    "@titicaca/react-contexts": "workspace:*",
+    "@titicaca/popup": "workspace:*"
+  },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
