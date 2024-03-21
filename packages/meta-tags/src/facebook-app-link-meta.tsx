@@ -4,9 +4,6 @@ import { useEnv } from '@titicaca/react-contexts'
 
 import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
 
-/**
- * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookAppLinkMeta를 사용해주세요
- */
 export function FacebookAppLinkMeta({
   appName,
   appId = DEFAULT_APP_ID,
