@@ -2,7 +2,11 @@ import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
 import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
 import { Container, Responsive, ImageSource } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import {
+  useEventTrackingContext,
+  useSessionAvailability,
+} from '@titicaca/react-contexts'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
@@ -30,7 +34,7 @@ export interface CarouselProps {
   images: CarouselImageMeta[]
   totalImagesCount: number
   onImageClick: (image: ImageMeta) => void
-  onCtaClick?: () => void
+  onCtaClick: () => void
   onImagesFetch: () => void
   optimized?: boolean
   borderRadius?: number
@@ -49,15 +53,23 @@ export default function Carousel({
   height,
   guestMode,
 }: CarouselProps) {
+  const app = useTripleClientMetadata()
+  const sessionAvailable = useSessionAvailability()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = guestMode
-    ? images.slice(0, SHOW_CTA_FROM_INDEX)
-    : images
+
+  const loginRequired = !app && !sessionAvailable
+  const visibleImages =
+    guestMode || loginRequired
+      ? images.slice(
+          0,
+          guestMode ? SHOW_CTA_FROM_INDEX : SHOW_CTA_FROM_INDEX + 1,
+        )
+      : images
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
-      if (onCtaClick && currentPage === SHOW_CTA_FROM_INDEX) {
+      if (loginRequired && currentPage === SHOW_CTA_FROM_INDEX) {
         return onCtaClick()
       }
 
@@ -75,7 +87,7 @@ export default function Carousel({
         },
       })
     },
-    [currentPage, onImageClick, images, trackEvent, onCtaClick],
+    [currentPage, onImageClick, images, trackEvent, onCtaClick, loginRequired],
   )
 
   const handlePageChange = useCallback(
@@ -86,7 +98,7 @@ export default function Carousel({
 
       setCurrentPage(index)
 
-      if (onCtaClick && index === SHOW_CTA_FROM_INDEX) {
+      if (loginRequired && index === SHOW_CTA_FROM_INDEX) {
         return trackSimpleEvent({ action: '대표사진_앱에서더보기_노출' })
       }
 
@@ -120,7 +132,7 @@ export default function Carousel({
       onImagesFetch,
       trackEvent,
       trackSimpleEvent,
-      onCtaClick,
+      loginRequired,
     ],
   )
 
@@ -148,7 +160,9 @@ export default function Carousel({
   // const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    onCtaClick && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
+    loginRequired && currentIndex === SHOW_CTA_FROM_INDEX ? (
+      <CtaOverlay />
+    ) : null
 
   return (
     <>
