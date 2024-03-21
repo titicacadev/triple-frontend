@@ -1,8 +1,11 @@
-import { TransitionType } from '@titicaca/modals'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useLoginCtaModal } from '@titicaca/modals'
+import {
+  useEventTrackingContext,
+  useSessionAvailability,
+} from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useAppCallback } from '@titicaca/ui-flow'
 import { useMemo } from 'react'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { useClientActions } from '../../../services'
 
@@ -19,6 +22,9 @@ interface Props {
 function Media({ media, reviewId }: Props) {
   const { trackEvent } = useEventTrackingContext()
   const { navigateImages } = useClientActions()
+  const app = useTripleClientMetadata()
+  const sessionAvailable = useSessionAvailability()
+  const { show: showLoginCtaModal } = useLoginCtaModal()
 
   const hasVideo = media.some((medium) => medium.type === 'video')
 
@@ -31,15 +37,19 @@ function Media({ media, reviewId }: Props) {
   const length = Math.min(sortedMedia.length, limit)
   const restLength = sortedMedia.length - length
 
-  const onMediumClick = useAppCallback(
-    TransitionType.ReviewThumbnail,
-    (medium: ImageMeta) => {
-      const originalIndex = media.findIndex(
-        (originalMedium) => originalMedium.id === medium.id,
-      )
-      navigateImages(media, originalIndex)
-    },
-  )
+  const onMediumClick = (medium: ImageMeta) => {
+    if (!app) {
+      if (!sessionAvailable) {
+        return showLoginCtaModal()
+      } else {
+        // TODO 이미지 확대뷰 열기
+      }
+    }
+    const originalIndex = media.findIndex(
+      (originalMedium) => originalMedium.id === medium.id,
+    )
+    navigateImages(media, originalIndex)
+  }
 
   if (sortedMedia.length === 0) {
     return null
