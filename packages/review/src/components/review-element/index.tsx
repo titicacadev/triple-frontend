@@ -310,7 +310,7 @@ export function ReviewElement({
         }
       }}
     >
-      <List.Item style={{ paddingTop: 6 }} id={`review-${review.id}`}>
+      <List.Item style={{ paddingTop: 6 }}>
         {user ? <User user={user} onClick={handleUserClick} /> : null}
         {!blinded ? (
           <ReviewMetadataInfo flex css={{ alignItems: 'center' }}>
