@@ -1,7 +1,6 @@
 import { PropsWithChildren } from 'react'
-
-import Popup from '../../popup/src/popup'
-import { Container, Navbar } from '../../core-elements/src'
+import Popup from '@titicaca/popup'
+import { Container, Navbar } from '@titicaca/core-elements'
 
 import DetailViewer from './detail-viewer'
 
