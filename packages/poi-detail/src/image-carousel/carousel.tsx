@@ -1,12 +1,8 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
-import ImageCarousel, {
-  PageLabel,
-  CarouselImageMeta,
-} from '@titicaca/image-carousel'
+import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
 import { Container, Responsive, ImageSource } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
 import CtaOverlay from './cta-overlay'
@@ -34,7 +30,7 @@ export interface CarouselProps {
   images: CarouselImageMeta[]
   totalImagesCount: number
   onImageClick: (image: ImageMeta) => void
-  onCtaClick: () => void
+  onCtaClick?: () => void
   onImagesFetch: () => void
   optimized?: boolean
   borderRadius?: number
@@ -53,16 +49,15 @@ export default function Carousel({
   height,
   guestMode,
 }: CarouselProps) {
-  const app = useTripleClientMetadata()
   const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
-  const visibleImages = app
-    ? images
-    : images.slice(0, guestMode ? SHOW_CTA_FROM_INDEX : SHOW_CTA_FROM_INDEX + 1)
+  const visibleImages = guestMode
+    ? images.slice(0, SHOW_CTA_FROM_INDEX)
+    : images
 
   const handleImageClick = useCallback(
     (event?: MouseEvent, media?: ImageMeta) => {
-      if (!app && currentPage === SHOW_CTA_FROM_INDEX) {
+      if (onCtaClick && currentPage === SHOW_CTA_FROM_INDEX) {
         return onCtaClick()
       }
 
@@ -80,7 +75,7 @@ export default function Carousel({
         },
       })
     },
-    [app, currentPage, onImageClick, images, trackEvent, onCtaClick],
+    [currentPage, onImageClick, images, trackEvent, onCtaClick],
   )
 
   const handlePageChange = useCallback(
@@ -91,7 +86,7 @@ export default function Carousel({
 
       setCurrentPage(index)
 
-      if (!app && index === SHOW_CTA_FROM_INDEX) {
+      if (onCtaClick && index === SHOW_CTA_FROM_INDEX) {
         return trackSimpleEvent({ action: '대표사진_앱에서더보기_노출' })
       }
 
@@ -114,7 +109,7 @@ export default function Carousel({
         })
       }
 
-      if (app && index > images.length - 5) {
+      if (index > images.length - 5) {
         onImagesFetch()
       }
     },
@@ -122,38 +117,38 @@ export default function Carousel({
       setCurrentPage,
       currentPage,
       images,
-      app,
       onImagesFetch,
       trackEvent,
       trackSimpleEvent,
+      onCtaClick,
     ],
   )
 
-  const publicPageLabelRenderer = ({
-    currentIndex,
-  }: {
-    currentIndex: number
-  }) => {
-    if (!totalImagesCount) {
-      return null
-    }
+  // const publicPageLabelRenderer = ({
+  //   currentIndex,
+  // }: {
+  //   currentIndex: number
+  // }) => {
+  //   if (!totalImagesCount) {
+  //     return null
+  //   }
 
-    if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
-      const totalCount =
-        guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
-          ? SHOW_CTA_FROM_INDEX
-          : totalImagesCount
+  //   if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
+  //     const totalCount =
+  //       guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
+  //         ? SHOW_CTA_FROM_INDEX
+  //         : totalImagesCount
 
-      return <PageLabel currentIndex={currentPage} totalCount={totalCount} />
-    }
+  //     return <PageLabel currentIndex={currentPage} totalCount={totalCount} />
+  //   }
 
-    return null
-  }
+  //   return null
+  // }
 
-  const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
+  // const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
-    !app && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
+    onCtaClick && currentIndex === SHOW_CTA_FROM_INDEX ? <CtaOverlay /> : null
 
   return (
     <>
@@ -162,13 +157,14 @@ export default function Carousel({
           <ImageCarousel
             images={visibleImages}
             currentPage={currentPage}
-            displayedTotalCount={totalImagesCount}
+            displayedTotalCount={
+              guestMode ? visibleImages.length : totalImagesCount
+            }
             borderRadius={borderRadius}
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
-            pageLabelRenderer={ConditionalPageLabel}
             optimized={optimized}
             height={height}
           />
@@ -190,7 +186,6 @@ export default function Carousel({
             onMoveEnd={handlePageChange}
             ImageSource={ImageSource}
             showMoreRenderer={CTA}
-            pageLabelRenderer={ConditionalPageLabel}
             optimized={optimized}
           />
         </Container>
