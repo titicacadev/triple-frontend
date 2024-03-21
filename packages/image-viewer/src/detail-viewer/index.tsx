@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-
-import { Container } from '../../../core-elements/src'
-import { useImagesContext } from '../../../react-contexts/src'
+import { Container } from '@titicaca/core-elements'
+import { useImagesContext } from '@titicaca/react-contexts'
 
 const Image = styled.img`
   max-width: 100%;
