@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/core-elements'
 import { useSessionCallback } from '@titicaca/ui-flow'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { generateUrl } from '@titicaca/view-utilities'
+import { useNavigate } from '@titicaca/router'
+import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import qs from 'qs'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
-import { useClientActions } from '../services'
 
 import type { SortingType, SortingOption } from './sorting-context'
 
@@ -40,35 +41,26 @@ export const FullListButton = ({
 }: Props) => {
   const { t } = useTranslation()
   const { trackEvent } = useEventTrackingContext()
-  const { navigateReviewList } = useClientActions()
-  const returnUrlWithReviewAnchor = generateUrl(
-    { query: 'anchor=reviews' },
-    window.location.href,
-  )
+  const navigate = useNavigate()
+  const { getWindowId } = useTripleClientActions()
+
+  const reviewListUrl = `/reviews/list?_triple_no_navbar&${qs.stringify({
+    region_id: regionId,
+    resource_id: resourceId,
+    resource_type: resourceType,
+    recent_trip: recentTrip,
+    sorting_type: sortingType,
+    sorting_option: sortingOption,
+    has_media: hasMedia,
+    opener_id: getWindowId && getWindowId(),
+  })}`
 
   const fullListButtonClickCallback = useSessionCallback(
     useCallback(() => {
-      navigateReviewList({
-        regionId,
-        resourceId,
-        resourceType,
-        hasMedia,
-        recentTrip,
-        sortingType,
-        sortingOption,
-      })
-    }, [
-      navigateReviewList,
-      regionId,
-      resourceId,
-      resourceType,
-      hasMedia,
-      recentTrip,
-      sortingType,
-      sortingOption,
-    ]),
+      navigate(reviewListUrl)
+    }, [navigate, reviewListUrl]),
     {
-      returnUrl: returnUrlWithReviewAnchor,
+      returnUrl: reviewListUrl,
       triggeredEventAction: '리뷰_리스트더보기_선택',
     },
   )
