@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react'
 
 import Popup from '../../popup/src/popup'
+import { Container, Navbar } from '../../core-elements/src'
 
 import DetailViewer from './detail-viewer'
 
@@ -10,7 +11,7 @@ function ImageViewerPopup({
   children,
 }: PropsWithChildren<{ open: boolean; onClose: () => void }>) {
   return (
-    <Popup open={open} onClose={onClose}>
+    <Popup open={open} onClose={onClose} noNavbar>
       {children}
     </Popup>
   )
@@ -22,6 +23,8 @@ export interface DetailViewerPopupProp {
   imageIndex: number
 }
 
+const NAVBAR_HEIGHT = 52
+
 export function DetailViewerPopup({
   open,
   onClose,
@@ -29,7 +32,14 @@ export function DetailViewerPopup({
 }: DetailViewerPopupProp) {
   return (
     <ImageViewerPopup open={open} onClose={onClose}>
-      <DetailViewer imageIndex={imageIndex} />
+      <Navbar css={{ height: NAVBAR_HEIGHT }}>
+        <Navbar.Item icon="close" onClick={onClose} />
+      </Navbar>
+      <Container
+        css={{ height: `calc(100vh - ${NAVBAR_HEIGHT}px)`, width: '100vw' }}
+      >
+        <DetailViewer imageIndex={imageIndex} />
+      </Container>
     </ImageViewerPopup>
   )
 }

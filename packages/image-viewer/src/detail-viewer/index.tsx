@@ -4,7 +4,11 @@ import { useState } from 'react'
 import { Container } from '../../../core-elements/src'
 import { useImagesContext } from '../../../react-contexts/src'
 
-const Image = styled.img``
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+`
 
 export interface DetailViewerProp {
   imageIndex: number
@@ -19,7 +23,7 @@ export default function DetailViewer({
   const image = images[imageIndex]
 
   return (
-    <Container css={{ width: '100%', height: '100%' }}>
+    <Container css={{ width: '100%', height: '100%', display: 'flex' }}>
       <Image src={image.sizes.large.url} alt={image.id} />
     </Container>
   )
