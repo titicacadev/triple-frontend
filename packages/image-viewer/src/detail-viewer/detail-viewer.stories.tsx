@@ -42,12 +42,32 @@ export default {
               },
             },
           },
+          {
+            id: 'image3',
+            sizes: {
+              large: {
+                url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/7095aed4-65f7-4157-9b11-55bc871aac6d.jpeg',
+              },
+              full: {
+                url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/7095aed4-65f7-4157-9b11-55bc871aac6d.jpeg',
+              },
+              small_square: {
+                url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/7095aed4-65f7-4157-9b11-55bc871aac6d.jpeg',
+              },
+            },
+          },
         ]}
       >
         <Story />
       </ImagesProvider>
     ),
   ],
+  parameters: {
+    viewport: {
+      viewports: 'mobile',
+      defaultViewport: 'mobile',
+    },
+  },
   args: {
     open: true,
     imageIndex: 0,
