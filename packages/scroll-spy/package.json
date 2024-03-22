@@ -42,7 +42,7 @@
   "dependencies": {
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
-    "react-use": "^17.4.2"
+    "react-use": "^17.5.0"
   },
   "devDependencies": {
     "react": "^18.2.0"
