@@ -58,7 +58,11 @@ export default function DetailViewer({
   imageIndex,
   changeImageIndex,
 }: DetailViewerProp) {
-  const { images, total } = useImagesContext()
+  const {
+    images,
+    total,
+    actions: { fetch },
+  } = useImagesContext()
   const { isMobile } = useUserAgentContext()
   const flickingRef = useRef<Flicking>(null)
 
@@ -74,14 +78,21 @@ export default function DetailViewer({
     }
   }
 
+  async function fetchNewImages(index: number) {
+    if (index > images.length - 5) {
+      await fetch()
+    }
+  }
+
   return (
     <Container css={{ position: 'relative', width: '100%', height: '100%' }}>
       <Flicking
         ref={flickingRef}
         css={{ position: 'relative', width: '100%', height: '100%' }}
         defaultIndex={imageIndex}
-        onChange={(e) => {
-          changeImageIndex(e.index)
+        onMoveEnd={({ index }) => {
+          changeImageIndex(index)
+          fetchNewImages(index)
         }}
       >
         {images.map((image) => (
