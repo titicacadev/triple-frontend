@@ -1,1 +1,1 @@
-export { default } from './detail-viewer'
+export * from './image-viewer'
