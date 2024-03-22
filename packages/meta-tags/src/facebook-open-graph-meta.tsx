@@ -3,9 +3,6 @@ import { useEnv } from '@titicaca/react-contexts'
 
 import { DEFAULT_OG_IMAGE } from './constants'
 
-/**
- * next13 app router를 사용할 경우 '@titicaca/meta-tags/common'의 generateFacebookOpenGraphMeta룰 사용해주세요
- */
 export function FacebookOpenGraphMeta({
   title: titleFromProps,
   description: descriptionFromProps,
