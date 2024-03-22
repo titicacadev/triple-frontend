@@ -45,11 +45,11 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
+    "@titicaca/next-i18next": "13.8.7",
     "@titicaca/react-contexts": "workspace:*",
     "react": "^18.2.0",
     "styled-components": "^5.3.11",
-    "utility-types": "^3.10.0"
+    "utility-types": "^3.11.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
