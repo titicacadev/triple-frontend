@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import styled from 'styled-components'
 import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react'
 
@@ -28,16 +27,5 @@ export interface ActionSheetOverlayProps {
 export const ActionSheetOverlay = ({
   transitionStatus,
 }: ActionSheetOverlayProps) => {
-  useEffect(() => {
-    const bodyStyle = document.body.style
-    if (transitionStatus === 'open') {
-      bodyStyle.overflow = 'hidden'
-    }
-
-    if (transitionStatus === 'close') {
-      bodyStyle.overflow = ''
-    }
-  }, [transitionStatus])
-
   return <Overlay data-transition={transitionStatus} />
 }
