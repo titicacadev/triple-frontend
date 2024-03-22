@@ -136,29 +136,6 @@ export default function Carousel({
     ],
   )
 
-  // const publicPageLabelRenderer = ({
-  //   currentIndex,
-  // }: {
-  //   currentIndex: number
-  // }) => {
-  //   if (!totalImagesCount) {
-  //     return null
-  //   }
-
-  //   if (guestMode || currentIndex !== SHOW_CTA_FROM_INDEX) {
-  //     const totalCount =
-  //       guestMode && totalImagesCount > SHOW_CTA_FROM_INDEX
-  //         ? SHOW_CTA_FROM_INDEX
-  //         : totalImagesCount
-
-  //     return <PageLabel currentIndex={currentPage} totalCount={totalCount} />
-  //   }
-
-  //   return null
-  // }
-
-  // const ConditionalPageLabel = app ? undefined : publicPageLabelRenderer
-
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
     loginRequired && currentIndex === SHOW_CTA_FROM_INDEX ? (
       <CtaOverlay />
