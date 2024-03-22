@@ -61,18 +61,18 @@ export const Modal = ({
   const role = useRole(context, { role: 'dialog' })
 
   const { getFloatingProps } = useInteractions([dismiss, role])
-  const { status } = useTransitionStatus(context)
+  const { status, isMounted } = useTransitionStatus(context, { duration: 0 })
 
   return (
     <ModalContext.Provider
       value={{
-        open: context.open,
+        open,
         labelId,
         descriptionId,
         onClose,
       }}
     >
-      {context.open ? (
+      {isMounted ? (
         <FloatingPortal>
           <ModalOverlay transitionStatus={status} />
           <FlexBox
