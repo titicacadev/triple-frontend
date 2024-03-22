@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useState } from 'react'
 import { Container } from '@titicaca/core-elements'
 import { useImagesContext } from '@titicaca/react-contexts'
 
@@ -27,16 +26,13 @@ export interface DetailViewerProp {
   imageIndex: number
 }
 
-export default function DetailViewer({
-  imageIndex: initialImageIndex,
-}: DetailViewerProp) {
-  const [imageIndex] = useState(initialImageIndex)
+export default function DetailViewer({ imageIndex }: DetailViewerProp) {
   const { images } = useImagesContext()
 
   const image = images[imageIndex]
 
   return (
-    <Container css={{ width: '100%', height: '100%' }}>
+    <Container css={{ position: 'relative', width: '100%', height: '100%' }}>
       <Container
         css={{
           width: '100%',
