@@ -66,14 +66,12 @@ export default function DetailViewer({
     if (flickingRef.current) {
       flickingRef.current.next()
     }
-    changeImageIndex((imageIndex + 1) % total)
   }
 
   function onPrevImageShow() {
     if (flickingRef.current) {
       flickingRef.current.prev()
     }
-    changeImageIndex(imageIndex === 0 ? total - 1 : imageIndex - 1)
   }
 
   return (
