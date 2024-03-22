@@ -59,6 +59,7 @@ export default {
             },
           },
         ]}
+        total={3}
       >
         <Story />
       </ImagesProvider>
