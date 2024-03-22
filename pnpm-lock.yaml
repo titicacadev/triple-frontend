@@ -765,6 +765,12 @@ importers:
 
   packages/image-viewer:
     dependencies:
+      '@egjs/flicking':
+        specifier: ^3.9.3
+        version: 3.9.3
+      '@egjs/react-flicking':
+        specifier: ^3.8.3
+        version: 3.8.3
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements

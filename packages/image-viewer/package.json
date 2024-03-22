@@ -42,7 +42,9 @@
   "dependencies": {
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/react-contexts": "workspace:*",
-    "@titicaca/popup": "workspace:*"
+    "@titicaca/popup": "workspace:*",
+    "@egjs/flicking": "^3.9.3",
+    "@egjs/react-flicking": "^3.8.3"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
