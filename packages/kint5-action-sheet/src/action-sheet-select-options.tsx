@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   FloatingFocusManager,
   FloatingList,
@@ -34,6 +35,17 @@ export const ActionSheetSelectOptions = ({
   const { context, refs } = floating
   const { getFloatingProps } = interactions
   const { isMounted, status } = transitionStatus
+
+  useEffect(() => {
+    const bodyStyle = document.body.style
+    if (status === 'open') {
+      bodyStyle.overflow = 'hidden'
+    }
+
+    if (status === 'close' || status === 'unmounted') {
+      bodyStyle.overflow = ''
+    }
+  }, [status])
 
   if (!isMounted) {
     return null

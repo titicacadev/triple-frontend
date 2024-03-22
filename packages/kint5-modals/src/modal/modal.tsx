@@ -1,7 +1,8 @@
-import { PropsWithChildren, useId } from 'react'
+import { PropsWithChildren, useEffect, useId } from 'react'
 import styled, { css } from 'styled-components'
 import {
   FloatingFocusManager,
+  FloatingOverlay,
   FloatingPortal,
   useDismiss,
   useFloating,
@@ -17,7 +18,6 @@ import { ModalBody } from './modal-body'
 import { ModalContext } from './modal-context'
 import { ModalDescription } from './modal-description'
 import { ModalTitle } from './modal-title'
-import { ModalOverlay } from './modal-overlay'
 
 const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
@@ -63,6 +63,17 @@ export const Modal = ({
   const { getFloatingProps } = useInteractions([dismiss, role])
   const { status, isMounted } = useTransitionStatus(context, { duration: 0 })
 
+  useEffect(() => {
+    const bodyStyle = document.body.style
+    if (status === 'open') {
+      bodyStyle.overflow = 'hidden'
+    }
+
+    if (status === 'close' || status === 'unmounted') {
+      bodyStyle.overflow = ''
+    }
+  }, [status])
+
   return (
     <ModalContext.Provider
       value={{
@@ -74,7 +85,17 @@ export const Modal = ({
     >
       {isMounted ? (
         <FloatingPortal>
-          <ModalOverlay transitionStatus={status} />
+          <FloatingOverlay
+            css={{
+              position: 'fixed',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              backgroundColor: 'rgba(58, 58, 58, 0.7)',
+              zIndex: 9999,
+            }}
+          />
           <FlexBox
             flex
             alignItems="center"

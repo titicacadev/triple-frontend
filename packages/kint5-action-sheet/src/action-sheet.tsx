@@ -81,6 +81,17 @@ export const ActionSheet = ({
     }
   }, [onEnter, onEntered, onExit, onExited, status])
 
+  useEffect(() => {
+    const bodyStyle = document.body.style
+    if (status === 'open') {
+      bodyStyle.overflow = 'hidden'
+    }
+
+    if (status === 'close' || status === 'unmounted') {
+      bodyStyle.overflow = ''
+    }
+  }, [status])
+
   return (
     <ActionSheetContext.Provider value={{ open, onClose }}>
       {isMounted ? (
