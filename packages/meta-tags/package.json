@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
+    "@titicaca/next-i18next": "13.8.7",
     "@titicaca/react-contexts": "workspace:*",
     "react": "^18.2.0"
   },
