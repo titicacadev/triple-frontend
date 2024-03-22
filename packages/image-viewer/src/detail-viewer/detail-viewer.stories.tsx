@@ -16,6 +16,8 @@ export default {
         images={[
           {
             id: 'test image',
+            sourceUrl:
+              '출처가 있는 이미지입니다. 아주 긴 출처를 가지고 있습니다.',
             sizes: {
               large: {
                 url: 'https://res.cloudinary.com/triple-entry/image/upload/w_1024,h_1024,c_limit,f_auto/07f5ed9c-1102-4ec0-b07c-7b1b098311b2.jpg',
