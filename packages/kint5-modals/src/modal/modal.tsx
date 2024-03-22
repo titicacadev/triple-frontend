@@ -2,12 +2,12 @@ import { PropsWithChildren, useId } from 'react'
 import styled, { css } from 'styled-components'
 import {
   FloatingFocusManager,
-  FloatingOverlay,
   FloatingPortal,
   useDismiss,
   useFloating,
   useInteractions,
   useRole,
+  useTransitionStatus,
 } from '@floating-ui/react'
 import { Container, FlexBox } from '@titicaca/kint5-core-elements'
 
@@ -17,6 +17,7 @@ import { ModalBody } from './modal-body'
 import { ModalContext } from './modal-context'
 import { ModalDescription } from './modal-description'
 import { ModalTitle } from './modal-title'
+import { ModalOverlay } from './modal-overlay'
 
 const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
@@ -60,6 +61,7 @@ export const Modal = ({
   const role = useRole(context, { role: 'dialog' })
 
   const { getFloatingProps } = useInteractions([dismiss, role])
+  const { status } = useTransitionStatus(context)
 
   return (
     <ModalContext.Provider
@@ -72,18 +74,7 @@ export const Modal = ({
     >
       {context.open ? (
         <FloatingPortal>
-          <FloatingOverlay
-            lockScroll
-            css={css`
-              position: fixed;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              background-color: rgba(58, 58, 58, 0.5);
-              z-index: 9999;
-            `}
-          />
+          <ModalOverlay transitionStatus={status} />
           <FlexBox
             flex
             alignItems="center"
