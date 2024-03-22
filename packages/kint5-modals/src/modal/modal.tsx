@@ -65,14 +65,24 @@ export const Modal = ({
 
   useEffect(() => {
     const bodyStyle = document.body.style
+    const isRendered = !!document.getElementById(context.floatingId)
+
+    if (!isRendered) {
+      return
+    }
+
     if (status === 'open') {
       bodyStyle.overflow = 'hidden'
     }
 
-    if (status === 'close' || status === 'unmounted') {
+    if (status === 'close') {
       bodyStyle.overflow = ''
     }
-  }, [status])
+
+    return () => {
+      bodyStyle.overflow = ''
+    }
+  }, [status, context])
 
   return (
     <ModalContext.Provider
