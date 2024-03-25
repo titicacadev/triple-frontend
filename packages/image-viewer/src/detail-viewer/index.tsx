@@ -4,6 +4,8 @@ import { useImagesContext, useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
 import { useRef } from 'react'
 
+import { Video } from './video'
+
 const Image = styled.img`
   max-width: 100%;
   max-height: 100%;
@@ -126,7 +128,11 @@ export default function DetailViewer({
                   display: 'flex',
                 }}
               >
-                <Image src={image.sizes.large.url} alt={image.id} />
+                {'video' in image ? (
+                  <Video medium={image} />
+                ) : (
+                  <Image src={image.sizes.large.url} alt={image.id} />
+                )}
               </Container>
               {image.sourceUrl ? (
                 <SourceUrl>{image.sourceUrl}</SourceUrl>
