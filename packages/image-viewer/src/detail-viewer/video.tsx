@@ -65,12 +65,13 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
       try {
         if (playing && isIntersecting) {
           ref.current.play()
-        } else if (!playing) {
+        } else {
           ref.current.pause()
-        } else if (!isIntersecting) {
-          ref.current.pause()
-          ref.current.currentTime = 0
-          !initialAutoPlaySetting && setPlaying(false)
+
+          if (!isIntersecting) {
+            ref.current.currentTime = 0
+            !initialAutoPlaySetting && setPlaying(false)
+          }
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
