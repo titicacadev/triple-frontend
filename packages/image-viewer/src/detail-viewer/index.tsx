@@ -46,7 +46,6 @@ const Button = styled.button<{ direction: 'next' | 'prev' }>`
   background-color: white;
   border-radius: 50%;
 `
-
 const SOURCE_HEIGHT = 54
 
 export interface DetailViewerProp {
@@ -88,7 +87,11 @@ export default function DetailViewer({
     <Container css={{ position: 'relative', width: '100%', height: '100%' }}>
       <Flicking
         ref={flickingRef}
-        css={{ position: 'relative', width: '100%', height: '100%' }}
+        css={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+        }}
         defaultIndex={imageIndex}
         onMoveEnd={({ index }) => {
           changeImageIndex(index)
@@ -101,13 +104,26 @@ export default function DetailViewer({
             <Container
               css={{
                 width: '100%',
-                height: `calc(100% - ${image.sourceUrl ? SOURCE_HEIGHT : 0}px)`,
-                display: 'flex',
+                height: '100%',
+                maxWidth: 768,
+                margin: 'auto',
               }}
             >
-              <Image src={image.sizes.large.url} alt={image.id} />
+              <Container
+                css={{
+                  width: '100%',
+                  height: `calc(100% - ${
+                    image.sourceUrl ? SOURCE_HEIGHT : 0
+                  }px)`,
+                  display: 'flex',
+                }}
+              >
+                <Image src={image.sizes.large.url} alt={image.id} />
+              </Container>
+              {image.sourceUrl ? (
+                <SourceUrl>{image.sourceUrl}</SourceUrl>
+              ) : null}
             </Container>
-            {image.sourceUrl ? <SourceUrl>{image.sourceUrl}</SourceUrl> : null}
           </Container>
         ))}
       </Flicking>
