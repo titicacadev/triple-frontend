@@ -94,6 +94,7 @@ export default function DetailViewer({
           changeImageIndex(index)
           fetchNewImages(index)
         }}
+        autoResize
       >
         {images.map((image) => (
           <Container key={image.id} css={{ width: '100%', height: '100%' }}>
