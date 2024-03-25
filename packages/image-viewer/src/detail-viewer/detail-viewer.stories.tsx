@@ -62,8 +62,34 @@ export default {
               },
             },
           },
+          {
+            id: '3f66edb6-b97d-420c-bfd4-54e3deb64e0d',
+            type: 'video',
+            sizes: {
+              full: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_2048,w_2048/4b8d3d73-e959-417a-89e9-0443e9a41baf.jpeg',
+              },
+              large: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_limit,f_auto,h_1024,w_1024/4b8d3d73-e959-417a-89e9-0443e9a41baf.jpeg',
+              },
+              small_square: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_fill,f_auto,h_256,w_256/4b8d3d73-e959-417a-89e9-0443e9a41baf.jpeg',
+              },
+            },
+            video: {
+              full: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_limit,h_2048,w_2048/4b8d3d73-e959-417a-89e9-0443e9a41baf.mp4',
+              },
+              large: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_limit,h_1024,w_1024/4b8d3d73-e959-417a-89e9-0443e9a41baf.mp4',
+              },
+              small_square: {
+                url: 'https://media.triple.guide/triple-dev/video/upload/c_fill,h_256,w_256/4b8d3d73-e959-417a-89e9-0443e9a41baf.mp4',
+              },
+            },
+          },
         ]}
-        total={3}
+        total={4}
       >
         <Story />
       </ImagesProvider>
