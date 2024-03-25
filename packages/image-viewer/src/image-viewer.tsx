@@ -1,18 +1,33 @@
 import { PropsWithChildren, useState } from 'react'
 import Popup from '@titicaca/popup'
 import { Container, Navbar } from '@titicaca/core-elements'
-import { useImagesContext } from '@titicaca/react-contexts'
+import {
+  useHistoryFunctions,
+  useImagesContext,
+  useUriHash,
+} from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
 import DetailViewer from './detail-viewer'
 
+export const HASH_IMAGE_VIEWER_POPUP = 'popup.image-viewer'
+
 function ImageViewerPopup({
-  open,
   onClose,
   children,
-}: PropsWithChildren<{ open: boolean; onClose: () => void }>) {
+}: PropsWithChildren<{ onClose: () => void }>) {
+  const uriHash = useUriHash()
+  const { back } = useHistoryFunctions()
+
   return (
-    <Popup open={open} onClose={onClose} noNavbar>
+    <Popup
+      open={uriHash === HASH_IMAGE_VIEWER_POPUP}
+      onClose={() => {
+        back()
+        onClose()
+      }}
+      noNavbar
+    >
       {children}
     </Popup>
   )
@@ -33,7 +48,6 @@ const Text = styled.span`
 `
 
 export function DetailViewerPopup({
-  open,
   onClose,
   imageIndex: initialImageIndex,
 }: DetailViewerPopupProp) {
@@ -45,7 +59,7 @@ export function DetailViewerPopup({
   }
 
   return (
-    <ImageViewerPopup open={open} onClose={onClose}>
+    <ImageViewerPopup onClose={onClose}>
       <Navbar
         css={{
           height: NAVBAR_HEIGHT,
