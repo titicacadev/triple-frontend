@@ -84,7 +84,15 @@ export default function DetailViewer({
   }
 
   return (
-    <Container css={{ position: 'relative', width: '100%', height: '100%' }}>
+    <Container
+      css={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        maxWidth: 768,
+        margin: 'auto',
+      }}
+    >
       <Flicking
         ref={flickingRef}
         css={{

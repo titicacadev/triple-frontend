@@ -1,7 +1,11 @@
-import { useArgs } from '@storybook/client-api'
+import { useHistoryFunctions, ImagesProvider } from '@titicaca/react-contexts'
+import { Button } from '@titicaca/core-elements'
 
-import { DetailViewerPopup, DetailViewerPopupProp } from '../image-viewer'
-import { ImagesProvider } from '../../../react-contexts/src'
+import {
+  DetailViewerPopup,
+  DetailViewerPopupProp,
+  HASH_IMAGE_VIEWER_POPUP,
+} from '../image-viewer'
 
 export default {
   title: 'Image Viewer / Detail Viewer',
@@ -65,28 +69,26 @@ export default {
       </ImagesProvider>
     ),
   ],
-  parameters: {
-    viewport: {
-      viewports: 'mobile',
-      defaultViewport: 'mobile',
-    },
-  },
   args: {
-    open: true,
     imageIndex: 0,
   },
 }
 
-export const DetailViewer = ({
-  open: argsOpen,
-  onClose: argsOnClose,
-  ...args
-}: DetailViewerPopupProp) => {
-  const [{ open }, updateArgs] = useArgs()
+function UriHashHistoryManipulator() {
+  const { push } = useHistoryFunctions()
 
-  function onClose() {
-    updateArgs({ open: false })
-  }
+  return (
+    <Button onClick={() => push(HASH_IMAGE_VIEWER_POPUP)}>
+      Show Image Viewer Popup
+    </Button>
+  )
+}
 
-  return <DetailViewerPopup open={open} onClose={onClose} {...args} />
+export const DetailViewer = ({ ...args }: DetailViewerPopupProp) => {
+  return (
+    <>
+      <UriHashHistoryManipulator />
+      <DetailViewerPopup {...args} />
+    </>
+  )
 }
