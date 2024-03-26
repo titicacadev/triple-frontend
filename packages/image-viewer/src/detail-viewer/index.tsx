@@ -114,30 +114,17 @@ export default function DetailViewer({
             <Container
               css={{
                 width: '100%',
-                height: '100%',
-                maxWidth: 768,
-                margin: 'auto',
+                height: `calc(100% - ${image.sourceUrl ? SOURCE_HEIGHT : 0}px)`,
+                display: 'flex',
               }}
             >
-              <Container
-                css={{
-                  width: '100%',
-                  height: `calc(100% - ${
-                    image.sourceUrl ? SOURCE_HEIGHT : 0
-                  }px)`,
-                  display: 'flex',
-                }}
-              >
-                {'video' in image ? (
-                  <Video medium={image} />
-                ) : (
-                  <Image src={image.sizes.large.url} alt={image.id} />
-                )}
-              </Container>
-              {image.sourceUrl ? (
-                <SourceUrl>{image.sourceUrl}</SourceUrl>
-              ) : null}
+              {'video' in image ? (
+                <Video medium={image} />
+              ) : (
+                <Image src={image.sizes.large.url} alt={image.id} />
+              )}
             </Container>
+            {image.sourceUrl ? <SourceUrl>{image.sourceUrl}</SourceUrl> : null}
           </Container>
         ))}
       </Flicking>
