@@ -34,20 +34,14 @@ export function ImageViewerPopup({
     setImageIndex(defaultImageIndex)
   }, [defaultImageIndex])
 
+  function handleClose() {
+    setImageIndex(null)
+    onClose?.()
+  }
   return (
-    <Popup
-      open={open}
-      onClose={() => {
-        setImageIndex(null)
-        onClose?.()
-      }}
-      noNavbar
-    >
+    <Popup open={open} onClose={handleClose} noNavbar>
       {imageIndex != null ? (
-        <DetailViewerContainer
-          onClose={() => setImageIndex(null)}
-          imageIndex={imageIndex}
-        />
+        <DetailViewerContainer onClose={handleClose} imageIndex={imageIndex} />
       ) : null}
     </Popup>
   )
