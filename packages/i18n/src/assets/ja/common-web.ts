@@ -204,7 +204,7 @@ export const jaCommonWeb = {
   'hyeonjiin-ribyu': '韓国人のレビュー',
   'totalreviewscount-gaeyi--ribyu': '{{totalReviewsCount}}個のレビュー',
   'totalreviewscount-gaeyi-hyeonjiin-ribyu':
-    '{{totalReviewsCount}}個の 韓国人のレビュー',
+    '{{totalReviewsCount}}個の韓国人のレビュー',
   'igose-danyeoosyeossnayo': 'この場所に行かれましたか？',
   sajin: '写真',
   '별점을 선택해주세요!': '評価を選択してください。',
