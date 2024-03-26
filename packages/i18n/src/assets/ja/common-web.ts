@@ -201,10 +201,10 @@ export const jaCommonWeb = {
   'byeoljeom-najeunsun': '星の低い順',
   jjim: '保存',
   'jjim-cwiso': '保存を取り消す',
-  'hyeonjiin-ribyu': '現地人レビュー',
+  'hyeonjiin-ribyu': '韓国人のレビュー',
   'totalreviewscount-gaeyi--ribyu': '{{totalReviewsCount}}個のレビュー',
   'totalreviewscount-gaeyi-hyeonjiin-ribyu':
-    '{{totalReviewsCount}}個の 現地人レビュー',
+    '{{totalReviewsCount}}個の 韓国人のレビュー',
   'igose-danyeoosyeossnayo': 'この場所に行かれましたか？',
   sajin: '写真',
   '별점을 선택해주세요!': '評価を選択してください。',
