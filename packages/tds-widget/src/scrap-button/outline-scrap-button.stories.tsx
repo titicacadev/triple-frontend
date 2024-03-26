@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
+import { ScrapsProvider } from '../scrap/provider'
+
 import { OutlineScrapButton } from '.'
 
 const meta: Meta<typeof OutlineScrapButton> = {
@@ -9,7 +11,9 @@ const meta: Meta<typeof OutlineScrapButton> = {
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
-        <Story />
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
       </EventTrackingProvider>
     ),
   ],

@@ -4,6 +4,7 @@ import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { rest } from 'msw'
 import { useEffect } from 'react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
+import { ScrapsProvider } from '@titicaca/tds-widget'
 
 import ELEMENTS from './elements'
 import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
@@ -31,7 +32,9 @@ export default {
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
-        <Story />
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
       </EventTrackingProvider>
     ),
   ],
