@@ -1,15 +1,11 @@
-import { useHistoryFunctions, ImagesProvider } from '@titicaca/react-contexts'
-import { Button } from '@titicaca/core-elements'
+import { Meta } from '@storybook/react'
+import { ImagesProvider } from '@titicaca/react-contexts'
+import { useArgs } from '@storybook/client-api'
 
-import {
-  DetailViewerPopup,
-  DetailViewerPopupProp,
-  HASH_IMAGE_VIEWER_POPUP,
-} from '../image-viewer'
+import { ImageViewerPopup, ImageViewerPopupProps } from './image-viewer'
 
 export default {
-  title: 'Image Viewer / Detail Viewer',
-  component: DetailViewerPopup,
+  title: 'Image Viewer',
   decorators: [
     (Story) => (
       <ImagesProvider
@@ -96,25 +92,21 @@ export default {
     ),
   ],
   args: {
-    imageIndex: 0,
+    open: true,
+    defaultImageIndex: 0,
   },
-}
+} as Meta
 
-function UriHashHistoryManipulator() {
-  const { push } = useHistoryFunctions()
+export const ImageViewer = ({
+  open: argsOpen,
+  onClose: argsOnClose,
+  ...args
+}: ImageViewerPopupProps) => {
+  const [{ open }, updateArgs] = useArgs()
 
-  return (
-    <Button onClick={() => push(HASH_IMAGE_VIEWER_POPUP)}>
-      Show Image Viewer Popup
-    </Button>
-  )
-}
+  function onClose() {
+    updateArgs({ open: false })
+  }
 
-export const DetailViewer = ({ ...args }: DetailViewerPopupProp) => {
-  return (
-    <>
-      <UriHashHistoryManipulator />
-      <DetailViewerPopup {...args} />
-    </>
-  )
+  return <ImageViewerPopup open={open} onClose={onClose} {...args} />
 }
