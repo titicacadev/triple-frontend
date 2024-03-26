@@ -4,6 +4,7 @@ import {
   FloatingFocusManager,
   FloatingOverlay,
   FloatingPortal,
+  useClick,
   useDismiss,
   useFloating,
   useInteractions,
@@ -52,15 +53,19 @@ export const Modal = ({
   const labelId = useId()
   const descriptionId = useId()
 
-  const { context, refs } = useFloating({
+  const { context, elements, refs } = useFloating({
     open,
-    onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
 
   const dismiss = useDismiss(context)
   const role = useRole(context, { role: 'dialog' })
+  const click = useClick(context)
 
-  const { getFloatingProps } = useInteractions([dismiss, role])
+  const { getFloatingProps, getReferenceProps } = useInteractions([
+    dismiss,
+    role,
+    click,
+  ])
   const { status, isMounted } = useTransitionStatus(context, { duration: 0 })
 
   useEffect(() => {
@@ -110,17 +115,26 @@ export const Modal = ({
             flex
             alignItems="center"
             justifyContent="center"
-            css={css`
-              width: 100vw;
-              height: 100vh;
-              height: 100dvh;
-              position: fixed;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              z-index: 9999;
-            `}
+            css={{
+              width: '100vw',
+              height: '100dvh',
+              position: 'fixed',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              zIndex: 9999,
+            }}
+            ref={refs.setReference}
+            {...getReferenceProps({
+              onClick: (e) => {
+                if (elements.floating?.contains(e.target as Node)) {
+                  return
+                }
+
+                onClose?.()
+              },
+            })}
           >
             <FloatingFocusManager
               context={context}

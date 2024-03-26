@@ -3,6 +3,7 @@ import { FlexBox } from '@titicaca/kint5-core-elements'
 import {
   FloatingFocusManager,
   FloatingPortal,
+  useClick,
   useDismiss,
   useFloating,
   useInteractions,
@@ -55,15 +56,19 @@ export const ActionSheet = ({
 }: ActionSheetProps) => {
   const labelId = useId()
 
-  const { context, refs } = useFloating({
+  const { context, elements, refs } = useFloating({
     open,
-    onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
 
   const dismiss = useDismiss(context)
   const role = useRole(context, { role: 'dialog' })
+  const click = useClick(context)
 
-  const { getFloatingProps } = useInteractions([dismiss, role])
+  const { getFloatingProps, getReferenceProps } = useInteractions([
+    dismiss,
+    role,
+    click,
+  ])
 
   const { isMounted, status } = useTransitionStatus(context, {
     duration: TRANSITION_DURATION,
@@ -118,6 +123,16 @@ export const ActionSheet = ({
               bottom: 0,
               zIndex: 9999,
             }}
+            ref={refs.setReference}
+            {...getReferenceProps({
+              onClick: (e) => {
+                if (elements.floating?.contains(e.target as Node)) {
+                  return
+                }
+
+                onClose?.()
+              },
+            })}
           >
             <FloatingFocusManager
               context={context}
