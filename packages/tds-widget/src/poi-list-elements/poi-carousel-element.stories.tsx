@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
+import { ScrapsProvider } from '../scrap/provider'
+
 import { PoiCarouselElement } from './carousel-element'
 import POIS from './mocks/pois.sample.json'
 
@@ -10,7 +12,9 @@ export default {
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
-        <Story />
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
       </EventTrackingProvider>
     ),
   ],
