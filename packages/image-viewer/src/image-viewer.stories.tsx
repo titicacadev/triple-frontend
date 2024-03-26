@@ -1,11 +1,11 @@
+import { Meta } from '@storybook/react'
+import { ImagesProvider } from '@titicaca/react-contexts'
 import { useArgs } from '@storybook/client-api'
 
-import { DetailViewerPopup, DetailViewerPopupProp } from '../image-viewer'
-import { ImagesProvider } from '../../../react-contexts/src'
+import { ImageViewerPopup, ImageViewerPopupProps } from './image-viewer'
 
 export default {
-  title: 'Image Viewer / Detail Viewer',
-  component: DetailViewerPopup,
+  title: 'Image Viewer',
   decorators: [
     (Story) => (
       <ImagesProvider
@@ -65,28 +65,22 @@ export default {
       </ImagesProvider>
     ),
   ],
-  parameters: {
-    viewport: {
-      viewports: 'mobile',
-      defaultViewport: 'mobile',
-    },
-  },
   args: {
     open: true,
-    imageIndex: 0,
+    defaultImageIndex: 0,
   },
-}
+} as Meta
 
-export const DetailViewer = ({
+export const ImageViewer = ({
   open: argsOpen,
   onClose: argsOnClose,
   ...args
-}: DetailViewerPopupProp) => {
+}: ImageViewerPopupProps) => {
   const [{ open }, updateArgs] = useArgs()
 
   function onClose() {
     updateArgs({ open: false })
   }
 
-  return <DetailViewerPopup open={open} onClose={onClose} {...args} />
+  return <ImageViewerPopup open={open} onClose={onClose} {...args} />
 }
