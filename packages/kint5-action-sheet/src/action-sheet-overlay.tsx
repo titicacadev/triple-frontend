@@ -3,7 +3,7 @@ import { FloatingOverlay, useTransitionStatus } from '@floating-ui/react'
 
 import { TRANSITION_DURATION } from './constants'
 
-export const Overlay = styled(FloatingOverlay)`
+const Overlay = styled(FloatingOverlay)`
   position: fixed;
   top: 0;
   bottom: 0;
