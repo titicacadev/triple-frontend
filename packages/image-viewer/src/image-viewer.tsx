@@ -1,28 +1,10 @@
-import { PropsWithChildren, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Popup from '@titicaca/popup'
 import { Container, Navbar } from '@titicaca/core-elements'
 import { useImagesContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
 import DetailViewer from './detail-viewer'
-
-function ImageViewerPopup({
-  open,
-  onClose,
-  children,
-}: PropsWithChildren<{ open: boolean; onClose: () => void }>) {
-  return (
-    <Popup open={open} onClose={onClose} noNavbar>
-      {children}
-    </Popup>
-  )
-}
-
-export interface DetailViewerPopupProp {
-  open: boolean
-  onClose: () => void
-  imageIndex: number
-}
 
 const NAVBAR_HEIGHT = 52
 
@@ -32,11 +14,54 @@ const Text = styled.span`
   line-height: 34px;
 `
 
-export function DetailViewerPopup({
+export interface ImageViewerPopupProps {
+  open: boolean
+  onClose?: () => void
+  defaultImageIndex: number | null
+}
+/**
+ *
+ * @param defaultImageIndex: 이미지 확대뷰로 띄울 이미지의 index. TODD: null인 경우에는 격자뷰가 뜨게 됩니다.
+ */
+export function ImageViewerPopup({
   open,
   onClose,
+  defaultImageIndex,
+}: ImageViewerPopupProps) {
+  const [imageIndex, setImageIndex] = useState<null | number>(defaultImageIndex)
+
+  useEffect(() => {
+    setImageIndex(defaultImageIndex)
+  }, [defaultImageIndex])
+
+  return (
+    <Popup
+      open={open}
+      onClose={() => {
+        setImageIndex(null)
+        onClose?.()
+      }}
+      noNavbar
+    >
+      {imageIndex != null ? (
+        <DetailViewerContainer
+          onClose={() => setImageIndex(null)}
+          imageIndex={imageIndex}
+        />
+      ) : null}
+    </Popup>
+  )
+}
+
+export interface DetailViewerContainerProp {
+  onClose?: () => void
+  imageIndex: number
+}
+
+export function DetailViewerContainer({
+  onClose,
   imageIndex: initialImageIndex,
-}: DetailViewerPopupProp) {
+}: DetailViewerContainerProp) {
   const { total } = useImagesContext()
   const [imageIndex, setImageIndex] = useState(initialImageIndex)
 
@@ -44,8 +69,12 @@ export function DetailViewerPopup({
     setImageIndex(idx)
   }
 
+  useEffect(() => {
+    setImageIndex(initialImageIndex)
+  }, [initialImageIndex])
+
   return (
-    <ImageViewerPopup open={open} onClose={onClose}>
+    <>
       <Navbar
         css={{
           height: NAVBAR_HEIGHT,
@@ -77,6 +106,6 @@ export function DetailViewerPopup({
           changeImageIndex={changeImageIndex}
         />
       </Container>
-    </ImageViewerPopup>
+    </>
   )
 }
