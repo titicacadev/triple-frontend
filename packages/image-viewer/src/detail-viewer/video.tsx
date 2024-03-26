@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useIntersection } from '@titicaca/intersection-observer'
-import { useDeviceContext } from '@titicaca/react-contexts'
 import { Container } from '@titicaca/core-elements'
 
 const VideoWrapper = styled(Container)`
@@ -44,14 +43,6 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
     threshold: 0.5,
   })
 
-  const {
-    deviceState: { autoplay, networkType },
-  } = useDeviceContext()
-
-  const autoPlay =
-    autoplay === 'always' ||
-    (autoplay === 'wifi_only' && networkType === 'wifi')
-
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
@@ -64,7 +55,6 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
         if (!isIntersecting) {
           ref.current.pause()
           ref.current.currentTime = 0
-          !autoPlay && setPlaying(false)
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
@@ -74,7 +64,7 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
     }
 
     stopVideoOnNonIntersection()
-  }, [isIntersecting, ref, autoPlay])
+  }, [isIntersecting, ref])
 
   return (
     <VideoWrapper>
@@ -83,12 +73,13 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
         src={medium.video?.large.url}
         controls
         loop={false}
+        autoPlay={false}
         playsInline
-        autoPlay={autoPlay}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
         onClick={() => handleVideoClick?.(medium, !playing)}
+        controlsList="nodownload"
       >
         <track kind="captions" />
       </video>
