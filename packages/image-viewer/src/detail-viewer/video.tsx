@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useIntersection } from '@titicaca/intersection-observer'
-import { useDeviceContext } from '@titicaca/react-contexts'
 import { Container } from '@titicaca/core-elements'
 
 const VideoWrapper = styled(Container)`
@@ -16,7 +15,7 @@ const VideoWrapper = styled(Container)`
 const PLAY_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-play@3x.png'
 
-const PlayPauseButtonBase = styled.span`
+const PlayPauseButton = styled.button`
   position: absolute;
   border: none;
   background: none;
@@ -27,18 +26,16 @@ const PlayPauseButtonBase = styled.span`
   transform: translate(-50%, -50%);
   background-image: url(${PLAY_BUTTON_IMAGE_URL});
   background-size: cover;
-  cursor: pointer;
+  pointer-events: none;
 
   &:focus {
     outline: none;
   }
-
-  transition: opacity 0.3s;
 `
 
 interface VideoProps {
   medium: ImageMeta
-  handleVideoClick?: (video?: ImageMeta) => void
+  handleVideoClick?: (video?: ImageMeta, playing?: boolean) => void
 }
 
 export function Video({ medium, handleVideoClick }: VideoProps) {
@@ -46,32 +43,18 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
     threshold: 0.5,
   })
 
-  const {
-    deviceState: { autoplay, networkType },
-  } = useDeviceContext()
-
-  const initialAutoPlaySetting =
-    autoplay === 'always' ||
-    (autoplay === 'wifi_only' && networkType === 'wifi')
-
-  const [playing, setPlaying] = useState(initialAutoPlaySetting)
+  const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
-    async function togglePlay() {
+    async function stopVideoOnNonIntersection() {
       if (!ref.current) {
         return
       }
 
       try {
-        if (playing && isIntersecting) {
-          ref.current.play()
-        } else {
+        if (!isIntersecting) {
           ref.current.pause()
-
-          if (!isIntersecting) {
-            ref.current.currentTime = 0
-            !initialAutoPlaySetting && setPlaying(false)
-          }
+          ref.current.currentTime = 0
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
@@ -80,27 +63,27 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
       }
     }
 
-    togglePlay()
-  }, [isIntersecting, ref, playing, initialAutoPlaySetting])
-
-  const onVideoClick = () => {
-    setPlaying(!playing)
-    handleVideoClick?.(medium)
-  }
+    stopVideoOnNonIntersection()
+  }, [isIntersecting, ref])
 
   return (
-    <VideoWrapper onClick={onVideoClick}>
+    <VideoWrapper>
       <video
         ref={ref}
         src={medium.video?.large.url}
-        controls={false}
+        controls
         loop={false}
+        autoPlay={false}
         playsInline
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
+        onClick={() => handleVideoClick?.(medium, !playing)}
+        controlsList="nodownload"
       >
         <track kind="captions" />
       </video>
-      {!playing && <PlayPauseButtonBase />}
+      {!playing && <PlayPauseButton />}
     </VideoWrapper>
   )
 }
