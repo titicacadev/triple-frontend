@@ -4,6 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { Pricing } from '../pricing'
 import { ScrapButtonMask } from '../scrap-button'
+import { ScrapsProvider } from '../scrap/provider'
 
 import { ExtendedResourceListElement } from './extended-resource-list-element'
 
@@ -13,7 +14,9 @@ const meta: Meta<typeof ExtendedResourceListElement> = {
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
-        <Story />
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
       </EventTrackingProvider>
     ),
   ],
