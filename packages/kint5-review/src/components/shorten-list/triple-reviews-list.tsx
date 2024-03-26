@@ -1,4 +1,4 @@
-import { List, Spinner } from '@titicaca/kint5-core-elements'
+import { List } from '@titicaca/kint5-core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { useEffect, useState } from 'react'
 
@@ -13,6 +13,7 @@ import {
 import { ReviewsPlaceholder } from '../review-placeholder-with-rating'
 import type { SortingType, SortingOption } from '../sorting-context'
 import { useReviewLanguage } from '../language-context'
+import { ReviewSkeleton } from '../review-skeleton'
 
 interface Props {
   isGlobal: boolean
@@ -63,7 +64,7 @@ export function TripleReviewsList({
   }, [refetch, subscribeLikedChangeEvent, unsubscribeLikedChangeEvent])
 
   if (!descriptionsData || !reviews) {
-    return <Spinner />
+    return <ReviewSkeleton />
   }
 
   if (reviews.length === 0) {
