@@ -774,6 +774,9 @@ importers:
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
+      '@titicaca/intersection-observer':
+        specifier: workspace:*
+        version: link:../intersection-observer
       '@titicaca/popup':
         specifier: workspace:*
         version: link:../popup
