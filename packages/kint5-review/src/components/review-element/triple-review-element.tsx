@@ -7,10 +7,7 @@ import {
 } from '@titicaca/kint5-core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { useTranslation } from '@titicaca/next-i18next'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import {
   useTripleClientActions,
   useTripleClientMetadata,
@@ -21,8 +18,6 @@ import { PropsWithChildren, useCallback, useState } from 'react'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import { useClientActions } from '../../services'
-import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
-import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 import { useReviewLanguage } from '../language-context'
 
 import { i18nFormatRelativeTime } from './format-timestamp'
@@ -57,14 +52,12 @@ export function TripleReviewElement({
   isMyReview,
   reviewRateDescriptions,
   resourceId,
-  onMenuClick,
 }: TripleReviewElementProps) {
   const { t } = useTranslation('common-web')
 
   const { userLang } = useReviewLanguage()
   const [unfolded, setUnfolded] = useState(false)
   const { trackEvent } = useEventTrackingContext()
-  const { push } = useHistoryFunctions()
   const app = useTripleClientMetadata()
   const { showToast } = useTripleClientActions()
   const { navigateUserDetail } = useClientActions()
@@ -107,22 +100,6 @@ export function TripleReviewElement({
       t,
       navigateUserDetail,
     ]),
-    { skipTransitionModal: true },
-  )
-
-  const handleMenuClick = useSessionCallback(
-    useCallback(() => {
-      if (!app) {
-        return
-      }
-
-      if (isMyReview) {
-        push(HASH_MY_REVIEW_ACTION_SHEET)
-      } else {
-        onMenuClick?.(review.id)
-        push(HASH_REVIEW_ACTION_SHEET)
-      }
-    }, [app, isMyReview, onMenuClick, push, review.id]),
     { skipTransitionModal: true },
   )
 
@@ -217,14 +194,6 @@ export function TripleReviewElement({
               >
                 {i18nFormatRelativeTime(reviewedAt)}
               </Text>
-              <button onClick={handleMenuClick}>
-                <img
-                  src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-dot-line-24.svg"
-                  alt="Show more"
-                  width={24}
-                  height={24}
-                />
-              </button>
             </FlexBox>
           ) : null}
         </FlexBox>
