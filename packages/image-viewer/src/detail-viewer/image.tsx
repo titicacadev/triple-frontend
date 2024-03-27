@@ -10,7 +10,10 @@ const StyledImage = styled.img`
 
 export default function Image(props: ComponentProps<typeof StyledImage>) {
   return (
-    <TransformWrapper wheel={{ wheelDisabled: true }}>
+    <TransformWrapper
+      wheel={{ wheelDisabled: true }}
+      panning={{ disabled: true }}
+    >
       <TransformComponent
         wrapperStyle={{ width: '100%', height: '100%', margin: 'auto' }}
         contentStyle={{ width: '100%', height: '100%', margin: 'auto' }}
