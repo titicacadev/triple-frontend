@@ -85,7 +85,11 @@ export const Modal = ({
     }
 
     return () => {
-      bodyStyle.overflow = ''
+      // 모달이 열린 상태에서 unmount되는 경우를 처리합니다.
+      // (e.g. 모달이 열린 상태에서 다른 페이지로 이동)
+      if (status === 'open') {
+        bodyStyle.overflow = ''
+      }
     }
   }, [status, context])
 

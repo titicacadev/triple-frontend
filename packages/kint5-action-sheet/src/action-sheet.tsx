@@ -103,7 +103,11 @@ export const ActionSheet = ({
     }
 
     return () => {
-      bodyStyle.overflow = ''
+      // 액션시트가 열린 상태에서 unmount되는 경우를 처리합니다.
+      // (e.g. 액션시트가 열린 상태에서 다른 페이지로 이동)
+      if (status === 'open') {
+        bodyStyle.overflow = ''
+      }
     }
   }, [status, context])
 
