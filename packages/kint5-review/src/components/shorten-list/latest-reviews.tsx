@@ -1,5 +1,6 @@
 import { useReviewLanguage } from '../language-context'
 import { ReviewMediaPopup } from '../review-media-popup'
+import { ReviewSkeleton } from '../review-skeleton'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
@@ -22,7 +23,7 @@ export function LatestReviews({
   value: ShortenReview & { sortingType?: SortingType }
 }) {
   const { reviewLang } = useReviewLanguage()
-  const { data, refetch } = useLatestReviews({
+  const { data, isLoading, refetch } = useLatestReviews({
     resourceId,
     resourceType,
     recentTrip,
@@ -31,6 +32,10 @@ export function LatestReviews({
   })
 
   const reviews = data?.latestReviews ?? []
+
+  if (isLoading) {
+    return <ReviewSkeleton />
+  }
 
   return (
     <>
