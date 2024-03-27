@@ -42,8 +42,7 @@
   "dependencies": {
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
-    "@titicaca/core-elements": "workspace:*",    
-    "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/core-elements": "workspace:*",
     "@titicaca/popup": "workspace:*",
     "@titicaca/react-contexts": "workspace:*",
     "react-zoom-pan-pinch": "^3.4.3"
