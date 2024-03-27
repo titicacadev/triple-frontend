@@ -1,8 +1,9 @@
 {
-  "name": "@titicaca/triple-web-nextjs-pages",
-  "version": "13.7.0",
+  "name": "@titicaca/middlewares",
+  "version": "13.15.0",
+  "description": "Triple Web Application Middleware modules",
   "license": "MIT",
-  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-web-nextjs-pages",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/middleware",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -17,9 +18,7 @@
     "types": "lib/index.d.ts"
   },
   "files": [
-    "lib",
-    "middleware.d.ts",
-    "middleware.js"
+    "lib"
   ],
   "scripts": {
     "build": "pnpm run build:cjs && pnpm run build:types",
@@ -41,21 +40,22 @@
     ]
   },
   "dependencies": {
-    "@titicaca/fetcher": "workspace:*",
-    "@titicaca/triple-web-utils": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
-    "qs": "^6.11.2",
-    "ua-parser-js": "^1.0.36",
-    "universal-cookie": "^4.0.4"
+    "set-cookie-parser": "^2.6.0",
+    "universal-cookie": "^4.0.4",
+    "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@titicaca/triple-web": "workspace:*",
-    "@types/qs": "^6.9.9",
-    "@types/ua-parser-js": "^0.7.37",
+    "@titicaca/fetcher": "workspace:*",
+    "@titicaca/triple-web-utils": "workspace:*",
+    "@types/semver": "^7.5.3",
+    "@types/set-cookie-parser": "^2.4.6",
+    "react": "^18.2.0",
     "next": "^13.5.5"
   },
   "peerDependencies": {
-    "@titicaca/triple-web": "*",
-    "next": "^13.4"
+    "@titicaca/fetcher": "*",
+    "@titicaca/triple-web-utils": "*",
+    "react": "^18.0",
+    "next": "^13.5.5"
   }
 }

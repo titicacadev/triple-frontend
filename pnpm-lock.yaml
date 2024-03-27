@@ -259,6 +259,37 @@ importers:
         specifier: ^13.5.0
         version: 13.5.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
 
+  packages/middlewares:
+    dependencies:
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
+      set-cookie-parser:
+        specifier: ^2.6.0
+        version: 2.6.0
+      universal-cookie:
+        specifier: ^4.0.4
+        version: 4.0.4
+    devDependencies:
+      '@titicaca/fetcher':
+        specifier: workspace:*
+        version: link:../fetcher
+      '@titicaca/triple-web-utils':
+        specifier: workspace:*
+        version: link:../triple-web-utils
+      '@types/semver':
+        specifier: ^7.5.3
+        version: 7.5.4
+      '@types/set-cookie-parser':
+        specifier: ^2.4.6
+        version: 2.4.7
+      next:
+        specifier: ^13.5.5
+        version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
   packages/react-hooks:
     dependencies:
       '@titicaca/fetcher':
@@ -721,9 +752,6 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
       ua-parser-js:
         specifier: ^1.0.36
         version: 1.0.37
@@ -737,9 +765,6 @@ importers:
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
-      '@types/semver':
-        specifier: ^7.5.3
-        version: 7.5.4
       '@types/ua-parser-js':
         specifier: ^0.7.37
         version: 0.7.37
@@ -4239,7 +4264,7 @@ packages:
     resolution: {integrity: sha512-mlN83YSrcFgk7Dm1Mys40DLssI1KdJji2CMKN8eOlBqsTADYzj2+jWzsANsUTFbxDMWPD5e9bfA1RGqBpS3O1g==}
     engines: {node: '>=14'}
     dependencies:
-      '@types/set-cookie-parser': 2.4.2
+      '@types/set-cookie-parser': 2.4.7
       set-cookie-parser: 2.6.0
     dev: true
 
@@ -7496,8 +7521,8 @@ packages:
       '@types/node': 18.18.8
     dev: true
 
-  /@types/set-cookie-parser@2.4.2:
-    resolution: {integrity: sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==}
+  /@types/set-cookie-parser@2.4.7:
+    resolution: {integrity: sha512-+ge/loa0oTozxip6zmhRIk8Z/boU51wl9Q6QdLZcokIGMzY5lFXYy/x7Htj2HTC6/KZP1hUbZ1ekx8DYXICvWg==}
     dependencies:
       '@types/node': 18.18.8
     dev: true
@@ -17874,7 +17899,6 @@ packages:
 
   /set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
-    dev: true
 
   /setimmediate@1.0.5:
     resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
