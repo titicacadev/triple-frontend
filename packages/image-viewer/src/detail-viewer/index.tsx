@@ -4,11 +4,7 @@ import { useImagesContext, useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
 import { useRef } from 'react'
 
-const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-`
+import Image from './image'
 
 const SourceUrl = styled.p`
   overflow: hidden;
@@ -20,6 +16,8 @@ const SourceUrl = styled.p`
   line-height: 12px;
   height: 54px;
   color: var(--color-gray700);
+  position: relative;
+  z-index: 9999;
 `
 
 const Button = styled.button<{ direction: 'next' | 'prev' }>`
