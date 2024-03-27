@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.6",
+    "@floating-ui/react": "^0.26.10",
     "@titicaca/app-installation-cta": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/popup": "workspace:*"
