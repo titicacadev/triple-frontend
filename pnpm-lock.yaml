@@ -1377,6 +1377,9 @@ importers:
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
+      '@titicaca/image-viewer':
+        specifier: workspace:*
+        version: link:../image-viewer
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
