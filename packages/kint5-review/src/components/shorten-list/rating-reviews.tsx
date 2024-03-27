@@ -1,4 +1,5 @@
 import { useReviewLanguage } from '../language-context'
+import { ReviewSkeleton } from '../review-skeleton'
 import type { SortingType } from '../sorting-context'
 
 import { ReviewsList } from './reviews-list'
@@ -24,7 +25,7 @@ export function RatingReviews({
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
   const { reviewLang } = useReviewLanguage()
-  const { data, refetch } = useRatingReviews({
+  const { data, isLoading, refetch } = useRatingReviews({
     resourceId,
     resourceType,
     recentTrip,
@@ -34,6 +35,10 @@ export function RatingReviews({
     },
     lang: reviewLang,
   })
+
+  if (isLoading) {
+    return <ReviewSkeleton />
+  }
 
   return (
     <ReviewsList
