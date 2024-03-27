@@ -29,6 +29,7 @@ interface Props {
   reviewsCount: number | undefined
   reviews: BaseReviewFragment[] | undefined
   hasNextPage?: boolean
+  isLoadingReviews: boolean
   fetchNextPage?: () => void
   refetch: () => void
 }
@@ -46,6 +47,7 @@ export function InfiniteList({
   reviewsCount,
   reviews,
   hasNextPage,
+  isLoadingReviews,
   fetchNextPage,
   refetch,
 }: Props) {
@@ -89,8 +91,27 @@ export function InfiniteList({
     return () => unsubscribeLikedChangeEvent?.(refetch)
   }, [refetch, subscribeLikedChangeEvent, unsubscribeLikedChangeEvent])
 
-  if (!myReviewData || !descriptionsData || !sortedReviews) {
-    return <ReviewSkeleton />
+  if (
+    !myReviewData ||
+    !descriptionsData ||
+    !sortedReviews ||
+    isLoadingReviews
+  ) {
+    return (
+      <ul>
+        <li>
+          <ReviewSkeleton />
+        </li>
+        <li
+          css={{
+            borderTop: '1px solid var(--color-kint5-gray20)',
+            margin: '24px 0',
+          }}
+        >
+          <ReviewSkeleton />
+        </li>
+      </ul>
+    )
   }
 
   if (sortedReviews.length === 0) {
