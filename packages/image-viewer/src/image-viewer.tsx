@@ -34,6 +34,10 @@ export function ImageViewerPopup({
     setImageIndex(defaultImageIndex)
   }, [defaultImageIndex])
 
+  function changeImageIndex(idx: number) {
+    setImageIndex(idx)
+  }
+
   function handleClose() {
     setImageIndex(null)
     onClose?.()
@@ -41,7 +45,11 @@ export function ImageViewerPopup({
   return (
     <Popup open={open} onClose={handleClose} noNavbar>
       {imageIndex != null ? (
-        <DetailViewerContainer onClose={handleClose} imageIndex={imageIndex} />
+        <DetailViewerContainer
+          onClose={handleClose}
+          imageIndex={imageIndex}
+          changeImageIndex={changeImageIndex}
+        />
       ) : null}
     </Popup>
   )
@@ -50,22 +58,15 @@ export function ImageViewerPopup({
 export interface DetailViewerContainerProp {
   onClose?: () => void
   imageIndex: number
+  changeImageIndex: (index: number) => void
 }
 
 export function DetailViewerContainer({
   onClose,
-  imageIndex: initialImageIndex,
+  imageIndex,
+  changeImageIndex,
 }: DetailViewerContainerProp) {
   const { total } = useImagesContext()
-  const [imageIndex, setImageIndex] = useState(initialImageIndex)
-
-  function changeImageIndex(idx: number) {
-    setImageIndex(idx)
-  }
-
-  useEffect(() => {
-    setImageIndex(initialImageIndex)
-  }, [initialImageIndex])
 
   return (
     <>
