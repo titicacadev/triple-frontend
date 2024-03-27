@@ -24,17 +24,23 @@ export function RatingReviewsInfinite({
   const sort = sortingLabel.replace(/^star-rating-/, '')
 
   const { reviewLang } = useReviewLanguage()
-  const { data, hasNextPage, isLoading, fetchNextPage, refetch } =
-    useInfiniteRatingReviews({
-      resourceId,
-      resourceType,
-      recentTrip,
-      hasMedia,
-      sortBy: {
-        rating: sort,
-      },
-      lang: reviewLang,
-    })
+  const {
+    data,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteRatingReviews({
+    resourceId,
+    resourceType,
+    recentTrip,
+    hasMedia,
+    sortBy: {
+      rating: sort,
+    },
+    lang: reviewLang,
+  })
 
   return (
     <InfiniteList
@@ -51,6 +57,7 @@ export function RatingReviewsInfinite({
       reviews={data?.pages.flat()}
       hasNextPage={hasNextPage}
       isLoadingReviews={isLoading}
+      isFetchingNextPage={isFetchingNextPage}
       fetchNextPage={fetchNextPage}
       refetch={refetch}
     />
