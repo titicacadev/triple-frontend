@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.21.1
+
+```
+### review
+
+- [reviews] 리뷰 더보기의 로그인 returnUrl을 리뷰 목록 페이지로 수정합니다. [#3167](https://github.com/titicacadev/triple-frontend/pull/3167)
+```
+
 ## v13.21.0
 
 ```
@@ -4303,11 +4311,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 

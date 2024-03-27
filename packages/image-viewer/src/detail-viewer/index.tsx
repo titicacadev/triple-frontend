@@ -118,7 +118,7 @@ export default function DetailViewer({
               }}
             >
               {'video' in image ? (
-                <Video medium={image} />
+                <Video medium={image} visible={imageIndex === index} />
               ) : (
                 <Image
                   visible={imageIndex === index}
