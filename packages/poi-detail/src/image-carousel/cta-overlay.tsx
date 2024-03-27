@@ -21,8 +21,8 @@ const MoreImageOverlayLinkIcon = styled.img`
 export default function CtaOverlay() {
   return (
     <MoreImageOverlayLink>
-      <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
       더 많은 이미지 보기
+      <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
     </MoreImageOverlayLink>
   )
 }
