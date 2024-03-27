@@ -106,7 +106,7 @@ export default function DetailViewer({
         }}
         autoResize
       >
-        {images.map((image) => (
+        {images.map((image, index) => (
           <Container key={image.id} css={{ width: '100%', height: '100%' }}>
             <Container
               css={{
@@ -118,7 +118,11 @@ export default function DetailViewer({
               {'video' in image ? (
                 <Video medium={image} />
               ) : (
-                <Image src={image.sizes.large.url} alt={image.id} />
+                <Image
+                  visible={imageIndex === index}
+                  src={image.sizes.large.url}
+                  alt={image.id}
+                />
               )}
             </Container>
             {image.sourceUrl ? <SourceUrl>{image.sourceUrl}</SourceUrl> : null}
