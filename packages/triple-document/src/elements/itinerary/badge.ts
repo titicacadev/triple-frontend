@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { purple } from '@titicaca/color-palette'
 
 import withTypeCircleBadge from './with-type-circle-badge'
 
@@ -56,7 +55,7 @@ export const CircleBadge = styled(BadgeBase)<{
   height: 24px;
   padding-top: 4px;
   border-radius: 100%;
-  background-color: ${({ color = purple }) => color};
+  background-color: ${({ color, theme }) => color ?? theme.colors.purple};
 
   ${({ borderless }) =>
     borderless

@@ -1,9 +1,9 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
-import { Container, H1, List, Button } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { gray50 } from '@titicaca/color-palette'
+import { useTranslation } from 'react-i18next'
+import { Container, H1, List, Button } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
+import { useTheme } from 'styled-components'
 
 import { TnaProductData } from './types'
 import { TnaProductWithPrice } from './product'
@@ -17,10 +17,10 @@ export function Slot({
   title: string
   products: TnaProductData[]
 }) {
-  const { t } = useTranslation('common-web')
-
-  const { trackEvent } = useEventTrackingContext()
-  const navigate = useNavigate()
+  const { t } = useTranslation('triple-frontend')
+  const { colors } = useTheme()
+  const trackEvent = useTrackEvent()
+  const { navigate } = useNavigate()
 
   const [showMore, setShowMore] = useState(false)
 
@@ -81,7 +81,7 @@ export function Slot({
         {slotTitle}
       </H1>
 
-      <List clearing verticalGap={40} divided dividerColor={gray50}>
+      <List clearing verticalGap={40} divided dividerColor={colors.gray50}>
         {(showMore ? products : products.slice(0, 3)).map((product, i) => (
           <List.Item key={i}>
             <TnaProductWithPrice
@@ -103,7 +103,7 @@ export function Slot({
           margin={{ top: 20 }}
           onClick={handleShowMoreClick}
         >
-          {t(['deobogi', '더보기'])}
+          {t('더보기')}
         </Button>
       ) : null}
     </Container>

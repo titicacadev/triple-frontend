@@ -1,5 +1,5 @@
 import { HTMLAttributes, PropsWithChildren } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { FluidTable, Box as DefaultBox } from '../common'

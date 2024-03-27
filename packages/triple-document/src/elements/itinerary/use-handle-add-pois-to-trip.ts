@@ -1,9 +1,12 @@
 import qs from 'qs'
 import { useCallback } from 'react'
-import { TransitionType } from '@titicaca/modals'
 import { generateUrl } from '@titicaca/view-utilities'
-import { useEnv } from '@titicaca/react-contexts'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+import {
+  useEnv,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 /**
@@ -17,7 +20,7 @@ interface Geotag {
 
 export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
   const { appUrlScheme } = useEnv()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const handleFn = useCallback(
     (poiId: string | string[]) => {
@@ -35,7 +38,7 @@ export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
     [navigate, geotag, appUrlScheme],
   )
 
-  return useAppCallback(
+  return useClientAppCallback(
     TransitionType.AddPoisToTripSelect,
     useSessionCallback(handleFn),
   )

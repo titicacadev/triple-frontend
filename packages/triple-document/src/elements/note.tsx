@@ -1,4 +1,4 @@
-import { Segment, Text } from '@titicaca/core-elements'
+import { Segment, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 const NoteBodyText = styled(Text).attrs({

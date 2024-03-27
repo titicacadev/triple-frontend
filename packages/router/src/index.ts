@@ -1,4 +1,2 @@
-export * from './local'
-export * from './external'
+export * from './links'
 export * from './navigate'
-export { useHrefToProps } from './href-to-props'

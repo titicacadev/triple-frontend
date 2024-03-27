@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { ResourceListItem, Image } from '@titicaca/core-elements'
+import { ResourceListItem, Image } from '@titicaca/tds-ui'
 
 import { RegionData } from '../types'
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
@@ -65,7 +65,7 @@ export function RegionListElement({
   value: RegionData | null
   onClick?: MouseEventHandler
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   if (value) {
     const {
@@ -81,7 +81,7 @@ export function RegionListElement({
           src={style && style.backgroundImageUrl}
         />
         <Name>{nameOverride || names.ko || names.en || names.local}</Name>
-        <Action>{t(['barogagi', '바로가기'])}</Action>
+        <Action>{t('바로가기')}</Action>
       </ResourceListItem>
     )
   }

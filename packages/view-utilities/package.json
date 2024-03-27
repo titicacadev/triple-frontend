@@ -17,20 +17,6 @@
     "main": "lib/index.js",
     "types": "lib/index.d.ts"
   },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "lib/index.d.ts"
-      ]
-    }
-  },
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/index.js",
-      "types": "./lib/index.d.ts"
-    }
-  },
   "files": [
     "lib"
   ],
@@ -59,14 +45,8 @@
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
     "@types/haversine": "^1.1.7",
     "@types/humps": "^2.0.5",
     "@types/qs": "^6.9.9"
-  },
-  "peerDependencies": {
-    "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*"
   }
 }

@@ -1,7 +1,6 @@
-import 'intersection-observer'
 import { useState, useEffect, useRef } from 'react'
 
-export default function useIntersection<T extends Element>(
+export function useIntersection<T extends Element>(
   options?: IntersectionObserverInit,
 ) {
   const ref = useRef<T>(null)

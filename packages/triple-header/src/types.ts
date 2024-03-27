@@ -1,10 +1,10 @@
-import { MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/tds-ui'
 import { SyntheticEvent } from 'react'
 
 import { ImageFrame } from './frame/image'
 import { TextFrame } from './frame/text'
 
-export interface TripleHeader {
+export interface TripleHeaderProps {
   canvas: Canvas
   layers: Layer[]
 }

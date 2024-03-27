@@ -1,7 +1,7 @@
 import { ComponentType } from 'react'
-import { Carousel, Container } from '@titicaca/core-elements'
-import TripleMedia from '@titicaca/triple-media'
+import { Container, Carousel } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { Media } from '@titicaca/tds-widget'
 
 import { TripleElementData, ElementSet } from '../types'
 import { useImageClickHandler } from '../prop-context/image-click-handler'
@@ -45,7 +45,7 @@ function EmbeddedImage({
         }}
         {...props}
       >
-        <TripleMedia
+        <Media
           optimized={optimized}
           media={image}
           ImageSource={ImageSource}

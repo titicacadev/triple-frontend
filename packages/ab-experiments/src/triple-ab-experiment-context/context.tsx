@@ -8,10 +8,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import {
-  useEventTrackingContext,
-  useSessionAvailability,
-} from '@titicaca/react-contexts'
+import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
@@ -126,7 +123,7 @@ export function useTripleABExperimentConversionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
@@ -160,7 +157,7 @@ export function useTripleABExperimentImpressionTracker(
   slug: string,
   onError?: (error: Error) => void,
 ): <T = OptionalAttributes>(params?: EventAttributes<T>) => void {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
 
   return useCallback(
@@ -199,7 +196,7 @@ export function useTripleABExperimentVariant<T, U = OptionalAttributes>(
   onError?: (error: Error) => void,
   eventAttributesFromProps?: EventAttributes<U>,
 ): T {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const meta = useTripleABExperimentMeta(slug, onError)
   const eventAttributesRef = useRef(eventAttributesFromProps)
 

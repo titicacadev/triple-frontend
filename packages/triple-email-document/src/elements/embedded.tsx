@@ -1,5 +1,5 @@
 import { ComponentType } from 'react'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 import { FluidTable, Box } from '../common'
 

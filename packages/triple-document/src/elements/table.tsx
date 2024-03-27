@@ -3,7 +3,7 @@ import {
   ContainerProps,
   Table as TableView,
   TableProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 
 export default function Table({
   value: { table },

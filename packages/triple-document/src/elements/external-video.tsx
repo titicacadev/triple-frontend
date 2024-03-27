@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { borderRadiusMixin } from '@titicaca/core-elements'
+import { borderRadiusMixin } from '@titicaca/tds-ui'
 
 const VideoContainer = styled.div<{ borderRadius: number }>`
   position: relative;

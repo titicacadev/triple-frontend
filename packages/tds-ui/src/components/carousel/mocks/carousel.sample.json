@@ -1,0 +1,104 @@
+[
+  {
+    "description": null,
+    "id": "c9ae4d27-b1b6-4842-9359-f4fd040da65f",
+    "sizes": {
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+      },
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+      },
+      "smallSquare": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/c9ae4d27-b1b6-4842-9359-f4fd040da65f.jpeg"
+      }
+    },
+    "sourceUrl": "http://blog.naver.com/dowoonu00/220986693726",
+    "title": null
+  },
+  {
+    "sourceUrl": "http://blog.naver.com/jkchoi1021/220961631124",
+    "sizes": {
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1f1b8655-9979-414b-9a71-fed9e5355ceb.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1f1b8655-9979-414b-9a71-fed9e5355ceb.jpeg"
+      },
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1f1b8655-9979-414b-9a71-fed9e5355ceb.jpeg"
+      }
+    },
+    "description": "1521년 탐험가 마젤란이 항해 도중 세부에 도착해 세운 십자가로 관광객들과 현지인들의 발길이 끊이지 않는 곳이다.",
+    "id": "1f1b8655-9979-414b-9a71-fed9e5355ceb",
+    "title": "마젤란이 남기고 간 십자가"
+  },
+  {
+    "sourceUrl": "http://blog.naver.com/dowoonu00/220986693726",
+    "sizes": {
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/da0ee33e-ffe3-4342-ac64-50fb18944551.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/da0ee33e-ffe3-4342-ac64-50fb18944551.jpeg"
+      },
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/da0ee33e-ffe3-4342-ac64-50fb18944551.jpeg"
+      }
+    },
+    "description": "십자가가 보존되어 있는 팔각정 내부 천장을 올려다보면 당시 세례 의식 장면을 기록해 놓은 그림을 만나볼 수 있다.",
+    "id": "da0ee33e-ffe3-4342-ac64-50fb18944551",
+    "title": "세례의 순간을 담은 천장"
+  },
+  {
+    "sourceUrl": "http://blog.naver.com/rldudal0070/220932259105",
+    "sizes": {
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1373942a-30d9-46b3-bce6-08cfa9e407f0.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1373942a-30d9-46b3-bce6-08cfa9e407f0.jpeg"
+      },
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1373942a-30d9-46b3-bce6-08cfa9e407f0.jpeg"
+      }
+    },
+    "description": null,
+    "id": "1373942a-30d9-46b3-bce6-08cfa9e407f0",
+    "title": null
+  },
+  {
+    "sourceUrl": "http://blog.naver.com/rldudal0070/220932259105",
+    "sizes": {
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/1b8d956e-c35d-4a32-bb0a-5dd4c0af14bc.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/1b8d956e-c35d-4a32-bb0a-5dd4c0af14bc.jpeg"
+      },
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1b8d956e-c35d-4a32-bb0a-5dd4c0af14bc.jpeg"
+      }
+    },
+    "description": null,
+    "id": "1b8d956e-c35d-4a32-bb0a-5dd4c0af14bc",
+    "title": null
+  },
+  {
+    "sourceUrl": "http://blog.naver.com/rldudal0070/220932259105",
+    "sizes": {
+      "large": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/5a9681a1-7f24-4c7f-96fe-33558ba5fd67.jpeg"
+      },
+      "small_square": {
+        "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/5a9681a1-7f24-4c7f-96fe-33558ba5fd67.jpeg"
+      },
+      "full": {
+        "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/5a9681a1-7f24-4c7f-96fe-33558ba5fd67.jpeg"
+      }
+    },
+    "description": null,
+    "id": "5a9681a1-7f24-4c7f-96fe-33558ba5fd67",
+    "title": null
+  }
+]
