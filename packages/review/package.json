@@ -44,6 +44,7 @@
     "@titicaca/action-sheet": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
+    "@titicaca/image-viewer": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/modals": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
