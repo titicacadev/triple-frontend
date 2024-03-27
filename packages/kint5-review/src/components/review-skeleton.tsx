@@ -8,15 +8,26 @@ const SkeletonBar = styled.div`
 
 export function ReviewSkeleton() {
   return (
-    <div css={{ marginTop: 26 }}>
-      <SkeletonBar
+    <div css={{ marginTop: 26, paddingTop: 6 }}>
+      <div
         css={{
-          width: 100,
-          margin: '12px 0',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
         }}
-      />
-      <SkeletonBar css={{ width: 200, marginTop: 18 }} />
-      <SkeletonBar css={{ width: '100%', marginTop: 16 }} />
+      >
+        <div
+          css={{
+            width: 40,
+            height: 40,
+            backgroundColor: 'var(--color-kint5-gray20)',
+            borderRadius: '50%',
+          }}
+        />
+        <SkeletonBar css={{ width: 100 }} />
+      </div>
+      <SkeletonBar css={{ width: 200, marginTop: 31 }} />
+      <SkeletonBar css={{ width: '100%', marginTop: 20 }} />
       <div
         css={{
           width: '100%',
@@ -26,6 +37,7 @@ export function ReviewSkeleton() {
           borderRadius: 12,
         }}
       />
+      <SkeletonBar css={{ width: 130, margin: '20px 0 0 auto' }} />
     </div>
   )
 }
