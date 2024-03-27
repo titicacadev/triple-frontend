@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import Popup from '@titicaca/popup'
 import { Container, Navbar } from '@titicaca/core-elements'
-import { useImagesContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
-import DetailViewer from './detail-viewer'
+import DetailViewer, { DetailViewerProp } from './detail-viewer'
 
 const NAVBAR_HEIGHT = 52
 
@@ -14,7 +13,8 @@ const Text = styled.span`
   line-height: 34px;
 `
 
-export interface ImageViewerPopupProps {
+export interface ImageViewerPopupProps
+  extends Pick<DetailViewerProp, 'images' | 'totalCount' | 'fetchNext'> {
   open: boolean
   onClose?: () => void
   defaultImageIndex: number | null
@@ -26,6 +26,9 @@ export interface ImageViewerPopupProps {
 export function ImageViewerPopup({
   open,
   onClose,
+  images,
+  totalCount,
+  fetchNext,
   defaultImageIndex,
 }: ImageViewerPopupProps) {
   const [imageIndex, setImageIndex] = useState<null | number>(defaultImageIndex)
@@ -49,15 +52,21 @@ export function ImageViewerPopup({
           onClose={handleClose}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
+          images={images}
+          totalCount={totalCount}
+          fetchNext={fetchNext}
         />
       ) : null}
     </Popup>
   )
 }
 
-export interface DetailViewerContainerProp {
+export interface DetailViewerContainerProp
+  extends Pick<
+    DetailViewerProp,
+    'images' | 'totalCount' | 'fetchNext' | 'imageIndex'
+  > {
   onClose?: () => void
-  imageIndex: number
   changeImageIndex: (index: number) => void
 }
 
@@ -65,9 +74,10 @@ export function DetailViewerContainer({
   onClose,
   imageIndex,
   changeImageIndex,
+  images,
+  totalCount,
+  fetchNext,
 }: DetailViewerContainerProp) {
-  const { total } = useImagesContext()
-
   return (
     <>
       <Navbar
@@ -90,13 +100,18 @@ export function DetailViewerContainer({
           }}
         >
           <Text>{imageIndex + 1}</Text>
-          <Text css={{ color: 'var(--color-gray300)' }}>&nbsp;/ {total}</Text>
+          <Text css={{ color: 'var(--color-gray300)' }}>
+            &nbsp;/ {totalCount}
+          </Text>
         </Navbar.Item>
       </Navbar>
       <Container
         css={{ height: `calc(100vh - ${NAVBAR_HEIGHT}px)`, width: '100vw' }}
       >
         <DetailViewer
+          images={images}
+          totalCount={totalCount}
+          fetchNext={fetchNext}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
         />

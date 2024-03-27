@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 import { Container } from '@titicaca/core-elements'
-import { useImagesContext, useUserAgentContext } from '@titicaca/react-contexts'
+import { useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
 import { useRef } from 'react'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Video } from './video'
 import Image from './image'
@@ -48,19 +49,20 @@ const Button = styled.button<{ direction: 'next' | 'prev' }>`
 const SOURCE_HEIGHT = 54
 
 export interface DetailViewerProp {
+  images: ImageMeta[]
+  totalCount: number
+  fetchNext?: (cb?: () => void) => Promise<void>
   imageIndex: number
   changeImageIndex: (idx: number) => void
 }
 
 export default function DetailViewer({
+  images,
+  totalCount,
+  fetchNext,
   imageIndex,
   changeImageIndex,
 }: DetailViewerProp) {
-  const {
-    images,
-    total,
-    actions: { fetch },
-  } = useImagesContext()
   const { isMobile } = useUserAgentContext()
   const flickingRef = useRef<Flicking>(null)
 
@@ -77,8 +79,8 @@ export default function DetailViewer({
   }
 
   async function fetchNewImages(index: number) {
-    if (index > images.length - 5) {
-      await fetch()
+    if (index > images.length - 5 && fetchNext) {
+      await fetchNext()
     }
   }
 
@@ -134,7 +136,7 @@ export default function DetailViewer({
           {imageIndex > 0 ? (
             <Button direction="prev" onClick={onPrevImageShow} />
           ) : null}
-          {imageIndex < total - 1 ? (
+          {imageIndex < totalCount - 1 ? (
             <Button direction="next" onClick={onNextImageShow} />
           ) : null}
         </>
