@@ -22,14 +22,20 @@ export function LatestReviewsInfinite({
   value: InfiniteReviewProps & { sortingType?: SortingType }
 }) {
   const { reviewLang } = useReviewLanguage()
-  const { data, hasNextPage, isLoading, fetchNextPage, refetch } =
-    useInfiniteLatestReviews({
-      resourceId,
-      resourceType,
-      recentTrip,
-      hasMedia,
-      lang: reviewLang,
-    })
+  const {
+    data,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteLatestReviews({
+    resourceId,
+    resourceType,
+    recentTrip,
+    hasMedia,
+    lang: reviewLang,
+  })
 
   const reviews = data?.pages.flat() ?? []
 
@@ -49,6 +55,7 @@ export function LatestReviewsInfinite({
         reviews={reviews}
         hasNextPage={hasNextPage}
         isLoadingReviews={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
         fetchNextPage={fetchNextPage}
         refetch={refetch}
       />

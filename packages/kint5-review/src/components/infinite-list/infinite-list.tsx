@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { List } from '@titicaca/kint5-core-elements'
+import { List, Spinner } from '@titicaca/kint5-core-elements'
 import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
@@ -30,6 +30,7 @@ interface Props {
   reviews: BaseReviewFragment[] | undefined
   hasNextPage?: boolean
   isLoadingReviews: boolean
+  isFetchingNextPage: boolean
   fetchNextPage?: () => void
   refetch: () => void
 }
@@ -48,6 +49,7 @@ export function InfiniteList({
   reviews,
   hasNextPage,
   isLoadingReviews,
+  isFetchingNextPage,
   fetchNextPage,
   refetch,
 }: Props) {
@@ -180,6 +182,8 @@ export function InfiniteList({
       {selectedReviewId ? (
         <OthersReviewActionSheet reviewId={selectedReviewId} />
       ) : null}
+
+      {isFetchingNextPage ? <Spinner /> : null}
     </>
   )
 }
