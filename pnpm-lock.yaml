@@ -1195,6 +1195,22 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
+  packages/kint5-popup:
+    dependencies:
+      '@floating-ui/react':
+        specifier: ^0.25.4
+        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+      '@titicaca/kint5-core-elements':
+        specifier: workspace:*
+        version: link:../kint5-core-elements
+    devDependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
   packages/kint5-public-header:
     dependencies:
       '@titicaca/color-palette':
