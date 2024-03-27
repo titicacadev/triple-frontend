@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { useIntersection } from '@titicaca/intersection-observer'
 import { Container } from '@titicaca/core-elements'
 
 const VideoWrapper = styled(Container)`
@@ -34,27 +33,25 @@ const PlayPauseButton = styled.button`
 `
 
 interface VideoProps {
+  visible: boolean
   medium: ImageMeta
   handleVideoClick?: (video?: ImageMeta, playing?: boolean) => void
 }
 
-export function Video({ medium, handleVideoClick }: VideoProps) {
-  const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
-    threshold: 0.5,
-  })
-
+export function Video({ medium, handleVideoClick, visible }: VideoProps) {
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
     async function stopVideoOnNonIntersection() {
-      if (!ref.current) {
+      if (!videoRef.current) {
         return
       }
 
       try {
-        if (!isIntersecting) {
-          ref.current.pause()
-          ref.current.currentTime = 0
+        if (!visible) {
+          videoRef.current.pause()
+          videoRef.current.currentTime = 0
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
@@ -64,12 +61,12 @@ export function Video({ medium, handleVideoClick }: VideoProps) {
     }
 
     stopVideoOnNonIntersection()
-  }, [isIntersecting, ref])
+  }, [visible, videoRef])
 
   return (
     <VideoWrapper>
       <video
-        ref={ref}
+        ref={videoRef}
         src={medium.video?.large.url}
         controls
         loop={false}
