@@ -69,18 +69,18 @@ export const GlobalStyle = createGlobalStyle`
     --color-kint5-gray80: #333D4B;
     --color-kint5-gray90: #191F28;
     --color-kint5-gray100: #000;
-    --color-kint5-brand1: #8041F5;
-    --color-kint5-brand2: linear-gradient(90deg, #EB147B 20.97%, #8041F5 77.57%);
+    --color-kint5-brand1: #7743EE;
+    --color-kint5-brand2: linear-gradient(90deg, #EB147B 20.97%, #7743EE 77.57%);
     --color-kint5-poi-tour: #1769FF;
     --color-kint5-poi-food: #FF6B00;
     --color-kint5-poi-event: #EB147B;
-    --color-kint5-poi-ticket: #8041F5;
+    --color-kint5-poi-ticket: #7743EE;
     --color-kint5-interest-review: #FCC038;
     --color-kint5-interest-like: #EB147B;
     --color-kint5-btn-fill1: #FFF;
     --color-kint5-btn-fill2: #F1F3F5;
     --color-kint5-btn-fill3: #000;
-    --color-kint5-btn-fill4: #8041F5;
+    --color-kint5-btn-fill4: #7743EE;
     --color-kint5-result-error: #FF322E;
     --color-kint5-result-correct: #06C755;
   }
