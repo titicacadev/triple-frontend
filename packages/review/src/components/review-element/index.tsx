@@ -200,6 +200,7 @@ export function ReviewElement({
           push(HASH_REVIEW_ACTION_SHEET)
         }
       }, [isMyReview, onMenuClick, push, review.id]),
+      { triggeredEventAction: '리뷰_메뉴_선택' },
     ),
   )
 

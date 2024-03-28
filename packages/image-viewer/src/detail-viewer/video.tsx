@@ -36,9 +36,15 @@ interface VideoProps {
   visible: boolean
   medium: ImageMeta
   handleVideoClick?: (video?: ImageMeta, playing?: boolean) => void
+  onVideoIntersecting: (media: ImageMeta) => void
 }
 
-export function Video({ medium, handleVideoClick, visible }: VideoProps) {
+export function Video({
+  medium,
+  handleVideoClick,
+  visible,
+  onVideoIntersecting,
+}: VideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [playing, setPlaying] = useState(false)
 
@@ -62,6 +68,12 @@ export function Video({ medium, handleVideoClick, visible }: VideoProps) {
 
     stopVideoOnNonIntersection()
   }, [visible, videoRef])
+
+  useEffect(() => {
+    if (visible) {
+      onVideoIntersecting(medium)
+    }
+  }, [visible, onVideoIntersecting, medium])
 
   return (
     <VideoWrapper>
