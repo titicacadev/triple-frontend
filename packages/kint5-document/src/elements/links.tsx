@@ -10,6 +10,7 @@ import {
   FlexBox,
   List,
   ThumbnailBorder,
+  TripleKoreaBi,
 } from '@titicaca/kint5-core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -119,8 +120,6 @@ const ImageLinkItem = styled.a`
   }
 `
 
-const IMAGE_PLACEHOLDER =
-  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg'
 const BORDER_RADIUS_PX = 12
 
 function ImageLink({
@@ -158,12 +157,11 @@ function ImageLink({
               borderRadius={BORDER_RADIUS_PX}
             />
           ) : (
-            <img
-              src={IMAGE_PLACEHOLDER}
-              alt={label}
-              width={36}
-              height={36}
+            <TripleKoreaBi
+              color="#B6BBC1"
               css={{
+                width: 40,
+                height: 16,
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
