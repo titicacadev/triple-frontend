@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
+import { AnchorHTMLAttributes, PropsWithChildren } from 'react'
 
 export const ImageCarouselElementContainer = styled.div<{ maxWidth?: number }>`
   display: inline-block;
@@ -72,11 +73,21 @@ export const FluidSquareImage = styled.div<{ src?: string }>`
   background-position: center center;
 `
 
-export const SimpleLink = styled.a`
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--color-kint5-brand1);
-  padding-right: 12px;
-  background: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')
-    no-repeat 100% 50%;
-`
+export function SimpleLink({
+  children,
+  ...props
+}: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>) {
+  return (
+    <a
+      css={{
+        fontSize: 14,
+        fontWeight: 700,
+        color: 'var(--color-kint5-brand1)',
+        paddingRight: 12,
+      }}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
