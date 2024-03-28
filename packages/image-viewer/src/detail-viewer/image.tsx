@@ -35,6 +35,7 @@ export default function Image({
     <TransformWrapper
       wheel={{ wheelDisabled: true }}
       panning={{ disabled: true }}
+      doubleClick={{ disabled: true }}
       ref={transformComponentRef}
     >
       <TransformComponent
