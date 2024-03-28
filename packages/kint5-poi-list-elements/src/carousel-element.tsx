@@ -6,11 +6,11 @@ import {
   Container,
   Image,
   ThumbnailBorder,
+  TripleKoreaBi,
 } from '@titicaca/kint5-core-elements'
 import { OverlayScrapButton } from '@titicaca/kint5-scrap-button'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
-import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'
 import {
   PoiListElementBaseProps,
@@ -94,12 +94,11 @@ function PoiCarouselElement<T extends PoiListElementType>({
                 />
               )
             ) : (
-              <img
-                src={POI_IMAGE_PLACEHOLDERS[type]}
-                alt={name || ''}
-                width={36}
-                height={36}
+              <TripleKoreaBi
+                color="#B6BBC1"
                 css={{
+                  width: 40,
+                  height: 18,
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
