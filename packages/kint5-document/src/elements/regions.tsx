@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { List, Text } from '@titicaca/kint5-core-elements'
+import { CaretRightIcon, List, Text } from '@titicaca/kint5-core-elements'
 
 import { RegionData } from '../types'
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
@@ -79,12 +79,12 @@ export function RegionListElement({
             color: 'var(--color-kint5-brand1)',
             position: 'absolute',
             right: 0,
-            paddingRight: 12,
-            background:
-              "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg') no-repeat 100% 50%",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           {t(['barogagi', '바로가기'])}
+          <CaretRightIcon css="#7743EE" width={12} height={12} />
         </Text>
       </List.Item>
     )
