@@ -81,6 +81,17 @@ function Media({ media, reviewId }: Props) {
     back()
   }
 
+  const handleMediumIntersecting = (medium: ImageMeta, index?: number) => {
+    trackEvent({
+      fa: {
+        action: '이미지팝업_미디어_노출',
+        media_id: medium.id,
+        type: medium.type === 'image' ? '사진' : '비디오',
+        position: (index || 0 + 1).toString(),
+      },
+    })
+  }
+
   if (sortedMedia.length === 0) {
     return null
   }
@@ -117,6 +128,7 @@ function Media({ media, reviewId }: Props) {
           totalCount={sortedMedia.length}
           defaultImageIndex={imageIndex}
           onClose={handleImageViewerPopupClose}
+          onMediumIntersecting={handleMediumIntersecting}
         />
       ) : null}
     </>

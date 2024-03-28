@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Video } from './video'
@@ -54,7 +54,7 @@ export interface DetailViewerProp {
   fetchNext?: (cb?: () => void) => Promise<void>
   imageIndex: number
   changeImageIndex: (idx: number) => void
-  onChangeImageIndex?: (idx: number) => void
+  onMediumIntersecting?: (medium: ImageMeta, index?: number) => void
 }
 
 export default function DetailViewer({
@@ -63,7 +63,7 @@ export default function DetailViewer({
   fetchNext,
   imageIndex,
   changeImageIndex,
-  onChangeImageIndex,
+  onMediumIntersecting,
 }: DetailViewerProp) {
   const { isMobile } = useUserAgentContext()
   const flickingRef = useRef<Flicking>(null)
@@ -86,9 +86,9 @@ export default function DetailViewer({
     }
   }
 
-  useEffect(() => {
-    onChangeImageIndex?.(imageIndex)
-  }, [imageIndex, onChangeImageIndex])
+  const handleMediumIntersecting = (index: number) => (medium: ImageMeta) => {
+    onMediumIntersecting?.(medium, index)
+  }
 
   return (
     <Container
@@ -124,12 +124,16 @@ export default function DetailViewer({
               }}
             >
               {'video' in image ? (
-                <Video medium={image} visible={imageIndex === index} />
+                <Video
+                  medium={image}
+                  visible={imageIndex === index}
+                  onVideoIntersecting={handleMediumIntersecting(index)}
+                />
               ) : (
                 <Image
+                  medium={image}
                   visible={imageIndex === index}
-                  src={image.sizes.large.url}
-                  alt={image.id}
+                  onImageIntersecting={handleMediumIntersecting(index)}
                 />
               )}
             </Container>
