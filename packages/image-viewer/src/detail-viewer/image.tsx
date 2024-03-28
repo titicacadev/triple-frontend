@@ -1,10 +1,11 @@
-import { ComponentProps, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import {
   ReactZoomPanPinchRef,
   TransformComponent,
   TransformWrapper,
 } from 'react-zoom-pan-pinch'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 const StyledImage = styled.img`
   max-width: 100%;
@@ -13,9 +14,14 @@ const StyledImage = styled.img`
 `
 
 export default function Image({
+  medium,
   visible,
-  ...props
-}: ComponentProps<typeof StyledImage> & { visible: boolean }) {
+  onImageIntersecting,
+}: {
+  medium: ImageMeta
+  visible: boolean
+  onImageIntersecting: (image: ImageMeta) => void
+}) {
   const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null)
 
   const resetImage = () => {
@@ -28,8 +34,10 @@ export default function Image({
   useEffect(() => {
     if (!visible) {
       resetImage()
+    } else {
+      onImageIntersecting(medium)
     }
-  }, [visible])
+  }, [visible, medium, onImageIntersecting])
 
   return (
     <TransformWrapper
@@ -42,7 +50,7 @@ export default function Image({
         wrapperStyle={{ width: '100%', height: '100%', margin: 'auto' }}
         contentStyle={{ width: '100%', height: '100%', margin: 'auto' }}
       >
-        <StyledImage {...props} />
+        <StyledImage src={medium.sizes.large.url} alt={medium.id} />
       </TransformComponent>
     </TransformWrapper>
   )
