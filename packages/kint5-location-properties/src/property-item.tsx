@@ -18,10 +18,10 @@ export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
 export interface PropertyItemProps {
   title: string
   value?: string
-  iconUrl?: string
   singleLine?: boolean
   identifier: string
   eventActionFragment?: string
+  iconRenderer?: () => JSX.Element
   onClick?: () => void
 }
 
@@ -35,8 +35,8 @@ export default function PropertyItem({
   identifier,
   title,
   value,
-  iconUrl,
   singleLine,
+  iconRenderer,
   onClick,
   eventActionFragment,
 }: PropertyItemProps) {
@@ -62,8 +62,17 @@ export default function PropertyItem({
         onLongClick={app ? handleLongClick : undefined}
         onClick={onClick}
       >
-        {iconUrl ? (
-          <img src={iconUrl} alt={title} />
+        {iconRenderer ? (
+          <div
+            css={{
+              width: 24,
+              flex: '0 0 24px',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            {iconRenderer()}
+          </div>
         ) : (
           <Text bold size="small" css={{ flexShrink: 1, lineHeight: 1.43 }}>
             {title}
