@@ -6,6 +6,7 @@ import {
   Container,
   Image,
   Rating,
+  TripleKoreaBi,
 } from '@titicaca/kint5-core-elements'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -15,9 +16,6 @@ import { useUserAgentContext } from '@titicaca/react-contexts'
 import { TnaProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
 import { PricePolicyCouponInfo } from './price-policy-coupon-info'
-
-const PLACEHOLDER_IMAGE_URL =
-  'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg'
 
 function Pricing({
   basePrice, // 판매가
@@ -159,7 +157,17 @@ export function TnaProductWithPrice({
                 alt={t(['title-yi-sseomneil', '{{title}}의 썸네일'], { title })}
               />
             ) : (
-              <Image.Placeholder src={PLACEHOLDER_IMAGE_URL} />
+              <TripleKoreaBi
+                color="#B6BBC1"
+                css={{
+                  width: 40,
+                  height: 16,
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
             )}
           </Image.FixedDimensionsFrame>
         </Image>
