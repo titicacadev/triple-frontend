@@ -4,7 +4,6 @@ import ExtendedResourceListElement, {
 } from '@titicaca/resource-list-element'
 import { useScrapsContext } from '@titicaca/react-contexts'
 
-import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
 
 interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
@@ -95,7 +94,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       scraped={scraped}
       resource={poi}
       image={image}
-      imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
       name={
         nameOverride ||
         names.primary ||
