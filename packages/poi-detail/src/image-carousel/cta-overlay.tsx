@@ -1,12 +1,12 @@
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { useEventTrackingContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
 
 const MoreImageOverlayLink = styled.a`
   display: block;
   width: 100%;
   text-align: center;
   color: white;
-  vertical-align: middle;
   top: 50%;
   position: absolute;
   transform: translateY(-50%);
@@ -21,12 +21,19 @@ const MoreImageOverlayLinkIcon = styled.img`
 `
 
 export default function CtaOverlay() {
-  const { t } = useTranslation('common-web')
-
+  const { trackEvent } = useEventTrackingContext()
   return (
-    <MoreImageOverlayLink>
-      <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-      {t(['teuripeul-aebeseo-deobogi', '트리플 앱에서 더보기'])}
-    </MoreImageOverlayLink>
+    <StaticIntersectionObserver
+      onChange={({ isIntersecting }) => {
+        if (isIntersecting) {
+          trackEvent({ fa: { action: '대표사진_더보기_노출' } })
+        }
+      }}
+    >
+      <MoreImageOverlayLink>
+        더 많은 이미지 보기
+        <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
+      </MoreImageOverlayLink>
+    </StaticIntersectionObserver>
   )
 }

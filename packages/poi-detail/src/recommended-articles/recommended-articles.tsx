@@ -98,6 +98,11 @@ function RecommendedArticles({
     (intersectingArticle: ArticleListingData) => {
       trackEvent({
         ga: ['추천가이드_노출', intersectingArticle.source.title],
+        fa: {
+          action: '추천가이드_노출',
+          item_name: intersectingArticle.source.title,
+          item_id: intersectingArticle.id,
+        },
       })
     },
     [trackEvent],
