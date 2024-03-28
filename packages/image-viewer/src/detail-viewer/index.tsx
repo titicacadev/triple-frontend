@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 
 import { Video } from './video'
@@ -54,6 +54,7 @@ export interface DetailViewerProp {
   fetchNext?: (cb?: () => void) => Promise<void>
   imageIndex: number
   changeImageIndex: (idx: number) => void
+  onChangeImageIndex?: (idx: number) => void
 }
 
 export default function DetailViewer({
@@ -62,6 +63,7 @@ export default function DetailViewer({
   fetchNext,
   imageIndex,
   changeImageIndex,
+  onChangeImageIndex,
 }: DetailViewerProp) {
   const { isMobile } = useUserAgentContext()
   const flickingRef = useRef<Flicking>(null)
@@ -83,6 +85,10 @@ export default function DetailViewer({
       await fetchNext()
     }
   }
+
+  useEffect(() => {
+    onChangeImageIndex?.(imageIndex)
+  }, [imageIndex, onChangeImageIndex])
 
   return (
     <Container
