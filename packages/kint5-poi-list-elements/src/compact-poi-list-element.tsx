@@ -6,6 +6,7 @@ import {
   FlexBox,
   List,
   ThumbnailBorder,
+  TripleKoreaBi,
 } from '@titicaca/kint5-core-elements'
 import { OutlineScrapButton } from '@titicaca/kint5-scrap-button'
 
@@ -24,16 +25,6 @@ interface CompactPoiListElementBaseProps<T extends PoiListElementType>
 export type CompactPoiListElementProps<T extends PoiListElementType> =
   CompactPoiListElementBaseProps<T> &
     Partial<Pick<Parameters<typeof Container>['0'], 'as'>>
-
-const POI_IMAGE_PLACEHOLDERS_SMALL: {
-  [key in PoiListElementType['type']]: string
-} = {
-  attraction:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg',
-  restaurant:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-food-line-24.svg',
-  hotel: 'https://assets.triple.guide/images/ico_blank_hotel_small@2x.png',
-}
 
 const IMAGE_CONTAINER_SIZE_PX = 60
 const LIST_ITEM_GAP_PX = 12
@@ -92,17 +83,15 @@ export function CompactPoiListElement<T extends PoiListElementType>({
             borderRadius={BORDER_RADIUS_PX}
           />
         ) : (
-          <img
-            src={POI_IMAGE_PLACEHOLDERS_SMALL[type]}
-            alt={name || ''}
-            width={36}
-            height={36}
+          <TripleKoreaBi
+            color="#B6BBC1"
             css={{
+              width: 30,
+              height: 12,
               position: 'absolute',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              borderRadius: BORDER_RADIUS_PX,
             }}
           />
         )}
