@@ -1,37 +1,33 @@
-import styled, { css } from 'styled-components'
-import { Container } from '@titicaca/kint5-core-elements'
+import styled from 'styled-components'
+import { CheckIcon, Container } from '@titicaca/kint5-core-elements'
 
 import { TripleElementData, Link } from '../types'
 
 import { Text } from './text'
 import Links from './links'
 
-const ListItemContainer = styled.li<{ bulletType?: string }>`
-  padding-left: 18px;
-  text-indent: -18px;
-
-  &::before {
-    ${({ bulletType }) =>
-      bulletType === 'check'
-        ? css`
-            content: '';
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-image: url('https://assets.triple-dev.titicaca-corp.com/images/kint5-document-list-check.svg');
-            background-size: 10px 10px;
-            background-position: center center;
-            background-repeat: no-repeat;
-          `
-        : css`
-            content: '•';
-          `}
-  }
-`
+function ListBullet({ bulletType }: { bulletType?: string }) {
+  return (
+    <div
+      css={{
+        position: 'absolute',
+        top: '50%',
+        left: 0,
+        transform: 'translateY(-50%)',
+      }}
+    >
+      {bulletType === 'check' ? (
+        <CheckIcon color="#000" css={{ width: 10, height: 10 }} />
+      ) : (
+        '•'
+      )}
+    </div>
+  )
+}
 
 const ListTextElement = styled(Text)`
   font-size: 16px;
-  margin-left: 8px;
+  margin: 0;
   display: inline;
 
   div,
@@ -65,14 +61,30 @@ export default function List({
     >
       <ul>
         {items.map((item, index) => (
-          <ListItemContainer bulletType={bulletType} key={index}>
+          <li
+            key={index}
+            css={{
+              position: 'relative',
+              paddingLeft: 16,
+            }}
+          >
+            <ListBullet bulletType={bulletType} />
             {item.type === 'text' ? (
               <ListTextElement value={item.value} compact />
             ) : null}
             {item.type === 'links' ? (
-              <Links value={{ display: 'list', links: item.value.links }} />
+              <Links
+                value={{ display: 'list', links: item.value.links }}
+                css={{
+                  lineHeight: 1.63,
+                  margin: 0,
+                  '& > a': {
+                    margin: 0,
+                  },
+                }}
+              />
             ) : null}
-          </ListItemContainer>
+          </li>
         ))}
       </ul>
     </Container>
