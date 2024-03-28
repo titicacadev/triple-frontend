@@ -15,20 +15,13 @@ import {
 import { formatNumber } from '@titicaca/view-utilities'
 import { useScrapsContext } from '@titicaca/react-contexts'
 import { OverlayScrapButton } from '@titicaca/kint5-scrap-button'
+import { TripleKoreaBi } from '@titicaca/kint5-core-elements'
 
 import { PoiListElementType } from '../types'
 
 import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
 
 const IMAGE_WIDTH = 58
-
-const IMAGE_PLACEHOLDERS = {
-  hotel: 'https://assets.triple.guide/images/ico_blank_hotel@3x.png',
-  attraction:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-flag-line-24.svg',
-  restaurant:
-    'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-food-line-24.svg',
-} as const
 
 const Card = styled(OriginalCard)`
   background-color: white;
@@ -145,7 +138,17 @@ function PoiCardElement({
                   />
                 )
               ) : (
-                <Image.Placeholder src={IMAGE_PLACEHOLDERS[type]} />
+                <TripleKoreaBi
+                  color="#B6BBC1"
+                  css={{
+                    width: 30,
+                    height: 12,
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
               )}
             </Image.FixedDimensionsFrame>
           </Image>
