@@ -6,7 +6,7 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, FlexBox } from '@titicaca/kint5-core-elements'
+import { Button, CaretRightIcon, FlexBox } from '@titicaca/kint5-core-elements'
 
 import AskToTheLocal from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -52,24 +52,22 @@ function DirectionButtons({
         {...props}
       >
         {localName && localAddress ? (
-          <Button
+          <button
             onClick={handleAskToLocalsClick}
             css={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
               fontSize: 14,
               fontWeight: 700,
               color: 'var(--color-kint5-brand1)',
               background: 'none',
-              margin: '0 0 20px 0',
-              padding: '0 12px 0 0',
-              backgroundImage:
-                "url('https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-arrow-1-line-24.svg')",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'right center',
-              backgroundSize: '12px 12px',
+              marginBottom: 20,
             }}
           >
             {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
-          </Button>
+            <CaretRightIcon color="#7743EE" width={12} height={12} />
+          </button>
         ) : null}
         <Button
           onClick={onDirectionsClick}
