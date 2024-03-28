@@ -37,6 +37,7 @@ import Comment from './comment'
 import FoldableComment from './foldable-comment'
 import Media from './media'
 import User from './user'
+import { MoreIcon } from './more-icon'
 
 const LikeButton = styled.button`
   display: flex;
@@ -274,12 +275,7 @@ export function TripleGlobalReviewElement({
                 {i18nFormatRelativeTime(reviewedAt)}
               </Text>
               <button onClick={handleMenuClick}>
-                <img
-                  src="https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-dot-line-24.svg"
-                  alt="Show more"
-                  width={24}
-                  height={24}
-                />
+                <MoreIcon color="#9199A1" />
               </button>
             </FlexBox>
           ) : null}
