@@ -75,6 +75,12 @@ function Media({ media, reviewId }: Props) {
     }
   }
 
+  const handleImageViewerPopupClose = () => {
+    trackEvent({ fa: { action: '이미지팝업_닫기_선택' } })
+    setImageIndex(null)
+    back()
+  }
+
   if (sortedMedia.length === 0) {
     return null
   }
@@ -110,10 +116,7 @@ function Media({ media, reviewId }: Props) {
           images={sortedMedia}
           totalCount={sortedMedia.length}
           defaultImageIndex={imageIndex}
-          onClose={() => {
-            setImageIndex(null)
-            back()
-          }}
+          onClose={handleImageViewerPopupClose}
         />
       ) : null}
     </>
