@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import { Segment, List } from '@titicaca/kint5-core-elements'
+import { Segment, List, EmptyLocationIcon } from '@titicaca/kint5-core-elements'
 import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import { TranslatedProperty } from '@titicaca/type-definitions'
@@ -9,6 +9,8 @@ import PropertyItem, {
   ACTION_SHEET_PREFIX,
   PropertyItemProps,
 } from './property-item'
+import { PhoneIcon } from './phone-icon'
+import { HouseIcon } from './house-icon'
 
 interface ExtraProperty {
   description: string
@@ -53,8 +55,9 @@ function LocationProperties({
       allValues.set('addresses', {
         title: t(['juso', '주소']),
         value: addressValue,
-        iconUrl:
-          'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-location-1-line-24.svg',
+        iconRenderer: () => (
+          <EmptyLocationIcon color="#9199A1" width={18} height={18} />
+        ),
         onClick: onAddressesClick,
         eventActionFragment: '기본정보_주소',
       })
@@ -63,8 +66,9 @@ function LocationProperties({
       allValues.set('phoneNumber', {
         title: t(['jeonhwa', '전화']),
         value: phoneNumber,
-        iconUrl:
-          'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-phone-line-24.svg',
+        iconRenderer: () => (
+          <PhoneIcon color="#9199A1" css={{ width: 18, height: 18 }} />
+        ),
         onClick: onPhoneNumberClick,
         eventActionFragment: '기본정보_전화번호',
       })
@@ -73,8 +77,9 @@ function LocationProperties({
       allValues.set('officialSiteUrl', {
         title: t(['hompeiji', '홈페이지']),
         value: officialSiteUrl,
-        iconUrl:
-          'https://assets.triple-dev.titicaca-corp.com/images/kint5-ic-house-line-24.svg',
+        iconRenderer: () => (
+          <HouseIcon color="#9199A1" css={{ width: 18, height: 18 }} />
+        ),
         singleLine: true,
         onClick: onOfficialSiteUrlClick,
         eventActionFragment: '기본정보_홈페이지',
