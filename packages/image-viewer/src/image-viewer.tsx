@@ -16,7 +16,7 @@ const Text = styled.span`
 export interface ImageViewerPopupProps
   extends Pick<
     DetailViewerProp,
-    'images' | 'totalCount' | 'fetchNext' | 'onChangeImageIndex'
+    'images' | 'totalCount' | 'fetchNext' | 'onMediumIntersecting'
   > {
   open: boolean
   onClose?: () => void
@@ -33,7 +33,7 @@ export function ImageViewerPopup({
   totalCount,
   fetchNext,
   defaultImageIndex,
-  onChangeImageIndex,
+  onMediumIntersecting,
 }: ImageViewerPopupProps) {
   const [imageIndex, setImageIndex] = useState<null | number>(defaultImageIndex)
 
@@ -56,7 +56,7 @@ export function ImageViewerPopup({
           onClose={handleClose}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
-          onChangeImageIndex={onChangeImageIndex}
+          onMediumIntersecting={onMediumIntersecting}
           images={images}
           totalCount={totalCount}
           fetchNext={fetchNext}
@@ -69,7 +69,11 @@ export function ImageViewerPopup({
 export interface DetailViewerContainerProp
   extends Pick<
     DetailViewerProp,
-    'images' | 'totalCount' | 'fetchNext' | 'imageIndex' | 'onChangeImageIndex'
+    | 'images'
+    | 'totalCount'
+    | 'fetchNext'
+    | 'imageIndex'
+    | 'onMediumIntersecting'
   > {
   onClose?: () => void
   changeImageIndex: (index: number) => void
@@ -82,7 +86,7 @@ export function DetailViewerContainer({
   images,
   totalCount,
   fetchNext,
-  onChangeImageIndex,
+  onMediumIntersecting,
 }: DetailViewerContainerProp) {
   return (
     <>
@@ -120,7 +124,7 @@ export function DetailViewerContainer({
           fetchNext={fetchNext}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
-          onChangeImageIndex={onChangeImageIndex}
+          onMediumIntersecting={onMediumIntersecting}
         />
       </Container>
     </>
