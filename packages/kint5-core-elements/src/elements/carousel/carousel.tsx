@@ -107,12 +107,14 @@ export function Carousel({
   containerPadding,
   children,
   className,
+  ...props
 }: PropsWithChildren<CarouselBaseProps>) {
   return (
     <CarouselBase
       className={className}
       margin={margin}
       containerPadding={containerPadding}
+      {...props}
     >
       {children}
     </CarouselBase>

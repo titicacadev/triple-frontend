@@ -4,6 +4,13 @@ import { MarginPadding, Carousel } from '@titicaca/kint5-core-elements'
 export default function DocumentCarousel({
   margin,
   children,
-}: PropsWithChildren<{ margin?: MarginPadding }>) {
-  return <Carousel margin={margin}>{children}</Carousel>
+  ...props
+}: PropsWithChildren<{
+  margin?: MarginPadding
+}>) {
+  return (
+    <Carousel margin={margin} {...props}>
+      {children}
+    </Carousel>
+  )
 }

@@ -39,11 +39,9 @@ export function DocumentCarouselContainer({
 }: PropsWithChildren<{ images: ImageMeta[] }>) {
   return (
     <DocumentCarousel
-      margin={{
-        top: 40,
-        left: 16,
-        right: images.length > 1 ? 0 : 16,
-        bottom: images.some(({ title }) => title) ? 10 : 30,
+      css={{
+        margin: `40px 0 ${images.some(({ title }) => title) ? 10 : 30}px`,
+        padding: '0 0 10px 16px',
       }}
     >
       {children}
