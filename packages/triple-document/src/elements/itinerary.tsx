@@ -34,6 +34,7 @@ import {
   Cable,
   Plane,
   Ship,
+  Bicycle,
 } from './itinerary/icons'
 import SaveToItinerary, { Geotag } from './itinerary/save-to-itinerary'
 
@@ -275,7 +276,7 @@ function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
   throw new Error(`Unknown card type of poi "${type}"`)
 }
 
-function TransportationIcon(type?: TransportationType) {
+function TransportationIcon(type?: TransportationType | 'bicycle') {
   switch (type) {
     case 'car':
       return Car
@@ -293,6 +294,8 @@ function TransportationIcon(type?: TransportationType) {
       return Cable
     case 'ship':
       return Ship
+    case 'bicycle':
+      return Bicycle
     default:
       return () => null
   }
