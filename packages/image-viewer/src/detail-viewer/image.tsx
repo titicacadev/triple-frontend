@@ -32,12 +32,13 @@ export default function Image({
   }
 
   useEffect(() => {
-    if (!visible) {
-      resetImage()
-    } else {
+    if (visible) {
       onImageIntersecting(medium)
+    } else {
+      resetImage()
     }
-  }, [visible, medium, onImageIntersecting])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible])
 
   return (
     <TransformWrapper

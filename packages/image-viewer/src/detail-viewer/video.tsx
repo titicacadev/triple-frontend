@@ -73,7 +73,8 @@ export function Video({
     if (visible) {
       onVideoIntersecting(medium)
     }
-  }, [visible, onVideoIntersecting, medium])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible])
 
   return (
     <VideoWrapper>
