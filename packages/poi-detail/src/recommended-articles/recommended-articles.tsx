@@ -123,7 +123,7 @@ function RecommendedArticles({
       <Responsive minWidth={768}>
         <H1
           css={{
-            textAlign: 'center',
+            margin: `0 0 0 ${deskTopPadding?.right || 110}px`,
           }}
         >
           {t([
@@ -170,7 +170,7 @@ function RecommendedArticles({
       <Responsive maxWidth={767}>
         <H1
           css={{
-            margin: '0 0 0 30px',
+            margin: `0 0 0 ${mobilePadding?.right || 30}px`,
           }}
         >
           {t([
