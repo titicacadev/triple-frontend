@@ -1,5 +1,5 @@
 import { ComponentType, ElementType } from 'react'
-import { Carousel, Container } from '@titicaca/kint5-core-elements'
+import { Container } from '@titicaca/kint5-core-elements'
 import Kint5Media from '@titicaca/kint5-media'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -81,19 +81,37 @@ export default function Embedded({
     entries: TripleElementData[][]
   }
 }) {
-  const numOfImages = entries
-    .flat()
-    .filter((entry) => entry.type === 'images').length
+  const numOfEntries = entries.length
 
   return (
     <DocumentCarousel
-      margin={{ top: 20, left: 16, right: numOfImages > 1 ? 0 : 16 }}
+      css={{
+        marginTop: 20,
+        paddingLeft: 16,
+        marginRight: numOfEntries > 1 ? 0 : 16,
+        ...(numOfEntries > 1 && {
+          '::after': {
+            content: '""',
+            display: 'inline-block',
+            width: 16,
+            height: 1,
+          },
+        }),
+      }}
     >
       {entries.map((elements, i) => (
-        <Carousel.Item
+        <li
           key={i}
-          size="large"
-          css={{ ':last-child': { marginRight: 16 } }}
+          css={{
+            display: 'inline-block',
+            verticalAlign: 'top',
+            whiteSpace: 'normal',
+            width: '100%',
+            ':not(:first-child)': {
+              marginLeft: 12,
+            },
+            ...(numOfEntries > 1 && { maxWidth: 320 }),
+          }}
         >
           {elements.map(({ type, value }, j) => {
             if (!isEmbeddedElementType(type)) {
@@ -103,7 +121,7 @@ export default function Embedded({
             const Element = EMBEDDED_ELEMENTS[type]
             return <Element key={j} value={value} embedded />
           })}
-        </Carousel.Item>
+        </li>
       ))}
     </DocumentCarousel>
   )
