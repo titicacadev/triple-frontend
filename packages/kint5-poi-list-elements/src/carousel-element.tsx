@@ -98,7 +98,7 @@ function PoiCarouselElement<T extends PoiListElementType>({
                 color="#B6BBC1"
                 css={{
                   width: 40,
-                  height: 18,
+                  height: 16,
                   position: 'absolute',
                   top: '50%',
                   left: '50%',

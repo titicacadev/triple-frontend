@@ -18,7 +18,7 @@ interface ImagePlaceholderProps {
 export function ImagePlaceholder({ onClick }: ImagePlaceholderProps) {
   return (
     <ImagePlaceholderContainer onClick={onClick}>
-      <TripleKoreaBi color="#B6BBC1" css={{ width: 40 }} />
+      <TripleKoreaBi color="#B6BBC1" css={{ width: 40, height: 16 }} />
     </ImagePlaceholderContainer>
   )
 }

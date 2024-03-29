@@ -160,8 +160,8 @@ function ImageLink({
             <TripleKoreaBi
               color="#B6BBC1"
               css={{
-                width: 40,
-                height: 16,
+                width: 30,
+                height: 12,
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
