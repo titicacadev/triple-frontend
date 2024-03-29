@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import { getTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
@@ -6,11 +7,10 @@ import {
   PoiListElementProps,
   PoiListElementType,
 } from '@titicaca/kint5-poi-list-elements'
-import { Text } from '@titicaca/kint5-core-elements'
+import { List, Text } from '@titicaca/kint5-core-elements'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 
-import ResourceList from './shared/resource-list'
 import DocumentCarousel from './shared/document-carousel'
 
 const PoiPrice = styled.div`
@@ -45,7 +45,6 @@ export default function Pois<T extends ExtendedPoiListElementData>({
 }) {
   const onResourceClick = useResourceClickHandler()
 
-  const Container = display === 'list' ? ResourceList : DocumentCarousel
   const Element =
     display === 'list'
       ? function WrappedPoiListElement(
@@ -56,8 +55,12 @@ export default function Pois<T extends ExtendedPoiListElementData>({
       : PoiCarouselElement
 
   return (
-    <Container
-      margin={{ top: 20, left: 16, right: display === 'list' ? 16 : 0 }}
+    <PoisContainer
+      display={display}
+      css={{
+        margin: `20px ${display === 'list' ? 16 : 0}px 0 0`,
+        paddingLeft: 16,
+      }}
     >
       {pois.map((poi) => (
         <Element
@@ -76,8 +79,20 @@ export default function Pois<T extends ExtendedPoiListElementData>({
           })}
         />
       ))}
-    </Container>
+    </PoisContainer>
   )
+}
+
+function PoisContainer({
+  display,
+  children,
+  ...props
+}: PropsWithChildren<{ display: string }>) {
+  if (display === 'list') {
+    return <List {...props}>{children}</List>
+  }
+
+  return <DocumentCarousel {...props}>{children}</DocumentCarousel>
 }
 
 function renderPoiListActionButton({
