@@ -40,8 +40,18 @@ export function DocumentCarouselContainer({
   return (
     <DocumentCarousel
       css={{
-        margin: `40px 0 ${images.some(({ title }) => title) ? 10 : 30}px`,
+        marginTop: 40,
+        marginRight: images.length > 1 ? 0 : 16,
+        marginBottom: images.some(({ title }) => title) ? 10 : 30,
         padding: '0 0 10px 16px',
+        ...(images.length > 1 && {
+          '::after': {
+            content: '""',
+            display: 'inline-block',
+            width: 16,
+            height: 1,
+          },
+        }),
       }}
     >
       {children}
