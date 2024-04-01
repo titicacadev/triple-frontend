@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
+import { Container, safeAreaInsetMixin } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
-import ReplyList from './list'
-import GuideText from './guide-text'
-import Register from './register'
+import { ReplyList } from './list'
+import { GuideText } from './guide-text'
+import { Register } from './register'
 import { RepliesProvider } from './context'
 import { TextAreaHandle } from './auto-resizing-textarea'
 import {
@@ -32,7 +32,7 @@ const FixedBottom = styled(Container).attrs({
 /**
  * 댓글 컴포넌트
  */
-function Replies({
+export function Replies({
   resourceId,
   resourceType,
   placeholders,
@@ -227,5 +227,3 @@ function Replies({
     </RepliesProvider>
   )
 }
-
-export default Replies

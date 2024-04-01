@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 const ShareIcon = styled.img`
   margin: 0 5px;
@@ -16,7 +16,7 @@ export enum Method {
 /**
  * 콘텐츠 하단에 들어가는 공유 영역입니다. 카카오톡 공유, 클립보드 복사, 기타 공유 버튼을 표시하고 있습니다.
  */
-function ContentSharing({
+export function ContentSharing({
   onShareClick,
   label,
 }: {
@@ -48,5 +48,3 @@ function ContentSharing({
     </Container>
   )
 }
-
-export default ContentSharing

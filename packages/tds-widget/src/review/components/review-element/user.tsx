@@ -1,7 +1,7 @@
 import { PropsWithChildren, MouseEventHandler } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 
 import { BaseUserFragment } from '../../data/graphql'
 
@@ -26,14 +26,14 @@ const Badge = styled.img`
 const DEFAULT_USER_PROFILE_IMAGE =
   'https://assets.triple.guide/images/ico-default-profile.svg'
 
-export default function User({
+export function User({
   user: { photo, name, userBoard, mileage, unregister },
   onClick,
 }: {
   onClick?: MouseEventHandler
   user: BaseUserFragment
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { reviewsV2: reviewsCount } = userBoard || {}
   const { badges = [], level } = mileage || {}
@@ -56,7 +56,7 @@ export default function User({
           >
             {level && level > 0 ? `LEVEL${level} / ` : null}
             {reviewsCount
-              ? t(['reviewscount-gaeyi-ribyu', '{{reviewsCount}}개의 리뷰'], {
+              ? t('{{reviewsCount}}개의 리뷰', {
                   reviewsCount,
                 })
               : null}

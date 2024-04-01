@@ -6,12 +6,12 @@ import {
   FlexBox,
   LongClickableComponentProps,
   FlexBoxProps,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 
 export const ACTION_SHEET_PREFIX = 'location-properties.copy-action-sheet'
 
@@ -30,7 +30,7 @@ type LongClickableItemContainerProps = LongClickableComponentProps &
 const LongClickableItemContainer =
   longClickable<LongClickableItemContainerProps>(FlexBox)
 
-export default function PropertyItem({
+export function PropertyItem({
   identifier,
   title,
   value,
@@ -38,18 +38,22 @@ export default function PropertyItem({
   onClick,
   eventActionFragment,
 }: PropertyItemProps) {
-  const app = useTripleClientMetadata()
-
-  const { push } = useHistoryFunctions()
-  const { trackSimpleEvent } = useEventTrackingContext()
+  const app = useClientApp()
+  const trackEvent = useTrackEvent()
+  const { addUriHash } = useHashRouter()
 
   const handleLongClick = useCallback(() => {
     if (eventActionFragment) {
-      trackSimpleEvent({ action: `${eventActionFragment}_복사하기_실행` })
+      trackEvent({
+        ga: [`${eventActionFragment}_복사하기_실행`],
+        fa: {
+          action: `${eventActionFragment}_복사하기_실행`,
+        },
+      })
     }
 
-    push(`${ACTION_SHEET_PREFIX}.${identifier}`)
-  }, [push, identifier, trackSimpleEvent, eventActionFragment])
+    addUriHash(`${ACTION_SHEET_PREFIX}.${identifier}`)
+  }, [addUriHash, identifier, trackEvent, eventActionFragment])
 
   return (
     <List.Item>

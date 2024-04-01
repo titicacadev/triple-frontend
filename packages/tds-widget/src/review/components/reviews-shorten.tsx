@@ -1,13 +1,9 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
-import { FlexBox, Section, Text } from '@titicaca/core-elements'
-import { LoginCtaModalProvider } from '@titicaca/modals'
-import { useTranslation } from '@titicaca/next-i18next'
-import {
-  useTripleClientActions,
-  useTripleClientMetadata,
-} from '@titicaca/react-triple-client-interfaces'
+import { FlexBox, Section, Text } from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
 import { formatNumber } from '@titicaca/view-utilities'
+import { useClientApp, useClientAppActions } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 import CustomizedScheduleBanner from '../customized-schedule-banner'
@@ -66,28 +62,26 @@ export function ReviewsShorten({
   receiverId,
 }: ReviewsShortenProps) {
   return (
-    <LoginCtaModalProvider>
-      <FilterProvider
-        receiverId={receiverId}
-        initialRecentTrip={initialRecentTrip}
-        initialMediaFilter={initialMediaFilter}
+    <FilterProvider
+      receiverId={receiverId}
+      initialRecentTrip={initialRecentTrip}
+      initialMediaFilter={initialMediaFilter}
+    >
+      <SortingOptionsProvider
+        type={sortingType}
+        resourceId={resourceId}
+        initialSortingOption={initialSortingOption}
       >
-        <SortingOptionsProvider
-          type={sortingType}
+        <ReviewsShortenComponent
           resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
-          <ReviewsShortenComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
-        </SortingOptionsProvider>
-      </FilterProvider>
-    </LoginCtaModalProvider>
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          placeholderText={placeholderText}
+          sortingType={sortingType}
+        />
+      </SortingOptionsProvider>
+    </FilterProvider>
   )
 }
 
@@ -108,12 +102,12 @@ function ReviewsShortenComponent({
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: reviewsCountData, refetch: refetchReviewsCount } =
     useReviewCount(
@@ -164,7 +158,7 @@ function ReviewsShortenComponent({
       <FlexBox flex alignItems="center">
         <div>
           <Text bold size="huge" color="gray" alpha={1} inline>
-            {t(['ribyu', '리뷰'])}
+            {t('리뷰')}
           </Text>
           {(reviewsCountData?.reviewsCount ?? 0) > 0 ? (
             <Text bold size="huge" color="blue" alpha={1} inline>

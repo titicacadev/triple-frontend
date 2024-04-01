@@ -7,9 +7,8 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { useTranslation } from '@titicaca/next-i18next'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { useClientAppActions, useTrackEvent } from '@titicaca/triple-web'
+import { useTranslation } from 'react-i18next'
 
 import { useReviewFilters } from './filter-context'
 
@@ -56,25 +55,25 @@ export function SortingOptionsProvider({
 }: PropsWithChildren<SortingOptionsProps>) {
   const [selectedOption, setSelectedOption] = useState(initialSortingOption)
 
-  const { t } = useTranslation('common-web')
-  const { trackEvent } = useEventTrackingContext()
+  const { t } = useTranslation('triple-frontend')
+  const trackEvent = useTrackEvent()
   const { isRecentTrip } = useReviewFilters()
-  const { broadcastMessage, subscribe, unsubscribe } = useTripleClientActions()
+  const { broadcastMessage, subscribe, unsubscribe } = useClientAppActions()
 
   const defaultOptions = [
-    { key: 'recommendation' as const, text: t(['cuceonsun', '추천순']) },
-    { key: 'latest' as const, text: t(['coesinsun', '최신순']) },
+    { key: 'recommendation' as const, text: t('추천순') },
+    { key: 'latest' as const, text: t('최신순') },
   ]
 
   const poiOptions = [
     ...defaultOptions,
     {
       key: 'star-rating-desc' as const,
-      text: t(['byeoljeom-nopeunsun', '별점 높은순']),
+      text: t('별점 높은순'),
     },
     {
       key: 'star-rating-asc' as const,
-      text: t(['byeoljeom-najeunsun', '별점 낮은순']),
+      text: t('별점 낮은순'),
     },
   ]
 

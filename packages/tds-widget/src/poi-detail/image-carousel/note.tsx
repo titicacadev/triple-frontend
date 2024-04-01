@@ -1,6 +1,6 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 const NoteContainer = styled.div<{
   warning?: boolean
@@ -35,12 +35,12 @@ interface PermanetlyCloseNoteProps {
 export function PermanentlyClosedNote({
   bottomBorderRadius = 6,
 }: PermanetlyCloseNoteProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
       <Text bold size="small" color="white">
-        {t(['deoisang-unyeonghaji-anhseubnida.', '더이상 운영하지 않습니다.'])}
+        {t('더이상 운영하지 않습니다.')}
       </Text>
     </NoteContainer>
   )
@@ -65,7 +65,7 @@ export function BusinessHoursNote({
   todayBusinessHours,
   onClick,
 }: BusinessHourNoteProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <NoteContainer
@@ -75,22 +75,10 @@ export function BusinessHoursNote({
     >
       <Text bold size="small" color="white">
         {currentBusinessHours
-          ? t(
-              [
-                'yeongeobjung-todaybusinesshours',
-                '영업중 {{todayBusinessHours}}',
-              ],
-              { todayBusinessHours },
-            )
+          ? t('영업중 {{todayBusinessHours}}', { todayBusinessHours })
           : todayBusinessHours
-          ? t(
-              [
-                'yeongeobjunbijung-todaybusinesshours',
-                '영업준비중 {{todayBusinessHours}}',
-              ],
-              { todayBusinessHours },
-            )
-          : t(['hyumuil', '휴무일'])}
+          ? t('영업준비중 {{todayBusinessHours}}', { todayBusinessHours })
+          : t('휴무일')}
       </Text>
     </NoteContainer>
   )

@@ -1,17 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { rest } from 'msw'
 
-import RecommendedArticles from './recommended-articles/recommended-articles'
+import { PoiDetailRecommendedArticles } from './recommended-articles/recommended-articles'
 
-export default {
+const meta: Meta<typeof PoiDetailRecommendedArticles> = {
   title: 'poi-detail / RecommendedArticles',
-  component: RecommendedArticles,
-} as Meta<typeof RecommendedArticles>
+  component: PoiDetailRecommendedArticles,
+}
 
-export const Basic: StoryObj<typeof RecommendedArticles> = {
+export default meta
+
+type Story = StoryObj<typeof PoiDetailRecommendedArticles>
+
+export const Basic: Story = {
   args: {
     appInstallationCta: {
-      inventoryId: 'app-install-cta-footer-hotel-v1',
+      inventoryId: 'app-install-cta-poi-v1',
       href: 'https://triple-dev.titicaca-corp.com',
     },
     regionId: 'edf1982d-c835-43a7-b06b-af43acbb6f38',

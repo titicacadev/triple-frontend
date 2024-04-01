@@ -1,4 +1,4 @@
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 import { useCallback, useState } from 'react'
 import styled from 'styled-components'
 

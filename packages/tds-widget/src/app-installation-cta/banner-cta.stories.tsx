@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import BannerCTA from './banner-cta'
+import { BannerCta as BannerCTA } from './banner-cta'
 
 export default {
   title: 'app-installation-cta / BannerCTA',

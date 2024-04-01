@@ -1,8 +1,8 @@
-import { useTranslation } from '@titicaca/next-i18next'
-import { Container, HR1, Text } from '@titicaca/core-elements'
+import { useTranslation } from 'react-i18next'
+import { Container, HR1, Text } from '@titicaca/tds-ui'
 
-export default function NotExistReplies() {
-  const { t } = useTranslation('common-web')
+export function NotExistReplies() {
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <>
@@ -19,10 +19,7 @@ export default function NotExistReplies() {
         }}
       >
         <Text size={14} lineHeight={1.2} color="gray300">
-          {t([
-            'ajig-daesgeuli-eobseoyo.-gajang-meonjeo-daesgeuleul-jagseonghaeboseyo',
-            '아직 댓글이 없어요.\n가장 먼저 댓글을 작성해보세요!',
-          ])}
+          {t('아직 댓글이 없어요. 가장 먼저 댓글을 작성해보세요!')}
         </Text>
       </Container>
 

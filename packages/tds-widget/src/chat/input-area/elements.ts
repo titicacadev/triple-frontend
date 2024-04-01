@@ -1,5 +1,5 @@
+import { Container } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
 
 export const MainContainer = styled(Container)`
   position: sticky;

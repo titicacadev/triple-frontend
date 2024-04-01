@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Section,
@@ -9,7 +9,7 @@ import {
   H3,
   FlexBox,
   FlexBoxItem,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { MouseEvent } from 'react'
 
 const ExternalLinkEntry = styled(List.Item)`
@@ -38,7 +38,7 @@ function ExternalLinkItem<Data>({
   externalLink: ExternalLink<Data>
   onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink<Data>) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <ExternalLinkEntry
@@ -82,7 +82,7 @@ function ExternalLinkItem<Data>({
               <Image.FixedRatioFrame frame="big">
                 <Image.Img
                   src={imageUrl}
-                  alt={t(['title-sseomneil', '{{title}} 썸네일'], { title })}
+                  alt={t('{{title}} 썸네일', { title })}
                 />
               </Image.FixedRatioFrame>
             </Image>

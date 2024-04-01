@@ -1,20 +1,20 @@
 import { useCallback } from 'react'
-import { ActionSheetItem } from '@titicaca/action-sheet'
-import { useTranslation } from '@titicaca/next-i18next'
+import { ActionSheetItem } from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
 
-export default function CopyActionSheetItem({
+export function CopyActionSheetItem({
   value,
   onCopy,
 }: {
   value?: string | null
   onCopy: (value: string) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const handleClick = useCallback(() => value && onCopy(value), [value, onCopy])
 
   return value ? (
-    <ActionSheetItem onClick={handleClick} buttonLabel={t(['bogsa', '복사'])}>
+    <ActionSheetItem onClick={handleClick} buttonLabel={t('복사')}>
       {value}
     </ActionSheetItem>
   ) : null

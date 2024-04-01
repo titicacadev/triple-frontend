@@ -1,13 +1,13 @@
-import { useTranslation } from '@titicaca/next-i18next'
-import { FlexBox, Text, Icon } from '@titicaca/core-elements'
-import { useHistoryFunctions } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+import { FlexBox, Text, Icon } from '@titicaca/tds-ui'
+import { useHashRouter } from '@titicaca/triple-web'
 
 import { useRepliesContext } from './context'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
-export default function GuideText() {
-  const { t } = useTranslation('common-web')
+export function GuideText() {
+  const { t } = useTranslation('triple-frontend')
 
   const {
     currentMessageId,
@@ -16,11 +16,11 @@ export default function GuideText() {
     initializeEditingMessage,
   } = useRepliesContext()
 
-  const { push } = useHistoryFunctions()
+  const { addUriHash } = useHashRouter()
 
   const handleClose =
     currentMessageId && parentMessageId
-      ? () => push(HASH_EDIT_CLOSE_MODAL)
+      ? () => addUriHash(HASH_EDIT_CLOSE_MODAL)
       : () => initializeEditingMessage()
 
   return (
@@ -37,24 +37,14 @@ export default function GuideText() {
         >
           <Text size={12} lineHeight="19px" bold color="gray700">
             {!currentMessageId
-              ? t(
-                  [
-                    'mentioningusername-nimgge-dabgeul-jagseong-jung',
-                    '{{mentioningUserName}}님께 답글 작성 중',
-                  ],
-                  {
-                    mentioningUserName,
-                  },
-                )
+              ? t('{{mentioningUserName}}님께 답글 작성 중', {
+                  mentioningUserName,
+                })
               : currentMessageId === parentMessageId
-              ? t(['daesgeul-sujeong-jung', '댓글 수정 중'])
-              : t(
-                  [
-                    'mentioningusername-nimege-jagseonghan-dabgeul-sujeong-jung',
-                    '{{mentioningUserName}}님에게 작성한 답글 수정 중',
-                  ],
-                  { mentioningUserName },
-                )}
+              ? t('댓글 수정 중')
+              : t('{{mentioningUserName}}님에게 작성한 답글 수정 중', {
+                  mentioningUserName,
+                })}
           </Text>
 
           <Icon

@@ -1,6 +1,5 @@
-import { Text } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { Text } from '@titicaca/tds-ui'
+import { useClientApp, useTrackEvent } from '@titicaca/triple-web'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -41,9 +40,9 @@ interface Props {
 }
 
 export function MileageButton({ resourceId }: Props) {
-  const { t } = useTranslation('common-web')
-  const { trackEvent } = useEventTrackingContext()
-  const app = useTripleClientMetadata()
+  const { t } = useTranslation('triple-frontend')
+  const trackEvent = useTrackEvent()
+  const app = useClientApp()
   const { navigateMileageIntro } = useClientActions()
 
   return (
@@ -65,17 +64,12 @@ export function MileageButton({ resourceId }: Props) {
       }}
     >
       <Text color="gray" size="small" alpha={0.6} lineHeight={1.7}>
-        {t([
-          'ribyu-sseumyeon-yeohaengja-keulreob-coedae-3pointeu',
-          '리뷰 쓰면 여행자 클럽 최대 3포인트!',
-        ])}
+        {t('리뷰 쓰면 여행자 클럽 최대 3포인트!')}
       </Text>
       <Text color="blue" size="small" lineHeight={1.7}>
-        {t(['pointeubyeol-hyetaeg-bogi', '포인트별 혜택 보기'])}
+        {t('포인트별 혜택 보기')}
       </Text>
-      <BulletRight
-        alt={t(['pointeubyeol-hyetaeg-bogi', '포인트별 혜택 보기'])}
-      />
+      <BulletRight alt={t('포인트별 혜택 보기')} />
     </StyledButton>
   )
 }

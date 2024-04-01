@@ -1,6 +1,6 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Container, FlexBox, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 
 import { TimeIcon, RightArrowIcon } from './business-hours-icons'
 
@@ -12,14 +12,14 @@ const IconBox = styled.div`
   height: 16px;
 `
 
-export default function BusinessHoursNote({
+export function BusinessHoursNote({
   todayBusinessHours,
   onClick,
 }: {
   todayBusinessHours?: string
   onClick: () => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <Container
@@ -42,14 +42,8 @@ export default function BusinessHoursNote({
           onClick={onClick}
         >
           {todayBusinessHours
-            ? t(
-                [
-                  'yeongeobjunbijung-todaybusinesshours',
-                  '영업준비중 {{todayBusinessHours}}',
-                ],
-                { todayBusinessHours },
-              )
-            : t(['hyumuil', '휴무일'])}
+            ? t('영업준비중 {{todayBusinessHours}}', { todayBusinessHours })
+            : t('휴무일')}
         </Text>
 
         <IconBox>

@@ -1,10 +1,9 @@
 import { useCallback } from 'react'
-import { Container, Text, Button, ButtonGroup } from '@titicaca/core-elements'
-import { useTranslation } from '@titicaca/next-i18next'
+import { Container, Text, Button, ButtonGroup } from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
-import { useAppCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType, useClientAppCallback } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 interface Region {
@@ -64,7 +63,7 @@ const GrayButton = styled(Button)`
 /**
  * 항공/호텔/TNA에서 예약이 최종적으로 완료 되었을 때 보여주는 페이지입니다.
  */
-function BookingCompletion({
+export function BookingCompletion({
   title,
   myBookingButtonTitle,
   compact = false,
@@ -75,12 +74,12 @@ function BookingCompletion({
   descriptions,
   region,
 }: BookingCompletionProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const regionName = region?.names.ko || region?.names.en
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
-  const handleMoveToRegion = useAppCallback(
+  const handleMoveToRegion = useClientAppCallback(
     TransitionType.General,
     useCallback(() => {
       onMoveToRegion?.()
@@ -96,8 +95,7 @@ function BookingCompletion({
         }}
       >
         <Text size={28} bold>
-          {title ||
-            t(['yeyagi-n-jeobsudoeeossseubnida.', '예약이\n접수되었습니다.'])}
+          {title || t('예약이 접수되었습니다.')}
         </Text>
       </Container>
       {(descriptions || []).map((description, idx) => (
@@ -112,10 +110,7 @@ function BookingCompletion({
         </DescriptionText>
       ))}
       <Text color="gray" size="mini" alpha={0.5}>
-        {t([
-          'jasehan-sahangeun-nae-yeyageseo-hwaginhaejuseyo.',
-          '자세한 사항은 내 예약에서 확인해주세요.',
-        ])}
+        {t('자세한 사항은 내 예약에서 확인해주세요.')}
       </Text>
       {compact ? (
         <Button
@@ -127,8 +122,7 @@ function BookingCompletion({
           onClick={onMoveToBookingDetail}
           fluid
         >
-          {myBookingButtonTitle ||
-            t(['nae-yeyageseo-hwagin', '내 예약에서 확인'])}
+          {myBookingButtonTitle || t('내 예약에서 확인')}
         </Button>
       ) : (
         <>
@@ -145,8 +139,7 @@ function BookingCompletion({
                 size="small"
                 onClick={onMoveToBookingDetail}
               >
-                {myBookingButtonTitle ||
-                  t(['nae-yeyageseo-hwagin', '내 예약에서 확인'])}
+                {myBookingButtonTitle || t('내 예약에서 확인')}
               </Button>
               <Button
                 basic
@@ -158,25 +151,19 @@ function BookingCompletion({
                   navigate('/main')
                 }}
               >
-                {t(['teuripeul-homeuro-gagi', '트리플 홈으로 가기'])}
+                {t('트리플 홈으로 가기')}
               </Button>
             </ButtonGroup>
           </Container>
           {regionName ? (
             <GrayButton fluid margin={{ top: 6 }} onClick={handleMoveToRegion}>
-              {t(
-                [
-                  'regionname-yeohaeng-junbihareo-gagi',
-                  '{{regionName}} 여행 준비하러 가기',
-                ],
-                { regionName },
-              )}
+              {t('{{regionName}} 여행 준비하러 가기', { regionName })}
             </GrayButton>
           ) : null}
 
           {onAddToSchedule ? (
             <GrayButton fluid margin={{ top: 6 }} onClick={onAddToSchedule}>
-              {t(['nae-iljeonge-cugahagi', '내 일정에 추가하기'])}
+              {t('내 일정에 추가하기')}
             </GrayButton>
           ) : null}
         </>
@@ -184,5 +171,3 @@ function BookingCompletion({
     </>
   )
 }
-
-export default BookingCompletion

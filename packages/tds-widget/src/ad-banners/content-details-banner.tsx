@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
-import { MarginPadding } from '@titicaca/core-elements'
-import {
-  useDeviceContext,
-  useEventTrackingContext,
-} from '@titicaca/react-contexts'
+import { MarginPadding } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import {
@@ -13,7 +10,7 @@ import {
   BannerTypes,
 } from './api'
 import { Banner } from './typing'
-import VerticalListView from './vertical-list-view'
+import { VerticalListView } from './vertical-list-view'
 
 interface EventAttributes {
   title?: string
@@ -26,6 +23,8 @@ interface AdSystemBannerProps {
   contentType: ContentType
   contentRegionId: string
   contentId?: string
+  latitude: number | null
+  longitude: number | null
   eventAttributes?: EventAttributes
 }
 
@@ -56,9 +55,8 @@ function isPropsForInventoryApi(
 }
 
 function useAdBannerProps(props: AdBannersProps) {
-  const { latitude, longitude } = useDeviceContext()
-  const { trackEvent } = useEventTrackingContext()
-  const navigate = useNavigate()
+  const trackEvent = useTrackEvent()
+  const { navigate } = useNavigate()
 
   if (isPropsForInventoryApi(props)) {
     const { onBannersFetch, onBannerIntersect, onBannerClick } = props
@@ -79,6 +77,8 @@ function useAdBannerProps(props: AdBannersProps) {
       contentType,
       contentId,
       contentRegionId,
+      latitude,
+      longitude,
       eventAttributes: { title } = { title: undefined },
     } = props
 
@@ -151,7 +151,7 @@ function useAdBannerProps(props: AdBannersProps) {
   }
 }
 
-export default function ContentDetailsBanner(props: AdBannersProps) {
+export function ContentDetailsBanner(props: AdBannersProps) {
   const { margin, padding } = props
   const { getBannersApi, handleBannerIntersecting, handleBannerClick } =
     useAdBannerProps(props)

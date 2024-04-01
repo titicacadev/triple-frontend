@@ -5,12 +5,13 @@ import {
   Text,
   FlexBox,
   AccordionTitle,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
-  useEventTrackingContext,
+  useTrackEvent,
   useSessionAvailability,
-  useSessionControllers,
-} from '@titicaca/react-contexts'
+  useLogin,
+  useLogout,
+} from '@titicaca/triple-web'
 import { Dispatch, SetStateAction } from 'react'
 
 const MAX_PHONE_WIDTH = 360
@@ -87,8 +88,9 @@ export function CompanyInfo({
   setBusinessExpanded,
 }: CompanyInfoProps) {
   const sessionAvailable = useSessionAvailability()
-  const { login, logout } = useSessionControllers()
-  const { trackEvent } = useEventTrackingContext()
+  const login = useLogin()
+  const logout = useLogout()
+  const trackEvent = useTrackEvent()
 
   return (
     <Accordion

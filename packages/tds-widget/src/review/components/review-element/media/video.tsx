@@ -1,8 +1,8 @@
-import { ImageMeta } from '@titicaca/type-definitions'
-import { Container } from '@titicaca/core-elements'
-import { useIntersection } from '@titicaca/intersection-observer'
 import { useEffect, useState } from 'react'
-import { useDeviceContext } from '@titicaca/react-contexts'
+import { ImageMeta } from '@titicaca/type-definitions'
+import { Container } from '@titicaca/tds-ui'
+import { useIntersection } from '@titicaca/intersection-observer'
+import { useClientApp } from '@titicaca/triple-web'
 import styled from 'styled-components'
 
 interface Props {
@@ -56,19 +56,18 @@ const PlayPauseButtonBase = styled.span`
   transition: opacity 0.3s;
 `
 
-function Video({ medium }: Props) {
+export function Video({ medium }: Props) {
   const [isOncePlayed, setIsOncePlayed] = useState(false)
   const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
     threshold: 0.5,
   })
 
-  const {
-    deviceState: { autoplay, networkType },
-  } = useDeviceContext()
+  const clientApp = useClientApp()
 
   const [videoAutoplay, setVideoAutoPlay] = useState(
-    autoplay === 'always' ||
-      (autoplay === 'wifi_only' && networkType === 'wifi'),
+    clientApp?.device.autoplay === 'always' ||
+      (clientApp?.device.autoplay === 'wifi_only' &&
+        clientApp?.device.networkType === 'wifi'),
   )
 
   useEffect(() => {
@@ -115,5 +114,3 @@ function Video({ medium }: Props) {
     </Container>
   )
 }
-
-export default Video

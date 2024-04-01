@@ -1,7 +1,6 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Modal } from '@titicaca/modals'
-import { Text } from '@titicaca/core-elements'
+import { Modal, Text } from '@titicaca/tds-ui'
 
 import { useUserVerification } from './use-user-verification'
 
@@ -9,7 +8,7 @@ import { useUserVerification } from './use-user-verification'
  * 구매 동선 등에서 인증 단계를 추가할 때 mount하는 컴포넌트입니다. 사용자가 인증 단계를 거치지 않았을 경우 Modal을 표시하고 인증을 요구합니다.
 
  */
-function VerificationRequest({
+export function VerificationRequest({
   forceVerification,
   verificationContext,
   onCancel,
@@ -27,7 +26,7 @@ function VerificationRequest({
    */
   onCancel: () => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     verificationState: { verified },
@@ -42,7 +41,7 @@ function VerificationRequest({
     <Modal open={verified === false}>
       <Icon />
       <Text bold center size="big" color="gray" margin={{ bottom: 10 }}>
-        {t(['injeungi-pilyohaeyo', '인증이 필요해요!'])}
+        {t('인증이 필요해요!')}
       </Text>
       <Text
         center
@@ -52,17 +51,12 @@ function VerificationRequest({
         alpha={0.7}
         margin={{ bottom: 40 }}
       >
-        {t([
-          'yeyageul-wihaeseoneun-hyudaepon-injeungi-pilyohabnida.-coeco-1hoe',
-          '예약을 위해서는\n휴대폰 인증이 필요합니다. (최초 1회)',
-        ])}
+        {t('예약을 위해서는 휴대폰 인증이 필요합니다. (최초 1회)')}
       </Text>
       <Modal.Actions>
-        <Modal.Action onClick={() => onCancel()}>
-          {t(['dwirogagi', '뒤로가기'])}
-        </Modal.Action>
+        <Modal.Action onClick={() => onCancel()}>{t('뒤로가기')}</Modal.Action>
         <Modal.Action onClick={() => initiateVerification()} color="blue">
-          {t(['injeunghagi', '인증하기'])}
+          {t('인증하기')}
         </Modal.Action>
       </Modal.Actions>
     </Modal>
@@ -104,5 +98,3 @@ function Icon() {
     </SvgWithPositioning>
   )
 }
-
-export default VerificationRequest

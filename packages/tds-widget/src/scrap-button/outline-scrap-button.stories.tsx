@@ -1,19 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ScrapsProvider } from '@titicaca/react-contexts'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import { OutlineScrapButton } from './scrap-button'
+import { ScrapsProvider } from '../scrap/provider'
 
-export default {
+import { OutlineScrapButton } from '.'
+
+const meta: Meta<typeof OutlineScrapButton> = {
   title: 'ScrapButton / OutlineScrapButton',
   component: OutlineScrapButton,
   decorators: [
     (Story) => (
-      <ScrapsProvider>
-        <Story />
-      </ScrapsProvider>
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
+      </EventTrackingProvider>
     ),
   ],
-} as Meta
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof OutlineScrapButton> = {
   args: {

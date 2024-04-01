@@ -1,8 +1,8 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
-import { useUserAgentContext } from '@titicaca/react-contexts'
-import { Container } from '@titicaca/core-elements'
+import { useUserAgent } from '@titicaca/triple-web'
+import { Container } from '@titicaca/tds-ui'
 
 import { useScroll } from './scroll-context'
 
@@ -22,7 +22,7 @@ export function ChatScrollContainer({
   ...props
 }: PropsWithChildren<ChatScrollContainerProps>) {
   const { chatContainerRef, scrollContainerRef, bottomRef } = useScroll()
-  const { os } = useUserAgentContext()
+  const { os } = useUserAgent()
 
   useEffect(() => {
     /**

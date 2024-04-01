@@ -1,13 +1,16 @@
-import { ImageSourceType } from '@titicaca/core-elements'
 import {
   FrameRatioAndSizes,
   GlobalSizes,
   ImageMeta,
 } from '@titicaca/type-definitions'
-import { MouseEventHandler, ReactNode } from 'react'
+import { MouseEvent, ReactNode } from 'react'
+import { useFlickingCarousel } from '@titicaca/tds-ui'
 
-import ImageContent from './image-content'
-import VideoContent from './video-content'
+import { ImageSource } from '../image-source'
+
+import { ImageContent } from './image-content'
+import { VideoContent } from './video-content'
+import type { CarouselImageMeta } from './types'
 
 interface Props {
   medium: ImageMeta
@@ -16,11 +19,11 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
-  ImageSource?: ImageSourceType
-  onClick?: MouseEventHandler
+  ImageSource?: typeof ImageSource
+  onClick?: (e?: MouseEvent, image?: CarouselImageMeta) => void
 }
 
-function Content({
+export function Content({
   medium,
   optimized,
   height,
@@ -30,7 +33,12 @@ function Content({
   ImageSource,
   onClick,
 }: Props) {
+  const { flickingRef } = useFlickingCarousel()
   const isVideo = medium.type === 'video'
+
+  const handleClick = (event?: MouseEvent, media?: CarouselImageMeta) => {
+    !flickingRef.current?.isPlaying() && onClick?.(event, media)
+  }
 
   if (isVideo) {
     return (
@@ -40,7 +48,7 @@ function Content({
         globalSize={globalSize}
         globalFrame={globalFrame}
         overlay={overlay}
-        onClick={onClick}
+        onClick={(event) => handleClick(event, medium)}
       />
     )
   }
@@ -54,9 +62,7 @@ function Content({
       globalFrame={globalFrame}
       overlay={overlay}
       ImageSource={ImageSource}
-      onImageClick={onClick}
+      onImageClick={(event) => handleClick(event, medium)}
     />
   )
 }
-
-export default Content

@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react'
 import { Title, Controls, Primary, Description } from '@storybook/blocks'
 import { useState } from 'react'
-import { Select } from '@titicaca/core-elements'
+import { Select } from '@titicaca/tds-ui'
 
 import { MetaDataInterface } from '../types'
 

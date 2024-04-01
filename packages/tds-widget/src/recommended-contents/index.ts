@@ -1,1 +1,1 @@
-export { default } from './recommended-contents'
+export * from './recommended-contents'

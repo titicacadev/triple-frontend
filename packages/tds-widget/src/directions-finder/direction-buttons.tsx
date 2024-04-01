@@ -1,16 +1,17 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { Button, ButtonGroup, Container } from '@titicaca/core-elements'
+  useTrackEvent,
+  useHashRouter,
+  useTransitionModal,
+  TransitionType,
+  useClientApp,
+} from '@titicaca/triple-web'
+import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
-import AskToTheLocal from './ask-to-the-local'
+import { AskToTheLocal } from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
 
 const LinkBreak = styled(Container)`
@@ -18,7 +19,7 @@ const LinkBreak = styled(Container)`
   height: 0;
 `
 
-function DirectionButtons({
+export function DirectionButtons({
   onDirectionsClick,
   primaryName,
   localName,
@@ -37,17 +38,25 @@ function DirectionButtons({
   onCallGrabButtonClick?: () => void
   onCallGrabButtonIntersecting?: (entry: IntersectionObserverEntry) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
-  const uriHash = useUriHash()
-  const { push, back, showTransitionModal } = useHistoryFunctions()
-  const { trackEvent } = useEventTrackingContext()
+  const app = useClientApp()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { show: showTransitionModal } = useTransitionModal()
+  const trackEvent = useTrackEvent()
 
   const handleAskToLocalsClick = useCallback(() => {
-    trackEvent({ fa: { action: '기본정보_현지에서길묻기' } })
-    app ? push(HASH_ASK_TO_LOCALS_POPUP) : showTransitionModal()
-  }, [trackEvent, push, showTransitionModal, app])
+    trackEvent({
+      ga: ['기본정보_현지에서길묻기'],
+      fa: {
+        action: '기본정보_현지에서길묻기',
+      },
+    })
+
+    app
+      ? addUriHash(HASH_ASK_TO_LOCALS_POPUP)
+      : showTransitionModal(TransitionType.General)
+  }, [trackEvent, app, addUriHash, showTransitionModal])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
   const hasLineBreak = hasAskToLocalsButton && !!onCallGrabButtonClick
@@ -62,7 +71,7 @@ function DirectionButtons({
             size="small"
             onClick={handleAskToLocalsClick}
           >
-            {t(['hyeonjieseo-gilmudgi', '현지에서 길묻기'])}
+            {t('현지에서 길묻기')}
           </Button>
         ) : null}
 
@@ -79,7 +88,7 @@ function DirectionButtons({
               size="small"
               onClick={onCallGrabButtonClick}
             >
-              {t(['grab-hocul', 'Grab 호출'])}
+              {t('grab-hocul')}
             </Button>
           </StaticIntersectionObserver>
         ) : null}
@@ -91,14 +100,14 @@ function DirectionButtons({
           size="small"
           onClick={onDirectionsClick}
         >
-          {t(['gilcajgi', '길찾기'])}
+          {t('길찾기')}
         </Button>
       </ButtonGroup>
 
       {hasAskToLocalsButton ? (
         <AskToTheLocal
           open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
-          onClose={back}
+          onClose={removeUriHash}
           localName={localName}
           localAddress={localAddress}
           primaryName={primaryName}
@@ -109,5 +118,3 @@ function DirectionButtons({
     </>
   )
 }
-
-export default DirectionButtons

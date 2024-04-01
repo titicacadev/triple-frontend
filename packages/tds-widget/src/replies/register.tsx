@@ -1,13 +1,15 @@
 import { ForwardedRef, forwardRef } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Container, FlexBox, HR1 } from '@titicaca/core-elements'
-import { useLoginCtaModal } from '@titicaca/modals'
-import { useSessionAvailability } from '@titicaca/react-contexts'
-import { useSessionCallback } from '@titicaca/ui-flow'
+import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
+import {
+  useSessionAvailability,
+  useLoginCtaModal,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 
 import { authorMessage } from './replies-api-client'
-import AutoResizingTextarea, { TextAreaHandle } from './auto-resizing-textarea'
+import { AutoResizingTextarea, TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply, Placeholders } from './types'
 
@@ -22,7 +24,7 @@ const RegisterButton = styled.button<{ active: boolean }>`
   outline: none;
 `
 
-function Register(
+export const Register = forwardRef(function Register(
   {
     resourceId,
     resourceType,
@@ -40,7 +42,7 @@ function Register(
   },
   ref: ForwardedRef<TextAreaHandle>,
 ) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     parentMessageId,
@@ -80,10 +82,8 @@ function Register(
   })
 
   const placeholder = parentMessageId
-    ? placeholders?.childReply ||
-      t(['dabgeuleul-ibryeoghaseyo.', '답글을 입력하세요.'])
-    : placeholders?.reply ||
-      t(['daesgeuleul-ibryeoghaseyo.', '댓글을 입력하세요.'])
+    ? placeholders?.childReply || t('답글을 입력하세요.')
+    : placeholders?.reply || t('댓글을 입력하세요.')
 
   return (
     <Container
@@ -117,13 +117,11 @@ function Register(
           }}
           active={!!plaintext}
         >
-          {t(['deungrog', '등록'])}
+          {t('등록')}
         </RegisterButton>
       </FlexBox>
 
       <HR1 compact />
     </Container>
   )
-}
-
-export default forwardRef(Register)
+})

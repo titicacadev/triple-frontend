@@ -1,19 +1,17 @@
-import { Container, HR1, List, Text } from '@titicaca/core-elements'
-import { useTranslation } from '@titicaca/next-i18next'
-import { Confirm } from '@titicaca/modals'
-import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
+import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
+import { useHashRouter, useClientAppActions } from '@titicaca/triple-web'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
 import { deleteReply } from '../replies-api-client'
 
-import NotExistReplies from './not-exist-replies'
-import Reply, { HASH_DELETE_CLOSE_MODAL } from './reply'
+import { NotExistReplies } from './not-exist-replies'
+import { HASH_DELETE_CLOSE_MODAL, Reply } from './reply'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
-export default function ReplyList({
+export function ReplyList({
   replies,
   isMoreButtonActive,
   fetchMoreReplies,
@@ -29,7 +27,7 @@ export default function ReplyList({
   onReplyDelete: (response: ReplyType) => void
   onReplyEdit: (response: ReplyType) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const {
     currentMessageId,
@@ -37,11 +35,11 @@ export default function ReplyList({
     initializeEditingMessage,
   } = useRepliesContext()
 
-  const { showToast } = useTripleClientActions()
+  const { showToast } = useClientAppActions()
 
   const description = mentioningUserName
-    ? t(['dabgeuleul-sagjehasigessseubnigga', '답글을 삭제하시겠습니까?'])
-    : t(['daesgeuleul-sagjehasigessseubnigga', '댓글을 삭제하시겠습니까?'])
+    ? t('답글을 삭제하시겠습니까?')
+    : t('댓글을 삭제하시겠습니까?')
 
   const handleReplyDelete = async () => {
     const response = await deleteReply({
@@ -56,9 +54,9 @@ export default function ReplyList({
       }
 
       if (showToast) {
-        showToast(t(['sagjedoeeossseubnida.', '삭제되었습니다.']))
+        showToast(t('삭제되었습니다.'))
       } else {
-        alert(t(['sagjedoeeossseubnida.', '삭제되었습니다.']))
+        alert(t('삭제되었습니다.'))
       }
     }
   }
@@ -86,7 +84,7 @@ export default function ReplyList({
               inlineBlock
               onClick={() => fetchMoreReplies()}
             >
-              {t(['ijeon-daesgeul-deobogi', '이전 댓글 더보기'])}
+              {t('이전 댓글 더보기')}
             </Text>
           ) : null}
 
@@ -126,21 +124,17 @@ export default function ReplyList({
 }
 
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
       open={uriHash === HASH_EDIT_CLOSE_MODAL}
-      onClose={back}
+      onClose={removeUriHash}
       onConfirm={onConfirm}
     >
-      {t([
-        'sujeongeul-cwisohasigessseubnigga-n-sujeonghan-naeyongeun-jeojangdoeji-anhseubnida.',
-        '수정을 취소하시겠습니까?\n수정한 내용은 저장되지 않습니다.',
-      ])}
+      {t('수정을 취소하시겠습니까? 수정한 내용은 저장되지 않습니다.')}
     </Confirm>
   )
 }
@@ -152,13 +146,12 @@ function ConfirmDeleteModal({
   description: string
   onConfirm: () => void
 }) {
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
       open={uriHash === HASH_DELETE_CLOSE_MODAL}
-      onClose={back}
+      onClose={removeUriHash}
       onConfirm={onConfirm}
     >
       {description}

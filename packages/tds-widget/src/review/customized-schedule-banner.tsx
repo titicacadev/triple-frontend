@@ -1,11 +1,11 @@
-import { Container, FlexBox, Text } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useExternalRouter } from '@titicaca/router'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { useTrackEvent } from '@titicaca/triple-web'
+import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 
 export default function CustomizedScheduleBanner() {
   const routeExternally = useExternalRouter()
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   function handleClick() {
     trackEvent({

@@ -1,15 +1,16 @@
-import { useTranslation } from '@titicaca/next-i18next'
-import ExtendedResourceListElement, {
-  ResourceListElementProps,
-} from '@titicaca/resource-list-element'
-import { useScrapsContext } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+
+import { useScrap } from '../scrap'
+import {
+  ExtendedResourceListElement,
+  type ResourceListElementProps,
+} from '../resource-list-elements'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
 
 interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
   extends PoiListElementBaseProps<T> {
-  hideScrapButton?: boolean
   maxCommentLines?: number
   distance?: string | number
   distanceSuffix?: string
@@ -46,7 +47,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
     distance,
   },
   onClick,
-  hideScrapButton,
   distance: distanceOverride,
   distanceSuffix,
   maxCommentLines,
@@ -55,9 +55,9 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   notes,
   optimized,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { deriveCurrentStateAndCount } = useScrap()
   const {
     source: { starRating },
   } =
@@ -79,7 +79,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   const note = (
     notes || [
       starRating
-        ? t(['starrating-seonggeub', '{{starRating}}성급'], { starRating })
+        ? t('{{starRating}}성급', { starRating })
         : category
         ? category.name
         : null,
@@ -105,7 +105,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       reviewsRating={reviewsRatingWithGraphql ?? rawReviewsRating}
       scrapsCount={scrapsCount}
       onClick={onClick}
-      hideScrapButton={hideScrapButton}
       maxCommentLines={maxCommentLines}
       isAdvertisement={isAdvertisement}
       optimized={optimized}

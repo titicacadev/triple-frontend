@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Section,
@@ -9,18 +9,17 @@ import {
   Icon,
   Rating,
   TextTitle,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import CopyActionSheet from '../copy-action-sheet'
-import AreaNames from '../area-names'
+import { CopyActionSheet } from '../copy-action-sheet'
+import { AreaNames } from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
 const ArrowButton = styled.button`
@@ -44,7 +43,7 @@ interface Area {
   name: string
 }
 
-function DetailHeaderV2({
+export function PoiDetailHeaderV2({
   names,
   areaName,
   areas = [],
@@ -74,17 +73,16 @@ function DetailHeaderV2({
    */
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
-  const uriHash = useUriHash()
-  const { push, back } = useHistoryFunctions()
-  const { trackEvent } = useEventTrackingContext()
+  const app = useClientApp()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const trackEvent = useTrackEvent()
 
   const handleLongClick = useCallback(() => {
     trackEvent({ fa: { action: '장소명_복사하기_노출' } })
-    push(HASH_COPY_ACTION_SHEET)
-  }, [push, trackEvent])
+    addUriHash(HASH_COPY_ACTION_SHEET)
+  }, [addUriHash, trackEvent])
 
   return (
     <>
@@ -115,7 +113,7 @@ function DetailHeaderV2({
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
                 <ArrowButton onClick={onReviewsRatingClick}>
-                  {t(['ribyubogi', '리뷰보기'])}
+                  {t('리뷰보기')}
                 </ArrowButton>
               </Text>
             ) : null}
@@ -127,9 +125,7 @@ function DetailHeaderV2({
           vicinity={vicinity}
           arrowAction={
             onAreaClick ? (
-              <ArrowButton onClick={onAreaClick}>
-                {t(['jidobogi', '지도보기'])}
-              </ArrowButton>
+              <ArrowButton onClick={onAreaClick}>{t('지도보기')}</ArrowButton>
             ) : null
           }
         />
@@ -138,10 +134,8 @@ function DetailHeaderV2({
         open={uriHash === HASH_COPY_ACTION_SHEET}
         names={names}
         onCopy={onCopy}
-        onClose={back}
+        onClose={removeUriHash}
       />
     </>
   )
 }
-
-export default DetailHeaderV2

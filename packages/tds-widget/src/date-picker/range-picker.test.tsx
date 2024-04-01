@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import moment from 'moment'
 
-import RangePicker from './range-picker'
+import { RangePicker } from './range-picker'
 
 jest.mock('./use-public-holidays', () => ({
   usePublicHolidays: () => [],

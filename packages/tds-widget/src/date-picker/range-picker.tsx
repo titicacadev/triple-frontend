@@ -5,7 +5,7 @@ import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
 import { isValidDate, generatePaddedRange } from './utils'
 import { rangeMixin, dateLabelMixin } from './mixins'
-import PickerFrame, { generateSelectedCircleStyle } from './picker-frame'
+import { PickerFrame, generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
 import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
@@ -50,7 +50,7 @@ function getInitialMonth() {
   return moment().startOf('day').toDate()
 }
 
-function RangePicker({
+export function RangePicker({
   startDate,
   endDate,
   startDateLabel,
@@ -191,5 +191,3 @@ function RangePicker({
     </RangeContainer>
   )
 }
-
-export default RangePicker

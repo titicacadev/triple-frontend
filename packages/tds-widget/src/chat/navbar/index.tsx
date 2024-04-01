@@ -1,5 +1,5 @@
+import { Navbar } from '@titicaca/tds-ui'
 import { PropsWithChildren } from 'react'
-import { Navbar } from '@titicaca/core-elements'
 
 export enum NavbarItemType {
   BACK = 'back',
