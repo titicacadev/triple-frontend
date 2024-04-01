@@ -1,6 +1,6 @@
-import { Container, Text } from '@titicaca/core-elements'
+import { Container, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 
 const StyledContainer = styled(Container)`
   margin-top: 2px;
@@ -18,14 +18,14 @@ export function PricePolicyCouponInfo({
   hasAmountAfterUsingCouponPrice?: boolean | 0
   displayPricePolicy?: string
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <StyledContainer {...props}>
       {hasOnlyExpectedApplicableCoupon ? (
         <>
           <Text bold inlineBlock size="tiny" color={emphasisColor}>
-            {t(['kuponhalin', '쿠폰할인'])}
+            {t('쿠폰할인')}
           </Text>
           <Text
             bold
@@ -34,13 +34,13 @@ export function PricePolicyCouponInfo({
             color="gray700"
             margin={{ left: 5 }}
           >
-            {t(['ganeung', '가능'])}
+            {t('가능')}
           </Text>
         </>
       ) : hasAmountAfterUsingCouponPrice ? (
         <>
           <Text bold inlineBlock size="tiny" color="gray700">
-            {t(['kuponhalinga', '쿠폰할인가'])}
+            {t('쿠폰할인가')}
           </Text>
           <Text
             bold
@@ -55,7 +55,7 @@ export function PricePolicyCouponInfo({
       ) : (
         <>
           <Text bold inlineBlock size="tiny" color="gray700">
-            {t(['kuponjeogyongsi', '쿠폰적용시'])}
+            {t('쿠폰적용시')}
           </Text>
           <Text
             bold
@@ -64,7 +64,7 @@ export function PricePolicyCouponInfo({
             color={emphasisColor}
             margin={{ left: 5 }}
           >
-            {t(['muryo', '무료'])}
+            {t('무료')}
           </Text>
         </>
       )}

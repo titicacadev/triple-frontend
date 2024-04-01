@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 import { initialize } from '@titicaca/standard-action-handler'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
@@ -41,9 +41,9 @@ export function TripleDocument({
   children: TripleElementData[]
   cta?: string
 } & TripleDocumentContext) {
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
   const trackResourceEvent = useEventResourceTracker()
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
   const routeExternally = useExternalRouter()
 
   const handleAction = useMemo(

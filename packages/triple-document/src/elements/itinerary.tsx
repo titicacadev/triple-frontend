@@ -1,19 +1,13 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import {
-  Container,
-  Card,
-  Text,
-  FlexBox,
-  FlexBoxItem,
-} from '@titicaca/core-elements'
+import { Container, Card, Text, FlexBox, FlexBoxItem } from '@titicaca/tds-ui'
 import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { useGuestMode } from '../prop-context/guest-mode'
 
@@ -89,13 +83,13 @@ const Duration = styled(Container)`
 `
 
 export default function ItineraryElement({ value }: Props) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   const guestMode = useGuestMode()
   const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
     useItinerary({ itinerary: value.itinerary, guestMode })
 
-  const navigate = useNavigate()
+  const { navigate } = useNavigate()
 
   const generatePoiClickHandler = useCallback(
     ({

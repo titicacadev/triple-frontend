@@ -1,13 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { rest } from 'msw'
 import { useEffect } from 'react'
-import { appWithTranslation } from '@titicaca/next-i18next'
-
-import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
-import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
-import { zhTwCommonWeb } from '../../i18n/src/assets/zh-TW/common-web'
+import { EventTrackingProvider } from '@titicaca/triple-web'
+import { ScrapsProvider } from '@titicaca/tds-widget'
 
 import ELEMENTS from './elements'
 import MOCK_EMBEDDED from './mocks/triple-document.embedded.json'
@@ -17,19 +14,6 @@ import SAMPLE from './mocks/triple-document.sample.json'
 import { DeepLinkProvider } from './prop-context/deep-link'
 import { TripleDocument } from './triple-document'
 import { TripleElementData } from './types'
-
-const locales = ['ko', 'ja', 'zh-TW']
-const resources = {
-  ko: {
-    'common-web': koCommonWeb,
-  },
-  ja: {
-    'common-web': jaCommonWeb,
-  },
-  'zh-TW': {
-    'common-web': zhTwCommonWeb,
-  },
-}
 
 const {
   text: Text,
@@ -46,18 +30,13 @@ const {
 export default {
   title: 'triple-document / TripleDocument',
   decorators: [
-    (Story, context) => {
-      const App = appWithTranslation(Story, {
-        i18n: { locales, defaultLocale: locales[0] },
-        lng: context.globals.locale,
-        fallbackLng: 'ko',
-        resources,
-        defaultNS: 'common-web',
-        serializeConfig: false,
-      })
-
-      return <App pageProps={{}} />
-    },
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
+      </EventTrackingProvider>
+    ),
   ],
 } as Meta
 

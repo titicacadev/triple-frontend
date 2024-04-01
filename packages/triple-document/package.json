@@ -40,43 +40,36 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "workspace:*",
     "@titicaca/content-type-definitions": "8.34.0",
-    "@titicaca/core-elements": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
-    "@titicaca/map": "workspace:*",
-    "@titicaca/modals": "workspace:*",
-    "@titicaca/poi-list-elements": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
-    "@titicaca/scrap-button": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
-    "@titicaca/triple-media": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
+    "@titicaca/tds-widget": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
-    "@titicaca/ui-flow": "workspace:*",
-    "@titicaca/user-verification": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "moment": "^2.29.4",
     "qs": "^6.11.2"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
+    "i18next": "^23.7.6",
     "next": "^13.4.13",
     "react": "^18.2.0",
+    "react-i18next": "^13.5.0",
     "styled-components": "^5.3.11"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*",
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-triple-client-interfaces": "*",
+    "@titicaca/triple-web": "*",
+    "i18next": "*",
     "next": "^13.0",
     "react": "^18.0",
+    "react-i18next": "*",
     "styled-components": "^5.3.9"
   }
 }

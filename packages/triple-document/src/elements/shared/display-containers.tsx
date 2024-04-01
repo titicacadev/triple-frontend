@@ -5,7 +5,7 @@ import {
   Container,
   ImageBlockElementContainer,
   ImageCarouselElementContainer,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 
 import DocumentCarousel from './document-carousel'
 
