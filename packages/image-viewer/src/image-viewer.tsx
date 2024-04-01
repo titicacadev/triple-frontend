@@ -94,6 +94,7 @@ export function DetailViewerContainer({
         css={{
           height: NAVBAR_HEIGHT,
           display: 'flex',
+          zIndex: 9999,
         }}
       >
         <Navbar.Item
