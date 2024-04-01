@@ -1,5 +1,5 @@
 import { useReducer, useCallback, useEffect } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Section,
   Button,
@@ -10,11 +10,11 @@ import {
   TabPanel,
   H1,
   Paragraph,
-} from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+} from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { PointGeoJson } from '@titicaca/type-definitions'
 
-import { NearByPoiType } from './src/types'
+import { NearByPoiType } from './types'
 import nearbyPoisReducer, {
   NearbyPoisState,
   setCurrentTab,
@@ -22,7 +22,7 @@ import nearbyPoisReducer, {
   setFetchingStatus,
 } from './reducer'
 import { fetchPois } from './service'
-import PoiEntry from './poi-entry'
+import { PoiEntry } from './poi-entry'
 
 const INITIAL_STATE: NearbyPoisState = {
   attraction: {
@@ -46,7 +46,7 @@ const EVENT_LABELS: { [key in NearByPoiType]: string } = {
 const DEFAULT_PAGE_SIZE = 3
 const SUBSEQUENT_PAGE_SIZE = 10
 
-function NearbyPois({
+export function NearbyPois({
   poiId,
   regionId,
   initialTab,
@@ -62,14 +62,14 @@ function NearbyPois({
   geolocation: PointGeoJson
   optimized?: boolean
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
     ...INITIAL_STATE,
     ...(initialTab && { currentTab: initialTab }),
   })
   const { pois, hasMore, fetching } = state[currentTab]
-  const { trackSimpleEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   useEffect(() => {
     async function fetchAndSetPois() {
@@ -109,9 +109,12 @@ function NearbyPois({
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLoadMore = useCallback(async () => {
-    trackSimpleEvent({
-      action: '근처추천장소_장소더보기',
-      label: EVENT_LABELS[currentTab],
+    trackEvent({
+      ga: ['근처추천장소_장소더보기', EVENT_LABELS[currentTab]],
+      fa: {
+        action: '근처추천장소_장소더보기',
+        label: EVENT_LABELS[currentTab],
+      },
     })
 
     setFetchingStatus({ type: currentTab })
@@ -133,19 +136,22 @@ function NearbyPois({
         hasMore: additionalPois.length === SUBSEQUENT_PAGE_SIZE,
       }),
     )
-  }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackSimpleEvent])
+  }, [poiId, regionId, lat, lon, currentTab, pois, dispatch, trackEvent])
 
   const handleTabChange = useCallback(
     (newTab: string) => {
-      trackSimpleEvent({
-        action: '근처추천장소_탭선택',
-        label: EVENT_LABELS[newTab as NearByPoiType],
-        tab_name: EVENT_LABELS[newTab as NearByPoiType],
+      trackEvent({
+        ga: ['근처추천장소_탭선택', EVENT_LABELS[newTab as NearByPoiType]],
+        fa: {
+          action: '근처추천장소_탭선택',
+          label: EVENT_LABELS[newTab as NearByPoiType],
+          tab_name: EVENT_LABELS[newTab as NearByPoiType],
+        },
       })
 
       dispatch(setCurrentTab({ type: newTab as NearByPoiType }))
     },
-    [trackSimpleEvent, dispatch],
+    [trackEvent, dispatch],
   )
 
   return (
@@ -161,18 +167,18 @@ function NearbyPois({
           margin: '0 0 20px',
         }}
       >
-        {t(['geunceoyi-cuceon-jangso', '근처의 추천 장소'])}
+        {t('근처의 추천 장소')}
       </H1>
 
       <Tabs variant="basic" value={currentTab} onChange={handleTabChange}>
         <TabList>
-          <Tab value="attraction">{t(['gwangwang', '관광'])}</Tab>
-          <Tab value="restaurant">{t(['masjib', '맛집'])}</Tab>
+          <Tab value="attraction">{t('관광')}</Tab>
+          <Tab value="restaurant">{t('맛집')}</Tab>
         </TabList>
         <TabPanel value={currentTab}>
           {pois.length === 0 && hasMore === false ? (
             <Paragraph center margin={{ top: 70 }}>
-              {t(['jangsoga-eobsseubnida.', '장소가 없습니다.'])}
+              {t('장소가 없습니다.')}
             </Paragraph>
           ) : (
             <>
@@ -198,7 +204,7 @@ function NearbyPois({
                   disabled={fetching}
                   onClick={handleLoadMore}
                 >
-                  {t(['deo-manheun-jangso-bogi', '더 많은 장소 보기'])}
+                  {t('더 많은 장소 보기')}
                 </Button>
               )}
             </>
@@ -208,5 +214,3 @@ function NearbyPois({
     </Section>
   )
 }
-
-export default NearbyPois

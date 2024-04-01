@@ -1,10 +1,12 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@titicaca/core-elements'
-import { useSessionCallback } from '@titicaca/ui-flow'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { Button } from '@titicaca/tds-ui'
+import {
+  useClientAppActions,
+  useSessionCallback,
+  useTrackEvent,
+} from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../constants'
@@ -39,10 +41,10 @@ export const FullListButton = ({
   sortingType,
   sortingOption,
 }: Props) => {
-  const { t } = useTranslation()
-  const { trackEvent } = useEventTrackingContext()
-  const navigate = useNavigate()
-  const { getWindowId } = useTripleClientActions()
+  const { t } = useTranslation('triple-frontend')
+  const trackEvent = useTrackEvent()
+  const { navigate } = useNavigate()
+  const { getWindowId } = useClientAppActions()
 
   const reviewListUrl = `/reviews/list?_triple_no_navbar&${qs.stringify({
     region_id: regionId,
@@ -96,13 +98,9 @@ export const FullListButton = ({
       }}
       onClick={handleClick}
     >
-      {t(
-        [
-          'numofrestreviews-gae-ribyu-deobogi',
-          '{{numOfRestReviews}}개 리뷰 더보기',
-        ],
-        { numOfRestReviews: restReviewsCount },
-      )}
+      {t('{{numOfRestReviews}}개 리뷰 더보기', {
+        numOfRestReviews: restReviewsCount,
+      })}
     </Button>
   )
 }

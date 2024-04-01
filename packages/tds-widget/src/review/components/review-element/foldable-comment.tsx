@@ -1,9 +1,9 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { findFoldedPosition } from '@titicaca/view-utilities'
 
-import Comment from './comment'
+import { Comment } from './comment'
 
 const MAX_COMMENT_WITH_IMAGE_LINES = 3
 const MAX_COMMENT_LINES = 6
@@ -14,7 +14,7 @@ const Unfold = styled.button`
   outline: 0;
 `
 
-export default function FoldableComment({
+export function FoldableComment({
   comment,
   hasImage,
   onUnfoldButtonClick,
@@ -45,12 +45,12 @@ function FoldedComment({
   comment: string
   onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <Comment>
       {`${comment} …`}
-      <Unfold onClick={onUnfoldButtonClick}>{t(['deobogi', '더보기'])}</Unfold>
+      <Unfold onClick={onUnfoldButtonClick}>{t('더보기')}</Unfold>
     </Comment>
   )
 }

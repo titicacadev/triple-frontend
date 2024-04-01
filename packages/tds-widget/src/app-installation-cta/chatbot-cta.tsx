@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
-import { Text, LayeringMixinProps } from '@titicaca/core-elements'
+import { useTranslation } from 'react-i18next'
+import { Text, LayeringMixinProps } from '@titicaca/tds-ui'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { useSessionStorage } from '@titicaca/react-hooks'
@@ -33,7 +33,7 @@ interface ChatbotCtaProps extends CtaProps {
  * @param installUrl 앱 설치 URL
  * @param unmountOnExit 표시되지 않는 상태일 때 컴포넌트 마운트 해제
  */
-export default function ChatbotCta({
+export function ChatbotCta({
   available = false,
   inventoryId,
   installUrl,
@@ -44,7 +44,7 @@ export default function ChatbotCta({
   zIndex,
   unmountOnExit,
 }: ChatbotCtaProps & LayeringMixinProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [inventoryItem, setInventoryItem] = useState<InventoryItemMeta>()
   const [visibility, setVisibility] = useState(false)
@@ -129,11 +129,11 @@ export default function ChatbotCta({
             {text}
           </ChatbotAction>
           <ChatbotCloseButton onClick={handleDismiss}>
-            {t(['dadgi', '닫기'])}
+            {t('닫기')}
           </ChatbotCloseButton>
         </ChatBalloon>
         <ChatbotIcon href={installUrl} onClick={handleClick}>
-          {t(['teuripeul', '트리플'])}
+          {t('트리플')}
         </ChatbotIcon>
       </ChatbotContainer>
     </CSSTransition>

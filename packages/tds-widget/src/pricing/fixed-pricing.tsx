@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import {
   Container,
@@ -9,7 +9,7 @@ import {
   Button,
   MarginPadding,
   paddingMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
 export interface FixedPricingProps {
@@ -62,7 +62,7 @@ const PurchaseButtonContainer = styled(Container)`
   height: 47px;
 `
 
-export default function FixedPricing({
+export function FixedPricing({
   active,
   label,
   buttonText,
@@ -79,7 +79,7 @@ export default function FixedPricing({
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
 }: FixedPricingProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedSalePrice = formatNumber(salePrice)
   const pricingLabel = label ? (
@@ -131,7 +131,7 @@ export default function FixedPricing({
               color={isSoldOut ? 'gray300' : 'gray'}
             >
               {priceLabelOverride ||
-                t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+                t('{{formattedSalePrice}}원', {
                   formattedSalePrice,
                 })}
               {discountRate}

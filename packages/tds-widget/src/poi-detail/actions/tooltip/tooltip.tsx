@@ -1,4 +1,4 @@
-import { Tooltip as CoreTooltip } from '@titicaca/core-elements'
+import { Tooltip as CoreTooltip } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 import { ComponentProps, MouseEventHandler, useEffect, useState } from 'react'
 

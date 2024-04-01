@@ -1,4 +1,4 @@
-import { NearByPoiType, ListingPoi } from './src/types'
+import { NearByPoiType, ListingPoi } from './types'
 
 const FETCH_POIS = 'nearby-pois/FETCH_POIS'
 const APPEND_POIS = 'nearby-pois/APPEND_POIS'

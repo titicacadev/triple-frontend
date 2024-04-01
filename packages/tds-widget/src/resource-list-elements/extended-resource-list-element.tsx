@@ -1,7 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
   Label,
@@ -10,10 +9,12 @@ import {
   List,
   Image,
   FlexBox,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 
-import ReviewScrapStat from './review-scrap-stat'
+import { OverlayScrapButton } from '../scrap-button'
+
+import { ReviewScrapStat } from './review-scrap-stat'
 
 interface ResourceMeta {
   id: string
@@ -25,7 +26,6 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   /** @deprecated */
   resource?: R
   scrapResource?: R
-  hideScrapButton?: boolean
   image?: ImageMeta
   imagePlaceholder?: string
   name?: string
@@ -88,10 +88,9 @@ const Badge = styled.div<{ icon?: string }>`
     `};
 `
 
-function ExtendedResourceListElement<R extends ResourceMeta>({
+export function ExtendedResourceListElement<R extends ResourceMeta>({
   resource,
   scrapResource,
-  hideScrapButton,
   image,
   imagePlaceholder,
   name,
@@ -113,7 +112,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
   optimized,
   ...props
 }: PropsWithChildren<ResourceListElementProps<R>>) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []
@@ -145,7 +144,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
                   padding: '1px 2px',
                 }}
               >
-                {t(['gwanggo', '광고'])}
+                {t('광고')}
               </Text>
             ) : null}
           </FlexBox>
@@ -236,7 +235,7 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
               </Image.FixedDimensionsFrame>
             </Image>
 
-            {!hideScrapButton && id && type ? (
+            {id && type ? (
               <Container
                 position="absolute"
                 css={{
@@ -269,5 +268,3 @@ function ExtendedResourceListElement<R extends ResourceMeta>({
     </ResourceListItem>
   )
 }
-
-export default ExtendedResourceListElement

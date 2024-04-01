@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Text, Container } from '@titicaca/core-elements'
+import { Text, Container } from '@titicaca/tds-ui'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
@@ -13,7 +13,7 @@ export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
 }
 
-function DefaultFooter({
+export function DefaultFooter({
   hideAppDownloadButton = false,
   ...props
 }: DefaultFooterProps) {
@@ -49,5 +49,3 @@ function DefaultFooter({
     </FooterFrame>
   )
 }
-
-export default DefaultFooter

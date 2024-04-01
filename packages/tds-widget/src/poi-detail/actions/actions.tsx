@@ -1,4 +1,4 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import {
   Section,
@@ -6,9 +6,9 @@ import {
   Button,
   MarginPadding,
   ButtonGroup,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { useEffect, useState } from 'react'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import Tooltip, { useLocalStorageTooltip } from './tooltip/tooltip'
 
@@ -23,7 +23,7 @@ export type TOOLTIP_TYPE = 'SCRAPE' | 'REVIEW'
 const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 const SCRAPE_TOOLTIP_EXPOSED = 'SCRAPE_TOOLTIP_EXPOSED'
 
-function Actions({
+export function PoiDetailActions({
   scraped,
   reviewed,
   onScheduleAdd,
@@ -46,8 +46,8 @@ function Actions({
   noDivider?: boolean
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
-  const { t } = useTranslation('common-web')
-  const { trackEvent } = useEventTrackingContext()
+  const { t } = useTranslation('triple-frontend')
+  const trackEvent = useTrackEvent()
 
   const hasScrapeTooltip = tooltips.includes('SCRAPE')
   const hasReviewTooltip = tooltips.includes('REVIEW')
@@ -109,14 +109,12 @@ function Actions({
                 `}
               />
             ) : null}
-            {scraped
-              ? t(['jeojangcwiso', '저장취소'])
-              : t(['jeojanghagi', '저장하기'])}
+            {scraped ? t('저장취소') : t('저장하기')}
           </ActionButton>
         ) : null}
         {onScheduleAdd ? (
           <ActionButton icon="schedule" onClick={onScheduleAdd}>
-            {t(['iljeongcuga', '일정추가'])}
+            {t('일정추가')}
           </ActionButton>
         ) : null}
         <ActionButton
@@ -134,17 +132,13 @@ function Actions({
               }}
             />
           ) : null}
-          {reviewed
-            ? t(['ribyusujeong', '리뷰수정'])
-            : t(['ribyusseugi', '리뷰쓰기'])}
+          {reviewed ? t('리뷰수정') : t('리뷰쓰기')}
         </ActionButton>
         <ActionButton icon="share" onClick={onContentShare}>
-          {t(['gongyuhagi', '공유하기'])}
+          {t('공유하기')}
         </ActionButton>
       </ButtonGroup>
       {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}
     </Section>
   )
 }
-
-export default Actions

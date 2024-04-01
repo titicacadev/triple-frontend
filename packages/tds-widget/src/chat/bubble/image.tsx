@@ -1,6 +1,6 @@
-import { Container } from '@titicaca/core-elements'
 import styled from 'styled-components'
 import { useLongPress } from 'use-long-press'
+import { Container } from '@titicaca/tds-ui'
 
 import { MetaDataInterface } from '../types'
 import { navigateToImage } from '../utils'

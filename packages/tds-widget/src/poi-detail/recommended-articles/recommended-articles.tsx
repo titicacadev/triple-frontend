@@ -5,17 +5,19 @@ import {
   Container,
   H1,
   formatMarginPadding,
-} from '@titicaca/core-elements'
-import { useTranslation } from '@titicaca/next-i18next'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
-import { TransitionType, useTransitionModal } from '@titicaca/modals'
+  FlickingCarousel,
+  Carousel,
+} from '@titicaca/tds-ui'
+import { useTranslation } from 'react-i18next'
 import {
-  ArticleCardCTA,
-  fetchInventoryItems,
-} from '@titicaca/app-installation-cta'
+  useTrackEvent,
+  TransitionType,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-import { Carousel } from '@titicaca/carousel'
 import styled from 'styled-components'
+
+import { ArticleCardCta, fetchInventoryItems } from '../../app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
@@ -28,7 +30,7 @@ const MobileCarousel = styled(Carousel)`
   }
 `
 
-function RecommendedArticles({
+export function PoiDetailRecommendedArticles({
   regionId,
   zoneId,
   mobilePadding,
@@ -63,7 +65,7 @@ function RecommendedArticles({
     onClick?: () => void
   }
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]
@@ -72,7 +74,7 @@ function RecommendedArticles({
     useState<InventoryItemMeta | null>(null)
 
   const { show } = useTransitionModal()
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   useEffect(() => {
     async function fetchAndSetRecommendedArticles() {
@@ -84,12 +86,14 @@ function RecommendedArticles({
       const items = await fetchInventoryItems({
         inventoryId: appInstallationCta?.inventoryId,
       })
+
       if (items && items.length > 0) {
         setArticleCardCta(items[0])
       }
     }
 
     fetchAndSetRecommendedArticles()
+
     if (appInstallationCta?.inventoryId) {
       fetchAndSetArticleCardCta()
     }
@@ -138,35 +142,38 @@ function RecommendedArticles({
             margin: `0 0 0 ${deskTopPadding?.right || 110}px`,
           }}
         >
-          {t([
-            'nohcigi-aggaun-i-jiyeog-ggul-jeongbo',
-            '놓치기 아까운 이 지역 꿀 정보',
-          ])}
+          {t('놓치기 아까운 이 지역 꿀 정보 2')}
         </H1>
 
-        <Carousel
-          margin={{ top: 20 }}
-          containerPadding={deskTopPadding || { left: 110, right: 110 }}
+        <FlickingCarousel
+          css={{
+            marginTop: 20,
+            paddingLeft: deskTopPadding?.left || 110,
+            paddingRight: deskTopPadding?.right || 110,
+          }}
         >
-          {articleCardCta && (
-            <Carousel.Item size="medium">
-              <ArticleCardCTA
-                cta={articleCardCta}
-                href={appInstallationCta?.href}
-                onClick={appInstallationCta?.onClick}
-              />
-            </Carousel.Item>
-          )}
-          {recommendedArticles.map((article) => (
-            <Carousel.Item key={article.id} size="medium">
-              <ArticleEntry
-                article={article}
-                onClick={onArticleClick}
-                onIntersect={handleIntersect}
-              />
-            </Carousel.Item>
-          ))}
-        </Carousel>
+          <FlickingCarousel.Controls />
+          <FlickingCarousel.Content>
+            {articleCardCta && (
+              <FlickingCarousel.Item size="medium">
+                <ArticleCardCta
+                  cta={articleCardCta}
+                  href={appInstallationCta?.href}
+                  onClick={appInstallationCta?.onClick}
+                />
+              </FlickingCarousel.Item>
+            )}
+            {recommendedArticles.map((article) => (
+              <FlickingCarousel.Item key={article.id} size="medium">
+                <ArticleEntry
+                  article={article}
+                  onClick={onArticleClick}
+                  onIntersect={handleIntersect}
+                />
+              </FlickingCarousel.Item>
+            ))}
+          </FlickingCarousel.Content>
+        </FlickingCarousel>
 
         <Container
           css={formatMarginPadding(
@@ -175,7 +182,7 @@ function RecommendedArticles({
           )}
         >
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            {t(['yeohaeng-jeongbo-deobogi', '여행 정보 더보기'])}
+            {t('여행 정보 더보기')}
           </MoreButton>
         </Container>
       </Responsive>
@@ -185,10 +192,7 @@ function RecommendedArticles({
             margin: `0 0 0 ${mobilePadding?.right || 30}px`,
           }}
         >
-          {t([
-            'nohcigi-aggaun-ni-jiyeog-ggul-jeongbo',
-            '놓치기 아까운\n이 지역 꿀 정보',
-          ])}
+          {t('놓치기 아까운 이 지역 꿀 정보')}
         </H1>
         <MobileCarousel
           margin={{ top: 20 }}
@@ -197,7 +201,7 @@ function RecommendedArticles({
         >
           {articleCardCta && (
             <Carousel.Item size="medium">
-              <ArticleCardCTA
+              <ArticleCardCta
                 cta={articleCardCta}
                 href={appInstallationCta?.href}
                 onClick={appInstallationCta?.onClick}
@@ -221,12 +225,10 @@ function RecommendedArticles({
           )}
         >
           <MoreButton basic compact onClick={handleShowMoreClick}>
-            {t(['yeohaeng-jeongbo-deobogi', '여행 정보 더보기'])}
+            {t('여행 정보 더보기')}
           </MoreButton>
         </Container>
       </Responsive>
     </Section>
   )
 }
-
-export default RecommendedArticles

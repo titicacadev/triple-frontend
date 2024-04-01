@@ -1,13 +1,12 @@
 import { MouseEvent } from 'react'
-import { useEnv } from '@titicaca/react-contexts'
 import { useExternalRouter, useHrefToProps } from '@titicaca/router'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 
 export default function useATagNavigator() {
   const routeExternally = useExternalRouter()
   const { webUrlBase } = useEnv()
   const convertHrefToProps = useHrefToProps()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const aTagNavigator = (event: MouseEvent) => {
     const eventTarget = event.target as HTMLElement

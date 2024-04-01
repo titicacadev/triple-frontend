@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import VerificationRequest from './verification-request'
+import { VerificationRequest } from './verification-request'
 
 export default {
   title: 'user-verification / VerificationRequest',

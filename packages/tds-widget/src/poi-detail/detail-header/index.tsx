@@ -7,21 +7,20 @@ import {
   Rating,
   Icon,
   TextTitle,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useUriHash,
-} from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import CopyActionSheet from '../copy-action-sheet'
-import AreaNames from '../area-names'
+import { CopyActionSheet } from '../copy-action-sheet'
+import { AreaNames } from '../area-names'
 import { HASH_COPY_ACTION_SHEET } from '../constants'
 
-import BusinessHoursNote from './business-hours-note'
+import { BusinessHoursNote } from './business-hours-note'
 
 const LongClickableSection = longClickable(Section)
 
@@ -30,7 +29,7 @@ interface Area {
   name: string
 }
 
-function DetailHeader({
+export function PoiDetailHeader({
   names,
   areaName,
   areas = [],
@@ -66,15 +65,14 @@ function DetailHeader({
   permanentlyClosed?: boolean
   onBusinessHoursClick?: () => void
 } & Parameters<typeof Section>['0']) {
-  const app = useTripleClientMetadata()
-  const uriHash = useUriHash()
-  const { push, back } = useHistoryFunctions()
-  const { trackEvent } = useEventTrackingContext()
+  const app = useClientApp()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const trackEvent = useTrackEvent()
 
   const handleLongClick = useCallback(() => {
     trackEvent({ fa: { action: '장소명_복사하기_노출' } })
-    push(HASH_COPY_ACTION_SHEET)
-  }, [push, trackEvent])
+    addUriHash(HASH_COPY_ACTION_SHEET)
+  }, [addUriHash, trackEvent])
 
   return (
     <>
@@ -127,10 +125,8 @@ function DetailHeader({
         open={uriHash === HASH_COPY_ACTION_SHEET}
         names={names}
         onCopy={onCopy}
-        onClose={back}
+        onClose={removeUriHash}
       />
     </>
   )
 }
-
-export default DetailHeader

@@ -1,11 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { TransitionModal } from '@titicaca/modals'
-import {
-  SessionContextProvider,
-  UserAgentProvider,
-  generateUserAgentValues,
-} from '@titicaca/react-contexts'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { EventTrackingProvider } from '@titicaca/triple-web'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
 import { FilterProvider } from './components/filter-context'
@@ -20,28 +15,6 @@ const meta: Meta<typeof Reviews> = {
   component: Reviews,
   decorators: [
     (Story) => (
-      <>
-        <Story />
-        <TransitionModal deepLink="/" />
-      </>
-    ),
-    (Story) => (
-      <UserAgentProvider value={generateUserAgentValues(navigator.userAgent)}>
-        <Story />
-      </UserAgentProvider>
-    ),
-    (Story) => (
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: { uid: 'random-uid' },
-          initialSessionAvailability: true,
-        }}
-      >
-        <Story />
-      </SessionContextProvider>
-    ),
-    (Story) => (
       <QueryClientProvider client={queryClient}>
         <Story />
       </QueryClientProvider>
@@ -52,6 +25,12 @@ const meta: Meta<typeof Reviews> = {
           <Story />
         </SortingOptionsProvider>
       </FilterProvider>
+    ),
+
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
     ),
   ],
 }

@@ -1,7 +1,7 @@
 import { measureDistance } from '@titicaca/view-utilities'
 import { post } from '@titicaca/fetcher'
 
-import { NearByPoiType, ListingPoi } from './src/types'
+import { NearByPoiType, ListingPoi } from './types'
 
 export async function fetchPois({
   type,

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import TextBanner from './text-banner'
+import { TextBanner } from './text-banner'
 
 export default {
   title: 'app-installation-cta / TextBanner',

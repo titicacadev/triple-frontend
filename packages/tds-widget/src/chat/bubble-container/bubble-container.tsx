@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
 

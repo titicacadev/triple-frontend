@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { FlexBox } from '@titicaca/core-elements'
+import { FlexBox } from '@titicaca/tds-ui'
 
 interface IndicatorProps {
   loading: boolean
@@ -50,7 +50,7 @@ const Indicator = styled.span<{
   animation-name: ${pulse};
 `
 
-export default function PurchaseButtonLoadingIndicator({
+export function PurchaseButtonLoadingIndicator({
   loading,
   indicatorCount = 3,
   color = 'var(--color-white)',

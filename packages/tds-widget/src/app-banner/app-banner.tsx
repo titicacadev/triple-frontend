@@ -1,11 +1,7 @@
 import { SyntheticEvent } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
-import {
-  Text,
-  layeringMixin,
-  LayeringMixinProps,
-} from '@titicaca/core-elements'
+import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
 
 const AppBannerFrame = styled.header<
   { fixed?: boolean; maxWidth?: number } & LayeringMixinProps
@@ -74,7 +70,7 @@ type Props = {
   onCtaClick?: (e?: SyntheticEvent) => void
 } & LayeringMixinProps
 
-function AppBanner({
+export function AppBanner({
   title,
   description,
   cta,
@@ -84,7 +80,7 @@ function AppBanner({
   zIndex = 1,
   ...props
 }: Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>
@@ -104,10 +100,8 @@ function AppBanner({
         </Text>
       </ContentContainer>
       <CallToAction href={href} onClick={onCtaClick}>
-        {cta || t(['aebeseo-bogi', '앱에서 보기'])}
+        {cta || t('앱에서 보기')}
       </CallToAction>
     </AppBannerFrame>
   )
 }
-
-export default AppBanner

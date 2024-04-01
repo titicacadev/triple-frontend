@@ -1,16 +1,11 @@
 import { ReactNode } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { formatNumber } from '@titicaca/view-utilities'
-import {
-  Container,
-  Text,
-  MarginPadding,
-  GlobalColors,
-} from '@titicaca/core-elements'
+import { Container, Text, MarginPadding, GlobalColors } from '@titicaca/tds-ui'
 import { GlobalSizes } from '@titicaca/type-definitions'
 
-import FixedPricing, { FixedPricingProps } from './fixed-pricing'
+import { FixedPricingProps, FixedPricing } from './fixed-pricing'
 
 export type BasePrice = number | null
 
@@ -119,7 +114,7 @@ function RichPricing({
   hideDiscountRate,
   isSoldOut,
 }: RichPricingProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedSalePrice = formatNumber(salePrice)
   const pricingDescription = description ? (
@@ -171,7 +166,7 @@ function RichPricing({
 
         <Text size={20} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
           {priceLabelOverride ||
-            t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+            t('{{formattedSalePrice}}원', {
               formattedSalePrice,
             })}
         </Text>
@@ -187,7 +182,7 @@ const RegularPricing = ({
   priceLabelOverride,
   isSoldOut,
 }: RegularPricingProps) => {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedSalePrice = formatNumber(salePrice)
   const hasBasePrice =
@@ -208,7 +203,7 @@ const RegularPricing = ({
       )}
       <Text size={18} bold inline color={isSoldOut ? 'gray300' : 'gray'}>
         {priceLabelOverride ||
-          t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+          t('{{formattedSalePrice}}원', {
             formattedSalePrice,
           })}
       </Text>
@@ -216,7 +211,7 @@ const RegularPricing = ({
   )
 }
 
-function Pricing(props: PricingProps) {
+export function Pricing(props: PricingProps) {
   const { salePrice, priceLabelOverride } = props
 
   if (props.rich) {
@@ -292,5 +287,3 @@ function Pricing(props: PricingProps) {
     )
   }
 }
-
-export default Pricing

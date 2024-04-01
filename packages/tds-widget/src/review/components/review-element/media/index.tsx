@@ -1,21 +1,20 @@
-import { useLoginCtaModal } from '@titicaca/modals'
-import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-  useSessionAvailability,
-  useUriHash,
-} from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useMemo, useState } from 'react'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { ImageViewerPopup } from '@titicaca/image-viewer'
+import {
+  useClientApp,
+  useHashRouter,
+  useLoginCtaModal,
+  useSessionAvailability,
+  useTrackEvent,
+} from '@titicaca/triple-web'
 
 import { useClientActions } from '../../../services'
+import { ImageViewerPopup } from '../../../../../../image-viewer/src'
 
 import { compareMedia } from './compare-media'
 import { Dimmer, MediumWrapper } from './elements'
-import MediaWrapper from './media-wrapper'
-import Medium from './medium'
+import { MediaWrapper } from './media-wrapper'
+import { Medium } from './medium'
 
 interface Props {
   media: ImageMeta[]
@@ -24,14 +23,13 @@ interface Props {
 
 const HASH_IMAGE_VIEWER_POPUP = 'popup.review-image-viewer'
 
-function Media({ media, reviewId }: Props) {
-  const { trackEvent } = useEventTrackingContext()
+export function Media({ media, reviewId }: Props) {
+  const trackEvent = useTrackEvent()
   const { navigateImages } = useClientActions()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
   const { show: showLoginCtaModal } = useLoginCtaModal()
-  const uriHash = useUriHash()
-  const { push, back } = useHistoryFunctions()
+  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
 
   const [imageIndex, setImageIndex] = useState<number | null>(null)
 
@@ -60,7 +58,7 @@ function Media({ media, reviewId }: Props) {
     })
 
     if (!app && !sessionAvailable) {
-      return showLoginCtaModal(undefined, '리뷰_리뷰썸네일_클릭')
+      return showLoginCtaModal({ triggeredEventAction: '리뷰_리뷰썸네일_클릭' })
     }
 
     const originalIndex = sortedMedia.findIndex(
@@ -71,14 +69,14 @@ function Media({ media, reviewId }: Props) {
       navigateImages(media, originalIndex)
     } else {
       setImageIndex(originalIndex)
-      push(HASH_IMAGE_VIEWER_POPUP)
+      addUriHash(HASH_IMAGE_VIEWER_POPUP)
     }
   }
 
   const handleImageViewerPopupClose = () => {
     trackEvent({ fa: { action: '이미지팝업_닫기_선택' } })
     setImageIndex(null)
-    back()
+    removeUriHash()
   }
 
   const onImageMetadataIntersecting = (medium: ImageMeta, index?: number) => {
@@ -122,7 +120,7 @@ function Media({ media, reviewId }: Props) {
       </MediaWrapper>
 
       {imageIndex != null && uriHash === HASH_IMAGE_VIEWER_POPUP ? (
-        <ImageViewerPopup
+        <ImageViewerPopupp
           open={uriHash === HASH_IMAGE_VIEWER_POPUP}
           images={sortedMedia}
           totalCount={sortedMedia.length}
@@ -134,5 +132,3 @@ function Media({ media, reviewId }: Props) {
     </>
   )
 }
-
-export default Media

@@ -1,19 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { ScrapsProvider } from '@titicaca/react-contexts'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import { OverlayScrapButton } from './scrap-button'
+import { ScrapsProvider } from '../scrap/provider'
 
-export default {
+import { OverlayScrapButton } from '.'
+
+const meta: Meta<typeof OverlayScrapButton> = {
   title: 'ScrapButton / OverlayScrapButton',
   component: OverlayScrapButton,
   decorators: [
     (Story) => (
-      <ScrapsProvider>
-        <Story />
-      </ScrapsProvider>
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
+      </EventTrackingProvider>
     ),
   ],
-} as Meta
+}
+
+export default meta
 
 export const Basic: StoryObj<typeof OverlayScrapButton> = {
   args: {

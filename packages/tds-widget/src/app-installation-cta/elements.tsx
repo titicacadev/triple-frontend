@@ -5,7 +5,7 @@ import {
   layeringMixin,
   LayeringMixinProps,
   safeAreaInsetMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 
 export const Overlay = styled.div<LayeringMixinProps>`
   position: fixed;

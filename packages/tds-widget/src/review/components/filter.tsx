@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
-import { FlexBox, Text, Container } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+import { FlexBox, Text, Container } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { useReviewFilters } from './filter-context'
 
@@ -70,20 +70,20 @@ export function Filters() {
     handleMediaChange,
   } = useReviewFilters()
 
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <FlexBox flex alignItems="center" position="relative">
       <Container css={{ marginRight: '12px' }}>
         <Filter
-          title={t(['sajin-dongyeongsang', '사진/동영상'])}
+          title={t('사진/동영상')}
           checked={isMediaCollection}
           onClick={handleMediaChange}
         />
       </Container>
 
       <Filter
-        title={t(['coegeun-yeohaeng', '최근여행'])}
+        title={t('최근여행')}
         checked={isRecentTrip}
         onClick={handleRecentTripChange}
       />
@@ -119,11 +119,11 @@ function Filter({
 }
 
 function ToolTip() {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const [visible, setVisible] = useState(false)
 
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   return (
     <Container>
@@ -149,10 +149,7 @@ function ToolTip() {
             color="gray800"
             padding={{ top: 15, left: 15, bottom: 15, right: 37 }}
           >
-            {t([
-              'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.',
-              '최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.',
-            ])}
+            {t('최근 6개월 내에 방문한 여행의 리뷰만 모아 볼 수 있습니다.')}
             <CloseIcon
               width={10}
               height={10}

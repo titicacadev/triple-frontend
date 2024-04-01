@@ -1,6 +1,6 @@
-import { useTranslation } from '@titicaca/next-i18next'
-import { Section } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+import { Section } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import { ExternalLinks } from './external-links'
@@ -17,15 +17,15 @@ export type SocialReviewsProps = {
   socialReviews?: SocialReview[]
 } & Parameters<typeof Section>['0']
 
-function SocialReviews({
+export function SocialReviews({
   placeholderImageUrl,
   socialReviews,
   ...props
 }: SocialReviewsProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const { trackSimpleEvent } = useEventTrackingContext()
-  const navigate = useNavigate()
+  const trackEvent = useTrackEvent()
+  const { navigate } = useNavigate()
 
   if (!socialReviews || socialReviews.length === 0) {
     return null
@@ -33,7 +33,7 @@ function SocialReviews({
 
   return (
     <ExternalLinks
-      title={t(['sosyeol-ribyu', '소셜 리뷰'])}
+      title={t('소셜 리뷰')}
       externalLinks={socialReviews.map(
         ({ imageUrl, publisher: meta, title, url }) => ({
           data: url,
@@ -53,12 +53,14 @@ function SocialReviews({
         }),
       )}
       onItemClick={(_, { data: url, title }) => {
-        trackSimpleEvent({ action: '소셜리뷰선택' })
+        trackEvent({
+          ga: ['소셜리뷰선택'],
+          fa: { action: '소셜리뷰선택' },
+        })
+
         navigate(url, { title })
       }}
       {...props}
     />
   )
 }
-
-export default SocialReviews

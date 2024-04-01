@@ -1,6 +1,8 @@
-import { ImageSourceType, Image } from '@titicaca/core-elements'
+import { Image } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode } from 'react'
+
+import { ImageSource } from '../image-source'
 
 import { CarouselImageMeta } from './types'
 
@@ -11,11 +13,11 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
-  ImageSource?: ImageSourceType
+  ImageSource?: typeof ImageSource
   onImageClick?: MouseEventHandler
 }
 
-function ImageContent({
+export function ImageContent({
   medium,
   height,
   optimized,
@@ -73,5 +75,3 @@ function ImageContent({
     </Image>
   )
 }
-
-export default ImageContent

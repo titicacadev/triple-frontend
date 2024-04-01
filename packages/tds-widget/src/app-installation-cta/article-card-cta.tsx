@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
-import { Image } from '@titicaca/core-elements'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { Image } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
-export default function ArticleCardCta({
+export function ArticleCardCta({
   href,
   cta,
   onClick,
@@ -13,7 +13,7 @@ export default function ArticleCardCta({
   cta: InventoryItemMeta | null
   onClick?: () => void
 }) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   const handleCtaIntersect = useCallback(() => {
     trackEvent({

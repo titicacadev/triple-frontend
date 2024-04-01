@@ -1,24 +1,19 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import {
-  Container,
-  Text,
-  Card as OriginalCard,
-  Image,
-} from '@titicaca/core-elements'
+import { Container, Text, Card as OriginalCard, Image } from '@titicaca/tds-ui'
 import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
-import {
-  ReviewScrapStat,
-  ResourceListElementStats,
-} from '@titicaca/resource-list-element'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useScrapsContext } from '@titicaca/react-contexts'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
 
-import { PoiListElementType } from '../types'
+import { useScrap } from '../../scrap'
+import { OverlayScrapButton } from '../../scrap-button'
+import {
+  ResourceListElementStats,
+  ReviewScrapStat,
+} from '../../resource-list-elements'
+import type { PoiListElementType } from '../types'
 
-import DirectionButton, { DIRECTION_BUTTON_WIDTH } from './direction-button'
+import { DIRECTION_BUTTON_WIDTH, DirectionButton } from './direction-button'
 
 const IMAGE_WIDTH = 58
 
@@ -55,7 +50,7 @@ const ScrapButtonContainer = styled(Container)`
   right: 0;
 `
 
-function PoiCardElement({
+export function PoiCardElement({
   id,
   type,
   names: { ko, en, local },
@@ -99,10 +94,10 @@ function PoiCardElement({
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
   optimized?: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedNightlyPrice = formatNumber(nightlyPrice)
-  const { deriveCurrentStateAndCount } = useScrapsContext()
+  const { deriveCurrentStateAndCount } = useScrap()
   const { scrapsCount } = deriveCurrentStateAndCount({
     id,
     scraped,
@@ -198,7 +193,7 @@ function PoiCardElement({
                   color="blue"
                   margin={{ right: 4 }}
                 >
-                  {t(['distance-inae', '{{distance}} 이내'], { distance })}
+                  {t('{{distance}} 이내', { distance })}
                 </Text>
               ) : null}
 
@@ -206,13 +201,9 @@ function PoiCardElement({
               {priceLabelOverride ||
                 (nightlyPrice !== undefined ? (
                   <Text inlineBlock size="small">
-                    {t(
-                      [
-                        'formattednightlyprice-weon',
-                        '{{formattedNightlyPrice}}원',
-                      ],
-                      { formattedNightlyPrice },
-                    )}
+                    {t('{{formattedNightlyPrice}}원', {
+                      formattedNightlyPrice,
+                    })}
                   </Text>
                 ) : null)}
             </Container>
@@ -226,5 +217,3 @@ function PoiCardElement({
     </Card>
   )
 }
-
-export default PoiCardElement

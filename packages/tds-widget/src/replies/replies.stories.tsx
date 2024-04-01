@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { SessionContextProvider } from '@titicaca/react-contexts'
 import { rest } from 'msw'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import Replies from './replies'
+import { Replies } from './replies'
 
 export default {
   title: 'replies / Replies',
@@ -45,6 +45,13 @@ export default {
       ],
     },
   },
+  decorators: [
+    (Story) => (
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
+        <Story />
+      </EventTrackingProvider>
+    ),
+  ],
   argTypes: {
     resourceId: {
       type: 'string',
@@ -77,19 +84,6 @@ export default {
       required: false,
     },
   },
-  decorators: [
-    (Story) => (
-      <SessionContextProvider
-        type="browser"
-        props={{
-          initialUser: undefined,
-          initialSessionAvailability: true,
-        }}
-      >
-        <Story />
-      </SessionContextProvider>
-    ),
-  ],
 } as Meta<typeof Replies>
 
 export const Basic: StoryObj<typeof Replies> = {

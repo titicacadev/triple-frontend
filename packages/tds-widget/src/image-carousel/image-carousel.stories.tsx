@@ -1,48 +1,10 @@
-import type { Meta, StoryFn } from '@storybook/react'
-import { ImageSource } from '@titicaca/core-elements'
-import { appWithTranslation } from '@titicaca/next-i18next'
+import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
-import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
-import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
-import { zhTwCommonWeb } from '../../i18n/src/assets/zh-TW/common-web'
-
-import ImageCarousel from './image-carousel'
+import { ImageCarousel } from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'
 import VIDEOS from './mocks/video-carousel.sample.json'
 import { PageLabel } from './page-label'
-
-const locales = ['ko', 'ja', 'zh-TW']
-const resources = {
-  ko: {
-    'common-web': koCommonWeb,
-  },
-  ja: {
-    'common-web': jaCommonWeb,
-  },
-  'zh-TW': {
-    'common-web': zhTwCommonWeb,
-  },
-}
-
-export default {
-  title: 'image-carousel / Image Carousel',
-  component: ImageCarousel,
-  decorators: [
-    (Story, context) => {
-      const App = appWithTranslation(Story, {
-        i18n: { locales, defaultLocale: locales[0] },
-        lng: context.globals.locale,
-        fallbackLng: 'ko',
-        resources,
-        defaultNS: 'common-web',
-        serializeConfig: false,
-      })
-
-      return <App pageProps={{}} />
-    },
-  ],
-} as Meta<typeof ImageCarousel>
 
 const MoreImageOverlayLink = styled.a`
   width: 100%;
@@ -60,6 +22,16 @@ const MoreImageOverlayLinkIcon = styled.img`
   height: 20px;
   vertical-align: sub;
 `
+
+const meta: Meta<typeof ImageCarousel> = {
+  title: 'image-carousel / Image Carousel',
+  component: ImageCarousel,
+}
+
+export default meta
+
+type Story = StoryObj<typeof ImageCarousel>
+
 const OverlayContent = () => {
   return (
     <MoreImageOverlayLink href="https://triple.guide">
@@ -69,14 +41,13 @@ const OverlayContent = () => {
   )
 }
 
-export const Basic: StoryFn<typeof ImageCarousel> = () => {
-  return (
+export const Basic: Story = {
+  render: () => (
     <ImageCarousel
-      size="medium"
       images={IMAGES}
-      currentPage={0}
-      borderRadius={6}
-      ImageSource={ImageSource}
+      options={{
+        size: 'medium',
+      }}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -87,18 +58,20 @@ export const Basic: StoryFn<typeof ImageCarousel> = () => {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
+      css={{
+        borderRadius: 6,
+      }}
     />
-  )
+  ),
 }
 
-export const Video: StoryFn<typeof ImageCarousel> = () => {
-  return (
+export const Video: Story = {
+  render: () => (
     <ImageCarousel
-      size="medium"
       images={VIDEOS}
-      currentPage={0}
-      borderRadius={6}
-      ImageSource={ImageSource}
+      options={{
+        size: 'medium',
+      }}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -109,6 +82,9 @@ export const Video: StoryFn<typeof ImageCarousel> = () => {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
+      css={{
+        borderRadius: 6,
+      }}
     />
-  )
+  ),
 }

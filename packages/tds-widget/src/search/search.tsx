@@ -10,12 +10,8 @@ import {
   PropsWithChildren,
 } from 'react'
 import styled, { css } from 'styled-components'
-import {
-  Container,
-  LayeringMixinProps,
-  SearchNavbar,
-} from '@titicaca/core-elements'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { Container, LayeringMixinProps, SearchNavbar } from '@titicaca/tds-ui'
+import { useUserAgent } from '@titicaca/triple-web'
 import {
   openKeyboard,
   closeKeyboard,
@@ -40,7 +36,7 @@ const KEY_CODE_ENTER = 13
 /**
  * 상단에는 검색 Navbar, 하단에는 Navbar이벤트를 통해 검색결과를 그릴수 있도록 제공해주는 컴포넌트 입니다.
  */
-function FullScreenSearchView({
+export function FullScreenSearchView({
   children,
   onDelete,
   onAutoComplete,
@@ -98,7 +94,7 @@ function FullScreenSearchView({
 >) {
   const {
     os: { name },
-  } = useUserAgentContext()
+  } = useUserAgent()
   const isIos = name === 'iOS'
 
   const [keyword, setKeyword] = useState<string>(defaultKeyword || '')
@@ -192,5 +188,3 @@ function FullScreenSearchView({
     </>
   )
 }
-
-export default FullScreenSearchView

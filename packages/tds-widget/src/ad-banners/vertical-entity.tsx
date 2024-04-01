@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 
 import { Banner } from './typing'
@@ -16,7 +16,7 @@ const BannerImage = styled.img`
   vertical-align: top;
 `
 
-const VerticalEntity: FC<VerticalEntityProps> = ({
+export const VerticalEntity: FC<VerticalEntityProps> = ({
   banner,
   onClick,
   onIntersect,
@@ -43,5 +43,3 @@ const VerticalEntity: FC<VerticalEntityProps> = ({
     </IntersectionObserver>
   )
 }
-
-export default VerticalEntity

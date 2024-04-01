@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
   Button,
@@ -9,8 +9,8 @@ import {
   Section,
   Text,
   safeAreaInsetMixin,
-} from '@titicaca/core-elements'
-import Popup from '@titicaca/popup'
+  Popup,
+} from '@titicaca/tds-ui'
 
 const DrawerContentContainer = styled(Container)`
   ${safeAreaInsetMixin}
@@ -38,7 +38,7 @@ const CallButton = styled(Button)`
   padding-bottom: 15px;
 `
 
-export default function AskToTheLocal({
+export function AskToTheLocal({
   open,
   onClose,
   localName,
@@ -55,7 +55,7 @@ export default function AskToTheLocal({
   phoneNumber?: string
   isDomestic?: boolean
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const handleCall = useCallback(() => {
     if (phoneNumber) {
@@ -100,7 +100,7 @@ export default function AskToTheLocal({
                     />
                   </Icon>
                 </IconContainer>
-                {t(['jeonhwahagi', '전화하기'])}
+                {t('전화하기')}
               </CallButton>
               {isDomestic ? null : (
                 <Text
@@ -108,10 +108,7 @@ export default function AskToTheLocal({
                   alpha={0.5}
                   padding={{ top: 6, bottom: 0 }}
                 >
-                  {t([
-                    'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.',
-                    '국제 전화 요금이 부과될 수 있습니다.',
-                  ])}
+                  {t('국제 전화 요금이 부과될 수 있습니다.')}
                 </Text>
               )}
             </DrawerContentContainer>

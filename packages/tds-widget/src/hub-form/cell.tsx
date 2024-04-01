@@ -1,6 +1,6 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
+import { Text } from '@titicaca/tds-ui'
 
 type StyleType = 'SCHEDULE' | 'PEOPLE' | 'ORIGIN' | 'DESTINATION' | 'SEARCH'
 
@@ -47,7 +47,7 @@ const CellContainer = styled.div<{ type: StyleType }>`
   }
 `
 
-function Cell({
+export function Cell({
   type,
   placeholder,
   value,
@@ -84,5 +84,3 @@ function Placeholder({ children }: PropsWithChildren<unknown>) {
     </Text>
   )
 }
-
-export default Cell

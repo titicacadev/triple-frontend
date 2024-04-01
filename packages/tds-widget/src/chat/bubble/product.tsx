@@ -1,5 +1,5 @@
-import { Color } from '@titicaca/color-palette'
-import { FlexBox, Text } from '@titicaca/core-elements'
+import { FlexBox, Text } from '@titicaca/tds-ui'
+import { Theme } from '@titicaca/tds-theme'
 
 import { CustomerBookingStatus } from '../types'
 
@@ -13,7 +13,10 @@ import {
 import { Bubble } from './bubble'
 import { ProductBubbleProp } from './type'
 
-const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
+const PRODUCT_BADGE_COLOR: Record<
+  CustomerBookingStatus,
+  keyof Theme['colors']
+> = {
   BOOKED: 'blue',
   ONGOING: 'blue',
   COMPLETED: 'mint',

@@ -1,11 +1,6 @@
 import { SyntheticEvent } from 'react'
 import styled, { css } from 'styled-components'
-import {
-  Text,
-  MarginPadding,
-  Responsive,
-  Container,
-} from '@titicaca/core-elements'
+import { Text, MarginPadding, Responsive, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 
 const RecommendedContentsContainer = styled.section<{
@@ -98,7 +93,7 @@ interface ContentElementProps {
   title: string
 }
 
-function RecommendedContents<T extends ContentElementProps>({
+export function RecommendedContents<T extends ContentElementProps>({
   contents: contentsData,
   margin,
   onContentClick,
@@ -175,5 +170,3 @@ function RecommendedContents<T extends ContentElementProps>({
     </RecommendedContentsContainer>
   )
 }
-
-export default RecommendedContents

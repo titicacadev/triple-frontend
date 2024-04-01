@@ -1,10 +1,13 @@
 import { SyntheticEvent, useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Button, Container, Rating, Text } from '@titicaca/core-elements'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
-import { useEventTrackingContext } from '@titicaca/react-contexts'
+import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
+import {
+  useTrackEvent,
+  TransitionType,
+  useClientAppCallback,
+  useSessionCallback,
+} from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
@@ -69,10 +72,10 @@ export function ReviewsPlaceholder({
   sortingType,
   sortingOption,
 }: ReviewsPlaceholderProps) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const { writeReview, navigateReviewList } = useClientActions()
 
-  const handleFullClick = useAppCallback(
+  const handleFullClick = useClientAppCallback(
     TransitionType.OpenReviewList,
     useSessionCallback(
       useCallback(() => {
@@ -95,7 +98,7 @@ export function ReviewsPlaceholder({
     ),
   )
 
-  const handleWriteClick = useAppCallback(
+  const handleWriteClick = useClientAppCallback(
     TransitionType.ReviewWrite,
     useSessionCallback(
       useCallback(
@@ -170,7 +173,7 @@ function DefaultPlaceholder({
 }: {
   placeholderText: string | undefined
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return (
     <Text
@@ -180,11 +183,7 @@ function DefaultPlaceholder({
       alpha={1}
       lineHeight={1.5}
     >
-      {placeholderText ??
-        t([
-          'igosyi-ceos-beonjjae-ribyureul-olryeojuseyo.',
-          '이곳의 첫 번째 리뷰를 올려주세요.',
-        ])}
+      {placeholderText ?? t('이곳의 첫 번째 리뷰를 올려주세요.')}
     </Text>
   )
 }
@@ -198,7 +197,7 @@ function FilterPlaceholder({
   hasReviews: boolean
   onClick?: (e: SyntheticEvent, rating?: number) => void
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   return isMorePage ? (
     <RecentTripContainer>
@@ -215,16 +214,10 @@ function FilterPlaceholder({
         lineHeight="21px"
         textAlign="center"
       >
-        {t([
-          'seontaeghan-jogeonyi-ribyuga-eobsseubnida.',
-          '선택한 조건의 리뷰가 없습니다.',
-        ])}
+        {t('선택한 조건의 리뷰가 없습니다.')}
       </Text>
       <Text size={14} lineHeight="19px" textAlign="center" color="gray500">
-        {t([
-          'danyeoon-yeohaengjiyi-ribyureul-namgyeoboseyo.',
-          '다녀온 여행지의\n리뷰를 남겨보세요.',
-        ])}
+        {t('다녀온 여행지의 리뷰를 남겨보세요.')}
       </Text>
     </RecentTripContainer>
   ) : (
@@ -234,10 +227,7 @@ function FilterPlaceholder({
       }}
     >
       <Text size={14} color="gray500">
-        {t([
-          'seontaeghan-jogeonyi-ribyuga-eobsseubnida.',
-          '선택한 조건의 리뷰가 없습니다.',
-        ])}
+        {t('선택한 조건의 리뷰가 없습니다.')}
       </Text>
       {hasReviews ? (
         <NavigateToReviewsListButton
@@ -246,7 +236,7 @@ function FilterPlaceholder({
           onClick={onClick}
         >
           <Text size={13} color="white" bold>
-            {t(['jeonce-ribyu-bogi', '전체 리뷰 보기'])}
+            {t('전체 리뷰 보기')}
           </Text>
         </NavigateToReviewsListButton>
       ) : null}

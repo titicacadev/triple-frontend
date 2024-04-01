@@ -6,7 +6,7 @@ import {
   formatMarginPadding,
   MEDIA_FRAME_OPTIONS,
   marginMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 export type PoiType = 'attraction' | 'restaurant' | 'hotel'
@@ -74,7 +74,7 @@ const MARKER_SOURCES: { [key: string]: string } = {
   tna: 'https://assets.triple.guide/images/img_map_pin_tna@4x.png',
 }
 
-function StaticMap({
+export function StaticMap({
   type,
   lat,
   lon,
@@ -126,5 +126,3 @@ function StaticMap({
     </Container>
   )
 }
-
-export default StaticMap

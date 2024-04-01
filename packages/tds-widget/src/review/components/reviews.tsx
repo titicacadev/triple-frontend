@@ -1,10 +1,9 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
-import { Trans } from '@titicaca/next-i18next'
-import { FlexBox, Section, Container, Text } from '@titicaca/core-elements'
+import { useTranslation } from 'react-i18next'
+import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { LoginCtaModalProvider } from '@titicaca/modals'
+import { useClientAppActions } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 
@@ -64,29 +63,27 @@ export function Reviews({
   receiverId,
 }: ReviewsProps) {
   return (
-    <LoginCtaModalProvider>
-      <FilterProvider
-        initialRecentTrip={initialRecentTrip}
-        initialMediaFilter={initialMediaFilter}
+    <FilterProvider
+      initialRecentTrip={initialRecentTrip}
+      initialMediaFilter={initialMediaFilter}
+      receiverId={receiverId}
+    >
+      <SortingOptionsProvider
+        type={sortingType}
         receiverId={receiverId}
+        resourceId={resourceId}
+        initialSortingOption={initialSortingOption}
       >
-        <SortingOptionsProvider
-          type={sortingType}
-          receiverId={receiverId}
+        <ReviewsComponent
           resourceId={resourceId}
-          initialSortingOption={initialSortingOption}
-        >
-          <ReviewsComponent
-            resourceId={resourceId}
-            resourceType={resourceType}
-            regionId={regionId}
-            initialReviewsCount={initialReviewsCount}
-            placeholderText={placeholderText}
-            sortingType={sortingType}
-          />
-        </SortingOptionsProvider>
-      </FilterProvider>
-    </LoginCtaModalProvider>
+          resourceType={resourceType}
+          regionId={regionId}
+          initialReviewsCount={initialReviewsCount}
+          placeholderText={placeholderText}
+          sortingType={sortingType}
+        />
+      </SortingOptionsProvider>
+    </FilterProvider>
   )
 }
 
@@ -107,9 +104,10 @@ function ReviewsComponent({
 }: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
+  const { t } = useTranslation('triple-frontend')
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
-    useTripleClientActions()
+    useClientAppActions()
 
   const { data: reviewsCountData, refetch: refetchReviewsCount } =
     useReviewCount(
@@ -152,22 +150,12 @@ function ReviewsComponent({
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
-        <Trans
-          i18nKey={[
-            'totalreviewscount-gaeyi-ribyu',
-            '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
-          ]}
-          ns="common-web"
-        >
-          <Text bold size="huge" color="blue" alpha={1} inline>
-            <>
-              {{
-                totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
-              }}
-            </>
-          </Text>
-          <Text bold size="huge" color="gray" alpha={1} inline />
-        </Trans>
+        <Text bold size="huge" color="blue" alpha={1} inline>
+          {t('{{totalReviewsCount}}개의 리뷰', {
+            totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
+          })}
+        </Text>
+        <Text bold size="huge" color="gray" alpha={1} inline />
       </Container>
 
       <OptionContainer>

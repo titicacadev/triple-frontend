@@ -1,8 +1,8 @@
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useDeviceContext } from '@titicaca/react-contexts'
+import { useClientApp } from '@titicaca/triple-web'
 import { useIntersection } from '@titicaca/intersection-observer'
 
 import { CarouselImageMeta } from './types'
@@ -83,7 +83,7 @@ const PlayPauseButtonBase = styled.span`
   transition: opacity 0.3s;
 `
 
-function VideoContent({
+export function VideoContent({
   medium,
   height,
   globalSize,
@@ -95,14 +95,12 @@ function VideoContent({
   const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
     threshold: 0.5,
   })
-
-  const {
-    deviceState: { autoplay, networkType },
-  } = useDeviceContext()
+  const clientApp = useClientApp()
 
   const [videoAutoplay, setVideoAutoPlay] = useState(
-    autoplay === 'always' ||
-      (autoplay === 'wifi_only' && networkType === 'wifi'),
+    clientApp?.device.autoplay === 'always' ||
+      (clientApp?.device.autoplay === 'wifi_only' &&
+        clientApp?.device.networkType === 'wifi'),
   )
 
   useEffect(() => {
@@ -152,5 +150,3 @@ function VideoContent({
     </Frame>
   )
 }
-
-export default VideoContent

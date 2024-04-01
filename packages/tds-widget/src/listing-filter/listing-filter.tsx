@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { MarginPadding, paddingMixin } from '@titicaca/core-elements'
+import { MarginPadding, paddingMixin } from '@titicaca/tds-ui'
 import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 
 const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
@@ -200,7 +200,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   ${paddingMixin}
 `
 
-class ListingFilter extends PureComponent<{
+export class ListingFilter extends PureComponent<{
   children?: ReactNode
   padding?: MarginPadding
 }> {
@@ -221,5 +221,3 @@ class ListingFilter extends PureComponent<{
     return <ListingFilterBase padding={padding}>{children}</ListingFilterBase>
   }
 }
-
-export default ListingFilter

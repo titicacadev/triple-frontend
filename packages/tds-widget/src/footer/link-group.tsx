@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 
 const LinksContainer = styled(Container)`
   font-size: 11px;

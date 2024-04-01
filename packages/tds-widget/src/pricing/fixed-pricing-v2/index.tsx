@@ -1,6 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
   Container,
   Drawer,
@@ -10,10 +10,10 @@ import {
   Skeleton,
   safeAreaInsetMixin,
   paddingMixin,
-} from '@titicaca/core-elements'
+} from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
-import PurchaseButton from './purchase-button'
+import { PurchaseButton } from './purchase-button'
 
 export interface FixedPricingV2Props {
   loading: boolean
@@ -102,7 +102,7 @@ function LoadingSkeleton() {
   )
 }
 
-function FixedPricingV2({
+export function FixedPricingV2({
   emptyOverride,
   loading,
   active,
@@ -121,7 +121,7 @@ function FixedPricingV2({
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
 }: FixedPricingV2Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedSalePrice = formatNumber(salePrice)
   const pricingLabel = label ? (
@@ -179,13 +179,7 @@ function FixedPricingV2({
                       color={isSoldOut ? 'gray300' : 'gray'}
                     >
                       {priceLabelOverride ||
-                        t(
-                          [
-                            'formattedsaleprice-weon',
-                            '{{formattedSalePrice}}원',
-                          ],
-                          { formattedSalePrice },
-                        )}
+                        t('{{formattedSalePrice}}원', { formattedSalePrice })}
                       {discountRate}
                     </Text>
                     {pricingDescription}
@@ -208,5 +202,3 @@ function FixedPricingV2({
     </Drawer>
   )
 }
-
-export default FixedPricingV2

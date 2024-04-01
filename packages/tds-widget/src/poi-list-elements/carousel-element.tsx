@@ -1,13 +1,14 @@
 import { ReactNode } from 'react'
 import {
-  CarouselSizes,
-  Carousel,
   Text,
   Container,
   Image,
-} from '@titicaca/core-elements'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
+  Carousel,
+  CarouselSizes,
+} from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
+
+import { OverlayScrapButton } from '../scrap-button'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { getTypeNames } from './get-type-names'
@@ -17,7 +18,7 @@ import {
   PoiListElementType,
 } from './types'
 
-function PoiCarouselElement<T extends PoiListElementType>({
+export function PoiCarouselElement<T extends PoiListElementType>({
   poi,
   poi: {
     type,
@@ -115,5 +116,3 @@ function PoiCarouselElement<T extends PoiListElementType>({
     </Carousel.Item>
   )
 }
-
-export default PoiCarouselElement

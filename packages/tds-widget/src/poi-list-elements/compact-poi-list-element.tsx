@@ -4,9 +4,10 @@ import {
   SquareImage,
   ResourceListItem,
   Container,
-} from '@titicaca/core-elements'
-import { OutlineScrapButton } from '@titicaca/scrap-button'
+} from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
+
+import { OutlineScrapButton } from '../scrap-button'
 
 import {
   PoiListElementBaseProps,

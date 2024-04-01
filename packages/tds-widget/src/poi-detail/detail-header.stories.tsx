@@ -1,28 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { UserAgentProvider } from '@titicaca/react-contexts'
+import { EventTrackingProvider } from '@titicaca/triple-web'
 
-import DetailHeader from './detail-header'
+import { PoiDetailHeader } from './detail-header'
 
 export default {
   title: 'poi-detail / DetailHeader',
-  component: DetailHeader,
+  component: PoiDetailHeader,
   decorators: [
     (Story) => (
-      <UserAgentProvider
-        value={{
-          isPublic: true,
-          isMobile: true,
-          os: {},
-          app: null,
-        }}
-      >
+      <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
         <Story />
-      </UserAgentProvider>
+      </EventTrackingProvider>
     ),
   ],
 } as Meta
 
-export const Basic: StoryObj<typeof DetailHeader> = {
+export const Basic: StoryObj<typeof PoiDetailHeader> = {
   name: '기본',
   args: {
     names: {
@@ -38,7 +31,7 @@ export const Basic: StoryObj<typeof DetailHeader> = {
   },
 }
 
-export const WithBusinessHoursNote: StoryObj<typeof DetailHeader> = {
+export const WithBusinessHoursNote: StoryObj<typeof PoiDetailHeader> = {
   name: '영업시간 추가',
   args: {
     ...Basic.args,

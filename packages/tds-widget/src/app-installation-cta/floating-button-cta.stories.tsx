@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import FloatingButtonCTA from './floating-button-cta'
+import { FloatingButtonCta as FloatingButtonCTA } from './floating-button-cta'
 
 export default {
   title: 'app-installation-cta / FloatingButtonCTA',

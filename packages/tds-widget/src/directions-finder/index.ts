@@ -1,1 +1,1 @@
-export { default } from './direction-buttons'
+export * from './direction-buttons'

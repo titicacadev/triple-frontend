@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
-import { Segment, List } from '@titicaca/core-elements'
-import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
-import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+import { Segment, List, ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
+import { useHashRouter } from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
-import PropertyItem, {
+import {
   ACTION_SHEET_PREFIX,
   PropertyItemProps,
+  PropertyItem,
 } from './property-item'
 
 interface ExtraProperty {
@@ -15,7 +15,7 @@ interface ExtraProperty {
   value: string
 }
 
-function LocationProperties({
+export function LocationProperties({
   addresses,
   onAddressesClick,
   phoneNumber,
@@ -37,10 +37,9 @@ function LocationProperties({
   onExtraPropertyClick?: (extraProperty: ExtraProperty) => void
   onCopy: (value: string) => void
 } & Parameters<typeof Segment>['0']) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const uriHash = useUriHash()
-  const { back } = useHistoryFunctions()
+  const { uriHash, removeUriHash } = useHashRouter()
 
   const properties: Map<
     string,
@@ -52,7 +51,7 @@ function LocationProperties({
 
     addressValue &&
       allValues.set('addresses', {
-        title: t(['juso', '주소']),
+        title: t('주소'),
         value: addressValue,
         onClick: onAddressesClick,
         eventActionFragment: '기본정보_주소',
@@ -60,7 +59,7 @@ function LocationProperties({
 
     phoneNumber &&
       allValues.set('phoneNumber', {
-        title: t(['jeonhwa', '전화']),
+        title: t('전화'),
         value: phoneNumber,
         onClick: onPhoneNumberClick,
         eventActionFragment: '기본정보_전화번호',
@@ -68,7 +67,7 @@ function LocationProperties({
 
     officialSiteUrl &&
       allValues.set('officialSiteUrl', {
-        title: t(['hompeiji', '홈페이지']),
+        title: t('홈페이지'),
         value: officialSiteUrl,
         singleLine: true,
         onClick: onOfficialSiteUrlClick,
@@ -116,19 +115,14 @@ function LocationProperties({
         </List>
       </Segment>
       <ActionSheet
-        title={t(['bogsahagi', '복사하기'])}
+        title={t('복사하기')}
         open={isActionSheetOpen}
-        onClose={back}
+        onClose={removeUriHash}
       >
-        <ActionSheetItem
-          buttonLabel={t(['bogsa', '복사'])}
-          onClick={handleClick}
-        >
+        <ActionSheetItem buttonLabel={t('복사')} onClick={handleClick}>
           {value}
         </ActionSheetItem>
       </ActionSheet>
     </>
   )
 }
-
-export default LocationProperties

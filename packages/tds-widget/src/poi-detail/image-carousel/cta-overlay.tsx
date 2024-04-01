@@ -18,7 +18,7 @@ const MoreImageOverlayLinkIcon = styled.img`
   vertical-align: sub;
 `
 
-export default function CtaOverlay() {
+export function CtaOverlay() {
   return (
     <MoreImageOverlayLink>
       더 많은 이미지 보기

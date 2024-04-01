@@ -1,7 +1,7 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren } from 'react'
+import { useClientApp } from '@titicaca/triple-web'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -107,9 +107,9 @@ export function PublicHeader({
   onLogoClick,
   children,
 }: PropsWithChildren<PublicHeaderProps>) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
 
   if (app) {
@@ -136,7 +136,7 @@ export function PublicHeader({
         <ExtraActionsContainer>
           {children}
           <ExtraActionItem href={linkHref} onClick={onClick}>
-            {linkLabel ?? t(['nae-yeyag', '내 예약'])}
+            {linkLabel ?? t('내 예약')}
           </ExtraActionItem>
           {deeplinkPath && (
             <PublicHeaderDeeplink

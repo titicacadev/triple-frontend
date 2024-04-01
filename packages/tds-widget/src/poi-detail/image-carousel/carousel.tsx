@@ -1,15 +1,17 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
-import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
-import { Container, Responsive, ImageSource } from '@titicaca/core-elements'
+import { Container, Responsive } from '@titicaca/tds-ui'
 import {
-  useEventTrackingContext,
+  useClientApp,
   useSessionAvailability,
-} from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+  useTrackEvent,
+} from '@titicaca/triple-web'
 import { GuestModeType, ImageMeta } from '@titicaca/type-definitions'
 
-import CtaOverlay from './cta-overlay'
+import { ImageCarousel, CarouselImageMeta } from '../../image-carousel'
+import { ImageSource } from '../../image-source'
+
+import { CtaOverlay } from './cta-overlay'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -42,7 +44,7 @@ export interface CarouselProps {
   guestMode?: GuestModeType
 }
 
-export default function Carousel({
+export function Carousel({
   images,
   totalImagesCount,
   onImageClick,
@@ -53,9 +55,9 @@ export default function Carousel({
   height,
   guestMode,
 }: CarouselProps) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
   const [currentPage, setCurrentPage] = useState(0)
 
   const loginRequired = !app && !sessionAvailable
@@ -168,13 +170,14 @@ export default function Carousel({
         >
           <ImageCarousel
             images={visibleImages}
-            currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
-            borderRadius={borderRadius}
-            size="large"
+            currentPage={currentPage}
+            options={{
+              size: 'large',
+              optimized,
+            }}
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}
-            ImageSource={ImageSource}
             showMoreRenderer={CTA}
             optimized={optimized}
           />

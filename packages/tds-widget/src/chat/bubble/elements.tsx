@@ -6,11 +6,11 @@ import {
   HR1,
   FlexBox,
   HrProps,
-} from '@titicaca/core-elements'
-import { Color } from '@titicaca/color-palette'
+} from '@titicaca/tds-ui'
+import { Theme } from '@titicaca/tds-theme'
 
 interface BadgeProps {
-  backgroundColor?: Color
+  backgroundColor?: keyof Theme['colors']
   margin?: MarginPadding
 }
 

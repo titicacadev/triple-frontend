@@ -1,13 +1,14 @@
-import { Container, FlexBox, List, Rating, Text } from '@titicaca/core-elements'
+import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
-import { TransitionType } from '@titicaca/modals'
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
-  useEventTrackingContext,
-  useHistoryFunctions,
-} from '@titicaca/react-contexts'
-import { useTripleClientActions } from '@titicaca/react-triple-client-interfaces'
-import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
+  useTrackEvent,
+  useHashRouter,
+  TransitionType,
+  useSessionCallback,
+  useClientAppCallback,
+  useClientAppActions,
+} from '@titicaca/triple-web'
 import { Timestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
@@ -22,11 +23,11 @@ import {
 import { HASH_MY_REVIEW_ACTION_SHEET } from '../my-review-action-sheet'
 import { HASH_REVIEW_ACTION_SHEET } from '../others-review-action-sheet'
 
-import Comment from './comment'
-import FoldableComment from './foldable-comment'
-import Media from './media'
+import { Comment } from './comment'
+import { FoldableComment } from './foldable-comment'
+import { Media } from './media'
 import { PinnedMessage } from './pinned-message'
-import User from './user'
+import { User } from './user'
 import { ReviewBadges } from './badges'
 import PurchaseInfo from './purchaseInfo'
 
@@ -133,24 +134,24 @@ export function ReviewElement({
   regionId,
   onMenuClick,
 }: ReviewElementProps) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const visitDate = visitDateString ? new Date(visitDateString) : null
 
   const [unfolded, setUnfolded] = useState(false)
-  const { trackEvent } = useEventTrackingContext()
-  const { push } = useHistoryFunctions()
-  const { showToast } = useTripleClientActions()
+  const trackEvent = useTrackEvent()
+  const { addUriHash } = useHashRouter()
+  const { showToast } = useClientAppActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview, isLoading: isLikeLoading } =
+  const { mutate: likeReview, isPending: isLikeLoading } =
     useLikeReviewMutation()
-  const { mutate: unlikeReview, isLoading: isUnlikeLoading } =
+  const { mutate: unlikeReview, isPending: isUnlikeLoading } =
     useUnlikeReviewMutation()
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
-  const handleUserClick = useAppCallback(
+  const handleUserClick = useClientAppCallback(
     TransitionType.ReviewProfile,
     useSessionCallback(
       useCallback(() => {
@@ -172,7 +173,7 @@ export function ReviewElement({
         })
 
         if (unregister) {
-          showToast?.(t(['taltoehan-sayongjaibnida.', '탈퇴한 사용자입니다.']))
+          showToast?.(t('탈퇴한 사용자입니다.'))
         } else {
           navigateUserDetail(uid)
         }
@@ -189,22 +190,22 @@ export function ReviewElement({
     ),
   )
 
-  const handleMenuClick = useAppCallback(
+  const handleMenuClick = useClientAppCallback(
     TransitionType.ReviewMenuSelect,
     useSessionCallback(
       useCallback(() => {
         if (isMyReview) {
-          push(HASH_MY_REVIEW_ACTION_SHEET)
+          addUriHash(HASH_MY_REVIEW_ACTION_SHEET)
         } else {
           onMenuClick?.(review.id)
-          push(HASH_REVIEW_ACTION_SHEET)
+          addUriHash(HASH_REVIEW_ACTION_SHEET)
         }
-      }, [isMyReview, onMenuClick, push, review.id]),
+      }, [isMyReview, onMenuClick, addUriHash, review.id]),
       { triggeredEventAction: '리뷰_메뉴_선택' },
     ),
   )
 
-  const handleReviewClick = useAppCallback(
+  const handleReviewClick = useClientAppCallback(
     TransitionType.ReviewSelect,
     useCallback(() => {
       trackEvent({
@@ -257,7 +258,7 @@ export function ReviewElement({
     { triggeredEventAction: likeButtonAction },
   )
 
-  const handleMessageCountClick = useAppCallback(
+  const handleMessageCountClick = useClientAppCallback(
     TransitionType.ReviewCommentSelect,
     useSessionCallback(
       useCallback(() => {
@@ -336,10 +337,7 @@ export function ReviewElement({
 
         <Content onClick={handleReviewClick}>
           {blinded ? (
-            t([
-              'singoga-jeobsudoeeo-beulraindeu-ceoridoeeossseubnida.',
-              '신고가 접수되어 블라인드 처리되었습니다.',
-            ])
+            t('신고가 접수되어 블라인드 처리되었습니다.')
           ) : comment ? (
             unfolded ? (
               comment
@@ -482,23 +480,17 @@ function RateDescription({
 }
 
 function ReviewDayInfo({ visitDate }: { visitDate: Date }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const visitYear = moment(visitDate).year()
   const visitMonth = moment(visitDate).month() + 1
 
   return (
     <Text size={13} color="gray700" lineHeight="13px">
-      {t(
-        [
-          'visityear-nyeon-visitmonth-weol-yeohaeng',
-          '{{visitYear}}년 {{visitMonth}}월 여행',
-        ],
-        {
-          visitYear,
-          visitMonth,
-        },
-      )}
+      {t('{{visitYear}}년 {{visitMonth}}월 여행', {
+        visitYear,
+        visitMonth,
+      })}
     </Text>
   )
 }

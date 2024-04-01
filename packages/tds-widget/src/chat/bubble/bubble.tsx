@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
-import { Text } from '@titicaca/core-elements'
 import { PropsWithChildren } from 'react'
 import { useLongPress } from 'use-long-press'
+import { Text } from '@titicaca/tds-ui'
 
 import { BubbleCSSProp, BubbleProp } from './type'
 

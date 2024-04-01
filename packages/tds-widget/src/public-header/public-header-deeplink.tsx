@@ -1,5 +1,5 @@
-import { useTranslation } from '@titicaca/next-i18next'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useTranslation } from 'react-i18next'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeperator } from './extra-action-seperator'
@@ -15,9 +15,9 @@ export function PublicHeaderDeeplink({
   deeplinkPath,
   DeeplinkComponent,
 }: Props) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
   const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
   return DeeplinkComponent ? (
@@ -33,13 +33,13 @@ export function PublicHeaderDeeplink({
             fa: {
               action: '헤더_설치유도_선택',
             },
-            pixel: {
+            metaPixel: {
               action: '헤더_설치유도_선택',
             },
           })
         }
       >
-        {t(['aebeseo-bogi', '앱에서 보기'])}
+        {t('앱에서 보기')}
       </ExtraActionItem>
     </>
   )
