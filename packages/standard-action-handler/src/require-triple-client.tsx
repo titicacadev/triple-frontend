@@ -1,5 +1,5 @@
 import qs from 'qs'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/triple-web'
 
 import { WebActionParams } from './types'
 
