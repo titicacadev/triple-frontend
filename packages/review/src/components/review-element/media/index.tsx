@@ -63,7 +63,7 @@ function Media({ media, reviewId }: Props) {
       return showLoginCtaModal(undefined, '리뷰_리뷰썸네일_클릭')
     }
 
-    const originalIndex = media.findIndex(
+    const originalIndex = sortedMedia.findIndex(
       (originalMedium) => originalMedium.id === medium.id,
     )
 
