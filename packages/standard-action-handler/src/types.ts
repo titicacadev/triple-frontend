@@ -1,6 +1,5 @@
+import { ClientAppValue, TransitionType } from '@titicaca/triple-web'
 import { UrlElements } from '@titicaca/view-utilities'
-import { App } from '@titicaca/react-triple-client-interfaces'
-import { TransitionType } from '@titicaca/modals'
 
 export interface NavigateOptions {
   target?: 'browser'
@@ -23,7 +22,7 @@ export interface ContextOptions {
     href: string
     target: TargetType
   }) => void
-  app?: App | null
+  app?: ClientAppValue
   showTransitionModal?: (type: TransitionType) => void
 }
 
