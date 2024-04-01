@@ -12,7 +12,7 @@ function trigger(key: string) {
 
 function getSnapshot(key: string, initialValue: string | undefined) {
   try {
-    return localStorage.getItem(key)
+    return localStorage.getItem(key) ?? initialValue ?? null
   } catch (error) {
     inMemoryStorage.set(key, initialValue ?? null)
     return initialValue ?? null
@@ -23,6 +23,13 @@ function getServerSnapshot(initialValue: string | undefined) {
   return initialValue ?? null
 }
 
+export function useLocalStorage(
+  key: string,
+): [string | null, (value: string) => void, () => void]
+export function useLocalStorage(
+  key: string,
+  initialValue: string,
+): [string, (value: string) => void, () => void]
 export function useLocalStorage(
   key: string,
   initialValue?: string,

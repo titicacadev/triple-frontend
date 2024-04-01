@@ -12,7 +12,7 @@ function trigger(key: string) {
 
 function getSnapshot(key: string, initialValue: string | undefined) {
   try {
-    return sessionStorage.getItem(key)
+    return sessionStorage.getItem(key) ?? initialValue ?? null
   } catch (error) {
     inMemoryStorage.set(key, initialValue ?? null)
     return initialValue ?? null
@@ -23,6 +23,13 @@ function getServerSnapshot(initialValue: string | undefined) {
   return initialValue ?? null
 }
 
+export function useSessionStorage(
+  key: string,
+): [string | null, (value: string) => void, () => void]
+export function useSessionStorage(
+  key: string,
+  initialValue: string,
+): [string, (value: string) => void, () => void]
 export function useSessionStorage(
   key: string,
   initialValue?: string,
