@@ -55,7 +55,7 @@ export default function Carousel({
 }: CarouselProps) {
   const app = useTripleClientMetadata()
   const sessionAvailable = useSessionAvailability()
-  const { trackEvent, trackSimpleEvent } = useEventTrackingContext()
+  const { trackEvent } = useEventTrackingContext()
   const [currentPage, setCurrentPage] = useState(0)
 
   const loginRequired = !app && !sessionAvailable
@@ -99,7 +99,7 @@ export default function Carousel({
       setCurrentPage(index)
 
       if (loginRequired && index === SHOW_CTA_FROM_INDEX) {
-        return trackSimpleEvent({ action: '대표사진_앱에서더보기_노출' })
+        return trackEvent({ fa: { action: '대표사진_더보기_노출' } })
       }
 
       const currentImage = images[index]
@@ -131,7 +131,6 @@ export default function Carousel({
       images,
       onImagesFetch,
       trackEvent,
-      trackSimpleEvent,
       loginRequired,
     ],
   )

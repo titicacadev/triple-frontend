@@ -63,7 +63,7 @@ function Media({ media, reviewId }: Props) {
       return showLoginCtaModal(undefined, '리뷰_리뷰썸네일_클릭')
     }
 
-    const originalIndex = media.findIndex(
+    const originalIndex = sortedMedia.findIndex(
       (originalMedium) => originalMedium.id === medium.id,
     )
 
@@ -87,7 +87,7 @@ function Media({ media, reviewId }: Props) {
         action: '이미지팝업_미디어_노출',
         media_id: medium.id,
         type: medium.type === 'image' ? '사진' : '비디오',
-        position: (index || 0 + 1).toString(),
+        position: ((index || 0) + 1).toString(),
       },
     })
   }
