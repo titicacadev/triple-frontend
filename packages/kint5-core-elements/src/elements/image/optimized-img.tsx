@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-constant-condition */
 import { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
+
+import { TripleKoreaBi } from '../icon'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
@@ -54,7 +58,7 @@ export function ImageOptimizedImg({
   OptimizedImgProps) {
   const { borderRadius, overlayMounted } = useImageState()
 
-  const [isLoad, setIsLoad] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const [imgAttributes, setImgAttributes] = useState<{
     src?: string
     srcSet?: string
@@ -97,7 +101,7 @@ export function ImageOptimizedImg({
           )
           .join(', ')
 
-        setIsLoad(event.isIntersecting)
+        setIsLoaded(event.isIntersecting)
 
         setImgAttributes((prev) => ({
           ...prev,
@@ -119,8 +123,21 @@ export function ImageOptimizedImg({
 
   return (
     <StaticIntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
-      {!isLoad ? (
-        <Placeholder absolute={absolute} />
+      {!isLoaded ? (
+        <div>
+          <Placeholder absolute={absolute} />
+          <TripleKoreaBi
+            color="#B6BBC1"
+            css={{
+              width: 40,
+              height: 16,
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        </div>
       ) : (
         <Img
           {...imgAttributes}
