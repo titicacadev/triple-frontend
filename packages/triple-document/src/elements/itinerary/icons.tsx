@@ -115,7 +115,7 @@ export function Ship(props: IconDefaultProps) {
   )
 }
 
-export function Bicycle(props: IconDefaultProps) {
+export function Bike(props: IconDefaultProps) {
   return (
     <ImageIcon
       name="ico_contents_trans_bicycle"
