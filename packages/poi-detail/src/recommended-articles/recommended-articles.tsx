@@ -15,11 +15,18 @@ import {
 } from '@titicaca/app-installation-cta'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { Carousel } from '@titicaca/carousel'
+import styled from 'styled-components'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
 import ArticleEntry from './article-entry'
 import MoreButton from './more-button'
+
+const MobileCarousel = styled(Carousel)`
+  &.recommended_articles_carousel {
+    padding: 0;
+  }
+`
 
 function RecommendedArticles({
   regionId,
@@ -122,7 +129,7 @@ function RecommendedArticles({
       css={{
         marginTop: 50,
         marginBottom: 50,
-        padding: '0',
+        padding: 0,
       }}
     >
       <Responsive minWidth={768}>
@@ -183,10 +190,10 @@ function RecommendedArticles({
             '놓치기 아까운\n이 지역 꿀 정보',
           ])}
         </H1>
-
-        <Carousel
+        <MobileCarousel
           margin={{ top: 20 }}
           containerPadding={mobilePadding || { left: 30, right: 30 }}
+          className="recommended_articles_carousel"
         >
           {articleCardCta && (
             <Carousel.Item size="medium">
@@ -206,8 +213,7 @@ function RecommendedArticles({
               />
             </Carousel.Item>
           ))}
-        </Carousel>
-
+        </MobileCarousel>
         <Container
           css={formatMarginPadding(
             mobilePadding || { left: 30, right: 30 },
