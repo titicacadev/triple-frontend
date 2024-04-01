@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEnv } from '@titicaca/react-contexts'
+import { useEnv } from '@titicaca/triple-web'
 
 export function EssentialContentMeta({
   title: titleFromProps,
