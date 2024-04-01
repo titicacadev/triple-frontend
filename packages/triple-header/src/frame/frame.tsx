@@ -1,10 +1,10 @@
 import { ComponentType, useCallback, useMemo } from 'react'
-import { Container } from '@titicaca/core-elements'
-import { initialize } from '@titicaca/standard-action-handler'
+import { Container } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
-import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
+import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 import { useNavigate, useExternalRouter } from '@titicaca/router'
+import { initialize } from '@titicaca/standard-action-handler'
 
 import { FrameData, LinkEventHandler } from '../types'
 import { FRAMES } from '../frame'
@@ -52,8 +52,8 @@ export function Frame({
   const widthRatio = calculateFrameRatio(width)
   const heightRatio = calculateFrameRatio(height)
 
-  const trackEventWithMetadata = useEventTrackerWithMetadata()
-  const navigate = useNavigate()
+  const trackEventWithMetadata = useTrackEventWithMetadata()
+  const { navigate } = useNavigate()
   const routeExternally = useExternalRouter()
 
   const handleAction = useMemo(
