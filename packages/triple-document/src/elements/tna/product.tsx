@@ -1,10 +1,10 @@
 import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
-import { Text, Tag, Container, Image, Rating } from '@titicaca/core-elements'
+import { useTranslation } from 'react-i18next'
+import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
+import { OverlayScrapButton } from '@titicaca/tds-widget'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
-import { OverlayScrapButton } from '@titicaca/scrap-button'
-import { useUserAgentContext } from '@titicaca/react-contexts'
+import { useClientApp } from '@titicaca/triple-web'
 
 import { TnaProductData, DomesticArea } from './types'
 import { generateCoupon } from './helpers'
@@ -20,7 +20,7 @@ function Pricing({
   basePrice?: number
   salePrice: number
 }) {
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const formattedBasePrice = formatNumber(basePrice)
   const formattedSalePrice = formatNumber(salePrice)
@@ -50,13 +50,13 @@ function Pricing({
       <Container>
         {salePrice > 0 ? (
           <Text inline bold size={18} color="gray">
-            {t(['formattedsaleprice-weon', '{{formattedSalePrice}}원'], {
+            {t('{{formattedSalePrice}}원', {
               formattedSalePrice,
             })}
           </Text>
         ) : (
           <Text inline bold size={18} color="gray300">
-            {t('ilsipumjeol')}
+            {t('일시품절')}
           </Text>
         )}
 
@@ -68,7 +68,7 @@ function Pricing({
             strikethrough
             margin={{ left: 5 }}
           >
-            {t(['formattedbaseprice-weon', '{{formattedBasePrice}}원'], {
+            {t('{{formattedBasePrice}}원', {
               formattedBasePrice,
             })}
           </Text>
@@ -104,9 +104,8 @@ export function TnaProductWithPrice({
   onClick: (e: SyntheticEvent, product: TnaProductData, index: number) => void
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
-  const { t } = useTranslation('common-web')
-
-  const { isPublic } = useUserAgentContext()
+  const { t } = useTranslation('triple-frontend')
+  const app = useClientApp()
 
   const salePrice =
     typeof rawSalePrice === 'string' ? parseInt(rawSalePrice) : rawSalePrice
@@ -150,14 +149,15 @@ export function TnaProductWithPrice({
             {heroImage ? (
               <Image.Img
                 src={heroImage}
-                alt={t(['title-yi-sseomneil', '{{title}}의 썸네일'], { title })}
+                alt={t('{{title}}의 썸네일', { title })}
               />
             ) : (
               <Image.Placeholder src={PLACEHOLDER_IMAGE_URL} />
             )}
           </Image.FixedDimensionsFrame>
         </Image>
-        {isPublic ? (
+
+        {!app ? (
           <Container
             position="absolute"
             css={{
@@ -247,10 +247,7 @@ export function TnaProductWithPrice({
 
           {hasSelfPackageBenefit && (
             <Text bold size="small" color="gray700" margin={{ top: 4 }}>
-              {t([
-                'selpeupaekiji-cugahalin-ganeung',
-                '셀프패키지 추가할인 가능',
-              ])}
+              {t('셀프패키지 추가할인 가능')}
             </Text>
           )}
         </Container>

@@ -1,8 +1,8 @@
-import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useCallback } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
-import { Text, Button } from '@titicaca/core-elements'
+import { Button, Text } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import useHandleAddPoisToTrip from '../itinerary/use-handle-add-pois-to-trip'
 
@@ -28,7 +28,7 @@ export default function SaveToItinerary({
   geotag: Geotag
   disabled?: boolean
 }) {
-  const { trackEvent } = useEventTrackingContext()
+  const trackEvent = useTrackEvent()
 
   const { t } = useTranslation('common-web')
 

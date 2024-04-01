@@ -1,4 +1,4 @@
-import { HR1, HR2, HR3, HR4, HR5, HR6 } from '@titicaca/core-elements'
+import { HR1, HR2, HR3, HR4, HR5, HR6 } from '@titicaca/tds-ui'
 
 import { ElementSet } from '../types'
 

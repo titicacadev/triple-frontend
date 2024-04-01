@@ -1,13 +1,13 @@
 import { useCallback, MouseEvent } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 import {
   MapView,
   HotelCircleMarker,
   AttractionCircleMarker,
   RestaurantCircleMarker,
   DotPolyline,
-} from '@titicaca/map'
-import { useEnv } from '@titicaca/react-contexts'
+} from '@titicaca/tds-widget'
+import { useEnv } from '@titicaca/triple-web'
 import {
   Itinerary,
   ItineraryItemType,
