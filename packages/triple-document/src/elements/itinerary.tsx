@@ -34,6 +34,7 @@ import {
   Cable,
   Plane,
   Ship,
+  Bike,
 } from './itinerary/icons'
 import SaveToItinerary, { Geotag } from './itinerary/save-to-itinerary'
 
@@ -293,6 +294,8 @@ function TransportationIcon(type?: TransportationType) {
       return Cable
     case 'ship':
       return Ship
+    case 'bike':
+      return Bike
     default:
       return () => null
   }

@@ -115,6 +115,17 @@ export function Ship(props: IconDefaultProps) {
   )
 }
 
+export function Bike(props: IconDefaultProps) {
+  return (
+    <ImageIcon
+      name="ico_contents_trans_bicycle"
+      width={11}
+      height={11}
+      {...props}
+    />
+  )
+}
+
 export function Download({
   color,
   width = 18,
