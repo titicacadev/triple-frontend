@@ -1,22 +1,18 @@
 import { MouseEvent, forwardRef } from 'react'
 import { Ratio } from '@titicaca/kint5-core-elements'
 import { SwiperProps, SwiperRef, SwiperSlide } from 'swiper/react'
+import { ImageMeta } from '@titicaca/type-definitions'
 
-import { Carousel } from './carousel'
-import { CarouselImageMeta } from './types'
 import { Content } from './content'
+import { Carousel } from './carousel'
 
 interface ImageCarouselProps extends SwiperProps {
   className?: string
-  images: CarouselImageMeta[]
+  images: ImageMeta[]
   frame?: Ratio
   displayedTotalCount?: number
   noPageLabel?: boolean
-  onImageClick?: (
-    e?: MouseEvent,
-    image?: CarouselImageMeta,
-    index?: number,
-  ) => void
+  onImageClick?: (e?: MouseEvent, image?: ImageMeta, index?: number) => void
 }
 
 export const ImageCarousel = forwardRef<SwiperRef, ImageCarouselProps>(
@@ -44,7 +40,7 @@ export const ImageCarousel = forwardRef<SwiperRef, ImageCarouselProps>(
         {images.map((image, index) => (
           <SwiperSlide key={image.id}>
             <Content
-              medium={image}
+              image={image}
               frame={frame}
               onClick={(event) => onImageClick?.(event, image, index)}
             />

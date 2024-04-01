@@ -1,15 +1,14 @@
 import { MouseEventHandler } from 'react'
 import { Image, Ratio } from '@titicaca/kint5-core-elements'
-
-import { CarouselImageMeta } from './types'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 interface Props {
-  medium: CarouselImageMeta
+  image: ImageMeta
   frame?: Ratio
   onClick?: MouseEventHandler
 }
 
-export function Content({ medium, frame, onClick }: Props) {
+export function Content({ image, frame, onClick }: Props) {
   return (
     <Image borderRadius={0}>
       <Image.FixedRatioFrame
@@ -17,7 +16,10 @@ export function Content({ medium, frame, onClick }: Props) {
         onClick={onClick}
         css={{ backgroundColor: 'var(--color-kint5-gray0)' }}
       >
-        <Image.Img src={medium.url.large} alt={medium.caption} />
+        <Image.Img
+          src={image.sizes.large.url}
+          alt={image.title || image.description || ''}
+        />
       </Image.FixedRatioFrame>
     </Image>
   )

@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { RendererParams } from './types'
-
 const PageLabelText = styled.div`
   font-size: 12px;
   font-weight: bold;
@@ -15,7 +13,12 @@ const PageLabelContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `
 
-export function PageLabel({ currentIndex, totalCount }: RendererParams) {
+interface PageLabelProps {
+  currentIndex: number
+  totalCount: number
+}
+
+export function PageLabel({ currentIndex, totalCount }: PageLabelProps) {
   return (
     <PageLabelContainer>
       <PageLabelText>{`${currentIndex + 1} / ${totalCount}`}</PageLabelText>
