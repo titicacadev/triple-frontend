@@ -7,6 +7,7 @@ import {
   OptimizedImgProps,
   Container,
   ThumbnailBorder,
+  TripleKoreaBi,
 } from '@titicaca/kint5-core-elements'
 import { ImageMeta, FrameRatioAndSizes } from '@titicaca/type-definitions'
 
@@ -91,11 +92,24 @@ export default function Media({
                 {...props}
               />
             ) : (
-              <Image.Img
-                src={sizes.large.url}
-                alt={title || description || undefined}
-                css={{ display: 'block' }}
-              />
+              <>
+                <Image.Img
+                  src={sizes.large.url}
+                  alt={title || description || undefined}
+                  css={{ display: 'block', zIndex: 1 }}
+                />
+                <TripleKoreaBi
+                  color="#B6BBC1"
+                  css={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 40,
+                    height: 16,
+                  }}
+                />
+              </>
             )}
           </Image.FixedRatioFrame>
         </Image>
