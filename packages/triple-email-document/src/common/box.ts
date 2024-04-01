@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { MarginPadding } from '@titicaca/core-elements'
+import { MarginPadding } from '@titicaca/tds-ui'
 
 const Box = styled.td<{ padding?: MarginPadding }>`
   /* stylelint-disable function-whitespace-after */
