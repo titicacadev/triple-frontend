@@ -14,7 +14,7 @@ const VideoWrapper = styled(Container)`
 interface VideoProps {
   visible: boolean
   medium: ImageMeta
-  onVideoIntersecting: (media: ImageMeta) => void
+  onVideoIntersecting: (medium: ImageMeta) => void
 }
 
 export function Video({ medium, visible, onVideoIntersecting }: VideoProps) {
