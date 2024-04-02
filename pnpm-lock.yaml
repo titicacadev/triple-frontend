@@ -1070,6 +1070,37 @@ importers:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
 
+  packages/kint5-media-popup:
+    dependencies:
+      '@titicaca/kint5-core-elements':
+        specifier: workspace:*
+        version: link:../kint5-core-elements
+      '@titicaca/kint5-media-carousel':
+        specifier: workspace:*
+        version: link:../kint5-media-carousel
+      '@titicaca/kint5-popup':
+        specifier: workspace:*
+        version: link:../kint5-popup
+      '@titicaca/next-i18next':
+        specifier: '*'
+        version: 13.8.5(i18next@22.5.1)(next@13.4.13)(react-i18next@12.3.1)(react@18.2.0)
+      '@titicaca/type-definitions':
+        specifier: workspace:*
+        version: link:../type-definitions
+      swiper:
+        specifier: ^11.1.0
+        version: 11.1.0
+    devDependencies:
+      '@titicaca/react-contexts':
+        specifier: workspace:*
+        version: link:../react-contexts
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      styled-components:
+        specifier: ^5.3.11
+        version: 5.3.11(@babel/core@7.22.11)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
+
   packages/kint5-meta-tags:
     devDependencies:
       '@titicaca/i18n':
@@ -2590,7 +2621,7 @@ packages:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
       '@babel/runtime': 7.22.6
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.11)
       chalk: 4.1.2
@@ -2654,7 +2685,7 @@ packages:
       '@babel/helpers': 7.22.11
       '@babel/parser': 7.22.13
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       convert-source-map: 1.9.0
       debug: 4.3.4(supports-color@5.5.0)
@@ -2826,7 +2857,7 @@ packages:
       '@babel/helper-member-expression-to-functions': 7.22.5
       '@babel/helper-optimise-call-expression': 7.22.5
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -2877,7 +2908,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
     transitivePeerDependencies:
       - supports-color
@@ -4005,7 +4036,7 @@ packages:
       '@babel/parser': 7.22.13
       '@babel/types': 7.22.11
 
-  /@babel/traverse@7.22.11(supports-color@5.5.0):
+  /@babel/traverse@7.22.11:
     resolution: {integrity: sha512-mzAenteTfomcB7mfPtyi+4oe5BZ6MXxWcn4CX+h4IRJ+OOGXBrWU6jDQavkQI9Vuc5P+donFabBfFCcmWka9lQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
@@ -5372,7 +5403,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.13
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.11)
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@graphql-tools/utils': 10.0.3(graphql@16.8.0)
       graphql: 16.8.0
@@ -8423,7 +8454,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.4.0
@@ -8439,7 +8470,7 @@ packages:
     dependencies:
       '@babel/generator': 7.22.10
       '@babel/parser': 7.22.13
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       '@storybook/csf': 0.1.1
       '@storybook/types': 7.5.1
@@ -9179,7 +9210,6 @@ packages:
       next: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.2.0)(react@18.2.0)
-    dev: true
 
   /@titicaca/prettier-config-triple@1.1.0(prettier@3.0.3):
     resolution: {integrity: sha512-x60OvydMgeUkTijFOWLef4KaFYGNS/90M5SGNiyqgUqZ2w4TyeIvsE85woUIwExo0GAgMBQY8LRGEUjchWN+zg==}
@@ -9426,7 +9456,6 @@ packages:
     dependencies:
       '@types/react': 18.2.21
       hoist-non-react-statics: 3.3.2
-    dev: true
 
   /@types/html-minifier-terser@6.1.0:
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==}
@@ -9603,7 +9632,6 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/qs@6.9.9:
     resolution: {integrity: sha512-wYLxw35euwqGvTDx6zfY1vokBFnsK0HNrzc6xNHchxfO2hpuRg74GbkEW7e3sSmPvj0TjCDT1VCa6OtHXnubsg==}
@@ -9645,7 +9673,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
-    dev: true
 
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
@@ -9655,7 +9682,6 @@ packages:
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
-    dev: true
 
   /@types/scroll-to-element@2.0.4:
     resolution: {integrity: sha512-5UkMkfIFNC2Va00QFJb2wwf8C3pNbQtozcrx/KqDKrrG4oY8Vo5q+/J+IWMpv0v5U4edLYMdd/eu57SathQ6IA==}
@@ -11856,7 +11882,6 @@ packages:
   /core-js@3.31.1:
     resolution: {integrity: sha512-2sKLtfq1eFST7l7v62zaqXacPc7uG8ZAya8ogijLhTtaKNcpzpB4TMoTw2Si+8GYKRwFPMMtUT0263QFWFfqyQ==}
     requiresBuild: true
-    dev: true
 
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -13325,7 +13350,7 @@ packages:
     resolution: {integrity: sha512-YNF+mZ/Wu2FU/gvmzuWtYc8rloubL7wfXCTgouFrnjGVXPA/EeYYA7pupXWrb3Iv1cTBeSSxxJIbK23l4MRNqg==}
     engines: {node: '>=8.3.0'}
     dependencies:
-      '@babel/traverse': 7.22.11(supports-color@5.5.0)
+      '@babel/traverse': 7.22.11
       '@babel/types': 7.22.11
       c8: 7.14.0
     transitivePeerDependencies:
@@ -14643,7 +14668,6 @@ packages:
     resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
     dependencies:
       void-elements: 3.1.0
-    dev: true
 
   /html-tags@3.3.1:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
@@ -14786,13 +14810,11 @@ packages:
 
   /i18next-fs-backend@2.1.5:
     resolution: {integrity: sha512-7fgSH8nVhXSBYPHR/W3tEXXhcnwHwNiND4Dfx9knzPzdsWTUTL/TdDVV+DY0dL0asHKLbdoJaXS4LdVW6R8MVQ==}
-    dev: true
 
   /i18next@22.5.1:
     resolution: {integrity: sha512-8TGPgM3pAD+VRsMtUMNknRz3kzqwp/gPALrWMsDnmC1mKqJwpWyooQRLMcbTwq8z8YwSmuj+ZYvc+xCuEpkssA==}
     dependencies:
       '@babel/runtime': 7.22.6
-    dev: true
 
   /iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -19271,7 +19293,6 @@ packages:
       i18next: 22.5.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
   /react-input-mask@2.0.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
@@ -21925,7 +21946,6 @@ packages:
   /void-elements@3.1.0:
     resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /w3c-xmlserializer@4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
