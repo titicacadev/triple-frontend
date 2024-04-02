@@ -53,7 +53,7 @@ function Actions({
         flex
         css={{
           alignItems: 'flex-start',
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
         }}
       >
         {onScrapedChange ? (
