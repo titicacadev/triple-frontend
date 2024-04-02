@@ -43,7 +43,8 @@
     "@titicaca/kint5-core-elements": "workspace:*",
     "@titicaca/kint5-media-carousel": "workspace:*",
     "@titicaca/kint5-popup": "workspace:*",
-    "@titicaca/type-definitions": "workspace:*"
+    "@titicaca/type-definitions": "workspace:*",
+    "swiper": "^11.1.0"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
@@ -54,7 +55,6 @@
     "@titicaca/next-i18next": "*",
     "@titicaca/react-contexts": "workspace:*",
     "react": "^18.0",
-    "styled-components": "^5.3.11",
-    "swiper": "^11.1.0"
+    "styled-components": "^5.3.11"
   }
 }

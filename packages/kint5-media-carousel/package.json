@@ -41,7 +41,8 @@
   },
   "dependencies": {
     "@titicaca/kint5-core-elements": "workspace:*",
-    "@titicaca/type-definitions": "workspace:*"
+    "@titicaca/type-definitions": "workspace:*",
+    "swiper": "^11.1.0"
   },
   "devDependencies": {
     "react": "^18.2.0",
@@ -49,7 +50,6 @@
   },
   "peerDependencies": {
     "react": "^18.0",
-    "styled-components": "^5.3.11",
-    "swiper": "^11.1.0"
+    "styled-components": "^5.3.11"
   }
 }
