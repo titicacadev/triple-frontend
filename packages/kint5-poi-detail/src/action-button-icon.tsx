@@ -2,13 +2,20 @@ import {
   BubbleIcon,
   CalenderIcon,
   Container,
+  DirectionsSignIcon,
   EmptyHeartIcon,
   FilledHeartIcon,
 } from '@titicaca/kint5-core-elements'
 
 import { PoiActionShareIcon } from './action-share-icon'
 
-type IconType = 'scraped' | 'notScraped' | 'schedule' | 'review' | 'share'
+type IconType =
+  | 'scraped'
+  | 'notScraped'
+  | 'schedule'
+  | 'review'
+  | 'share'
+  | 'getDirections'
 
 const SIZE_PX = 24
 
@@ -34,6 +41,8 @@ export function ActionButtonIcon({ type }: { type: IconType }) {
             return <BubbleIcon width={SIZE_PX} height={SIZE_PX} />
           case 'share':
             return <PoiActionShareIcon width={SIZE_PX} height={SIZE_PX} />
+          case 'getDirections':
+            return <DirectionsSignIcon width={SIZE_PX} height={SIZE_PX} />
         }
       })()}
     </Container>

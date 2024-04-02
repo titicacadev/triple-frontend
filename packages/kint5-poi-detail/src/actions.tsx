@@ -12,8 +12,8 @@ import { ActionButtonIcon } from './action-button-icon'
 
 const ActionButton = styled.button`
   position: relative;
-  width: 80px;
-  flex: 0 0 80px;
+  width: 61px;
+  flex: 0 0 61px;
 `
 
 const ActionButtonText = styled(Text)`
@@ -27,6 +27,7 @@ function Actions({
   reviewed,
   onScheduleAdd,
   onScrapedChange,
+  onGetDirection,
   onContentShare,
   onReviewEdit,
   noDivider = false,
@@ -37,6 +38,7 @@ function Actions({
   reviewed: boolean
   onScheduleAdd?: () => void
   onScrapedChange?: () => void
+  onGetDirection: () => void
   onContentShare: () => void
   onReviewEdit: () => void
   margin?: MarginPadding
@@ -70,6 +72,10 @@ function Actions({
             <ActionButtonIcon type="schedule" />
           </ActionButton>
         ) : null}
+        <ActionButton onClick={onGetDirection}>
+          <ActionButtonText>{t(['gilcajgi', '길찾기'])}</ActionButtonText>
+          <ActionButtonIcon type="getDirections" />
+        </ActionButton>
         <ActionButton onClick={onReviewEdit}>
           <ActionButtonText>
             {reviewed
