@@ -23,6 +23,9 @@ const Badge = styled.img`
   height: 18px;
 `
 
+const DEFAULT_USER_PROFILE_IMAGE =
+  'https://assets.triple.guide/images/ico-default-profile.svg'
+
 export default function User({
   user: { photo, name, userBoard, mileage, unregister },
   onClick,
@@ -37,7 +40,7 @@ export default function User({
 
   return (
     <Container display="flex" css={{ marginBottom: 16 }}>
-      {photo ? <UserPhoto src={photo} onClick={onClick} /> : null}
+      <UserPhoto src={photo || DEFAULT_USER_PROFILE_IMAGE} onClick={onClick} />
       {badges?.[0]?.icon?.image_url ? (
         <Badge src={badges[0]?.icon.image_url} />
       ) : null}
