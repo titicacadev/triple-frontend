@@ -5,9 +5,8 @@ import {
   DirectionsSignIcon,
   EmptyHeartIcon,
   FilledHeartIcon,
+  ShareIcon,
 } from '@titicaca/kint5-core-elements'
-
-import { PoiActionShareIcon } from './action-share-icon'
 
 type IconType =
   | 'scraped'
@@ -40,7 +39,7 @@ export function ActionButtonIcon({ type }: { type: IconType }) {
           case 'review':
             return <BubbleIcon width={SIZE_PX} height={SIZE_PX} />
           case 'share':
-            return <PoiActionShareIcon width={SIZE_PX} height={SIZE_PX} />
+            return <ShareIcon width={SIZE_PX} height={SIZE_PX} />
           case 'getDirections':
             return <DirectionsSignIcon width={SIZE_PX} height={SIZE_PX} />
         }
