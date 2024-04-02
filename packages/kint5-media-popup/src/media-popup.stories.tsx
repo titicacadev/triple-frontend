@@ -31,9 +31,9 @@ export function FiveImagesExample() {
 FiveImagesExample.storyName = '이미지 다섯 개'
 
 export function SevenImagesExample() {
-  return <MediaPopup open media={SEVEN_IMAGES} />
+  return <MediaPopup open media={SEVEN_IMAGES} initialMediaIndex={3} />
 }
-SevenImagesExample.storyName = '이미지 일곱 개'
+SevenImagesExample.storyName = '이미지 일곱 개 / 초기 인덱스 3'
 
 export function OneVideoExample() {
   return <MediaPopup open media={ONE_VIDEO} />

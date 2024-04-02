@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Controller } from 'swiper/modules'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import {
@@ -10,8 +9,9 @@ import {
   Text,
 } from '@titicaca/kint5-core-elements'
 import { Popup } from '@titicaca/kint5-popup'
-import { MediaCarousel } from '@titicaca/kint5-media-carousel'
+import { Ratio } from '@titicaca/type-definitions'
 
+import { MediaPopupCarousel } from './carousel'
 import { MediumMeta } from './types'
 import { GridView } from './grid-view'
 
@@ -19,8 +19,10 @@ interface MediaPopupProps {
   media: MediumMeta[]
   open?: boolean
   initialMediaIndex?: number
+  frame?: Ratio
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
+  onMediumClick?: () => void
 }
 
 export const MEDIA_POPUP_HASH = 'hash.media-popup'
@@ -29,19 +31,23 @@ export function MediaPopup({
   open,
   media,
   initialMediaIndex = 0,
+  frame = '1:1',
   onClose,
   onMediumChange,
+  onMediumClick,
 }: MediaPopupProps) {
   const { t } = useTranslation('common-web')
   const { back } = useHistoryFunctions()
 
   const uriHash = useUriHash()
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(initialMediaIndex)
 
   const numOfImages = media.length
 
-  const handleMediaGridClick = (clickedMediaIndex: number) => {
-    onMediumChange?.(clickedMediaIndex)
+  const handleMediaGridClick = (clickedMediumIndex: number) => {
+    onMediumChange?.(clickedMediumIndex)
+    setCurrentMediaIndex(clickedMediumIndex)
     setRenderMediaGrid(false)
   }
 
@@ -61,18 +67,16 @@ export function MediaPopup({
           onLeftButtonClick={handleOnClose}
           leftButtonIconType="close"
           centerContent={
-            initialMediaIndex !== null ? (
-              <FlexBox flex alignItems="center">
-                <Text>
-                  {renderMediaGrid ? t('사진') : initialMediaIndex + 1}
-                  &nbsp;
-                </Text>
-                <Text css={{ color: 'var(--color-kint5-gray40)' }}>
-                  {renderMediaGrid ? '' : '/ '}
-                  {numOfImages}
-                </Text>
-              </FlexBox>
-            ) : null
+            <FlexBox flex alignItems="center">
+              <Text>
+                {renderMediaGrid ? t('사진') : currentMediaIndex + 1}
+                &nbsp;
+              </Text>
+              <Text css={{ color: 'var(--color-kint5-gray40)' }}>
+                {renderMediaGrid ? '' : '/ '}
+                {numOfImages}
+              </Text>
+            </FlexBox>
           }
           rightContent={
             !renderMediaGrid && numOfImages > 1 ? (
@@ -98,15 +102,15 @@ export function MediaPopup({
             transform: 'translateY(-50%)',
           }}
         >
-          <MediaCarousel
-            modules={[Controller]}
-            noPageLabel
+          <MediaPopupCarousel
             media={media}
-            frame="1:1"
-            initialSlide={initialMediaIndex}
-            onSlideChange={({ activeIndex }: { activeIndex: number }) => {
-              onMediumChange?.(activeIndex)
+            currentMediaIndex={currentMediaIndex}
+            frame={frame}
+            onSlide={(mediaIndex) => {
+              setCurrentMediaIndex(mediaIndex)
+              onMediumChange?.(mediaIndex)
             }}
+            onMediumClick={onMediumClick}
           />
         </div>
       )}

@@ -42,8 +42,7 @@
   "dependencies": {
     "@titicaca/kint5-core-elements": "workspace:*",
     "@titicaca/kint5-popup": "workspace:*",
-    "@titicaca/type-definitions": "workspace:*",
-    "swiper": "^11.1.0"
+    "@titicaca/type-definitions": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/react-contexts": "workspace:*",
