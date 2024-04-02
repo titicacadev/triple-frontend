@@ -15,9 +15,9 @@ import {
 } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { MediaPopup, MEDIA_POPUP_HASH } from '@titicaca/kint5-media-popup'
 
 import CtaOverlay from './cta-overlay'
-import { PoiImagesPopup, POI_IMAGES_POPUP_HASH } from './poi-images-popup'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -66,7 +66,7 @@ export default function Carousel({
     const action = '대표사진선택'
     const label = '선택'
 
-    push(POI_IMAGES_POPUP_HASH, { useRouter: true })
+    push(MEDIA_POPUP_HASH, { useRouter: true })
 
     trackEvent({
       fa: {
@@ -174,19 +174,11 @@ export default function Carousel({
           />
         </Container>
       </Responsive>
-      <PoiImagesPopup
-        images={visibleImages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        displayedTotalCount={totalImagesCount}
-        borderRadius={borderRadius}
-        onImageClick={handleImageClick}
-        onMoveEnd={handlePageChange}
-        ImageSource={ImageSource}
-        showMoreRenderer={CTA}
-        pageLabelRenderer={() => null}
-        optimized={optimized}
-        height={height}
+      <MediaPopup
+        media={visibleImages}
+        initialMediaIndex={currentPage}
+        onMediumChange={setCurrentPage}
+        onMediumClick={handleImageClick}
       />
     </>
   )
