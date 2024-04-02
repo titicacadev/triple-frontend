@@ -1,12 +1,11 @@
 import { useCallback } from 'react'
 import qs, { ParsedQs } from 'qs'
-import { useEnv } from '@titicaca/react-contexts'
 import {
   checkIfRoutable,
   generateUrl,
   parseUrl,
 } from '@titicaca/view-utilities'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 
 import { AllowSource } from '../common/disabled-link-notifier'
 import { TargetType } from '../common/target'
@@ -206,7 +205,7 @@ export function useHrefToProps(params?: {
   allowSource: AllowSource
 } {
   const { webUrlBase } = useEnv()
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
 
   const { onError } = params || {}
 

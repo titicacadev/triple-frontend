@@ -1,9 +1,13 @@
 /* eslint-disable jest/no-conditional-expect */
 /* TODO: jest/no-conditional-expect 해결하기 */
 import { renderHook } from '@testing-library/react'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
-import { useSessionAvailability } from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  ClientAppName,
+  useClientApp,
+  useLoginCtaModal,
+  useSessionAvailability,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
 
@@ -145,11 +149,16 @@ function prepareTest({
   sessionAvailable: boolean
 }) {
   ;(
-    useTripleClientMetadata as unknown as jest.MockedFunction<
-      () => ReturnType<typeof useTripleClientMetadata>
+    useClientApp as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientApp>
     >
   ).mockImplementation(() =>
-    isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },
+    isPublic
+      ? null
+      : {
+          metadata: { name: ClientAppName.iOS, version: '5.13.0' },
+          device: { autoplay: 'always', networkType: 'unknown' },
+        },
   )
   ;(
     useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
@@ -160,10 +169,10 @@ function prepareTest({
 
   ;(
     useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal }))
+  ).mockImplementation(() => ({ show: showTransitionModal, close: () => {} }))
   ;(
     useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal }))
+  ).mockImplementation(() => ({ show: showLoginCtaModal, close: () => {} }))
 
   return { showTransitionModal, showLoginCtaModal }
 }

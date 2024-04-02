@@ -1,20 +1,17 @@
-import {
-  useTripleClientMetadata,
-  useTripleClientNavigate,
-  OutlinkOptions,
-  AppSpecificLinkProps,
-} from '@titicaca/react-triple-client-interfaces'
+import { useClientApp } from '@titicaca/triple-web'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
 import { TargetProps } from '../common/target'
-import { HrefProps } from '../common/types'
+import { AppSpecificLinkProps, HrefProps } from '../common/types'
+import { OpenOutlinkOptions, useOpenInlink, useOpenOutlink } from '../links'
 
 import { checkHrefIsAbsoluteUrl } from './utils'
 
 export function useExternalHrefHandler() {
-  const app = useTripleClientMetadata()
-  const { openInlink, openOutlink } = useTripleClientNavigate()
+  const app = useClientApp()
   const addWebUrlBase = useWebUrlBaseAdder()
+  const openInlink = useOpenInlink()
+  const openOutlink = useOpenOutlink()
 
   const handleHrefExternally = ({
     href,
@@ -28,7 +25,7 @@ export function useExternalHrefHandler() {
   }: HrefProps &
     TargetProps &
     AppSpecificLinkProps &
-    Pick<OutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
+    Pick<OpenOutlinkOptions, 'title'> & { stopDefaultHandler: () => void }) => {
     const outOfTriple = checkHrefIsAbsoluteUrl(href)
 
     if (target === 'current' && app && outOfTriple === true) {
@@ -44,7 +41,7 @@ export function useExternalHrefHandler() {
         openOutlink(href, { title })
       } else {
         openInlink(href, {
-          lnbTarget,
+          lnb: lnbTarget,
           noNavbar,
           shouldPresent,
           swipeToClose,
