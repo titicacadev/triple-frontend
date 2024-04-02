@@ -1,11 +1,9 @@
-import { AppSpecificLinkProps } from '@titicaca/react-triple-client-interfaces'
-
 import {
   AllowSourceProps,
   useDisabledLinkNotifierCreator,
 } from '../common/disabled-link-notifier'
 import { TargetProps } from '../common/target'
-import { HrefProps } from '../common/types'
+import { AppSpecificLinkProps, HrefProps } from '../common/types'
 import useDefaultRouter from '../common/default-router'
 
 import { useBasePathAdder } from './base-path'

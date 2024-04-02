@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren, useEffect } from 'react'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp } from '@titicaca/triple-web'
 
 import { ANCHOR_TARGET_MAP } from '../common/target'
 import { RouterGuardedLink } from '../common/router-guarded-link'
@@ -35,7 +35,7 @@ export function ExternalLink({
     onError?: (error: Error) => void
   }
 >) {
-  const app = useTripleClientMetadata()
+  const app = useClientApp()
   const handleHrefExternally = useExternalHrefHandler()
 
   const hrefIsAbsoluteUrl = checkHrefIsAbsoluteUrl(href)

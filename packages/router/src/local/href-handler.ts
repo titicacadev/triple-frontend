@@ -1,13 +1,10 @@
 import { useRouter } from 'next/router'
-import {
-  useTripleClientMetadata,
-  useTripleClientNavigate,
-  AppSpecificLinkProps,
-} from '@titicaca/react-triple-client-interfaces'
+import { useClientApp } from '@titicaca/triple-web'
 
 import { useWebUrlBaseAdder } from '../common/add-web-url-base'
-import { HrefProps } from '../common/types'
+import { AppSpecificLinkProps, HrefProps } from '../common/types'
 import { TargetProps } from '../common/target'
+import { useOpenInlink, useOpenOutlink } from '../links'
 
 import { useBasePathAdder } from './base-path'
 
@@ -30,8 +27,9 @@ export interface NextjsRoutingOptions {
 
 export function useLocalHrefHandler() {
   const router = useRouter()
-  const app = useTripleClientMetadata()
-  const { openInlink, openOutlink } = useTripleClientNavigate()
+  const app = useClientApp()
+  const openInlink = useOpenInlink()
+  const openOutlink = useOpenOutlink()
   const addWebUrlBase = useWebUrlBaseAdder()
   const addBasePath = useBasePathAdder()
 
@@ -85,7 +83,7 @@ export function useLocalHrefHandler() {
       stopDefaultHandler()
 
       openInlink(finalHref, {
-        lnbTarget,
+        lnb: lnbTarget,
         noNavbar,
         shouldPresent,
         swipeToClose,

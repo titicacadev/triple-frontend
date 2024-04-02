@@ -1,7 +1,6 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/view-utilities'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { useClientApp, useEnv } from '@titicaca/triple-web'
 
 import { useHrefToProps } from './use-href-to-props'
 
@@ -164,8 +163,8 @@ function prepareTest({ isPublic }: { isPublic: boolean }) {
   const webUrlBase = 'https://triple.guide'
 
   ;(
-    useTripleClientMetadata as unknown as jest.MockedFunction<
-      () => ReturnType<typeof useTripleClientMetadata>
+    useClientApp as unknown as jest.MockedFunction<
+      () => ReturnType<typeof useClientApp>
     >
   ).mockImplementation(() =>
     isPublic ? null : { appName: 'Triple-iOS', appVersion: '5.13.0' },

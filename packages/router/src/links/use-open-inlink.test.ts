@@ -14,6 +14,7 @@ beforeEach(() => {
   })
   ;(useEnv as jest.MockedFunction<typeof useEnv>).mockReturnValue({
     appUrlScheme: 'triple-test',
+    basePath: '/',
     afOnelinkId: '',
     afOnelinkPid: '',
     afOnelinkSubdomain: '',

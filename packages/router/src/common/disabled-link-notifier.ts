@@ -1,11 +1,11 @@
-import { useTranslation } from '@titicaca/next-i18next'
+import { useTranslation } from 'react-i18next'
 import {
-  useTransitionModal,
-  useLoginCtaModal,
   TransitionType,
-} from '@titicaca/modals'
-import { useSessionAvailability } from '@titicaca/react-contexts'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+  useClientApp,
+  useLoginCtaModal,
+  useSessionAvailability,
+  useTransitionModal,
+} from '@titicaca/triple-web'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
 
@@ -23,8 +23,8 @@ export function useDisabledLinkNotifierCreator({
 }: {
   alert?: (message: string) => void
 } = {}) {
-  const { t } = useTranslation('common-web')
-  const app = useTripleClientMetadata()
+  const { t } = useTranslation('triple-frontend')
+  const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
   const { show: showTransitionModal } = useTransitionModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
@@ -34,12 +34,7 @@ export function useDisabledLinkNotifierCreator({
   }: AllowSourceProps) => {
     if (allowSource === 'none') {
       return () => {
-        alert(
-          t([
-            'jeobgeunhal-su-eobsneun-ringkeuibnida.',
-            '접근할 수 없는 링크입니다.',
-          ]),
-        )
+        alert(t('접근할 수 없는 링크입니다.'))
       }
     }
 

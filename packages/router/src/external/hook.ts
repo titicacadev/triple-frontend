@@ -1,15 +1,11 @@
-import {
-  OutlinkOptions,
-  AppSpecificLinkProps,
-} from '@titicaca/react-triple-client-interfaces'
-
 import useDefaultRouter from '../common/default-router'
 import {
   AllowSourceProps,
   useDisabledLinkNotifierCreator,
 } from '../common/disabled-link-notifier'
 import { TargetProps } from '../common/target'
-import { HrefProps } from '../common/types'
+import { AppSpecificLinkProps, HrefProps } from '../common/types'
+import { OpenOutlinkOptions } from '../links'
 
 import { useExternalHrefHandler } from './href-handler'
 
@@ -31,7 +27,7 @@ export default function useExternalRouter() {
     HrefProps &
     TargetProps &
     AppSpecificLinkProps &
-    Pick<OutlinkOptions, 'title'>) => {
+    Pick<OpenOutlinkOptions, 'title'>) => {
     const notifyDisabledLink = createDisabledLinkNotifier({ allowSource })
 
     if (notifyDisabledLink !== undefined) {

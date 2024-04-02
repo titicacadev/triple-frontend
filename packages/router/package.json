@@ -40,27 +40,24 @@
     ]
   },
   "dependencies": {
-    "@titicaca/modals": "workspace:*",
+    "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "workspace:*",
-    "@titicaca/react-triple-client-interfaces": "workspace:*",
+    "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
+    "i18next": "^23.7.6",
     "next": "^13.4.13",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "react-i18next": "^13.5.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
-    "@titicaca/next-i18next": "*",
-    "@titicaca/react-contexts": "*",
-    "@titicaca/react-triple-client-interfaces": "*",
-    "next": "^13.0",
+    "@titicaca/triple-web": "*",
+    "i18next": "*",
     "react": "^18.0",
-    "styled-components": "^5.3.9"
+    "react-i18next": "*"
   }
 }
