@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import { Controller } from 'swiper/modules'
 import { useTranslation } from '@titicaca/next-i18next'
