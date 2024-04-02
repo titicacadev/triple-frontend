@@ -4,6 +4,7 @@ import {
   useHistoryFunctions,
   useSessionAvailability,
   useUriHash,
+  useUserAgentContext,
 } from '@titicaca/react-contexts'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { useMemo, useState } from 'react'
@@ -32,6 +33,7 @@ function Media({ media, reviewId }: Props) {
   const { show: showLoginCtaModal } = useLoginCtaModal()
   const uriHash = useUriHash()
   const { push, back } = useHistoryFunctions()
+  const { isMobile } = useUserAgentContext()
 
   const [imageIndex, setImageIndex] = useState<number | null>(null)
 
@@ -71,7 +73,7 @@ function Media({ media, reviewId }: Props) {
       navigateImages(media, originalIndex)
     } else {
       setImageIndex(originalIndex)
-      push(HASH_IMAGE_VIEWER_POPUP)
+      push(HASH_IMAGE_VIEWER_POPUP, { useRouter: isMobile })
     }
   }
 
