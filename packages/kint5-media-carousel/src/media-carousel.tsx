@@ -1,7 +1,6 @@
 import { MouseEvent, forwardRef } from 'react'
 import { Ratio } from '@titicaca/kint5-core-elements'
 import { SwiperProps, SwiperRef, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
 
 import { Content } from './content'
 import { Carousel } from './carousel'
