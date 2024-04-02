@@ -69,7 +69,7 @@ export function MediaPopup({
           centerContent={
             <FlexBox flex alignItems="center">
               <Text>
-                {renderMediaGrid ? t('사진') : currentMediaIndex + 1}
+                {renderMediaGrid ? t(['sajin', '사진']) : currentMediaIndex + 1}
                 &nbsp;
               </Text>
               <Text css={{ color: 'var(--color-kint5-gray40)' }}>
@@ -93,26 +93,16 @@ export function MediaPopup({
       {renderMediaGrid ? (
         <GridView media={media} onMediumClick={handleMediaGridClick} />
       ) : (
-        <div
-          css={{
-            position: 'absolute',
-            top: '50%',
-            left: 0,
-            right: 0,
-            transform: 'translateY(-50%)',
+        <MediaPopupCarousel
+          media={media}
+          currentMediaIndex={currentMediaIndex}
+          frame={frame}
+          onSlide={(mediaIndex) => {
+            setCurrentMediaIndex(mediaIndex)
+            onMediumChange?.(mediaIndex)
           }}
-        >
-          <MediaPopupCarousel
-            media={media}
-            currentMediaIndex={currentMediaIndex}
-            frame={frame}
-            onSlide={(mediaIndex) => {
-              setCurrentMediaIndex(mediaIndex)
-              onMediumChange?.(mediaIndex)
-            }}
-            onMediumClick={onMediumClick}
-          />
-        </div>
+          onMediumClick={onMediumClick}
+        />
       )}
     </Popup>
   )
