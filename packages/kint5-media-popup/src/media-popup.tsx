@@ -21,6 +21,7 @@ interface MediaPopupProps {
   media: MediumMeta[]
   open?: boolean
   initialMediaIndex?: number
+  onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
 }
 
@@ -30,6 +31,7 @@ export function MediaPopup({
   open,
   media,
   initialMediaIndex = 0,
+  onClose,
   onMediumChange,
 }: MediaPopupProps) {
   const { t } = useTranslation('common-web')
@@ -47,7 +49,7 @@ export function MediaPopup({
 
   const handleOnClose = () => {
     setRenderMediaGrid(false)
-    back()
+    onClose ? onClose() : back()
   }
 
   return (
