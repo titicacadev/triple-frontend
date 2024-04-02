@@ -64,7 +64,7 @@ export function GridView({ media, onMediumClick }: GridViewProps) {
                 onClick={() => onMediumClick(index)}
                 onKeyDown={() => onMediumClick(index)}
               />
-              {metadata.duration ? (
+              {metadata?.duration ? (
                 <Text
                   css={{
                     position: 'absolute',
