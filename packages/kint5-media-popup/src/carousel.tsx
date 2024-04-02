@@ -37,7 +37,7 @@ const CarouselItemWrapper = styled(FlexBox)<{
 const Video = styled.video`
   width: 100%;
   height: 100%;
-  border-radius: 0px;
+  border-radius: 0;
   object-fit: cover;
   opacity: 100%;
   position: absolute;
