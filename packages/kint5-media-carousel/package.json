@@ -1,7 +1,7 @@
 {
-  "name": "@titicaca/kint5-images-carousel",
+  "name": "@titicaca/kint5-media-carousel",
   "version": "13.10.0",
-  "description": "Triple Image Carousel",
+  "description": "TRIPLE Korea Carousel",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/image-carousel",
   "repository": {
