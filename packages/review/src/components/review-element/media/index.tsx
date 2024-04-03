@@ -81,7 +81,7 @@ function Media({ media, reviewId }: Props) {
     back()
   }
 
-  const handleMediumIntersecting = (medium: ImageMeta, index?: number) => {
+  const onImageMetadataIntersecting = (medium: ImageMeta, index?: number) => {
     trackEvent({
       fa: {
         action: '이미지팝업_미디어_노출',
@@ -128,7 +128,7 @@ function Media({ media, reviewId }: Props) {
           totalCount={sortedMedia.length}
           defaultImageIndex={imageIndex}
           onClose={handleImageViewerPopupClose}
-          onMediumIntersecting={handleMediumIntersecting}
+          onImageMetadataIntersecting={onImageMetadataIntersecting}
         />
       ) : null}
     </>

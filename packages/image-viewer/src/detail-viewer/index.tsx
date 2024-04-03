@@ -54,7 +54,10 @@ export interface DetailViewerProp {
   fetchNext?: (cb?: () => void) => Promise<void>
   imageIndex: number
   changeImageIndex: (idx: number) => void
-  onMediumIntersecting?: (medium: ImageMeta, index?: number) => void
+  onImageMetadataIntersecting?: (
+    imageMetadata: ImageMeta,
+    index?: number,
+  ) => void
 }
 
 export default function DetailViewer({
@@ -63,7 +66,7 @@ export default function DetailViewer({
   fetchNext,
   imageIndex,
   changeImageIndex,
-  onMediumIntersecting,
+  onImageMetadataIntersecting,
 }: DetailViewerProp) {
   const { isMobile } = useUserAgentContext()
   const flickingRef = useRef<Flicking>(null)
@@ -86,9 +89,10 @@ export default function DetailViewer({
     }
   }
 
-  const handleMediumIntersecting = (index: number) => (medium: ImageMeta) => {
-    onMediumIntersecting?.(medium, index)
-  }
+  const handleImageMetadataIntersecting =
+    (index: number) => (imageMetadata: ImageMeta) => {
+      onImageMetadataIntersecting?.(imageMetadata, index)
+    }
 
   return (
     <Container
@@ -127,13 +131,13 @@ export default function DetailViewer({
                 <Video
                   videoMetadata={image}
                   visible={imageIndex === index}
-                  onVideoIntersecting={handleMediumIntersecting(index)}
+                  onVideoIntersecting={handleImageMetadataIntersecting(index)}
                 />
               ) : (
                 <Image
                   medium={image}
                   visible={imageIndex === index}
-                  onImageIntersecting={handleMediumIntersecting(index)}
+                  onImageIntersecting={handleImageMetadataIntersecting(index)}
                 />
               )}
             </Container>

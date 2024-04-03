@@ -16,7 +16,7 @@ const Text = styled.span`
 export interface ImageViewerPopupProps
   extends Pick<
     DetailViewerProp,
-    'images' | 'totalCount' | 'fetchNext' | 'onMediumIntersecting'
+    'images' | 'totalCount' | 'fetchNext' | 'onImageMetadataIntersecting'
   > {
   open: boolean
   onClose?: () => void
@@ -33,7 +33,7 @@ export function ImageViewerPopup({
   totalCount,
   fetchNext,
   defaultImageIndex,
-  onMediumIntersecting,
+  onImageMetadataIntersecting,
 }: ImageViewerPopupProps) {
   const [imageIndex, setImageIndex] = useState<null | number>(defaultImageIndex)
 
@@ -56,7 +56,7 @@ export function ImageViewerPopup({
           onClose={handleClose}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
-          onMediumIntersecting={onMediumIntersecting}
+          onImageMetadataIntersecting={onImageMetadataIntersecting}
           images={images}
           totalCount={totalCount}
           fetchNext={fetchNext}
@@ -73,7 +73,7 @@ export interface DetailViewerContainerProp
     | 'totalCount'
     | 'fetchNext'
     | 'imageIndex'
-    | 'onMediumIntersecting'
+    | 'onImageMetadataIntersecting'
   > {
   onClose?: () => void
   changeImageIndex: (index: number) => void
@@ -86,7 +86,7 @@ export function DetailViewerContainer({
   images,
   totalCount,
   fetchNext,
-  onMediumIntersecting,
+  onImageMetadataIntersecting,
 }: DetailViewerContainerProp) {
   return (
     <>
@@ -125,7 +125,7 @@ export function DetailViewerContainer({
           fetchNext={fetchNext}
           imageIndex={imageIndex}
           changeImageIndex={changeImageIndex}
-          onMediumIntersecting={onMediumIntersecting}
+          onImageMetadataIntersecting={onImageMetadataIntersecting}
         />
       </Container>
     </>
