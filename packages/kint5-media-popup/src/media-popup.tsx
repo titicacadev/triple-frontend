@@ -19,7 +19,7 @@ interface MediaPopupProps {
   media: MediumMeta[]
   open?: boolean
   initialMediaIndex?: number
-  frame?: Ratio
+  frame?: Ratio | 'original'
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
   onMediumClick?: () => void
@@ -31,7 +31,7 @@ export function MediaPopup({
   open,
   media,
   initialMediaIndex = 0,
-  frame = '1:1',
+  frame = 'original',
   onClose,
   onMediumChange,
   onMediumClick,
