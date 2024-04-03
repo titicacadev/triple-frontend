@@ -13,6 +13,8 @@ const StyledImage = styled.img`
   margin: auto;
 `
 
+const COMMON_WRAPPER_STYLE = { width: '100%', height: '100%', margin: 'auto' }
+
 export default function Image({
   medium,
   visible,
@@ -48,8 +50,8 @@ export default function Image({
       ref={transformComponentRef}
     >
       <TransformComponent
-        wrapperStyle={{ width: '100%', height: '100%', margin: 'auto' }}
-        contentStyle={{ width: '100%', height: '100%', margin: 'auto' }}
+        wrapperStyle={COMMON_WRAPPER_STYLE}
+        contentStyle={COMMON_WRAPPER_STYLE}
       >
         <StyledImage src={medium.sizes.large.url} alt={medium.id} />
       </TransformComponent>
