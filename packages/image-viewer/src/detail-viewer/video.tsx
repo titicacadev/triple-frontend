@@ -1,15 +1,6 @@
 import { useEffect, useRef } from 'react'
-import styled from 'styled-components'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Container } from '@titicaca/core-elements'
-
-const VideoWrapper = styled(Container)`
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-`
 
 interface VideoProps {
   visible: boolean
@@ -53,7 +44,15 @@ export function Video({
   }, [visible])
 
   return (
-    <VideoWrapper>
+    <Container
+      css={{
+        display: 'flex',
+        justifyContent: 'center',
+        margin: 'auto',
+        maxWidth: '100%',
+        maxHeight: '100%',
+      }}
+    >
       <video
         ref={videoRef}
         src={`${videoMetadata.video?.large.url}#t=0.001`} // HACK: ios에서 썸네일이 노출되지 않는 문제 우회
@@ -67,6 +66,6 @@ export function Video({
       >
         <track kind="captions" />
       </video>
-    </VideoWrapper>
+    </Container>
   )
 }
