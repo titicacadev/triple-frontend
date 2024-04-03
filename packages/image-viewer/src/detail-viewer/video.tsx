@@ -13,11 +13,15 @@ const VideoWrapper = styled(Container)`
 
 interface VideoProps {
   visible: boolean
-  medium: ImageMeta
-  onVideoIntersecting: (medium: ImageMeta) => void
+  videoMetadata: ImageMeta
+  onVideoIntersecting: (video: ImageMeta) => void
 }
 
-export function Video({ medium, visible, onVideoIntersecting }: VideoProps) {
+export function Video({
+  videoMetadata,
+  visible,
+  onVideoIntersecting,
+}: VideoProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
@@ -43,7 +47,7 @@ export function Video({ medium, visible, onVideoIntersecting }: VideoProps) {
 
   useEffect(() => {
     if (visible) {
-      onVideoIntersecting(medium)
+      onVideoIntersecting(videoMetadata)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible])
@@ -52,8 +56,8 @@ export function Video({ medium, visible, onVideoIntersecting }: VideoProps) {
     <VideoWrapper>
       <video
         ref={videoRef}
-        src={`${medium.video?.large.url}#t=0.001`} // HACK: ios에서 썸네일이 노출되지 않는 문제 우회
-        poster={medium.sizes.large.url}
+        src={`${videoMetadata.video?.large.url}#t=0.001`} // HACK: ios에서 썸네일이 노출되지 않는 문제 우회
+        poster={videoMetadata.sizes.large.url}
         preload="metadata"
         controls
         loop={false}
