@@ -176,7 +176,7 @@ export default function Carousel({
       </Responsive>
       <MediaPopup
         media={visibleImages}
-        initialMediaIndex={currentPage}
+        currentMediumIndex={currentPage}
         onMediumChange={setCurrentPage}
       />
     </>

@@ -18,7 +18,7 @@ import { GridView } from './grid-view'
 interface MediaPopupProps {
   media: MediumMeta[]
   open?: boolean
-  initialMediaIndex?: number
+  currentMediumIndex?: number
   frame?: FrameRatioAndSizes
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
@@ -30,7 +30,7 @@ export const MEDIA_POPUP_HASH = 'hash.media-popup'
 export function MediaPopup({
   open,
   media,
-  initialMediaIndex = 0,
+  currentMediumIndex = 0,
   frame = 'original',
   onClose,
   onMediumChange,
@@ -43,14 +43,12 @@ export function MediaPopup({
 
   const uriHash = useUriHash()
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
-  const [currentMediaIndex, setCurrentMediaIndex] = useState(initialMediaIndex)
 
   const isOpen = open ?? uriHash === MEDIA_POPUP_HASH
   const numOfImages = media.length
 
   const handleMediaGridClick = (clickedMediumIndex: number) => {
     onMediumChange?.(clickedMediumIndex)
-    setCurrentMediaIndex(clickedMediumIndex)
     setRenderMediaGrid(false)
   }
 
@@ -69,13 +67,6 @@ export function MediaPopup({
     }
   }, [isOpen])
 
-  useEffect(() => {
-    if (isOpen && isPreviouslyClosedRef.current) {
-      isPreviouslyClosedRef.current = false
-      setCurrentMediaIndex(initialMediaIndex)
-    }
-  }, [isOpen, initialMediaIndex])
-
   return (
     <Popup open={isOpen} onClose={handleOnClose} noNavbar>
       <StickyHeader>
@@ -85,7 +76,9 @@ export function MediaPopup({
           centerContent={
             <FlexBox flex alignItems="center">
               <Text>
-                {renderMediaGrid ? t(['sajin', '사진']) : currentMediaIndex + 1}
+                {renderMediaGrid
+                  ? t(['sajin', '사진'])
+                  : currentMediumIndex + 1}
                 &nbsp;
               </Text>
               <Text css={{ color: 'var(--color-kint5-gray40)' }}>
@@ -111,10 +104,9 @@ export function MediaPopup({
       ) : (
         <MediaPopupCarousel
           media={media}
-          currentMediaIndex={currentMediaIndex}
+          currentMediumIndex={currentMediumIndex}
           frame={frame}
           onSlide={(mediaIndex) => {
-            setCurrentMediaIndex(mediaIndex)
             onMediumChange?.(mediaIndex)
           }}
           onMediumClick={onMediumClick}

@@ -15,7 +15,7 @@ export type OnMediumClickFn = ({
 }) => void
 
 interface CarouselProps {
-  currentMediaIndex: number
+  currentMediumIndex: number
   media: MediumMeta[]
   frame: FrameRatioAndSizes
   onSlide: (mediaIndex: number) => void
@@ -27,16 +27,16 @@ const CarouselContainer = styled(Container)`
 `
 
 const CarouselItemWrapper = styled(FlexBox)<{
-  currentMediaIndex: number
+  currentMediumIndex: number
 }>`
   transition: transform 200ms ease-in-out;
   transform: translateX(
-    calc(-${({ currentMediaIndex }) => currentMediaIndex} * 100%)
+    calc(-${({ currentMediumIndex }) => currentMediumIndex} * 100%)
   );
 `
 
 export function MediaPopupCarousel({
-  currentMediaIndex,
+  currentMediumIndex,
   media,
   frame,
   onSlide,
@@ -66,10 +66,10 @@ export function MediaPopupCarousel({
   }
 
   const handleDragEnd = () => {
-    if (dragX > 15 && currentMediaIndex > 0) {
-      onSlide(currentMediaIndex - 1)
-    } else if (dragX < -15 && currentMediaIndex < media.length - 1) {
-      onSlide(currentMediaIndex + 1)
+    if (dragX > 15 && currentMediumIndex > 0) {
+      onSlide(currentMediumIndex - 1)
+    } else if (dragX < -15 && currentMediumIndex < media.length - 1) {
+      onSlide(currentMediumIndex + 1)
     }
 
     setStartX(0)
@@ -96,7 +96,7 @@ export function MediaPopupCarousel({
         flex
         alignItems="center"
         css={{ width: '100%', height: '100%' }}
-        currentMediaIndex={currentMediaIndex}
+        currentMediumIndex={currentMediumIndex}
       >
         {media.map((medium, index) => (
           <Container key={medium.id} css={{ width: '100%', flex: '0 0 100%' }}>
