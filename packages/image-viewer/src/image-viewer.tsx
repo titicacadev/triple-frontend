@@ -20,7 +20,7 @@ export interface ImageViewerPopupProps
   > {
   open: boolean
   onClose?: () => void
-  defaultImageIndex: number | null
+  defaultImageIndex?: number | null
 }
 /**
  *
@@ -35,10 +35,12 @@ export function ImageViewerPopup({
   defaultImageIndex,
   onImageMetadataIntersecting,
 }: ImageViewerPopupProps) {
-  const [imageIndex, setImageIndex] = useState<null | number>(defaultImageIndex)
+  const [imageIndex, setImageIndex] = useState<null | number>(
+    defaultImageIndex || null,
+  )
 
   useEffect(() => {
-    setImageIndex(defaultImageIndex)
+    setImageIndex(defaultImageIndex || null)
   }, [defaultImageIndex])
 
   function changeImageIndex(idx: number) {
