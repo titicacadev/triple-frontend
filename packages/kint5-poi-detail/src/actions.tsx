@@ -12,8 +12,8 @@ import { ActionButtonIcon } from './action-button-icon'
 
 const ActionButton = styled.button`
   position: relative;
-  width: 64px;
-  flex: 0 0 64px;
+  width: 76px;
+  flex: 0 0 76px;
 `
 
 const ActionButtonText = styled(Text)`
