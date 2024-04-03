@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import {
@@ -36,6 +36,8 @@ export function MediaPopup({
   onMediumChange,
   onMediumClick,
 }: MediaPopupProps) {
+  const isPreviouslyClosedRef = useRef(true)
+
   const { t } = useTranslation('common-web')
   const { back } = useHistoryFunctions()
 
@@ -43,6 +45,7 @@ export function MediaPopup({
   const [renderMediaGrid, setRenderMediaGrid] = useState(false)
   const [currentMediaIndex, setCurrentMediaIndex] = useState(initialMediaIndex)
 
+  const isOpen = open ?? uriHash === MEDIA_POPUP_HASH
   const numOfImages = media.length
 
   const handleMediaGridClick = (clickedMediumIndex: number) => {
@@ -56,12 +59,25 @@ export function MediaPopup({
     onClose ? onClose() : back()
   }
 
+  useEffect(() => {
+    if (!isOpen) {
+      isPreviouslyClosedRef.current = true
+    }
+
+    return () => {
+      isPreviouslyClosedRef.current = true
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (isOpen && isPreviouslyClosedRef.current) {
+      isPreviouslyClosedRef.current = false
+      setCurrentMediaIndex(initialMediaIndex)
+    }
+  }, [isOpen, initialMediaIndex])
+
   return (
-    <Popup
-      open={open ?? uriHash === MEDIA_POPUP_HASH}
-      onClose={handleOnClose}
-      noNavbar
-    >
+    <Popup open={isOpen} onClose={handleOnClose} noNavbar>
       <StickyHeader>
         <Navbar
           onLeftButtonClick={handleOnClose}

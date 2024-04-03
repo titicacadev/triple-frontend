@@ -178,7 +178,6 @@ export default function Carousel({
         media={visibleImages}
         initialMediaIndex={currentPage}
         onMediumChange={setCurrentPage}
-        onMediumClick={handleImageClick}
       />
     </>
   )
