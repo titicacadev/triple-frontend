@@ -73,7 +73,7 @@ function Actions({
           </ActionButton>
         ) : null}
         <ActionButton onClick={onGetDirection}>
-          <ActionButtonText>{t(['gilcajgi', '길찾기'])}</ActionButtonText>
+          <ActionButtonText>{t('길찾기')}</ActionButtonText>
           <ActionButtonIcon type="getDirections" />
         </ActionButton>
         <ActionButton onClick={onReviewEdit}>
