@@ -1,7 +1,7 @@
 import { MouseEvent, TouchEvent, useState } from 'react'
 import styled from 'styled-components'
 import { Container, FlexBox, Image } from '@titicaca/kint5-core-elements'
-import { Ratio } from '@titicaca/type-definitions'
+import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { MediumMeta } from './types'
 import { Medium } from './medium'
@@ -17,7 +17,7 @@ export type OnMediumClickFn = ({
 interface CarouselProps {
   currentMediaIndex: number
   media: MediumMeta[]
-  frame: Ratio | 'original'
+  frame: FrameRatioAndSizes
   onSlide: (mediaIndex: number) => void
   onMediumClick?: OnMediumClickFn
 }

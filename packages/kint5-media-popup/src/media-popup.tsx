@@ -9,7 +9,7 @@ import {
   Text,
 } from '@titicaca/kint5-core-elements'
 import { Popup } from '@titicaca/kint5-popup'
-import { Ratio } from '@titicaca/type-definitions'
+import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
 import { MediaPopupCarousel } from './carousel'
 import { MediumMeta } from './types'
@@ -19,7 +19,7 @@ interface MediaPopupProps {
   media: MediumMeta[]
   open?: boolean
   initialMediaIndex?: number
-  frame?: Ratio | 'original'
+  frame?: FrameRatioAndSizes
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
   onMediumClick?: () => void
