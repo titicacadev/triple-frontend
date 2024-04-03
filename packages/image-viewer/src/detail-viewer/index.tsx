@@ -125,7 +125,7 @@ export default function DetailViewer({
             >
               {'video' in image ? (
                 <Video
-                  medium={image}
+                  videoMetadata={image}
                   visible={imageIndex === index}
                   onVideoIntersecting={handleMediumIntersecting(index)}
                 />
