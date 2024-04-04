@@ -294,7 +294,7 @@ importers:
         version: 2.4.7
       next:
         specifier: ^13.5.5
-        version: 13.5.6(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)
+        version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -6640,6 +6640,8 @@ packages:
       webpack: ^5.0.0
     peerDependenciesMeta:
       '@next/font':
+        optional: true
+      '@storybook/addon-actions':
         optional: true
       typescript:
         optional: true
