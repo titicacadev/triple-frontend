@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## v13.22.0
+
+```
+### image-viewer
+
+- [image-viewer] 확대뷰/격자뷰를 위한 이미지 뷰어 패키지를 생성합니다 [#3165](https://github.com/titicacadev/triple-frontend/pull/3165)
+- [image-viewer] 이미지 확대뷰 팝업을 생성합니다 [#3166](https://github.com/titicacadev/triple-frontend/pull/3166)
+- [image-viewer] 동영상 확대뷰를 작성합니다 [#3170](https://github.com/titicacadev/triple-frontend/pull/3170)
+- [image-viewer] 이미지 확대뷰에서 핀치 줌 기능을 적용합니다 [#3172](https://github.com/titicacadev/triple-frontend/pull/3172)
+- [review, image-viewer] 이미지 뷰어에서 ImagesContext를 제거하고 리뷰 컴포넌트에 이미지 뷰어를 적용합니다 [#3173](https://github.com/titicacadev/triple-frontend/pull/3173)
+- [image-viewer, poi-detail, review] 이미지 확대뷰 fa 이벤트를 추가합니다 [#3175](https://github.com/titicacadev/triple-frontend/pull/3175)
+- [image-viewer] 더블 클릭으로 인한 이미지 확대를 disable합니다 [#3176](https://github.com/titicacadev/triple-frontend/pull/3176)
+- [reviews] 이미지 확대뷰 QA [#3179](https://github.com/titicacadev/triple-frontend/pull/3179)
+
+### meta-tags
+
+- [meta-tags] 불필요 주석 제거 [#3163](https://github.com/titicacadev/triple-frontend/pull/3163)
+
+### poi-detail
+
+- [image-viewer] 확대뷰/격자뷰를 위한 이미지 뷰어 패키지를 생성합니다 [#3165](https://github.com/titicacadev/triple-frontend/pull/3165)
+- [poi-detail, review] 이미지 캐러셀의 cta 조건을 수정합니다 [#3171](https://github.com/titicacadev/triple-frontend/pull/3171)
+- [poi-detail] 이지역꿀정보의 fa를 추가합니다 [#3174](https://github.com/titicacadev/triple-frontend/pull/3174)
+- [image-viewer, poi-detail, review] 이미지 확대뷰 fa 이벤트를 추가합니다 [#3175](https://github.com/titicacadev/triple-frontend/pull/3175)
+- [poi-detail] 이지역꿀정보 영역 디자인을 수정합니다 [#3178](https://github.com/titicacadev/triple-frontend/pull/3178)
+
+### review
+
+- [image-viewer] 확대뷰/격자뷰를 위한 이미지 뷰어 패키지를 생성합니다 [#3165](https://github.com/titicacadev/triple-frontend/pull/3165)
+- [poi-detail, review] 이미지 캐러셀의 cta 조건을 수정합니다 [#3171](https://github.com/titicacadev/triple-frontend/pull/3171)
+- [review, image-viewer] 이미지 뷰어에서 ImagesContext를 제거하고 리뷰 컴포넌트에 이미지 뷰어를 적용합니다 [#3173](https://github.com/titicacadev/triple-frontend/pull/3173)
+- [image-viewer, poi-detail, review] 이미지 확대뷰 fa 이벤트를 추가합니다 [#3175](https://github.com/titicacadev/triple-frontend/pull/3175)
+- [reviews] 유저 photo가 없을 때 디폴트 프로필을 설정합니다 [#3180](https://github.com/titicacadev/triple-frontend/pull/3180)
+
+### triple-document
+
+- [triple-document] itinerary의 transportation 타입에 bike를 추가합니다 [#3177](https://github.com/titicacadev/triple-frontend/pull/3177)
+```
+
 ## v13.21.1
 
 ```
