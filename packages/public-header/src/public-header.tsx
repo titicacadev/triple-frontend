@@ -93,6 +93,7 @@ export interface PublicHeaderProps {
   onClick?: () => void
   linkHref?: string
   linkLabel?: string
+  onLogoClick?: () => void
 }
 
 export function PublicHeader({
@@ -103,6 +104,7 @@ export function PublicHeader({
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
+  onLogoClick,
   children,
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('common-web')
@@ -120,6 +122,7 @@ export function PublicHeader({
         <Logo
           href={getCategoryHref(category)}
           title={getCategoryTitle(category)}
+          onClick={onLogoClick}
         >
           <LogoImage
             alt="Triple"
