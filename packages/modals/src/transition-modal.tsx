@@ -43,6 +43,8 @@ export enum TransitionType {
   Community = 'community',
   Share = 'share',
   AddPoiToSchedule = 'addPoiToSchedule',
+  PoiBasicInfoMap = 'poiBasicInfoMap',
+  PoiBasicInfoAddress = 'poiBasicInfoAddress',
 }
 
 const MODAL_CONTENT: {
@@ -115,6 +117,12 @@ const MODAL_CONTENT: {
   },
   [TransitionType.Share]: {
     eventLabel: '공유하기',
+  },
+  [TransitionType.PoiBasicInfoMap]: {
+    eventLabel: '기본정보_지도',
+  },
+  [TransitionType.PoiBasicInfoAddress]: {
+    eventLabel: '기본정보_주소',
   },
 }
 
