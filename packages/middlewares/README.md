@@ -25,8 +25,7 @@
 2. 401 응답을 받으면, refresh 요청을 보내서 토큰을 갱신합니다.
 3. 갱신된 토큰을 response의 _set-cookie_ header와 set-cookie와 request의 _cookie_ header에 전달합니다.
 4. 브라우저는 response의 _set-cookie_ 를 통해 브라우저 쿠키값을 갱신합니다.
-
-TODO: 인증 에러 케이스 대응 방법 설명 추가하기
+5. refresh token 갱신 실패 시 response의 header에 `x-auth-status` = 'NEED_LOGIN'를 전달합니다.
 
 ## Usage
 
@@ -68,5 +67,21 @@ export function myCustomMiddleware(customMiddleware: CustomMiddleware) {
     // ...
     return customMiddleware(request, event, response)
   }
+}
+```
+
+## 세션 인증 실패처리 예시
+
+```typescript
+import { headers } from 'next/headers'
+
+export default function TestPage() {
+  const xAuthStatus = headers().get(X_AUTH_STATUS)
+
+  if (xAuthStatus === NEED_LOGIN_IDENTIFIER) {
+    // 인증 실패 시 실행할 로직을 작성합니다.
+    return redirect('/401')
+  }
+  return <ServerComponent />
 }
 ```
