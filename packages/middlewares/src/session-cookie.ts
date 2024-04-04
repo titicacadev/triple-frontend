@@ -3,6 +3,7 @@ import { get, post } from '@titicaca/fetcher'
 import { splitCookiesString, parseString } from 'set-cookie-parser'
 
 import { CustomMiddleware } from './chain'
+import { X_AUTH_STATUS, NEED_LOGIN_IDENTIFIER } from './constants'
 
 /**
  * 해당 미들웨어에서는 다음 순서로 사용자 인증 여부를 확인합니다.
@@ -81,19 +82,9 @@ export function sessionCookieMiddleware(paths: string[]) {
       }
 
       // refresh 요청이 실패한 경우 401응답을 반환합니다.
-      return customMiddleware(
-        request,
-        event,
-        NextResponse.json(
-          { success: false, message: 'authentication failed' },
-          {
-            status:
-              refreshResponse.status === 400 || refreshResponse.status === 401 // == NEED_LOGIN
-                ? 401
-                : 500,
-          },
-        ),
-      )
+      const response = NextResponse.next()
+      response.headers.set(X_AUTH_STATUS, NEED_LOGIN_IDENTIFIER)
+      return customMiddleware(request, event, response)
     }
   }
 }
