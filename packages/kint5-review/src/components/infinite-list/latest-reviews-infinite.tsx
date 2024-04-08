@@ -1,5 +1,4 @@
 import { useReviewLanguage } from '../language-context'
-import { ReviewMediaPopup } from '../review-media-popup'
 import type { SortingType } from '../sorting-context'
 
 import { InfiniteList } from './infinite-list'
@@ -40,26 +39,23 @@ export function LatestReviewsInfinite({
   const reviews = data?.pages.flat() ?? []
 
   return (
-    <>
-      <InfiniteList
-        isGlobal={isGlobal}
-        resourceId={resourceId}
-        resourceType={resourceType}
-        regionId={regionId}
-        hasMedia={hasMedia}
-        recentTrip={recentTrip}
-        placeholderText={placeholderText}
-        sortingType={sortingType}
-        sortingOption="latest"
-        reviewsCount={reviewsCount}
-        reviews={reviews}
-        hasNextPage={hasNextPage}
-        isLoadingReviews={isLoading}
-        isFetchingNextPage={isFetchingNextPage}
-        fetchNextPage={fetchNextPage}
-        refetch={refetch}
-      />
-      <ReviewMediaPopup reviews={reviews} />
-    </>
+    <InfiniteList
+      isGlobal={isGlobal}
+      resourceId={resourceId}
+      resourceType={resourceType}
+      regionId={regionId}
+      hasMedia={hasMedia}
+      recentTrip={recentTrip}
+      placeholderText={placeholderText}
+      sortingType={sortingType}
+      sortingOption="latest"
+      reviewsCount={reviewsCount}
+      reviews={reviews}
+      hasNextPage={hasNextPage}
+      isLoadingReviews={isLoading}
+      isFetchingNextPage={isFetchingNextPage}
+      fetchNextPage={fetchNextPage}
+      refetch={refetch}
+    />
   )
 }

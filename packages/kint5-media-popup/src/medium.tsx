@@ -7,7 +7,7 @@ import { MediumMeta } from './types'
 const Video = styled.video<{ $frame: FrameRatioAndSizes }>`
   width: 100%;
   height: 100%;
-  border-radius: 0px;
+  border-radius: 0;
   object-fit: cover;
   opacity: 100%;
 
