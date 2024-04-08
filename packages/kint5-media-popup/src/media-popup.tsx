@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useHistoryFunctions, useUriHash } from '@titicaca/react-contexts'
 import {
@@ -36,8 +36,6 @@ export function MediaPopup({
   onMediumChange,
   onMediumClick,
 }: MediaPopupProps) {
-  const isPreviouslyClosedRef = useRef(true)
-
   const { t } = useTranslation('common-web')
   const { back } = useHistoryFunctions()
 
@@ -59,11 +57,11 @@ export function MediaPopup({
 
   useEffect(() => {
     if (!isOpen) {
-      isPreviouslyClosedRef.current = true
+      setRenderMediaGrid(false)
     }
 
     return () => {
-      isPreviouslyClosedRef.current = true
+      setRenderMediaGrid(false)
     }
   }, [isOpen])
 
