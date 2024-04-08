@@ -5,6 +5,7 @@ import {
   FlexBox,
   GridLineIcon,
   Navbar,
+  StickyHeader,
   Text,
 } from '@titicaca/kint5-core-elements'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -59,34 +60,39 @@ export function ReviewMediaPopup({ reviews }: ReviewMediaPopupProps) {
 
   return (
     <Popup open={open} onClose={back} noNavbar>
-      <Navbar
-        onLeftButtonClick={back}
-        leftButtonIconType="close"
-        centerContent={
-          currentMediaIndex !== null ? (
-            <FlexBox flex alignItems="center">
-              <Text>
-                {renderMediaGrid ? t(['sajin', '사진']) : currentMediaIndex + 1}
-                &nbsp;
-              </Text>
-              <Text css={{ color: 'var(--color-kint5-gray40)' }}>
-                {renderMediaGrid ? '' : '/ '}
-                {numOfMedia}
-              </Text>
-            </FlexBox>
-          ) : null
-        }
-        rightContent={
-          !renderMediaGrid && numOfMedia > 1 ? (
-            <button
-              onClick={() => setRenderMediaGrid(true)}
-              aria-label="전체 리뷰 미디어 보기"
-            >
-              <GridLineIcon />
-            </button>
-          ) : null
-        }
-      />
+      <StickyHeader>
+        <Navbar
+          onLeftButtonClick={back}
+          leftButtonIconType="close"
+          centerContent={
+            currentMediaIndex !== null ? (
+              <FlexBox flex alignItems="center">
+                <Text>
+                  {renderMediaGrid
+                    ? t(['sajin', '사진'])
+                    : currentMediaIndex + 1}
+                  &nbsp;
+                </Text>
+                <Text css={{ color: 'var(--color-kint5-gray40)' }}>
+                  {renderMediaGrid ? '' : '/ '}
+                  {numOfMedia}
+                </Text>
+              </FlexBox>
+            ) : null
+          }
+          rightContent={
+            !renderMediaGrid && numOfMedia > 1 ? (
+              <button
+                onClick={() => setRenderMediaGrid(true)}
+                aria-label="전체 리뷰 미디어 보기"
+              >
+                <GridLineIcon />
+              </button>
+            ) : null
+          }
+        />
+      </StickyHeader>
+
       {renderMediaGrid ? (
         <ReviewMediaGrid media={media} onMediaClick={handleMediaGridClick} />
       ) : currentMediaIndex !== null ? (
