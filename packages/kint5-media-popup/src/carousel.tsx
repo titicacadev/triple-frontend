@@ -110,7 +110,7 @@ export function MediaPopupCarousel({
                 }
                 css={{ backgroundColor: 'var(--color-kint5-gray0)' }}
               >
-                <Medium medium={medium} />
+                <Medium medium={medium} frame={frame} />
               </Image.FixedRatioFrame>
             </Image>
           </Container>
