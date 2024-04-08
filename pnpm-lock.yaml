@@ -1290,6 +1290,9 @@ importers:
       '@titicaca/kint5-core-elements':
         specifier: workspace:*
         version: link:../kint5-core-elements
+      '@titicaca/kint5-media-popup':
+        specifier: workspace:*
+        version: link:../kint5-media-popup
       '@titicaca/kint5-modals':
         specifier: workspace:*
         version: link:../kint5-modals
