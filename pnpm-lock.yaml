@@ -1296,9 +1296,6 @@ importers:
       '@titicaca/kint5-modals':
         specifier: workspace:*
         version: link:../kint5-modals
-      '@titicaca/popup':
-        specifier: workspace:*
-        version: link:../popup
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
