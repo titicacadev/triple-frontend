@@ -1278,15 +1278,15 @@ importers:
 
   packages/kint5-review:
     dependencies:
-      '@titicaca/action-sheet':
-        specifier: workspace:*
-        version: link:../action-sheet
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/kint5-action-sheet':
+        specifier: workspace:*
+        version: link:../kint5-action-sheet
       '@titicaca/kint5-core-elements':
         specifier: workspace:*
         version: link:../kint5-core-elements

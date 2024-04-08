@@ -41,9 +41,9 @@
     ]
   },
   "dependencies": {
-    "@titicaca/action-sheet": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
+    "@titicaca/kint5-action-sheet": "workspace:*",
     "@titicaca/kint5-core-elements": "workspace:*",
     "@titicaca/kint5-media-popup": "workspace:*",
     "@titicaca/kint5-modals": "workspace:*",

@@ -1,4 +1,4 @@
-import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
+import { ActionSheet, ActionSheetItem } from '@titicaca/kint5-action-sheet'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Confirm } from '@titicaca/kint5-modals'
 import {
