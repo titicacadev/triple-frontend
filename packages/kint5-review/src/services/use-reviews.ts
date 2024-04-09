@@ -78,7 +78,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
           : review
 
       queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
-        ['review/getPopularReviews'],
+        { queryKey: ['review/getPopularReviews'] },
         (old) =>
           old
             ? {
@@ -88,7 +88,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
-        ['review/getLatestReviews'],
+        { queryKey: ['review/getLatestReviews'] },
         (old) =>
           old
             ? {
@@ -98,7 +98,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
-        ['review/getReviewsByRating'],
+        { queryKey: ['review/getReviewsByRating'] },
         (old) =>
           old
             ? {
@@ -110,7 +110,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
 
       queryClient.setQueriesData<
         InfiniteData<GetPopularReviewsQuery> | undefined
-      >(['review/getInfinitePopularReviews'], (old) =>
+      >({ queryKey: ['review/getInfinitePopularReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -123,7 +123,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetLatestReviewsQuery> | undefined
-      >(['review/getInfiniteLatestReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteLatestReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -136,7 +136,7 @@ export function useLikeReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetReviewsByRatingQuery> | undefined
-      >(['review/getInfiniteRatingReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteRatingReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -172,7 +172,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
           : review
 
       queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
-        ['review/getPopularReviews'],
+        { queryKey: ['review/getPopularReviews'] },
         (old) =>
           old
             ? {
@@ -182,7 +182,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
-        ['review/getLatestReviews'],
+        { queryKey: ['review/getLatestReviews'] },
         (old) =>
           old
             ? {
@@ -192,7 +192,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
-        ['review/getReviewsByRating'],
+        { queryKey: ['review/getReviewsByRating'] },
         (old) =>
           old
             ? {
@@ -203,7 +203,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetPopularReviewsQuery> | undefined
-      >(['review/getInfinitePopularReviews'], (old) =>
+      >({ queryKey: ['review/getInfinitePopularReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -216,7 +216,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetLatestReviewsQuery> | undefined
-      >(['review/getInfiniteLatestReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteLatestReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -229,7 +229,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetReviewsByRatingQuery> | undefined
-      >(['review/getInfiniteRatingReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteRatingReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -258,7 +258,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
       const updater = (review: BaseReviewFragment) => review.id !== variables.id
 
       queryClient.setQueriesData<GetMyReviewQuery | undefined>(
-        ['review/getMyReview'],
+        { queryKey: ['review/getMyReview'] },
         (old) =>
           old
             ? {
@@ -268,7 +268,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetPopularReviewsQuery | undefined>(
-        ['review/getPopularReviews'],
+        { queryKey: ['review/getPopularReviews'] },
         (old) =>
           old
             ? {
@@ -278,7 +278,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetLatestReviewsQuery | undefined>(
-        ['review/getLatestReviews'],
+        { queryKey: ['review/getLatestReviews'] },
         (old) =>
           old
             ? {
@@ -288,7 +288,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
             : old,
       )
       queryClient.setQueriesData<GetReviewsByRatingQuery | undefined>(
-        ['review/getReviewsByRating'],
+        { queryKey: ['review/getReviewsByRating'] },
         (old) =>
           old
             ? {
@@ -299,7 +299,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetPopularReviewsQuery> | undefined
-      >(['review/getInfinitePopularReviews'], (old) =>
+      >({ queryKey: ['review/getInfinitePopularReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -312,7 +312,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetLatestReviewsQuery> | undefined
-      >(['review/getInfiniteLatestReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteLatestReviews'] }, (old) =>
         old
           ? {
               ...old,
@@ -325,7 +325,7 @@ export function useDeleteReviewMutation({ lang }: { lang: string }) {
       )
       queryClient.setQueriesData<
         InfiniteData<GetReviewsByRatingQuery> | undefined
-      >(['review/getInfiniteRatingReviews'], (old) =>
+      >({ queryKey: ['review/getInfiniteRatingReviews'] }, (old) =>
         old
           ? {
               ...old,

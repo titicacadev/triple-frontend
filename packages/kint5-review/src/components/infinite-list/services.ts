@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 
 import {
   GetPopularReviewsQueryVariables,
@@ -20,12 +20,13 @@ export function useInfinitePopularReviews({
       lang,
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam }) =>
       getClient({ lang }).GetPopularReviews({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
       }),
+    initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.popularReviews.length === 0) {
         return undefined
@@ -36,7 +37,7 @@ export function useInfinitePopularReviews({
       pageParams,
       pages: pages.map((item) => item.popularReviews),
     }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 }
 
@@ -50,12 +51,13 @@ export function useInfiniteLatestReviews({
       lang,
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam }) =>
       getClient({ lang }).GetLatestReviews({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
       }),
+    initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.latestReviews.length === 0) {
         return undefined
@@ -66,7 +68,7 @@ export function useInfiniteLatestReviews({
       pageParams,
       pages: pages.map((item) => item.latestReviews),
     }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 }
 
@@ -79,12 +81,13 @@ export function useInfiniteRatingReviews({
       'review/getInfiniteRatingReviews',
       { ...params, size: DEFAULT_REVIEWS_COUNT_PER_PAGE },
     ],
-    queryFn: ({ pageParam = 1 }) =>
+    queryFn: ({ pageParam }) =>
       getClient({ lang }).GetReviewsByRating({
         ...params,
         from: (pageParam - 1) * DEFAULT_REVIEWS_COUNT_PER_PAGE,
         size: DEFAULT_REVIEWS_COUNT_PER_PAGE,
       }),
+    initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       if (lastPage.ratingReviews.length === 0) {
         return undefined
@@ -95,6 +98,6 @@ export function useInfiniteRatingReviews({
       pageParams,
       pages: pages.map((item) => item.ratingReviews),
     }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
 }
