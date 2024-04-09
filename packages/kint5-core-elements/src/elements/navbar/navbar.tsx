@@ -21,8 +21,8 @@ export function Navbar({
   leftButtonIconType = 'back',
   centerContent,
   rightContent,
-  containerCss,
   onLeftButtonClick,
+  ...props
 }: NavbarProps) {
   return (
     <FlexBox
@@ -37,8 +37,8 @@ export function Navbar({
         height: NAVBAR_HEIGHT_PX,
         padding: '0 16px',
         backgroundColor: 'var(--color-kint5-gray0)',
-        ...containerCss,
       }}
+      {...props}
     >
       {onLeftButtonClick ? (
         <Button
