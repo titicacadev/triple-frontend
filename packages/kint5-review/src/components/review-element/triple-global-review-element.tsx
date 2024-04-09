@@ -88,8 +88,10 @@ export function TripleGlobalReviewElement({
   const { showToast } = useTripleClientActions()
   const { navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview } = useLikeReviewMutation({ lang: reviewLang })
-  const { mutate: unlikeReview } = useUnlikeReviewMutation({ lang: reviewLang })
+  const { mutate: likeReview, isPending: isLikeReviewPending } =
+    useLikeReviewMutation({ lang: reviewLang })
+  const { mutate: unlikeReview, isPending: isUnlikeReviewPending } =
+    useUnlikeReviewMutation({ lang: reviewLang })
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
@@ -151,7 +153,11 @@ export function TripleGlobalReviewElement({
   )
 
   const handleLikeButtonClick = useSessionCallback(
-    useCallback(() => {
+    () => {
+      if (isLikeReviewPending || isUnlikeReviewPending) {
+        return
+      }
+
       trackEvent({
         ga: [likeButtonAction, review.id],
         fa: {
@@ -164,15 +170,7 @@ export function TripleGlobalReviewElement({
       liked
         ? unlikeReview({ reviewId: review.id, resourceId })
         : likeReview({ reviewId: review.id, resourceId })
-    }, [
-      likeButtonAction,
-      likeReview,
-      liked,
-      resourceId,
-      review.id,
-      trackEvent,
-      unlikeReview,
-    ]),
+    },
     { triggeredEventAction: likeButtonAction, skipTransitionModal: true },
   )
 
