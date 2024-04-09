@@ -15,7 +15,7 @@ interface NavbarProps {
   onLeftButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export const NAVBAR_HEIGHT_PX = 44
+export const NAVBAR_HEIGHT_PX = 45
 
 export function Navbar({
   leftButtonIconType = 'back',
@@ -31,7 +31,7 @@ export function Navbar({
       justifyContent="center"
       css={{
         position: 'sticky',
-        top: 0,
+        top: -1, // 화면이 작은 아이폰에서 상단 간격이 미세하게 어긋나는 케이스가 있어 이를 보정합니다
         left: 0,
         right: 0,
         height: NAVBAR_HEIGHT_PX,
