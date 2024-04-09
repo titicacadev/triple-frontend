@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { TripleReviewElement } from './components/review-element'
 import duoImagesData from './mocks/review-element.duo-images.json'

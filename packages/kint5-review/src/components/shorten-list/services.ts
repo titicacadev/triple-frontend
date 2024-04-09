@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { SHORTENED_REVIEWS_COUNT_PER_PAGE } from '../../constants'
 import {
@@ -14,17 +14,18 @@ export function usePopularReviews({
 }: Omit<GetPopularReviewsQueryVariables, 'from' | 'size'> & {
   lang: string
 }) {
-  return useQuery(
-    [
+  return useQuery({
+    queryKey: [
       'review/getPopularReviews',
-      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      lang,
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
-    () =>
+    queryFn: () =>
       getClient({ lang }).GetPopularReviews({
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-  )
+  })
 }
 
 export function useLatestReviews({
@@ -33,17 +34,18 @@ export function useLatestReviews({
 }: Omit<GetLatestReviewsQueryVariables, 'from' | 'size'> & {
   lang: string
 }) {
-  return useQuery(
-    [
+  return useQuery({
+    queryKey: [
       'review/getLatestReviews',
-      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      lang,
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
-    () =>
+    queryFn: () =>
       getClient({ lang }).GetLatestReviews({
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-  )
+  })
 }
 
 export function useRatingReviews({
@@ -52,15 +54,16 @@ export function useRatingReviews({
 }: Omit<GetReviewsByRatingQueryVariables, 'from' | 'size'> & {
   lang: string
 }) {
-  return useQuery(
-    [
+  return useQuery({
+    queryKey: [
       'review/getReviewsByRating',
-      { lang, ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
+      lang,
+      { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
-    () =>
+    queryFn: () =>
       getClient({ lang }).GetReviewsByRating({
         ...params,
         size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
       }),
-  )
+  })
 }

@@ -5,7 +5,7 @@ import {
   UserAgentProvider,
   generateUserAgentValues,
 } from '@titicaca/react-contexts'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { authHandlers, handlers } from './mocks/reviews'
 import { FilterProvider } from './components/filter-context'
