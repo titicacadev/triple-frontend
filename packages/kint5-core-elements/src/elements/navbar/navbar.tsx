@@ -15,6 +15,8 @@ interface NavbarProps {
   onLeftButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
 
+export const NAVBAR_HEIGHT_PX = 44
+
 export function Navbar({
   leftButtonIconType = 'back',
   centerContent,
@@ -32,7 +34,7 @@ export function Navbar({
         top: 0,
         left: 0,
         right: 0,
-        height: 44,
+        height: NAVBAR_HEIGHT_PX,
         padding: '0 16px',
         backgroundColor: 'var(--color-kint5-gray0)',
         ...containerCss,
