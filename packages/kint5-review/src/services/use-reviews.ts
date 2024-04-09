@@ -167,7 +167,7 @@ export function useUnlikeReviewMutation({ lang }: { lang: string }) {
           ? {
               ...review,
               liked: !review.liked,
-              likesCount: review.likesCount - 1,
+              likesCount: Math.max(review.likesCount - 1, 0),
             }
           : review
 
