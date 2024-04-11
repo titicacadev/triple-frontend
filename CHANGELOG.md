@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v13.23.0
+
+```
+### modals
+
+- [modals] 앱설치유도 모달에 POI 기본정보 type을 추가합니다. [#3182](https://github.com/titicacadev/triple-frontend/pull/3182)
+
+### public-header
+
+- [public-header] 헤더 로고에 onClick props를 추가합니다. [#3183](https://github.com/titicacadev/triple-frontend/pull/3183)
+```
+
 ## v13.22.0
 
 ```
