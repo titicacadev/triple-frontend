@@ -253,7 +253,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {!hideAddButton ? (
+        {!hideAddButton && process.env.NEXT_PUBLIC_IS_DEV === 'true' ? (
           <SaveToItineraryButton
             fluid
             basic
