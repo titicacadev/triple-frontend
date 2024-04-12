@@ -6,23 +6,22 @@ import { useEnv } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useNavigate } from '@titicaca/router'
 
-/**
- * TODO: hotels-web, content-web 일정추가 액션 중복코드
- */
-export default function useHandleAddPoiToTrip() {
+export function useHandleAddPoiToTrip() {
   const { appUrlScheme } = useEnv()
   const navigate = useNavigate()
 
   const handleFn = useCallback(
     (poiId: string | string[]) => {
-      const pois = Array.isArray(poiId) ? poiId.join(',') : poiId
+      const pois = Array.isArray(poiId)
+        ? poiId.map((poiId) => `poi:${poiId}`).join(',')
+        : `poi:${poiId}`
 
       navigate(
         generateUrl({
           scheme: appUrlScheme,
           path: '/action/add_trip_schedule',
           query: qs.stringify({
-            pois,
+            items: pois,
           }),
         }),
       )
