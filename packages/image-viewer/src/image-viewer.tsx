@@ -36,11 +36,11 @@ export function ImageViewerPopup({
   onImageMetadataIntersecting,
 }: ImageViewerPopupProps) {
   const [imageIndex, setImageIndex] = useState<null | number>(
-    defaultImageIndex || null,
+    defaultImageIndex ?? null,
   )
 
   useEffect(() => {
-    setImageIndex(defaultImageIndex || null)
+    setImageIndex(defaultImageIndex ?? null)
   }, [defaultImageIndex])
 
   function changeImageIndex(idx: number) {
