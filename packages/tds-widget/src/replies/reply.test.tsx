@@ -1,12 +1,8 @@
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from '@titicaca/tds-theme'
 import { render, screen, waitFor } from '@testing-library/react'
-import {
-  ClientAppName,
-  EventTrackingProvider,
-  TripleWeb,
-} from '@titicaca/triple-web'
-import i18next from 'i18next'
+import { ClientAppName, EventTrackingProvider } from '@titicaca/triple-web'
+import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { RepliesProvider } from './context'
 import { Reply } from './list/reply'
@@ -94,38 +90,12 @@ describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', 
         </EventTrackingProvider>
       </ThemeProvider>,
       {
-        wrapper: ({ children }) => (
-          <TripleWeb
-            clientAppProvider={{
-              device: { autoplay: 'always', networkType: 'unknown' },
-              metadata: { name: ClientAppName.iOS, version: '6.5.0' },
-            }}
-            envProvider={{
-              appUrlScheme: 'dev-soto',
-              webUrlBase: 'https://triple-dev.titicaca-corp.com',
-              basePath: '/',
-              facebookAppId: '',
-              defaultPageTitle: '',
-              defaultPageDescription: '',
-              afOnelinkId: '',
-              afOnelinkPid: '',
-              afOnelinkSubdomain: '',
-            }}
-            i18nProvider={{ i18n: i18next, lang: 'ko' }}
-            sessionProvider={{ user: null }}
-            userAgentProvider={{
-              ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-              browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-              engine: { name: 'WebKit', version: '605.1.15' },
-              os: { name: 'iOS', version: '13.3.1' },
-              device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-              cpu: { architecture: undefined },
-              isMobile: true,
-            }}
-          >
-            {children}
-          </TripleWeb>
-        ),
+        wrapper: createTestWrapper({
+          clientAppProvider: {
+            device: { autoplay: 'always', networkType: 'unknown' },
+            metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+          },
+        }),
       },
     )
 
@@ -159,38 +129,12 @@ describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', 
         </EventTrackingProvider>
       </ThemeProvider>,
       {
-        wrapper: ({ children }) => (
-          <TripleWeb
-            clientAppProvider={{
-              device: { autoplay: 'always', networkType: 'unknown' },
-              metadata: { name: ClientAppName.iOS, version: '6.5.0' },
-            }}
-            envProvider={{
-              appUrlScheme: 'dev-soto',
-              webUrlBase: 'https://triple-dev.titicaca-corp.com',
-              basePath: '/',
-              facebookAppId: '',
-              defaultPageTitle: '',
-              defaultPageDescription: '',
-              afOnelinkId: '',
-              afOnelinkPid: '',
-              afOnelinkSubdomain: '',
-            }}
-            i18nProvider={{ i18n: i18next, lang: 'ko' }}
-            sessionProvider={{ user: null }}
-            userAgentProvider={{
-              ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-              browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-              engine: { name: 'WebKit', version: '605.1.15' },
-              os: { name: 'iOS', version: '13.3.1' },
-              device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-              cpu: { architecture: undefined },
-              isMobile: true,
-            }}
-          >
-            {children}
-          </TripleWeb>
-        ),
+        wrapper: createTestWrapper({
+          clientAppProvider: {
+            device: { autoplay: 'always', networkType: 'unknown' },
+            metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+          },
+        }),
       },
     )
 
@@ -224,38 +168,12 @@ describe('좋아요 수에 따른 문구 노출 조건을 테스트합니다.', 
         </EventTrackingProvider>
       </ThemeProvider>,
       {
-        wrapper: ({ children }) => (
-          <TripleWeb
-            clientAppProvider={{
-              device: { autoplay: 'always', networkType: 'unknown' },
-              metadata: { name: ClientAppName.iOS, version: '6.5.0' },
-            }}
-            envProvider={{
-              appUrlScheme: 'dev-soto',
-              webUrlBase: 'https://triple-dev.titicaca-corp.com',
-              basePath: '/',
-              facebookAppId: '',
-              defaultPageTitle: '',
-              defaultPageDescription: '',
-              afOnelinkId: '',
-              afOnelinkPid: '',
-              afOnelinkSubdomain: '',
-            }}
-            i18nProvider={{ i18n: i18next, lang: 'ko' }}
-            sessionProvider={{ user: null }}
-            userAgentProvider={{
-              ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-              browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-              engine: { name: 'WebKit', version: '605.1.15' },
-              os: { name: 'iOS', version: '13.3.1' },
-              device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-              cpu: { architecture: undefined },
-              isMobile: true,
-            }}
-          >
-            {children}
-          </TripleWeb>
-        ),
+        wrapper: createTestWrapper({
+          clientAppProvider: {
+            device: { autoplay: 'always', networkType: 'unknown' },
+            metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+          },
+        }),
       },
     )
 

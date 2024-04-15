@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv, TestWrapper, ClientAppName } from '@titicaca/triple-web'
+import { useEnv, ClientAppName } from '@titicaca/triple-web'
+import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { useNavigate } from './use-navigate'
 
@@ -46,18 +47,7 @@ describe('브라우저', () => {
         },
       } = renderHook(useNavigate, {
         initialProps: { changeLocationHref },
-        wrapper: TestWrapper({
-          clientAppProvider: null,
-          userAgentProvider: {
-            ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-            browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-            engine: { name: 'WebKit', version: '605.1.15' },
-            os: { name: 'iOS', version: '13.3.1' },
-            device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-            cpu: { architecture: undefined },
-            isMobile: true,
-          },
-        }),
+        wrapper: createTestWrapper(),
       })
 
       navigate(href)
@@ -85,18 +75,7 @@ describe('브라우저', () => {
         },
       } = renderHook(useNavigate, {
         initialProps: { changeLocationHref },
-        wrapper: TestWrapper({
-          clientAppProvider: null,
-          userAgentProvider: {
-            ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-            browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-            engine: { name: 'WebKit', version: '605.1.15' },
-            os: { name: 'iOS', version: '13.3.1' },
-            device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-            cpu: { architecture: undefined },
-            isMobile: true,
-          },
-        }),
+        wrapper: createTestWrapper(),
       })
 
       navigate(href)
@@ -116,18 +95,7 @@ describe('브라우저', () => {
       },
     } = renderHook(useNavigate, {
       initialProps: { changeLocationHref },
-      wrapper: TestWrapper({
-        clientAppProvider: null,
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
-        },
-      }),
+      wrapper: createTestWrapper(),
     })
 
     navigate(`/inlink?path=${encodeURIComponent('/login')}`)
@@ -158,20 +126,10 @@ describe('앱', () => {
         },
       } = renderHook(useNavigate, {
         initialProps: { changeLocationHref },
-        wrapper: TestWrapper({
+        wrapper: createTestWrapper({
           clientAppProvider: {
             device: { autoplay: 'always', networkType: 'unknown' },
             metadata: { name: ClientAppName.Android, version: '6.5.0' },
-          },
-          sessionProvider: { user: null },
-          userAgentProvider: {
-            ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-            browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-            engine: { name: 'WebKit', version: '605.1.15' },
-            os: { name: 'iOS', version: '13.3.1' },
-            device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-            cpu: { architecture: undefined },
-            isMobile: true,
           },
         }),
       })
@@ -195,39 +153,7 @@ describe('앱', () => {
       },
     } = renderHook(useNavigate, {
       initialProps: { changeLocationHref },
-      wrapper: TestWrapper({
-        clientAppProvider: {
-          device: { autoplay: 'always', networkType: 'unknown' },
-          metadata: { name: ClientAppName.Android, version: '1.0.0' },
-        },
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
-        },
-      }),
-    })
-
-    navigate(href)
-
-    expect(openOutlinkMockFn).toHaveBeenCalledWith(href, undefined)
-  })
-
-  test('상대 경로이면 네이티브 앱 URL로 간주하고 엽니다.', () => {
-    const href = '/my-app/wonderful/path'
-    const changeLocationHref = jest.fn()
-
-    const {
-      result: {
-        current: { navigate },
-      },
-    } = renderHook(useNavigate, {
-      initialProps: { changeLocationHref },
-      wrapper: TestWrapper({
+      wrapper: createTestWrapper({
         clientAppProvider: {
           device: { autoplay: 'always', networkType: 'unknown' },
           metadata: { name: ClientAppName.Android, version: '1.0.0' },
@@ -248,14 +174,44 @@ describe('앱', () => {
             uid: 'test',
           },
         },
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
+      }),
+    })
+
+    navigate(href)
+
+    expect(openOutlinkMockFn).toHaveBeenCalledWith(href, undefined)
+  })
+
+  test('상대 경로이면 네이티브 앱 URL로 간주하고 엽니다.', () => {
+    const href = '/my-app/wonderful/path'
+    const changeLocationHref = jest.fn()
+
+    const {
+      result: {
+        current: { navigate },
+      },
+    } = renderHook(useNavigate, {
+      initialProps: { changeLocationHref },
+      wrapper: createTestWrapper({
+        clientAppProvider: {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.Android, version: '1.0.0' },
+        },
+        sessionProvider: {
+          user: {
+            name: 'TripleTester',
+            provider: 'TRIPLE',
+            country: 'ko',
+            lang: 'ko',
+            unregister: null,
+            photo: 'images.source',
+            mileage: {
+              badges: [{ icon: { imageUrl: '' } }],
+              level: 1,
+              point: 0,
+            },
+            uid: 'test',
+          },
         },
       }),
     })

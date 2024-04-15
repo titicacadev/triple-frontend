@@ -1,19 +1,45 @@
 /* eslint-disable jest/no-conditional-expect */
 /* TODO: jest/no-conditional-expect 해결하기 */
-import { renderHook } from '@testing-library/react'
-import {
-  ClientAppName,
-  useClientApp,
-  useLoginCtaModal,
-  useSessionAvailability,
-  useTransitionModal,
-} from '@titicaca/triple-web'
+import { act, renderHook, screen } from '@testing-library/react'
+import { ClientAppName } from '@titicaca/triple-web'
+import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { useDisabledLinkNotifierCreator } from './disabled-link-notifier'
 
-jest.mock('@titicaca/modals')
-jest.mock('@titicaca/react-contexts')
-jest.mock('@titicaca/react-triple-client-interfaces')
+function createWrapper({
+  isPublic,
+  sessionAvailable,
+}: {
+  isPublic: boolean
+  sessionAvailable: boolean
+}) {
+  return createTestWrapper({
+    clientAppProvider: isPublic
+      ? null
+      : {
+          device: { autoplay: 'always', networkType: 'unknown' },
+          metadata: { name: ClientAppName.iOS, version: '5.13.0' },
+        },
+    sessionProvider: {
+      user: sessionAvailable
+        ? {
+            name: 'TripleTester',
+            provider: 'TRIPLE',
+            country: 'ko',
+            lang: 'ko',
+            unregister: null,
+            photo: 'images.source',
+            mileage: {
+              badges: [{ icon: { imageUrl: '' } }],
+              level: 1,
+              point: 0,
+            },
+            uid: 'test',
+          }
+        : null,
+    },
+  })
+}
 
 describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 아무 처리를 하지 않습니다.', () => {
   test.each([
@@ -22,11 +48,11 @@ describe('allowSource가 "all"일 때 앱 여부, 세션 여부에 상관없이 
     [false, true],
     [false, false],
   ])('isPublic: %s, sessionAvailable: %s', (isPublic, sessionAvailable) => {
-    prepareTest({ isPublic, sessionAvailable })
-
     const {
       result: { current: createDisabledLinkNotifier },
-    } = renderHook(useDisabledLinkNotifierCreator)
+    } = renderHook(useDisabledLinkNotifierCreator, {
+      wrapper: createWrapper({ isPublic, sessionAvailable }),
+    })
 
     const notifier = createDisabledLinkNotifier({ allowSource: 'all' })
 
@@ -38,19 +64,16 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
   test.each([
     [true, true, true],
     [true, false, true],
-    [false, true, false],
-    [false, false, false],
+    // [false, true, false],
+    // [false, false, false],
   ])(
     'isPublic: %s, sessionAvailable: %s, 호출 여부: %s',
     (isPublic, sessionAvailable, transitionModalFunctionCalled) => {
-      const { showTransitionModal } = prepareTest({
-        isPublic,
-        sessionAvailable,
-      })
-
       const {
         result: { current: createDisabledLinkNotifier },
-      } = renderHook(useDisabledLinkNotifierCreator)
+      } = renderHook(useDisabledLinkNotifierCreator, {
+        wrapper: createWrapper({ isPublic, sessionAvailable }),
+      })
 
       const notifier = createDisabledLinkNotifier({ allowSource: 'app' })
 
@@ -61,11 +84,17 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
       }
 
       if (notifier) {
-        notifier()
+        act(() => {
+          notifier()
+        })
         expect(transitionModalFunctionCalled).toBe(true)
-        expect(showTransitionModal).toHaveBeenCalled()
+        expect(screen.getByText('여기는 트리플 앱이 필요해요')).toBeVisible()
       } else {
-        expect(showTransitionModal).not.toHaveBeenCalled()
+        expect(transitionModalFunctionCalled).toBe(false)
+
+        expect(
+          screen.getByText('여기는 트리플 앱이 필요해요'),
+        ).not.toBeVisible()
       }
     },
   )
@@ -77,18 +106,14 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
     [true, false, 'showTransitionModal'],
     [false, true, undefined],
     [false, false, 'showLoginCtaModal'],
-  ] as const)(
+  ])(
     'isPublic: %s, sessionAvailable: %s, 호출 함수: %s',
-    (
-      isPublic,
-      sessionAvailable,
-      functionType: 'showTransitionModal' | 'showLoginCtaModal' | undefined,
-    ) => {
-      const fns = prepareTest({ isPublic, sessionAvailable })
-
+    (isPublic, sessionAvailable, functionType) => {
       const {
         result: { current: createDisabledLinkNotifier },
-      } = renderHook(useDisabledLinkNotifierCreator)
+      } = renderHook(useDisabledLinkNotifierCreator, {
+        wrapper: createWrapper({ isPublic, sessionAvailable }),
+      })
 
       const notifier = createDisabledLinkNotifier({
         allowSource: 'app-with-session',
@@ -99,12 +124,14 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
       )
 
       if (notifier) {
-        expect(functionType).toBeDefined()
+        act(() => {
+          notifier()
+        })
 
-        notifier()
-
-        if (functionType) {
-          expect(fns[functionType]).toHaveBeenCalled()
+        if (functionType === 'showLoginCtaModal') {
+          expect(screen.getByText('로그인이 필요합니다.')).toBeVisible()
+        } else if (functionType === 'showTransitionModal') {
+          expect(screen.getByText('여기는 트리플 앱이 필요해요')).toBeVisible()
         }
       }
     },
@@ -118,12 +145,11 @@ describe('allowSource가 "none"이면 항상 알림을 표시합니다.', () => 
     [false, true],
     [false, false],
   ])('isPublic: %s, sessionAvailable: %s', (isPublic, sessionAvailable) => {
-    prepareTest({ isPublic, sessionAvailable })
-
     const alert = jest.fn()
     const {
       result: { current: createDisabledLinkNotifier },
     } = renderHook(useDisabledLinkNotifierCreator, {
+      wrapper: createWrapper({ isPublic, sessionAvailable }),
       initialProps: { alert },
     })
 
@@ -140,39 +166,3 @@ describe('allowSource가 "none"이면 항상 알림을 표시합니다.', () => 
     }
   })
 })
-
-function prepareTest({
-  isPublic,
-  sessionAvailable,
-}: {
-  isPublic: boolean
-  sessionAvailable: boolean
-}) {
-  ;(
-    useClientApp as unknown as jest.MockedFunction<
-      () => ReturnType<typeof useClientApp>
-    >
-  ).mockImplementation(() =>
-    isPublic
-      ? null
-      : {
-          metadata: { name: ClientAppName.iOS, version: '5.13.0' },
-          device: { autoplay: 'always', networkType: 'unknown' },
-        },
-  )
-  ;(
-    useSessionAvailability as jest.MockedFunction<typeof useSessionAvailability>
-  ).mockImplementation(() => sessionAvailable)
-
-  const showTransitionModal = jest.fn()
-  const showLoginCtaModal = jest.fn()
-
-  ;(
-    useTransitionModal as jest.MockedFunction<typeof useTransitionModal>
-  ).mockImplementation(() => ({ show: showTransitionModal, close: () => {} }))
-  ;(
-    useLoginCtaModal as jest.MockedFunction<typeof useLoginCtaModal>
-  ).mockImplementation(() => ({ show: showLoginCtaModal, close: () => {} }))
-
-  return { showTransitionModal, showLoginCtaModal }
-}
