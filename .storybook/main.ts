@@ -13,6 +13,22 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
+    'storybook-react-i18next',
+    {
+      name: 'storybook-addon-swc',
+      options: {
+        swcLoaderOptions: {
+          module: {
+            type: 'es6',
+          },
+          jsc: {
+            experimental: {
+              plugins: [['@swc/plugin-styled-components', {}]],
+            },
+          },
+        },
+      },
+    },
   ],
   typescript: {
     reactDocgenTypescriptOptions: {
@@ -22,9 +38,6 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/nextjs',
     options: {
-      builder: {
-        useSWC: true,
-      },
       fastRefresh: true,
       strictMode: true,
     },
