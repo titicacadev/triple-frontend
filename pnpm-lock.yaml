@@ -1182,6 +1182,9 @@ importers:
       '@titicaca/triple-web':
         specifier: workspace:*
         version: link:../triple-web
+      '@titicaca/triple-web-test-utils':
+        specifier: workspace:*
+        version: link:../triple-web-test-utils
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -1647,6 +1650,9 @@ importers:
       '@titicaca/tds-theme':
         specifier: workspace:*
         version: link:../tds-theme
+      '@titicaca/triple-web-test-utils':
+        specifier: workspace:*
+        version: link:../triple-web-test-utils
       '@types/qs':
         specifier: ^6.9.8
         version: 6.9.9
@@ -1924,6 +1930,24 @@ importers:
       next:
         specifier: ^13.5.5
         version: 13.5.6(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
+
+  packages/triple-web-test-utils:
+    devDependencies:
+      '@titicaca/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
+      i18next:
+        specifier: 23.7.6
+        version: 23.7.6
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-i18next:
+        specifier: ^14.1.0
+        version: 14.1.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
 
   packages/triple-web-utils:
     dependencies:
@@ -3434,7 +3458,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
-    dev: true
 
   /@babel/template@7.22.5:
     resolution: {integrity: sha512-X7yV7eiwAxdj9k94NEylvbVHLiVG1nvzCV2EAowhxLTwODV1jl9UzZ48leOC0sH7OnuHrIkllaBgneUykIcZaw==}
@@ -12076,7 +12099,7 @@ packages:
   /dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.22.6
+      '@babel/runtime': 7.24.1
       csstype: 3.1.2
     dev: false
 
@@ -19060,6 +19083,26 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
+  /react-i18next@14.1.0(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3KwX6LHpbvGQ+sBEntjV4sYW3Zovjjl3fpoHbUwSgFHf0uRBcbeCBLR5al6ikncI5+W0EFb71QXZmfop+J6NrQ==}
+    peerDependencies:
+      i18next: '>= 23.2.3'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.1
+      html-parse-stringify: 3.0.1
+      i18next: 23.7.6
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: true
+
   /react-input-mask@2.0.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
     peerDependencies:
@@ -19428,7 +19471,6 @@ packages:
 
   /regenerator-runtime@0.14.1:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-    dev: true
 
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}

@@ -1,19 +1,28 @@
 import { renderHook } from '@testing-library/react'
-import { useEnv } from '@titicaca/triple-web'
+import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { useWebUrlBaseAdder } from './add-web-url-base'
 
 const MOCK_URL_BASE = 'https://triple.guide'
 
-jest.mock('@titicaca/react-contexts')
-;(
-  useEnv as unknown as jest.MockedFunction<
-    () => Pick<ReturnType<typeof useEnv>, 'webUrlBase'>
-  >
-).mockImplementation(() => ({ webUrlBase: MOCK_URL_BASE }))
+const wrapper = createTestWrapper({
+  envProvider: {
+    appUrlScheme: 'dev-soto',
+    webUrlBase: MOCK_URL_BASE,
+    basePath: '/',
+    facebookAppId: '',
+    defaultPageTitle: '',
+    defaultPageDescription: '',
+    afOnelinkId: '',
+    afOnelinkPid: '',
+    afOnelinkSubdomain: '',
+  },
+})
 
 test('useEnv에서 webUrlBase를 가져와서 주어진 href에 붙입니다.', () => {
-  const { result } = renderHook(useWebUrlBaseAdder)
+  const { result } = renderHook(useWebUrlBaseAdder, {
+    wrapper,
+  })
 
   const addWebUrlBaseToHref = result.current
   const path = '/base'
@@ -22,7 +31,9 @@ test('useEnv에서 webUrlBase를 가져와서 주어진 href에 붙입니다.', 
 })
 
 test('주어진 href가 /이면 그냥 baseURL을 반환합니다.', () => {
-  const { result } = renderHook(useWebUrlBaseAdder)
+  const { result } = renderHook(useWebUrlBaseAdder, {
+    wrapper,
+  })
 
   const addWebUrlBaseToHref = result.current
   const path = '/'

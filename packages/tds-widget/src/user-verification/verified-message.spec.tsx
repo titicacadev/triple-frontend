@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react'
-import { ClientAppName, TestWrapper } from '@titicaca/triple-web'
+import { ClientAppName } from '@titicaca/triple-web'
+import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import {
   useSendVerifiedMessage,
@@ -31,19 +32,10 @@ describe('useSendVerifiedMessage', () => {
     const {
       result: { current: sendVerifiedMessage },
     } = renderHook(() => useSendVerifiedMessage(), {
-      wrapper: TestWrapper({
+      wrapper: createTestWrapper({
         clientAppProvider: {
           device: { autoplay: 'always', networkType: 'unknown' },
           metadata: { name: ClientAppName.Android, version: '1.0.0' },
-        },
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
         },
       }),
     })
@@ -73,17 +65,8 @@ describe('useSendVerifiedMessage', () => {
     const {
       result: { current: sendVerifiedMessage },
     } = renderHook(() => useSendVerifiedMessage(), {
-      wrapper: TestWrapper({
+      wrapper: createTestWrapper({
         clientAppProvider: null,
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
-        },
       }),
     })
 
@@ -100,19 +83,10 @@ describe('useVerifiedMessageListener', () => {
     >['0']
 
     renderHook(() => useVerifiedMessageListener(handleVerifiedMessage), {
-      wrapper: TestWrapper({
+      wrapper: createTestWrapper({
         clientAppProvider: {
           device: { autoplay: 'always', networkType: 'unknown' },
           metadata: { name: ClientAppName.Android, version: '1.0.0' },
-        },
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
         },
       }),
     })
@@ -127,17 +101,8 @@ describe('useVerifiedMessageListener', () => {
     >['0']
 
     renderHook(() => useVerifiedMessageListener(handleVerifiedMessage), {
-      wrapper: TestWrapper({
+      wrapper: createTestWrapper({
         clientAppProvider: null,
-        userAgentProvider: {
-          ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-          browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-          engine: { name: 'WebKit', version: '605.1.15' },
-          os: { name: 'iOS', version: '13.3.1' },
-          device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-          cpu: { architecture: undefined },
-          isMobile: true,
-        },
       }),
     })
 
