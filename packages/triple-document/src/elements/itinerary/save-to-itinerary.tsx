@@ -30,7 +30,7 @@ export default function SaveToItinerary({
 }) {
   const trackEvent = useTrackEvent()
 
-  const { t } = useTranslation('common-web')
+  const { t } = useTranslation('triple-frontend')
 
   const addPoisToTrip = useHandleAddPoisToTrip({
     geotag,
@@ -60,7 +60,7 @@ export default function SaveToItinerary({
     >
       <Download />
       <Text inline size={14} margin={{ left: 3 }} color="white">
-        {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
+        {t('내 일정으로 담기')}
       </Text>
     </SaveToItineraryButton>
   )
