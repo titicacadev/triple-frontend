@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.23.1
+
+```
+### image-viewer
+
+- [image-viewer] 첫번째 이미지를 클릭했을 때 비정상적으로 작동하는 버그를 수정합니다. [#3187](https://github.com/titicacadev/triple-frontend/pull/3187)
+```
+
 ## v13.23.0
 
 ```
