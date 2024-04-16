@@ -6,13 +6,16 @@ export const HiddenElement = styled.div`
 `
 
 export const ProfileImage = styled.img`
-  width: 36px;
-  height: 36px;
-  border-radius: 26.8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px;
+  outline-offset: -1px;
   float: left;
 `
 
 export const ProfileName = styled(Text)`
+  font-size: 11px;
   font-weight: 600;
 `
 
@@ -41,7 +44,6 @@ export const RetryButton = styled.button`
   ${sendingFailureHandlerStyle};
 
   width: 23.5px;
-  background-image: url('https://assets.triple.guide/images/btn-message-resend@3x.png');
 `
 
 export const DeleteButton = styled.button`
@@ -49,7 +51,6 @@ export const DeleteButton = styled.button`
 
   width: 24.5px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
-  background-image: url('https://assets.triple.guide/images/btn-message-delete@3x.png');
 `
 
 const ThanksButton = styled(Button)<{ haveMine: boolean }>`

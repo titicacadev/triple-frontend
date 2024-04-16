@@ -10,7 +10,7 @@ import {
   ProductInfo,
   ProductName,
 } from './elements'
-import { Bubble } from './bubble'
+import Bubble from './bubble'
 import { ProductBubbleProp } from './type'
 
 const PRODUCT_BADGE_COLOR: Record<CustomerBookingStatus, Color> = {
@@ -53,6 +53,7 @@ export const ProductBubble = ({
         width: 'calc(100% - 15px)',
         maxWidth: '768px',
         margin: my ? '0 0 0 8px' : undefined,
+        padding: '12px 14px',
       }}
       {...props}
     >

@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react'
 import { Container } from '@titicaca/core-elements'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
+import { DEFAULT_MAX_USERNAME_LENGTH, formatUsername } from '../utils/profile'
 
 import { BubbleInfo } from './bubble-info'
 import {
@@ -12,11 +13,10 @@ import {
   SendingFailureHandlerContainer,
   Thanks,
 } from './elements'
+import { DeleteIcon, RetryIcon } from './icons'
 
 const CHAT_CONTAINER_STYLES = {
-  marginTop: 20,
   position: 'relative',
-  minHeight: 46,
   width: '100%',
 } as const
 
@@ -26,12 +26,20 @@ interface ContainerBaseProp {
   createdAt?: string // Date?
   /** 해당 메시지를 읽지 않은 유저의 수 */
   unreadCount: number | null
-  /** 시간 정보 등의 정보의 노출 여부 */
+  /** 정보 영역 노출 여부 (시간, 안읽음 등) */
   showInfo?: boolean
+  /** 날짜 정보의 노출 여부 */
+  showDateInfo?: boolean
+  /** 시간 정보의 노출 여부 */
+  showTimeInfo?: boolean
   /** 좋아요 정보 */
   thanks?: { count: number; haveMine: boolean }
   /** 좋아요 아이콘 클릭 시 작동하는 함수 */
   onThanksClick?: () => void
+  /** 답장하기 아이콘 클릭 시 작동하는 함수 */
+  onReplyClick?: () => void
+  /** 메세지 ref에 주입되는 callback 함수 */
+  messageRefCallback?: (id: string) => void
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -50,28 +58,43 @@ function SentBubbleContainer({
   onRetryCancel,
   unreadCount,
   showInfo = true,
+  showDateInfo,
+  showTimeInfo,
   thanks,
   onThanksClick,
+  onReplyClick,
+  messageRefCallback,
   children,
+  ...props
 }: SentBubbleContainerProp) {
   return (
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ textAlign: 'right', ...CHAT_CONTAINER_STYLES }}
+      ref={() => messageRefCallback?.(id)}
+      {...props}
     >
       <div>
         {!createdAt && onRetry && onRetryCancel ? (
           <SendingFailureHandlerContainer>
-            <RetryButton onClick={onRetry} />
-            <DeleteButton onClick={onRetryCancel} />
+            <RetryButton onClick={onRetry}>
+              <RetryIcon />
+            </RetryButton>
+            <DeleteButton onClick={onRetryCancel}>
+              <DeleteIcon />
+            </DeleteButton>
           </SendingFailureHandlerContainer>
         ) : null}
 
         {createdAt && showInfo ? (
           <BubbleInfo
+            align="right"
             unreadCount={unreadCount}
             date={createdAt}
-            css={{ marginRight: 8, textAlign: 'right' }}
+            showDateInfo={showDateInfo}
+            showTimeInfo={showTimeInfo}
+            onReplyClick={onReplyClick}
+            css={{ marginRight: 4, textAlign: 'right' }}
           />
         ) : null}
 
@@ -99,6 +122,8 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
       userId: string
       unregistered?: boolean
     }
+    /** 프로필 노출 여부 */
+    showProfile?: boolean
   }
 >
 
@@ -108,28 +133,56 @@ function ReceivedBubbleContainer({
   unreadCount,
   createdAt,
   showInfo,
+  showDateInfo,
+  showTimeInfo,
+  showProfile = true,
   thanks,
   onThanksClick,
+  onReplyClick,
+  messageRefCallback,
   children,
+  ...props
 }: ReceivedBubbleContainerProp) {
   return (
     <Container
       id={`${DEFAULT_MESSAGE_ID_PREFIX}-${id}`}
       css={{ ...CHAT_CONTAINER_STYLES }}
+      ref={() => messageRefCallback?.(id)}
+      {...props}
     >
-      <ProfileImage src={user?.photo} />
-      <Container css={{ marginLeft: 50 }}>
-        <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
-          {user?.name || ''}
-        </ProfileName>
+      {showProfile ? (
+        <ProfileImage
+          src={
+            user && !user.unregistered && user.photo
+              ? user.photo
+              : 'https://assets.triple.guide/images/ico-default-profile.svg'
+          }
+        />
+      ) : null}
+      <Container css={{ marginLeft: 40 }}>
+        {showProfile ? (
+          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
+            {user
+              ? formatUsername({
+                  name: user?.name,
+                  unregistered: user?.unregistered,
+                  maxLength: DEFAULT_MAX_USERNAME_LENGTH,
+                })
+              : ''}
+          </ProfileName>
+        ) : null}
 
         {children}
 
         {createdAt && showInfo ? (
           <BubbleInfo
+            align="left"
             unreadCount={unreadCount}
+            showDateInfo={showDateInfo}
+            showTimeInfo={showTimeInfo}
+            onReplyClick={onReplyClick}
             date={createdAt}
-            css={{ marginLeft: 8, textAlign: 'left' }}
+            css={{ marginLeft: 4, textAlign: 'left' }}
           />
         ) : null}
 
