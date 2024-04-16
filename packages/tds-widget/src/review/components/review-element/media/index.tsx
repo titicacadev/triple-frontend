@@ -9,7 +9,7 @@ import {
 } from '@titicaca/triple-web'
 
 import { useClientActions } from '../../../services'
-import { ImageViewerPopup } from '../../../../../../image-viewer/src'
+import { ImageViewerPopup } from '../../../../image-viewer'
 
 import { compareMedia } from './compare-media'
 import { Dimmer, MediumWrapper } from './elements'
@@ -120,7 +120,7 @@ export function Media({ media, reviewId }: Props) {
       </MediaWrapper>
 
       {imageIndex != null && uriHash === HASH_IMAGE_VIEWER_POPUP ? (
-        <ImageViewerPopupp
+        <ImageViewerPopup
           open={uriHash === HASH_IMAGE_VIEWER_POPUP}
           images={sortedMedia}
           totalCount={sortedMedia.length}

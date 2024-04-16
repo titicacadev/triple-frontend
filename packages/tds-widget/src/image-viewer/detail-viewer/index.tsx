@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
-import { Container } from '@titicaca/core-elements'
-import { useUserAgentContext } from '@titicaca/react-contexts'
 import Flicking from '@egjs/react-flicking'
 import { useRef } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { Container } from '@titicaca/tds-ui'
+import { useUserAgent } from '@titicaca/triple-web'
 
 import { Video } from './video'
 import Image from './image'
@@ -68,7 +68,7 @@ export default function DetailViewer({
   changeImageIndex,
   onImageMetadataIntersecting,
 }: DetailViewerProp) {
-  const { isMobile } = useUserAgentContext()
+  const { isMobile } = useUserAgent()
   const flickingRef = useRef<Flicking>(null)
 
   function onNextImageShow() {
