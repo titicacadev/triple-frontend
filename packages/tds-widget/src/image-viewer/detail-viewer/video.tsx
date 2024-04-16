@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { Container } from '@titicaca/core-elements'
+import { Container } from '@titicaca/tds-ui'
 
 interface VideoProps {
   visible: boolean

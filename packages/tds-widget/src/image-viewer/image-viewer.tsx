@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import Popup from '@titicaca/popup'
-import { Container, Navbar } from '@titicaca/core-elements'
 import styled from 'styled-components'
+import { Container, Navbar, Popup } from '@titicaca/tds-ui'
 
 import DetailViewer, { DetailViewerProp } from './detail-viewer'
 
