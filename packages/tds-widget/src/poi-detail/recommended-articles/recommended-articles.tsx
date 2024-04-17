@@ -21,13 +21,12 @@ import { ArticleCardCta, fetchInventoryItems } from '../../app-installation-cta'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
-import ArticleEntry from './article-entry'
-import MoreButton from './more-button'
+import { ArticleEntry } from './article-entry'
+import { MoreButton } from './more-button'
 
 const MobileCarousel = styled(Carousel)`
-  &.recommended_articles_carousel {
-    padding: 0;
-  }
+  margin-top: 20px;
+  padding: 0 30px;
 `
 
 export function PoiDetailRecommendedArticles({
@@ -194,11 +193,7 @@ export function PoiDetailRecommendedArticles({
         >
           {t('놓치기 아까운 이 지역 꿀 정보')}
         </H1>
-        <MobileCarousel
-          margin={{ top: 20 }}
-          containerPadding={mobilePadding || { left: 30, right: 30 }}
-          className="recommended_articles_carousel"
-        >
+        <MobileCarousel>
           {articleCardCta && (
             <Carousel.Item size="medium">
               <ArticleCardCta
