@@ -1,6 +1,6 @@
 import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 import { useClientAppActions } from '@titicaca/triple-web'
@@ -150,12 +150,17 @@ function ReviewsComponent({
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
-        <Text bold size="huge" color="blue" alpha={1} inline>
-          {t('{{totalReviewsCount}}개의 리뷰', {
+        <Trans
+          t={t}
+          i18nKey="{{totalReviewsCount}}개의 리뷰"
+          values={{
             totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
-          })}
-        </Text>
-        <Text bold size="huge" color="gray" alpha={1} inline />
+          }}
+          components={[
+            <Text key={0} bold size="huge" color="blue" alpha={1} inline />,
+            <Text key={1} bold size="huge" color="gray" alpha={1} inline />,
+          ]}
+        />
       </Container>
 
       <OptionContainer>
