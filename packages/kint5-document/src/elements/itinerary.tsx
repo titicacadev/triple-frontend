@@ -16,6 +16,7 @@ import type {
 import { useNavigate } from '@titicaca/router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTranslation } from '@titicaca/next-i18next'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
@@ -99,6 +100,7 @@ export default function ItineraryElement({ value }: Props) {
   const { courses, poiIds, hideAddButton, hasItineraries } = useItinerary(value)
   const addPoisToTrip = useHandleAddPoiToTrip()
   const navigate = useNavigate()
+  const app = useTripleClientMetadata()
 
   const generatePoiClickHandler = useCallback(
     ({
@@ -253,7 +255,7 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Stack>
-        {!hideAddButton && process.env.NEXT_PUBLIC_IS_PRODUCTION !== 'true' ? (
+        {!hideAddButton && isValidAppVersionForItinerary(app?.appVersion) ? (
           <SaveToItineraryButton
             fluid
             basic
@@ -308,4 +310,28 @@ function TransportationIcon(type?: TransportationType) {
     default:
       return () => null
   }
+}
+
+function isValidAppVersionForItinerary(appVersion: string | undefined) {
+  if (process.env.NEXT_PUBLIC_IS_PRODUCTION !== 'true') {
+    return true
+  }
+
+  if (!appVersion) {
+    return false
+  }
+
+  const [major, minor] = appVersion.split('.')
+  const majorVersion = Number(major)
+  const minorVersion = Number(minor)
+
+  if (majorVersion > 1) {
+    return true
+  }
+
+  if (majorVersion === 1) {
+    return minorVersion >= 2
+  }
+
+  return false
 }
