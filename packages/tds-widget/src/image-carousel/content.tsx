@@ -3,8 +3,8 @@ import {
   GlobalSizes,
   ImageMeta,
 } from '@titicaca/type-definitions'
-import { MouseEvent, ReactNode } from 'react'
-import { useFlickingCarousel } from '@titicaca/tds-ui'
+import { MouseEvent, ReactNode, RefObject } from 'react'
+import Flicking from '@egjs/react-flicking'
 
 import { ImageSource } from '../image-source'
 
@@ -13,6 +13,7 @@ import { VideoContent } from './video-content'
 import type { CarouselImageMeta } from './types'
 
 interface Props {
+  flickingRef: RefObject<Flicking>
   medium: ImageMeta
   optimized?: boolean
   height?: number
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export function Content({
+  flickingRef,
   medium,
   optimized,
   height,
@@ -33,7 +35,6 @@ export function Content({
   ImageSource,
   onClick,
 }: Props) {
-  const { flickingRef } = useFlickingCarousel()
   const isVideo = medium.type === 'video'
 
   const handleClick = (event?: MouseEvent, media?: CarouselImageMeta) => {
