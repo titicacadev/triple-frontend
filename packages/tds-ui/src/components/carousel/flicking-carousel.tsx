@@ -38,7 +38,7 @@ export function FlickingCarousel({
       options={options}
     >
       <CarouselContainer position="relative" {...cssProps}>
-        {children}
+        <div css={{ position: 'relative' }}>{children}</div>
       </CarouselContainer>
     </FlickingCarouselProvider>
   )
