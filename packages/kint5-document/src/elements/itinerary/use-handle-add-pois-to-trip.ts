@@ -16,18 +16,12 @@ export function useHandleAddPoiToTrip() {
         ? poiId.map((poiId) => `poi:${poiId}`)
         : [`poi:${poiId}`]
 
-      const festas = [
-        process.env.NEXT_PUBLIC_ITINERARY_FESTA_ID1,
-        process.env.NEXT_PUBLIC_ITINERARY_FESTA_ID2,
-        process.env.NEXT_PUBLIC_ITINERARY_FESTA_ID3,
-      ].map((festaId) => `festa:${festaId}`)
-
       navigate(
         generateUrl({
           scheme: appUrlScheme,
           path: '/action/add_trip_schedule',
           query: qs.stringify({
-            items: [...pois, ...festas].join(','),
+            items: pois.join(','),
           }),
         }),
       )
