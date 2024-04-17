@@ -6,11 +6,9 @@
 
 [Lerna](https://lerna.js.org/)를 이용해서 작업하고 있습니다.
 
-npm 9 이상을 요구합니다. 버전이 낮으면 업그레이드 해주세요.
+`pnpm`이 필요합니다.
 
-```sh
-npm install -g npm@latest
-```
+[설치하기](https://pnpm.io/ko/installation)
 
 ## 소개
 
@@ -24,11 +22,6 @@ npm install -g npm@latest
 ### 기능 요청 및 문의
 
 Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
-
-### Project Structure
-
-- `docs/`: [Storybook](https://storybook.js.org)으로 생성하는 Documentation page. [스토리 작성법 for Storybook 6.0](https://www.notion.so/Storybook-6-36430db04f7a450287d9b03cc8c04439)
-- `packages/`: npm에 배포하는 트리플 프론트엔드 패키지
 
 ### Package Versioning
 
@@ -77,28 +70,20 @@ Slack `@frontend` 그룹, `#triple-web-dev` 채널 및 GitHub `@frontend` 팀
 ### Prerequisites
 
 - Node.js LTS
-- Lerna (`npm install -g lerna`)
+- pnpm
 
 ### Setup
 
 프로젝트를 클론합니다:
 
 ```sh
-$ git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
+git clone git@github.com:titicacadev/triple-frontend.git && cd triple-frontend
 ```
 
 디펜던시를 설치합니다:
 
 ```sh
-$ npm install
-```
-
-#### 의존성 설정
-
-[NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)를 사용해 각 패키지의 의존성을 관리합니다.
-
-```sh
-npm install
+pnpm install
 ```
 
 ### Workflow
@@ -106,10 +91,10 @@ npm install
 #### 기능 추가
 
 1. 작업자가 코드 기여
-2. 의존성 변경이 있으면, `npm run sync-deps` 명령어 실행
+2. 의존성 변경이 있으면, `pnpm run sync-deps` 명령어 실행
 3. 커밋 & 푸시
 4. PR 생성 & 리뷰
-5. 버전 생성 (Optional): `npm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
+5. 버전 생성 (Optional): `pnpm run version` (경우에 따라 PR과 함께 혹은 별도로 생성)
 6. main 머지
 7. `/release` 커맨드로 배포
 8. 배포 (Optional): CD에서 패키지 publish, npm 페이지 통해서 확인
@@ -118,13 +103,13 @@ npm install
 
 1. `lerna create [패키지명]` 커맨드로 패키지 추가
 2. 적절한 `package.json` 및 `tsconfig.json` 수정 및 생성
-3. `npm run sync-deps` 명령어 실행
+3. `pnpm run sync-deps` 명령어 실행
 4. `src`에 코드 작성
 5. 버전 생성 (Optional): 기존 패키지에서 분리가 일어나서 API 인터페이스에
    변경이 있었다면 MAJOR, 기존 패키지와 관련 없는 패키지 추가라면 MINOR 버전
    올림
-   - `npm run version -- major`
-   - `npm run version -- minor`
+   - `pnpm run version -- major`
+   - `pnpm run version -- minor`
 6. 커밋 & 푸시
 7. PR 생성 & 리뷰
 8. main 머지
@@ -134,7 +119,7 @@ npm install
 #### 패키지에 의존성 추가
 
 ```bash
-npm install --workspace=<의존성을 추가할 대상 패키지> <추가할 패키지>
+pnpm install --workspace=<의존성을 추가할 대상 패키지> <추가할 패키지>
 ```
 
 devDependency이면 --dev를, peer dependency이면 --peer를 추가합니다.
@@ -166,7 +151,7 @@ git switch -c release/v2.9.0
 2. 새로운 버전을 올립니다. 원하는 버전을 선택하면 lerna가 알아서 모든 패키지의 버전을 바꿉니다.
 
 ```bash
-$ npm run version
+pnpm run version
 
 > version
 > lerna version --no-push --force-publish
