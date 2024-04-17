@@ -8,7 +8,12 @@ import {
   polygonPaths,
   polylinePaths,
 } from './mock'
-import { DotPolyline, HotelCircleMarker, Polygon, Polyline } from './overlay'
+import {
+  DotPolyline,
+  AttractionCircleMarker,
+  Polygon,
+  Polyline,
+} from './overlay'
 
 /**
  * 구글 맵 SDK API 키 설정은 아래에서 진행할 수 있습니다.
@@ -17,7 +22,7 @@ import { DotPolyline, HotelCircleMarker, Polygon, Polyline } from './overlay'
  *
  * https://console.cloud.google.com/apis/credentials/key/e2f05131-1fe0-48d7-a231-f5f05336a007?folder=&organizationId=&project=titicaca-ci
  */
-const GOOGLE_MAPS_API_KEY = 'AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4'
+const GOOGLE_MAPS_API_KEY = 'AIzaSyD-yBDk-vLXh92QcXuEw--uIEjrwd3fcu8'
 
 export default {
   title: 'kint5-map / Map',
@@ -135,7 +140,7 @@ export const WithMarker: StoryObj<typeof MapView> = {
       >
         <MapView {...args}>
           {polylinePaths.map((path, i) => (
-            <HotelCircleMarker
+            <AttractionCircleMarker
               key={i}
               zIndex={polylinePaths.length - i}
               active={false}
@@ -143,7 +148,7 @@ export const WithMarker: StoryObj<typeof MapView> = {
               onClick={() => {}}
             >
               {i + 1}
-            </HotelCircleMarker>
+            </AttractionCircleMarker>
           ))}
 
           <Polyline path={polylinePaths} strokeColor="#000000" />
@@ -242,7 +247,7 @@ export const WithPolylineAndMarker: StoryObj<typeof MapView> = {
       >
         <MapView {...args}>
           {polygonPaths.map((path, i) => (
-            <HotelCircleMarker
+            <AttractionCircleMarker
               key={i}
               zIndex={polygonPaths.length - i}
               active={false}
@@ -250,7 +255,7 @@ export const WithPolylineAndMarker: StoryObj<typeof MapView> = {
               onClick={() => {}}
             >
               {i + 1}
-            </HotelCircleMarker>
+            </AttractionCircleMarker>
           ))}
 
           <DotPolyline path={polygonLinePath} strokeColor="#000000" />

@@ -5,8 +5,9 @@ import {
   useCallback,
 } from 'react'
 import { OverlayViewProps, OverlayView } from '@react-google-maps/api'
+import { Container, MapMarkerIcon, Text } from '@titicaca/kint5-core-elements'
 
-import { Circle, CirclePin, MarkerBaseProps } from './circle-marker-base'
+import { CirclePin, MarkerBaseProps } from './circle-marker-base'
 
 // tna 추가예정
 export type CircleType = 'attraction' | 'restaurant' | 'hotel'
@@ -43,7 +44,6 @@ export const CIRCLE_MARKER: {
 export function CircleMarker({
   position,
   color,
-  src,
   zIndex = 1,
   active = false,
   alwaysClickable = false,
@@ -75,10 +75,51 @@ export function CircleMarker({
         alwaysClickable={alwaysClickable}
         active={active}
         color={color}
-        src={src}
         onClick={handleClick}
       >
-        <Circle>{children}</Circle>
+        <Container
+          css={{ position: 'absolute', zIndex: 1, top: -18, left: -2 }}
+        >
+          <MapMarkerIcon color={color} />
+          <Text
+            css={{
+              position: 'absolute',
+              top: 6,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              color: '#FFF',
+              fontSize: 12,
+              fontWeight: 700,
+            }}
+          >
+            {children}
+          </Text>
+        </Container>
+        <div
+          css={{
+            width: 14,
+            height: 14,
+            backgroundColor: color,
+            borderRadius: '50%',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <div
+            css={{
+              width: 8,
+              height: 8,
+              backgroundColor: '#FFF',
+              borderRadius: '50%',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        </div>
       </CirclePin>
     </OverlayView>
   )

@@ -2,15 +2,16 @@ import { useCallback, MouseEvent } from 'react'
 import { Container } from '@titicaca/kint5-core-elements'
 import {
   MapView,
-  HotelCircleMarker,
   AttractionCircleMarker,
   RestaurantCircleMarker,
   DotPolyline,
+  FestaCircleMarker,
 } from '@titicaca/kint5-map'
 import { useEnv } from '@titicaca/react-contexts'
 import {
   Itinerary,
   ItineraryItemType,
+  PoiType,
 } from '@titicaca/content-type-definitions'
 
 import useMapData from './use-computed-map'
@@ -77,18 +78,15 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
   )
 }
 
-/**
- * NOTE: poi.type 값을 기반으로 공통 CircleMarker 컴포넌트로 맵핑하는 WrapperComponent
- */
-function ItineraryTypeCircleMarker(type: ItineraryItemType['poi']['type']) {
+function ItineraryTypeCircleMarker(type: PoiType | 'festa' | null) {
   switch (type) {
-    case 'hotel':
-      return HotelCircleMarker
+    case 'festa':
+      return FestaCircleMarker
     case 'attraction':
       return AttractionCircleMarker
     case 'restaurant':
       return RestaurantCircleMarker
+    default:
+      return AttractionCircleMarker
   }
-
-  throw new Error(`Unknown card type of itinerary "${type}"`)
 }

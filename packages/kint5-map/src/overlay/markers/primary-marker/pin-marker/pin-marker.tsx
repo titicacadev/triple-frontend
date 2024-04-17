@@ -2,21 +2,19 @@ import { PropsWithChildren } from 'react'
 
 import { CircleMarker } from '../circle-marker'
 
-export type PinMarkerType = 'attraction' | 'restaurant' | 'hotel' | 'tna'
+export type PinMarkerType = 'attraction' | 'restaurant' | 'festa'
 
 function getColorOfType(type: PinMarkerType) {
   switch (type) {
-    case 'hotel':
-      return 'var(--color-mint)'
     case 'restaurant':
-      return 'var(--color-vermilion)'
+      return '#FF6B00'
     case 'attraction':
-      return 'var(--color-purple)'
-    case 'tna':
-      return 'var(--color-orange)'
+      return '#1769FF'
+    case 'festa':
+      return '#EB147B'
+    default:
+      return '#1769FF'
   }
-
-  throw new Error('Unknown color of poi color type')
 }
 
 function getActivePinImageUrl(type: PinMarkerType) {
