@@ -151,7 +151,6 @@ export function PoiDetailRecommendedArticles({
             paddingRight: deskTopPadding?.right || 110,
           }}
         >
-          <FlickingCarousel.Controls />
           <FlickingCarousel.Content>
             {articleCardCta && (
               <FlickingCarousel.Item size="medium">
@@ -172,6 +171,7 @@ export function PoiDetailRecommendedArticles({
               </FlickingCarousel.Item>
             ))}
           </FlickingCarousel.Content>
+          <FlickingCarousel.Controls />
         </FlickingCarousel>
 
         <Container
