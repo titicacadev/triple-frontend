@@ -2,12 +2,11 @@ import styled from 'styled-components'
 import { Fragment, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import {
+  Carousel,
   Container,
   ImageBlockElementContainer,
   ImageCarouselElementContainer,
 } from '@titicaca/tds-ui'
-
-import DocumentCarousel from './document-carousel'
 
 function BlockContainer({
   children,
@@ -35,14 +34,14 @@ export function DocumentCarouselContainer({
   images,
 }: PropsWithChildren<{ images: ImageMeta[] }>) {
   return (
-    <DocumentCarousel
-      margin={{
-        top: 40,
-        bottom: images.some(({ title }) => title) ? 10 : 30,
+    <Carousel
+      css={{
+        marginTop: '40px',
+        marginBottom: images.some(({ title }) => title) ? '10px' : '30px',
       }}
     >
       {children}
-    </DocumentCarousel>
+    </Carousel>
   )
 }
 
