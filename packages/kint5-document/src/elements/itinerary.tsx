@@ -1,12 +1,9 @@
 import { useCallback } from 'react'
-import styled from 'styled-components'
 import {
   Container,
-  Card,
   Text,
   FlexBox,
   FlexBoxItem,
-  Button,
 } from '@titicaca/kint5-core-elements'
 import type {
   TransportationType,
@@ -20,24 +17,9 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
-import {
-  HotelCircleBadge,
-  AttractionCircleBadge,
-  RestaurantCircleBadge,
-} from './itinerary/badge'
-import { TagLabel } from './itinerary/tag-label'
-import {
-  Bus,
-  Walk,
-  Car,
-  Train,
-  Tram,
-  Cable,
-  Plane,
-  Ship,
-  Download,
-} from './itinerary/icons'
+import { Bus, Walk, Train, Plane } from './itinerary/icons'
 import { useHandleAddPoiToTrip } from './itinerary/use-handle-add-pois-to-trip'
+import { ItineraryOrder } from './itinerary/itinerary-order'
 
 interface Props {
   value: {
@@ -45,59 +27,10 @@ interface Props {
   }
 }
 
-const Timeline = styled(FlexBox)`
-  position: relative;
-  min-width: 55px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    border-right: 1px solid var(--color-gray100);
-    width: 50%;
-    height: 100%;
-    right: 50%;
-  }
-`
-
-const PoiCard = styled(Card)`
-  padding: 16px 15px;
-  flex: 1;
-`
-
-const CardWrapper = styled(FlexBoxItem)`
-  min-width: 200px;
-`
-
-const Stack = styled(Container)`
-  div:first-child ${Timeline} {
-    &::before {
-      margin-top: 5px;
-    }
-  }
-`
-
-const Time = styled(Text)`
-  background-color: var(--color-white);
-`
-
-const Duration = styled(Container)`
-  position: relative;
-  bottom: -10px;
-  left: -5px;
-  flex-shrink: 0;
-`
-
-const SaveToItineraryButton = styled(Button)`
-  > * {
-    vertical-align: middle;
-  }
-`
-
 export default function ItineraryElement({ value }: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
-  const { courses, regionId, poiIds, hideAddButton, hasItineraries } =
+  const { courses, regionId, poiIds, hideAddButton, hasItineraries, items } =
     useItinerary(value)
   const addPoisToTrip = useHandleAddPoiToTrip({ regionId })
   const navigate = useNavigate()
@@ -153,10 +86,24 @@ export default function ItineraryElement({ value }: Props) {
       <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
       <Container
         css={{
-          margin: '20px',
+          margin: '24px 16px 16px 20px',
         }}
       >
-        <Stack>
+        <Container
+          css={{
+            position: 'relative',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              zIndex: -1,
+              backgroundColor: 'var(--color-kint5-gray30)',
+              width: 1,
+              height: 'calc(100% - 60px)',
+              top: 5,
+              left: 15.5,
+            },
+          }}
+        >
           {courses.map((course, index) => {
             const {
               id,
@@ -165,17 +112,23 @@ export default function ItineraryElement({ value }: Props) {
               description,
               transportation,
               duration,
-              memo,
-              schedule,
               isLast,
             } = course
+            const areaName = items[index].poi.source?.areas?.[0]?.name
             const hasDuration = !isLast && transportation !== undefined
-            const CircleBadge = PoiCircleBadge(type)
-            const TransportIcon = TransportationIcon(transportation)
+            const TransportIcon = getTransportationIcon(transportation)
+            const shouldShowTransportationInfo = hasDuration && TransportIcon
 
             return (
-              <FlexBox flex key={index}>
-                <Timeline flex>
+              <FlexBox
+                flex
+                key={index}
+                gap="4px"
+                css={{
+                  ...(!shouldShowTransportationInfo && { marginBottom: 18 }),
+                }}
+              >
+                <FlexBox flex css={{ position: 'relative' }}>
                   <FlexBox
                     flex
                     flexGrow={1}
@@ -188,34 +141,12 @@ export default function ItineraryElement({ value }: Props) {
                       flexGrow={1}
                       alignItems="center"
                       flexDirection="column"
-                      css={{
-                        padding: '20px 0 0',
-                      }}
                     >
-                      <CircleBadge>{index + 1}</CircleBadge>
-                      {schedule ? (
-                        <Time
-                          bold
-                          size={11}
-                          color="gray300"
-                          padding={{ top: 5, bottom: 5 }}
-                          letterSpacing={-0.3}
-                        >
-                          {schedule}
-                        </Time>
-                      ) : null}
+                      <ItineraryOrder itineraryItemType={type} index={index} />
                     </FlexBox>
-                    {hasDuration ? (
-                      <Duration>
-                        <TagLabel>
-                          <TransportIcon />
-                          {duration}
-                        </TagLabel>
-                      </Duration>
-                    ) : null}
                   </FlexBox>
-                </Timeline>
-                <CardWrapper
+                </FlexBox>
+                <FlexBoxItem
                   flexGrow={1}
                   as="a"
                   onClick={generatePoiClickHandler({
@@ -224,76 +155,87 @@ export default function ItineraryElement({ value }: Props) {
                     name,
                   })}
                 >
-                  <PoiCard
-                    shadow="medium"
-                    radius={6}
-                    css={{ marginTop: 5, marginBottom: 8 }}
+                  <FlexBox
+                    flex
+                    alignItems="center"
+                    css={{
+                      border: '1px solid var(--color-kint5-gray30)',
+                      padding: '12px 12px 12px 16px',
+                      borderRadius: 16,
+                    }}
                   >
-                    <Text size={16} bold ellipsis>
-                      {name}
-                    </Text>
-                    <Text
-                      size={13}
-                      color="gray500"
-                      lineHeight={1.4}
-                      padding={{ top: 6 }}
+                    <FlexBox flex flexDirection="column" gap="4px">
+                      <Text maxLines={1}>{name}</Text>
+                      <FlexBox flex>
+                        <Text
+                          maxLines={1}
+                          css={{
+                            fontSize: 12,
+                            color: 'var(--color-kint5-gray60)',
+                          }}
+                        >
+                          {description}
+                        </Text>
+                        {areaName ? (
+                          <Text
+                            css={{
+                              fontSize: 12,
+                              color: 'var(--color-kint5-gray60)',
+                            }}
+                          >
+                            &nbsp;·&nbsp;{areaName}
+                          </Text>
+                        ) : null}
+                      </FlexBox>
+                    </FlexBox>
+                  </FlexBox>
+                  {shouldShowTransportationInfo ? (
+                    <FlexBox
+                      flex
+                      alignItems="center"
+                      gap="4px"
+                      css={{ margin: '18px 0', paddingLeft: 14 }}
                     >
-                      {description}
-                    </Text>
-                    {memo ? (
+                      <TransportIcon width={20} height={20} />
                       <Text
-                        size={14}
-                        margin={{ top: 10 }}
-                        maxLines={2}
-                        lineHeight="18px"
+                        css={{
+                          fontSize: 13,
+                          color: 'var(--color-kint5-gray60)',
+                        }}
                       >
-                        {memo}
+                        {duration}
                       </Text>
-                    ) : null}
-                  </PoiCard>
-                </CardWrapper>
+                    </FlexBox>
+                  ) : null}
+                </FlexBoxItem>
               </FlexBox>
             )
           })}
-        </Stack>
+        </Container>
         {!hideAddButton && isValidAppVersionForItinerary(app?.appVersion) ? (
-          <SaveToItineraryButton
-            fluid
-            basic
-            bold
-            inverted
-            margin={{ top: 20 }}
+          <button
             onClick={handleSaveToItinerary}
             disabled={!hasItineraries}
+            css={{
+              padding: 14,
+              backgroundColor: 'var(--color-kint5-brand1)',
+              color: 'var(--color-kint5-gray0)',
+              fontWeight: 700,
+              width: '100%',
+              marginTop: 16,
+              borderRadius: 28,
+            }}
           >
-            <Download />
-            <Text inline size={14} margin={{ left: 3 }} color="white">
-              {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
-            </Text>
-          </SaveToItineraryButton>
+            {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
+          </button>
         ) : null}
       </Container>
     </Container>
   )
 }
 
-function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
+function getTransportationIcon(type?: TransportationType) {
   switch (type) {
-    case 'hotel':
-      return HotelCircleBadge
-    case 'attraction':
-      return AttractionCircleBadge
-    case 'restaurant':
-      return RestaurantCircleBadge
-  }
-
-  throw new Error(`Unknown card type of poi "${type}"`)
-}
-
-function TransportationIcon(type?: TransportationType) {
-  switch (type) {
-    case 'car':
-      return Car
     case 'bus':
       return Bus
     case 'walk':
@@ -302,14 +244,8 @@ function TransportationIcon(type?: TransportationType) {
       return Plane
     case 'train':
       return Train
-    case 'tram':
-      return Tram
-    case 'cable':
-      return Cable
-    case 'ship':
-      return Ship
     default:
-      return () => null
+      return null
   }
 }
 
