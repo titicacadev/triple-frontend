@@ -9,6 +9,9 @@ export default {
 } as Meta<typeof PoiDetailImageCarousel>
 
 export const AttractionOrRestaurant: StoryObj<typeof PoiDetailImageCarousel> = {
+  args: {
+    onBusinessHoursClick: undefined,
+  },
   decorators: [
     (Story) => (
       <PoiDetailImageCarouselProvider
@@ -24,6 +27,9 @@ export const AttractionOrRestaurant: StoryObj<typeof PoiDetailImageCarousel> = {
 }
 
 export const Hotel: StoryObj<typeof PoiDetailImageCarousel> = {
+  args: {
+    onBusinessHoursClick: undefined,
+  },
   decorators: [
     (Story) => (
       <PoiDetailImageCarouselProvider
