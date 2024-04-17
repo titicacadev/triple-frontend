@@ -76,6 +76,7 @@ export function ImageCarousel({
         return (
           <Content
             key={image.id}
+            flickingRef={flickingRef}
             medium={image}
             globalFrame={globalFrame}
             globalSize={globalSize}
