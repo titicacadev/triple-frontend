@@ -1,51 +1,25 @@
-import { MouseEvent, ReactNode } from 'react'
+import { MouseEvent, ReactNode, useRef } from 'react'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
-import { FlickingCarousel, useFlickingCarousel } from '@titicaca/tds-ui'
-import type { FlickingEvent, FlickingOptions } from '@egjs/flicking'
+import Flicking from '@egjs/react-flicking'
 
 import { ImageSource } from '../image-source'
 
+import Carousel, { CarouselProps } from './carousel'
 import { CarouselImageMeta, RendererParams } from './types'
 import { PageLabel } from './page-label'
 import { Content } from './content'
 
-interface ImageCarouselBaseProps {
+interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   images: CarouselImageMeta[]
-  displayedTotalCount?: number
-  currentPage?: number
-  options: {
-    size?: GlobalSizes
-    height?: number
-    frame?: FrameRatioAndSizes
-    optimized?: boolean
-  }
+  size?: GlobalSizes
+  height?: number
+  frame?: FrameRatioAndSizes
+  ImageSource?: typeof ImageSource
   onImageClick?: (e?: MouseEvent, image?: CarouselImageMeta) => void
-}
-
-interface ImageCarouselRendererProps {
-  imageSourceRenderer?: typeof ImageSource
   showMoreRenderer?: (params: RendererParams) => ReactNode
   pageLabelRenderer?: (params: RendererParams) => ReactNode
-}
-
-interface FlickingEvents {
-  onMoveStart?: (e: FlickingEvent) => void
-  onMove?: (e: FlickingEvent) => void
-  onMoveEnd?: (e: FlickingEvent) => void
-  options?: Partial<FlickingOptions>
-}
-
-type ImageCarouselProps = ImageCarouselBaseProps &
-  ImageCarouselRendererProps &
-  FlickingEvents
-
-const FLICKING_OPTIONS = {
-  zIndex: 1,
-  defaultIndex: 0,
-  autoResize: true,
-  horizontal: true,
-  bounce: 0,
-  duration: 100,
+  displayedTotalCount?: number
+  optimized?: boolean
 }
 
 /**
@@ -53,60 +27,66 @@ const FLICKING_OPTIONS = {
  */
 export function ImageCarousel({
   images,
-  displayedTotalCount,
-  currentPage,
-  options: { size: globalSize, height, frame: globalFrame, optimized },
+  size: globalSize,
+  frame: globalFrame,
+  height,
+  ImageSource,
+  onImageClick,
   showMoreRenderer,
   pageLabelRenderer = (props) => PageLabel(props),
-  imageSourceRenderer = (props) => ImageSource(props),
-  onImageClick,
+  displayedTotalCount,
+  optimized,
+  margin,
+  borderRadius,
+  defaultIndex,
   onMoveStart,
   onMove,
   onMoveEnd,
-  ...cssProps
 }: ImageCarouselProps) {
-  // check: https://github.com/titicacadev/triple-frontend/pull/213
+  const flickingRef = useRef<Flicking>(null)
+
   const totalCount = displayedTotalCount ?? images.length
 
-  const PageLabelElement = ({ totalCount }: { totalCount: number }) => {
-    const { currentPage } = useFlickingCarousel()
-
-    return pageLabelRenderer({ currentIndex: currentPage, totalCount })
+  const handleContentClick = (
+    event?: MouseEvent,
+    media?: CarouselImageMeta,
+  ) => {
+    !flickingRef.current?.isPlaying() && onImageClick?.(event, media)
   }
 
   return (
-    <FlickingCarousel
-      currentPage={currentPage}
+    <Carousel
+      flickingRef={flickingRef}
+      pageLabelRenderer={({ currentIndex }) =>
+        pageLabelRenderer({ currentIndex, totalCount })
+      }
+      margin={margin}
+      height={height}
+      borderRadius={borderRadius}
+      defaultIndex={defaultIndex}
       onMoveStart={onMoveStart}
       onMove={onMove}
       onMoveEnd={onMoveEnd}
-      options={FLICKING_OPTIONS}
-      {...cssProps}
     >
-      <FlickingCarousel.PageLabel
-        labelElement={<PageLabelElement totalCount={totalCount} />}
-      />
-      <FlickingCarousel.Content>
-        {images.map((image, index) => {
-          const overlay = showMoreRenderer
-            ? showMoreRenderer({ currentIndex: index, totalCount })
-            : null
+      {images.map((image, index) => {
+        const overlay = showMoreRenderer
+          ? showMoreRenderer({ currentIndex: index, totalCount })
+          : null
 
-          return (
-            <Content
-              key={image.id}
-              medium={image}
-              globalFrame={globalFrame}
-              globalSize={globalSize}
-              height={height}
-              optimized={optimized}
-              overlay={overlay}
-              ImageSource={imageSourceRenderer}
-              onClick={onImageClick}
-            />
-          )
-        })}
-      </FlickingCarousel.Content>
-    </FlickingCarousel>
+        return (
+          <Content
+            key={image.id}
+            medium={image}
+            globalFrame={globalFrame}
+            globalSize={globalSize}
+            height={height}
+            optimized={optimized}
+            overlay={overlay}
+            ImageSource={ImageSource}
+            onClick={(event) => handleContentClick(event, image)}
+          />
+        )
+      })}
+    </Carousel>
   )
 }
