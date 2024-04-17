@@ -15,7 +15,10 @@ import {
   trackEvent as nativeTrackEvent,
   viewItem as nativeViewItem,
 } from '@titicaca/triple-web-to-native-interfaces'
-import { getApps as getFirebaseApps } from 'firebase/app'
+import {
+  getApps as getFirebaseApps,
+  initializeApp as initializeFirebaseApp,
+} from 'firebase/app'
 import {
   getAnalytics as getFirebaseAnalytics,
   logEvent as logFirebaseEvent,
@@ -104,6 +107,29 @@ function disableFirebaseAutoPageView() {
 }
 
 function getFirebaseAnalyticsWebInstance() {
+  if (
+    getFirebaseApps().length === 0 &&
+    process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
+    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN &&
+    process.env.NEXT_PUBLIC_FIREBASE_DB_URL &&
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
+    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET &&
+    process.env.NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID &&
+    process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  ) {
+    initializeFirebaseApp({
+      apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+      authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DB_URL,
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID,
+      appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+      measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+    })
+  }
+
   if (
     typeof navigator !== 'undefined' &&
     !hasAccessibleTripleNativeClients() &&
