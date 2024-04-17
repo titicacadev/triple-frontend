@@ -8,10 +8,10 @@ export function getTypeNames(type: PoiListElementType['type']) {
       return t('관광명소', { ns: 'triple-frontend' })
     }
     case 'hotel': {
-      return t('음식점', { ns: 'triple-frontend' })
+      return t('호텔', { ns: 'triple-frontend' })
     }
     case 'restaurant': {
-      return t('호텔', { ns: 'triple-frontend' })
+      return t('음식점', { ns: 'triple-frontend' })
     }
   }
 }
