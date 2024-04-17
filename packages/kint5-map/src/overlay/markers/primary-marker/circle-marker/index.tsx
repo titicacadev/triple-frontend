@@ -78,7 +78,7 @@ export function CircleMarker({
         onClick={handleClick}
       >
         <Container
-          css={{ position: 'absolute', zIndex: 1, top: -18, left: -2 }}
+          css={{ position: 'absolute', zIndex: 1, top: -22, left: -5 }}
         >
           <MapMarkerIcon color={color} />
           <Text
