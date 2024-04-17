@@ -1,9 +1,9 @@
 {
-  "name": "@titicaca/kint5-document",
-  "version": "13.6.0",
-  "description": "Kint5Document: Formatted Content System",
+  "name": "@titicaca/kint5-map",
+  "version": "13.11.0",
+  "description": "Map component",
   "license": "MIT",
-  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/kint5-document",
+  "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/map",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/titicacadev/triple-frontend.git"
@@ -40,35 +40,20 @@
     ]
   },
   "dependencies": {
-    "@titicaca/color-palette": "workspace:*",
-    "@titicaca/content-type-definitions": "8.12.0",
-    "@titicaca/fetcher": "workspace:*",
-    "@titicaca/intersection-observer": "workspace:*",
+    "@react-google-maps/api": "^2.19.2",
     "@titicaca/kint5-core-elements": "workspace:*",
-    "@titicaca/kint5-media": "workspace:*",
-    "@titicaca/kint5-poi-list-elements": "workspace:*",
-    "@titicaca/kint5-map": "workspace:*",
-    "@titicaca/modals": "workspace:*",
-    "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
-    "@titicaca/scrap-button": "workspace:*",
-    "@titicaca/standard-action-handler": "workspace:*",
-    "@titicaca/type-definitions": "workspace:*",
-    "@titicaca/ui-flow": "workspace:*",
-    "@titicaca/user-verification": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
-    "moment": "^2.29.4",
-    "qs": "^6.11.2"
+    "@titicaca/type-definitions": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
-    "@titicaca/next-i18next": "13.8.5",
+    "@titicaca/next-i18next": "^13.8.5",
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
-    "@types/qs": "^6.9.8",
     "next": "^13.4.13",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "utility-types": "^3.10.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",

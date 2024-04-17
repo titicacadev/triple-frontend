@@ -6,7 +6,7 @@ import {
   AttractionCircleMarker,
   RestaurantCircleMarker,
   DotPolyline,
-} from '@titicaca/map'
+} from '@titicaca/kint5-map'
 import { useEnv } from '@titicaca/react-contexts'
 import {
   Itinerary,
