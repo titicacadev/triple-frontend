@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import styled from 'styled-components'
 
+import { ImageSource } from '../image-source'
+
 import { ImageCarousel } from './image-carousel'
 import IMAGES from './mocks/image-carousel.sample.json'
 import VIDEOS from './mocks/video-carousel.sample.json'
@@ -44,10 +46,10 @@ const OverlayContent = () => {
 export const Basic: Story = {
   render: () => (
     <ImageCarousel
+      size="medium"
       images={IMAGES}
-      options={{
-        size: 'medium',
-      }}
+      borderRadius={6}
+      ImageSource={ImageSource}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -58,9 +60,6 @@ export const Basic: Story = {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
-      css={{
-        borderRadius: 6,
-      }}
     />
   ),
 }
@@ -68,10 +67,10 @@ export const Basic: Story = {
 export const Video: Story = {
   render: () => (
     <ImageCarousel
+      size="medium"
       images={VIDEOS}
-      options={{
-        size: 'medium',
-      }}
+      borderRadius={6}
+      ImageSource={ImageSource}
       showMoreRenderer={({ currentIndex, totalCount }) =>
         totalCount > 5 && currentIndex === totalCount - 1 ? (
           <OverlayContent />
@@ -82,9 +81,6 @@ export const Video: Story = {
           <PageLabel currentIndex={currentIndex} totalCount={totalCount} />
         ) : null
       }
-      css={{
-        borderRadius: 6,
-      }}
     />
   ),
 }
