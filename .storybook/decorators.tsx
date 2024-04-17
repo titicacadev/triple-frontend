@@ -17,16 +17,7 @@ export function themeDecorator(Story) {
 export function tripleWebProviderDecorator(Story) {
   return (
     <TripleWeb
-      clientAppProvider={{
-        metadata: {
-          name: ClientAppName.iOS,
-          version: '6.5.0',
-        },
-        device: {
-          autoplay: 'always',
-          networkType: 'wifi',
-        },
-      }}
+      clientAppProvider={null}
       envProvider={{
         appUrlScheme: 'dev-soto',
         basePath: '/',
@@ -44,20 +35,7 @@ export function tripleWebProviderDecorator(Story) {
         lang: 'ko',
       }}
       sessionProvider={{
-        user: {
-          name: 'TripleTester',
-          provider: 'TRIPLE',
-          country: 'ko',
-          lang: 'ko',
-          unregister: null,
-          photo: 'images.source',
-          mileage: {
-            badges: [{ icon: { imageUrl: '' } }],
-            level: 1,
-            point: 30,
-          },
-          uid: 'test',
-        },
+        user: null,
       }}
       userAgentProvider={{
         ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
