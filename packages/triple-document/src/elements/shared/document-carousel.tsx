@@ -8,7 +8,9 @@ export default function DocumentCarousel({
   return (
     <Carousel
       css={{
-        padding: '0 30px',
+        paddingLeft: '30px',
+        paddingRight: '30px',
+
         marginLeft: margin?.left,
         marginRight: margin?.right,
         marginTop: margin?.top,
