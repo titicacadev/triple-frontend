@@ -1,12 +1,7 @@
 import { FlexBox, MapMarkerIcon, Text } from '@titicaca/kint5-core-elements'
 import { PoiType } from '@titicaca/content-type-definitions'
 
-const BACKGROUND_COLOR_BY_TYPE = {
-  attraction: '#1769FF',
-  restaurant: '#FF6B00',
-  hotel: '#1769FF',
-  festa: '#EB147B',
-}
+import { COLOR_PER_TYPE } from './constants'
 
 export function ItineraryOrder({
   itineraryItemType,
@@ -31,7 +26,7 @@ export function ItineraryOrder({
         {index + 1}
       </Text>
       <MapMarkerIcon
-        color={BACKGROUND_COLOR_BY_TYPE[itineraryItemType ?? 'attraction']}
+        color={COLOR_PER_TYPE[itineraryItemType ?? 'attraction']}
       />
     </FlexBox>
   )

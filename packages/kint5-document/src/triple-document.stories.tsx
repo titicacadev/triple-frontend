@@ -3,6 +3,7 @@ import { Container } from '@titicaca/kint5-core-elements'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
 import { useEffect } from 'react'
 import { appWithTranslation } from '@titicaca/next-i18next'
+import { EnvProvider } from '@titicaca/react-contexts'
 import { koCommonWeb } from '@titicaca/i18n/src/assets/ko/common-web'
 import { jaCommonWeb } from '@titicaca/i18n/src/assets/ja/common-web'
 import { zhTwCommonWeb } from '@titicaca/i18n/src/assets/zh-TW/common-web'
@@ -103,7 +104,21 @@ export const AnchorExample: StoryObj<typeof Anchor> = {
 
 export const DocumentItinerary: StoryObj<typeof Itinerary> = {
   name: '추천코스 기본',
-  render: (args) => <Itinerary value={args.value} />,
+  render: (args) => (
+    <EnvProvider
+      googleMapsApiKey="AIzaSyD-yBDk-vLXh92QcXuEw--uIEjrwd3fcu8"
+      afOnelinkId=""
+      afOnelinkPid=""
+      afOnelinkSubdomain=""
+      appUrlScheme=""
+      defaultPageDescription=""
+      defaultPageTitle=""
+      facebookAppId=""
+      webUrlBase=""
+    >
+      <Itinerary value={args.value} />
+    </EnvProvider>
+  ),
   args: {
     value: MOCK_ITINERARY.article.source.body[1].value,
   },

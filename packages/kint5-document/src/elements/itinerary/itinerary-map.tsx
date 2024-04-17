@@ -1,10 +1,10 @@
-import { useCallback, MouseEvent } from 'react'
+import { useCallback, MouseEvent, Fragment } from 'react'
 import { Container } from '@titicaca/kint5-core-elements'
 import {
   MapView,
   AttractionCircleMarker,
   RestaurantCircleMarker,
-  DotPolyline,
+  PolylineBase,
   FestaCircleMarker,
 } from '@titicaca/kint5-map'
 import { useEnv } from '@titicaca/react-contexts'
@@ -15,6 +15,7 @@ import {
 } from '@titicaca/content-type-definitions'
 
 import useMapData from './use-computed-map'
+import { COLOR_PER_TYPE } from './constants'
 
 interface Props {
   /** 몇번째 일정 */
@@ -59,19 +60,25 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
             const CircleMarker = ItineraryTypeCircleMarker(type)
 
             return (
-              <CircleMarker
-                key={i}
-                zIndex={totalPois - i}
-                width={22}
-                height={22}
-                position={position}
-                onClick={generateClickMarkerHandler(poi)}
-              >
-                <strong>{i + 1}</strong>
-              </CircleMarker>
+              <Fragment key={i}>
+                <CircleMarker
+                  zIndex={totalPois - i}
+                  width={22}
+                  height={22}
+                  position={position}
+                  onClick={generateClickMarkerHandler(poi)}
+                >
+                  <strong>{i + 1}</strong>
+                </CircleMarker>
+                <PolylineBase
+                  path={polyline.slice(i, i + 2)}
+                  strokeColor={COLOR_PER_TYPE[type ?? 'attraction']}
+                  strokeWeight={2}
+                  strokeOpacity={1}
+                />
+              </Fragment>
             )
           })}
-          <DotPolyline path={polyline} />
         </MapView>
       ) : null}
     </Container>
