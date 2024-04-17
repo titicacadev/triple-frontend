@@ -6,7 +6,11 @@ import { useEnv } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { useNavigate } from '@titicaca/router'
 
-export function useHandleAddPoiToTrip() {
+export function useHandleAddPoiToTrip({
+  regionId,
+}: {
+  regionId?: string | null
+}) {
   const { appUrlScheme } = useEnv()
   const navigate = useNavigate()
 
@@ -22,12 +26,13 @@ export function useHandleAddPoiToTrip() {
           path: '/action/add_trip_schedule',
           query: qs.stringify({
             items: pois.join(','),
+            ...(regionId && { region_id: regionId }),
           }),
         }),
       )
       return true
     },
-    [navigate, appUrlScheme],
+    [navigate, appUrlScheme, regionId],
   )
 
   return useAppCallback(

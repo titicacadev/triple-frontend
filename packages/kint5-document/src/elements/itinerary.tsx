@@ -97,8 +97,9 @@ const SaveToItineraryButton = styled(Button)`
 export default function ItineraryElement({ value }: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
-  const { courses, poiIds, hideAddButton, hasItineraries } = useItinerary(value)
-  const addPoisToTrip = useHandleAddPoiToTrip()
+  const { courses, regionId, poiIds, hideAddButton, hasItineraries } =
+    useItinerary(value)
+  const addPoisToTrip = useHandleAddPoiToTrip({ regionId })
   const navigate = useNavigate()
   const app = useTripleClientMetadata()
 
