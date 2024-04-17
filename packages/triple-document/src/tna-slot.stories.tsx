@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react'
 import { rest } from 'msw'
 import { EventTrackingProvider } from '@titicaca/triple-web'
+import { ScrapsProvider } from '@titicaca/tds-widget'
 
 import ELEMENTS from './elements'
 import SLOTS from './mocks/slots.sample.json'
@@ -13,7 +14,9 @@ export default {
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
-        <Story />
+        <ScrapsProvider>
+          <Story />
+        </ScrapsProvider>
       </EventTrackingProvider>
     ),
   ],
