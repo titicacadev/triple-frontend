@@ -1,7 +1,7 @@
 import { useNavigate, useExternalRouter } from '@titicaca/router'
 import { useClientApp, useTransitionModal } from '@titicaca/triple-web'
 
-import { initialize } from './index'
+import { initialize } from './initialize'
 
 export function useStandardActionHandler() {
   const { navigate } = useNavigate()
