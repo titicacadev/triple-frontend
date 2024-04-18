@@ -29,6 +29,11 @@ export interface TripleElementData<T = string, Value = unknown> {
 
 export type ImageEventHandler = (e: SyntheticEvent, image: ImageMeta) => void
 
+export type AddItinerariesToTipHandler = (args: {
+  poiId: string | string[]
+  defaultRegionId: string | null | undefined
+}) => void
+
 export interface Link {
   href?: string
   label?: string
@@ -45,6 +50,7 @@ export type TripleDocumentContext = {
   onTNAProductClick?: TnaProductsClickHandler
   onTNAProductsFetch?: TnaProductsFetcher
   imageSourceComponent?: ImageSourceType
+  onAddItinerariesToTrip?: AddItinerariesToTipHandler
   deepLink?: string
 } & MediaConfig
 

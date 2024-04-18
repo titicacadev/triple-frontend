@@ -20,6 +20,7 @@ import { DeepLinkProvider } from './prop-context/deep-link'
 import { MediaConfigProvider } from './prop-context/media-config'
 import ELEMENTS, { ElementSet } from './elements'
 import useEventResourceTracker from './use-resource-event-tracker'
+import { AddItinerariesToTripHandlerProvider } from './prop-context/add-itineraries-to-trip-handler'
 
 export function TripleDocument({
   children,
@@ -28,6 +29,7 @@ export function TripleDocument({
   onImageClick,
   onLinkClick,
   imageSourceComponent,
+  onAddItinerariesToTrip,
   deepLink,
   cta,
   videoAutoPlay,
@@ -90,46 +92,49 @@ export function TripleDocument({
       <ImageClickHandlerProvider value={onImageClick}>
         <LinkClickHandlerProvider value={linkClickHandler}>
           <ImageSourceProvider value={imageSourceComponent}>
-            <DeepLinkProvider value={deepLink}>
-              <MediaConfigProvider
-                videoAutoPlay={videoAutoPlay}
-                hideVideoControls={hideVideoControls}
-                optimized={optimized}
-              >
-                {children.map(({ type, value }, i) => {
-                  if (!isTripleGlobalDocumentType(type)) {
-                    return null
-                  }
+            <AddItinerariesToTripHandlerProvider value={onAddItinerariesToTrip}>
+              <DeepLinkProvider value={deepLink}>
+                <MediaConfigProvider
+                  videoAutoPlay={videoAutoPlay}
+                  hideVideoControls={hideVideoControls}
+                  optimized={optimized}
+                >
+                  {children.map(({ type, value }, i) => {
+                    if (!isTripleGlobalDocumentType(type)) {
+                      return null
+                    }
 
-                  const RegularElement = ELEMENTS[type]
-                  const CustomElement = customElements?.[type] ?? null
+                    const RegularElement = ELEMENTS[type]
+                    const CustomElement = customElements?.[type] ?? null
 
-                  const Element = (CustomElement ||
-                    RegularElement) as ElementType
+                    const Element = (CustomElement ||
+                      RegularElement) as ElementType
 
-                  return (
-                    Element && (
-                      <Element
-                        key={i}
-                        value={value}
-                        {...(CustomElement
-                          ? {
-                              onResourceClick: resourceClickHandler,
-                              onImageClick,
-                              onLinkClick: linkClickHandler,
-                              ImageSource: imageSourceComponent,
-                              deepLink,
-                              videoAutoPlay,
-                              hideVideoControls,
-                              optimized,
-                            }
-                          : {})}
-                      />
+                    return (
+                      Element && (
+                        <Element
+                          key={i}
+                          value={value}
+                          {...(CustomElement
+                            ? {
+                                onResourceClick: resourceClickHandler,
+                                onImageClick,
+                                onLinkClick: linkClickHandler,
+                                ImageSource: imageSourceComponent,
+                                onAddItinerariesToTrip,
+                                deepLink,
+                                videoAutoPlay,
+                                hideVideoControls,
+                                optimized,
+                              }
+                            : {})}
+                        />
+                      )
                     )
-                  )
-                })}
-              </MediaConfigProvider>
-            </DeepLinkProvider>
+                  })}
+                </MediaConfigProvider>
+              </DeepLinkProvider>
+            </AddItinerariesToTripHandlerProvider>
           </ImageSourceProvider>
         </LinkClickHandlerProvider>
       </ImageClickHandlerProvider>

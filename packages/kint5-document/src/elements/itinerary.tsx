@@ -15,10 +15,11 @@ import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
+import { useAddItinerariesToTripHandler } from '../prop-context/add-itineraries-to-trip-handler'
+
 import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import { Bus, Walk, Train, Plane } from './itinerary/icons'
-import { useHandleAddPoiToTrip } from './itinerary/use-handle-add-pois-to-trip'
 import { ItineraryOrder } from './itinerary/itinerary-order'
 
 interface Props {
@@ -30,11 +31,11 @@ interface Props {
 export default function ItineraryElement({ value }: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
-  const { courses, regionId, poiIds, hideAddButton, hasItineraries, items } =
+  const { courses, poiIds, regionId, hideAddButton, hasItineraries, items } =
     useItinerary(value)
-  const addPoisToTrip = useHandleAddPoiToTrip({ regionId })
   const navigate = useNavigate()
   const app = useTripleClientMetadata()
+  const onAddItinerariesToTrip = useAddItinerariesToTripHandler()
 
   const generatePoiClickHandler = useCallback(
     ({
@@ -74,8 +75,9 @@ export default function ItineraryElement({ value }: Props) {
         action: '내일정으로담기_선택',
       },
     })
-    addPoisToTrip(poiIds)
-  }, [poiIds, addPoisToTrip, trackEvent])
+
+    onAddItinerariesToTrip?.({ poiId: poiIds, defaultRegionId: regionId })
+  }, [poiIds, regionId, onAddItinerariesToTrip, trackEvent])
 
   return (
     <Container
