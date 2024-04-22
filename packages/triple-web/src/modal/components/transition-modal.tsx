@@ -2,7 +2,6 @@ import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ParseKeys } from 'i18next'
 
 import { TransitionType } from '../constants'
 import { useModal } from '../context'
@@ -18,104 +17,77 @@ const IconImage = styled.img`
 
 const MODAL_CONTENT: {
   [key in TransitionType]: {
-    description: ParseKeys<'triple-frontend'>
     eventLabel: string
   }
 } = {
   [TransitionType.General]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '',
   },
   [TransitionType.Gallery]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '대표사진_선택',
   },
   [TransitionType.Scrap]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: 'POI저장',
   },
   [TransitionType.Review]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰글더보기_선택',
   },
   [TransitionType.ReviewWrite]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰쓰기',
   },
   [TransitionType.ReviewThumbnail]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰썸네일_클릭',
   },
   [TransitionType.ReviewSelect]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰내용_선택',
   },
   [TransitionType.ReviewCommentSelect]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_댓글_선택',
   },
   [TransitionType.ReviewMenuSelect]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리뷰내용_선택',
   },
   [TransitionType.ReviewProfile]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_프로필',
   },
   [TransitionType.OpenReviewList]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '리뷰_리스트더보기_선택',
   },
   [TransitionType.Article]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '추천가이드_더보기',
   },
   [TransitionType.Tna]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '투어티켓_상품선택',
   },
   [TransitionType.Hotel]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '호텔_선택',
   },
   [TransitionType.View]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '컨텐츠_연속보기',
   },
   [TransitionType.AddPoisToTripSelect]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '내일정으로담기_선택',
   },
   [TransitionType.Link]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '링크선택',
   },
   [TransitionType.LoungeHome]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '라운지홈',
   },
   [TransitionType.Community]: {
-    description:
-      '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
     eventLabel: '커뮤니티',
+  },
+  [TransitionType.Share]: {
+    eventLabel: '공유하기',
+  },
+  [TransitionType.AddPoiToSchedule]: {
+    eventLabel: '일정추가',
+  },
+  [TransitionType.PoiBasicInfoMap]: {
+    eventLabel: '기본정보_지도',
+  },
+  [TransitionType.PoiBasicInfoAddress]: {
+    eventLabel: '기본정보_주소',
   },
 }
 
@@ -127,7 +99,6 @@ export function TransitionModal() {
   let open = false
   let content:
     | {
-        description: ParseKeys<'triple-frontend'>
         eventLabel: string
       }
     | undefined
@@ -187,11 +158,11 @@ export function TransitionModal() {
       <Modal.Body>
         <IconImage src="https://assets.triple.guide/images/ico-popup-app@4x.png" />
         <Modal.Title>{t('여기는 트리플 앱이 필요해요')}</Modal.Title>
-        {content?.description ? (
-          <Text center alpha={0.7} size="small">
-            {t(content.description)}
-          </Text>
-        ) : null}
+        <Text center alpha={0.7} size="small">
+          {t(
+            '일정 짜기부터 호텔, 투어・티켓 예약까지! 트리플로 한 번에 여행 준비하세요.',
+          )}
+        </Text>
       </Modal.Body>
       <Modal.Actions>
         <Modal.Action color="gray" onClick={handleCancelOrClose}>
