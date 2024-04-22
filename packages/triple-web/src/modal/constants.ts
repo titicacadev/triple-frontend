@@ -20,4 +20,8 @@ export enum TransitionType {
   Link = 'link',
   LoungeHome = 'loungeHome',
   Community = 'community',
+  Share = 'share',
+  AddPoiToSchedule = 'addPoiToSchedule',
+  PoiBasicInfoMap = 'poiBasicInfoMap',
+  PoiBasicInfoAddress = 'poiBasicInfoAddress',
 }
