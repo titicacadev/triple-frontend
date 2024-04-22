@@ -14,6 +14,7 @@ import {
   PoiType,
 } from '@titicaca/content-type-definitions'
 
+import { GOOGLE_MAP_STYLES } from './google-map-style'
 import useMapData from './use-computed-map'
 import { COLOR_PER_TYPE } from './constants'
 
@@ -54,6 +55,9 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
           coordinates={coordinates}
           googleMapLoadOptions={{
             googleMapsApiKey,
+          }}
+          options={{
+            styles: GOOGLE_MAP_STYLES,
           }}
         >
           {pois.map(({ position, poi: { type }, poi }, i) => {
