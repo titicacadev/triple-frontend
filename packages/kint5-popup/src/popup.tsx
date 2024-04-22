@@ -155,7 +155,7 @@ export function Popup({
               centerContent={
                 <Text css={{ fontSize: 14, fontWeight: 700 }}>{title}</Text>
               }
-              containerCss={{
+              css={{
                 backgroundColor: 'var(--color-kint5-gray0)',
                 zIndex: 3,
               }}

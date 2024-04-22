@@ -1,5 +1,4 @@
 import { MouseEventHandler, ReactNode } from 'react'
-import { CSSObject } from 'styled-components'
 
 import { Button } from '../button'
 import { Container } from '../container'
@@ -10,7 +9,6 @@ interface NavbarProps {
   leftButtonIconType?: 'back' | 'close'
   centerContent?: ReactNode
   rightContent?: ReactNode
-  containerCss?: CSSObject
   disableLeftButton?: boolean
   onLeftButtonClick?: MouseEventHandler<HTMLButtonElement>
 }
