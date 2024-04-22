@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
@@ -7,18 +8,18 @@ import {
   FlexBox,
   Text,
 } from '@titicaca/kint5-core-elements'
+import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { ActionButtonIcon } from './action-button-icon'
 
 const ActionButton = styled.button`
   position: relative;
-  width: 76px;
-  flex: 0 0 76px;
+  width: 73px;
+  flex: 0 0 73px;
 `
 
 const ActionButtonText = styled(Text)`
   color: var(--color-kint5-gray100);
-  font-size: 10px;
   padding-top: 32px;
 `
 
@@ -45,7 +46,11 @@ function Actions({
   padding?: MarginPadding
   noDivider?: boolean
 }) {
+  const app = useTripleClientMetadata()
   const { t } = useTranslation('common-web')
+
+  const isAndroid = app?.appName === 'Android'
+  const buttonTextFontSizePx = useMemo(() => (isAndroid ? 9 : 10), [isAndroid])
 
   return (
     <Section {...props}>
@@ -58,7 +63,7 @@ function Actions({
       >
         {onScrapedChange ? (
           <ActionButton onClick={onScrapedChange}>
-            <ActionButtonText>
+            <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
               {scraped ? t(['jjim-cwiso', '찜 취소']) : t(['jjim', '찜'])}
             </ActionButtonText>
             <ActionButtonIcon type={scraped ? 'scraped' : 'notScraped'} />
@@ -66,18 +71,20 @@ function Actions({
         ) : null}
         {onScheduleAdd ? (
           <ActionButton onClick={onScheduleAdd}>
-            <ActionButtonText>
+            <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
               {t(['iljeongcuga', '일정추가'])}
             </ActionButtonText>
             <ActionButtonIcon type="schedule" />
           </ActionButton>
         ) : null}
         <ActionButton onClick={onGetDirection}>
-          <ActionButtonText>{t('길찾기')}</ActionButtonText>
+          <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
+            {t('길찾기')}
+          </ActionButtonText>
           <ActionButtonIcon type="getDirections" />
         </ActionButton>
         <ActionButton onClick={onReviewEdit}>
-          <ActionButtonText>
+          <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
             {reviewed
               ? t(['ribyusujeong', '리뷰수정'])
               : t(['ribyusseugi', '리뷰쓰기'])}
@@ -85,7 +92,9 @@ function Actions({
           <ActionButtonIcon type="review" />
         </ActionButton>
         <ActionButton onClick={onContentShare}>
-          <ActionButtonText>{t(['gongyuhagi', '공유하기'])}</ActionButtonText>
+          <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
+            {t(['gongyuhagi', '공유하기'])}
+          </ActionButtonText>
           <ActionButtonIcon type="share" />
         </ActionButton>
       </FlexBox>
