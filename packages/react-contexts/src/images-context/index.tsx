@@ -88,6 +88,7 @@ export function ImagesProvider({
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages({
+        api: 'content',
         target: { type, id },
         query: { from: images.length, size, categoryOrder },
       })
@@ -107,6 +108,7 @@ export function ImagesProvider({
 
     try {
       const { data: fetchedImages, total } = await fetchImages({
+        api: 'content',
         target: { type, id },
         query: { from: 0, size: 15, categoryOrder },
       })
@@ -197,6 +199,7 @@ interface ImagesResponse {
 type FetchImageParam =
   | { url: string }
   | {
+      api: 'reviews' | 'content'
       target: { type: string; id: string }
       query: { from: number; size: number; categoryOrder: Array<CategoryOrder> }
     }
@@ -209,11 +212,11 @@ async function fetchImages(param: FetchImageParam) {
   } else {
     const { target, query } = param
     const querystring = qs.stringify({
-      resourceType: target.type,
-      resourceId: target.id,
+      resource_type: target.type,
+      resource_id: target.id,
       from: query.from,
       size: query.size,
-      categoryOrder: query.categoryOrder.join(','),
+      category_order: query.categoryOrder.join(','),
     })
     requestUrl = `/content/v2/images?${querystring}`
   }
