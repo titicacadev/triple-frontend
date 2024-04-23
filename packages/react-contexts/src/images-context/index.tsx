@@ -83,6 +83,7 @@ export function ImagesProvider({
     images: initialImages || [],
     total: initialTotal || 0,
     hasMore: true,
+    nextFetchUrl: null,
   })
 
   const sendFetchRequest = useCallback(
@@ -107,7 +108,11 @@ export function ImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages({
+      const {
+        data: fetchedImages,
+        total,
+        next,
+      } = await fetchImages({
         api: 'content',
         target: { type, id },
         query: { from: 0, size: 15, categoryOrder },
@@ -117,6 +122,7 @@ export function ImagesProvider({
         reinitializeImages({
           images: fetchedImages,
           total,
+          nextFetchUrl: next,
         }),
       )
     } catch (error) {
@@ -133,10 +139,16 @@ export function ImagesProvider({
       dispatch(loadImagesRequest())
 
       try {
-        const { data: fetchedImages, total } = await sendFetchRequest()
+        const { data: fetchedImages, total, next } = await sendFetchRequest()
 
         if (fetchedImages) {
-          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
+          dispatch(
+            loadImagesSuccess({
+              images: fetchedImages,
+              total,
+              nextFetchUrl: next,
+            }),
+          )
         } else {
           throw new Error('Response has no data property')
         }
