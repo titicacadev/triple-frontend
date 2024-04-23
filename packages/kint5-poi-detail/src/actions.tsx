@@ -19,6 +19,11 @@ const ActionButton = styled.button`
   position: relative;
   width: 73px;
   flex: 0 0 73px;
+
+  @media screen and (max-width: 374px) {
+    width: 64px;
+    flex: 0 0 64px;
+  }
 `
 
 const ActionButtonText = styled(Text)`
