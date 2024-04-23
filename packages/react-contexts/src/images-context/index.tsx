@@ -78,27 +78,29 @@ export function ImagesProvider({
     throw new Error('categoryOrder의 개수가 너무 많습니다.')
   }
 
-  const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: !initialImages,
-    images: initialImages || [],
-    total: initialTotal || 0,
-    hasMore: true,
-    nextFetchUrl: null,
-  })
+  const [{ loading, images, total, hasMore, nextFetchUrl }, dispatch] =
+    useReducer(reducer, {
+      loading: !initialImages,
+      images: initialImages || [],
+      total: initialTotal || 0,
+      hasMore: true,
+      nextFetchUrl: null,
+    })
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages(
-        makeFetchUrl({
-          api: 'content',
-          target: { type, id },
-          query: { from: images.length, size, categoryOrder },
-        }),
+        nextFetchUrl ||
+          makeFetchUrl({
+            api: images.length === 0 ? 'content' : 'reviews',
+            target: { type, id },
+            query: { from: images.length, size, categoryOrder },
+          }),
       )
 
       return response
     },
-    [id, images.length, type, categoryOrder],
+    [nextFetchUrl, type, id, images.length, categoryOrder],
   )
 
   // 첫 이미지부터 다시 fetch

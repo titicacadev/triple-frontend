@@ -64,7 +64,7 @@ export default function reducer(
         loading: !action.payload.images,
         images: action.payload.images,
         total: action.payload.total,
-        hasMore: true,
+        hasMore: !!action.payload.nextFetchUrl,
         nextFetchUrl: action.payload.nextFetchUrl,
       }
     case LOAD_IMAGES_REQUEST:
@@ -77,7 +77,7 @@ export default function reducer(
         loading: false,
         images: state.images.concat(action.payload.images),
         total: action.payload.total,
-        hasMore: action.payload.images.length > 0,
+        hasMore: !!action.payload.nextFetchUrl,
         nextFetchUrl: action.payload.nextFetchUrl,
       }
     case LOAD_IMAGES_FAIL:
