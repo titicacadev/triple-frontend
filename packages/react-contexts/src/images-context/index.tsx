@@ -31,13 +31,22 @@ interface ImagesContext {
   }
 }
 
+type CategoryOrder =
+  | 'image'
+  | 'recommendation'
+  | 'menuItem'
+  | 'menuBoard'
+  | 'featuredContent'
+  | 'images'
+
 interface ImagesProviderProps {
   source: {
     id: string
-    type: 'attraction' | 'restaurant' | 'hotel'
+    type: 'attraction' | 'restaurant' | 'hotel' | 'guide'
   }
   images?: ImageMeta[]
   total?: number
+  categoryOrder?: Array<CategoryOrder>
 }
 
 const Context = createContext<ImagesContext>({
@@ -51,18 +60,24 @@ const Context = createContext<ImagesContext>({
   },
 })
 
-const TYPE_MAPPING = {
-  attraction: 'poi',
-  restaurant: 'poi',
-  hotel: 'hotel',
-}
-
 export function ImagesProvider({
   images: initialImages,
   total: initialTotal,
   source: { id, type },
+  categoryOrder = [
+    'image',
+    'recommendation',
+    'menuBoard',
+    'menuItem',
+    'featuredContent',
+    'images',
+  ],
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
+  if (categoryOrder.length > 6) {
+    throw new Error('categoryOrder의 개수가 너무 많습니다.')
+  }
+
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: !initialImages,
     images: initialImages || [],
@@ -73,13 +88,13 @@ export function ImagesProvider({
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: images.length, size },
+        { type, id },
+        { from: images.length, size, categoryOrder },
       )
 
       return response
     },
-    [id, images.length, type],
+    [id, images.length, type, categoryOrder],
   )
 
   const reFetch = useCallback(async () => {
@@ -91,8 +106,8 @@ export function ImagesProvider({
 
     try {
       const { data: fetchedImages, total } = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: 0, size: 15 },
+        { type, id },
+        { from: 0, size: 15, categoryOrder },
       )
 
       dispatch(
@@ -104,7 +119,7 @@ export function ImagesProvider({
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, id, type])
+  }, [loading, type, id, categoryOrder])
 
   const fetch = useCallback(
     async (onFetchAfter?: () => void, force?: boolean) => {
@@ -172,17 +187,18 @@ export function ImagesProvider({
 
 async function fetchImages(
   target: { type: string; id: string },
-  query: { from: number; size: number },
+  query: { from: number; size: number; categoryOrder: Array<CategoryOrder> },
 ) {
   const querystring = qs.stringify({
     resourceType: target.type,
     resourceId: target.id,
     from: query.from,
     size: query.size,
+    categoryOrder: query.categoryOrder.join(','),
   })
 
   const response = await get<{ data: ImageMeta[]; total: number }>(
-    `/api/content/images?${querystring}`,
+    `/api/content/v2/images?${querystring}`,
   )
 
   if (response.ok === true) {

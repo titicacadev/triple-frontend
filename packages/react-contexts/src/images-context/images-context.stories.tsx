@@ -1,6 +1,8 @@
 import { memo, useState } from 'react'
 import styled from 'styled-components'
 
+import { imagesHandler } from '../mocks/images-context'
+
 import { ImagesProvider, useImagesContext } from '.'
 
 export default {
@@ -105,6 +107,13 @@ export const Basic = {
         <ImagesContextMonitor />
       </ImagesProvider>
     )
+  },
+  parameters: {
+    msw: {
+      handlers: {
+        imagesHandler,
+      },
+    },
   },
 
   name: '데이터 확인',
