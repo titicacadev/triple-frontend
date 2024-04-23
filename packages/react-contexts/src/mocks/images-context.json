@@ -1,0 +1,211 @@
+{
+  "data": [
+    {
+      "cloudinaryId": "bd012c48-e9d3-423d-8731-ab1b53d281c8",
+      "id": "25a968dd-0a9d-4d35-ab32-25c3b91b1c80",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/bd012c48-e9d3-423d-8731-ab1b53d281c8.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/bd012c48-e9d3-423d-8731-ab1b53d281c8.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/bd012c48-e9d3-423d-8731-ab1b53d281c8.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "트리플",
+      "category": "menuItem"
+    },
+    {
+      "cloudinaryId": "c2f7683a-2cb5-4cd5-8624-d1100bd76a7a",
+      "id": "3d50db85-a5bb-46a4-8aab-8dc8f6c38b69",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/c2f7683a-2cb5-4cd5-8624-d1100bd76a7a.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/c2f7683a-2cb5-4cd5-8624-d1100bd76a7a.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/c2f7683a-2cb5-4cd5-8624-d1100bd76a7a.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "컴퍼스 6",
+      "category": "menuItem"
+    },
+    {
+      "cloudinaryId": "cb8eaa0e-b40c-4e7c-bfca-b0c22f9f2126",
+      "id": "cb8eaa0e-b40c-4e7c-bfca-b0c22f9f2126",
+      "type": "image",
+      "source": {},
+      "width": 1024,
+      "height": 768,
+      "cloudinaryBucket": "triple-cms",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/cb8eaa0e-b40c-4e7c-bfca-b0c22f9f2126.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/cb8eaa0e-b40c-4e7c-bfca-b0c22f9f2126.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/cb8eaa0e-b40c-4e7c-bfca-b0c22f9f2126.jpeg"
+        }
+      },
+      "sourceUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/297e3259-6144-45a6-bae1-50eed27ae016.jpeg",
+      "category": "menuItem"
+    },
+    {
+      "cloudinaryId": "a7095e1c-d79f-42ec-bce1-ea29e74ca1f9",
+      "id": "9ed5ccfd-3370-46c4-b846-aab288a5b4ea",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/a7095e1c-d79f-42ec-bce1-ea29e74ca1f9.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/a7095e1c-d79f-42ec-bce1-ea29e74ca1f9.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/a7095e1c-d79f-42ec-bce1-ea29e74ca1f9.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "김보원 님의 사진",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "cbbb9926-d92c-44e3-9877-490ddfb8848a",
+      "id": "9a4bfca5-3a97-4940-9f2a-58d6c6d6557a",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/cbbb9926-d92c-44e3-9877-490ddfb8848a.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/cbbb9926-d92c-44e3-9877-490ddfb8848a.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/cbbb9926-d92c-44e3-9877-490ddfb8848a.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "트리플",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "a2199664-12d0-41a7-9a8f-a364ed5fbbc3",
+      "id": "9cf4f085-b1d5-454f-8619-50205fb8938a",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/a2199664-12d0-41a7-9a8f-a364ed5fbbc3.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/a2199664-12d0-41a7-9a8f-a364ed5fbbc3.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/a2199664-12d0-41a7-9a8f-a364ed5fbbc3.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "트리플",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "69590290-7cc8-4227-a8cf-c867eb2cc5c3",
+      "id": "9d52468c-0d62-4ca6-84bd-c2daa8de008f",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/69590290-7cc8-4227-a8cf-c867eb2cc5c3.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/69590290-7cc8-4227-a8cf-c867eb2cc5c3.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/69590290-7cc8-4227-a8cf-c867eb2cc5c3.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "트리플",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "2c6d56b4-8a92-429c-b03b-a66fdf004d30",
+      "id": "3de0ab24-cea2-4493-ab0f-f4b3c36d3d63",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/2c6d56b4-8a92-429c-b03b-a66fdf004d30.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/2c6d56b4-8a92-429c-b03b-a66fdf004d30.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/2c6d56b4-8a92-429c-b03b-a66fdf004d30.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "컴퍼스 6",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "480d8f49-943a-40b0-8f9a-c52865e80afd",
+      "id": "a42c105a-0333-4329-8abe-f470b130aa91",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/480d8f49-943a-40b0-8f9a-c52865e80afd.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/480d8f49-943a-40b0-8f9a-c52865e80afd.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/480d8f49-943a-40b0-8f9a-c52865e80afd.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/96f866a5-60ae-405b-a619-53210fbe2cb7.jpeg",
+      "title": "메뉴",
+      "category": "images"
+    },
+    {
+      "cloudinaryId": "f6ccc84a-5330-42b4-bf34-5660d5a27d06",
+      "id": "9d002189-6a15-47ee-a6b8-4ceff624cadb",
+      "type": "image",
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/f6ccc84a-5330-42b4-bf34-5660d5a27d06.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/f6ccc84a-5330-42b4-bf34-5660d5a27d06.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/f6ccc84a-5330-42b4-bf34-5660d5a27d06.jpeg"
+        }
+      },
+      "source": {},
+      "cloudinaryBucket": "triple-cms",
+      "sourceUrl": "트리플",
+      "category": "images"
+    }
+  ],
+  "count": 10,
+  "total": 11,
+  "next": null,
+  "prev": null
+}

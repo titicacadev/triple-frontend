@@ -5,6 +5,7 @@ interface ImagesState {
   images: ImageMeta[]
   total: number
   hasMore: boolean
+  nextFetchUrl: string | null
 }
 
 const REINITIALIZE_IMAGES = 'INITIALIZE_IMAGES'
@@ -21,6 +22,7 @@ export function loadImagesRequest() {
 export function loadImagesSuccess(payload: {
   images: ImageMeta[]
   total: number
+  nextFetchUrl: string | null
 }) {
   return {
     type: LOAD_IMAGES_SUCCESS,
@@ -39,6 +41,7 @@ export function loadImagesFail(error: unknown) {
 export function reinitializeImages(payload: {
   images: ImageMeta[]
   total: number
+  nextFetchUrl: string | null
 }) {
   return {
     type: REINITIALIZE_IMAGES,
@@ -61,7 +64,8 @@ export default function reducer(
         loading: !action.payload.images,
         images: action.payload.images,
         total: action.payload.total,
-        hasMore: true,
+        hasMore: !!action.payload.nextFetchUrl,
+        nextFetchUrl: action.payload.nextFetchUrl,
       }
     case LOAD_IMAGES_REQUEST:
       return {
@@ -73,7 +77,8 @@ export default function reducer(
         loading: false,
         images: state.images.concat(action.payload.images),
         total: action.payload.total,
-        hasMore: action.payload.images.length > 0,
+        hasMore: !!action.payload.nextFetchUrl,
+        nextFetchUrl: action.payload.nextFetchUrl,
       }
     case LOAD_IMAGES_FAIL:
       return {
