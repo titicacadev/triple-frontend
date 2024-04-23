@@ -197,9 +197,13 @@ async function fetchImages(
     categoryOrder: query.categoryOrder.join(','),
   })
 
-  const response = await get<{ data: ImageMeta[]; total: number }>(
-    `/api/content/v2/images?${querystring}`,
-  )
+  const response = await get<{
+    data: ImageMeta[]
+    total: number
+    count: number
+    prev: string | null
+    next: string | null
+  }>(`/api/content/v2/images?${querystring}`)
 
   if (response.ok === true) {
     const { parsedBody } = response
