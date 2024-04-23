@@ -93,7 +93,10 @@ export function ImagesProvider({
         `/api${
           nextFetchUrl ||
           makeFetchUrl({
-            api: images.length === 0 ? 'content' : 'reviews',
+            api:
+              images.length === (initialImages?.length || 0)
+                ? 'content'
+                : 'reviews',
             target: { type, id },
             query: { from: images.length, size, categoryOrder },
           })
@@ -102,7 +105,14 @@ export function ImagesProvider({
 
       return response
     },
-    [nextFetchUrl, type, id, images.length, categoryOrder],
+    [
+      nextFetchUrl,
+      images.length,
+      initialImages?.length,
+      type,
+      id,
+      categoryOrder,
+    ],
   )
 
   // 첫 이미지부터 다시 fetch
