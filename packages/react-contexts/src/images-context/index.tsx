@@ -270,11 +270,11 @@ function makeFetchUrl({
   query: { from: number; size: number; categoryOrder: Array<CategoryOrder> }
 }) {
   const querystring = qs.stringify({
-    resource_type: target.type,
+    ...(api === 'content' && { resource_type: target.type }),
     resource_id: target.id,
     from: query.from,
     size: query.size,
-    category_order: query.categoryOrder.join(','),
+    ...(api === 'content' && { category_order: query.categoryOrder.join(',') }),
   })
   return `/${api}/v2/images?${querystring}`
 }
