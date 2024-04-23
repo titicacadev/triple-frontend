@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
@@ -31,6 +31,8 @@ const ActionButtonText = styled(Text)`
   padding-top: 32px;
 `
 
+const MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX = 360
+
 function Actions({
   scraped,
   reviewed,
@@ -56,9 +58,26 @@ function Actions({
 }) {
   const app = useTripleClientMetadata()
   const { t } = useTranslation('common-web')
+  const [shouldRenderButtonText, setShouldRenderButtonText] = useState(
+    window.innerWidth >= MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX,
+  )
 
   const isAndroid = app?.appName === AppName.Android
   const buttonTextFontSizePx = useMemo(() => (isAndroid ? 9 : 10), [isAndroid])
+
+  useEffect(() => {
+    function onResize() {
+      setShouldRenderButtonText(
+        window.innerWidth >= MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX,
+      )
+    }
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
 
   return (
     <Section {...props}>
@@ -72,7 +91,11 @@ function Actions({
         {onScrapedChange ? (
           <ActionButton onClick={onScrapedChange}>
             <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-              {scraped ? t(['jjim-cwiso', '찜 취소']) : t(['jjim', '찜'])}
+              {shouldRenderButtonText
+                ? scraped
+                  ? t(['jjim-cwiso', '찜 취소'])
+                  : t(['jjim', '찜'])
+                : ''}
             </ActionButtonText>
             <ActionButtonIcon type={scraped ? 'scraped' : 'notScraped'} />
           </ActionButton>
@@ -80,28 +103,30 @@ function Actions({
         {onScheduleAdd ? (
           <ActionButton onClick={onScheduleAdd}>
             <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-              {t(['iljeongcuga', '일정추가'])}
+              {shouldRenderButtonText ? t(['iljeongcuga', '일정추가']) : ''}
             </ActionButtonText>
             <ActionButtonIcon type="schedule" />
           </ActionButton>
         ) : null}
         <ActionButton onClick={onGetDirection}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {t('길찾기')}
+            {shouldRenderButtonText ? t('길찾기') : ''}
           </ActionButtonText>
           <ActionButtonIcon type="getDirections" />
         </ActionButton>
         <ActionButton onClick={onReviewEdit}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {reviewed
-              ? t(['ribyusujeong', '리뷰수정'])
-              : t(['ribyusseugi', '리뷰쓰기'])}
+            {shouldRenderButtonText
+              ? reviewed
+                ? t(['ribyusujeong', '리뷰수정'])
+                : t(['ribyusseugi', '리뷰쓰기'])
+              : ''}
           </ActionButtonText>
           <ActionButtonIcon type="review" />
         </ActionButton>
         <ActionButton onClick={onContentShare}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {t(['gongyuhagi', '공유하기'])}
+            {shouldRenderButtonText ? t(['gongyuhagi', '공유하기']) : ''}
           </ActionButtonText>
           <ActionButtonIcon type="share" />
         </ActionButton>
