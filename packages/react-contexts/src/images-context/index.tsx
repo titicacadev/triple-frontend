@@ -88,11 +88,13 @@ export function ImagesProvider({
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
-      const response = await fetchImages({
-        api: 'content',
-        target: { type, id },
-        query: { from: images.length, size, categoryOrder },
-      })
+      const response = await fetchImages(
+        makeFetchUrl({
+          api: 'content',
+          target: { type, id },
+          query: { from: images.length, size, categoryOrder },
+        }),
+      )
 
       return response
     },
@@ -112,11 +114,13 @@ export function ImagesProvider({
         data: fetchedImages,
         total,
         next,
-      } = await fetchImages({
-        api: 'content',
-        target: { type, id },
-        query: { from: 0, size: 15, categoryOrder },
-      })
+      } = await fetchImages(
+        makeFetchUrl({
+          api: 'content',
+          target: { type, id },
+          query: { from: 0, size: 15, categoryOrder },
+        }),
+      )
 
       dispatch(
         reinitializeImages({
@@ -208,32 +212,8 @@ interface ImagesResponse {
   next: string | null
 }
 
-type FetchImageParam =
-  | { url: string }
-  | {
-      api: 'reviews' | 'content'
-      target: { type: string; id: string }
-      query: { from: number; size: number; categoryOrder: Array<CategoryOrder> }
-    }
-
-async function fetchImages(param: FetchImageParam) {
-  let requestUrl = ''
-
-  if ('url' in param) {
-    requestUrl = param.url
-  } else {
-    const { target, query } = param
-    const querystring = qs.stringify({
-      resource_type: target.type,
-      resource_id: target.id,
-      from: query.from,
-      size: query.size,
-      category_order: query.categoryOrder.join(','),
-    })
-    requestUrl = `/content/v2/images?${querystring}`
-  }
-
-  const response = await get<ImagesResponse>(`/api${requestUrl}`)
+async function fetchImages(url: string) {
+  const response = await get<ImagesResponse>(url)
 
   if (response.ok === true) {
     const { parsedBody } = response
@@ -276,4 +256,23 @@ export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
       </Context.Consumer>
     )
   }
+}
+
+function makeFetchUrl({
+  api,
+  target,
+  query,
+}: {
+  api: 'reviews' | 'content'
+  target: { type: string; id: string }
+  query: { from: number; size: number; categoryOrder: Array<CategoryOrder> }
+}) {
+  const querystring = qs.stringify({
+    resource_type: target.type,
+    resource_id: target.id,
+    from: query.from,
+    size: query.size,
+    category_order: query.categoryOrder.join(','),
+  })
+  return `/${api}/v2/images?${querystring}`
 }
