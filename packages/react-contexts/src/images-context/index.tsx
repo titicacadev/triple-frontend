@@ -90,12 +90,14 @@ export function ImagesProvider({
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages(
-        nextFetchUrl ||
+        `/api${
+          nextFetchUrl ||
           makeFetchUrl({
             api: images.length === 0 ? 'content' : 'reviews',
             target: { type, id },
             query: { from: images.length, size, categoryOrder },
-          }),
+          })
+        }`,
       )
 
       return response
@@ -116,13 +118,12 @@ export function ImagesProvider({
         data: fetchedImages,
         total,
         next,
-      } = await fetchImages(
-        makeFetchUrl({
+      } = await fetchImages(`/api
+        ${makeFetchUrl({
           api: 'content',
           target: { type, id },
           query: { from: 0, size: 15, categoryOrder },
-        }),
-      )
+        })}`)
 
       dispatch(
         reinitializeImages({
