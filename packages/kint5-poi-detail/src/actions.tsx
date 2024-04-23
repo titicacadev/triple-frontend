@@ -8,7 +8,10 @@ import {
   FlexBox,
   Text,
 } from '@titicaca/kint5-core-elements'
-import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import {
+  AppName,
+  useTripleClientMetadata,
+} from '@titicaca/react-triple-client-interfaces'
 
 import { ActionButtonIcon } from './action-button-icon'
 
@@ -49,7 +52,7 @@ function Actions({
   const app = useTripleClientMetadata()
   const { t } = useTranslation('common-web')
 
-  const isAndroid = app?.appName === 'Android'
+  const isAndroid = app?.appName === AppName.Android
   const buttonTextFontSizePx = useMemo(() => (isAndroid ? 9 : 10), [isAndroid])
 
   return (
