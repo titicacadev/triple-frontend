@@ -87,16 +87,17 @@ export function ImagesProvider({
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
-      const response = await fetchImages(
-        { type, id },
-        { from: images.length, size, categoryOrder },
-      )
+      const response = await fetchImages({
+        target: { type, id },
+        query: { from: images.length, size, categoryOrder },
+      })
 
       return response
     },
     [id, images.length, type, categoryOrder],
   )
 
+  // 첫 이미지부터 다시 fetch
   const reFetch = useCallback(async () => {
     if (loading) {
       return
@@ -105,10 +106,10 @@ export function ImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages(
-        { type, id },
-        { from: 0, size: 15, categoryOrder },
-      )
+      const { data: fetchedImages, total } = await fetchImages({
+        target: { type, id },
+        query: { from: 0, size: 15, categoryOrder },
+      })
 
       dispatch(
         reinitializeImages({
@@ -185,25 +186,39 @@ export function ImagesProvider({
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-async function fetchImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: Array<CategoryOrder> },
-) {
-  const querystring = qs.stringify({
-    resourceType: target.type,
-    resourceId: target.id,
-    from: query.from,
-    size: query.size,
-    categoryOrder: query.categoryOrder.join(','),
-  })
+interface ImagesResponse {
+  data: ImageMeta[]
+  total: number
+  count: number
+  prev: string | null
+  next: string | null
+}
 
-  const response = await get<{
-    data: ImageMeta[]
-    total: number
-    count: number
-    prev: string | null
-    next: string | null
-  }>(`/api/content/v2/images?${querystring}`)
+type FetchImageParam =
+  | { url: string }
+  | {
+      target: { type: string; id: string }
+      query: { from: number; size: number; categoryOrder: Array<CategoryOrder> }
+    }
+
+async function fetchImages(param: FetchImageParam) {
+  let requestUrl = ''
+
+  if ('url' in param) {
+    requestUrl = param.url
+  } else {
+    const { target, query } = param
+    const querystring = qs.stringify({
+      resourceType: target.type,
+      resourceId: target.id,
+      from: query.from,
+      size: query.size,
+      categoryOrder: query.categoryOrder.join(','),
+    })
+    requestUrl = `/content/v2/images?${querystring}`
+  }
+
+  const response = await get<ImagesResponse>(`/api${requestUrl}`)
 
   if (response.ok === true) {
     const { parsedBody } = response
