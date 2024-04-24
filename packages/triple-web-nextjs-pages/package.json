@@ -50,8 +50,8 @@
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
-    "@types/qs": "^6.9.9",
-    "@types/ua-parser-js": "^0.7.37",
+    "@types/qs": "^6.9.15",
+    "@types/ua-parser-js": "^0.7.39",
     "next": "^13.5.6"
   },
   "peerDependencies": {

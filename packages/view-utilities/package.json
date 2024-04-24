@@ -45,8 +45,8 @@
     "qs": "^6.11.2"
   },
   "devDependencies": {
-    "@types/haversine": "^1.1.7",
-    "@types/humps": "^2.0.5",
-    "@types/qs": "^6.9.9"
+    "@types/haversine": "^1.1.8",
+    "@types/humps": "^2.0.6",
+    "@types/qs": "^6.9.15"
   }
 }
