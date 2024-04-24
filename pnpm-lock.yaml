@@ -416,8 +416,8 @@ importers:
         specifier: ^3.8.3
         version: 3.8.3
       '@floating-ui/react':
-        specifier: ^0.25.4
-        version: 0.25.4(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.26.12
+        version: 0.26.12(react-dom@18.2.0)(react@18.2.0)
       '@titicaca/content-utilities':
         specifier: ^8.12.0
         version: 8.22.0
@@ -3185,21 +3185,17 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  /@floating-ui/react@0.25.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lWRQ/UiTvSIBxohn0/2HFHEmnmOVRjl7j6XcRJuLH0ls6f/9AyHMWVzkAJFuwx0n9gaEeCmg9VccCSCJzbEJig==}
+  /@floating-ui/react@0.26.12(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-D09o62HrWdIkstF2kGekIKAC0/N/Dl6wo3CQsnLcOmO3LkW6Ik8uIb3kw8JYkwxNCcg+uJ2bpWUiIijTBep05w==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
       '@floating-ui/react-dom': 2.0.6(react-dom@18.2.0)(react@18.2.0)
-      '@floating-ui/utils': 0.1.6
+      '@floating-ui/utils': 0.2.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.2.0
-    dev: false
-
-  /@floating-ui/utils@0.1.6:
-    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
   /@floating-ui/utils@0.2.1:
