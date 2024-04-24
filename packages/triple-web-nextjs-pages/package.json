@@ -52,7 +52,7 @@
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.9",
     "@types/ua-parser-js": "^0.7.37",
-    "next": "^13.5.5"
+    "next": "^13.5.6"
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*",
