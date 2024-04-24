@@ -81,8 +81,8 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
       starRating
         ? t('{{starRating}}성급', { starRating })
         : category
-        ? category.name
-        : null,
+          ? category.name
+          : null,
       area ? area.name : vicinity,
     ]
   )

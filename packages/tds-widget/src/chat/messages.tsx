@@ -107,8 +107,8 @@ export default function Messages<
               sender.unfriended
                 ? ALTERNATIVE_TEXT_MESSAGE.unfriended
                 : blinded
-                ? ALTERNATIVE_TEXT_MESSAGE.blinded
-                : ALTERNATIVE_TEXT_MESSAGE.deleted
+                  ? ALTERNATIVE_TEXT_MESSAGE.blinded
+                  : ALTERNATIVE_TEXT_MESSAGE.deleted
             }
             textColor={
               my

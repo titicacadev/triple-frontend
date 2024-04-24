@@ -52,20 +52,20 @@ export const Text = styled.div<TextProps>(
     display: props.inlineBlock
       ? 'inline-block'
       : props.inline
-      ? 'inline'
-      : undefined,
+        ? 'inline'
+        : undefined,
     float: props.floated ?? 'none',
     fontWeight: props.bold ? 'bold' : 500,
     textAlign: props.textAlign
       ? props.textAlign
       : props.center
-      ? 'center'
-      : undefined,
+        ? 'center'
+        : undefined,
     textDecoration: props.strikethrough
       ? 'line-through'
       : props.underline
-      ? 'underline'
-      : undefined,
+        ? 'underline'
+        : undefined,
     whiteSpace: props.whiteSpace ?? 'pre-line',
     wordBreak: props.wordBreak,
   }),

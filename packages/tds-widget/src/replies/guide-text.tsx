@@ -41,10 +41,10 @@ export function GuideText() {
                   mentioningUserName,
                 })
               : currentMessageId === parentMessageId
-              ? t('댓글 수정 중')
-              : t('{{mentioningUserName}}님에게 작성한 답글 수정 중', {
-                  mentioningUserName,
-                })}
+                ? t('댓글 수정 중')
+                : t('{{mentioningUserName}}님에게 작성한 답글 수정 중', {
+                    mentioningUserName,
+                  })}
           </Text>
 
           <Icon

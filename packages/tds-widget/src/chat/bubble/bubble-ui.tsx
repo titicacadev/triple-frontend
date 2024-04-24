@@ -108,8 +108,8 @@ export default function BubbleUI({
           (unfriended
             ? ALTERNATIVE_TEXT_MESSAGE.unfriended
             : blinded
-            ? ALTERNATIVE_TEXT_MESSAGE.blinded
-            : ALTERNATIVE_TEXT_MESSAGE.deleted)
+              ? ALTERNATIVE_TEXT_MESSAGE.blinded
+              : ALTERNATIVE_TEXT_MESSAGE.deleted)
         }
         textColor={alteredTextColor}
         hasArrow={hasArrow}

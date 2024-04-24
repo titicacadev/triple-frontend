@@ -393,8 +393,8 @@ export function Reply({
               ? t('내 답글')
               : t('내 댓글')
             : parentId
-            ? t('답글')
-            : t('댓글')
+              ? t('답글')
+              : t('댓글')
         }
         actionSheetHash={`${HASH_MORE_ACTION_SHEET}.${id}`}
         onEditClick={() =>

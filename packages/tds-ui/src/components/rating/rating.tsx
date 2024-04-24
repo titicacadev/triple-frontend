@@ -38,8 +38,8 @@ const RatingStar = styled.span<{
     background-image: url(${IMAGE_PREFIXES[size]}-${full
       ? 'full'
       : half
-      ? 'half'
-      : 'empty'}@4x.png);
+        ? 'half'
+        : 'empty'}@4x.png);
   `};
 `
 
