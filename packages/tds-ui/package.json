@@ -42,7 +42,7 @@
   "dependencies": {
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
-    "@floating-ui/react": "^0.25.4",
+    "@floating-ui/react": "^0.26.12",
     "@titicaca/content-utilities": "^8.12.0",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
