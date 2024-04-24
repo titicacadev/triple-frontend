@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import styled from 'styled-components'
 import {
   Section,
   HR1,
   MarginPadding,
-  FlexBox,
   Text,
 } from '@titicaca/kint5-core-elements'
 import {
@@ -14,6 +13,27 @@ import {
 } from '@titicaca/react-triple-client-interfaces'
 
 import { ActionButtonIcon } from './action-button-icon'
+
+const ActionButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 359px) {
+    margin-bottom: -30px;
+
+    &::before {
+      content: '';
+      width: 100%;
+      height: 32px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 999;
+      background-color: #fff;
+    }
+  }
+`
 
 const ActionButton = styled.button`
   position: relative;
@@ -30,8 +50,6 @@ const ActionButtonText = styled(Text)`
   color: var(--color-kint5-gray100);
   padding-top: 32px;
 `
-
-const MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX = 360
 
 function Actions({
   scraped,
@@ -58,44 +76,17 @@ function Actions({
 }) {
   const app = useTripleClientMetadata()
   const { t } = useTranslation('common-web')
-  const [shouldRenderButtonText, setShouldRenderButtonText] = useState(
-    window.innerWidth >= MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX,
-  )
 
   const isAndroid = app?.appName === AppName.Android
   const buttonTextFontSizePx = useMemo(() => (isAndroid ? 9 : 10), [isAndroid])
 
-  useEffect(() => {
-    function onResize() {
-      setShouldRenderButtonText(
-        window.innerWidth >= MIN_WIDTH_TO_RENDER_BUTTON_TEXT_PX,
-      )
-    }
-
-    window.addEventListener('resize', onResize)
-
-    return () => {
-      window.removeEventListener('resize', onResize)
-    }
-  }, [])
-
   return (
     <Section {...props}>
-      <FlexBox
-        flex
-        css={{
-          alignItems: 'flex-start',
-          justifyContent: 'space-evenly',
-        }}
-      >
+      <ActionButtonContainer>
         {onScrapedChange ? (
           <ActionButton onClick={onScrapedChange}>
             <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-              {shouldRenderButtonText
-                ? scraped
-                  ? t(['jjim-cwiso', '찜 취소'])
-                  : t(['jjim', '찜'])
-                : ''}
+              {scraped ? t(['jjim-cwiso', '찜 취소']) : t(['jjim', '찜'])}
             </ActionButtonText>
             <ActionButtonIcon type={scraped ? 'scraped' : 'notScraped'} />
           </ActionButton>
@@ -103,34 +94,32 @@ function Actions({
         {onScheduleAdd ? (
           <ActionButton onClick={onScheduleAdd}>
             <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-              {shouldRenderButtonText ? t(['iljeongcuga', '일정추가']) : ''}
+              {t(['iljeongcuga', '일정추가'])}
             </ActionButtonText>
             <ActionButtonIcon type="schedule" />
           </ActionButton>
         ) : null}
         <ActionButton onClick={onGetDirection}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {shouldRenderButtonText ? t('길찾기') : ''}
+            {t('길찾기')}
           </ActionButtonText>
           <ActionButtonIcon type="getDirections" />
         </ActionButton>
         <ActionButton onClick={onReviewEdit}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {shouldRenderButtonText
-              ? reviewed
-                ? t(['ribyusujeong', '리뷰수정'])
-                : t(['ribyusseugi', '리뷰쓰기'])
-              : ''}
+            {reviewed
+              ? t(['ribyusujeong', '리뷰수정'])
+              : t(['ribyusseugi', '리뷰쓰기'])}
           </ActionButtonText>
           <ActionButtonIcon type="review" />
         </ActionButton>
         <ActionButton onClick={onContentShare}>
           <ActionButtonText css={{ fontSize: buttonTextFontSizePx }}>
-            {shouldRenderButtonText ? t(['gongyuhagi', '공유하기']) : ''}
+            {t(['gongyuhagi', '공유하기'])}
           </ActionButtonText>
           <ActionButtonIcon type="share" />
         </ActionButton>
-      </FlexBox>
+      </ActionButtonContainer>
       {!noDivider && <HR1 css={{ margin: '8px 0 0' }} />}
     </Section>
   )
