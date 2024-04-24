@@ -21,7 +21,7 @@ export function deriveCurrentStateAndCount({
       initialState === currentState
         ? initialCount
         : currentState
-        ? Number(initialCount || 0) + 1
-        : Number(initialCount || 0) - 1,
+          ? Number(initialCount || 0) + 1
+          : Number(initialCount || 0) - 1,
   }
 }

@@ -72,8 +72,8 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
         regionId && source?.regionId && source?.areas && source.areas.length > 0
           ? source.areas.map((area) => area.name).join(',')
           : guestMode === 'seoul-con'
-          ? null
-          : source?.vicinity
+            ? null
+            : source?.vicinity
 
       const description = [categoryNames, areaNames]
         .filter((i) => i)

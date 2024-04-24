@@ -77,8 +77,8 @@ export function BusinessHoursNote({
         {currentBusinessHours
           ? t('영업중 {{todayBusinessHours}}', { todayBusinessHours })
           : todayBusinessHours
-          ? t('영업준비중 {{todayBusinessHours}}', { todayBusinessHours })
-          : t('휴무일')}
+            ? t('영업준비중 {{todayBusinessHours}}', { todayBusinessHours })
+            : t('휴무일')}
       </Text>
     </NoteContainer>
   )

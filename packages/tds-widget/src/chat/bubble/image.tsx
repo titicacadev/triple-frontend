@@ -60,16 +60,16 @@ export function ImageBubble({
                 images.length === 2 || images.length === 4
                   ? { height: 121, width: 121 }
                   : imagesInRow.length > 1
-                  ? { height: 79, width: 79, flexGrow: 1 }
-                  : {
-                      width: Math.min(MAX_IMAGE_WIDTH, image.width),
-                      height: Math.min(
-                        Math.floor(
-                          (MAX_IMAGE_WIDTH * image.height) / image.width,
+                    ? { height: 79, width: 79, flexGrow: 1 }
+                    : {
+                        width: Math.min(MAX_IMAGE_WIDTH, image.width),
+                        height: Math.min(
+                          Math.floor(
+                            (MAX_IMAGE_WIDTH * image.height) / image.width,
+                          ),
+                          image.height,
                         ),
-                        image.height,
-                      ),
-                    }
+                      }
               }
             />
           ))}

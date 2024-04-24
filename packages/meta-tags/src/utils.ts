@@ -45,8 +45,8 @@ function filterValidValue<T extends object>(originObj: T): T {
           [key]: isObject(value)
             ? filterValidValue(value)
             : isArrayOfObject(value)
-            ? value.map((item: object) => filterValidValue(item))
-            : value,
+              ? value.map((item: object) => filterValidValue(item))
+              : value,
         }),
       {} as T,
     )
