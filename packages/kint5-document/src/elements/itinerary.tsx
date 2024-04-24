@@ -64,7 +64,7 @@ export default function ItineraryElement({ value }: Props) {
 
   const handleMarkerClick = useCallback(
     ({ id }: ItineraryItemType['poi']) => {
-      navigate(`/poi/${id}`)
+      navigate(`/pois/${id}`)
     },
     [navigate],
   )
