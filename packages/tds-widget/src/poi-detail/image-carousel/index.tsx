@@ -1,5 +1,6 @@
+import { usePoiDetailImages } from '../images-provider'
+
 import { CarouselSectionProps, CarouselSection } from './carousel-section'
-import { usePoiDetailImageCarousel } from './provider'
 
 type ImageCarouselProps = Pick<
   CarouselSectionProps,
@@ -23,7 +24,7 @@ export function PoiDetailImageCarousel(props: ImageCarouselProps) {
     loading,
     total,
     actions: { fetch },
-  } = usePoiDetailImageCarousel()
+  } = usePoiDetailImages()
 
   return (
     <CarouselSection
