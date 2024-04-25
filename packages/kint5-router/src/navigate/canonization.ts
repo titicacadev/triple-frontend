@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { generateUrl, parseUrl } from '@titicaca/kint5-view-utilities'
 
 export default function canonizeTargetAddress({
   href,

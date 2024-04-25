@@ -1415,9 +1415,9 @@ importers:
       '@titicaca/kint5-modals':
         specifier: workspace:*
         version: link:../kint5-modals
-      '@titicaca/view-utilities':
+      '@titicaca/kint5-view-utilities':
         specifier: workspace:*
-        version: link:../view-utilities
+        version: link:../kint5-view-utilities
       qs:
         specifier: ^6.11.2
         version: 6.11.2

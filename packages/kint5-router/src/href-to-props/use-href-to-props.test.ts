@@ -1,13 +1,13 @@
 import { renderHook } from '@testing-library/react'
 import { useEnv } from '@titicaca/react-contexts'
-import { checkIfRoutable } from '@titicaca/view-utilities'
+import { checkIfRoutable } from '@titicaca/kint5-view-utilities'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { useHrefToProps } from './use-href-to-props'
 
 jest.mock('@titicaca/react-contexts')
-jest.mock('@titicaca/view-utilities', () => ({
-  ...jest.requireActual('@titicaca/view-utilities'),
+jest.mock('@titicaca/kint5-view-utilities', () => ({
+  ...jest.requireActual('@titicaca/kint5-view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
 jest.mock('@titicaca/react-triple-client-interfaces')

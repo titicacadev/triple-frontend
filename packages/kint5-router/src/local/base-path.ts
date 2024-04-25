@@ -1,4 +1,4 @@
-import { parseUrl, generateUrl } from '@titicaca/view-utilities'
+import { parseUrl, generateUrl } from '@titicaca/kint5-view-utilities'
 import { useRouter } from 'next/router'
 
 export function useBasePathAdder() {

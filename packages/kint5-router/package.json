@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@titicaca/kint5-modals": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*",
+    "@titicaca/kint5-view-utilities": "workspace:*",
     "qs": "^6.11.2"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { parseUrl } from '@titicaca/view-utilities'
+import { parseUrl } from '@titicaca/kint5-view-utilities'
 
 export function checkHrefIsAbsoluteUrl(href: string): boolean {
   const { host } = parseUrl(href)

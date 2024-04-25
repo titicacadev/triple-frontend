@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react'
 import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
 import { useSessionAvailability, useEnv } from '@titicaca/react-contexts'
-import { checkIfRoutable } from '@titicaca/view-utilities'
+import { checkIfRoutable } from '@titicaca/kint5-view-utilities'
 import {
   useTripleClientMetadata,
   useTripleClientNavigate,
@@ -10,8 +10,8 @@ import {
 import { useNavigate } from '.'
 
 jest.mock('@titicaca/modals')
-jest.mock('@titicaca/view-utilities', () => ({
-  ...jest.requireActual('@titicaca/view-utilities'),
+jest.mock('@titicaca/kint5-view-utilities', () => ({
+  ...jest.requireActual('@titicaca/kint5-view-utilities'),
   checkIfRoutable: jest.fn(),
 }))
 jest.mock('@titicaca/react-contexts')

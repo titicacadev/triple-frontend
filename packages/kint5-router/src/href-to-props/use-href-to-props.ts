@@ -5,7 +5,7 @@ import {
   checkIfRoutable,
   generateUrl,
   parseUrl,
-} from '@titicaca/view-utilities'
+} from '@titicaca/kint5-view-utilities'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
 import { AllowSource } from '../common/disabled-link-notifier'

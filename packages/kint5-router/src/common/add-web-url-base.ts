@@ -1,5 +1,5 @@
 import { useEnv } from '@titicaca/react-contexts'
-import { generateUrl, parseUrl } from '@titicaca/view-utilities'
+import { generateUrl, parseUrl } from '@titicaca/kint5-view-utilities'
 
 export function useWebUrlBaseAdder() {
   const { webUrlBase } = useEnv()
