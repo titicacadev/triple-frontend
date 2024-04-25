@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal, useTransitionModal } from '@titicaca/kint5-modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import {
   useTripleClientMetadata,
