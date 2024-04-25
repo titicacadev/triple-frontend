@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { useLoginCtaModal, useTransitionModal } from '@titicaca/modals'
+import { useLoginCtaModal, useTransitionModal } from '@titicaca/kint5-modals'
 import { useSessionAvailability, useEnv } from '@titicaca/react-contexts'
 import { checkIfRoutable } from '@titicaca/kint5-view-utilities'
 import {
@@ -9,7 +9,7 @@ import {
 
 import { useNavigate } from '.'
 
-jest.mock('@titicaca/modals')
+jest.mock('@titicaca/kint5-modals')
 jest.mock('@titicaca/kint5-view-utilities', () => ({
   ...jest.requireActual('@titicaca/kint5-view-utilities'),
   checkIfRoutable: jest.fn(),

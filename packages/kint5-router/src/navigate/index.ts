@@ -2,7 +2,7 @@ import {
   TransitionType,
   useLoginCtaModal,
   useTransitionModal,
-} from '@titicaca/modals'
+} from '@titicaca/kint5-modals'
 import { checkIfRoutable, parseUrl } from '@titicaca/kint5-view-utilities'
 import { useCallback } from 'react'
 import { useEnv, useSessionAvailability } from '@titicaca/react-contexts'

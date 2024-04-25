@@ -3,7 +3,7 @@ import {
   useTransitionModal,
   useLoginCtaModal,
   TransitionType,
-} from '@titicaca/modals'
+} from '@titicaca/kint5-modals'
 import { useSessionAvailability } from '@titicaca/react-contexts'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 
