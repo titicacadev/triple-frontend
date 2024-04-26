@@ -20,11 +20,11 @@ const SaveToItineraryButton = styled(Button)`
 `
 
 export default function SaveToItinerary({
-  poiIds,
+  itemIds,
   geotag,
   disabled = false,
 }: {
-  poiIds: string[]
+  itemIds: string[]
   geotag: Geotag
   disabled?: boolean
 }) {
@@ -44,9 +44,9 @@ export default function SaveToItinerary({
       },
     })
     if (geotag) {
-      addPoisToTrip(poiIds)
+      addPoisToTrip(itemIds)
     }
-  }, [geotag, poiIds, addPoisToTrip, trackEvent])
+  }, [geotag, itemIds, addPoisToTrip, trackEvent])
 
   return (
     <SaveToItineraryButton
