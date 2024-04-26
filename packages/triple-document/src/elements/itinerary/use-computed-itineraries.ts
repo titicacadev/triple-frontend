@@ -10,6 +10,7 @@ import {
   deriveNameFromTranslations,
   UnSafetyTranslations,
 } from './use-safety-poi'
+import { ItineraryElementType } from './types'
 
 interface Props {
   itinerary: Itinerary
@@ -22,8 +23,8 @@ interface Course {
   regionId: string
   /** POI 제목, 공백값 가드닝 적용 */
   name: string
-  /** POI 타입 */
-  type: NonNullable<ItineraryItemType['poi']>['type'] | 'festa'
+  /** 추천코스 요소 타입 */
+  type: ItineraryElementType
   /** 거점지역, 카테고리 */
   description: string
   /** 이동수단 */

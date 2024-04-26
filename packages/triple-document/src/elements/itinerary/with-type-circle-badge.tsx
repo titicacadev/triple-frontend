@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react'
-import { PoiItineraryItemType } from '@titicaca/content-type-definitions'
 import { useTheme } from 'styled-components'
 
 import { CircleBadge } from './badge'
+import { ItineraryElementType } from './types'
 
 /**
  * CircleBadge 에 color 결정하는 로직을 분리하고
@@ -19,18 +19,14 @@ import { CircleBadge } from './badge'
 
 type HocProps = Omit<Parameters<typeof CircleBadge>[0], 'color'>
 
-export default function withTypeCircleBadge(
-  type: PoiItineraryItemType['poi']['type'] | 'festa',
-) {
+export default function withTypeCircleBadge(type: ItineraryElementType) {
   return function ColorBadgeComponent({
     children,
     ...rest
   }: PropsWithChildren<HocProps>) {
     const { colors } = useTheme()
 
-    function getColorOfType(
-      type: PoiItineraryItemType['poi']['type'] | 'festa',
-    ) {
+    function getColorOfType(type: ItineraryElementType) {
       switch (type) {
         case 'hotel':
           return colors.mint
