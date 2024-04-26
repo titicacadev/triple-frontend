@@ -11,7 +11,6 @@ import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
-  PoiItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
@@ -39,6 +38,7 @@ import {
   Bike,
 } from './itinerary/icons'
 import SaveToItinerary, { Geotag } from './itinerary/save-to-itinerary'
+import { ItineraryElementType } from './itinerary/types'
 
 interface Props {
   value: {
@@ -107,7 +107,7 @@ export default function ItineraryElement({ value }: Props) {
       name,
     }: {
       regionId: string
-      type: PoiItineraryItemType['poi']['type'] | 'festa'
+      type: ItineraryElementType
       id: string
       name: string
     }) =>
@@ -277,7 +277,7 @@ export default function ItineraryElement({ value }: Props) {
   )
 }
 
-function PoiCircleBadge(type: PoiItineraryItemType['poi']['type'] | 'festa') {
+function PoiCircleBadge(type: ItineraryElementType) {
   switch (type) {
     case 'hotel':
       return HotelCircleBadge
