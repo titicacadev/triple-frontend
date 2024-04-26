@@ -31,7 +31,7 @@ interface Props {
 export default function ItineraryElement({ value }: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
-  const { courses, poiIds, regionId, hideAddButton, hasItineraries, items } =
+  const { courses, poiIds, regionId, hideAddButton, hasItineraries } =
     useItinerary(value)
   const navigate = useNavigate()
   const app = useTripleClientMetadata()
@@ -116,7 +116,6 @@ export default function ItineraryElement({ value }: Props) {
               duration,
               isLast,
             } = course
-            const areaName = items[index].poi.source?.areas?.[0]?.name
             const hasDuration = !isLast && transportation !== undefined
             const TransportIcon = getTransportationIcon(transportation)
             const shouldShowTransportationInfo = hasDuration && TransportIcon
@@ -178,16 +177,6 @@ export default function ItineraryElement({ value }: Props) {
                         >
                           {description}
                         </Text>
-                        {areaName ? (
-                          <Text
-                            css={{
-                              fontSize: 12,
-                              color: 'var(--color-kint5-gray60)',
-                            }}
-                          >
-                            &nbsp;·&nbsp;{areaName}
-                          </Text>
-                        ) : null}
                       </FlexBox>
                     </FlexBox>
                   </FlexBox>

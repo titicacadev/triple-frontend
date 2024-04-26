@@ -66,12 +66,16 @@ export default function useItinerary({ itinerary }: Props) {
         .map((category) => category.name)
         .join(',')
 
+      const areaName = poi.source?.areas?.[0]?.name
+
+      const description = [categoryNames, areaName].filter(Boolean).join(' · ')
+
       return {
         id,
         regionId: regionId || source?.regionId || '',
         name,
         type,
-        description: categoryNames,
+        description,
         ...transportation,
         memo,
         schedule,
