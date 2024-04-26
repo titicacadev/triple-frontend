@@ -30,7 +30,7 @@ function extractPoiCoordinate(items: ItineraryItemType[]) {
   return items.map((item) => item.poi.source?.geolocation?.coordinates)
 }
 
-function extracPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
+function extractPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
   return items.map(({ poi }) => getLatLng(poi))
 }
 
@@ -46,7 +46,7 @@ export default function useMapData(
       (coordinate): coordinate is [number, number] => !!coordinate,
     )
 
-    const polyline = extracPathMap(items)
+    const polyline = extractPathMap(items)
     const totalPois = items.length
 
     const pois = items.map(({ poi }) => ({
