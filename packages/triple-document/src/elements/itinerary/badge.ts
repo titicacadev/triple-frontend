@@ -69,3 +69,4 @@ export const CircleBadge = styled(BadgeBase)<{
 export const HotelCircleBadge = withTypeCircleBadge('hotel')
 export const AttractionCircleBadge = withTypeCircleBadge('attraction')
 export const RestaurantCircleBadge = withTypeCircleBadge('restaurant')
+export const FestaCircleBadge = withTypeCircleBadge('festa')
