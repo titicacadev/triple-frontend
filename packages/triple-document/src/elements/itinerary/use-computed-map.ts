@@ -2,22 +2,23 @@ import { useMemo } from 'react'
 import type { LatLngLiteral } from '@titicaca/type-definitions'
 import type { ItineraryItemType } from '@titicaca/content-type-definitions'
 
-interface Poi {
-  poi: ItineraryItemType['poi']
+interface MapItem {
+  item: ItineraryItemType
   position: LatLngLiteral
 }
 
 interface ItineraryMapData {
-  totalPois: number
-  pois: Poi[]
+  mapItems: MapItem[]
   polyline: LatLngLiteral[]
   coordinates: [number, number][]
 }
-/**
- * TODO: move to use-safety-poi
- */
-function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
-  const [lng, lat] = source?.geolocation?.coordinates || [0, 0]
+
+function getItemLatLng(item: ItineraryItemType): LatLngLiteral {
+  const coordinates = item.poi
+    ? item.poi.source?.geolocation?.coordinates
+    : item.festa.geolocation?.coordinates
+
+  const [lng, lat] = coordinates || [0, 0]
   return { lat, lng }
 }
 
@@ -26,12 +27,10 @@ function getLatLng({ source }: ItineraryItemType['poi']): LatLngLiteral {
  * 유일한 타입으로 이 함수는 없어도 됩니다.
  * [number, number][] -> { lat, lng } 으로 개선이 필요
  */
-function extractPoiCoordinate(items: ItineraryItemType[]) {
-  return items.map((item) => item.poi.source?.geolocation?.coordinates)
-}
-
-function extractPathMap(items: ItineraryItemType[]): LatLngLiteral[] {
-  return items.map(({ poi }) => getLatLng(poi))
+function extractItemCoordinates(items: ItineraryItemType[]) {
+  return items.map(({ poi, festa }) =>
+    poi ? poi.source?.geolocation?.coordinates : festa.geolocation?.coordinates,
+  )
 }
 
 /**
@@ -42,22 +41,20 @@ export default function useMapData(
   items: ItineraryItemType[],
 ): ItineraryMapData {
   return useMemo(() => {
-    const coordinates = extractPoiCoordinate(items).filter(
+    const coordinates = extractItemCoordinates(items).filter(
       (coordinate): coordinate is [number, number] => !!coordinate,
     )
 
-    const polyline = extractPathMap(items)
-    const totalPois = items.length
+    const polyline = items.map((item) => getItemLatLng(item))
 
-    const pois = items.map(({ poi }) => ({
-      poi,
-      position: getLatLng(poi),
+    const mapItems = items.map((item) => ({
+      item,
+      position: getItemLatLng(item),
     }))
 
     return {
       coordinates,
-      totalPois,
-      pois,
+      mapItems,
       polyline,
     }
   }, [items])
