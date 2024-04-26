@@ -6,6 +6,7 @@ import {
   AttractionCircleMarker,
   RestaurantCircleMarker,
   DotPolyline,
+  FestaCircleMarker,
 } from '@titicaca/tds-widget'
 import { useEnv } from '@titicaca/triple-web'
 import {
@@ -90,7 +91,7 @@ function ItineraryTypeCircleMarker(item: ItineraryItemType) {
     case 'restaurant':
       return RestaurantCircleMarker
     case 'festa':
-      return RestaurantCircleMarker
+      return FestaCircleMarker
   }
 
   throw new Error(`Unknown card type of itinerary "${type}"`)

@@ -18,6 +18,7 @@ import {
   HotelCircleBadge,
   AttractionCircleBadge,
   RestaurantCircleBadge,
+  FestaCircleBadge,
 } from './itinerary/badge'
 import { TagLabel } from './itinerary/tag-label'
 import {
@@ -279,7 +280,7 @@ function PoiCircleBadge(type: PoiItineraryItemType['poi']['type'] | 'festa') {
     case 'restaurant':
       return RestaurantCircleBadge
     case 'festa':
-      return RestaurantCircleBadge
+      return FestaCircleBadge
   }
 
   throw new Error(`Unknown card type of poi "${type}"`)
