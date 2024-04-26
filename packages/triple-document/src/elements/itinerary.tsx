@@ -5,6 +5,7 @@ import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
+  PoiItineraryItemType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
 import { useTrackEvent } from '@titicaca/triple-web'
@@ -86,7 +87,7 @@ export default function ItineraryElement({ value }: Props) {
   const trackEvent = useTrackEvent()
 
   const guestMode = useGuestMode()
-  const { courses, regionId, poiIds, hasItineraries, hideAddButton } =
+  const { courses, regionId, itemIds, hasItineraries, hideAddButton } =
     useItinerary({ itinerary: value.itinerary, guestMode })
 
   const { navigate } = useNavigate()
@@ -99,7 +100,7 @@ export default function ItineraryElement({ value }: Props) {
       name,
     }: {
       regionId: string
-      type: ItineraryItemType['poi']['type']
+      type: PoiItineraryItemType['poi']['type'] | 'festa'
       id: string
       name: string
     }) =>
@@ -113,16 +114,28 @@ export default function ItineraryElement({ value }: Props) {
             type,
           },
         })
-        navigate(`${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`)
+
+        const url =
+          type === 'festa'
+            ? `festas/${id}`
+            : `${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`
+
+        navigate(url)
       },
     [navigate, trackEvent],
   )
 
   const handleMarkerClick = useCallback(
-    ({ id, type, source }: ItineraryItemType['poi']) => {
-      navigate(
-        `${source?.regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`,
-      )
+    (item: ItineraryItemType) => {
+      if (item.poi) {
+        const { id, source, type } = item.poi
+        navigate(
+          `${source?.regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`,
+        )
+      } else {
+        const { id } = item.festa
+        navigate(`/festas/${id}`)
+      }
     },
     [navigate, regionId],
   )
@@ -247,7 +260,7 @@ export default function ItineraryElement({ value }: Props) {
         </Stack>
         {hideAddButton || guestMode || !itineraryGeotag ? null : (
           <SaveToItinerary
-            poiIds={poiIds}
+            itemIds={itemIds}
             geotag={itineraryGeotag}
             disabled={!hasItineraries}
           />
@@ -257,13 +270,15 @@ export default function ItineraryElement({ value }: Props) {
   )
 }
 
-function PoiCircleBadge(type: ItineraryItemType['poi']['type']) {
+function PoiCircleBadge(type: PoiItineraryItemType['poi']['type'] | 'festa') {
   switch (type) {
     case 'hotel':
       return HotelCircleBadge
     case 'attraction':
       return AttractionCircleBadge
     case 'restaurant':
+      return RestaurantCircleBadge
+    case 'festa':
       return RestaurantCircleBadge
   }
 
