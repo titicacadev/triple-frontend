@@ -6,6 +6,7 @@ import {
   AttractionCircleMarker,
   RestaurantCircleMarker,
   DotPolyline,
+  FestaCircleMarker,
 } from '@titicaca/map'
 import { useEnv } from '@titicaca/react-contexts'
 import {
@@ -90,7 +91,7 @@ function ItineraryTypeCircleMarker(item: ItineraryItemType) {
     case 'restaurant':
       return RestaurantCircleMarker
     case 'festa':
-      return RestaurantCircleMarker
+      return FestaCircleMarker
   }
 
   throw new Error(`Unknown card type of itinerary "${type}"`)
