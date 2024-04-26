@@ -2,8 +2,8 @@
   "name": "root",
   "private": true,
   "engines": {
-    "node": ">= 16",
-    "pnpm": ">= 8"
+    "node": ">= 20",
+    "pnpm": "9.x"
   },
   "scripts": {
     "dev": "pnpm run storybook",
