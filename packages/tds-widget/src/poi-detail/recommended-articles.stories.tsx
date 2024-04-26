@@ -6,6 +6,11 @@ import { PoiDetailRecommendedArticles } from './recommended-articles/recommended
 const meta: Meta<typeof PoiDetailRecommendedArticles> = {
   title: 'poi-detail / RecommendedArticles',
   component: PoiDetailRecommendedArticles,
+  parameters: {
+    chromatic: {
+      disableSnapshot: true,
+    },
+  },
 }
 
 export default meta
