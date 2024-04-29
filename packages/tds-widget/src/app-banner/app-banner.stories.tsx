@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AppBanner } from './app-banner'
 
 export default {
-  title: 'app-banner / AppBanner',
+  title: 'tds-widget / tds-widget / AppBanner',
   component: AppBanner,
 } as Meta<typeof AppBanner>
 

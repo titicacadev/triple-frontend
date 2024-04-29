@@ -1,7 +1,7 @@
 import { ImageViewerPopup, ImageViewerPopupProps } from './image-viewer'
 
 export default {
-  title: 'Image Viewer',
+  title: 'tds-widget / Image Viewer',
 }
 
 export const ImageViewer = {

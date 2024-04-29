@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { BookingCompletion } from '.'
 
 export default {
-  title: 'booking-completion / Booking Complete',
+  title: 'tds-widget / booking-completion / Booking Complete',
   component: BookingCompletion,
   decorators: [
     (Story) => (

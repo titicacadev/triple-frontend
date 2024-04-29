@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { PoiDetailHeaderV2 } from './detail-header-v2'
 
 export default {
-  title: 'poi-detail / DetailHeader V2',
+  title: 'tds-widget / poi-detail / DetailHeader V2',
   component: PoiDetailHeaderV2,
   decorators: [
     (Story) => (

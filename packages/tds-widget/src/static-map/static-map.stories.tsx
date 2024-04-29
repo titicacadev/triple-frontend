@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { StaticMap } from './static-map'
 
 export default {
-  title: 'static-map / StaticMap',
+  title: 'tds-widget / static-map / StaticMap',
   component: StaticMap,
 } as Meta<typeof StaticMap>
 

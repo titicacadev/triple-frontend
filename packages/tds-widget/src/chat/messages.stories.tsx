@@ -1,7 +1,7 @@
 import Messages from './messages'
 
 export default {
-  title: 'chat / Messages',
+  title: 'tds-widget / chat / Messages',
   component: Messages,
 }
 

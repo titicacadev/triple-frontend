@@ -4,7 +4,7 @@ import { PoiDetailImageCarousel } from './image-carousel'
 import { PoiDetailImagesProvider } from './images-provider'
 
 export default {
-  title: 'poi-detail / ImageCarousel',
+  title: 'tds-widget / poi-detail / ImageCarousel',
   component: PoiDetailImageCarousel,
 } as Meta<typeof PoiDetailImageCarousel>
 

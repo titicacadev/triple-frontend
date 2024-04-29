@@ -26,7 +26,7 @@ const MoreImageOverlayLinkIcon = styled.img`
 `
 
 const meta: Meta<typeof ImageCarousel> = {
-  title: 'image-carousel / Image Carousel',
+  title: 'tds-widget / image-carousel / Image Carousel',
   component: ImageCarousel,
 }
 

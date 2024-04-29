@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { AwardFooter } from './award-footer'
 
 export default {
-  title: 'footer / AwardFooter',
+  title: 'tds-widget / footer / AwardFooter',
   component: AwardFooter,
   decorators: [
     (Story) => (

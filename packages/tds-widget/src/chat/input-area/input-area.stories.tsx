@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { InputAreaUI, InputAreaUIProps } from './index'
 
 export default {
-  title: 'chat / InputArea',
+  title: 'tds-widget / chat / InputArea',
   component: InputAreaUI,
   argTypes: {},
 } as Meta<typeof InputAreaUI>

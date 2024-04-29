@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { PoiDetailActions } from './actions'
 
 export default {
-  title: 'poi-detail / Actions',
+  title: 'tds-widget / poi-detail / Actions',
   component: PoiDetailActions,
   decorators: [
     (Story) => {

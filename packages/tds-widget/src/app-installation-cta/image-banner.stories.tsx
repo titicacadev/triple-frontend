@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ImageBanner } from './image-banner'
 
 export default {
-  title: 'app-installation-cta / ImageBanner',
+  title: 'tds-widget / app-installation-cta / ImageBanner',
   component: ImageBanner,
 } as Meta
 

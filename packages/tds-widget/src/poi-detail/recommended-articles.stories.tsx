@@ -4,7 +4,7 @@ import { rest } from 'msw'
 import { PoiDetailRecommendedArticles } from './recommended-articles/recommended-articles'
 
 const meta: Meta<typeof PoiDetailRecommendedArticles> = {
-  title: 'poi-detail / RecommendedArticles',
+  title: 'tds-widget / poi-detail / RecommendedArticles',
   component: PoiDetailRecommendedArticles,
   parameters: {
     chromatic: {

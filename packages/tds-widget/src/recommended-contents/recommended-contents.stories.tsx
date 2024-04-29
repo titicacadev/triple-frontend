@@ -4,7 +4,7 @@ import mock from './mocks/recommended-contents.sample.json'
 import { RecommendedContents } from './recommended-contents'
 
 export default {
-  title: 'recommended-contents / RecommendedContents',
+  title: 'tds-widget / recommended-contents / RecommendedContents',
   component: RecommendedContents,
 } as Meta<typeof RecommendedContents>
 
