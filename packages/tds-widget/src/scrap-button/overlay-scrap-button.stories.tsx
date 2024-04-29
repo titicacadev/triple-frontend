@@ -6,7 +6,7 @@ import { ScrapsProvider } from '../scrap/provider'
 import { OverlayScrapButton } from '.'
 
 const meta: Meta<typeof OverlayScrapButton> = {
-  title: 'tds-widget / ScrapButton / OverlayScrapButton',
+  title: 'tds-widget / scrap-button / OverlayScrapButton',
   component: OverlayScrapButton,
   decorators: [
     (Story) => (

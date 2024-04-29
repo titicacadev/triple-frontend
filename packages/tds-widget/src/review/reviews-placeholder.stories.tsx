@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { ReviewsPlaceholder } from './components/review-placeholder-with-rating'
 
 const meta: Meta<typeof ReviewsPlaceholder> = {
-  title: 'tds-widget / Review / Review Placeholder',
+  title: 'tds-widget / review / Review Placeholder',
   component: ReviewsPlaceholder,
   decorators: [
     (Story) => (
