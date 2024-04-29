@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { LocationProperties } from './location-properties'
 
 export default {
-  title: 'tds-widget / Location-Properties / LocationProperties',
+  title: 'tds-widget / location-properties / LocationProperties',
   component: LocationProperties,
   decorators: [
     (Story) => (

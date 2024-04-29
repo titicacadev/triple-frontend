@@ -20,7 +20,7 @@ import { DotPolyline, HotelCircleMarker, Polygon, Polyline } from './overlay'
 const GOOGLE_MAPS_API_KEY = 'AIzaSyDuSWU_yBwuQzeyRFcTqhyifqNX_8oaXI4'
 
 export default {
-  title: 'tds-widget / Map / Map',
+  title: 'tds-widget / map / Map',
   component: MapView,
 } as Meta
 

@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { SocialReviews } from './social-review'
 
 export default {
-  title: 'tds-widget / Social-Reviews / SocialReviews',
+  title: 'tds-widget / social-reviews / SocialReviews',
   component: SocialReviews,
   decorators: [
     (Story) => (

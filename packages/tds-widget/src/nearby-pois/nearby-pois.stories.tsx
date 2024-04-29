@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { NearbyPois } from './nearby-pois'
 
 export default {
-  title: 'tds-widget / Nearby-Pois / NearbyPois',
+  title: 'tds-widget / nearby-pois / NearbyPois',
   component: NearbyPois,
   decorators: [
     (Story) => (

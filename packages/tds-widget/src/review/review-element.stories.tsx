@@ -17,7 +17,7 @@ import triVideosData from './mocks/review-element.tri-videos.json'
 const queryClient = new QueryClient()
 
 const meta: Meta<typeof ReviewElement> = {
-  title: 'tds-widget / Review / Review Element',
+  title: 'tds-widget / review / Review Element',
   component: ReviewElement,
   decorators: [
     (Story) => (
