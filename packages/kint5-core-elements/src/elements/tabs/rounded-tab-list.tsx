@@ -10,7 +10,7 @@ interface StyledTabListBaseProps {
 const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
   display: flex;
   gap: 5px;
-  padding: 10px 30px;
+  padding: 0 16px;
 
   ${({ $scroll }) =>
     $scroll &&

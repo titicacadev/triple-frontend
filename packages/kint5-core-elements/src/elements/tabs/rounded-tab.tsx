@@ -1,28 +1,33 @@
+import { ForwardedRef, forwardRef } from 'react'
 import styled from 'styled-components'
 
 import { TabBase, TabBaseProps } from './tab-base'
 
 const StyledTabBase = styled(TabBase)`
   flex: none;
-  padding: 8px 14px;
-  border: 1px solid var(--color-gray100);
+  padding: 9.5px 14px;
   border-radius: 100px;
-  background: var(--color-white);
-  font-size: 13px;
-  font-weight: bold;
+  background: #f1f3f5;
+  font-size: 14px;
   line-height: 16px;
-  color: var(--color-gray300);
+  color: #000;
 
   &[aria-selected='true'] {
-    color: var(--color-white);
-    background: var(--color-blue);
-    border: 1px solid var(--color-blue);
+    color: #fff;
+    background: #000;
+    font-weight: 700;
   }
 `
 
-export const RoundedTab = <Value extends number | string | symbol>({
-  children,
-  ...props
-}: TabBaseProps<Value>) => {
-  return <StyledTabBase {...props}>{children}</StyledTabBase>
+function RoundedTabImpl<Value extends number | string | symbol>(
+  { children, ...props }: TabBaseProps<Value>,
+  ref: ForwardedRef<HTMLButtonElement>,
+) {
+  return (
+    <StyledTabBase ref={ref} {...props}>
+      {children}
+    </StyledTabBase>
+  )
 }
+
+export const RoundedTab = forwardRef(RoundedTabImpl)

@@ -10,13 +10,14 @@ interface StyledTabBaseProps {
 
 const StyledTabBase = styled(TabBase)<StyledTabBaseProps>`
   flex: 1;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 17px;
   font-weight: bold;
-  color: var(--color-gray300);
-  padding: 11px 0;
+  color: #747c86;
+  padding: 15.5px 0;
 
   &[aria-selected='true'] {
-    color: var(--color-gray);
+    color: #000;
   }
 
   ${({ $scroll }) =>

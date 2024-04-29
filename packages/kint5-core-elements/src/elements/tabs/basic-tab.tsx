@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ForwardedRef, forwardRef } from 'react'
 
 import { TabBase, TabBaseProps } from './tab-base'
 
@@ -16,9 +17,15 @@ const StyledTabBase = styled(TabBase)`
   }
 `
 
-export const BasicTab = <Value extends number | string | symbol>({
-  children,
-  ...props
-}: TabBaseProps<Value>) => {
-  return <StyledTabBase {...props}>{children}</StyledTabBase>
+function BasicTabImpl<Value extends number | string | symbol>(
+  { children, ...props }: TabBaseProps<Value>,
+  ref: ForwardedRef<HTMLButtonElement>,
+) {
+  return (
+    <StyledTabBase ref={ref} {...props}>
+      {children}
+    </StyledTabBase>
+  )
 }
+
+export const BasicTab = forwardRef(BasicTabImpl)

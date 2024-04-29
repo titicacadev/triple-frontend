@@ -1,4 +1,5 @@
 import {
+  ButtonHTMLAttributes,
   FocusEventHandler,
   ForwardedRef,
   forwardRef,
@@ -18,6 +19,7 @@ export interface TabBaseProps<Value> extends PropsWithChildren {
    * 각 탭마다의 유니크한 값
    */
   value: Value
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type']
 }
 
 function TabBaseComponent<Value extends number | string | symbol>(
@@ -35,7 +37,6 @@ function TabBaseComponent<Value extends number | string | symbol>(
 
   const handleClick: MouseEventHandler = () => {
     onClick()
-    tabs.onChange?.(value)
   }
 
   const handleFocus: FocusEventHandler = () => {

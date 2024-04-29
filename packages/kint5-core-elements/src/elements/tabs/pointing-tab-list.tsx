@@ -40,7 +40,7 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
     width: ${({ $width }) => `${$width}px`};
     left: ${({ $left }) => `${$left}px`};
     height: 2px;
-    background: var(--color-blue);
+    background: #000;
     transition: all 0.2s;
   }
 `
