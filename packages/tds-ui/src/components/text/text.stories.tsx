@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Text } from './text'
 
 const meta: Meta<typeof Text> = {
-  title: 'tds-ui / Text',
+  title: 'tds-ui (Typography) / Text',
   component: Text,
   parameters: {
     docs: {

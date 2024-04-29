@@ -6,7 +6,7 @@ import { HR1 } from '../hr'
 import { longClickable } from './long-clickable'
 
 const meta = {
-  title: 'tds-ui / longClickable',
+  title: 'tds-ui (Other) / longClickable',
   component: longClickable,
   parameters: {
     docs: {

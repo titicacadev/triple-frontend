@@ -8,7 +8,7 @@ import {
 } from './skeleton'
 
 const meta: Meta<typeof Skeleton> = {
-  title: 'tds-ui / Skeleton',
+  title: 'tds-ui (Feedback) / Skeleton',
   parameters: {
     docs: {
       description: {

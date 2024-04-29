@@ -6,7 +6,7 @@ import { ButtonGroup } from './button-group'
 import { ButtonIcon } from './button-icon'
 
 const meta: Meta<typeof Button> = {
-  title: 'tds-ui / Button',
+  title: 'tds-ui (Form) / Button',
   component: Button,
 }
 

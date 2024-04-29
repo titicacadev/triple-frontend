@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Select } from './select'
 
 const meta: Meta<typeof Select> = {
-  title: 'tds-ui / Select',
+  title: 'tds-ui (Form) / Select',
   component: Select,
   argTypes: {
     placeholder: { type: 'string' },

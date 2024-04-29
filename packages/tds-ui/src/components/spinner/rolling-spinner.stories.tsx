@@ -3,7 +3,7 @@ import type { StoryObj } from '@storybook/react'
 import { RollingSpinner } from './rolling-spinner'
 
 const meta = {
-  title: 'tds-ui / Spinner / RollingSpinner',
+  title: 'tds-ui (Feedback) / RollingSpinner',
   component: RollingSpinner,
   args: {
     size: 36,

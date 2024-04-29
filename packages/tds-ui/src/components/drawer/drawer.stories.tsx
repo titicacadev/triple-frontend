@@ -7,7 +7,7 @@ import { Text } from '../text'
 import { Drawer } from './drawer'
 
 const meta: Meta<typeof Drawer> = {
-  title: 'tds-ui / Drawer',
+  title: 'tds-ui (Overlay) / Drawer',
   component: Drawer,
   args: {
     duration: 300,

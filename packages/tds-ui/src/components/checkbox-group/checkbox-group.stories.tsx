@@ -5,7 +5,7 @@ import { Checkbox } from '../checkbox'
 import { CheckboxGroup } from './checkbox-group'
 
 const meta: Meta<typeof CheckboxGroup> = {
-  title: 'tds-ui / CheckboxGroup',
+  title: 'tds-ui (Form) / CheckboxGroup',
   component: CheckboxGroup,
   args: {
     value: [],

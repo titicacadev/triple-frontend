@@ -12,7 +12,7 @@ const Toc = styled.div`
 `
 
 const meta: Meta<typeof Navbar> = {
-  title: 'tds-ui / Navbar / Navbar',
+  title: 'tds-ui (Navigation) / Navbar',
   component: Navbar,
   args: {
     zIndex: 2,

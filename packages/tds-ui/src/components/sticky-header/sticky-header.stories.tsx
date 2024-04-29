@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { StickyHeader } from './sticky-header'
 
 const meta: Meta<typeof StickyHeader> = {
-  title: 'tds-ui / StickyHeader',
+  title: 'tds-ui (Layout) / StickyHeader',
   component: StickyHeader,
   args: {
     zIndex: 3,

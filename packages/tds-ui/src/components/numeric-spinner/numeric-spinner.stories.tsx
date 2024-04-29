@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { NumericSpinner } from './numeric-spinner'
 
 const meta: Meta<typeof NumericSpinner> = {
-  title: 'tds-ui / NumericSpinner',
+  title: 'tds-ui (Form) / NumericSpinner',
   component: NumericSpinner,
   args: {
     size: 'small',

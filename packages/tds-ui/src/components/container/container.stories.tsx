@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Container } from './container'
 
 const meta: Meta<typeof Container> = {
-  title: 'tds-ui / Container',
+  title: 'tds-ui (Layout) / Container',
   component: Container,
   parameters: {
     docs: {

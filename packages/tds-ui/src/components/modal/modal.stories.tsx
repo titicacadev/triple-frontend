@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Modal } from './modal'
 
 const meta: Meta<typeof Modal> = {
-  title: 'tds-ui / Modal',
+  title: 'tds-ui (Overlay) / Modal',
   component: Modal,
   args: {
     open: false,

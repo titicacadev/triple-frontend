@@ -3,7 +3,7 @@ import type { StoryObj, Meta } from '@storybook/react'
 import { ConfirmSelector } from './confirm-selector'
 
 const meta: Meta<typeof ConfirmSelector> = {
-  title: 'tds-ui / ConfirmSelector',
+  title: 'tds-ui (Form) / ConfirmSelector',
   component: ConfirmSelector,
 }
 

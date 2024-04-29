@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Rating } from './rating'
 
 const meta: Meta<typeof Rating> = {
-  title: 'tds-ui / Rating',
+  title: 'tds-ui (Data display) / Rating',
   component: Rating,
   args: {
     size: 'tiny',

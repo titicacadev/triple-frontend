@@ -5,7 +5,7 @@ import { Radio } from '../radio/radio'
 import { RadioGroup } from './radio-group'
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'tds-ui / RadioGroup',
+  title: 'tds-ui (Form) / RadioGroup',
   component: RadioGroup,
   args: {
     disabled: false,

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { GenderSelector } from './gender-selector'
 
 const meta: Meta<typeof GenderSelector> = {
-  title: 'tds-ui / GenderSelector',
+  title: 'tds-ui (Form) / GenderSelector',
   component: GenderSelector,
   args: {
     disabled: false,

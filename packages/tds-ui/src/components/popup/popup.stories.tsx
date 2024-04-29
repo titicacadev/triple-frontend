@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Popup } from './popup'
 
 const meta: Meta<typeof Popup> = {
-  title: 'tds-ui / Popup',
+  title: 'tds-ui (Overlay) / Popup',
   component: Popup,
   parameters: {
     docs: {

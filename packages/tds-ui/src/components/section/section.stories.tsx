@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Section } from './section'
 
 const meta: Meta<typeof Section> = {
-  title: 'tds-ui / Section',
+  title: 'tds-ui (Layout) / Section',
   component: Section,
   argTypes: {
     divider: {

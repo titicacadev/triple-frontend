@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Checkbox } from './checkbox'
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'tds-ui / Checkbox ',
+  title: 'tds-ui (Form) / Checkbox ',
   component: Checkbox,
   args: {
     variant: 'square',

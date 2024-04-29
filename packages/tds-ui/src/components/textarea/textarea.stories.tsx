@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Textarea } from './textarea'
 
 const meta: Meta<typeof Textarea> = {
-  title: 'tds-ui / Textarea',
+  title: 'tds-ui (Form) / Textarea',
   component: Textarea,
   args: { required: false },
   argTypes: {
