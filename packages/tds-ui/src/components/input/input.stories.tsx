@@ -5,7 +5,7 @@ import { List } from '../list'
 import { Input } from './input'
 
 const meta: Meta<typeof Input> = {
-  title: 'tds-ui / Input',
+  title: 'tds-ui (Form) / Input',
   component: Input,
   argTypes: {
     label: { type: 'string' },

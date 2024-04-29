@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Confirm } from './confirm'
 
 const meta: Meta<typeof Confirm> = {
-  title: 'tds-ui / Confirm',
+  title: 'tds-ui (Form) / Confirm',
   component: Confirm,
   args: {
     cancelText: '취소',

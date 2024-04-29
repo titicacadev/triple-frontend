@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Tooltip } from './tooltip'
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'tds-ui / Tooltip',
+  title: 'tds-ui (Overlay) / Tooltip',
   component: Tooltip,
   parameters: {
     docs: {

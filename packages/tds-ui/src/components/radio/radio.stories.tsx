@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Radio as RadioComponent } from './radio'
 
 const meta: Meta<typeof RadioComponent> = {
-  title: 'tds-ui / Radio',
+  title: 'tds-ui (Form) / Radio',
   component: RadioComponent,
   argTypes: {
     name: { type: 'string' },

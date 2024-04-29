@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Alert } from './alert'
 
 const meta: Meta<typeof Alert> = {
-  title: 'tds-ui / Alert',
+  title: 'tds-ui (Overlay) / Alert',
   component: Alert,
   args: {
     confirmText: '확인',

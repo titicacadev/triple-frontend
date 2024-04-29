@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Tag } from './tag'
 
 const meta: Meta<typeof Tag> = {
-  title: 'tds-ui / Tag',
+  title: 'tds-ui (Data display) / Tag',
   component: Tag,
   argTypes: {
     type: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Table } from './table'
 
 const meta: Meta<typeof Table> = {
-  title: 'tds-ui / Table',
+  title: 'tds-ui (Data display) / Table',
   component: Table,
   parameters: {
     docs: {

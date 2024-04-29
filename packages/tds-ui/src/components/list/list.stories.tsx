@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { List } from './list'
 
 const meta: Meta<typeof List> = {
-  title: 'tds-ui / List',
+  title: 'tds-ui (Data display) / List',
   component: List,
   parameters: {
     docs: {

@@ -8,7 +8,7 @@ import { AccordionFolded } from './accordion-folded'
 import { AccordionTitle } from './accordion-title'
 
 const meta: Meta<typeof Accordion> = {
-  title: 'tds-ui / Accordion',
+  title: 'tds-ui (Disclosure) / Accordion',
   component: Accordion,
   argTypes: {
     active: { control: 'boolean' },

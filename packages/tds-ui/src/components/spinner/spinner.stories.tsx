@@ -3,7 +3,7 @@ import type { StoryObj } from '@storybook/react'
 import { Spinner } from './spinner'
 
 const meta = {
-  title: 'tds-ui / Spinner / Spinner',
+  title: 'tds-ui (Feedback) / Spinner',
   component: Spinner,
   argTypes: {
     full: { type: 'boolean' },

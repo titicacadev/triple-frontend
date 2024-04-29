@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { RangeSlider } from './range-slider'
 
 const meta: Meta<typeof RangeSlider> = {
-  title: 'tds-ui / RangeSlider',
+  title: 'tds-ui (Form) / RangeSlider',
   component: RangeSlider,
 }
 

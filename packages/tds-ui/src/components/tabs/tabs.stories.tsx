@@ -7,7 +7,7 @@ import { Tab } from './tab'
 import { TabPanel } from './tab-panel'
 
 const meta: Meta<typeof Tabs> = {
-  title: 'tds-ui / Tabs',
+  title: 'tds-ui (Disclosure) / Tabs',
   component: Tabs,
   parameters: {
     docs: {

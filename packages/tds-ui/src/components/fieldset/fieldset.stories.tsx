@@ -22,7 +22,7 @@ const CustomInputGroup = () => {
 }
 
 const meta: Meta<typeof Fieldset> = {
-  title: 'tds-ui / Fieldset',
+  title: 'tds-ui (Form) / Fieldset',
   component: Fieldset,
   args: {
     isDisabled: false,

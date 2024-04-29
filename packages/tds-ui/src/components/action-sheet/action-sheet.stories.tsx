@@ -5,7 +5,7 @@ import { ActionSheet } from './action-sheet'
 import { ActionSheetItem } from './action-sheet-item'
 
 const meta: Meta<typeof ActionSheet> = {
-  title: 'tds-ui / ActionSheet',
+  title: 'tds-ui (Overlay) / ActionSheet',
   component: ActionSheet,
   args: {
     open: false,

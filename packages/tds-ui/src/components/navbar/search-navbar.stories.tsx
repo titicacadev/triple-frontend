@@ -5,7 +5,7 @@ import { useArgs } from '@storybook/preview-api'
 import { SearchNavbar } from './search-navbar'
 
 const meta: Meta<typeof SearchNavbar> = {
-  title: 'tds-ui / Navbar / Search',
+  title: 'tds-ui (Navigation) / SearchNavbar',
   component: SearchNavbar,
   args: {
     backIconType: 'back',

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FlexBox, FlexBoxItem } from '../flex-box'
 
 const meta: Meta<typeof FlexBox> = {
-  title: 'tds-ui / FlexBox',
+  title: 'tds-ui (Layout) / FlexBox',
   component: FlexBox,
   argTypes: {
     flex: { type: 'boolean' },

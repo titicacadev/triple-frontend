@@ -7,7 +7,7 @@ import { ActionSheetSelectOption } from './action-sheet-select-option'
 import { ActionSheetSelectOptions } from './action-sheet-select-options'
 
 const meta: Meta<typeof ActionSheetSelect> = {
-  title: 'tds-ui / ActionSheetSelect',
+  title: 'tds-ui (Form) / ActionSheetSelect',
   component: ActionSheetSelect,
   parameters: {
     docs: {
