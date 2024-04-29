@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { NextPageContext } from 'next'
 import { captureException, withScope } from '@sentry/nextjs'
 import { Navbar, Text, FlexBox } from '@titicaca/kint5-core-elements'
@@ -13,10 +12,6 @@ export function ErrorPage() {
   const { closeWindow } = useTripleClientActions()
 
   const handleButtonClick = closeWindow ?? back
-
-  useEffect(() => {
-    captureException(new Error(`404 - ${window.location.href}`))
-  }, [])
 
   return (
     <>
