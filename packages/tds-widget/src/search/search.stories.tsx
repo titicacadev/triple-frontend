@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { FullScreenSearchView } from './search'
 
 export default {
-  title: 'search / Search',
+  title: 'tds-widget / search / Search',
   component: FullScreenSearchView,
 } as Meta<typeof FullScreenSearchView>
 

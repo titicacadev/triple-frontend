@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { DirectionButtons } from './direction-buttons'
 
 export default {
-  title: 'directions-finder / DirectionButtons',
+  title: 'tds-widget / directions-finder / DirectionButtons',
   component: DirectionButtons,
   decorators: [
     (Story) => (

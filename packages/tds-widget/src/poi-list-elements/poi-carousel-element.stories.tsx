@@ -7,7 +7,7 @@ import { PoiCarouselElement } from './carousel-element'
 import POIS from './mocks/pois.sample.json'
 
 export default {
-  title: 'poi-list-elements / PoiCarouselElement',
+  title: 'tds-widget / poi-list-elements / PoiCarouselElement',
   component: PoiCarouselElement,
   decorators: [
     (Story) => (

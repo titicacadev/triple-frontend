@@ -5,7 +5,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { Replies } from './replies'
 
 export default {
-  title: 'replies / Replies',
+  title: 'tds-widget / replies / Replies',
   component: Replies,
   parameters: {
     msw: {

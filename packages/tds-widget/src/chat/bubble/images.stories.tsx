@@ -51,7 +51,7 @@ function RenderImageBubble() {
 }
 
 export default {
-  title: 'chat / Bubble / Images',
+  title: 'tds-widget / chat / Bubble / Images',
   component: ImageBubble,
   parameters: {
     docs: {

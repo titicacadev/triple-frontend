@@ -8,7 +8,7 @@ import POIS from './mocks/pois.sample.json'
 import { PoiListElement } from './poi-list-element'
 
 export default {
-  title: 'poi-list-elements / PoiList',
+  title: 'tds-widget / poi-list-elements / PoiList',
   component: PoiListElement,
   decorators: [
     (Story) => (

@@ -9,7 +9,7 @@ import { ScrapsProvider } from '../scrap/provider'
 import { ExtendedResourceListElement } from './extended-resource-list-element'
 
 const meta: Meta<typeof ExtendedResourceListElement> = {
-  title: 'resource-list-element / extended-resource-list-element',
+  title: 'tds-widget / resource-list-element / extended-resource-list-element',
   component: ExtendedResourceListElement,
   decorators: [
     (Story) => (

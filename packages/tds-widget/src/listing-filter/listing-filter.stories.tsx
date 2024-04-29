@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ListingFilter } from './listing-filter'
 
 export default {
-  title: 'listing-filter / ListingFilter',
+  title: 'tds-widget / listing-filter / ListingFilter',
   component: ListingFilter,
   subcomponents: {
     FilterEntry: ListingFilter.FilterEntry,

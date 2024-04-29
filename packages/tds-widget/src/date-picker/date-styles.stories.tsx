@@ -16,7 +16,7 @@ const Table = styled.table`
 `
 
 export default {
-  title: 'date-picker / 날짜 스타일',
+  title: 'tds-widget / date-picker / 날짜 스타일',
   decorators: [
     (Story) => (
       <PickerFrame

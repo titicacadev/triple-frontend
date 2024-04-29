@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { RangePicker } from './range-picker'
 
 export default {
-  title: 'date-picker / RangePicker',
+  title: 'tds-widget / date-picker / RangePicker',
   component: RangePicker,
   parameters: {
     date: new Date('1/1/2022'),

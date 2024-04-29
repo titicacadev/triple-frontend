@@ -11,7 +11,7 @@ import { ReviewsShorten } from '.'
 const queryClient = new QueryClient()
 
 const meta: Meta<typeof ReviewsShorten> = {
-  title: 'Review / ReviewsShorten',
+  title: 'tds-widget / Review / ReviewsShorten',
   component: ReviewsShorten,
   decorators: [
     (Story) => (

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { FixedPricingV2 } from './fixed-pricing-v2'
 
 export default {
-  title: 'pricing / FixedPricingV2',
+  title: 'tds-widget / pricing / FixedPricingV2',
   component: FixedPricingV2,
   parameters: {
     story: {

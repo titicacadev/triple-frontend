@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { FloatingButtonCta as FloatingButtonCTA } from './floating-button-cta'
 
 export default {
-  title: 'app-installation-cta / FloatingButtonCTA',
+  title: 'tds-widget / app-installation-cta / FloatingButtonCTA',
   component: FloatingButtonCTA,
   parameters: {
     chromatic: {

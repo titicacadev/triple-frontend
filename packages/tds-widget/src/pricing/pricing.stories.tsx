@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Pricing } from './pricing'
 
 export default {
-  title: 'pricing / Pricing',
+  title: 'tds-widget / pricing / Pricing',
   component: Pricing,
 } as Meta<typeof Pricing>
 

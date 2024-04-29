@@ -5,7 +5,7 @@ import { Cta } from './cta'
 import { HubForm } from './hub-form'
 
 export default {
-  title: 'hub-form / HubForm',
+  title: 'tds-widget / hub-form / HubForm',
   component: HubForm,
 } as Meta<typeof HubForm>
 

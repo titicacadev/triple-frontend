@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { DayPicker } from './day-picker'
 
 export default {
-  title: 'date-picker / DayPicker',
+  title: 'tds-widget / date-picker / DayPicker',
   component: DayPicker,
   parameters: {
     date: new Date('1/1/2022'),

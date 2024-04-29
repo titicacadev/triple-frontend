@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { VerificationRequest } from './verification-request'
 
 export default {
-  title: 'user-verification / VerificationRequest',
+  title: 'tds-widget / user-verification / VerificationRequest',
   component: VerificationRequest,
 } as Meta<typeof VerificationRequest>
 

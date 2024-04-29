@@ -5,7 +5,7 @@ import { TextBubble } from '../bubble/text'
 import BubbleContainer, { BubbleContainerProp } from './bubble-container'
 
 export default {
-  title: 'chat / BubbleContainer',
+  title: 'tds-widget / chat / BubbleContainer',
   component: BubbleContainer,
 } as Meta<typeof BubbleContainer>
 

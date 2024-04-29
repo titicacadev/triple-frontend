@@ -6,7 +6,7 @@ import { ScrapsProvider } from '../scrap/provider'
 import { PoiCardElement } from './poi-card-element'
 
 export default {
-  title: 'poi-list-elements / PoiCardElement',
+  title: 'tds-widget / poi-list-elements / PoiCardElement',
   component: PoiCardElement,
   decorators: [
     (Story) => (

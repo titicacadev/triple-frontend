@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { BannerCta as BannerCTA } from './banner-cta'
 
 export default {
-  title: 'app-installation-cta / BannerCTA',
+  title: 'tds-widget / tds-widget / app-installation-cta / BannerCTA',
   component: BannerCTA,
 } as Meta<typeof BannerCTA>
 

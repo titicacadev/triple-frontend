@@ -8,7 +8,7 @@ import {
 import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
 
 export default {
-  title: 'chat / Bubble',
+  title: 'tds-widget / chat / Bubble',
 }
 
 export const Text = {

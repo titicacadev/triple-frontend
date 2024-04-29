@@ -4,7 +4,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { DefaultFooter } from './default-footer'
 
 export default {
-  title: 'footer / Footer',
+  title: 'tds-widget / footer / Footer',
   component: DefaultFooter,
   decorators: [
     (Story) => (

@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { ChatNavbarUI, ChatNavbarUIProps, NavbarItemType } from './index'
 
 export default {
-  title: 'chat / ChatNavbar',
+  title: 'tds-widget / chat / ChatNavbar',
   component: ChatNavbarUI,
 } as Meta<typeof ChatNavbarUI>
 
