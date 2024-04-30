@@ -81,6 +81,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-kint5-btn-fill2: #F1F3F5;
     --color-kint5-btn-fill3: #000;
     --color-kint5-btn-fill4: #7743EE;
+    --color-kint5-btn-fill5: #007AFF;
     --color-kint5-result-error: #FF322E;
     --color-kint5-result-correct: #06C755;
   }
