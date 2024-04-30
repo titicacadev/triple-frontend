@@ -4,6 +4,6 @@ export enum AppName {
 }
 
 export interface App {
-  appName: AppName[keyof AppName]
+  appName: `${AppName}`
   appVersion: string
 }
