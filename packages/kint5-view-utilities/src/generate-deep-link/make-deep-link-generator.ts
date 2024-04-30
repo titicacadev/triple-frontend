@@ -64,7 +64,7 @@ export function makeDeepLinkGenerator({
     const appLink = generateUrl({ scheme: appScheme, path })
 
     const query = qs.stringify({
-      af_dp: appLink,
+      deep_link_value: appLink,
       af_web_dp: webUrl || webURLBase || appLink,
       pid: pid || defaultPid,
 
