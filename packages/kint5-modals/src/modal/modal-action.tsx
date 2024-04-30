@@ -11,7 +11,7 @@ export const ModalAction = styled.a<{ color?: keyof typeof ACTION_COLORS }>`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  padding: 11px 4px;
+  padding: 14px 4px;
   line-height: 1.5;
   font-weight: 700;
   text-align: center;
