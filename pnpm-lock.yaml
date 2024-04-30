@@ -1293,9 +1293,9 @@ importers:
       '@titicaca/kint5-core-elements':
         specifier: workspace:*
         version: link:../kint5-core-elements
-      '@titicaca/view-utilities':
+      '@titicaca/kint5-view-utilities':
         specifier: workspace:*
-        version: link:../view-utilities
+        version: link:../kint5-view-utilities
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*

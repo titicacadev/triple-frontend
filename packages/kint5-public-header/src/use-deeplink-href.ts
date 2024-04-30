@@ -4,7 +4,7 @@ import {
   injectIsSearchAd,
   injectUTMContext,
   makeDeepLinkGenerator,
-} from '@titicaca/view-utilities'
+} from '@titicaca/kint5-view-utilities'
 
 export function useDeeplinkHref(path: string) {
   const {

@@ -42,7 +42,7 @@
   "dependencies": {
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/kint5-core-elements": "workspace:*",
-    "@titicaca/view-utilities": "workspace:*"
+    "@titicaca/kint5-view-utilities": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
