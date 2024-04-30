@@ -36,10 +36,10 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
     content: '';
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     width: ${({ $width }) => `${$width}px`};
     left: ${({ $left }) => `${$left}px`};
-    height: 2px;
+    height: 3px;
     background: #000;
     transition: all 0.2s;
   }
