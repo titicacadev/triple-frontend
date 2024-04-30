@@ -25,7 +25,6 @@ export const jaCommonWeb = {
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '日程の管理からホテル・ツアー。チケットの予約まで！\nTRIPLEならワンストップで準備完了',
   'teuripeul-gagi': 'TRIPLEに移動',
-  'yeogineun-triple-korea-aebi-pilyohaeyo': 'TRIPLE Koreaアプリが必要です。',
   'triple-korea-gagi': 'TRIPLE Koreaに移動',
   jeojangcwiso: '保存を取り消す',
   jeojanghagi: '保存する',
@@ -237,4 +236,6 @@ export const jaCommonWeb = {
   '서비스 이용이 원활하지 않습니다. 잠시 후 다시 이용해주세요.':
     '一時的なエラーが発生しました。しばらくしてから、もう一度お試しください。',
   길찾기: 'ルートを\n検索',
+  다운로드: 'ダウンロード',
+  '트리플코리아 앱 다운로드 후 이용해주세요': 'TRIPLE Korea\nアプリが必要です',
 }

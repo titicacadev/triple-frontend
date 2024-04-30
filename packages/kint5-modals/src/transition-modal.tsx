@@ -1,6 +1,5 @@
 import { ComponentType, FC, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import styled from 'styled-components'
 import {
   useEventTrackingContext,
   useHistoryFunctions,
@@ -11,15 +10,9 @@ import { I18nCommonWebKeys } from '@titicaca/i18n'
 import { Text } from '@titicaca/kint5-core-elements'
 
 import { Modal } from './modal'
+import { TransitionModalAppBi } from './transition-modal-app-bi'
 
 type ShowTransitionModal = (type: TransitionType) => void
-
-const IconImage = styled.img`
-  display: block;
-  width: 66px;
-  height: 66px;
-  margin: 0 auto 10px;
-`
 
 export enum TransitionType {
   General = 'general',
@@ -115,21 +108,26 @@ export function TransitionModal({
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
     const { eventLabel = '' } = MODAL_CONTENT[matchData[1]] || {}
 
-    const icon = 'https://assets.triple.guide/images/triple-korea-app-icon.png'
-
     return (
-      <Modal open onClose={back}>
-        <Modal.Body css={{ padding: '40px 30px 30px' }}>
-          <IconImage src={icon} />
+      <Modal open onClose={back} css={{ width: 1 }}>
+        <Modal.Body
+          css={{
+            padding: '32px 16px',
+          }}
+        >
+          <TransitionModalAppBi css={{ display: 'block', margin: '0 auto' }} />
           <Text center css={{ fontSize: 18, marginTop: 20, fontWeight: 700 }}>
-            {t([
-              'yeogineun-triple-korea-aebi-pilyohaeyo',
-              '여기는 TRIPLE Korea 앱이 필요해요',
-            ])}
+            {t('트리플코리아 앱 다운로드 후 이용해주세요')}
           </Text>
         </Modal.Body>
         <Modal.Actions>
-          <Modal.Action color="black" onClick={back}>
+          <Modal.Action
+            onClick={back}
+            color="blue"
+            css={{
+              fontWeight: 400,
+            }}
+          >
             {t(['cwiso', '취소'])}
           </Modal.Action>
           <Modal.Action
@@ -138,10 +136,6 @@ export function TransitionModal({
               onActionClick?.()
 
               trackEvent({
-                ga: [
-                  '설치유도팝업_선택',
-                  ['선택_트리플가기', eventLabel].filter((v) => v).join('_'),
-                ],
                 fa: {
                   action: '설치유도팝업_선택',
                   referrer_event: eventLabel,
@@ -151,7 +145,7 @@ export function TransitionModal({
               window.location.href = deepLink
             }}
           >
-            {t(['triple-korea-gagi', 'TRIPLE Korea 가기'])}
+            {t('다운로드')}
           </Modal.Action>
         </Modal.Actions>
       </Modal>

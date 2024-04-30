@@ -24,7 +24,6 @@ export const koCommonWeb = {
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
   'teuripeul-gagi': '트리플 가기',
-  'yeogineun-triple-korea-aebi-pilyohaeyo': '여기는 TRIPLE Korea 앱이 필요해요',
   'triple-korea-gagi': 'TRIPLE Korea 가기',
   jeojangcwiso: '저장취소',
   jeojanghagi: '저장하기',
@@ -234,4 +233,7 @@ export const koCommonWeb = {
   '서비스 이용이 원활하지 않습니다. 잠시 후 다시 이용해주세요.':
     '서비스 이용이 원활하지 않습니다.\n잠시 후 다시 이용해주세요.',
   길찾기: '길찾기',
+  다운로드: '다운로드',
+  '트리플코리아 앱 다운로드 후 이용해주세요':
+    '트리플코리아 앱 다운로드 후\n이용해주세요',
 } as const

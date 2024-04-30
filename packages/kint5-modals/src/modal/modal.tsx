@@ -31,10 +31,10 @@ const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   ${({ $flexible }) =>
     $flexible
       ? css`
-          min-width: 295px;
+          min-width: 270px;
         `
       : css`
-          width: 295px;
+          width: 270px;
         `}
 `
 
