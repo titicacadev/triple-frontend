@@ -1,9 +1,6 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
-import ImageCarousel, {
-  PageLabel,
-  CarouselImageMeta,
-} from '@titicaca/image-carousel'
+import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
 import {
   Container,
   Responsive,
@@ -18,6 +15,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 import { MediaPopup, MEDIA_POPUP_HASH } from '@titicaca/kint5-media-popup'
 
 import CtaOverlay from './cta-overlay'
+import { CustomPageLabel } from './custom-page-label'
 
 const SHOW_CTA_FROM_INDEX = 5
 
@@ -128,7 +126,10 @@ export default function Carousel({
     ? undefined
     : ({ currentIndex }: { currentIndex: number }) =>
         !totalImagesCount || currentIndex === SHOW_CTA_FROM_INDEX ? null : (
-          <PageLabel currentIndex={currentPage} totalCount={totalImagesCount} />
+          <CustomPageLabel
+            currentIndex={currentPage}
+            totalCount={totalImagesCount}
+          />
         )
 
   const CTA = ({ currentIndex }: { currentIndex: number }) =>
