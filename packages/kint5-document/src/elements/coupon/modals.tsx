@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
 import { Text } from '@titicaca/kint5-core-elements'
-import { Modal, Alert } from '@titicaca/modals'
+import { Modal, Alert } from '@titicaca/kint5-modals'
 import styled from 'styled-components'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
 import { useNavigate } from '@titicaca/router'
@@ -138,7 +138,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
       </Text>
 
       <Modal.Actions>
-        <Modal.Action color="gray" onClick={back}>
+        <Modal.Action color="black" onClick={back}>
           {t(['cwiso', '취소'])}
         </Modal.Action>
         <Modal.Action

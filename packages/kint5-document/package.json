@@ -48,7 +48,7 @@
     "@titicaca/kint5-media": "workspace:*",
     "@titicaca/kint5-poi-list-elements": "workspace:*",
     "@titicaca/kint5-map": "workspace:*",
-    "@titicaca/modals": "workspace:*",
+    "@titicaca/kint5-modals": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/scrap-button": "workspace:*",

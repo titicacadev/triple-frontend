@@ -14,6 +14,8 @@ import { useNavigate } from '@titicaca/router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
+import { TransitionType } from '@titicaca/kint5-modals'
+import { useAppCallback } from '@titicaca/ui-flow'
 
 import { useAddItinerariesToTripHandler } from '../prop-context/add-itineraries-to-trip-handler'
 
@@ -69,15 +71,18 @@ export default function ItineraryElement({ value }: Props) {
     [navigate],
   )
 
-  const handleSaveToItinerary = useCallback(() => {
-    trackEvent({
-      fa: {
-        action: '내일정으로담기_선택',
-      },
-    })
+  const handleSaveToItinerary = useAppCallback(
+    TransitionType.General,
+    useCallback(() => {
+      trackEvent({
+        fa: {
+          action: '내일정으로담기_선택',
+        },
+      })
 
-    onAddItinerariesToTrip?.({ poiId: poiIds, defaultRegionId: regionId })
-  }, [poiIds, regionId, onAddItinerariesToTrip, trackEvent])
+      onAddItinerariesToTrip?.({ poiId: poiIds, defaultRegionId: regionId })
+    }, [poiIds, regionId, onAddItinerariesToTrip, trackEvent]),
+  )
 
   return (
     <Container
@@ -203,7 +208,8 @@ export default function ItineraryElement({ value }: Props) {
             )
           })}
         </Container>
-        {!hideAddButton && isValidAppVersionForItinerary(app?.appVersion) ? (
+        {!hideAddButton &&
+        (!app || isValidAppVersionForItinerary(app?.appVersion)) ? (
           <button
             onClick={handleSaveToItinerary}
             disabled={!hasItineraries}

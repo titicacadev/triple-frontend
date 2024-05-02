@@ -877,12 +877,12 @@ importers:
       '@titicaca/kint5-media':
         specifier: workspace:*
         version: link:../kint5-media
+      '@titicaca/kint5-modals':
+        specifier: workspace:*
+        version: link:../kint5-modals
       '@titicaca/kint5-poi-list-elements':
         specifier: workspace:*
         version: link:../kint5-poi-list-elements
-      '@titicaca/modals':
-        specifier: workspace:*
-        version: link:../modals
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks

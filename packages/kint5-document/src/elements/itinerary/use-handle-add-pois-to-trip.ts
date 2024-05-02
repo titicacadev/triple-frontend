@@ -1,6 +1,6 @@
 import qs from 'qs'
 import { useCallback } from 'react'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/kint5-modals'
 import { generateUrl } from '@titicaca/view-utilities'
 import { useEnv } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
