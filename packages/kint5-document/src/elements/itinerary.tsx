@@ -58,9 +58,8 @@ export default function ItineraryElement({
     }) =>
       () => {
         trackEvent({
-          ga: ['POI_선택', `${type}_${id}_${name}`],
           fa: {
-            action: 'POI_선택',
+            action: '추천일정_POI_선택',
             item_id: id,
             item_name: name,
             type,
