@@ -64,9 +64,6 @@ export default function Images({
               borderRadius={isOnlyImage ? 0 : 16}
               autoPlay={videoAutoPlay}
               hideControls={hideVideoControls}
-              // 비디오 재생버튼 이외의 영역을 눌렀을 때 팝업창이 뜨도록 하기 위해
-              // 비디오 요소의 native control을 표시하지 않도록 강제합니다.
-              showNativeControls={false}
               media={image}
               onClick={handleClick}
               ImageSource={ImageSource}
