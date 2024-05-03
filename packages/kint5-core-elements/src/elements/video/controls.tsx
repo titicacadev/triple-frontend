@@ -164,9 +164,9 @@ export default function Controls({
         onPlayPause={handleFadeOut}
       />
       <MuteUnmuteButton
+        visible
         videoRef={videoRef}
         muted={muted}
-        visible={visible}
         onMuteUnmute={handleFadeOut}
       />
     </>

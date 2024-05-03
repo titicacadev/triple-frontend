@@ -79,40 +79,42 @@ export default function Media({
             showNativeControls={showNativeControls}
           />
         ) : (
-          <Image borderRadius={borderRadius}>
-            <Image.FixedRatioFrame
-              margin={margin}
-              frame={mediaFrame || frame}
-              onClick={onClick && ((e: SyntheticEvent) => onClick(e, media))}
-            >
-              {sourceUrl ? (
-                <Image.SourceUrl>
-                  {ImageSource ? (
-                    <ImageSource sourceUrl={sourceUrl} />
-                  ) : (
-                    sourceUrl
-                  )}
-                </Image.SourceUrl>
-              ) : null}
+          <>
+            <Image borderRadius={borderRadius}>
+              <Image.FixedRatioFrame
+                margin={margin}
+                frame={mediaFrame || frame}
+                onClick={onClick && ((e: SyntheticEvent) => onClick(e, media))}
+              >
+                {sourceUrl ? (
+                  <Image.SourceUrl>
+                    {ImageSource ? (
+                      <ImageSource sourceUrl={sourceUrl} />
+                    ) : (
+                      sourceUrl
+                    )}
+                  </Image.SourceUrl>
+                ) : null}
 
-              {media && optimized ? (
-                <Image.OptimizedImg
-                  cloudinaryId={cloudinaryId || id}
-                  cloudinaryBucket={cloudinaryBucket}
-                  alt={title || description || undefined}
-                  {...props}
-                />
-              ) : (
-                <Image.Img
-                  src={sizes.large.url}
-                  alt={title || description || undefined}
-                  css={{ display: 'block' }}
-                />
-              )}
-            </Image.FixedRatioFrame>
-          </Image>
+                {media && optimized ? (
+                  <Image.OptimizedImg
+                    cloudinaryId={cloudinaryId || id}
+                    cloudinaryBucket={cloudinaryBucket}
+                    alt={title || description || undefined}
+                    {...props}
+                  />
+                ) : (
+                  <Image.Img
+                    src={sizes.large.url}
+                    alt={title || description || undefined}
+                    css={{ display: 'block' }}
+                  />
+                )}
+              </Image.FixedRatioFrame>
+            </Image>
+            <ThumbnailBorder css={{ borderRadius }} />
+          </>
         )}
-        <ThumbnailBorder css={{ borderRadius }} />
       </Container>
       <MediaPopup open={uriHash === mediaPopupHash} media={[media]} />
     </>
