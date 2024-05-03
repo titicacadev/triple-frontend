@@ -35,7 +35,9 @@ export function TripleDocument({
   videoAutoPlay,
   hideVideoControls,
   optimized = false,
+  articleId,
 }: {
+  articleId?: string
   customElements?: ElementSet
   children: TripleElementData[]
   cta?: string
@@ -87,6 +89,17 @@ export function TripleDocument({
   const resourceClickHandler = onResourceClick || defaultHandleResourceClick
   const linkClickHandler = onLinkClick || defaultHandleLinkClick
 
+  const itineraryDays = children.reduce<{
+    [itineraryElementIndex: string]: number
+  }>((acc, { type }, index) => {
+    if (type !== 'itinerary') {
+      return acc
+    }
+
+    acc[index] = Object.keys(acc).length + 1
+    return acc
+  }, {})
+
   return (
     <ResourceClickHandlerProvider value={resourceClickHandler}>
       <ImageClickHandlerProvider value={onImageClick}>
@@ -110,11 +123,16 @@ export function TripleDocument({
                     const Element = (CustomElement ||
                       RegularElement) as ElementType
 
+                    const itineraryDay =
+                      type === 'itinerary' ? itineraryDays[i] : undefined
+
                     return (
                       Element && (
                         <Element
                           key={i}
                           value={value}
+                          articleId={articleId}
+                          itineraryDay={itineraryDay}
                           {...(CustomElement
                             ? {
                                 onResourceClick: resourceClickHandler,

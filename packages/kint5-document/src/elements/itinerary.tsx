@@ -16,6 +16,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { TransitionType } from '@titicaca/kint5-modals'
 import { useAppCallback } from '@titicaca/ui-flow'
+import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { useAddItinerariesToTripHandler } from '../prop-context/add-itineraries-to-trip-handler'
 
@@ -28,9 +29,15 @@ interface Props {
   value: {
     itinerary: Itinerary
   }
+  articleId?: string
+  itineraryDay: number
 }
 
-export default function ItineraryElement({ value }: Props) {
+export default function ItineraryElement({
+  value,
+  articleId,
+  itineraryDay,
+}: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
   const { courses, poiIds, regionId, hideAddButton, hasItineraries } =
@@ -76,158 +83,188 @@ export default function ItineraryElement({ value }: Props) {
     useCallback(() => {
       trackEvent({
         fa: {
-          action: '내일정으로담기_선택',
+          action: '추천일정담기_선택',
+          day: itineraryDay,
+          ...(articleId && { article_id: articleId }),
         },
       })
 
       onAddItinerariesToTrip?.({ poiId: poiIds, defaultRegionId: regionId })
-    }, [poiIds, regionId, onAddItinerariesToTrip, trackEvent]),
+    }, [
+      poiIds,
+      regionId,
+      articleId,
+      itineraryDay,
+      onAddItinerariesToTrip,
+      trackEvent,
+    ]),
   )
 
+  const onItineraryElementExposure = ({
+    isIntersecting,
+  }: IntersectionObserverEntry) => {
+    if (!isIntersecting) {
+      return
+    }
+
+    trackEvent({
+      fa: {
+        action: '추천일정_노출',
+        day: itineraryDay,
+        ...(articleId && { article_id: articleId }),
+      },
+    })
+  }
+
   return (
-    <Container
-      css={{
-        margin: '10px 0',
-      }}
-    >
-      <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
+    <StaticIntersectionObserver onChange={onItineraryElementExposure}>
       <Container
         css={{
-          margin: '24px 16px 16px 20px',
+          margin: '10px 0',
         }}
       >
+        <ItineraryMap {...value.itinerary} onClickMarker={handleMarkerClick} />
         <Container
           css={{
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              zIndex: -1,
-              backgroundColor: 'var(--color-kint5-gray30)',
-              width: 1,
-              height: 'calc(100% - 60px)',
-              top: 5,
-              left: 15.5,
-            },
+            margin: '24px 16px 16px 20px',
           }}
         >
-          {courses.map((course, index) => {
-            const {
-              id,
-              name,
-              type,
-              description,
-              transportation,
-              duration,
-              isLast,
-            } = course
-            const hasDuration = !isLast && transportation !== undefined
-            const TransportIcon = getTransportationIcon(transportation)
-            const shouldShowTransportationInfo = hasDuration && TransportIcon
+          <Container
+            css={{
+              position: 'relative',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                zIndex: -1,
+                backgroundColor: 'var(--color-kint5-gray30)',
+                width: 1,
+                height: 'calc(100% - 60px)',
+                top: 5,
+                left: 15.5,
+              },
+            }}
+          >
+            {courses.map((course, index) => {
+              const {
+                id,
+                name,
+                type,
+                description,
+                transportation,
+                duration,
+                isLast,
+              } = course
+              const hasDuration = !isLast && transportation !== undefined
+              const TransportIcon = getTransportationIcon(transportation)
+              const shouldShowTransportationInfo = hasDuration && TransportIcon
 
-            return (
-              <FlexBox
-                flex
-                key={index}
-                gap="4px"
-                css={{
-                  ...(!shouldShowTransportationInfo && { marginBottom: 18 }),
-                }}
-              >
-                <FlexBox flex css={{ position: 'relative' }}>
-                  <FlexBox
-                    flex
-                    flexGrow={1}
-                    justifyContent="center"
-                    alignItems="center"
-                    flexDirection="column"
-                  >
+              return (
+                <FlexBox
+                  flex
+                  key={index}
+                  gap="4px"
+                  css={{
+                    ...(!shouldShowTransportationInfo && { marginBottom: 18 }),
+                  }}
+                >
+                  <FlexBox flex css={{ position: 'relative' }}>
                     <FlexBox
                       flex
                       flexGrow={1}
+                      justifyContent="center"
                       alignItems="center"
                       flexDirection="column"
                     >
-                      <ItineraryOrder itineraryItemType={type} index={index} />
-                    </FlexBox>
-                  </FlexBox>
-                </FlexBox>
-                <FlexBoxItem
-                  flexGrow={1}
-                  as="a"
-                  onClick={generatePoiClickHandler({
-                    type,
-                    id,
-                    name,
-                  })}
-                >
-                  <FlexBox
-                    flex
-                    alignItems="center"
-                    css={{
-                      border: '1px solid var(--color-kint5-gray30)',
-                      padding: '12px 12px 12px 16px',
-                      borderRadius: 16,
-                    }}
-                  >
-                    <FlexBox flex flexDirection="column" gap="4px">
-                      <Text maxLines={1}>{name}</Text>
-                      <FlexBox flex>
-                        <Text
-                          maxLines={1}
-                          css={{
-                            fontSize: 12,
-                            color: 'var(--color-kint5-gray60)',
-                          }}
-                        >
-                          {description}
-                        </Text>
+                      <FlexBox
+                        flex
+                        flexGrow={1}
+                        alignItems="center"
+                        flexDirection="column"
+                      >
+                        <ItineraryOrder
+                          itineraryItemType={type}
+                          index={index}
+                        />
                       </FlexBox>
                     </FlexBox>
                   </FlexBox>
-                  {shouldShowTransportationInfo ? (
+                  <FlexBoxItem
+                    flexGrow={1}
+                    as="a"
+                    onClick={generatePoiClickHandler({
+                      type,
+                      id,
+                      name,
+                    })}
+                  >
                     <FlexBox
                       flex
                       alignItems="center"
-                      gap="4px"
-                      css={{ margin: '18px 0', paddingLeft: 14 }}
+                      css={{
+                        border: '1px solid var(--color-kint5-gray30)',
+                        padding: '12px 12px 12px 16px',
+                        borderRadius: 16,
+                      }}
                     >
-                      <TransportIcon width={20} height={20} />
-                      <Text
-                        css={{
-                          fontSize: 13,
-                          color: 'var(--color-kint5-gray60)',
-                        }}
-                      >
-                        {duration}
-                      </Text>
+                      <FlexBox flex flexDirection="column" gap="4px">
+                        <Text maxLines={1}>{name}</Text>
+                        <FlexBox flex>
+                          <Text
+                            maxLines={1}
+                            css={{
+                              fontSize: 12,
+                              color: 'var(--color-kint5-gray60)',
+                            }}
+                          >
+                            {description}
+                          </Text>
+                        </FlexBox>
+                      </FlexBox>
                     </FlexBox>
-                  ) : null}
-                </FlexBoxItem>
-              </FlexBox>
-            )
-          })}
+                    {shouldShowTransportationInfo ? (
+                      <FlexBox
+                        flex
+                        alignItems="center"
+                        gap="4px"
+                        css={{ margin: '18px 0', paddingLeft: 14 }}
+                      >
+                        <TransportIcon width={20} height={20} />
+                        <Text
+                          css={{
+                            fontSize: 13,
+                            color: 'var(--color-kint5-gray60)',
+                          }}
+                        >
+                          {duration}
+                        </Text>
+                      </FlexBox>
+                    ) : null}
+                  </FlexBoxItem>
+                </FlexBox>
+              )
+            })}
+          </Container>
+          {!hideAddButton &&
+          (!app || isValidAppVersionForItinerary(app?.appVersion)) ? (
+            <button
+              onClick={handleSaveToItinerary}
+              disabled={!hasItineraries}
+              css={{
+                padding: 14,
+                backgroundColor: 'var(--color-kint5-brand1)',
+                color: 'var(--color-kint5-gray0)',
+                fontWeight: 700,
+                width: '100%',
+                marginTop: 16,
+                borderRadius: 28,
+              }}
+            >
+              {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
+            </button>
+          ) : null}
         </Container>
-        {!hideAddButton &&
-        (!app || isValidAppVersionForItinerary(app?.appVersion)) ? (
-          <button
-            onClick={handleSaveToItinerary}
-            disabled={!hasItineraries}
-            css={{
-              padding: 14,
-              backgroundColor: 'var(--color-kint5-brand1)',
-              color: 'var(--color-kint5-gray0)',
-              fontWeight: 700,
-              width: '100%',
-              marginTop: 16,
-              borderRadius: 28,
-            }}
-          >
-            {t(['nae-iljeongeuro-damgi', '내 일정으로 담기'])}
-          </button>
-        ) : null}
       </Container>
-    </Container>
+    </StaticIntersectionObserver>
   )
 }
 
