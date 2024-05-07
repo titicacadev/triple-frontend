@@ -860,8 +860,8 @@ importers:
         specifier: workspace:*
         version: link:../color-palette
       '@titicaca/content-type-definitions':
-        specifier: 8.12.0
-        version: 8.12.0
+        specifier: 9.3.2
+        version: 9.3.2
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -9191,12 +9191,12 @@ packages:
     resolution: {integrity: sha512-t2MQ52PvY7fpolT0KCPPwZFMbEmoAUysT/u7KJ3SoGOdgSUGrGzCfs4sZ5VX4oOAtDDHiEXv3CZ4L6st/SzLgQ==}
     dev: false
 
-  /@titicaca/content-type-definitions@8.12.0:
-    resolution: {integrity: sha512-0m4htvgTTJno0RMEUuNmJSzGqtuSG9dEPdLHqV7Drj09xb/vm2zC+MFkoj3qN6wSN2t2XEBBc+kFjobkowbxoQ==}
-    dev: false
-
   /@titicaca/content-type-definitions@8.16.0:
     resolution: {integrity: sha512-yGoD18SBY6dx10tPAG+c2/Fzr0qI9bTwtvced0CrifX4oyH9d8ag+ezdCh7Om9mH+kHJx/UO4g63vEquvtKJ7w==}
+    dev: false
+
+  /@titicaca/content-type-definitions@9.3.2:
+    resolution: {integrity: sha512-gZrws7omC+YXpwo8R9qOiHAJowpUO5gNbI1nP8Ru3K/hCr24eH/RBbywpeC0jSZIwBAfvB0ObUcBRz+C6AEb5w==}
     dev: false
 
   /@titicaca/content-utilities@8.12.0:
