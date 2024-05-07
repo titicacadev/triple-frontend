@@ -6,7 +6,11 @@ import {
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
 
-import { getSafetyPoiName, UnSafetyTranslations } from './use-safety-poi'
+import {
+  deriveNameFromTranslations,
+  UnSafetyTranslations,
+} from './use-safety-poi'
+import { ItineraryElementType } from './types'
 
 interface Props {
   itinerary: Itinerary
@@ -19,8 +23,8 @@ interface Course {
 
   /** POI 제목, 공백값 가드닝 적용 */
   name: string
-  /** POI 타입 */
-  type: ItineraryItemType['poi']['type']
+  /** 추천코스 요소 타입 */
+  type: ItineraryElementType
   /** 거점지역, 카테고리 */
   description: string
   /** 이동수단 */
@@ -49,40 +53,69 @@ export default function useItinerary({ itinerary }: Props) {
   const { day, items, hideAddButton } = itinerary
 
   const hasItineraries = items.length > 0
-  const regionId = items.filter(({ poi }) => !!poi.source?.regionId)?.[0]?.poi
-    .source?.regionId
+  const regionId = extractRegionId(items)
 
-  const poiIds = useMemo(() => items.map(({ poi }) => poi.id), [items])
+  const itemIds = useMemo(
+    () => items.map((item) => (item.poi ? item.poi.id : item.festa.id)),
+    [items],
+  )
 
   const courses = useMemo<Course[]>(() => {
-    return items.map(({ poi, memo, schedule, transportation: raw }, i) => {
-      const { id, type, categories: gqlCategories, source } = poi
-      /** NOTE: 이동수단(walk, bus, car) 은 여러개 일 수 있으나 화면에는 첫번째 것을 표시 */
-      const transportation = raw?.[0]?.value || DEFAULT_TRANSPORTATION
+    return items.map(
+      ({ poi, festa, memo, schedule, transportation: raw }, i) => {
+        const transportation = raw?.[0]?.value || DEFAULT_TRANSPORTATION
 
-      const name = getSafetyPoiName(source?.names as UnSafetyTranslations)
+        const base = {
+          ...transportation,
+          memo,
+          schedule,
+          isFirst: i === 0,
+          isLast: items.length - 1 === i,
+        }
 
-      const categoryNames = (gqlCategories || source?.categories || [])
-        .map((category) => category.name)
-        .join(',')
+        if (poi) {
+          const { id, type, categories: gqlCategories, source } = poi
+          const name = deriveNameFromTranslations(
+            source?.names as UnSafetyTranslations,
+          )
 
-      const areaName = poi.source?.areas?.[0]?.name
+          const categoryNames = (gqlCategories || source?.categories || [])
+            .map((category) => category.name)
+            .join(',')
 
-      const description = [categoryNames, areaName].filter(Boolean).join(' · ')
+          const areaName = poi.source?.areas?.[0]?.name
 
-      return {
-        id,
-        regionId: regionId || source?.regionId || '',
-        name,
-        type,
-        description,
-        ...transportation,
-        memo,
-        schedule,
-        isFirst: i === 0,
-        isLast: items.length - 1 === i,
-      }
-    })
+          const description = [categoryNames, areaName]
+            .filter(Boolean)
+            .join(' · ')
+
+          return {
+            ...base,
+            id,
+            regionId: regionId || source?.regionId || '',
+            name,
+            type,
+            description,
+          }
+        } else {
+          const { id, title, category, regions, areas } = festa
+
+          const areaNames = areas[0]?.names
+          const areaName = deriveNameFromTranslations(areaNames ?? {})
+
+          const description = [category, areaName].filter(Boolean).join(' · ')
+
+          return {
+            ...base,
+            id,
+            regionId: regionId || regions[0]?.id || '',
+            name: title,
+            type: 'festa',
+            description,
+          }
+        }
+      },
+    )
   }, [items, regionId])
 
   return {
@@ -90,8 +123,22 @@ export default function useItinerary({ itinerary }: Props) {
     items,
     courses,
     regionId,
-    poiIds,
+    itemIds,
     hasItineraries,
     hideAddButton,
   }
+}
+
+function extractRegionId(items: ItineraryItemType[]) {
+  for (const item of items) {
+    if (item.poi && item.poi.source?.regionId) {
+      return item.poi.source.regionId
+    }
+
+    if (item.festa && item.festa.regions[0]?.id) {
+      return item.festa.regions[0].id
+    }
+  }
+
+  return null
 }

@@ -120,6 +120,6 @@ export const DocumentItinerary: StoryObj<typeof Itinerary> = {
     </EnvProvider>
   ),
   args: {
-    value: MOCK_ITINERARY.article.source.body[1].value,
+    value: MOCK_ITINERARY,
   },
 }

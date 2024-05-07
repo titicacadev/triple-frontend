@@ -16,7 +16,7 @@ type SafetyPoi<T> = T & {
  */
 export type UnSafetyTranslations = Translations & { primary?: string }
 
-export function getSafetyPoiName({
+export function deriveNameFromTranslations({
   primary,
   en,
   local,
@@ -82,14 +82,16 @@ export function useSafetyPoi<
       return {
         ...poi,
         defaultImage: getImage(image, 'large'),
-        safeName: getSafetyPoiName(names),
+        safeName: deriveNameFromTranslations(names),
       } as SafetyPoi<T>
     }
 
     return {
       ...poi,
       defaultImage: image && getImage(image, 'large'),
-      safeName: names ? getSafetyPoiName(names as UnSafetyTranslations) : '',
+      safeName: names
+        ? deriveNameFromTranslations(names as UnSafetyTranslations)
+        : '',
     } as SafetyPoi<T>
   }, [poi])
 }

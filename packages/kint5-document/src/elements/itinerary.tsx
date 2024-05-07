@@ -24,6 +24,7 @@ import ItineraryMap from './itinerary/itinerary-map'
 import useItinerary from './itinerary/use-computed-itineraries'
 import { Bus, Walk, Train, Plane } from './itinerary/icons'
 import { ItineraryOrder } from './itinerary/itinerary-order'
+import { ItineraryElementType } from './itinerary/types'
 
 interface Props {
   value: {
@@ -40,7 +41,7 @@ export default function ItineraryElement({
 }: Props) {
   const { t } = useTranslation('common-web')
   const { trackEvent } = useEventTrackingContext()
-  const { courses, poiIds, regionId, hideAddButton, hasItineraries } =
+  const { courses, itemIds, regionId, hideAddButton, hasItineraries } =
     useItinerary(value)
   const navigate = useNavigate()
   const app = useTripleClientMetadata()
@@ -52,7 +53,7 @@ export default function ItineraryElement({
       id,
       name,
     }: {
-      type: ItineraryItemType['poi']['type']
+      type: ItineraryElementType
       id: string
       name: string
     }) =>
@@ -71,8 +72,10 @@ export default function ItineraryElement({
   )
 
   const handleMarkerClick = useCallback(
-    ({ id }: ItineraryItemType['poi']) => {
-      navigate(`/pois/${id}`)
+    (item: ItineraryItemType) => {
+      const url = item.poi ? `/pois/${item.poi.id}` : `/festas/${item.festa.id}`
+
+      navigate(url)
     },
     [navigate],
   )
@@ -88,9 +91,9 @@ export default function ItineraryElement({
         },
       })
 
-      onAddItinerariesToTrip?.({ poiId: poiIds, defaultRegionId: regionId })
+      onAddItinerariesToTrip?.({ poiId: itemIds, defaultRegionId: regionId })
     }, [
-      poiIds,
+      itemIds,
       regionId,
       articleId,
       itineraryDay,

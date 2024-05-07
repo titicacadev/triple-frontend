@@ -11,7 +11,6 @@ import { useEnv } from '@titicaca/react-contexts'
 import {
   Itinerary,
   ItineraryItemType,
-  PoiType,
 } from '@titicaca/content-type-definitions'
 
 import { GOOGLE_MAP_STYLES } from './google-map-style'
@@ -24,19 +23,21 @@ interface Props {
   /** 추천 코스 POI 목록 */
   items: Itinerary['items']
   /** 지도상 마커 클릭 핸들러 */
-  onClickMarker: (poi: ItineraryItemType['poi']) => void
+  onClickMarker: (poi: ItineraryItemType) => void
 }
 
 export default function ItineraryMap({ onClickMarker, items }: Props) {
   const { googleMapsApiKey } = useEnv()
-  const { totalPois, polyline, pois, coordinates } = useMapData(items)
+  const { polyline, mapItems, coordinates } = useMapData(items)
+
+  const totalMapItemCount = mapItems.length
 
   const generateClickMarkerHandler = useCallback(
-    (poi: ItineraryItemType['poi']) => (e: MouseEvent) => {
+    (item: ItineraryItemType) => (e: MouseEvent) => {
       e.preventDefault()
 
       if (onClickMarker) {
-        onClickMarker(poi)
+        onClickMarker(item)
       }
     },
     [onClickMarker],
@@ -60,23 +61,27 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
             styles: GOOGLE_MAP_STYLES,
           }}
         >
-          {pois.map(({ position, poi: { type }, poi }, i) => {
-            const CircleMarker = ItineraryTypeCircleMarker(type)
+          {mapItems.map(({ position, item }, i) => {
+            const CircleMarker = ItineraryTypeCircleMarker(item)
 
             return (
               <Fragment key={i}>
                 <CircleMarker
-                  zIndex={totalPois - i}
+                  zIndex={totalMapItemCount - i}
                   width={22}
                   height={22}
                   position={position}
-                  onClick={generateClickMarkerHandler(poi)}
+                  onClick={generateClickMarkerHandler(item)}
                 >
                   <strong>{i + 1}</strong>
                 </CircleMarker>
                 <PolylineBase
                   path={polyline.slice(i, i + 2)}
-                  strokeColor={COLOR_PER_TYPE[type ?? 'attraction']}
+                  strokeColor={
+                    COLOR_PER_TYPE[
+                      item.poi ? item.poi.type ?? 'attraction' : 'festa'
+                    ]
+                  }
                   strokeWeight={2}
                   strokeOpacity={1}
                 />
@@ -89,7 +94,9 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
   )
 }
 
-function ItineraryTypeCircleMarker(type: PoiType | 'festa' | null) {
+function ItineraryTypeCircleMarker(item: ItineraryItemType) {
+  const type = item.poi ? item.poi.type : 'festa'
+
   switch (type) {
     case 'festa':
       return FestaCircleMarker
