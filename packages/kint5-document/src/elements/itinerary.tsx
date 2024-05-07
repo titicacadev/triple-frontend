@@ -47,7 +47,7 @@ export default function ItineraryElement({
   const app = useTripleClientMetadata()
   const onAddItinerariesToTrip = useAddItinerariesToTripHandler()
 
-  const generatePoiClickHandler = useCallback(
+  const generateItemClickHandler = useCallback(
     ({
       type,
       id,
@@ -196,7 +196,7 @@ export default function ItineraryElement({
                   <FlexBoxItem
                     flexGrow={1}
                     as="a"
-                    onClick={generatePoiClickHandler({
+                    onClick={generateItemClickHandler({
                       type,
                       id,
                       name,
