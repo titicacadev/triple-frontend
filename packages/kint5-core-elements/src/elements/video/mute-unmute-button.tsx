@@ -21,7 +21,6 @@ const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
   right: 3px;
   background-image: url(${backgroundImage});
   background-size: cover;
-  z-index: 2;
 
   &:focus {
     outline: none;

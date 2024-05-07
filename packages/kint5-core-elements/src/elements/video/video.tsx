@@ -1,7 +1,6 @@
 import { forwardRef } from 'react'
 
 import { FrameRatioAndSizes } from '../../commons'
-import { ThumbnailBorder } from '../thumbnail-border'
 
 import { VideoFrame } from './video-frame'
 import { VideoElement } from './video-element'
@@ -63,7 +62,6 @@ export const Video = forwardRef<HTMLVideoElement, Props>(
           initialControlsHidden={initialControlsHidden}
           ref={ref}
         />
-        <ThumbnailBorder css={{ borderRadius }} />
       </VideoFrame>
     )
   },

@@ -32,7 +32,6 @@ const PlayPauseButtonBase = styled.button<BaseProps>`
   opacity: ${({ visible }) => (visible ? '1' : '0')};
   pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
   transition: opacity 0.3s;
-  z-index: 2;
 `
 
 interface Props {
