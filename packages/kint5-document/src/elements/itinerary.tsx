@@ -58,15 +58,18 @@ export default function ItineraryElement({
       name: string
     }) =>
       () => {
+        const action =
+          type === 'festa' ? '추천일정_페스타_선택' : '추천일정_POI_선택'
+
         trackEvent({
           fa: {
-            action: '추천일정_POI_선택',
+            action,
             item_id: id,
             item_name: name,
             type,
           },
         })
-        navigate(`/pois/${id}`)
+        navigate(`/${type === 'festa' ? 'festas' : 'pois'}/${id}`)
       },
     [navigate, trackEvent],
   )
