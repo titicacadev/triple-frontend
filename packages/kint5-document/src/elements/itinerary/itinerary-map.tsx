@@ -48,7 +48,7 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
       className="chromatic-ignore"
       css={{
         width: '100%',
-        height: 180,
+        height: 260,
       }}
     >
       {googleMapsApiKey ? (
