@@ -94,7 +94,7 @@ export default function ItineraryElement({
         },
       })
 
-      onAddItinerariesToTrip?.({ poiId: itemIds, defaultRegionId: regionId })
+      onAddItinerariesToTrip?.({ itemIds, defaultRegionId: regionId })
     }, [
       itemIds,
       regionId,

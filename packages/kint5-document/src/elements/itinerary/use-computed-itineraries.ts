@@ -55,8 +55,19 @@ export default function useItinerary({ itinerary }: Props) {
   const hasItineraries = items.length > 0
   const regionId = extractRegionId(items)
 
-  const itemIds = useMemo(
-    () => items.map((item) => (item.poi ? item.poi.id : item.festa.id)),
+  const itemIds = useMemo<{ id: string; type: 'poi' | 'festa' }[]>(
+    () =>
+      items.map((item) =>
+        item.poi
+          ? {
+              id: item.poi.id,
+              type: 'poi',
+            }
+          : {
+              id: item.festa.id,
+              type: 'festa',
+            },
+      ),
     [items],
   )
 
