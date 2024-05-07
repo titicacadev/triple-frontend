@@ -116,7 +116,11 @@ export default function Media({
           </>
         )}
       </Container>
-      <MediaPopup open={uriHash === mediaPopupHash} media={[media]} />
+      <MediaPopup
+        open={uriHash === mediaPopupHash}
+        media={[media]}
+        videoAutoPlay={autoPlay}
+      />
     </>
   )
 }

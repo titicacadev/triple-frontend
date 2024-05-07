@@ -20,6 +20,7 @@ interface MediaPopupProps {
   open?: boolean
   currentMediumIndex?: number
   frame?: FrameRatioAndSizes
+  videoAutoPlay?: boolean
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
   onMediumClick?: () => void
@@ -32,6 +33,7 @@ export function MediaPopup({
   media,
   currentMediumIndex = 0,
   frame = 'original',
+  videoAutoPlay = false,
   onClose,
   onMediumChange,
   onMediumClick,
@@ -104,6 +106,7 @@ export function MediaPopup({
           media={media}
           currentMediumIndex={currentMediumIndex}
           frame={frame}
+          videoAutoPlay={videoAutoPlay}
           onSlide={(mediaIndex) => {
             onMediumChange?.(mediaIndex)
           }}

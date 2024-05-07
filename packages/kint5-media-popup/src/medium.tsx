@@ -23,19 +23,21 @@ const Video = styled.video<{ $frame: FrameRatioAndSizes }>`
 export function Medium({
   medium,
   frame,
+  videoAutoPlay,
 }: {
   medium: MediumMeta
   frame: FrameRatioAndSizes
+  videoAutoPlay?: boolean
 }) {
   if (medium.type === 'video') {
     return (
       <Video
         src={medium.video?.large.url}
-        autoPlay
+        autoPlay={videoAutoPlay}
         loop
         muted
         playsInline
-        controls={false}
+        controls={!videoAutoPlay}
         $frame={frame}
       />
     )

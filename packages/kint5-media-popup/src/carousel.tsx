@@ -18,6 +18,7 @@ interface CarouselProps {
   currentMediumIndex: number
   media: MediumMeta[]
   frame: FrameRatioAndSizes
+  videoAutoPlay?: boolean
   onSlide: (mediaIndex: number) => void
   onMediumClick?: OnMediumClickFn
 }
@@ -39,6 +40,7 @@ export function MediaPopupCarousel({
   currentMediumIndex,
   media,
   frame,
+  videoAutoPlay,
   onSlide,
   onMediumClick,
 }: CarouselProps) {
@@ -110,7 +112,11 @@ export function MediaPopupCarousel({
                 }
                 css={{ backgroundColor: 'var(--color-kint5-gray0)' }}
               >
-                <Medium medium={medium} frame={frame} />
+                <Medium
+                  medium={medium}
+                  frame={frame}
+                  videoAutoPlay={videoAutoPlay}
+                />
               </Image.FixedRatioFrame>
             </Image>
           </Container>
