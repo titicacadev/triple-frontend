@@ -10,7 +10,7 @@ import type {
   Itinerary,
   ItineraryItemType,
 } from '@titicaca/content-type-definitions'
-import { useNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/kint5-router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { useTranslation } from '@titicaca/next-i18next'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'

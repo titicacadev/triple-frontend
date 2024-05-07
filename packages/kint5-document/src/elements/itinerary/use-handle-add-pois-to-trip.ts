@@ -4,7 +4,7 @@ import { TransitionType } from '@titicaca/kint5-modals'
 import { generateUrl } from '@titicaca/view-utilities'
 import { useEnv } from '@titicaca/react-contexts'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { useNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/kint5-router'
 
 export function useHandleAddPoiToTrip({
   regionId,

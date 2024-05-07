@@ -883,12 +883,12 @@ importers:
       '@titicaca/kint5-poi-list-elements':
         specifier: workspace:*
         version: link:../kint5-poi-list-elements
+      '@titicaca/kint5-router':
+        specifier: workspace:*
+        version: link:../kint5-router
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
       '@titicaca/scrap-button':
         specifier: workspace:*
         version: link:../scrap-button

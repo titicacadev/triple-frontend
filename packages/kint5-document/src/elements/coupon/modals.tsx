@@ -3,7 +3,7 @@ import { Text } from '@titicaca/kint5-core-elements'
 import { Modal, Alert } from '@titicaca/kint5-modals'
 import styled from 'styled-components'
 import { useUriHash, useHistoryFunctions } from '@titicaca/react-contexts'
-import { useNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/kint5-router'
 
 interface HashKeyValue {
   [hash: string]: string

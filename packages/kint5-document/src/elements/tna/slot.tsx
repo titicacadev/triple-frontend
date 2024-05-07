@@ -3,7 +3,7 @@ import { useTranslation } from '@titicaca/next-i18next'
 import { Container, H1, List, Button } from '@titicaca/kint5-core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { gray50 } from '@titicaca/color-palette'
-import { useNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/kint5-router'
 
 import { TnaProductData } from './types'
 import { TnaProductWithPrice } from './product'

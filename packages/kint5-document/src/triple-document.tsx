@@ -1,7 +1,7 @@
 import { useMemo, useCallback, ElementType } from 'react'
 import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 import { initialize } from '@titicaca/standard-action-handler'
-import { useNavigate, useExternalRouter } from '@titicaca/router'
+import { useNavigate, useExternalRouter } from '@titicaca/kint5-router'
 import { ContextOptions } from '@titicaca/standard-action-handler/src/types'
 
 import {
