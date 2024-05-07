@@ -70,7 +70,7 @@ export default function Media({
 
             // 비디오 컨트롤(재생버튼, etc.)이 보이지 않는 경우
             // 비디오 영역을 한 번 클릭(터치)했을 때 팝업이 뜨지 않도록 합니다.
-            if (!isVideoControlVisible) {
+            if (videoRef.current.currentTime > 0 && !isVideoControlVisible) {
               return
             }
           }
