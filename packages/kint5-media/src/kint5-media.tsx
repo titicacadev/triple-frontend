@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import { SyntheticEvent, useRef } from 'react'
 import {
   Video,
   ImageSourceType,
@@ -52,6 +52,7 @@ export default function Media({
     title,
     description,
   } = media
+  const videoRef = useRef<HTMLVideoElement>(null)
   const { push } = useHistoryFunctions()
   const uriHash = useUriHash()
 
@@ -61,12 +62,25 @@ export default function Media({
     <>
       <Container
         css={{ position: 'relative' }}
-        onClick={() => {
+        onClick={(e) => {
+          if (videoRef.current) {
+            const target = e.target as HTMLDivElement
+            const isVideoControlVisible =
+              window.getComputedStyle(target).opacity !== '0'
+
+            // 비디오 컨트롤(재생버튼, etc.)이 보이지 않는 경우
+            // 비디오 영역을 한 번 클릭(터치)했을 때 팝업이 뜨지 않도록 합니다.
+            if (!isVideoControlVisible) {
+              return
+            }
+          }
+
           push(mediaPopupHash)
         }}
       >
         {type === 'video' && video ? (
           <Video
+            ref={videoRef}
             borderRadius={borderRadius}
             frame={mediaFrame || frame || 'large'}
             fallbackImageUrl={sizes.large.url}
