@@ -34,6 +34,7 @@ export function TripleDocument({
   cta,
   videoAutoPlay,
   hideVideoControls,
+  showNativeControls,
   optimized = false,
   articleId,
 }: {
@@ -110,6 +111,7 @@ export function TripleDocument({
                 <MediaConfigProvider
                   videoAutoPlay={videoAutoPlay}
                   hideVideoControls={hideVideoControls}
+                  showNativeControls={showNativeControls}
                   optimized={optimized}
                 >
                   {children.map(({ type, value }, i) => {

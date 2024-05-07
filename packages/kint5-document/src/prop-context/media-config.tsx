@@ -3,6 +3,7 @@ import { createContext, PropsWithChildren, useContext } from 'react'
 export interface MediaConfig {
   videoAutoPlay?: boolean
   hideVideoControls?: boolean
+  showNativeControls?: boolean
   optimized?: boolean
 }
 

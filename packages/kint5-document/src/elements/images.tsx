@@ -37,7 +37,8 @@ export default function Images({
   const onLinkClick = overridedOnLinkClick || defaultOnLinkClick
 
   const ImageSource = useImageSource()
-  const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
+  const { videoAutoPlay, hideVideoControls, showNativeControls, optimized } =
+    useMediaConfig()
 
   const ImagesContainer =
     IMAGES_CONTAINER_MAP[display] || DocumentCarouselContainer
@@ -64,6 +65,7 @@ export default function Images({
               borderRadius={isOnlyImage ? 0 : 16}
               autoPlay={videoAutoPlay}
               hideControls={hideVideoControls}
+              showNativeControls={showNativeControls}
               media={image}
               onClick={handleClick}
               ImageSource={ImageSource}
