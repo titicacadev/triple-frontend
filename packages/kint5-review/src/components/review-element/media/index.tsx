@@ -17,13 +17,15 @@ interface Props {
   media: ImageMeta[]
   reviewId: string
   allowNavigateImages?: boolean
+  mediaPopupTitle?: string
   customMediaWrapper?: typeof DefaultMediaWrapper
 }
 
-function Media({
+export default function Media({
   media,
   reviewId,
   allowNavigateImages = true,
+  mediaPopupTitle,
   customMediaWrapper: MediaWrapper = DefaultMediaWrapper,
 }: Props) {
   const { push } = useHistoryFunctions()
@@ -102,10 +104,9 @@ function Media({
         open={uriHash === `${MEDIA_POPUP_HASH}.${reviewId}`}
         media={sortedMedia}
         currentMediumIndex={currentMediaPopupIndex}
+        title={mediaPopupTitle}
         onMediumChange={setCurrentMediaPopupIndex}
       />
     </>
   )
 }
-
-export default Media

@@ -21,6 +21,7 @@ interface MediaPopupProps {
   currentMediumIndex?: number
   frame?: FrameRatioAndSizes
   videoAutoPlay?: boolean
+  title?: string
   onClose?: () => void
   onMediumChange?: (selectedMediumIndex: number) => void
   onMediumClick?: () => void
@@ -34,6 +35,7 @@ export function MediaPopup({
   currentMediumIndex = 0,
   frame = 'original',
   videoAutoPlay = false,
+  title,
   onClose,
   onMediumChange,
   onMediumClick,
@@ -77,7 +79,7 @@ export function MediaPopup({
             <FlexBox flex alignItems="center">
               <Text>
                 {renderMediaGrid
-                  ? t(['sajin', '사진'])
+                  ? title || t(['sajin', '사진'])
                   : currentMediumIndex + 1}
                 &nbsp;
               </Text>
