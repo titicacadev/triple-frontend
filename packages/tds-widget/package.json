@@ -53,7 +53,7 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.0.0",
-    "graphql": "^16.8.0",
+    "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "moment": "^2.29.4",
     "qs": "^6.11.2",
