@@ -43,7 +43,7 @@
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
-    "@types/ua-parser-js": "^0.7.37",
+    "@types/ua-parser-js": "^0.7.39",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
     "ua-parser-js": "^1.0.36"
