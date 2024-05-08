@@ -109,7 +109,7 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
         } else {
           const { id, title, category, regions } = festa
 
-          const regionNames = regions[0]?.names
+          const regionNames = regions?.[0]?.names
           const regionName = deriveNameFromTranslations(regionNames ?? {})
 
           const description = [category, regionName]
@@ -119,7 +119,7 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
           return {
             ...base,
             id,
-            regionId: regionId || regions[0]?.id || '',
+            regionId: regionId || regions?.[0]?.id || '',
             name: title,
             type: 'festa',
             description,
@@ -146,7 +146,7 @@ function extractRegionId(items: ItineraryItemType[]) {
       return item.poi.source.regionId
     }
 
-    if (item.festa && item.festa.regions[0]?.id) {
+    if (item.festa && item.festa.regions?.[0]?.id) {
       return item.festa.regions[0].id
     }
   }
