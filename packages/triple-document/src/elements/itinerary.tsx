@@ -118,7 +118,7 @@ export default function ItineraryElement({ value }: Props) {
 
         const url =
           type === 'festa'
-            ? `festas/${id}`
+            ? `/festas/${id}`
             : `${regionId ? `/regions/${regionId}` : ''}/${type}s/${id}`
 
         navigate(url)
