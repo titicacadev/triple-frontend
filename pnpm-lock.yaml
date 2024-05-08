@@ -712,7 +712,7 @@ importers:
         specifier: ^7.6.2
         version: 7.6.2
       ua-parser-js:
-        specifier: ^1.0.36
+        specifier: ^1.0.37
         version: 1.0.37
     devDependencies:
       '@titicaca/i18n':
@@ -752,7 +752,7 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       ua-parser-js:
-        specifier: ^1.0.36
+        specifier: ^1.0.37
         version: 1.0.37
     devDependencies:
       '@titicaca/triple-web':
@@ -780,7 +780,7 @@ importers:
         specifier: ^6.12.1
         version: 6.12.1
       ua-parser-js:
-        specifier: ^1.0.36
+        specifier: ^1.0.37
         version: 1.0.37
       universal-cookie:
         specifier: ^4.0.4
@@ -823,7 +823,7 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       ua-parser-js:
-        specifier: ^1.0.36
+        specifier: ^1.0.37
         version: 1.0.37
 
   packages/type-definitions: {}
