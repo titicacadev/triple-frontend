@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.24.0
+
+### triple-document
+
+- 추천코스가 페스타 타입을 지원하도록 합니다. [#3202](https://github.com/titicacadev/triple-frontend/pull/3202)
+
 ## v13.23.1
 
 ```
@@ -4370,11 +4376,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
