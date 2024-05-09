@@ -662,6 +662,9 @@ importers:
 
   packages/triple-header:
     dependencies:
+      '@titicaca/react-hooks':
+        specifier: workspace:*
+        version: link:../react-hooks
       '@titicaca/router':
         specifier: workspace:*
         version: link:../router
