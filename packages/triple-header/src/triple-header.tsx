@@ -4,23 +4,33 @@ import styled, { css } from 'styled-components'
 
 import { Layer } from './layer'
 import { TripleHeaderProps } from './types'
+import { Lottie } from './lottie'
 
 const MAX_WIDTH = 768
 
 const Canvas = styled(Container).attrs({
   position: 'relative',
   centered: true,
-})<{ clientWidth?: number; width: number; height: number }>`
+})<{
+  clientWidth?: number
+  isImageMotionType: boolean
+  width: number
+  height: number
+}>`
   overflow: hidden;
   max-width: ${MAX_WIDTH}px;
 
-  ${({ clientWidth, width, height }) =>
+  ${({ isImageMotionType, clientWidth, width, height }) =>
     width &&
     height &&
     css`
       width: 100%;
-      height: calc(${clientWidth || MAX_WIDTH}px * ${height / width});
-      max-height: ${MAX_WIDTH * (height / width)}px;
+      height: ${isImageMotionType
+        ? `calc(${clientWidth || MAX_WIDTH}px * ${height / width})`
+        : height};
+      max-height: ${isImageMotionType
+        ? `${MAX_WIDTH * (height / width)}px`
+        : 'none'};
     `}
 `
 
@@ -49,36 +59,47 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
     }
   }, [node])
 
-  const { canvas, layers } = children
+  const { type = 'IMAGE', canvas, layers, lottieJson } = children
 
   const calculateFrameRatio = (length?: number) => {
     return length ? (length / canvas.width) * 100 : 0
   }
 
+  const isImageMotionType = type === 'IMAGE'
+
   return canvas && layers ? (
     <Canvas
       ref={previewRef}
+      isImageMotionType={isImageMotionType}
       clientWidth={clientWidth}
       width={canvas.width}
       height={canvas.height}
     >
-      {layers.map(({ frames, transition, positioning }, index) => {
-        const position = {
-          top: (Number(positioning?.top || 0) / canvas.height) * 100,
-          left: (Number(positioning?.left || 0) / canvas.height) * 100,
-        }
+      {isImageMotionType ? (
+        layers.map(({ frames, transition, positioning }, index) => {
+          const position = {
+            top: (Number(positioning?.top || 0) / canvas.height) * 100,
+            left: (Number(positioning?.left || 0) / canvas.height) * 100,
+          }
 
-        return (
-          <Layer
-            key={index}
-            zIndex={index + 1}
-            position={position}
-            frames={frames}
-            transition={transition}
-            calculateFrameRatio={calculateFrameRatio}
-          />
-        )
-      })}
+          return (
+            <Layer
+              key={index}
+              zIndex={index + 1}
+              position={position}
+              frames={frames}
+              transition={transition}
+              calculateFrameRatio={calculateFrameRatio}
+            />
+          )
+        })
+      ) : (
+        <Lottie
+          animationData={lottieJson}
+          width={canvas.width}
+          height={canvas.height}
+        />
+      )}
     </Canvas>
   ) : null
 }
