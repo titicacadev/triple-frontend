@@ -15,6 +15,7 @@ export default {
       </EventTrackingProvider>
     ),
   ],
+  component: TripleHeader,
 } as Meta<typeof TripleHeader>
 
 export function ImageType() {
