@@ -109,7 +109,14 @@ function StaticMap({
         </StaticMapPicture>
         <ThumbnailBorder css={{ borderRadius: 16 }} />
       </StaticMapContainer>
-      <div css={{ position: 'absolute', top: '50%', left: '50%' }}>
+      <div
+        css={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
         <MapMarker />
       </div>
     </Container>
