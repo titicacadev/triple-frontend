@@ -6,7 +6,7 @@ import { TextFrame } from './frame/text'
 
 export interface TripleHeader {
   type: HeaderType
-  canvas: Canvas
+  canvas?: Canvas
   layers?: Layer[]
   lottieJson?: unknown
 }
