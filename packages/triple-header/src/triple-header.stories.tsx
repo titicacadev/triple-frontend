@@ -7,6 +7,7 @@ import { TripleHeader as TripleHeaderProps } from './types'
 
 export default {
   title: 'triple-header / TripleHeader',
+  component: TripleHeader,
 } as Meta<typeof TripleHeader>
 
 export function ImageType() {
