@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react'
+import { ComponentType, SVGProps, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import {
   Container,
@@ -7,23 +7,20 @@ import {
   marginMixin,
 } from '@titicaca/kint5-core-elements'
 
-export type PoiType = 'attraction' | 'restaurant' | 'hotel'
+import {
+  AttractionMarker,
+  FestaMarker,
+  ProductMarker,
+  RestaurantMarker,
+} from './marker-icons'
+
+export type MarkerType = 'attraction' | 'restaurant' | 'festa' | 'product'
 export interface ResponsiveVariant {
   mapSize: string
   viewport: string
   mapScale?: string
   zoom?: number
 }
-
-const Marker = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -15px;
-  margin-left: -15px;
-  width: 30px;
-  height: 30px;
-`
 
 const StaticMapContainer = styled.div`
   width: 100%;
@@ -56,32 +53,31 @@ const StaticMapPicture = styled.picture`
   top: 0;
 `
 
-const MARKER_SOURCES: { [key: string]: string } = {
-  restaurant: 'https://assets.triple.guide/images/img_map_pin_food@4x.png',
-  hotel: 'https://assets.triple.guide/images/img_map_pin_hotel@4x.png',
-  attraction: 'https://assets.triple.guide/images/img_map_pin_sight@4x.png',
-  tna: 'https://assets.triple.guide/images/img_map_pin_tna@4x.png',
-}
+const MARKERS: { [key in MarkerType]: ComponentType<SVGProps<SVGSVGElement>> } =
+  {
+    attraction: AttractionMarker,
+    restaurant: RestaurantMarker,
+    festa: FestaMarker,
+    product: ProductMarker,
+  }
 
 function StaticMap({
-  type,
+  markerType,
   lat,
   lon,
   zoom = 16,
   mapSize = '320x120',
   mapScale = '2',
-  markerImage,
   responsiveVariants,
   onClick,
 }: {
-  type?: PoiType
+  markerType?: MarkerType
   lat: number | string
   lon: number | string
   zoom?: number | string
   frame?: Parameters<typeof Image.FixedRatioFrame>['0']['frame']
   mapSize?: string
   mapScale?: string
-  markerImage?: string
   responsiveVariants?: ResponsiveVariant[]
   onClick?: (e: SyntheticEvent) => void
 }) {
@@ -98,6 +94,8 @@ function StaticMap({
     )
     .join(', ')
 
+  const MapMarker = MARKERS[markerType ?? 'attraction']
+
   return (
     <Container position="relative" onClick={onClick} css={{ margin: '0 16px' }}>
       <StaticMapContainer>
@@ -111,7 +109,9 @@ function StaticMap({
         </StaticMapPicture>
         <ThumbnailBorder css={{ borderRadius: 16 }} />
       </StaticMapContainer>
-      <Marker src={markerImage || (type && MARKER_SOURCES[type])} />
+      <div css={{ position: 'absolute', top: '50%', left: '50%' }}>
+        <MapMarker />
+      </div>
     </Container>
   )
 }

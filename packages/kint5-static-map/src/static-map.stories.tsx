@@ -9,7 +9,7 @@ export default {
 
 export const Basic: StoryObj<typeof StaticMap> = {
   args: {
-    type: 'attraction',
+    markerType: 'attraction',
     lat: 35.6328964,
     lon: 139.8803943,
   },
