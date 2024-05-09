@@ -5,9 +5,13 @@ import { ImageFrame } from './frame/image'
 import { TextFrame } from './frame/text'
 
 export interface TripleHeaderProps {
+  type: HeaderType
   canvas: Canvas
-  layers: Layer[]
+  layers?: Layer[]
+  lottieJson?: unknown
 }
+
+export type HeaderType = 'IMAGE' | 'JSON'
 
 interface Canvas {
   width: number
