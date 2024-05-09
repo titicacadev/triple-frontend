@@ -3,16 +3,16 @@ import { useLottie } from '@titicaca/react-hooks'
 import { Container } from '@titicaca/core-elements'
 
 export function Lottie({
-  animationData,
+  lottieJson,
   width,
   height,
 }: {
-  animationData: unknown
+  lottieJson: unknown
   width: number
   height: number
 }) {
   const { animationRef } = useLottie<HTMLDivElement>({
-    data: animationData,
+    data: lottieJson,
   })
 
   return <Container ref={animationRef} css={{ width, height }} />
