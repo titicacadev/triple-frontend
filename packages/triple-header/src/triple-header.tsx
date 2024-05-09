@@ -13,24 +13,19 @@ const Canvas = styled(Container).attrs({
   centered: true,
 })<{
   clientWidth?: number
-  isImageMotionType: boolean
   width: number
   height: number
 }>`
   overflow: hidden;
   max-width: ${MAX_WIDTH}px;
 
-  ${({ isImageMotionType, clientWidth, width, height }) =>
+  ${({ clientWidth, width, height }) =>
     width &&
     height &&
     css`
       width: 100%;
-      height: ${isImageMotionType
-        ? `calc(${clientWidth || MAX_WIDTH}px * ${height / width})`
-        : height};
-      max-height: ${isImageMotionType
-        ? `${MAX_WIDTH * (height / width)}px`
-        : 'none'};
+      height: calc(${clientWidth || MAX_WIDTH}px * ${height / width});
+      max-height: ${MAX_WIDTH * (height / width)}px;
     `}
 `
 
@@ -67,39 +62,32 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
 
   const isImageMotionType = type === 'IMAGE'
 
-  return canvas && layers ? (
+  return isImageMotionType && canvas && layers ? (
     <Canvas
       ref={previewRef}
-      isImageMotionType={isImageMotionType}
       clientWidth={clientWidth}
       width={canvas.width}
       height={canvas.height}
     >
-      {isImageMotionType ? (
-        layers.map(({ frames, transition, positioning }, index) => {
-          const position = {
-            top: (Number(positioning?.top || 0) / canvas.height) * 100,
-            left: (Number(positioning?.left || 0) / canvas.height) * 100,
-          }
+      {layers.map(({ frames, transition, positioning }, index) => {
+        const position = {
+          top: (Number(positioning?.top || 0) / canvas.height) * 100,
+          left: (Number(positioning?.left || 0) / canvas.height) * 100,
+        }
 
-          return (
-            <Layer
-              key={index}
-              zIndex={index + 1}
-              position={position}
-              frames={frames}
-              transition={transition}
-              calculateFrameRatio={calculateFrameRatio}
-            />
-          )
-        })
-      ) : (
-        <Lottie
-          lottieJson={lottieJson}
-          width={canvas.width}
-          height={canvas.height}
-        />
-      )}
+        return (
+          <Layer
+            key={index}
+            zIndex={index + 1}
+            position={position}
+            frames={frames}
+            transition={transition}
+            calculateFrameRatio={calculateFrameRatio}
+          />
+        )
+      })}
     </Canvas>
-  ) : null
+  ) : (
+    <Lottie lottieJson={lottieJson} />
+  )
 }
