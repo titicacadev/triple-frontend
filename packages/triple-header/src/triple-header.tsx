@@ -57,7 +57,7 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
   const { type = 'IMAGE', canvas, layers, lottieJson } = children
 
   const calculateFrameRatio = (length?: number) => {
-    return length ? (length / canvas.width) * 100 : 0
+    return canvas && length ? (length / canvas.width) * 100 : 0
   }
 
   const isImageMotionType = type === 'IMAGE'
