@@ -99,7 +99,7 @@ export default function TripleHeader({
         })
       ) : (
         <Lottie
-          animationData={lottieJson}
+          lottieJson={lottieJson}
           width={canvas.width}
           height={canvas.height}
         />
