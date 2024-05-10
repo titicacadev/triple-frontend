@@ -1,5 +1,5 @@
 {
-  "type": "IMAGE",
+  "type": "JSON",
   "canvas": {
     "width": 375,
     "height": 528
