@@ -600,6 +600,9 @@ importers:
       '@titicaca/tds-widget':
         specifier: workspace:*
         version: link:../tds-widget
+      '@titicaca/triple-header':
+        specifier: workspace:*
+        version: link:../triple-header
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
