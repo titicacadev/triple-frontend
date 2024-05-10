@@ -11,7 +11,7 @@ export interface TripleHeaderProps {
   lottieJson?: unknown
 }
 
-export type HeaderType = 'IMAGE' | 'JSON'
+export type HeaderType = 'LAYER' | 'JSON'
 
 interface Canvas {
   width: number
