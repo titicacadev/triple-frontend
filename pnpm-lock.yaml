@@ -1734,6 +1734,9 @@ importers:
       '@titicaca/standard-action-handler':
         specifier: workspace:*
         version: link:../standard-action-handler
+      '@titicaca/triple-header':
+        specifier: workspace:*
+        version: link:../triple-header
       '@titicaca/triple-media':
         specifier: workspace:*
         version: link:../triple-media

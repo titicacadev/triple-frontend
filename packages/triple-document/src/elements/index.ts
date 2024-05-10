@@ -16,6 +16,7 @@ import Regions from './regions'
 import Table from './table'
 import { MH1, MH2, MH3, MH4, Text } from './text'
 import { TnaProducts } from './tna'
+import Motion from './motion'
 
 const ELEMENTS: ElementSet = {
   heading1: MH1,
@@ -42,6 +43,7 @@ const ELEMENTS: ElementSet = {
   coupon: Coupon,
   itinerary: ItineraryElement,
   anchor: Anchor,
+  motion: Motion,
 }
 
 export default ELEMENTS
