@@ -13,7 +13,7 @@ export async function getStorage({
     throw new Error('Id가 없습니다.')
   }
 
-  const response = await get<{ data: unknown }>(
+  const response = await get<{ data: string }>(
     `/api/storage/storages/${type}/${id}`,
   )
 
