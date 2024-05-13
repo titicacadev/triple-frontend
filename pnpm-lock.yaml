@@ -665,6 +665,9 @@ importers:
 
   packages/triple-header:
     dependencies:
+      '@titicaca/fetcher':
+        specifier: workspace:*
+        version: link:../fetcher
       '@titicaca/react-hooks':
         specifier: workspace:*
         version: link:../react-hooks
