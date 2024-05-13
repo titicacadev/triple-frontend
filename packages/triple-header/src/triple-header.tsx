@@ -69,7 +69,7 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
       const response = await getStorage({
         id: lottieAnimationId,
       })
-      setLottieData(response)
+      setLottieData(JSON.parse(response as string))
     }
 
     !isImageMotionType && fetchAndeSetStorage()
