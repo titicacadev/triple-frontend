@@ -14,7 +14,7 @@ export async function getStorage({
   }
 
   const response = await get<{ data: unknown }>(
-    `/storage-api/storage/storages/${type}/${id}`,
+    `/api/storage/storages/${type}/${id}`,
   )
 
   if (!response.ok) {
