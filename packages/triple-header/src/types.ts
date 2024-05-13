@@ -1,17 +1,23 @@
 import { MarginPadding } from '@titicaca/core-elements'
 import { SyntheticEvent } from 'react'
+import { ImageMeta } from '@titicaca/type-definitions'
 
 import { ImageFrame } from './frame/image'
 import { TextFrame } from './frame/text'
 
 export interface TripleHeader {
   type: HeaderType
-  canvas?: Canvas
-  layers?: Layer[]
-  lottieAnimationId?: string
+  framer?: {
+    canvas: Canvas
+    layers: Layer[]
+  }
+  lottie?: {
+    backgroundImage?: ImageMeta
+    lottieAnimationId?: string
+  }
 }
 
-export type HeaderType = 'LAYER' | 'JSON'
+export type HeaderType = 'FRAMER' | 'LOTTIE'
 
 interface Canvas {
   width: number
