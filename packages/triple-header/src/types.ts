@@ -8,7 +8,7 @@ export interface TripleHeaderProps {
   type: HeaderType
   canvas?: Canvas
   layers?: Layer[]
-  lottieJson?: unknown
+  lottieAnimationId?: string
 }
 
 export type HeaderType = 'LAYER' | 'JSON'
