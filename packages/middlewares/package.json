@@ -42,7 +42,7 @@
   "dependencies": {
     "set-cookie-parser": "^2.6.0",
     "universal-cookie": "^4.0.4",
-    "semver": "^7.5.4"
+    "semver": "^7.6.2"
   },
   "devDependencies": {
     "@titicaca/fetcher": "workspace:*",
