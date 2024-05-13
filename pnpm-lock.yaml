@@ -675,8 +675,8 @@ importers:
         specifier: workspace:*
         version: link:../type-definitions
       framer-motion:
-        specifier: ^10.16.9
-        version: 10.16.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^10.18.0
+        version: 10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -6192,8 +6192,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  framer-motion@10.16.12:
-    resolution: {integrity: sha512-w7Yzx0OzQ5Uh6uNkxaX+4TuAPuOKz3haSbjmHpdrqDpGuCJCpq6YP9Dy7JJWdZ6mJjndrg3Ao3vUwDajKNikCA==}
+  framer-motion@10.18.0:
+    resolution: {integrity: sha512-oGlDh1Q1XqYPksuTD/usb0I70hq95OUzmL9+6Zd+Hs4XV0oaISBa/UUMSjYiq6m8EUF32132mOJ8xVZS+I0S6w==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -17828,7 +17828,7 @@ snapshots:
 
   forwarded@0.2.0: {}
 
-  framer-motion@10.16.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  framer-motion@10.18.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       tslib: 2.6.2
     optionalDependencies:
