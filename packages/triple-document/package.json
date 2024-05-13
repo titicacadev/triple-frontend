@@ -51,7 +51,7 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "moment": "^2.29.4",
-    "qs": "^6.11.2"
+    "qs": "^6.12.1"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",

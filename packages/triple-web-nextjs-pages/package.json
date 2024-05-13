@@ -44,7 +44,7 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
-    "qs": "^6.11.2",
+    "qs": "^6.12.1",
     "ua-parser-js": "^1.0.36",
     "universal-cookie": "^4.0.4"
   },
