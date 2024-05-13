@@ -55,7 +55,7 @@
     "autolinker": "^4.0.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "qs": "^6.12.1",
     "react-day-picker": "^7.4.10",
     "react-transition-group": "^4.4.5",
