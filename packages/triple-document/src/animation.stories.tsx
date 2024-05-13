@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import ELEMENTS from './elements'
 
-const { motion: Motion } = ELEMENTS
+const { animation: Animation } = ELEMENTS
 
 export default {
-  title: 'triple-document / 모션',
-  component: Motion,
+  title: 'triple-document / 애니메이션',
+  component: Animation,
 } as Meta
 
 export const Layer: StoryObj = {
