@@ -5,7 +5,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const stories = fs
   .readdirSync('packages')
-  .map((pkg) => `../packages/${pkg}/src/**/*.stories.@(mdx,js|jsx|ts|tsx)`)
+  .map((pkg) => `../packages/${pkg}/src/**/*.stories.@(mdx|js|jsx|ts|tsx)`)
 
 const config: StorybookConfig = {
   stories,
