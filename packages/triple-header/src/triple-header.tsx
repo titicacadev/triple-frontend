@@ -66,11 +66,11 @@ export default function TripleHeader({
       : 0
   }
 
-  const isImageMotionType = type === 'FRAMER'
+  const isFramerType = type === 'FRAMER'
   const hasFramerCanvas = framer && framer.canvas
   const hasFramerLayers = framer && framer.layers
 
-  return isImageMotionType && hasFramerCanvas && hasFramerLayers ? (
+  return isFramerType && hasFramerCanvas && hasFramerLayers ? (
     <Canvas
       ref={previewRef}
       clientWidth={clientWidth}
