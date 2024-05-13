@@ -73,7 +73,7 @@ export default function TripleHeader({
       const response = await getStorage({
         id: lottieAnimationId,
       })
-      setLottieData(JSON.parse(response as string))
+      setLottieData(response)
     }
 
     !isImageMotionType && fetchAndeSetStorage()
