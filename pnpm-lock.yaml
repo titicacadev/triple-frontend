@@ -419,8 +419,8 @@ importers:
         specifier: ^0.26.13
         version: 0.26.13(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@titicaca/content-utilities':
-        specifier: 8.22.0
-        version: 8.22.0(encoding@0.1.13)
+        specifier: 8.34.0
+        version: 8.34.0(encoding@0.1.13)
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -3720,8 +3720,8 @@ packages:
   '@titicaca/content-type-definitions@8.34.0':
     resolution: {integrity: sha512-oA/5qsJ1wysBoMYywGA9XhFVjPlJ7dRUXqouA2aiy8FPSh/H8qKB1y+R9lIWq5b5cVOz14jyRLy2ItSvsoGC6Q==}
 
-  '@titicaca/content-utilities@8.22.0':
-    resolution: {integrity: sha512-iTW7kRURQo78sXX59xx9KBdXfSmaB312AwZLNpFZVqXQoBOMRjgrELfI1lGCxAKtrPoRfNafXGve7dCoTayM3Q==}
+  '@titicaca/content-utilities@8.34.0':
+    resolution: {integrity: sha512-6c4j2HJS0cAKkKYaeYZhEVKYcjdMCI6ps8lHD0CWX0ok0OWb6TljyXruZKvadpHFJ5f5zYDAZbFEqrf5GADkog==}
 
   '@titicaca/eslint-config-triple@5.1.1':
     resolution: {integrity: sha512-4D961ZDKXeyfm7pFD0qxyfc1vdEkrOcXJdLKdJQGBu6/UMYlYHXgI8se/7HSz5/W+qi/DgIjEsG1yn29tGh0ig==}
@@ -14741,7 +14741,7 @@ snapshots:
 
   '@titicaca/content-type-definitions@8.34.0': {}
 
-  '@titicaca/content-utilities@8.22.0(encoding@0.1.13)':
+  '@titicaca/content-utilities@8.34.0(encoding@0.1.13)':
     dependencies:
       '@titicaca/content-type-definitions': 8.34.0
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
