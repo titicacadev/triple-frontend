@@ -1829,6 +1829,9 @@ importers:
       framer-motion:
         specifier: ^10.16.9
         version: 10.16.12(react-dom@18.2.0)(react@18.2.0)
+      lottie-web:
+        specifier: ^5.12.2
+        version: 5.12.2
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*

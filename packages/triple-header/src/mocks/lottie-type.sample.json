@@ -1,0 +1,29 @@
+{
+  "type": "LOTTIE",
+  "lottie": {
+    "backgroundImage": {
+      "cloudinaryId": "495ccaab-e2c7-440f-97db-7a1cf027da3d",
+      "id": "feba9285-4711-4097-bc23-e78799a0103c",
+      "type": "image",
+      "source": {},
+      "width": 1500,
+      "height": 2112,
+      "cloudinaryBucket": "triple-cms",
+      "metadata": {
+        "format": "png"
+      },
+      "sizes": {
+        "full": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/495ccaab-e2c7-440f-97db-7a1cf027da3d.jpeg"
+        },
+        "large": {
+          "url": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/495ccaab-e2c7-440f-97db-7a1cf027da3d.jpeg"
+        },
+        "small_square": {
+          "url": "https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/495ccaab-e2c7-440f-97db-7a1cf027da3d.jpeg"
+        }
+      }
+    },
+    "lottieAnimationId": ""
+  }
+}
