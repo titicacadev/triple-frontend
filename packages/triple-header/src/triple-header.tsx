@@ -1,13 +1,12 @@
-import { useState, useCallback, useLayoutEffect, useEffect } from 'react'
+import { useState, useCallback, useLayoutEffect } from 'react'
 import { Container } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 
 import { Layer } from './layer'
 import { TripleHeaderProps } from './types'
 import { Lottie } from './lottie'
-import { getStorage } from './service'
 
-const MAX_WIDTH = 768
+export const MAX_WIDTH = 768
 
 const Canvas = styled(Container).attrs({
   position: 'relative',
@@ -33,7 +32,6 @@ const Canvas = styled(Container).attrs({
 export function TripleHeader({ children }: { children: TripleHeaderProps }) {
   const [clientWidth, setClientWidth] = useState<number | undefined>(undefined)
   const [node, setNode] = useState<HTMLDivElement | null>(null)
-  const [lottieData, setLottieData] = useState<unknown>()
 
   const previewRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
@@ -56,36 +54,29 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
     }
   }, [node])
 
-  const { type = 'LAYER', canvas, layers, lottieAnimationId } = children
+  const { type = 'FRAMER', framer, lottie } = children
 
   const calculateFrameRatio = (length?: number) => {
-    return canvas && length ? (length / canvas.width) * 100 : 0
+    return framer && framer.canvas && length
+      ? (length / framer.canvas.width) * 100
+      : 0
   }
 
-  const isImageMotionType = type === 'LAYER'
+  const isImageMotionType = type === 'FRAMER'
+  const hasFramerCanvas = framer && framer.canvas
+  const hasFramerLayers = framer && framer.layers
 
-  useEffect(() => {
-    async function fetchAndeSetStorage() {
-      const response = await getStorage({
-        id: lottieAnimationId,
-      })
-      setLottieData(JSON.parse(response as string))
-    }
-
-    !isImageMotionType && fetchAndeSetStorage()
-  }, [isImageMotionType, lottieAnimationId])
-
-  return isImageMotionType && canvas && layers ? (
+  return isImageMotionType && hasFramerCanvas && hasFramerLayers ? (
     <Canvas
       ref={previewRef}
       clientWidth={clientWidth}
-      width={canvas.width}
-      height={canvas.height}
+      width={framer.canvas.width}
+      height={framer.canvas.height}
     >
-      {layers.map(({ frames, transition, positioning }, index) => {
+      {framer.layers.map(({ frames, transition, positioning }, index) => {
         const position = {
-          top: (Number(positioning?.top || 0) / canvas.height) * 100,
-          left: (Number(positioning?.left || 0) / canvas.height) * 100,
+          top: (Number(positioning?.top || 0) / framer.canvas.height) * 100,
+          left: (Number(positioning?.left || 0) / framer.canvas.height) * 100,
         }
 
         return (
@@ -101,6 +92,6 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
       })}
     </Canvas>
   ) : (
-    <Lottie lottieData={lottieData} />
+    <Lottie lottie={lottie} />
   )
 }
