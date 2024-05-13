@@ -1,10 +1,11 @@
-import { useState, useCallback, useLayoutEffect } from 'react'
+import { useState, useCallback, useLayoutEffect, useEffect } from 'react'
 import { Container } from '@titicaca/core-elements'
 import styled, { css } from 'styled-components'
 
 import { Layer } from './layer'
 import { TripleHeader as TripleHeaderProps } from './types'
 import { Lottie } from './lottie'
+import { getStorage } from './service'
 
 const MAX_WIDTH = 768
 
@@ -36,6 +37,7 @@ export default function TripleHeader({
 }) {
   const [clientWidth, setClientWidth] = useState<number | undefined>(undefined)
   const [node, setNode] = useState<HTMLDivElement | null>(null)
+  const [lottieData, setLottieData] = useState<unknown>()
 
   const previewRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
@@ -58,13 +60,24 @@ export default function TripleHeader({
     }
   }, [node])
 
-  const { type = 'LAYER', canvas, layers, lottieJson } = children
+  const { type = 'LAYER', canvas, layers, lottieAnimationId } = children
 
   const calculateFrameRatio = (length?: number) => {
     return canvas && length ? (length / canvas.width) * 100 : 0
   }
 
   const isImageMotionType = type === 'LAYER'
+
+  useEffect(() => {
+    async function fetchAndeSetStorage() {
+      const response = await getStorage({
+        id: lottieAnimationId,
+      })
+      setLottieData(response)
+    }
+
+    !isImageMotionType && fetchAndeSetStorage()
+  }, [isImageMotionType, lottieAnimationId])
 
   return isImageMotionType && canvas && layers ? (
     <Canvas
@@ -92,6 +105,6 @@ export default function TripleHeader({
       })}
     </Canvas>
   ) : (
-    <Lottie lottieJson={lottieJson} />
+    <Lottie lottieData={lottieData} />
   )
 }
