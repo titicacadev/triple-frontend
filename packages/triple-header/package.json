@@ -46,7 +46,8 @@
     "@titicaca/router": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
-    "framer-motion": "^10.18.0"
+    "framer-motion": "^10.18.0",
+    "lottie-web": "^5.12.2"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
