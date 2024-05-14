@@ -1,10 +1,10 @@
 /* eslint-disable import/no-absolute-path */
 const path = require('path')
 
-const { koCommonWeb } = require('./assets/ko/common-web')
-const { enCommonWeb } = require('./assets/en/common-web')
-const { jaCommonWeb } = require('./assets/ja/common-web')
-const { zhTwCommonWeb } = require('./assets/zh-TW/common-web')
+const koCommonWeb = require('./assets/ko/common-web.json')
+const enCommonWeb = require('./assets/en/common-web.json')
+const jaCommonWeb = require('./assets/ja/common-web.json')
+const zhTwCommonWeb = require('./assets/zh-TW/common-web.json')
 
 const LOCALE_PATH = './public/static/locales'
 
