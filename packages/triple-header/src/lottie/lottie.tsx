@@ -40,7 +40,7 @@ export function Lottie({ lottie }: { lottie: TripleHeader['lottie'] }) {
       {hasLottieAnimationBackgroundImg ? (
         <Container css={{ maxWidth: MAX_WIDTH }}>
           <BackgroundImage
-            src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/495ccaab-e2c7-440f-97db-7a1cf027da3d.jpeg"
+            src={lottie.backgroundImage?.sizes.full.url}
             alt=""
           />
         </Container>
