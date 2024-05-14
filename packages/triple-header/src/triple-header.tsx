@@ -54,29 +54,27 @@ export function TripleHeader({ children }: { children: TripleHeaderProps }) {
     }
   }, [node])
 
-  const { type = 'FRAMER', framer, lottie } = children
+  const { type = 'FRAMER', canvas, layers, lottie } = children
 
   const calculateFrameRatio = (length?: number) => {
-    return framer && framer.canvas && length
-      ? (length / framer.canvas.width) * 100
-      : 0
+    return canvas && length ? (length / canvas.width) * 100 : 0
   }
 
   const isFramerType = type === 'FRAMER'
-  const hasFramerCanvas = framer && framer.canvas
-  const hasFramerLayers = framer && framer.layers
+  const hasFramerCanvas = !!canvas
+  const hasFramerLayers = !!layers
 
   return isFramerType && hasFramerCanvas && hasFramerLayers ? (
     <Canvas
       ref={previewRef}
       clientWidth={clientWidth}
-      width={framer.canvas.width}
-      height={framer.canvas.height}
+      width={canvas.width}
+      height={canvas.height}
     >
-      {framer.layers.map(({ frames, transition, positioning }, index) => {
+      {layers.map(({ frames, transition, positioning }, index) => {
         const position = {
-          top: (Number(positioning?.top || 0) / framer.canvas.height) * 100,
-          left: (Number(positioning?.left || 0) / framer.canvas.height) * 100,
+          top: (Number(positioning?.top || 0) / canvas.height) * 100,
+          left: (Number(positioning?.left || 0) / canvas.height) * 100,
         }
 
         return (
