@@ -18,7 +18,7 @@ export function useLottie<T extends HTMLElement>({
 
   useEffect(() => {
     if (animationRef.current) {
-      Lottie.loadAnimation({
+      const instance = Lottie.loadAnimation({
         container: animationRef.current,
         renderer: 'svg',
         loop,
@@ -27,8 +27,11 @@ export function useLottie<T extends HTMLElement>({
         animationData: data,
         rendererSettings,
       })
+
+      return () => instance.destroy()
     }
-  }, [autoplay, data, loop, path, rendererSettings])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
   return { animationRef }
 }
