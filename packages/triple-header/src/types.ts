@@ -7,10 +7,8 @@ import { TextFrame } from './frame/text'
 
 export interface TripleHeader {
   type: HeaderType
-  framer?: {
-    canvas: Canvas
-    layers: Layer[]
-  }
+  canvas?: Canvas
+  layers?: Layer[]
   lottie?: {
     backgroundImage?: ImageMeta
     lottieAnimationId?: string
