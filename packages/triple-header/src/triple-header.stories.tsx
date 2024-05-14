@@ -1,7 +1,7 @@
 import type { Meta } from '@storybook/react'
 
 import FRAMER_TYPE_SAMPLE from './mocks/framer-type.sample.json'
-// import LOTTIE_TYPE_SAMPLE from './mocks/lottie-type.sample.json'
+import LOTTIE_TYPE_SAMPLE from './mocks/lottie-type.sample.json'
 import TripleHeader from './triple-header'
 import { TripleHeader as TripleHeaderProps } from './types'
 
@@ -14,7 +14,6 @@ export function FramerType() {
   return <TripleHeader>{FRAMER_TYPE_SAMPLE as TripleHeaderProps}</TripleHeader>
 }
 
-// TODO: Lottie 에러 해결후 주석 해제 필요
-// export function LottieType() {
-//   return <TripleHeader>{LOTTIE_TYPE_SAMPLE as TripleHeaderProps}</TripleHeader>
-// }
+export function LottieType() {
+  return <TripleHeader>{LOTTIE_TYPE_SAMPLE as TripleHeaderProps}</TripleHeader>
+}

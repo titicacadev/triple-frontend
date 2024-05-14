@@ -33,7 +33,8 @@ export function Lottie({ lottie }: { lottie: TripleHeader['lottie'] }) {
     }
 
     hasLottieAnimationId && fetchAndeSetStorage()
-  }, [hasLottieAnimationId, lottie])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container css={{ position: 'relative' }}>
