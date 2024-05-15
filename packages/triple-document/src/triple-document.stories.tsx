@@ -41,6 +41,7 @@ const {
   anchor: Anchor,
   itinerary: Itinerary,
   coupon: Coupon,
+  stickyTabs: StickyTabs,
 } = ELEMENTS
 
 export default {
@@ -217,5 +218,174 @@ export const CouponExample: StoryObj<typeof Coupon> = {
         }),
       ],
     },
+  },
+}
+
+export const StickyTabsExample: StoryObj<typeof StickyTabs> = {
+  name: '고정 탭',
+  render: function Render(args) {
+    return (
+      <div>
+        <div style={{ height: '200vh' }} />
+        <StickyTabs value={args.value} />
+        <Anchor value={{ href: 'tab1' }} />
+        <div style={{ height: '500vh', border: '1px solid green' }} />
+        <Anchor value={{ href: 'tab2' }} />
+        <div style={{ height: '100px', border: '1px solid blue' }} />
+        <Anchor value={{ href: 'tab3' }} />
+        <div style={{ height: '100vh', border: '1px solid red' }} />
+      </div>
+    )
+  },
+  args: {
+    value: [
+      {
+        defaultImage: {
+          cloudinaryId: '44d96f0f-1c9d-44cf-8a04-bdee865e7311',
+          id: '46dc4371-e8bf-485e-b00a-77c67024279d',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/44d96f0f-1c9d-44cf-8a04-bdee865e7311.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/44d96f0f-1c9d-44cf-8a04-bdee865e7311.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/44d96f0f-1c9d-44cf-8a04-bdee865e7311.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        activeImage: {
+          cloudinaryId: 'c3855a72-94d9-4d16-8125-c11a3f55470d',
+          id: 'de31e21f-08f5-496f-ac9b-bd9c47f5359a',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/c3855a72-94d9-4d16-8125-c11a3f55470d.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/c3855a72-94d9-4d16-8125-c11a3f55470d.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/c3855a72-94d9-4d16-8125-c11a3f55470d.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        anchor: 'tab1',
+      },
+      {
+        defaultImage: {
+          cloudinaryId: 'd3dd3b38-ca9d-47aa-9d6d-9fbdf7052772',
+          id: 'a59bb952-f6e1-447a-9e90-9fbb412562fb',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/d3dd3b38-ca9d-47aa-9d6d-9fbdf7052772.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/d3dd3b38-ca9d-47aa-9d6d-9fbdf7052772.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/d3dd3b38-ca9d-47aa-9d6d-9fbdf7052772.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        activeImage: {
+          cloudinaryId: '3ecbd0cb-5679-4ca1-9486-642e56f06cff',
+          id: '7698d07a-3498-4fc9-889c-169619f4ec15',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/3ecbd0cb-5679-4ca1-9486-642e56f06cff.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3ecbd0cb-5679-4ca1-9486-642e56f06cff.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/3ecbd0cb-5679-4ca1-9486-642e56f06cff.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        anchor: 'tab2',
+      },
+      {
+        defaultImage: {
+          cloudinaryId: 'b3738eee-fcea-457c-943a-281a06d32ca6',
+          id: '26d05644-1669-4b73-a5a4-9314511b9a5c',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/b3738eee-fcea-457c-943a-281a06d32ca6.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/b3738eee-fcea-457c-943a-281a06d32ca6.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/b3738eee-fcea-457c-943a-281a06d32ca6.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        activeImage: {
+          cloudinaryId: '5e236073-4d57-4677-bdc8-70e5685c46b7',
+          id: '60adf45f-4dba-4173-9fbe-7ee8f147e16f',
+          type: 'image',
+          sizes: {
+            full: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/5e236073-4d57-4677-bdc8-70e5685c46b7.jpeg',
+            },
+            large: {
+              url: 'https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/5e236073-4d57-4677-bdc8-70e5685c46b7.jpeg',
+            },
+            small_square: {
+              url: 'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/5e236073-4d57-4677-bdc8-70e5685c46b7.jpeg',
+            },
+          },
+          source: {},
+          width: 303,
+          height: 168,
+          cloudinaryBucket: 'triple-cms',
+          metadata: {
+            format: 'png',
+          },
+        },
+        anchor: 'tab3',
+      },
+    ],
   },
 }
