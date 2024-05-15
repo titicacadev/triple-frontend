@@ -17,6 +17,7 @@ import Table from './table'
 import { MH1, MH2, MH3, MH4, Text } from './text'
 import { TnaProducts } from './tna'
 import Animation from './animation'
+import StickyTabs from './sticky-tabs'
 
 const ELEMENTS: ElementSet = {
   heading1: MH1,
@@ -44,6 +45,7 @@ const ELEMENTS: ElementSet = {
   itinerary: ItineraryElement,
   anchor: Anchor,
   animation: Animation,
+  stickyTabs: StickyTabs,
 }
 
 export default ELEMENTS
