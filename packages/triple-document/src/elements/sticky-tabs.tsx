@@ -70,13 +70,14 @@ export default function StickyTabs({
 
   const handleTabClick = useCallback(
     (index: number) => {
-      const offsetTop =
+      const offsetTop = Math.ceil(
         window.scrollY +
-        (document.getElementById(tabs[index].anchor)?.getBoundingClientRect()
-          .top || 0)
+          (document.getElementById(tabs[index].anchor)?.getBoundingClientRect()
+            .top || 0),
+      )
 
       window.scrollTo({
-        top: offsetTop - tabHeight / 2,
+        top: offsetTop - tabHeight,
         behavior: 'smooth',
       })
     },
