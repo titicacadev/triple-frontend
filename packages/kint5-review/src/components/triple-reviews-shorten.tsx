@@ -18,6 +18,7 @@ import type { SortingOption, SortingType } from './sorting-context'
 import { SortingOptions } from './sorting-options'
 import type { ShortenReviewValue } from './shorten-list'
 import { ReviewLanguageProvider, useReviewLanguage } from './language-context'
+import { KoreanReviewTranslationNotice } from './korean-review-translation-notice'
 
 const REVIEWS_SECTION_ID = 'reviews'
 
@@ -167,6 +168,7 @@ function TripleReviewsShortenComponent({
           </Text>
         ) : null}
       </FlexBox>
+      <KoreanReviewTranslationNotice />
       <SortingOptions />
       <ListElement value={value} />
     </Section>

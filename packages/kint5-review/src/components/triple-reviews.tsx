@@ -17,6 +17,7 @@ import { FilterProvider, useReviewFilters } from './filter-context'
 import { SortingOptions } from './sorting-options'
 import type { InfinityReviewValue } from './infinite-list'
 import { ReviewLanguageProvider, useReviewLanguage } from './language-context'
+import { KoreanReviewTranslationNotice } from './korean-review-translation-notice'
 
 const REVIEWS_SECTION_ID = 'triple-reviews'
 
@@ -155,6 +156,7 @@ function TripleReviewsComponent({
           },
         )}
       </Text>
+      <KoreanReviewTranslationNotice />
       <SortingOptions />
       <ListElement value={value} />
     </Section>
