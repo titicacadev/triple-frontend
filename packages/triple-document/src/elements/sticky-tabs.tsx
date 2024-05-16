@@ -13,13 +13,15 @@ const TabButton = styled.button`
 `
 
 export default function StickyTabs({
-  value = [],
+  value,
 }: {
   value: {
-    defaultImage: ImageMeta | undefined
-    activeImage: ImageMeta | undefined
-    anchor: string
-  }[]
+    tabs: {
+      defaultImage: ImageMeta | undefined
+      activeImage: ImageMeta | undefined
+      anchor: string
+    }[]
+  }
 }) {
   const [tabHeight, setTabHeight] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -27,12 +29,12 @@ export default function StickyTabs({
   const tabRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = useCallback(() => {
-    if (!value.length) {
+    if (!value.tabs.length) {
       return
     }
 
     const scrollElement = document.scrollingElement || document.documentElement
-    const firstEl = document.getElementById(value[0].anchor)
+    const firstEl = document.getElementById(value.tabs[0].anchor)
 
     const isNotStart =
       firstEl &&
@@ -44,9 +46,9 @@ export default function StickyTabs({
     if (isNotStart) {
       setCurrentIndex(0)
     } else if (isEnd) {
-      setCurrentIndex(value.length - 1)
+      setCurrentIndex(value.tabs.length - 1)
     } else {
-      value.forEach((el, index) => {
+      value.tabs.forEach((el, index) => {
         const target = document.getElementById(el.anchor)
         if (target) {
           const visibleVertical =
@@ -70,8 +72,9 @@ export default function StickyTabs({
     (index: number) => {
       const offsetTop =
         window.scrollY +
-        (document.getElementById(value[index].anchor)?.getBoundingClientRect()
-          .top || 0)
+        (document
+          .getElementById(value.tabs[index].anchor)
+          ?.getBoundingClientRect().top || 0)
 
       window.scrollTo({ top: offsetTop - tabHeight, behavior: 'smooth' })
     },
@@ -118,7 +121,7 @@ export default function StickyTabs({
           flexDirection: 'row',
         }}
       >
-        {value.map(({ defaultImage, activeImage, anchor }, index) => {
+        {value.tabs.map(({ defaultImage, activeImage, anchor }, index) => {
           return (
             <TabButton
               onClick={() => handleTabClick(index)}
