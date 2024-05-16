@@ -59,7 +59,7 @@ function DirectionButtons({
           size="small"
           onClick={onDirectionsClick}
         >
-          {t(['gilcajgi', '길찾기'])}
+          {t('길안내')}
         </Button>
       </ButtonGroup>
 

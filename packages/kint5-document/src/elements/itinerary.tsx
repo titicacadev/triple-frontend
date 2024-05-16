@@ -4,6 +4,7 @@ import {
   Text,
   FlexBox,
   FlexBoxItem,
+  CaretRightIcon,
 } from '@titicaca/kint5-core-elements'
 import type {
   TransportationType,
@@ -25,6 +26,7 @@ import useItinerary from './itinerary/use-computed-itineraries'
 import { Bus, Walk, Train, Plane } from './itinerary/icons'
 import { ItineraryOrder } from './itinerary/itinerary-order'
 import { ItineraryElementType } from './itinerary/types'
+import { DirectionFinderIcon } from './itinerary/direction-finder-icon'
 
 interface Props {
   value: {
@@ -226,24 +228,44 @@ export default function ItineraryElement({
                         </FlexBox>
                       </FlexBox>
                     </FlexBox>
-                    {shouldShowTransportationInfo ? (
-                      <FlexBox
-                        flex
-                        alignItems="center"
-                        gap="4px"
-                        css={{ margin: '18px 0', paddingLeft: 14 }}
+                    <FlexBox
+                      flex
+                      alignItems="center"
+                      gap="4px"
+                      css={{ margin: '18px 0', paddingLeft: 14 }}
+                    >
+                      {shouldShowTransportationInfo ? (
+                        <>
+                          <TransportIcon width={20} height={20} />
+                          <Text
+                            css={{
+                              fontSize: 13,
+                              color: 'var(--color-kint5-gray60)',
+                            }}
+                          >
+                            {duration} ·
+                          </Text>
+                        </>
+                      ) : null}
+                      <button
+                        css={{ display: 'flex', alignItems: 'center', gap: 2 }}
                       >
-                        <TransportIcon width={20} height={20} />
+                        <DirectionFinderIcon />
                         <Text
                           css={{
+                            color: 'var(--color-kint5-brand1)',
                             fontSize: 13,
-                            color: 'var(--color-kint5-gray60)',
                           }}
                         >
-                          {duration}
+                          {t('길안내')}
                         </Text>
-                      </FlexBox>
-                    ) : null}
+                        <CaretRightIcon
+                          color="#7743EE"
+                          width={12}
+                          height={12}
+                        />
+                      </button>
+                    </FlexBox>
                   </FlexBoxItem>
                 </FlexBox>
               )

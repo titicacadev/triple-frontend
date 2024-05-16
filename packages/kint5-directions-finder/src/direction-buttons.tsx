@@ -82,7 +82,7 @@ function DirectionButtons({
             textAlign: 'center',
           }}
         >
-          {t(['gilcajgi', '길찾기'])}
+          {t('길안내')}
         </Button>
       </FlexBox>
 
