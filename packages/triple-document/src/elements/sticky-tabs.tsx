@@ -13,7 +13,7 @@ const TabButton = styled.button`
 `
 
 export default function StickyTabs({
-  value,
+  value: { tabs },
 }: {
   value: {
     tabs: {
@@ -29,12 +29,12 @@ export default function StickyTabs({
   const tabRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = useCallback(() => {
-    if (!value.tabs.length) {
+    if (!tabs.length) {
       return
     }
 
     const scrollElement = document.scrollingElement || document.documentElement
-    const firstEl = document.getElementById(value.tabs[0].anchor)
+    const firstEl = document.getElementById(tabs[0].anchor)
 
     const isNotStart =
       firstEl &&
@@ -46,9 +46,9 @@ export default function StickyTabs({
     if (isNotStart) {
       setCurrentIndex(0)
     } else if (isEnd) {
-      setCurrentIndex(value.tabs.length - 1)
+      setCurrentIndex(tabs.length - 1)
     } else {
-      value.tabs.forEach((el, index) => {
+      tabs.forEach((el, index) => {
         const target = document.getElementById(el.anchor)
         if (target) {
           const visibleVertical =
@@ -66,19 +66,18 @@ export default function StickyTabs({
         }
       })
     }
-  }, [tabHeight, value])
+  }, [tabHeight, tabs])
 
   const handleTabClick = useCallback(
     (index: number) => {
       const offsetTop =
         window.scrollY +
-        (document
-          .getElementById(value.tabs[index].anchor)
-          ?.getBoundingClientRect().top || 0)
+        (document.getElementById(tabs[index].anchor)?.getBoundingClientRect()
+          .top || 0)
 
       window.scrollTo({ top: offsetTop - tabHeight, behavior: 'smooth' })
     },
-    [tabHeight, value],
+    [tabHeight, tabs],
   )
 
   useEffect(() => {
@@ -121,7 +120,7 @@ export default function StickyTabs({
           flexDirection: 'row',
         }}
       >
-        {value.tabs.map(({ defaultImage, activeImage, anchor }, index) => {
+        {tabs.map(({ defaultImage, activeImage, anchor }, index) => {
           return (
             <TabButton
               onClick={() => handleTabClick(index)}
