@@ -226,7 +226,6 @@ export const StickyTabsExample: StoryObj<typeof StickyTabs> = {
   render: function Render(args) {
     return (
       <div>
-        <div style={{ height: '200vh' }} />
         <StickyTabs value={args.value} />
         <Anchor value={{ href: 'tab1' }} />
         <div style={{ height: '500vh', border: '1px solid green' }} />
