@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import { useMemo } from 'react'
 import {
   TransportationType,
   Itinerary,
   ItineraryItemType,
+  GeoPoint,
 } from '@titicaca/content-type-definitions'
 
 import {
@@ -16,11 +16,10 @@ interface Props {
   itinerary: Itinerary
 }
 
-interface Course {
+export interface Course {
   id: string
   /** 지역아이디 */
   regionId: string
-
   /** POI 제목, 공백값 가드닝 적용 */
   name: string
   /** 추천코스 요소 타입 */
@@ -39,6 +38,7 @@ interface Course {
   isFirst: boolean
   /** 마지막 아이템 판단 */
   isLast: boolean
+  geolocation: GeoPoint | null | undefined
 }
 
 const DEFAULT_TRANSPORTATION = {
@@ -107,9 +107,10 @@ export default function useItinerary({ itinerary }: Props) {
             name,
             type,
             description,
+            geolocation: source?.geolocation,
           }
         } else {
-          const { id, title, category, regions, areas } = festa
+          const { id, title, category, regions, areas, geolocation } = festa
 
           const areaNames = areas?.[0]?.names
           const areaName = deriveNameFromTranslations(areaNames ?? {})
@@ -123,6 +124,7 @@ export default function useItinerary({ itinerary }: Props) {
             name: title,
             type: 'festa',
             description,
+            geolocation,
           }
         }
       },

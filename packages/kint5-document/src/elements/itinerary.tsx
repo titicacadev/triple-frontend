@@ -4,7 +4,6 @@ import {
   Text,
   FlexBox,
   FlexBoxItem,
-  CaretRightIcon,
 } from '@titicaca/kint5-core-elements'
 import type {
   TransportationType,
@@ -18,7 +17,6 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { TransitionType } from '@titicaca/kint5-modals'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
-import semver from 'semver'
 
 import { useAddItinerariesToTripHandler } from '../prop-context/add-itineraries-to-trip-handler'
 
@@ -27,7 +25,8 @@ import useItinerary from './itinerary/use-computed-itineraries'
 import { Bus, Walk, Train, Plane } from './itinerary/icons'
 import { ItineraryOrder } from './itinerary/itinerary-order'
 import { ItineraryElementType } from './itinerary/types'
-import { DirectionFinderIcon } from './itinerary/direction-finder-icon'
+import { isValidAppVersion } from './itinerary/app-version-check'
+import { FindDirectionsButton } from './itinerary/find-directions-button'
 
 interface Props {
   value: {
@@ -146,7 +145,7 @@ export default function ItineraryElement({
                 zIndex: -1,
                 backgroundColor: 'var(--color-kint5-gray30)',
                 width: 1,
-                height: 'calc(100% - 60px)',
+                height: 'calc(100% - 97px)',
                 top: 5,
                 left: 15.5,
               },
@@ -164,17 +163,11 @@ export default function ItineraryElement({
               } = course
               const hasDuration = !isLast && transportation !== undefined
               const TransportIcon = getTransportationIcon(transportation)
-              const shouldShowTransportationInfo = hasDuration && TransportIcon
+              const hasTransportationInfo =
+                hasDuration && TransportIcon !== null
 
               return (
-                <FlexBox
-                  flex
-                  key={index}
-                  gap="4px"
-                  css={{
-                    ...(!shouldShowTransportationInfo && { marginBottom: 18 }),
-                  }}
-                >
+                <FlexBox flex key={index} gap="4px">
                   <FlexBox flex css={{ position: 'relative' }}>
                     <FlexBox
                       flex
@@ -235,7 +228,7 @@ export default function ItineraryElement({
                       gap="4px"
                       css={{ margin: '18px 0', paddingLeft: 14 }}
                     >
-                      {shouldShowTransportationInfo ? (
+                      {hasTransportationInfo ? (
                         <>
                           <TransportIcon width={20} height={20} />
                           <Text
@@ -244,28 +237,15 @@ export default function ItineraryElement({
                               color: 'var(--color-kint5-gray60)',
                             }}
                           >
-                            {duration} ·
+                            {duration}
                           </Text>
                         </>
                       ) : null}
-                      <button
-                        css={{ display: 'flex', alignItems: 'center', gap: 2 }}
-                      >
-                        <DirectionFinderIcon />
-                        <Text
-                          css={{
-                            color: 'var(--color-kint5-brand1)',
-                            fontSize: 13,
-                          }}
-                        >
-                          {t('길안내')}
-                        </Text>
-                        <CaretRightIcon
-                          color="#7743EE"
-                          width={12}
-                          height={12}
-                        />
-                      </button>
+                      <FindDirectionsButton
+                        currentCourse={courses[index]}
+                        nextCourse={courses[index + 1]}
+                        hasTransportationInfo={hasTransportationInfo}
+                      />
                     </FlexBox>
                   </FlexBoxItem>
                 </FlexBox>
@@ -273,7 +253,7 @@ export default function ItineraryElement({
             })}
           </Container>
           {!hideAddButton &&
-          (!app || isValidAppVersionForItinerary(app?.appVersion)) ? (
+          (!app || isValidAppVersion(app.appVersion, 'savingItineraries')) ? (
             <button
               onClick={handleSaveToItinerary}
               disabled={!hasItineraries}
@@ -309,14 +289,4 @@ function getTransportationIcon(type?: TransportationType) {
     default:
       return null
   }
-}
-
-function isValidAppVersionForItinerary(appVersion: string | undefined) {
-  if (process.env.NEXT_PUBLIC_IS_PRODUCTION !== 'true') {
-    return true
-  }
-
-  const version = semver.coerce(appVersion)
-
-  return version && semver.gte(version, '1.2.0')
 }
