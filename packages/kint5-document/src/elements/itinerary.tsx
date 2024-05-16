@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { MouseEvent, useCallback } from 'react'
 import {
   Container,
   Text,
@@ -59,7 +59,9 @@ export default function ItineraryElement({
       id: string
       name: string
     }) =>
-      () => {
+      (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+
         const action =
           type === 'festa' ? '추천일정_페스타_선택' : '추천일정_POI_선택'
 
@@ -145,7 +147,7 @@ export default function ItineraryElement({
                 zIndex: -1,
                 backgroundColor: 'var(--color-kint5-gray30)',
                 width: 1,
-                height: 'calc(100% - 97px)',
+                height: 'calc(100% - 60px)',
                 top: 5,
                 left: 15.5,
               },
@@ -168,68 +170,54 @@ export default function ItineraryElement({
 
               return (
                 <FlexBox flex key={index} gap="4px">
-                  <FlexBox flex css={{ position: 'relative' }}>
-                    <FlexBox
-                      flex
-                      flexGrow={1}
-                      justifyContent="center"
-                      alignItems="center"
-                      flexDirection="column"
-                    >
-                      <FlexBox
-                        flex
-                        flexGrow={1}
-                        alignItems="center"
-                        flexDirection="column"
-                      >
-                        <ItineraryOrder
-                          itineraryItemType={type}
-                          index={index}
-                        />
-                      </FlexBox>
-                    </FlexBox>
-                  </FlexBox>
-                  <FlexBoxItem
-                    flexGrow={1}
-                    as="a"
-                    onClick={generateItemClickHandler({
-                      type,
-                      id,
-                      name,
-                    })}
+                  <FlexBox
+                    flex
+                    alignItems="flex-start"
+                    css={{ position: 'relative' }}
                   >
-                    <FlexBox
-                      flex
-                      alignItems="center"
+                    <ItineraryOrder itineraryItemType={type} index={index} />
+                  </FlexBox>
+                  <FlexBoxItem flexGrow={1}>
+                    <a
+                      href={type === 'festa' ? `/festas/${id}` : `/pois/${id}`}
+                      onClick={generateItemClickHandler({
+                        type,
+                        id,
+                        name,
+                      })}
                       css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        gap: 4,
                         border: '1px solid var(--color-kint5-gray30)',
                         padding: '12px 12px 12px 16px',
                         borderRadius: 16,
                       }}
                     >
-                      <FlexBox flex flexDirection="column" gap="4px">
-                        <Text maxLines={1}>{name}</Text>
-                        <FlexBox flex>
-                          <Text
-                            maxLines={1}
-                            css={{
-                              fontSize: 12,
-                              color: 'var(--color-kint5-gray60)',
-                            }}
-                          >
-                            {description}
-                          </Text>
-                        </FlexBox>
+                      <Text maxLines={1}>{name}</Text>
+                      <FlexBox flex>
+                        <Text
+                          maxLines={1}
+                          css={{
+                            fontSize: 12,
+                            color: 'var(--color-kint5-gray60)',
+                          }}
+                        >
+                          {description}
+                        </Text>
                       </FlexBox>
-                    </FlexBox>
+                    </a>
                     <FlexBox
                       flex
                       alignItems="center"
                       gap="4px"
-                      css={{ margin: '18px 0', paddingLeft: 14 }}
+                      css={{
+                        paddingLeft: 14,
+                      }}
                     >
                       {hasTransportationInfo ? (
-                        <>
+                        <FlexBox flex css={{ margin: '18px 0' }}>
                           <TransportIcon width={20} height={20} />
                           <Text
                             css={{
@@ -239,7 +227,7 @@ export default function ItineraryElement({
                           >
                             {duration}
                           </Text>
-                        </>
+                        </FlexBox>
                       ) : null}
                       <FindDirectionsButton
                         currentCourse={courses[index]}
@@ -263,7 +251,7 @@ export default function ItineraryElement({
                 color: 'var(--color-kint5-gray0)',
                 fontWeight: 700,
                 width: '100%',
-                marginTop: 16,
+                marginTop: 32,
                 borderRadius: 28,
               }}
             >

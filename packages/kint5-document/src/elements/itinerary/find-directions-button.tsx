@@ -69,6 +69,7 @@ export function FindDirectionsButton({
         display: 'flex',
         alignItems: 'center',
         gap: 2,
+        margin: '18px 0',
       }}
     >
       {hasTransportationInfo ? (
