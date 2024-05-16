@@ -97,18 +97,18 @@ export function TransitionModal() {
   const { removeUriHash, uriHash } = useHashRouter()
 
   let open = false
-  let content:
-    | {
-        eventLabel: string
-      }
-    | undefined
+  let eventLabel: string | undefined
 
   const matchData = uriHash.match(/^transition\.(.+)$/)
 
   if (matchData) {
     const transitionType = matchData[1] as TransitionType
-    content = MODAL_CONTENT[transitionType]
-    open = !!content
+
+    open = !!MODAL_CONTENT[transitionType]
+
+    eventLabel =
+      MODAL_CONTENT[transitionType]?.eventLabel ||
+      transitionModalRef.current.triggeredEventAction
   }
 
   const handleCancelOrClose = () => removeUriHash()
@@ -120,11 +120,11 @@ export function TransitionModal() {
       {
         ga: [
           '설치유도팝업_선택',
-          ['선택_트리플가기', content?.eventLabel].filter((v) => v).join('_'),
+          ['선택_트리플가기', eventLabel].filter((v) => v).join('_'),
         ],
         fa: {
           action: '설치유도팝업_선택',
-          referrer_event: content?.eventLabel,
+          ...(eventLabel && { referrer_event: eventLabel }),
         },
       },
       eventTrackingContextForkRef.current,
@@ -137,21 +137,19 @@ export function TransitionModal() {
   }
 
   useEffect(() => {
-    if (content) {
-      const triggeredEventLabel = content.eventLabel
-
+    if (eventLabel) {
       trackEvent(
         {
-          ga: ['설치유도팝업_노출', triggeredEventLabel],
+          ga: ['설치유도팝업_노출', eventLabel],
           fa: {
             action: '설치유도팝업_노출',
-            referrer_event: triggeredEventLabel,
+            ...(eventLabel && { referrer_event: eventLabel }),
           },
         },
         eventTrackingContextForkRef.current,
       )
     }
-  }, [content, eventTrackingContextForkRef])
+  }, [eventLabel, eventTrackingContextForkRef])
 
   return (
     <Modal open={open} onClose={handleCancelOrClose}>
