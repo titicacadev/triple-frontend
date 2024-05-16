@@ -13,7 +13,7 @@ const TabButton = styled.button`
 `
 
 export default function StickyTabs({
-  value,
+  value = [],
 }: {
   value: {
     defaultImage: ImageMeta | undefined
