@@ -23,6 +23,7 @@ export default function StickyTabs({
     }[]
   }
 }) {
+  const [headerHeight, setHeaderHeight] = useState(0)
   const [tabHeight, setTabHeight] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -53,9 +54,9 @@ export default function StickyTabs({
         if (target) {
           const visibleVertical =
             target.offsetTop >= 0 &&
-            scrollElement.scrollTop + tabHeight >=
+            scrollElement.scrollTop + tabHeight + headerHeight >=
               window.scrollY + target.getBoundingClientRect().top &&
-            scrollElement.scrollTop + tabHeight >
+            scrollElement.scrollTop + tabHeight + headerHeight >
               window.scrollY +
                 target.getBoundingClientRect().top +
                 target.offsetHeight
@@ -66,7 +67,7 @@ export default function StickyTabs({
         }
       })
     }
-  }, [tabHeight, tabs])
+  }, [headerHeight, tabHeight, tabs])
 
   const handleTabClick = useCallback(
     (index: number) => {
@@ -75,9 +76,12 @@ export default function StickyTabs({
         (document.getElementById(tabs[index].anchor)?.getBoundingClientRect()
           .top || 0)
 
-      window.scrollTo({ top: offsetTop - tabHeight, behavior: 'smooth' })
+      window.scrollTo({
+        top: offsetTop - tabHeight - headerHeight,
+        behavior: 'smooth',
+      })
     },
-    [tabHeight, tabs],
+    [headerHeight, tabHeight, tabs],
   )
 
   useEffect(() => {
@@ -89,18 +93,26 @@ export default function StickyTabs({
   }, [handleScroll])
 
   useEffect(() => {
-    const tabHeightHandler = () => {
+    const header = document.getElementsByTagName('header')[0]
+
+    const heightHandler = () => {
+      setHeaderHeight(header?.clientHeight || 0)
+
       if (tabRef && tabRef.current) {
         setTabHeight(tabRef.current.clientHeight || 0)
       }
     }
 
-    tabHeightHandler()
+    const timeout = setTimeout(() => {
+      heightHandler()
+    }, 100)
 
-    window.addEventListener('resize', tabHeightHandler)
+    window.addEventListener('resize', heightHandler)
 
     return () => {
-      window.removeEventListener('resize', tabHeightHandler)
+      window.removeEventListener('resize', heightHandler)
+
+      clearTimeout(timeout)
     }
   }, [])
 
