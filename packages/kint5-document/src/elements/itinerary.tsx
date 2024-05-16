@@ -18,6 +18,7 @@ import { useTripleClientMetadata } from '@titicaca/react-triple-client-interface
 import { TransitionType } from '@titicaca/kint5-modals'
 import { useAppCallback } from '@titicaca/ui-flow'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import semver from 'semver'
 
 import { useAddItinerariesToTripHandler } from '../prop-context/add-itineraries-to-trip-handler'
 
@@ -315,21 +316,7 @@ function isValidAppVersionForItinerary(appVersion: string | undefined) {
     return true
   }
 
-  if (!appVersion) {
-    return false
-  }
+  const version = semver.coerce(appVersion)
 
-  const [major, minor] = appVersion.split('.')
-  const majorVersion = Number(major)
-  const minorVersion = Number(minor)
-
-  if (majorVersion > 1) {
-    return true
-  }
-
-  if (majorVersion === 1) {
-    return minorVersion >= 2
-  }
-
-  return false
+  return version && semver.gte(version, '1.2.0')
 }
