@@ -123,6 +123,7 @@ export default function StickyTabs({
         position: 'sticky',
         top: 0,
         left: 0,
+        zIndex: 2,
         background: '#fff',
       }}
     >
