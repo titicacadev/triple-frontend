@@ -10,6 +10,7 @@ export interface LoginCtaModalRef {
 export interface TransitionModalRef {
   deepLink?: string
   onActionClick?: () => void
+  triggeredEventAction?: string
 }
 
 export interface ModalValue {

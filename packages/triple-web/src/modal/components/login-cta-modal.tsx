@@ -16,11 +16,15 @@ export function LoginCtaModal() {
   const handleCancelOrClose = () => removeUriHash()
 
   const handleConfirm = () => {
+    const triggeredEventAction =
+      loginCtaModalRef.current.triggeredEventAction ?? ''
+
     trackEvent(
       {
         ga: ['로그인유도팝업_로그인선택'],
         fa: {
           action: '로그인유도팝업_로그인선택',
+          ...(triggeredEventAction && { referrer_event: triggeredEventAction }),
         },
       },
       eventTrackingContextForkRef.current,
@@ -45,7 +49,9 @@ export function LoginCtaModal() {
           ga: ['로그인유도팝업_노출', triggeredEventAction],
           fa: {
             action: '로그인유도팝업_노출',
-            referrer_event: triggeredEventAction,
+            ...(triggeredEventAction && {
+              referrer_event: triggeredEventAction,
+            }),
           },
         },
         eventTrackingContextForkRef.current,
