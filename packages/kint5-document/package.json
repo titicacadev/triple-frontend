@@ -45,10 +45,10 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/kint5-core-elements": "workspace:*",
-    "@titicaca/kint5-media": "workspace:*",
-    "@titicaca/kint5-poi-list-elements": "workspace:*",
     "@titicaca/kint5-map": "workspace:*",
+    "@titicaca/kint5-media": "workspace:*",
     "@titicaca/kint5-modals": "workspace:*",
+    "@titicaca/kint5-poi-list-elements": "workspace:*",
     "@titicaca/kint5-router": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/scrap-button": "workspace:*",
@@ -58,7 +58,8 @@
     "@titicaca/user-verification": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "moment": "^2.29.4",
-    "qs": "^6.11.2"
+    "qs": "^6.11.2",
+    "semver": "^7.5.4"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
@@ -66,6 +67,7 @@
     "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "@types/qs": "^6.9.8",
+    "@types/semver": "^7.5.4",
     "next": "^13.4.13",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"

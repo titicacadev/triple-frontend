@@ -913,6 +913,9 @@ importers:
       qs:
         specifier: ^6.11.2
         version: 6.11.2
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -929,6 +932,9 @@ importers:
       '@types/qs':
         specifier: ^6.9.8
         version: 6.9.9
+      '@types/semver':
+        specifier: ^7.5.4
+        version: 7.5.4
       next:
         specifier: ^13.4.13
         version: 13.4.13(@babel/core@7.22.11)(react-dom@18.2.0)(react@18.2.0)
