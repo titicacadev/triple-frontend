@@ -26,7 +26,11 @@ export default function StickyTabs({
 
   const tabRef = useRef<HTMLDivElement>(null)
 
-  const onScroll = useCallback(() => {
+  const handleScroll = useCallback(() => {
+    if (!value.length) {
+      return
+    }
+
     const scrollElement = document.scrollingElement || document.documentElement
     const firstEl = document.getElementById(value[0].anchor)
 
@@ -75,12 +79,12 @@ export default function StickyTabs({
   )
 
   useEffect(() => {
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', handleScroll)
     }
-  }, [onScroll])
+  }, [handleScroll])
 
   useEffect(() => {
     const tabHeightHandler = () => {
