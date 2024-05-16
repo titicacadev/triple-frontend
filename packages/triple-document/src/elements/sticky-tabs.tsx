@@ -69,19 +69,34 @@ export default function StickyTabs({
         (document.getElementById(value[index].anchor)?.getBoundingClientRect()
           .top || 0)
 
-      window.scrollTo({ top: offsetTop + tabHeight, behavior: 'smooth' })
+      window.scrollTo({ top: offsetTop - tabHeight, behavior: 'smooth' })
     },
     [tabHeight, value],
   )
 
   useEffect(() => {
-    setTabHeight(tabRef?.current?.clientHeight || 0)
-
     window.addEventListener('scroll', onScroll)
+
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
   }, [onScroll])
+
+  useEffect(() => {
+    const tabHeightHandler = () => {
+      if (tabRef && tabRef.current) {
+        setTabHeight(tabRef.current.clientHeight || 0)
+      }
+    }
+
+    tabHeightHandler()
+
+    window.addEventListener('resize', tabHeightHandler)
+
+    return () => {
+      window.removeEventListener('resize', tabHeightHandler)
+    }
+  }, [])
 
   return (
     <Container
