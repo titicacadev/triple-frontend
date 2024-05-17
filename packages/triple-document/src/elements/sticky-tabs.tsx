@@ -126,7 +126,7 @@ export default function StickyTabs({
         top: headerHeight || 0,
         left: 0,
         zIndex: 2,
-        // background: '#fff',
+        background: '#fff',
       }}
     >
       <Container
