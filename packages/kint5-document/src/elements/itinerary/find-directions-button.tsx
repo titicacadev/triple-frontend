@@ -62,6 +62,10 @@ export function FindDirectionsButton({
     return null
   }
 
+  // !!!!!!!!!!!!! 임시: 1.4.0 배포때까지 길찾기 버튼 노출 X !!!!!!!!!!!!!
+  return <div css={{ width: 1, height: 2, margin: '17px 0' }} />
+  // !!!!!!!!!!!!! 임시: 1.4.0 배포때까지 길찾기 버튼 노출 X !!!!!!!!!!!!!
+
   return (
     <button
       onClick={onFindDirectionsClick}
