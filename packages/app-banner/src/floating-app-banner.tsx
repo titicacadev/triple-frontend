@@ -1,7 +1,7 @@
 import { Container, FlexBox, Text } from '@titicaca/core-elements'
 
 interface AppBannerProps {
-  onClose?: () => VideoDecoderEventMap
+  onClose?: () => void
 }
 
 export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
