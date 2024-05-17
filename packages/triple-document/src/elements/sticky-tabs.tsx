@@ -74,7 +74,8 @@ export default function StickyTabs({
       const offsetTop = Math.ceil(
         window.scrollY +
           (document.getElementById(tabs[index].anchor)?.getBoundingClientRect()
-            .top || 0),
+            .top || 0) +
+          5,
       )
 
       window.scrollTo({
@@ -125,7 +126,7 @@ export default function StickyTabs({
         top: headerHeight || 0,
         left: 0,
         zIndex: 2,
-        background: '#fff',
+        // background: '#fff',
       }}
     >
       <Container
