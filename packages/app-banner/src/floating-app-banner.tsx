@@ -12,7 +12,7 @@ export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
         bottom: 0,
         left: 0,
         width: '100vw',
-        backgroundColor: 'var(--color-kint5-brand1)',
+        backgroundColor: '#7743EE',
         height: 160,
         textAlign: 'center',
       }}
@@ -143,7 +143,7 @@ export function MobileFloatingAppBanner({
         position: 'fixed',
         bottom: bottomGap,
         left: 0,
-        backgroundColor: 'var(--color-kint5-brand1)',
+        backgroundColor: '#7743EE',
         width: '100vw',
         height: 170,
         textAlign: 'center',
@@ -189,7 +189,7 @@ export function MobileFloatingAppBanner({
           size={12}
           bold
           css={{
-            color: 'var(--color-kint5-brand1)',
+            color: '#7743EE',
           }}
         >
           App Storeからダウンロード
@@ -210,7 +210,7 @@ export function MobileFloatingAppBanner({
           size={12}
           bold
           css={{
-            color: 'var(--color-kint5-brand1)',
+            color: '#7743EE',
           }}
         >
           Google Playからダウンロード
