@@ -538,8 +538,8 @@ importers:
         specifier: 4.2.1
         version: 4.2.1(encoding@0.1.13)(graphql@16.8.1)
       '@tanstack/react-query':
-        specifier: ^5.36.2
-        version: 5.36.2(react@18.2.0)
+        specifier: ^5.37.1
+        version: 5.37.1(react@18.2.0)
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
@@ -3670,8 +3670,8 @@ packages:
   '@tanstack/query-core@5.36.1':
     resolution: {integrity: sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==}
 
-  '@tanstack/react-query@5.36.2':
-    resolution: {integrity: sha512-bHNa+5dead+j6SA8WVlEOPxcGfteVFgdyFTCFcxBgjnPf0fFpHUc7aNZBCnvmPXqy/BeQa9zTuU9ectb7i8ZXA==}
+  '@tanstack/react-query@5.37.1':
+    resolution: {integrity: sha512-EhtBNA8GL3XFeSx6VYUjXQ96n44xe3JGKZCzBINrCYlxbZP6UwBafv7ti4eSRWc2Fy+fybQre0w17gR6lMzULA==}
     peerDependencies:
       react: ^18.0.0
 
@@ -14730,7 +14730,7 @@ snapshots:
 
   '@tanstack/query-core@5.36.1': {}
 
-  '@tanstack/react-query@5.36.2(react@18.2.0)':
+  '@tanstack/react-query@5.37.1(react@18.2.0)':
     dependencies:
       '@tanstack/query-core': 5.36.1
       react: 18.2.0
