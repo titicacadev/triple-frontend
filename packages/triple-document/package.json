@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-document",
-  "version": "13.24.0",
+  "version": "13.25.0",
   "description": "TripleDocument: Formatted Content System",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-document",
@@ -49,6 +49,7 @@
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/tds-widget": "workspace:*",
     "@titicaca/triple-header": "workspace:*",
+    "@titicaca/triple-media": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "moment": "^2.30.1",
