@@ -2,6 +2,9 @@ import { useContext } from 'react'
 
 import { ClientAppContext } from './context'
 
+/**
+ * ClientAppContext 값을 가져옵니다.
+ */
 export function useClientApp() {
   const context = useContext(ClientAppContext)
 

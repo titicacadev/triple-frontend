@@ -2,6 +2,9 @@ import { useContext } from 'react'
 
 import { EnvContext } from './context'
 
+/**
+ * EnvContext 값을 가져옵니다.
+ */
 export function useEnv() {
   const context = useContext(EnvContext)
 

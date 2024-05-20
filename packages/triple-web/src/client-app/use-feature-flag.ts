@@ -39,6 +39,9 @@ export interface UseFeatureFlagParams {
   appName?: 'Triple-iOS' | 'Triple-Android'
 }
 
+/**
+ * 특정 버전의 트리플 클라이언트에서만 노출이 필요할 경우 사용합니다.
+ */
 export function useFeatureFlag({
   operator,
   appVersion,

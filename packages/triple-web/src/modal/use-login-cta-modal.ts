@@ -9,6 +9,9 @@ import type { LoginCtaModalRef } from './types'
 
 type ShowOptions = LoginCtaModalRef
 
+/**
+ * 로그인 유도 modal을 관리합니다.
+ */
 export function useLoginCtaModal() {
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useContext(EventTrackingContext)
