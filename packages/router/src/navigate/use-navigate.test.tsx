@@ -20,6 +20,7 @@ jest.mock('@titicaca/triple-web', () => ({
   useLoginCtaModal: jest.fn().mockImplementation(() => ({
     show: loginModalShowMockFn,
   })),
+  useSessionAvailability: jest.fn().mockReturnValue(false),
 }))
 
 jest.mock('../links', () => ({
@@ -183,7 +184,7 @@ describe('앱', () => {
   })
 
   test('상대 경로이면 네이티브 앱 URL로 간주하고 엽니다.', () => {
-    const href = '/my-app/wonderful/path'
+    const href = '/articles/sample-id'
     const changeLocationHref = jest.fn()
 
     const {

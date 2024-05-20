@@ -18,6 +18,7 @@ jest.mock('@titicaca/triple-web', () => ({
     addUriHash: addUriHashMockFn,
     removeUriHash: removeUriHashMockFn,
   })),
+  useSessionAvailability: jest.fn(),
 }))
 
 jest.mock('@titicaca/triple-web')

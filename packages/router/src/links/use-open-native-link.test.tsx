@@ -16,6 +16,7 @@ jest.mock('@titicaca/triple-web', () => ({
   useTransitionModal: jest
     .fn()
     .mockImplementation(() => ({ show: transitionModalShowMockFn })),
+  useSessionAvailability: jest.fn(),
 }))
 
 beforeEach(() => {
