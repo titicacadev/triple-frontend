@@ -10,6 +10,9 @@ const KNOWN_INITIAL_VERSIONS: Partial<
   unsubscribeTripUpdateEvent: '5.11.0',
 }
 
+/**
+ * 클라이언트 앱과 통신하는 인터페이스를 사용합니다.
+ */
 export function useClientAppActions() {
   const clientApp = useClientApp()
 

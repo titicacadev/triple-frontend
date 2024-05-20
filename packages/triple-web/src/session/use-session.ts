@@ -2,6 +2,9 @@ import { useContext } from 'react'
 
 import { SessionStateContext } from './context'
 
+/**
+ * SessionContext 값을 가져옵니다.
+ */
 export function useSession() {
   const context = useContext(SessionStateContext)
 

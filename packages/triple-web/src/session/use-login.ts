@@ -9,6 +9,9 @@ export interface LoginOptions {
   returnUrl?: string
 }
 
+/**
+ * 로그인 함수를 사용합니다.
+ */
 export function useLogin() {
   const clientApp = useContext(ClientAppContext)
   const env = useEnv()

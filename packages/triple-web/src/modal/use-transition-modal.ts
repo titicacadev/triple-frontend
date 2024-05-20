@@ -9,6 +9,9 @@ import type { TransitionModalRef } from './types'
 
 type ShowOptions = TransitionModalRef
 
+/**
+ * 앱 설치 유도 modal을 관리합니다.
+ */
 export function useTransitionModal() {
   const { transitionModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useContext(EventTrackingContext)

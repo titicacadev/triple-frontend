@@ -2,6 +2,9 @@ import { useContext } from 'react'
 
 import { HashRouterContext } from './context'
 
+/**
+ * HashRouterContext 값을 가져옵니다.
+ */
 export function useHashRouter() {
   const context = useContext(HashRouterContext)
 

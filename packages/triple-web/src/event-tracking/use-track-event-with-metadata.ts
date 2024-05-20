@@ -3,6 +3,9 @@ import type { EventMetadataValue } from './types'
 import { useTrackEvent } from './use-track-event'
 import { TrackEventParams } from './utils/track-event'
 
+/**
+ * `useTrackEvent`를 이벤트 메타데이터와 함께 감싸게 합니다.
+ */
 export function useTrackEventWithMetadata() {
   const trackEvent = useTrackEvent()
   const eventMetadata = useEventMetadata()

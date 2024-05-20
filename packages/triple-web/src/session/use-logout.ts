@@ -5,6 +5,9 @@ import { ClientAppContext } from '../client-app/context'
 
 import { SessionUpdaterContext } from './context'
 
+/**
+ * 로그아웃 함수를 사용합니다.
+ */
 export function useLogout() {
   const clientApp = useContext(ClientAppContext)
   const setSession = useContext(SessionUpdaterContext)
