@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v13.25.0
+
+### triple-header, triple-document
+
+- triple-header가 로티 애니메이션 타입을 지원합니다.
+- triple-document에 Animation Element를 추가합니다. [#3210](https://github.com/titicacadev/triple-frontend/pull/3210)
+
+### triple-document
+
+- StickyTabs element 추가합니다. [#3220](https://github.com/titicacadev/triple-frontend/pull/3220)
+
 ## v13.24.0
 
 ### triple-document
