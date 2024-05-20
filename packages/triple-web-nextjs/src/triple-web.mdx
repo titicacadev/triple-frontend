@@ -1,0 +1,69 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web-nextjs / TripleWeb" />
+
+# TripleWeb
+
+## Usage
+
+```tsx
+// app/layout.tsx
+import { TripleWeb, buildTripleWebProps } from '@titicaca/triple-web-nextjs'
+import i18n from '../src/i18n'
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html>
+      <body>
+        <TripleWeb
+          {...(await buildTripleWebProps())}
+          envProvider={{ ... }}
+          i18nProvider={{ i18n, fallback: 'ko'}}
+        >
+          {children}
+        </TripleWeb>
+      </body>
+    </html>
+  )
+}
+```
+
+## Props
+
+### children
+
+`ReactNode`
+
+### clientAppProvider
+
+`ClientAppValue`
+
+**Required**
+
+### envProvider
+
+`EnvValue`
+
+**Required**
+
+### i18nProvider
+
+`{ i18n: i18next; fallback: string; key?: string }`
+
+**Required**
+
+### sessionProvider
+
+`UserAgentValue`
+
+**Required**
+
+### userAgentProvider
+
+`UserAgentValue`
+
+**Required**

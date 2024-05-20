@@ -1,0 +1,82 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web-nextjs-pages / TripleWeb" />
+
+# TripleWeb
+
+## Usage
+
+```tsx
+// pages/_app.tsx
+import { TripleWeb, buildTripleWebProps, BuildTripleWebPropsResult } from '@titicaca/triple-web-nextjs-pages'
+import i18n from '../src/i18n'
+
+export default function MyApp({
+  Component,
+  pageProps,
+  clientAppProvider,
+  sessionProvider,
+  userAgentProvider,
+}: AppProps & BuildTripleWebPropsResult) {
+  return (
+    <TripleWeb
+      clientAppProvider={clientAppProvider}
+      envProvider={{ ... }}
+      i18nProvider={{ i18n, fallback: 'ko' }}
+      sessionProvider={sessionProvider}
+      userAgentProvider={userAgentProvider}
+    >
+      <Component {...pageProps} />
+    </TripleWeb>
+  )
+}
+
+MyApp.getInitialProps = async (
+  appContext: AppContext
+): Promise<AppInitialProps & BuildTripleWebPropsResult> => {
+  const { ctx } = appContext
+
+  const appInitialProps = await App.getInitialProps(appContext)
+
+  return {
+    ...appInitialProps,
+    ...(await buildTripleWebProps(ctx)),
+  }
+}
+```
+
+## Props
+
+### children
+
+`ReactNode`
+
+### clientAppProvider
+
+`ClientAppValue`
+
+**Required**
+
+### envProvider
+
+`EnvValue`
+
+**Required**
+
+### i18nProvider
+
+`{ i18n: i18next; fallback: string; key?: string }`
+
+**Required**
+
+### sessionProvider
+
+`UserAgentValue`
+
+**Required**
+
+### userAgentProvider
+
+`UserAgentValue`
+
+**Required**

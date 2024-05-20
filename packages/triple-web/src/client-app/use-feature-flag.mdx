@@ -1,0 +1,52 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web / useFeatureFlag" />
+
+# useFeatureFlag
+
+## Usage
+
+```tsx
+const featureFlag = useFeatureFlag({
+  operator: 'gte',
+  appVersion: '6.0.0',
+  availableOnPublic: false,
+  appName: 'Triple-iOS',
+})
+```
+
+## Parameters
+
+### operator
+
+버전 비교에 사용할 operator를 결정합니다. 아래 4개 operator가 지원됩니다.
+
+`'lt' | 'lte' | 'gt' | 'gte'`
+
+**Required**
+
+### appVersion
+
+비교의 기준이 될 버전입니다.
+
+`string`
+
+**Required**
+
+### availableOnPublic
+
+트리플 클라이언트 사용 중이 아닐 경우(= 외부 브라우저일 경우) 노출 여부를 결정합니다.
+
+`boolean`
+
+**Required**
+
+### appName
+
+특정 플랫폼의 트리플 클라이언트에서만 노출이 필요할 경우 설정합니다.
+
+`Triple-iOS | Triple-Android`
+
+## Returns
+
+`boolean`

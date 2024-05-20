@@ -1,0 +1,33 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web / useClientAppCallback" />
+
+# useClientApp
+
+## Usage
+
+```tsx
+const clientApp = useClientAppCallback(TransitionType.General, callback)
+```
+
+## Parameters
+
+### transitionType
+
+`TransitionType`
+
+**Required**
+
+### fn
+
+`T extends (...args: any[] => any)`
+
+**Required**
+
+### returnValue
+
+`V`
+
+## Returns
+
+`T`

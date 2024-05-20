@@ -1,0 +1,38 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web-nextjs-pages / EventTrackingProvider" />
+
+# EventTrackingProvider
+
+## Usage
+
+```tsx
+export function Page({ children }) {
+  return (
+    <EventTrackingProvider
+      page={{ label: '페이지 이름', path: 'page-path' }}
+      onError={logError}
+    >
+      {children}
+    </EventTrackingProvider>
+  )
+}
+```
+
+## Props
+
+### children
+
+`ReactNode`
+
+### page
+
+**Required**
+
+`{ label: string; path: string }`
+
+`EventTrackingUtmValue`
+
+### onError
+
+`(error: Error) => void`
