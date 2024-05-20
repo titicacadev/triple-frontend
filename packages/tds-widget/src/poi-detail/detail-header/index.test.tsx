@@ -16,6 +16,7 @@ jest.mock('@titicaca/triple-web', () => ({
     addUriHash: addUriHashMockFn,
     removeUriHash: removeUriHashMockFn,
   })),
+  useSessionAvailability: jest.fn(),
 }))
 jest.mock('@titicaca/tds-ui', () => ({
   ...jest.requireActual('@titicaca/tds-ui'),

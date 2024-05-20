@@ -21,6 +21,7 @@ jest.mock('@titicaca/triple-web', () => ({
     subscribe: subscribeMockFn,
     unsubscribe: unsubscribeMockFn,
   })),
+  useSessionAvailability: jest.fn(),
 }))
 
 afterEach(() => {
