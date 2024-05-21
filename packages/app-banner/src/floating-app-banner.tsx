@@ -186,6 +186,7 @@ export function MobileFloatingAppBanner({
       </Text>
       <a
         href="https://itunes.apple.com/app/id6476254427"
+        target="_blank"
         css={{
           display: 'block',
           padding: '9px 0',
@@ -194,6 +195,7 @@ export function MobileFloatingAppBanner({
           width: '193px',
           margin: '16px auto 0',
         }}
+        rel="noreferrer"
       >
         <Text
           size={12}
@@ -207,6 +209,7 @@ export function MobileFloatingAppBanner({
       </a>
       <a
         href="https://play.google.com/store/apps/details?id=com.interparktriple.kint5"
+        target="_blank"
         css={{
           display: 'block',
           padding: '9px 0',
@@ -215,6 +218,7 @@ export function MobileFloatingAppBanner({
           width: '193px',
           margin: '8px auto 0',
         }}
+        rel="noreferrer"
       >
         <Text
           size={12}
