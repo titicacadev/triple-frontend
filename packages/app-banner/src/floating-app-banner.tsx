@@ -4,9 +4,15 @@ interface AppBannerProps {
   onClose?: () => void
 }
 
+interface DesktopAppBannerProps extends AppBannerProps {
+  onClick?: () => void
+}
+
 export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
   return (
-    <Container
+    <a
+      href="https://triple.global"
+      target="_blank"
       css={{
         position: 'fixed',
         bottom: 0,
@@ -16,6 +22,7 @@ export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
         height: 160,
         textAlign: 'center',
       }}
+      rel="noreferrer"
     >
       <button
         css={{
@@ -23,7 +30,10 @@ export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
           top: 16,
           right: 16,
         }}
-        onClick={onClose}
+        onClick={(e) => {
+          e.preventDefault()
+          onClose?.()
+        }}
       >
         <img
           src="https://assets.triple.guide/images/triple-korea/floating-banner-close.svg"
@@ -125,7 +135,7 @@ export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
           />
         </Container>
       </FlexBox>
-    </Container>
+    </a>
   )
 }
 
