@@ -1,7 +1,6 @@
 import { Confirm } from '@titicaca/tds-ui'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from '@titicaca/router'
 
 import { LOGIN_CTA_MODAL_HASH } from '../constants'
 import { useModal } from '../context'
@@ -13,7 +12,6 @@ export function LoginCtaModal() {
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
   const { removeUriHash, uriHash } = useHashRouter()
   const open = uriHash === LOGIN_CTA_MODAL_HASH
-  const { navigate } = useNavigate()
 
   const handleCancelOrClose = () => removeUriHash()
 
@@ -32,11 +30,11 @@ export function LoginCtaModal() {
       eventTrackingContextForkRef.current,
     )
 
-    navigate(
-      `/login?returnUrl=${encodeURIComponent(
-        loginCtaModalRef.current.returnUrl || document.location.href,
-      )}`,
-    )
+    // navigate(
+    //   `/login?returnUrl=${encodeURIComponent(
+    //     loginCtaModalRef.current.returnUrl || document.location.href,
+    //   )}`,
+    // )
 
     return true
   }
