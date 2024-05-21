@@ -1,27 +1,2 @@
 export const LOGIN_CTA_MODAL_HASH = 'login-cta-modal'
-
-export enum TransitionType {
-  General = 'general',
-  Gallery = 'gallery',
-  Scrap = 'scrap',
-  Review = 'review',
-  ReviewWrite = 'reviewWrite',
-  ReviewThumbnail = 'reviewThumbnail',
-  ReviewSelect = 'reviewSelect',
-  ReviewCommentSelect = 'reviewCommentSelect',
-  ReviewMenuSelect = 'reviewMenuSelect',
-  ReviewProfile = 'ReviewProfile',
-  OpenReviewList = 'openReviewList',
-  Article = 'article',
-  Tna = 'tna',
-  Hotel = 'hotel',
-  View = 'view',
-  AddPoisToTripSelect = 'addPoisToTripSelect',
-  Link = 'link',
-  LoungeHome = 'loungeHome',
-  Community = 'community',
-  Share = 'share',
-  AddPoiToSchedule = 'addPoiToSchedule',
-  PoiBasicInfoMap = 'poiBasicInfoMap',
-  PoiBasicInfoAddress = 'poiBasicInfoAddress',
-}
+export const APP_INSTALL_CTA_MODAL_HASH = 'app-install-cta-modal'

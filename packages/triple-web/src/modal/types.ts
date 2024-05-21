@@ -7,7 +7,7 @@ export interface LoginCtaModalRef {
   triggeredEventAction?: string
 }
 
-export interface TransitionModalRef {
+export interface AppInstallCtaModalRef {
   deepLink?: string
   onActionClick?: () => void
   triggeredEventAction?: string
@@ -15,6 +15,6 @@ export interface TransitionModalRef {
 
 export interface ModalValue {
   loginCtaModalRef: MutableRefObject<LoginCtaModalRef>
-  transitionModalRef: MutableRefObject<TransitionModalRef>
+  appInstallCtaModalRef: MutableRefObject<AppInstallCtaModalRef>
   eventTrackingContextForkRef: MutableRefObject<EventTrackingValue | undefined>
 }
