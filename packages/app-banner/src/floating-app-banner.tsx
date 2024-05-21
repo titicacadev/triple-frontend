@@ -4,10 +4,6 @@ interface AppBannerProps {
   onClose?: () => void
 }
 
-interface DesktopAppBannerProps extends AppBannerProps {
-  onClick?: () => void
-}
-
 export function DesktopFloatingAppBanner({ onClose }: AppBannerProps) {
   return (
     <a
