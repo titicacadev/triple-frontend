@@ -2,7 +2,11 @@ import { PropsWithChildren, createContext, useContext, useRef } from 'react'
 
 import type { EventTrackingValue } from '../event-tracking/types'
 
-import type { LoginCtaModalRef, ModalValue, TransitionModalRef } from './types'
+import type {
+  LoginCtaModalRef,
+  ModalValue,
+  AppInstallCtaModalRef,
+} from './types'
 
 export const ModalContext = createContext<ModalValue | undefined>(undefined)
 
@@ -18,14 +22,14 @@ export function useModal() {
 
 export function ModalProvider({ children }: PropsWithChildren) {
   const loginCtaModalRef = useRef<LoginCtaModalRef>({})
-  const transitionModalRef = useRef<TransitionModalRef>({})
+  const appInstallCtaModalRef = useRef<AppInstallCtaModalRef>({})
   const eventTrackingContextForkRef = useRef<EventTrackingValue>()
 
   return (
     <ModalContext.Provider
       value={{
         loginCtaModalRef,
-        transitionModalRef,
+        appInstallCtaModalRef,
         eventTrackingContextForkRef,
       }}
     >
