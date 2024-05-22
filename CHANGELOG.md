@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v13.25.1
+
+### core-elements
+
+- form field error color 변경 [#3234](https://github.com/titicacadev/triple-frontend/pull/3234)
+
+### triple-document
+
+- sticky-tabs의 z-index 수정 [#3235](https://github.com/titicacadev/triple-frontend/pull/3235)
+
 ## v13.25.0
 
 ### triple-header, triple-document
