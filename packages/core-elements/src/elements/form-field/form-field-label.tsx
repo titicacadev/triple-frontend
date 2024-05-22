@@ -25,7 +25,7 @@ const Label = styled(Text)<LabelProps>`
   ${({ isError }) =>
     isError &&
     css`
-      color: var(--color-red);
+      color: var(--color-mediumRed);
     `}
 
   ${({ isRequired }) =>
