@@ -29,8 +29,8 @@ const BaseSelect = styled.select`
   }
 
   &[aria-invalid='true'] {
-    border-color: var(--color-red);
-    color: var(--color-red);
+    border-color: var(--color-mediumRed);
+    color: var(--color-mediumRed);
   }
 `
 
