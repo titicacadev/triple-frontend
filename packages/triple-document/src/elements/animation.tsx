@@ -1,7 +1,5 @@
-import React from 'react'
-import TripleHeader from '@titicaca/triple-header'
-import { TripleHeader as TripleHeaderType } from '@titicaca/triple-header/src/types'
+import { TripleHeader, TripleHeaderProps } from '@titicaca/triple-header'
 
-export default function Animation({ value }: { value: TripleHeaderType }) {
+export default function Animation({ value }: { value: TripleHeaderProps }) {
   return <TripleHeader>{value}</TripleHeader>
 }
