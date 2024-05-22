@@ -3,36 +3,33 @@ import { useCallback, useContext, useEffect } from 'react'
 import { useHashRouter } from '../hash-router/use-hash-router'
 import { EventTrackingContext } from '../event-tracking/context'
 
-import { TransitionType } from './constants'
 import { useModal } from './context'
-import type { TransitionModalRef } from './types'
+import type { AppInstallCtaModalRef } from './types'
+import { APP_INSTALL_CTA_MODAL_HASH } from './constants'
 
-type ShowOptions = TransitionModalRef
+type ShowOptions = AppInstallCtaModalRef
 
-/**
- * 앱 설치 유도 modal을 관리합니다.
- */
-export function useTransitionModal() {
-  const { transitionModalRef, eventTrackingContextForkRef } = useModal()
+export function useAppInstallCtaModal() {
+  const { appInstallCtaModalRef, eventTrackingContextForkRef } = useModal()
   const eventTrackingContext = useContext(EventTrackingContext)
   const { addUriHash, removeUriHash } = useHashRouter()
 
   const show = useCallback(
-    (transitionType: TransitionType, options?: ShowOptions) => {
-      addUriHash(`transition.${transitionType}`)
+    (options?: ShowOptions) => {
+      addUriHash(APP_INSTALL_CTA_MODAL_HASH)
 
       if (options) {
-        transitionModalRef.current = options
+        appInstallCtaModalRef.current = options
       }
     },
-    [addUriHash, transitionModalRef],
+    [addUriHash, appInstallCtaModalRef],
   )
 
   const close = useCallback(() => {
     removeUriHash()
 
-    transitionModalRef.current = {}
-  }, [removeUriHash, transitionModalRef])
+    appInstallCtaModalRef.current = {}
+  }, [removeUriHash, appInstallCtaModalRef])
 
   useEffect(() => {
     const previous = eventTrackingContextForkRef.current
