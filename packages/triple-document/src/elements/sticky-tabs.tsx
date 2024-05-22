@@ -125,7 +125,7 @@ export default function StickyTabs({
         position: 'sticky',
         top: headerHeight || 0,
         left: 0,
-        zIndex: 2,
+        zIndex: 3,
         background: '#fff',
       }}
     >
