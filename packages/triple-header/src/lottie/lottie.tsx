@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Container } from '@titicaca/tds-ui'
 
-import { TripleHeader } from '../types'
+import { TripleHeaderProps } from '../types'
 import { getStorage } from '../service'
 import { MAX_WIDTH } from '../triple-header'
 
@@ -12,7 +12,7 @@ const BackgroundImage = styled.img`
   width: 100%;
 `
 
-export function Lottie({ lottie }: { lottie: TripleHeader['lottie'] }) {
+export function Lottie({ lottie }: { lottie: TripleHeaderProps['lottie'] }) {
   const [lottieData, setLottieData] = useState<unknown>()
 
   const { animationRef } = useLottie<HTMLDivElement>({

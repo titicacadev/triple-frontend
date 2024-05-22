@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Container } from '@titicaca/core-elements'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { Container } from '@titicaca/tds-ui'
 
 const TabButton = styled.button`
   width: 100%;
