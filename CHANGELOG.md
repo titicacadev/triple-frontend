@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v13.25.2
+
+```
+### triple-document
+
+- [triple-document] StickyTabs 이미지에  object-fit 적용 [#3238](https://github.com/titicacadev/triple-frontend/pull/3238)
+
+### view-utilities
+
+- [view-utilities] 맞춤일정 페이지를 routelist에 추가합니다. [#3239](https://github.com/titicacadev/triple-frontend/pull/3239)
+```
+
 ## v13.25.1
 
 ### core-elements
@@ -4397,11 +4409,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
