@@ -139,7 +139,7 @@ export function CouponModal({ identifier }: { identifier: string }) {
 
       <Modal.Actions>
         <Modal.Action color="gray" onClick={back}>
-          {t(['cwiso', '취소'])}
+          {t(['dadgi', '닫기'])}
         </Modal.Action>
         <Modal.Action
           color="blue"
