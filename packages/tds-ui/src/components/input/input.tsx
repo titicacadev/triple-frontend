@@ -25,7 +25,7 @@ const BaseInput = styled(InputMask)`
   }
 
   &[aria-invalid='true'] {
-    border-color: var(--color-red);
+    border-color: var(--color-mediumRed);
   }
 
   &::placeholder {
