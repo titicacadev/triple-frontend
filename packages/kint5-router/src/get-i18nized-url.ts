@@ -1,17 +1,17 @@
-interface I18nizeHrefArgs {
+interface GetI18nizedUrlArgs {
   lang: string
   path: string
-  webUrlBase?: string
+  baseUrl?: string
   basePath?: string
 }
 
-export function i18nizeHref({
+export function getI18nizedUrl({
   lang,
   path,
-  webUrlBase: webUrlBaseArg,
+  baseUrl,
   basePath: basePathArg,
-}: I18nizeHrefArgs) {
-  const webUrlBase = webUrlBaseArg || process.env.NEXT_PUBLIC_WEB_URL_BASE
+}: GetI18nizedUrlArgs) {
+  const webUrlBase = baseUrl || process.env.NEXT_PUBLIC_WEB_URL_BASE
   const basePath = basePathArg || process.env.NEXT_PUBLIC_BASE_PATH
 
   return `${webUrlBase}/${lang}${basePath}${path}`
