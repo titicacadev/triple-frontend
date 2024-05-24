@@ -1,5 +1,4 @@
 import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react'
-import { useTranslation } from '@titicaca/next-i18next'
 
 import {
   ImageBannerWrapper,
@@ -26,8 +25,6 @@ function ImageBanner({
   onClick,
   onDismiss,
 }: ImageBannerProps) {
-  const { t } = useTranslation('common-web')
-
   const imgSrc =
     (imgUrl ?? '').trim() ||
     'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
@@ -69,13 +66,12 @@ function ImageBanner({
         </span>
         <span>
           &nbsp;&nbsp;
-          {installText || t(['pyeonhage-aebeseo-bogi', '편하게 앱에서 보기'])}
+          {installText || '편하게 앱에서 보기'}
         </span>
       </InstallLink>
 
       <DismissButton onClick={handleDismiss}>
-        {dismissText ||
-          t(['aggabjiman-najunge-badeulgeyo', '아깝지만 나중에 받을게요'])}
+        {dismissText || '아깝지만 나중에 받을게요'}
       </DismissButton>
     </ImageBannerWrapper>
   )

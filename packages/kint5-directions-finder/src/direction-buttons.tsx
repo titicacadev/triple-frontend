@@ -17,7 +17,6 @@ function DirectionButtons({
   localName,
   localAddress,
   phoneNumber,
-  isDomestic = false,
   ...props
 }: {
   onDirectionsClick: () => void
@@ -94,7 +93,6 @@ function DirectionButtons({
           localAddress={localAddress}
           primaryName={primaryName}
           phoneNumber={phoneNumber}
-          isDomestic={isDomestic}
         />
       ) : null}
     </>

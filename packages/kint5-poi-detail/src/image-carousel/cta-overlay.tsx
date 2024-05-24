@@ -34,7 +34,7 @@ export default function CtaOverlay() {
       }}
     >
       <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-      {t(['teuripeul-aebeseo-deobogi', '트리플 앱에서 더보기'])}
+      {t('트리플 코리아 앱에서 더보기')}
     </MoreImageOverlayLink>
   )
 }

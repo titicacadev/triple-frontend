@@ -52,10 +52,7 @@ function VerificationRequest({
         alpha={0.7}
         margin={{ bottom: 40 }}
       >
-        {t([
-          'yeyageul-wihaeseoneun-hyudaepon-injeungi-pilyohabnida.-coeco-1hoe',
-          '예약을 위해서는\n휴대폰 인증이 필요합니다. (최초 1회)',
-        ])}
+        {`예약을 위해서는\n휴대폰 인증이 필요합니다. (최초 1회)`}
       </Text>
       <Modal.Actions>
         <Modal.Action onClick={() => onCancel()}>

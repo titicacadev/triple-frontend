@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { useTranslation } from '@titicaca/next-i18next'
 
 const MoreImageOverlayLink = styled.a`
   display: block;
@@ -21,12 +20,10 @@ const MoreImageOverlayLinkIcon = styled.img`
 `
 
 export default function CtaOverlay() {
-  const { t } = useTranslation('common-web')
-
   return (
     <MoreImageOverlayLink>
       <MoreImageOverlayLinkIcon src="https://assets.triple.guide/images/ico-arrow@4x.png" />
-      {t(['teuripeul-aebeseo-deobogi', '트리플 앱에서 더보기'])}
+      트리플 앱에서 더보기
     </MoreImageOverlayLink>
   )
 }

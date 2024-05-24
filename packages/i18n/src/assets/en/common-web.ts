@@ -24,7 +24,6 @@ export const enCommonWeb = {
   hwagin: 'Check',
   'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
     'From planning to hotel, tour, and ticket reservations!\nPrepare for a trip at once in triple.',
-  'teuripeul-gagi': 'Go to Triple',
   jeojangcwiso: 'Save Cancel',
   jeojanghagi: 'Save',
   ribyusujeong: 'Edit review',

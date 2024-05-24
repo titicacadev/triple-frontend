@@ -407,8 +407,6 @@ function Content({
   blinded: boolean
   deleted: boolean
 }) {
-  const { t } = useTranslation('common-web')
-
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
   const navigate = useNavigate()
@@ -461,7 +459,7 @@ function Content({
           cursor="pointer"
           onClick={() => setUnfolded((prevState) => !prevState)}
         >
-          {t(['...deobogi', '…더보기'])}
+          ...더보기
         </Text>
       ) : null}
     </Container>

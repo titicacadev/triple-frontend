@@ -83,10 +83,7 @@ export function MyReviewActionSheet({
         onClose={back}
         onConfirm={handleDeleteReview}
       >
-        {t([
-          'sagjehagessseubnigga-sagjehamyeon-jeogribdoen-ribyu-pointeudo-hamgge-sarajibnida.',
-          '삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.',
-        ])}
+        삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.
       </Confirm>
     </>
   )

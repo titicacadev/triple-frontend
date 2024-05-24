@@ -1,15 +1,7 @@
 export const jaCommonWeb = {
   'aebeseo-bogi': 'アプリで見る',
   dadgi: '閉じる',
-  teuripeul: 'TRIPLE',
-  'teuripeul-aeb-seolcihagi': 'TRIPLEアプリをインストールする',
-  'gaideubug-iljeongjjagi-gilcajgi-masjib':
-    'ガイドブック・日程を作成・ルートを探す・グルメ',
-  'pyeonhage-aebeseo-bogi': 'アプリで見る',
-  'aggabjiman-najunge-badeulgeyo': '後で受け取ります',
   jeonhwahagi: '電話する',
-  'gugje-jeonhwa-yogeumi-bugwadoel-su-issseubnida.':
-    '国際電話料金が請求される場合があります。',
   'hyeonjieseo-gilmudgi': '現地で道を尋ねる',
   gilcajgi: 'ルートを検索',
   juso: '住所',
@@ -19,12 +11,9 @@ export const jaCommonWeb = {
   bogsa: 'コピー',
   'rogeuini-pilyohabnida.': 'ログインしてください。',
   'rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo':
-    'ログインしてもっと便利にTRIPLEをご利用ください🙂',
+    'ログインしてもっと便利にTRIPLE Koreaをご利用ください🙂',
   cwiso: 'キャンセル',
   hwagin: '確認',
-  'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.':
-    '日程の管理からホテル・ツアー。チケットの予約まで！\nTRIPLEならワンストップで準備完了',
-  'teuripeul-gagi': 'TRIPLEに移動',
   'triple-korea-gagi': 'TRIPLE Koreaに移動',
   jeojangcwiso: '保存を取り消す',
   jeojanghagi: '保存する',
@@ -39,11 +28,6 @@ export const jaCommonWeb = {
   eumsigjeom: '飲食店',
   hotel: 'ホテル',
   'starrating-seonggeub': '{{starRating}}星',
-  'triple-hanggong-hom': 'TRIPLE 航空ホーム',
-  'triple-sugso-hom': 'TRIPLE 宿泊ホーム',
-  'triple-tueo-tikes-hom': 'TRIPLE ツアー・チケットホーム',
-  'triple-hom': 'TRIPLE ホーム',
-  hanggong: '航空',
   sugso: '宿泊',
   'tueo-tikes': 'ツアーチケット',
   'nae-yeyag': '私の予約',
@@ -64,8 +48,6 @@ export const jaCommonWeb = {
   'keulribbodeue-bogsadoeeossseubnida.': 'クリップボードにコピーしました。',
   'ringkeureul-bogsahaessseubnida.': 'リンクをコピーしました。',
   'injeungi-pilyohaeyo': 'ご本人確認が必要です。',
-  'yeyageul-wihaeseoneun-hyudaepon-injeungi-pilyohabnida.-coeco-1hoe':
-    '予約のためには\n携帯端末のご本人確認が必要です（最初1回）',
   dwirogagi: 'もどる',
   injeunghagi: '本人確認する',
   'munjega-balsaenghaessseubnida.': '問題が発生しました。',
@@ -89,7 +71,7 @@ export const jaCommonWeb = {
   'nohcigi-aggaun-ni-jiyeog-ggul-jeongbo': '見逃すと損！\nこの地域の情報',
   'nohcigi-aggaun-i-jiyeog-ggul-jeongbo': '見逃すと損！この地域の情報',
   'yeohaeng-jeongbo-deobogi': '旅行の情報を見る',
-  'teuripeul-aebeseo-deobogi': 'TRIPLEアプリで見る',
+  '트리플 코리아 앱에서 더보기': 'TRIPLE Koreaアプリで見る',
   'yeongeobjung-todaybusinesshours': '営業中 {{todayBusinessHours}}',
   'deoisang-unyeonghaji-anhseubnida.': '閉店しました',
   'igosyi-ceos-beonjjae-sajineul-olryeojuseyo.':
@@ -104,8 +86,7 @@ export const jaCommonWeb = {
     'まだコメントがありません。\nいち早くコメントを書いてみましょう。',
   sujeonghagi: '編集する',
   sagjehagi: '削除する',
-  'sagjehagessseubnigga-sagjehamyeon-jeogribdoen-ribyu-pointeudo-hamgge-sarajibnida.':
-    '削除しますか？削除すると貯まったレビューポイントも無効になります。',
+  '삭제하시겠습니까?': '削除しますか？',
   singohagi: '通報する',
   'coegeun-yeohaeng': '最近の旅行',
   'coegeun-6gaeweol-naee-bangmunhan-yeohaengyi-ribyuman-moa-bol-su-issseubnida.':

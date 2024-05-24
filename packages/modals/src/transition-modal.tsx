@@ -8,7 +8,6 @@ import {
   useUriHash,
 } from '@titicaca/react-contexts'
 import { DeepPartial } from 'utility-types'
-import { I18nCommonWebKeys } from '@titicaca/i18n'
 
 import { Modal } from './modal'
 
@@ -43,7 +42,7 @@ export enum TransitionType {
 
 const MODAL_CONTENT: {
   [type: string]: {
-    description?: (keyof I18nCommonWebKeys)[]
+    description?: string
     eventLabel?: string
   }
 } = {
@@ -82,10 +81,8 @@ const MODAL_CONTENT: {
     eventLabel: '호텔_선택',
   },
   [TransitionType.View]: {
-    description: [
-      'iljeong-jjagibuteo-hotel-tueotikes-yeyagggaji-teuripeulro-han-beone-yeohaeng-junbihaseyo.',
+    description:
       '일정 짜기부터 호텔, 투어・티켓 예약까지!\n트리플로 한 번에 여행 준비하세요.',
-    ],
     eventLabel: '컨텐츠_연속보기',
   },
   [TransitionType.AddPoisToTripSelect]: {
@@ -118,10 +115,7 @@ export function TransitionModal({
 
   if (matchData && Object.keys(MODAL_CONTENT).includes(matchData[1])) {
     const {
-      description = [
-        'soljighan-ribyu-110mangaewa-coesin-yeohaeng-sosigdeulggaji-aebeseo-pyeonhage-hwaginhaseyo',
-        '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
-      ],
+      description = '솔직한 리뷰 110만개와 최신 여행 소식까지 앱에서 편하게 확인하세요!',
       eventLabel = '',
     } = MODAL_CONTENT[matchData[1]] || {}
 
@@ -131,15 +125,10 @@ export function TransitionModal({
       <Modal open onClose={back}>
         <Modal.Body>
           <IconImage src={icon} />
-          <Modal.Title>
-            {t([
-              'yeogineun-teuripeul-aebi-pilyohaeyo',
-              '여기는 트리플 앱이 필요해요',
-            ])}
-          </Modal.Title>
+          <Modal.Title>여기는 트리플 앱이 필요해요</Modal.Title>
           {description ? (
             <Text center alpha={0.7} size="small">
-              {t(description)}
+              {description}
             </Text>
           ) : null}
         </Modal.Body>
@@ -166,7 +155,7 @@ export function TransitionModal({
               window.location.href = deepLink
             }}
           >
-            {t(['teuripeul-gagi', '트리플 가기'])}
+            트리플 가기
           </Modal.Action>
         </Modal.Actions>
       </Modal>

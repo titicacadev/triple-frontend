@@ -133,7 +133,7 @@ export default function ChatbotCta({
           </ChatbotCloseButton>
         </ChatBalloon>
         <ChatbotIcon href={installUrl} onClick={handleClick}>
-          {t(['teuripeul', '트리플'])}
+          트리플
         </ChatbotIcon>
       </ChatbotContainer>
     </CSSTransition>

@@ -69,7 +69,7 @@ function shareNativeInterface({ params }: { params: SharingParams }) {
         webUrl: webUrl as string,
       },
       {
-        title: t(['teuripeuleseo-bogi', '트리플에서 보기']),
+        title: t('트리플 코리아에서 보기'),
         webUrl: webUrl as string,
         appUrl,
       },

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useTranslation } from '@titicaca/next-i18next'
 import { useEnv } from '@titicaca/react-contexts'
 
 import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
@@ -18,8 +17,6 @@ export function FacebookAppLinkMeta({
   appPath?: string
   appPackageName?: string
 }) {
-  const { t } = useTranslation('common-web')
-
   const { appUrlScheme } = useEnv()
 
   return (
@@ -27,12 +24,12 @@ export function FacebookAppLinkMeta({
       <meta
         key="al-ios-app-name"
         property="al:ios:app_name"
-        content={appName ?? t(['teuripeul', '트리플'])}
+        content={appName ?? '트리플'}
       />
       <meta
         key="al-android-app-name"
         property="al:android:app_name"
-        content={appName ?? t(['teuripeul', '트리플'])}
+        content={appName ?? '트리플'}
       />
       <meta
         key="al-ios-url"

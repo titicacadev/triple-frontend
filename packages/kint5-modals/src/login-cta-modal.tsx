@@ -67,10 +67,7 @@ export function LoginCtaModalProvider({
           return true
         }}
       >
-        {t([
-          'rogeuinhago-teuripeuleul-deo-pyeonhage-iyonghaseyo',
-          '로그인하고 트리플을\n더 편하게 이용하세요🙂',
-        ])}
+        {t('로그인하고 트리플 코리아를\n더 편하게 이용하세요🙂')}
       </Confirm>
     </LoginCtaContext.Provider>
   )

@@ -258,10 +258,7 @@ export function TnaProductWithPrice({
 
           {hasSelfPackageBenefit && (
             <Text bold size="small" color="gray700" margin={{ top: 4 }}>
-              {t([
-                'selpeupaekiji-cugahalin-ganeung',
-                '셀프패키지 추가할인 가능',
-              ])}
+              셀프패키지 추가할인 가능
             </Text>
           )}
         </Container>
