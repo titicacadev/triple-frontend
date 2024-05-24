@@ -14,5 +14,5 @@ export function i18nizeHref({
   const webUrlBase = webUrlBaseArg || process.env.NEXT_PUBLIC_WEB_URL_BASE
   const basePath = basePathArg || process.env.NEXT_PUBLIC_BASE_PATH
 
-  return `${webUrlBase}${basePath}/${lang}${path}`
+  return `${webUrlBase}/${lang}${basePath}${path}`
 }
