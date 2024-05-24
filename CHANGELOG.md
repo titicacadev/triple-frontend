@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v13.25.3
+
+```
+### triple-document
+
+- triple-document 내 쿠폰 모달 닫기 버튼 문구 수정 [#3243](https://github.com/titicacadev/triple-frontend/pull/3243)
+
+### core-elements
+
+- input error border-color 변경 [#3244](https://github.com/titicacadev/triple-frontend/pull/3244)
+```
+
 ## v13.25.2
 
 ```
@@ -4409,11 +4421,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
