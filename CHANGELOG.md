@@ -2,15 +2,12 @@
 
 ## v13.26.0
 
-```
 ### footer
 
 - [footer] 인터파크 사업장 주소 변경 [#3247](https://github.com/titicacadev/triple-frontend/pull/3247)
-```
 
 ## v13.25.3
 
-```
 ### triple-document
 
 - triple-document 내 쿠폰 모달 닫기 버튼 문구 수정 [#3243](https://github.com/titicacadev/triple-frontend/pull/3243)
@@ -18,19 +15,16 @@
 ### core-elements
 
 - input error border-color 변경 [#3244](https://github.com/titicacadev/triple-frontend/pull/3244)
-```
 
 ## v13.25.2
 
-```
 ### triple-document
 
-- [triple-document] StickyTabs 이미지에  object-fit 적용 [#3238](https://github.com/titicacadev/triple-frontend/pull/3238)
+- [triple-document] StickyTabs 이미지에 object-fit 적용 [#3238](https://github.com/titicacadev/triple-frontend/pull/3238)
 
 ### view-utilities
 
 - [view-utilities] 맞춤일정 페이지를 routelist에 추가합니다. [#3239](https://github.com/titicacadev/triple-frontend/pull/3239)
-```
 
 ## v13.25.1
 
@@ -61,15 +55,12 @@
 
 ## v13.23.1
 
-```
 ### image-viewer
 
 - [image-viewer] 첫번째 이미지를 클릭했을 때 비정상적으로 작동하는 버그를 수정합니다. [#3187](https://github.com/titicacadev/triple-frontend/pull/3187)
-```
 
 ## v13.23.0
 
-```
 ### modals
 
 - [modals] 앱설치유도 모달에 POI 기본정보 type을 추가합니다. [#3182](https://github.com/titicacadev/triple-frontend/pull/3182)
@@ -77,11 +68,9 @@
 ### public-header
 
 - [public-header] 헤더 로고에 onClick props를 추가합니다. [#3183](https://github.com/titicacadev/triple-frontend/pull/3183)
-```
 
 ## v13.22.0
 
-```
 ### image-viewer
 
 - [image-viewer] 확대뷰/격자뷰를 위한 이미지 뷰어 패키지를 생성합니다 [#3165](https://github.com/titicacadev/triple-frontend/pull/3165)
@@ -116,19 +105,15 @@
 ### triple-document
 
 - [triple-document] itinerary의 transportation 타입에 bike를 추가합니다 [#3177](https://github.com/titicacadev/triple-frontend/pull/3177)
-```
 
 ## v13.21.1
 
-```
 ### review
 
 - [reviews] 리뷰 더보기의 로그인 returnUrl을 리뷰 목록 페이지로 수정합니다. [#3167](https://github.com/titicacadev/triple-frontend/pull/3167)
-```
 
 ## v13.21.0
 
-```
 ### modals
 
 - [review] 웹에서도 리뷰 더보기 버튼을 통해 리뷰 상세 페이지에 접근할 수 있도록 수정합니다 [#3156](https://github.com/titicacadev/triple-frontend/pull/3156)
@@ -151,32 +136,25 @@
 
 - [review] 웹에서도 리뷰 더보기 버튼을 통해 리뷰 상세 페이지에 접근할 수 있도록 수정합니다 [#3156](https://github.com/titicacadev/triple-frontend/pull/3156)
 - [view-utilities] 항공 시세 페이지를 routelist에 추가합니다 [#3160](https://github.com/titicacadev/triple-frontend/pull/3160)
-```
 
 ## v13.20.0
 
-```
 ### view-utilities
 
 - [view-utilities] 말줄임 함수 수정 [#3154](https://github.com/titicacadev/triple-frontend/pull/3154)
-```
 
 ## v13.19.2
 
-```
 ### modals
 
 - TransitionModal에 타입을 추가합니다. [#3144](https://github.com/titicacadev/triple-frontend/pull/3144)
-```
 
 ## v13.19.1
 
-```
 ### nearby-pois
 
 - [nearby-pois] 더보기 버튼 클릭 시 api 호출이 중복되는 이슈 수정 [#3140](https://github.com/titicacadev/triple-frontend/pull/3140)
 - [nearby-pois] pois 중복을 제거하는 로직을 수정합니다. [#3141](https://github.com/titicacadev/triple-frontend/pull/3141)
-```
 
 ## v13.19.0
 
@@ -4429,11 +4407,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
