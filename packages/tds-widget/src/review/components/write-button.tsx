@@ -1,7 +1,6 @@
 import { ButtonBase } from '@titicaca/tds-ui'
 import {
   useTrackEvent,
-  TransitionType,
   useClientAppCallback,
   useSessionCallback,
 } from '@titicaca/triple-web'
@@ -26,7 +25,7 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   const { writeReview } = useClientActions()
 
   const handleClick = useClientAppCallback(
-    TransitionType.ReviewWrite,
+    { triggeredEventAction: '리뷰_리뷰쓰기' },
     useSessionCallback(
       useCallback(() => {
         trackEvent({

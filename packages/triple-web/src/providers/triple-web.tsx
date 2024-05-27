@@ -15,7 +15,7 @@ import type { I18nValue } from '../i18n/types'
 import type { SessionValue } from '../session/types'
 import type { UserAgentValue } from '../user-agent/types'
 import { LoginCtaModal } from '../modal/components/login-cta-modal'
-import { TransitionModal } from '../modal/components/transition-modal'
+import { AppInstallCtaModal } from '../modal/components/app-install-cta-modal'
 
 export interface TripleWebProps extends PropsWithChildren {
   clientAppProvider: ClientAppValue
@@ -43,7 +43,7 @@ export function TripleWeb({
                 <ModalProvider>
                   {children}
                   <LoginCtaModal />
-                  <TransitionModal />
+                  <AppInstallCtaModal />
                 </ModalProvider>
               </HashRouterProvider>
             </UserAgentContext.Provider>

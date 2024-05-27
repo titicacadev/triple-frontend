@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Button, Container, Rating, Text } from '@titicaca/tds-ui'
 import {
   useTrackEvent,
-  TransitionType,
   useClientAppCallback,
   useSessionCallback,
 } from '@titicaca/triple-web'
@@ -76,7 +75,7 @@ export function ReviewsPlaceholder({
   const { writeReview, navigateReviewList } = useClientActions()
 
   const handleFullClick = useClientAppCallback(
-    TransitionType.OpenReviewList,
+    { triggeredEventAction: '리뷰_리스트더보기_선택' },
     useSessionCallback(
       useCallback(() => {
         navigateReviewList({
@@ -99,7 +98,7 @@ export function ReviewsPlaceholder({
   )
 
   const handleWriteClick = useClientAppCallback(
-    TransitionType.ReviewWrite,
+    { triggeredEventAction: '리뷰_리뷰쓰기' },
     useSessionCallback(
       useCallback(
         (rating = 0) => {

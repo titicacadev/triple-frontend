@@ -1,33 +1,22 @@
 import {
   useClientApp,
   useEnv,
-  TransitionType,
-  useTransitionModal,
+  useAppInstallCtaModal,
 } from '@titicaca/triple-web'
-
-export interface OpenNativeLinkOptions {
-  /**
-   * Transition modal 종류.
-   */
-  transitionType: TransitionType
-}
 
 export function useOpenNativeLink() {
   const app = useClientApp()
   const { appUrlScheme } = useEnv()
-  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
 
   const openNativeLink = (
     /**
      * 딥링크 path.
      */
     path: string,
-    options: OpenNativeLinkOptions = {
-      transitionType: TransitionType.General,
-    },
   ) => {
     if (!app) {
-      return showTransitionModal(options.transitionType)
+      return showAppInstallCtaModal()
     }
 
     const href = (window.location.href = `${appUrlScheme}://${path}`)

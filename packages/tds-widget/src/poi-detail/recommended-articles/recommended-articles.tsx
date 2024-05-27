@@ -9,11 +9,7 @@ import {
   Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
-import {
-  useTrackEvent,
-  TransitionType,
-  useTransitionModal,
-} from '@titicaca/triple-web'
+import { useTrackEvent, useAppInstallCtaModal } from '@titicaca/triple-web'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import styled from 'styled-components'
 
@@ -72,7 +68,7 @@ export function PoiDetailRecommendedArticles({
   const [articleCardCta, setArticleCardCta] =
     useState<InventoryItemMeta | null>(null)
 
-  const { show } = useTransitionModal()
+  const { show } = useAppInstallCtaModal()
   const trackEvent = useTrackEvent()
 
   useEffect(() => {
@@ -119,7 +115,9 @@ export function PoiDetailRecommendedArticles({
   )
 
   const handleShowMoreClick = useCallback(() => {
-    onMoreClick ? onMoreClick() : show(TransitionType.Article)
+    onMoreClick
+      ? onMoreClick()
+      : show({ triggeredEventAction: '추천가이드_더보기' })
   }, [onMoreClick, show])
 
   if (!recommendedArticles || recommendedArticles.length === 0) {

@@ -3,7 +3,6 @@ import { useCallback } from 'react'
 import { generateUrl } from '@titicaca/view-utilities'
 import {
   useEnv,
-  TransitionType,
   useClientAppCallback,
   useSessionCallback,
 } from '@titicaca/triple-web'
@@ -39,7 +38,7 @@ export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
   )
 
   return useClientAppCallback(
-    TransitionType.AddPoisToTripSelect,
+    { triggeredEventAction: '내일정으로담기_선택' },
     useSessionCallback(handleFn),
   )
 }

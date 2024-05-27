@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import {
   useTrackEvent,
   useHashRouter,
-  TransitionType,
   useSessionCallback,
   useClientAppCallback,
   useClientAppActions,
@@ -152,7 +151,7 @@ export function ReviewElement({
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
   const handleUserClick = useClientAppCallback(
-    TransitionType.ReviewProfile,
+    { triggeredEventAction: '리뷰_프로필' },
     useSessionCallback(
       useCallback(() => {
         if (!review.user) {
@@ -191,7 +190,7 @@ export function ReviewElement({
   )
 
   const handleMenuClick = useClientAppCallback(
-    TransitionType.ReviewMenuSelect,
+    { triggeredEventAction: '리뷰_메뉴_선택' },
     useSessionCallback(
       useCallback(() => {
         if (isMyReview) {
@@ -206,7 +205,7 @@ export function ReviewElement({
   )
 
   const handleReviewClick = useClientAppCallback(
-    TransitionType.ReviewSelect,
+    { triggeredEventAction: '리뷰_리뷰내용_선택' },
     useCallback(() => {
       trackEvent({
         ga: ['리뷰_리뷰내용_선택', review.id],
@@ -259,7 +258,7 @@ export function ReviewElement({
   )
 
   const handleMessageCountClick = useClientAppCallback(
-    TransitionType.ReviewCommentSelect,
+    { triggeredEventAction: '리뷰_댓글_선택' },
     useSessionCallback(
       useCallback(() => {
         trackEvent({
