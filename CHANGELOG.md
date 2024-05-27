@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.26.0
+
+```
+### footer
+
+- [footer] 인터파크 사업장 주소 변경 [#3247](https://github.com/titicacadev/triple-frontend/pull/3247)
+```
+
 ## v13.25.3
 
 ```
@@ -4421,11 +4429,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
