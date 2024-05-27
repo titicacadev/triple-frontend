@@ -8,7 +8,7 @@ const stories = fs
   .map((pkg) => `../packages/${pkg}/src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))`)
 
 const config: StorybookConfig = {
-  stories,
+  stories: ['../stories/**/*.mdx', ...stories],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
