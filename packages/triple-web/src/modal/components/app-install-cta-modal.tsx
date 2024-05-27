@@ -2,11 +2,13 @@ import { Modal, Text } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { generateUrl } from '@titicaca/view-utilities'
 
 import { APP_INSTALL_CTA_MODAL_HASH } from '../constants'
 import { useModal } from '../context'
 import { useHashRouter } from '../../hash-router/use-hash-router'
 import { trackEvent } from '../../event-tracking/utils/track-event'
+import { useEnv } from '../../env'
 
 const IconImage = styled.img`
   display: block;
@@ -19,6 +21,7 @@ export function AppInstallCtaModal() {
   const { t } = useTranslation('triple-frontend')
   const { appInstallCtaModalRef, eventTrackingContextForkRef } = useModal()
   const { removeUriHash, uriHash } = useHashRouter()
+  const { appUrlScheme } = useEnv()
 
   const open = uriHash === APP_INSTALL_CTA_MODAL_HASH
   const eventLabel = appInstallCtaModalRef.current.triggeredEventAction
@@ -42,10 +45,12 @@ export function AppInstallCtaModal() {
       eventTrackingContextForkRef.current,
     )
 
-    if (appInstallCtaModalRef.current.deepLink) {
-      // TODO: default deepLink를 app home으로 정의하기?
-      window.location.href = appInstallCtaModalRef.current.deepLink
-    }
+    const appMain = generateUrl({
+      scheme: appUrlScheme,
+      path: '/main',
+    })
+
+    window.location.href = appInstallCtaModalRef.current.deepLink || appMain
   }
 
   useEffect(() => {
