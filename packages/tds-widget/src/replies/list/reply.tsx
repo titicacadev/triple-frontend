@@ -14,7 +14,6 @@ import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
 import {
   useHashRouter,
-  TransitionType,
   useSessionCallback,
   useClientAppCallback,
 } from '@titicaca/triple-web'
@@ -191,7 +190,7 @@ export function Reply({
   )
 
   const handleReportReplyClick = useClientAppCallback(
-    TransitionType.General,
+    {},
     useCallback(
       (id: string) => {
         navigate(`/reply/${id}/report`)
@@ -234,7 +233,7 @@ export function Reply({
   })
 
   const handleUserClick = useClientAppCallback(
-    TransitionType.General,
+    {},
     useSessionCallback(
       useCallback(
         (href: string) => {
@@ -436,8 +435,8 @@ function Content({
   const foldedPosition = findFoldedPosition(5, text)
   const { navigate } = useNavigate()
 
-  const handleMentiondUserNameClick = useClientAppCallback(
-    TransitionType.General,
+  const handleMentionedUserNameClick = useClientAppCallback(
+    {},
     useCallback(
       (href: string) => {
         navigate(href)
@@ -459,7 +458,7 @@ function Content({
           <>
             {mentionedUser && !blinded && (
               <MentionUser
-                onClick={() => handleMentiondUserNameClick(mentionedUser.href)}
+                onClick={() => handleMentionedUserNameClick(mentionedUser.href)}
               >
                 {mentionedUser?.name}
               </MentionUser>

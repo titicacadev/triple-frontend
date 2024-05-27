@@ -9,8 +9,7 @@ import {
   useEnv,
   useSessionAvailability,
   useLoginCtaModal,
-  useTransitionModal,
-  TransitionType,
+  useAppInstallCtaModal,
 } from '@titicaca/triple-web'
 import { hasAccessibleTripleNativeClients } from '@titicaca/triple-web-to-native-interfaces'
 import qs from 'qs'
@@ -20,15 +19,15 @@ import { OpenOutlinkOptions, useOpenNativeLink, useOpenOutlink } from '../links'
 import canonizeTargetAddress from './canonization'
 
 export function useNavigate({
-  transitionType = TransitionType.General,
   changeLocationHref = defaultChangeLocationHref,
+  appInstallCtaTriggeredEventAction,
 }: {
   changeLocationHref?: (href: string) => void
-  transitionType?: TransitionType
+  appInstallCtaTriggeredEventAction?: string
 } = {}) {
   const { webUrlBase, appUrlScheme } = useEnv()
   const sessionAvailable = useSessionAvailability()
-  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
   const app = useClientApp()
   const openOutlink = useOpenOutlink()
@@ -47,9 +46,16 @@ export function useNavigate({
         return
       }
 
-      showTransitionModal(transitionType)
+      showAppInstallCtaModal({
+        triggeredEventAction: appInstallCtaTriggeredEventAction,
+      })
     },
-    [changeLocationHref, showTransitionModal, transitionType, webUrlBase],
+    [
+      changeLocationHref,
+      showAppInstallCtaModal,
+      webUrlBase,
+      appInstallCtaTriggeredEventAction,
+    ],
   )
 
   const navigateInApp = useCallback(

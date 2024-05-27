@@ -1,17 +1,16 @@
 import qs from 'qs'
-import { TransitionType } from '@titicaca/triple-web'
 
 import { WebActionParams } from './types'
 
 export default async function requireTripleClient({
   url: { path, query } = {},
-  options: { app, showTransitionModal } = {},
+  options: { app, showAppInstallCtaModal } = {},
   handler,
 }: WebActionParams) {
   if (path === '/web-action/require-triple-client' && query) {
     if (!app) {
-      if (showTransitionModal) {
-        showTransitionModal(TransitionType.General)
+      if (showAppInstallCtaModal) {
+        showAppInstallCtaModal()
       }
     } else {
       const { url } = qs.parse(query)

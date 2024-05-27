@@ -23,7 +23,7 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
         {
           returnUrl?: string
           returnValue?: boolean
-          skipTransitionModal?: boolean
+          skipAppInstallCtaModal?: boolean
           triggeredEventAction?: string
         },
       ]
@@ -40,11 +40,11 @@ export function useSessionCallback<T extends (...args: any[]) => any>(
           const {
             returnUrl,
             returnValue,
-            skipTransitionModal,
+            skipAppInstallCtaModal,
             triggeredEventAction,
           } = options[0]
 
-          if (skipTransitionModal) {
+          if (skipAppInstallCtaModal) {
             login({ returnUrl })
           } else {
             show({ returnUrl, triggeredEventAction })

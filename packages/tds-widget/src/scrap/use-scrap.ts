@@ -1,12 +1,11 @@
 import { useCallback, useContext } from 'react'
 import {
-  TransitionType,
   useClientApp,
   useClientAppActions,
   useLoginCtaModal,
   useSessionAvailability,
   useTrackEventWithMetadata,
-  useTransitionModal,
+  useAppInstallCtaModal,
 } from '@titicaca/triple-web'
 
 import type { Target } from './types'
@@ -35,7 +34,7 @@ export function useScrap() {
   const { notifyScraped, notifyUnscraped } = useClientAppActions()
   const sessionAvailable = useSessionAvailability()
   const { show: showLoginCta } = useLoginCtaModal()
-  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const trackEventWithMetadata = useTrackEventWithMetadata()
 
   const deriveCurrentStateAndCount = useCallback(
@@ -91,7 +90,7 @@ export function useScrap() {
       }
 
       if (!app) {
-        return showTransitionModal(TransitionType.Scrap)
+        return showAppInstallCtaModal({ triggeredEventAction: 'POI저장' })
       }
 
       if (!sessionAvailable) {
@@ -111,10 +110,11 @@ export function useScrap() {
       }
     },
     [
+      dispatch,
       updating,
       app,
       sessionAvailable,
-      showTransitionModal,
+      showAppInstallCtaModal,
       showLoginCta,
       notifyScraped,
       trackEventWithMetadata,
@@ -139,7 +139,7 @@ export function useScrap() {
       }
 
       if (!app) {
-        return showTransitionModal(TransitionType.Scrap)
+        return showAppInstallCtaModal({ triggeredEventAction: 'POI저장' })
       }
 
       if (!sessionAvailable) {
@@ -159,10 +159,11 @@ export function useScrap() {
       }
     },
     [
+      dispatch,
       updating,
       app,
       sessionAvailable,
-      showTransitionModal,
+      showAppInstallCtaModal,
       showLoginCta,
       notifyUnscraped,
       trackEventWithMetadata,

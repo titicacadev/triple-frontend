@@ -4,7 +4,7 @@ import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { useNavigate } from './use-navigate'
 
-const transitionModalShowMockFn = jest.fn()
+const appInstallCtaModalShowMockFn = jest.fn()
 const loginModalShowMockFn = jest.fn()
 const openOutlinkMockFn = jest.fn()
 const openNativeLinkMockFn = jest.fn()
@@ -14,9 +14,9 @@ jest.mock('@titicaca/triple-web', () => ({
   useEnv: jest.fn().mockReturnValue({
     webUrlBase: 'https://triple.guide',
   }),
-  useTransitionModal: jest
+  useAppInstallCtaModal: jest
     .fn()
-    .mockImplementation(() => ({ show: transitionModalShowMockFn })),
+    .mockImplementation(() => ({ show: appInstallCtaModalShowMockFn })),
   useLoginCtaModal: jest.fn().mockImplementation(() => ({
     show: loginModalShowMockFn,
   })),
@@ -82,9 +82,9 @@ describe('브라우저', () => {
       navigate(href)
 
       expect(changeLocationHref).not.toHaveBeenCalled()
-      expect(transitionModalShowMockFn).toHaveBeenCalledTimes(1)
+      expect(appInstallCtaModalShowMockFn).toHaveBeenCalledTimes(1)
 
-      transitionModalShowMockFn.mockRestore()
+      appInstallCtaModalShowMockFn.mockRestore()
     })
   })
 
@@ -102,9 +102,9 @@ describe('브라우저', () => {
     navigate(`/inlink?path=${encodeURIComponent('/login')}`)
 
     expect(changeLocationHref).not.toHaveBeenCalled()
-    expect(transitionModalShowMockFn).toHaveBeenCalledTimes(1)
+    expect(appInstallCtaModalShowMockFn).toHaveBeenCalledTimes(1)
 
-    transitionModalShowMockFn.mockRestore()
+    appInstallCtaModalShowMockFn.mockRestore()
   })
 })
 

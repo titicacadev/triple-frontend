@@ -1,4 +1,4 @@
-import { ClientAppValue, TransitionType } from '@titicaca/triple-web'
+import { ClientAppValue } from '@titicaca/triple-web'
 import { UrlElements } from '@titicaca/view-utilities'
 
 export interface NavigateOptions {
@@ -23,7 +23,7 @@ export interface ContextOptions {
     target: TargetType
   }) => void
   app?: ClientAppValue
-  showTransitionModal?: (type: TransitionType) => void
+  showAppInstallCtaModal?: () => void
 }
 
 export interface WebActionParams {

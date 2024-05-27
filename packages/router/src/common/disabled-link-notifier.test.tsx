@@ -102,8 +102,8 @@ describe('allowSource가 "app"일 때 앱이 아니면 앱 설치 유도 모달 
 
 describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 유도 모달을, 인증 정보가 없으면 로그인 유도 모달을 표시함수를 호출합니다.', () => {
   test.each([
-    [true, true, 'showTransitionModal'],
-    [true, false, 'showTransitionModal'],
+    [true, true, 'showAppInstallCtaModal'],
+    [true, false, 'showAppInstallCtaModal'],
     [false, true, undefined],
     [false, false, 'showLoginCtaModal'],
   ])(
@@ -130,7 +130,7 @@ describe('allowSource가 "app-with-session"일 때 앱이 아니면 앱 설치 �
 
         if (functionType === 'showLoginCtaModal') {
           expect(screen.getByText('로그인이 필요합니다.')).toBeVisible()
-        } else if (functionType === 'showTransitionModal') {
+        } else if (functionType === 'showAppInstallCtaModal') {
           expect(screen.getByText('여기는 트리플 앱이 필요해요')).toBeVisible()
         }
       }

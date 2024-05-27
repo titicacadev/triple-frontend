@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import {
-  TransitionType,
   useClientApp,
   useLoginCtaModal,
   useSessionAvailability,
-  useTransitionModal,
+  useAppInstallCtaModal,
 } from '@titicaca/triple-web'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
@@ -26,7 +25,7 @@ export function useDisabledLinkNotifierCreator({
   const { t } = useTranslation('triple-frontend')
   const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
-  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const { show: showLoginCtaModal } = useLoginCtaModal()
 
   const createDisabledLinkNotifier = ({
@@ -40,7 +39,7 @@ export function useDisabledLinkNotifierCreator({
 
     if (!app && (allowSource === 'app' || allowSource === 'app-with-session')) {
       return () => {
-        showTransitionModal(TransitionType.General)
+        showAppInstallCtaModal()
       }
     }
 

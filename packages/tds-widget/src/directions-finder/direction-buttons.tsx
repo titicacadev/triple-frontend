@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next'
 import {
   useTrackEvent,
   useHashRouter,
-  useTransitionModal,
-  TransitionType,
+  useAppInstallCtaModal,
   useClientApp,
 } from '@titicaca/triple-web'
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
@@ -42,7 +41,7 @@ export function DirectionButtons({
 
   const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
-  const { show: showTransitionModal } = useTransitionModal()
+  const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const trackEvent = useTrackEvent()
 
   const handleAskToLocalsClick = useCallback(() => {
@@ -53,10 +52,8 @@ export function DirectionButtons({
       },
     })
 
-    app
-      ? addUriHash(HASH_ASK_TO_LOCALS_POPUP)
-      : showTransitionModal(TransitionType.General)
-  }, [trackEvent, app, addUriHash, showTransitionModal])
+    app ? addUriHash(HASH_ASK_TO_LOCALS_POPUP) : showAppInstallCtaModal()
+  }, [trackEvent, app, addUriHash, showAppInstallCtaModal])
 
   const hasAskToLocalsButton = !!(localName && localAddress)
   const hasLineBreak = hasAskToLocalsButton && !!onCallGrabButtonClick

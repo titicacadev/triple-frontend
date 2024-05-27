@@ -5,7 +5,7 @@ import { createTestWrapper } from '@titicaca/triple-web-test-utils'
 
 import { useOpenNativeLink } from './use-open-native-link'
 
-const transitionModalShowMockFn = jest.fn()
+const showAppInstallCtaModalMockFn = jest.fn()
 
 jest.mock('@titicaca/triple-web', () => ({
   ...jest.requireActual('@titicaca/triple-web'),
@@ -13,9 +13,9 @@ jest.mock('@titicaca/triple-web', () => ({
     appUrlScheme: 'triple-test',
     webUrlBase: 'https://triple.guide',
   }),
-  useTransitionModal: jest
+  useAppInstallCtaModal: jest
     .fn()
-    .mockImplementation(() => ({ show: transitionModalShowMockFn })),
+    .mockImplementation(() => ({ show: showAppInstallCtaModalMockFn })),
   useSessionAvailability: jest.fn(),
 }))
 
@@ -50,12 +50,12 @@ test('인 앱 웹뷰에서는 딥링크로 이동합니다.', () => {
   expect(window.location.href).toBe('triple-test:///test-path')
 })
 
-test('인 앱 웹뷰가 아니면 TransitionModal을 엽니다.', () => {
+test('인 앱 웹뷰가 아니면 AppInstallCtaModal을 엽니다.', () => {
   const { result } = renderHook(() => useOpenNativeLink(), {
     wrapper: createTestWrapper(),
   })
 
   result.current('/test-path')
 
-  expect(transitionModalShowMockFn).toHaveBeenCalled()
+  expect(showAppInstallCtaModalMockFn).toHaveBeenCalled()
 })
