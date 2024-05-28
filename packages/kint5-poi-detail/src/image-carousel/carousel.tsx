@@ -1,6 +1,8 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
 import styled from 'styled-components'
-import ImageCarousel, { CarouselImageMeta } from '@titicaca/image-carousel'
+import ImageCarousel, {
+  CarouselImageMeta,
+} from '@titicaca/kint5-image-carousel'
 import {
   Container,
   Responsive,

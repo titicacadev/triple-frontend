@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { RendererParams } from '@titicaca/image-carousel'
+import { RendererParams } from '@titicaca/kint5-image-carousel'
 import { FlexBox } from '@titicaca/kint5-core-elements'
 
 const PageLabelText = styled.span`
