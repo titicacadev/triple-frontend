@@ -1,154 +1,69 @@
-import { Container } from '@titicaca/kint5-core-elements'
+import { Video } from '@titicaca/kint5-core-elements'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
-import { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { MouseEventHandler, useRef } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'
-import { useIntersection } from '@titicaca/intersection-observer'
 
 import { CarouselImageMeta } from './types'
 
 interface Props {
   medium: CarouselImageMeta
-  height?: number
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
-  overlay?: ReactNode
+  hideControls?: boolean
+  showNativeControls?: boolean
   onClick?: MouseEventHandler
 }
 
-const HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
-  mini: '80px',
-  small: '110px',
-  medium: '200px',
-  large: '400px',
-}
-
-const Frame = styled(Container)<{
-  size?: GlobalSizes
-  height?: number
-  frame?: FrameRatioAndSizes
-}>`
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: ${({ height, size }) =>
-    (height && `${height}px`) || (size ? HEIGHT_OPTIONS[size] : '')};
-`
-
-const Poster = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-`
-
-const Video = styled.video<{ isOncePlayed: boolean }>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.3s;
-  opacity: ${({ isOncePlayed }) => (isOncePlayed ? 1 : 0)};
-`
-
-const PLAY_BUTTON_IMAGE_URL =
-  'https://assets.triple.guide/images/btn-video-play@3x.png'
-
-const PlayPauseButtonBase = styled.span`
-  position: absolute;
-  border: none;
-  background: none;
-  width: 60px;
-  height: 60px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: url(${PLAY_BUTTON_IMAGE_URL});
-  background-size: cover;
-
-  &:focus {
-    outline: none;
-  }
-
-  transition: opacity 0.3s;
-`
-
 function VideoContent({
   medium,
-  height,
   globalSize,
   globalFrame,
-  overlay,
+  hideControls,
+  showNativeControls,
   onClick,
 }: Props) {
-  const [isOncePlayed, setIsOncePlayed] = useState(false)
-  const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
-    threshold: 0.5,
-  })
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   const {
     deviceState: { autoplay, networkType },
   } = useDeviceContext()
 
-  const [videoAutoplay, setVideoAutoPlay] = useState(
+  const videoAutoPlay =
     autoplay === 'always' ||
-      (autoplay === 'wifi_only' && networkType === 'wifi'),
-  )
-
-  useEffect(() => {
-    async function togglePlay() {
-      if (!videoAutoplay || !ref.current) {
-        return
-      }
-
-      ref.current.playsInline = true
-      ref.current.muted = true
-
-      try {
-        if (isIntersecting) {
-          ref.current.play()
-        } else {
-          ref.current.pause()
-        }
-      } catch (error) {
-        if (error instanceof DOMException && error.name === 'NotAllowedError') {
-          setVideoAutoPlay(false)
-        }
-      }
-    }
-
-    togglePlay()
-  }, [isIntersecting, ref, videoAutoplay])
+    (autoplay === 'wifi_only' && networkType === 'wifi')
 
   const { frame: imageFrame, size: imageSize } = medium
   const size = globalSize || imageSize
   const frame = size ? undefined : globalFrame || imageFrame
 
+  const handler: MouseEventHandler = (e) => {
+    if (videoRef.current) {
+      const target = e.target as HTMLDivElement
+      const isVideoControlVisible =
+        window.getComputedStyle(target).opacity !== '0'
+
+      // 비디오 컨트롤(재생버튼, etc.)이 보이지 않는 경우
+      // 비디오 영역을 한 번 클릭(터치)했을 때 팝업이 뜨지 않도록 합니다.
+      if (videoRef.current.currentTime > 0 && !isVideoControlVisible) {
+        return
+      }
+    }
+
+    onClick?.(e)
+  }
+
   return (
-    <Frame size={size} height={height} frame={frame} onClick={onClick}>
-      <Poster style={{ backgroundImage: `url("${medium.sizes.large.url}")` }} />
-      <Video
-        ref={ref}
-        src={medium.video?.large.url}
-        controls={false}
-        loop
-        muted
-        playsInline
-        isOncePlayed={isOncePlayed}
-        onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
-      />
-      {!videoAutoplay && <PlayPauseButtonBase />}
-      {overlay || null}
-    </Frame>
+    <Video
+      ref={videoRef}
+      borderRadius={0}
+      frame={frame || 'large'}
+      fallbackImageUrl={medium.sizes.large.url}
+      src={medium.video?.large.url}
+      autoPlay={videoAutoPlay}
+      hideControls={!!hideControls}
+      showNativeControls={showNativeControls}
+      onClick={handler}
+    />
   )
 }
 

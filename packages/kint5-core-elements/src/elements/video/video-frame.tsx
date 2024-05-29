@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { MouseEventHandler, PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 import { MEDIA_FRAME_OPTIONS, FrameRatioAndSizes } from '../../commons'
@@ -34,11 +34,13 @@ export function VideoFrame({
   frame,
   fallbackImageUrl,
   removeFrame,
+  onClick,
 }: PropsWithChildren<{
   borderRadius?: number
   frame: FrameRatioAndSizes
   fallbackImageUrl: string
   removeFrame?: boolean
+  onClick?: MouseEventHandler
 }>) {
   if (removeFrame) {
     return (
@@ -54,6 +56,7 @@ export function VideoFrame({
         borderRadius={borderRadius}
         frame={frame}
         fallbackImageUrl={fallbackImageUrl}
+        onClick={onClick}
       >
         {children}
       </VideoContainer>

@@ -16,6 +16,8 @@ interface Props {
   globalSize?: GlobalSizes
   globalFrame?: FrameRatioAndSizes
   overlay?: ReactNode
+  hideControls?: boolean
+  showNativeControls?: boolean
   ImageSource?: ImageSourceType
   onClick?: MouseEventHandler
 }
@@ -27,19 +29,19 @@ function Content({
   globalSize,
   globalFrame,
   overlay,
+  hideControls,
+  showNativeControls,
   ImageSource,
   onClick,
 }: Props) {
-  const isVideo = medium.type === 'video'
-
-  if (isVideo) {
+  if (medium.type === 'video') {
     return (
       <VideoContent
         medium={medium}
-        height={height}
         globalSize={globalSize}
         globalFrame={globalFrame}
-        overlay={overlay}
+        hideControls={hideControls}
+        showNativeControls={showNativeControls}
         onClick={onClick}
       />
     )

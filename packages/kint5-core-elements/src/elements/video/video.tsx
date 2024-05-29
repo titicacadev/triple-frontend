@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { MouseEventHandler, forwardRef } from 'react'
 
 import { FrameRatioAndSizes } from '../../commons'
 
@@ -20,6 +20,7 @@ interface Props {
   initialControlsHidden?: boolean
   showNativeControls?: boolean
   removeFrame?: boolean
+  onClick?: MouseEventHandler
 }
 
 export const Video = forwardRef<HTMLVideoElement, Props>(
@@ -39,6 +40,7 @@ export const Video = forwardRef<HTMLVideoElement, Props>(
       fallbackImageUrl,
       removeFrame,
       borderRadius,
+      onClick,
     },
     ref,
   ) => {
@@ -48,6 +50,7 @@ export const Video = forwardRef<HTMLVideoElement, Props>(
         removeFrame={removeFrame}
         frame={frame}
         fallbackImageUrl={fallbackImageUrl}
+        onClick={onClick}
       >
         <VideoElement
           src={src}

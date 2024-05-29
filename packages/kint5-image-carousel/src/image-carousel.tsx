@@ -20,6 +20,8 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   displayedTotalCount?: number
   optimized?: boolean
   currentPage?: number
+  hideVideoControls?: boolean
+  showVideoNativeControls?: boolean
 }
 
 /**
@@ -43,6 +45,8 @@ function ImageCarousel({
   onMove,
   onMoveEnd,
   currentPage,
+  hideVideoControls,
+  showVideoNativeControls,
 }: ImageCarouselProps) {
   const flickingRef = useRef<Flicking>(null)
 
@@ -90,6 +94,8 @@ function ImageCarousel({
             optimized={optimized}
             overlay={overlay}
             ImageSource={ImageSource}
+            hideControls={hideVideoControls}
+            showNativeControls={showVideoNativeControls}
             onClick={(event) => handleContentClick(event, image)}
           />
         )

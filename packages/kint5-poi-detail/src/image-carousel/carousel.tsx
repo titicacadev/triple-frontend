@@ -142,6 +142,7 @@ export default function Carousel({
       <Responsive maxWidth={706}>
         <FixedRatio ratio={0.6}>
           <ImageCarousel
+            hideVideoControls
             images={visibleImages}
             currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
@@ -163,6 +164,7 @@ export default function Carousel({
           }}
         >
           <ImageCarousel
+            hideVideoControls
             images={visibleImages}
             currentPage={currentPage}
             displayedTotalCount={totalImagesCount}
