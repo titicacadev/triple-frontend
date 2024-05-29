@@ -724,8 +724,8 @@ importers:
         specifier: ^7.6.2
         version: 7.6.2
       ua-parser-js:
-        specifier: ^1.0.37
-        version: 1.0.37
+        specifier: ^1.0.38
+        version: 1.0.38
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -764,8 +764,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       ua-parser-js:
-        specifier: ^1.0.37
-        version: 1.0.37
+        specifier: ^1.0.38
+        version: 1.0.38
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -792,8 +792,8 @@ importers:
         specifier: ^6.12.1
         version: 6.12.1
       ua-parser-js:
-        specifier: ^1.0.37
-        version: 1.0.37
+        specifier: ^1.0.38
+        version: 1.0.38
       universal-cookie:
         specifier: ^4.0.4
         version: 4.0.4
@@ -835,8 +835,8 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       ua-parser-js:
-        specifier: ^1.0.37
-        version: 1.0.37
+        specifier: ^1.0.38
+        version: 1.0.38
 
   packages/type-definitions: {}
 
@@ -10170,8 +10170,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ua-parser-js@1.0.37:
-    resolution: {integrity: sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==}
+  ua-parser-js@1.0.38:
+    resolution: {integrity: sha512-Aq5ppTOfvrCMgAPneW1HfWj66Xi7XL+/mIy996R1/CLS/rcyJQm6QZdsKrUeivDFQ+Oc9Wyuwor8Ze8peEoUoQ==}
 
   uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
@@ -17745,7 +17745,7 @@ snapshots:
       object-assign: 4.1.1
       promise: 7.3.1
       setimmediate: 1.0.5
-      ua-parser-js: 1.0.37
+      ua-parser-js: 1.0.38
     transitivePeerDependencies:
       - encoding
 
@@ -22743,7 +22743,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  ua-parser-js@1.0.37: {}
+  ua-parser-js@1.0.38: {}
 
   uglify-js@3.17.4:
     optional: true
