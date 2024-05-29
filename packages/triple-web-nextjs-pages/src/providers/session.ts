@@ -1,4 +1,4 @@
-import { NextPageContext } from 'next'
+import type { NextPageContext } from 'next'
 import type { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
   ssrFetcherize,

@@ -1,6 +1,6 @@
 import {
   EventTrackingProvider as EventTrackingProviderBase,
-  EventTrackingProviderProps as EventTrackingProviderPropsBase,
+  type EventTrackingProviderProps as EventTrackingProviderPropsBase,
 } from '@titicaca/triple-web'
 import { useRouter } from 'next/router'
 

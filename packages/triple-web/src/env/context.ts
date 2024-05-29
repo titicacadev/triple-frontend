@@ -1,5 +1,5 @@
 import { createContext } from 'react'
 
-import { EnvValue } from './types'
+import type { EnvValue } from './types'
 
 export const EnvContext = createContext<EnvValue | undefined>(undefined)

@@ -1,6 +1,6 @@
 'use client'
 
-import { PropsWithChildren, createContext, useEffect } from 'react'
+import { type PropsWithChildren, createContext, useEffect } from 'react'
 
 import type { I18nValue } from './types'
 

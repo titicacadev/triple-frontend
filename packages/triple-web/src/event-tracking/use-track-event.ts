@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react'
 
 import { EventTrackingContext } from './context'
-import { TrackEventParams, trackEvent } from './utils/track-event'
+import { type TrackEventParams, trackEvent } from './utils/track-event'
 
 /**
  * 이벤트 트래킹을 사용합니다.

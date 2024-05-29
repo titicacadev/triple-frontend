@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
+import type { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { get } from '@titicaca/fetcher'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'

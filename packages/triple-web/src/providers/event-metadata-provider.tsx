@@ -1,6 +1,6 @@
 'use client'
 
-import { PropsWithChildren, useContext } from 'react'
+import { type PropsWithChildren, useContext } from 'react'
 
 import { EventMetadataContext } from '../event-tracking/context'
 import type { EventMetadataValue } from '../event-tracking/types'
