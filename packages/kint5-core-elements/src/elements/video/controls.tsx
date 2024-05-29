@@ -33,7 +33,7 @@ const CurrentTime = styled.div`
   left: 0;
   bottom: 12px;
   width: 45px;
-  text-align: nter;
+  text-align: center;
 `
 
 const Duration = styled.div`
