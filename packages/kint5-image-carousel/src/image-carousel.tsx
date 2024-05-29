@@ -1,5 +1,9 @@
 import { MouseEvent, ReactNode, useEffect, useRef } from 'react'
-import { ImageSourceType } from '@titicaca/kint5-core-elements'
+import {
+  ImageSourceType,
+  MuteButtonPosition,
+  MuteButtonPositionProvider,
+} from '@titicaca/kint5-core-elements'
 import { GlobalSizes, FrameRatioAndSizes } from '@titicaca/type-definitions'
 import Flicking from '@egjs/react-flicking'
 
@@ -22,6 +26,7 @@ interface ImageCarouselProps extends Omit<CarouselProps, 'pageLabelRenderer'> {
   currentPage?: number
   hideVideoControls?: boolean
   showVideoNativeControls?: boolean
+  muteButtonPosition?: MuteButtonPosition
 }
 
 /**
@@ -47,6 +52,7 @@ function ImageCarousel({
   currentPage,
   hideVideoControls,
   showVideoNativeControls,
+  muteButtonPosition,
 }: ImageCarouselProps) {
   const flickingRef = useRef<Flicking>(null)
 
@@ -66,41 +72,43 @@ function ImageCarousel({
   }, [currentPage])
 
   return (
-    <Carousel
-      flickingRef={flickingRef}
-      pageLabelRenderer={({ currentIndex }) =>
-        pageLabelRenderer({ currentIndex, totalCount })
-      }
-      margin={margin}
-      height={height}
-      borderRadius={borderRadius}
-      defaultIndex={defaultIndex}
-      onMoveStart={onMoveStart}
-      onMove={onMove}
-      onMoveEnd={onMoveEnd}
-    >
-      {images.map((image, index) => {
-        const overlay = showMoreRenderer
-          ? showMoreRenderer({ currentIndex: index, totalCount })
-          : null
+    <MuteButtonPositionProvider muteButtonPosition={muteButtonPosition}>
+      <Carousel
+        flickingRef={flickingRef}
+        pageLabelRenderer={({ currentIndex }) =>
+          pageLabelRenderer({ currentIndex, totalCount })
+        }
+        margin={margin}
+        height={height}
+        borderRadius={borderRadius}
+        defaultIndex={defaultIndex}
+        onMoveStart={onMoveStart}
+        onMove={onMove}
+        onMoveEnd={onMoveEnd}
+      >
+        {images.map((image, index) => {
+          const overlay = showMoreRenderer
+            ? showMoreRenderer({ currentIndex: index, totalCount })
+            : null
 
-        return (
-          <Content
-            key={image.id}
-            medium={image}
-            globalFrame={globalFrame}
-            globalSize={globalSize}
-            height={height}
-            optimized={optimized}
-            overlay={overlay}
-            ImageSource={ImageSource}
-            hideControls={hideVideoControls}
-            showNativeControls={showVideoNativeControls}
-            onClick={(event) => handleContentClick(event, image)}
-          />
-        )
-      })}
-    </Carousel>
+          return (
+            <Content
+              key={image.id}
+              medium={image}
+              globalFrame={globalFrame}
+              globalSize={globalSize}
+              height={height}
+              optimized={optimized}
+              overlay={overlay}
+              ImageSource={ImageSource}
+              hideControls={hideVideoControls}
+              showNativeControls={showVideoNativeControls}
+              onClick={(event) => handleContentClick(event, image)}
+            />
+          )
+        })}
+      </Carousel>
+    </MuteButtonPositionProvider>
   )
 }
 

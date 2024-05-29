@@ -154,6 +154,7 @@ export default function Carousel({
             pageLabelRenderer={noPageLabel ? () => null : ConditionalPageLabel}
             optimized={optimized}
             height={height}
+            muteButtonPosition="top-left"
           />
         </FixedRatio>
       </Responsive>
@@ -176,6 +177,7 @@ export default function Carousel({
             showMoreRenderer={CTA}
             pageLabelRenderer={noPageLabel ? () => null : ConditionalPageLabel}
             optimized={optimized}
+            muteButtonPosition="top-left"
           />
         </Container>
       </Responsive>

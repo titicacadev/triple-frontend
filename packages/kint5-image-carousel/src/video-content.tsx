@@ -1,4 +1,4 @@
-import { Video } from '@titicaca/kint5-core-elements'
+import { Video, useMuteButtonPosition } from '@titicaca/kint5-core-elements'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, useRef } from 'react'
 import { useDeviceContext } from '@titicaca/react-contexts'
@@ -24,6 +24,7 @@ function VideoContent({
 }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
+  const { muteButtonPosition } = useMuteButtonPosition()
   const {
     deviceState: { autoplay, networkType },
   } = useDeviceContext()
@@ -63,6 +64,7 @@ function VideoContent({
       hideControls={!!hideControls}
       showNativeControls={showNativeControls}
       onClick={handler}
+      muteButtonPosition={muteButtonPosition}
     />
   )
 }

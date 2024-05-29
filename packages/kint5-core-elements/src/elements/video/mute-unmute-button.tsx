@@ -1,6 +1,11 @@
 import { useCallback, RefObject, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 
+import {
+  MuteButtonPosition,
+  useMuteButtonPosition,
+} from './mute-button-position-context'
+
 const MUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-mute@3x.png'
 const UNMUTE_BUTTON_IMAGE_URL =
@@ -9,6 +14,12 @@ const UNMUTE_BUTTON_IMAGE_URL =
 interface MuteUnmuteButtonBaseProps {
   muted: boolean
   visible: boolean
+  muteButtonPosition: MuteButtonPosition
+}
+
+const MUTE_BUTTON_POSITION: { [position in MuteButtonPosition]: string } = {
+  'top-left': 'left: 3px;',
+  'top-right': 'right: 3px;',
 }
 
 const backgroundImage = ({ muted }: MuteUnmuteButtonBaseProps) =>
@@ -18,7 +29,7 @@ const MuteUnmuteButtonBase = styled.button<MuteUnmuteButtonBaseProps>`
   width: 40px;
   height: 36px;
   top: 3px;
-  right: 3px;
+  ${({ muteButtonPosition }) => MUTE_BUTTON_POSITION[muteButtonPosition]}
   background-image: url(${backgroundImage});
   background-size: cover;
 
@@ -43,6 +54,8 @@ export default function MuteUnmuteButton({
   videoRef,
   onMuteUnmute,
 }: Props) {
+  const { muteButtonPosition } = useMuteButtonPosition()
+
   const handleMuteUnmute = useCallback(
     (e: SyntheticEvent) => {
       e.stopPropagation()
@@ -63,6 +76,7 @@ export default function MuteUnmuteButton({
       muted={muted}
       visible={visible}
       onClick={handleMuteUnmute}
+      muteButtonPosition={muteButtonPosition}
     />
   )
 }
