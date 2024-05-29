@@ -38,13 +38,11 @@ export function useDisabledLinkNotifierCreator({
     }
 
     if (!app && (allowSource === 'app' || allowSource === 'app-with-session')) {
-      return () => {
-        showAppInstallCtaModal()
-      }
+      return () => showAppInstallCtaModal()
     }
 
     if (sessionAvailable === false && allowSource === 'app-with-session') {
-      return showLoginCtaModal
+      return () => showLoginCtaModal()
     }
   }
 
