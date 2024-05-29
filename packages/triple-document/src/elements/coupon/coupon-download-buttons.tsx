@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
 import { Button } from '@titicaca/core-elements'
 import styled from 'styled-components'
@@ -130,8 +130,10 @@ export function CouponDownloadButton({
   const [needLogin, setNeedLogin] = useState(false)
   const timePassed = useDownloadTimePassed(enabledAt)
 
-  const buttonDisabled =
-    (couponFetched === false && needLogin === false) || !timePassed
+  const buttonDisabled = useMemo(
+    () => (couponFetched === false && needLogin === false) || !timePassed,
+    [couponFetched, needLogin, timePassed],
+  )
 
   useEffect(() => {
     async function fetchCoupon() {
@@ -159,10 +161,12 @@ export function CouponDownloadButton({
     fetchCoupon()
   }, [slugId, timePassed])
 
-  const raiseDownloadedAlert = () =>
-    push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`)
+  const raiseDownloadedAlert = useCallback(
+    () => push(`${slugId}.${HASH_ALREADY_DOWNLOAD_COUPON}`),
+    [push, slugId],
+  )
 
-  const handleCouponDownloadButtonClick = async () => {
+  const handleCouponDownloadButtonClick = useCallback(async () => {
     if (buttonDisabled === false) {
       if (needLogin === true) {
         login()
@@ -192,7 +196,17 @@ export function CouponDownloadButton({
     }
 
     onClick && onClick()
-  }
+  }, [
+    buttonDisabled,
+    downloaded,
+    initiateVerification,
+    login,
+    needLogin,
+    onClick,
+    push,
+    raiseDownloadedAlert,
+    slugId,
+  ])
 
   return (
     <>
