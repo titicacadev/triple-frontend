@@ -20,6 +20,11 @@
       "import": "./src/index.ts",
       "require": "./src/index.ts"
     },
+    "./locales": {
+      "types": "./lib/locales/index.ts",
+      "import": "./lib/locales/index.ts",
+      "require": "./lib/locales/index.ts"
+    },
     "./locales/*": {
       "types": "./src/locales/*.ts",
       "import": "./src/locales/*.ts",
@@ -35,6 +40,11 @@
         "types": "./lib/index.d.ts",
         "import": "./lib/index.js",
         "require": "./lib/index.cjs"
+      },
+      "./locales": {
+        "types": "./lib/locales/index.d.ts",
+        "import": "./lib/locales/index.js",
+        "require": "./lib/locales/index.cjs"
       },
       "./locales/*": {
         "types": "./lib/locales/*.d.ts",
