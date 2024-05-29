@@ -1,5 +1,5 @@
-import { NextPageContext } from 'next'
-import { UserAgentValue } from '@titicaca/triple-web'
+import type { NextPageContext } from 'next'
+import type { UserAgentValue } from '@titicaca/triple-web'
 import { UAParser } from 'ua-parser-js'
 import { isMobile } from '@titicaca/triple-web-utils'
 

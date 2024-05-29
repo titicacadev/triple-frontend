@@ -1,6 +1,6 @@
 'use client'
 
-import { PropsWithChildren, useEffect } from 'react'
+import { type PropsWithChildren, useEffect } from 'react'
 import { setUserId } from 'firebase/analytics'
 
 import { EventTrackingContext } from '../event-tracking/context'

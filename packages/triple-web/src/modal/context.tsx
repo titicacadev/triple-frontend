@@ -1,4 +1,9 @@
-import { PropsWithChildren, createContext, useContext, useRef } from 'react'
+import {
+  type PropsWithChildren,
+  createContext,
+  useContext,
+  useRef,
+} from 'react'
 
 import type { EventTrackingValue } from '../event-tracking/types'
 

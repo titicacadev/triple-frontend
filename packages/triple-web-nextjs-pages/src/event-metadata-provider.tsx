@@ -1,4 +1,4 @@
 export {
   EventMetadataProvider,
-  EventMetadataProviderProps,
+  type EventMetadataProviderProps,
 } from '@titicaca/triple-web'
