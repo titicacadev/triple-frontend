@@ -42,7 +42,7 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "server-only": "^0.0.1",
-    "ua-parser-js": "^1.0.37"
+    "ua-parser-js": "^1.0.38"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",

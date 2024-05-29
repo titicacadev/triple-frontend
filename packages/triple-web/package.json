@@ -46,7 +46,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "qs": "^6.12.1",
     "semver": "^7.6.2",
-    "ua-parser-js": "^1.0.37"
+    "ua-parser-js": "^1.0.38"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
