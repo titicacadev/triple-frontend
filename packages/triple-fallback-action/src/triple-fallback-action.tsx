@@ -1,14 +1,12 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from './constant'
 
-const FALLBACK_HANDLER_KEY = '__DISASTER_FALLBACK_HANDLER__'
+export const FALLBACK_HANDLER_KEY = '__DISASTER_FALLBACK_HANDLER__'
 
 declare global {
   interface Window {
     [FALLBACK_HANDLER_KEY]: ((e: MouseEvent) => void) | null
   }
 }
-
-export const TRIPLE_FALLBACK_ACTION_CLASS_NAME = '-triple-fallback-action'
 
 export function TripleFallbackActionScript() {
   return (
@@ -43,35 +41,4 @@ export function TripleFallbackActionScript() {
       }}
     />
   )
-}
-
-const useLayoutEffectSafeInSsr =
-  typeof window === 'undefined' ? useEffect : useLayoutEffect
-
-export function useTripleFallbackActionRemover() {
-  useLayoutEffectSafeInSsr(() => {
-    removeDisasterFallback()
-  }, [])
-}
-
-export function TripleFallbackActionRemover() {
-  useTripleFallbackActionRemover()
-
-  return null
-}
-
-function removeDisasterFallback() {
-  if (typeof window === 'undefined') {
-    return
-  }
-
-  const fallbackHandler = window[FALLBACK_HANDLER_KEY]
-
-  if (!fallbackHandler) {
-    return
-  }
-
-  document.body.removeEventListener('click', fallbackHandler)
-
-  window[FALLBACK_HANDLER_KEY] = null
 }
