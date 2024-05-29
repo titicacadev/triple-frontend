@@ -6,14 +6,14 @@ const MUTE_BUTTON_IMAGE_URL =
 const UNMUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-up@3x.png'
 
-interface MuteUnmutButtonBaseProps {
+interface MuteUnmuteButtonBaseProps {
   muted: boolean
   visible: boolean
 }
 
-const backgroundImage = ({ muted }: MuteUnmutButtonBaseProps) =>
+const backgroundImage = ({ muted }: MuteUnmuteButtonBaseProps) =>
   muted ? MUTE_BUTTON_IMAGE_URL : UNMUTE_BUTTON_IMAGE_URL
-const MuteUnmuteButtonBase = styled.button<MuteUnmutButtonBaseProps>`
+const MuteUnmuteButtonBase = styled.button<MuteUnmuteButtonBaseProps>`
   position: absolute;
   width: 40px;
   height: 36px;
