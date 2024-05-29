@@ -2,7 +2,7 @@
 
 import {
   EventTrackingProvider as EventTrackingProviderBase,
-  EventTrackingProviderProps as EventTrackingProviderBaseProps,
+  type EventTrackingProviderProps as EventTrackingProviderBaseProps,
 } from '@titicaca/triple-web'
 import { useSearchParams } from 'next/navigation'
 

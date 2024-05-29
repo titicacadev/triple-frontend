@@ -1,4 +1,4 @@
-import { IncomingMessage } from 'http'
+import type { IncomingMessage } from 'http'
 
 import Cookies from 'universal-cookie'
 

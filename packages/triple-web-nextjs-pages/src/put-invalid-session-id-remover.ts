@@ -1,6 +1,6 @@
 import { checkClientApp } from '@titicaca/triple-web-utils'
 import { generateUrl, strictQuery } from '@titicaca/view-utilities'
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
+import type { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import qs from 'qs'
 
 export function putInvalidSessionIdRemover(

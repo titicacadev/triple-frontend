@@ -2,7 +2,7 @@
 import { useCallback } from 'react'
 
 import { useAppInstallCtaModal } from '../modal/use-app-install-cta-modal'
-import { AppInstallCtaModalRef } from '../modal/types'
+import type { AppInstallCtaModalRef } from '../modal/types'
 
 import { useClientApp } from './use-client-app'
 

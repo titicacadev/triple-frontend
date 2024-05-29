@@ -1,5 +1,5 @@
-import { NextPageContext } from 'next'
-import { ClientAppName, ClientAppValue } from '@titicaca/triple-web'
+import type { NextPageContext } from 'next'
+import { ClientAppName, type ClientAppValue } from '@titicaca/triple-web'
 import { clientAppRegex } from '@titicaca/triple-web-utils'
 
 export function getClientApp(ctx: NextPageContext): ClientAppValue {
