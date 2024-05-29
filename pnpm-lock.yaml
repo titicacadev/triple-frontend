@@ -320,6 +320,9 @@ importers:
 
   packages/router:
     dependencies:
+      '@titicaca/triple-web':
+        specifier: workspace:*
+        version: link:../triple-web
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.9.0
         version: 1.9.0
@@ -333,9 +336,6 @@ importers:
       '@titicaca/i18n':
         specifier: workspace:*
         version: link:../i18n
-      '@titicaca/triple-web':
-        specifier: workspace:*
-        version: link:../triple-web
       '@titicaca/triple-web-test-utils':
         specifier: workspace:*
         version: link:../triple-web-test-utils
@@ -8582,8 +8582,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  piscina@4.4.0:
-    resolution: {integrity: sha512-+AQduEJefrOApE4bV7KRmp3N2JnnyErlVqq4P/jmko4FPz9Z877BCccl/iB3FdrWSUkvbGV9Kan/KllJgat3Vg==}
+  piscina@4.5.1:
+    resolution: {integrity: sha512-DVhySLPfqAW+uRH9dF0bjA2xEWr5ANLAzkYXx5adSLMFnwssSIVJYhg0FlvgYsnT/khILQJ3WkjqbAlBvt+maw==}
 
   pkg-dir@3.0.0:
     resolution: {integrity: sha512-/E57AYkoeQ25qkxMj5PBOVgF8Kiu/h7cYS30Z5+R7WaiCCBfLq58ZI/dSeaEKb9WVJV5n/03QwrN3IeWIFllvw==}
@@ -14686,7 +14686,7 @@ snapshots:
       commander: 8.3.0
       fast-glob: 3.3.1
       minimatch: 9.0.4
-      piscina: 4.4.0
+      piscina: 4.5.1
       semver: 7.6.2
       slash: 3.0.0
       source-map: 0.7.4
@@ -20982,7 +20982,7 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  piscina@4.4.0:
+  piscina@4.5.1:
     optionalDependencies:
       nice-napi: 1.0.2
 
