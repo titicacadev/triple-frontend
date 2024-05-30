@@ -577,8 +577,8 @@ importers:
   packages/triple-document:
     dependencies:
       '@titicaca/content-type-definitions':
-        specifier: 9.6.2
-        version: 9.6.2
+        specifier: 9.6.3
+        version: 9.6.3
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -3734,8 +3734,8 @@ packages:
   '@titicaca/content-type-definitions@8.34.0':
     resolution: {integrity: sha512-oA/5qsJ1wysBoMYywGA9XhFVjPlJ7dRUXqouA2aiy8FPSh/H8qKB1y+R9lIWq5b5cVOz14jyRLy2ItSvsoGC6Q==}
 
-  '@titicaca/content-type-definitions@9.6.2':
-    resolution: {integrity: sha512-ldLJSCu0+RRpSUBYdT6kcPG8fIDkEWFaO3aN7d9oID00SVpxoRD3uxjyCuvmhsjP8RzrGvETK+821ATM7UdDiQ==}
+  '@titicaca/content-type-definitions@9.6.3':
+    resolution: {integrity: sha512-iSPQarDAofgJdXFBx9vJ2xZXtp2AV7bsALpop88T9nNEgAtSJRIUasZQvCEoJpWEEJunbnA3KfMf+Rw/10YGLQ==}
 
   '@titicaca/content-utilities@8.34.0':
     resolution: {integrity: sha512-6c4j2HJS0cAKkKYaeYZhEVKYcjdMCI6ps8lHD0CWX0ok0OWb6TljyXruZKvadpHFJ5f5zYDAZbFEqrf5GADkog==}
@@ -14816,7 +14816,7 @@ snapshots:
 
   '@titicaca/content-type-definitions@8.34.0': {}
 
-  '@titicaca/content-type-definitions@9.6.2': {}
+  '@titicaca/content-type-definitions@9.6.3': {}
 
   '@titicaca/content-utilities@8.34.0(encoding@0.1.13)':
     dependencies:

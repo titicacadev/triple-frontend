@@ -40,7 +40,7 @@
     ]
   },
   "dependencies": {
-    "@titicaca/content-type-definitions": "9.6.2",
+    "@titicaca/content-type-definitions": "9.6.3",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
