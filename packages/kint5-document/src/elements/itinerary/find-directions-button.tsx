@@ -42,12 +42,12 @@ export function FindDirectionsButton({
         start_latitude: currentCourse.geolocation.coordinates[1],
         start_longitude: currentCourse.geolocation.coordinates[0],
         start_content_id: currentCourse.id,
-        start_content_type: currentCourse.type === 'festa' ? 'festa' : 'poi',
+        ...(currentCourse.type && { start_content_type: currentCourse.type }),
         end_name: nextCourse.name,
         end_latitude: nextCourse.geolocation.coordinates[1],
         end_longitude: nextCourse.geolocation.coordinates[0],
         end_content_id: nextCourse.id,
-        end_content_type: nextCourse.type === 'festa' ? 'festa' : 'poi',
+        ...(nextCourse.type && { end_content_type: nextCourse.type }),
       })
 
       window.location.href = `${appUrlScheme}:///action/directions?${queryStrings}`
