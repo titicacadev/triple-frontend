@@ -20,8 +20,7 @@ interface FindDirectionsButtonProps {
 
 const Placeholder = styled.div`
   width: 1px;
-  height: 2px;
-  margin: 17px 0;
+  height: 18px;
 `
 
 export function FindDirectionsButton({
