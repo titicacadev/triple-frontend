@@ -135,7 +135,7 @@ export function CouponDownloadButton({
 
   useEffect(() => {
     async function fetchCoupon() {
-      const response = await authGuardedFetchers.get<CouponData>(
+      const response = await authGuardedFetchers.get<CouponData[]>(
         `/api/benefit/coupons/${slugId}`,
       )
 
@@ -147,12 +147,10 @@ export function CouponDownloadButton({
       captureHttpError(response)
 
       if (response.ok === true) {
-        const {
-          parsedBody: { downloaded },
-        } = response
+        const { parsedBody: items } = response
 
         setCouponFetched(true)
-        setDownloaded(!!downloaded)
+        setDownloaded(!!items[0]?.downloaded)
       }
     }
 
