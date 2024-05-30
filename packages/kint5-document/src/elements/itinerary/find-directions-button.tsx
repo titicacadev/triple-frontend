@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import styled from 'styled-components'
 import { stringify } from 'qs'
 import { CaretRightIcon, Text } from '@titicaca/kint5-core-elements'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
@@ -16,6 +17,12 @@ interface FindDirectionsButtonProps {
   nextCourse: Course | undefined
   hasTransportationInfo: boolean
 }
+
+const Placeholder = styled.div`
+  width: 1px;
+  height: 2px;
+  margin: 17px 0;
+`
 
 export function FindDirectionsButton({
   currentCourse,
@@ -55,11 +62,11 @@ export function FindDirectionsButton({
   )
 
   if (app && !isValidAppVersion(app.appVersion, 'findingDirections')) {
-    return null
+    return <Placeholder />
   }
 
   if (!currentCourse.geolocation || !nextCourse || !nextCourse.geolocation) {
-    return null
+    return <Placeholder />
   }
 
   return (
