@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head.js'
 
 import { createScript } from './utils'
 import { BreadcrumbListScriptProps } from './types'

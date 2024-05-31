@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head.js'
 
 import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from './utils'
 import { LocalBusinessScriptProps } from './types'

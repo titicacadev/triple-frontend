@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head.js'
 
 import { ThemeColor } from './types'
 import { DEFAULT_THEME_COLOR } from './constants'

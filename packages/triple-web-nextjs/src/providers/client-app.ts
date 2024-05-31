@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { headers } from 'next/headers'
+import { headers } from 'next/headers.js'
 import { ClientAppName, type ClientAppValue } from '@titicaca/triple-web'
 import { clientAppRegex } from '@titicaca/triple-web-utils'
 

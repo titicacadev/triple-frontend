@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { cookies, headers } from 'next/headers'
+import { cookies, headers } from 'next/headers.js'
 import {
   ssrFetcherize,
   captureHttpError,
