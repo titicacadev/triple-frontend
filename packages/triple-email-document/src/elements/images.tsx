@@ -186,7 +186,10 @@ function Image({
         <tr>
           <Box>
             {link ? (
-              <ImageLink href={link.href} ses:tags={`links:${link.id}`}>
+              <ImageLink
+                href={link.href}
+                {...{ 'ses:tags': `link:${link.id}` }}
+              >
                 <Img imageUrl={url} borderRadius={borderRadius} frame={frame} />
               </ImageLink>
             ) : (
