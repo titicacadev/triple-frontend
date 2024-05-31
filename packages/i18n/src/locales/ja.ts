@@ -198,4 +198,4 @@ export default {
   '별점 높은순': '星の高い順',
   '별점 낮은순': '星の低い順',
   'gumae-injeung-review': '購入認証レビュー',
-}
+} as const
