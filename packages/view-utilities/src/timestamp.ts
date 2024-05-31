@@ -22,7 +22,3 @@ export function formatTimestamp(date: string) {
 
   return createdAt.format('YYYY.M.D')
 }
-
-export function Timestamp({ date }: { date: string }) {
-  return <>{formatTimestamp(date)}</>
-}

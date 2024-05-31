@@ -8,7 +8,7 @@ import {
   useClientAppCallback,
   useClientAppActions,
 } from '@titicaca/triple-web'
-import { Timestamp } from '@titicaca/view-utilities'
+import { formatTimestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
 import styled, { css } from 'styled-components'
@@ -421,7 +421,7 @@ export function ReviewElement({
                 margin: '2px 0 0',
               }}
             >
-              <Timestamp date={reviewedAt} />
+              <>{formatTimestamp(reviewedAt)}</>
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
                 onClick={handleMenuClick}
