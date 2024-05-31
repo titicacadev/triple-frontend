@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head.js'
 import { useEnv } from '@titicaca/triple-web'
 
 import { DEFAULT_OG_IMAGE } from './constants'

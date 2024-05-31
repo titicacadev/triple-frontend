@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
+import { NextRequest, NextResponse, NextFetchEvent } from 'next/server.js'
 import { get, post } from '@titicaca/fetcher'
 import { splitCookiesString, parseString } from 'set-cookie-parser'
 
