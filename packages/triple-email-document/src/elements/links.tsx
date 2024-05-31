@@ -1,4 +1,4 @@
-import { HTMLAttributes, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import { Container } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
@@ -68,14 +68,6 @@ const LargeCompactLink = styled(LargeLink)`
   border-radius: 21px;
 `
 
-type HtmlTagAttributes<T> = HTMLAttributes<T>
-
-declare module 'react' {
-  interface AnchorHTMLAttributes<T> extends HtmlTagAttributes<T> {
-    'ses:tags'?: string
-  }
-}
-
 const LINK_BOXES = {
   button: ButtonBox,
   block: BlockBox,
@@ -110,7 +102,10 @@ export default function LinksView({
                     textAlign: 'center',
                   }}
                 >
-                  <Element href={link.href} ses:tags={`link:${link.id}`}>
+                  <Element
+                    href={link.href}
+                    {...{ 'ses:tags': `link:${link.id}` }}
+                  >
                     {link.label}
                   </Element>
                 </Container>
