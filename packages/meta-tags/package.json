@@ -21,9 +21,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run build:cjs && pnpm run build:types",
-    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build": "vite build",
     "lint:es": "eslint src",
     "lint:es:fix": "eslint src --fix",
     "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
@@ -44,13 +42,15 @@
     "@titicaca/triple-web": "workspace:*",
     "i18next": "^23.11.5",
     "react": "^18.2.0",
-    "react-i18next": "^13.5.0"
+    "react-i18next": "^13.5.0",
+    "next": "^13.5.6"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
     "@titicaca/triple-web": "*",
     "i18next": "*",
     "react": "^18.0",
-    "react-i18next": "*"
+    "react-i18next": "*",
+    "next": "^13.4"
   }
 }
