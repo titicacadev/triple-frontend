@@ -1,5 +1,5 @@
 import qs from 'qs'
-import { camelizeKeys } from 'humps'
+import humps from 'humps'
 
 interface ParsedUrlQuery {
   [key: string]: string | string[] | undefined
@@ -11,7 +11,7 @@ interface ParsedUrlQuery {
  * @param query
  */
 function camelizeUrlQuery(query: object | object[]): ParsedUrlQuery {
-  return camelizeKeys(query) as unknown as ParsedUrlQuery
+  return humps.camelizeKeys(query) as unknown as ParsedUrlQuery
 }
 
 /**
