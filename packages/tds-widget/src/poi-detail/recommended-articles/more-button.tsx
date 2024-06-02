@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Button } from '@titicaca/tds-ui'
 
 export const MoreButton = styled(Button)`

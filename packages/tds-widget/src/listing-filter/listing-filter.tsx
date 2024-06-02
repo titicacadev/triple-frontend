@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { MarginPadding, paddingMixin } from '@titicaca/tds-ui'
 import { HTMLAttributes, ReactNode, PureComponent } from 'react'
 

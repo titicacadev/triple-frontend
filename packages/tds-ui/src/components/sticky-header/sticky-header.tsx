@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 import { Container } from '../container'

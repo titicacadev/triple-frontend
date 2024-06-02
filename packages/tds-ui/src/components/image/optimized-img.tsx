@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 

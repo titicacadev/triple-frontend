@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import Flicking from '@egjs/react-flicking'
 import type { FlickingOptions } from '@egjs/flicking'
 

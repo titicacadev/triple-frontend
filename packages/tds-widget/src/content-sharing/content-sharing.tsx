@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, Text } from '@titicaca/tds-ui'
 
 const ShareIcon = styled.img`

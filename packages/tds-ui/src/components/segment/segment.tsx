@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled, { css, ThemedStyledProps } from 'styled-components'
+import { styled, css, ThemedStyledProps } from 'styled-components'
 
 import { KeyOfShadowSize, shadowMixin, ShadowMixinProps } from '../../mixins'
 

@@ -1,6 +1,6 @@
 import { useListItem } from '@floating-ui/react'
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useActionSheetSelect } from './action-sheet-select-context'
 

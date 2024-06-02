@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { PropsWithChildren } from 'react'
 import { useClientApp } from '@titicaca/triple-web'
 

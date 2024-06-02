@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { basicButtonMixin, BasicButtonOwnProps } from './basic-button'
 import { ButtonBase } from './button-base'

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import Flicking from '@egjs/react-flicking'
 import { useRef } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'

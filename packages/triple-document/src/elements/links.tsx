@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren, SyntheticEvent } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import {
   ButtonProps,
   Button,

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { borderRadiusMixin } from '@titicaca/tds-ui'
 
 const VideoContainer = styled.div<{ borderRadius: number }>`

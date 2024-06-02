@@ -1,6 +1,6 @@
 import { FlexBox } from '@titicaca/tds-ui'
 import { useCallback, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const RepresentativePurchaseName = styled.span`
   overflow: hidden;

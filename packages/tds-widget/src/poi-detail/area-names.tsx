@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, Text } from '@titicaca/tds-ui'
 
 const AreaContainer = styled(Container)`

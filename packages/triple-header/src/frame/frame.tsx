@@ -1,6 +1,6 @@
 import { ComponentType, useCallback, useMemo } from 'react'
 import { Container } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { ContextOptions, initialize } from '@titicaca/standard-action-handler'
 import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 import { useNavigate, useExternalRouter } from '@titicaca/router'

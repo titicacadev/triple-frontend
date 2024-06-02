@@ -1,5 +1,5 @@
 import { Tooltip as CoreTooltip } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { ComponentProps, MouseEventHandler, useEffect, useState } from 'react'
 
 type Position = 'top' | 'bottom'

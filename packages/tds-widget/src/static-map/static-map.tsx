@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import {
   Container,
   Image,

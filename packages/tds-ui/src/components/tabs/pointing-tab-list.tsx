@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { PointingTabContext } from './pointing-tab-context'
 import { TabListBase, TabListBaseProps } from './tab-list-base'

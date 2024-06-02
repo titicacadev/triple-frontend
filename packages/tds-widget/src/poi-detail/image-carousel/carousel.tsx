@@ -1,5 +1,5 @@
 import { useState, useCallback, PropsWithChildren, MouseEvent } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, Responsive } from '@titicaca/tds-ui'
 import {
   useClientApp,

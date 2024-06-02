@@ -4,7 +4,7 @@ import {
   PropsWithChildren,
   useContext,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Text } from '../text'
 import { CheckboxGroupContext } from '../checkbox-group'

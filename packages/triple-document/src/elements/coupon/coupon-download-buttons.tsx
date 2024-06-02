@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useHashRouter, useLogin } from '@titicaca/triple-web'
 import { VerificationType, useUserVerification } from '@titicaca/tds-widget'
 import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Text, Modal, Alert } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useHashRouter } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 

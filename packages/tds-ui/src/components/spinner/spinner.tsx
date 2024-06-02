@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
-import styled, { css, keyframes } from 'styled-components'
+import { styled, css, keyframes } from 'styled-components'
 
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 

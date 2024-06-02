@@ -1,6 +1,6 @@
 import { Children, PropsWithChildren } from 'react'
 import { FrameRatioAndSizes, ImageMeta } from '@titicaca/type-definitions'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { FluidTable, Box } from '../common'
 

@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components'
+import { styled, css, keyframes } from 'styled-components'
 import { Required } from 'utility-types'
 
 export interface MarkerBaseProps {

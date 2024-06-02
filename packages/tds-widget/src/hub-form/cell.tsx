@@ -1,5 +1,5 @@
 import { PropsWithChildren, SyntheticEvent } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { Text } from '@titicaca/tds-ui'
 
 type StyleType = 'SCHEDULE' | 'PEOPLE' | 'ORIGIN' | 'DESTINATION' | 'SEARCH'

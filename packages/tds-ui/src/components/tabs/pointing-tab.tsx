@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { usePointingTab } from './pointing-tab-context'
 import { TabBase, TabBaseProps } from './tab-base'

@@ -1,5 +1,5 @@
 import * as CSS from 'csstype'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import {
   PropsWithChildren,
   Children,

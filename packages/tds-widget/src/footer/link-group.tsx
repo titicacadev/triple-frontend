@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
 
 const LinksContainer = styled(Container)`

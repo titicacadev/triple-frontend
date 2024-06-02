@@ -1,5 +1,5 @@
 import { KeyboardEventHandler } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Text } from '../text'
 import { GlobalSizes } from '../../commons'

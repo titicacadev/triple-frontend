@@ -1,5 +1,5 @@
 import { GetTrackProps } from 'react-compound-slider'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const TrackContainer = styled.div<{ left: number; right: number }>`
   position: absolute;

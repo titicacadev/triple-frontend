@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { TabListBase, TabListBaseProps } from './tab-list-base'
 import { useTabs } from './tabs-context'

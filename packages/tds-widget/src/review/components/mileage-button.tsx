@@ -1,7 +1,7 @@
 import { Text } from '@titicaca/tds-ui'
 import { useClientApp, useTrackEvent } from '@titicaca/triple-web'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useClientActions } from '../services'
 

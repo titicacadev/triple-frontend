@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { ResourceListItem, Image } from '@titicaca/tds-ui'
 
 import { RegionData } from '../types'

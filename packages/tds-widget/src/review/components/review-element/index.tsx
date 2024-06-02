@@ -11,7 +11,7 @@ import {
 import { formatTimestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import {

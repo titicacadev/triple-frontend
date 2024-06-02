@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { PropsWithChildren, useEffect } from 'react'
 import {
   FloatingPortal,

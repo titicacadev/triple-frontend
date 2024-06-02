@@ -1,5 +1,5 @@
 import { Modal, Text } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generateUrl } from '@titicaca/view-utilities'

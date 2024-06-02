@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
 import { paddingMixin, layeringMixin, LayeringMixinProps } from '../../mixins'

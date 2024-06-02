@@ -1,5 +1,5 @@
 import { forwardRef, PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Text } from '../text'
 

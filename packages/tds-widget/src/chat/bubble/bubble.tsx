@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { PropsWithChildren } from 'react'
 import { useLongPress } from 'use-long-press'
 import { Text } from '@titicaca/tds-ui'

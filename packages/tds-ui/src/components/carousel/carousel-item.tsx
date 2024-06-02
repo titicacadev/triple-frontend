@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 
 import { CarouselSizes } from '../../commons'

@@ -1,6 +1,6 @@
 import { Autolinker } from 'autolinker'
 import { MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const StyledText = styled.span`
   display: -webkit-box;

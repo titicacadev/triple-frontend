@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 import {
   useSessionAvailability,

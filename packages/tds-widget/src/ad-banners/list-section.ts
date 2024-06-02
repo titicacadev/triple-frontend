@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Section } from '@titicaca/tds-ui'
 
 const ListSection = styled(Section)`

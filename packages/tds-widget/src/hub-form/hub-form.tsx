@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { CardFrame, CardProps } from '@titicaca/tds-ui'
 
 const HubFormFrame = styled(CardFrame)`

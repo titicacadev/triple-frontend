@@ -50,11 +50,11 @@
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
     "react": "^18.2.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.1.11"
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*",
     "react": "^18.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^6.0"
   }
 }

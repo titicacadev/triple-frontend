@@ -9,7 +9,7 @@ import {
   MouseEventHandler,
   PropsWithChildren,
 } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { Container, LayeringMixinProps, SearchNavbar } from '@titicaca/tds-ui'
 import { useUserAgent } from '@titicaca/triple-web'
 import {

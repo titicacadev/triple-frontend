@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { MIN_DESKTOP_WIDTH } from './constants'
 

@@ -7,7 +7,7 @@ import {
   useRef,
   useEffect,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const Textarea = styled.textarea<{ lineHeight: number }>`
   resize: none;

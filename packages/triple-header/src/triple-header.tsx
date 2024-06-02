@@ -1,6 +1,6 @@
 import { useState, useCallback, useLayoutEffect } from 'react'
 import { Container } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { Layer } from './layer'
 import { TripleHeaderProps } from './types'

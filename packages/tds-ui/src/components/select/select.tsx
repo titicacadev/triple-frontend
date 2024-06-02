@@ -1,5 +1,5 @@
 import { forwardRef, SelectHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import {
   FormFieldContext,

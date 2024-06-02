@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { ActionSheet } from './action-sheet'
 import { ActionSheetItem } from './action-sheet-item'

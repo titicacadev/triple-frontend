@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { defaultTheme } from '@titicaca/tds-theme'
 
 import { Text } from '../text'

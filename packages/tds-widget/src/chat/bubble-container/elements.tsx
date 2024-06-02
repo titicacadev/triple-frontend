@@ -1,5 +1,5 @@
 import { Button, Text } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 export const HiddenElement = styled.div`
   height: 1px;

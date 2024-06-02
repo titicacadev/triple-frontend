@@ -1,5 +1,5 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { dateLabelMixin, rangeMixin } from './mixins'
 import { PickerFrame, generateSelectedCircleStyle } from './picker-frame'

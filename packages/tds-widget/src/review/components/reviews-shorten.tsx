@@ -1,5 +1,5 @@
 import { ComponentType, useEffect } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
 import { formatNumber } from '@titicaca/view-utilities'

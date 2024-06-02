@@ -6,7 +6,7 @@ import {
   ChangeEventHandler,
   MouseEventHandler,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
 import { Seeker } from './seeker'

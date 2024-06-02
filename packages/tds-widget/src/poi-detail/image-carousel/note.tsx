@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { Text } from '@titicaca/tds-ui'
 
 const NoteContainer = styled.div<{

@@ -1,5 +1,5 @@
 import { PropsWithChildren, ReactNode, forwardRef } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { Container } from '../container'
 import { MarginPadding } from '../../commons'

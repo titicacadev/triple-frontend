@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { FlexBox, Text } from '@titicaca/tds-ui'
 import { useHashRouter } from '@titicaca/triple-web'
 

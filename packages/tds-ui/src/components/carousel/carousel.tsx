@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { PropsWithChildren, useRef } from 'react'
 
 import { CarouselItem } from './carousel-item'

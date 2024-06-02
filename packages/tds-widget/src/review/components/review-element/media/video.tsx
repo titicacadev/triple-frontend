@@ -3,7 +3,7 @@ import { ImageMeta } from '@titicaca/type-definitions'
 import { Container } from '@titicaca/tds-ui'
 import { useIntersection } from '@titicaca/intersection-observer'
 import { useClientApp } from '@titicaca/triple-web'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 interface Props {
   medium: ImageMeta

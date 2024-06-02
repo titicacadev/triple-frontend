@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { Container } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { FluidTable, Box as DefaultBox } from '../common'
 
