@@ -79,13 +79,13 @@ const ReviewMetadataInfo = styled(FlexBox)`
   margin-top: 16px;
   margin-bottom: 16px;
 
-  > * {
+  & > * {
     height: 16px;
     display: inline-block;
     line-height: 16px;
   }
 
-  > :not(:last-child)::after {
+  & > :not(:last-child)::after {
     display: block;
     float: right;
     content: '';

@@ -51,7 +51,7 @@ const Sheet = styled.div<SheetProps>`
 const Content = styled(Container)`
   overflow: auto;
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 `

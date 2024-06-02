@@ -193,7 +193,7 @@ const ListingFilterBase = styled.div<{ padding?: MarginPadding }>`
   -webkit-overflow-scrolling: touch;
   cursor: pointer;
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 

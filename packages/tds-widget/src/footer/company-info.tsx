@@ -57,7 +57,7 @@ const Title = styled(AccordionTitle)`
   font-weight: 700;
   width: auto;
 
-  ::after {
+  &::after {
     display: none;
   }
 `

@@ -27,7 +27,7 @@ const StyledTabListBase = styled(TabListBase)<StyledTabListBaseProps>`
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
 
-      ::-webkit-scrollbar {
+      &::-webkit-scrollbar {
         display: none;
       }
     `}
