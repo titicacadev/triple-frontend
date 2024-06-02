@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { Text, Responsive } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
 

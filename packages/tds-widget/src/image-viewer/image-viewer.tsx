@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, Navbar, Popup } from '@titicaca/tds-ui'
 
 import DetailViewer, { DetailViewerProp } from './detail-viewer'

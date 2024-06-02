@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { HTMLAttributes, forwardRef } from 'react'
 import { useMergeRefs } from '@floating-ui/react'
 

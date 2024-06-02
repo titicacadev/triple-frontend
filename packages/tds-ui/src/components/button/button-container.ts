@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import * as CSS from 'csstype'
 
 import { Container } from '../container'

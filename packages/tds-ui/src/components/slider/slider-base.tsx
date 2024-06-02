@@ -6,7 +6,7 @@ import {
   ComponentType,
   PropsWithChildren,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Rail, Slider as OriginalSlider, Handles } from 'react-compound-slider'
 import { debounce } from '@titicaca/view-utilities'
 

@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import * as CSS from 'csstype'
 
 import {

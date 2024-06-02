@@ -1,5 +1,5 @@
 import { GetHandleProps } from 'react-compound-slider'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const HandleContainer = styled.div`
   position: absolute;

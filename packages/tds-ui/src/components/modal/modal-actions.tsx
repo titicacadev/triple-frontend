@@ -1,5 +1,5 @@
 import { Children, ReactNode } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 export const ModalActions = styled.div<{ children?: ReactNode }>`
   display: block;

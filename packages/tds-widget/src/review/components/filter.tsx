@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { FlexBox, Text, Container } from '@titicaca/tds-ui'
 import { useTrackEvent } from '@titicaca/triple-web'

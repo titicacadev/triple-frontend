@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 export const visuallyHiddenCss = css`
   border: 0;

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import isChromatic from 'chromatic/isChromatic'
 import { useEffect } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import logos from './mocks/lottie.sample.json'
 import { useLottie } from './use-lottie'

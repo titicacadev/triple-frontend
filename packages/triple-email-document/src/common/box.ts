@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { MarginPadding } from '@titicaca/tds-ui'
 
 const Box = styled.td<{ padding?: MarginPadding }>`

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Container, Text, MarginPadding, GlobalColors } from '@titicaca/tds-ui'
 import { GlobalSizes } from '@titicaca/type-definitions'

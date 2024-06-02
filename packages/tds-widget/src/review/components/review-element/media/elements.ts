@@ -1,5 +1,5 @@
 import { Container, FlexBox } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const GridWrapper = styled(Container)`
   display: grid;

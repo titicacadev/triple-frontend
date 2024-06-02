@@ -11,7 +11,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useTrackEvent, useAppInstallCtaModal } from '@titicaca/triple-web'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ArticleCardCta, fetchInventoryItems } from '../../app-installation-cta'
 

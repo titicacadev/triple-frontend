@@ -1,7 +1,7 @@
 import { Container } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
 import { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useClientApp } from '@titicaca/triple-web'
 import { useIntersection } from '@titicaca/intersection-observer'
 

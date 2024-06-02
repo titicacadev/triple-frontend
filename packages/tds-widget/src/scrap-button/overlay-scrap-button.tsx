@@ -1,5 +1,5 @@
 import { Attributes, ComponentType } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import type { ScrapButtonProps, ScrapIconProps } from './types'
 import { createIsolatedClickHandler } from './utils'

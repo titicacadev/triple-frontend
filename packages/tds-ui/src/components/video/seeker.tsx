@@ -4,7 +4,7 @@ import {
   ChangeEventHandler,
   MouseEventHandler,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { debounce } from '@titicaca/view-utilities'
 
 const SeekerBase = styled.input<{ handleVisible: boolean }>`

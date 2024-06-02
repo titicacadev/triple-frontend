@@ -1,6 +1,6 @@
 import { memo, useMemo, useCallback } from 'react'
 import moment from 'moment'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 
 import { isValidDate, generatePaddedRange } from './utils'

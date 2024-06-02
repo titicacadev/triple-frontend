@@ -1,6 +1,6 @@
 import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-action'
 import { useMemo, PropsWithChildren } from 'react'
-import styled, { keyframes } from 'styled-components'
+import { styled, keyframes } from 'styled-components'
 
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 import { Container } from '../container'

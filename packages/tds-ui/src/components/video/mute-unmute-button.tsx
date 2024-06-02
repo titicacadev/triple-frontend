@@ -1,5 +1,5 @@
 import { useCallback, RefObject, SyntheticEvent } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const MUTE_BUTTON_IMAGE_URL =
   'https://assets.triple.guide/images/btn-video-volume-mute@3x.png'

@@ -1,5 +1,5 @@
 import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import InputMask, { MaskOptions } from 'react-input-mask'
 
 import {

@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const RadioInput = styled.input`
   appearance: none;

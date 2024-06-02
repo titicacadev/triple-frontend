@@ -1,5 +1,5 @@
 import { Container, MarginPadding } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { FrameData, TransitionType } from '../types'
 import { Frame } from '../frame'

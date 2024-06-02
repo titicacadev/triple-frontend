@@ -1,6 +1,6 @@
 import { Container } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 interface Props {
   medium: ImageMeta

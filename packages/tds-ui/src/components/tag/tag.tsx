@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin } from '../../mixins'

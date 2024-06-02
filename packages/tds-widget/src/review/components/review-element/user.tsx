@@ -1,6 +1,6 @@
 import { PropsWithChildren, MouseEventHandler } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, Text } from '@titicaca/tds-ui'
 
 import { BaseUserFragment } from '../../data/graphql'

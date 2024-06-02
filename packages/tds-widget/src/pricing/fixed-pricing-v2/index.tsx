@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import {
   Container,

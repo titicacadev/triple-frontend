@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { MouseEventHandler, PropsWithChildren } from 'react'
 
 interface DotMarkerProps {

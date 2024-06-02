@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 import withTypeCircleBadge from './with-type-circle-badge'
 

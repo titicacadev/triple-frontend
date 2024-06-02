@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Fragment, PropsWithChildren } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import {

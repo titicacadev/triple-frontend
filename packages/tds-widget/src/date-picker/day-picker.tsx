@@ -1,5 +1,5 @@
 import moment from 'moment'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import ReactDayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
 import { memo, ReactNode, useMemo, useCallback } from 'react'
 

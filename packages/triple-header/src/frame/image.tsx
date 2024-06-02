@@ -1,5 +1,5 @@
 import { ImageMeta } from '@titicaca/type-definitions'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { MotionContainer } from '../motion-container'
 import { LinkEventHandler } from '../types'

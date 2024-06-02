@@ -1,5 +1,5 @@
 import { Container, Text } from '@titicaca/tds-ui'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
 const StyledContainer = styled(Container)`

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { useLongPress } from 'use-long-press'
 import { Container } from '@titicaca/tds-ui'
 

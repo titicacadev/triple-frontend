@@ -5,7 +5,7 @@ import {
   useSessionCallback,
 } from '@titicaca/triple-web'
 import { useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useClientActions } from '../services'
 

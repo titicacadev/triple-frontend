@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Text, Container } from '@titicaca/tds-ui'
 
 import { LinkGroup } from './link-group'

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Modal, Text } from '@titicaca/tds-ui'
 
 import { useUserVerification } from './use-user-verification'

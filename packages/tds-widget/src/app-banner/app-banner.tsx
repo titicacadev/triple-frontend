@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
 
 const AppBannerFrame = styled.header<

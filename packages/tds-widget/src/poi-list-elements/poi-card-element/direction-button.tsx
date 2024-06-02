@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const DIRECTION_BUTTON_WIDTH = 40
 

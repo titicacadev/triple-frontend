@@ -60,7 +60,7 @@
     "next": "^13.5.6",
     "react": "^18.2.0",
     "react-i18next": "^13.5.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^6.1.11"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
@@ -69,6 +69,6 @@
     "next": "^13.4",
     "react": "^18.0",
     "react-i18next": "*",
-    "styled-components": "^5.3.9"
+    "styled-components": "^6.0"
   }
 }

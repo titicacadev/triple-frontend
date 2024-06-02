@@ -1,5 +1,5 @@
 import { SyntheticEvent, useMemo } from 'react'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import * as CSS from 'csstype'
 
 import { GlobalSizes } from '../../commons'

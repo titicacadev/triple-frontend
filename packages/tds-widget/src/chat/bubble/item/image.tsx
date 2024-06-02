@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const PreviewImage = styled.img`
   object-fit: cover;

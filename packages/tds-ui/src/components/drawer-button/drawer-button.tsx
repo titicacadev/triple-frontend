@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Drawer, DrawerProps } from '../drawer/drawer'
 import { Container } from '../container'

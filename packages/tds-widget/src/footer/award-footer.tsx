@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 import { Fragment, useState } from 'react'
 

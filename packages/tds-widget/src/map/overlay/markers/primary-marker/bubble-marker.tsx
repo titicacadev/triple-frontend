@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 interface BubbleMarkerProps {
   onClick: MouseEventHandler<HTMLDivElement>

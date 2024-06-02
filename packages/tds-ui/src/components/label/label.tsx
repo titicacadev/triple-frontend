@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 import CSS from 'csstype'
 import { ReactNode, PureComponent, HTMLAttributes } from 'react'
 

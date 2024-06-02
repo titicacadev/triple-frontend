@@ -8,7 +8,7 @@ import {
   useMemo,
 } from 'react'
 import { Container } from '@titicaca/tds-ui'
-import styled, { css } from 'styled-components'
+import { styled, css } from 'styled-components'
 
 const RollingContainer = styled(Container)<{ isTransition: boolean }>`
   position: relative;

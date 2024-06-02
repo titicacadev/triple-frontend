@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 
 import { TimeIcon, RightArrowIcon } from './business-hours-icons'

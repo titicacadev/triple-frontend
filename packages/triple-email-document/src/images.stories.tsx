@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react'
 import { ComponentProps } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import ELEMENTS from './elements'
 

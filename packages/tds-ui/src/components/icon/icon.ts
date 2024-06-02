@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin, paddingMixin } from '../../mixins'
