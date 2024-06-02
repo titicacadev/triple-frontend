@@ -52,11 +52,11 @@ export const TextArea = styled.textarea`
   outline: none;
   box-shadow: none;
 
-  ::placeholder {
+  &::placeholder {
     color: var(--color-gray300);
   }
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 `

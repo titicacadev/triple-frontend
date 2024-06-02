@@ -11,7 +11,7 @@ import { ImageBubbleProp } from './type'
 const DEFAULT_IMAGE_NUM_IN_ROW = 3
 
 const ImageRow = styled.div`
-  :not(:last-child) {
+  &:not(&:last-child) {
     margin-bottom: 5px;
   }
 `
