@@ -15,20 +15,16 @@ export default defineConfig({
       output: [
         {
           format: 'cjs',
-          exports: 'named',
-          interop: 'auto',
           preserveModules: true,
           preserveModulesRoot: 'src',
           entryFileNames: '[name].js',
         },
-        {
-          format: 'es',
-          exports: 'named',
-          interop: 'auto',
-          preserveModules: true,
-          preserveModulesRoot: 'src',
-          entryFileNames: '[name].mjs',
-        },
+        // {
+        //   format: 'es',
+        //   preserveModules: true,
+        //   preserveModulesRoot: 'src',
+        //   entryFileNames: '[name].mjs',
+        // },
       ],
     },
     minify: false,
