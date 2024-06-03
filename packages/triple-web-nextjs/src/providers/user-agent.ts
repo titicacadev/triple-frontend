@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { headers } from 'next/headers.js'
+import { headers } from 'next/headers'
 import UAParser from 'ua-parser-js'
 import type { UserAgentValue } from '@titicaca/triple-web'
 import { isMobile } from '@titicaca/triple-web-utils'

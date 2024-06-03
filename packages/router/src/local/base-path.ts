@@ -1,5 +1,5 @@
 import { parseUrl, generateUrl } from '@titicaca/view-utilities'
-import { useRouter } from 'next/router.js'
+import { useRouter } from 'next/router'
 
 export function useBasePathAdder() {
   const { basePath } = useRouter()

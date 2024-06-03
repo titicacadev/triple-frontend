@@ -4,7 +4,7 @@ import {
   EventTrackingProvider as EventTrackingProviderBase,
   type EventTrackingProviderProps as EventTrackingProviderBaseProps,
 } from '@titicaca/triple-web'
-import { useSearchParams } from 'next/navigation.js'
+import { useSearchParams } from 'next/navigation'
 
 import { getEventTrackingUtm } from './providers/event-tracking-utm'
 

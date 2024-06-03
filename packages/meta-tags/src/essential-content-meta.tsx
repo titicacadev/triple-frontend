@@ -1,4 +1,4 @@
-import Head from 'next/head.js'
+import Head from 'next/head'
 import { useEnv } from '@titicaca/triple-web'
 
 export function EssentialContentMeta({

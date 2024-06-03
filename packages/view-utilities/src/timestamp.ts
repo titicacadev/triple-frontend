@@ -1,5 +1,5 @@
 import moment from 'moment'
-import 'moment/locale/ko.js'
+import 'moment/locale/ko'
 
 moment.updateLocale('ko', {
   relativeTime: {

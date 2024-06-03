@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import dynamic from 'next/dynamic.js'
+import dynamic from 'next/dynamic'
 import { ReactIntersectionObserverProps } from '@titicaca/react-intersection-observer'
 
 interface IntersectionObserverProps extends ReactIntersectionObserverProps {

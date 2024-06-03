@@ -5,7 +5,7 @@ import {
   createContext,
   useContext,
 } from 'react'
-import Head from 'next/head.js'
+import Head from 'next/head'
 
 declare global {
   interface Window {
