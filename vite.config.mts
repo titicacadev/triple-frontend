@@ -15,6 +15,7 @@ export default defineConfig({
       output: [
         {
           format: 'cjs',
+          interop: 'auto',
           preserveModules: true,
           preserveModulesRoot: 'src',
           entryFileNames: '[name].js',
