@@ -93,7 +93,7 @@ export function useClientActions() {
         anchor?: string
       }) {
         const params = qs.stringify({
-          region_id: regionId,
+          ...(regionId && regionId !== null && { region_id: regionId }),
           resource_id: resourceId,
         })
         navigate(
