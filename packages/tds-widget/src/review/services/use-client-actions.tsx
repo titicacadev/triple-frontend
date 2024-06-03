@@ -57,7 +57,7 @@ export function useClientActions() {
         sortingOption: SortingOption
       }) {
         const params = qs.stringify({
-          region_id: regionId,
+          ...(regionId && regionId !== 'null' && { region_id: regionId }),
           resource_id: resourceId,
           resource_type: resourceType,
           recent_trip: recentTrip,
@@ -92,7 +92,7 @@ export function useClientActions() {
         anchor?: string
       }) {
         const params = qs.stringify({
-          region_id: regionId,
+          ...(regionId && regionId !== 'null' && { region_id: regionId }),
           resource_id: resourceId,
         })
         navigate(
