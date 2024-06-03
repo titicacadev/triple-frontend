@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v13.26.1
+
+### review
+
+- [review] 리뷰 상세 딥링크의 regionId 파라미터 null처리 추가 [#3266](https://github.com/titicacadev/triple-frontend/pull/3266)
+
 ## v13.26.0
 
 ### footer
