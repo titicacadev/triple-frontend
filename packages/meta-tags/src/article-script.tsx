@@ -1,4 +1,4 @@
-import Head from 'next/head.js'
+import Head from 'next/head'
 
 import { createScript } from './utils'
 import { ArticleScriptProps } from './types'

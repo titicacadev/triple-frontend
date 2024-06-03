@@ -1,4 +1,4 @@
-import Head from 'next/head.js'
+import Head from 'next/head'
 import { useEnv } from '@titicaca/triple-web'
 
 import { DEFAULT_APP_ID } from './constants'

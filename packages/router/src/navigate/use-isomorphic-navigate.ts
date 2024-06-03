@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-named-as-default
-import Router from 'next/router.js'
+import Router from 'next/router'
 import {
   closeWindow as _closeWindow,
   backOrClose as _backOrClose,

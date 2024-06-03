@@ -1,4 +1,4 @@
-import Head from 'next/head.js'
+import Head from 'next/head'
 
 export function CommonMeta() {
   return (

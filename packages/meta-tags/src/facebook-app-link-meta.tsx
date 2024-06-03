@@ -1,4 +1,4 @@
-import Head from 'next/head.js'
+import Head from 'next/head'
 import { useTranslation } from 'react-i18next'
 import { useEnv } from '@titicaca/triple-web'
 

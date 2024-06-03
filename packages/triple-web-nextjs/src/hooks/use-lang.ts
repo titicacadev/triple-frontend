@@ -1,4 +1,4 @@
-import { useSearchParams } from 'next/navigation.js'
+import { useSearchParams } from 'next/navigation'
 
 export function useLang(fallback: string, key = 'lang') {
   const searchParams = useSearchParams()

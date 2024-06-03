@@ -1,6 +1,6 @@
 import { clientAppRegex } from '@titicaca/triple-web-utils'
-import { NextRequest, NextResponse, NextFetchEvent } from 'next/server.js'
-import satisfies from 'semver/functions/satisfies.js'
+import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
+import satisfies from 'semver/functions/satisfies'
 
 import { CustomMiddleware } from './chain'
 

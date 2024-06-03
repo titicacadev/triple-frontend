@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router.js'
+import { useRouter } from 'next/router'
 
 export function useLang(fallback: string, key = 'lang') {
   const router = useRouter()
