@@ -45,7 +45,7 @@ export const FullListButton = ({
   const { getWindowId } = useTripleClientActions()
 
   const reviewListUrl = `/reviews/list?_triple_no_navbar&${qs.stringify({
-    region_id: regionId,
+    ...(regionId && regionId !== null && { region_id: regionId }),
     resource_id: resourceId,
     resource_type: resourceType,
     recent_trip: recentTrip,
