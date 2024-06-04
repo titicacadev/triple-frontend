@@ -29,9 +29,10 @@ export interface TripleElementData<T = string, Value = unknown> {
 
 export type ImageEventHandler = (e: SyntheticEvent, image: ImageMeta) => void
 
-export type AddItinerariesToTipHandler = (args: {
+export type AddItinerariesToTipHandler = (params: {
   itemIds: { id: string; type: 'poi' | 'festa' }[]
   defaultRegionId: string | null | undefined
+  itineraryDay: number
 }) => void
 
 export interface Link {

@@ -98,7 +98,11 @@ export default function ItineraryElement({
         },
       })
 
-      onAddItinerariesToTrip?.({ itemIds, defaultRegionId: regionId })
+      onAddItinerariesToTrip?.({
+        itemIds,
+        defaultRegionId: regionId,
+        itineraryDay,
+      })
     }, [
       itemIds,
       regionId,
