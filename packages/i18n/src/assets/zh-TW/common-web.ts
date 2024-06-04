@@ -189,4 +189,5 @@ export const zhTwCommonWeb = {
   'byeoljeom-najeunsun': '評分低的順序',
   jjim: '收藏',
   'jjim-cwiso': '取消收藏',
+  '서울특별시 서초구 강남대로 447': '06611 首尔市瑞草区江南大路447',
 }

@@ -144,7 +144,7 @@ export function CompanyInfo({
           <br />
           {t('통신판매업 신고번호 2022-서울강남-02179')}
           <br />
-          {t('서울특별시 강남구 삼성로 512 삼성동빌딩 10층')} <br />
+          {t('서울특별시 서초구 강남대로 447')} <br />
         </Text>
       </AccordionContent>
     </Accordion>

@@ -203,4 +203,5 @@ export const enCommonWeb = {
   'sajin-dongyeongsang': 'Photos/Videos',
   'byeoljeom-nopeunsun': 'Highest rating',
   'byeoljeom-najeunsun': 'Lowest rating',
+  '서울특별시 서초구 강남대로 447': '447, Gangnam-daero, Seocho-gu, Seoul',
 } as const
