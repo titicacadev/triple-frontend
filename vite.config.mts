@@ -10,7 +10,7 @@ export default defineConfig({
     lib: {
       entry: ['src/index.ts'],
       fileName: (format, entryName) =>
-        format === 'es' ? `${entryName}.js` : `${entryName}.cjs`,
+        format === 'es' ? `${entryName}.mjs` : `${entryName}.js`,
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
