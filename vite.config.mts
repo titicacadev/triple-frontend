@@ -5,28 +5,21 @@ import { nodeExternals } from 'rollup-plugin-node-externals'
 
 export default defineConfig({
   build: {
-    target: 'es6',
+    target: 'es2018',
     outDir: 'lib',
     lib: {
-      entry: 'src/index.ts',
+      entry: ['src/index.ts'],
+      fileName: (format, entryName) =>
+        format === 'es' ? `${entryName}.js` : `${entryName}.cjs`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       plugins: [nodeExternals()],
-      output: [
-        {
-          format: 'cjs',
-          interop: 'auto',
-          preserveModules: true,
-          preserveModulesRoot: 'src',
-          entryFileNames: '[name].js',
-        },
-        // {
-        //   format: 'es',
-        //   preserveModules: true,
-        //   preserveModulesRoot: 'src',
-        //   entryFileNames: '[name].mjs',
-        // },
-      ],
+      output: {
+        interop: 'auto',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
     },
     minify: false,
   },
