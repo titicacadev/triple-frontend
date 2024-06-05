@@ -5,7 +5,7 @@ import { nodeExternals } from 'rollup-plugin-node-externals'
 
 export default defineConfig({
   build: {
-    target: 'es2018',
+    target: 'es6',
     outDir: 'lib',
     lib: {
       entry: ['src/index.ts'],
