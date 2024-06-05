@@ -1,0 +1,39 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web-nextjs / AppInstallCtaModalProvider" />
+
+# AppInstallCtaModalProvider
+
+## Usage
+
+```tsx
+export function Page({ children }) {
+  return (
+    <AppInstallCtaModalProvider
+      deepLink="triple:///deeplink"
+      triggeredEventAction="action"
+      onActionClick={onActionClick}
+    >
+      {children}
+    </AppInstallCtaModalProvider>
+  )
+}
+```
+
+## Props
+
+### children
+
+`ReactNode`
+
+### deepLink
+
+`string`
+
+### triggeredEventAction
+
+`string`
+
+### onActionClick
+
+`() => void`

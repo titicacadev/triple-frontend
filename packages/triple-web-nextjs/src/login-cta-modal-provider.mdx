@@ -1,0 +1,34 @@
+import { Meta, ArgTypes } from '@storybook/blocks'
+
+<Meta title="triple-web-nextjs / LoginCtaModalProvider" />
+
+# LoginCtaModalProvider
+
+## Usage
+
+```tsx
+export function Page({ children }) {
+  return (
+    <LoginCtaModalProvider
+      returnUrl="https://returnurl.example"
+      triggeredEventAction="action"
+    >
+      {children}
+    </LoginCtaModalProvider>
+  )
+}
+```
+
+## Props
+
+### children
+
+`ReactNode`
+
+### returnUrl
+
+`string`
+
+### triggeredEventAction
+
+`string`
