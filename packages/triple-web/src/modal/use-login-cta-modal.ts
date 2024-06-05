@@ -6,6 +6,7 @@ import { EventTrackingContext } from '../event-tracking/context'
 import { LOGIN_CTA_MODAL_HASH } from './constants'
 import { useModal } from './context'
 import type { LoginCtaModalRef } from './types'
+import { LoginCtaModalContext } from './login-cta-modal-context'
 
 type ShowOptions = LoginCtaModalRef
 
@@ -14,6 +15,7 @@ type ShowOptions = LoginCtaModalRef
  */
 export function useLoginCtaModal() {
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
+  const loginCtaModalContext = useContext(LoginCtaModalContext)
   const eventTrackingContext = useContext(EventTrackingContext)
   const { addUriHash, removeUriHash } = useHashRouter()
 
@@ -21,11 +23,12 @@ export function useLoginCtaModal() {
     (options?: ShowOptions) => {
       addUriHash(LOGIN_CTA_MODAL_HASH)
 
-      if (options) {
-        loginCtaModalRef.current = options
+      const combinedOptions = options ?? loginCtaModalContext
+      if (combinedOptions) {
+        loginCtaModalRef.current = combinedOptions
       }
     },
-    [addUriHash, loginCtaModalRef],
+    [addUriHash, loginCtaModalContext, loginCtaModalRef],
   )
 
   const close = useCallback(() => {

@@ -6,11 +6,13 @@ import { EventTrackingContext } from '../event-tracking/context'
 import { useModal } from './context'
 import type { AppInstallCtaModalRef } from './types'
 import { APP_INSTALL_CTA_MODAL_HASH } from './constants'
+import { AppInstallCtaModalContext } from './app-install-cta-modal-context'
 
 type ShowOptions = AppInstallCtaModalRef
 
 export function useAppInstallCtaModal() {
   const { appInstallCtaModalRef, eventTrackingContextForkRef } = useModal()
+  const appInstallCtaModalContext = useContext(AppInstallCtaModalContext)
   const eventTrackingContext = useContext(EventTrackingContext)
   const { addUriHash, removeUriHash } = useHashRouter()
 
@@ -18,11 +20,12 @@ export function useAppInstallCtaModal() {
     (options?: ShowOptions) => {
       addUriHash(APP_INSTALL_CTA_MODAL_HASH)
 
-      if (options) {
-        appInstallCtaModalRef.current = options
+      const combinedOptions = options ?? appInstallCtaModalContext
+      if (combinedOptions) {
+        appInstallCtaModalRef.current = combinedOptions
       }
     },
-    [addUriHash, appInstallCtaModalRef],
+    [addUriHash, appInstallCtaModalContext, appInstallCtaModalRef],
   )
 
   const close = useCallback(() => {
