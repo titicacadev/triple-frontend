@@ -11,6 +11,7 @@
   "bugs": {
     "url": "https://github.com/titicacadev/triple-frontend/issues"
   },
+  "sideEffects": false,
   "main": "src/index.ts",
   "types": "lib/index.d.ts",
   "publishConfig": {
