@@ -10,8 +10,10 @@ import { Meta, ArgTypes } from '@storybook/blocks'
 export function Page({ children }) {
   return (
     <LoginCtaModalProvider
-      returnUrl="https://returnurl.example"
-      triggeredEventAction="action"
+      showOptions={{
+        returnUrl: 'https://returnurl.example'
+        triggeredEventAction: 'action'
+      }}
     >
       {children}
     </LoginCtaModalProvider>
@@ -25,10 +27,6 @@ export function Page({ children }) {
 
 `ReactNode`
 
-### returnUrl
+### showOptions
 
-`string`
-
-### triggeredEventAction
-
-`string`
+`ShowOptions`

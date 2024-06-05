@@ -1,17 +1,19 @@
 import { PropsWithChildren } from 'react'
 
-import { AppInstallCtaModalContext } from '../modal/app-install-cta-modal-context'
-import type { AppInstallCtaModalRef } from '../modal/types'
+import {
+  AppInstallCtaModalContext,
+  type AppInstallCtaModalContextValue,
+} from '../modal/app-install-cta-modal-context'
 
 export type AppInstallCtaModalProviderProps =
-  PropsWithChildren<AppInstallCtaModalRef>
+  PropsWithChildren<AppInstallCtaModalContextValue>
 
 export function AppInstallCtaModalProvider({
   children,
-  ...props
+  showOptions,
 }: AppInstallCtaModalProviderProps) {
   return (
-    <AppInstallCtaModalContext.Provider value={props}>
+    <AppInstallCtaModalContext.Provider value={{ showOptions }}>
       {children}
     </AppInstallCtaModalContext.Provider>
   )
