@@ -10,9 +10,11 @@ import { Meta, ArgTypes } from '@storybook/blocks'
 export function Page({ children }) {
   return (
     <AppInstallCtaModalProvider
-      deepLink="triple:///deeplink"
-      triggeredEventAction="action"
-      onActionClick={onActionClick}
+      showOptions={{
+        deepLink: 'triple:///deeplink',
+        triggeredEventAction: 'action',
+        onActionClick,
+      }}
     >
       {children}
     </AppInstallCtaModalProvider>
@@ -26,14 +28,6 @@ export function Page({ children }) {
 
 `ReactNode`
 
-### deepLink
+### showOptions
 
-`string`
-
-### triggeredEventAction
-
-`string`
-
-### onActionClick
-
-`() => void`
+`ShowOptions`

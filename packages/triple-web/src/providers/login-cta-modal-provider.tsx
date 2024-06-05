@@ -1,16 +1,19 @@
 import { PropsWithChildren } from 'react'
 
-import { LoginCtaModalContext } from '../modal/login-cta-modal-context'
-import type { LoginCtaModalRef } from '../modal/types'
+import {
+  LoginCtaModalContext,
+  type LoginCtaModalContextValue,
+} from '../modal/login-cta-modal-context'
 
-export type LoginCtaModalProviderProps = PropsWithChildren<LoginCtaModalRef>
+export type LoginCtaModalProviderProps =
+  PropsWithChildren<LoginCtaModalContextValue>
 
 export function LoginCtaModalProvider({
   children,
-  ...props
+  showOptions,
 }: LoginCtaModalProviderProps) {
   return (
-    <LoginCtaModalContext.Provider value={props}>
+    <LoginCtaModalContext.Provider value={{ showOptions }}>
       {children}
     </LoginCtaModalContext.Provider>
   )

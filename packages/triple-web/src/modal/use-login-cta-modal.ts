@@ -23,7 +23,7 @@ export function useLoginCtaModal() {
     (options?: ShowOptions) => {
       addUriHash(LOGIN_CTA_MODAL_HASH)
 
-      const combinedOptions = options ?? loginCtaModalContext
+      const combinedOptions = options ?? loginCtaModalContext?.showOptions
       if (combinedOptions) {
         loginCtaModalRef.current = combinedOptions
       }

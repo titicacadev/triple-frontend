@@ -20,7 +20,7 @@ export function useAppInstallCtaModal() {
     (options?: ShowOptions) => {
       addUriHash(APP_INSTALL_CTA_MODAL_HASH)
 
-      const combinedOptions = options ?? appInstallCtaModalContext
+      const combinedOptions = options ?? appInstallCtaModalContext?.showOptions
       if (combinedOptions) {
         appInstallCtaModalRef.current = combinedOptions
       }
