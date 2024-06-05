@@ -29,7 +29,6 @@ export const jaCommonWeb = {
   hotel: 'ホテル',
   'starrating-seonggeub': '{{starRating}}星',
   sugso: '宿泊',
-  'tueo-tikes': 'ツアーチケット',
   'nae-yeyag': '私の予約',
   'daesgeul-sujeong-jung': 'コメントを編集中',
   'mentioningusername-nimgge-dabgeul-jagseong-jung':
@@ -103,7 +102,7 @@ export const jaCommonWeb = {
   coesinsun: '最新順',
   'jeobgeunhal-su-eobsneun-ringkeuibnida.': 'アクセスできないリンクです。',
   'webeseo-bogi': 'ウェブで見る',
-  'teuripeuleseo-bogi': 'TRIPLEで見る',
+  '트리플 코리아에서 보기': 'TRIPLE Koreaで見る',
   'nae-iljeongeuro-damgi': '私の日程に追加',
   bogi: '見る',
   barogagi: '移動する',
@@ -132,13 +131,6 @@ export const jaCommonWeb = {
   kuponhalinga: 'クーポン割引価格',
   kuponjeogyongsi: 'クーポン適用価格',
   muryo: '無料',
-  'nae-yeyageseo-hwagin': '「私の予約」で確認',
-  'yeyagi-n-jeobsudoeeossseubnida.': '予約を\n受け付けました。',
-  'jasehan-sahangeun-nae-yeyageseo-hwaginhaejuseyo.':
-    '詳細は「私の予約」でご確認ください。',
-  'teuripeul-homeuro-gagi': 'TRIPLEホームに移動',
-  'regionname-yeohaeng-junbihareo-gagi': '{{regionName}} 旅行の準備をする',
-  'nae-iljeonge-cugahagi': '私の日程に追加',
   'formattedsaleprice-weon': '{{formattedSalePrice}}円',
   ilsipumjeol: '一時売り切れ',
   'jeojang-formattedscrapscount': '保存{{formattedScrapsCount}}',
@@ -160,20 +152,15 @@ export const jaCommonWeb = {
   'johayo-likereactioncount': 'いいね {{likeReactionCount}}',
   dabgeuldalgi: 'コメントする',
   'ijeon-dabgeul-deobogi': '以前のコメントを見る',
-  '...deobogi': '…もっと見る',
-  'pointeubyeol-hyetaeg-bogi': 'ポイント別特典を見る',
   ribyu: 'レビュー',
   'totalreviewscount-gaeyi-ribyu':
     '<0> {{totalReviewsCount}}</0><1>個のレビュー</1>',
   'numofrestreviews-gae-ribyu-deobogi':
     '{{numOfRestReviews}}個のレビューをもっと見る',
-  'ribyu-sseumyeon-yeohaengja-keulreob-coedae-3pointeu':
-    'レビューを書くと旅行者クラブ最大３ポイント！',
   'formattedapplicableamountafterusingcoupon-weon':
     '{{formattedApplicableAmountAfterUsingCoupon}}円',
   'title-yi-sseomneil': '{{title}}のサムネイル',
   'formattedbaseprice-weon': '{{formattedBasePrice}}円',
-  'selpeupaekiji-cugahalin-ganeung': 'セルフパッケージの追加割引可能',
   gwangwang: '観光',
   masjib: 'グルメ',
   'sajin-dongyeongsang': '写真/動画',
