@@ -228,3 +228,5 @@ function PoiCardElement({
 }
 
 export default PoiCardElement
+
+// test
