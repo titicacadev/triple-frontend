@@ -41,7 +41,7 @@
     "@swc/core": "1.5.28",
     "@swc/jest": "0.2.36",
     "@swc/plugin-styled-components": "1.5.122",
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@titicaca/eslint-config-triple": "5.1.1",
@@ -74,7 +74,7 @@
     "msw-storybook-addon": "^1.10.0",
     "next": "13.4.13",
     "nx-cloud": "16.4.0",
-    "prettier": "^3.3.0",
+    "prettier": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "13.5.0",
@@ -89,7 +89,7 @@
     "ts-jest": "^29.1.4",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "5.4.5",
-    "vite": "^5.2.12",
+    "vite": "^5.2.13",
     "vite-plugin-dts": "^3.9.1"
   },
   "lint-staged": {
