@@ -33,14 +33,17 @@ export function LocalLink({
   noNavbar,
   swipeToClose,
   shouldPresent,
+  addBasePath = true,
   onClick,
   className,
   children,
-}: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
+}: PropsWithChildren<
+  LinkCommonProps & NextjsRoutingOptions & { addBasePath?: boolean }
+>) {
   const handleHrefLocally = useLocalHrefHandler()
-  const addBasePath = useBasePathAdder()
+  const basePathAdder = useBasePathAdder()
 
-  const finalHref = addBasePath(href)
+  const finalHref = addBasePath ? basePathAdder(href) : href
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     if (onClick) {
