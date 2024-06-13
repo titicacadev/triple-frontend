@@ -1,18 +1,21 @@
-interface GetI18nizedUrlArgs {
+interface GetI18nizedUrlParams {
   lang: string
   path: string
   baseUrl?: string
-  basePath?: string
+  basePath?: boolean
 }
 
 export function getI18nizedUrl({
   lang,
   path,
   baseUrl,
-  basePath: basePathArg,
-}: GetI18nizedUrlArgs) {
+  basePath,
+}: GetI18nizedUrlParams) {
   const webUrlBase = baseUrl || process.env.NEXT_PUBLIC_WEB_URL_BASE
-  const basePath = basePathArg || process.env.NEXT_PUBLIC_BASE_PATH
 
-  return `${webUrlBase}/${lang}${basePath}${path}`
+  if (basePath) {
+    return `${webUrlBase}/${lang}${process.env.NEXT_PUBLIC_BASE_PATH}${path}`
+  }
+
+  return `${webUrlBase}/${lang}${path}`
 }
