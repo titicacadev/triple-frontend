@@ -47,6 +47,7 @@ export const Modal = ({
   open = false,
   flexible = false,
   onClose,
+  ...props
 }: ModalProps) => {
   const labelId = useId()
   const descriptionId = useId()
@@ -111,6 +112,7 @@ export const Modal = ({
                 aria-modal
                 $flexible={flexible}
                 {...getFloatingProps()}
+                {...props}
               >
                 {children}
               </ModalPanel>
