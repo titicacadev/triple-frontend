@@ -18,6 +18,11 @@ export function CommonMeta() {
       />
       <meta name="msapplication-TileColor" content="#7743EE" />
       <link
+        rel="icon"
+        type="image/x-icon"
+        href="https://triple.global/icons/favicon.ico"
+      />
+      <link
         rel="apple-touch-icon-precomposed"
         href="https://triple.global/icons/icon-192x192.png"
       />
