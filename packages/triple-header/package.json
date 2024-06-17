@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-header",
-  "version": "13.25.0",
+  "version": "14.0.0",
   "description": "TripleHeader",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-header",
@@ -41,11 +41,11 @@
     ]
   },
   "dependencies": {
-    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
+    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "framer-motion": "^10.18.0",
     "lottie-web": "^5.12.2"
