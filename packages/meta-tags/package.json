@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "13.25.0",
+  "version": "14.0.0",
   "description": "Triple Web Application Meta tag modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/meta-tags",
@@ -44,16 +44,16 @@
     "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "i18next": "^23.11.5",
+    "next": "^13.5.6",
     "react": "^18.3.1",
-    "react-i18next": "^13.5.0",
-    "next": "^13.5.6"
+    "react-i18next": "^13.5.0"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
     "@titicaca/triple-web": "*",
     "i18next": "*",
+    "next": "^13.4",
     "react": "^18.0",
-    "react-i18next": "*",
-    "next": "^13.4"
+    "react-i18next": "*"
   }
 }

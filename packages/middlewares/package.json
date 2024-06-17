@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/middlewares",
-  "version": "13.15.0",
+  "version": "14.0.0",
   "description": "Triple Web Application Middleware modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/middleware",
@@ -41,22 +41,22 @@
     ]
   },
   "dependencies": {
+    "semver": "^7.6.2",
     "set-cookie-parser": "^2.6.0",
-    "universal-cookie": "^4.0.4",
-    "semver": "^7.6.2"
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@types/semver": "^7.5.8",
     "@types/set-cookie-parser": "^2.4.9",
-    "react": "^18.3.1",
-    "next": "^13.5.6"
+    "next": "^13.5.6",
+    "react": "^18.3.1"
   },
   "peerDependencies": {
     "@titicaca/fetcher": "*",
     "@titicaca/triple-web-utils": "*",
-    "react": "^18.0",
-    "next": "^13.4"
+    "next": "^13.4",
+    "react": "^18.0"
   }
 }
