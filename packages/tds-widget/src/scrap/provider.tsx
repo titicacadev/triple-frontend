@@ -4,17 +4,19 @@ import {
   unsubscribeScrapedChangeEvent,
 } from '@titicaca/triple-web-to-native-interfaces'
 
-import { Scraps } from './types'
+import { Scraps, Target } from './types'
 import { reducer } from './reducer'
 import { SCRAPE, UNSCRAPE } from './constants'
 import { ScrapContext, ScrapDispatchContext } from './context'
 
 interface ScrapsProviderProps {
   initialScraps?: Scraps
+  beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
 }
 
 export function ScrapsProvider({
   initialScraps,
+  beforeScrapedChange,
   children,
 }: PropsWithChildren<ScrapsProviderProps>) {
   const [value, dispatch] = useReducer(reducer, {
@@ -37,7 +39,7 @@ export function ScrapsProvider({
   }, [dispatch])
 
   return (
-    <ScrapContext.Provider value={value}>
+    <ScrapContext.Provider value={{ ...value, beforeScrapedChange }}>
       <ScrapDispatchContext.Provider value={dispatch}>
         {children}
       </ScrapDispatchContext.Provider>
