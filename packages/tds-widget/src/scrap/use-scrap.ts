@@ -28,7 +28,7 @@ export function useScrap() {
     throw new Error('ScrapProvider가 없습니다.')
   }
 
-  const { scraps, updating } = scrapsContext
+  const { scraps, updating, beforeScrapedChange } = scrapsContext
 
   const app = useClientApp()
   const { notifyScraped, notifyUnscraped } = useClientAppActions()
@@ -85,6 +85,13 @@ export function useScrap() {
         },
       },
     }: Target) => {
+      if (
+        beforeScrapedChange &&
+        beforeScrapedChange({ id, type }, true) === false
+      ) {
+        return
+      }
+
       if (typeof updating[id] !== 'undefined') {
         return
       }
@@ -110,10 +117,11 @@ export function useScrap() {
       }
     },
     [
-      dispatch,
+      beforeScrapedChange,
       updating,
       app,
       sessionAvailable,
+      dispatch,
       showAppInstallCtaModal,
       showLoginCta,
       notifyScraped,
@@ -134,6 +142,13 @@ export function useScrap() {
         },
       },
     }: Target) => {
+      if (
+        beforeScrapedChange &&
+        beforeScrapedChange({ id, type }, true) === false
+      ) {
+        return
+      }
+
       if (typeof updating[id] !== 'undefined') {
         return
       }
@@ -159,10 +174,11 @@ export function useScrap() {
       }
     },
     [
-      dispatch,
+      beforeScrapedChange,
       updating,
       app,
       sessionAvailable,
+      dispatch,
       showAppInstallCtaModal,
       showLoginCta,
       notifyUnscraped,
