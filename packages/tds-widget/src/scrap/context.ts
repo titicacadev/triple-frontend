@@ -1,6 +1,6 @@
 import { Dispatch, createContext } from 'react'
 
-import { Scraps } from './types'
+import { Scraps, Target } from './types'
 import { ActionType } from './reducer'
 
 export const ScrapContext = createContext<
@@ -9,6 +9,7 @@ export const ScrapContext = createContext<
       updating: {
         [id: string]: boolean
       }
+      beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
     }
   | undefined
 >(undefined)
