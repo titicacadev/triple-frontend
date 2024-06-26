@@ -434,8 +434,8 @@ importers:
         specifier: ^0.26.18
         version: 0.26.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@titicaca/content-utilities':
-        specifier: 8.34.0
-        version: 8.34.0(encoding@0.1.13)
+        specifier: 9.6.3
+        version: 9.6.3(encoding@0.1.13)
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -3998,14 +3998,11 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@titicaca/content-type-definitions@8.34.0':
-    resolution: {integrity: sha512-oA/5qsJ1wysBoMYywGA9XhFVjPlJ7dRUXqouA2aiy8FPSh/H8qKB1y+R9lIWq5b5cVOz14jyRLy2ItSvsoGC6Q==}
-
   '@titicaca/content-type-definitions@9.6.3':
     resolution: {integrity: sha512-iSPQarDAofgJdXFBx9vJ2xZXtp2AV7bsALpop88T9nNEgAtSJRIUasZQvCEoJpWEEJunbnA3KfMf+Rw/10YGLQ==}
 
-  '@titicaca/content-utilities@8.34.0':
-    resolution: {integrity: sha512-6c4j2HJS0cAKkKYaeYZhEVKYcjdMCI6ps8lHD0CWX0ok0OWb6TljyXruZKvadpHFJ5f5zYDAZbFEqrf5GADkog==}
+  '@titicaca/content-utilities@9.6.3':
+    resolution: {integrity: sha512-TkwPezMgalD5j+tLv7WkY0oIpvyIQQHTgwXRMgTPN942mRVysqXiFdyOwtHp9Kd0YmVB+vQUvm21k+6RUwTa8Q==}
 
   '@titicaca/eslint-config-triple@5.1.1':
     resolution: {integrity: sha512-4D961ZDKXeyfm7pFD0qxyfc1vdEkrOcXJdLKdJQGBu6/UMYlYHXgI8se/7HSz5/W+qi/DgIjEsG1yn29tGh0ig==}
@@ -15431,13 +15428,11 @@ snapshots:
     dependencies:
       '@testing-library/dom': 9.3.1
 
-  '@titicaca/content-type-definitions@8.34.0': {}
-
   '@titicaca/content-type-definitions@9.6.3': {}
 
-  '@titicaca/content-utilities@8.34.0(encoding@0.1.13)':
+  '@titicaca/content-utilities@9.6.3(encoding@0.1.13)':
     dependencies:
-      '@titicaca/content-type-definitions': 8.34.0
+      '@titicaca/content-type-definitions': 9.6.3
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
