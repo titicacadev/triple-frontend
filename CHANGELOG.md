@@ -1,5 +1,242 @@
 # CHANGELOG
 
+## v14
+
+### ab-experiments
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### action-sheet
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### ad-banners
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### app-banner
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### app-installation-cta
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### author
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### booking-completion
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### carousel
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### chat
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### color-palette
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### constants
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### content-sharing
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### core-elements
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### date-picker
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### directions-finder
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### drawer-button
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### fetcher
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### footer
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### form
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### hub-form
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### i18n
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### icons
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### image-carousel
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### image-viewer
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### intersection-observer
+
+- [v14] 빌드 에러 수정 1 [#3077](https://github.com/titicacadev/triple-frontend/pull/3077)
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- [v14] QA 버그 수정 [#3162](https://github.com/titicacadev/triple-frontend/pull/3162)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### listing-filter
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### location-properties
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### map
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### meta-tags
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### middlewares
+
+- middleware 패키지 추가 및 세션 갱신 middlware 추가 [#3185](https://github.com/titicacadev/triple-frontend/pull/3185)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### modals
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### nearby-pois
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### poi-detail
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### poi-list-elements
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### popup
+
+- V14 에픽 브랜치 [#3189](https://github.com/titicacadev/triple-frontend/pull/3189)
+
+### react-hooks
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- [v14] 타입 개선과 버그 수정 [#3128](https://github.com/titicacadev/triple-frontend/pull/3128)
+- [v14] QA 버그 수정 [#3162](https://github.com/titicacadev/triple-frontend/pull/3162)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### react-triple-client-interfaces
+
+- [v14] 스토리북 코드 수정 [#3063](https://github.com/titicacadev/triple-frontend/pull/3063)
+- [v14] react-triple-client-interfaces 패키지 제거 [#3068](https://github.com/titicacadev/triple-frontend/pull/3068)
+
+### router
+
+- [v14] useIsomorphicNavigation 복구 및 replies 마이그레이션 [#3062](https://github.com/titicacadev/triple-frontend/pull/3062)
+- [v14] react-triple-client-interfaces 패키지 제거 [#3068](https://github.com/titicacadev/triple-frontend/pull/3068)
+- [v14] 새로운 open link 훅 추가 [#3071](https://github.com/titicacadev/triple-frontend/pull/3071)
+- [v14] useClientAppActions import path 수정 [#3072](https://github.com/titicacadev/triple-frontend/pull/3072)
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- [v14] 테스트 코드를 수정합니다. [#3087](https://github.com/titicacadev/triple-frontend/pull/3087)
+- [v14] 컴포넌트형 링크 제거하고 useMake 훅 추가 [#3099](https://github.com/titicacadev/triple-frontend/pull/3099)
+- [v14] TripleWeb 사용 편의성 보완 [#3117](https://github.com/titicacadev/triple-frontend/pull/3117)
+- [triple-web] TransitionModal을 AppInstallCtaModal로 변경합니다. [#3249](https://github.com/titicacadev/triple-frontend/pull/3249)
+- 타입 문제 수정 [#3261](https://github.com/titicacadev/triple-frontend/pull/3261)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### scroll-spy
+
+- [v14] 빌드 에러 수정 1 [#3077](https://github.com/titicacadev/triple-frontend/pull/3077)
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- [V14] scroll-spy 패키지 제거 [#3089](https://github.com/titicacadev/triple-frontend/pull/3089)
+
+### scroll-to-element
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### standard-action-handler
+
+- [v14] standard-action-handler 마이그레이션 [#3061](https://github.com/titicacadev/triple-frontend/pull/3061)
+- [v14] useExternalRouter 제거 [#3067](https://github.com/titicacadev/triple-frontend/pull/3067)
+- [v14] react-triple-client-interfaces 패키지 제거 [#3068](https://github.com/titicacadev/triple-frontend/pull/3068)
+- [v14] 새로운 open link 훅 추가 [#3071](https://github.com/titicacadev/triple-frontend/pull/3071)
+- [v14] useClientAppActions import path 수정 [#3072](https://github.com/titicacadev/triple-frontend/pull/3072)
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- [v14] 테스트 코드를 수정합니다. [#3087](https://github.com/titicacadev/triple-frontend/pull/3087)
+- [triple-web] TransitionModal을 AppInstallCtaModal로 변경합니다. [#3249](https://github.com/titicacadev/triple-frontend/pull/3249)
+- 타입 문제 수정 [#3261](https://github.com/titicacadev/triple-frontend/pull/3261)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+### tds-theme
+
+- [v14] ES Module 사용, 빌드 오류 일부 수정 [#3081](https://github.com/titicacadev/triple-frontend/pull/3081)
+- [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
+- Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
+- styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
+- ES Module 빌드 [#3275](https://
+
 ## v13.26.1
 
 ### review
@@ -4413,11 +4650,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
