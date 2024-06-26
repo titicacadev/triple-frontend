@@ -33,17 +33,15 @@ export function LocalLink({
   noNavbar,
   swipeToClose,
   shouldPresent,
-  addBasePath = true,
+  prependBasePath = true,
   onClick,
   className,
   children,
-}: PropsWithChildren<
-  LinkCommonProps & NextjsRoutingOptions & { addBasePath?: boolean }
->) {
+}: PropsWithChildren<LinkCommonProps & NextjsRoutingOptions>) {
   const handleHrefLocally = useLocalHrefHandler()
   const basePathAdder = useBasePathAdder()
 
-  const finalHref = addBasePath ? basePathAdder(href) : href
+  const finalHref = prependBasePath ? basePathAdder(href) : href
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     if (onClick) {
@@ -60,6 +58,7 @@ export function LocalLink({
       replace,
       scroll,
       shallow,
+      prependBasePath,
       isKeyPressing: isKeyPressingClick(e),
       stopDefaultHandler: () => {
         e.preventDefault()

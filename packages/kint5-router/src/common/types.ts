@@ -6,6 +6,7 @@ import { RelListProps } from './use-rel'
 
 export interface HrefProps {
   href: string
+  prependBasePath?: boolean
 }
 
 /**

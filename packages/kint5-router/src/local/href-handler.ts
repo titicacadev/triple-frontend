@@ -63,6 +63,7 @@ export function useLocalHrefHandler() {
     scroll,
     shallow,
     isKeyPressing,
+    prependBasePath,
     stopDefaultHandler,
   }: HrefProps &
     TargetProps &
@@ -79,12 +80,16 @@ export function useLocalHrefHandler() {
       return
     }
 
-    const finalHref = addBasePath(href)
+    const finalHref = prependBasePath ? addBasePath(href) : href
 
     if (target === 'new' && app) {
       stopDefaultHandler()
 
-      openInlink(finalHref, {
+      // 인링크 및 딥링크는 앱에서 자체적으로 locale을 처리하므로,
+      // locale path를 제거한 href를 전달합니다.
+      const localePathRemovedHref = finalHref.replace(/^\/(ko|ja|en|zh-TW)/, '')
+
+      openInlink(localePathRemovedHref, {
         lnbTarget,
         noNavbar,
         shouldPresent,
