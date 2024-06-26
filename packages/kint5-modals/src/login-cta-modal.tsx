@@ -50,6 +50,8 @@ export function LoginCtaModalProvider({
         title={t(['rogeuini-pilyohabnida.', '로그인이 필요합니다.'])}
         onClose={back}
         onCancel={back}
+        cancelColor="black"
+        confirmColor="blue"
         onConfirm={() => {
           trackEvent({
             ga: ['로그인유도팝업_로그인선택'],

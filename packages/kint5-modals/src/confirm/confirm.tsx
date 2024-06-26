@@ -9,6 +9,8 @@ export interface ConfirmProps {
   open?: boolean
   cancelText?: string
   confirmText?: string
+  cancelColor?: 'blue' | 'red' | 'black'
+  confirmColor?: 'blue' | 'red' | 'black'
   onClose?: () => void
   onCancel?: () => boolean | unknown
   onConfirm?: () => boolean | unknown
@@ -20,6 +22,8 @@ export const Confirm = ({
   open,
   cancelText,
   confirmText,
+  cancelColor = 'blue',
+  confirmColor = 'red',
   onClose,
   onCancel,
   onConfirm,
@@ -42,10 +46,10 @@ export const Confirm = ({
         {children && <Modal.Description>{children}</Modal.Description>}
       </Modal.Body>
       <Modal.Actions>
-        <Modal.Action color="blue" onClick={handleCancel}>
+        <Modal.Action color={cancelColor} onClick={handleCancel}>
           {cancelText || t('cwiso')}
         </Modal.Action>
-        <Modal.Action color="red" onClick={handleConfirm}>
+        <Modal.Action color={confirmColor} onClick={handleConfirm}>
           {confirmText || t('hwagin')}
         </Modal.Action>
       </Modal.Actions>
