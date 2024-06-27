@@ -116,6 +116,7 @@ export const ActionSheet = ({
                 labelId={labelId}
                 transitionStatus={status}
                 aria-modal
+                css={{ pointerEvents: 'auto' }}
                 {...getFloatingProps(props)}
               >
                 {children}
