@@ -26,6 +26,7 @@ export interface ActionSheetProps
     | 'title'
   > {
   open?: boolean
+  lockScroll?: boolean
   onClose?: () => void
   onEnter?: () => void
   onEntered?: () => void
@@ -39,6 +40,7 @@ export interface ActionSheetProps
 export const ActionSheet = ({
   children,
   open = false,
+  lockScroll,
   title,
   borderRadius = 12,
   bottomSpacing = 13,
@@ -83,7 +85,10 @@ export const ActionSheet = ({
     <ActionSheetContext.Provider value={{ open, onClose }}>
       {isMounted ? (
         <FloatingPortal>
-          <ActionSheetOverlay transitionStatus={status} />
+          <ActionSheetOverlay
+            transitionStatus={status}
+            lockScroll={lockScroll}
+          />
           <FlexBox
             flex
             justifyContent="center"
@@ -94,6 +99,7 @@ export const ActionSheet = ({
               top: 0,
               bottom: 0,
               zIndex: 9999,
+              ...(!lockScroll && { pointerEvents: 'none' }),
             }}
           >
             <FloatingFocusManager

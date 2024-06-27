@@ -3,14 +3,16 @@ import { FloatingOverlay } from '@floating-ui/react'
 
 import { TRANSITION_DURATION } from './constants'
 
-export const Overlay = styled(FloatingOverlay)`
+export const Overlay = styled(FloatingOverlay)<{ lockScroll: boolean }>`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100vw;
-  background-color: rgba(58, 58, 58, 0.7);
+  background-color: ${({ lockScroll }) =>
+    lockScroll ? 'rgba(58, 58, 58, 0.7)' : 'transparent'};
+  ${({ lockScroll }) => (!lockScroll ? 'pointer-events: none;' : '')}
   z-index: 9999;
   transition: opacity ${TRANSITION_DURATION}ms ease-in;
   opacity: 0;
@@ -21,11 +23,19 @@ export const Overlay = styled(FloatingOverlay)`
 `
 
 export interface ActionSheetOverlayProps {
+  lockScroll?: boolean
   transitionStatus: string
 }
 
 export const ActionSheetOverlay = ({
+  lockScroll = true,
   transitionStatus,
 }: ActionSheetOverlayProps) => {
-  return <Overlay lockScroll data-transition={transitionStatus} />
+  return (
+    <Overlay
+      lockScroll={lockScroll}
+      data-transition={transitionStatus}
+      css={{ ...(!lockScroll && { width: 'auto' }) }}
+    />
+  )
 }
