@@ -60,7 +60,7 @@
     "qs": "^6.12.1",
     "react-day-picker": "^7.4.10",
     "react-transition-group": "^4.4.5",
-    "react-zoom-pan-pinch": "^3.4.4",
+    "react-zoom-pan-pinch": "^3.6.1",
     "scroll-to-element": "^2.0.3",
     "use-long-press": "^3.2.0"
   },
