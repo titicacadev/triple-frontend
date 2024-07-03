@@ -88,8 +88,8 @@
     "stylelint": "^15.11.0",
     "ts-jest": "^29.1.5",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "5.5.2",
-    "vite": "^5.3.1",
+    "typescript": "5.5.3",
+    "vite": "^5.3.3",
     "vite-plugin-dts": "^3.9.1"
   },
   "lint-staged": {
