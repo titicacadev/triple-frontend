@@ -38,7 +38,7 @@ export interface ActionSheetProps
 export const ActionSheet = ({
   children,
   open = false,
-  lockScroll,
+  lockScroll = true,
   title,
   borderRadius = 12,
   bottomSpacing = 13,
@@ -83,10 +83,12 @@ export const ActionSheet = ({
     <ActionSheetContext.Provider value={{ open, onClose }}>
       {isMounted ? (
         <FloatingPortal>
-          <ActionSheetOverlay
-            transitionStatus={status}
-            lockScroll={lockScroll}
-          />
+          {lockScroll && (
+            <ActionSheetOverlay
+              transitionStatus={status}
+              lockScroll={lockScroll}
+            />
+          )}
           <FlexBox
             flex
             justifyContent="center"
@@ -97,7 +99,6 @@ export const ActionSheet = ({
               top: 0,
               bottom: 0,
               zIndex: 9999,
-              ...(!lockScroll && { pointerEvents: 'none' }),
             }}
           >
             <FloatingFocusManager
@@ -114,7 +115,6 @@ export const ActionSheet = ({
                 labelId={labelId}
                 transitionStatus={status}
                 aria-modal
-                css={{ pointerEvents: 'auto' }}
                 {...getFloatingProps(props)}
               >
                 {children}
