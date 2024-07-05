@@ -9,6 +9,7 @@ env:
   GITHUB_API_URL_BASE: https://api.github.com/repos/${{ github.repository }}
   # Node.js
   NODE_VERSION: 'lts/*'
+  PNPM_VERSION: '9'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   # Slack Notifications
   SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
@@ -29,12 +30,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
