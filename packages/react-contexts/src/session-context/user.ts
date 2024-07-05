@@ -9,6 +9,7 @@ export interface User {
   photo: string
   mileage: Mileage
   uid: string
+  email: string
 }
 
 type Provider = 'TRIPLE' | 'NAVER' | 'KAKAO' | 'FACEBOOK' | 'APPLE'
