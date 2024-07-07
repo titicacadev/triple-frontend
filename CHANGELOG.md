@@ -237,6 +237,22 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.26.2
+
+```
+### action-sheet
+
+- [action-sheet] 액션 시트에서 lockScroll을 해제할 수 있도록 옵션 제공 [#3295](https://github.com/titicacadev/triple-frontend/pull/3295)
+
+### react-contexts
+
+- [react-hooks] user 타입에 email 필드를 추가합니다. [#3304](https://github.com/titicacadev/triple-frontend/pull/3304)
+
+### react-hooks
+
+- [react-hooks] user 타입에 email 필드를 추가합니다. [#3304](https://github.com/titicacadev/triple-frontend/pull/3304)
+```
+
 ## v13.26.1
 
 ### review
