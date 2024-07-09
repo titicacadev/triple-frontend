@@ -99,6 +99,7 @@ export const ActionSheet = ({
               top: 0,
               bottom: 0,
               zIndex: 9999,
+              ...(!lockScroll && { pointerEvents: 'none' }),
             }}
           >
             <FloatingFocusManager
@@ -115,6 +116,7 @@ export const ActionSheet = ({
                 labelId={labelId}
                 transitionStatus={status}
                 aria-modal
+                css={{ pointerEvents: 'auto' }}
                 {...getFloatingProps(props)}
               >
                 {children}
