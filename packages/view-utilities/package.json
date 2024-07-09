@@ -43,7 +43,7 @@
     "haversine": "^1.1.1",
     "humps": "^2.0.1",
     "moment": "^2.30.1",
-    "qs": "^6.12.2"
+    "qs": "^6.12.3"
   },
   "devDependencies": {
     "@types/haversine": "^1.1.8",
