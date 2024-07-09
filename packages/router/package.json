@@ -43,7 +43,7 @@
   "dependencies": {
     "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/view-utilities": "workspace:*",
-    "qs": "^6.12.2"
+    "qs": "^6.12.3"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
