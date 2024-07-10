@@ -1,5 +1,4 @@
-import qs from 'querystring'
-
+import qs from 'qs'
 import { get, post } from '@titicaca/fetcher'
 
 import { Banner } from './typing'

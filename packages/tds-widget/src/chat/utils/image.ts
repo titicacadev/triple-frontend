@@ -1,5 +1,4 @@
-import qs from 'querystring'
-
+import qs from 'qs'
 import { generateUrl } from '@titicaca/view-utilities'
 
 import { UserInterface, MetaDataInterface } from '../types'
