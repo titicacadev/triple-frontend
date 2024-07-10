@@ -12,14 +12,6 @@
 - [react-contexts] user의 마일리지 뱃지 이미지 타입을 수정합니다. [#3310](https://github.com/titicacadev/triple-frontend/pull/3310)
 ```
 
-## v13.26.3
-
-```
-### react-contexts
-
-- [react-contexts] user의 마일리지 뱃지 이미지 타입을 수정합니다. [#3310](https://github.com/titicacadev/triple-frontend/pull/3310)
-```
-
 ## v13.26.2
 
 ```
@@ -4449,11 +4441,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
