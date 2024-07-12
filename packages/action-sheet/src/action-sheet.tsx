@@ -14,6 +14,7 @@ import { ActionSheetBody, ActionSheetBodyProps } from './action-sheet-body'
 import { ActionSheetContext } from './action-sheet-context'
 import { ActionSheetOverlay } from './action-sheet-overlay'
 import { TRANSITION_DURATION } from './constants'
+import { mergeRefs } from './merge-refs'
 
 export interface ActionSheetProps
   extends Pick<
@@ -107,14 +108,13 @@ export const ActionSheet = forwardRef<HTMLDivElement, ActionSheetProps>(
                 zIndex: 9999,
                 ...(!lockScroll && { pointerEvents: 'none' }),
               }}
-              ref={ref}
             >
               <FloatingFocusManager
                 context={context}
                 initialFocus={refs.floating}
               >
                 <ActionSheetBody
-                  ref={refs.setFloating}
+                  ref={mergeRefs([refs.setFloating, ref])}
                   borderRadius={borderRadius}
                   bottomSpacing={bottomSpacing}
                   maxContentHeight={maxContentHeight}
