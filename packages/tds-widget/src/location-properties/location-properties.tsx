@@ -36,7 +36,7 @@ export function LocationProperties({
   extraProperties?: ExtraProperty[]
   onExtraPropertyClick?: (extraProperty: ExtraProperty) => void
   onCopy: (value: string) => void
-} & Parameters<typeof Segment>['0']) {
+} & Omit<Parameters<typeof Segment>['0'], 'onCopy'>) {
   const { t } = useTranslation('triple-frontend')
 
   const { uriHash, removeUriHash } = useHashRouter()
