@@ -41,7 +41,7 @@
     ]
   },
   "dependencies": {
-    "semver": "^7.6.2",
+    "semver": "^7.6.3",
     "set-cookie-parser": "^2.6.0",
     "universal-cookie": "^4.0.4"
   },
