@@ -59,11 +59,11 @@
     "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.15",
-    "i18next": "^23.11.5",
+    "i18next": "^23.12.2",
     "next": "^13.5.6",
     "react": "^18.3.1",
     "react-i18next": "^13.5.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.12"
   },
   "peerDependencies": {
     "@titicaca/i18n": "*",
