@@ -14,6 +14,7 @@ import type { Theme } from '@titicaca/tds-theme'
 import { MarginPadding } from '../../commons'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../../mixins'
 import { unit } from '../../utils/unit'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 interface NavbarProps {
   maxWidth?: number
@@ -129,11 +130,15 @@ interface NavbarItemProps {
   hasTitle?: boolean
 }
 
-const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
-  className: ['back', 'close'].includes(icon || '')
-    ? TRIPLE_FALLBACK_ACTION_CLASS_NAME
-    : '',
-}))<NavbarItemProps>`
+const NavbarItem = styled.div
+  .attrs<NavbarItemProps>(({ icon }) => ({
+    className: ['back', 'close'].includes(icon || '')
+      ? TRIPLE_FALLBACK_ACTION_CLASS_NAME
+      : '',
+  }))
+  .withConfig({
+    shouldForwardProp,
+  })<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => (icon ? ICON_URL_BY_NAMES[icon] : '')});
@@ -156,7 +161,9 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
     `}
 `
 
-const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
+const SecondaryNavbar = styled.div.withConfig({
+  shouldForwardProp,
+})<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white', theme }) =>
     theme.colors[backgroundColor]};
   ${({ position = 'sticky' }) => `

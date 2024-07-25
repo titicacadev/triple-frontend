@@ -1,5 +1,7 @@
 import { styled, css } from 'styled-components'
 
+import { shouldForwardProp } from '../../utils/should-forward-prop'
+
 type ButtonIconSize = 'tiny' | 'small'
 
 const BUTTON_ICON_STYLES: Record<ButtonIconSize, ReturnType<typeof css>> = {
@@ -22,7 +24,9 @@ export interface ButtonIconProps {
   src?: string
 }
 
-export const ButtonIcon = styled.div<ButtonIconProps>`
+export const ButtonIcon = styled.div.withConfig({
+  shouldForwardProp,
+})<ButtonIconProps>`
   display: inline-block;
   ${({ size = 'tiny' }) => BUTTON_ICON_STYLES[size]};
   vertical-align: text-top;

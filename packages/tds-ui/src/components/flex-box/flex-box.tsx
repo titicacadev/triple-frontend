@@ -3,6 +3,7 @@ import { Property } from 'csstype'
 import { HTMLAttributes } from 'react'
 
 import { Container, ContainerProps } from '../container'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 export interface FlexItemOwnProps extends ContainerProps {
   /**
@@ -28,7 +29,9 @@ export interface FlexItemOwnProps extends ContainerProps {
 
 export type FlexItemProps = FlexItemOwnProps & HTMLAttributes<Element>
 
-export const FlexBoxItem = styled(Container)<FlexItemProps>((props) => ({
+export const FlexBoxItem = styled(Container).withConfig({
+  shouldForwardProp,
+})<FlexItemProps>((props) => ({
   flex: props.flex,
   flexGrow: props.flexGrow,
   flexShrink: props.flexShrink,
@@ -79,7 +82,9 @@ export interface FlexBoxProps
  * flex children 요소가 사용 가능한 flex, flexGrow, flexShrink, flexBasis,
  * alignSelf, order는 중첩된 구조의 flex 사용 시에만 사용 권장합니다.
  */
-export const FlexBox = styled(Container)<FlexBoxProps>((props) => ({
+export const FlexBox = styled(Container).withConfig({
+  shouldForwardProp,
+})<FlexBoxProps>((props) => ({
   display: props.flex ? 'flex' : undefined,
   flexDirection: props.flexDirection,
   flexWrap: props.flexWrap,

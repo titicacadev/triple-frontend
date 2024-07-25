@@ -2,6 +2,7 @@ import { styled } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin, paddingMixin } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 type Icons = 'save' | 'web' | 'call' | 'map' | 'arrowRight'
 
@@ -21,7 +22,9 @@ const SIZES: Partial<Record<GlobalSizes, string>> = {
   big: '24px',
 }
 
-export const Icon = styled.div<{
+export const Icon = styled.div.withConfig({
+  shouldForwardProp,
+})<{
   size?: GlobalSizes
   src?: string
   name?: Icons

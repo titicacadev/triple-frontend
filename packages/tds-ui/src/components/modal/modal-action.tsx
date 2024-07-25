@@ -1,13 +1,16 @@
 import { styled } from 'styled-components'
 
 import { GlobalColors } from '../../commons'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
   gray: 'rgba(58, 58, 58, 0.5)',
   blue: '#368fff',
 }
 
-export const ModalAction = styled.a<{ color?: GlobalColors }>`
+export const ModalAction = styled.a.withConfig({
+  shouldForwardProp,
+})<{ color?: GlobalColors }>`
   display: inline-block;
   white-space: nowrap;
   height: 50px;

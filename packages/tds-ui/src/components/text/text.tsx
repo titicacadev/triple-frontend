@@ -12,6 +12,7 @@ import {
   paddingMixin,
   textStyleMixin,
 } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
@@ -41,7 +42,7 @@ export type TextProps = PropsWithChildren<{
   wordBreak?: Property.WordBreak
 }>
 
-export const Text = styled.div<TextProps>(
+export const Text = styled.div.withConfig({ shouldForwardProp })<TextProps>(
   (props) => ({
     boxSizing: 'border-box',
     overflowWrap: 'break-word',
