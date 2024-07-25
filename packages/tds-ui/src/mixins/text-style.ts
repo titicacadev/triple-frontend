@@ -2,24 +2,13 @@ import { css } from 'styled-components'
 
 import { GlobalSizes } from '../commons'
 
-const SIZES: { [key in GlobalSizes]: string } = {
-  mini: '12px',
-  tiny: '13px',
-  small: '14px',
-  medium: '15px',
-  large: '16px',
-  big: '19px',
-  huge: '21px',
-  massive: '24px',
-}
-
 /**
  * Create text style css
  * @param fontSize font-size
  * @param lineHeight line-height
  * @param letterSpacing letter-spacing
  */
-export const textStyle = (
+const textStyle = (
   fontSize: number,
   lineHeight: number,
   letterSpacing: number,
@@ -36,12 +25,23 @@ export const textStyle = (
  * @param lineHeight
  * @param letterSpacing
  */
-export const _unsafeTextStyle = (
+const _unsafeTextStyle = (
   fontSize: GlobalSizes | number = 'large',
   lineHeight: number | string = 1.2,
   letterSpacing = 0,
 ) => {
-  const size = typeof fontSize === 'string' ? SIZES[fontSize] : `${fontSize}px`
+  const sizes: { [key in GlobalSizes]: string } = {
+    mini: '12px',
+    tiny: '13px',
+    small: '14px',
+    medium: '15px',
+    large: '16px',
+    big: '19px',
+    huge: '21px',
+    massive: '24px',
+  }
+  const size = typeof fontSize === 'string' ? sizes[fontSize] : `${fontSize}px`
+
   return css`
     font-size: ${size};
     line-height: ${lineHeight};
@@ -49,7 +49,7 @@ export const _unsafeTextStyle = (
   `
 }
 
-export const TextStyleMap = {
+const textStyleMap = {
   /* 가계부 금액 */
   L6: textStyle(36, 47, -0.3),
   /* 서비스메인, 도시메인 타이틀 */
@@ -81,16 +81,15 @@ export const TextStyleMap = {
   /* 부가설명, 일정판 요일 */
   S2: textStyle(12, 22, 0),
 }
-/* eslint-enable @typescript-eslint/naming-convention */
 
 export function getTextStyle(type: KeyOfTextStyleMap) {
-  return TextStyleMap[type]
+  return textStyleMap[type]
 }
 
-export type KeyOfTextStyleMap = keyof typeof TextStyleMap
+export type KeyOfTextStyleMap = keyof typeof textStyleMap
 export type TextStyleMapType = { [key in KeyOfTextStyleMap]: string }
 
-interface Params {
+export interface TextStyleMixinProps {
   textStyle?: KeyOfTextStyleMap
   size?: GlobalSizes | number
   lineHeight?: number | string
@@ -102,7 +101,7 @@ export const textStyleMixin = ({
   size,
   lineHeight,
   letterSpacing,
-}: Params) => {
+}: TextStyleMixinProps) => {
   if (textStyle && (size || lineHeight || letterSpacing)) {
     // TODO: development 환경에서만 기록하는 logger 만들기
     // eslint-disable-next-line no-console

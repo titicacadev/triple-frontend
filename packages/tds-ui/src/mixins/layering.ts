@@ -5,6 +5,8 @@ export interface LayeringMixinProps {
   zIndex?: number
 }
 
-export const layeringMixin = (defaultTier: number) => css<LayeringMixinProps>`
-  z-index: ${({ zTier = defaultTier, zIndex = 0 }) => zTier * 100 + zIndex};
-`
+export const layeringMixin =
+  (defaultTier: number) =>
+  ({ zIndex = defaultTier, zTier = 0 }: LayeringMixinProps) => css`
+    z-index: ${zTier * 100 + zIndex};
+  `
