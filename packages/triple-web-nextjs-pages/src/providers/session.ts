@@ -23,7 +23,7 @@ import { checkClientAppSession, checkWebSession } from '../helpers/session'
  */
 export async function getSession(ctx: NextPageContext): Promise<SessionValue> {
   const userAgent = ctx.req
-    ? ctx.req.headers['user-agent'] ?? ''
+    ? (ctx.req.headers['user-agent'] ?? '')
     : window.navigator.userAgent
 
   const isClientApp = checkClientApp(userAgent)

@@ -4,7 +4,7 @@ import { clientAppRegex } from '@titicaca/triple-web-utils'
 
 export function getClientApp(ctx: NextPageContext): ClientAppValue {
   const userAgent = ctx.req
-    ? ctx.req.headers['user-agent'] ?? ''
+    ? (ctx.req.headers['user-agent'] ?? '')
     : window.navigator.userAgent
   const metadata = clientAppRegex.exec(userAgent)
 
