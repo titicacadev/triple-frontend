@@ -1,10 +1,10 @@
 import { css } from 'styled-components'
 
-interface Params {
+export interface EllipsisMixinProps {
   ellipsis?: boolean
 }
 
-export const ellipsisMixin = ({ ellipsis }: Params) =>
+export const ellipsisMixin = ({ ellipsis }: EllipsisMixinProps) =>
   ellipsis
     ? css`
         white-space: nowrap;

@@ -1,10 +1,10 @@
 import { css } from 'styled-components'
 
-interface Params {
+export interface MaxLinesMixinProps {
   maxLines?: number
 }
 
-export const maxLinesMixin = ({ maxLines }: Params) =>
+export const maxLinesMixin = ({ maxLines }: MaxLinesMixinProps) =>
   maxLines
     ? css`
         /* stylelint-disable-next-line value-no-vendor-prefix */

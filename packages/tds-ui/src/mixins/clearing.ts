@@ -1,10 +1,10 @@
 import { css } from 'styled-components'
 
-interface Params {
+export interface ClearingMixinProps {
   clearing?: boolean
 }
 
-export const clearingMixin = ({ clearing }: Params) =>
+export const clearingMixin = ({ clearing }: ClearingMixinProps) =>
   clearing
     ? css`
         &::after {

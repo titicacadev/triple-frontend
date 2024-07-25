@@ -8,19 +8,40 @@ export function formatMarginPadding(
   key: 'margin' | 'padding',
 ) {
   if (!marginPadding) {
-    return ''
+    return undefined
   }
 
-  return css`
-    ${key}: ${unit(marginPadding.top || 0)} ${unit(marginPadding.right || 0)}
-      ${unit(marginPadding.bottom || 0)} ${unit(marginPadding.left || 0)};
-  `
+  if (key === 'margin') {
+    return css`
+      /* stylelint-disable declaration-block-no-redundant-longhand-properties */
+      margin-top: ${unit(marginPadding.top || 0)};
+      margin-left: ${unit(marginPadding.left || 0)};
+      margin-right: ${unit(marginPadding.right || 0)};
+      margin-bottom: ${unit(marginPadding.bottom || 0)};
+      /* stylelint-enable declaration-block-no-redundant-longhand-properties */
+    `
+  } else {
+    return css`
+      /* stylelint-disable declaration-block-no-redundant-longhand-properties */
+      padding-top: ${unit(marginPadding.top || 0)};
+      padding-left: ${unit(marginPadding.left || 0)};
+      padding-right: ${unit(marginPadding.right || 0)};
+      padding-bottom: ${unit(marginPadding.bottom || 0)};
+      /* stylelint-enable declaration-block-no-redundant-longhand-properties */
+    `
+  }
 }
 
-export const marginMixin = css<{ margin?: MarginPadding }>`
-  ${({ margin }) => formatMarginPadding(margin, 'margin')}
-`
+export interface MarginMixinProps {
+  margin?: MarginPadding
+}
 
-export const paddingMixin = css<{ padding?: MarginPadding }>`
-  ${({ padding }) => formatMarginPadding(padding, 'padding')}
-`
+export const marginMixin = ({ margin }: MarginMixinProps) =>
+  formatMarginPadding(margin, 'margin')
+
+export interface PaddingMixinProps {
+  padding?: MarginPadding
+}
+
+export const paddingMixin = ({ padding }: PaddingMixinProps) =>
+  formatMarginPadding(padding, 'padding')

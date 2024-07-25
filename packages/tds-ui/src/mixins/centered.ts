@@ -1,10 +1,10 @@
 import { css } from 'styled-components'
 
-interface Params {
+export interface CenteredMixinProps {
   centered?: boolean
 }
 
-export const centeredMixin = ({ centered }: Params) =>
+export const centeredMixin = ({ centered }: CenteredMixinProps) =>
   centered
     ? css`
         margin-left: auto;
