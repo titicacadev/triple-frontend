@@ -148,7 +148,7 @@ interface PromoLabelProps {
   verticalAlign?: CSS.Property.VerticalAlign<string>
 }
 
-export const PromoLabel = styled.div<PromoLabelProps>`
+const PromoLabel = styled.div<PromoLabelProps>`
   display: inline-block;
   ${marginMixin}
 

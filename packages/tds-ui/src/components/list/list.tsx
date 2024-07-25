@@ -3,6 +3,7 @@ import { styled, css } from 'styled-components'
 
 import { MarginPadding } from '../../commons'
 import { marginMixin } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 interface ListBaseProp {
   margin?: MarginPadding
@@ -23,7 +24,9 @@ export interface ListItemProps {
   minHeight?: number
 }
 
-const ListBase = styled.ul<ListBaseProp & DividerOptions>`
+const ListBase = styled.ul.withConfig({ shouldForwardProp })<
+  ListBaseProp & DividerOptions
+>`
   ${marginMixin}
 
   > li:not(:first-child) {
@@ -78,7 +81,9 @@ const ListBase = styled.ul<ListBaseProp & DividerOptions>`
       : ''}
 `
 
-const ListItem = styled.li<ListItemProps>`
+const ListItem = styled.li.withConfig({
+  shouldForwardProp,
+})<ListItemProps>`
   clear: both;
   position: relative;
   list-style-type: none;

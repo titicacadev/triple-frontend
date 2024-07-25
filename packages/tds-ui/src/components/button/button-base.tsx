@@ -5,7 +5,8 @@ import type { Theme } from '@titicaca/tds-theme'
 
 import { GetGlobalColor, MarginPadding } from '../../commons'
 import { unit } from '../../utils/unit'
-import { marginMixin } from '../../mixins'
+import { marginMixin, MarginMixinProps } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 import { ButtonSize } from './types'
 
@@ -23,7 +24,7 @@ const SIZES: Record<ButtonSize, ReturnType<typeof css>> = {
   `,
 }
 
-export interface ButtonBaseOwnProps {
+export interface ButtonBaseMixinProps extends MarginMixinProps {
   /**
    * Basic 및 Normal 버튼에서는 항상 `true` 입니다.
    */
@@ -43,7 +44,7 @@ export interface ButtonBaseOwnProps {
   textColor?: keyof Theme['colors']
 }
 
-export type ButtonBaseProps = ButtonBaseOwnProps &
+export type ButtonBaseProps = ButtonBaseMixinProps &
   PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -55,7 +56,8 @@ export const buttonBaseMixin = ({
   lineHeight,
   textAlpha = 1,
   textColor = 'gray',
-}: ButtonBaseOwnProps) => css`
+  margin,
+}: ButtonBaseMixinProps) => css`
   display: inline-block;
   color: rgba(${GetGlobalColor(textColor)}, ${textAlpha});
   float: ${floated};
@@ -73,7 +75,7 @@ export const buttonBaseMixin = ({
     display: block;
   `};
 
-  ${marginMixin}
+  ${marginMixin({ margin })}
 
   ${SIZES[size]}
 
@@ -82,7 +84,9 @@ export const buttonBaseMixin = ({
   }
 `
 
-export const ButtonBase = styled.button.attrs((props) => ({
-  /* stylelint-disable-next-line property-no-unknown */
-  type: props.type ?? 'button',
-}))(buttonBaseMixin)
+export const ButtonBase = styled.button
+  .withConfig({ shouldForwardProp })
+  .attrs((props) => ({
+    /* stylelint-disable-next-line property-no-unknown */
+    type: props.type ?? 'button',
+  }))<ButtonBaseMixinProps>(buttonBaseMixin)

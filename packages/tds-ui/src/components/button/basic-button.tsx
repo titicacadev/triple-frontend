@@ -1,7 +1,7 @@
 import { css } from 'styled-components'
 import type { Theme } from '@titicaca/tds-theme'
 
-import { buttonBaseMixin, ButtonBaseOwnProps } from './button-base'
+import { buttonBaseMixin, ButtonBaseMixinProps } from './button-base'
 
 type Color = keyof Theme['colors']
 
@@ -10,7 +10,7 @@ const BASIC_INVERTED_COLORS: Partial<Record<Color, string>> = {
   gray: '#3a3a3a',
 }
 
-export interface BasicButtonOwnProps extends ButtonBaseOwnProps {
+export interface BasicButtonOwnProps extends ButtonBaseMixinProps {
   color?: Color
   /**
    * Compact 버튼을 사용합니다. Normal 및 Basic 버튼에서만 사용할 수 있습니다.

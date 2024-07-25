@@ -1,15 +1,17 @@
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import { styled } from 'styled-components'
 
+import { shouldForwardProp } from '../../utils/should-forward-prop'
+
 import { basicButtonMixin, BasicButtonOwnProps } from './basic-button'
 import { ButtonBase } from './button-base'
-import { iconButtonMixin, IconButtonOwnProps } from './icon-button'
-import { normalButtonMixin, NormalButtonOwnProps } from './normal-button'
+import { iconButtonMixin, IconButtonMixinProps } from './icon-button'
+import { normalButtonMixin, NormalButtonMixinProps } from './normal-button'
 
 export interface ButtonOwnProps
   extends BasicButtonOwnProps,
-    Omit<IconButtonOwnProps, 'icon'>,
-    NormalButtonOwnProps {
+    Omit<IconButtonMixinProps, 'icon'>,
+    NormalButtonMixinProps {
   /**
    * Basic 유형 버튼을 사용합니다.
    */
@@ -17,14 +19,16 @@ export interface ButtonOwnProps
   /**
    * Block Icon 유형 버튼을 사용합니다.
    */
-  icon?: IconButtonOwnProps['icon']
+  icon?: IconButtonMixinProps['icon']
 }
 
 export type ButtonProps = ButtonOwnProps &
   PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button = styled(ButtonBase)<ButtonProps>((props) => {
+export const Button = styled(ButtonBase).withConfig({
+  shouldForwardProp,
+})<ButtonProps>((props) => {
   if (props.basic) {
     return basicButtonMixin({
       ...props,

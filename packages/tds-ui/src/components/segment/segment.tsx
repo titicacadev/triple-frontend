@@ -1,7 +1,12 @@
 import { PropsWithChildren } from 'react'
-import { styled, css, ThemedStyledProps } from 'styled-components'
+import { styled } from 'styled-components'
 
-import { KeyOfShadowSize, shadowMixin, ShadowMixinProps } from '../../mixins'
+import {
+  borderRadiusMixin,
+  BorderRadiusMixinProps,
+  shadowMixin,
+  ShadowMixinProps,
+} from '../../mixins'
 
 export const Segment = styled.div`
   padding: 20px;
@@ -15,48 +20,39 @@ export const Segment = styled.div`
   }
 `
 
-export interface BoxProps {
-  radius: number
-}
-
-export type CardProps = Partial<
-  BoxProps & {
-    shadow: KeyOfShadowSize
-    shadowValue?: string
-  }
->
-
-const borderRadius = ({
-  radius = 0,
-}: ThemedStyledProps<{ radius?: number }, unknown>) => css`
-  border-radius: ${radius}px;
-`
-
 const shadowMixinWithDefault = (props: ShadowMixinProps) =>
   shadowMixin({ shadow: 'medium', ...props })
 
-export const CardFrame = styled.div<CardProps>`
-  ${borderRadius}
+export const CardFrame = styled.div<BorderRadiusMixinProps & ShadowMixinProps>`
+  ${borderRadiusMixin}
   ${shadowMixinWithDefault}
 `
+
+export interface CardProps
+  extends PropsWithChildren<BorderRadiusMixinProps & ShadowMixinProps> {}
 
 /**
  * Card Component
  *
  * Props
- *  - radius: number
+ *  - borderRadius: number
  *  - shadow: ShadowType
  *  - shadowValue: string
  */
 export function Card({
   children,
-  className,
+  borderRadius,
+  shadow,
+  shadowValue,
   ...props
-}: PropsWithChildren<CardProps> & {
-  className?: string
-}) {
+}: CardProps) {
   return (
-    <CardFrame className={className} {...props}>
+    <CardFrame
+      {...props}
+      borderRadius={borderRadius}
+      shadow={shadow}
+      shadowValue={shadowValue}
+    >
       {children}
     </CardFrame>
   )

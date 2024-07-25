@@ -3,6 +3,7 @@ import { styled, css } from 'styled-components'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
 import { marginMixin } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 export type TagColors = 'special' | 'pink' | 'purple' | 'default'
 
@@ -27,7 +28,7 @@ const PADDING_SIZE: Partial<Record<GlobalSizes, MarginPadding>> = {
   medium: { top: 6, right: 10, bottom: 6, left: 10 },
 }
 
-export const Tag = styled.div<{
+export const Tag = styled.div.withConfig({ shouldForwardProp })<{
   type?: TagColors
   margin?: MarginPadding
   size?: GlobalSizes
