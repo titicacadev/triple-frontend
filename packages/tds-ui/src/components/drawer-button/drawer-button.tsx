@@ -3,9 +3,13 @@ import { styled } from 'styled-components'
 import { Drawer, DrawerProps } from '../drawer/drawer'
 import { Container } from '../container'
 import { Button, ButtonProps } from '../button'
-import { paddingMixin, safeAreaInsetMixin } from '../../mixins'
+import {
+  paddingMixin,
+  PaddingMixinProps,
+  safeAreaInsetMixin,
+} from '../../mixins'
 
-const ButtonWithSafeAreaInset = styled(Button)`
+const ButtonWithSafeAreaInset = styled(Button)<PaddingMixinProps>`
   ${paddingMixin}
   ${safeAreaInsetMixin}
 `

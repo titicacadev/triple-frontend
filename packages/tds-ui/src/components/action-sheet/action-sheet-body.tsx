@@ -3,7 +3,7 @@ import { styled, css } from 'styled-components'
 
 import { Container } from '../container'
 import { MarginPadding } from '../../commons'
-import { safeAreaInsetMixin } from '../../mixins'
+import { safeAreaInsetMixin, SafeAreaInsetMixinProps } from '../../mixins'
 
 import { ActionSheetTitle } from './action-sheet-title'
 import { TRANSITION_DURATION } from './constants'
@@ -33,7 +33,7 @@ const Sheet = styled.div<SheetProps>`
           border-radius: 0 0 ${$borderRadius}px ${$borderRadius}px;
         `
       case 'bottom':
-        return css`
+        return css<SafeAreaInsetMixinProps>`
           bottom: 0;
           border-radius: ${$borderRadius}px ${$borderRadius}px 0 0;
           ${safeAreaInsetMixin};

@@ -10,9 +10,10 @@ import {
   Text,
   safeAreaInsetMixin,
   Popup,
+  SafeAreaInsetMixinProps,
 } from '@titicaca/tds-ui'
 
-const DrawerContentContainer = styled(Container)`
+const DrawerContentContainer = styled(Container)<SafeAreaInsetMixinProps>`
   ${safeAreaInsetMixin}
 `
 
