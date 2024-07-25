@@ -1,5 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Container, safeAreaInsetMixin } from '@titicaca/tds-ui'
+import {
+  Container,
+  safeAreaInsetMixin,
+  SafeAreaInsetMixinProps,
+} from '@titicaca/tds-ui'
 import { styled } from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
@@ -17,7 +21,7 @@ import {
 } from './reply-tree-manipulators'
 import { checkUniqueReply } from './utils'
 
-const FixedBottom = styled(Container).attrs({
+const FixedBottom = styled(Container).attrs<SafeAreaInsetMixinProps>({
   backgroundColor: 'white',
 })`
   position: fixed;

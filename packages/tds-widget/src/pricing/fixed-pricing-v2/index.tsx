@@ -10,6 +10,8 @@ import {
   Skeleton,
   safeAreaInsetMixin,
   paddingMixin,
+  PaddingMixinProps,
+  SafeAreaInsetMixinProps,
 } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
 
@@ -35,7 +37,9 @@ export interface FixedPricingV2Props {
   emptyOverride?: ReactNode
 }
 
-const FloatedFrame = styled(Container)`
+const FloatedFrame = styled(Container)<
+  PaddingMixinProps & SafeAreaInsetMixinProps
+>`
   border-top: 1px solid #efefef;
   background: #fff;
 
