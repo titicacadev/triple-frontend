@@ -4,14 +4,14 @@ import { ComponentProps, MouseEventHandler, useEffect, useState } from 'react'
 
 type Position = 'top' | 'bottom'
 
-const StyledTooltip = styled(CoreTooltip)<{ position: Position }>`
+const StyledTooltip = styled(CoreTooltip)<{ $position: Position }>`
   width: max-content;
   padding: 9px 15px 8px;
   transform: translateX(-50%);
   left: 50%;
   cursor: default;
-  ${({ position }) =>
-    position === 'bottom' &&
+  ${({ $position }) =>
+    $position === 'bottom' &&
     css`
       top: 100%;
     `}
@@ -72,7 +72,7 @@ export default function Tooltip({
         nowrap={false}
         borderRadius="16.17"
         backgroundColor="var(--color-blue)"
-        position={position}
+        $position={position}
         positioning={{ top: -26 }}
         {...props}
       />

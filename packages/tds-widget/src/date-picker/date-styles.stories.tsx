@@ -20,10 +20,10 @@ export default {
   decorators: [
     (Story) => (
       <PickerFrame
-        height="500px"
-        sideSpacing={10}
-        monthPadding="0"
-        hideTodayLabel={false}
+        $height="500px"
+        $sideSpacing={10}
+        $monthPadding="0"
+        $hideTodayLabel={false}
       >
         <div className="DayPicker">
           <Table className="DayPicker-Month">

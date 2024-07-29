@@ -12,13 +12,13 @@ const DEFAULT_ICON_URLS: Record<PoiType, string> = {
     'https://assets.triple.guide/images/seoulcon/default/ic_restaurant.svg',
 }
 
-const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
+const ImagePlaceholderContainer = styled.div<{ $large?: boolean }>`
   width: 100%;
   overflow: hidden;
   border-radius: 6px;
   background-color: #efefef;
-  ${({ large }) =>
-    large
+  ${({ $large }) =>
+    $large
       ? css`
           height: 400px;
         `
@@ -31,11 +31,11 @@ const PlaceholderIcon = styled.img`
   vertical-align: baseline;
 `
 
-const ImagePlaceholderContent = styled.div<{ large?: boolean }>`
+const ImagePlaceholderContent = styled.div<{ $large?: boolean }>`
   text-align: center;
   transform: translate(0, -50%);
-  ${({ large }) =>
-    large
+  ${({ $large }) =>
+    $large
       ? css`
           margin-top: 200px;
         `
@@ -62,8 +62,8 @@ function ImagePlaceholder({
   const { t } = useTranslation('triple-frontend')
 
   return (
-    <ImagePlaceholderContainer large={large} onClick={onClick}>
-      <ImagePlaceholderContent large={large}>
+    <ImagePlaceholderContainer $large={large} onClick={onClick}>
+      <ImagePlaceholderContent $large={large}>
         {noContent ? null : guestMode ? (
           <PlaceholderIcon
             src={DEFAULT_ICON_URLS[type || 'attraction']}

@@ -24,16 +24,16 @@ const HEIGHT_OPTIONS: Partial<Record<GlobalSizes, string>> = {
 }
 
 const Frame = styled(Container)<{
-  size?: GlobalSizes
-  height?: number
-  frame?: FrameRatioAndSizes
+  $size?: GlobalSizes
+  $height?: number
+  $frame?: FrameRatioAndSizes
 }>`
   border-radius: 6px;
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: ${({ height, size }) =>
-    (height && `${height}px`) || (size ? HEIGHT_OPTIONS[size] : '')};
+  height: ${({ $height, $size }) =>
+    ($height && `${$height}px`) || ($size ? HEIGHT_OPTIONS[$size] : '')};
 `
 
 const Poster = styled.div`
@@ -48,7 +48,7 @@ const Poster = styled.div`
   background-position: center;
 `
 
-const Video = styled.video<{ isOncePlayed: boolean }>`
+const Video = styled.video<{ $isOncePlayed: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -58,7 +58,7 @@ const Video = styled.video<{ isOncePlayed: boolean }>`
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s;
-  opacity: ${({ isOncePlayed }) => (isOncePlayed ? 1 : 0)};
+  opacity: ${({ $isOncePlayed }) => ($isOncePlayed ? 1 : 0)};
 `
 
 const PLAY_BUTTON_IMAGE_URL =
@@ -133,7 +133,7 @@ export function VideoContent({
   const frame = size ? undefined : globalFrame || imageFrame
 
   return (
-    <Frame size={size} height={height} frame={frame} onClick={onClick}>
+    <Frame $size={size} $height={height} $frame={frame} onClick={onClick}>
       <Poster style={{ backgroundImage: `url("${medium.sizes.large.url}")` }} />
       <Video
         ref={ref}
@@ -142,7 +142,7 @@ export function VideoContent({
         loop
         muted
         playsInline
-        isOncePlayed={isOncePlayed}
+        $isOncePlayed={isOncePlayed}
         onTimeUpdate={isOncePlayed ? undefined : () => setIsOncePlayed(true)}
       />
       {!videoAutoplay && <PlayPauseButtonBase />}

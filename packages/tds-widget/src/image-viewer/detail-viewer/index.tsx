@@ -22,7 +22,7 @@ const SourceUrl = styled.p`
   z-index: 9999;
 `
 
-const Button = styled.button<{ direction: 'next' | 'prev' }>`
+const Button = styled.button<{ $direction: 'next' | 'prev' }>`
   z-index: 9999;
   position: absolute;
   background-image: url('https://assets.triple.guide/images/ico-arrow-right-black@3x.png');
@@ -33,8 +33,8 @@ const Button = styled.button<{ direction: 'next' | 'prev' }>`
   height: 44px;
   top: 50%;
   border: 1px solid var(--color-gray100);
-  ${({ direction }) =>
-    direction === 'next'
+  ${({ $direction }) =>
+    $direction === 'next'
       ? css`
           transform: translateY(-50%);
           right: 20px;
@@ -148,10 +148,10 @@ export default function DetailViewer({
       {!isMobile ? (
         <>
           {imageIndex > 0 ? (
-            <Button direction="prev" onClick={onPrevImageShow} />
+            <Button $direction="prev" onClick={onPrevImageShow} />
           ) : null}
           {imageIndex < totalCount - 1 ? (
-            <Button direction="next" onClick={onNextImageShow} />
+            <Button $direction="next" onClick={onNextImageShow} />
           ) : null}
         </>
       ) : null}

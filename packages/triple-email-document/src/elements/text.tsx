@@ -57,7 +57,7 @@ export default function TextView({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ left: 30, right: 30 }}>
+          <Box $padding={{ left: 30, right: 30 }}>
             {rawHTML ? (
               <HtmlContainer dangerouslySetInnerHTML={{ __html: rawHTML }} />
             ) : (

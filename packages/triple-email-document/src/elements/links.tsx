@@ -120,7 +120,7 @@ export default function LinksView({
 
 function ButtonBox({ children }: PropsWithChildren<unknown>) {
   return (
-    <DefaultBox padding={{ top: 55, left: 30, right: 30 }}>
+    <DefaultBox $padding={{ top: 55, left: 30, right: 30 }}>
       {children}
     </DefaultBox>
   )
@@ -128,7 +128,7 @@ function ButtonBox({ children }: PropsWithChildren<unknown>) {
 
 function BlockBox({ children }: PropsWithChildren<unknown>) {
   return (
-    <DefaultBox padding={{ top: 15, left: 30, right: 30 }}>
+    <DefaultBox $padding={{ top: 15, left: 30, right: 30 }}>
       {children}
     </DefaultBox>
   )
@@ -136,7 +136,7 @@ function BlockBox({ children }: PropsWithChildren<unknown>) {
 
 function LargeBox({ children }: PropsWithChildren<unknown>) {
   return (
-    <DefaultBox padding={{ top: 30, left: 30, right: 30 }}>
+    <DefaultBox $padding={{ top: 30, left: 30, right: 30 }}>
       {children}
     </DefaultBox>
   )

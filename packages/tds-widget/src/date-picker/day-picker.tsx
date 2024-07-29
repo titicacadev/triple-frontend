@@ -128,11 +128,11 @@ export function DayPicker({
 
   return (
     <DayContainer
-      height={height || '300px'}
-      sideSpacing={10}
-      monthPadding="40px 0 0 0"
-      hideTodayLabel={hideTodayLabel}
-      canChangeMonth={canChangeMonth}
+      $height={height || '300px'}
+      $sideSpacing={10}
+      $monthPadding="40px 0 0 0"
+      $hideTodayLabel={hideTodayLabel}
+      $canChangeMonth={canChangeMonth}
     >
       <MemoDayPicker
         locale={LOCALE}

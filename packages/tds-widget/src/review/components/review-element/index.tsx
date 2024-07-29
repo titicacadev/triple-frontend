@@ -44,14 +44,14 @@ const MoreIcon = styled.img`
   cursor: pointer;
 `
 
-const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
+const MessageCount = styled(Container)<{ $isCommaVisible?: boolean }>`
   font-weight: bold;
   background-image: url('https://assets.triple.guide/images/btn-lounge-comment-off@3x.png');
   background-size: 18px 18px;
   background-repeat: no-repeat;
 
-  ${({ isCommaVisible }) =>
-    isCommaVisible &&
+  ${({ $isCommaVisible }) =>
+    $isCommaVisible &&
     css`
       margin-left: 8px;
 
@@ -63,13 +63,13 @@ const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
     `}
 `
 
-const LikeButton = styled.button<{ liked?: boolean }>`
+const LikeButton = styled.button<{ $liked?: boolean }>`
   font-weight: bold;
   text-decoration: none;
   background-size: 18px 18px;
   background-repeat: no-repeat;
-  color: ${({ liked }) => (liked ? '--color-blue' : '--color-gray400')};
-  background-image: ${({ liked }) =>
+  color: ${({ $liked }) => ($liked ? '--color-blue' : '--color-gray400')};
+  background-image: ${({ $liked: liked }) =>
     liked
       ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png')"
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
@@ -383,7 +383,7 @@ export function ReviewElement({
         <Meta>
           {!blinded ? (
             <LikeButton
-              liked={liked}
+              $liked={liked}
               css={{
                 marginTop: 5,
                 padding: '2px 10px 2px 20px',
@@ -399,7 +399,7 @@ export function ReviewElement({
           <MessageCount
             display="inline-block"
             position="relative"
-            isCommaVisible={!blinded}
+            $isCommaVisible={!blinded}
             css={{
               height: 18,
               marginTop: 5,

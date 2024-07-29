@@ -3,15 +3,15 @@ import { styled, css } from 'styled-components'
 import { Text } from '@titicaca/tds-ui'
 
 const NoteContainer = styled.div<{
-  warning?: boolean
-  bottomBorderRadius?: number
+  $warning?: boolean
+  $bottomBorderRadius?: number
 }>`
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 40px;
-  background-color: ${({ warning }) => (warning ? '#ff3636' : '#2987f0')};
+  background-color: ${({ $warning }) => ($warning ? '#ff3636' : '#2987f0')};
   z-index: 2;
 
   & > div {
@@ -19,11 +19,11 @@ const NoteContainer = styled.div<{
     line-height: 40px;
   }
 
-  ${({ bottomBorderRadius }) =>
-    bottomBorderRadius
+  ${({ $bottomBorderRadius }) =>
+    $bottomBorderRadius
       ? css`
-          border-bottom-left-radius: ${bottomBorderRadius}px;
-          border-bottom-right-radius: ${bottomBorderRadius}px;
+          border-bottom-left-radius: ${$bottomBorderRadius}px;
+          border-bottom-right-radius: ${$bottomBorderRadius}px;
         `
       : null}
 `
@@ -38,7 +38,7 @@ export function PermanentlyClosedNote({
   const { t } = useTranslation('triple-frontend')
 
   return (
-    <NoteContainer warning bottomBorderRadius={bottomBorderRadius}>
+    <NoteContainer $warning $bottomBorderRadius={bottomBorderRadius}>
       <Text bold size="small" color="white">
         {t('더이상 운영하지 않습니다.')}
       </Text>
@@ -70,8 +70,8 @@ export function BusinessHoursNote({
   return (
     <NoteContainer
       onClick={onClick}
-      warning={!currentBusinessHours}
-      bottomBorderRadius={bottomBorderRadius}
+      $warning={!currentBusinessHours}
+      $bottomBorderRadius={bottomBorderRadius}
     >
       <Text bold size="small" color="white">
         {currentBusinessHours

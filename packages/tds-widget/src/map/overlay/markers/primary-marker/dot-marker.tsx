@@ -10,18 +10,24 @@ interface DotMarkerProps {
 
 const BUBBLE_HEIGHT = 32
 
-const DotMarkerContainer = styled.div<Pick<DotMarkerProps, 'size' | 'active'>>`
+const DotMarkerContainer = styled.div<{
+  $size?: { width: number; height: number }
+  $active: boolean
+}>`
   position: relative;
-  ${({ size: { width = 16, height = 16 } = {}, active }) => css`
+  ${({ $size: { width = 16, height = 16 } = {}, $active }) => css`
     left: -8px;
-    top: -${8 + (active ? BUBBLE_HEIGHT : 0)}px;
+    top: -${8 + ($active ? BUBBLE_HEIGHT : 0)}px;
     width: ${width * 2}px;
     height: ${height * 2}px;
-    pointer-events: ${active ? 'none' : 'auto'};
+    pointer-events: ${$active ? 'none' : 'auto'};
   `}
 `
 
-const DotCircle = styled.div<Pick<DotMarkerProps, 'size' | 'color'>>`
+const DotCircle = styled.div<{
+  $size?: { width: number; height: number }
+  $color: string
+}>`
   position: absolute;
   z-index: 1;
   color: #fff;
@@ -31,10 +37,10 @@ const DotCircle = styled.div<Pick<DotMarkerProps, 'size' | 'color'>>`
   left: 3px;
   top: 3px;
 
-  ${({ size: { width = 13, height = 13 } = {}, color }) => css`
+  ${({ $size: { width = 13, height = 13 } = {}, $color }) => css`
     width: ${width}px;
     height: ${height}px;
-    background-color: ${color};
+    background-color: ${$color};
   `}
   > svg {
     padding-top: 4px;
@@ -52,8 +58,8 @@ export function DotMarker({
   children,
 }: PropsWithChildren<DotMarkerProps>) {
   return (
-    <DotMarkerContainer size={size} onClick={onClick} active={active}>
-      <DotCircle size={size} color={color}>
+    <DotMarkerContainer $size={size} onClick={onClick} $active={active}>
+      <DotCircle $size={size} $color={color}>
         {children}
       </DotCircle>
     </DotMarkerContainer>

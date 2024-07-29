@@ -27,7 +27,7 @@ export default function EmailPreview({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
+          <Box $padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
             <PreviewStyled>{phrase}</PreviewStyled>
           </Box>
         </tr>

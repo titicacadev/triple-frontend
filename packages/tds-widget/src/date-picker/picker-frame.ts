@@ -70,11 +70,11 @@ const navStyle = css`
 `
 
 interface PickerFrameProps {
-  height: string
-  sideSpacing: number
-  monthPadding: string
-  hideTodayLabel: boolean
-  canChangeMonth?: boolean
+  $height: string
+  $sideSpacing: number
+  $monthPadding: string
+  $hideTodayLabel: boolean
+  $canChangeMonth?: boolean
 }
 
 export const PickerFrame = styled.div<PickerFrameProps>`
@@ -88,7 +88,7 @@ export const PickerFrame = styled.div<PickerFrameProps>`
     font-size: 14px;
     background: #fafafa;
 
-    ${({ height }) => `height: ${height};`}
+    ${({ $height }) => `height: ${$height};`}
     ${sideSpacingMixin}
   }
 
@@ -98,7 +98,7 @@ export const PickerFrame = styled.div<PickerFrameProps>`
   }
 
   .DayPicker-NavBar {
-    ${({ canChangeMonth }) => canChangeMonth && navStyle}
+    ${({ $canChangeMonth }) => $canChangeMonth && navStyle}
   }
 
   .DayPicker-Month {
@@ -109,7 +109,7 @@ export const PickerFrame = styled.div<PickerFrameProps>`
     border-spacing: 0 25px;
     user-select: none;
 
-    ${({ monthPadding }) => `padding: ${monthPadding};`}
+    ${({ $monthPadding }) => `padding: ${$monthPadding};`}
   }
 
   .DayPicker-Caption {
@@ -151,7 +151,7 @@ export const PickerFrame = styled.div<PickerFrameProps>`
   .DayPicker-Week {
     display: table-row;
 
-    ${({ hideTodayLabel }) => !hideTodayLabel && todayMixin({})}
+    ${({ $hideTodayLabel }) => !$hideTodayLabel && todayMixin({})}
 
     td:first-child {
       margin: 0;

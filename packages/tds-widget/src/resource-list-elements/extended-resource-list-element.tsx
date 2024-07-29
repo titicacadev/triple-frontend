@@ -64,14 +64,14 @@ const LabelContainer = styled.div`
   bottom: 20px;
 `
 
-const Badge = styled.div<{ icon?: string }>`
-  padding: 0 6px 0 ${({ icon }) => (icon ? 4 : 6)}px;
+const Badge = styled.div<{ $icon?: string }>`
+  padding: 0 6px 0 ${({ $icon: icon }) => (icon ? 4 : 6)}px;
   border-radius: 4px;
   box-shadow: 0 0 0 1px var(--color-gray100) inset;
   display: inline-block;
 
-  ${({ icon }) =>
-    icon &&
+  ${({ $icon }) =>
+    $icon &&
     css`
       &::before {
         content: '';
@@ -79,7 +79,7 @@ const Badge = styled.div<{ icon?: string }>`
         width: 12px;
         height: 12px;
         margin-right: 2px;
-        background-image: url(${icon});
+        background-image: url(${$icon});
         background-size: 12px;
         background-position: center;
         background-repeat: no-repeat;
@@ -198,7 +198,7 @@ export function ExtendedResourceListElement<R extends ResourceMeta>({
 
           {badge ? (
             <Container css={{ margin: '7px 0 0' }}>
-              <Badge icon={badge.icon}>
+              <Badge $icon={badge.icon}>
                 <Text bold inline size={11} lineHeight="23px" color="gray900">
                   {badge.text}
                 </Text>

@@ -102,7 +102,7 @@ export default function Messages<
           <AlteredBubble
             key={id}
             id={id.toString()}
-            my={my}
+            $my={my}
             alternativeText={
               sender.unfriended
                 ? ALTERNATIVE_TEXT_MESSAGE.unfriended

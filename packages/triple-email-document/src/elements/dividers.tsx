@@ -37,11 +37,11 @@ const resetHr = css`
   border: none;
 `
 
-const Hr = styled.hr<{ backgroundColor: string; height: number }>`
+const Hr = styled.hr<{ $backgroundColor: string; $height: number }>`
   ${resetHr}
 
-  height: ${({ height }) => height}px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  height: ${({ $height }) => $height}px;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 `
 const ImgContainer = styled.div`
   width: 100%;
@@ -58,8 +58,8 @@ export function Divider1View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 50, bottom: 50, left: 30, right: 30 }}>
-            <Hr height={1} backgroundColor="rgba(239, 239, 239, 1)" />
+          <Box $padding={{ top: 50, bottom: 50, left: 30, right: 30 }}>
+            <Hr $height={1} $backgroundColor="rgba(239, 239, 239, 1)" />
           </Box>
         </tr>
       </tbody>
@@ -72,8 +72,8 @@ export function Divider2View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 50, bottom: 50, left: 0, right: 0 }}>
-            <Hr height={10} backgroundColor="rgba(239, 239, 239, 1)" />
+          <Box $padding={{ top: 50, bottom: 50, left: 0, right: 0 }}>
+            <Hr $height={10} $backgroundColor="rgba(239, 239, 239, 1)" />
           </Box>
         </tr>
       </tbody>
@@ -86,8 +86,8 @@ export function Divider3View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
-            <Hr height={10} backgroundColor="transparent" />
+          <Box $padding={{ top: 0, bottom: 0, left: 0, right: 0 }}>
+            <Hr $height={10} $backgroundColor="transparent" />
           </Box>
         </tr>
       </tbody>
@@ -100,7 +100,7 @@ export function Divider4View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
+          <Box $padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
             <ImgContainer>
               <HrImg
                 src="https://assets.triple.guide/images/img-line1@2x.png"
@@ -119,7 +119,7 @@ export function Divider5View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
+          <Box $padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
             <ImgContainer>
               <HrImg
                 src="https://assets.triple.guide/images/img-line2@2x.png"
@@ -138,7 +138,7 @@ export function Divider6View() {
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
+          <Box $padding={{ top: 40, bottom: 40, left: 0, right: 0 }}>
             <ImgContainer>
               <HrImg
                 src="https://assets.triple.guide/images/img-line3@2x.png"

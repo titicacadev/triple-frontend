@@ -57,10 +57,10 @@ export function generateSelectedStyle({
 }
 
 interface PickerFrameProps {
-  height: string
-  sideSpacing: number
-  monthPadding: string
-  hideTodayLabel: boolean
+  $height: string
+  $sideSpacing: number
+  $monthPadding: string
+  $hideTodayLabel: boolean
 }
 
 export const PickerFrameV2 = styled.div<PickerFrameProps>`
@@ -74,7 +74,7 @@ export const PickerFrameV2 = styled.div<PickerFrameProps>`
     font-size: 14px;
     background: #fafafa;
 
-    ${({ height }) => `height: ${height};`}
+    ${({ $height }) => `height: ${$height};`}
     ${sideSpacingMixin}
   }
 
@@ -91,7 +91,7 @@ export const PickerFrameV2 = styled.div<PickerFrameProps>`
     border-spacing: 0 25px;
     user-select: none;
 
-    ${({ monthPadding }) => `padding: ${monthPadding};`}
+    ${({ $monthPadding }) => `padding: ${$monthPadding};`}
   }
 
   .DayPicker-Caption {
@@ -134,8 +134,8 @@ export const PickerFrameV2 = styled.div<PickerFrameProps>`
     display: table-row;
     height: 45px;
 
-    ${({ hideTodayLabel }) =>
-      !hideTodayLabel &&
+    ${({ $hideTodayLabel }) =>
+      !$hideTodayLabel &&
       todayMixin({
         top: '28px',
         fontSize: '10px',

@@ -117,7 +117,7 @@ export function ChatbotCta({
     >
       <ChatbotContainer
         ref={chatbotContainerRef}
-        visibility={visibility ? 1 : 0}
+        $visibility={visibility ? 1 : 0}
         zTier={zTier}
         zIndex={zIndex}
       >

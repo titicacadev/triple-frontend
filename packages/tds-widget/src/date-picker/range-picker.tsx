@@ -13,35 +13,35 @@ import { usePublicHolidays } from './use-public-holidays'
 const MemoDayPicker = memo(DayPicker)
 
 const RangeContainer = styled(PickerFrame)<{
-  selectedAll: boolean
-  enableSameDay?: boolean
-  startDateLabel?: string
-  endDateLabel?: string
-  sameDateLabel?: string
+  $selectedAll: boolean
+  $enableSameDay?: boolean
+  $startDateLabel?: string
+  $endDateLabel?: string
+  $sameDateLabel?: string
 }>`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${({ selectedAll, startDateLabel, endDateLabel, sameDateLabel }) =>
-    selectedAll &&
+  ${({ $selectedAll, $startDateLabel, $endDateLabel, $sameDateLabel }) =>
+    $selectedAll &&
     css`
       ${rangeMixin()}
 
-      ${startDateLabel &&
+      ${$startDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--from',
-        label: startDateLabel,
+        label: $startDateLabel,
       })}
 
-      ${endDateLabel &&
+      ${$endDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--to',
-        label: endDateLabel,
+        label: $endDateLabel,
       })}
 
-      ${sameDateLabel &&
+      ${$sameDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--from.DayPicker-Day--to',
-        label: sameDateLabel,
+        label: $sameDateLabel,
       })}
     `}
 `
@@ -167,15 +167,15 @@ export function RangePicker({
 
   return (
     <RangeContainer
-      height={height || '395px'}
-      sideSpacing={6}
-      monthPadding="32px 0 30px 0"
-      selectedAll={!!(startDate && endDate)}
-      enableSameDay={enableSameDay}
-      startDateLabel={startDateLabel}
-      endDateLabel={endDateLabel}
-      sameDateLabel={sameDateLabel}
-      hideTodayLabel={hideTodayLabel}
+      $height={height || '395px'}
+      $sideSpacing={6}
+      $monthPadding="32px 0 30px 0"
+      $selectedAll={!!(startDate && endDate)}
+      $enableSameDay={enableSameDay}
+      $startDateLabel={startDateLabel}
+      $endDateLabel={endDateLabel}
+      $sameDateLabel={sameDateLabel}
+      $hideTodayLabel={hideTodayLabel}
     >
       <MemoDayPicker
         locale={LOCALE}

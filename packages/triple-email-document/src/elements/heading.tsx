@@ -78,7 +78,7 @@ export function Heading1View({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 25, bottom: 20, left: 30, right: 30 }}>
+          <Box $padding={{ top: 25, bottom: 20, left: 30, right: 30 }}>
             {headline && <HeadlineContainer>{headline}</HeadlineContainer>}
             <H1Container>{text}</H1Container>
           </Box>
@@ -97,7 +97,7 @@ export function Heading2View({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 20, bottom: 20, left: 30, right: 30 }}>
+          <Box $padding={{ top: 20, bottom: 20, left: 30, right: 30 }}>
             <H2Container>{text}</H2Container>
           </Box>
         </tr>
@@ -115,7 +115,7 @@ export function Heading3View({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 20, left: 30, right: 30 }}>
+          <Box $padding={{ top: 20, left: 30, right: 30 }}>
             <H3Container>{text}</H3Container>
           </Box>
         </tr>
@@ -133,7 +133,7 @@ export function Heading4View({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 20, left: 30, right: 30 }}>
+          <Box $padding={{ top: 20, left: 30, right: 30 }}>
             <H4Container>{text}</H4Container>
           </Box>
         </tr>

@@ -120,46 +120,46 @@ export function dateLabelMixin({
   `
 }
 
-export const sideSpacingMixin = css<{ sideSpacing: number }>`
-  ${({ sideSpacing }) => `
+export const sideSpacingMixin = css<{ $sideSpacing: number }>`
+  ${({ $sideSpacing }) => `
     .DayPicker-Weekday {
       &:first-child {
-        padding-left: ${sideSpacing}px;
+        padding-left: ${$sideSpacing}px;
       }
       &:last-child {
-        padding-right: ${sideSpacing}px;
+        padding-right: ${$sideSpacing}px;
       }
     }
 
     .DayPicker-Day {
       &--sunday {
-        padding-left: ${sideSpacing}px !important;
+        padding-left: ${$sideSpacing}px !important;
 
         &:before {
           /* date label */
-          transform: translate(${sideSpacing / 2}px) !important;
+          transform: translate(${$sideSpacing / 2}px) !important;
         }
 
         &:after {
           /* Select circle */
           transform: translate(calc(-50% + ${
-            sideSpacing / 2
+            $sideSpacing / 2
           }px), -50%) !important;
         }
       }
 
       &--saturday {
-        padding-right: ${sideSpacing}px !important;
+        padding-right: ${$sideSpacing}px !important;
 
         &:before {
           /* date label */
-          transform: translate(${(sideSpacing / 2) * -1}px) !important;
+          transform: translate(${($sideSpacing / 2) * -1}px) !important;
         }
 
         &:after {
           /* Select circle */
           transform: translate(
-            calc(-50% + ${(sideSpacing / 2) * -1}px),
+            calc(-50% + ${($sideSpacing / 2) * -1}px),
             -50%
           ) !important;
         }

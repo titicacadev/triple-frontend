@@ -61,11 +61,11 @@ export const TextArea = styled.textarea`
   }
 `
 
-export const SendMessageButton = styled.button<{ color?: 'mint' | 'blue' }>`
+export const SendMessageButton = styled.button<{ $color?: 'mint' | 'blue' }>`
   flex-shrink: 0;
   background: transparent;
-  color: ${({ color }) =>
-    color === 'mint' ? 'var(--color-mint)' : 'var(--color-blue)'};
+  color: ${({ $color }) =>
+    $color === 'mint' ? 'var(--color-mint)' : 'var(--color-blue)'};
   font-size: 15px;
   font-weight: 700;
   outline: none;

@@ -23,31 +23,31 @@ const BadgeBase = styled.span`
  * <Badge radius={100}>1</Badge>
  */
 export const Badge = styled(BadgeBase)<{
-  color?: string
-  fontSize?: number
-  radius?: number
-  inverted?: boolean
+  $color?: string
+  $fontSize?: number
+  $radius?: number
+  $inverted?: boolean
 }>`
-  font-size: ${({ fontSize = 10 }) => fontSize}px;
-  border-radius: ${({ radius = 2 }) => radius}px;
+  font-size: ${({ $fontSize = 10 }) => $fontSize}px;
+  border-radius: ${({ $radius = 2 }) => $radius}px;
   padding: 3px 4px;
 
-  ${({ color, inverted }) =>
-    inverted
+  ${({ $color, $inverted }) =>
+    $inverted
       ? css`
-          color: ${color};
-          border: 1px solid ${color};
+          color: ${$color};
+          border: 1px solid ${$color};
         `
       : css`
           color: var(--color-white);
-          border: 1px solid ${color};
-          background-color: ${color};
+          border: 1px solid ${$color};
+          background-color: ${$color};
         `}
 `
 
 export const CircleBadge = styled(BadgeBase)<{
-  color?: string
-  borderless?: boolean
+  $color?: string
+  $borderless?: boolean
 }>`
   font-size: 11px;
   color: white;
@@ -55,10 +55,10 @@ export const CircleBadge = styled(BadgeBase)<{
   height: 24px;
   padding-top: 4px;
   border-radius: 100%;
-  background-color: ${({ color, theme }) => color ?? theme.colors.purple};
+  background-color: ${({ $color, theme }) => $color ?? theme.colors.purple};
 
-  ${({ borderless }) =>
-    borderless
+  ${({ $borderless }) =>
+    $borderless
       ? undefined
       : css`
           border: 2px solid var(--color-white);

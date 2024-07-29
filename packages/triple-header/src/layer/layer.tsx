@@ -9,14 +9,14 @@ import { TRANSITIONS } from './transitions'
 const LayerContainer = styled(Container).attrs({
   position: 'absolute',
 })<{
-  zIndex: number
+  $zIndex: number
 }>`
   width: 100%;
 
-  ${({ zIndex }) =>
-    zIndex &&
+  ${({ $zIndex }) =>
+    $zIndex &&
     css`
-      z-index: ${zIndex};
+      z-index: ${$zIndex};
     `}
 `
 
@@ -39,7 +39,7 @@ export function Layer({
 
   return (
     <LayerContainer
-      zIndex={zIndex}
+      $zIndex={zIndex}
       css={{ top: `${position.top}%`, left: `${position.left}%` }}
     >
       <TransitionElement>

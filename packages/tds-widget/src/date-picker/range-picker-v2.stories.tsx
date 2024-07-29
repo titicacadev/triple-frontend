@@ -28,10 +28,10 @@ export const Basic: StoryObj<typeof RangePickerV2> = {
 Basic.decorators = [
   (Story) => (
     <PickerFrameV2
-      height="300px"
-      sideSpacing={10}
-      monthPadding="30px"
-      hideTodayLabel={false}
+      $height="300px"
+      $sideSpacing={10}
+      $monthPadding="30px"
+      $hideTodayLabel={false}
     >
       <Story />
     </PickerFrameV2>

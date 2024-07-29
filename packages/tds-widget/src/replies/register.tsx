@@ -13,14 +13,14 @@ import { AutoResizingTextarea, TextAreaHandle } from './auto-resizing-textarea'
 import { useRepliesContext } from './context'
 import { ResourceType, Reply, Placeholders } from './types'
 
-const RegisterButton = styled.button<{ active: boolean }>`
+const RegisterButton = styled.button<{ $active: boolean }>`
   width: 26px;
   white-space: nowrap;
   padding: 0;
   font-size: 15px;
   font-weight: bold;
   color: ${(props) =>
-    props.active ? 'var(--color-blue)' : 'var(--color-blue500)'};
+    props.$active ? 'var(--color-blue)' : 'var(--color-blue500)'};
   outline: none;
 `
 
@@ -115,7 +115,7 @@ export const Register = forwardRef(function Register(
           onClick={() => {
             handleRegister()
           }}
-          active={!!plaintext}
+          $active={!!plaintext}
         >
           {t('등록')}
         </RegisterButton>

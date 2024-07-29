@@ -37,48 +37,48 @@ export const MEDIA_FRAME_OPTIONS: {
 }
 
 const FrameImg = styled.div<{
-  src: string
-  borderRadius: number
-  frame: ImageFrameRatio
+  $src: string
+  $borderRadius: number
+  $frame: ImageFrameRatio
 }>`
   width: 100%;
 
-  ${({ src }) =>
-    src &&
+  ${({ $src }) =>
+    $src &&
     css`
-      background: url(${src});
+      background: url(${$src});
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
     `}
 
-  ${({ borderRadius }) =>
-    borderRadius &&
+  ${({ $borderRadius }) =>
+    $borderRadius &&
     css`
-      border-radius: ${borderRadius}px;
+      border-radius: ${$borderRadius}px;
     `};
 
-  ${({ frame }) =>
-    frame &&
+  ${({ $frame }) =>
+    $frame &&
     css`
-      padding-top: ${MEDIA_FRAME_OPTIONS[frame]};
+      padding-top: ${MEDIA_FRAME_OPTIONS[$frame]};
     `}
 `
 
-const DefaultImg = styled.img<{ borderRadius: number }>`
+const DefaultImg = styled.img<{ $borderRadius: number }>`
   width: 100%;
   display: block;
 
-  ${({ borderRadius }) =>
-    borderRadius &&
+  ${({ $borderRadius }) =>
+    $borderRadius &&
     css`
-      border-radius: ${borderRadius}px;
+      border-radius: ${$borderRadius}px;
     `};
 `
 
-const Tr = styled.tr<{ tdWidth: number }>`
+const Tr = styled.tr<{ $tdWidth: number }>`
   > td {
-    width: ${({ tdWidth }) => `${tdWidth}%`};
+    width: ${({ $tdWidth }) => `${$tdWidth}%`};
   }
 `
 
@@ -134,16 +134,16 @@ export default function Images({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={paddings[display]}>
+          <Box $padding={paddings[display]}>
             <FluidTable>
               <tbody>
                 <ImagesRow>
-                  <Box padding={firstImagePaddings[display]}>
+                  <Box $padding={firstImagePaddings[display]}>
                     <Image image={first} borderRadius={borderRadius[display]} />
                   </Box>
 
                   {second !== undefined ? (
-                    <Box padding={secondImagePaddings[display]}>
+                    <Box $padding={secondImagePaddings[display]}>
                       <Image
                         image={second}
                         borderRadius={borderRadius[display]}
@@ -163,7 +163,7 @@ export default function Images({
 function ImagesRow({ children }: PropsWithChildren<unknown>) {
   const count = Children.toArray(children).filter((child) => !!child).length
 
-  return <Tr tdWidth={100 / count}>{children}</Tr>
+  return <Tr $tdWidth={100 / count}>{children}</Tr>
 }
 
 function Image({
@@ -200,7 +200,7 @@ function Image({
 
         {title ? (
           <tr>
-            <Box padding={{ top: 8, bottom: 8 }}>
+            <Box $padding={{ top: 8, bottom: 8 }}>
               <ImageCaption>{title}</ImageCaption>
             </Box>
           </tr>
@@ -220,8 +220,8 @@ function Img({
   frame?: ImageFrameRatio
 }) {
   return frame && frame !== 'original' ? (
-    <FrameImg src={imageUrl} borderRadius={borderRadius} frame={frame} />
+    <FrameImg $src={imageUrl} $borderRadius={borderRadius} $frame={frame} />
   ) : (
-    <DefaultImg src={imageUrl} borderRadius={borderRadius} />
+    <DefaultImg src={imageUrl} $borderRadius={borderRadius} />
   )
 }

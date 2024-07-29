@@ -66,7 +66,7 @@ function EmbeddedHeading({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ left: 30, right: 30 }}>
+          <Box $padding={{ left: 30, right: 30 }}>
             <Text bold lineHeight="24px" size={16} color="gray">
               {text}
             </Text>

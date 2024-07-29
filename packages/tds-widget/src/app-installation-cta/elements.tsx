@@ -296,7 +296,7 @@ const chatbotContainerTransitionStyle = `
   transition: transform 300ms ease-out;
 `
 export const ChatbotContainer = styled.div<
-  { visibility: 1 | 0 } & LayeringMixinProps
+  { $visibility: 1 | 0 } & LayeringMixinProps
 >`
   position: fixed;
   bottom: 10px;
@@ -304,8 +304,8 @@ export const ChatbotContainer = styled.div<
   right: 10px;
   ${layeringMixin(1)}
   ${ChatBalloon} {
-    ${({ visibility }) =>
-      visibility ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);' : ''}
+    ${({ $visibility }) =>
+      $visibility ? 'box-shadow: 0 30px 100px 0 rgba(0, 0, 0, 0.3);' : ''}
   }
 
   @media (min-width: 768px) {

@@ -75,7 +75,7 @@ export function InputAreaUI({
           maxLength={maxTextLength}
         />
         <SendMessageButton
-          color={buttonColor}
+          $color={buttonColor}
           onClick={async () => {
             if (inputValue.trim().length > 0) {
               if (textareaRef.current) {
