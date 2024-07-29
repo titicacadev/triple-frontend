@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import * as CSS from 'csstype'
+import { ComponentPropsWithoutRef } from 'react'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
@@ -29,12 +30,7 @@ const Img = styled.img<{
   z-index: 0;
 `
 
-export function ImageImg(
-  props: Omit<
-    Parameters<typeof Img>[0],
-    'borderRadius' | 'dimmed' | 'fitHeight'
-  >,
-) {
+export function ImageImg(props: ComponentPropsWithoutRef<'img'>) {
   const { borderRadius, overlayMounted } = useImageState()
   const absolute = useContentAbsolute()
 
