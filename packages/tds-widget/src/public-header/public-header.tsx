@@ -9,7 +9,7 @@ import {
   MIN_DESKTOP_WIDTH,
   TRANSITION_TIME,
 } from './constants'
-import type { Category, DeeplinkComponent } from './types'
+import type { Category } from './types'
 import {
   getCategoryHref,
   getCategoryImageProps,
@@ -18,7 +18,6 @@ import {
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
-import { PublicHeaderDeeplink } from './public-header-deeplink'
 
 const Wrapper = styled.div<{ $visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -84,11 +83,6 @@ const LogoCategoryImage = styled.img`
 
 export interface PublicHeaderProps {
   category?: Category
-  /**
-   * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
-   */
-  deeplinkPath?: string
-  DeeplinkComponent?: DeeplinkComponent
   disableAutoHide?: boolean
   onClick?: () => void
   linkHref?: string
@@ -98,14 +92,13 @@ export interface PublicHeaderProps {
 
 export function PublicHeader({
   category,
-  deeplinkPath,
-  DeeplinkComponent,
   disableAutoHide,
   onClick,
   linkHref = '/my-bookings',
   linkLabel,
   onLogoClick,
   children,
+  ...props
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('triple-frontend')
 
@@ -118,7 +111,7 @@ export function PublicHeader({
 
   return (
     <Wrapper $visible={visible}>
-      <HeaderFrame>
+      <HeaderFrame {...props}>
         <Logo
           href={getCategoryHref(category)}
           title={getCategoryTitle(category)}
@@ -138,12 +131,6 @@ export function PublicHeader({
           <ExtraActionItem href={linkHref} onClick={onClick}>
             {linkLabel ?? t('내 예약')}
           </ExtraActionItem>
-          {deeplinkPath && (
-            <PublicHeaderDeeplink
-              deeplinkPath={deeplinkPath}
-              DeeplinkComponent={DeeplinkComponent}
-            />
-          )}
         </ExtraActionsContainer>
       </HeaderFrame>
     </Wrapper>
