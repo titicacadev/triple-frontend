@@ -52,17 +52,17 @@ export const DeleteButton = styled.button`
   background-image: url('https://assets.triple.guide/images/btn-message-delete@3x.png');
 `
 
-const ThanksButton = styled(Button)<{ haveMine: boolean }>`
+const ThanksButton = styled(Button)<{ $haveMine: boolean }>`
   display: flex;
   gap: 3px;
   height: 20px;
   align-items: center;
-  background-color: ${({ haveMine }) =>
-    haveMine ? 'var(--color-white)' : 'var(--color-gray50)'};
-  color: ${({ haveMine }) => (haveMine ? '#1DBEB2' : 'var(--color-gray700)')};
-  ${({ haveMine }) => (haveMine ? 'border: 1px solid #1DBEB2;' : '')}
+  background-color: ${({ $haveMine }) =>
+    $haveMine ? 'var(--color-white)' : 'var(--color-gray50)'};
+  color: ${({ $haveMine }) => ($haveMine ? '#1DBEB2' : 'var(--color-gray700)')};
+  ${({ $haveMine }) => ($haveMine ? 'border: 1px solid #1DBEB2;' : '')}
   padding: 3.5px 6px 4.5px 7px;
-  font-weight: ${({ haveMine }) => (haveMine ? '700' : '500')};
+  font-weight: ${({ $haveMine }) => ($haveMine ? '700' : '500')};
   font-size: 10px;
 `
 
@@ -82,7 +82,7 @@ export function Thanks({
   onClick?: () => void
 }) {
   return (
-    <ThanksButton haveMine={haveMine} onClick={() => onClick?.()} {...props}>
+    <ThanksButton $haveMine={haveMine} onClick={() => onClick?.()} {...props}>
       <img
         src="https://assets.triple.guide/images/ic_chat_thumbsup_on.svg"
         alt="좋아요 아이콘"

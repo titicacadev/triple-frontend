@@ -15,19 +15,19 @@ import { CtaOverlay } from './cta-overlay'
 
 const SHOW_CTA_FROM_INDEX = 5
 
-const FixedRatioContainer = styled.div<{ ratio: number }>`
-  padding-top: ${({ ratio }) => 100 * ratio}%;
+const FixedRatioContainer = styled.div<{ $ratio: number }>`
+  padding-top: ${({ $ratio }) => 100 * $ratio}%;
   width: 100%;
 `
 
-const FixedRatioContent = styled.div<{ ratio: number }>`
-  margin-top: -${({ ratio }) => 100 * ratio}%;
+const FixedRatioContent = styled.div<{ $ratio: number }>`
+  margin-top: -${({ $ratio }) => 100 * $ratio}%;
 `
 
 function FixedRatio({ ratio, children }: PropsWithChildren<{ ratio: number }>) {
   return (
-    <FixedRatioContainer ratio={ratio}>
-      <FixedRatioContent ratio={ratio}>{children}</FixedRatioContent>
+    <FixedRatioContainer $ratio={ratio}>
+      <FixedRatioContent $ratio={ratio}>{children}</FixedRatioContent>
     </FixedRatioContainer>
   )
 }

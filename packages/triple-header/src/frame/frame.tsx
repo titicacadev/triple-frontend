@@ -9,25 +9,25 @@ import { FrameData, LinkEventHandler } from '../types'
 import { FRAMES } from '../frame'
 
 const FrameContainer = styled(Container)<{
-  widthRatio: number
-  heightRatio: number
+  $widthRatio: number
+  $heightRatio: number
 }>`
   width: 100%;
   height: 0;
   margin: 0 auto;
   flex: 0 0 auto;
 
-  ${({ heightRatio }) =>
-    heightRatio &&
+  ${({ $heightRatio }) =>
+    $heightRatio &&
     css`
-      padding: ${heightRatio}% 0 0 0;
+      padding: ${$heightRatio}% 0 0 0;
       position: relative;
     `}
 
-  ${({ widthRatio }) =>
-    widthRatio &&
+  ${({ $widthRatio }) =>
+    $widthRatio &&
     css`
-      max-width: ${widthRatio}%;
+      max-width: ${$widthRatio}%;
     `}
 `
 
@@ -84,7 +84,7 @@ export function Frame({
   const linkClickHandler = onLinkClick || defaultHandleLinkClick
 
   return (
-    <FrameContainer widthRatio={widthRatio} heightRatio={heightRatio}>
+    <FrameContainer $widthRatio={widthRatio} $heightRatio={heightRatio}>
       <FrameElement
         value={value}
         effect={effect}

@@ -43,7 +43,7 @@ export default function withTypeCircleBadge(type: ItineraryElementType) {
     }
 
     return (
-      <CircleBadge {...rest} color={getColorOfType(type)}>
+      <CircleBadge {...rest} $color={getColorOfType(type)}>
         {children}
       </CircleBadge>
     )

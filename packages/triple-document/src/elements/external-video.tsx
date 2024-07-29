@@ -1,12 +1,12 @@
 import { styled } from 'styled-components'
 import { borderRadiusMixin } from '@titicaca/tds-ui'
 
-const VideoContainer = styled.div<{ borderRadius: number }>`
+const VideoContainer = styled.div<{ $borderRadius: number }>`
   position: relative;
   margin: 30px 30px 0;
   height: 0;
   padding-bottom: 56.25%;
-  ${borderRadiusMixin}
+  ${({ $borderRadius }) => borderRadiusMixin({ borderRadius: $borderRadius })}
 `
 
 const VideoPlayer = styled.iframe`
@@ -23,7 +23,7 @@ export default function ExternalVideo({
   value: { provider: string; identifier: string }
 }) {
   return provider === 'youtube' ? (
-    <VideoContainer borderRadius={6}>
+    <VideoContainer $borderRadius={6}>
       <VideoPlayer
         className="chromatic-ignore"
         src={`https://www.youtube.com/embed/${identifier}?rel=0&amp;showinfo=0`}

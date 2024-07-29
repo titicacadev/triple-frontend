@@ -27,7 +27,7 @@ const STYLE_BY_TYPES: { [type in StyleType]: ReturnType<typeof css> } = {
   `,
 }
 
-const CellContainer = styled.div<{ type: StyleType }>`
+const CellContainer = styled.div<{ $type: StyleType }>`
   position: relative;
   line-height: 17px;
   padding: 20px 0 20px 35px;
@@ -42,7 +42,7 @@ const CellContainer = styled.div<{ type: StyleType }>`
     left: 0;
     top: 50%;
     margin-top: -10px;
-    ${({ type }) => STYLE_BY_TYPES[type]};
+    ${({ $type }) => STYLE_BY_TYPES[$type]};
     background-size: 20px 20px;
   }
 `
@@ -59,7 +59,7 @@ export function Cell({
   onClick?: (e: SyntheticEvent) => void
 }) {
   return (
-    <CellContainer type={type} onClick={onClick}>
+    <CellContainer $type={type} onClick={onClick}>
       {value ? (
         <Value>{value}</Value>
       ) : (

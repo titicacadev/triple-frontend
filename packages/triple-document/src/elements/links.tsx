@@ -15,21 +15,21 @@ import { useLinkClickHandler } from '../prop-context/link-click-handler'
 
 import ResourceList from './shared/resource-list'
 
-const LinksContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '0' : '0 30px')};
-  margin-top: ${({ compact }) => (compact ? '10px' : '20px')};
-  margin-bottom: ${({ compact }) => (compact ? '-10px' : '-20px')};
+const LinksContainer = styled.div<{ $compact?: boolean }>`
+  margin: ${({ $compact }) => ($compact ? '0' : '0 30px')};
+  margin-top: ${({ $compact }) => ($compact ? '10px' : '20px')};
+  margin-bottom: ${({ $compact }) => ($compact ? '-10px' : '-20px')};
 
   a,
   button {
     display: inline-block;
-    margin-bottom: ${({ compact }) => (compact ? '10px' : '20px')};
-    margin-right: ${({ compact }) => (compact ? '10px' : '20px')};
+    margin-bottom: ${({ $compact }) => ($compact ? '10px' : '20px')};
+    margin-right: ${({ $compact }) => ($compact ? '10px' : '20px')};
   }
 `
 
-const ButtonContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
+const ButtonContainer = styled.div<{ $compact?: boolean }>`
+  margin: ${({ $compact }) => ($compact ? '12px 0 4px 0' : '50px 30px 0 30px')};
   text-align: center;
 
   a,
@@ -50,8 +50,8 @@ const ButtonContainer = styled.div<{ compact?: boolean }>`
   }
 `
 
-const BlockContainer = styled.div<{ compact?: boolean }>`
-  margin: ${({ compact }) => (compact ? '7px 0 4px 0' : '30px 30px 0 30px')};
+const BlockContainer = styled.div<{ $compact?: boolean }>`
+  margin: ${({ $compact }) => ($compact ? '7px 0 4px 0' : '30px 30px 0 30px')};
   text-align: center;
 `
 
@@ -167,6 +167,7 @@ const LINK_ELEMENTS = {
 
 export default function Links({
   value: { display, links },
+  compact,
   ...props
 }: {
   value: {
@@ -185,7 +186,7 @@ export default function Links({
     LINK_ELEMENTS[display as keyof typeof LINK_ELEMENTS] || SimpleLink
 
   return (
-    <Container {...props}>
+    <Container {...props} $compact={compact}>
       {links.map((link, i) => (
         <Element
           key={i}

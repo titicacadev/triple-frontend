@@ -4,7 +4,7 @@ import { styled, css } from 'styled-components'
 import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
 
 const AppBannerFrame = styled.header<
-  { fixed?: boolean; maxWidth?: number } & LayeringMixinProps
+  { $fixed?: boolean; $maxWidth?: number } & LayeringMixinProps
 >`
   background-color: #fff;
   border-bottom: 1px solid #efefef;
@@ -13,15 +13,15 @@ const AppBannerFrame = styled.header<
 
   ${layeringMixin(0)}
 
-  ${({ fixed }) =>
-    fixed &&
+  ${({ $fixed }) =>
+    $fixed &&
     css`
       top: 0;
     `};
-  ${({ maxWidth }) =>
-    maxWidth &&
+  ${({ $maxWidth }) =>
+    $maxWidth &&
     css`
-      @media (min-width: ${maxWidth + 1}px) {
+      @media (min-width: ${$maxWidth + 1}px) {
         display: none;
       }
     `};

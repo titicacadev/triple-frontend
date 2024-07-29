@@ -10,14 +10,14 @@ import {
 import { Container } from '@titicaca/tds-ui'
 import { styled, css } from 'styled-components'
 
-const RollingContainer = styled(Container)<{ isTransition: boolean }>`
+const RollingContainer = styled(Container)<{ $isTransition: boolean }>`
   position: relative;
   display: flex;
   width: 100%;
   height: 100%;
 
-  ${({ isTransition }) =>
-    isTransition &&
+  ${({ $isTransition }) =>
+    $isTransition &&
     css`
       transition: ease all 0.3s;
     `}
@@ -60,7 +60,7 @@ export function Rolling({ children }: { children: ReactNode[] }) {
 
   return (
     <RollingContainer
-      isTransition={hasTransition}
+      $isTransition={hasTransition}
       ref={containerRef}
       style={{ left: calculateNewX() }}
     >

@@ -14,30 +14,30 @@ import { PickerFrameV2, generateSelectedStyle } from './picker-frame'
 const MemoDayPicker = memo(DayPicker)
 
 const RangeContainer = styled(PickerFrameV2)<{
-  selectedAll: boolean
-  enableSameDay?: boolean
-  startDateLabel?: string
-  endDateLabel?: string
-  sameDateLabel?: string
+  $selectedAll: boolean
+  $enableSameDay?: boolean
+  $startDateLabel?: string
+  $endDateLabel?: string
+  $sameDateLabel?: string
 }>`
-  ${({ selectedAll, startDateLabel, endDateLabel }) => css`
-    ${generateSelectedStyle({ selectedAll })}
+  ${({ $selectedAll, $startDateLabel, $endDateLabel }) => css`
+    ${generateSelectedStyle({ selectedAll: $selectedAll })}
 
-    ${selectedAll && rangeMixin()}
+    ${$selectedAll && rangeMixin()}
 
-    ${startDateLabel &&
+    ${$startDateLabel &&
     dateLabelMixin({
       selector: '.DayPicker-Day--from',
-      label: startDateLabel,
+      label: $startDateLabel,
       fontSize: '10px',
       color: 'var(---color-white)',
       fontWeight: 500,
     })}
 
-      ${endDateLabel &&
+      ${$endDateLabel &&
     dateLabelMixin({
       selector: '.DayPicker-Day--to',
-      label: endDateLabel,
+      label: $endDateLabel,
       fontSize: '10px',
       color: 'var(---color-white)',
       fontWeight: 500,
@@ -171,15 +171,15 @@ export function RangePickerV2({
 
   return (
     <RangeContainer
-      height={height || '395px'}
-      sideSpacing={6}
-      monthPadding="32px 0 30px 0"
-      selectedAll={!!(startDate && endDate)}
-      enableSameDay={enableSameDay}
-      startDateLabel={startDateLabel}
-      endDateLabel={endDateLabel}
-      sameDateLabel={sameDateLabel}
-      hideTodayLabel={hideTodayLabel}
+      $height={height || '395px'}
+      $sideSpacing={6}
+      $monthPadding="32px 0 30px 0"
+      $selectedAll={!!(startDate && endDate)}
+      $enableSameDay={enableSameDay}
+      $startDateLabel={startDateLabel}
+      $endDateLabel={endDateLabel}
+      $sameDateLabel={sameDateLabel}
+      $hideTodayLabel={hideTodayLabel}
     >
       <MemoDayPicker
         locale={LOCALE}

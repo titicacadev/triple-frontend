@@ -18,10 +18,10 @@ import {
 } from '@titicaca/triple-web-to-native-interfaces'
 import { useDebouncedState } from '@titicaca/react-hooks'
 
-const ContentsContainer = styled(Container)<{ isIos: boolean }>`
+const ContentsContainer = styled(Container)<{ $isIos: boolean }>`
   > div:first-child {
-    ${({ isIos }) =>
-      isIos &&
+    ${({ $isIos }) =>
+      $isIos &&
       css`
         max-height: calc(100vh - 52px);
         overflow: scroll;
@@ -182,7 +182,7 @@ export function FullScreenSearchView({
         inputRef={inputRef}
         {...rest}
       />
-      <ContentsContainer isIos={isIos} css={{ userSelect: 'none' }}>
+      <ContentsContainer $isIos={isIos} css={{ userSelect: 'none' }}>
         <div ref={contentsDivRef}>{children}</div>
       </ContentsContainer>
     </>

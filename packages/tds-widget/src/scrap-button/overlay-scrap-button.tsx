@@ -11,13 +11,13 @@ const OVERLAY_HEART_ON =
 const OVERLAY_HEART_OFF =
   'https://assets.triple.guide/images/btn-content-scrap-overlay-off@3x.png'
 
-const ScrapingButton = styled.button<{ size: number }>`
+const ScrapingButton = styled.button<{ $size: number }>`
   display: block;
   outline: none;
 
-  ${({ size }) => `
-    width: ${size}px;
-    height: ${size}px;
+  ${({ $size }) => `
+    width: ${$size}px;
+    height: ${$size}px;
   `}
 `
 
@@ -33,7 +33,7 @@ function OverlayScrapButton({
 
   return (
     <ScrapingButton
-      size={size}
+      $size={size}
       onClick={createIsolatedClickHandler(toggleScraped)}
     >
       <OverlayHeart pressed={actualScraped} size={size} />

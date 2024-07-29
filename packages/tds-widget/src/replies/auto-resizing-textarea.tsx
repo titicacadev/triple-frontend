@@ -9,12 +9,12 @@ import {
 } from 'react'
 import { styled } from 'styled-components'
 
-const Textarea = styled.textarea<{ lineHeight: number }>`
+const Textarea = styled.textarea<{ $lineHeight: number }>`
   resize: none;
   font-size: 15px;
   outline: none;
   color: var(--color-gray);
-  line-height: ${({ lineHeight }) => lineHeight}px;
+  line-height: ${({ $lineHeight }) => $lineHeight}px;
   flex-grow: 2;
 
   &::placeholder {
@@ -81,7 +81,7 @@ export const AutoResizingTextarea = forwardRef(function AutoResizingTextarea(
       value={value}
       placeholder={placeholder}
       onChange={handleChange}
-      lineHeight={TEXTAREA_LINE_HEIGHT}
+      $lineHeight={TEXTAREA_LINE_HEIGHT}
       ref={textareaRef}
       readOnly={readOnly}
     />

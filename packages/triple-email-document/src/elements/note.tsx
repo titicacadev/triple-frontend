@@ -46,7 +46,7 @@ export default function NoteView({
     <FluidTable>
       <tbody>
         <tr>
-          <Box padding={{ top: 30, bottom: 30, left: 30, right: 30 }}>
+          <Box $padding={{ top: 30, bottom: 30, left: 30, right: 30 }}>
             <SegmentStlyed>
               <TitleStyled>{title}</TitleStyled>
               <BodyStyled>{body}</BodyStyled>

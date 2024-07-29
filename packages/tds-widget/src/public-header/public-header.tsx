@@ -20,18 +20,18 @@ import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
 import { PublicHeaderDeeplink } from './public-header-deeplink'
 
-const Wrapper = styled.div<{ visible: boolean }>`
+const Wrapper = styled.div<{ $visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
   overflow: hidden;
   top: 0;
-  height: ${({ visible }) => (visible ? `${HEADER_MOBILE_HEIGHT}px` : '0px')};
+  height: ${({ $visible }) => ($visible ? `${HEADER_MOBILE_HEIGHT}px` : '0px')};
 
   &:focus-within {
     height: ${HEADER_MOBILE_HEIGHT}px;
   }
 
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
-    height: ${({ visible }) =>
+    height: ${({ $visible: visible }) =>
       visible ? `${HEADER_DESKTOP_HEIGHT}px` : '0px'};
 
     &:focus-within {
@@ -117,7 +117,7 @@ export function PublicHeader({
   }
 
   return (
-    <Wrapper visible={visible}>
+    <Wrapper $visible={visible}>
       <HeaderFrame>
         <Logo
           href={getCategoryHref(category)}

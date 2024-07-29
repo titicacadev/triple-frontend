@@ -11,13 +11,13 @@ const OUTLINE_HEART_ON =
 const OUTLINE_HEART_OFF =
   'https://assets.triple.guide/images/btn-content-scrap-list-off@2x.png'
 
-const ScrapingButton = styled.button<{ size: number }>`
+const ScrapingButton = styled.button<{ $size: number }>`
   display: block;
   outline: none;
 
-  ${({ size }) => `
-    width: ${size}px;
-    height: ${size}px;
+  ${({ $size }) => `
+    width: ${$size}px;
+    height: ${$size}px;
   `}
 `
 
@@ -33,7 +33,7 @@ function OutlineScrapButton({
 
   return (
     <ScrapingButton
-      size={size}
+      $size={size}
       onClick={createIsolatedClickHandler(toggleScraped)}
     >
       <OutlineHeart pressed={actualScraped} size={size} />

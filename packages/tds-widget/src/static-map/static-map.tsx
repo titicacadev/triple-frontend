@@ -6,6 +6,7 @@ import {
   formatMarginPadding,
   MEDIA_FRAME_OPTIONS,
   marginMixin,
+  MarginMixinProps,
 } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
@@ -27,7 +28,9 @@ const Marker = styled.img`
   height: 30px;
 `
 
-const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
+const StaticMapContainer = styled.div<
+  { $frame?: FrameRatioAndSizes } & MarginMixinProps
+>`
   width: 100%;
   position: relative;
   background: '#f5f5f5';
@@ -37,10 +40,13 @@ const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
 
   ${marginMixin};
 
-  ${({ frame }) =>
-    frame && frame !== 'original'
+  ${({ $frame }) =>
+    $frame && $frame !== 'original'
       ? css`
-          ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS[frame] }, 'padding')}
+          ${formatMarginPadding(
+            { top: MEDIA_FRAME_OPTIONS[$frame] },
+            'padding',
+          )}
         `
       : css`
           ${formatMarginPadding({ top: MEDIA_FRAME_OPTIONS.small }, 'padding')}
@@ -112,7 +118,7 @@ export function StaticMap({
 
   return (
     <Container position="relative" onClick={onClick}>
-      <StaticMapContainer frame={srcSet ? undefined : frame}>
+      <StaticMapContainer $frame={srcSet ? undefined : frame}>
         <StaticMapPicture>
           {srcSet ? (
             <source media="(min-width: 600px)" srcSet={srcSet} />
