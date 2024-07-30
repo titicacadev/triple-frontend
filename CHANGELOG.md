@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.26.4
+
+```
+### footer
+
+- [footer] 푸터 통신판매업 신고번호를 변경합니다. [#3329](https://github.com/titicacadev/triple-frontend/pull/3329)
+```
+
 ## v13.26.3
 
 ```
@@ -4441,11 +4449,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
