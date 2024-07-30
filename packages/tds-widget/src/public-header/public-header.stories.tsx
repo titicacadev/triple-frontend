@@ -24,13 +24,13 @@ export default {
 export const Basic: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
+    disableSideMenu: true,
   },
 }
 
-export const DeeplinkPath: StoryObj<typeof PublicHeader> = {
+export const SideMenu: StoryObj<typeof PublicHeader> = {
   args: {
-    ...Basic.args,
-    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
   },
 }
 
