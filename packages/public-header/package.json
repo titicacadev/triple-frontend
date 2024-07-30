@@ -40,13 +40,15 @@
     ]
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.19",
+    "@titicaca/core-elements": "workspace:*",
     "@titicaca/color-palette": "workspace:*",
+    "@titicaca/react-contexts": "workspace:*",
     "@titicaca/view-utilities": "workspace:*"
   },
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
     "@titicaca/next-i18next": "13.8.5",
-    "@titicaca/react-contexts": "workspace:*",
     "@titicaca/react-triple-client-interfaces": "workspace:*",
     "react": "^18.2.0",
     "styled-components": "^5.3.11"

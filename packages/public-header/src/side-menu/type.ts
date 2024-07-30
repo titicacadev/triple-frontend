@@ -5,7 +5,11 @@ interface MenuItemBase {
   tooltipDescription?: string
 }
 
-export type LinkMenuItem = MenuItemBase & { type: 'link'; href: string }
+export type LinkMenuItem = MenuItemBase & {
+  type: 'link'
+  href: string
+}
+
 export type AccordionMenuItem = MenuItemBase & {
   type: 'accordion'
   subItems: LinkMenuItem[]

@@ -101,9 +101,9 @@ export function MenuList({ menus }: MenuListProps) {
           <li key={menu.label}>
             {menu.type === 'link' ? (
               <LinkMenuItem {...menu} />
-            ) : (
+            ) : menu.type === 'accordion' ? (
               <AccordionMenuItem {...menu} />
-            )}
+            ) : null}
           </li>
         )
       })}
