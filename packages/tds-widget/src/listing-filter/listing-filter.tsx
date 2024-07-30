@@ -8,8 +8,8 @@ const FilterEntryBase = styled.div<{ active?: boolean; disabled?: boolean }>`
   line-height: 15px;
   border: 1px solid
     ${({ active }) => (active ? 'var(--color-blue)' : 'var(--color-gray200)')};
-  color: ${({ active: $active }) =>
-    $active ? 'var(--color-blue)' : 'var(--color-gray200)'};
+  color: ${({ active }) =>
+    active ? 'var(--color-blue)' : 'var(--color-gray200)'};
   background-repeat: no-repeat;
   border-radius: 2px;
   margin-right: 6px;
@@ -90,23 +90,23 @@ function ExpandingFilterEntry({
 }
 
 const RegularFilterEntry = styled(FilterEntryBase)<{
-  $active?: boolean
-  $withIcon?: boolean
-  $iconImage?: string
+  active?: boolean
+  withIcon?: boolean
+  iconImage?: string
 }>`
-  ${({ $withIcon, $iconImage }) =>
-    $withIcon
+  ${({ withIcon, iconImage }) =>
+    withIcon
       ? css`
           padding: 9px 10px 9px 32px;
           background-size: 24px 24px;
           background-position: top 5px left 8px;
-          background-image: url(${$iconImage});
+          background-image: url(${iconImage});
         `
       : css`
           padding: 9px 16px;
         `};
-  ${({ $active }) =>
-    $active
+  ${({ active }) =>
+    active
       ? css`
           color: var(--color-white);
           background-color: var(--color-blue);
@@ -179,9 +179,9 @@ function FilterEntry({
   }
   return (
     <RegularFilterEntry
-      $active={active}
-      $iconImage={active ? activeIconImage : inactiveIconImage}
-      $withIcon={!!(activeIconImage && inactiveIconImage)}
+      active={active}
+      iconImage={active ? activeIconImage : inactiveIconImage}
+      withIcon={!!(activeIconImage && inactiveIconImage)}
       {...props}
     />
   )
