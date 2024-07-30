@@ -30,7 +30,7 @@ env:
 
 jobs:
   check-dependencies:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
         run: pnpm dlx @titicaca/gha-tools notify
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -96,7 +96,7 @@ jobs:
         run: pnpm dlx @titicaca/gha-tools notify
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -127,7 +127,7 @@ jobs:
         run: pnpm dlx @titicaca/gha-tools notify
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -173,7 +173,7 @@ jobs:
         run: pnpm dlx @titicaca/gha-tools notify
 
   chromatic-deployment:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
