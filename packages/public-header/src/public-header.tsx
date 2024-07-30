@@ -1,5 +1,5 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
 import { PropsWithChildren, useCallback } from 'react'
 import {
@@ -27,6 +27,7 @@ import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
 import { MenuItem } from './side-menu/type'
 import { SideMenu } from './side-menu'
+import { HeaderMenuButton } from './header-menu-button'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -88,30 +89,6 @@ const LogoCategoryImage = styled.img`
   @media (min-width: ${MIN_DESKTOP_WIDTH}px) {
     height: 24px;
   }
-`
-
-export const MenuButton = styled.button<{ hasNewNotification?: boolean }>`
-  position: relative;
-  width: 24px;
-  height: 24px;
-  background: no-repeat center/100%
-    url('https://assets.triple.guide/images/ico_navi_menu@4x.png');
-  margin: 0 8px;
-
-  ${({ hasNewNotification }) =>
-    hasNewNotification &&
-    css`
-      &::after {
-        content: '';
-        position: absolute;
-        top: -6px;
-        right: -7px;
-        width: 8px;
-        height: 8px;
-        background-color: #fd2e69;
-        border-radius: 50%;
-      }
-    `}
 `
 
 export interface PublicHeaderProps {
@@ -190,8 +167,7 @@ export function PublicHeader({
           </ExtraActionsContainer>
 
           {!disableSideMenu && sideMenuItems ? (
-            <MenuButton
-              id="header-menu-button"
+            <HeaderMenuButton
               onClick={onMenuButtonClick}
               hasNewNotification={hasNewNotification}
             />
