@@ -1,11 +1,18 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useTripleClientMetadata } from '@titicaca/react-triple-client-interfaces'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useCallback } from 'react'
+import {
+  useEventTrackingContext,
+  useHistoryFunctions,
+  useUriHash,
+} from '@titicaca/react-contexts'
 
 import {
   HEADER_DESKTOP_HEIGHT,
   HEADER_MOBILE_HEIGHT,
+  HEADER_SIDE_MENU_HASH,
+  HEADER_SIDE_MENU_ITEMS,
   MIN_DESKTOP_WIDTH,
   TRANSITION_TIME,
 } from './constants'
@@ -18,6 +25,8 @@ import {
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
 import { ExtraActionItem } from './extra-action-item'
+import { MenuItem } from './side-menu/type'
+import { SideMenu } from './side-menu'
 
 const Wrapper = styled.div<{ visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -81,58 +90,122 @@ const LogoCategoryImage = styled.img`
   }
 `
 
+export const MenuButton = styled.button<{ hasNewNotification?: boolean }>`
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: no-repeat center/100%
+    url('https://assets.triple.guide/images/ico_navi_menu@4x.png');
+  margin: 0 8px;
+
+  ${({ hasNewNotification }) =>
+    hasNewNotification &&
+    css`
+      &::after {
+        content: '';
+        position: absolute;
+        top: -6px;
+        right: -7px;
+        width: 8px;
+        height: 8px;
+        background-color: #fd2e69;
+        border-radius: 50%;
+      }
+    `}
+`
+
 export interface PublicHeaderProps {
   category?: Category
   disableAutoHide?: boolean
+  /** @deprecated onLinkClick을 사용해주세요 */
   onClick?: () => void
   linkHref?: string
   linkLabel?: string
   onLogoClick?: () => void
+  onLinkClick?: () => void
+  sideMenuItems?: MenuItem[]
+  disableSideMenu?: boolean
+  hasNewNotification?: boolean
 }
 
 export function PublicHeader({
   category,
   disableAutoHide,
   onClick,
+  onLinkClick,
   linkHref = '/my-bookings',
   linkLabel,
   onLogoClick,
   children,
+  disableSideMenu = false,
+  sideMenuItems = HEADER_SIDE_MENU_ITEMS,
+  hasNewNotification,
   ...props
 }: PropsWithChildren<PublicHeaderProps>) {
   const { t } = useTranslation('common-web')
 
   const app = useTripleClientMetadata()
   const visible = useAutoHide(disableAutoHide)
+  const uriHash = useUriHash()
+  const { push, back } = useHistoryFunctions()
+  const { trackEvent } = useEventTrackingContext()
+
+  const onMenuButtonClick = useCallback(() => {
+    push(HEADER_SIDE_MENU_HASH)
+    trackEvent({ fa: { action: '헤더_메뉴_선택' } })
+  }, [trackEvent, push])
+
+  const onSideMenuClose = useCallback(() => {
+    trackEvent({ fa: { category: '메인메뉴', action: '닫기_선택' } })
+    back()
+  }, [trackEvent, back])
 
   if (app) {
     return null
   }
 
   return (
-    <Wrapper visible={visible}>
-      <HeaderFrame {...props}>
-        <Logo
-          href={getCategoryHref(category)}
-          title={getCategoryTitle(category)}
-          onClick={onLogoClick}
-        >
-          <LogoImage
-            alt="Triple"
-            src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
-          />
-          {category && (
-            <LogoCategoryImage {...getCategoryImageProps(category)} />
-          )}
-        </Logo>
+    <>
+      <Wrapper visible={visible}>
+        <HeaderFrame {...props}>
+          <Logo
+            href={getCategoryHref(category)}
+            title={getCategoryTitle(category)}
+            onClick={onLogoClick}
+          >
+            <LogoImage
+              alt="Triple"
+              src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
+            />
+            {category && (
+              <LogoCategoryImage {...getCategoryImageProps(category)} />
+            )}
+          </Logo>
 
-        <ExtraActionsContainer>
-          {children}
-          <ExtraActionItem href={linkHref} onClick={onClick}>
-            {linkLabel ?? t(['nae-yeyag', '내 예약'])}
-          </ExtraActionItem>
-        </ExtraActionsContainer>
-      </HeaderFrame>
-    </Wrapper>
+          <ExtraActionsContainer>
+            {children}
+            <ExtraActionItem href={linkHref} onClick={onLinkClick || onClick}>
+              {linkLabel ?? t(['nae-yeyag', '내 예약'])}
+            </ExtraActionItem>
+          </ExtraActionsContainer>
+
+          {!disableSideMenu && sideMenuItems ? (
+            <MenuButton
+              id="header-menu-button"
+              onClick={onMenuButtonClick}
+              hasNewNotification={hasNewNotification}
+            />
+          ) : null}
+        </HeaderFrame>
+      </Wrapper>
+
+      {sideMenuItems ? (
+        <SideMenu
+          open={uriHash === HEADER_SIDE_MENU_HASH}
+          onClose={onSideMenuClose}
+          menus={sideMenuItems}
+        />
+      ) : null}
+    </>
   )
 }

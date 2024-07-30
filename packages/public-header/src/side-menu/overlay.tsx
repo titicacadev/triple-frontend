@@ -112,6 +112,7 @@ export function SideMenuOverlay({
       />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <SideBarContainer
+          id="side-menu-container"
           ref={refs.setFloating}
           data-transition={status}
           aria-modal
