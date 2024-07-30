@@ -1,5 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import { appWithTranslation } from '@titicaca/next-i18next'
+import { SessionContextProvider } from '@titicaca/react-contexts'
 
 import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
 import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
@@ -42,22 +43,42 @@ export default {
 
       return <App pageProps={{}} />
     },
+    (Story) => (
+      <SessionContextProvider
+        type="browser"
+        props={{
+          initialSessionAvailability: true,
+          initialUser: {
+            name: '여행자',
+            provider: 'KAKAO',
+            country: 'KR',
+            lang: 'ko',
+            unregister: false,
+            photo: '',
+            mileage: { badges: [], level: 1, point: 0 },
+            uid: 'random-user',
+            email: '',
+          },
+        }}
+      >
+        <Story />
+      </SessionContextProvider>
+    ),
   ],
 } as Meta<typeof PublicHeader>
 
 export const Basic: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
+    disableSideMenu: true,
   },
 }
 
-export const DeeplinkPath: StoryObj<typeof PublicHeader> = {
+export const SideMenu: StoryObj<typeof PublicHeader> = {
   args: {
-    ...Basic.args,
-    deeplinkPath: 'https://triple.guide',
+    disableAutoHide: true,
   },
 }
-
 export const Categories: StoryFn<typeof PublicHeader> = () => {
   return (
     <>
