@@ -27,7 +27,7 @@ env:
 jobs:
   tag-with-comment:
     if: github.event.issue.state == 'open' && github.event.issue.pull_request && endsWith(github.event.comment.body, 'release-canary')
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: pnpm/action-setup@v3

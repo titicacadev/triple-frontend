@@ -33,7 +33,7 @@ env:
 
 jobs:
   wait-for-ci:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -79,7 +79,7 @@ jobs:
   release:
     needs: wait-for-ci
     if: startsWith(github.event.ref, 'refs/tags/release-prod-')
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -136,7 +136,7 @@ jobs:
   tag:
     needs: release
     if: success()
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
@@ -198,7 +198,7 @@ jobs:
   canary-release:
     needs: wait-for-ci
     if: startsWith(github.event.ref, 'refs/tags/release-pr-')
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
       - uses: actions/checkout@v4
