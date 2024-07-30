@@ -15,9 +15,5 @@ export default function FluidTable({
   children?: React.ReactNode
   margin?: MarginPadding
 }) {
-  return (
-    <StyledTable $margin={margin}>
-      <tbody>{children}</tbody>
-    </StyledTable>
-  )
+  return <StyledTable $margin={margin}>{children}</StyledTable>
 }
