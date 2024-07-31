@@ -16,7 +16,7 @@ import {
   MIN_DESKTOP_WIDTH,
   TRANSITION_TIME,
 } from './constants'
-import type { Category } from './types'
+import type { Category, DeeplinkComponent } from './types'
 import {
   getCategoryHref,
   getCategoryImageProps,
@@ -98,6 +98,7 @@ export interface PublicHeaderProps {
    * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
    */
   deeplinkPath?: string
+  DeeplinkComponent?: DeeplinkComponent
   disableAutoHide?: boolean
   /** @deprecated onLinkClick을 사용해주세요 */
   onClick?: () => void
@@ -106,13 +107,14 @@ export interface PublicHeaderProps {
   onLogoClick?: () => void
   onLinkClick?: () => void
   sideMenuItems?: MenuItem[]
-  disableSideMenu?: boolean
+  hasSideMenu?: boolean
   hasNewNotification?: boolean
 }
 
 export function PublicHeader({
   category,
   deeplinkPath,
+  DeeplinkComponent,
   disableAutoHide,
   onClick,
   onLinkClick,
@@ -120,7 +122,7 @@ export function PublicHeader({
   linkLabel,
   onLogoClick,
   children,
-  disableSideMenu = false,
+  hasSideMenu = false,
   sideMenuItems = HEADER_SIDE_MENU_ITEMS,
   hasNewNotification,
   ...props
@@ -199,10 +201,13 @@ export function PublicHeader({
           </ExtraActionsContainer>
 
           {deeplinkPath ? (
-            <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />
+            <PublicHeaderDeeplink
+              deeplinkPath={deeplinkPath}
+              DeeplinkComponent={DeeplinkComponent}
+            />
           ) : null}
 
-          {!disableSideMenu ? (
+          {hasSideMenu ? (
             <HeaderMenuButton
               onClick={onMenuButtonClick}
               hasNewNotification={hasNewNotification}
