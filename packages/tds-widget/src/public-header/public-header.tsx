@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
-import { PropsWithChildren, useCallback } from 'react'
+import { PropsWithChildren, useCallback, useMemo } from 'react'
 import {
   useClientApp,
   useTrackEvent,
@@ -27,6 +27,7 @@ import { ExtraActionItem } from './extra-action-item'
 import { MenuItem } from './side-menu/type'
 import { SideMenu } from './side-menu'
 import { HeaderMenuButton } from './header-menu-button'
+import { PublicHeaderDeeplink } from './public-header-deeplink'
 
 const Wrapper = styled.div<{ $visible: boolean }>`
   transition: height ease ${TRANSITION_TIME}ms;
@@ -92,6 +93,10 @@ const LogoCategoryImage = styled.img`
 
 export interface PublicHeaderProps {
   category?: Category
+  /**
+   * 앱에서 열 수 있는 path. ex) inlink or 네이티브 딥링크
+   */
+  deeplinkPath?: string
   disableAutoHide?: boolean
   /** @deprecated onLinkClick을 사용해주세요 */
   onClick?: () => void
@@ -106,6 +111,7 @@ export interface PublicHeaderProps {
 
 export function PublicHeader({
   category,
+  deeplinkPath,
   disableAutoHide,
   onClick,
   onLinkClick,
@@ -134,6 +140,32 @@ export function PublicHeader({
     trackEvent({ fa: { category: '메인메뉴', action: '닫기_선택' } })
     removeUriHash()
   }, [trackEvent, removeUriHash])
+
+  const onTrackMenuEvent = useCallback(
+    (eventAction?: string) => {
+      if (eventAction) {
+        trackEvent({ fa: { category: '메인메뉴', action: eventAction } })
+      }
+    },
+    [trackEvent],
+  )
+
+  const sideMenuItemsWithEventTracking = useMemo(
+    () =>
+      sideMenuItems.map((menu) => ({
+        ...menu,
+        ...('subItems' in menu && {
+          subItems: menu.subItems.map((subItem) => ({
+            ...subItem,
+            onClick: () => {
+              onTrackMenuEvent(subItem.eventAction)
+            },
+          })),
+        }),
+        onClick: () => onTrackMenuEvent(menu.eventAction),
+      })),
+    [onTrackMenuEvent, sideMenuItems],
+  )
 
   if (app) {
     return null
@@ -164,7 +196,11 @@ export function PublicHeader({
             </ExtraActionItem>
           </ExtraActionsContainer>
 
-          {!disableSideMenu && sideMenuItems ? (
+          {deeplinkPath ? (
+            <PublicHeaderDeeplink deeplinkPath={deeplinkPath} />
+          ) : null}
+
+          {!disableSideMenu ? (
             <HeaderMenuButton
               onClick={onMenuButtonClick}
               hasNewNotification={hasNewNotification}
@@ -177,7 +213,7 @@ export function PublicHeader({
         <SideMenu
           open={uriHash === HEADER_SIDE_MENU_HASH}
           onClose={onSideMenuClose}
-          menus={sideMenuItems}
+          menus={sideMenuItemsWithEventTracking}
         />
       ) : null}
     </>
