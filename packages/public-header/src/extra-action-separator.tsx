@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { MIN_DESKTOP_WIDTH } from './constants'
 
-export const ExtraActionSeperator = styled.div`
+export const ExtraActionSeparator = styled.div`
   display: inline-block;
   width: 1px;
   margin: 0 2px;
