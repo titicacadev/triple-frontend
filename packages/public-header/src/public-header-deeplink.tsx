@@ -3,19 +3,26 @@ import { useEventTrackerWithMetadata } from '@titicaca/react-contexts'
 
 import { ExtraActionItem } from './extra-action-item'
 import { ExtraActionSeparator } from './extra-action-separator'
+import { DeeplinkComponent } from './types'
 import { useDeeplinkHref } from './use-deeplink-href'
 
 interface Props {
   deeplinkPath: string
+  DeeplinkComponent?: DeeplinkComponent
 }
 
-export function PublicHeaderDeeplink({ deeplinkPath }: Props) {
+export function PublicHeaderDeeplink({
+  deeplinkPath,
+  DeeplinkComponent,
+}: Props) {
   const { t } = useTranslation('common-web')
 
   const trackEventWithMetadata = useEventTrackerWithMetadata()
   const deeplinkHref = useDeeplinkHref(deeplinkPath)
 
-  return (
+  return DeeplinkComponent ? (
+    DeeplinkComponent({ deeplinkHref })
+  ) : (
     <>
       <ExtraActionSeparator />
       <ExtraActionItem
