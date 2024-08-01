@@ -58,6 +58,7 @@ export type BubbleUIProps = (
   unfriended?: boolean
   alternativeText?: string
   parentMessage?: ParentMessageUIProp
+  onParentMessageClick?: TextBubbleProp['onParentMessageClick']
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
@@ -96,6 +97,7 @@ export default function BubbleUI({
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
+  onParentMessageClick,
   richBubbleStyle,
   maxWidthOffset,
   cloudinaryName,
@@ -139,6 +141,7 @@ export default function BubbleUI({
           onOpenMenu={onOpenMenu}
           hasArrow={hasArrow}
           fullTextViewAvailable={fullTextViewAvailable}
+          onParentMessageClick={onParentMessageClick}
           {...props}
         />
       )

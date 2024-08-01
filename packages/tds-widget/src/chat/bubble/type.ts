@@ -78,6 +78,7 @@ export type TextBubbleProp = {
   isFullTextViewOpen?: boolean
   openFullTextView?: () => void
   closeFullTextView?: () => void
+  onParentMessageClick?: (id: string) => void
 } & BubbleProp
 
 export type RichBubbleProp = {

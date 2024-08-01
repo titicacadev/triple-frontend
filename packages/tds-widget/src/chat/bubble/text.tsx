@@ -33,6 +33,7 @@ export function TextBubble({
   openFullTextView,
   closeFullTextView,
   isFullTextViewOpen,
+  onParentMessageClick,
   ...props
 }: TextBubbleProp) {
   const aTagNavigator = useATagNavigator()
@@ -50,6 +51,7 @@ export function TextBubble({
           }
         `}
         my={my}
+        onParentMessageClick={onParentMessageClick}
         {...props}
       >
         <TextItem
