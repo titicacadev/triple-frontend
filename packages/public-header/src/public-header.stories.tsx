@@ -1,6 +1,9 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/react'
 import { appWithTranslation } from '@titicaca/next-i18next'
-import { SessionContextProvider } from '@titicaca/react-contexts'
+import {
+  HistoryProvider,
+  SessionContextProvider,
+} from '@titicaca/react-contexts'
 
 import { koCommonWeb } from '../../i18n/src/assets/ko/common-web'
 import { jaCommonWeb } from '../../i18n/src/assets/ja/common-web'
@@ -54,14 +57,16 @@ export default {
             country: 'KR',
             lang: 'ko',
             unregister: false,
-            photo: '',
+            photo: 'https://assets.triple.guide/images/ico-default-profile.svg',
             mileage: { badges: [], level: 1, point: 0 },
             uid: 'random-user',
-            email: '',
+            email: 'triple@triple-corp.com',
           },
         }}
       >
-        <Story />
+        <HistoryProvider isPublic isAndroid={false}>
+          <Story />
+        </HistoryProvider>
       </SessionContextProvider>
     ),
   ],
@@ -70,13 +75,13 @@ export default {
 export const Basic: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
-    disableSideMenu: true,
   },
 }
 
-export const SideMenu: StoryObj<typeof PublicHeader> = {
+export const WithSideMenu: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
+    hasSideMenu: true,
   },
 }
 export const Categories: StoryFn<typeof PublicHeader> = () => {

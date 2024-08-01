@@ -198,21 +198,21 @@ export function PublicHeader({
             <ExtraActionItem href={linkHref} onClick={onLinkClick || onClick}>
               {linkLabel ?? t(['nae-yeyag', '내 예약'])}
             </ExtraActionItem>
+
+            {deeplinkPath ? (
+              <PublicHeaderDeeplink
+                deeplinkPath={deeplinkPath}
+                DeeplinkComponent={DeeplinkComponent}
+              />
+            ) : null}
+
+            {hasSideMenu ? (
+              <HeaderMenuButton
+                onClick={onMenuButtonClick}
+                hasNewNotification={hasNewNotification}
+              />
+            ) : null}
           </ExtraActionsContainer>
-
-          {deeplinkPath ? (
-            <PublicHeaderDeeplink
-              deeplinkPath={deeplinkPath}
-              DeeplinkComponent={DeeplinkComponent}
-            />
-          ) : null}
-
-          {hasSideMenu ? (
-            <HeaderMenuButton
-              onClick={onMenuButtonClick}
-              hasNewNotification={hasNewNotification}
-            />
-          ) : null}
         </HeaderFrame>
       </Wrapper>
 
