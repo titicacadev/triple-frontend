@@ -41,6 +41,7 @@ interface MessagesProp<
   messageRefCallback?: (id: MessageInterface<Message, User>['id']) => void
   fullTextViewAvailable?: boolean
   onOpenMenu?: (message: MessageInterface<Message, User>) => void
+  onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
 }
 
 export default function Messages<
@@ -64,6 +65,7 @@ export default function Messages<
   messageRefCallback,
   fullTextViewAvailable,
   onOpenMenu,
+  onParentMessageClick,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -139,6 +141,7 @@ export default function Messages<
         }
         hasArrow={hasArrow}
         onOpenMenu={() => onOpenMenu?.(message)}
+        onParentMessageClick={onParentMessageClick}
         fullTextViewAvailable={fullTextViewAvailable}
         css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
         {...rest}
