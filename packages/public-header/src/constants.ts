@@ -31,7 +31,6 @@ export const HEADER_SIDE_MENU_ITEMS: MenuItem[] = [
     label: '도시별 여행정보',
     href: '/trips/intro',
     eventAction: '라운지홈_선택',
-    tooltipDescription: '무료로 확인해 보세요!',
   },
   {
     type: 'link',
