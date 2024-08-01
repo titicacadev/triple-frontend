@@ -56,12 +56,18 @@ export function BaseBubble({
 
 export default function BubbleWithParentMessage({
   parentMessage,
+  onParentMessageClick,
   children,
   ...props
-}: PropsWithChildren<BubbleProp> & { parentMessage?: ParentMessageUIProp }) {
+}: PropsWithChildren<BubbleProp> & {
+  parentMessage?: ParentMessageUIProp
+  onParentMessageClick?: (id: string) => void
+}) {
   return (
     <BaseBubble {...props}>
-      {parentMessage ? <ParentMessageUI {...parentMessage} /> : null}
+      {parentMessage ? (
+        <ParentMessageUI onClick={onParentMessageClick} {...parentMessage} />
+      ) : null}
       {children}
     </BaseBubble>
   )
