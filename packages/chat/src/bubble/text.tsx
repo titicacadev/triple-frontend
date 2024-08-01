@@ -32,6 +32,7 @@ export function TextBubble({
   created,
   onOpenMenu,
   fullTextViewAvailable,
+  onParentMessageClick,
   ...props
 }: TextBubbleProp) {
   const { back, push } = useHistoryFunctions()
@@ -54,6 +55,7 @@ export function TextBubble({
           }
         `}
         my={my}
+        onParentMessageClick={onParentMessageClick}
         {...props}
       >
         <TextItem

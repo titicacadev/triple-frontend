@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react'
 import { CSSProp } from 'styled-components'
 
 import { MetaDataInterface, UserInterface } from '../../types'
@@ -32,7 +31,7 @@ export type ParentMessageUIProp = (TextParentMessage | ImageParentMessage) & {
   blinded: boolean
   deleted: boolean
   style?: { css?: CSSProp; titleColor?: string; previewTextColor?: string }
-  onClick?: (e: MouseEvent<Element>, id: string) => void
+  onClick?: (id: string) => void
 }
 
 export default function ParentMessageUI({
