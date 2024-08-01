@@ -24,13 +24,13 @@ export default {
 export const Basic: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
-    disableSideMenu: true,
   },
 }
 
-export const SideMenu: StoryObj<typeof PublicHeader> = {
+export const WithSideMenu: StoryObj<typeof PublicHeader> = {
   args: {
     disableAutoHide: true,
+    hasSideMenu: true,
   },
 }
 
