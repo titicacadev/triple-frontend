@@ -1,6 +1,5 @@
 import { Container, Text, FlexBox } from '@titicaca/tds-ui'
 import { styled, CSSProp } from 'styled-components'
-import { MouseEvent } from 'react'
 
 const PreviewImage = styled.img`
   margin-right: 10px;
@@ -16,7 +15,7 @@ interface ParentMessageType {
   text: string
   titleColor?: string
   previewTextColor?: string
-  onClick?: (e: MouseEvent<Element>, id: string) => void
+  onClick?: (id: string) => void
   css?: CSSProp
 }
 
@@ -32,7 +31,7 @@ export default function ParentMessage({
 }: ParentMessageType) {
   return (
     <FlexBox
-      onClick={(e) => onClick?.(e, id)}
+      onClick={() => onClick?.(id)}
       flex
       borderRadius={13}
       css={{
