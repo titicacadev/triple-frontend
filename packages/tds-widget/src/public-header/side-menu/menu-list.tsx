@@ -35,12 +35,12 @@ const AccordionMenuItemBase = styled(Container)<{ open: boolean }>`
   & > img {
     width: 8px;
     height: 16px;
-    transform: rotate(270deg);
+    transform: rotate(90deg);
 
     ${({ open }) =>
       open &&
       css`
-        transform: rotate(90deg);
+        transform: rotate(270deg);
       `};
   }
 `
