@@ -21,6 +21,7 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/trips\/lounge\/itineraries\/[^/]+$/,
   /^\/trips\/promotion\/customized-schedule(\/.*)?$/,
   /^\/trips\/plan(\/.*)?$/,
+  /^\/trips\/intro(\/.*)?$/,
   /^\/reviews\/list(\/.*)?$/,
 ]
 
