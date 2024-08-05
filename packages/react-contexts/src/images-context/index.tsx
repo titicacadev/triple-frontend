@@ -12,7 +12,7 @@ import {
 import qs from 'qs'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
-import { get } from '@titicaca/fetcher'
+import { captureHttpError, get } from '@titicaca/fetcher'
 
 import reducer, {
   loadImagesRequest,
@@ -280,7 +280,8 @@ async function fetchPoiImages(
     const { parsedBody } = response
     return parsedBody
   } else {
-    throw new Error(`Failed to fetch poi images ${response.parsedBody.message}`)
+    captureHttpError(response)
+    return { data: [], total: 0 }
   }
 }
 
@@ -304,9 +305,8 @@ async function fetchPoiReviewImages(
     const { parsedBody } = response
     return parsedBody
   } else {
-    throw new Error(
-      `Failed to fetch poi review images: ${response.parsedBody.message}`,
-    )
+    captureHttpError(response)
+    return { data: [], total: 0 }
   }
 }
 
