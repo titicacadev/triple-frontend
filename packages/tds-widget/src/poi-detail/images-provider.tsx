@@ -7,12 +7,9 @@ import {
   ComponentType,
   useReducer,
   useEffect,
-  useState,
 } from 'react'
-import qs from 'qs'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { DeepPartial } from 'utility-types'
-import { captureHttpError, get } from '@titicaca/fetcher'
 
 import reducer, {
   loadImagesRequest,
@@ -20,6 +17,8 @@ import reducer, {
   loadImagesFail,
   reinitializeImages,
 } from './images-reducer'
+import { ImageCategoryOrder } from './types'
+import useFetchImages from './use-fetch-images'
 
 interface ImagesContext {
   images: ImageMeta[]
@@ -31,14 +30,6 @@ interface ImagesContext {
     indexOf: (target: { id: string }) => Promise<number>
   }
 }
-
-export type ImageCategoryOrder =
-  | 'image' // 대표 이미지
-  | 'recommendation'
-  | 'menuItem' // 대표 메뉴 이미지
-  | 'menuBoard' // 메뉴판 이미지
-  | 'featuredContent'
-  | 'images' // 어드민에 등록된 이미지들 가운데 대표 이미지를 제외한 나머지 이미지
 
 interface ImagesProviderProps {
   source: {
@@ -139,12 +130,7 @@ export function ImagesProvider({
 
       try {
         const { data: fetchedImages, total } = await sendFetchRequest()
-
-        if (fetchedImages) {
-          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
-        } else {
-          throw new Error('Response has no data property')
-        }
+        dispatch(loadImagesSuccess({ images: fetchedImages, total }))
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
@@ -191,119 +177,6 @@ export function ImagesProvider({
   )
 
   return <Context.Provider value={value}>{children}</Context.Provider>
-}
-
-function useFetchImages() {
-  const [totalPoiImagesCount, setTotalPoiImagesCount] = useState(0)
-  const [totalPoiReviewImagesCount, setTotalPoiReviewImagesCount] = useState(0)
-
-  async function fetchImages({
-    target,
-    currentImageLength,
-    size,
-    categoryOrder: categoryOrderArray,
-  }: {
-    target: { type: string; id: string }
-    currentImageLength: number
-    size: number
-    categoryOrder: Array<ImageCategoryOrder>
-  }) {
-    const categoryOrder = categoryOrderArray.join(',')
-    if (currentImageLength === 0) {
-      const poiResponse = await fetchPoiImages(target, {
-        from: currentImageLength,
-        size,
-        categoryOrder,
-      })
-      const poiReviewsResponse = await fetchPoiReviewImages(target, {
-        from: currentImageLength - totalPoiImagesCount,
-        size,
-        categoryOrder,
-      })
-      setTotalPoiImagesCount(poiResponse.total)
-      setTotalPoiReviewImagesCount(poiReviewsResponse.total)
-      return {
-        ...poiResponse,
-        total: poiResponse.total + poiReviewsResponse.total,
-      }
-    }
-    if (currentImageLength < totalPoiImagesCount) {
-      const response = await fetchPoiImages(target, {
-        from: currentImageLength,
-        size,
-        categoryOrder,
-      })
-      setTotalPoiImagesCount(response.total)
-      const poiReviewsResponse =
-        response.data.length < size
-          ? await fetchPoiReviewImages(target, {
-              from: 0,
-              size: size - response.data.length,
-              categoryOrder,
-            })
-          : { data: [], total: totalPoiReviewImagesCount }
-      return {
-        data: [...response.data, ...poiReviewsResponse.data],
-        total: response.total + poiReviewsResponse.total,
-      }
-    }
-    const response = await fetchPoiReviewImages(target, {
-      from: currentImageLength - totalPoiImagesCount,
-      size,
-      categoryOrder,
-    })
-    setTotalPoiReviewImagesCount(response.total)
-    return { ...response, total: response.total + totalPoiImagesCount }
-  }
-
-  return fetchImages
-}
-
-async function sendFetchImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: string },
-  endpoint: 'content' | 'reviews',
-) {
-  const querystring = qs.stringify({
-    resource_type: target.type,
-    resource_id: target.id,
-    from: query.from,
-    size: query.size,
-    category_order: query.categoryOrder,
-  })
-
-  const response = await get<
-    {
-      data: ImageMeta[]
-      total: number
-      next: string | null
-      prev: string | null
-      count: number
-    },
-    { message: string }
-  >(`/api/${endpoint}/v2/images?${querystring}`)
-
-  if (response.ok === true) {
-    const { parsedBody } = response
-    return parsedBody
-  } else {
-    captureHttpError(response)
-    throw new Error(`Fail to fetch ${endpoint} images`)
-  }
-}
-
-async function fetchPoiImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: string },
-) {
-  return sendFetchImages(target, query, 'content')
-}
-
-async function fetchPoiReviewImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: string },
-) {
-  return sendFetchImages(target, query, 'reviews')
 }
 
 export function useImagesContext() {
