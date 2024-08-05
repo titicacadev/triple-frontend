@@ -59,7 +59,7 @@ const TYPE_MAPPING = {
 }
 
 export function ImagesProvider({
-  images: initialImages,
+  images: defaultImages,
   total: initialTotal,
   categoryOrder = [
     'recommendation',
@@ -72,8 +72,8 @@ export function ImagesProvider({
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: !initialImages,
-    images: initialImages || [],
+    loading: !defaultImages,
+    images: defaultImages || [],
     total: initialTotal || 0,
     hasMore: true,
   })
@@ -84,7 +84,7 @@ export function ImagesProvider({
     async (size = 15) => {
       const response = await fetchImages({
         target: { type: TYPE_MAPPING[type] || type, id },
-        currentImageLength: images.length - (initialImages?.length || 0),
+        currentImageLength: images.length - (defaultImages?.length || 0),
         size,
         categoryOrder,
       })
@@ -102,7 +102,11 @@ export function ImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages({
+      const {
+        data: fetchedImages,
+        total,
+        next,
+      } = await fetchImages({
         target: { type: TYPE_MAPPING[type] || type, id },
         currentImageLength: 0,
         size: 15,
@@ -111,8 +115,9 @@ export function ImagesProvider({
 
       dispatch(
         reinitializeImages({
-          images: fetchedImages,
-          total,
+          images: [...(defaultImages || []), ...fetchedImages],
+          total: total + (defaultImages?.length || 0),
+          hasMore: !!next,
         }),
       )
     } catch (error) {
@@ -129,8 +134,14 @@ export function ImagesProvider({
       dispatch(loadImagesRequest())
 
       try {
-        const { data: fetchedImages, total } = await sendFetchRequest()
-        dispatch(loadImagesSuccess({ images: fetchedImages, total }))
+        const { data: fetchedImages, total, next } = await sendFetchRequest()
+        dispatch(
+          loadImagesSuccess({
+            images: fetchedImages,
+            total: total + (defaultImages?.length || 0),
+            hasMore: !!next,
+          }),
+        )
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
