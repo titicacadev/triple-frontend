@@ -4,11 +4,14 @@ import {
   PropsWithChildren,
   useMemo,
   useCallback,
+  ComponentType,
   useReducer,
   useEffect,
+  useState,
 } from 'react'
 import qs from 'qs'
 import { ImageMeta } from '@titicaca/type-definitions'
+import { DeepPartial } from 'utility-types'
 import { get } from '@titicaca/fetcher'
 
 import reducer, {
@@ -18,7 +21,7 @@ import reducer, {
   reinitializeImages,
 } from './images-reducer'
 
-interface PoiDetailImagesContext {
+interface ImagesContext {
   images: ImageMeta[]
   total: number
   loading: boolean
@@ -29,16 +32,25 @@ interface PoiDetailImagesContext {
   }
 }
 
-export interface PoiDetailImagesProviderProps extends PropsWithChildren {
+export type ImageCategoryOrder =
+  | 'image' // 대표 이미지
+  | 'recommendation'
+  | 'menuItem' // 대표 메뉴 이미지
+  | 'menuBoard' // 메뉴판 이미지
+  | 'featuredContent'
+  | 'images' // 어드민에 등록된 이미지들 가운데 대표 이미지를 제외한 나머지 이미지
+
+interface ImagesProviderProps {
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
   }
+  categoryOrder?: Array<ImageCategoryOrder>
   images?: ImageMeta[]
   total?: number
 }
 
-const Context = createContext<PoiDetailImagesContext>({
+const Context = createContext<ImagesContext>({
   images: [],
   total: 0,
   loading: false,
@@ -55,12 +67,19 @@ const TYPE_MAPPING = {
   hotel: 'hotel',
 }
 
-export function PoiDetailImagesProvider({
+export function ImagesProvider({
   images: initialImages,
   total: initialTotal,
+  categoryOrder = [
+    'recommendation',
+    'menuBoard',
+    'menuItem',
+    'featuredContent',
+    'images',
+  ],
   source: { id, type },
   children,
-}: PoiDetailImagesProviderProps) {
+}: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: !initialImages,
     images: initialImages || [],
@@ -68,12 +87,16 @@ export function PoiDetailImagesProvider({
     hasMore: true,
   })
 
+  const fetchImages = useFetchImages()
+
   const sendFetchRequest = useCallback(
     async (size = 15) => {
-      const response = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: images.length, size },
-      )
+      const response = await fetchImages({
+        target: { type: TYPE_MAPPING[type] || type, id },
+        currentImageLength: images.length,
+        size,
+        categoryOrder,
+      })
 
       return response
     },
@@ -88,10 +111,12 @@ export function PoiDetailImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: 0, size: 15 },
-      )
+      const { data: fetchedImages, total } = await fetchImages({
+        target: { type: TYPE_MAPPING[type] || type, id },
+        currentImageLength: 0,
+        size: 15,
+        categoryOrder,
+      })
 
       dispatch(
         reinitializeImages({
@@ -168,29 +193,154 @@ export function PoiDetailImagesProvider({
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-async function fetchImages(
+function useFetchImages() {
+  const [totalPoiImagesCount, setTotalPoiImagesCount] = useState(0)
+  const [totalPoiReviewImagesCount, setTotalPoiReviewImagesCount] = useState(0)
+
+  async function fetchImages({
+    target,
+    currentImageLength,
+    size,
+    categoryOrder: categoryOrderArray,
+  }: {
+    target: { type: string; id: string }
+    currentImageLength: number
+    size: number
+    categoryOrder: Array<ImageCategoryOrder>
+  }) {
+    const categoryOrder = categoryOrderArray.join(',')
+    if (currentImageLength === 0) {
+      const poiResponse = await fetchPoiImages(target, {
+        from: currentImageLength,
+        size,
+        categoryOrder,
+      })
+      const poiReviewsResponse = await fetchPoiReviewImages(target, {
+        from: currentImageLength - totalPoiImagesCount,
+        size,
+        categoryOrder,
+      })
+      setTotalPoiImagesCount(poiResponse.total)
+      setTotalPoiReviewImagesCount(poiReviewsResponse.total)
+      return {
+        ...poiResponse,
+        total: poiResponse.total + poiReviewsResponse.total,
+      }
+    }
+    if (currentImageLength < totalPoiImagesCount) {
+      const response = await fetchPoiImages(target, {
+        from: currentImageLength,
+        size,
+        categoryOrder,
+      })
+      setTotalPoiImagesCount(response.total)
+      const poiReviewsResponse =
+        response.data.length < size
+          ? await fetchPoiReviewImages(target, {
+              from: 0,
+              size: size - response.data.length,
+              categoryOrder,
+            })
+          : { data: [], total: totalPoiReviewImagesCount }
+      return {
+        data: [...response.data, ...poiReviewsResponse.data],
+        total: response.total + poiReviewsResponse.total,
+      }
+    }
+    const response = await fetchPoiReviewImages(target, {
+      from: currentImageLength - totalPoiImagesCount,
+      size,
+      categoryOrder,
+    })
+    setTotalPoiReviewImagesCount(response.total)
+    return { ...response, total: response.total + totalPoiImagesCount }
+  }
+
+  return fetchImages
+}
+
+async function fetchPoiImages(
   target: { type: string; id: string },
-  query: { from: number; size: number },
+  query: { from: number; size: number; categoryOrder: string },
 ) {
   const querystring = qs.stringify({
     resourceType: target.type,
     resourceId: target.id,
     from: query.from,
     size: query.size,
+    category_order: query.categoryOrder,
   })
 
-  const response = await get<{ data: ImageMeta[]; total: number }>(
-    `/api/content/images?${querystring}`,
-  )
+  const response = await get<
+    { data: ImageMeta[]; total: number },
+    { message: string }
+  >(`/api/content/v2/images?${querystring}`)
 
   if (response.ok === true) {
     const { parsedBody } = response
     return parsedBody
   } else {
-    throw new Error(`Failed to fetch images`)
+    throw new Error(`Failed to fetch poi images ${response.parsedBody.message}`)
   }
 }
 
-export function usePoiDetailImages() {
+async function fetchPoiReviewImages(
+  target: { type: string; id: string },
+  query: { from: number; size: number; categoryOrder: string },
+) {
+  const querystring = qs.stringify({
+    resourceType: target.type,
+    resourceId: target.id,
+    from: query.from,
+    size: query.size,
+    category_order: query.categoryOrder,
+  })
+  const response = await get<
+    { data: ImageMeta[]; total: number },
+    { message: string }
+  >(`/api/reviews/v2/images?${querystring}`)
+
+  if (response.ok === true) {
+    const { parsedBody } = response
+    return parsedBody
+  } else {
+    throw new Error(
+      `Failed to fetch poi review images: ${response.parsedBody.message}`,
+    )
+  }
+}
+
+export function useImagesContext() {
   return useContext(Context)
+}
+
+export interface WithImagesBaseProps {
+  images: ImagesContext['images']
+  totalImagesCount: ImagesContext['total']
+  imagesActions: ImagesContext['actions']
+}
+
+export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
+  Component: ComponentType<P>,
+) {
+  return function ImagesComponent(
+    props: Omit<P, 'images' | 'totalImagesCount' | 'imagesActions'>,
+  ) {
+    return (
+      <Context.Consumer>
+        {({ images, total, actions }) => {
+          return (
+            <Component
+              {...({
+                ...props,
+                images,
+                totalImagesCount: total,
+                imagesActions: actions,
+              } as P)}
+            />
+          )
+        }}
+      </Context.Consumer>
+    )
+  }
 }
