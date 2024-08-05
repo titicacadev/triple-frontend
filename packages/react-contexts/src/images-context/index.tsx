@@ -259,9 +259,10 @@ function useFetchImages() {
   return fetchImages
 }
 
-async function fetchPoiImages(
+async function sendFetchImages(
   target: { type: string; id: string },
   query: { from: number; size: number; categoryOrder: string },
+  endpoint: 'content' | 'reviews',
 ) {
   const querystring = qs.stringify({
     resource_type: target.type,
@@ -272,42 +273,37 @@ async function fetchPoiImages(
   })
 
   const response = await get<
-    { data: ImageMeta[]; total: number },
+    {
+      data: ImageMeta[]
+      total: number
+      next: string | null
+      prev: string | null
+      count: number
+    },
     { message: string }
-  >(`/api/content/v2/images?${querystring}`)
+  >(`/api/${endpoint}/v2/images?${querystring}`)
 
   if (response.ok === true) {
     const { parsedBody } = response
     return parsedBody
   } else {
     captureHttpError(response)
-    return { data: [], total: 0 }
+    throw new Error(`Fail to fetch ${endpoint} images`)
   }
+}
+
+async function fetchPoiImages(
+  target: { type: string; id: string },
+  query: { from: number; size: number; categoryOrder: string },
+) {
+  return sendFetchImages(target, query, 'content')
 }
 
 async function fetchPoiReviewImages(
   target: { type: string; id: string },
   query: { from: number; size: number; categoryOrder: string },
 ) {
-  const querystring = qs.stringify({
-    resource_type: target.type,
-    resource_id: target.id,
-    from: query.from,
-    size: query.size,
-    category_order: query.categoryOrder,
-  })
-  const response = await get<
-    { data: ImageMeta[]; total: number },
-    { message: string }
-  >(`/api/reviews/v2/images?${querystring}`)
-
-  if (response.ok === true) {
-    const { parsedBody } = response
-    return parsedBody
-  } else {
-    captureHttpError(response)
-    return { data: [], total: 0 }
-  }
+  return sendFetchImages(target, query, 'reviews')
 }
 
 export function useImagesContext() {
