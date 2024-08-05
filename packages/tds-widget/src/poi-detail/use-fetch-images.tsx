@@ -56,6 +56,7 @@ export default function useFetchImages() {
             })
           : { data: [], total: totalPoiReviewImagesCount }
       return {
+        ...response,
         data: [...response.data, ...poiReviewsResponse.data],
         total: response.total + poiReviewsResponse.total,
       }

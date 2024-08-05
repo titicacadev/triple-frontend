@@ -56,8 +56,8 @@ const TYPE_MAPPING = {
   hotel: 'hotel',
 }
 
-export function PoiDetailImagesProvider({
-  images: initialImages,
+export function ImagesProvider({
+  images: defaultImages,
   total: initialTotal,
   categoryOrder = [
     'recommendation',
@@ -70,8 +70,8 @@ export function PoiDetailImagesProvider({
   children,
 }: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: !initialImages,
-    images: initialImages || [],
+    loading: !defaultImages,
+    images: defaultImages || [],
     total: initialTotal || 0,
     hasMore: true,
   })
@@ -82,7 +82,7 @@ export function PoiDetailImagesProvider({
     async (size = 15) => {
       const response = await fetchImages({
         target: { type: TYPE_MAPPING[type] || type, id },
-        currentImageLength: images.length - (initialImages?.length || 0),
+        currentImageLength: images.length - (defaultImages?.length || 0),
         size,
         categoryOrder,
       })
@@ -94,7 +94,7 @@ export function PoiDetailImagesProvider({
       type,
       id,
       images.length,
-      initialImages?.length,
+      defaultImages?.length,
       categoryOrder,
     ],
   )
@@ -107,7 +107,11 @@ export function PoiDetailImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages({
+      const {
+        data: fetchedImages,
+        total,
+        next,
+      } = await fetchImages({
         target: { type: TYPE_MAPPING[type] || type, id },
         currentImageLength: 0,
         size: 15,
@@ -116,14 +120,15 @@ export function PoiDetailImagesProvider({
 
       dispatch(
         reinitializeImages({
-          images: fetchedImages,
-          total,
+          images: [...(defaultImages || []), ...fetchedImages],
+          total: total + (defaultImages?.length || 0),
+          hasMore: !!next,
         }),
       )
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, id, type, fetchImages, categoryOrder])
+  }, [loading, fetchImages, type, id, categoryOrder, defaultImages])
 
   const fetch = useCallback(
     async (onFetchAfter?: () => void, force?: boolean) => {
@@ -134,15 +139,21 @@ export function PoiDetailImagesProvider({
       dispatch(loadImagesRequest())
 
       try {
-        const { data: fetchedImages, total } = await sendFetchRequest()
-        dispatch(loadImagesSuccess({ images: fetchedImages, total }))
+        const { data: fetchedImages, total, next } = await sendFetchRequest()
+        dispatch(
+          loadImagesSuccess({
+            images: fetchedImages,
+            total: total + (defaultImages?.length || 0),
+            hasMore: !!next,
+          }),
+        )
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
 
       onFetchAfter && onFetchAfter()
     },
-    [hasMore, loading, sendFetchRequest],
+    [defaultImages?.length, hasMore, loading, sendFetchRequest],
   )
 
   const indexOf = useCallback(
