@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.27.0
+
+```
+### public-header
+
+- [public-header] 헤더에 사이드바를 추가합니다. [#3328](https://github.com/titicacadev/triple-frontend/pull/3328)
+```
+
 ## v13.26.4
 
 ```
