@@ -93,7 +93,7 @@ export function ImagesProvider({
     async (size = 15) => {
       const response = await fetchImages({
         target: { type: TYPE_MAPPING[type] || type, id },
-        currentImageLength: images.length,
+        currentImageLength: images.length - (initialImages?.length || 0),
         size,
         categoryOrder,
       })
