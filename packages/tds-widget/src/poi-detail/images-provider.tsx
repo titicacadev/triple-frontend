@@ -262,8 +262,8 @@ async function fetchPoiImages(
   query: { from: number; size: number; categoryOrder: string },
 ) {
   const querystring = qs.stringify({
-    resourceType: target.type,
-    resourceId: target.id,
+    resource_type: target.type,
+    resource_id: target.id,
     from: query.from,
     size: query.size,
     category_order: query.categoryOrder,
@@ -288,8 +288,8 @@ async function fetchPoiReviewImages(
   query: { from: number; size: number; categoryOrder: string },
 ) {
   const querystring = qs.stringify({
-    resourceType: target.type,
-    resourceId: target.id,
+    resource_type: target.type,
+    resource_id: target.id,
     from: query.from,
     size: query.size,
     category_order: query.categoryOrder,
