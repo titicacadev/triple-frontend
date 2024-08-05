@@ -50,12 +50,6 @@ const Context = createContext<PoiDetailImagesContext>({
   },
 })
 
-const TYPE_MAPPING = {
-  attraction: 'poi',
-  restaurant: 'poi',
-  hotel: 'hotel',
-}
-
 export function ImagesProvider({
   images: defaultImages,
   total: initialTotal,
@@ -81,7 +75,7 @@ export function ImagesProvider({
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages({
-        target: { type: TYPE_MAPPING[type] || type, id },
+        target: { type, id },
         currentImageLength: images.length - (defaultImages?.length || 0),
         size,
         categoryOrder,
@@ -112,7 +106,7 @@ export function ImagesProvider({
         total,
         next,
       } = await fetchImages({
-        target: { type: TYPE_MAPPING[type] || type, id },
+        target: { type, id },
         currentImageLength: 0,
         size: 15,
         categoryOrder,
