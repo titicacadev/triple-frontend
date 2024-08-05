@@ -237,6 +237,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.27.0
+
+```
+### public-header
+
+- [public-header] 헤더에 사이드바를 추가합니다. [#3328](https://github.com/titicacadev/triple-frontend/pull/3328)
+```
+
 ## v13.26.4
 
 ```
