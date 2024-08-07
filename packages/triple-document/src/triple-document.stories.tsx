@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Container } from '@titicaca/tds-ui'
 import { useScrollToAnchor } from '@titicaca/react-hooks'
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { useEffect } from 'react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 import { ScrapsProvider } from '@titicaca/tds-widget'
@@ -181,19 +181,15 @@ export const CouponExample: StoryObj<typeof Coupon> = {
   parameters: {
     msw: {
       handlers: [
-        rest.get('/api/benefit/coupons/:id', (req, res, ctx) => {
-          return res(
-            ctx.json({
-              downloaded: true,
-            }),
-          )
+        http.get('/api/benefit/coupons/:id', () => {
+          return HttpResponse.json({
+            downloaded: true,
+          })
         }),
-        rest.get('/api/users/smscert', (req, res, ctx) => {
-          return res(
-            ctx.json({
-              verified: true,
-            }),
-          )
+        http.get('/api/users/smscert', () => {
+          return HttpResponse.json({
+            verified: true,
+          })
         }),
       ],
     },
