@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 
 import { Replies } from './replies'
@@ -10,36 +10,34 @@ export default {
   parameters: {
     msw: {
       handlers: [
-        rest.post(
+        http.post<object, { content: string }>(
           '/api/reply/messages?contentFormat=plaintext',
-          async (req, res, ctx) => {
-            const newReply = await req.json()
-            return res(
-              ctx.json({
-                id: 'new reply',
-                parentId: undefined,
-                blinded: false,
-                deleted: false,
-                isMine: true,
-                childrenCount: 0,
-                createdAt: new Date(2024, 1, 1).toString(),
-                updatedAt: new Date(2024, 1, 1).toString(),
-                reactions: {},
-                content: { text: newReply.content },
-                children: [],
-                writer: {
-                  href: '',
-                  name: '트리플',
-                  profileImage: '',
-                  badges: [],
-                },
-                actionSpecifications: {
-                  delete: false,
-                  reaction: false,
-                  report: false,
-                },
-              }),
-            )
+          async ({ request }) => {
+            const newReply = await request.json()
+            return HttpResponse.json({
+              id: 'new reply',
+              parentId: undefined,
+              blinded: false,
+              deleted: false,
+              isMine: true,
+              childrenCount: 0,
+              createdAt: new Date(2024, 1, 1).toString(),
+              updatedAt: new Date(2024, 1, 1).toString(),
+              reactions: {},
+              content: { text: newReply.content },
+              children: [],
+              writer: {
+                href: '',
+                name: '트리플',
+                profileImage: '',
+                badges: [],
+              },
+              actionSpecifications: {
+                delete: false,
+                reaction: false,
+                report: false,
+              },
+            })
           },
         ),
       ],
