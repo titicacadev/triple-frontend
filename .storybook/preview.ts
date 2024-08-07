@@ -15,9 +15,13 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     i18n,
   },
+
   loaders: [mswLoader],
   decorators: [mockDateDecorator, themeDecorator, tripleWebProviderDecorator],
-  globals: {
+
+  tags: ['autodocs'],
+
+  initialGlobals: {
     locale: 'ko',
     locales: {
       ko: { title: '한국어', right: '🇰🇷' },
