@@ -29,6 +29,7 @@ const config: StorybookConfig = {
         },
       },
     },
+    '@chromatic-com/storybook',
   ],
   typescript: {
     reactDocgenTypescriptOptions: {
@@ -51,6 +52,8 @@ const config: StorybookConfig = {
         return true
       },
     },
+
+    reactDocgen: 'react-docgen-typescript',
   },
   framework: {
     name: '@storybook/nextjs',
@@ -70,13 +73,8 @@ const config: StorybookConfig = {
 
     return config
   },
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
   staticDirs: ['./public'],
-  features: {
-    buildStoriesJson: true,
-  },
 }
 
 export default config
