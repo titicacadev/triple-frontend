@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react'
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 import { ScrapsProvider } from '@titicaca/tds-widget'
 
@@ -35,8 +35,8 @@ InTripleDocument.storyName = 'Triple-document에 포함된 Slot'
 InTripleDocument.parameters = {
   msw: {
     handlers: [
-      rest.get('/api/tna-v2/slots/:slotId', (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json(SLOTS))
+      http.get('/api/tna-v2/slots/:slotId', () => {
+        return HttpResponse.json(SLOTS)
       }),
     ],
   },
