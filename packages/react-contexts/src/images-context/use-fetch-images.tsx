@@ -30,7 +30,7 @@ export default function useFetchImages() {
       })
       const poiReviewsResponse = await fetchPoiReviewImages(target, {
         from: currentImageLength - totalContentImagesCount,
-        size,
+        size: 1,
         categoryOrder,
       })
       setTotalContentImagesCount(poiResponse.total)
