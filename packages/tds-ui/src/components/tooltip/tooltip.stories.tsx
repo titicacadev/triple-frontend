@@ -6,6 +6,9 @@ import { Tooltip } from './tooltip'
 const meta: Meta<typeof Tooltip> = {
   title: 'tds-ui (Overlay) / Tooltip',
   component: Tooltip,
+  args: {
+    onClick: () => {},
+  },
   parameters: {
     docs: {
       description: {
@@ -52,7 +55,6 @@ export const ArrowBottom: Story = {
     label: '쿠폰사용시 -15,000원 더 할인!',
     positioning: { top: -25 },
     borderRadius: '30',
-    onClick: () => {},
   },
   render: (args) => {
     return (

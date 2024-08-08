@@ -43,5 +43,6 @@ export const Fixed: StoryObj<typeof Pricing> = {
     tooltipLabel: '쿠폰사용시 -15,000원 더 할인!',
     isSoldOut: false,
     maxWidth: 720,
+    onTooltipClick: () => {},
   },
 }

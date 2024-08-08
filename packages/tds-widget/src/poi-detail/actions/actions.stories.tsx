@@ -5,6 +5,9 @@ import { PoiDetailActions } from './actions'
 export default {
   title: 'tds-widget / poi-detail / Actions',
   component: PoiDetailActions,
+  args: {
+    poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
+  },
   decorators: [
     (Story) => {
       localStorage.setItem('REVIEW_TOOLTIP_EXPOSED', 'false')
@@ -15,23 +18,26 @@ export default {
 
 export const Basic: StoryObj<typeof PoiDetailActions> = {
   args: {
-    poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
-    scraped: false,
-    reviewed: false,
+    onContentShare: () => {},
+    onReviewEdit: () => {},
+    onScheduleAdd: () => {},
+    onScrapedChange: () => {},
   },
 }
 
 export const NoDivider: StoryObj<typeof PoiDetailActions> = {
   args: {
-    ...Basic.args,
     noDivider: true,
+    onContentShare: () => {},
+    onReviewEdit: () => {},
+    onScheduleAdd: () => {},
+    onScrapedChange: () => {},
   },
 }
 
 export const GlobalHotel: StoryObj<typeof PoiDetailActions> = {
   args: {
-    ...Basic.args,
-    onScheduleAdd: undefined,
-    onScrapedChange: undefined,
+    onContentShare: () => {},
+    onReviewEdit: () => {},
   },
 }

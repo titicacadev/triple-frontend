@@ -6,6 +6,12 @@ import { BookingCompletion } from '.'
 export default {
   title: 'tds-widget / booking-completion / Booking Complete',
   component: BookingCompletion,
+  args: {
+    onAddToSchedule: () => {},
+    onMoveToBookingDetail: () => {},
+    onMoveToMain: () => {},
+    onMoveToRegion: () => {},
+  },
   decorators: [
     (Story) => (
       <EventTrackingProvider page={{ path: '/', label: 'test' }} utm={{}}>
@@ -13,7 +19,7 @@ export default {
       </EventTrackingProvider>
     ),
   ],
-} as Meta
+} as Meta<typeof BookingCompletion>
 
 export const Basic: StoryObj<typeof BookingCompletion> = {
   args: {

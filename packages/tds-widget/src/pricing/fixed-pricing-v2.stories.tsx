@@ -59,5 +59,6 @@ export const WithTooltip: StoryObj<typeof FixedPricingV2> = {
     tooltipLabel: '쿠폰사용시 -15,000원 더 할인!',
     discountRate: '5%',
     maxWidth: 720,
+    onTooltipClick: () => {},
   },
 }
