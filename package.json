@@ -26,8 +26,7 @@
     "lint": "lerna run lint:es,lint:style,lint:etc",
     "lint:fix": "lerna run lint:es:fix,lint:style:fix,lint:etc:fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1",
