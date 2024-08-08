@@ -14,7 +14,7 @@ import reducer, {
   loadImagesSuccess,
   loadImagesFail,
   reinitializeImages,
-} from './reducer'
+} from './images-reducer'
 import { ImageCategoryOrder } from './types'
 import useFetchImages from './use-fetch-images'
 
