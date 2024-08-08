@@ -44,7 +44,7 @@
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
     "@emotion/is-prop-valid": "^1.3.0",
-    "@floating-ui/react": "^0.26.20",
+    "@floating-ui/react": "^0.26.22",
     "@titicaca/content-utilities": "8.34.0",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
