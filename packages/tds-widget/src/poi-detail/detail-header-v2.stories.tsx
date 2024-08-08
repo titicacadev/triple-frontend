@@ -28,5 +28,6 @@ export const Basic: StoryObj<typeof PoiDetailHeaderV2> = {
     scrapsCount: 682,
     reviewsCount: 13859,
     reviewsRating: 4.45,
+    onAreaClick: () => {},
   },
 }
