@@ -54,11 +54,15 @@ export default function useFetchImages() {
               size: size - response.data.length,
               categoryOrder,
             })
-          : { data: [], total: totalPoiReviewImagesCount }
+          : { data: [], total: totalPoiReviewImagesCount, next: null }
       return {
         ...response,
         data: [...response.data, ...poiReviewsResponse.data],
         total: response.total + poiReviewsResponse.total,
+        next:
+          poiReviewsResponse.data.length > 0
+            ? poiReviewsResponse.next
+            : response.next,
       }
     }
     const response = await fetchPoiReviewImages(target, {
