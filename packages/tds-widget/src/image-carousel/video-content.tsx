@@ -98,7 +98,8 @@ export function VideoContent({
   const clientApp = useClientApp()
 
   const [videoAutoplay, setVideoAutoPlay] = useState(
-    clientApp?.device.autoplay === 'always' ||
+    !clientApp ||
+      clientApp?.device.autoplay === 'always' ||
       (clientApp?.device.autoplay === 'wifi_only' &&
         clientApp?.device.networkType === 'wifi'),
   )

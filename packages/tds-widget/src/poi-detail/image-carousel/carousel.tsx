@@ -170,14 +170,13 @@ export function Carousel({
         >
           <ImageCarousel
             images={visibleImages}
-            displayedTotalCount={totalImagesCount}
             currentPage={currentPage}
-            options={{
-              size: 'large',
-              optimized,
-            }}
+            displayedTotalCount={totalImagesCount}
+            borderRadius={borderRadius}
+            size="large"
             onImageClick={handleImageClick}
             onMoveEnd={handlePageChange}
+            ImageSource={ImageSource}
             showMoreRenderer={CTA}
             optimized={optimized}
           />
