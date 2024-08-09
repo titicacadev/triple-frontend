@@ -1,4 +1,4 @@
-import { graphql } from 'msw'
+import { graphql, HttpResponse } from 'msw'
 
 import {
   DeleteReviewMutation,
@@ -24,12 +24,12 @@ export const handlers = {
   getPopularReviews: graphql.query<
     GetPopularReviewsQuery,
     GetPopularReviewsQueryVariables
-  >('GetPopularReviews', (req, res, ctx) => {
+  >('GetPopularReviews', ({ variables }) => {
     const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
-      req.variables
+      variables
 
-    return res(
-      ctx.data({
+    return HttpResponse.json({
+      data: {
         __typename: 'Query',
         popularReviews: Array.from({ length: size ?? 1 }).map((_, index) => {
           const id = ((from ?? 0) + index).toString()
@@ -79,18 +79,18 @@ export const handlers = {
             liked: false,
           }
         }),
-      }),
-    )
+      },
+    })
   }),
   getLatestReviews: graphql.query<
     GetLatestReviewsQuery,
     GetLatestReviewsQueryVariables
-  >('GetLatestReviews', (req, res, ctx) => {
+  >('GetLatestReviews', ({ variables }) => {
     const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
-      req.variables
+      variables
 
-    return res(
-      ctx.data({
+    return HttpResponse.json({
+      data: {
         __typename: 'Query',
         latestReviews: Array.from({ length: size ?? 1 }).map((_, index) => {
           const id = ((from ?? 0) + index).toString()
@@ -140,18 +140,18 @@ export const handlers = {
             liked: false,
           }
         }),
-      }),
-    )
+      },
+    })
   }),
   getReviewsByRating: graphql.query<
     GetReviewsByRatingQuery,
     GetReviewsByRatingQueryVariables
-  >('GetReviewsByRating', (req, res, ctx) => {
+  >('GetReviewsByRating', ({ variables }) => {
     const { resourceId, resourceType, from, size, recentTrip, hasMedia } =
-      req.variables
+      variables
 
-    return res(
-      ctx.data({
+    return HttpResponse.json({
+      data: {
         __typename: 'Query',
         ratingReviews: Array.from({ length: size ?? 1 }).map((_, index) => {
           const id = ((from ?? 0) + index).toString()
@@ -201,21 +201,23 @@ export const handlers = {
             liked: false,
           }
         }),
-      }),
-    )
+      },
+    })
   }),
   getMyReview: graphql.query<GetMyReviewQuery, GetMyReviewQueryVariables>(
     'GetMyReview',
-    (req, res, ctx) => {
-      return res(ctx.data({ __typename: 'Query', myReview: null }))
+    () => {
+      return HttpResponse.json({
+        data: { __typename: 'Query', myReview: null },
+      })
     },
   ),
   getReviewSpecification: graphql.query<
     GetReviewSpecificationQuery,
     GetReviewSpecificationQueryVariables
-  >('GetReviewSpecification', (req, res, ctx) => {
-    return res(
-      ctx.data({
+  >('GetReviewSpecification', () => {
+    return HttpResponse.json({
+      data: {
         __typename: 'Query',
         reviewsSpecification: {
           __typename: 'ReviewSpecification',
@@ -231,53 +233,63 @@ export const handlers = {
             ],
           },
         },
-      }),
-    )
+      },
+    })
   }),
   getReviewsCount: graphql.query<
     GetReviewsCountQuery,
     GetReviewsCountQueryVariables
-  >('GetReviewsCount', (req, res, ctx) => {
-    return res(
-      ctx.data({
+  >('GetReviewsCount', () => {
+    return HttpResponse.json({
+      data: {
         __typename: 'Query',
         reviewsCount: 100,
-      }),
-    )
+      },
+    })
   }),
   likeReview: graphql.mutation<
     LikeReviewMutation,
     UnlikeReviewMutationVariables
-  >('LikeReview', (req, res, ctx) => {
-    const { reviewId } = req.variables
+  >('LikeReview', ({ variables }) => {
+    const { reviewId } = variables
 
-    return res(
-      ctx.data({
+    return HttpResponse.json({
+      data: {
         __typename: 'Mutation',
         likeReview: { __typename: 'ReviewReaction', id: reviewId },
-      }),
-    )
+      },
+    })
   }),
   unlikeReview: graphql.mutation<
     UnlikeReviewMutation,
     UnlikeReviewMutationVariables
-  >('UnlikeReview', (req, res, ctx) => {
-    return res(ctx.data({ __typename: 'Mutation', unlikeReview: true }))
+  >('UnlikeReview', () => {
+    return HttpResponse.json({
+      data: {
+        __typename: 'Mutation',
+        unlikeReview: true,
+      },
+    })
   }),
   deleteReview: graphql.mutation<
     DeleteReviewMutation,
     DeleteReviewMutationVariables
-  >('DeleteReview', (req, res, ctx) => {
-    return res(ctx.data({ __typename: 'Mutation', deleteReview: true }))
+  >('DeleteReview', () => {
+    return HttpResponse.json({
+      data: {
+        __typename: 'Mutation',
+        deleteReview: true,
+      },
+    })
   }),
 }
 
 export const authHandlers = {
   getMyReview: graphql.query<GetMyReviewQuery, GetMyReviewQueryVariables>(
     'GetMyReview',
-    (req, res, ctx) => {
-      return res(
-        ctx.data({
+    () => {
+      return HttpResponse.json({
+        data: {
           __typename: 'Query',
           myReview: {
             id: '2',
@@ -322,8 +334,8 @@ export const authHandlers = {
             },
             liked: false,
           },
-        }),
-      )
+        },
+      })
     },
   ),
 }

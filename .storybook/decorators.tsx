@@ -1,6 +1,6 @@
 import React from 'react'
 import { GlobalStyle, defaultTheme } from '../packages/tds-theme/src'
-import { TripleWeb, ClientAppName } from '../packages/triple-web/src'
+import { TripleWeb } from '../packages/triple-web/src'
 import { ThemeProvider } from 'styled-components'
 
 import i18n from './i18next'
@@ -14,7 +14,7 @@ export function themeDecorator(Story) {
   )
 }
 
-export function tripleWebProviderDecorator(Story) {
+export function tripleWebProviderDecorator(Story, context) {
   return (
     <TripleWeb
       clientAppProvider={null}
@@ -32,7 +32,7 @@ export function tripleWebProviderDecorator(Story) {
       }}
       i18nProvider={{
         i18n,
-        lang: 'ko',
+        lang: context.globals.locale,
       }}
       sessionProvider={{
         user: null,

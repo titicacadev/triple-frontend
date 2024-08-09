@@ -1,4 +1,6 @@
 import fs from 'fs'
+
+import type { Options } from '@swc/core'
 import type { StorybookConfig } from '@storybook/nextjs'
 
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
@@ -10,25 +12,12 @@ const stories = fs
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', ...stories],
   addons: [
+    '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
     'storybook-react-i18next',
-    {
-      name: 'storybook-addon-swc',
-      options: {
-        swcLoaderOptions: {
-          module: {
-            type: 'es6',
-          },
-          jsc: {
-            experimental: {
-              plugins: [['@swc/plugin-styled-components', {}]],
-            },
-          },
-        },
-      },
-    },
+    '@chromatic-com/storybook',
   ],
   typescript: {
     reactDocgenTypescriptOptions: {
@@ -51,13 +40,25 @@ const config: StorybookConfig = {
         return true
       },
     },
+
+    reactDocgen: 'react-docgen-typescript',
   },
   framework: {
     name: '@storybook/nextjs',
     options: {
-      fastRefresh: true,
       strictMode: true,
     },
+  },
+  swc: (config: Options): Options => {
+    return {
+      ...config,
+      jsc: {
+        ...config.jsc,
+        experimental: {
+          plugins: [['@swc/plugin-styled-components', {}]],
+        },
+      },
+    }
   },
   webpackFinal: async (config) => {
     if (config.resolve) {
@@ -70,13 +71,8 @@ const config: StorybookConfig = {
 
     return config
   },
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
   staticDirs: ['./public'],
-  features: {
-    buildStoriesJson: true,
-  },
 }
 
 export default config
