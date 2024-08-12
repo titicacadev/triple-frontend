@@ -22,48 +22,39 @@ export default function useFetchImages() {
     categoryOrder: Array<ImageCategoryOrder>
   }) {
     const categoryOrder = categoryOrderArray.join(',')
-    if (currentImageLength === 0) {
-      const poiResponse = await fetchContentImages(target, {
-        from: currentImageLength,
-        size,
-        categoryOrder,
-      })
-      const poiReviewsResponse = await fetchPoiReviewImages(target, {
-        from: currentImageLength - totalContentImagesCount,
-        size: 1,
-        categoryOrder,
-      })
-      setTotalContentImagesCount(poiResponse.total)
-      setTotalPoiReviewImagesCount(poiReviewsResponse.total)
-      return {
-        ...poiResponse,
-        total: poiResponse.total + poiReviewsResponse.total,
-        next: poiResponse.next || poiReviewsResponse.next,
-      }
-    }
-    if (currentImageLength < totalContentImagesCount) {
+
+    if (
+      currentImageLength === 0 ||
+      currentImageLength < totalContentImagesCount
+    ) {
       const response = await fetchContentImages(target, {
         from: currentImageLength,
         size,
         categoryOrder,
       })
       setTotalContentImagesCount(response.total)
+
+      const needReviewImages = response.data.length < size //  content 이미지의 개수가 부족해서 리뷰 이미지도 fetch 해야할 때
       const poiReviewsResponse =
-        response.data.length < size
+        needReviewImages || currentImageLength === 0
           ? await fetchPoiReviewImages(target, {
               from: 0,
-              size: size - response.data.length,
+              size: needReviewImages ? size - response.data.length : 1, // 1은 첫 fetch에 review image total을 알아오기 위함
               categoryOrder,
             })
-          : { data: [], total: totalPoiReviewImagesCount, next: null }
+          : { data: [], next: null, total: 0 }
+
       return {
         ...response,
-        data: [...response.data, ...poiReviewsResponse.data],
-        total: response.total + poiReviewsResponse.total,
+        data: [
+          ...response.data,
+          ...(needReviewImages ? poiReviewsResponse.data : []),
+        ],
+        total:
+          response.total +
+          (poiReviewsResponse.total || totalPoiReviewImagesCount),
         next:
-          poiReviewsResponse.data.length > 0
-            ? poiReviewsResponse.next
-            : response.next,
+          response.next || needReviewImages ? poiReviewsResponse.next : true,
       }
     }
     const response = await fetchPoiReviewImages(target, {
@@ -72,7 +63,11 @@ export default function useFetchImages() {
       categoryOrder,
     })
     setTotalPoiReviewImagesCount(response.total)
-    return { ...response, total: response.total + totalContentImagesCount }
+    return {
+      ...response,
+      total: response.total + totalContentImagesCount,
+      hasMore: !!response.next,
+    }
   }
 
   return fetchImages
