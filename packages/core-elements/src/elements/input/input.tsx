@@ -33,7 +33,8 @@ const BaseInput = styled(InputMask)`
   }
 `
 
-type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
+type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> &
+  Partial<MaskOptions>
 
 export interface InputProps extends HtmlInputElementProps {
   label?: string
