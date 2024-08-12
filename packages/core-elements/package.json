@@ -66,7 +66,9 @@
   "peerDependencies": {
     "@titicaca/i18n": "*",
     "@titicaca/next-i18next": "*",
+    "@types/react-input-mask": "^2.0.5",
     "react": "^18.0",
+    "react-input-mask": "^2.0.4",
     "styled-components": "^5.3.9"
   }
 }
