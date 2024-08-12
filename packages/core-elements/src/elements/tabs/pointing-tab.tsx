@@ -36,7 +36,11 @@ export const PointingTab = <Value extends number | string | symbol>({
 
   return (
     <StyledTabBase
-      ref={(node) => (tabsRef.current[props.value] = node)}
+      ref={(node) => {
+        if (node) {
+          tabsRef.current[props.value] = node
+        }
+      }}
       $scroll={tabs.scroll}
       {...props}
     >
