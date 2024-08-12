@@ -38,6 +38,7 @@ export default function useFetchImages() {
       return {
         ...poiResponse,
         total: poiResponse.total + poiReviewsResponse.total,
+        next: poiResponse.next || poiReviewsResponse.next,
       }
     }
     if (currentImageLength < totalContentImagesCount) {
