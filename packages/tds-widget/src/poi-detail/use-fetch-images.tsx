@@ -40,7 +40,6 @@ export default function useFetchImages() {
           ? await fetchPoiReviewImages(target, {
               from: 0,
               size: needReviewImages ? size - response.data.length : 1, // 1은 첫 fetch에 review image total을 알아오기 위함
-              categoryOrder,
             })
           : { data: [], next: null, total: 0 }
 
@@ -60,7 +59,6 @@ export default function useFetchImages() {
     const response = await fetchPoiReviewImages(target, {
       from: currentImageLength - totalContentImagesCount,
       size,
-      categoryOrder,
     })
     setTotalPoiReviewImagesCount(response.total)
     return {
@@ -73,19 +71,11 @@ export default function useFetchImages() {
   return fetchImages
 }
 
+/** API 문서 : https://inpk.atlassian.net/wiki/spaces/dev/pages/480903530/API */
 async function sendFetchImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: string },
+  querystring: string,
   endpoint: 'content' | 'reviews',
 ) {
-  const querystring = qs.stringify({
-    resource_type: target.type,
-    resource_id: target.id,
-    from: query.from,
-    size: query.size,
-    category_order: query.categoryOrder,
-  })
-
   const response = await get<
     {
       data: ImageMeta[]
@@ -110,12 +100,24 @@ async function fetchContentImages(
   target: { type: string; id: string },
   query: { from: number; size: number; categoryOrder: string },
 ) {
-  return sendFetchImages(target, query, 'content')
+  const querystring = qs.stringify({
+    resource_type: target.type,
+    resource_id: target.id,
+    from: query.from,
+    size: query.size,
+    category_order: query.categoryOrder,
+  })
+  return sendFetchImages(querystring, 'content')
 }
 
 async function fetchPoiReviewImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number; categoryOrder: string },
+  target: { id: string },
+  query: { from: number; size: number },
 ) {
-  return sendFetchImages(target, query, 'reviews')
+  const querystring = qs.stringify({
+    resource_id: target.id,
+    from: query.from,
+    size: query.size,
+  })
+  return sendFetchImages(querystring, 'reviews')
 }
