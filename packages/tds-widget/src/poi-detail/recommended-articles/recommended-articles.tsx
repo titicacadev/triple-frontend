@@ -143,6 +143,12 @@ export function PoiDetailRecommendedArticles({
         </H1>
 
         <FlickingCarousel
+          options={{
+            circular: false,
+            bound: true,
+            hanger: 0,
+            anchor: 0,
+          }}
           css={{
             marginTop: 20,
             paddingLeft: deskTopPadding?.left || 110,
