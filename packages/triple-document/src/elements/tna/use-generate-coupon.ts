@@ -1,15 +1,16 @@
 import { formatNumber } from '@titicaca/view-utilities'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 import { TnaCoupon } from './types'
 
-export function generateCoupon({
+export function useGenerateCoupon({
   applicableCoupon,
   expectedApplicableCoupon,
 }: {
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
 }) {
+  const { t } = useTranslation('triple-frontend')
   const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
     applicableCoupon || {}
 
@@ -26,7 +27,6 @@ export function generateCoupon({
     applicableCoupon &&
     t('{{formattedApplicableAmountAfterUsingCoupon}}원', {
       formattedApplicableAmountAfterUsingCoupon,
-      ns: 'triple-frontend',
     })
 
   return {

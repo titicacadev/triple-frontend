@@ -18,8 +18,8 @@ import {
 import type { Category, DeeplinkComponent } from './types'
 import {
   getCategoryHref,
-  getCategoryImageProps,
-  getCategoryTitle,
+  useCategoryImageProps,
+  useCategoryTitle,
 } from './categories'
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
@@ -130,6 +130,8 @@ export function PublicHeader({
 
   const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
+  const categoryTitle = useCategoryTitle(category)
+  const categoryImageProps = useCategoryImageProps(category)
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
@@ -179,16 +181,14 @@ export function PublicHeader({
         <HeaderFrame {...props}>
           <Logo
             href={getCategoryHref(category)}
-            title={getCategoryTitle(category)}
+            title={categoryTitle}
             onClick={onLogoClick}
           >
             <LogoImage
               alt="Triple"
               src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
             />
-            {category && (
-              <LogoCategoryImage {...getCategoryImageProps(category)} />
-            )}
+            {category && <LogoCategoryImage {...categoryImageProps} />}
           </Logo>
 
           <ExtraActionsContainer>
