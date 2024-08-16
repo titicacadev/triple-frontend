@@ -11,7 +11,7 @@ import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
 import { OverlayScrapButton } from '../scrap-button'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
-import { getTypeNames } from './get-type-names'
+import { useTypeName } from './use-type-name'
 import {
   PoiListElementBaseProps,
   ActionButtonElement,
@@ -47,6 +47,7 @@ export function PoiCarouselElement<T extends PoiListElementType>({
   optimized?: boolean
   guestMode?: GuestModeType
 }) {
+  const typeName = useTypeName(type)
   if (!poi) {
     return null
   }
@@ -100,7 +101,7 @@ export function PoiCarouselElement<T extends PoiListElementType>({
         {name}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-        {description || getTypeNames(type)}
+        {description || typeName}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
         {regionName

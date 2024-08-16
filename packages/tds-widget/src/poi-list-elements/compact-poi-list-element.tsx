@@ -14,7 +14,7 @@ import {
   ActionButtonElement,
   PoiListElementType,
 } from './types'
-import { getTypeNames } from './get-type-names'
+import { useTypeName } from './use-type-name'
 
 interface CompactPoiListElementBaseProps<T extends PoiListElementType>
   extends PoiListElementBaseProps<T> {
@@ -48,6 +48,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
 }: CompactPoiListElementProps<T>) {
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement & { width?: number }>(null)
+  const typeName = useTypeName(type)
 
   useEffect(() => {
     if (actionButtonRef && actionButtonRef.current) {
@@ -97,7 +98,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
         {[
-          getTypeNames(type),
+          typeName,
           regionName
             ? areas?.[0]?.name
               ? `${regionName}(${areas?.[0]?.name})`

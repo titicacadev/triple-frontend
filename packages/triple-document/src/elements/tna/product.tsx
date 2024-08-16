@@ -7,7 +7,7 @@ import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
 import { useClientApp } from '@titicaca/triple-web'
 
 import { TnaProductData, DomesticArea } from './types'
-import { generateCoupon } from './helpers'
+import { useGenerateCoupon } from './use-generate-coupon'
 import { PricePolicyCouponInfo } from './price-policy-coupon-info'
 
 const PLACEHOLDER_IMAGE_URL =
@@ -119,7 +119,7 @@ export function TnaProductWithPrice({
     hasOnlyExpectedApplicableCoupon,
     hasAmountAfterUsingCouponPrice,
     displayPricePolicy,
-  } = generateCoupon({
+  } = useGenerateCoupon({
     applicableCoupon,
     expectedApplicableCoupon,
   })
