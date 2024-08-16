@@ -38,8 +38,8 @@ export default meta
 type Story = StoryObj<typeof FlickingCarousel>
 
 export const Default: Story = {
-  args: {
-    children: (
+  render: () => (
+    <FlickingCarousel>
       <FlickingCarousel.Content>
         {IMAGES.map((image, key) => (
           <img
@@ -51,101 +51,87 @@ export const Default: Story = {
           />
         ))}
       </FlickingCarousel.Content>
-    ),
-  },
+    </FlickingCarousel>
+  ),
 }
 
 export const PageLabel: Story = {
-  args: {
-    children: (
-      <>
-        <FlickingCarousel.PageLabel
-          labelElement={
-            <Text color="red" bold>
-              10
-            </Text>
-          }
-        />
-
-        <FlickingCarousel.Content>
-          {IMAGES.map((image, key) => (
-            <FlickingCarousel.Item key={key} size="large">
-              <img
-                src={image.sizes.large.url}
-                alt="test"
-                width={400}
-                height={400}
-              />
-            </FlickingCarousel.Item>
-          ))}
-        </FlickingCarousel.Content>
-      </>
-    ),
-  },
+  render: () => (
+    <FlickingCarousel>
+      <FlickingCarousel.PageLabel labelElement={<Text>10</Text>} />
+      <FlickingCarousel.Content>
+        {IMAGES.map((image, key) => (
+          <img
+            key={key}
+            src={image.sizes.large.url}
+            alt="test"
+            width={400}
+            height={400}
+          />
+        ))}
+      </FlickingCarousel.Content>
+    </FlickingCarousel>
+  ),
 }
 
 export const ArrowControl: Story = {
-  args: {
-    children: (
-      <>
-        <FlickingCarousel.Controls
-          onPrevClick={() => {}}
-          onNextClick={() => {}}
-        />
-        <FlickingCarousel.Content>
-          {IMAGES.map((image, key) => (
-            <FlickingCarousel.Item key={key} size="large">
-              <img
-                key={key}
-                src={image.sizes.large.url}
-                alt="test"
-                width={400}
-                height={400}
-              />
-            </FlickingCarousel.Item>
-          ))}
-        </FlickingCarousel.Content>
-      </>
-    ),
-  },
+  render: () => (
+    <FlickingCarousel>
+      <FlickingCarousel.Content>
+        {IMAGES.map((image, key) => (
+          <FlickingCarousel.Item key={key} size="large">
+            <img
+              key={key}
+              src={image.sizes.large.url}
+              alt="test"
+              width={400}
+              height={400}
+            />
+          </FlickingCarousel.Item>
+        ))}
+      </FlickingCarousel.Content>
+      <FlickingCarousel.Controls
+        onPrevClick={() => {}}
+        onNextClick={() => {}}
+      />
+    </FlickingCarousel>
+  ),
 }
 
 export const CustomArrowControl: Story = {
-  args: {
-    children: (
-      <>
-        <FlickingCarousel.Controls
-          prevButton={
-            <FlickingScrollButton direction="left">
-              <Text color="blue" bold>
-                Prev
-              </Text>
-            </FlickingScrollButton>
-          }
-          nextButton={
-            <FlickingScrollButton direction="right">
-              <Text color="blue" bold>
-                Next
-              </Text>
-            </FlickingScrollButton>
-          }
-          onPrevClick={() => {}}
-          onNextClick={() => {}}
-        />
-        <FlickingCarousel.Content>
-          {IMAGES.map((image, key) => (
-            <FlickingCarousel.Item key={key} size="large">
-              <img
-                key={key}
-                src={image.sizes.large.url}
-                alt="test"
-                width={400}
-                height={400}
-              />
-            </FlickingCarousel.Item>
-          ))}
-        </FlickingCarousel.Content>
-      </>
-    ),
-  },
+  render: () => (
+    <FlickingCarousel>
+      <FlickingCarousel.Content>
+        {IMAGES.map((image, key) => (
+          <FlickingCarousel.Item key={key} size="large">
+            <img
+              key={key}
+              src={image.sizes.large.url}
+              alt="test"
+              width={400}
+              height={400}
+            />
+          </FlickingCarousel.Item>
+        ))}
+      </FlickingCarousel.Content>
+      <FlickingCarousel.Controls
+        prevButton={
+          <FlickingScrollButton direction="left">
+            <Text color="blue" bold>
+              Prev
+            </Text>
+          </FlickingScrollButton>
+        }
+        nextButton={
+          <FlickingScrollButton direction="right">
+            <Text color="blue" bold>
+              Next
+            </Text>
+          </FlickingScrollButton>
+        }
+        onPrevClick={() => {}}
+        onNextClick={() => {}}
+      />
+    </FlickingCarousel>
+  ),
 }
