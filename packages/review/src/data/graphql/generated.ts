@@ -27,6 +27,8 @@ export type Article = {
   reviewImage?: Maybe<Scalars['JSON']['output']>;
   reviewed?: Maybe<Scalars['Boolean']['output']>;
   scraped?: Maybe<Scalars['Boolean']['output']>;
+  seoMetadata?: Maybe<ArticleSeoMetadata>;
+  serviceMetadata?: Maybe<ArticleServiceMetadata>;
   source: ArticleSource;
   type: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -52,6 +54,19 @@ export type ArticleMetadata = {
   tags?: Maybe<Array<Scalars['JSON']['output']>>;
   template: Scalars['JSON']['output'];
   title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ArticleSeoMetadata = {
+  __typename?: 'ArticleSeoMetadata';
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+};
+
+export type ArticleServiceMetadata = {
+  __typename?: 'ArticleServiceMetadata';
+  id: Scalars['ID']['output'];
+  review?: Maybe<ReviewMetadata>;
+  scrap?: Maybe<ScrapMetadata>;
 };
 
 export type ArticleSource = {
@@ -131,14 +146,6 @@ export type CustomPoiSource = {
   regionId?: Maybe<Scalars['ID']['output']>;
 };
 
-export type DayOfWeek = {
-  __typename?: 'DayOfWeek';
-  breakHours?: Maybe<Span>;
-  closed?: Maybe<Scalars['Boolean']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  operatingHours?: Maybe<Span>;
-};
-
 export type Destination = Region | Zone;
 
 export type FeaturedDestinationsList = {
@@ -161,12 +168,12 @@ export type Festa = {
   category: Scalars['String']['output'];
   contents: Array<FestaContent>;
   createdAt: Scalars['String']['output'];
+  customSchedules: Scalars['JSON']['output'];
   duration?: Maybe<FestaDuration>;
   eventArrivalInstructions?: Maybe<Scalars['String']['output']>;
   geolocation?: Maybe<FestaGeoPoint>;
   headImage?: Maybe<FestaImage>;
   id: Scalars['ID']['output'];
-  isEventLive: Scalars['Boolean']['output'];
   links: Array<FestaLink>;
   pricing?: Maybe<FestaPricing>;
   regions: Array<FestaGeotag>;
@@ -267,10 +274,10 @@ export type FestaPricing = {
 
 export type FestaScheduleItem = {
   __typename?: 'FestaScheduleItem';
+  breakHours?: Maybe<Span>;
+  closed?: Maybe<Scalars['Boolean']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  end: Scalars['String']['output'];
-  start: Scalars['String']['output'];
-  weekdays?: Maybe<Weekdays>;
+  operatingHours?: Maybe<Span>;
 };
 
 export type FestaSize = {
@@ -293,6 +300,13 @@ export type FestaTranslatedNames = {
   primary?: Maybe<Scalars['String']['output']>;
 };
 
+export type ForeignEntity = {
+  __typename?: 'ForeignEntity';
+  name?: Maybe<Scalars['String']['output']>;
+  service: Scalars['String']['output'];
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type GeoMetadata = {
   __typename?: 'GeoMetadata';
   areas?: Maybe<Array<Scalars['JSON']['output']>>;
@@ -309,6 +323,11 @@ export type Geotag = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type GeotagInput = {
+  id: Scalars['String']['input'];
+  type: Scalars['String']['input'];
+};
+
 export type GeotagSource = {
   __typename?: 'GeotagSource';
   attractionCategories?: Maybe<Array<Scalars['JSON']['output']>>;
@@ -317,6 +336,7 @@ export type GeotagSource = {
   currencies?: Maybe<Array<Scalars['String']['output']>>;
   defaultRange?: Maybe<Scalars['Int']['output']>;
   featuredNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  foreignEntities?: Maybe<Array<ForeignEntity>>;
   geofence?: Maybe<Scalars['JSON']['output']>;
   languages?: Maybe<Array<Scalars['String']['output']>>;
   media?: Maybe<Scalars['JSON']['output']>;
@@ -344,19 +364,21 @@ export type GetFestasArgs = {
   durationEndLte?: InputMaybe<Scalars['String']['input']>;
   durationStartGte?: InputMaybe<Scalars['String']['input']>;
   durationStartLte?: InputMaybe<Scalars['String']['input']>;
+  isGeolocationExists?: InputMaybe<Scalars['Boolean']['input']>;
   isPublished?: InputMaybe<Scalars['Boolean']['input']>;
   keyword?: InputMaybe<Scalars['String']['input']>;
   maxDistance?: InputMaybe<Scalars['Int']['input']>;
   nextItemId?: InputMaybe<Scalars['String']['input']>;
+  orderByDurationEnd?: InputMaybe<Scalars['Int']['input']>;
   regionIds?: InputMaybe<Array<Scalars['String']['input']>>;
   resourceIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   size?: InputMaybe<Scalars['Int']['input']>;
   tags?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export type Homeward = {
-  __typename?: 'Homeward';
-  restrictionArticle?: Maybe<Article>;
+export type GetFestasByScheduleArgs = {
+  regionIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  schedule?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Message = {
@@ -412,13 +434,27 @@ export type Metadata = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createPurchaseToken: ReviewPurchaseToken;
+  createReview: Review;
   deleteMessage: Message;
   deleteRecommendationImage: Poi;
   deleteReview: Scalars['Boolean']['output'];
+  editReview: Review;
   likeReview: ReviewReaction;
+  reportReview: ReviewReaction;
   sendMessage: Message;
   unlikeReview: Scalars['Boolean']['output'];
   uploadRecommendationImage: Poi;
+};
+
+
+export type MutationCreatePurchaseTokenArgs = {
+  input: PurchaseTokenInput;
+};
+
+
+export type MutationCreateReviewArgs = {
+  input: ReviewCreateInput;
 };
 
 
@@ -438,7 +474,19 @@ export type MutationDeleteReviewArgs = {
 };
 
 
+export type MutationEditReviewArgs = {
+  id: Scalars['ID']['input'];
+  input: ReviewUpdateInput;
+};
+
+
 export type MutationLikeReviewArgs = {
+  reviewId: Scalars['String']['input'];
+};
+
+
+export type MutationReportReviewArgs = {
+  input: ReportReviewInput;
   reviewId: Scalars['String']['input'];
 };
 
@@ -481,15 +529,22 @@ export type Poi = {
   region?: Maybe<Region>;
   regions: Array<Region>;
   relationshipCounts: Scalars['JSON']['output'];
-  restaurantRecommendations?: Maybe<Array<Scalars['JSON']['output']>>;
+  restaurantRecommendations?: Maybe<Array<Maybe<Scalars['JSON']['output']>>>;
   reviewImage?: Maybe<Scalars['JSON']['output']>;
   reviewed?: Maybe<Scalars['Boolean']['output']>;
   scraped?: Maybe<Scalars['Boolean']['output']>;
+  seoMetadata?: Maybe<PoiSeoMetadata>;
   serviceMetadata?: Maybe<PoiServiceMetadata>;
   source: PoiSource;
   starRating?: Maybe<Scalars['Float']['output']>;
   type: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+};
+
+export type PoiSeoMetadata = {
+  __typename?: 'PoiSeoMetadata';
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
 };
 
 export type PoiServiceMetadata = {
@@ -554,6 +609,15 @@ export enum PricingType {
   Unknown = 'UNKNOWN'
 }
 
+export type PurchaseTokenInput = {
+  displayName: Scalars['String']['input'];
+  orderId: Scalars['String']['input'];
+  purchaseCount: Scalars['Int']['input'];
+  purchaseDate: Scalars['String']['input'];
+  resourceId: Scalars['String']['input'];
+  resourceType: Scalars['String']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getAnnouncements: Array<Article>;
@@ -562,15 +626,16 @@ export type Query = {
   getFeaturedDestinationsList?: Maybe<FeaturedDestinationsList>;
   getFesta?: Maybe<Festa>;
   getFestas?: Maybe<FestaList>;
+  getFestasBySchedule?: Maybe<FestaList>;
   getGeotag?: Maybe<Geotag>;
   getGeotags: Array<Geotag>;
   getGuides: Array<Article>;
-  getHomewardRestriction: Homeward;
   getLatestReviews: Array<Review>;
   getMessage: Message;
   getMessages: Array<Message>;
   getMyReview?: Maybe<Review>;
   getMyReviewUserBoard: ReviewUserBoard;
+  getMyReviewsByResourceId: Array<Review>;
   getMyReviewsList: Array<Review>;
   getNewsletters: Array<Article>;
   getNextNewsletter?: Maybe<Article>;
@@ -582,10 +647,12 @@ export type Query = {
   getRegion?: Maybe<Region>;
   getRegionCategories: Array<RegionCategory>;
   getRegionCategory?: Maybe<RegionCategory>;
-  getRegionRestrictions: Array<Region>;
   getRegionsByIds: Array<Region>;
+  getReviewResourceBoard: ReviewResourceBoard;
+  getReviewResourceBoardsByResourceIds: Array<ReviewResourceBoard>;
   getReviewSpecification?: Maybe<ReviewSpecification>;
   getReviewsByRating: Array<Review>;
+  getReviewsByResourceIds: Array<Review>;
   getReviewsCount: Scalars['Int']['output'];
   getRoom: Room;
   getScraps: Array<Scrap>;
@@ -593,6 +660,9 @@ export type Query = {
   getTripPlans: Array<Array<TripPlan>>;
   getTripPlansByTripCode: Array<Array<TripPlan>>;
   getZone?: Maybe<Zone>;
+  isJoinedTrip: Scalars['Boolean']['output'];
+  mgetArticleSeoMetadata?: Maybe<Array<Maybe<ArticleSeoMetadata>>>;
+  mgetArticleServiceMetadata?: Maybe<Array<Maybe<ArticleServiceMetadata>>>;
   mgetArticles: Array<Article>;
   mgetCountries: Array<Country>;
   mgetGeotags: Array<Maybe<Geotag>>;
@@ -602,11 +672,13 @@ export type Query = {
   mgetRegionCategories: Array<Maybe<RegionCategory>>;
   mgetRegions: Array<Maybe<Region>>;
   mgetReplyBoards: Array<ReplyBoard>;
+  mgetReviewArticleServiceMetadata?: Maybe<Array<ArticleServiceMetadata>>;
   mgetReviewPoiServiceMetadata?: Maybe<Array<PoiServiceMetadata>>;
   mgetReviewedArticles: Array<Article>;
   mgetReviewedPois: Array<Poi>;
   mgetReviews: Array<Review>;
   mgetRooms: Array<Room>;
+  mgetScrapArticleServiceMetadata?: Maybe<Array<ArticleServiceMetadata>>;
   mgetScrapPoiServiceMetadata?: Maybe<Array<PoiServiceMetadata>>;
   mgetScrapedArticles?: Maybe<Array<Article>>;
   mgetScrapedFestas: Array<Festa>;
@@ -647,6 +719,11 @@ export type QueryGetFestaArgs = {
 
 export type QueryGetFestasArgs = {
   args?: InputMaybe<GetFestasArgs>;
+};
+
+
+export type QueryGetFestasByScheduleArgs = {
+  args?: InputMaybe<GetFestasByScheduleArgs>;
 };
 
 
@@ -698,6 +775,13 @@ export type QueryGetMessagesArgs = {
 export type QueryGetMyReviewArgs = {
   resourceId: Scalars['String']['input'];
   resourceType: Scalars['String']['input'];
+};
+
+
+export type QueryGetMyReviewsByResourceIdArgs = {
+  from?: InputMaybe<Scalars['Int']['input']>;
+  resourceId: Scalars['String']['input'];
+  size?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -773,6 +857,16 @@ export type QueryGetRegionsByIdsArgs = {
 };
 
 
+export type QueryGetReviewResourceBoardArgs = {
+  resourceId: Scalars['String']['input'];
+};
+
+
+export type QueryGetReviewResourceBoardsByResourceIdsArgs = {
+  resourceIds: Array<Scalars['String']['input']>;
+};
+
+
 export type QueryGetReviewSpecificationArgs = {
   resourceId: Scalars['String']['input'];
   resourceType: Scalars['String']['input'];
@@ -787,6 +881,15 @@ export type QueryGetReviewsByRatingArgs = {
   resourceType: Scalars['String']['input'];
   size?: InputMaybe<Scalars['Int']['input']>;
   sortBy?: InputMaybe<SortByRatingsInput>;
+};
+
+
+export type QueryGetReviewsByResourceIdsArgs = {
+  from?: InputMaybe<Scalars['Int']['input']>;
+  hasMedia?: InputMaybe<Scalars['Boolean']['input']>;
+  resourceIds: Array<Scalars['String']['input']>;
+  size?: InputMaybe<Scalars['Int']['input']>;
+  sortBy?: InputMaybe<ReviewByResourceIdsSortByInput>;
 };
 
 
@@ -833,7 +936,23 @@ export type QueryGetZoneArgs = {
 };
 
 
+export type QueryIsJoinedTripArgs = {
+  tripCode: Scalars['String']['input'];
+};
+
+
+export type QueryMgetArticleSeoMetadataArgs = {
+  ids: Array<Scalars['ID']['input']>;
+};
+
+
+export type QueryMgetArticleServiceMetadataArgs = {
+  ids?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+
 export type QueryMgetArticlesArgs = {
+  excludeUnpublished?: InputMaybe<Scalars['Boolean']['input']>;
   ids: Array<Scalars['ID']['input']>;
 };
 
@@ -878,6 +997,11 @@ export type QueryMgetReplyBoardsArgs = {
 };
 
 
+export type QueryMgetReviewArticleServiceMetadataArgs = {
+  ids: Array<Scalars['ID']['input']>;
+};
+
+
 export type QueryMgetReviewPoiServiceMetadataArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
@@ -899,6 +1023,11 @@ export type QueryMgetReviewsArgs = {
 
 
 export type QueryMgetRoomsArgs = {
+  ids: Array<Scalars['ID']['input']>;
+};
+
+
+export type QueryMgetScrapArticleServiceMetadataArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
@@ -950,11 +1079,8 @@ export type Region = {
   country?: Maybe<Country>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
-  promo?: Maybe<Scalars['String']['output']>;
   regionCategory?: Maybe<RegionCategory>;
   regionCategoryId?: Maybe<Scalars['String']['output']>;
-  restrictionArticle?: Maybe<Article>;
-  restrictionState?: Maybe<Scalars['String']['output']>;
   source: RegionSource;
   state: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -989,6 +1115,7 @@ export type RegionSource = {
   defaultRange?: Maybe<Scalars['Int']['output']>;
   featuredNames: Array<Scalars['String']['output']>;
   flightHours?: Maybe<Scalars['Int']['output']>;
+  foreignEntities?: Maybe<Array<ForeignEntity>>;
   geofence?: Maybe<Scalars['JSON']['output']>;
   geotags?: Maybe<Array<Scalars['JSON']['output']>>;
   guideTags: Array<Scalars['JSON']['output']>;
@@ -1054,12 +1181,19 @@ export type ReplyUser = {
   profileImage?: Maybe<Scalars['String']['output']>;
 };
 
+export type ReportReviewInput = {
+  comment: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  type: ReviewReportType;
+};
+
 export type Review = {
   __typename?: 'Review';
   blinded?: Maybe<Scalars['Boolean']['output']>;
   comment?: Maybe<Scalars['String']['output']>;
   geotags: Array<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
+  isMyReview: Scalars['Boolean']['output'];
   language: Scalars['String']['output'];
   liked: Scalars['Boolean']['output'];
   likesCount: Scalars['Int']['output'];
@@ -1078,11 +1212,28 @@ export type Review = {
   visitDate?: Maybe<Scalars['String']['output']>;
 };
 
+export type ReviewByResourceIdsSortByInput = {
+  rating?: InputMaybe<SortDirection>;
+  reviewedAt?: InputMaybe<SortDirection>;
+};
+
 export type ReviewCommentSpecification = {
   __typename?: 'ReviewCommentSpecification';
   maxLength: Scalars['Int']['output'];
   placeholder: Scalars['String']['output'];
   required?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type ReviewCreateInput = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  geotags?: InputMaybe<Array<InputMaybe<GeotagInput>>>;
+  mediaIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  purchaseTokenId?: InputMaybe<Scalars['String']['input']>;
+  rating?: InputMaybe<Scalars['Int']['input']>;
+  resourceId: Scalars['String']['input'];
+  resourceName: Scalars['String']['input'];
+  resourceType: ReviewResourceType;
+  visitDate?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ReviewMediaSpecification = {
@@ -1100,9 +1251,9 @@ export type ReviewMetadata = {
 
 export type ReviewMetadataDetail = {
   __typename?: 'ReviewMetadataDetail';
-  averageRating: Scalars['Int']['output'];
-  imagesCount: Scalars['Int']['output'];
-  reviewsCount: Scalars['Int']['output'];
+  averageRating?: Maybe<Scalars['Float']['output']>;
+  imagesCount?: Maybe<Scalars['Int']['output']>;
+  reviewsCount?: Maybe<Scalars['Int']['output']>;
 };
 
 export type ReviewPurchaseInfo = {
@@ -1113,6 +1264,18 @@ export type ReviewPurchaseInfo = {
   purchaseDate: Scalars['String']['output'];
 };
 
+export type ReviewPurchaseToken = {
+  __typename?: 'ReviewPurchaseToken';
+  createdAt: Scalars['String']['output'];
+  displayName: Scalars['String']['output'];
+  orderId: Scalars['String']['output'];
+  purchaseCount: Scalars['Int']['output'];
+  purchaseDate: Scalars['String']['output'];
+  purchaseTokenId: Scalars['String']['output'];
+  resourceId: Scalars['String']['output'];
+  resourceType: Scalars['String']['output'];
+};
+
 export type ReviewRatingSpecification = {
   __typename?: 'ReviewRatingSpecification';
   description?: Maybe<Array<Scalars['String']['output']>>;
@@ -1121,21 +1284,59 @@ export type ReviewRatingSpecification = {
 
 export type ReviewReaction = {
   __typename?: 'ReviewReaction';
-  createdAt: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  language: Scalars['String']['output'];
+  reactedAt: Scalars['String']['output'];
   review: Review;
   serviceOrigin: ServiceOrigin;
   type: Scalars['String']['output'];
-  updatedAt: Scalars['String']['output'];
   user: User;
 };
+
+export enum ReviewReportType {
+  Abuse = 'ABUSE',
+  Commercial = 'COMMERCIAL',
+  Delete = 'DELETE',
+  Etc = 'ETC',
+  Illegal = 'ILLEGAL',
+  Infringement = 'INFRINGEMENT',
+  NotRelevant = 'NOT_RELEVANT',
+  Obscene = 'OBSCENE',
+  Privacy = 'PRIVACY',
+  SameContents = 'SAME_CONTENTS'
+}
+
+export type ReviewResourceBoard = {
+  __typename?: 'ReviewResourceBoard';
+  averageRating: Scalars['Float']['output'];
+  imagesCount: Scalars['Int']['output'];
+  resourceId: Scalars['ID']['output'];
+  resourceType: Scalars['String']['output'];
+  reviewsCount: Scalars['Int']['output'];
+  reviewsWithMediaCount: Scalars['Int']['output'];
+};
+
+export enum ReviewResourceType {
+  Article = 'article',
+  Attraction = 'attraction',
+  Hotel = 'hotel',
+  Package = 'package',
+  Poi = 'poi',
+  Restaurant = 'restaurant',
+  Tna = 'tna'
+}
 
 export type ReviewSpecification = {
   __typename?: 'ReviewSpecification';
   comment: ReviewCommentSpecification;
   media: ReviewMediaSpecification;
   rating?: Maybe<ReviewRatingSpecification>;
+};
+
+export type ReviewUpdateInput = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  mediaIds?: InputMaybe<Array<Scalars['String']['input']>>;
+  rating?: InputMaybe<Scalars['Int']['input']>;
+  visitDate?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ReviewUserBoard = {
@@ -1187,7 +1388,7 @@ export type ScrapMetadata = {
 
 export type ScrapMetadataDetail = {
   __typename?: 'ScrapMetadataDetail';
-  scrapsCount: Scalars['Int']['output'];
+  scrapsCount?: Maybe<Scalars['Int']['output']>;
 };
 
 export enum ServiceOrigin {
@@ -1199,6 +1400,11 @@ export enum ServiceOrigin {
 export type SortByRatingsInput = {
   rating?: InputMaybe<Scalars['String']['input']>;
 };
+
+export enum SortDirection {
+  Asc = 'asc',
+  Desc = 'desc'
+}
 
 export type Span = {
   __typename?: 'Span';
@@ -1514,17 +1720,6 @@ export type UserMileageBadge = {
 export type UserMileageIcon = {
   __typename?: 'UserMileageIcon';
   image_url?: Maybe<Scalars['String']['output']>;
-};
-
-export type Weekdays = {
-  __typename?: 'Weekdays';
-  FRI?: Maybe<DayOfWeek>;
-  MON?: Maybe<DayOfWeek>;
-  SAT?: Maybe<DayOfWeek>;
-  SUN?: Maybe<DayOfWeek>;
-  THU?: Maybe<DayOfWeek>;
-  TUE?: Maybe<DayOfWeek>;
-  WED?: Maybe<DayOfWeek>;
 };
 
 export type Zone = {
