@@ -1,7 +1,9 @@
 import React from 'react'
 import { GlobalStyle, defaultTheme } from '../packages/tds-theme/src'
 import { TripleWeb } from '../packages/triple-web/src'
+import { isMobile } from '../packages/triple-web-utils/src'
 import { ThemeProvider } from 'styled-components'
+import { UAParser } from 'ua-parser-js'
 
 import i18n from './i18next'
 
@@ -15,6 +17,7 @@ export function themeDecorator(Story) {
 }
 
 export function tripleWebProviderDecorator(Story, context) {
+  const ua = new UAParser(navigator.userAgent).getResult()
   return (
     <TripleWeb
       clientAppProvider={null}
@@ -38,13 +41,8 @@ export function tripleWebProviderDecorator(Story, context) {
         user: null,
       }}
       userAgentProvider={{
-        ua: 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;Triple-iOS/6.5.0',
-        browser: { name: 'WebKit', version: '605.1.15', major: '605' },
-        engine: { name: 'WebKit', version: '605.1.15' },
-        os: { name: 'iOS', version: '13.3.1' },
-        device: { vendor: 'Apple', model: 'iPhone', type: 'mobile' },
-        cpu: { architecture: undefined },
-        isMobile: true,
+        ...ua,
+        isMobile: isMobile(ua),
       }}
     >
       <Story />
