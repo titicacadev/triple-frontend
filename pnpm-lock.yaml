@@ -191,6 +191,9 @@ importers:
       typescript:
         specifier: 5.5.4
         version: 5.5.4
+      ua-parser-js:
+        specifier: ^1.0.38
+        version: 1.0.38
       vite:
         specifier: ^5.4.2
         version: 5.4.2(@types/node@18.19.47)(terser@5.18.2)
