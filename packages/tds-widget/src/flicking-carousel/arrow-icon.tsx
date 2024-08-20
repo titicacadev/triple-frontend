@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 const SVG_ATTRIBUTES_BY_DIRECTION = {
   left: {
@@ -16,7 +15,7 @@ const SVG_ATTRIBUTES_BY_DIRECTION = {
 
 export function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
   const { d, transform } = SVG_ATTRIBUTES_BY_DIRECTION[direction]
-  const { colors } = useContext(ThemeContext) || { colors: {} }
+  const { colors } = useTheme()
   const stroke = colors.gray
 
   return (
