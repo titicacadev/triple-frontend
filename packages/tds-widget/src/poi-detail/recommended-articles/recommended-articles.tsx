@@ -5,7 +5,6 @@ import {
   Container,
   H1,
   formatMarginPadding,
-  FlickingCarousel,
   Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +13,7 @@ import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { styled } from 'styled-components'
 
 import { ArticleCardCta, fetchInventoryItems } from '../../app-installation-cta'
+import { FlickingCarousel } from '../../flicking-carousel/flicking-carousel'
 
 import { fetchRecommendedArticles } from './api-client'
 import { ArticleListingData } from './types'
@@ -143,33 +143,27 @@ export function PoiDetailRecommendedArticles({
         </H1>
 
         <FlickingCarousel
-          css={{
-            marginTop: 20,
-            paddingLeft: deskTopPadding?.left || 110,
-            paddingRight: deskTopPadding?.right || 110,
-          }}
+          margin={{ top: 20 }}
+          containerPadding={deskTopPadding || { left: 110, right: 110 }}
         >
-          <FlickingCarousel.Content>
-            {articleCardCta && (
-              <FlickingCarousel.Item size="medium">
-                <ArticleCardCta
-                  cta={articleCardCta}
-                  href={appInstallationCta?.href}
-                  onClick={appInstallationCta?.onClick}
-                />
-              </FlickingCarousel.Item>
-            )}
-            {recommendedArticles.map((article) => (
-              <FlickingCarousel.Item key={article.id} size="medium">
-                <ArticleEntry
-                  article={article}
-                  onClick={onArticleClick}
-                  onIntersect={handleIntersect}
-                />
-              </FlickingCarousel.Item>
-            ))}
-          </FlickingCarousel.Content>
-          <FlickingCarousel.Controls />
+          {articleCardCta && (
+            <FlickingCarousel.Item size="medium">
+              <ArticleCardCta
+                cta={articleCardCta}
+                href={appInstallationCta?.href}
+                onClick={appInstallationCta?.onClick}
+              />
+            </FlickingCarousel.Item>
+          )}
+          {recommendedArticles.map((article) => (
+            <FlickingCarousel.Item key={article.id} size="medium">
+              <ArticleEntry
+                article={article}
+                onClick={onArticleClick}
+                onIntersect={handleIntersect}
+              />
+            </FlickingCarousel.Item>
+          ))}
         </FlickingCarousel>
 
         <Container
