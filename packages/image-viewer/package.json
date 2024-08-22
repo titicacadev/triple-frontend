@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/image-viewer",
-  "version": "13.27.0",
+  "version": "13.27.1",
   "description": "Triple Image Viewer",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/image-viewer",
