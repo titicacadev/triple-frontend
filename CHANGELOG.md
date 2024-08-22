@@ -237,6 +237,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.27.1
+
+```
+### review
+
+- [review] travel-restritions-api 관련 코드를 제거하기 위해 코드젠 generated.tsx를 재생성합니다 [#3357](https://github.com/titicacadev/triple-frontend/pull/3357)
+```
+
 ## v13.27.0
 
 ```
