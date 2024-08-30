@@ -50,7 +50,7 @@
     "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.15",
-    "i18next": "^23.12.3",
+    "i18next": "^23.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

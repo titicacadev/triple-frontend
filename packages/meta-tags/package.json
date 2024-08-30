@@ -43,7 +43,7 @@
   "devDependencies": {
     "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
-    "i18next": "^23.12.3",
+    "i18next": "^23.14.0",
     "next": "^14.2.5",
     "react": "^18.3.1",
     "react-i18next": "^13.5.0"
