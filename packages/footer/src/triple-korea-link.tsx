@@ -5,7 +5,6 @@ const Link = styled.a`
   font-size: 10px;
   text-decoration-line: underline;
   cursor: pointer;
-
   margin-top: 20px;
 `
 
