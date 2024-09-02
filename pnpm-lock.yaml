@@ -460,6 +460,9 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
+      '@types/react-input-mask':
+        specifier: '2'
+        version: 2.0.5
       react-compound-slider:
         specifier: ^3.4.0
         version: 3.4.0(react@18.3.1)
@@ -473,9 +476,6 @@ importers:
       '@titicaca/tds-theme':
         specifier: workspace:*
         version: link:../tds-theme
-      '@types/react-input-mask':
-        specifier: '2'
-        version: 2.0.5
       react:
         specifier: ^18.3.1
         version: 18.3.1
