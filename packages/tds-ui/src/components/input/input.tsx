@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
 import { styled } from 'styled-components'
-import InputMask, { MaskOptions } from 'react-input-mask'
+import InputMask, { Props as InputMaskProps } from 'react-input-mask'
 
 import {
   FormFieldContext,
@@ -33,16 +33,16 @@ const BaseInput = styled(InputMask)`
   }
 `
 
-type HtmlInputElementProps = InputHTMLAttributes<HTMLInputElement> & MaskOptions
-
-export interface InputProps extends HtmlInputElementProps {
+export interface InputProps
+  extends InputHTMLAttributes<HTMLInputElement>,
+    Partial<InputMaskProps> {
   label?: string
   error?: string | boolean
   help?: ReactNode
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, error, help, onBlur, onFocus, ...props },
+  { mask = '', label, error, help, onBlur, onFocus, ...props },
   ref,
 ) {
   const formFieldState = useFormFieldState({ onBlur, onFocus })
@@ -63,6 +63,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       <BaseInput
         inputRef={ref}
         id={formFieldState.inputId}
+        mask={mask}
         aria-describedby={
           hasHelp && !isError ? formFieldState.descriptionId : undefined
         }
