@@ -237,6 +237,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.28.0
+
+```
+### footer
+
+- [footer] 푸터에 트리플 코리아 링크를 추가합니다. [#3370](https://github.com/titicacadev/triple-frontend/pull/3370)
+```
+
 ## v13.27.1
 
 ```
