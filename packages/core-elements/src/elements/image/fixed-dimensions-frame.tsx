@@ -1,5 +1,5 @@
 import { PropsWithChildren, MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
 import { GlobalSizes, MarginPadding } from '../../commons'
@@ -21,6 +21,7 @@ const FixedDimensionsFrameContainer = styled.div<{
   borderRadius: number
   floated?: CSS.Property.Float
   margin?: MarginPadding
+  isClickable?: boolean
 }>`
   background-color: #f5f5f5;
   font-size: 0;
@@ -29,6 +30,12 @@ const FixedDimensionsFrameContainer = styled.div<{
   height: ${({ height, size }) =>
     (height && `${height}px`) || (size ? IMAGE_HEIGHT_OPTIONS[size] : '')};
   float: ${({ floated }) => floated || 'none'};
+
+  ${({ isClickable }) =>
+    isClickable &&
+    css`
+      cursor: pointer;
+    `}
 
   ${marginMixin}
   ${borderRadiusMixin}
@@ -61,6 +68,7 @@ export function ImageFixedDimensionsFrame({
       margin={margin}
       borderRadius={borderRadius}
       onClick={onClick}
+      isClickable={!!onClick}
     >
       {children}
     </FixedDimensionsFrameContainer>

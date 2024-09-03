@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
 } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import * as CSS from 'csstype'
 
 import {
@@ -28,6 +28,7 @@ const FixedRatioFrameContainer = styled.div<{
   overflowHidden?: boolean
   floated?: CSS.Property.Float
   margin?: MarginPadding
+  isClickable?: boolean
 }>`
   font-size: 0;
   position: relative;
@@ -42,6 +43,12 @@ const FixedRatioFrameContainer = styled.div<{
     formatMarginPadding({ top: MEDIA_FRAME_OPTIONS[frame] }, 'padding')}
 
   ${({ overflowHidden }) => overflowHidden && 'overflow: hidden;'}
+
+  ${({ isClickable }) =>
+    isClickable &&
+    css`
+      cursor: pointer;
+    `}
 
   ${marginMixin}
 `
@@ -70,6 +77,7 @@ export function ImageFixedRatioFrame({
       borderRadius={borderRadius}
       margin={margin}
       onClick={onClick}
+      isClickable={!!onClick}
     >
       <ContentAbsoluteContext.Provider value={!originalFrame}>
         {children}
