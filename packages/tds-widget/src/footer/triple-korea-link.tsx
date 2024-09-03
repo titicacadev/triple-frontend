@@ -12,7 +12,7 @@ const Link = styled.a`
 export function TripleKoreaLink() {
   return (
     <Link href="https://triple.global" target="_blank" rel="noreferrer">
-      TRIPLE Korea for foreign travelers
+      TRIPLE Korea for Foreign Travelers
     </Link>
   )
 }
