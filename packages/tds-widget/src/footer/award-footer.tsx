@@ -8,6 +8,7 @@ import {
   FooterFrame,
 } from './default-footer'
 import { CompanyInfo } from './company-info'
+import { TripleKoreaLink } from './triple-korea-link'
 
 const AWARD_INFO = [
   {
@@ -62,6 +63,7 @@ const AwardFlexBox = styled(FlexBox).attrs({
 
 export function AwardFooter({
   hideAppDownloadButton = false,
+  tripleKoreaLinkVisible = false,
   ...props
 }: AwardFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
@@ -92,6 +94,8 @@ export function AwardFooter({
           <br /> 상품 거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </Text>
         <Info />
+
+        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
       </Container>
     </FooterFrame>
   )
