@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import react from '@vitejs/plugin-react-swc'
 import { nodeExternals } from 'rollup-plugin-node-externals'
+import preserveDirectives from 'rollup-plugin-preserve-directives'
 
 export default defineConfig({
   build: {
@@ -26,5 +27,6 @@ export default defineConfig({
   plugins: [
     dts({ tsconfigPath: './tsconfig.build.json' }),
     react({ plugins: [['@swc/plugin-styled-components', {}]] }),
+    preserveDirectives(),
   ],
 })
