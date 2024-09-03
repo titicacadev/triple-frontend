@@ -63,7 +63,6 @@ const AwardFlexBox = styled(FlexBox).attrs({
 
 export function AwardFooter({
   hideAppDownloadButton = false,
-  tripleKoreaLinkVisible = false,
   ...props
 }: AwardFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
@@ -93,20 +92,17 @@ export function AwardFooter({
           &#12828;인터파크트리플은 통신판매중개로서 통신판매의 당사자가 아니며
           <br /> 상품 거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </Text>
-        <Info />
 
-        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
+        <InfoFlexBox>
+          <Container>
+            <LinkGroupBase />
+            <TripleKoreaLink />
+          </Container>
+
+          <AwardGroup />
+        </InfoFlexBox>
       </Container>
     </FooterFrame>
-  )
-}
-
-function Info() {
-  return (
-    <InfoFlexBox>
-      <LinkGroupBase />
-      <AwardGroup />
-    </InfoFlexBox>
   )
 }
 
