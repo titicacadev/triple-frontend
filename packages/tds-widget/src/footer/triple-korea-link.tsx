@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
 const Link = styled.a`
+  display: block;
   color: var(--color-gray500);
   font-size: 10px;
   text-decoration-line: underline;
