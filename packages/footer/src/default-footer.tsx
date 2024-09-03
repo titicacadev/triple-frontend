@@ -12,12 +12,12 @@ export const FooterFrame = styled.footer`
 
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  hideTripleKoreaLink?: boolean
+  tripleKoreaLinkVisible?: boolean
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  hideTripleKoreaLink = true,
+  tripleKoreaLinkVisible = false,
   ...props
 }: DefaultFooterProps) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
@@ -49,7 +49,7 @@ function DefaultFooter({
 
         <LinkGroup />
 
-        {!hideTripleKoreaLink ? <TripleKoreaLink /> : null}
+        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
       </Container>
     </FooterFrame>
   )
