@@ -1,6 +1,6 @@
 export * from './public-header'
 export * from './extra-action-item'
-export * from './extra-action-seperator'
+export * from './extra-action-separator'
 export * from './constants'
 export * from './side-menu'
 export * from './header-menu-button'

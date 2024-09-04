@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useTrackEventWithMetadata } from '@titicaca/triple-web'
 
 import { ExtraActionItem } from './extra-action-item'
-import { ExtraActionSeperator } from './extra-action-seperator'
+import { ExtraActionSeparator } from './extra-action-separator'
 import { DeeplinkComponent } from './types'
 import { useDeeplinkHref } from './use-deeplink-href'
 
@@ -24,7 +24,7 @@ export function PublicHeaderDeeplink({
     DeeplinkComponent({ deeplinkHref })
   ) : (
     <>
-      <ExtraActionSeperator />
+      <ExtraActionSeparator />
       <ExtraActionItem
         href={deeplinkHref}
         onClick={() =>
