@@ -51,7 +51,7 @@
     "@titicaca/triple-web-test-utils": "workspace:*",
     "@types/qs": "^6.9.15",
     "i18next": "^23.14.0",
-    "next": "^14.2.5",
+    "next": "^14.2.9",
     "react": "^18.3.1",
     "react-i18next": "^13.5.0"
   },
