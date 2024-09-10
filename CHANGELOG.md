@@ -237,6 +237,18 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.29.0
+
+```
+### footer
+
+- [footer] 푸터 KINT 진입점에 FA 로깅을 추가합니다. [#3379](https://github.com/titicacadev/triple-frontend/pull/3379)
+
+### react-contexts
+
+-  [react-contexts] images-api v2 적용 [#3345](https://github.com/titicacadev/triple-frontend/pull/3345)
+```
+
 ## v13.28.0
 
 ```
