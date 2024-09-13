@@ -12,7 +12,10 @@ import converse from './converse'
 import { ContextOptions } from './types'
 import requireTripleClient from './require-triple-client'
 
-export function initialize(options: ContextOptions) {
+export function initialize(
+  t: (key: string, values?: object) => string,
+  options: ContextOptions,
+) {
   const handler = new Handler({
     handlers: [
       serial,
@@ -27,6 +30,7 @@ export function initialize(options: ContextOptions) {
       converse,
       requireTripleClient,
     ],
+    t,
     options,
   })
 
