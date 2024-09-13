@@ -5,8 +5,6 @@ import { isMobile } from '../packages/triple-web-utils/src'
 import { ThemeProvider } from 'styled-components'
 import { UAParser } from 'ua-parser-js'
 
-import i18n from './i18next'
-
 export function themeDecorator(Story) {
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -34,8 +32,7 @@ export function tripleWebProviderDecorator(Story, context) {
         afOnelinkSubdomain: '',
       }}
       i18nProvider={{
-        i18n,
-        lang: context.globals.locale,
+        locale: context.globals.locale,
       }}
       sessionProvider={{
         user: null,
