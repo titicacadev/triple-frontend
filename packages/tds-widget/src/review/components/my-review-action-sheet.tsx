@@ -1,6 +1,5 @@
 import { ActionSheet, ActionSheetItem, Confirm } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
-import { useEnv, useHashRouter } from '@titicaca/triple-web'
+import { useTranslation, useEnv, useHashRouter } from '@titicaca/triple-web'
 import qs from 'qs'
 
 import { useDeleteReviewMutation } from '../services'
@@ -25,7 +24,7 @@ export function MyReviewActionSheet({
   resourceId,
   regionId,
 }: MyReviewActionSheetProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { appUrlScheme } = useEnv()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()

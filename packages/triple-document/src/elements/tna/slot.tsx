@@ -1,7 +1,6 @@
 import { SyntheticEvent, useCallback, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useTrackEvent } from '@titicaca/triple-web'
 import { Container, H1, List, Button } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 import { useTheme } from 'styled-components'
 
@@ -17,7 +16,7 @@ export function Slot({
   title: string
   products: TnaProductData[]
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { colors } = useTheme()
   const trackEvent = useTrackEvent()
   const { navigate } = useNavigate()

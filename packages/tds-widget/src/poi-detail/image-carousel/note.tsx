@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled, css } from 'styled-components'
 import { Text } from '@titicaca/tds-ui'
 
@@ -35,7 +35,7 @@ interface PermanetlyCloseNoteProps {
 export function PermanentlyClosedNote({
   bottomBorderRadius = 6,
 }: PermanetlyCloseNoteProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <NoteContainer $warning $bottomBorderRadius={bottomBorderRadius}>
@@ -65,7 +65,7 @@ export function BusinessHoursNote({
   todayBusinessHours,
   onClick,
 }: BusinessHourNoteProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <NoteContainer

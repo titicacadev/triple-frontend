@@ -1,5 +1,4 @@
 import { useReducer, useCallback, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import {
   Section,
   Button,
@@ -11,7 +10,7 @@ import {
   H1,
   Paragraph,
 } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent, useTranslation } from '@titicaca/triple-web'
 import { PointGeoJson } from '@titicaca/type-definitions'
 
 import { NearByPoiType } from './types'
@@ -62,7 +61,7 @@ export function NearbyPois({
   geolocation: PointGeoJson
   optimized?: boolean
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [{ currentTab, ...state }, dispatch] = useReducer(nearbyPoisReducer, {
     ...INITIAL_STATE,

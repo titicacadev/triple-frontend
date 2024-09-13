@@ -1,6 +1,5 @@
 import { Confirm } from '@titicaca/tds-ui'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 
@@ -8,9 +7,10 @@ import { LOGIN_CTA_MODAL_HASH } from '../constants'
 import { useModal } from '../context'
 import { useHashRouter } from '../../hash-router/use-hash-router'
 import { trackEvent } from '../../event-tracking/utils/track-event'
+import { useTranslation } from '../../i18n'
 
 export function LoginCtaModal() {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
   const { removeUriHash, uriHash } = useHashRouter()
   const open = uriHash === LOGIN_CTA_MODAL_HASH
