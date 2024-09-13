@@ -197,5 +197,5 @@ export default {
   '사진/동영상': 'Photos/Videos',
   '별점 높은순': 'Highest rating',
   '별점 낮은순': 'Lowest rating',
-  'gumae-injeung-review': 'Certified Purchase Review',
+  '구매 인증 리뷰': 'Certified Purchase Review',
 } as const
