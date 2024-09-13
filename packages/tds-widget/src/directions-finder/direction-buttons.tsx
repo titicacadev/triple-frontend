@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { styled } from 'styled-components'
-import { useTranslation } from 'react-i18next'
 import {
   useTrackEvent,
   useHashRouter,
   useAppInstallCtaModal,
   useClientApp,
+  useTranslation,
 } from '@titicaca/triple-web'
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
@@ -37,7 +37,7 @@ export function DirectionButtons({
   onCallGrabButtonClick?: () => void
   onCallGrabButtonIntersecting?: (entry: IntersectionObserverEntry) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()

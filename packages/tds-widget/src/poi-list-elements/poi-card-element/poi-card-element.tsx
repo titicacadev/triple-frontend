@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import { Container, Text, Card as OriginalCard, Image } from '@titicaca/tds-ui'
 import { ImageMeta, TranslatedProperty } from '@titicaca/type-definitions'
@@ -94,7 +94,7 @@ export function PoiCardElement({
   onDirectionButtonClick: Parameters<typeof DirectionButton>[0]['onClick']
   optimized?: boolean
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const formattedNightlyPrice = formatNumber(nightlyPrice)
   const { deriveCurrentStateAndCount } = useScrap()

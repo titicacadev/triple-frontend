@@ -7,8 +7,11 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { useClientAppActions, useTrackEvent } from '@titicaca/triple-web'
-import { useTranslation } from 'react-i18next'
+import {
+  useClientAppActions,
+  useTrackEvent,
+  useTranslation,
+} from '@titicaca/triple-web'
 
 import { useReviewFilters } from './filter-context'
 
@@ -55,7 +58,7 @@ export function SortingOptionsProvider({
 }: PropsWithChildren<SortingOptionsProps>) {
   const [selectedOption, setSelectedOption] = useState(initialSortingOption)
 
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const trackEvent = useTrackEvent()
   const { isRecentTrip } = useReviewFilters()
   const { broadcastMessage, subscribe, unsubscribe } = useClientAppActions()

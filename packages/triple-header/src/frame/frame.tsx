@@ -1,9 +1,8 @@
-import { ComponentType, useCallback, useMemo } from 'react'
+import { ComponentType, useCallback } from 'react'
 import { Container } from '@titicaca/tds-ui'
 import { styled, css } from 'styled-components'
-import { ContextOptions, initialize } from '@titicaca/standard-action-handler'
+import { useStandardActionHandler } from '@titicaca/standard-action-handler'
 import { useTrackEventWithMetadata } from '@titicaca/triple-web'
-import { useNavigate, useExternalRouter } from '@titicaca/router'
 
 import { FrameData, LinkEventHandler } from '../types'
 import { FRAMES } from '../frame'
@@ -52,17 +51,8 @@ export function Frame({
   const heightRatio = calculateFrameRatio(height)
 
   const trackEventWithMetadata = useTrackEventWithMetadata()
-  const { navigate } = useNavigate()
-  const routeExternally = useExternalRouter()
 
-  const handleAction = useMemo(
-    () =>
-      initialize({
-        navigate: navigate as ContextOptions['navigate'],
-        routeExternally,
-      }),
-    [navigate, routeExternally],
-  )
+  const handleAction = useStandardActionHandler()
 
   const defaultHandleLinkClick: LinkEventHandler = useCallback(
     (e, { href, target }) => {

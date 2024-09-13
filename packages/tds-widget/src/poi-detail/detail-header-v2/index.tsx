@@ -1,5 +1,10 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import {
+  useTranslation,
+  useTrackEvent,
+  useHashRouter,
+  useClientApp,
+} from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import {
   Section,
@@ -10,11 +15,6 @@ import {
   Rating,
   TextTitle,
 } from '@titicaca/tds-ui'
-import {
-  useTrackEvent,
-  useHashRouter,
-  useClientApp,
-} from '@titicaca/triple-web'
 import { formatNumber } from '@titicaca/view-utilities'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
@@ -73,7 +73,7 @@ export function PoiDetailHeaderV2({
    */
   vicinity?: string
 } & Parameters<typeof Section>['0']) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const app = useClientApp()
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()

@@ -6,8 +6,11 @@ import {
   H1,
   formatMarginPadding,
 } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
-import { useTrackEvent, useAppInstallCtaModal } from '@titicaca/triple-web'
+import {
+  useTranslation,
+  useTrackEvent,
+  useAppInstallCtaModal,
+} from '@titicaca/triple-web'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { styled } from 'styled-components'
 
@@ -59,7 +62,7 @@ export function PoiDetailRecommendedArticles({
     onClick?: () => void
   }
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [recommendedArticles, setRecommendedArticles] = useState<
     ArticleListingData[]

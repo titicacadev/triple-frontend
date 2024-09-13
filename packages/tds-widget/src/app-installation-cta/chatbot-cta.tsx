@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Text, LayeringMixinProps } from '@titicaca/tds-ui'
 import { CSSTransition } from 'react-transition-group'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 import { useSessionStorage } from '@titicaca/react-hooks'
+import { useTranslation } from '@titicaca/triple-web'
 
 import {
   CHATBOT_CLOSED_STORAGE_KEY,
@@ -44,7 +44,7 @@ export function ChatbotCta({
   zIndex,
   unmountOnExit,
 }: ChatbotCtaProps & LayeringMixinProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [inventoryItem, setInventoryItem] = useState<InventoryItemMeta>()
   const [visibility, setVisibility] = useState(false)
