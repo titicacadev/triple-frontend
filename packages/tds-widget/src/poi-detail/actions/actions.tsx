@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { styled, css } from 'styled-components'
 import {
   Section,
@@ -8,7 +7,7 @@ import {
   ButtonGroup,
 } from '@titicaca/tds-ui'
 import { useEffect, useState } from 'react'
-import { useTrackEvent } from '@titicaca/triple-web'
+import { useTrackEvent, useTranslation } from '@titicaca/triple-web'
 
 import Tooltip, { useLocalStorageTooltip } from './tooltip/tooltip'
 
@@ -46,7 +45,7 @@ export function PoiDetailActions({
   noDivider?: boolean
   tooltips?: Array<TOOLTIP_TYPE>
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const trackEvent = useTrackEvent()
 
   const hasScrapeTooltip = tooltips.includes('SCRAPE')

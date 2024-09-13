@@ -179,8 +179,7 @@ export default {
   '...더보기': '… view more',
   '포인트별 혜택 보기': 'View benefits by point',
   리뷰: 'review',
-  '{{totalReviewsCount}}개의 리뷰':
-    '<0> {{totalReviewsCount}}</0><1>reviews</1>',
+  '개의 리뷰': 'reviews',
   '{{numOfRestReviews}}개 리뷰 더보기':
     '{{numOfRestReviews}}View more dog reviews',
   '리뷰 쓰면 여행자 클럽 최대 3포인트!':

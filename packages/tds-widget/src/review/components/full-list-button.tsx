@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Button } from '@titicaca/tds-ui'
 import {
+  useTranslation,
   useClientAppActions,
   useSessionCallback,
   useTrackEvent,
 } from '@titicaca/triple-web'
+import { Button } from '@titicaca/tds-ui'
 import { useNavigate } from '@titicaca/router'
 import qs from 'qs'
 
@@ -41,7 +41,7 @@ export const FullListButton = ({
   sortingType,
   sortingOption,
 }: Props) => {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const trackEvent = useTrackEvent()
   const { navigate } = useNavigate()
   const { getWindowId } = useClientAppActions()

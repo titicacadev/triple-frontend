@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import { Modal, Text } from '@titicaca/tds-ui'
 
@@ -26,7 +26,7 @@ export function VerificationRequest({
    */
   onCancel: () => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const {
     verificationState: { verified },

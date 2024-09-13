@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next'
 import {
   useClientApp,
   useLoginCtaModal,
   useSessionAvailability,
   useAppInstallCtaModal,
+  useTranslation,
 } from '@titicaca/triple-web'
 
 export type AllowSource = 'all' | 'app' | 'app-with-session' | 'none'
@@ -22,7 +22,7 @@ export function useDisabledLinkNotifierCreator({
 }: {
   alert?: (message: string) => void
 } = {}) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
   const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
