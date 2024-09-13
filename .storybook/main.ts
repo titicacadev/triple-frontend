@@ -16,7 +16,6 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-onboarding',
-    'storybook-react-i18next',
     '@chromatic-com/storybook',
   ],
   typescript: {
