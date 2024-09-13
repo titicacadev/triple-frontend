@@ -56,22 +56,16 @@
     "qs": "^6.12.3"
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.16",
-    "i18next": "^23.15.1",
     "next": "^14.2.9",
     "react": "^18.3.1",
-    "react-i18next": "^13.5.0",
     "styled-components": "^6.1.13"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
     "@titicaca/triple-web": "*",
-    "i18next": "*",
     "next": "^13.4 || ^14.0",
     "react": "^18.0",
-    "react-i18next": "*",
     "styled-components": "^6.0"
   }
 }
