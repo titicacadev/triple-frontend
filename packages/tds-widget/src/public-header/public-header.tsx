@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
-import { PropsWithChildren, useCallback, useMemo } from 'react'
 import {
+  useTranslation,
   useClientApp,
   useTrackEvent,
   useHashRouter,
 } from '@titicaca/triple-web'
+import { styled } from 'styled-components'
+import { PropsWithChildren, useCallback, useMemo } from 'react'
 
 import {
   HEADER_DESKTOP_HEIGHT,
@@ -126,7 +126,7 @@ export function PublicHeader({
   hasNewNotification,
   ...props
 }: PropsWithChildren<PublicHeaderProps>) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
@@ -181,14 +181,19 @@ export function PublicHeader({
         <HeaderFrame {...props}>
           <Logo
             href={getCategoryHref(category)}
-            title={categoryTitle}
+            title={t(getCategoryTitle(category))}
             onClick={onLogoClick}
           >
             <LogoImage
               alt="Triple"
               src="https://assets.triple.guide/images/img_intro_logo_dark.svg"
             />
-            {category && <LogoCategoryImage {...categoryImageProps} />}
+            {category && (
+              <LogoCategoryImage
+                alt={t(getCategoryImageProps(category).alt)}
+                src={getCategoryImageProps(category).src}
+              />
+            )}
           </Logo>
 
           <ExtraActionsContainer>

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled, css } from 'styled-components'
 import { Text, Responsive } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
@@ -59,7 +59,7 @@ function ImagePlaceholder({
   type,
   onClick,
 }: ImagePlaceholderProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <ImagePlaceholderContainer $large={large} onClick={onClick}>

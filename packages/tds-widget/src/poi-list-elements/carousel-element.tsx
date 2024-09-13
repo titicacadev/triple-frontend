@@ -7,6 +7,7 @@ import {
   CarouselSizes,
 } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GuestModeType } from '@titicaca/type-definitions'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { OverlayScrapButton } from '../scrap-button'
 
@@ -47,7 +48,8 @@ export function PoiCarouselElement<T extends PoiListElementType>({
   optimized?: boolean
   guestMode?: GuestModeType
 }) {
-  const typeName = useTypeName(type)
+  const t = useTranslation()
+
   if (!poi) {
     return null
   }
@@ -101,7 +103,7 @@ export function PoiCarouselElement<T extends PoiListElementType>({
         {name}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
-        {description || typeName}
+        {description || t(getTypeNames(type))}
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 2 }}>
         {regionName

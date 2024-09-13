@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useTrackEvent } from '@titicaca/triple-web'
 import { Section } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 import { ExternalLinks } from './external-links'
@@ -22,7 +21,7 @@ export function SocialReviews({
   socialReviews,
   ...props
 }: SocialReviewsProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const trackEvent = useTrackEvent()
   const { navigate } = useNavigate()

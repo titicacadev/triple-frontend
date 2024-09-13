@@ -1,5 +1,5 @@
 import { formatNumber } from '@titicaca/view-utilities'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { TnaCoupon } from './types'
 
@@ -10,7 +10,8 @@ export function useGenerateCoupon({
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
+
   const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
     applicableCoupon || {}
 

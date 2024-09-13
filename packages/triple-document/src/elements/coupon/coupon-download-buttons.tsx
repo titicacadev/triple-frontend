@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useHashRouter, useLogin } from '@titicaca/triple-web'
 import { Button } from '@titicaca/tds-ui'
 import { styled } from 'styled-components'
-import { useHashRouter, useLogin } from '@titicaca/triple-web'
 import { VerificationType, useUserVerification } from '@titicaca/tds-widget'
 import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { useInterval } from '@titicaca/react-hooks'
@@ -107,7 +106,7 @@ export function CouponDownloadButton({
   enabledAt?: string
   onClick?: () => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [couponFetched, setCouponFetched] = useState(false)
   const [downloaded, setDownloaded] = useState(false)
@@ -272,7 +271,7 @@ export function CouponGroupDownloadButton({
   enabledAt?: string
   onClick?: () => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [coupons, setCoupons] = useState<CouponData[]>([])
   const [errorMessage, setErrorMessage] = useState<string | undefined>(

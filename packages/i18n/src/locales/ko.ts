@@ -175,8 +175,7 @@ export default {
   '...더보기': '…더보기',
   '포인트별 혜택 보기': '포인트별 혜택 보기',
   리뷰: '리뷰',
-  '{{totalReviewsCount}}개의 리뷰':
-    '<0> {{totalReviewsCount}}</0><1>개의 리뷰</1>',
+  '개의 리뷰': '개의 리뷰',
   '{{numOfRestReviews}}개 리뷰 더보기': '{{numOfRestReviews}}개 리뷰 더보기',
   '리뷰 쓰면 여행자 클럽 최대 3포인트!': '리뷰 쓰면 여행자 클럽 최대 3포인트!',
   '{{formattedApplicableAmountAfterUsingCoupon}}원':

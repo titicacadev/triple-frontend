@@ -1,10 +1,9 @@
 import { MouseEventHandler, SyntheticEvent, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useClientApp } from '@titicaca/triple-web'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
 import { OverlayScrapButton } from '@titicaca/tds-widget'
 import { formatNumber } from '@titicaca/view-utilities'
 import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
-import { useClientApp } from '@titicaca/triple-web'
 
 import { TnaProductData, DomesticArea } from './types'
 import { useGenerateCoupon } from './use-generate-coupon'
@@ -20,7 +19,7 @@ function Pricing({
   basePrice?: number
   salePrice: number
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const formattedBasePrice = formatNumber(basePrice)
   const formattedSalePrice = formatNumber(salePrice)
@@ -104,7 +103,7 @@ export function TnaProductWithPrice({
   onClick: (e: SyntheticEvent, product: TnaProductData, index: number) => void
   onIntersect: (product: TnaProductData, index: number) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const app = useClientApp()
 
   const salePrice =

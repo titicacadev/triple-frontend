@@ -1,6 +1,5 @@
 import { ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
-import { useHashRouter } from '@titicaca/triple-web'
+import { useTranslation, useHashRouter } from '@titicaca/triple-web'
 
 import { useClientActions } from '../services'
 
@@ -14,7 +13,7 @@ export interface OthersReviewActionSheetProps {
 export function OthersReviewActionSheet({
   reviewId,
 }: OthersReviewActionSheetProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { uriHash, removeUriHash } = useHashRouter()
   const { reportReview } = useClientActions()

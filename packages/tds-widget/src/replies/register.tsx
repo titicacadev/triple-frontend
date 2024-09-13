@@ -1,12 +1,12 @@
 import { ForwardedRef, forwardRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
-import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 import {
+  useTranslation,
   useSessionAvailability,
   useLoginCtaModal,
   useSessionCallback,
 } from '@titicaca/triple-web'
+import { styled } from 'styled-components'
+import { Container, FlexBox, HR1 } from '@titicaca/tds-ui'
 
 import { authorMessage } from './replies-api-client'
 import { AutoResizingTextarea, TextAreaHandle } from './auto-resizing-textarea'
@@ -42,7 +42,7 @@ export const Register = forwardRef(function Register(
   },
   ref: ForwardedRef<TextAreaHandle>,
 ) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const {
     parentMessageId,
