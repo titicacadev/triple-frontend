@@ -21,6 +21,7 @@ export default function MyApp({
     <TripleWeb
       clientAppProvider={clientAppProvider}
       envProvider={{ ... }}
+      i18nProvider={{ ... }}
       sessionProvider={sessionProvider}
       userAgentProvider={userAgentProvider}
     >
@@ -58,6 +59,12 @@ MyApp.getInitialProps = async (
 ### envProvider
 
 `EnvValue`
+
+**Required**
+
+### i18nProvider
+
+`I18nValue`
 
 **Required**
 

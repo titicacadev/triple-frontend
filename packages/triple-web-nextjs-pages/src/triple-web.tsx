@@ -9,6 +9,7 @@ export function TripleWeb({
   children,
   clientAppProvider,
   envProvider,
+  i18nProvider,
   sessionProvider,
   userAgentProvider,
 }: TripleWebProps) {
@@ -16,6 +17,7 @@ export function TripleWeb({
     <TripleWebBase
       clientAppProvider={clientAppProvider}
       envProvider={envProvider}
+      i18nProvider={i18nProvider}
       sessionProvider={sessionProvider}
       userAgentProvider={userAgentProvider}
     >
