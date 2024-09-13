@@ -13,6 +13,9 @@ const translations: Record<string, Record<string, string>> = {
   'zh-TW': zhTw,
 }
 
+/**
+ * 번역 함수를 사용합니다.
+ */
 export function useTranslation() {
   const i18n = useI18n()
 
@@ -21,5 +24,5 @@ export function useTranslation() {
     return interpolate(translation, values)
   }
 
-  return { t }
+  return t
 }
