@@ -40,17 +40,11 @@
     ]
   },
   "devDependencies": {
-    "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
-    "i18next": "23.15.1",
-    "react": "^18.3.1",
-    "react-i18next": "^14.1.3"
+    "react": "^18.3.1"
   },
   "peerDependencies": {
-    "@titicaca/i18n": "*",
     "@titicaca/triple-web": "*",
-    "i18next": "*",
-    "react": "^18.0",
-    "react-i18next": "*"
+    "react": "^18.0"
   }
 }
