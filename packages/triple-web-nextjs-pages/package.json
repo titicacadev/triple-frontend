@@ -46,7 +46,7 @@
     "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.12.3",
-    "ua-parser-js": "^1.0.38",
+    "ua-parser-js": "^1.0.39",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
