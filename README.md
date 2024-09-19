@@ -12,6 +12,11 @@
 
 [CONTRIBUTING.md](./CONTRIBUTING.md)를 참고해주세요.
 
+## 관련 서비스
+
+- [트리플](https://triple.guide)
+- [TRIPLE Korea](https://triple.global)
+
 ## 라이선스
 
 [MIT License](./LICENSE)
