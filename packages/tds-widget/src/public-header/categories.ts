@@ -13,8 +13,7 @@ export function getCategoryHref(category?: Category) {
   }
 }
 
-export function useCategoryTitle(category?: Category) {
-  const { t } = useTranslation('triple-frontend')
+export function getCategoryTitle(category?: Category) {
   switch (category) {
     case 'air':
       return 'Triple 항공 홈'
@@ -27,9 +26,7 @@ export function useCategoryTitle(category?: Category) {
   }
 }
 
-export function useCategoryImageProps(category?: Category) {
-  const { t } = useTranslation('triple-frontend')
-
+export function getCategoryImageProps(category?: Category) {
   switch (category) {
     case 'air':
       return {

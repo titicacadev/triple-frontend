@@ -18,8 +18,8 @@ import {
 import type { Category, DeeplinkComponent } from './types'
 import {
   getCategoryHref,
-  useCategoryImageProps,
-  useCategoryTitle,
+  getCategoryImageProps,
+  getCategoryTitle,
 } from './categories'
 import { useAutoHide } from './use-auto-hide'
 import { ExtraActionsContainer } from './extra-actions-container'
@@ -130,8 +130,6 @@ export function PublicHeader({
 
   const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
-  const categoryTitle = useCategoryTitle(category)
-  const categoryImageProps = useCategoryImageProps(category)
   const { uriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
