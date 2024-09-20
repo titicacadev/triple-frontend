@@ -23,8 +23,7 @@ export default {
           afOnelinkSubdomain: '',
         }}
         i18nProvider={{
-          i18n: context.parameters.i18n,
-          lang: context.globals.locale,
+          locale: context.globals.locale,
         }}
         sessionProvider={{
           user: {
