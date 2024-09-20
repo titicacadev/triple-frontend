@@ -1,13 +1,12 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useHashRouter } from '@titicaca/triple-web'
 import { FlexBox, Text, Icon } from '@titicaca/tds-ui'
-import { useHashRouter } from '@titicaca/triple-web'
 
 import { useRepliesContext } from './context'
 
 const HASH_EDIT_CLOSE_MODAL = 'reply.edit-close-modal'
 
 export function GuideText() {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const {
     currentMessageId,

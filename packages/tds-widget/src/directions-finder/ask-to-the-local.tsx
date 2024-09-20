@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 import {
   Button,
@@ -12,6 +11,7 @@ import {
   Popup,
   SafeAreaInsetMixinProps,
 } from '@titicaca/tds-ui'
+import { useTranslation } from '@titicaca/triple-web'
 
 const DrawerContentContainer = styled(Container)<SafeAreaInsetMixinProps>`
   ${safeAreaInsetMixin}
@@ -56,7 +56,7 @@ export function AskToTheLocal({
   phoneNumber?: string
   isDomestic?: boolean
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const handleCall = useCallback(() => {
     if (phoneNumber) {

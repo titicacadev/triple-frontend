@@ -1,6 +1,9 @@
 import { Container, HR1, List, Text, Confirm } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
-import { useHashRouter, useClientAppActions } from '@titicaca/triple-web'
+import {
+  useTranslation,
+  useHashRouter,
+  useClientAppActions,
+} from '@titicaca/triple-web'
 
 import { Reply as ReplyType } from '../types'
 import { useRepliesContext } from '../context'
@@ -27,7 +30,7 @@ export function ReplyList({
   onReplyDelete: (response: ReplyType) => void
   onReplyEdit: (response: ReplyType) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const {
     currentMessageId,
@@ -124,7 +127,7 @@ export function ReplyList({
 }
 
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { uriHash, removeUriHash } = useHashRouter()
 

@@ -1,5 +1,5 @@
 import { FlexBox, Text } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 
 export function ReviewBadges({
   recentTrip,
@@ -17,7 +17,7 @@ export function ReviewBadges({
 }
 
 export function RecentTripBadge() {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <FlexBox
@@ -43,7 +43,7 @@ export function RecentTripBadge() {
 }
 
 export function VerifiedPurchaseBadge() {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <FlexBox
@@ -59,7 +59,7 @@ export function VerifiedPurchaseBadge() {
         alt="recent-trip-icon"
       />
       <Text size={12} bold style={{ color: '#18BFC0' }}>
-        {t('gumae-injeung-review')}
+        {t('구매 인증 리뷰')}
       </Text>
     </FlexBox>
   )

@@ -1,5 +1,5 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled, css } from 'styled-components'
 import {
   Container,
@@ -112,7 +112,7 @@ export function ExtendedResourceListElement<R extends ResourceMeta>({
   optimized,
   ...props
 }: PropsWithChildren<ResourceListElementProps<R>>) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { id, type, scraped } = scrapResource || resource || {}
   const labels = tags || []

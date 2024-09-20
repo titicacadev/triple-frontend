@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { useScrap } from '../scrap'
 import {
@@ -55,7 +55,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   notes,
   optimized,
 }: ExtendedPoiListElementProps<T> & { optimized?: boolean }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { deriveCurrentStateAndCount } = useScrap()
   const {

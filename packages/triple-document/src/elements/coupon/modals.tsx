@@ -1,7 +1,6 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useHashRouter } from '@titicaca/triple-web'
 import { Text, Modal, Alert } from '@titicaca/tds-ui'
 import { styled } from 'styled-components'
-import { useHashRouter } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 interface HashKeyValue {
@@ -40,7 +39,7 @@ const CouponIcon = styled.img`
 `
 
 export function CouponModal({ identifier }: { identifier: string }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { uriHash, removeUriHash } = useHashRouter()
   const { navigate } = useNavigate()
 
@@ -142,7 +141,7 @@ export function CouponAlertModal({
   identifier: string
   errorMessage?: string
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { uriHash, removeUriHash } = useHashRouter()
   return (
     <Alert

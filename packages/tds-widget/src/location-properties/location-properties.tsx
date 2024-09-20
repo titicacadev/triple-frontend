@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Segment, List, ActionSheet, ActionSheetItem } from '@titicaca/tds-ui'
-import { useHashRouter } from '@titicaca/triple-web'
+import { useHashRouter, useTranslation } from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 
 import {
@@ -37,7 +36,7 @@ export function LocationProperties({
   onExtraPropertyClick?: (extraProperty: ExtraProperty) => void
   onCopy: (value: string) => void
 } & Omit<Parameters<typeof Segment>['0'], 'onCopy'>) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { uriHash, removeUriHash } = useHashRouter()
 

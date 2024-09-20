@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { ActionSheetItem } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 
 export function CopyActionSheetItem({
   value,
@@ -9,7 +9,7 @@ export function CopyActionSheetItem({
   value?: string | null
   onCopy: (value: string) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const handleClick = useCallback(() => value && onCopy(value), [value, onCopy])
 

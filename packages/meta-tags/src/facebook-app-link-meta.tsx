@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import { useTranslation } from 'react-i18next'
-import { useEnv } from '@titicaca/triple-web'
+import { useEnv, useTranslation } from '@titicaca/triple-web'
 
 import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
 
@@ -15,7 +14,7 @@ export function FacebookAppLinkMeta({
   appPath?: string
   appPackageName?: string
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { appUrlScheme } = useEnv()
 
