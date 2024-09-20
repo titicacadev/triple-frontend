@@ -12,12 +12,12 @@ import { useTranslation } from '@titicaca/triple-web'
 import { OverlayScrapButton } from '../scrap-button'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
-import { useTypeName } from './use-type-name'
 import {
   PoiListElementBaseProps,
   ActionButtonElement,
   PoiListElementType,
 } from './types'
+import { getTypeNames } from './get-type-names'
 
 export function PoiCarouselElement<T extends PoiListElementType>({
   poi,
