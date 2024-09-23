@@ -15,8 +15,10 @@ const translations: Record<string, Record<string, string>> = {
 export function useTranslation() {
   const i18n = useI18n()
 
+  const locale = i18n.locale ?? i18n.defaultLocale
+
   const t = (key: string, values = {}) => {
-    const translation = translations[i18n.locale][key] || key
+    const translation = translations[locale]?.[key] ?? key
     return interpolate(translation, values)
   }
 

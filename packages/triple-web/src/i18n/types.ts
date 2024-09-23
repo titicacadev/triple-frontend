@@ -1,3 +1,4 @@
 export interface I18nValue {
-  locale: string
+  defaultLocale: string
+  locale?: string
 }
