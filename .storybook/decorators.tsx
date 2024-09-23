@@ -32,6 +32,7 @@ export function tripleWebProviderDecorator(Story, context) {
         afOnelinkSubdomain: '',
       }}
       i18nProvider={{
+        defaultLocale: 'ko',
         locale: context.globals.locale,
       }}
       sessionProvider={{
