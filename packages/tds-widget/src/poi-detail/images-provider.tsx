@@ -7,9 +7,7 @@ import {
   useReducer,
   useEffect,
 } from 'react'
-import qs from 'qs'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { get } from '@titicaca/fetcher'
 
 import reducer, {
   loadImagesRequest,
@@ -17,6 +15,8 @@ import reducer, {
   loadImagesFail,
   reinitializeImages,
 } from './images-reducer'
+import { ImageCategoryOrder } from './types'
+import useFetchImages from './use-fetch-images'
 
 interface PoiDetailImagesContext {
   images: ImageMeta[]
@@ -29,11 +29,12 @@ interface PoiDetailImagesContext {
   }
 }
 
-export interface PoiDetailImagesProviderProps extends PropsWithChildren {
+interface ImagesProviderProps {
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
   }
+  categoryOrder?: Array<ImageCategoryOrder>
   images?: ImageMeta[]
   total?: number
 }
@@ -49,35 +50,47 @@ const Context = createContext<PoiDetailImagesContext>({
   },
 })
 
-const TYPE_MAPPING = {
-  attraction: 'poi',
-  restaurant: 'poi',
-  hotel: 'hotel',
-}
-
-export function PoiDetailImagesProvider({
-  images: initialImages,
+export function ImagesProvider({
+  images: defaultImages,
   total: initialTotal,
+  categoryOrder = [
+    'recommendation',
+    'menuBoard',
+    'menuItem',
+    'featuredContent',
+    'images',
+  ],
   source: { id, type },
   children,
-}: PoiDetailImagesProviderProps) {
+}: PropsWithChildren<ImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
-    loading: !initialImages,
-    images: initialImages || [],
+    loading: !defaultImages,
+    images: defaultImages || [],
     total: initialTotal || 0,
     hasMore: true,
   })
 
+  const fetchImages = useFetchImages()
+
   const sendFetchRequest = useCallback(
     async (size = 15) => {
-      const response = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: images.length, size },
-      )
+      const response = await fetchImages({
+        target: { type, id },
+        currentImageLength: images.length - (defaultImages?.length || 0),
+        size,
+        categoryOrder,
+      })
 
       return response
     },
-    [id, images.length, type],
+    [
+      fetchImages,
+      type,
+      id,
+      images.length,
+      defaultImages?.length,
+      categoryOrder,
+    ],
   )
 
   const reFetch = useCallback(async () => {
@@ -88,21 +101,28 @@ export function PoiDetailImagesProvider({
     dispatch(loadImagesRequest())
 
     try {
-      const { data: fetchedImages, total } = await fetchImages(
-        { type: TYPE_MAPPING[type] || type, id },
-        { from: 0, size: 15 },
-      )
+      const {
+        data: fetchedImages,
+        total,
+        next,
+      } = await fetchImages({
+        target: { type, id },
+        currentImageLength: 0,
+        size: 15,
+        categoryOrder,
+      })
 
       dispatch(
         reinitializeImages({
-          images: fetchedImages,
-          total,
+          images: [...(defaultImages || []), ...fetchedImages],
+          total: total + (defaultImages?.length || 0),
+          hasMore: !!next,
         }),
       )
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, id, type])
+  }, [loading, fetchImages, type, id, categoryOrder, defaultImages])
 
   const fetch = useCallback(
     async (onFetchAfter?: () => void, force?: boolean) => {
@@ -113,20 +133,21 @@ export function PoiDetailImagesProvider({
       dispatch(loadImagesRequest())
 
       try {
-        const { data: fetchedImages, total } = await sendFetchRequest()
-
-        if (fetchedImages) {
-          dispatch(loadImagesSuccess({ images: fetchedImages, total }))
-        } else {
-          throw new Error('Response has no data property')
-        }
+        const { data: fetchedImages, total, next } = await sendFetchRequest()
+        dispatch(
+          loadImagesSuccess({
+            images: fetchedImages,
+            total: total + (defaultImages?.length || 0),
+            hasMore: !!next,
+          }),
+        )
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
 
       onFetchAfter && onFetchAfter()
     },
-    [hasMore, loading, sendFetchRequest],
+    [defaultImages?.length, hasMore, loading, sendFetchRequest],
   )
 
   const indexOf = useCallback(
@@ -168,29 +189,6 @@ export function PoiDetailImagesProvider({
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-async function fetchImages(
-  target: { type: string; id: string },
-  query: { from: number; size: number },
-) {
-  const querystring = qs.stringify({
-    resourceType: target.type,
-    resourceId: target.id,
-    from: query.from,
-    size: query.size,
-  })
-
-  const response = await get<{ data: ImageMeta[]; total: number }>(
-    `/api/content/images?${querystring}`,
-  )
-
-  if (response.ok === true) {
-    const { parsedBody } = response
-    return parsedBody
-  } else {
-    throw new Error(`Failed to fetch images`)
-  }
-}
-
-export function usePoiDetailImages() {
+export function useImagesContext() {
   return useContext(Context)
 }

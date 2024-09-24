@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 const Link = styled.a`
   display: block;
@@ -10,8 +11,15 @@ const Link = styled.a`
 `
 
 export function TripleKoreaLink() {
+  const trackEvent = useTrackEvent()
+
   return (
-    <Link href="https://triple.global" target="_blank" rel="noreferrer">
+    <Link
+      href="https://triple.global"
+      target="_blank"
+      rel="noreferrer"
+      onClick={() => trackEvent({ fa: { action: '푸터_트리플코리아링크' } })}
+    >
       TRIPLE Korea for Foreign Travelers
     </Link>
   )
