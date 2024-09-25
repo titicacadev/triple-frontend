@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled, css } from 'styled-components'
 import {
   Container,
@@ -79,7 +79,7 @@ export function FixedPricing({
   maxWidth,
   padding = { top: 14, right: 20, bottom: 14, left: 20 },
 }: FixedPricingProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const formattedSalePrice = formatNumber(salePrice)
   const pricingLabel = label ? (

@@ -27,9 +27,10 @@ export interface ContextOptions {
 }
 
 export interface WebActionParams {
-  url?: UrlElements
-  options?: ContextOptions
-  handler?: {
+  url: UrlElements
+  t: (key: string, values?: object) => string
+  options: ContextOptions
+  handler: {
     execute: (url: string, params?: NavigateOptions) => Promise<void>
   }
 }

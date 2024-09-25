@@ -7,8 +7,6 @@ import {
 } from '@titicaca/triple-web'
 import { PropsWithChildren } from 'react'
 
-import i18n from './i18n'
-
 export interface TestWrapperProps {
   clientAppProvider?: ClientAppValue
   envProvider?: EnvValue
@@ -47,7 +45,7 @@ export function createTestWrapper({
       <TripleWeb
         clientAppProvider={clientAppProvider}
         envProvider={envProvider}
-        i18nProvider={{ i18n, lang: 'ko' }}
+        i18nProvider={{ locale: 'ko' }}
         sessionProvider={sessionProvider}
         userAgentProvider={userAgentProvider}
       >

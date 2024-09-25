@@ -1,17 +1,21 @@
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
-import { t } from 'i18next'
 
 import { createShareUrl } from './services/share'
 import { WebActionParams } from './types'
 
-export default async function share({ url: { path } = {} }: WebActionParams) {
+export default async function share({
+  url: { path } = {},
+  t,
+}: WebActionParams) {
   if (path === '/web-action/share') {
     const params = getSharingParams()
     const shareUrl = createShareUrl()
 
     shareUrl({
       params,
-      message: t('링크를 복사했습니다.', { ns: 'triple-frontend' }),
+      message: t('링크를 복사했습니다.'),
+      webButtonTitle: t('웹에서 보기'),
+      appButtonTitle: t('트리플에서 보기'),
     })
 
     return true

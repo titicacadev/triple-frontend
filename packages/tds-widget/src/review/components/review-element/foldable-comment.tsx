@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import { findFoldedPosition } from '@titicaca/view-utilities'
 
@@ -45,7 +45,7 @@ function FoldedComment({
   comment: string
   onUnfoldButtonClick: MouseEventHandler<HTMLButtonElement>
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <Comment>

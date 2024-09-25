@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled, css } from 'styled-components'
 import { Text, layeringMixin, LayeringMixinProps } from '@titicaca/tds-ui'
+import { useTranslation } from '@titicaca/triple-web'
 
 const AppBannerFrame = styled.header<
   { $fixed?: boolean; $maxWidth?: number } & LayeringMixinProps
@@ -80,7 +80,7 @@ export function AppBanner({
   zIndex = 1,
   ...props
 }: Props) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <AppBannerFrame {...props} zTier={zTier} zIndex={zIndex}>

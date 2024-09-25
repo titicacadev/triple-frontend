@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
+import { useTranslation } from '@titicaca/triple-web'
 import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 
 import { TimeIcon, RightArrowIcon } from './business-hours-icons'
@@ -19,7 +19,7 @@ export function BusinessHoursNote({
   todayBusinessHours?: string
   onClick: () => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <Container

@@ -22,6 +22,7 @@ export default async function RootLayout({
         <TripleWeb
           {...(await buildTripleWebProps())}
           envProvider={{ ... }}
+          i18nProvider={{ ... }
         >
           {children}
         </TripleWeb>
@@ -46,6 +47,12 @@ export default async function RootLayout({
 ### envProvider
 
 `EnvValue`
+
+**Required**
+
+### i18nProvider
+
+`I18nValue`
 
 **Required**
 

@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, useTrackEvent } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import { Button, Text } from '@titicaca/tds-ui'
-import { useTrackEvent } from '@titicaca/triple-web'
 
 import useHandleAddPoisToTrip from '../itinerary/use-handle-add-pois-to-trip'
 
@@ -30,7 +29,7 @@ export default function SaveToItinerary({
 }) {
   const trackEvent = useTrackEvent()
 
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const addPoisToTrip = useHandleAddPoisToTrip({
     geotag,
