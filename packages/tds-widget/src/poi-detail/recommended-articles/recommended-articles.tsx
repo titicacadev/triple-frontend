@@ -5,7 +5,6 @@ import {
   Container,
   H1,
   formatMarginPadding,
-  Carousel,
 } from '@titicaca/tds-ui'
 import { useTranslation } from 'react-i18next'
 import { useTrackEvent, useAppInstallCtaModal } from '@titicaca/triple-web'
@@ -20,7 +19,7 @@ import { ArticleListingData } from './types'
 import { ArticleEntry } from './article-entry'
 import { MoreButton } from './more-button'
 
-const MobileCarousel = styled(Carousel)`
+const MobileCarousel = styled(FlickingCarousel)`
   margin-top: 20px;
   padding: 0 30px;
 `
@@ -177,6 +176,7 @@ export function PoiDetailRecommendedArticles({
           </MoreButton>
         </Container>
       </Responsive>
+
       <Responsive maxWidth={767}>
         <H1
           css={{
@@ -187,22 +187,22 @@ export function PoiDetailRecommendedArticles({
         </H1>
         <MobileCarousel>
           {articleCardCta && (
-            <Carousel.Item size="medium">
+            <FlickingCarousel.Item size="medium">
               <ArticleCardCta
                 cta={articleCardCta}
                 href={appInstallationCta?.href}
                 onClick={appInstallationCta?.onClick}
               />
-            </Carousel.Item>
+            </FlickingCarousel.Item>
           )}
           {recommendedArticles.map((article) => (
-            <Carousel.Item key={article.id} size="medium">
+            <FlickingCarousel.Item key={article.id} size="medium">
               <ArticleEntry
                 article={article}
                 onClick={onArticleClick}
                 onIntersect={handleIntersect}
               />
-            </Carousel.Item>
+            </FlickingCarousel.Item>
           ))}
         </MobileCarousel>
         <Container
