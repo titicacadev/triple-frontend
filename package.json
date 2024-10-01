@@ -41,7 +41,7 @@
     "@swc/cli": "0.4.0",
     "@swc/core": "1.7.26",
     "@swc/jest": "0.2.36",
-    "@swc/plugin-styled-components": "2.0.12",
+    "@swc/plugin-styled-components": "3.0.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
