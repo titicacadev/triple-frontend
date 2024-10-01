@@ -348,8 +348,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -400,8 +400,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -537,8 +537,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
       react-day-picker:
         specifier: ^7.4.10
         version: 7.4.10(react@18.3.1)
@@ -643,8 +643,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
     devDependencies:
       '@titicaca/i18n':
         specifier: workspace:*
@@ -748,8 +748,8 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
       semver:
         specifier: ^7.6.3
         version: 7.6.3
@@ -822,8 +822,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
       ua-parser-js:
         specifier: ^1.0.39
         version: 1.0.39
@@ -891,8 +891,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.12.3
-        version: 6.12.3
+        specifier: ^6.13.0
+        version: 6.13.0
     devDependencies:
       '@types/haversine':
         specifier: ^1.1.8
@@ -6361,10 +6361,6 @@ packages:
   has-property-descriptors@1.0.2:
     resolution: {integrity: sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==}
 
-  has-proto@1.0.1:
-    resolution: {integrity: sha512-7qE+iP+O+bgF9clE5+UoBFzE65mlBiVj3tKCrlNQ0Ogwm0BjpT/gK4SlLYDMybDh5I3TCTKnPPa0oMG7JDYrhg==}
-    engines: {node: '>= 0.4'}
-
   has-proto@1.0.3:
     resolution: {integrity: sha512-SJ1amZAJUiZS+PhsVLf5tGydlaVB8EdFpaSO4gmiUKUOxk8qzn5AIy4ZeJUmh22znIdk/uMAUT2pl3FxzVUH+Q==}
     engines: {node: '>= 0.4'}
@@ -6394,10 +6390,6 @@ packages:
 
   hash.js@1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
-
-  hasown@2.0.0:
-    resolution: {integrity: sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==}
-    engines: {node: '>= 0.4'}
 
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
@@ -8642,8 +8634,8 @@ packages:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
     engines: {node: '>=0.6'}
 
-  qs@6.12.3:
-    resolution: {integrity: sha512-AWJm14H1vVaO/iNZ4/hO+HyaTehuy9nRqVdkTqlJt0HWvBiBIEXFmb4C0DGeYo3Xes9rrEW+TxHsaigCbN5ICQ==}
+  qs@6.13.0:
+    resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
     engines: {node: '>=0.6'}
 
   querystring-es3@0.2.1:
@@ -14015,7 +14007,7 @@ snapshots:
       '@storybook/client-logger': 6.5.16
       core-js: 3.37.1
       memoizerific: 1.11.3
-      qs: 6.12.3
+      qs: 6.13.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       regenerator-runtime: 0.13.11
@@ -14189,7 +14181,7 @@ snapshots:
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
-      qs: 6.12.3
+      qs: 6.13.0
     transitivePeerDependencies:
       - encoding
 
@@ -16437,7 +16429,7 @@ snapshots:
       globalthis: 1.0.3
       gopd: 1.0.1
       has-property-descriptors: 1.0.2
-      has-proto: 1.0.1
+      has-proto: 1.0.3
       has-symbols: 1.0.3
       hasown: 2.0.2
       internal-slot: 1.0.5
@@ -17417,9 +17409,9 @@ snapshots:
     dependencies:
       es-errors: 1.3.0
       function-bind: 1.1.2
-      has-proto: 1.0.1
+      has-proto: 1.0.3
       has-symbols: 1.0.3
-      hasown: 2.0.0
+      hasown: 2.0.2
 
   get-package-type@0.1.0: {}
 
@@ -17657,8 +17649,6 @@ snapshots:
     dependencies:
       es-define-property: 1.0.0
 
-  has-proto@1.0.1: {}
-
   has-proto@1.0.3: {}
 
   has-symbols@1.0.3: {}
@@ -17687,10 +17677,6 @@ snapshots:
     dependencies:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
-
-  hasown@2.0.0:
-    dependencies:
-      function-bind: 1.1.2
 
   hasown@2.0.2:
     dependencies:
@@ -20571,7 +20557,7 @@ snapshots:
     dependencies:
       side-channel: 1.0.6
 
-  qs@6.12.3:
+  qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
 
@@ -22041,7 +22027,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       for-each: 0.3.3
-      has-proto: 1.0.1
+      has-proto: 1.0.3
       is-typed-array: 1.1.13
 
   typed-array-byte-length@1.0.1:
@@ -22057,7 +22043,7 @@ snapshots:
       available-typed-arrays: 1.0.7
       call-bind: 1.0.7
       for-each: 0.3.3
-      has-proto: 1.0.1
+      has-proto: 1.0.3
       is-typed-array: 1.1.13
 
   typed-array-byte-offset@1.0.2:
@@ -22269,7 +22255,7 @@ snapshots:
   url@0.11.1:
     dependencies:
       punycode: 1.4.1
-      qs: 6.12.3
+      qs: 6.13.0
 
   urlpattern-polyfill@8.0.2: {}
 
