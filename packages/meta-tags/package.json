@@ -44,7 +44,7 @@
     "@titicaca/i18n": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "i18next": "^23.15.1",
-    "next": "^14.2.9",
+    "next": "^14.2.14",
     "react": "^18.3.1",
     "react-i18next": "^13.5.0"
   },
