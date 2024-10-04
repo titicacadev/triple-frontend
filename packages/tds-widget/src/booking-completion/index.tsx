@@ -1,9 +1,8 @@
 import { useCallback } from 'react'
 import { Container, Text, Button, ButtonGroup } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 import { TranslatedProperty } from '@titicaca/type-definitions'
-import { useClientAppCallback } from '@titicaca/triple-web'
+import { useClientAppCallback, useTranslation } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
 interface Region {
@@ -74,7 +73,7 @@ export function BookingCompletion({
   descriptions,
   region,
 }: BookingCompletionProps) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const regionName = region?.names.ko || region?.names.en
   const { navigate } = useNavigate()

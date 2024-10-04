@@ -3,7 +3,7 @@ import { TripleDocument } from './triple-document'
 export { default as ELEMENTS } from './elements'
 export type { TripleElementData as TripleDocumentElementData } from './types'
 export * from './elements/text'
-export { generateCoupon } from './elements/tna/helpers'
+export { useGenerateCoupon } from './elements/tna/use-generate-coupon'
 export { Slot } from './elements/tna/slot'
 export { PricePolicyCouponInfo } from './elements/tna/price-policy-coupon-info'
 

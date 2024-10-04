@@ -9,7 +9,6 @@ import { Meta, ArgTypes } from '@storybook/blocks'
 ```tsx
 // pages/_app.tsx
 import { TripleWeb, buildTripleWebProps, BuildTripleWebPropsResult } from '@titicaca/triple-web-nextjs-pages'
-import i18n from '../src/i18n'
 
 export default function MyApp({
   Component,
@@ -22,7 +21,7 @@ export default function MyApp({
     <TripleWeb
       clientAppProvider={clientAppProvider}
       envProvider={{ ... }}
-      i18nProvider={{ i18n, fallback: 'ko' }}
+      i18nProvider={{ ... }}
       sessionProvider={sessionProvider}
       userAgentProvider={userAgentProvider}
     >
@@ -65,7 +64,7 @@ MyApp.getInitialProps = async (
 
 ### i18nProvider
 
-`{ i18n: i18next; fallback: string; key?: string }`
+`I18nValue`
 
 **Required**
 

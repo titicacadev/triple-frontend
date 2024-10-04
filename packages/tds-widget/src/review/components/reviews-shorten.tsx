@@ -1,9 +1,12 @@
 import { ComponentType, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
-import { useTranslation } from 'react-i18next'
+import {
+  useTranslation,
+  useClientApp,
+  useClientAppActions,
+} from '@titicaca/triple-web'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useClientApp, useClientAppActions } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 import CustomizedScheduleBanner from '../customized-schedule-banner'
@@ -102,7 +105,7 @@ function ReviewsShortenComponent({
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const app = useClientApp()
 

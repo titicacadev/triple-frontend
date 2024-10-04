@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react'
 
 import { ClientAppContext } from '../client-app/context'
 import { EnvContext } from '../env/context'
-import { I18nProvider } from '../i18n/context'
+import { I18nContext } from '../i18n/context'
 import { SessionProvider } from '../session/context'
 import { UserAgentContext } from '../user-agent/context'
 import { HashRouterProvider } from '../hash-router/context'
@@ -36,7 +36,7 @@ export function TripleWeb({
   return (
     <ClientAppContext.Provider value={clientAppProvider}>
       <EnvContext.Provider value={envProvider}>
-        <I18nProvider i18n={i18nProvider.i18n} lang={i18nProvider.lang}>
+        <I18nContext.Provider value={i18nProvider}>
           <SessionProvider initialSession={sessionProvider}>
             <UserAgentContext.Provider value={userAgentProvider}>
               <HashRouterProvider>
@@ -48,7 +48,7 @@ export function TripleWeb({
               </HashRouterProvider>
             </UserAgentContext.Provider>
           </SessionProvider>
-        </I18nProvider>
+        </I18nContext.Provider>
       </EnvContext.Provider>
     </ClientAppContext.Provider>
   )

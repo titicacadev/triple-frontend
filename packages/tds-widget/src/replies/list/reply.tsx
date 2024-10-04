@@ -1,5 +1,10 @@
 import { useState, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import {
+  useTranslation,
+  useHashRouter,
+  useSessionCallback,
+  useClientAppCallback,
+} from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import {
   Container,
@@ -12,11 +17,6 @@ import {
 } from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
-import {
-  useHashRouter,
-  useSessionCallback,
-  useClientAppCallback,
-} from '@titicaca/triple-web'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -88,7 +88,7 @@ export function Reply({
   focusInput: () => void
   fetchMoreReplies: (reply?: ReplyType) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
@@ -429,7 +429,7 @@ function Content({
   blinded: boolean
   deleted: boolean
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const [unfolded, setUnfolded] = useState(false)
   const foldedPosition = findFoldedPosition(5, text)
@@ -505,7 +505,7 @@ function FeatureActionSheet({
   onDeleteClick: () => void
   onReportClick: () => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { uriHash, removeUriHash } = useHashRouter()
 
   return (

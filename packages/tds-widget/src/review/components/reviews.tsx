@@ -1,9 +1,8 @@
 import { ComponentType, useEffect } from 'react'
 import { styled } from 'styled-components'
-import { Trans, useTranslation } from 'react-i18next'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
 import { formatNumber } from '@titicaca/view-utilities'
-import { useClientAppActions } from '@titicaca/triple-web'
+import { useClientAppActions, useTranslation } from '@titicaca/triple-web'
 
 import { useReviewCount } from '../services'
 
@@ -104,7 +103,7 @@ function ReviewsComponent({
 }: Omit<ReviewsProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
     useClientAppActions()
@@ -150,17 +149,12 @@ function ReviewsComponent({
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <Container>
-        <Trans
-          t={t}
-          i18nKey="{{totalReviewsCount}}개의 리뷰"
-          values={{
-            totalReviewsCount: formatNumber(reviewsCountData?.reviewsCount),
-          }}
-          components={[
-            <Text key={0} bold size="huge" color="blue" alpha={1} inline />,
-            <Text key={1} bold size="huge" color="gray" alpha={1} inline />,
-          ]}
-        />
+        <Text bold size="huge" color="blue" alpha={1} inline>
+          {formatNumber(reviewsCountData?.reviewsCount)}
+        </Text>
+        <Text bold size="huge" color="gray" alpha={1} inline>
+          {t('개의 리뷰')}
+        </Text>
       </Container>
 
       <OptionContainer>

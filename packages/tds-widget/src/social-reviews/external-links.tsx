@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import {
   Section,
@@ -38,7 +38,7 @@ function ExternalLinkItem<Data>({
   externalLink: ExternalLink<Data>
   onItemClick?: (e: MouseEvent<HTMLLIElement>, item: ExternalLink<Data>) => void
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   return (
     <ExternalLinkEntry

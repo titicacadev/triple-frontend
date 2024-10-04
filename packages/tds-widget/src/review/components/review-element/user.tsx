@@ -1,5 +1,5 @@
 import { PropsWithChildren, MouseEventHandler } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import { Container, Text } from '@titicaca/tds-ui'
 
@@ -33,7 +33,7 @@ export function User({
   onClick?: MouseEventHandler
   user: BaseUserFragment
 }) {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
 
   const { reviewsV2: reviewsCount } = userBoard || {}
   const { badges = [], level } = mileage || {}

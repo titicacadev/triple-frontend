@@ -6,7 +6,7 @@ import {
   type PoiListElementProps,
   type PoiListElementType,
 } from '@titicaca/tds-widget'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { useResourceClickHandler } from '../prop-context/resource-click-handler'
 import { useGuestMode } from '../prop-context/guest-mode'
@@ -45,7 +45,7 @@ export default function Pois<T extends ExtendedPoiListElementData>({
   }
 }) {
   const guestMode = useGuestMode()
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const onResourceClick = useResourceClickHandler()
 
   const Container = display === 'list' ? ResourceList : DocumentCarousel

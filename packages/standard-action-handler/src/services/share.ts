@@ -1,4 +1,3 @@
-import { t } from 'i18next'
 import {
   hasAccessibleTripleNativeClients,
   shareLink,
@@ -54,7 +53,15 @@ function copyUrlToClipboard({
   })
 }
 
-function shareNativeInterface({ params }: { params: SharingParams }) {
+function shareNativeInterface({
+  params,
+  webButtonTitle,
+  appButtonTitle,
+}: {
+  params: SharingParams
+  webButtonTitle: string
+  appButtonTitle: string
+}) {
   const { title, description, image, webUrl, appUrl } = params
 
   return shareLink({
@@ -64,11 +71,11 @@ function shareNativeInterface({ params }: { params: SharingParams }) {
     imageUrl: image || DEFAULT_IMAGE,
     buttons: [
       {
-        title: t('웹에서 보기', { ns: 'triple-frontend' }),
+        title: webButtonTitle,
         webUrl: webUrl as string,
       },
       {
-        title: t(['teuripeuleseo-bogi', '트리플에서 보기']),
+        title: appButtonTitle,
         webUrl: webUrl as string,
         appUrl,
       },

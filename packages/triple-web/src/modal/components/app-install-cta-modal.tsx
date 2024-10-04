@@ -1,7 +1,6 @@
 import { Modal, Text } from '@titicaca/tds-ui'
 import { styled } from 'styled-components'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { generateUrl } from '@titicaca/view-utilities'
 
 import { APP_INSTALL_CTA_MODAL_HASH } from '../constants'
@@ -9,6 +8,7 @@ import { useModal } from '../context'
 import { useHashRouter } from '../../hash-router/use-hash-router'
 import { trackEvent } from '../../event-tracking/utils/track-event'
 import { useEnv } from '../../env'
+import { useTranslation } from '../../i18n'
 
 const IconImage = styled.img`
   display: block;
@@ -18,7 +18,7 @@ const IconImage = styled.img`
 `
 
 export function AppInstallCtaModal() {
-  const { t } = useTranslation('triple-frontend')
+  const t = useTranslation()
   const { appInstallCtaModalRef, eventTrackingContextForkRef } = useModal()
   const { removeUriHash, uriHash } = useHashRouter()
   const { appUrlScheme } = useEnv()

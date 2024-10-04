@@ -4,17 +4,20 @@ import { WebAction, ContextOptions, NavigateOptions } from './types'
 
 export default class Handler {
   private options: ContextOptions
-
+  private t: (key: string, values?: object) => string
   private handlers: WebAction[]
 
   public constructor({
     handlers,
+    t,
     options,
   }: {
     handlers: WebAction[]
+    t: (key: string, values?: object) => string
     options: ContextOptions
   }) {
     this.handlers = handlers
+    this.t = t
     this.options = options
   }
 
@@ -25,6 +28,7 @@ export default class Handler {
       for (const handler of this.handlers) {
         const result = await handler({
           url: parsedUrl,
+          t: this.t,
           options: this.options,
           handler: this,
         })

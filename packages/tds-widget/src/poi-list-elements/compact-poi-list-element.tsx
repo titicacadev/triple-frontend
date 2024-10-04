@@ -6,6 +6,7 @@ import {
   Container,
 } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { OutlineScrapButton } from '../scrap-button'
 
@@ -46,6 +47,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
   onClick,
   guestMode,
 }: CompactPoiListElementProps<T>) {
+  const t = useTranslation()
   const [actionButtonWidth, setActionButtonWidth] = useState(0)
   const actionButtonRef = useRef<HTMLDivElement & { width?: number }>(null)
 
@@ -97,7 +99,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
       </Text>
       <Text size="tiny" alpha={0.7} margin={{ top: 4, left: 50 }}>
         {[
-          getTypeNames(type),
+          t(getTypeNames(type)),
           regionName
             ? areas?.[0]?.name
               ? `${regionName}(${areas?.[0]?.name})`

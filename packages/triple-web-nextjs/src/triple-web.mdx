@@ -22,7 +22,7 @@ export default async function RootLayout({
         <TripleWeb
           {...(await buildTripleWebProps())}
           envProvider={{ ... }}
-          i18nProvider={{ i18n, fallback: 'ko'}}
+          i18nProvider={{ ... }
         >
           {children}
         </TripleWeb>
@@ -52,7 +52,7 @@ export default async function RootLayout({
 
 ### i18nProvider
 
-`{ i18n: i18next; fallback: string; key?: string }`
+`I18nValue`
 
 **Required**
 
