@@ -35,6 +35,7 @@ export function useReviewCount(
   return useQuery({
     queryKey: ['reviews/getReviewCount', { ...params }],
     queryFn: () => client.GetReviewsCount(params),
+    refetchOnWindowFocus: false,
     initialData: initialValue
       ? {
           __typename: 'Query',
@@ -50,6 +51,7 @@ export function useDescriptions(
   return useQuery({
     queryKey: ['review/getReviewSpecification', params],
     queryFn: () => client.GetReviewSpecification(params),
+    refetchOnWindowFocus: false,
   })
 }
 
@@ -59,6 +61,7 @@ export function useMyReview(
   return useQuery({
     queryKey: ['review/getMyReview', params],
     queryFn: () => client.GetMyReview(params),
+    refetchOnWindowFocus: false,
   })
 }
 
