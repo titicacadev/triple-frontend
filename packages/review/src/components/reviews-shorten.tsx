@@ -1,4 +1,4 @@
-import { ComponentType, useEffect, useMemo } from 'react'
+import { ComponentType, useEffect } from 'react'
 import styled from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/core-elements'
 import { LoginCtaModalProvider } from '@titicaca/modals'
@@ -141,31 +141,17 @@ function ReviewsShortenComponent({
   ] as ComponentType<{ value: ShortenReviewValue }>
   const isRatingOption = selectedOption.startsWith('star-rating')
 
-  const value = useMemo(
-    () => ({
-      resourceId,
-      resourceType,
-      regionId,
-      recentTrip: isRecentTrip,
-      hasMedia: isMediaCollection,
-      placeholderText,
-      reviewsCount: reviewsCountData?.reviewsCount,
-      sortingType,
-      ...(isRatingOption && { sortingLabel: selectedOption }),
-    }),
-    [
-      resourceId,
-      resourceType,
-      regionId,
-      isRecentTrip,
-      isMediaCollection,
-      placeholderText,
-      reviewsCountData,
-      sortingType,
-      isRatingOption,
-      selectedOption,
-    ],
-  )
+  const value = {
+    resourceId,
+    resourceType,
+    regionId,
+    recentTrip: isRecentTrip,
+    hasMedia: isMediaCollection,
+    placeholderText,
+    reviewsCount: reviewsCountData?.reviewsCount,
+    sortingType,
+    ...(isRatingOption && { sortingLabel: selectedOption }),
+  }
 
   const showCustomizedScheduleBanner = [
     'article',
