@@ -27,7 +27,7 @@ const CarouselBase = styled.ul<CarouselBaseProps>`
   overflow: scroll hidden;
   -webkit-overflow-scrolling: touch;
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 
