@@ -29,6 +29,7 @@ export function useReviewCount(
     ['reviews/getReviewCount', { ...params }],
     () => client.GetReviewsCount(params),
     {
+      refetchOnWindowFocus: false,
       initialData: initialValue
         ? {
             __typename: 'Query',
@@ -40,14 +41,18 @@ export function useReviewCount(
 }
 
 export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
-  return useQuery(['review/getReviewSpecification', params], () =>
-    client.GetReviewSpecification(params),
+  return useQuery(
+    ['review/getReviewSpecification', params],
+    () => client.GetReviewSpecification(params),
+    { refetchOnWindowFocus: false },
   )
 }
 
 export function useMyReview(params: GetMyReviewQueryVariables) {
-  return useQuery(['review/getMyReview', params], () =>
-    client.GetMyReview(params),
+  return useQuery(
+    ['review/getMyReview', params],
+    () => client.GetMyReview(params),
+    { refetchOnWindowFocus: false },
   )
 }
 
