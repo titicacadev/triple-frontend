@@ -162,7 +162,8 @@ export function CompanyInfo({
           <br />
           통신판매업 신고번호 2024-서울서초-2319
           <br />
-          서울특별시 서초구 강남대로 447 <br />
+          경기도 성남시 수정구 금토로 70 (금토동, 텐엑스타워)
+          <br />
           항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
           help@triple-corp.com
         </Text>
