@@ -237,6 +237,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://
 
+## v13.30.0
+
+```
+### footer
+
+- [KLZT-622] 푸터 주소 변경 [#3413](https://github.com/titicacadev/triple-frontend/pull/3413)
+```
+
 ## v13.29.0
 
 ```
