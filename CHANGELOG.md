@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.30.0
+
+```
+### footer
+
+- [KLZT-622] 푸터 주소 변경 [#3413](https://github.com/titicacadev/triple-frontend/pull/3413)
+```
+
 ## v13.29.0
 
 ```
