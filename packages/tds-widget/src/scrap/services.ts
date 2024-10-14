@@ -13,10 +13,20 @@ function mapTypes(type: unknown) {
   }
 }
 
+interface ScrapSuccessResponse {
+  id: string
+}
+
+interface ScrapFailResponse {
+  message: string
+}
+
 export function fetchScrape({ id, type }: Target) {
-  return post(`/api/scraps/${mapTypes(type)}/${id}`)
+  return post<ScrapSuccessResponse, ScrapFailResponse>(
+    `/api/scraps/${mapTypes(type)}/${id}`,
+  )
 }
 
 export function fetchUnscrape({ id, type }: Target) {
-  return del(`/api/scraps/${mapTypes(type)}/${id}`)
+  return del<unknown, ScrapFailResponse>(`/api/scraps/${mapTypes(type)}/${id}`)
 }
