@@ -44,6 +44,7 @@ export function useInfinitePopularReviews(
       pages: pages.map((item) => item.popularReviews),
     }),
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   })
 }
 
@@ -75,6 +76,7 @@ export function useInfiniteLatestReviews(
       pages: pages.map((item) => item.latestReviews),
     }),
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   })
 }
 
@@ -106,5 +108,6 @@ export function useInfiniteRatingReviews(
       pages: pages.map((item) => item.ratingReviews),
     }),
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   })
 }

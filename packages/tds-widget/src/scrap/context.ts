@@ -10,6 +10,11 @@ export const ScrapContext = createContext<
         [id: string]: boolean
       }
       beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
+      onScrapeFailed?: (
+        target: Target,
+        scraped: boolean,
+        errorMessage?: string,
+      ) => void
     }
   | undefined
 >(undefined)

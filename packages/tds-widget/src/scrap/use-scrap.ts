@@ -28,7 +28,8 @@ export function useScrap() {
     throw new Error('ScrapProvider가 없습니다.')
   }
 
-  const { scraps, updating, beforeScrapedChange } = scrapsContext
+  const { scraps, updating, beforeScrapedChange, onScrapeFailed } =
+    scrapsContext
 
   const app = useClientApp()
   const { notifyScraped, notifyUnscraped } = useClientAppActions()
@@ -113,6 +114,7 @@ export function useScrap() {
         trackEventWithMetadata(eventParams)
         dispatch({ type: SCRAPE, id })
       } else {
+        onScrapeFailed?.({ id, type }, false, response.parsedBody.message)
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
@@ -126,6 +128,7 @@ export function useScrap() {
       showLoginCta,
       notifyScraped,
       trackEventWithMetadata,
+      onScrapeFailed,
     ],
   )
 
@@ -170,6 +173,7 @@ export function useScrap() {
         trackEventWithMetadata(eventParams)
         dispatch({ type: UNSCRAPE, id })
       } else {
+        onScrapeFailed?.({ id, type }, true, response.parsedBody.message)
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
@@ -183,6 +187,7 @@ export function useScrap() {
       showLoginCta,
       notifyUnscraped,
       trackEventWithMetadata,
+      onScrapeFailed,
     ],
   )
 
