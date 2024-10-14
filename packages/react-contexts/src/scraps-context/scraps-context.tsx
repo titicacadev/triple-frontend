@@ -93,6 +93,11 @@ interface ScrapsProviderProps {
   enableTrackEvent?: boolean
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
   afterScrapedChange?: (target: Target, scraped: boolean) => void
+  onScrapeFailed?: (
+    target: Target,
+    scraped: boolean,
+    errorMessage?: string,
+  ) => void
 }
 
 export function ScrapsProvider({
@@ -100,6 +105,7 @@ export function ScrapsProvider({
   enableTrackEvent,
   beforeScrapedChange,
   afterScrapedChange,
+  onScrapeFailed,
   children,
 }: PropsWithChildren<ScrapsProviderProps>) {
   const parentScrapsReducer = useContext(ScrapsReducerContext)
@@ -160,10 +166,17 @@ export function ScrapsProvider({
 
         dispatch({ type: SCRAPE, id })
       } else {
+        onScrapeFailed?.({ id, type }, true, response.parsedBody.message)
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
+    [
+      updating,
+      beforeScrapedChange,
+      dispatch,
+      afterScrapedChange,
+      onScrapeFailed,
+    ],
   )
 
   const unscrape = useCallback(
@@ -190,10 +203,17 @@ export function ScrapsProvider({
 
         dispatch({ type: UNSCRAPE, id })
       } else {
+        onScrapeFailed?.({ id, type }, true, response.parsedBody.message)
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
-    [updating, beforeScrapedChange, dispatch, afterScrapedChange],
+    [
+      updating,
+      beforeScrapedChange,
+      dispatch,
+      afterScrapedChange,
+      onScrapeFailed,
+    ],
   )
 
   useEffect(() => {
