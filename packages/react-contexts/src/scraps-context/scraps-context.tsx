@@ -166,7 +166,7 @@ export function ScrapsProvider({
 
         dispatch({ type: SCRAPE, id })
       } else {
-        onScrapeFailed?.({ id, type }, true, response.parsedBody.message)
+        onScrapeFailed?.({ id, type }, false, response.parsedBody.message)
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
