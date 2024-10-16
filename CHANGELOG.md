@@ -235,7 +235,19 @@
 - [v14] subpath exports 제거, intersection-observer 개선 [#3085](https://github.com/titicacadev/triple-frontend/pull/3085)
 - Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
-- ES Module 빌드 [#3275](https://
+- ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+## v13.31.0
+
+```
+### react-contexts
+
+- [react-contexts] ScrapProvider에서 스크랩 실패 시 콜백함수를 props로 받습니다. [#3418](https://github.com/titicacadev/triple-frontend/pull/3418)
+
+### review
+
+- [KLZT-103] 리뷰 컴포넌트 렌더링 버그를 수정합니다. [#3407](https://github.com/titicacadev/triple-frontend/pull/3407)
+```
 
 ## v13.30.0
 
