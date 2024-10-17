@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { PoiDetailImageCarousel } from './image-carousel'
-import { PoiDetailImagesProvider } from './images-provider'
+import { ImagesProvider } from './images-provider'
 
 export default {
   title: 'tds-widget / poi-detail / ImageCarousel',
@@ -14,14 +14,14 @@ export const AttractionOrRestaurant: StoryObj<typeof PoiDetailImageCarousel> = {
   },
   decorators: [
     (Story) => (
-      <PoiDetailImagesProvider
+      <ImagesProvider
         source={{
           id: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
           type: 'attraction',
         }}
       >
         <Story />
-      </PoiDetailImagesProvider>
+      </ImagesProvider>
     ),
   ],
 }
@@ -32,14 +32,14 @@ export const Hotel: StoryObj<typeof PoiDetailImageCarousel> = {
   },
   decorators: [
     (Story) => (
-      <PoiDetailImagesProvider
+      <ImagesProvider
         source={{
           id: '1ff98b6f-ca34-4961-ae29-fa52c8ca2e21',
           type: 'hotel',
         }}
       >
         <Story />
-      </PoiDetailImagesProvider>
+      </ImagesProvider>
     ),
   ],
 }
