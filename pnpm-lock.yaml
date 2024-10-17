@@ -416,8 +416,8 @@ importers:
         specifier: ^0.26.25
         version: 0.26.25(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@titicaca/content-utilities':
-        specifier: 9.6.4
-        version: 9.6.4(encoding@0.1.13)
+        specifier: 9.8.0
+        version: 9.8.0(encoding@0.1.13)
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -568,8 +568,8 @@ importers:
   packages/triple-document:
     dependencies:
       '@titicaca/content-type-definitions':
-        specifier: 9.6.4
-        version: 9.6.4
+        specifier: 9.8.0
+        version: 9.8.0
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -3546,11 +3546,11 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@titicaca/content-type-definitions@9.6.4':
-    resolution: {integrity: sha512-2qdFX5vUguJQ8INQjnAHvu0Ip42MbJ3muurGv3NtSura+Xckx5OugOhQWvWjEdu/BAB/F1t3Dsp4X9LGlmx/Cg==}
+  '@titicaca/content-type-definitions@9.8.0':
+    resolution: {integrity: sha512-HK/9FUzQ5F7dx4BiGPrNhIxSsORyV8mJYlTUiBKT3HovBUWo765JqJ6SHD5it65asdO21f1WZV3qndtphca/pA==}
 
-  '@titicaca/content-utilities@9.6.4':
-    resolution: {integrity: sha512-K7D2aj6rJqrAPpH2OZSHq/8+gpATKJAMQXnWsS95TnlgjkldMrdVNh4LGUu2N3SNdQF3BoGTYzsPwbr35bkEPw==}
+  '@titicaca/content-utilities@9.8.0':
+    resolution: {integrity: sha512-AZ2eEix7ktMyKG2/hTVdb9GSfKRRyW6SPVlD9GRD00YU5VjgHTAFn54LCZlvsYTSSxdSQfEOJhggb9HxvrCF6w==}
 
   '@titicaca/eslint-config-triple@5.2.1':
     resolution: {integrity: sha512-eBFyYyUITrCbmEpZ2N0UdGucZy6XBv7wzf/DQI/FUBGFFq1zmwT7/7WvAaEtqhb/V8BkYjl6FfLeDm/dT99Fuw==}
@@ -13831,11 +13831,11 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
 
-  '@titicaca/content-type-definitions@9.6.4': {}
+  '@titicaca/content-type-definitions@9.8.0': {}
 
-  '@titicaca/content-utilities@9.6.4(encoding@0.1.13)':
+  '@titicaca/content-utilities@9.8.0(encoding@0.1.13)':
     dependencies:
-      '@titicaca/content-type-definitions': 9.6.4
+      '@titicaca/content-type-definitions': 9.8.0
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
