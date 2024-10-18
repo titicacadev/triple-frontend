@@ -4,12 +4,10 @@ import {
   PropsWithChildren,
   useMemo,
   useCallback,
-  ComponentType,
   useReducer,
   useEffect,
 } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { DeepPartial } from 'utility-types'
 
 import reducer, {
   loadImagesRequest,
@@ -186,35 +184,4 @@ export function ImagesProvider({
 
 export function useImagesContext() {
   return useContext(Context)
-}
-
-export interface WithImagesBaseProps {
-  images: ImagesContext['images']
-  totalImagesCount: ImagesContext['total']
-  imagesActions: ImagesContext['actions']
-}
-
-export function withImages<P extends DeepPartial<WithImagesBaseProps>>(
-  Component: ComponentType<P>,
-) {
-  return function ImagesComponent(
-    props: Omit<P, 'images' | 'totalImagesCount' | 'imagesActions'>,
-  ) {
-    return (
-      <Context.Consumer>
-        {({ images, total, actions }) => {
-          return (
-            <Component
-              {...({
-                ...props,
-                images,
-                totalImagesCount: total,
-                imagesActions: actions,
-              } as P)}
-            />
-          )
-        }}
-      </Context.Consumer>
-    )
-  }
 }
