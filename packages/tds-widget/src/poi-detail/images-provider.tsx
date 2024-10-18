@@ -18,7 +18,7 @@ import reducer, {
 import { ImageCategoryOrder } from './types'
 import useFetchImages from './use-fetch-images'
 
-interface ImagesContext {
+interface PoiDetailImagesContext {
   images: ImageMeta[]
   total: number
   loading: boolean
@@ -29,7 +29,7 @@ interface ImagesContext {
   }
 }
 
-interface ImagesProviderProps {
+interface PoiDetailImagesProviderProps {
   source: {
     id: string
     type: 'attraction' | 'restaurant' | 'hotel'
@@ -39,7 +39,7 @@ interface ImagesProviderProps {
   total?: number
 }
 
-const Context = createContext<ImagesContext>({
+const Context = createContext<PoiDetailImagesContext>({
   images: [],
   total: 0,
   loading: false,
@@ -62,7 +62,7 @@ export function PoiDetailImagesProvider({
   ],
   source: { id, type },
   children,
-}: PropsWithChildren<ImagesProviderProps>) {
+}: PropsWithChildren<PoiDetailImagesProviderProps>) {
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: !defaultImages,
     images: defaultImages || [],
