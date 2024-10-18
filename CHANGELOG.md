@@ -1,5 +1,105 @@
 # CHANGELOG
 
+## v14.0.1
+
+### ab-experiments
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+
+### fetcher
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+
+### i18n
+
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### intersection-observer
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+
+### meta-tags
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### middlewares
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+
+### router
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### standard-action-handler
+
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### tds-theme
+
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+
+### tds-ui
+
+- v13 변경사항 리베이스 [#3315](https://github.com/titicacadev/triple-frontend/pull/3315)
+- styled components 6 prop forward warning 수정 [#3323](https://github.com/titicacadev/triple-frontend/pull/3323)
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- FlickingCarousel을 원상복구 [#3359](https://github.com/titicacadev/triple-frontend/pull/3359)
+- v14 버그 수정 [#3369](https://github.com/titicacadev/triple-frontend/pull/3369)
+
+### tds-widget
+
+- [v14] beforeScrapedChange prop 복구 [#3289](https://github.com/titicacadev/triple-frontend/pull/3289)
+- querystring 대신 qs 모듈 사용 [#3314](https://github.com/titicacadev/triple-frontend/pull/3314)
+- styled components 6 prop forward warning 수정 [#3323](https://github.com/titicacadev/triple-frontend/pull/3323)
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- [v14] POI 대표 이미지 오류 수정 [#3356](https://github.com/titicacadev/triple-frontend/pull/3356)
+- FlickingCarousel을 원상복구 [#3359](https://github.com/titicacadev/triple-frontend/pull/3359)
+- [migration] v13.26.3 이후 변경사항 v14에 반영 [#3374](https://github.com/titicacadev/triple-frontend/pull/3374)
+- [migration] v13.29.0~v13.31.0 변경사항을 v14에 반영합니다. [#3381](https://github.com/titicacadev/triple-frontend/pull/3381)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+- [v14] 캐러셀 관련 이슈 수정 [#3409](https://github.com/titicacadev/triple-frontend/pull/3409)
+
+### triple-document
+
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### triple-email-document
+
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+
+### triple-header
+
+- styled components에 transient prop 사용 [#3326](https://github.com/titicacadev/triple-frontend/pull/3326)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### triple-web
+
+- v13 변경사항 리베이스 [#3315](https://github.com/titicacadev/triple-frontend/pull/3315)
+- v14 버그 수정 [#3369](https://github.com/titicacadev/triple-frontend/pull/3369)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### triple-web-nextjs
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- v14 버그 수정 [#3369](https://github.com/titicacadev/triple-frontend/pull/3369)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### triple-web-nextjs-pages
+
+- 스토리북 8 업그레이드 [#3341](https://github.com/titicacadev/triple-frontend/pull/3341)
+- v14 버그 수정 [#3369](https://github.com/titicacadev/triple-frontend/pull/3369)
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
+### triple-web-test-utils
+
+- i18next 제거 & triple-web에 i18n context 추가 [#3387](https://github.com/titicacadev/triple-frontend/pull/3387)
+
 ## v14
 
 ### ab-experiments
@@ -4742,11 +4842,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
