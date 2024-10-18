@@ -182,6 +182,6 @@ export function ImagesProvider({
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-export function useImagesContext() {
+export function usePoiDetailImages() {
   return useContext(Context)
 }
