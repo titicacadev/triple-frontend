@@ -1,4 +1,4 @@
-import { useImagesContext } from '../images-provider'
+import { usePoiDetailImages } from '../images-provider'
 
 import { CarouselSectionProps, CarouselSection } from './carousel-section'
 
@@ -24,7 +24,7 @@ export function PoiDetailImageCarousel(props: ImageCarouselProps) {
     loading,
     total,
     actions: { fetch },
-  } = useImagesContext()
+  } = usePoiDetailImages()
 
   return (
     <CarouselSection
