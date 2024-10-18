@@ -50,7 +50,7 @@ const Context = createContext<ImagesContext>({
   },
 })
 
-export function ImagesProvider({
+export function PoiDetailImagesProvider({
   images: defaultImages,
   total: initialTotal,
   categoryOrder = [
