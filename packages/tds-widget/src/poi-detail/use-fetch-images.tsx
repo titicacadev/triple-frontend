@@ -1,5 +1,4 @@
-import qs from 'querystring'
-
+import qs from 'qs'
 import { useState } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { captureHttpError, get } from '@titicaca/fetcher'
