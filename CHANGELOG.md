@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v14.0.2
+
+```
+### tds-widget
+
+- node querystring 대신 qs 사용 [#3423](https://github.com/titicacadev/triple-frontend/pull/3423)
+```
+
 ## v14.0.1
 
 ### ab-experiments
