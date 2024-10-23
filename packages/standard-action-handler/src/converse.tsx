@@ -107,7 +107,7 @@ async function fetchApi(
       type: 'error',
       title: '안내',
       description:
-        '서비스 이용이 원활하지 않습니다.\n잠시후 다시 이용해주세요.',
+        '서비스 이용이 원활하지 않습니다.\n잠시 후 다시 이용해 주세요.',
     }
   } else {
     const { title, description } = (await response.json()) as {
