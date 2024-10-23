@@ -49,7 +49,7 @@
     "@titicaca/eslint-config-triple": "5.2.1",
     "@titicaca/prettier-config-triple": "1.2.1",
     "@titicaca/stylelint-config-triple": "1.3.1",
-    "@types/jest": "^29.5.13",
+    "@types/jest": "^29.5.14",
     "@types/node": "^18.19.57",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
