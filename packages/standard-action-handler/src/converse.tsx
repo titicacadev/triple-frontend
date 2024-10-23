@@ -2,11 +2,18 @@ import qs from 'qs'
 import { createRoot } from 'react-dom/client'
 import { Modal } from '@titicaca/modals'
 
-import { WebActionParams } from './types'
+import { ContextOptions, WebActionParams } from './types'
 
 const HASH_CONVERSE_MODAL = 'hash.converse-modal'
 
-const NEED_LOGIN_CONTENT = {
+type ModalType = 'login' | 'error' | 'normal'
+
+const NEED_LOGIN_CONTENT: {
+  type: ModalType
+  title: string
+  description: string
+} = {
+  type: 'login',
   title: '로그인이 필요합니다.',
   description: '로그인하고 트리플을\n더 편하게 이용하세요🙂',
 }
@@ -15,33 +22,18 @@ export default async function converse({
   url: { path, query } = {},
   options: { navigate } = {},
 }: WebActionParams) {
-  if (path === '/web-action/converse' && query) {
+  if (path === '/web-action/converse' && query && navigate) {
     const { path: pathFromQuery } = qs.parse(query) as { path: string }
 
-    const { title, description } = await fetchApi(pathFromQuery)
+    const { type, title, description } = await fetchApi(pathFromQuery)
 
-    if (title && description) {
-      const isLoginModal = title === NEED_LOGIN_CONTENT.title
-
+    if (type && title && description) {
       window.history.pushState(null, '', `#${HASH_CONVERSE_MODAL}`)
 
       const container = document.createElement('div')
       const root = createRoot(container)
 
-      const closeModal = () => {
-        window.history.back()
-      }
-
-      const onClickLogin = () => {
-        const loginUrl = window.location.href.replace(
-          `#${HASH_CONVERSE_MODAL}`,
-          '',
-        )
-        closeModal()
-        if (navigate) {
-          navigate(`/login?returnUrl=${encodeURIComponent(loginUrl)}`)
-        }
-      }
+      const { onConfirm, onCancel } = getOnActions(type, navigate)
 
       const handlePopstate = () => {
         root.unmount()
@@ -56,8 +48,8 @@ export default async function converse({
         OpenModal({
           title,
           description,
-          onCancel: isLoginModal ? closeModal : undefined,
-          onConfirm: isLoginModal ? onClickLogin : closeModal,
+          onCancel,
+          onConfirm,
         }),
       )
 
@@ -99,7 +91,7 @@ export function OpenModal({
 
 async function fetchApi(
   url: string,
-): Promise<{ title: string; description: string }> {
+): Promise<{ type: ModalType; title: string; description: string }> {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -112,6 +104,7 @@ async function fetchApi(
       return NEED_LOGIN_CONTENT
     }
     return {
+      type: 'error',
       title: '안내',
       description:
         '서비스 이용이 원활하지 않습니다.\n잠시후 다시 이용해주세요.',
@@ -122,6 +115,30 @@ async function fetchApi(
       description: string
     }
 
-    return { title, description }
+    return { type: 'normal', title, description }
+  }
+}
+
+function getOnActions(
+  modalType: ModalType,
+  navigate: NonNullable<ContextOptions['navigate']>,
+) {
+  const closeModal = () => window.history.back()
+  if (modalType === 'login') {
+    return {
+      onConfirm: () => {
+        const loginUrl = window.location.href.replace(
+          `#${HASH_CONVERSE_MODAL}`,
+          '',
+        )
+        window.history.back()
+        navigate(`/login?returnUrl=${encodeURIComponent(loginUrl)}`)
+      },
+      onCancel: closeModal,
+    }
+  }
+
+  return {
+    onConfirm: closeModal,
   }
 }
