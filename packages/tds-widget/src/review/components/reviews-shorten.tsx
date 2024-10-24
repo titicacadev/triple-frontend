@@ -1,15 +1,10 @@
-import { ComponentType, useEffect } from 'react'
+import { ComponentType, ReactNode, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { FlexBox, Section, Text } from '@titicaca/tds-ui'
-import {
-  useTranslation,
-  useClientApp,
-  useClientAppActions,
-} from '@titicaca/triple-web'
+import { useTranslation, useClientAppActions } from '@titicaca/triple-web'
 import { formatNumber } from '@titicaca/view-utilities'
 
 import { useReviewCount } from '../services'
-import CustomizedScheduleBanner from '../customized-schedule-banner'
 
 import { PopularReviews, LatestReviews, RatingReviews } from './shorten-list'
 import { WriteButton } from './write-button'
@@ -37,6 +32,7 @@ interface ReviewsShortenProps {
   sortingType?: SortingType
   placeholderText?: string
   receiverId?: string
+  banner?: ReactNode
 }
 
 const OptionContainer = styled(FlexBox)`
@@ -63,6 +59,7 @@ export function ReviewsShorten({
   sortingType = 'default',
   placeholderText,
   receiverId,
+  banner,
 }: ReviewsShortenProps) {
   return (
     <FilterProvider
@@ -82,6 +79,7 @@ export function ReviewsShorten({
           initialReviewsCount={initialReviewsCount}
           placeholderText={placeholderText}
           sortingType={sortingType}
+          banner={banner}
         />
       </SortingOptionsProvider>
     </FilterProvider>
@@ -102,12 +100,11 @@ function ReviewsShortenComponent({
   initialReviewsCount,
   placeholderText,
   sortingType,
+  banner,
 }: Omit<ReviewsShortenProps, 'initialRecentTrip' | 'initialSortingOption'>) {
   const { isRecentTrip, isMediaCollection } = useReviewFilters()
   const { selectedOption } = useReviewSortingOptions()
   const t = useTranslation()
-
-  const app = useClientApp()
 
   const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
     useClientAppActions()
@@ -150,12 +147,6 @@ function ReviewsShortenComponent({
     ...(isRatingOption && { sortingLabel: selectedOption }),
   }
 
-  const showCustomizedScheduleBanner = [
-    'article',
-    'attraction',
-    'restaurant',
-  ].includes(resourceType)
-
   return (
     <Section anchor={REVIEWS_SECTION_ID}>
       <FlexBox flex alignItems="center">
@@ -175,9 +166,7 @@ function ReviewsShortenComponent({
           regionId={regionId}
         />
       </FlexBox>
-      {!app && showCustomizedScheduleBanner ? (
-        <CustomizedScheduleBanner />
-      ) : null}
+      {banner}
       <OptionContainer>
         <SortingOptions />
 
