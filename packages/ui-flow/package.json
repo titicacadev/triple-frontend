@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/ui-flow",
-  "version": "13.31.0",
+  "version": "13.32.0",
   "description": "Functions, hooks, and/or components used to construct general UI flow",
   "keywords": [
     "session",
