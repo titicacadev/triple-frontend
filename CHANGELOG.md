@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v13.32.0
+
+```
+### review
+
+- [KLZT-655] 리뷰 정렬 옵션 변경 시 무관한 element로 포커싱이 되는 버그를 수정합니다.  [#3425](https://github.com/titicacadev/triple-frontend/pull/3425)
+- [WATF-397] 리뷰 컴포넌트 내 배너를 prop으로 받도록 수정합니다. [#3433](https://github.com/titicacadev/triple-frontend/pull/3433)
+```
+
 ## v13.31.0
 
 ```
