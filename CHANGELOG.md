@@ -345,6 +345,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## v13.33.0
+
+```
+### footer
+
+- [KLZT-671] 푸터 내 통신판매업 신고번호 변경 [#3435](https://github.com/titicacadev/triple-frontend/pull/3435)
+```
+
 ## v13.32.0
 
 ```
