@@ -39,6 +39,8 @@ interface Course {
   isFirst: boolean
   /** 마지막 아이템 판단 */
   isLast: boolean
+  /** POI 한줄 소개 */
+  comment?: string
 }
 
 const DEFAULT_TRANSPORTATION = {
@@ -105,6 +107,7 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
             name,
             type,
             description,
+            comment: source?.comment || undefined,
           }
         } else {
           const { id, title, category, regions } = festa

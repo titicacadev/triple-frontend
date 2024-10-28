@@ -90,6 +90,12 @@ const Duration = styled(Container)`
   flex-shrink: 0;
 `
 
+const Divider = styled.div`
+  margin: 12px 0;
+  height: 1px;
+  background-color: var(--color-gray50);
+`
+
 export default function ItineraryElement({ value }: Props) {
   const { trackEvent } = useEventTrackingContext()
 
@@ -176,6 +182,7 @@ export default function ItineraryElement({ value }: Props) {
               memo,
               schedule,
               isLast,
+              comment,
             } = course
             const hasDuration = !isLast && transportation !== undefined
             const CircleBadge = PoiCircleBadge(type)
@@ -258,6 +265,25 @@ export default function ItineraryElement({ value }: Props) {
                       >
                         {memo}
                       </Text>
+                    ) : null}
+                    {comment ? (
+                      <>
+                        <Divider />
+                        <Container css={{ display: 'flex' }}>
+                          <Text
+                            size={13}
+                            bold
+                            color="blue"
+                            margin={{ right: 6 }}
+                            css={{ flexShrink: 0 }}
+                          >
+                            추천
+                          </Text>
+                          <Text size={13} wordBreak="keep-all">
+                            {comment}
+                          </Text>
+                        </Container>
+                      </>
                     ) : null}
                   </PoiCard>
                 </CardWrapper>
