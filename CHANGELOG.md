@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.33.0
+
+```
+### footer
+
+- [KLZT-671] 푸터 내 통신판매업 신고번호 변경 [#3435](https://github.com/titicacadev/triple-frontend/pull/3435)
+```
+
 ## v13.32.0
 
 ```
