@@ -6,5 +6,5 @@ export enum AppName {
 export interface App {
   appName: AppName[keyof AppName]
   appVersion: string
-  isPcApp: boolean
+  isMacApp: boolean
 }
