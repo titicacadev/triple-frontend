@@ -1,6 +1,6 @@
 import type { NextPageContext } from 'next'
 import { ClientAppName, type ClientAppValue } from '@titicaca/triple-web'
-import { clientAppRegex, tripleAppRegex } from '@titicaca/triple-web-utils'
+import { clientAppRegex, macAppRegex } from '@titicaca/triple-web-utils'
 
 export function getClientApp(ctx: NextPageContext): ClientAppValue {
   const userAgent = ctx.req
@@ -27,7 +27,7 @@ export function getClientApp(ctx: NextPageContext): ClientAppValue {
         ? ClientAppName.Android
         : ClientAppName.iOS,
       version: metadata[2],
-      tripleMacApp: tripleAppRegex.test(userAgent),
+      isMacApp: macAppRegex.test(userAgent),
     },
     device: {
       autoplay,

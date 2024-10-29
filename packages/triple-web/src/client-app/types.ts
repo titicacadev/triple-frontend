@@ -7,7 +7,7 @@ export type ClientAppValue = {
   metadata: {
     name: ClientAppName
     version: string
-    tripleMacApp: boolean
+    isMacApp: boolean
   }
   device: {
     autoplay: 'always' | 'wifi_only' | 'never'
