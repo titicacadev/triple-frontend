@@ -24,7 +24,7 @@ afterEach(() => {
 })
 
 test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니다.', () => {
-  const { result } = renderHook(() => useClientAppCallback({}, mockFn), {
+  const { result } = renderHook(() => useClientAppCallback(mockFn), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider value={null}>
         <UserAgentContext.Provider
@@ -52,7 +52,7 @@ test('일반 브라우저에서 앱 전환 모달 표시 함수를 호출합니�
 })
 
 test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', () => {
-  const { result } = renderHook(() => useClientAppCallback({}, mockFn), {
+  const { result } = renderHook(() => useClientAppCallback(mockFn), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider
         value={{
