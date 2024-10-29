@@ -12,7 +12,7 @@ export function parseTripleClientUserAgent(userAgent: string): App | null {
     return {
       appName: AppName[matchData[1] as 'iOS' | 'Android'],
       appVersion: matchData[2] || 'unknown',
-      isPcApp: /TripleMacApp/i.test(userAgent),
+      isMacApp: /TripleMacApp/i.test(userAgent),
     }
   }
 
