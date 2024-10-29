@@ -2,7 +2,7 @@ import 'server-only'
 
 import { headers } from 'next/headers'
 import { ClientAppName, type ClientAppValue } from '@titicaca/triple-web'
-import { clientAppRegex } from '@titicaca/triple-web-utils'
+import { clientAppRegex, tripleAppRegex } from '@titicaca/triple-web-utils'
 
 export function getClientApp(): ClientAppValue {
   const headersList = headers()
@@ -29,6 +29,7 @@ export function getClientApp(): ClientAppValue {
         ? ClientAppName.Android
         : ClientAppName.iOS,
       version: metadata[2],
+      tripleMacApp: tripleAppRegex.test(userAgent),
     },
     device: {
       autoplay,
