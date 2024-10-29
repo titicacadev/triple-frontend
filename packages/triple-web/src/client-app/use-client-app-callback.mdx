@@ -5,27 +5,29 @@ import { Meta, ArgTypes } from '@storybook/blocks'
 # useClientApp
 
 User Agent가 앱 환경일 때만 주어진 콜백을 실행하는 함수를 반환하는 훅.
-앱이 아닐 때는 transition 모달을 띄웁니다.
+앱이 아닐 때는 AppInstallCta 모달을 띄웁니다.
 
 ## Usage
 
 ```tsx
-const clientApp = useClientAppCallback(TransitionType.General, callback)
+const clientApp = useClientAppCallback(
+  fn,
+  appInstalCtaModalOptions,
+  returnValue,
+)
 ```
 
 ## Parameters
-
-### transitionType
-
-`TransitionType`
-
-**Required**
 
 ### fn
 
 `T extends (...args: any[] => any)`
 
 **Required**
+
+### appInstallCtaModalOptions
+
+`AppInstallCtaModalRef`
 
 ### returnValue
 

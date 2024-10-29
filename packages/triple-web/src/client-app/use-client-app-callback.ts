@@ -12,11 +12,11 @@ import { useClientApp } from './use-client-app'
  *
  * Usage
  *
- * const invokeNativeFn= useClientAppCallback(appInstallCtaModalRef, () => {})
+ * const invokeNativeFn = useClientAppCallback(() => {}, appInstallCtaModalOptions)
  */
 export function useClientAppCallback<T extends (...args: any[]) => any, V>(
-  appInstallCtaModalOptions: AppInstallCtaModalRef = {},
   fn: T,
+  appInstallCtaModalOptions: AppInstallCtaModalRef = {},
   returnValue?: V,
 ): (...args: Parameters<T>) => ReturnType<T> {
   const clientApp = useClientApp()
