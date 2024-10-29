@@ -20,16 +20,18 @@ const TripleClientMetadataContext = createContext<
 export function TripleClientMetadataProvider({
   appName,
   appVersion,
+  tripleMacApp,
   shouldUpdateUserAgentOnMount,
   children,
 }: PropsWithChildren<
   Partial<App> & { shouldUpdateUserAgentOnMount?: boolean }
 >) {
   const initialApp: App | null =
-    appName && appVersion
+    appName && appVersion && tripleMacApp !== undefined
       ? {
           appName,
           appVersion,
+          tripleMacApp,
         }
       : null
 
