@@ -202,7 +202,7 @@ export default function Messages<
             onChange={
               onMessageIntersecting
                 ? (_inView, entry) => onMessageIntersecting(entry, id)
-                : () => {}
+                : undefined
             }
           >
             <BubbleContainer
