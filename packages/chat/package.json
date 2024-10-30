@@ -42,7 +42,6 @@
   "dependencies": {
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
-    "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/popup": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/triple-fallback-action": "workspace:*",
@@ -51,6 +50,7 @@
     "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.0.0",
     "date-fns": "^3.3.1",
+    "react-intersection-observer": "^9.13.1",
     "use-long-press": "^3.2.0"
   },
   "devDependencies": {
