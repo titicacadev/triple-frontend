@@ -18,6 +18,7 @@ import { DeleteIcon, RetryIcon } from './icons'
 const CHAT_CONTAINER_STYLES = {
   position: 'relative',
   width: '100%',
+  userSelect: 'none',
 } as const
 
 interface ContainerBaseProp {
