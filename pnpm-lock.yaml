@@ -412,9 +412,6 @@ importers:
       '@titicaca/core-elements':
         specifier: workspace:*
         version: link:../core-elements
-      '@titicaca/intersection-observer':
-        specifier: workspace:*
-        version: link:../intersection-observer
       '@titicaca/popup':
         specifier: workspace:*
         version: link:../popup
@@ -439,6 +436,9 @@ importers:
       date-fns:
         specifier: ^3.3.1
         version: 3.6.0
+      react-intersection-observer:
+        specifier: ^9.13.1
+        version: 9.13.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       use-long-press:
         specifier: ^3.2.0
         version: 3.2.0(react@18.2.0)
@@ -3175,6 +3175,12 @@ packages:
 
   '@floating-ui/dom@1.5.4':
     resolution: {integrity: sha512-jByEsHIY+eEdCjnTVu+E3ephzTOzkQ8hgUfGwos+bg7NlH33Zc5uO+QHz1mrQUOgIKKDD1RtS201P9NvAfq3XQ==}
+
+  '@floating-ui/react-dom@2.0.5':
+    resolution: {integrity: sha512-UsBK30Bg+s6+nsgblXtZmwHhgS2vmbuQK22qgt2pTQM6M3X6H1+cQcLXqgRY3ihVLcZJE6IvqDQozhsnIVqK/Q==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   '@floating-ui/react-dom@2.0.6':
     resolution: {integrity: sha512-IB8aCRFxr8nFkdYZgH+Otd9EVQPJoynxeFRGTB8voPoZMRWo8XjYuCRgpI1btvuKY69XMiLnW+ym7zoBHM90Rw==}
@@ -10140,6 +10146,15 @@ packages:
     peerDependencies:
       react: ^16.8.4 || ^17.0.0 || ^18.0.0
 
+  react-intersection-observer@9.13.1:
+    resolution: {integrity: sha512-tSzDaTy0qwNPLJHg8XZhlyHTgGW6drFKTtvjdL+p6um12rcnp8Z5XstE+QNBJ7c64n5o0Lj4ilUleA41bmDoMw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -13348,6 +13363,12 @@ snapshots:
       '@floating-ui/core': 1.5.3
       '@floating-ui/utils': 0.2.1
 
+  '@floating-ui/react-dom@2.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@floating-ui/dom': 1.5.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@floating-ui/react-dom@2.0.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@floating-ui/dom': 1.5.4
@@ -14680,7 +14701,7 @@ snapshots:
   '@radix-ui/react-popper@1.1.2(@types/react-dom@18.2.20)(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.22.6
-      '@floating-ui/react-dom': 2.0.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@floating-ui/react-dom': 2.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.2.20)(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.63)(react@18.2.0)
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.63)(react@18.2.0)
@@ -22829,6 +22850,12 @@ snapshots:
   react-inspector@6.0.2(react@18.2.0):
     dependencies:
       react: 18.2.0
+
+  react-intersection-observer@9.13.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
 
   react-is@16.13.1: {}
 
