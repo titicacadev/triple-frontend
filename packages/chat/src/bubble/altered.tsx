@@ -21,11 +21,8 @@ export default function AlteredBubble({
   textColor,
   ...props
 }: BlindedBubbleProp) {
-  const alteredCSS = {
-    margin: my ? '0 0 0 8px' : undefined,
-  }
   return (
-    <Bubble my={my} {...props} css={alteredCSS}>
+    <Bubble my={my} {...props}>
       <FlexBox flex alignItems="center" gap="4px">
         <ExclamationMarkIcon color={textColor} />
         <AlteredText color={textColor}>
