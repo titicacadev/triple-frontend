@@ -1,6 +1,6 @@
 import { ComponentType, Fragment } from 'react'
 import { CSSProp } from 'styled-components'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 import BubbleContainer from '../bubble-container/bubble-container'
 import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
@@ -187,9 +187,7 @@ export default function Messages<
       const isFirstPendingOrFailedMessageOfDate =
         listType !== 'normal' && isFirstMessageOfDate
 
-      const IntersectionObserver = onMessageIntersecting
-        ? StaticIntersectionObserver
-        : Fragment
+      const IntersectionObserver = onMessageIntersecting ? InView : Fragment
 
       return (
         <Fragment key={id}>
@@ -206,53 +204,51 @@ export default function Messages<
           <IntersectionObserver
             onChange={
               onMessageIntersecting
-                ? (entry) => onMessageIntersecting(entry, id)
+                ? (_inView, entry) => onMessageIntersecting(entry, id)
                 : () => {}
             }
           >
-            <div>
-              <BubbleContainer
-                id={id.toString()}
-                my={my}
-                unreadCount={
-                  calculateUnreadCount ? calculateUnreadCount(message) : null
-                }
-                createdAt={createdAt}
-                user={{
-                  photo: sender.profile.photo,
-                  name: sender.profile.name,
-                  userId: sender.id,
-                  unregistered: sender.unregistered,
-                }}
-                showInfo={type !== 'product'}
-                showProfile={showProfile}
-                showDateInfo={!hasDateDivider}
-                showTimeInfo={listType === 'normal' && showTimeInfo}
-                {...(listType === 'failed' && {
-                  onRetry: () => {
-                    onRetry?.(message)
-                  },
-                  onRetryCancel: () => {
-                    onRetryCancel?.(message)
-                  },
-                })}
-                thanks={thanks}
-                onThanksClick={
-                  thanks && onThanksClick
-                    ? () => onThanksClick(message)
-                    : undefined
-                }
-                onReplyClick={
-                  onReplyClick ? () => onReplyClick(message) : undefined
-                }
-                messageRefCallback={messageRefCallback}
-                css={{
-                  marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
-                }}
-              >
-                {getBubble({ message, my, hasArrow: showProfile })}
-              </BubbleContainer>
-            </div>
+            <BubbleContainer
+              id={id.toString()}
+              my={my}
+              unreadCount={
+                calculateUnreadCount ? calculateUnreadCount(message) : null
+              }
+              createdAt={createdAt}
+              user={{
+                photo: sender.profile.photo,
+                name: sender.profile.name,
+                userId: sender.id,
+                unregistered: sender.unregistered,
+              }}
+              showInfo={type !== 'product'}
+              showProfile={showProfile}
+              showDateInfo={!hasDateDivider}
+              showTimeInfo={listType === 'normal' && showTimeInfo}
+              {...(listType === 'failed' && {
+                onRetry: () => {
+                  onRetry?.(message)
+                },
+                onRetryCancel: () => {
+                  onRetryCancel?.(message)
+                },
+              })}
+              thanks={thanks}
+              onThanksClick={
+                thanks && onThanksClick
+                  ? () => onThanksClick(message)
+                  : undefined
+              }
+              onReplyClick={
+                onReplyClick ? () => onReplyClick(message) : undefined
+              }
+              messageRefCallback={messageRefCallback}
+              css={{
+                marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
+              }}
+            >
+              {getBubble({ message, my, hasArrow: showProfile })}
+            </BubbleContainer>
           </IntersectionObserver>
         </Fragment>
       )

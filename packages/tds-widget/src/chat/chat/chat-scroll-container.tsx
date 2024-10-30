@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { useUserAgent } from '@titicaca/triple-web'
 import { Container } from '@titicaca/tds-ui'
@@ -45,19 +45,13 @@ export function ChatScrollContainer({
         ref={chatContainerRef}
         css={{ height: 'inherit', overflowY: 'scroll' }}
       >
-        <StaticIntersectionObserver
-          onChange={(entry) => onTopIntersecting?.(entry)}
-        >
-          <div />
-        </StaticIntersectionObserver>
+        <InView onChange={(_inView, entry) => onTopIntersecting?.(entry)} />
 
         <Container ref={scrollContainerRef}>{children}</Container>
 
-        <StaticIntersectionObserver
-          onChange={(entry) => onBottomIntersecting?.(entry)}
-        >
+        <InView onChange={(_inView, entry) => onBottomIntersecting?.(entry)}>
           <div ref={bottomRef} />
-        </StaticIntersectionObserver>
+        </InView>
       </Container>
     </Container>
   )
