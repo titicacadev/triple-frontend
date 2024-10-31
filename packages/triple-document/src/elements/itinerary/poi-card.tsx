@@ -74,16 +74,21 @@ export default function PoiCard({
           <Text size={16} bold ellipsis>
             {name}
           </Text>
+          {comment ? (
+            <Text
+              size={13}
+              margin={{ top: 4, bottom: 2 }}
+              maxLines={2}
+              color="gray800"
+            >
+              {comment}
+            </Text>
+          ) : null}
           <Text size={13} color="gray500" lineHeight={1.4} padding={{ top: 6 }}>
             {description}
           </Text>
-          {memo ? (
-            <Text size={14} margin={{ top: 10 }} maxLines={2} lineHeight="18px">
-              {memo}
-            </Text>
-          ) : null}
         </Container>
-        {comment ? (
+        {memo ? (
           <>
             <Divider />
             <Container css={{ display: 'flex' }}>
@@ -94,10 +99,10 @@ export default function PoiCard({
                 margin={{ right: 6 }}
                 css={{ flexShrink: 0 }}
               >
-                추천
+                참고
               </Text>
               <Text size={13} wordBreak="keep-all">
-                {comment}
+                {memo}
               </Text>
             </Container>
           </>
