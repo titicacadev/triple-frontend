@@ -1,16 +1,11 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import {
-  Container,
-  Card,
-  Text,
-  FlexBox,
-  FlexBoxItem,
-} from '@titicaca/core-elements'
+import { Container, Text, FlexBox } from '@titicaca/core-elements'
 import type {
   TransportationType,
   Itinerary,
   ItineraryItemType,
+  PoiType,
 } from '@titicaca/content-type-definitions'
 import { useNavigate } from '@titicaca/router'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
@@ -39,6 +34,7 @@ import {
 } from './itinerary/icons'
 import SaveToItinerary, { Geotag } from './itinerary/save-to-itinerary'
 import { ItineraryElementType } from './itinerary/types'
+import PoiCard from './itinerary/poi-card'
 
 interface Props {
   value: {
@@ -60,15 +56,6 @@ const Timeline = styled(FlexBox)`
     height: 100%;
     right: 50%;
   }
-`
-
-const PoiCard = styled(Card)`
-  padding: 16px 15px;
-  flex: 1;
-`
-
-const CardWrapper = styled(FlexBoxItem)`
-  min-width: 200px;
 `
 
 const Stack = styled(Container)`
@@ -176,6 +163,8 @@ export default function ItineraryElement({ value }: Props) {
               memo,
               schedule,
               isLast,
+              comment,
+              imageUrl,
             } = course
             const hasDuration = !isLast && transportation !== undefined
             const CircleBadge = PoiCircleBadge(type)
@@ -223,44 +212,20 @@ export default function ItineraryElement({ value }: Props) {
                     ) : null}
                   </FlexBox>
                 </Timeline>
-                <CardWrapper
-                  flexGrow={1}
-                  as="a"
-                  onClick={generatePoiClickHandler({
+                <PoiCard
+                  type={type as PoiType}
+                  name={name}
+                  description={description}
+                  memo={memo}
+                  comment={comment}
+                  imageUrl={imageUrl}
+                  onClickPoiCard={generatePoiClickHandler({
                     regionId,
                     type,
                     id,
                     name,
                   })}
-                >
-                  <PoiCard
-                    shadow="medium"
-                    radius={6}
-                    css={{ marginTop: 5, marginBottom: 8 }}
-                  >
-                    <Text size={16} bold ellipsis>
-                      {name}
-                    </Text>
-                    <Text
-                      size={13}
-                      color="gray500"
-                      lineHeight={1.4}
-                      padding={{ top: 6 }}
-                    >
-                      {description}
-                    </Text>
-                    {memo ? (
-                      <Text
-                        size={14}
-                        margin={{ top: 10 }}
-                        maxLines={2}
-                        lineHeight="18px"
-                      >
-                        {memo}
-                      </Text>
-                    ) : null}
-                  </PoiCard>
-                </CardWrapper>
+                />
               </FlexBox>
             )
           })}

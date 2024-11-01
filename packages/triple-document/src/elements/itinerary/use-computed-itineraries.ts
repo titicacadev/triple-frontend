@@ -39,6 +39,10 @@ interface Course {
   isFirst: boolean
   /** 마지막 아이템 판단 */
   isLast: boolean
+  /** POI 한줄 소개 */
+  comment?: string
+  /** POI 이미지 */
+  imageUrl?: string
 }
 
 const DEFAULT_TRANSPORTATION = {
@@ -98,6 +102,8 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
             .filter((i) => i)
             .join(' · ')
 
+          const imageUrl = source?.image?.sizes.small_square.url
+
           return {
             ...base,
             id,
@@ -105,6 +111,8 @@ export default function useItinerary({ itinerary, guestMode }: Props) {
             name,
             type,
             description,
+            comment: source?.comment || undefined,
+            imageUrl,
           }
         } else {
           const { id, title, category, regions } = festa
