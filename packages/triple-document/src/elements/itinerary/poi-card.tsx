@@ -77,14 +77,14 @@ export default function PoiCard({
           {comment ? (
             <Text
               size={13}
-              margin={{ top: 4, bottom: 2 }}
+              margin={{ top: 4, bottom: 4 }}
               maxLines={2}
               color="gray800"
             >
               {comment}
             </Text>
           ) : null}
-          <Text size={13} color="gray500" lineHeight={1.4} padding={{ top: 6 }}>
+          <Text size={13} color="gray500" lineHeight={1.4} padding={{ top: 4 }}>
             {description}
           </Text>
         </Container>
