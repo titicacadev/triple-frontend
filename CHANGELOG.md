@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.35.0
+
+```
+### triple-document
+
+- [KLZT-668] 아티클 추천코스의 POI에 한줄 소개 영역을 추가합니다. [#3437](https://github.com/titicacadev/triple-frontend/pull/3437)
+```
+
 ## v13.34.0
 
 ```
