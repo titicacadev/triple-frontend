@@ -18,6 +18,7 @@ import { DeleteIcon, RetryIcon } from './icons'
 const CHAT_CONTAINER_STYLES = {
   position: 'relative',
   width: '100%',
+  userSelect: 'none',
 } as const
 
 interface ContainerBaseProp {
@@ -124,6 +125,8 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
     }
     /** 프로필 노출 여부 */
     showProfile?: boolean
+    /** 유저 프로필 클릭 */
+    onUserClick?: (userId: string, unregistered: boolean) => void
   }
 >
 
@@ -140,6 +143,7 @@ function ReceivedBubbleContainer({
   onThanksClick,
   onReplyClick,
   messageRefCallback,
+  onUserClick,
   children,
   ...props
 }: ReceivedBubbleContainerProp) {
@@ -156,6 +160,11 @@ function ReceivedBubbleContainer({
             user && !user.unregistered && user.photo
               ? user.photo
               : 'https://assets.triple.guide/images/ico-default-profile.svg'
+          }
+          onClick={() =>
+            onUserClick && user
+              ? onUserClick(user.userId, user.unregistered || false)
+              : undefined
           }
         />
       ) : null}
