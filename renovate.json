@@ -12,7 +12,7 @@
     },
     {
       "groupName": "SWC",
-      "matchPackagePrefixes": ["@swc/"]
+      "matchPackageNames": ["@swc/*"]
     },
     {
       "matchPackageNames": ["firebase", "nx-cloud"],
