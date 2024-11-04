@@ -327,8 +327,8 @@ importers:
   packages/router:
     dependencies:
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -370,8 +370,8 @@ importers:
         specifier: workspace:*
         version: link:../tds-ui
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -486,8 +486,8 @@ importers:
         specifier: workspace:*
         version: link:../triple-web
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -694,8 +694,8 @@ importers:
         specifier: workspace:*
         version: link:../tds-ui
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -3578,8 +3578,8 @@ packages:
     peerDependencies:
       stylelint: ^15.10.0
 
-  '@titicaca/triple-web-to-native-interfaces@1.9.0':
-    resolution: {integrity: sha512-Sspf/U54nGNdDGsjopEi+dc5hRV4MxsNYvq6XmTidE+/ajx5doHU7OXTaLu/Um8qhKiPKdkmzIWYvhNPcctGMQ==}
+  '@titicaca/triple-web-to-native-interfaces@1.10.0':
+    resolution: {integrity: sha512-nHb+G+ZcS88iEfHIq9KLH8zMWIG8lJN6waIYC0rErRzZHUbSPeJnvlcpAjnGh9ZEOv8xmTEmXK/pdZMzrF72rw==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -13896,7 +13896,7 @@ snapshots:
     transitivePeerDependencies:
       - postcss
 
-  '@titicaca/triple-web-to-native-interfaces@1.9.0': {}
+  '@titicaca/triple-web-to-native-interfaces@1.10.0': {}
 
   '@tokenizer/token@0.3.0': {}
 
