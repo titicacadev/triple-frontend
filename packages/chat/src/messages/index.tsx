@@ -42,6 +42,7 @@ interface MessagesProp<
   fullTextViewAvailable?: boolean
   onOpenMenu?: (message: MessageInterface<Message, User>) => void
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
+  onUserClick?: (userId: string, unregistered: boolean) => void
 }
 
 export default function Messages<
@@ -66,6 +67,7 @@ export default function Messages<
   fullTextViewAvailable,
   onOpenMenu,
   onParentMessageClick,
+  onUserClick,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -246,6 +248,7 @@ export default function Messages<
               css={{
                 marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
               }}
+              onUserClick={onUserClick}
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
