@@ -370,6 +370,31 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## v13.36.0
+
+### react-contexts
+
+- [INTHOTEL-2407] defaultImage와 중복되는 이미지 필터링 [#3474](https://github.com/titicacadev/triple-frontend/pull/3474)
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+
+### search
+
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+
+### standard-action-handler
+
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+
+## v13.35.0
+
+### react-triple-client-interfaces
+
+- [MAC용 트리플 앱 개발 지원] client meta data에 isMacApp 플래그 추가 [#3439](https://github.com/titicacadev/triple-frontend/pull/3439)
+
+### triple-document
+
+- [KLZT-668] 아티클 추천코스의 POI에 한줄 소개 영역을 추가합니다. [#3437](https://github.com/titicacadev/triple-frontend/pull/3437)
+
 ## v13.34.0
 
 ```
@@ -4908,11 +4933,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
