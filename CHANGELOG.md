@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v13.35.0
+
+```
+### react-triple-client-interfaces
+
+- [MAC용 트리플 앱 개발 지원] client meta data에 isMacApp 플래그 추가 [#3439](https://github.com/titicacadev/triple-frontend/pull/3439)
+
+### triple-document
+
+- [KLZT-668] 아티클 추천코스의 POI에 한줄 소개 영역을 추가합니다. [#3437](https://github.com/titicacadev/triple-frontend/pull/3437)
+```
+
 ## v13.34.0
 
 ```
