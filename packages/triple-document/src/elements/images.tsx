@@ -36,7 +36,7 @@ export default function Images({
   const ImageSource = useImageSource()
   const { videoAutoPlay, hideVideoControls, optimized } = useMediaConfig()
 
-  const ImagesContainer =
+  const ImagesContainer: React.ElementType =
     IMAGES_CONTAINER_MAP[display] || DocumentCarouselContainer
 
   const ElementContainer =

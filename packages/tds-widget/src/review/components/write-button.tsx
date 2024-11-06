@@ -25,7 +25,6 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   const { writeReview } = useClientActions()
 
   const handleClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_리뷰쓰기' },
     useSessionCallback(
       useCallback(() => {
         trackEvent({
@@ -44,6 +43,7 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
       }, [trackEvent, resourceId, writeReview, resourceType, regionId]),
       { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
+    { triggeredEventAction: '리뷰_리뷰쓰기' },
   )
 
   return (

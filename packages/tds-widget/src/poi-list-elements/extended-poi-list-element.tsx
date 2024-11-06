@@ -1,10 +1,8 @@
 import { useTranslation } from '@titicaca/triple-web'
+import { WebTarget } from 'styled-components'
 
 import { useScrap } from '../scrap'
-import {
-  ExtendedResourceListElement,
-  type ResourceListElementProps,
-} from '../resource-list-elements'
+import { ExtendedResourceListElement } from '../resource-list-elements'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
 import { PoiListElementBaseProps, PoiListElementType } from './types'
@@ -19,8 +17,9 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
 }
 
 export type ExtendedPoiListElementProps<T extends PoiListElementType> =
-  ExtendedPoiListElementBaseProps<T> &
-    Partial<Pick<ResourceListElementProps<T>, 'as'>>
+  ExtendedPoiListElementBaseProps<T> & {
+    as?: WebTarget
+  }
 
 export function ExtendedPoiListElement<T extends PoiListElementType>({
   poi,
@@ -92,7 +91,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   return (
     <ExtendedResourceListElement
       as={as}
-      scraped={scraped}
       resource={poi}
       image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}

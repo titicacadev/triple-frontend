@@ -45,7 +45,7 @@ export function createTestWrapper({
       <TripleWeb
         clientAppProvider={clientAppProvider}
         envProvider={envProvider}
-        i18nProvider={{ locale: 'ko' }}
+        i18nProvider={{ defaultLocale: 'ko' }}
         sessionProvider={sessionProvider}
         userAgentProvider={userAgentProvider}
       >

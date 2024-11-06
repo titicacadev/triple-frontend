@@ -54,7 +54,7 @@ const Tooltip = styled.div`
 const AwardFlexBox = styled(FlexBox).attrs({
   position: 'relative',
   flex: true,
-  gap: 7,
+  gap: '7px',
 })`
   ${AwardImg}:hover + ${Tooltip} {
     display: block;

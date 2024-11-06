@@ -37,10 +37,9 @@ export default function useHandleAddPoiToTrip({ geotag }: { geotag: Geotag }) {
     [navigate, geotag, appUrlScheme],
   )
 
-  return useClientAppCallback(
-    { triggeredEventAction: '내일정으로담기_선택' },
-    useSessionCallback(handleFn),
-  )
+  return useClientAppCallback(useSessionCallback(handleFn), {
+    triggeredEventAction: '내일정으로담기_선택',
+  })
 }
 
 export function generateAddTripPlanQuery({

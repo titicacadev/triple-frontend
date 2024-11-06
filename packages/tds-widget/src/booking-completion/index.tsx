@@ -79,7 +79,6 @@ export function BookingCompletion({
   const { navigate } = useNavigate()
 
   const handleMoveToRegion = useClientAppCallback(
-    {},
     useCallback(() => {
       onMoveToRegion?.()
       navigate(`/regions/${region?.id}`)
