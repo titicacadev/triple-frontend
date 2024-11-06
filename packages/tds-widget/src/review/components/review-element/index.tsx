@@ -151,7 +151,6 @@ export function ReviewElement({
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
 
   const handleUserClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_프로필' },
     useSessionCallback(
       useCallback(() => {
         if (!review.user) {
@@ -187,10 +186,10 @@ export function ReviewElement({
       ]),
       { triggeredEventAction: '리뷰_프로필_선택' },
     ),
+    { triggeredEventAction: '리뷰_프로필' },
   )
 
   const handleMenuClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_메뉴_선택' },
     useSessionCallback(
       useCallback(() => {
         if (isMyReview) {
@@ -202,10 +201,10 @@ export function ReviewElement({
       }, [isMyReview, onMenuClick, addUriHash, review.id]),
       { triggeredEventAction: '리뷰_메뉴_선택' },
     ),
+    { triggeredEventAction: '리뷰_메뉴_선택' },
   )
 
   const handleReviewClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_리뷰내용_선택' },
     useCallback(() => {
       trackEvent({
         ga: ['리뷰_리뷰내용_선택', review.id],
@@ -229,6 +228,7 @@ export function ReviewElement({
       navigateReviewDetail,
       regionId,
     ]),
+    { triggeredEventAction: '리뷰_리뷰내용_선택' },
     false,
   )
 
@@ -258,7 +258,6 @@ export function ReviewElement({
   )
 
   const handleMessageCountClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_댓글_선택' },
     useSessionCallback(
       useCallback(() => {
         trackEvent({
@@ -288,6 +287,7 @@ export function ReviewElement({
       ]),
       { triggeredEventAction: '리뷰_댓글_선택' },
     ),
+    { triggeredEventAction: '리뷰_댓글_선택' },
   )
 
   const reviewedAt = moment(originReviewedAt).format()

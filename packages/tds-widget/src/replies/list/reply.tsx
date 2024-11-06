@@ -190,7 +190,6 @@ export function Reply({
   )
 
   const handleReportReplyClick = useClientAppCallback(
-    {},
     useCallback(
       (id: string) => {
         navigate(`/reply/${id}/report`)
@@ -233,7 +232,6 @@ export function Reply({
   })
 
   const handleUserClick = useClientAppCallback(
-    {},
     useSessionCallback(
       useCallback(
         (href: string) => {
@@ -436,7 +434,6 @@ function Content({
   const { navigate } = useNavigate()
 
   const handleMentionedUserNameClick = useClientAppCallback(
-    {},
     useCallback(
       (href: string) => {
         navigate(href)

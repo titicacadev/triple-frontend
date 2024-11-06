@@ -7,6 +7,7 @@ import {
 } from '@titicaca/tds-ui'
 import { GuestModeType } from '@titicaca/type-definitions'
 import { useTranslation } from '@titicaca/triple-web'
+import { WebTarget } from 'styled-components'
 
 import { OutlineScrapButton } from '../scrap-button'
 
@@ -24,8 +25,9 @@ interface CompactPoiListElementBaseProps<T extends PoiListElementType>
 }
 
 export type CompactPoiListElementProps<T extends PoiListElementType> =
-  CompactPoiListElementBaseProps<T> &
-    Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
+  CompactPoiListElementBaseProps<T> & {
+    as?: WebTarget
+  }
 
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string
@@ -36,6 +38,7 @@ const POI_IMAGE_PLACEHOLDERS_SMALL: {
 }
 
 export function CompactPoiListElement<T extends PoiListElementType>({
+  as,
   actionButtonElement,
   poi,
   poi: {
@@ -81,7 +84,7 @@ export function CompactPoiListElement<T extends PoiListElementType>({
   )
 
   return (
-    <ResourceListItem onClick={onClick}>
+    <ResourceListItem as={as} onClick={onClick}>
       <SquareImage
         floated="left"
         size="small"

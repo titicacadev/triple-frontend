@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import { useTranslation } from '@titicaca/triple-web'
-import { styled, css } from 'styled-components'
+import { styled, css, WebTarget } from 'styled-components'
 import {
   Container,
   Label,
@@ -9,6 +9,7 @@ import {
   List,
   Image,
   FlexBox,
+  ListItemProps,
 } from '@titicaca/tds-ui'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -51,7 +52,8 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   areaName?: string
   onClick?: MouseEventHandler<HTMLLIElement>
   optimized?: boolean
-} & Partial<Parameters<typeof List.Item>['0']>
+  as?: WebTarget
+} & ListItemProps
 
 const ResourceListItem = styled(List.Item)`
   position: relative;

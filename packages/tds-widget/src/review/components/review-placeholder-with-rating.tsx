@@ -75,7 +75,6 @@ export function ReviewsPlaceholder({
   const { writeReview, navigateReviewList } = useClientActions()
 
   const handleFullClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_리스트더보기_선택' },
     useSessionCallback(
       useCallback(() => {
         navigateReviewList({
@@ -95,10 +94,10 @@ export function ReviewsPlaceholder({
       ]),
       { triggeredEventAction: '리뷰_리스트더보기_선택' },
     ),
+    { triggeredEventAction: '리뷰_리스트더보기_선택' },
   )
 
   const handleWriteClick = useClientAppCallback(
-    { triggeredEventAction: '리뷰_리뷰쓰기' },
     useSessionCallback(
       useCallback(
         (rating = 0) => {
@@ -121,6 +120,7 @@ export function ReviewsPlaceholder({
       ),
       { triggeredEventAction: '리뷰_리뷰쓰기' },
     ),
+    { triggeredEventAction: '리뷰_리뷰쓰기' },
   )
 
   const handleClick = (rating?: number) => {
