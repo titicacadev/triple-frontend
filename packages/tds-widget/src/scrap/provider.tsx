@@ -12,11 +12,17 @@ import { ScrapContext, ScrapDispatchContext } from './context'
 interface ScrapsProviderProps {
   initialScraps?: Scraps
   beforeScrapedChange?: (target: Target, scraped: boolean) => boolean
+  onScrapeFailed?: (
+    target: Target,
+    scraped: boolean,
+    errorMessage?: string,
+  ) => void
 }
 
 export function ScrapsProvider({
   initialScraps,
   beforeScrapedChange,
+  onScrapeFailed,
   children,
 }: PropsWithChildren<ScrapsProviderProps>) {
   const [value, dispatch] = useReducer(reducer, {
@@ -39,7 +45,9 @@ export function ScrapsProvider({
   }, [dispatch])
 
   return (
-    <ScrapContext.Provider value={{ ...value, beforeScrapedChange }}>
+    <ScrapContext.Provider
+      value={{ ...value, beforeScrapedChange, onScrapeFailed }}
+    >
       <ScrapDispatchContext.Provider value={dispatch}>
         {children}
       </ScrapDispatchContext.Provider>
