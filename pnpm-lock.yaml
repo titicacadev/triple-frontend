@@ -413,8 +413,8 @@ importers:
         specifier: ^1.3.1
         version: 1.3.1
       '@floating-ui/react':
-        specifier: ^0.26.25
-        version: 0.26.25(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.26.27
+        version: 0.26.27(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@titicaca/content-utilities':
         specifier: 9.8.0
         version: 9.8.0(encoding@0.1.13)
@@ -462,8 +462,8 @@ importers:
         specifier: ^3.8.3
         version: 3.8.3
       '@floating-ui/react':
-        specifier: ^0.26.25
-        version: 0.26.25(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.26.27
+        version: 0.26.27(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-google-maps/api':
         specifier: ^2.19.3
         version: 2.19.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1980,8 +1980,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@floating-ui/react@0.26.25':
-    resolution: {integrity: sha512-hZOmgN0NTOzOuZxI1oIrDu3Gcl8WViIkvPMpB4xdd4QD6xAMtwgwr3VPoiyH/bLtRcS1cDnhxLSD1NsMJmwh/A==}
+  '@floating-ui/react@0.26.27':
+    resolution: {integrity: sha512-jLP72x0Kr2CgY6eTYi/ra3VA9LOkTo4C+DUTrbFgFOExKy3omYVmwMjNKqxAHdsnyLS96BIDLcO2SlnsNf8KUQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -11643,7 +11643,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@floating-ui/react@0.26.25(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@floating-ui/react@0.26.27(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react-dom': 2.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/utils': 0.2.8
