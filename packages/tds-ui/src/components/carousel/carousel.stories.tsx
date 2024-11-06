@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Carousel } from './carousel'
 import IMAGES from './mocks/carousel.sample.json'
+import { CarouselItem } from './carousel-item'
 
 const meta: Meta<typeof Carousel> = {
   title: 'tds-ui (Carousel) / Carousel ',
@@ -24,13 +25,9 @@ export const Default: Story = {
     children: (
       <>
         {IMAGES.map((image, key) => (
-          <img
-            key={key}
-            src={image.sizes.large.url}
-            alt="test"
-            width={400}
-            height={400}
-          />
+          <CarouselItem key={key} size="big">
+            <img src={image.sizes.large.url} alt="test" />
+          </CarouselItem>
         ))}
       </>
     ),
