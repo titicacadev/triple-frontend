@@ -4,7 +4,7 @@ import { ClientAppName } from './types'
 import { useClientAppActions } from './use-client-app-actions'
 import { ClientAppContext } from './context'
 
-test('should return the function as-is if version requirement is not listed', () => {
+test('최소 버전 목록에 등록되지 않은 경우 함수를 그대로 반환해야 합니다', () => {
   const { result } = renderHook(() => useClientAppActions(), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider
@@ -18,10 +18,10 @@ test('should return the function as-is if version requirement is not listed', ()
     ),
   })
 
-  expect(result.current.showToast).not.toBeNull()
+  expect(result.current.showToast).toBeDefined()
 })
 
-test('should not return the function if it does not match version requirement', () => {
+test('최소 버전 목록에 일치하지 않는 경우 함수를 반환하지 않아야 합니다', () => {
   const { result } = renderHook(() => useClientAppActions(), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider
@@ -35,10 +35,10 @@ test('should not return the function if it does not match version requirement', 
     ),
   })
 
-  expect(result.current.subscribeTripUpdateEvent).toBeFalsy()
+  expect(result.current.subscribeTripUpdateEvent).toBeUndefined()
 })
 
-test('should return the function if it matches version requirement', () => {
+test('최소 버전 목록에 일치하는 경우 함수를 반환해야 합니다', () => {
   const { result } = renderHook(() => useClientAppActions(), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider
@@ -52,10 +52,10 @@ test('should return the function if it matches version requirement', () => {
     ),
   })
 
-  expect(result.current.subscribeTripUpdateEvent).not.toBeFalsy()
+  expect(result.current.subscribeTripUpdateEvent).toBeDefined()
 })
 
-test('should not return the function if the page is not on triple client', () => {
+test('페이지가 트리플 클라이언트에 없으면 함수를 반환하지 않아야 합니다', () => {
   const { result } = renderHook(() => useClientAppActions(), {
     wrapper: ({ children }) => (
       <ClientAppContext.Provider value={null}>
@@ -64,5 +64,5 @@ test('should not return the function if the page is not on triple client', () =>
     ),
   })
 
-  expect(result.current.showToast).toBeFalsy()
+  expect(result.current.showToast).toBeUndefined()
 })
