@@ -1,8 +1,11 @@
 import { interpolate, locales } from '@titicaca/i18n'
 
 import { useI18n } from './use-i18n'
+import { I18nLocale } from './types'
 
-const translations: Record<string, Record<string, string>> = {
+type Key = keyof typeof locales.ko
+
+const translations: Record<I18nLocale, Record<Key, string>> = {
   en: locales.en,
   ja: locales.ja,
   ko: locales.ko,
@@ -17,7 +20,7 @@ export function useTranslation() {
 
   const locale = i18n.locale ?? i18n.defaultLocale
 
-  const t = (key: string, values = {}) => {
+  const t = (key: Key, values = {}) => {
     const translation = translations[locale]?.[key] ?? key
     return interpolate(translation, values)
   }
