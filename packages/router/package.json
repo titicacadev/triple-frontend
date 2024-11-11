@@ -48,7 +48,7 @@
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
     "@titicaca/triple-web-test-utils": "workspace:*",
-    "@types/qs": "^6.9.16",
+    "@types/qs": "^6.9.17",
     "next": "^14.2.17",
     "react": "^18.3.1"
   },
