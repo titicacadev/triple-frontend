@@ -138,7 +138,7 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3(msw@2.6.1(@types/node@18.19.64)(typescript@5.6.3))
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nx-cloud:
         specifier: 16.4.0
@@ -205,7 +205,7 @@ importers:
         specifier: workspace:*
         version: link:../triple-web
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -235,7 +235,7 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       node-fetch:
         specifier: ^2.7.0
@@ -253,7 +253,7 @@ importers:
         version: 0.12.2
     devDependencies:
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -265,7 +265,7 @@ importers:
         specifier: workspace:*
         version: link:../triple-web
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -296,7 +296,7 @@ importers:
         specifier: ^2.4.10
         version: 2.4.10
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -346,7 +346,7 @@ importers:
         specifier: ^6.9.16
         version: 6.9.16
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -614,7 +614,7 @@ importers:
         specifier: ^6.9.16
         version: 6.9.16
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -750,7 +750,7 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
@@ -787,7 +787,7 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       next:
-        specifier: ^14.2.16
+        specifier: ^14.2.17
         version: 14.2.17(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
