@@ -1,5 +1,3 @@
-'use client'
-
 import {
   TripleWeb as TripleWebBase,
   type TripleWebProps as TripleWebBaseProps,
