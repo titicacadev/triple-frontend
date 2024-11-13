@@ -72,13 +72,19 @@ export function ImagesProvider({
     hasMore: true,
   })
 
+  const { addOnTotal, addOnCurrentImageLength } = {
+    addOnTotal: type === 'hotel' ? 0 : (defaultImages || []).length,
+    addOnCurrentImageLength:
+      type === 'hotel' ? (defaultImages || []).length : 0,
+  }
+
   const fetchImages = useFetchImages()
 
   const sendFetchRequest = useCallback(
     async (size = 15) => {
       const response = await fetchImages({
         target: { type, id },
-        currentImageLength: images.length - (defaultImages?.length || 0),
+        currentImageLength: images.length - addOnTotal,
         size,
         categoryOrder,
       })
@@ -102,7 +108,7 @@ export function ImagesProvider({
         next,
       } = await fetchImages({
         target: { type, id },
-        currentImageLength: 0,
+        currentImageLength: addOnCurrentImageLength,
         size: 15,
         categoryOrder,
       })
@@ -110,14 +116,14 @@ export function ImagesProvider({
       dispatch(
         reinitializeImages({
           images: [...(defaultImages || []), ...fetchedImages],
-          total: total + (defaultImages?.length || 0),
+          total: total + addOnTotal,
           hasMore: !!next,
         }),
       )
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, id, type])
+  }, [loading, id, type, addOnCurrentImageLength, addOnTotal])
 
   const fetch = useCallback(
     async (onFetchAfter?: () => void, force?: boolean) => {
@@ -132,7 +138,7 @@ export function ImagesProvider({
         dispatch(
           loadImagesSuccess({
             images: fetchedImages,
-            total: total + (defaultImages?.length || 0),
+            total: total + addOnTotal,
             hasMore: !!next,
           }),
         )
@@ -142,7 +148,7 @@ export function ImagesProvider({
 
       onFetchAfter && onFetchAfter()
     },
-    [hasMore, loading, sendFetchRequest],
+    [hasMore, loading, addOnTotal, sendFetchRequest],
   )
 
   const indexOf = useCallback(
