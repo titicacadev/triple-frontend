@@ -150,14 +150,27 @@ export function PoiDetailImagesProvider({
             ? filterDefaultImages(uniqueDefaultImages, fetchedImages)
             : uniqueDefaultImages
 
-        dispatch(
-          loadImagesSuccess({
-            images: fetchedImages,
-            total: total + filteredDefaultImages.length,
-            hasMore: !!next,
-          }),
-        )
-        setUniqueDefaultImages(filteredDefaultImages)
+        const shouldReInitImages =
+          filteredDefaultImages.length !== uniqueDefaultImages.length
+
+        if (shouldReInitImages) {
+          dispatch(
+            reinitializeImages({
+              images: [...filteredDefaultImages, ...fetchedImages],
+              total: total + filteredDefaultImages.length,
+              hasMore: !!next,
+            }),
+          )
+          setUniqueDefaultImages(filteredDefaultImages)
+        } else {
+          dispatch(
+            loadImagesSuccess({
+              images: fetchedImages,
+              total: total + filteredDefaultImages.length,
+              hasMore: !!next,
+            }),
+          )
+        }
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
