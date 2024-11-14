@@ -1546,8 +1546,8 @@ importers:
         specifier: workspace:*
         version: link:../react-hooks
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -1624,8 +1624,8 @@ importers:
         specifier: workspace:*
         version: link:../scroll-to-element
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
