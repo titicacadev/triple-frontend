@@ -148,7 +148,7 @@ export function ImagesProvider({
         const { data: fetchedImages, total, next } = await sendFetchRequest()
 
         const filteredDefaultImages =
-          uniqueDefaultImages.length === images.length
+          uniqueDefaultImages.length === images.length // 이미지 순서가 바뀌는 경우를 방지하기 위해 첫 fetch 시에만 필터링을 진행합니다.
             ? filterDefaultImages(uniqueDefaultImages, fetchedImages)
             : uniqueDefaultImages
 
