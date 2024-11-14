@@ -41,7 +41,6 @@ export default function useFetchImages() {
               size: needReviewImages ? size - response.data.length : 1, // 1은 첫 fetch에 review image total을 알아오기 위함
             })
           : { data: [], next: null, total: 0 }
-
       return {
         ...response,
         data: [

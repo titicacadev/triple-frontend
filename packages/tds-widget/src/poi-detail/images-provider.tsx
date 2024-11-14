@@ -6,6 +6,7 @@ import {
   useCallback,
   useReducer,
   useEffect,
+  useState,
 } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 
@@ -63,6 +64,9 @@ export function PoiDetailImagesProvider({
   source: { id, type },
   children,
 }: PropsWithChildren<PoiDetailImagesProviderProps>) {
+  const [uniqueDefaultImages, setUniqueDefaultImages] = useState(
+    defaultImages || [],
+  )
   const [{ loading, images, total, hasMore }, dispatch] = useReducer(reducer, {
     loading: !defaultImages,
     images: defaultImages || [],
@@ -76,14 +80,21 @@ export function PoiDetailImagesProvider({
     async (size = 15) => {
       const response = await fetchImages({
         target: { type, id },
-        currentImageLength: images.length - (defaultImages?.length || 0),
+        currentImageLength: images.length - uniqueDefaultImages.length,
         size,
         categoryOrder,
       })
 
       return response
     },
-    [id, images.length, type],
+    [
+      categoryOrder,
+      fetchImages,
+      id,
+      images.length,
+      type,
+      uniqueDefaultImages.length,
+    ],
   )
 
   const reFetch = useCallback(async () => {
@@ -105,17 +116,23 @@ export function PoiDetailImagesProvider({
         categoryOrder,
       })
 
+      const filteredDefaultImages = filterDefaultImages(
+        uniqueDefaultImages,
+        fetchedImages,
+      )
+
       dispatch(
         reinitializeImages({
-          images: [...(defaultImages || []), ...fetchedImages],
-          total: total + (defaultImages?.length || 0),
+          images: [...filteredDefaultImages, ...fetchedImages],
+          total: total + filteredDefaultImages.length,
           hasMore: !!next,
         }),
       )
+      setUniqueDefaultImages(filteredDefaultImages)
     } catch (error) {
       dispatch(loadImagesFail(error))
     }
-  }, [loading, id, type])
+  }, [loading, fetchImages, type, id, categoryOrder, uniqueDefaultImages])
 
   const fetch = useCallback(
     async (onFetchAfter?: () => void, force?: boolean) => {
@@ -127,20 +144,27 @@ export function PoiDetailImagesProvider({
 
       try {
         const { data: fetchedImages, total, next } = await sendFetchRequest()
+
+        const filteredDefaultImages =
+          uniqueDefaultImages.length === images.length
+            ? filterDefaultImages(uniqueDefaultImages, fetchedImages)
+            : uniqueDefaultImages
+
         dispatch(
           loadImagesSuccess({
             images: fetchedImages,
-            total: total + (defaultImages?.length || 0),
+            total: total + filteredDefaultImages.length,
             hasMore: !!next,
           }),
         )
+        setUniqueDefaultImages(filteredDefaultImages)
       } catch (error) {
         dispatch(loadImagesFail(error))
       }
 
       onFetchAfter && onFetchAfter()
     },
-    [hasMore, loading, sendFetchRequest],
+    [hasMore, images.length, loading, sendFetchRequest, uniqueDefaultImages],
   )
 
   const indexOf = useCallback(
@@ -184,4 +208,16 @@ export function PoiDetailImagesProvider({
 
 export function usePoiDetailImages() {
   return useContext(Context)
+}
+
+function filterDefaultImages(
+  defaultImages: ImageMeta[],
+  fetchedImages: ImageMeta[],
+) {
+  return defaultImages.filter(
+    (defaultImage) =>
+      !fetchedImages.some(
+        (fetchedImage) => fetchedImage.id === defaultImage.id,
+      ),
+  )
 }
