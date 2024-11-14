@@ -1171,8 +1171,8 @@ importers:
         specifier: workspace:*
         version: link:../fetcher
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.10.0
+        version: 1.10.0
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -4958,6 +4958,9 @@ packages:
     resolution: {integrity: sha512-AgaoNvngtYdCY0hNbMQRFZHMLBX6kSmoLzY5cPoOHozVId4UenSfCKBSJSpmb4fM5HoKWNCJ2jxSredcRTdbwA==}
     peerDependencies:
       stylelint: ^15.10.0
+
+  '@titicaca/triple-web-to-native-interfaces@1.10.0':
+    resolution: {integrity: sha512-nHb+G+ZcS88iEfHIq9KLH8zMWIG8lJN6waIYC0rErRzZHUbSPeJnvlcpAjnGh9ZEOv8xmTEmXK/pdZMzrF72rw==}
 
   '@titicaca/triple-web-to-native-interfaces@1.9.0':
     resolution: {integrity: sha512-Sspf/U54nGNdDGsjopEi+dc5hRV4MxsNYvq6XmTidE+/ajx5doHU7OXTaLu/Um8qhKiPKdkmzIWYvhNPcctGMQ==}
@@ -16259,6 +16262,8 @@ snapshots:
       - postcss
       - supports-color
       - typescript
+
+  '@titicaca/triple-web-to-native-interfaces@1.10.0': {}
 
   '@titicaca/triple-web-to-native-interfaces@1.9.0': {}
 
