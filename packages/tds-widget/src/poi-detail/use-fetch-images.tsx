@@ -51,7 +51,7 @@ export default function useFetchImages() {
           response.total +
           (poiReviewsResponse.total || totalPoiReviewImagesCount),
         next:
-          response.next || needReviewImages ? poiReviewsResponse.next : true,
+          response.next || (needReviewImages ? poiReviewsResponse.next : true),
       }
     }
     const response = await fetchPoiReviewImages(target, {
