@@ -1,10 +1,11 @@
 import { parseUrl } from '@titicaca/view-utilities'
+import { useTranslation } from '@titicaca/triple-web'
 
 import { WebAction, ContextOptions, NavigateOptions } from './types'
 
 export default class Handler {
   private options: ContextOptions
-  private t: (key: string, values?: object) => string
+  private t: ReturnType<typeof useTranslation>
   private handlers: WebAction[]
 
   public constructor({
@@ -13,7 +14,7 @@ export default class Handler {
     options,
   }: {
     handlers: WebAction[]
-    t: (key: string, values?: object) => string
+    t: ReturnType<typeof useTranslation>
     options: ContextOptions
   }) {
     this.handlers = handlers

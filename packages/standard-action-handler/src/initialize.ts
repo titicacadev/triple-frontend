@@ -1,3 +1,5 @@
+import { useTranslation } from '@titicaca/triple-web'
+
 import Handler from './handler'
 import serial from './serial'
 import invokeCta from './invoke-cta'
@@ -13,7 +15,7 @@ import { ContextOptions } from './types'
 import requireTripleClient from './require-triple-client'
 
 export function initialize(
-  t: (key: string, values?: object) => string,
+  t: ReturnType<typeof useTranslation>,
   options: ContextOptions,
 ) {
   const handler = new Handler({
