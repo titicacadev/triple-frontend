@@ -26,27 +26,22 @@ export function getCategoryTitle(category?: Category) {
   }
 }
 
-export function getCategoryImageProps(category?: Category) {
+export function getCategoryImageProps(category: Category) {
   switch (category) {
     case 'air':
       return {
         alt: '항공',
         src: 'https://assets.triple.guide/images/img_intro_logo_air.svg',
-      }
+      } as const
     case 'hotels':
       return {
         alt: '숙소',
         src: 'https://assets.triple.guide/images/img_intro_logo_hotels.svg',
-      }
+      } as const
     case 'tna':
       return {
         alt: '투어 티켓',
         src: 'https://assets.triple.guide/images/img_intro_logo_tna.svg',
-      }
-    default:
-      return {
-        alt: '',
-        src: '',
-      }
+      } as const
   }
 }

@@ -1,4 +1,4 @@
-import { ClientAppValue } from '@titicaca/triple-web'
+import { ClientAppValue, useTranslation } from '@titicaca/triple-web'
 import { UrlElements } from '@titicaca/view-utilities'
 
 export interface NavigateOptions {
@@ -28,7 +28,7 @@ export interface ContextOptions {
 
 export interface WebActionParams {
   url: UrlElements
-  t: (key: string, values?: object) => string
+  t: ReturnType<typeof useTranslation>
   options: ContextOptions
   handler: {
     execute: (url: string, params?: NavigateOptions) => Promise<void>
