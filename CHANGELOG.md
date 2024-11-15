@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v13.36.0
+
+```
+### react-contexts
+
+- [INTHOTEL-2407] defaultImage와 중복되는 이미지 필터링 [#3474](https://github.com/titicacadev/triple-frontend/pull/3474)
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+
+### search
+
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+
+### standard-action-handler
+
+- triple-web-to-native-interfaces 패키지 버전업 대응 [#3475](https://github.com/titicacadev/triple-frontend/pull/3475)
+```
+
 ## v13.35.0
 
 ```
