@@ -4,6 +4,8 @@ import { CSSProp } from 'styled-components'
 
 import { MetaDataInterface } from '../types'
 
+import { ParentMessageUIProp } from './parent/parent-ui'
+
 type CustomerBookingStatus =
   | 'BOOKED'
   | 'ONGOING'
@@ -51,7 +53,7 @@ export interface BubbleCSSProp {
   hasArrow?: boolean
 }
 
-export type BubbleProp = BubbleCSSProp & {
+export type BaseBubbleProp = BubbleCSSProp & {
   id: string
   onClick?: (e: MouseEvent, messageId: string) => void
   onLongPress?: (
@@ -62,9 +64,18 @@ export type BubbleProp = BubbleCSSProp & {
   css?: CSSProp
 }
 
+export type BubbleProp = BaseBubbleProp & {
+  parentMessage?: ParentMessageUIProp
+}
+
 export type TextBubbleProp = {
   message: string
   my: boolean
+  parentMessage?: ParentMessageUIProp
+  created?: boolean
+  fullTextViewAvailable?: boolean
+  onOpenMenu?: () => void
+  onParentMessageClick?: (id: string) => void
 } & BubbleProp
 
 export type RichBubbleProp = {
@@ -80,6 +91,7 @@ export type RichBubbleProp = {
 } & BubbleProp
 
 export interface ImageBubbleProp {
+  id: string
   images: MetaDataInterface[]
   appUrlScheme?: string
   onClick?: (
@@ -87,7 +99,11 @@ export interface ImageBubbleProp {
     images: MetaDataInterface[],
     clickedImageIndex?: number,
   ) => void
-  onLongPress?: () => void
+  onLongPress?: (
+    messageId: string,
+    target: LongPressReactEvents<Element>,
+    context: LongPressCallbackMeta<unknown>,
+  ) => void
 }
 
 export type ProductBubbleProp = {
