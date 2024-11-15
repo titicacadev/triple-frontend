@@ -398,6 +398,7 @@
 ## v13.34.0
 
 ```
+
 ### modals
 
 - [KLZT-663] converse에 로그인 유도 모달을 추가합니다 [#3429](https://github.com/titicacadev/triple-frontend/pull/3429)
@@ -409,28 +410,34 @@
 ### view-utilities
 
 - [KLZT-677] routelist에 tna, air hub 추가 [#3443](https://github.com/titicacadev/triple-frontend/pull/3443)
+
 ```
 
 ## v13.33.0
 
 ```
+
 ### footer
 
 - [KLZT-671] 푸터 내 통신판매업 신고번호 변경 [#3435](https://github.com/titicacadev/triple-frontend/pull/3435)
+
 ```
 
 ## v13.32.0
 
 ```
+
 ### review
 
-- [KLZT-655] 리뷰 정렬 옵션 변경 시 무관한 element로 포커싱이 되는 버그를 수정합니다.  [#3425](https://github.com/titicacadev/triple-frontend/pull/3425)
+- [KLZT-655] 리뷰 정렬 옵션 변경 시 무관한 element로 포커싱이 되는 버그를 수정합니다. [#3425](https://github.com/titicacadev/triple-frontend/pull/3425)
 - [WATF-397] 리뷰 컴포넌트 내 배너를 prop으로 받도록 수정합니다. [#3433](https://github.com/titicacadev/triple-frontend/pull/3433)
+
 ```
 
 ## v13.31.0
 
 ```
+
 ### react-contexts
 
 - [react-contexts] ScrapProvider에서 스크랩 실패 시 콜백함수를 props로 받습니다. [#3418](https://github.com/titicacadev/triple-frontend/pull/3418)
@@ -438,63 +445,77 @@
 ### review
 
 - [KLZT-103] 리뷰 컴포넌트 렌더링 버그를 수정합니다. [#3407](https://github.com/titicacadev/triple-frontend/pull/3407)
+
 ```
 
 ## v13.30.0
 
 ```
+
 ### footer
 
 - [KLZT-622] 푸터 주소 변경 [#3413](https://github.com/titicacadev/triple-frontend/pull/3413)
+
 ```
 
 ## v13.29.0
 
 ```
+
 ### footer
 
 - [footer] 푸터 KINT 진입점에 FA 로깅을 추가합니다. [#3379](https://github.com/titicacadev/triple-frontend/pull/3379)
 
 ### react-contexts
 
--  [react-contexts] images-api v2 적용 [#3345](https://github.com/titicacadev/triple-frontend/pull/3345)
+- [react-contexts] images-api v2 적용 [#3345](https://github.com/titicacadev/triple-frontend/pull/3345)
+
 ```
 
 ## v13.28.0
 
 ```
+
 ### footer
 
 - [footer] 푸터에 트리플 코리아 링크를 추가합니다. [#3370](https://github.com/titicacadev/triple-frontend/pull/3370)
+
 ```
 
 ## v13.27.1
 
 ```
+
 ### review
 
 - [review] travel-restritions-api 관련 코드를 제거하기 위해 코드젠 generated.tsx를 재생성합니다 [#3357](https://github.com/titicacadev/triple-frontend/pull/3357)
+
 ```
 
 ## v13.27.0
 
 ```
+
 ### public-header
 
 - [public-header] 헤더에 사이드바를 추가합니다. [#3328](https://github.com/titicacadev/triple-frontend/pull/3328)
+
 ```
 
 ## v13.26.4
 
 ```
+
 ### footer
 
 - [footer] 푸터 통신판매업 신고번호를 변경합니다. [#3329](https://github.com/titicacadev/triple-frontend/pull/3329)
+
 ```
 
 ## v13.26.3
 
 ```
+
 ### action-sheet
 
 - [action-sheet] pointer select revert [#3313](https://github.com/titicacadev/triple-frontend/pull/3313)
@@ -502,11 +523,13 @@
 ### react-contexts
 
 - [react-contexts] user의 마일리지 뱃지 이미지 타입을 수정합니다. [#3310](https://github.com/titicacadev/triple-frontend/pull/3310)
+
 ```
 
 ## v13.26.2
 
 ```
+
 ### action-sheet
 
 - [action-sheet] 액션 시트에서 lockScroll을 해제할 수 있도록 옵션 제공 [#3295](https://github.com/titicacadev/triple-frontend/pull/3295)
@@ -518,6 +541,7 @@
 ### react-hooks
 
 - [react-hooks] user 타입에 email 필드를 추가합니다. [#3304](https://github.com/titicacadev/triple-frontend/pull/3304)
+
 ```
 
 ## v13.26.1
@@ -4941,4 +4965,7 @@ SingleSlider, RangeSlider
   }
   ```
 
+```
+
 - `ReviewLikesContext`의 위치를 `@titicaca/review` 패키지로 옮깁니다.
+```
