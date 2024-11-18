@@ -72,7 +72,7 @@
     "lint-staged": "^13.3.0",
     "msw": "^2.6.4",
     "msw-storybook-addon": "^2.0.4",
-    "next": "^14.2.17",
+    "next": "^14.2.18",
     "nx-cloud": "16.4.0",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
