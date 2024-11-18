@@ -15,7 +15,6 @@ export function RouterGuardedLink({
   allowSource = 'all',
   children,
   className,
-  style,
   ...restProps
 }: PropsWithChildren<
   Partial<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'rel'>> &
@@ -36,12 +35,7 @@ export function RouterGuardedLink({
   }
 
   return (
-    <a
-      className={className}
-      rel={rel}
-      style={{ lineHeight: 'normal', color: '-webkit-link', ...style }}
-      {...restProps}
-    >
+    <a className={className} rel={rel} {...restProps}>
       {children}
     </a>
   )
