@@ -44,7 +44,7 @@
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.10.0",
     "@titicaca/view-utilities": "workspace:*",
-    "qs": "^6.13.0"
+    "qs": "^6.13.1"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",

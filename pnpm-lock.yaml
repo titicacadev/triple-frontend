@@ -336,8 +336,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -379,8 +379,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -510,8 +510,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
       react-day-picker:
         specifier: ^7.4.10
         version: 7.4.10(react@18.3.1)
@@ -607,8 +607,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -706,8 +706,8 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
       semver:
         specifier: ^7.6.3
         version: 7.6.3
@@ -771,8 +771,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
       ua-parser-js:
         specifier: ^1.0.39
         version: 1.0.39
@@ -831,8 +831,8 @@ importers:
         specifier: ^2.30.1
         version: 2.30.1
       qs:
-        specifier: ^6.13.0
-        version: 6.13.0
+        specifier: ^6.13.1
+        version: 6.13.1
     devDependencies:
       '@types/haversine':
         specifier: ^1.1.8
@@ -8255,8 +8255,8 @@ packages:
   pure-rand@6.0.2:
     resolution: {integrity: sha512-6Yg0ekpKICSjPswYOuC5sku/TSWaRYlA0qsXqJgM/d/4pLPHPuTxK7Nbf7jFKzAeedUhR8C7K9Uv63FBsSo8xQ==}
 
-  qs@6.13.0:
-    resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
+  qs@6.13.1:
+    resolution: {integrity: sha512-EJPeIn0CYrGu+hli1xilKAPXODtJ12T0sP63Ijx2/khC2JtuaN3JyNIpvmnkmaEtha9ocbG4A4cMcr+TvqvwQg==}
     engines: {node: '>=0.6'}
 
   querystring-es3@0.2.1:
@@ -13484,7 +13484,7 @@ snapshots:
       '@storybook/client-logger': 6.5.16
       core-js: 3.39.0
       memoizerific: 1.11.3
-      qs: 6.13.0
+      qs: 6.13.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       regenerator-runtime: 0.13.11
@@ -13667,7 +13667,7 @@ snapshots:
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
-      qs: 6.13.0
+      qs: 6.13.1
     transitivePeerDependencies:
       - encoding
 
@@ -19599,7 +19599,7 @@ snapshots:
 
   pure-rand@6.0.2: {}
 
-  qs@6.13.0:
+  qs@6.13.1:
     dependencies:
       side-channel: 1.0.6
 
@@ -21103,7 +21103,7 @@ snapshots:
   url@0.11.1:
     dependencies:
       punycode: 1.4.1
-      qs: 6.13.0
+      qs: 6.13.1
 
   urlpattern-polyfill@10.0.0: {}
 
