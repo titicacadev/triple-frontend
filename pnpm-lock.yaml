@@ -541,7 +541,7 @@ importers:
         specifier: 4.3.1
         version: 4.3.1(encoding@0.1.13)(graphql@16.9.0)
       '@tanstack/react-query':
-        specifier: ^5.60.2
+        specifier: ^5.60.5
         version: 5.60.5(react@18.3.1)
       '@titicaca/tds-theme':
         specifier: workspace:*
