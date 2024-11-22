@@ -1,5 +1,58 @@
 # CHANGELOG
 
+## v14.0.4
+
+### i18n
+
+- triple-web 테스트 추가 [#3472](https://github.com/titicacadev/triple-frontend/pull/3472)
+
+### router
+
+- Link 컴포넌트에서 불필요한 inline style 제거 [#3482](https://github.com/titicacadev/triple-frontend/pull/3482)
+
+### standard-action-handler
+
+- 타입 에러 수정 [#3471](https://github.com/titicacadev/triple-frontend/pull/3471)
+
+### tds-ui
+
+- Card radius prop 이름 변경 [#3463](https://github.com/titicacadev/triple-frontend/pull/3463)
+- Carousel containerPadding, margin prop 복구 [#3470](https://github.com/titicacadev/triple-frontend/pull/3470)
+- 타입 에러 수정 [#3471](https://github.com/titicacadev/triple-frontend/pull/3471)
+
+### tds-widget
+
+- ScrapsProvider에 onScrapeFailed prop 넘길 수 있도록 추가 [#3469](https://github.com/titicacadev/triple-frontend/pull/3469)
+- 타입 에러 수정 [#3471](https://github.com/titicacadev/triple-frontend/pull/3471)
+- 13.35.0 - 13.36.0 변경사항을 14에 반영 [#3479](https://github.com/titicacadev/triple-frontend/pull/3479)
+
+### triple-document
+
+- #3437 변경사항을 적용합니다 [#3466](https://github.com/titicacadev/triple-frontend/pull/3466)
+- 타입 에러 수정 [#3471](https://github.com/titicacadev/triple-frontend/pull/3471)
+
+### triple-web
+
+- triple-web 테스트 추가 [#3472](https://github.com/titicacadev/triple-frontend/pull/3472)
+- 13.35.0 - 13.36.0 변경사항을 14에 반영 [#3479](https://github.com/titicacadev/triple-frontend/pull/3479)
+
+### triple-web-nextjs
+
+- [triple-web-nextjs] promise error 해결 [#3473](https://github.com/titicacadev/triple-frontend/pull/3473)
+- 13.35.0 - 13.36.0 변경사항을 14에 반영 [#3479](https://github.com/titicacadev/triple-frontend/pull/3479)
+
+### triple-web-nextjs-pages
+
+- 13.35.0 - 13.36.0 변경사항을 14에 반영 [#3479](https://github.com/titicacadev/triple-frontend/pull/3479)
+
+### triple-web-test-utils
+
+- 타입 에러 수정 [#3471](https://github.com/titicacadev/triple-frontend/pull/3471)
+
+### triple-web-utils
+
+- 13.35.0 - 13.36.0 변경사항을 14에 반영 [#3479](https://github.com/titicacadev/triple-frontend/pull/3479)
+
 ## v14.0.3
 
 ### standard-action-handler
@@ -4905,11 +4958,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
