@@ -38,7 +38,7 @@
     "@storybook/nextjs": "^8.4.4",
     "@storybook/preview-api": "^8.4.4",
     "@storybook/react": "^8.4.4",
-    "@swc/cli": "0.5.0",
+    "@swc/cli": "0.5.1",
     "@swc/core": "1.9.2",
     "@swc/jest": "0.2.37",
     "@swc/plugin-styled-components": "5.0.0",
