@@ -63,6 +63,7 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
       }
 
       if (type === 'pop' || isAndroid) {
+        window.dispatchEvent(new Event('hashchange'))
         return window.history.back()
       }
 
