@@ -20,6 +20,7 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/tna\/regions\/[^/]+\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+$/,
   /^\/tna\/products\/[^/]+\/display$/,
+  /^\/trips\/intro(\/.*)?(\?.*)?$/,
   /^\/trips\/lounge\/itineraries\/[^/]+$/,
   /^\/trips\/promotion\/customized-schedule(\/.*)?$/,
   /^\/trips\/plan(\/.*)?$/,
