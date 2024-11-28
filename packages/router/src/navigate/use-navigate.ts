@@ -48,6 +48,7 @@ export function useNavigate({
 
       showAppInstallCtaModal({
         triggeredEventAction: appInstallCtaTriggeredEventAction,
+        deepLink: href,
       })
     },
     [
