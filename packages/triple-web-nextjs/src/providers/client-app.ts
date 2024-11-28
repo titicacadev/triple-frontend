@@ -25,9 +25,10 @@ export function getClientApp(): ClientAppValue {
 
   return {
     metadata: {
-      name: (metadata[1] as keyof typeof ClientAppName)
-        ? ClientAppName.Android
-        : ClientAppName.iOS,
+      name:
+        metadata[1] === 'Triple-Android'
+          ? ClientAppName.Android
+          : ClientAppName.iOS,
       version: metadata[2],
       isMacApp: macAppRegex.test(userAgent),
     },
