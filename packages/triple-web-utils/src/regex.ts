@@ -1,3 +1,3 @@
-export const clientAppRegex = /(Triple-iOS|Triple-Android)\/([^ ]+)/g
+export const clientAppRegex = /(Triple-iOS|Triple-Android)\/([^ ]+)/
 
-export const macAppRegex = /TripleMacApp/g
+export const macAppRegex = /TripleMacApp/
