@@ -66,8 +66,8 @@ export function useScrap() {
           scraped === currentState
             ? scrapsCount
             : currentState
-            ? scrapsCount + 1
-            : scrapsCount - 1,
+              ? scrapsCount + 1
+              : scrapsCount - 1,
       }
     },
     [scraps, updating],
