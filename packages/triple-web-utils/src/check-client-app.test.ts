@@ -13,13 +13,13 @@ describe('checkClientApp', () => {
     expect(checkClientApp(userAgent)).toBe(true)
   })
 
-  test('정규식과 일치하지 않는 사용자 에이전트 문자열에 대해 false를 반환해야 합니다', () => {
+  test('트리플 앱 정보가 없는 user agent 문자열에 대해 false를 반환해야 합니다', () => {
     const userAgent =
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
     expect(checkClientApp(userAgent)).toBe(false)
   })
 
-  test('빈 사용자 에이전트 문자열에 대해 false를 반환해야 합니다', () => {
+  test('빈 user agent 문자열에 대해 false를 반환해야 합니다', () => {
     const userAgent = ''
     expect(checkClientApp(userAgent)).toBe(false)
   })
