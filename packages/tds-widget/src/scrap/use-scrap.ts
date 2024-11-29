@@ -66,8 +66,8 @@ export function useScrap() {
           scraped === currentState
             ? scrapsCount
             : currentState
-              ? scrapsCount + 1
-              : scrapsCount - 1,
+            ? scrapsCount + 1
+            : scrapsCount - 1,
       }
     },
     [scraps, updating],
@@ -85,7 +85,8 @@ export function useScrap() {
           content_type: type,
         },
       },
-    }: Target) => {
+      scrapableInApp = true,
+    }: Target & { scrapableInApp?: boolean }) => {
       if (
         beforeScrapedChange &&
         beforeScrapedChange({ id, type }, true) === false
@@ -97,7 +98,7 @@ export function useScrap() {
         return
       }
 
-      if (!app) {
+      if (scrapableInApp && !app) {
         return showAppInstallCtaModal({ triggeredEventAction: 'POI저장' })
       }
 
@@ -144,7 +145,8 @@ export function useScrap() {
           content_type: type,
         },
       },
-    }: Target) => {
+      scrapableInApp = true,
+    }: Target & { scrapableInApp?: boolean }) => {
       if (
         beforeScrapedChange &&
         beforeScrapedChange({ id, type }, true) === false
@@ -156,7 +158,7 @@ export function useScrap() {
         return
       }
 
-      if (!app) {
+      if (scrapableInApp && !app) {
         return showAppInstallCtaModal({ triggeredEventAction: 'POI저장' })
       }
 
