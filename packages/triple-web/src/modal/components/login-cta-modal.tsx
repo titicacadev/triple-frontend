@@ -35,7 +35,9 @@ export function LoginCtaModal() {
     const loginUrl = generateUrl({
       path: '/login',
       query: qs.stringify({
-        returnUrl: loginCtaModalRef.current.returnUrl || document.location.href,
+        returnUrl:
+          loginCtaModalRef.current.returnUrl ||
+          document.location.href.split('#')[0],
       }),
     })
 
