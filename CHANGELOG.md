@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## v14.0.5
+
+### router
+
+- [view-utilities, router] routelist에 라운지홈을 추가합니다. useNavigate에서 deeplink 이동 로직을 추가합니다 [#3486](https://github.com/titicacadev/triple-frontend/pull/3486)
+- 앱에서 navigate 동작 수정 [#3487](https://github.com/titicacadev/triple-frontend/pull/3487)
+
+### tds-widget
+
+- 앱 외부에서도 스크랩이 가능하도록 옵션 추가 [#3489](https://github.com/titicacadev/triple-frontend/pull/3489)
+
+### triple-web
+
+- 앱에서 navigate 동작 수정 [#3487](https://github.com/titicacadev/triple-frontend/pull/3487)
+- LoginCtaModal 기본 return url에서 hash 제거 [#3488](https://github.com/titicacadev/triple-frontend/pull/3488)
+
+### triple-web-nextjs
+
+- 앱에서 navigate 동작 수정 [#3487](https://github.com/titicacadev/triple-frontend/pull/3487)
+
+### triple-web-nextjs-pages
+
+- 앱에서 navigate 동작 수정 [#3487](https://github.com/titicacadev/triple-frontend/pull/3487)
+
+### triple-web-utils
+
+- 앱에서 navigate 동작 수정 [#3487](https://github.com/titicacadev/triple-frontend/pull/3487)
+
+### view-utilities
+
+- [view-utilities, router] routelist에 라운지홈을 추가합니다. useNavigate에서 deeplink 이동 로직을 추가합니다 [#3486](https://github.com/titicacadev/triple-frontend/pull/3486)
+
 ## v14.0.4
 
 ### i18n
