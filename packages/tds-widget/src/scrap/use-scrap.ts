@@ -20,7 +20,7 @@ import {
 } from './constants'
 import { ScrapContext, ScrapDispatchContext } from './context'
 
-export function useScrap() {
+export function useScrap(param?: { scrapableInApp?: boolean }) {
   const scrapsContext = useContext(ScrapContext)
   const dispatch = useContext(ScrapDispatchContext)
 
@@ -37,6 +37,8 @@ export function useScrap() {
   const { show: showLoginCta } = useLoginCtaModal()
   const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const trackEventWithMetadata = useTrackEventWithMetadata()
+
+  const scrapableInApp = param?.scrapableInApp ? param.scrapableInApp : true
 
   const deriveCurrentStateAndCount = useCallback(
     ({
@@ -85,8 +87,7 @@ export function useScrap() {
           content_type: type,
         },
       },
-      scrapableInApp = true,
-    }: Target & { scrapableInApp?: boolean }) => {
+    }: Target) => {
       if (
         beforeScrapedChange &&
         beforeScrapedChange({ id, type }, true) === false
@@ -122,6 +123,7 @@ export function useScrap() {
     [
       beforeScrapedChange,
       updating,
+      scrapableInApp,
       app,
       sessionAvailable,
       dispatch,
@@ -145,8 +147,7 @@ export function useScrap() {
           content_type: type,
         },
       },
-      scrapableInApp = true,
-    }: Target & { scrapableInApp?: boolean }) => {
+    }: Target) => {
       if (
         beforeScrapedChange &&
         beforeScrapedChange({ id, type }, true) === false
@@ -182,6 +183,7 @@ export function useScrap() {
     [
       beforeScrapedChange,
       updating,
+      scrapableInApp,
       app,
       sessionAvailable,
       dispatch,
