@@ -38,7 +38,8 @@ export function useScrap(param?: { scrapableInApp?: boolean }) {
   const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const trackEventWithMetadata = useTrackEventWithMetadata()
 
-  const scrapableInApp = param?.scrapableInApp ? param.scrapableInApp : true
+  const scrapableInApp =
+    param?.scrapableInApp !== undefined ? param.scrapableInApp : true
 
   const deriveCurrentStateAndCount = useCallback(
     ({
