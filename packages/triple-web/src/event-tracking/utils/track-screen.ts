@@ -1,7 +1,7 @@
 import { trackScreen as nativeTrackScreen } from '@titicaca/triple-web-to-native-interfaces'
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
-import { firebaseAnalytics } from '../libs/firebase-analytics'
+import { getFirebaseAnalytics } from '../libs/firebase-analytics'
 import type { EventTrackingValue } from '../types'
 
 declare const window: {
@@ -32,6 +32,8 @@ export function trackScreen(
     if (window.fbq && label) {
       window.fbq('trackCustom', `PageView_${label}`, { path })
     }
+
+    const firebaseAnalytics = getFirebaseAnalytics()
 
     if (firebaseAnalytics) {
       firebaseLogEvent(firebaseAnalytics, 'page_view', {

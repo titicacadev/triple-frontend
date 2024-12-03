@@ -1,7 +1,7 @@
 import { trackEvent as nativeTrackEvent } from '@titicaca/triple-web-to-native-interfaces'
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
-import { firebaseAnalytics } from '../libs/firebase-analytics'
+import { getFirebaseAnalytics } from '../libs/firebase-analytics'
 import type { EventTrackingValue } from '../types'
 
 declare const window: {
@@ -137,6 +137,8 @@ export function trackEvent(
     if (window.ttq && tiktokPixel) {
       window.ttq.track(tiktokPixel.type, tiktokPixel.params)
     }
+
+    const firebaseAnalytics = getFirebaseAnalytics()
 
     if (firebaseAnalytics && fa) {
       firebaseLogEvent(firebaseAnalytics, 'web_user_interaction', {

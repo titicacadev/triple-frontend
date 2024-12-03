@@ -1,13 +1,15 @@
 import { getApp } from 'firebase/app'
-import { type Analytics, initializeAnalytics } from 'firebase/analytics'
+import { getAnalytics, initializeAnalytics } from 'firebase/analytics'
 
-export let firebaseAnalytics: Analytics
+export function getFirebaseAnalytics() {
+  try {
+    const app = getApp()
+    const analytics =
+      getAnalytics(app) ??
+      initializeAnalytics(app, {
+        config: { send_page_view: false },
+      })
 
-try {
-  const app = getApp()
-  const analytics = initializeAnalytics(app, {
-    config: { send_page_view: false },
-  })
-
-  firebaseAnalytics = analytics
-} catch (error) {}
+    return analytics
+  } catch (error) {}
+}

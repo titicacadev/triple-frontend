@@ -5,7 +5,7 @@ import { setUserId } from 'firebase/analytics'
 
 import { EventTrackingContext } from '../event-tracking/context'
 import type { EventTrackingValue } from '../event-tracking/types'
-import { firebaseAnalytics } from '../event-tracking/libs/firebase-analytics'
+import { getFirebaseAnalytics } from '../event-tracking/libs/firebase-analytics'
 import { trackScreen } from '../event-tracking/utils/track-screen'
 import { useSession } from '../session/use-session'
 
@@ -20,6 +20,7 @@ export function EventTrackingProvider({
   const { user } = useSession()
 
   useEffect(() => {
+    const firebaseAnalytics = getFirebaseAnalytics()
     if (firebaseAnalytics) {
       setUserId(firebaseAnalytics, user?.uid ?? null)
     }
