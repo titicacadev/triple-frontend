@@ -1,3 +1,5 @@
+import { Analytics } from 'firebase/analytics'
+
 export interface EventTrackingUtmValue {
   source?: string
   medium?: string
@@ -15,6 +17,7 @@ export interface EventTrackingValue {
   }
   utm: EventTrackingUtmValue
   onError?: (error: Error) => void
+  firebaseAnalytics: Analytics
 }
 
 export interface EventMetadataValue {
