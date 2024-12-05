@@ -1,3 +1,29 @@
+# EventTrackingContext
+
+ga, fa, facebookPixel, tiktokPixel 이벤트를 로깅할 수 있는 메서드를 제공하는 context입니다.
+
+## 주의사항
+
+page_view 이벤트의 경우, fa에서 자동으로 page_view 이벤트를 기록하지 않도록 설정해야 합니다. 각 레포에서 firebase의 앱을 초기화할 때, firebase analytics 인스턴스도 초기화해야 page_view 이벤트가 중복으로 로깅되지 않습니다.
+
+```
+// firebase app 초기화 설정
+
+import { initializeFirebaseApp } from 'firebase/app'
+import { initializeAnalytics } from 'firebase/analytics'
+
+function initializeFirebase() {
+  const firebaseApp = initializeApp(config)
+
+  // page_view 이벤트 중복 로깅을 위해 다음과 같이 analytics를 초기화합니다.
+  initializeAnalytics(firebaseApp, {
+    config: {
+      send_page_view: false,
+    },
+  })
+}
+```
+
 # HashRouterContext
 
 hash를 사용하여 모달을 여닫을 수 있도록 필요한 값과 메서드를 제공하는 context입니다.
