@@ -91,7 +91,7 @@ export function useScrap(param?: { scrapableInApp?: boolean }) {
     }: Target) => {
       if (
         beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, true) === false
+        beforeScrapedChange({ id, type, eventParams }, true) === false
       ) {
         return
       }
@@ -151,7 +151,7 @@ export function useScrap(param?: { scrapableInApp?: boolean }) {
     }: Target) => {
       if (
         beforeScrapedChange &&
-        beforeScrapedChange({ id, type }, true) === false
+        beforeScrapedChange({ id, type, eventParams }, true) === false
       ) {
         return
       }
