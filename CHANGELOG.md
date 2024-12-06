@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v14.0.6
+
+```
+### tds-widget
+
+- [tds-widget] beforeScrapedChange시 파람에 eventParam을 넘기도록 수정합니다. [#3493](https://github.com/titicacadev/triple-frontend/pull/3493)
+
+### triple-web
+
+- [triple-web] firebaseAnalytics 인스턴스를 가져오지 못하는 이슈를 해결합니다. [#3492](https://github.com/titicacadev/triple-frontend/pull/3492)
+```
+
 ## v14.0.5
 
 ### router
