@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import {
   EventTrackingProvider as EventTrackingProviderBase,
   type EventTrackingProviderProps as EventTrackingProviderBaseProps,
@@ -19,13 +20,11 @@ export function EventTrackingProvider({
   onError,
 }: EventTrackingProviderProps) {
   const searchParams = useSearchParams()
+  const utm = getEventTrackingUtm(searchParams)
+  const memoizedUtm = useMemo(() => utm, [utm])
 
   return (
-    <EventTrackingProviderBase
-      page={page}
-      utm={getEventTrackingUtm(searchParams)}
-      onError={onError}
-    >
+    <EventTrackingProviderBase page={page} utm={memoizedUtm} onError={onError}>
       {children}
     </EventTrackingProviderBase>
   )
