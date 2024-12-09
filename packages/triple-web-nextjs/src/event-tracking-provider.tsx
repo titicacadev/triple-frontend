@@ -20,10 +20,11 @@ export function EventTrackingProvider({
   onError,
 }: EventTrackingProviderProps) {
   const searchParams = useSearchParams()
-  const utm = useMemo(() => getEventTrackingUtm(searchParams), [searchParams])
+  const utm = getEventTrackingUtm(searchParams)
+  const memoizedUtm = useMemo(() => utm, [utm])
 
   return (
-    <EventTrackingProviderBase page={page} utm={utm} onError={onError}>
+    <EventTrackingProviderBase page={page} utm={memoizedUtm} onError={onError}>
       {children}
     </EventTrackingProviderBase>
   )
