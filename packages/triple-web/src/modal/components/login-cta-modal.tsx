@@ -15,7 +15,10 @@ export function LoginCtaModal() {
   const { removeUriHash, uriHash } = useHashRouter()
   const open = uriHash === LOGIN_CTA_MODAL_HASH
 
-  const handleCancelOrClose = () => removeUriHash()
+  const handleCancelOrClose = () => {
+    removeUriHash()
+    return true
+  }
 
   const handleConfirm = () => {
     const triggeredEventAction =
@@ -41,7 +44,11 @@ export function LoginCtaModal() {
       }),
     })
 
+    removeUriHash()
+
     window.location.href = loginUrl
+
+    return true
   }
 
   useEffect(() => {
