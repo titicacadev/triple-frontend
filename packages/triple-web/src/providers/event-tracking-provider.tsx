@@ -28,7 +28,8 @@ export function EventTrackingProvider({
 
   useEffect(() => {
     trackScreen(page.path, page.label, { ...utm }, { page, utm, onError })
-  }, [onError, page, utm])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page])
 
   return (
     <EventTrackingContext.Provider value={{ page, utm, onError }}>
