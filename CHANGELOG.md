@@ -2,7 +2,6 @@
 
 ## v14.0.6
 
-```
 ### tds-widget
 
 - [tds-widget] beforeScrapedChange시 파람에 eventParam을 넘기도록 수정합니다. [#3493](https://github.com/titicacadev/triple-frontend/pull/3493)
@@ -10,7 +9,7 @@
 ### triple-web
 
 - [triple-web] firebaseAnalytics 인스턴스를 가져오지 못하는 이슈를 해결합니다. [#3492](https://github.com/titicacadev/triple-frontend/pull/3492)
-```
+- [triple-web] 모달을 띄울 때 trackScreen이 호출되는 문제를 해결합니다. [#3496](https://github.com/titicacadev/triple-frontend/pull/3496)
 
 ## v14.0.5
 
@@ -5002,11 +5001,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
