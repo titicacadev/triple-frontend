@@ -10,6 +10,7 @@
 
 - [triple-web] firebaseAnalytics 인스턴스를 가져오지 못하는 이슈를 해결합니다. [#3492](https://github.com/titicacadev/triple-frontend/pull/3492)
 - [triple-web] 모달을 띄울 때 trackScreen이 호출되는 문제를 해결합니다. [#3496](https://github.com/titicacadev/triple-frontend/pull/3496)
+- [triple-web] 로그인 모달 버튼 함수 수정 [#3497](https://github.com/titicacadev/triple-frontend/pull/3497)
 
 ## v14.0.5
 
