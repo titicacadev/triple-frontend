@@ -132,7 +132,7 @@ importers:
         specifier: ^13.3.0
         version: 13.3.0(enquirer@2.3.6)
       msw:
-        specifier: ^2.6.7
+        specifier: ^2.6.8
         version: 2.6.8(@types/node@18.19.67)(typescript@5.7.2)
       msw-storybook-addon:
         specifier: ^2.0.4
