@@ -32,12 +32,14 @@ export function sessionCookieMiddleware(paths: RegExp[]) {
         return customMiddleware(request, event, NextResponse.next())
       }
 
-      const cookies = deriveAllCookies(request.cookies.getAll())
+      const allCookies = request.cookies.getAll()
 
-      const isSessionExisted =
-        cookies.includes(X_SOTO_SESSION) ||
-        cookies.includes(TP_TK) ||
-        cookies.includes(TP_SE)
+      const isSessionExisted = allCookies.some(
+        ({ name }) =>
+          name === X_SOTO_SESSION || name === TP_TK || name === TP_SE,
+      )
+
+      const cookies = deriveAllCookies(request.cookies.getAll())
 
       if (!isSessionExisted) {
         return customMiddleware(request, event, NextResponse.next())
