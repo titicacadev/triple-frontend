@@ -44,7 +44,7 @@
     "@swc/plugin-styled-components": "5.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "@titicaca/eslint-config-triple": "5.2.1",
     "@titicaca/prettier-config-triple": "1.2.1",
