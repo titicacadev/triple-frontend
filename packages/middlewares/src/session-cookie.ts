@@ -19,14 +19,14 @@ import {
  * 3. 갱신된 토큰을 response의 _set-cookie_ header와 set-cookie와 request의 _cookie_ header에 전달합니다.
  * 4. 브라우저는 response의 _set-cookie_ 를 통해 브라우저 쿠키값을 갱신합니다.
  */
-export function sessionCookieMiddleware(paths: string[]) {
+export function sessionCookieMiddleware(paths: RegExp[]) {
   return function withMiddleware(customMiddleware: CustomMiddleware) {
     return async function middleware(
       request: NextRequest,
       event: NextFetchEvent,
     ) {
       const isPathMismatched = !paths.some((path) =>
-        request.nextUrl.pathname.startsWith(path),
+        request.nextUrl.pathname.match(path),
       )
       if (isPathMismatched) {
         return customMiddleware(request, event, NextResponse.next())
