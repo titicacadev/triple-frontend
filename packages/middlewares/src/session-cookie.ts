@@ -3,7 +3,13 @@ import { get, post } from '@titicaca/fetcher'
 import { splitCookiesString, parseString } from 'set-cookie-parser'
 
 import { CustomMiddleware } from './chain'
-import { X_AUTH_STATUS, NEED_LOGIN_IDENTIFIER } from './constants'
+import {
+  X_AUTH_STATUS,
+  NEED_LOGIN_IDENTIFIER,
+  X_SOTO_SESSION,
+  TP_TK,
+  TP_SE,
+} from './constants'
 
 /**
  * 해당 미들웨어에서는 다음 순서로 사용자 인증 여부를 확인합니다.
@@ -13,20 +19,32 @@ import { X_AUTH_STATUS, NEED_LOGIN_IDENTIFIER } from './constants'
  * 3. 갱신된 토큰을 response의 _set-cookie_ header와 set-cookie와 request의 _cookie_ header에 전달합니다.
  * 4. 브라우저는 response의 _set-cookie_ 를 통해 브라우저 쿠키값을 갱신합니다.
  */
-export function sessionCookieMiddleware(paths: string[]) {
+export function sessionCookieMiddleware(paths: RegExp[]) {
   return function withMiddleware(customMiddleware: CustomMiddleware) {
     return async function middleware(
       request: NextRequest,
       event: NextFetchEvent,
     ) {
       const isPathMismatched = !paths.some((path) =>
-        request.nextUrl.pathname.startsWith(path),
+        request.nextUrl.pathname.match(path),
       )
       if (isPathMismatched) {
         return customMiddleware(request, event, NextResponse.next())
       }
 
+      const allCookies = request.cookies.getAll()
+
+      const isSessionExisted = allCookies.some(
+        ({ name }) =>
+          name === X_SOTO_SESSION || name === TP_TK || name === TP_SE,
+      )
+
       const cookies = deriveAllCookies(request.cookies.getAll())
+
+      if (!isSessionExisted) {
+        return customMiddleware(request, event, NextResponse.next())
+      }
+
       const options = {
         cookie: cookies,
         withApiUriBase: true,
