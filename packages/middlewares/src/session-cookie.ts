@@ -3,7 +3,13 @@ import { get, post } from '@titicaca/fetcher'
 import { splitCookiesString, parseString } from 'set-cookie-parser'
 
 import { CustomMiddleware } from './chain'
-import { X_AUTH_STATUS, NEED_LOGIN_IDENTIFIER } from './constants'
+import {
+  X_AUTH_STATUS,
+  NEED_LOGIN_IDENTIFIER,
+  X_SOTO_SESSION,
+  TP_TK,
+  TP_SE,
+} from './constants'
 
 /**
  * 해당 미들웨어에서는 다음 순서로 사용자 인증 여부를 확인합니다.
@@ -27,6 +33,16 @@ export function sessionCookieMiddleware(paths: string[]) {
       }
 
       const cookies = deriveAllCookies(request.cookies.getAll())
+
+      const isSessionExisted =
+        cookies.includes(X_SOTO_SESSION) ||
+        cookies.includes(TP_TK) ||
+        cookies.includes(TP_SE)
+
+      if (!isSessionExisted) {
+        return customMiddleware(request, event, NextResponse.next())
+      }
+
       const options = {
         cookie: cookies,
         withApiUriBase: true,
