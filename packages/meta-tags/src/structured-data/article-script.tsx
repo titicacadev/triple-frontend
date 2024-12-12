@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import { createScript } from './utils'
-import { ArticleScriptProps } from './types'
+import { createScript } from '../utils'
+import { ArticleScriptProps } from '../types'
 
 export function ArticleScript(props: ArticleScriptProps) {
   const articleScript = createScript(props, 'Article')
