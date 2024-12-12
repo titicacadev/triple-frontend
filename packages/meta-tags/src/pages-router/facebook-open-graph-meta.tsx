@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEnv } from '@titicaca/triple-web'
 
-import { DEFAULT_OG_IMAGE } from './constants'
+import { DEFAULT_OG_IMAGE } from '../constants'
 
 export function FacebookOpenGraphMeta({
   title: titleFromProps,

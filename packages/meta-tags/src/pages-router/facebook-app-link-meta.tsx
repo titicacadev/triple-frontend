@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEnv, useTranslation } from '@titicaca/triple-web'
 
-import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from './constants'
+import { DEFAULT_APP_ID, DEFAULT_APP_PACKAGE_NAME } from '../constants'
 
 export function FacebookAppLinkMeta({
   appName,

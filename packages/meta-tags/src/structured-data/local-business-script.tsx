@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from './utils'
-import { LocalBusinessScriptProps } from './types'
+import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from '../utils'
+import { LocalBusinessScriptProps } from '../types'
 
 export function LocalBusinessScript({
   type,

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEnv } from '@titicaca/triple-web'
 
-import { DEFAULT_APP_ID } from './constants'
+import { DEFAULT_APP_ID } from '../constants'
 
 export function AppleSmartBannerMeta({
   appId = DEFAULT_APP_ID,

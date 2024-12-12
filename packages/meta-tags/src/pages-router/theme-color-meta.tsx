@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import { ThemeColor } from './types'
-import { DEFAULT_THEME_COLOR } from './constants'
+import { ThemeColor } from '../types'
+import { DEFAULT_THEME_COLOR } from '../constants'
 
 export function ThemeColorMeta({
   content = DEFAULT_THEME_COLOR,

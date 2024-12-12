@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-import { createScript } from './utils'
-import { BreadcrumbListScriptProps } from './types'
+import { createScript } from '../utils'
+import { BreadcrumbListScriptProps } from '../types'
 
 export function BreadcrumbListScript(props: BreadcrumbListScriptProps) {
   const breadcrumbScript = createScript(props, 'BreadcrumbList')
