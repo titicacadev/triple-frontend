@@ -42,7 +42,7 @@ import {
 
 export default chain([
   oldIosCookiesMiddleware,
-  sessionCookieMiddleware(['/test']),
+  sessionCookieMiddleware([/^\/test$/]),
 ])
 ```
 
