@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Script from 'next/script'
 
 import { SCHEMA_SCRIPT_TYPE_MAP, createScript } from '../utils'
 import { LocalBusinessScriptProps } from '../types'
@@ -10,10 +10,12 @@ export function LocalBusinessScript({
   const localBusinessScript = createScript(props, SCHEMA_SCRIPT_TYPE_MAP[type])
 
   return (
-    <Head>
-      <script type="application/ld+json">
-        {JSON.stringify(localBusinessScript)}
-      </script>
-    </Head>
+    <Script
+      id="local-business-script"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(localBusinessScript, null, '\t'),
+      }}
+    />
   )
 }
