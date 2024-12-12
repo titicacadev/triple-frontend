@@ -17,6 +17,9 @@ const SCHEMA_TYPE_MAP: Record<string, string> = {
   geo: 'GeoCoordinates',
   reviewRating: 'Rating',
   itemListElement: 'ListItem',
+  interactionStatistic: 'InteractionCounter',
+  answer: 'Answer',
+  comment: 'Comment',
 }
 
 type Formatter = (value: string) => string | undefined

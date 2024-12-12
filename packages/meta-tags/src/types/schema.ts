@@ -82,3 +82,29 @@ type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`
 type HEX = `#${string}`
 
 export type ThemeColor = RGB | RGBA | HEX | Global
+
+export type InteractionStatisticType = 'LikeAction' | 'CommentAction'
+
+export interface InteractionStatistic {
+  interactionType: {
+    type: InteractionStatisticType
+  }
+  userInteractionCount: number
+}
+
+export interface CommentType {
+  text: string
+  author: Author
+  datePublished: string
+  interactionStatistic: InteractionStatistic[]
+  comment: CommentType[]
+}
+
+export interface Answer {
+  text: string
+  upvoteCount: number
+  url: string
+  datePublished: string
+  author: Author
+  comment: CommentType[]
+}
