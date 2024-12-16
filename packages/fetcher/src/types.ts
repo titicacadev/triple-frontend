@@ -21,6 +21,7 @@ export type RequestOptions = Omit<RequestInit, 'body'> & {
    * URL에 API base URL을 붙여 요청을 절대 경로로 보낼 수 있게 만듦
    */
   withApiUriBase?: boolean
+  next?: NextFetchRequestConfig
 }
 
 export enum HttpMethods {
