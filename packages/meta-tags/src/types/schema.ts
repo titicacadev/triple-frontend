@@ -96,8 +96,8 @@ export interface CommentType {
   text: string
   author: Author
   datePublished: string
-  interactionStatistic: InteractionStatistic[]
-  comment: CommentType[]
+  interactionStatistic?: InteractionStatistic[]
+  comment?: CommentType[]
 }
 
 export interface Answer {
@@ -106,5 +106,5 @@ export interface Answer {
   url: string
   datePublished: string
   author: Author
-  comment: CommentType[]
+  comment?: CommentType[]
 }
