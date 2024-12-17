@@ -61,22 +61,23 @@ function addSchemaType<T extends object>(originObj: T): T {
       return mergeObj({ '@type': value }, obj)
     }
 
-    if (key in SCHEMA_TYPE_MAP) {
-      if (isObject(value)) {
-        return mergeObj(obj, {
-          [key]: mergeObj(
-            { '@type': SCHEMA_TYPE_MAP[key] },
-            addSchemaType(value),
-          ),
-        })
-      }
+    if (isObject(value)) {
+      return mergeObj(obj, {
+        [key]: mergeObj(
+          key in SCHEMA_TYPE_MAP ? { '@type': SCHEMA_TYPE_MAP[key] } : {},
+          addSchemaType(value),
+        ),
+      })
+    }
 
-      if (isArrayOfObject(value)) {
-        const arrayValue = (value as object[]).map((item) =>
-          mergeObj({ '@type': SCHEMA_TYPE_MAP[key] }, addSchemaType(item)),
-        )
-        return mergeObj(obj, { [key]: arrayValue })
-      }
+    if (isArrayOfObject(value)) {
+      const arrayValue = (value as object[]).map((item) =>
+        mergeObj(
+          key in SCHEMA_TYPE_MAP ? { '@type': SCHEMA_TYPE_MAP[key] } : {},
+          addSchemaType(item),
+        ),
+      )
+      return mergeObj(obj, { [key]: arrayValue })
     }
 
     return mergeObj(obj, { [key]: value })
