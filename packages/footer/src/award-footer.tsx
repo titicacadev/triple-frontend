@@ -89,7 +89,7 @@ export function AwardFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
         >
-          &#12828;인터파크트리플은 통신판매중개로서 통신판매의 당사자가 아니며
+          &#12828;(주)놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며
           <br /> 상품 거래정보 및 거래등에 대해 책임을 지지 않습니다.
         </Text>
 
