@@ -62,4 +62,6 @@ export interface ImageMeta {
     href: string
     label?: string
   }
+  /* 어드민에서 설정하는 값으로 영상 재생시 소리를 음소거 해주는 기능 */
+  videoInitiallyMuted?: boolean
 }
