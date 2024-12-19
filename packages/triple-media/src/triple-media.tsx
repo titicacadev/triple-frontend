@@ -47,6 +47,7 @@ export default function Media({
     sourceUrl,
     title,
     description,
+    videoInitiallyMuted,
   } = media
 
   if (type && type === 'video' && video) {
@@ -60,6 +61,7 @@ export default function Media({
         cloudinaryId={cloudinaryId}
         autoPlay={autoPlay}
         loop={loop}
+        muted={videoInitiallyMuted}
         hideControls={!!hideControls}
         showNativeControls={showNativeControls}
       />
