@@ -4,8 +4,11 @@ import {
   AddressSchema,
   AggregateOfferSchema,
   AggregateRatingSchema,
+  Answer,
   Author,
+  CommentType,
   GeoSchema,
+  InteractionStatistic,
   ListItem,
   OpeningHoursSpecificationSchema,
   ReviewSchema,
@@ -52,4 +55,29 @@ export interface ProductScriptProps {
 
 export interface ReviewScriptProps {
   reviews: ReviewSchema[]
+}
+
+export interface DiscussionForumPostingScriptProps {
+  headline: string
+  text: string
+  url: string
+  author: Author
+  image?: string[]
+  datePublished: string
+  interactionStatistic: InteractionStatistic[]
+  comment: CommentType[]
+}
+
+export interface QaPageScriptProps {
+  mainEntity: {
+    type: 'Question'
+    name: string
+    text: string
+    answerCount: number
+    upvoteCount: number
+    datePublished: string
+    author: Author
+    suggestedAnswer: Answer[]
+    acceptedAnswer?: Answer
+  }
 }
