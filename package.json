@@ -70,7 +70,7 @@
     "jest-styled-components": "^7.2.0",
     "lerna": "^7.4.2",
     "lint-staged": "^13.3.0",
-    "msw": "^2.6.8",
+    "msw": "^2.6.9",
     "msw-storybook-addon": "^2.0.4",
     "next": "^14.2.20",
     "nx-cloud": "16.4.0",
