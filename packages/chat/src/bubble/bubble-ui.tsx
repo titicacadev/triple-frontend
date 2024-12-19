@@ -13,6 +13,7 @@ import {
 import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
+import { ParentMessageUIProp } from './parent/parent-ui'
 
 export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
 
@@ -20,6 +21,7 @@ export type BubbleType = (typeof BubbleTypeArray)[number]
 
 interface BubbleUIPropBase {
   type: BubbleType
+  parentMessage?: ParentMessageUIProp | null
 }
 
 export interface TextBubbleUIProp extends BubbleUIPropBase {
@@ -50,10 +52,13 @@ export type BubbleUIProps = (
 ) & {
   id: string
   my: boolean
+  created?: boolean
   blinded?: boolean
   deleted?: boolean
   unfriended?: boolean
   alternativeText?: string
+  parentMessage?: ParentMessageUIProp
+  onParentMessageClick?: TextBubbleProp['onParentMessageClick']
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
@@ -73,6 +78,8 @@ export type BubbleUIProps = (
   appUrlScheme?: string
   hasArrow?: boolean
   alteredTextColor?: string
+  fullTextViewAvailable?: boolean
+  onOpenMenu?: () => void
 }
 
 export default function BubbleUI({
@@ -80,6 +87,7 @@ export default function BubbleUI({
   value,
   id,
   my,
+  created,
   blinded,
   deleted,
   unfriended,
@@ -89,6 +97,7 @@ export default function BubbleUI({
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
+  onParentMessageClick,
   richBubbleStyle,
   maxWidthOffset,
   cloudinaryName,
@@ -96,6 +105,8 @@ export default function BubbleUI({
   appUrlScheme,
   hasArrow,
   alteredTextColor,
+  fullTextViewAvailable = false,
+  onOpenMenu,
   ...props
 }: BubbleUIProps) {
   if (blinded || deleted || unfriended) {
@@ -124,15 +135,20 @@ export default function BubbleUI({
           id={id}
           my={my}
           message={value.message}
+          created={created}
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
+          onOpenMenu={onOpenMenu}
           hasArrow={hasArrow}
+          fullTextViewAvailable={fullTextViewAvailable}
+          onParentMessageClick={onParentMessageClick}
           {...props}
         />
       )
     case 'images':
       return (
         <ImageBubble
+          id={id}
           images={value.images}
           appUrlScheme={appUrlScheme}
           onClick={onImageBubbleClick}
@@ -174,6 +190,7 @@ export default function BubbleUI({
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
+          hasArrow={hasArrow}
           {...props}
         />
       )
