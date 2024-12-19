@@ -1,4 +1,7 @@
-import { trackEvent as nativeTrackEvent } from '@titicaca/triple-web-to-native-interfaces'
+import {
+  hasAccessibleTripleNativeClients,
+  trackEvent as nativeTrackEvent,
+} from '@titicaca/triple-web-to-native-interfaces'
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
 import { getFirebaseAnalytics } from '../libs/firebase-analytics'
@@ -140,7 +143,7 @@ export function trackEvent(
 
     const firebaseAnalytics = getFirebaseAnalytics()
 
-    if (firebaseAnalytics && fa) {
+    if (firebaseAnalytics && fa && !hasAccessibleTripleNativeClients()) {
       firebaseLogEvent(firebaseAnalytics, 'web_user_interaction', {
         category: pageLabel,
         ...fa,
