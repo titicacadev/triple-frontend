@@ -18,12 +18,9 @@ export function generateFacebookOpenGraphMeta({
   locale?: string
   image?: { url: string; width?: number; height?: number }
 } = {}): Metadata {
-  const title =
-    titleFromProps || process.env.NEXT_PUBLIC_DEFAULT_PAGE_TITLE || undefined
+  const title = titleFromProps || process.env.NEXT_PUBLIC_DEFAULT_PAGE_TITLE
   const description =
-    descriptionFromProps ||
-    process.env.NEXT_PUBLIC_DEFAULT_PAGE_DESCRIPTION ||
-    undefined
+    descriptionFromProps || process.env.NEXT_PUBLIC_DEFAULT_PAGE_DESCRIPTION
   const url =
     canonicalUrl ||
     (process.env.NEXT_PUBLIC_WEB_URL_BASE
