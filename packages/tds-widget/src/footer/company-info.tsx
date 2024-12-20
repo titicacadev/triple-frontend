@@ -157,7 +157,7 @@ export function CompanyInfo({
 
       <AccordionContent>
         <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
-          &#12828;(주)놀유니버스 | 대표이사 배보찬, 최휘영 <br />
+          &#12828;놀유니버스 | 대표이사 배보찬, 최휘영 <br />
           사업자 등록번호 824-81-02515
           <br />
           통신판매업 신고번호 2024-성남수정-0912
