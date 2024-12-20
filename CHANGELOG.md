@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 14.0.7
+
+```
+### middlewares
+
+- [middleware] 세션 쿠키 리프레시 로직을 수정합니다.  [#3498](https://github.com/titicacadev/triple-frontend/pull/3498)
+
+### triple-web
+
+- [triple-web] web track event는 클라이언트 웹뷰가 아닐 때만 로깅하도록 수정합니다.  [#3507](https://github.com/titicacadev/triple-frontend/pull/3507)
+```
+
 ## v14.0.6
 
 ### tds-widget
@@ -5002,11 +5014,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
