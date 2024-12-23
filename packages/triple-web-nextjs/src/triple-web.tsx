@@ -5,7 +5,7 @@ import {
 
 export type TripleWebProps = TripleWebBaseProps
 
-export async function TripleWeb({
+export function TripleWeb({
   children,
   clientAppProvider,
   envProvider,
