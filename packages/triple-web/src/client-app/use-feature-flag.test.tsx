@@ -9,7 +9,11 @@ test('returns true if app version meets the version operator requirements', () =
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
-        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        metadata: {
+          name: ClientAppName.iOS,
+          version: '5.11.0',
+          isMacApp: false,
+        },
         device: { autoplay: 'always', networkType: 'unknown' },
       }}
     >
@@ -34,7 +38,11 @@ test('returns false if app version does not meet the version operator requiremen
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
-        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        metadata: {
+          name: ClientAppName.iOS,
+          version: '5.11.0',
+          isMacApp: false,
+        },
         device: { autoplay: 'always', networkType: 'unknown' },
       }}
     >
@@ -59,7 +67,11 @@ test('returns false if app name does not meet the requirements', () => {
   const wrapper = ({ children }: PropsWithChildren) => (
     <ClientAppContext.Provider
       value={{
-        metadata: { name: ClientAppName.iOS, version: '5.11.0' },
+        metadata: {
+          name: ClientAppName.iOS,
+          version: '5.11.0',
+          isMacApp: false,
+        },
         device: { autoplay: 'always', networkType: 'unknown' },
       }}
     >

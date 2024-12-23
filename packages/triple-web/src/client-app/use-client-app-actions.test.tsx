@@ -10,7 +10,11 @@ test('최소 버전 목록에 등록되지 않은 경우 함수를 그대로 반
       <ClientAppContext.Provider
         value={{
           device: { autoplay: 'always', networkType: 'unknown' },
-          metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+          metadata: {
+            name: ClientAppName.iOS,
+            version: '6.5.0',
+            isMacApp: false,
+          },
         }}
       >
         {children}
@@ -27,7 +31,11 @@ test('최소 버전 목록에 일치하지 않는 경우 함수를 반환하지 
       <ClientAppContext.Provider
         value={{
           device: { autoplay: 'always', networkType: 'unknown' },
-          metadata: { name: ClientAppName.iOS, version: '5.10.0' },
+          metadata: {
+            name: ClientAppName.iOS,
+            version: '5.10.0',
+            isMacApp: false,
+          },
         }}
       >
         {children}
@@ -44,7 +52,11 @@ test('최소 버전 목록에 일치하는 경우 함수를 반환해야 합니�
       <ClientAppContext.Provider
         value={{
           device: { autoplay: 'always', networkType: 'unknown' },
-          metadata: { name: ClientAppName.iOS, version: '5.12.0' },
+          metadata: {
+            name: ClientAppName.iOS,
+            version: '5.12.0',
+            isMacApp: false,
+          },
         }}
       >
         {children}
