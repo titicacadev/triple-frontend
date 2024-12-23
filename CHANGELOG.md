@@ -14,6 +14,14 @@
 ### triple-web
 
 - [triple-web] web track event는 클라이언트 웹뷰가 아닐 때만 로깅하도록 수정합니다.  [#3507](https://github.com/titicacadev/triple-frontend/pull/3507)
+
+### tds-widget
+
+- v13.37.0, v13.38.0 변경사항을 적용합니다. [#3512](https://github.com/titicacadev/triple-frontend/pull/3512)
+
+### type-definitions
+
+- v13.37.0, v13.38.0 변경사항을 적용합니다. [#3512](https://github.com/titicacadev/triple-frontend/pull/3512)
 ```
 
 ## v14.0.6
