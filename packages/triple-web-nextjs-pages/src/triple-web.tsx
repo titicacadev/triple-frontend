@@ -25,3 +25,5 @@ export function TripleWeb({
     </TripleWebBase>
   )
 }
+
+TripleWeb.displayName = 'TripleWebNextjsPages'
