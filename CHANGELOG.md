@@ -475,6 +475,18 @@
 - [Reivew] 리뷰 플레이스홀더 마진 값을 수정합니다. [#3509](https://github.com/titicacadev/triple-frontend/pull/3509)
 ```
 
+## v13.37.0
+
+```
+### triple-media
+
+- KLZT-766 영상기본음소거 [#3503](https://github.com/titicacadev/triple-frontend/pull/3503)
+
+### type-definitions
+
+- KLZT-766 영상기본음소거 [#3503](https://github.com/titicacadev/triple-frontend/pull/3503)
+```
+
 ## v13.36.0
 
 ### react-contexts
