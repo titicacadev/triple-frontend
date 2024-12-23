@@ -1,3 +1,5 @@
+'use client'
+
 export * from './accordion'
 export * from './action-sheet'
 export * from './action-sheet-select'

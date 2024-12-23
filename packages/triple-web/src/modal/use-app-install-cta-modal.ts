@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useContext, useEffect } from 'react'
 
 import { useHashRouter } from '../hash-router/use-hash-router'
