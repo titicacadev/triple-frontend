@@ -58,7 +58,7 @@
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",
     "@types/qs": "^6.9.17",
-    "next": "^14.2.20",
+    "next": "^14.2.21",
     "react": "^18.3.1",
     "styled-components": "^6.1.13"
   },
