@@ -1,6 +1,8 @@
-import type { TripleWebProps } from './triple-web'
+import type { TripleWebProps } from '../providers'
 
-import { getClientApp, getSession, getUserAgent } from '.'
+import { getClientApp } from './client-app'
+import { getSession } from './session'
+import { getUserAgent } from './user-agent'
 
 export type BuildTripleWebPropsResult = Omit<
   TripleWebProps,

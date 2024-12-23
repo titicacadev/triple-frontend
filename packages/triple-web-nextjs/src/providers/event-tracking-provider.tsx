@@ -1,4 +1,11 @@
-import type { EventTrackingUtmValue } from '@titicaca/triple-web'
+'use client'
+
+import {
+  EventTrackingProvider as EventTrackingProviderBase,
+  type EventTrackingUtmValue,
+  type EventTrackingProviderProps as EventTrackingProviderBaseProps,
+} from '@titicaca/triple-web'
+import { useSearchParams } from 'next/navigation'
 
 export function getEventTrackingUtm(
   searchParams: URLSearchParams,
@@ -24,4 +31,27 @@ export function getEventTrackingUtm(
       undefined,
     partner: searchParams.get('prt') || undefined,
   }
+}
+
+export type EventTrackingProviderProps = Omit<
+  EventTrackingProviderBaseProps,
+  'utm'
+>
+
+export function EventTrackingProvider({
+  children,
+  page,
+  onError,
+}: EventTrackingProviderProps) {
+  const searchParams = useSearchParams()
+
+  return (
+    <EventTrackingProviderBase
+      page={page}
+      utm={getEventTrackingUtm(searchParams)}
+      onError={onError}
+    >
+      {children}
+    </EventTrackingProviderBase>
+  )
 }
