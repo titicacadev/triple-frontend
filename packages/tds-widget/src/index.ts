@@ -1,3 +1,5 @@
+'use client'
+
 export * from './ad-banners'
 export * from './app-banner'
 export * from './app-installation-cta'
