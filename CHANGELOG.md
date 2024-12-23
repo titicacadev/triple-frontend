@@ -463,6 +463,18 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## v13.38.0
+
+```
+### footer
+
+- [footer] 푸터의 회사명, 대표명을 변경합니다. [#3505](https://github.com/titicacadev/triple-frontend/pull/3505)
+
+### review
+
+- [Reivew] 리뷰 플레이스홀더 마진 값을 수정합니다. [#3509](https://github.com/titicacadev/triple-frontend/pull/3509)
+```
+
 ## v13.36.0
 
 ### react-contexts
