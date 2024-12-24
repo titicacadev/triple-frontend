@@ -2,6 +2,26 @@ import { render, screen } from '@testing-library/react'
 
 import { ELEMENTS } from '../index'
 
+test('디폴트형 링크 Element를 렌더링합니다.', () => {
+  const Links = ELEMENTS.links
+
+  render(
+    <Links
+      value={{
+        links: [{ id: '', label: 'Default Styled Link', href: 'Test Href' }],
+        display: 'default',
+      }}
+    />,
+  )
+
+  const anchorElement = screen.getByRole('link')
+
+  expect(anchorElement).toHaveAttribute('href', 'Test Href')
+  expect(anchorElement).toHaveStyleRule('color', '#2987f0')
+  expect(anchorElement).toHaveStyleRule('text-decoration', 'underline')
+  expect(anchorElement).toHaveTextContent('Default Styled Link')
+})
+
 test('버튼형 링크 Element를 렌더링합니다.', () => {
   const Links = ELEMENTS.links
 
