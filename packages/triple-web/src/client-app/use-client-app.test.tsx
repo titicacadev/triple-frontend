@@ -7,7 +7,7 @@ import { ClientAppName, ClientAppValue } from './types'
 test('Context가 정의된 경우 값을 반환해야 합니다.', () => {
   const mockValue: ClientAppValue = {
     device: { autoplay: 'always', networkType: 'cellular' },
-    metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+    metadata: { name: ClientAppName.iOS, version: '6.5.0', isMacApp: false },
   }
 
   const { result } = renderHook(() => useClientApp(), {

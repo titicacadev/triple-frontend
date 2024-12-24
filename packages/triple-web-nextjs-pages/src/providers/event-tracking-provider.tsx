@@ -1,8 +1,13 @@
 /* eslint-disable camelcase */
-import type { EventTrackingUtmValue } from '@titicaca/triple-web'
+import {
+  EventTrackingProvider as EventTrackingProviderBase,
+  type EventTrackingUtmValue,
+  type EventTrackingProviderProps as EventTrackingProviderPropsBase,
+} from '@titicaca/triple-web'
+import { useRouter } from 'next/router'
 import { strictQuery } from '@titicaca/view-utilities'
 
-export function getEventTrackingUtm(
+function getEventTrackingUtm(
   query: Record<string, string | string[] | undefined>,
 ): EventTrackingUtmValue {
   const {
@@ -39,4 +44,27 @@ export function getEventTrackingUtm(
     content: utm_content || utmContent,
     partner: prt,
   }
+}
+
+export type EventTrackingProviderProps = Omit<
+  EventTrackingProviderPropsBase,
+  'utm'
+>
+
+export function EventTrackingProvider({
+  children,
+  page,
+  onError,
+}: EventTrackingProviderProps) {
+  const router = useRouter()
+
+  return (
+    <EventTrackingProviderBase
+      page={page}
+      utm={getEventTrackingUtm(router.query)}
+      onError={onError}
+    >
+      {children}
+    </EventTrackingProviderBase>
+  )
 }

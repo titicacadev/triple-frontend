@@ -57,7 +57,11 @@ test('앱에서 앱 전환 모달 표시 함수를 호출하지 않습니다.', 
       <ClientAppContext.Provider
         value={{
           device: { autoplay: 'always', networkType: 'unknown' },
-          metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+          metadata: {
+            name: ClientAppName.iOS,
+            version: '6.5.0',
+            isMacApp: false,
+          },
         }}
       >
         <UserAgentContext.Provider
