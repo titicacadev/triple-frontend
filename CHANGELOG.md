@@ -487,6 +487,14 @@
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.38.1
+
+```
+### footer
+
+- [footer] 푸터의 맞춤법을 수정합니다. [#3516](https://github.com/titicacadev/triple-frontend/pull/3516)
+```
+
 ## v13.38.0
 
 ```
