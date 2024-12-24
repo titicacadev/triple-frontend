@@ -106,6 +106,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     if (scrollPrevented) {
       setScrollPrevented(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatContainerRef, scrollY])
 
   useLayoutEffect(() => {
@@ -117,6 +118,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     if (scrollPrevented) {
       setScrollPrevented(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatContainerRef, scrollBy])
 
   const value = {
