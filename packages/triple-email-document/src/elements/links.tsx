@@ -15,9 +15,25 @@ export interface LinksDocument {
   type: 'links'
   value: {
     links: Link[]
-    display: 'button' | 'block' | 'largeButton' | 'largeCompactButton'
+    display:
+      | 'default'
+      | 'button'
+      | 'block'
+      | 'largeButton'
+      | 'largeCompactButton'
   }
 }
+
+const DefaultLink = styled.a`
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #2987f0;
+  text-decoration: underline;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+`
 
 const ButtonLink = styled.a`
   padding: 13px 25px;
@@ -69,6 +85,7 @@ const LargeCompactLink = styled(LargeLink)`
 `
 
 const LINK_BOXES = {
+  default: DefaultLinkBox,
   button: ButtonBox,
   block: BlockBox,
   largeButton: LargeBox,
@@ -76,6 +93,7 @@ const LINK_BOXES = {
 }
 
 const LINK_ELEMENTS = {
+  default: DefaultLink,
   button: ButtonLink,
   block: BlockLink,
   largeButton: LargeLink,
@@ -115,6 +133,14 @@ export default function LinksView({
         })}
       </tbody>
     </FluidTable>
+  )
+}
+
+function DefaultLinkBox({ children }: PropsWithChildren<unknown>) {
+  return (
+    <DefaultBox padding={{ top: 10, left: 30, right: 30 }}>
+      {children}
+    </DefaultBox>
   )
 }
 
