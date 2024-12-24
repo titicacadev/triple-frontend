@@ -33,6 +33,11 @@ const DefaultLink = styled.a`
   text-decoration: underline;
   overflow-wrap: break-word;
   white-space: pre-line;
+
+  &:hover {
+    color: #2987f0;
+    text-decoration: underline;
+  }
 `
 
 const ButtonLink = styled.a`
