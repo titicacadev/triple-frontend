@@ -712,8 +712,8 @@ importers:
         specifier: ^7.6.3
         version: 7.6.3
       ua-parser-js:
-        specifier: ^1.0.39
-        version: 1.0.39
+        specifier: ^1.0.40
+        version: 1.0.40
     devDependencies:
       '@types/qs':
         specifier: ^6.9.17
@@ -743,8 +743,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1
       ua-parser-js:
-        specifier: ^1.0.39
-        version: 1.0.39
+        specifier: ^1.0.40
+        version: 1.0.40
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -774,8 +774,8 @@ importers:
         specifier: ^6.13.1
         version: 6.13.1
       ua-parser-js:
-        specifier: ^1.0.39
-        version: 1.0.39
+        specifier: ^1.0.40
+        version: 1.0.40
       universal-cookie:
         specifier: ^4.0.4
         version: 4.0.4
@@ -811,8 +811,8 @@ importers:
         specifier: ^0.7.39
         version: 0.7.39
       ua-parser-js:
-        specifier: ^1.0.39
-        version: 1.0.39
+        specifier: ^1.0.40
+        version: 1.0.40
 
   packages/type-definitions: {}
 
@@ -9505,10 +9505,6 @@ packages:
   typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
     engines: {node: '>=14.17'}
-    hasBin: true
-
-  ua-parser-js@1.0.39:
-    resolution: {integrity: sha512-k24RCVWlEcjkdOxYmVJgeD/0a1TiSpqLg+ZalVGV9lsnr4yqu0w7tX/x2xX6G4zpkgQnRf89lxuZ1wsbjXM8lw==}
     hasBin: true
 
   ua-parser-js@1.0.40:
@@ -21028,8 +21024,6 @@ snapshots:
   typescript@5.4.2: {}
 
   typescript@5.7.2: {}
-
-  ua-parser-js@1.0.39: {}
 
   ua-parser-js@1.0.40: {}
 
