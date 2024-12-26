@@ -495,17 +495,14 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
-## 13.38.1
+## v13.38.1
 
-```
 ### footer
 
 - [footer] 푸터의 맞춤법을 수정합니다. [#3516](https://github.com/titicacadev/triple-frontend/pull/3516)
-```
 
 ## v13.38.0
 
-```
 ### footer
 
 - [footer] 푸터의 회사명, 대표명을 변경합니다. [#3505](https://github.com/titicacadev/triple-frontend/pull/3505)
@@ -513,11 +510,9 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ### review
 
 - [Reivew] 리뷰 플레이스홀더 마진 값을 수정합니다. [#3509](https://github.com/titicacadev/triple-frontend/pull/3509)
-```
 
 ## v13.37.0
 
-```
 ### triple-media
 
 - KLZT-766 영상기본음소거 [#3503](https://github.com/titicacadev/triple-frontend/pull/3503)
@@ -525,7 +520,6 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ### type-definitions
 
 - KLZT-766 영상기본음소거 [#3503](https://github.com/titicacadev/triple-frontend/pull/3503)
-```
 
 ## v13.36.0
 
