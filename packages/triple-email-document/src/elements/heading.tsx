@@ -70,12 +70,14 @@ const H4Container = styled.h4`
 `
 
 export function Heading1View({
+  id,
   value: { text, headline },
 }: {
+  id?: string
   value: Heading1Document['value']
 }) {
   return (
-    <FluidTable>
+    <FluidTable id={id}>
       <tbody>
         <tr>
           <Box padding={{ top: 25, bottom: 20, left: 30, right: 30 }}>
@@ -89,12 +91,14 @@ export function Heading1View({
 }
 
 export function Heading2View({
+  id,
   value: { text },
 }: {
+  id?: string
   value: Heading2Document['value']
 }) {
   return (
-    <FluidTable>
+    <FluidTable id={id}>
       <tbody>
         <tr>
           <Box padding={{ top: 20, bottom: 20, left: 30, right: 30 }}>
@@ -107,12 +111,14 @@ export function Heading2View({
 }
 
 export function Heading3View({
+  id,
   value: { text },
 }: {
+  id?: string
   value: Heading3Document['value']
 }) {
   return (
-    <FluidTable>
+    <FluidTable id={id}>
       <tbody>
         <tr>
           <Box padding={{ top: 20, left: 30, right: 30 }}>
@@ -125,12 +131,14 @@ export function Heading3View({
 }
 
 export function Heading4View({
+  id,
   value: { text },
 }: {
+  id?: string
   value: Heading4Document['value']
 }) {
   return (
-    <FluidTable>
+    <FluidTable id={id}>
       <tbody>
         <tr>
           <Box padding={{ top: 20, left: 30, right: 30 }}>

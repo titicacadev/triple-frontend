@@ -57,6 +57,7 @@ export type GetValue<Key extends TripleEmailElementType> = Extract<
 
 const ELEMENTS: {
   [key in TripleEmailElementType]: ComponentType<{
+    id?: string
     value: GetValue<key>
   }>
 } = {
