@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.38.1
+
+```
+### footer
+
+- [footer] 푸터의 맞춤법을 수정합니다. [#3516](https://github.com/titicacadev/triple-frontend/pull/3516)
+```
+
 ## v13.38.0
 
 ```
@@ -4591,11 +4599,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
