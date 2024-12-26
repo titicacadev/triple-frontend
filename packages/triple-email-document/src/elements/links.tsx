@@ -143,7 +143,7 @@ export default function LinksView({
 
 function DefaultLinkBox({ children }: PropsWithChildren<unknown>) {
   return (
-    <DefaultBox padding={{ top: 10, left: 30, right: 30 }}>
+    <DefaultBox $padding={{ top: 10, left: 30, right: 30 }}>
       {children}
     </DefaultBox>
   )
