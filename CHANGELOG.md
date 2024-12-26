@@ -2,7 +2,11 @@
 
 ## 14.0.8
 
-There is no data provided to generate the markdown.
+```
+### tds-widget
+
+v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev/triple-frontend/pull/3521)
+```
 
 ## 14.0.7
 
@@ -5054,11 +5058,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
