@@ -30,6 +30,11 @@ export default {
   },
 } as Meta
 
+export const StyledDefaultLinkElement: StoryObj = {
+  name: '디폴트',
+  args: generateSampleData('default'),
+}
+
 export const StyledButtonLinkElement: StoryObj = {
   name: '버튼',
   args: generateSampleData('button'),
@@ -50,7 +55,12 @@ export const StyledCompactLargeButtonLinkElement: StoryObj = {
   args: generateSampleData('largeCompactButton'),
 }
 
-type LinkDisplay = 'button' | 'block' | 'largeButton' | 'largeCompactButton'
+type LinkDisplay =
+  | 'default'
+  | 'button'
+  | 'block'
+  | 'largeButton'
+  | 'largeCompactButton'
 
 function generateSampleData(type: LinkDisplay) {
   return {
