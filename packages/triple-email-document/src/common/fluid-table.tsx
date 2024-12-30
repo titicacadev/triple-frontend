@@ -9,11 +9,17 @@ const StyledTable = styled.table<{ $margin?: MarginPadding }>`
 `
 
 export default function FluidTable({
+  id,
   children,
   margin,
 }: {
+  id?: string
   children?: React.ReactNode
   margin?: MarginPadding
 }) {
-  return <StyledTable $margin={margin}>{children}</StyledTable>
+  return (
+    <StyledTable id={id} $margin={margin}>
+      {children}
+    </StyledTable>
+  )
 }
