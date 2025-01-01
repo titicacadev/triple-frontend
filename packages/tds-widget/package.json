@@ -44,7 +44,7 @@
     "@egjs/flicking": "^3.9.3",
     "@egjs/react-flicking": "^3.8.3",
     "@floating-ui/react": "^0.26.28",
-    "@react-google-maps/api": "^2.19.3",
+    "@react-google-maps/api": "^2.20.5",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
