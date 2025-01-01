@@ -407,8 +407,8 @@ importers:
   packages/tds-ui:
     dependencies:
       '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
+        specifier: ^4.12.0
+        version: 4.12.0
       '@egjs/react-flicking':
         specifier: ^3.8.3
         version: 3.8.3
@@ -459,8 +459,8 @@ importers:
   packages/tds-widget:
     dependencies:
       '@egjs/flicking':
-        specifier: ^3.9.3
-        version: 3.9.3
+        specifier: ^4.12.0
+        version: 4.12.0
       '@egjs/react-flicking':
         specifier: ^3.8.3
         version: 3.8.3
@@ -1549,6 +1549,9 @@ packages:
   '@cfcs/core@0.0.24':
     resolution: {integrity: sha512-feB38qu+eDk0Pggh/yR7gjaNmvUYA2uCxHP3Pz2MLE4LZ/9jPdtu8bzCSI47yTEhWyZCF5Pk698hdz8IN2mTjA==}
 
+  '@cfcs/core@0.1.0':
+    resolution: {integrity: sha512-kvYX0RpL45XTHJ5sW7teNbKeAa7pK3nNqaJPoFfZDPTIBJOkTtRD3QhkBG+O3Hu69a8xeMoPvF6y/RtJ6JUOdA==}
+
   '@chromatic-com/storybook@1.9.0':
     resolution: {integrity: sha512-vYQ+TcfktEE3GHnLZXHCzXF/sN9dw+KivH8a5cmPyd9YtQs7fZtHrEgsIjWpYycXiweKMo1Lm1RZsjxk8DH3rA==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
@@ -1582,6 +1585,9 @@ packages:
   '@egjs/axes@2.8.0':
     resolution: {integrity: sha512-WPMIM/ExZBS8guD3oeNr6YGDn2xSnj0YUZHWvY/NWvTQIs7A2O7WxJivYgzcg7r2q0RYtzrdpHn+982iaKCLSw==}
 
+  '@egjs/axes@3.9.1':
+    resolution: {integrity: sha512-vaqUe/boRDk/A4TjiPtMv+lf7c4Q2jTER/Hw4I61NiJUyPftlZjaP4cteBCQejFyZmzimmA2W0cLmYZHTjBY8A==}
+
   '@egjs/children-differ@1.0.1':
     resolution: {integrity: sha512-DRvyqMf+CPCOzAopQKHtW+X8iN6Hy6SFol+/7zCUiE5y4P/OB8JP8FtU4NxtZwtafvSL4faD5KoQYPj3JHzPFQ==}
 
@@ -1593,6 +1599,9 @@ packages:
 
   '@egjs/flicking@3.9.3':
     resolution: {integrity: sha512-KGOSSeGDA9+0m24F3/hC+nc77/kRPuIVM3prTRcPB5jzhWcxJHpP9nyxJvitFJ+Ge4sPbZQxzLzUErgz9rrfWQ==}
+
+  '@egjs/flicking@4.12.0':
+    resolution: {integrity: sha512-HSducaQozc24HAxR5RfI2pRSqxZI1GxudAL52I7yoUj2yYCmY76Vhld9QzrTSWHFLfj7muv+XXB7Lv85HwZahg==}
 
   '@egjs/hammerjs@2.0.17':
     resolution: {integrity: sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==}
@@ -10950,6 +10959,10 @@ snapshots:
     dependencies:
       '@egjs/component': 3.0.4
 
+  '@cfcs/core@0.1.0':
+    dependencies:
+      '@egjs/component': 3.0.4
+
   '@chromatic-com/storybook@1.9.0(react@18.3.1)':
     dependencies:
       chromatic: 11.20.2
@@ -10985,6 +10998,12 @@ snapshots:
       '@egjs/component': 2.2.2
       '@egjs/hammerjs': 2.0.17
 
+  '@egjs/axes@3.9.1':
+    dependencies:
+      '@cfcs/core': 0.1.0
+      '@egjs/agent': 2.4.3
+      '@egjs/component': 3.0.4
+
   '@egjs/children-differ@1.0.1':
     dependencies:
       '@egjs/list-differ': 1.0.1
@@ -10997,6 +11016,13 @@ snapshots:
     dependencies:
       '@egjs/axes': 2.8.0
       '@egjs/component': 2.2.2
+      '@egjs/imready': 1.4.1
+      '@egjs/list-differ': 1.0.1
+
+  '@egjs/flicking@4.12.0':
+    dependencies:
+      '@egjs/axes': 3.9.1
+      '@egjs/component': 3.0.4
       '@egjs/imready': 1.4.1
       '@egjs/list-differ': 1.0.1
 
