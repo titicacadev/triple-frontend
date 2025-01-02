@@ -1,8 +1,15 @@
-import Messages from './messages'
+import { ScrollProvider } from '../chat'
+
+import Messages from './'
 
 export default {
   title: 'chat / Messages',
   component: Messages,
+  render: (args) => (
+    <ScrollProvider>
+      <Messages {...args} />
+    </ScrollProvider>
+  ),
 }
 
 export const Message = {
@@ -24,6 +31,16 @@ export const Message = {
         },
         createdAt: new Date(2022, 10, 1).toISOString(),
         thanks: { count: 1, haveMine: false },
+        parentMessage: {
+          id: 'parent_message',
+          type: 'text',
+          blinded: false,
+          value: { message: '안녕하세요' },
+          sender: {
+            profile: { name: '트리플' },
+            unregistered: false,
+          },
+        },
       },
       {
         type: 'another',
@@ -159,7 +176,7 @@ export const Message = {
           unregistered: false,
           unfriended: false,
         },
-        createdAt: new Date(2022, 10, 1).toISOString(),
+        createdAt: new Date(2022, 10, 2).toISOString(),
       },
     ],
     pendingMessages: [
@@ -213,5 +230,157 @@ export const Message = {
         )
       },
     },
+    hasDateDivider: true,
+  },
+}
+
+export const MessageWithTime = {
+  args: {
+    messages: [
+      {
+        type: 'text',
+        value: { message: '안녕하세요.' },
+        id: 'text message 1',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1, 10, 30).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'text',
+        value: { message: '상단 메세지와 같은 날짜 + 같은 시간' },
+        id: 'text message 2',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1, 10, 30).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'text',
+        value: { message: '상단 메세지와 같은 날짜 + 다른 시간' },
+        id: 'text message 3',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1, 10, 31).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'text',
+        value: {
+          message: '상단 메세지와 다른 날짜',
+        },
+        id: 'text message 4',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 2, 10, 30).toISOString(),
+      },
+      {
+        type: 'text',
+        value: { message: '보낸 첫 메세지' },
+        id: 'my text message 1',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 2, 10, 32).toISOString(),
+      },
+      {
+        type: 'text',
+        value: { message: '상단 메세지와 같은 날짜 + 같은 시간' },
+        id: 'my text message 2',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 2, 10, 32).toISOString(),
+      },
+      {
+        type: 'text',
+        value: { message: '상단 메세지와 같은 날짜 + 다른 시간' },
+        id: 'my text message 3',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 2, 10, 33).toISOString(),
+      },
+      {
+        type: 'text',
+        value: { message: '상단 메세지와 다른 날짜' },
+        id: 'my text message 4',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 3, 10, 30).toISOString(),
+      },
+    ],
+    pendingMessages: [],
+    failedMessages: [],
+    me: {
+      id: 'test',
+      profile: {
+        name: '테스트',
+        photo:
+          'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+      },
+    },
+    hasDateDivider: true,
   },
 }
