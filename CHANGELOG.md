@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.39.0
+
+```
+### triple-email-document
+
+- [triple-email-template] default 링크 스타일을 추가하고, 스크롤 포커싱 이슈를 해결합니다 [#3517](https://github.com/titicacadev/triple-frontend/pull/3517)
+```
+
 ## 13.38.1
 
 ```
