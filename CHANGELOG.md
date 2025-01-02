@@ -2,26 +2,23 @@
 
 ## 14.0.8
 
-```
 ### tds-widget
 
 v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev/triple-frontend/pull/3521)
-```
 
 ## 14.0.7
 
-```
 ### meta-tags
 
 - [meta-tags] 앱라우터용 메타태그 및 QaPageScript, DiscussionForumPostingScript를 추가합니다. [#3500](https://github.com/titicacadev/triple-frontend/pull/3500)
 
 ### middlewares
 
-- [middleware] 세션 쿠키 리프레시 로직을 수정합니다.  [#3498](https://github.com/titicacadev/triple-frontend/pull/3498)
+- [middleware] 세션 쿠키 리프레시 로직을 수정합니다. [#3498](https://github.com/titicacadev/triple-frontend/pull/3498)
 
 ### triple-web
 
-- [triple-web] web track event는 클라이언트 웹뷰가 아닐 때만 로깅하도록 수정합니다.  [#3507](https://github.com/titicacadev/triple-frontend/pull/3507)
+- [triple-web] web track event는 클라이언트 웹뷰가 아닐 때만 로깅하도록 수정합니다. [#3507](https://github.com/titicacadev/triple-frontend/pull/3507)
 
 ### tds-widget
 
@@ -30,7 +27,6 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ### type-definitions
 
 - v13.37.0, v13.38.0 변경사항을 적용합니다. [#3512](https://github.com/titicacadev/triple-frontend/pull/3512)
-```
 
 ## v14.0.6
 
@@ -494,6 +490,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+## 13.39.0
+
+### triple-email-document
+
+- [triple-email-template] default 링크 스타일을 추가하고, 스크롤 포커싱 이슈를 해결합니다 [#3517](https://github.com/titicacadev/triple-frontend/pull/3517)
 
 ## v13.38.1
 
