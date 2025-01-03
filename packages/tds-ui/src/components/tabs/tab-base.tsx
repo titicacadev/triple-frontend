@@ -35,7 +35,6 @@ function TabBaseComponent<Value extends number | string | symbol>(
 
   const handleClick: MouseEventHandler = () => {
     onClick()
-    tabs.onChange?.(value)
   }
 
   const handleFocus: FocusEventHandler = () => {
