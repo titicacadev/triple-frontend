@@ -514,8 +514,8 @@ importers:
         specifier: ^0.26.28
         version: 0.26.28(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@titicaca/content-utilities':
-        specifier: 9.12.0
-        version: 9.12.0(encoding@0.1.13)
+        specifier: 9.13.0
+        version: 9.13.0(encoding@0.1.13)
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
@@ -666,8 +666,8 @@ importers:
   packages/triple-document:
     dependencies:
       '@titicaca/content-type-definitions':
-        specifier: 9.12.0
-        version: 9.12.0
+        specifier: 9.13.0
+        version: 9.13.0
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -3714,11 +3714,11 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
 
-  '@titicaca/content-type-definitions@9.12.0':
-    resolution: {integrity: sha512-kc6hBMC88/jeclI4VxfAh/rfYFEUs9Evi/axKPh3vp0BQUc5qpGtvyf8Pp4eB1DjYyeJK1jWD3H7Ub7TVu+mRg==}
+  '@titicaca/content-type-definitions@9.13.0':
+    resolution: {integrity: sha512-WZQ7maJuoqe4Ryexi2/BVX6AWbCZgJ37FDoRc4+AMSiGDfajdpFgCvvYshuy3qM/meuyvdEaYjTqGRa7rg3yag==}
 
-  '@titicaca/content-utilities@9.12.0':
-    resolution: {integrity: sha512-0hL6PVpptvM/e+7OyJaq0JCutA4oEpz1UNufR1cmiQSDvxolyxSnvkUeXH+IUpmDfFFP1IOt+ZG+PbmztRAZRw==}
+  '@titicaca/content-utilities@9.13.0':
+    resolution: {integrity: sha512-9ty/+3H/JJ6Xc7eFQetjFKzXZzkF6XqPLaoBgmPOnP26dgs0+eJTNL0zxRTA9XcUySYJvDMzye5XJpi6UVNmQA==}
 
   '@titicaca/eslint-config-triple@5.2.1':
     resolution: {integrity: sha512-eBFyYyUITrCbmEpZ2N0UdGucZy6XBv7wzf/DQI/FUBGFFq1zmwT7/7WvAaEtqhb/V8BkYjl6FfLeDm/dT99Fuw==}
@@ -13880,11 +13880,11 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
 
-  '@titicaca/content-type-definitions@9.12.0': {}
+  '@titicaca/content-type-definitions@9.13.0': {}
 
-  '@titicaca/content-utilities@9.12.0(encoding@0.1.13)':
+  '@titicaca/content-utilities@9.13.0(encoding@0.1.13)':
     dependencies:
-      '@titicaca/content-type-definitions': 9.12.0
+      '@titicaca/content-type-definitions': 9.13.0
       isomorphic-fetch: 3.0.0(encoding@0.1.13)
       lodash.camelcase: 4.3.0
       lodash.snakecase: 4.1.1
