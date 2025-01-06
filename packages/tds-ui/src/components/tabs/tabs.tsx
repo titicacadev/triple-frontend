@@ -35,8 +35,16 @@ export const Tabs = <Value extends number | string | symbol>({
     TabsContextValue<Value> | undefined
   >
 
+  function handleFocusChanged(newValue: Value) {
+    if (value !== newValue) {
+      onChange?.(newValue)
+    }
+  }
+
   return (
-    <TabsContextProvider value={{ id, value, variant, scroll, onChange }}>
+    <TabsContextProvider
+      value={{ id, value, variant, scroll, handleFocusChanged }}
+    >
       {children}
     </TabsContextProvider>
   )
