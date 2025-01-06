@@ -38,7 +38,7 @@ function TabBaseComponent<Value extends number | string | symbol>(
   }
 
   const handleFocus: FocusEventHandler = () => {
-    tabs.onChange?.(value)
+    tabs.handleFocusChanged?.(value)
   }
 
   const handleKeyDown: KeyboardEventHandler = (event) => {

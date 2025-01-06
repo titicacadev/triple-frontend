@@ -7,7 +7,7 @@ export interface TabsContextValue<Value extends number | string | symbol> {
   value: Value
   variant: TabVariant
   scroll: boolean
-  onChange?: (value: Value) => void
+  handleFocusChanged: (value: Value) => void
 }
 
 export const TabsContext = createContext<TabsContextValue<string> | undefined>(
