@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/middlewares",
-  "version": "14.0.8",
+  "version": "14.0.9",
   "description": "Triple Web Application Middleware modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/middleware",
