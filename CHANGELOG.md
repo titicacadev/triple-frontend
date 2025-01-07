@@ -2,10 +2,10 @@
 
 ## 14.0.9
 
-```
 ### tds-ui
 
 - App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+- [tds-ui] onChange 함수가 중복 실행되지 않도록 수정합니다. [#3532](https://github.com/titicacadev/triple-frontend/pull/3532)
 
 ### tds-widget
 
@@ -29,7 +29,6 @@
 
 - App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
 - triple-web-nextjs-pages에 ssr-utils 추가 [#3518](https://github.com/titicacadev/triple-frontend/pull/3518)
-```
 
 ## 14.0.8
 
@@ -5093,11 +5092,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
