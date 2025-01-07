@@ -636,8 +636,8 @@ importers:
         specifier: 4.4.0
         version: 4.4.0(encoding@0.1.13)(graphql@16.9.0)
       '@tanstack/react-query':
-        specifier: ^5.62.11
-        version: 5.62.11(react@18.3.1)
+        specifier: ^5.62.14
+        version: 5.62.16(react@18.3.1)
       '@titicaca/tds-theme':
         specifier: workspace:*
         version: link:../tds-theme
@@ -3673,11 +3673,11 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
-  '@tanstack/query-core@5.62.9':
-    resolution: {integrity: sha512-lwePd8hNYhyQ4nM/iRQ+Wz2cDtspGeZZHFZmCzHJ7mfKXt+9S301fULiY2IR2byJYY6Z03T427E5PoVfMexHjw==}
+  '@tanstack/query-core@5.62.16':
+    resolution: {integrity: sha512-9Sgft7Qavcd+sN0V25xVyo0nfmcZXBuODy3FVG7BMWTg1HMLm8wwG5tNlLlmSic1u7l1v786oavn+STiFaPH2g==}
 
-  '@tanstack/react-query@5.62.11':
-    resolution: {integrity: sha512-Xb1nw0cYMdtFmwkvH9+y5yYFhXvLRCnXoqlzSw7UkqtCVFq3cG8q+rHZ2Yz1XrC+/ysUaTqbLKJqk95mCgC1oQ==}
+  '@tanstack/react-query@5.62.16':
+    resolution: {integrity: sha512-XJIZNj65d2IdvU8VBESmrPakfIm6FSdHDzrS1dPrAwmq3ZX+9riMh/ZfbNQHAWnhrgmq7KoXpgZSRyXnqMYT9A==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -13828,11 +13828,11 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@tanstack/query-core@5.62.9': {}
+  '@tanstack/query-core@5.62.16': {}
 
-  '@tanstack/react-query@5.62.11(react@18.3.1)':
+  '@tanstack/react-query@5.62.16(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.62.9
+      '@tanstack/query-core': 5.62.16
       react: 18.3.1
 
   '@testing-library/dom@10.4.0':
