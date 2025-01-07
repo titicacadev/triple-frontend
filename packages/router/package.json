@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/router",
-  "version": "14.0.8",
+  "version": "14.0.9",
   "description": "Triple Universal Router Component and Functions",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/router",
