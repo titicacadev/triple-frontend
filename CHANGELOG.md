@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 14.0.9
+
+```
+### tds-ui
+
+- App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+
+### tds-widget
+
+- App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+
+### triple-email-document
+
+- v13.39.0 수정사항을 반영합니다. [#3519](https://github.com/titicacadev/triple-frontend/pull/3519)
+
+### triple-web
+
+- App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+- triple-web-nextjs-pages에 ssr-utils 추가 [#3518](https://github.com/titicacadev/triple-frontend/pull/3518)
+
+### triple-web-nextjs
+
+- App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+- triple-web-nextjs-pages에 ssr-utils 추가 [#3518](https://github.com/titicacadev/triple-frontend/pull/3518)
+
+### triple-web-nextjs-pages
+
+- App router에서 use client 문제 수정 [#3514](https://github.com/titicacadev/triple-frontend/pull/3514)
+- triple-web-nextjs-pages에 ssr-utils 추가 [#3518](https://github.com/titicacadev/triple-frontend/pull/3518)
+```
+
 ## 14.0.8
 
 ### tds-widget
@@ -5062,11 +5093,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
