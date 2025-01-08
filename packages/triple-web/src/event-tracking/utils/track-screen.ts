@@ -1,4 +1,7 @@
-import { trackScreen as nativeTrackScreen } from '@titicaca/triple-web-to-native-interfaces'
+import {
+  hasAccessibleTripleNativeClients,
+  trackScreen as nativeTrackScreen,
+} from '@titicaca/triple-web-to-native-interfaces'
 import { logEvent as firebaseLogEvent } from 'firebase/analytics'
 
 import { getFirebaseAnalytics } from '../libs/firebase-analytics'
@@ -35,7 +38,7 @@ export function trackScreen(
 
     const firebaseAnalytics = getFirebaseAnalytics()
 
-    if (firebaseAnalytics) {
+    if (firebaseAnalytics && !hasAccessibleTripleNativeClients()) {
       firebaseLogEvent(firebaseAnalytics, 'page_view', {
         page_path: path,
         category: label,
