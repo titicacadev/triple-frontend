@@ -45,8 +45,8 @@ importers:
         specifier: 0.2.37
         version: 0.2.37(@swc/core@1.10.7(@swc/helpers@0.5.5))
       '@swc/plugin-styled-components':
-        specifier: 5.0.2
-        version: 5.0.2
+        specifier: 6.0.3
+        version: 6.0.3
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.0
@@ -3663,8 +3663,8 @@ packages:
     peerDependencies:
       '@swc/core': '*'
 
-  '@swc/plugin-styled-components@5.0.2':
-    resolution: {integrity: sha512-kYOrdEzR4uGddSBwNo9Ab/JDiJnla4Sl+bzUtgB4kEAKQpjyioDvXzyR2z7BJ0k3N59DcNREHW8lOK3nRUhEdA==}
+  '@swc/plugin-styled-components@6.0.3':
+    resolution: {integrity: sha512-HhZlRK+yM75c68ACQy/uFcOVse8fOx8Eb2PlGcFyzOd/ZaYzTE4E6/YcmvLmcn5ejoR/nIGZpEA/0cvth8a6+A==}
 
   '@swc/types@0.1.17':
     resolution: {integrity: sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==}
@@ -13826,7 +13826,7 @@ snapshots:
       '@swc/counter': 0.1.3
       jsonc-parser: 3.2.0
 
-  '@swc/plugin-styled-components@5.0.2':
+  '@swc/plugin-styled-components@6.0.3':
     dependencies:
       '@swc/counter': 0.1.3
 
