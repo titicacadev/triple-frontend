@@ -593,8 +593,8 @@ importers:
         specifier: workspace:*
         version: link:../view-utilities
       autolinker:
-        specifier: ^4.0.1
-        version: 4.0.1
+        specifier: ^4.1.0
+        version: 4.1.0
       graphql:
         specifier: ^16.10.0
         version: 16.10.0
@@ -4496,8 +4496,8 @@ packages:
     resolution: {integrity: sha512-Hdw8qdNiqdJ8LqT0iK0sVzkFbzg6fhnQqqfWhBDxcHZvU75+B+ayzTy8x+k5Ix0Y92XOhOUlx74ps+bA6BeYMQ==}
     engines: {node: '>=8'}
 
-  autolinker@4.0.1:
-    resolution: {integrity: sha512-S2BgcgRyoCQisoXzvDentN2lgqWr/hs8oD+YdDrIBdV4VqLtQG8hVYTY13JD2g9LgmUbBpMJzAP/GH6HSkVnvw==}
+  autolinker@4.1.0:
+    resolution: {integrity: sha512-mYzdZMei1zIXcHVS/LjnuCJG+C/hNi8O+5m0R8YWtrIBWGrjL8CVzEZXxOfH0l1kioEXHNpUJRkgZdyL4GgIHQ==}
 
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
@@ -14829,7 +14829,7 @@ snapshots:
 
   auto-bind@4.0.0: {}
 
-  autolinker@4.0.1:
+  autolinker@4.1.0:
     dependencies:
       tslib: 2.8.1
 
