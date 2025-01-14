@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 14.0.10
+
+```
+### triple-web
+
+- [triple-web] 웹뷰에서는 nativeTrackScreen만 실행하도록 수정합니다.  [#3536](https://github.com/titicacadev/triple-frontend/pull/3536)
+```
+
 ## 14.0.9
 
 ### tds-ui
@@ -5092,11 +5100,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
