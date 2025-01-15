@@ -28,8 +28,7 @@ function normalizeToBoolean(query: RawQuery) {
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-class StrictQuery<Resolved = {}> {
+class StrictQuery<Resolved = object> {
   private raw: { [key: string]: RawQuery }
 
   private resolved: Resolved

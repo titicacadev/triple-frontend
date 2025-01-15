@@ -10,7 +10,7 @@ export function getProfileImageUrl(user: UserInterface) {
     let imageNumber = 0
     try {
       imageNumber = parseInt(user.id.substr(0, 4), 16) % 5
-    } catch (e) {
+    } catch {
       imageNumber = 0
     }
 

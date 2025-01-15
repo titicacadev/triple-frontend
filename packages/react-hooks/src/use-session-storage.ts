@@ -13,7 +13,7 @@ function trigger(key: string) {
 function getSnapshot(key: string, initialValue: string | undefined) {
   try {
     return sessionStorage.getItem(key) ?? initialValue ?? null
-  } catch (error) {
+  } catch {
     inMemoryStorage.set(key, initialValue ?? null)
     return initialValue ?? null
   }
@@ -55,7 +55,7 @@ export function useSessionStorage(
     (value: string) => {
       try {
         sessionStorage.setItem(key, value)
-      } catch (error) {
+      } catch {
         inMemoryStorage.set(key, value)
       }
 
@@ -67,7 +67,7 @@ export function useSessionStorage(
   const remove = useCallback(() => {
     try {
       sessionStorage.removeItem(key)
-    } catch (error) {
+    } catch {
       inMemoryStorage.delete(key)
     }
 
@@ -83,7 +83,7 @@ export function useSessionStorage(
       if (sessionStorage.getItem(key) === null) {
         sessionStorage.setItem(key, initialValue)
       }
-    } catch (error) {
+    } catch {
       if (inMemoryStorage.get(key) === undefined) {
         inMemoryStorage.set(key, initialValue)
       }
