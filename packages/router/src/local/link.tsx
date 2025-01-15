@@ -44,7 +44,7 @@ export function LocalLink({
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = async (e) => {
     if (onClick) {
-      onClick()
+      onClick(e)
     }
 
     await handleHrefLocally({
