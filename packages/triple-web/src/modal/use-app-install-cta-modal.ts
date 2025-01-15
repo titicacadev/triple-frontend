@@ -27,7 +27,7 @@ export function useAppInstallCtaModal() {
         ...options,
       }
 
-      if (combinedOptions) {
+      if (Object.keys(combinedOptions).length > 0) {
         appInstallCtaModalRef.current = combinedOptions
       }
     },

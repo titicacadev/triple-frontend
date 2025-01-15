@@ -29,7 +29,7 @@ export function useLoginCtaModal() {
         ...loginCtaModalContext?.showOptions,
         ...options,
       }
-      if (combinedOptions) {
+      if (Object.keys(combinedOptions).length > 0) {
         loginCtaModalRef.current = combinedOptions
       }
     },
