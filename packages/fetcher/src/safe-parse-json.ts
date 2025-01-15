@@ -4,7 +4,7 @@ export default async function safeParseJson(
   try {
     const json = await response.json()
     return json
-  } catch (error) {
+  } catch {
     return undefined
   }
 }

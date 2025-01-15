@@ -13,7 +13,7 @@ function trigger(key: string) {
 function getSnapshot(key: string, initialValue: string | undefined) {
   try {
     return localStorage.getItem(key) ?? initialValue ?? null
-  } catch (error) {
+  } catch {
     inMemoryStorage.set(key, initialValue ?? null)
     return initialValue ?? null
   }
@@ -55,7 +55,7 @@ export function useLocalStorage(
     (value: string) => {
       try {
         localStorage.setItem(key, value)
-      } catch (error) {
+      } catch {
         inMemoryStorage.set(key, value)
       }
 
@@ -67,7 +67,7 @@ export function useLocalStorage(
   const remove = useCallback(() => {
     try {
       localStorage.removeItem(key)
-    } catch (error) {
+    } catch {
       inMemoryStorage.delete(key)
     }
 
@@ -83,7 +83,7 @@ export function useLocalStorage(
       if (localStorage.getItem(key) === null) {
         localStorage.setItem(key, initialValue)
       }
-    } catch (error) {
+    } catch {
       if (inMemoryStorage.get(key) === undefined) {
         inMemoryStorage.set(key, initialValue)
       }

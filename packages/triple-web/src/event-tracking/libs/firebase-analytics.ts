@@ -7,5 +7,5 @@ export function getFirebaseAnalytics() {
     const analytics = getAnalytics(app)
 
     return analytics
-  } catch (error) {}
+  } catch {}
 }

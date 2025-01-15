@@ -22,7 +22,7 @@ async function importReactIntersectionObserver() {
     }
 
     return import('@titicaca/react-intersection-observer')
-  } catch (e) {
+  } catch {
     return Promise.resolve(
       (({ children }) =>
         children || null) as FC<ReactIntersectionObserverProps>,
