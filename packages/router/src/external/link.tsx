@@ -44,7 +44,7 @@ export function ExternalLink({
 
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     if (onClick) {
-      onClick()
+      onClick(e)
     }
 
     handleHrefExternally({
