@@ -17,7 +17,7 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/air\/price-board(\/.+)?$/,
   /^\/tna(\/.+)?$/,
   /^\/tna\/curation(\/.+)?$/,
-  /^\/tna\/regions\/[^/]+\/products(\/.+)?$/,
+  /^\/tna\/regions\/[^/]+\/products\/[^/]+$/,
   /^\/tna\/products(\/.+)?$/,
   /^\/tna\/products\/[^/]+\/display$/,
   /^\/trips\/intro(\/.*)?(\?.*)?$/,
