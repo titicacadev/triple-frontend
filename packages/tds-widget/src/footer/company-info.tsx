@@ -165,7 +165,7 @@ export function CompanyInfo({
           경기도 성남시 수정구 금토로 70 (금토동, 텐엑스타워)
           <br />
           항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
-          help@triple-corp.com
+          help.triple@nol-universe.com
         </Text>
       </AccordionContent>
     </Accordion>
