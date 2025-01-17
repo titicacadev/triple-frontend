@@ -2,11 +2,9 @@
 
 ## 14.0.10
 
-```
 ### triple-web
 
-- [triple-web] 웹뷰에서는 nativeTrackScreen만 실행하도록 수정합니다.  [#3536](https://github.com/titicacadev/triple-frontend/pull/3536)
-```
+- [triple-web] 웹뷰에서는 nativeTrackScreen만 실행하도록 수정합니다. [#3536](https://github.com/titicacadev/triple-frontend/pull/3536)
 
 ## 14.0.9
 
@@ -528,6 +526,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+## 13.40.0
+
+### footer
+
+- [footer] 푸터 내 문의메일 정보 변경 [#3543](https://github.com/titicacadev/triple-frontend/pull/3543)
 
 ## 13.39.0
 
@@ -5100,11 +5104,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
