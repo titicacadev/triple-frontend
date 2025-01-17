@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.40.1
+
+```
+### view-utilities
+
+- [view-utilities] tna public_routerlist 정규식 수정 [#3542](https://github.com/titicacadev/triple-frontend/pull/3542)
+```
+
 ## 13.40.0
 
 ```
@@ -4615,11 +4623,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
