@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.40.0
+
+```
+### footer
+
+- [footer] 푸터 내 문의메일 정보 변경 [#3543](https://github.com/titicacadev/triple-frontend/pull/3543)
+```
+
 ## 13.39.0
 
 ```
