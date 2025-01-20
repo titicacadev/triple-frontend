@@ -9,6 +9,9 @@ export default function useATagNavigator() {
   const app = useClientApp()
 
   const aTagNavigator = (event: MouseEvent) => {
+    event.preventDefault()
+    event.stopPropagation()
+
     const eventTarget = event.target as HTMLElement
 
     if (eventTarget.tagName === 'A') {
