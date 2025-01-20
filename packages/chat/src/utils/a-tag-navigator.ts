@@ -26,7 +26,7 @@ export default function useATagNavigator() {
       if (href) {
         routeExternally({
           href,
-          target: 'new',
+          target: 'browser',
           noNavbar: true,
         })
       }
