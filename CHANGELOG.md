@@ -527,6 +527,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.40.1
+
+### view-utilities
+
+- [view-utilities] tna public_routerlist 정규식 수정 [#3542](https://github.com/titicacadev/triple-frontend/pull/3542)
+
 ## 13.40.0
 
 ### footer
