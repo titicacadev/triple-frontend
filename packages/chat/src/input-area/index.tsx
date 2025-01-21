@@ -57,6 +57,7 @@ export function InputAreaUI({
         id="image_upload"
         type="file"
         name="file"
+        accept="image/png, image/jpeg"
         multiple={multipleImageUpload}
         onChange={onImageUpload}
       />
