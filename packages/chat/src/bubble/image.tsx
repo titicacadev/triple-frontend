@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useLongPress } from 'use-long-press'
 
 import { MetaDataInterface } from '../types'
-import { navigateToImage } from '../utils'
 
 import { ImageItem } from './item'
 import { ImageBubbleProp } from './type'
@@ -21,7 +20,6 @@ const MAX_IMAGE_WIDTH = 247
 export function ImageBubble({
   id,
   images,
-  appUrlScheme,
   onClick,
   onLongPress,
 }: ImageBubbleProp) {
@@ -53,8 +51,6 @@ export function ImageBubble({
               onClick={(e) => {
                 if (onClick) {
                   onClick?.(e, images, image.index)
-                } else if (appUrlScheme) {
-                  navigateToImage({ appUrlScheme, images, index })
                 }
               }}
               css={
