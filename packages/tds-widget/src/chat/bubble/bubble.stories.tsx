@@ -124,7 +124,6 @@ export const Image = {
         },
       },
     ],
-    appUrlScheme: '',
   },
 }
 
