@@ -75,7 +75,6 @@ export type BubbleUIProps = (
   maxWidthOffset?: BubbleProp['maxWidthOffset']
   cloudinaryName?: string
   mediaUrlBase?: string
-  appUrlScheme?: string
   hasArrow?: boolean
   alteredTextColor?: string
   fullTextViewAvailable?: boolean
@@ -102,7 +101,6 @@ export default function BubbleUI({
   maxWidthOffset,
   cloudinaryName,
   mediaUrlBase,
-  appUrlScheme,
   hasArrow,
   alteredTextColor,
   fullTextViewAvailable = false,
@@ -150,7 +148,6 @@ export default function BubbleUI({
         <ImageBubble
           id={id}
           images={value.images}
-          appUrlScheme={appUrlScheme}
           onClick={onImageBubbleClick}
           onLongPress={onImageBubbleLongPress}
           {...props}
