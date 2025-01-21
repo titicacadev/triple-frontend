@@ -1,6 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
 import { InView } from 'react-intersection-observer'
-import { closeKeyboard } from '@titicaca/triple-web-to-native-interfaces'
 import { useUserAgentContext } from '@titicaca/react-contexts'
 import { Container } from '@titicaca/core-elements'
 
@@ -9,6 +8,12 @@ import { useScroll } from './scroll-context'
 export interface ChatScrollContainerProps {
   onTopIntersecting?: (entry: IntersectionObserverEntry) => void
   onBottomIntersecting?: (entry: IntersectionObserverEntry) => void
+  /**
+   * ios에서 스크롤 시 실행되는 리스너입니다.
+   * 키보드가 내려가도록 closeKeyboard interface를 전달하여 사용할 수 있습니다.
+   * ref: https://github.com/titicacadev/triple-chat-web/pull/37
+   */
+  onIosTouchMove?: () => void
 }
 
 /** 
@@ -18,6 +23,7 @@ export interface ChatScrollContainerProps {
 export function ChatScrollContainer({
   onTopIntersecting,
   onBottomIntersecting,
+  onIosTouchMove,
   children,
   ...props
 }: PropsWithChildren<ChatScrollContainerProps>) {
@@ -25,16 +31,12 @@ export function ChatScrollContainer({
   const { os } = useUserAgentContext()
 
   useEffect(() => {
-    /**
-     * ios에서 스크롤 시 키보드가 내려가도록 설정합니다.
-     * ref: https://github.com/titicacadev/triple-chat-web/pull/37
-     */
     const chatContainerElement = chatContainerRef.current
 
-    if (chatContainerElement && os.name === 'iOS') {
-      chatContainerElement.addEventListener('touchmove', closeKeyboard)
+    if (chatContainerElement && os.name === 'iOS' && onIosTouchMove) {
+      chatContainerElement.addEventListener('touchmove', onIosTouchMove)
       return () => {
-        chatContainerElement.removeEventListener('touchmove', closeKeyboard)
+        chatContainerElement.removeEventListener('touchmove', onIosTouchMove)
       }
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps

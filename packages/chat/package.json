@@ -44,7 +44,6 @@
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/popup": "workspace:*",
     "@titicaca/router": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.9.0",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.0.0",
