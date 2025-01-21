@@ -421,9 +421,6 @@ importers:
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
-      '@titicaca/view-utilities':
-        specifier: workspace:*
-        version: link:../view-utilities
       autolinker:
         specifier: ^4.0.0
         version: 4.0.0
