@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 14.0.11
+
+```
+### tds-widget
+
+- v13.40.0 변경사항을 적용합니다. [#3545](https://github.com/titicacadev/triple-frontend/pull/3545)
+
+### triple-web
+
+- [triple-web] 앱설치유도 모달 및 로그인 모달의 showOptions를 수정합니다. [#3540](https://github.com/titicacadev/triple-frontend/pull/3540)
+
+### view-utilities
+
+- v13.40.1 변경사항을 적용합니다. [#3547](https://github.com/titicacadev/triple-frontend/pull/3547)
+```
+
 ## 14.0.10
 
 ### triple-web
@@ -5110,11 +5126,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
