@@ -61,6 +61,7 @@ export type BubbleUIProps = (
   onParentMessageClick?: TextBubbleProp['onParentMessageClick']
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
+  onTextBubbleLinkClick?: TextBubbleProp['onLinkClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
   onImageBubbleLongPress?: ImageBubbleProp['onLongPress']
   onRichBubbleBlockClick?: {
@@ -93,6 +94,7 @@ export default function BubbleUI({
   alternativeText,
   onBubbleClick,
   onImageBubbleClick,
+  onTextBubbleLinkClick,
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
@@ -135,6 +137,7 @@ export default function BubbleUI({
           message={value.message}
           created={created}
           onClick={onBubbleClick}
+          onLinkClick={onTextBubbleLinkClick}
           onLongPress={onBubbleLongPress}
           onOpenMenu={onOpenMenu}
           hasArrow={hasArrow}

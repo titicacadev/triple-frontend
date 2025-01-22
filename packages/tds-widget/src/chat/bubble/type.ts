@@ -79,6 +79,7 @@ export type TextBubbleProp = {
   openFullTextView?: () => void
   closeFullTextView?: () => void
   onParentMessageClick?: (id: string) => void
+  onLinkClick?: (href: string) => void
 } & BubbleProp
 
 export type RichBubbleProp = {
