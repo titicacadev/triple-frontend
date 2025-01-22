@@ -1,13 +1,10 @@
 import { MouseEvent } from 'react'
-import { useExternalRouter, useHrefToProps } from '@titicaca/router'
-import { useClientApp, useEnv } from '@titicaca/triple-web'
 
-export default function useATagNavigator() {
-  const routeExternally = useExternalRouter()
-  const { webUrlBase } = useEnv()
-  const convertHrefToProps = useHrefToProps()
-  const app = useClientApp()
+import { TextBubbleProp } from '../bubble/type'
 
+export default function useATagNavigator(
+  onLinkClick?: TextBubbleProp['onLinkClick'],
+) {
   const aTagNavigator = (event: MouseEvent) => {
     event.preventDefault()
     event.stopPropagation()
@@ -15,19 +12,14 @@ export default function useATagNavigator() {
     const eventTarget = event.target as HTMLElement
 
     if (eventTarget.tagName === 'A') {
-      const originHref = eventTarget.getAttribute('href') ?? ''
-
-      const href =
-        originHref.includes(webUrlBase) && app
-          ? convertHrefToProps(originHref).href
-          : originHref
+      const href = eventTarget.getAttribute('href') ?? ''
 
       if (href) {
-        routeExternally({
-          href,
-          target: 'browser',
-          noNavbar: true,
-        })
+        if (onLinkClick) {
+          onLinkClick(href)
+        } else {
+          window.open(href, '_blank', 'noopener')
+        }
       }
     }
   }

@@ -34,9 +34,10 @@ export function TextBubble({
   closeFullTextView,
   isFullTextViewOpen,
   onParentMessageClick,
+  onLinkClick,
   ...props
 }: TextBubbleProp) {
-  const aTagNavigator = useATagNavigator()
+  const aTagNavigator = useATagNavigator(onLinkClick)
   const isEllipsis =
     fullTextViewAvailable && message.length > MAX_VIEWABLE_TEXT_LENGTH
 
