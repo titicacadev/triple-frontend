@@ -33,6 +33,7 @@ export function TextBubble({
   onOpenMenu,
   fullTextViewAvailable,
   onParentMessageClick,
+  onLinkClick,
   ...props
 }: TextBubbleProp) {
   const { back, push } = useHistoryFunctions()
@@ -40,7 +41,7 @@ export function TextBubble({
   const fullTextViewHash = `${SHOW_FULL_TEXT_VIEW}-${id}`
   const isFullTextViewOpen = uriHash === fullTextViewHash
 
-  const aTagNavigator = useATagNavigator()
+  const aTagNavigator = useATagNavigator(onLinkClick)
   const isEllipsis =
     fullTextViewAvailable && message.length > MAX_VIEWABLE_TEXT_LENGTH
 
