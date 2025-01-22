@@ -4,6 +4,7 @@ import { format, setDefaultOptions } from 'date-fns'
 import { ko } from 'date-fns/locale'
 
 import { ReplyMessageIcon } from '../icons/reply-message-icon'
+import { REPLY_BUTTON_DATA_ID } from '../chat/constants'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -50,7 +51,7 @@ export function BubbleInfo({
         <ReplyActionButton
           align={align}
           onClick={onReplyClick}
-          data-id="reply-button"
+          data-id={REPLY_BUTTON_DATA_ID}
         >
           <ReplyMessageIcon />
         </ReplyActionButton>
