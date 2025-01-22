@@ -61,6 +61,9 @@ export type BubbleUIProps = (
   onParentMessageClick?: TextBubbleProp['onParentMessageClick']
   onBubbleClick?: BubbleProp['onClick']
   onImageBubbleClick?: ImageBubbleProp['onClick']
+  /**
+   * a 링크 클릭 동작으로, 정의되지 않은 경우 새창으로 열립니다.
+   */
   onTextBubbleLinkClick?: TextBubbleProp['onLinkClick']
   onBubbleLongPress?: BubbleProp['onLongPress']
   onImageBubbleLongPress?: ImageBubbleProp['onLongPress']
