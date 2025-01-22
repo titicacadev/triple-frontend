@@ -3,7 +3,7 @@ import { Container, Text } from '@titicaca/core-elements'
 import { format, setDefaultOptions } from 'date-fns'
 import { ko } from 'date-fns/locale'
 
-import { ReplyMessageIcon } from '../icons/reply-meesage-icon'
+import { ReplyMessageIcon } from '../icons/reply-message-icon'
 
 const BubbleInfoContainer = styled(Container)`
   vertical-align: bottom;
@@ -47,7 +47,11 @@ export function BubbleInfo({
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
       {onReplyClick ? (
-        <ReplyActionButton align={align} onClick={onReplyClick}>
+        <ReplyActionButton
+          align={align}
+          onClick={onReplyClick}
+          data-id="reply-button"
+        >
           <ReplyMessageIcon />
         </ReplyActionButton>
       ) : null}
