@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## v13.41.0
+
+```
+### chat
+
+- [chat] \b메세지에 IntersectionObserver와 ref를 추가합니다. [#3109](https://github.com/titicacadev/triple-frontend/pull/3109)
+- [chat] 부모 메세지 UI를 추가합니다 [#3111](https://github.com/titicacadev/triple-frontend/pull/3111)
+- [chat] 버블 스타일을 수정하고 날짜 및 시간 표기, 프로필 생략 기능을 추가합니다. [#3116](https://github.com/titicacadev/triple-frontend/pull/3116)
+- [chat] 메세지에 답장하기 아이콘을 추가합니다. [#3127](https://github.com/titicacadev/triple-frontend/pull/3127)
+- [chat] epic: geochat 기능을 chat 패키지에 추가합니다. [#3130](https://github.com/titicacadev/triple-frontend/pull/3130)
+- [chat] 답장하기 아이콘의 렌더링 조건을 수정합니다. [#3132](https://github.com/titicacadev/triple-frontend/pull/3132)
+- [chat] 긴 글 메세지의 전체보기 뷰를 추가합니다. [#3134](https://github.com/titicacadev/triple-frontend/pull/3134)
+- [chat] openMenu의 타입 오류를 수정합니다. [#3139](https://github.com/titicacadev/triple-frontend/pull/3139)
+- [chat] 지오챗 버블의 기능을 추가합니다. [#3146](https://github.com/titicacadev/triple-frontend/pull/3146)
+- [\bchat] intersection observer 교체 외 스타일 수정 [#3444](https://github.com/titicacadev/triple-frontend/pull/3444)
+- [chat] aTagNavigator가 외부 브라우저에서 열리도록 수정합니다. [#3551](https://github.com/titicacadev/triple-frontend/pull/3551)
+- [chat] 답장하기 버튼에 data-id 추가 [#3556](https://github.com/titicacadev/triple-frontend/pull/3556)
+
+### refactoring
+
+- [chat] 부모 메세지 UI를 추가합니다 [#3111](https://github.com/titicacadev/triple-frontend/pull/3111)
+```
+
 ## 13.40.1
 
 ```
@@ -4623,11 +4646,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
