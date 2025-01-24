@@ -4,6 +4,10 @@
 
 - [v14 업그레이드 가이드](https://inpk.atlassian.net/wiki/x/OIOzGw)
 
+## v13.41.0 to v13.42.0
+
+- [13.42.0 업그레이드 가이드](https://yanoljagroup.atlassian.net/wiki/spaces/dev/pages/1762068097/triple-frontend+13+13.42.0)
+
 ## v12 to v13
 
 - [v13 업그레이드 가이드](https://titicaca.atlassian.net/l/cp/GhNV1PUo)
