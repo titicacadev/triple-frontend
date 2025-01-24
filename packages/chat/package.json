@@ -43,7 +43,6 @@
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/popup": "workspace:*",
-    "@titicaca/router": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "autolinker": "^4.0.0",
     "date-fns": "^3.3.1",
