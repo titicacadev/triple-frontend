@@ -543,6 +543,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.42.0
+
+### chat
+
+- (chat) 트리플 앱 디펜던시 제거 [#3554](https://github.com/titicacadev/triple-frontend/pull/3554)
+
 ## v13.41.0
 
 ### chat
