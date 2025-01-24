@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.42.0
+
+```
+### chat
+
+- (chat) 트리플 앱 디펜던시 제거 [#3554](https://github.com/titicacadev/triple-frontend/pull/3554)
+```
+
 ## v13.41.0
 
 ```
@@ -4642,11 +4650,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
