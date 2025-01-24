@@ -415,9 +415,6 @@ importers:
       '@titicaca/popup':
         specifier: workspace:*
         version: link:../popup
-      '@titicaca/router':
-        specifier: workspace:*
-        version: link:../router
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
