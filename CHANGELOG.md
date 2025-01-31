@@ -2,7 +2,6 @@
 
 ## 14.0.11
 
-```
 ### tds-widget
 
 - v13.40.0 변경사항을 적용합니다. [#3545](https://github.com/titicacadev/triple-frontend/pull/3545)
@@ -14,7 +13,6 @@
 ### view-utilities
 
 - v13.40.1 변경사항을 적용합니다. [#3547](https://github.com/titicacadev/triple-frontend/pull/3547)
-```
 
 ## 14.0.10
 
@@ -542,6 +540,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - Vite 빌드 [#3264](https://github.com/titicacadev/triple-frontend/pull/3264)
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
+
+## 13.42.1
+
+### chat
+
+- (chat)fix: file input에 사진만 업로드 가능하도록 accept 추가 [#3552](https://github.com/titicacadev/triple-frontend/pull/3552)
 
 ## 13.42.0
 
