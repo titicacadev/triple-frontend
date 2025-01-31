@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.42.1
+
+```
+### chat
+
+- (chat)fix: file input에 사진만 업로드 가능하도록 accept 추가 [#3552](https://github.com/titicacadev/triple-frontend/pull/3552)
+```
+
 ## 13.42.0
 
 ```
