@@ -1,3 +1,5 @@
+import { ComponentProps } from 'react'
+
 import { ScrollProvider } from '../chat'
 
 import Messages from './'
@@ -5,14 +7,14 @@ import Messages from './'
 export default {
   title: 'tds-widget / chat / Messages',
   component: Messages,
-  render: (args) => (
+  render: (args: ComponentProps<typeof Messages>) => (
     <ScrollProvider>
       <Messages {...args} />
     </ScrollProvider>
   ),
 }
 
-export const Message = {
+export const NormalMessages = {
   args: {
     messages: [
       {
@@ -179,6 +181,8 @@ export const Message = {
         createdAt: new Date(2022, 10, 2).toISOString(),
       },
     ],
+    pendingMessages: [],
+    failedMessages: [],
     me: {
       id: 'test',
       profile: {
@@ -200,7 +204,7 @@ export const Message = {
   },
 }
 
-export const MessageWithTime = {
+export const Message = {
   args: {
     messages: [
       {
