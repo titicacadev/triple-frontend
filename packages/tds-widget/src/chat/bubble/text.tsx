@@ -24,6 +24,7 @@ const FullTextViewButton = styled(Button)<{ my: boolean }>`
 `
 
 export function TextBubble({
+  id,
   message,
   my,
   created,
@@ -41,6 +42,7 @@ export function TextBubble({
   return (
     <>
       <Bubble
+        id={id}
         css={css`
           a {
             color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
