@@ -519,6 +519,9 @@ importers:
       '@titicaca/intersection-observer':
         specifier: workspace:*
         version: link:../intersection-observer
+      '@titicaca/router':
+        specifier: workspace:*
+        version: link:../router
       '@titicaca/tds-ui':
         specifier: workspace:*
         version: 'link:'
