@@ -179,40 +179,6 @@ export const Message = {
         createdAt: new Date(2022, 10, 2).toISOString(),
       },
     ],
-    pendingMessages: [
-      {
-        type: 'text',
-        value: { message: 'Pending Message' },
-        id: 'failed message',
-        sender: {
-          id: 'test',
-          profile: {
-            name: 'test',
-            photo:
-              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
-          },
-          unregistered: false,
-          unfriended: false,
-        },
-      },
-    ],
-    failedMessages: [
-      {
-        type: 'text',
-        value: { message: '안녕하세요.' },
-        id: 'failed message',
-        sender: {
-          id: 'test',
-          profile: {
-            name: 'test',
-            photo:
-              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
-          },
-          unregistered: false,
-          unfriended: false,
-        },
-      },
-    ],
     me: {
       id: 'test',
       profile: {
