@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Container } from '@titicaca/core-elements'
+import { Container, FlexBox } from '@titicaca/core-elements'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
 import { DEFAULT_MAX_USERNAME_LENGTH, formatUsername } from '../utils/profile'
@@ -114,6 +114,8 @@ function SentBubbleContainer({
   )
 }
 
+type ProfilePosition = 'left' | 'above'
+
 type ReceivedBubbleContainerProp = PropsWithChildren<
   ContainerBaseProp & {
     /** 메시지 발신인 정보 */
@@ -125,6 +127,8 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
     }
     /** 프로필 노출 여부 */
     showProfile?: boolean
+    /** 프로필 노출 위치. default: left */
+    profilePosition?: ProfilePosition
     /** 유저 프로필 클릭 */
     onUserClick?: (userId: string, unregistered: boolean) => void
   }
@@ -139,6 +143,7 @@ function ReceivedBubbleContainer({
   showDateInfo,
   showTimeInfo,
   showProfile = true,
+  profilePosition = 'left',
   thanks,
   onThanksClick,
   onReplyClick,
@@ -154,7 +159,7 @@ function ReceivedBubbleContainer({
       ref={() => messageRefCallback?.(id)}
       {...props}
     >
-      {showProfile ? (
+      {showProfile && profilePosition === 'left' ? (
         <ProfileImage
           src={
             user && !user.unregistered && user.photo
@@ -168,17 +173,38 @@ function ReceivedBubbleContainer({
           }
         />
       ) : null}
-      <Container css={{ marginLeft: 40 }}>
+      <Container css={{ marginLeft: profilePosition === 'left' ? 40 : 0 }}>
         {showProfile ? (
-          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
-            {user
-              ? formatUsername({
-                  name: user?.name,
-                  unregistered: user?.unregistered,
-                  maxLength: DEFAULT_MAX_USERNAME_LENGTH,
-                })
-              : ''}
-          </ProfileName>
+          <FlexBox
+            flex
+            flexDirection="row"
+            alignItems="center"
+            css={{ marginBottom: 5, gap: 8 }}
+          >
+            {profilePosition === 'above' && (
+              <ProfileImage
+                src={
+                  user && !user.unregistered && user.photo
+                    ? user.photo
+                    : 'https://assets.triple.guide/images/ico-default-profile.svg'
+                }
+                onClick={() =>
+                  onUserClick && user
+                    ? onUserClick(user.userId, user.unregistered || false)
+                    : undefined
+                }
+              />
+            )}
+            <ProfileName size="mini" alpha={0.8}>
+              {user
+                ? formatUsername({
+                    name: user?.name,
+                    unregistered: user?.unregistered,
+                    maxLength: DEFAULT_MAX_USERNAME_LENGTH,
+                  })
+                : ''}
+            </ProfileName>
+          </FlexBox>
         ) : null}
 
         {children}
