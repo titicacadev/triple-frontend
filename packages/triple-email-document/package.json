@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "react": "^18.3.1",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "peerDependencies": {
     "react": "^18.0",

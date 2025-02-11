@@ -58,7 +58,7 @@
   "devDependencies": {
     "@titicaca/tds-theme": "workspace:*",
     "react": "^18.3.1",
-    "styled-components": "^6.1.14"
+    "styled-components": "^6.1.15"
   },
   "peerDependencies": {
     "@titicaca/tds-theme": "*",
