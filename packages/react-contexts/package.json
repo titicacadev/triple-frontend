@@ -67,8 +67,10 @@
     "@titicaca/triple-web-to-native-interfaces": "1.10.0",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
+    "@types/set-cookie-parser": "^2.4.10",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
+    "set-cookie-parser": "^2.7.1",
     "ua-parser-js": "^1.0.37",
     "universal-cookie": "^4.0.4"
   },
