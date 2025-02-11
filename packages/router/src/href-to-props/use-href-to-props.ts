@@ -48,7 +48,7 @@ function removeTripleDomain({
  * @param value query 파라미터로 들어있던 값
  */
 function stringifyParsedQuery(
-  value: string | string[] | ParsedQs | ParsedQs[] | undefined,
+  value: string | ParsedQs | (string | ParsedQs)[] | undefined,
 ): string | undefined {
   if (Array.isArray(value)) {
     return stringifyParsedQuery(value)
