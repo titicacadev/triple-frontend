@@ -472,6 +472,9 @@ importers:
       '@floating-ui/react':
         specifier: ^0.26.6
         version: 0.26.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-input/mask':
+        specifier: ^2.0.4
+        version: 2.0.4(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@titicaca/color-palette':
         specifier: workspace:*
         version: link:../color-palette
@@ -487,9 +490,6 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
-      react-input-mask:
-        specifier: ^2.0.4
-        version: 2.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-roving-tabindex:
         specifier: ^3.2.0
         version: 3.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -4309,6 +4309,26 @@ packages:
 
   '@react-google-maps/marker-clusterer@2.19.2':
     resolution: {integrity: sha512-x9ibmsP0ZVqzyCo1Pitbw+4b6iEXRw/r1TCy3vOUR3eKrzWLnHYZMR325BkZW2r8fnuWE/V3Fp4QZOP9qYORCw==}
+
+  '@react-input/core@2.0.2':
+    resolution: {integrity: sha512-xLLBueYFbant9308uv3cIJQz5NYSixeGspjP3Nt6jogRHTcHYMRmlVFUuSzQiP8Z8/5BdnPkudRSsN0/AJ1fbw==}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      react: '>=16.8 || ^19.0.0-rc'
+      react-dom: '>=16.8 || ^19.0.0-rc'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@react-input/mask@2.0.4':
+    resolution: {integrity: sha512-NOielvQSBOlGLVuEcxtkjaGneC0GJFXjC7KOF99ed9H9XSDruWnQirjht5uSbWqLeeiOup0VD2YjM+6FH+aWBg==}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      react: '>=16.8 || ^19.0.0-rc'
+      react-dom: '>=16.8 || ^19.0.0-rc'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@repeaterjs/repeater@3.0.4':
     resolution: {integrity: sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==}
@@ -14928,6 +14948,21 @@ snapshots:
   '@react-google-maps/infobox@2.19.2': {}
 
   '@react-google-maps/marker-clusterer@2.19.2': {}
+
+  '@react-input/core@2.0.2(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.63
+
+  '@react-input/mask@2.0.4(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@react-input/core': 2.0.2(@types/react@18.2.63)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.63
 
   '@repeaterjs/repeater@3.0.4': {}
 
