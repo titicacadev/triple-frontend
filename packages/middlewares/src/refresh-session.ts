@@ -1,25 +1,27 @@
-import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 import { get, post } from '@titicaca/fetcher'
-import { splitCookiesString, parseString } from 'set-cookie-parser'
+import { parseString, splitCookiesString } from 'set-cookie-parser'
 
-import { X_SOTO_SESSION, TP_TK, TP_SE } from './constants'
 import { CustomMiddleware } from './chain'
+import { TP_SE, TP_TK } from './constants'
 
-/**
- * TF 13.42.1의 react-contexts/src/middleware 참고하여 작성
- * https://github.com/titicacadev/triple-frontend/blob/8d002e80f9ff187d6a06b6a2695c48f1d5383662/packages/react-contexts/src/middleware.ts
- */
 export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
   ) {
+    const url = request.nextUrl
+
+    const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
+    if (!isPageUrl) {
+      return customMiddleware(request, event, NextResponse.next())
+    }
+
     const allCookies = request.cookies.getAll()
 
     const isSessionExisted = allCookies.some(
-      ({ name }) => name === X_SOTO_SESSION || name === TP_TK || name === TP_SE,
+      ({ name }) => name === TP_TK || name === TP_SE,
     )
-
     const cookies = deriveAllCookies(request.cookies.getAll())
 
     if (!isSessionExisted) {
