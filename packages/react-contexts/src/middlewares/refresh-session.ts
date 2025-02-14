@@ -2,7 +2,7 @@ import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 
-import { CustomMiddleware } from './chain'
+import { CustomMiddleware } from './types'
 import { TP_SE, TP_TK } from './constants'
 
 export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {

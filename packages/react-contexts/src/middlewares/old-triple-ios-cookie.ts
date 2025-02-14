@@ -3,7 +3,7 @@ import satisfies from 'semver/functions/satisfies'
 
 import { parseApp } from '../user-agent-context'
 
-import { CustomMiddleware } from './chain'
+import { CustomMiddleware } from './types'
 
 /**
  * TF 13.42.1의 react-contexts/src/middleware 참고하여 작성
