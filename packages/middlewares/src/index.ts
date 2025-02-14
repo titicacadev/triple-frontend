@@ -1,3 +1,7 @@
-export * from './chain'
+import { chain, MiddlewareFactory } from './chain'
+import { refreshSessionMiddleware } from './refresh-session'
+
 export { oldIosCookiesMiddleware } from './old-ios-cookie'
-export { refreshSessionMiddleware } from './refresh-session'
+
+export const constructMiddleware = (functions: MiddlewareFactory[]) =>
+  chain([...functions, refreshSessionMiddleware])
