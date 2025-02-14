@@ -6,3 +6,5 @@ export { oldTripleIosCookiesMiddleware } from './old-triple-ios-cookie'
 
 export const constructMiddleware = (functions: MiddlewareFactory[]) =>
   chain([...functions, refreshSessionMiddleware])
+
+export * from './types'
