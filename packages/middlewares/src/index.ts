@@ -1,4 +1,5 @@
-import { chain, MiddlewareFactory } from './chain'
+import { chain } from './chain'
+import type { MiddlewareFactory } from './types'
 import { refreshSessionMiddleware } from './refresh-session'
 
 export { oldIosCookiesMiddleware } from './old-ios-cookie'
