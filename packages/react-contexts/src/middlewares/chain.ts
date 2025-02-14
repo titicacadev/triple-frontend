@@ -1,14 +1,7 @@
-import { NextMiddlewareResult } from 'next/dist/server/web/types'
 import { NextResponse } from 'next/server'
 import type { NextFetchEvent, NextRequest } from 'next/server'
 
-export type CustomMiddleware = (
-  request: NextRequest,
-  event: NextFetchEvent,
-  response: NextResponse,
-) => NextMiddlewareResult | Promise<NextMiddlewareResult>
-
-type MiddlewareFactory = (middleware: CustomMiddleware) => CustomMiddleware
+import { CustomMiddleware, MiddlewareFactory } from './types'
 
 /**
  * TF 14.0.11의 middlewares/src/chain 참고하여 작성
