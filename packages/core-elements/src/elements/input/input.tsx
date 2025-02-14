@@ -39,7 +39,7 @@ export interface InputProps extends HtmlInputElementProps {
   label?: string
   error?: string | boolean
   help?: ReactNode
-  inputRef?: (el: HTMLInputElement | null) => void
+  inputRef?: (element: HTMLInputElement) => void
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
