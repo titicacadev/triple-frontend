@@ -39,10 +39,22 @@ export interface InputProps extends HtmlInputElementProps {
   label?: string
   error?: string | boolean
   help?: ReactNode
+  inputRef?: (el: HTMLInputElement | null) => void
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, error, help, onBlur, onFocus, value, mask, replacement, ...props },
+  {
+    label,
+    error,
+    help,
+    onBlur,
+    onFocus,
+    value,
+    mask,
+    replacement,
+    inputRef,
+    ...props
+  },
   ref,
 ) {
   const formFieldState = useFormFieldState({ onBlur, onFocus })
@@ -50,7 +62,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const hasHelp = !!help
   const isError = !!error
 
-  const inputRef = useMask({
+  const inputMaskRef = useMask({
     mask,
     replacement: replacement ?? { 9: /\d/, d: /\d/, m: /\d/, y: /\d/ },
   })
@@ -74,15 +86,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <BaseInput
-        ref={(el) => {
-          if (el !== null) {
-            inputRef.current = el
-          }
+        ref={(element: HTMLInputElement) => {
+          inputMaskRef.current = element
           if (typeof ref === 'function') {
-            ref(el)
+            ref(element)
           } else if (ref) {
-            ;(ref as React.MutableRefObject<HTMLInputElement | null>).current =
-              el
+            ref.current = element
+          }
+          if (inputRef) {
+            inputRef(element)
           }
         }}
         id={formFieldState.inputId}
