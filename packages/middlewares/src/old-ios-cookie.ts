@@ -2,7 +2,7 @@ import { clientAppRegex } from '@titicaca/triple-web-utils'
 import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
 import satisfies from 'semver/functions/satisfies'
 
-import { CustomMiddleware } from './chain'
+import { CustomMiddleware } from './types'
 
 export function oldIosCookiesMiddleware(customMiddleware: CustomMiddleware) {
   return function middleware(request: NextRequest, event: NextFetchEvent) {

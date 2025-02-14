@@ -1,16 +1,7 @@
-import { NextMiddlewareResult } from 'next/dist/server/web/types'
 import { NextResponse } from 'next/server'
 import type { NextFetchEvent, NextRequest } from 'next/server'
 
-export type CustomMiddleware = (
-  request: NextRequest,
-  event: NextFetchEvent,
-  response: NextResponse,
-) => NextMiddlewareResult | Promise<NextMiddlewareResult>
-
-export type MiddlewareFactory = (
-  middleware: CustomMiddleware,
-) => CustomMiddleware
+import { CustomMiddleware, MiddlewareFactory } from './types'
 
 export function chain(
   functions: MiddlewareFactory[],
