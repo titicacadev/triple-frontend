@@ -87,13 +87,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <BaseInput
         ref={(element: HTMLInputElement) => {
+          if (!element) {
+            return
+          }
           inputMaskRef.current = element
           if (typeof ref === 'function') {
             ref(element)
           } else if (ref) {
             ref.current = element
           }
-          if (inputRef) {
+          if (inputRef && inputRef !== ref) {
             inputRef(element)
           }
         }}
