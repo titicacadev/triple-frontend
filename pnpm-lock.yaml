@@ -563,8 +563,8 @@ importers:
         specifier: ^0.27.4
         version: 0.27.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-google-maps/api':
-        specifier: ^2.20.5
-        version: 2.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^2.20.6
+        version: 2.20.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -3249,8 +3249,8 @@ packages:
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  '@react-google-maps/api@2.20.5':
-    resolution: {integrity: sha512-Dx3faV4d7JXFSD7SB8ePIt5LOB72mNGHKFp/hIQVaPEsLJlEi4ID+XL6HM3Xw10AzGbr4KS/eQSi3OAaN7YttQ==}
+  '@react-google-maps/api@2.20.6':
+    resolution: {integrity: sha512-frxkSHWbd36ayyxrEVopSCDSgJUT1tVKXvQld2IyzU3UnDuqqNA3AZE4/fCdqQb2/zBQx3nrWnZB1wBXDcrjcw==}
     peerDependencies:
       react: ^16.8 || ^17 || ^18 || ^19
       react-dom: ^16.8 || ^17 || ^18 || ^19
@@ -13372,7 +13372,7 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@react-google-maps/api@2.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@react-google-maps/api@2.20.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@googlemaps/js-api-loader': 1.16.8
       '@googlemaps/markerclusterer': 2.5.3
