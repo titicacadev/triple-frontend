@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
 import styled from 'styled-components'
-import InputMask, { MaskOptions } from 'react-input-mask'
+import { type MaskOptions, format, useMask } from '@react-input/mask'
 
 import {
   FormFieldContext,
@@ -10,7 +10,7 @@ import {
   useFormFieldState,
 } from '../form-field'
 
-const BaseInput = styled(InputMask)`
+const BaseInput = styled.input`
   padding: 0 16px;
   font-size: 16px;
   height: 48px;
@@ -39,16 +39,41 @@ export interface InputProps extends HtmlInputElementProps {
   label?: string
   error?: string | boolean
   help?: ReactNode
+  inputRef?: (element: HTMLInputElement) => void
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, error, help, onBlur, onFocus, ...props },
+  {
+    label,
+    error,
+    help,
+    onBlur,
+    onFocus,
+    value,
+    mask,
+    replacement,
+    inputRef,
+    ...props
+  },
   ref,
 ) {
   const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasHelp = !!help
   const isError = !!error
+
+  const inputMaskRef = useMask({
+    mask,
+    replacement: replacement ?? { 9: /\d/, d: /\d/, m: /\d/, y: /\d/ },
+  })
+
+  const formattedValue =
+    value && mask
+      ? format(String(value), {
+          mask,
+          replacement: replacement ?? { 9: /\d/, d: /\d/, m: /\d/, y: /\d/ },
+        })
+      : value ?? ''
 
   return (
     <FormFieldContext.Provider
@@ -61,7 +86,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <BaseInput
-        inputRef={ref}
+        ref={(element: HTMLInputElement) => {
+          if (!element) {
+            return
+          }
+          inputMaskRef.current = element
+          if (typeof ref === 'function') {
+            ref(element)
+          } else if (ref) {
+            ref.current = element
+          }
+          if (inputRef && inputRef !== ref) {
+            inputRef(element)
+          }
+        }}
         id={formFieldState.inputId}
         aria-describedby={
           hasHelp && !isError ? formFieldState.descriptionId : undefined
@@ -70,6 +108,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={isError}
         onBlur={formFieldState.handleBlur}
         onFocus={formFieldState.handleFocus}
+        defaultValue={formattedValue}
         {...props}
       />
       {error ? (
