@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.43.0
+
+```
+### react-contexts
+
+- session refresh middleware 추가 [#3564](https://github.com/titicacadev/triple-frontend/pull/3564)
+```
+
 ## 13.42.1
 
 ```
