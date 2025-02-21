@@ -541,6 +541,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.43.0
+
+### react-contexts
+
+- session refresh middleware 추가 [#3564](https://github.com/titicacadev/triple-frontend/pull/3564)
+
 ## 13.42.1
 
 ### chat
