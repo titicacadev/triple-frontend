@@ -2,7 +2,9 @@ import { ComponentType, Fragment } from 'react'
 import { CSSProp } from 'styled-components'
 import { InView } from 'react-intersection-observer'
 
-import BubbleContainer from '../bubble-container/bubble-container'
+import BubbleContainer, {
+  BubbleContainerProp,
+} from '../bubble-container/bubble-container'
 import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
 import { UserInterface } from '../types'
 import AlteredBubble from '../bubble/altered'
@@ -43,6 +45,7 @@ interface MessagesProp<
   onOpenMenu?: (message: MessageInterface<Message, User>) => void
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
+  profilePosition?: BubbleContainerProp['profilePosition']
 }
 
 export default function Messages<
@@ -68,6 +71,7 @@ export default function Messages<
   onOpenMenu,
   onParentMessageClick,
   onUserClick,
+  profilePosition,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -225,6 +229,7 @@ export default function Messages<
               }}
               showInfo={type !== 'product'}
               showProfile={showProfile}
+              profilePosition={profilePosition}
               showDateInfo={!hasDateDivider}
               showTimeInfo={listType === 'normal' && showTimeInfo}
               {...(listType === 'failed' && {
