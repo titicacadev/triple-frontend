@@ -72,7 +72,7 @@
     "@graphql-codegen/typescript": "4.1.3",
     "@graphql-codegen/typescript-generic-sdk": "^4.0.1",
     "@graphql-codegen/typescript-operations": "4.4.1",
-    "@tanstack/react-query": "^5.66.5",
+    "@tanstack/react-query": "^5.66.8",
     "@titicaca/tds-theme": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
     "@titicaca/triple-web-test-utils": "workspace:*",
