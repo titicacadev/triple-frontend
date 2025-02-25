@@ -78,12 +78,13 @@ export function useNavigate({
         return
       }
 
-      const { scheme } = parseUrl(rawHref)
+      const { scheme, path, query, hash } = parseUrl(rawHref)
 
       if (scheme === 'http' || scheme === 'https') {
         openOutlink(rawHref, options)
       } else {
-        openNativeLink(rawHref)
+        const appPath = generateUrl({ path, query, hash })
+        openNativeLink(appPath)
       }
     },
     [
