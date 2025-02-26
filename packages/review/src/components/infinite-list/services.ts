@@ -59,6 +59,10 @@ export function useInfiniteLatestReviews(
       return allPages.length + 1
     },
     initialPageParam: 1,
+    select: ({ pageParams, pages }) => ({
+      pageParams,
+      pages: pages.map((item) => item.latestReviews),
+    }),
     placeholderData: (previousData) => previousData,
     refetchOnWindowFocus: false,
   })
@@ -85,6 +89,10 @@ export function useInfiniteRatingReviews(
       return allPages.length + 1
     },
     initialPageParam: 1,
+    select: ({ pageParams, pages }) => ({
+      pageParams,
+      pages: pages.map((item) => item.ratingReviews),
+    }),
     placeholderData: (previousData) => previousData,
     refetchOnWindowFocus: false,
   })
