@@ -72,10 +72,6 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
         request.headers.set('cookie', finalCookie)
 
-        const response = NextResponse.next({
-          request,
-        })
-
         response.headers.set('set-cookie', setCookie)
 
         return response
