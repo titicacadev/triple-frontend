@@ -143,9 +143,9 @@ export function ReviewElement({
   const { showToast } = useTripleClientActions()
   const { navigateReviewDetail, navigateUserDetail } = useClientActions()
 
-  const { mutate: likeReview, isLoading: isLikeLoading } =
+  const { mutate: likeReview, isPending: isLikeLoading } =
     useLikeReviewMutation()
-  const { mutate: unlikeReview, isLoading: isUnlikeLoading } =
+  const { mutate: unlikeReview, isPending: isUnlikeLoading } =
     useUnlikeReviewMutation()
 
   const likeButtonAction = `리뷰_땡쓰${liked ? '취소' : ''}_선택`
