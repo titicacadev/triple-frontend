@@ -12,9 +12,11 @@ import { CustomMiddleware } from './types'
 export function oldTripleIosCookiesMiddleware(
   customMiddleware: CustomMiddleware,
 ) {
-  return function middleware(request: NextRequest, event: NextFetchEvent) {
-    const response = NextResponse.next()
-
+  return function middleware(
+    request: NextRequest,
+    event: NextFetchEvent,
+    response: NextResponse,
+  ) {
     const userAgent = request.headers.get('User-Agent')
 
     const host = request.headers.get('x-forwarded-host')

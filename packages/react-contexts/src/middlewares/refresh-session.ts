@@ -9,12 +9,13 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
+    response: NextResponse,
   ) {
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
     if (!isPageUrl) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     const allCookies = request.cookies.getAll()
@@ -25,7 +26,7 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
     const cookies = deriveAllCookies(request.cookies.getAll())
 
     if (!isSessionExisted) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     const options = {
@@ -36,7 +37,7 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
     const firstTrialResponse = await get('/api/users/me', options)
 
     if (firstTrialResponse.status !== 401) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     /**
@@ -67,16 +68,12 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
 
         request.headers.set('cookie', finalCookie)
 
-        const response = NextResponse.next({
-          request,
-        })
-
         response.headers.set('set-cookie', setCookie)
 
         return customMiddleware(request, event, response)
       }
     }
-    return customMiddleware(request, event, NextResponse.next())
+    return customMiddleware(request, event, response)
   }
 }
 
