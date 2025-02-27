@@ -51,6 +51,7 @@ export function useMyReview(params: GetMyReviewQueryVariables) {
     queryKey: ['review/getMyReview', params],
     queryFn: () => client.GetMyReview(params),
     refetchOnWindowFocus: false,
+    enabled: typeof window !== 'undefined',
   })
 }
 
