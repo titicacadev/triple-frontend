@@ -7,7 +7,9 @@ import {
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 
-import { TP_SE, TP_TK } from './constants'
+import { parseApp } from '../user-agent-context'
+
+import { TP_SE, TP_TK, X_SOTO_SESSION } from './constants'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -24,10 +26,17 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     const allCookies = request.cookies.getAll()
 
-    const isSessionExisted = allCookies.some(
+    const userAgent = request.headers.get('User-Agent')
+    const tripleApp = userAgent ? parseApp(userAgent) : null
+
+    const cookiesWithoutXSotoSession = tripleApp
+      ? allCookies
+      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
+
+    const isSessionExisted = cookiesWithoutXSotoSession.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(request.cookies.getAll())
+    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
 
     if (!isSessionExisted) {
       return response
