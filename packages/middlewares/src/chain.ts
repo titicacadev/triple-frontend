@@ -8,7 +8,9 @@ export type CustomMiddleware = (
   response: NextResponse,
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>
 
-type MiddlewareFactory = (middleware: CustomMiddleware) => CustomMiddleware
+export type MiddlewareFactory = (
+  middleware: CustomMiddleware,
+) => CustomMiddleware
 
 export function chain(
   functions: MiddlewareFactory[],
