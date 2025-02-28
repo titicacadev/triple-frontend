@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { userEvent } from '@testing-library/user-event'
 
 import { Input } from './input'
 
@@ -30,11 +30,25 @@ describe('Masked Input Behavior', () => {
     ['Date of birth', '9999-99-99', '20001202', '2000-12-02'],
     ['Date of birth (yyyy-mm-dd)', 'yyyy-mm-dd', '20001202', '2000-12-02'],
     ['Mobile number', '999-9999-9999', '01012345678', '010-1234-5678'],
-  ])('%s input applies mask correctly', async (_, mask, value, expected) => {
-    render(<Input mask={mask} value={value} />)
-    const input = await screen.findByRole('textbox')
-    expect(input).toHaveValue(expected)
-  })
+  ])(
+    '%s input applies mask correctly',
+    async (_, mask, inputValue, expected) => {
+      const handleChange = jest.fn()
+
+      render(<Input mask={mask} placeholder={mask} onChange={handleChange} />)
+
+      const input = screen.getByPlaceholderText(mask)
+
+      await userEvent.type(input, inputValue)
+
+      await waitFor(() => {
+        expect(input).toHaveValue(expected)
+      })
+      await waitFor(() => {
+        expect(handleChange).toHaveBeenCalled()
+      })
+    },
+  )
 })
 
 describe('User Typing Behavior', () => {
@@ -43,7 +57,7 @@ describe('User Typing Behavior', () => {
     ['Date of birth', '9999/99/99', '20221202', '2022/12/02'],
     ['Date of birth (yyyy/mm/dd)', 'yyyy/mm/dd', '20250102', '2025/01/02'],
   ])('User typing in %s input', async (_, mask, inputValue, expected) => {
-    render(<Input mask={mask} />)
+    render(<Input mask={mask} onChange={() => {}} />)
     const input = screen.getByRole('textbox')
     await userEvent.type(input, inputValue)
     await waitFor(() => expect(input).toHaveValue(expected))
@@ -75,18 +89,28 @@ describe('Keyboard Events', () => {
 
 describe('ForwardRef and Ref Behavior', () => {
   test('ref를 사용하여 값 변경 확인', async () => {
-    const ref = {
+    const inputRef = {
       current: null,
     } as React.MutableRefObject<HTMLInputElement | null>
-    render(<Input inputRef={(el) => (ref.current = el)} mask="9999-99-99" />)
+    render(
+      <Input
+        ref={(ref) => {
+          if (ref) {
+            inputRef.current = ref
+          }
+        }}
+        mask="9999-99-99"
+        onChange={() => {}}
+      />,
+    )
 
-    await waitFor(() => expect(ref.current).not.toBeNull())
-    expect(ref.current).toBeInstanceOf(HTMLInputElement)
+    await waitFor(() => expect(inputRef.current).not.toBeNull())
+    expect(inputRef.current).toBeInstanceOf(HTMLInputElement)
 
     const input = screen.getByRole('textbox')
     await userEvent.type(input, '20001202')
 
-    await waitFor(() => expect(ref.current?.value).toBe('2000-12-02'))
+    await waitFor(() => expect(inputRef.current?.value).toBe('2000-12-02'))
   })
 
   test('focuses input using ref', async () => {
