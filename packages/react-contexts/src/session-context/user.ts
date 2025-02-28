@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 export interface User {
   name: string
@@ -36,6 +42,10 @@ export const UserProvider = UserContext.Provider
 
 export function useUserState(initialUser: User | undefined) {
   const [user, setUser] = useState(initialUser)
+
+  useEffect(() => {
+    setUser(initialUser)
+  }, [initialUser])
 
   const clear = useCallback(() => {
     setUser(undefined)

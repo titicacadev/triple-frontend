@@ -1,7 +1,7 @@
 import { IncomingMessage } from 'http'
 
 import { NextPageContext } from 'next'
-import { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
+import { PropsWithChildren, useCallback, useMemo } from 'react'
 import {
   fetcher,
   ssrFetcherize,
@@ -31,8 +31,6 @@ export function InBrowserSessionContextProvider({
   initialUser,
   children,
 }: PropsWithChildren<InBrowserSessionContextProviderProps>) {
-  const sessionAvailableRef = useRef(initialSessionAvailability)
-
   const { user, clear: clearUserState } = useUserState(initialUser)
 
   const login = useCallback<SessionControllers['login']>((options) => {
@@ -59,7 +57,7 @@ export function InBrowserSessionContextProvider({
 
   return (
     <SessionControllerContext.Provider value={controllers}>
-      <SessionAvailabilityContext.Provider value={sessionAvailableRef.current}>
+      <SessionAvailabilityContext.Provider value={initialSessionAvailability}>
         <UserProvider value={user || null}>{children}</UserProvider>
       </SessionAvailabilityContext.Provider>
     </SessionControllerContext.Provider>
