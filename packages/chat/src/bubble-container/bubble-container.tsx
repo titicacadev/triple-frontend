@@ -107,6 +107,7 @@ function SentBubbleContainer({
             onReplyClick={onReplyClick}
             css={{ marginRight: 4, textAlign: 'right' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
+            unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
         ) : null}
 
