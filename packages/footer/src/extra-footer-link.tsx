@@ -10,17 +10,27 @@ const Link = styled.a`
   margin-top: 20px;
 `
 
-export function TripleKoreaLink() {
+interface ExtraFooterLinkProps {
+  href: string
+  text: string
+  faEventAction: string
+}
+
+export function ExtraFooterLink({
+  href,
+  text,
+  faEventAction,
+}: ExtraFooterLinkProps) {
   const { trackEvent } = useEventTrackingContext()
 
   return (
     <Link
-      href="https://triple.global"
+      href={href}
       target="_blank"
       rel="noreferrer"
-      onClick={() => trackEvent({ fa: { action: '푸터_트리플코리아링크' } })}
+      onClick={() => trackEvent({ fa: { action: faEventAction } })}
     >
-      TRIPLE Korea for Foreign Travelers
+      {text}
     </Link>
   )
 }
