@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import styled from 'styled-components'
 import { Text, Container } from '@titicaca/core-elements'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -12,14 +11,13 @@ export const FooterFrame = styled.footer`
 
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  tripleKoreaLinkVisible?: boolean
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  tripleKoreaLinkVisible = false,
+  children,
   ...props
-}: DefaultFooterProps) {
+}: PropsWithChildren<DefaultFooterProps>) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -49,7 +47,7 @@ function DefaultFooter({
 
         <LinkGroup />
 
-        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
+        {children}
       </Container>
     </FooterFrame>
   )

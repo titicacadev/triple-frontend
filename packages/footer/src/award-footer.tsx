@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Container, FlexBox, Text } from '@titicaca/core-elements'
-import { Fragment, useState } from 'react'
+import { Fragment, PropsWithChildren, useState } from 'react'
 
 import { LinkGroup as LinkGroupBase } from './link-group'
 import {
@@ -8,7 +8,6 @@ import {
   FooterFrame,
 } from './default-footer'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
 
 const AWARD_INFO = [
   {
@@ -63,8 +62,9 @@ const AwardFlexBox = styled(FlexBox).attrs({
 
 export function AwardFooter({
   hideAppDownloadButton = false,
+  children,
   ...props
-}: AwardFooterProps) {
+}: PropsWithChildren<AwardFooterProps>) {
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -96,7 +96,7 @@ export function AwardFooter({
         <InfoFlexBox>
           <Container>
             <LinkGroupBase />
-            <TripleKoreaLink />
+            {children}
           </Container>
 
           <AwardGroup />
