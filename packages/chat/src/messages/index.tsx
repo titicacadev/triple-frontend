@@ -2,7 +2,9 @@ import { ComponentType, Fragment } from 'react'
 import { CSSProp } from 'styled-components'
 import { InView } from 'react-intersection-observer'
 
-import BubbleContainer from '../bubble-container/bubble-container'
+import BubbleContainer, {
+  BubbleContainerProp,
+} from '../bubble-container/bubble-container'
 import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
 import { UserInterface } from '../types'
 import AlteredBubble from '../bubble/altered'
@@ -15,7 +17,7 @@ import { DateDivider } from './date-divider'
 interface MessagesProp<
   Message extends MessageBase<User>,
   User extends UserInterface,
-> {
+> extends Pick<BubbleContainerProp, 'bubbleInfoStyle'> {
   messages: MessageInterface<Message, User>[]
   pendingMessages: MessageInterface<Message, User>[]
   failedMessages: MessageInterface<Message, User>[]
@@ -68,6 +70,7 @@ export default function Messages<
   onOpenMenu,
   onParentMessageClick,
   onUserClick,
+  bubbleInfoStyle,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -200,6 +203,7 @@ export default function Messages<
                   ? new Date()
                   : new Date(message.createdAt)
               }
+              css={bubbleInfoStyle?.dateDivider?.css}
             />
           ) : null}
 
@@ -249,6 +253,7 @@ export default function Messages<
                 marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
               }}
               onUserClick={onUserClick}
+              bubbleInfoStyle={bubbleInfoStyle}
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
