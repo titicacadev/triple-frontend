@@ -11,8 +11,9 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
-    response: NextResponse,
   ) {
+    const response = NextResponse.next({ request })
+
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
