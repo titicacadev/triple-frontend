@@ -8,17 +8,9 @@ import {
   FooterFrame,
 } from './default-footer'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
-
-const AWARD_INFO = [
-  {
-    id: 1,
-    imageUrl:
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg',
-    alt: '국제표준 정보보호 인증마크 ISO27001, ISO 27701',
-    text: '국제표준 정보보호 인증 취득\nISO 27001, ISO 27701',
-  },
-]
+import { ExtraLink } from './extra-link'
+import { useCompanyInfo } from './use-company-info'
+import { Award } from './type'
 
 const InfoFlexBox = styled(FlexBox).attrs({
   flex: true,
@@ -65,6 +57,7 @@ export function AwardFooter({
   hideAppDownloadButton = false,
   ...props
 }: AwardFooterProps) {
+  const companyInfo = useCompanyInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -78,6 +71,7 @@ export function AwardFooter({
         }}
       >
         <CompanyInfo
+          company={companyInfo.company}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
@@ -89,28 +83,31 @@ export function AwardFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
         >
-          &#12828;놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며
-          <br /> 상품 거래정보 및 거래 등에 대해 책임을 지지 않습니다.
+          {companyInfo.disclaimer}
         </Text>
 
         <InfoFlexBox>
           <Container>
-            <LinkGroupBase />
-            <TripleKoreaLink />
+            <LinkGroupBase links={companyInfo.links} />
+            {companyInfo.extraLinks.length
+              ? companyInfo.extraLinks.map((link, index) => (
+                  <ExtraLink key={`extra-link-${index}`} {...link} />
+                ))
+              : null}
           </Container>
 
-          <AwardGroup />
+          <AwardGroup awards={companyInfo.awards} />
         </InfoFlexBox>
       </Container>
     </FooterFrame>
   )
 }
 
-function AwardGroup() {
+function AwardGroup({ awards }: { awards: Award[] }) {
   return (
     <AwardFlexBox>
-      {AWARD_INFO.map(({ id, imageUrl, alt, text }) => (
-        <Fragment key={id}>
+      {awards.map(({ imageUrl, alt, text }, index) => (
+        <Fragment key={`award-${index}`}>
           <AwardImg src={imageUrl} alt={alt} />
           <Tooltip>{text}</Tooltip>
         </Fragment>
