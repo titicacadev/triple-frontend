@@ -1,4 +1,4 @@
-export interface CompanyInfo {
+export interface FooterInfo {
   company: Company
   disclaimer: string
   links: Link[]
