@@ -30,6 +30,7 @@ export function envProviderDecorator(Story) {
       afOnelinkId=""
       afOnelinkPid=""
       afOnelinkSubdomain=""
+      webAssetsUrl="https://assets.triple-dev.titicaca-corp.com"
     >
       <Story />
     </EnvProvider>

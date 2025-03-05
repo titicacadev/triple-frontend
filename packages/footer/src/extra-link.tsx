@@ -1,6 +1,8 @@
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
+import { Link } from './type'
+
 const Link = styled.a`
   display: block;
   color: var(--color-gray500);
@@ -10,17 +12,17 @@ const Link = styled.a`
   margin-top: 20px;
 `
 
-export function TripleKoreaLink() {
+export function ExtraLink({ label, url, faEventAction }: Link) {
   const { trackEvent } = useEventTrackingContext()
 
   return (
     <Link
-      href="https://triple.global"
+      href={url}
       target="_blank"
       rel="noreferrer"
-      onClick={() => trackEvent({ fa: { action: '푸터_트리플코리아링크' } })}
+      onClick={() => trackEvent({ fa: { action: faEventAction } })}
     >
-      TRIPLE Korea for Foreign Travelers
+      {label}
     </Link>
   )
 }
