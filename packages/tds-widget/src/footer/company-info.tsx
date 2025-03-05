@@ -14,6 +14,8 @@ import {
 } from '@titicaca/triple-web'
 import { Dispatch, SetStateAction } from 'react'
 
+import { Company } from './type'
+
 const MAX_PHONE_WIDTH = 360
 
 const AccordionHeader = styled(FlexBox)`
@@ -77,12 +79,14 @@ const ButtonContainer = styled(FlexBox)`
 `
 
 interface CompanyInfoProps {
+  company: Company
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
   setBusinessExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export function CompanyInfo({
+  company,
   hideAppDownloadButton = false,
   businessExpanded,
   setBusinessExpanded,
@@ -91,6 +95,15 @@ export function CompanyInfo({
   const login = useLogin()
   const logout = useLogout()
   const trackEvent = useTrackEvent()
+
+  const {
+    name,
+    ceo,
+    businessRegistrationNumber,
+    salesReportNumber,
+    address,
+    contact,
+  } = company
 
   return (
     <Accordion
@@ -157,15 +170,17 @@ export function CompanyInfo({
 
       <AccordionContent>
         <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
-          &#12828;놀유니버스 | 대표이사 배보찬, 최휘영 <br />
-          사업자 등록번호 824-81-02515
+          {`${name} | ${ceo.label} ${ceo.names.join(' ')}`}
           <br />
-          통신판매업 신고번호 2024-성남수정-0912
+          {`${businessRegistrationNumber.label} ${businessRegistrationNumber.value}`}
           <br />
-          경기도 성남시 수정구 금토로 70 (금토동, 텐엑스타워)
+          {`${salesReportNumber.label} ${salesReportNumber.value}`}
           <br />
-          항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
-          help.triple@nol-universe.com
+          {`${address.value}`}
+          <br />
+          {`${contact.label} ${contact.phone}`}
+          <br />
+          {`${contact.email}`}
         </Text>
       </AccordionContent>
     </Accordion>
