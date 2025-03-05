@@ -9,7 +9,7 @@ import {
 } from './default-footer'
 import { CompanyInfo } from './company-info'
 import { ExtraLink } from './extra-link'
-import { useCompanyInfo } from './use-company-info'
+import { useFooterInfo } from './use-footer-info'
 import { Award } from './type'
 
 const InfoFlexBox = styled(FlexBox).attrs({
@@ -57,7 +57,7 @@ export function AwardFooter({
   hideAppDownloadButton = false,
   ...props
 }: AwardFooterProps) {
-  const companyInfo = useCompanyInfo()
+  const footerInfo = useFooterInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -71,7 +71,7 @@ export function AwardFooter({
         }}
       >
         <CompanyInfo
-          company={companyInfo.company}
+          company={footerInfo.company}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
@@ -83,20 +83,20 @@ export function AwardFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
         >
-          {companyInfo.disclaimer}
+          {footerInfo.disclaimer}
         </Text>
 
         <InfoFlexBox>
           <Container>
-            <LinkGroupBase links={companyInfo.links} />
-            {companyInfo.extraLinks.length
-              ? companyInfo.extraLinks.map((link, index) => (
+            <LinkGroupBase links={footerInfo.links} />
+            {footerInfo.extraLinks.length
+              ? footerInfo.extraLinks.map((link, index) => (
                   <ExtraLink key={`extra-link-${index}`} {...link} />
                 ))
               : null}
           </Container>
 
-          <AwardGroup awards={companyInfo.awards} />
+          <AwardGroup awards={footerInfo.awards} />
         </InfoFlexBox>
       </Container>
     </FooterFrame>
