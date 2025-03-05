@@ -30,7 +30,7 @@ export function tripleWebProviderDecorator(Story, context) {
         afOnelinkId: '',
         afOnelinkPid: '',
         afOnelinkSubdomain: '',
-        webAssetUrl: 'https://triple-dev.titicaca-corp.com',
+        webAssetsUrl: 'https://triple-dev.titicaca-corp.com',
       }}
       i18nProvider={{
         defaultLocale: 'ko',
