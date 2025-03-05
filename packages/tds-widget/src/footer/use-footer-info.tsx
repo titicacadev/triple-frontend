@@ -37,7 +37,8 @@ export function useFooterInfo() {
     }
 
     getFooterInfo()
-  }, [webAssetUrl])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return footerInfo
 }
