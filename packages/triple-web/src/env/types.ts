@@ -42,5 +42,5 @@ export interface EnvValue {
   /**
    * asset 파일의 웹 URL
    */
-  webAssetUrl?: string
+  webAssetsUrl?: string
 }

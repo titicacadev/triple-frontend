@@ -22,12 +22,12 @@ const companyInfoUrlPath = '/footer/footer.json'
 
 export function useFooterInfo() {
   const [footerInfo, setFooterInfo] = useState<FooterInfo>(initialFooterInfo)
-  const { webAssetUrl } = useEnv()
+  const { webAssetsUrl } = useEnv()
 
   useEffect(() => {
     const getFooterInfo = async () => {
       try {
-        const response = await fetch(webAssetUrl + companyInfoUrlPath)
+        const response = await fetch(webAssetsUrl + companyInfoUrlPath)
         const data = await response.json()
         setFooterInfo(data)
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
