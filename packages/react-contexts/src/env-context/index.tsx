@@ -44,7 +44,7 @@ interface EnvContextValue {
   /**
    * asset 파일의 웹 URL
    */
-  webAssetUrl?: string
+  webAssetsUrl?: string
 }
 
 const EnvContext = createContext<EnvContextValue | null>(null)
@@ -59,7 +59,7 @@ export function EnvProvider({
   afOnelinkId,
   afOnelinkPid,
   afOnelinkSubdomain,
-  webAssetUrl,
+  webAssetsUrl,
   children,
   ...rest
 }: PropsWithChildren<EnvContextValue>) {
@@ -74,7 +74,7 @@ export function EnvProvider({
       afOnelinkId,
       afOnelinkPid,
       afOnelinkSubdomain,
-      webAssetUrl,
+      webAssetsUrl,
       ...rest,
     }),
     [
@@ -87,7 +87,7 @@ export function EnvProvider({
       afOnelinkId,
       afOnelinkPid,
       afOnelinkSubdomain,
-      webAssetUrl,
+      webAssetsUrl,
       rest,
     ],
   )
