@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useEnv } from '@titicaca/triple-web'
 
-import { CompanyInfo } from './type'
+import { FooterInfo } from './type'
 
-const initialCompanyInfo: CompanyInfo = {
+const initialFooterInfo: FooterInfo = {
   company: {
     name: '',
     ceo: { label: '대표이사', names: [] },
@@ -17,26 +18,26 @@ const initialCompanyInfo: CompanyInfo = {
   awards: [],
 }
 
-const companyInfoUrl = 'https://assets.triple.guide/footer/footer.json'
+const companyInfoUrlPath = '/footer/footer.json'
 
-export function useCompanyInfo() {
-  const [companyInfo, setCompanyInfo] =
-    useState<CompanyInfo>(initialCompanyInfo)
+export function useFooterInfo() {
+  const [footerInfo, setFooterInfo] = useState<FooterInfo>(initialFooterInfo)
+  const { webAssetUrl } = useEnv()
 
   useEffect(() => {
-    const getCompanyInfo = async () => {
+    const getFooterInfo = async () => {
       try {
-        const response = await fetch(companyInfoUrl)
+        const response = await fetch(webAssetUrl + companyInfoUrlPath)
         const data = await response.json()
-        setCompanyInfo(data)
+        setFooterInfo(data)
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         // do nothing
       }
     }
 
-    getCompanyInfo()
-  }, [])
+    getFooterInfo()
+  }, [webAssetUrl])
 
-  return companyInfo
+  return footerInfo
 }

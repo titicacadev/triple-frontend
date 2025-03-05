@@ -5,7 +5,7 @@ import { Text, Container } from '@titicaca/tds-ui'
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
 import { ExtraLink } from './extra-link'
-import { useCompanyInfo } from './use-company-info'
+import { useFooterInfo } from './use-footer-info'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -21,7 +21,7 @@ export function DefaultFooter({
   extraLinkVisible = false,
   ...props
 }: DefaultFooterProps) {
-  const companyInfo = useCompanyInfo()
+  const footerInfo = useFooterInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -35,7 +35,7 @@ export function DefaultFooter({
         }}
       >
         <CompanyInfo
-          company={companyInfo.company}
+          company={footerInfo.company}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
@@ -46,13 +46,13 @@ export function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          {companyInfo.disclaimer.replace(/\\n/g, '')}
+          {footerInfo.disclaimer.replace(/\\n/g, '')}
         </Text>
 
-        <LinkGroup links={companyInfo.links} />
+        <LinkGroup links={footerInfo.links} />
 
-        {extraLinkVisible && companyInfo.extraLinks.length
-          ? companyInfo.extraLinks.map((link, index) => (
+        {extraLinkVisible && footerInfo.extraLinks.length
+          ? footerInfo.extraLinks.map((link, index) => (
               <ExtraLink key={`extra-link-${index}`} {...link} />
             ))
           : null}
