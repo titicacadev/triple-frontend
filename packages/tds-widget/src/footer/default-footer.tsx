@@ -46,12 +46,12 @@ export function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          {footerInfo.disclaimer.replace(/\\n/g, '')}
+          {footerInfo.disclaimer.replace('\n', '')}
         </Text>
 
         <LinkGroup links={footerInfo.links} />
 
-        {extraLinkVisible && footerInfo.extraLinks.length
+        {extraLinkVisible && !!footerInfo.extraLinks.length
           ? footerInfo.extraLinks.map((link, index) => (
               <ExtraLink key={`extra-link-${index}`} {...link} />
             ))
