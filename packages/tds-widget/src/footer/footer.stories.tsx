@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
+import { http, HttpResponse } from 'msw'
 
 import { DefaultFooter } from './default-footer'
+import CompanyInfo from './footer.json'
 
 export default {
   title: 'tds-widget / footer / Footer',
@@ -20,5 +22,17 @@ export const Basic: StoryObj<typeof DefaultFooter> = {}
 export const NoButtons: StoryObj<typeof DefaultFooter> = {
   args: {
     hideAppDownloadButton: true,
+  },
+  parameters: {
+    msw: {
+      handlers: [
+        http.get(
+          'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
+          async () => {
+            return HttpResponse.json(CompanyInfo)
+          },
+        ),
+      ],
+    },
   },
 }
