@@ -4,7 +4,8 @@ import { Text, Container } from '@titicaca/core-elements'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
+import { ExtraLink } from './extra-link'
+import { useCompanyInfo } from './use-company-info'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -12,14 +13,15 @@ export const FooterFrame = styled.footer`
 
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  tripleKoreaLinkVisible?: boolean
+  extraLinkVisible?: boolean
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
-  tripleKoreaLinkVisible = false,
+  extraLinkVisible = false,
   ...props
 }: DefaultFooterProps) {
+  const companyInfo = useCompanyInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   return (
@@ -33,6 +35,7 @@ function DefaultFooter({
         }}
       >
         <CompanyInfo
+          company={companyInfo.company}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
@@ -43,13 +46,16 @@ function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          &#12828;놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며 상품
-          거래정보 및 거래 등에 대해 책임을 지지 않습니다.
+          {companyInfo.disclaimer.replace(/\\n/g, '')}
         </Text>
 
-        <LinkGroup />
+        <LinkGroup links={companyInfo.links} />
 
-        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
+        {extraLinkVisible && companyInfo.extraLinks.length
+          ? companyInfo.extraLinks.map((link, index) => (
+              <ExtraLink key={`extra-link-${index}`} {...link} />
+            ))
+          : null}
       </Container>
     </FooterFrame>
   )
