@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { rest } from 'msw'
 
 import { AwardFooter } from './award-footer'
-import { CompanyInfo } from './company-info'
+import MockFooterInfo from './footer.json'
 
 export default {
   title: 'footer / AwardFooter',
@@ -16,7 +16,7 @@ export const Basic: StoryObj<typeof AwardFooter> = {
         rest.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
           async (req, res, ctx) => {
-            return res(ctx.json(CompanyInfo))
+            return res(ctx.json(MockFooterInfo))
           },
         ),
       ],
