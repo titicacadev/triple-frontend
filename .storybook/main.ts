@@ -3,8 +3,11 @@ import type { StorybookConfig } from '@storybook/nextjs'
 
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
+const EXCEPT_PACKAGES = ['middlewares']
+
 const stories = fs
   .readdirSync('packages')
+  .filter((pkg) => !EXCEPT_PACKAGES.includes(pkg))
   .map((pkg) => `../packages/${pkg}/src/**/*.stories.@(mdx,js|jsx|ts|tsx)`)
 
 const config: StorybookConfig = {
@@ -36,6 +39,7 @@ const config: StorybookConfig = {
           configFile: 'tsconfig.test.json',
         }),
       ]
+      config.resolve.fallback = { fs: false }
     }
 
     return config
