@@ -1,5 +1,8 @@
+import { Fragment } from 'react'
 import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
+
+import { Link } from './type'
 
 const LinksContainer = styled(Container)`
   font-size: 11px;
@@ -17,20 +20,22 @@ const LinksContainer = styled(Container)`
     margin-left: 0;
   }
 `
-export function LinkGroup() {
+export function LinkGroup({ links }: { links: Link[] }) {
   return (
     <LinksContainer>
-      <a href="/pages/tos.html" target="_blank" rel="noreferrer">
-        서비스 이용약관
-      </a>
-      |
-      <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
-        개인정보 처리방침
-      </a>
-      |
-      <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
-        고객센터
-      </a>
+      {links.map((link, index) => (
+        <Fragment key={`link-${index}`}>
+          <a
+            key={`link-${index}`}
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {link.label}
+          </a>
+          {index < links.length - 1 && '|'}
+        </Fragment>
+      ))}
     </LinksContainer>
   )
 }
