@@ -41,6 +41,10 @@ interface EnvContextValue {
    * 미디어 소스 이름을 의미하며, 모든 측정 링크에서 반드시 포함되어야 할 유일하고 중요한 파라미터입니다.
    */
   afOnelinkPid: string
+  /**
+   * asset 파일의 웹 URL
+   */
+  webAssetUrl?: string
 }
 
 const EnvContext = createContext<EnvContextValue | null>(null)
@@ -55,6 +59,7 @@ export function EnvProvider({
   afOnelinkId,
   afOnelinkPid,
   afOnelinkSubdomain,
+  webAssetUrl,
   children,
   ...rest
 }: PropsWithChildren<EnvContextValue>) {
@@ -69,6 +74,7 @@ export function EnvProvider({
       afOnelinkId,
       afOnelinkPid,
       afOnelinkSubdomain,
+      webAssetUrl,
       ...rest,
     }),
     [
@@ -81,6 +87,7 @@ export function EnvProvider({
       afOnelinkId,
       afOnelinkPid,
       afOnelinkSubdomain,
+      webAssetUrl,
       rest,
     ],
   )
