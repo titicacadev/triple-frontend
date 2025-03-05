@@ -3,7 +3,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { http, HttpResponse } from 'msw'
 
 import { AwardFooter } from './award-footer'
-import { CompanyInfo } from './company-info'
+import MockFooterInfo from './footer.json'
 
 export default {
   title: 'tds-widget / footer / AwardFooter',
@@ -24,7 +24,7 @@ export const Basic: StoryObj<typeof AwardFooter> = {
         http.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
           async () => {
-            return HttpResponse.json(CompanyInfo)
+            return HttpResponse.json(MockFooterInfo)
           },
         ),
       ],

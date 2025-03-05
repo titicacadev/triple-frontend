@@ -3,7 +3,7 @@ import { EventTrackingProvider } from '@titicaca/triple-web'
 import { http, HttpResponse } from 'msw'
 
 import { DefaultFooter } from './default-footer'
-import CompanyInfo from './footer.json'
+import MockFooterInfo from './footer.json'
 
 export default {
   title: 'tds-widget / footer / Footer',
@@ -17,7 +17,20 @@ export default {
   ],
 } as Meta<typeof DefaultFooter>
 
-export const Basic: StoryObj<typeof DefaultFooter> = {}
+export const Basic: StoryObj<typeof DefaultFooter> = {
+  parameters: {
+    msw: {
+      handlers: [
+        http.get(
+          'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
+          async () => {
+            return HttpResponse.json(MockFooterInfo)
+          },
+        ),
+      ],
+    },
+  },
+}
 
 export const NoButtons: StoryObj<typeof DefaultFooter> = {
   args: {
@@ -29,7 +42,7 @@ export const NoButtons: StoryObj<typeof DefaultFooter> = {
         http.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
           async () => {
-            return HttpResponse.json(CompanyInfo)
+            return HttpResponse.json(MockFooterInfo)
           },
         ),
       ],
