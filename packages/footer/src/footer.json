@@ -1,0 +1,55 @@
+{
+  "company": {
+    "name": "㈜놀유니버스",
+    "ceo": {
+      "label": "대표이사",
+      "names": ["배보찬", "최휘영"]
+    },
+    "businessRegistrationNumber": {
+      "label": "사업자 등록번호",
+      "value": "824-81-02515"
+    },
+    "salesReportNumber": {
+      "label": "통신판매업 신고번호",
+      "value": "2024-성남수정-0912"
+    },
+    "address": {
+      "label": "주소",
+      "value": "경기도 성남시 수정구 금토로 70 (금토동, 텐엑스타워)"
+    },
+    "contact": {
+      "label": "항공, 숙소 및 투어·티켓 문의",
+      "phone": "1588-2539",
+      "email": "help.triple@nol-universe.com"
+    }
+  },
+  "disclaimer": "㈜놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며\n 상품 거래정보 및 거래 등에 대해 책임을 지지 않습니다.",
+  "links": [
+    {
+      "label": "서비스 이용약관",
+      "url": "/pages/tos.html"
+    },
+    {
+      "label": "개인정보 처리방침",
+      "url": "/pages/privacy-policy.html"
+    },
+    {
+      "label": "고객센터",
+      "url": "/cs-bridge/entry"
+    }
+  ],
+  "extraLinks": [
+    {
+      "label": "Interpark Global for Overseas Travelers",
+      "url": "https://triple.global",
+      "faEventAction": "푸터_트리플코리아링크"
+    }
+  ],
+  "awards": [
+    {
+      "text": "국제표준 정보보호 인증 취득\nISO 27001, ISO 27701",
+      "alt": "국제표준 정보보호 인증마크 ISO27001, ISO 27701",
+      "imageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg"
+    }
+  ]
+}
