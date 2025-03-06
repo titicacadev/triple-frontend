@@ -10,7 +10,7 @@ import {
 import { CompanyInfo } from './company-info'
 import { ExtraLink } from './extra-link'
 import { useFooterInfo } from './use-footer-info'
-import { Award } from './type'
+import { FooterAward } from './type'
 
 const InfoFlexBox = styled(FlexBox).attrs({
   flex: true,
@@ -71,7 +71,7 @@ export function AwardFooter({
         }}
       >
         <CompanyInfo
-          company={footerInfo.company}
+          companyTexts={footerInfo.companyTexts}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
@@ -103,7 +103,7 @@ export function AwardFooter({
   )
 }
 
-function AwardGroup({ awards }: { awards: Award[] }) {
+function AwardGroup({ awards }: { awards: FooterAward[] }) {
   return (
     <AwardFlexBox>
       {awards.map(({ imageUrl, alt, text }, index) => (
