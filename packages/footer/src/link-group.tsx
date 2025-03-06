@@ -5,6 +5,9 @@ import { Container } from '@titicaca/core-elements'
 import { FooterLink } from './type'
 
 const LinksContainer = styled(Container)`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
   font-size: 11px;
   font-weight: bold;
   line-height: 20px;
@@ -13,13 +16,18 @@ const LinksContainer = styled(Container)`
   a {
     color: var(--color-gray);
     text-decoration: none;
-    margin: 6px;
-  }
-
-  a:first-child {
-    margin-left: 0;
+    word-break: keep-all;
+    flex-shrink: 0;
   }
 `
+
+const Divider = styled.div`
+  width: 1px;
+  height: 8px;
+  margin: 0 6px;
+  background: var(--color-gray);
+`
+
 export function LinkGroup({ links }: { links: FooterLink[] }) {
   return (
     <LinksContainer>
@@ -33,7 +41,7 @@ export function LinkGroup({ links }: { links: FooterLink[] }) {
           >
             {link.label}
           </a>
-          {index < links.length - 1 && '|'}
+          {index < links.length - 1 ? <Divider /> : null}
         </Fragment>
       ))}
     </LinksContainer>
