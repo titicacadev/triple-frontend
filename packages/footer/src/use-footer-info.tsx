@@ -18,6 +18,10 @@ export function useFooterInfo() {
   const { webAssetsUrl } = useEnv()
 
   useEffect(() => {
+    if (!webAssetsUrl) {
+      throw new Error('webAssetsUrl is not defined')
+    }
+
     const getFooterInfo = async () => {
       try {
         const response = await fetch(webAssetsUrl + companyInfoUrlPath)
