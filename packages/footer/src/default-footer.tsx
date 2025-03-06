@@ -4,7 +4,7 @@ import { Text, Container } from '@titicaca/core-elements'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
-import { ExtraLink } from './extra-link'
+import { ExtraLinkGroup } from './extra-link-group'
 import { useFooterInfo } from './use-footer-info'
 
 export const FooterFrame = styled.footer`
@@ -55,11 +55,9 @@ function DefaultFooter({
 
         <LinkGroup links={footerInfo.links} />
 
-        {extraLinkVisible && !!footerInfo.extraLinks.length
-          ? footerInfo.extraLinks.map((link, index) => (
-              <ExtraLink key={`extra-link-${index}`} {...link} />
-            ))
-          : null}
+        {extraLinkVisible ? (
+          <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
+        ) : null}
       </Container>
     </FooterFrame>
   )
