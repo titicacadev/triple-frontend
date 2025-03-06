@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
 
 import { FooterLink } from './type'
 
@@ -29,6 +30,8 @@ const Divider = styled.div`
 `
 
 export function LinkGroup({ links }: { links: FooterLink[] }) {
+  const trackEvent = useTrackEvent()
+
   return (
     <LinksContainer>
       {links.map((link, index) => (
@@ -38,6 +41,11 @@ export function LinkGroup({ links }: { links: FooterLink[] }) {
             href={link.url}
             target="_blank"
             rel="noreferrer"
+            onClick={
+              link.faEventAction
+                ? () => trackEvent({ fa: { action: link.faEventAction } })
+                : undefined
+            }
           >
             {link.label}
           </a>
