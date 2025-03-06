@@ -4,14 +4,7 @@ import { useEnv } from '@titicaca/react-contexts'
 import { FooterInfo } from './type'
 
 const initialFooterInfo: FooterInfo = {
-  company: {
-    name: '',
-    ceo: { label: '대표이사', names: [] },
-    businessRegistrationNumber: { label: '사업자 등록번호', value: '' },
-    salesReportNumber: { label: '통신판매업 신고번호', value: '' },
-    address: { label: '주소', value: '' },
-    contact: { label: '항공, 숙소 및 투어·티켓 문의', phone: '', email: '' },
-  },
+  companyTexts: [[]],
   disclaimer: '',
   links: [],
   extraLinks: [],
