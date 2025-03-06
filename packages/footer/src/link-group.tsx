@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
-import { Link } from './type'
+import { FooterLink } from './type'
 
 const LinksContainer = styled(Container)`
   font-size: 11px;
@@ -20,7 +20,7 @@ const LinksContainer = styled(Container)`
     margin-left: 0;
   }
 `
-export function LinkGroup({ links }: { links: Link[] }) {
+export function LinkGroup({ links }: { links: FooterLink[] }) {
   return (
     <LinksContainer>
       {links.map((link, index) => (

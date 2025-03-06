@@ -1,7 +1,7 @@
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
-import { Link } from './type'
+import { FooterLink } from './type'
 
 const Link = styled.a`
   display: block;
@@ -12,7 +12,7 @@ const Link = styled.a`
   margin-top: 20px;
 `
 
-export function ExtraLink({ label, url, faEventAction }: Link) {
+export function ExtraLink({ label, url, faEventAction }: FooterLink) {
   const { trackEvent } = useEventTrackingContext()
 
   return (
