@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { styled } from 'styled-components'
 import { useTrackEvent } from '@titicaca/triple-web'
 
@@ -12,7 +13,16 @@ const Link = styled.a`
   margin-top: 20px;
 `
 
-export function ExtraLink({ label, url, faEventAction }: FooterLink) {
+export function ExtraLinkGroup({ extraLinks }: { extraLinks: FooterLink[] }) {
+  return extraLinks.map((link, index) => (
+    <Fragment key={`extra-link-${index}`}>
+      <ExtraLink {...link} />
+      {index !== extraLinks.length - 1 ? <br /> : null}
+    </Fragment>
+  ))
+}
+
+function ExtraLink({ label, url, faEventAction }: FooterLink) {
   const trackEvent = useTrackEvent()
 
   return (

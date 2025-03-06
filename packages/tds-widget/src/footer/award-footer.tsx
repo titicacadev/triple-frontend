@@ -8,7 +8,7 @@ import {
   FooterFrame,
 } from './default-footer'
 import { CompanyInfo } from './company-info'
-import { ExtraLink } from './extra-link'
+import { ExtraLinkGroup } from './extra-link-group'
 import { useFooterInfo } from './use-footer-info'
 import { FooterAward } from './type'
 
@@ -95,11 +95,7 @@ export function AwardFooter({
         <InfoFlexBox>
           <Container>
             <LinkGroupBase links={footerInfo.links} />
-            {footerInfo.extraLinks.length
-              ? footerInfo.extraLinks.map((link, index) => (
-                  <ExtraLink key={`extra-link-${index}`} {...link} />
-                ))
-              : null}
+            <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
           </Container>
 
           <AwardGroup awards={footerInfo.awards} />
