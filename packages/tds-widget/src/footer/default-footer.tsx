@@ -35,7 +35,7 @@ export function DefaultFooter({
         }}
       >
         <CompanyInfo
-          company={footerInfo.company}
+          companyTexts={footerInfo.companyTexts}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
