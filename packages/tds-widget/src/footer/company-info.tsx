@@ -12,9 +12,9 @@ import {
   useLogin,
   useLogout,
 } from '@titicaca/triple-web'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, Fragment } from 'react'
 
-import { Company } from './type'
+import { FooterText } from './type'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -78,15 +78,19 @@ const ButtonContainer = styled(FlexBox)`
   }
 `
 
+const LinkContainer = styled.a`
+  text-decoration: underline;
+`
+
 interface CompanyInfoProps {
-  company: Company
+  companyTexts: Array<FooterText[]>
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
   setBusinessExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export function CompanyInfo({
-  company,
+  companyTexts,
   hideAppDownloadButton = false,
   businessExpanded,
   setBusinessExpanded,
@@ -95,15 +99,6 @@ export function CompanyInfo({
   const login = useLogin()
   const logout = useLogout()
   const trackEvent = useTrackEvent()
-
-  const {
-    name,
-    ceo,
-    businessRegistrationNumber,
-    salesReportNumber,
-    address,
-    contact,
-  } = company
 
   return (
     <Accordion
@@ -170,17 +165,27 @@ export function CompanyInfo({
 
       <AccordionContent>
         <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
-          {`${name} | ${ceo.label} ${ceo.names.join(' ')}`}
-          <br />
-          {`${businessRegistrationNumber.label} ${businessRegistrationNumber.value}`}
-          <br />
-          {`${salesReportNumber.label} ${salesReportNumber.value}`}
-          <br />
-          {`${address.value}`}
-          <br />
-          {`${contact.label} ${contact.phone}`}
-          <br />
-          {`${contact.email}`}
+          {companyTexts.map((texts, index) => (
+            <Fragment key={`company-text-line-${index}`}>
+              {texts.map(({ text, url, faEventAction }, index) => (
+                <Fragment key={`company-text-${index}`}>
+                  {url ? (
+                    <LinkContainer
+                      onClick={() =>
+                        trackEvent({ fa: { action: faEventAction } })
+                      }
+                    >
+                      {text}
+                    </LinkContainer>
+                  ) : (
+                    text
+                  )}
+                  {index !== texts.length - 1 ? ' ' : null}
+                </Fragment>
+              ))}
+              {index !== companyTexts.length - 1 ? <br /> : null}
+            </Fragment>
+          ))}
         </Text>
       </AccordionContent>
     </Accordion>
