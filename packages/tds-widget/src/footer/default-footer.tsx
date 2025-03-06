@@ -46,7 +46,7 @@ export function DefaultFooter({
           color="gray500"
           margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
         >
-          {footerInfo.disclaimer.replace('\n', '')}
+          {footerInfo.disclaimer}
         </Text>
 
         <LinkGroup links={footerInfo.links} />

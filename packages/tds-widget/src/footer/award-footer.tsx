@@ -47,6 +47,7 @@ const AwardFlexBox = styled(FlexBox).attrs({
   position: 'relative',
   flex: true,
   gap: '7px',
+  flexShrink: 0,
 })`
   ${AwardImg}:hover + ${Tooltip} {
     display: block;
@@ -82,6 +83,7 @@ export function AwardFooter({
           lineHeight="17px"
           color="gray500"
           margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
+          css={{ maxWidth: 280, wordBreak: 'break-word' }}
         >
           {footerInfo.disclaimer}
         </Text>
