@@ -61,6 +61,10 @@ export function AwardFooter({
   const footerInfo = useFooterInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
+  if (!footerInfo) {
+    return null
+  }
+
   return (
     <FooterFrame {...props}>
       <Container
