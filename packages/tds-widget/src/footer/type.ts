@@ -1,30 +1,25 @@
 export interface FooterInfo {
-  company: Company
+  companyTexts: Array<FooterText[]>
   disclaimer: string
-  links: Link[]
-  extraLinks: Link[]
-  awards: Award[]
+  links: FooterLink[]
+  extraLinks: FooterLink[]
+  awards: FooterAward[]
 }
 
-export interface Company {
-  name: string
-  ceo: WithLabel<{ names: string[] }>
-  businessRegistrationNumber: WithLabel<{ value: string }>
-  salesReportNumber: WithLabel<{ value: string }>
-  address: WithLabel<{ value: string }>
-  contact: WithLabel<{ phone: string; email: string }>
+export interface FooterText {
+  text: string
+  url?: string
+  faEventAction?: string
 }
 
-export interface Link {
+export interface FooterLink {
   label: string
   url: string
   faEventAction?: string
 }
 
-export interface Award {
+export interface FooterAward {
   text: string
   alt: string
   imageUrl: string
 }
-
-type WithLabel<T> = T & { label: string }
