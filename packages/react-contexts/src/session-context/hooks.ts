@@ -1,4 +1,7 @@
 import { useContext } from 'react'
+import Cookies from 'universal-cookie'
+
+import { TP_SE } from '../middlewares/constants'
 
 import { SessionAvailabilityContext, SessionControllerContext } from './context'
 
@@ -9,7 +12,9 @@ export function useSessionAvailability() {
     throw new Error('SessionAvailabilityContext의 Provider가 없습니다.')
   }
 
-  return sessionAvailable
+  return typeof window !== 'undefined' && window.document
+    ? !!new Cookies(document.cookie).get<string>(TP_SE)
+    : sessionAvailable
 }
 
 export function useSessionControllers() {

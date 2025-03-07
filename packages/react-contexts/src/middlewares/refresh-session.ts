@@ -2,30 +2,41 @@ import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 
+import { parseApp } from '../user-agent-context'
+
 import { CustomMiddleware } from './types'
-import { TP_SE, TP_TK } from './constants'
+import { TP_SE, TP_TK, X_SOTO_SESSION } from './constants'
 
 export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
   ) {
+    const response = NextResponse.next({ request })
+
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
     if (!isPageUrl) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     const allCookies = request.cookies.getAll()
 
-    const isSessionExisted = allCookies.some(
+    const userAgent = request.headers.get('User-Agent')
+    const tripleApp = userAgent ? parseApp(userAgent) : null
+
+    const cookiesWithoutXSotoSession = tripleApp
+      ? allCookies
+      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
+
+    const isSessionExisted = cookiesWithoutXSotoSession.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(request.cookies.getAll())
+    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
 
     if (!isSessionExisted) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     const options = {
@@ -36,7 +47,7 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
     const firstTrialResponse = await get('/api/users/me', options)
 
     if (firstTrialResponse.status !== 401) {
-      return customMiddleware(request, event, NextResponse.next())
+      return customMiddleware(request, event, response)
     }
 
     /**
@@ -67,16 +78,12 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
 
         request.headers.set('cookie', finalCookie)
 
-        const response = NextResponse.next({
-          request,
-        })
-
         response.headers.set('set-cookie', setCookie)
 
         return customMiddleware(request, event, response)
       }
     }
-    return customMiddleware(request, event, NextResponse.next())
+    return customMiddleware(request, event, response)
   }
 }
 

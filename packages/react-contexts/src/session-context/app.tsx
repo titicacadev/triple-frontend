@@ -47,7 +47,16 @@ export function InAppSessionContextProvider({
     return Promise.resolve()
   }, [clearUserState])
 
-  const controllers = useMemo(() => ({ login, logout }), [login, logout])
+  const updateSessionOnServer = useCallback<
+    SessionControllers['updateSessionOnServer']
+  >((available: boolean) => {
+    sessionAvailableRef.current = available
+  }, [])
+
+  const controllers = useMemo(
+    () => ({ login, logout, updateSessionOnServer }),
+    [login, logout, updateSessionOnServer],
+  )
 
   return (
     <SessionControllerContext.Provider value={controllers}>
