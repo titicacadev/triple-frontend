@@ -821,6 +821,9 @@ importers:
       ua-parser-js:
         specifier: ^1.0.40
         version: 1.0.40
+      universal-cookie:
+        specifier: ^4.0.4
+        version: 4.0.4
     devDependencies:
       '@types/qs':
         specifier: ^6.9.18
