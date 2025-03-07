@@ -541,6 +541,16 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.44.0
+
+### footer
+
+- [footer, react-contexts] 푸터 정보를 footer.json으로 관리하도록 수정합니다 [#3577](https://github.com/titicacadev/triple-frontend/pull/3577)
+
+### react-contexts
+
+- [footer, react-contexts] 푸터 정보를 footer.json으로 관리하도록 수정합니다 [#3577](https://github.com/titicacadev/triple-frontend/pull/3577)
+
 ## 13.43.0
 
 ### react-contexts
