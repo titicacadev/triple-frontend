@@ -10,6 +10,8 @@ export interface User {
   mileage: Mileage
   uid: string
   email: string
+  nolConnected?: boolean
+  nolConnectedAt?: string
 }
 
 type Provider = 'TRIPLE' | 'NAVER' | 'KAKAO' | 'FACEBOOK' | 'APPLE'
