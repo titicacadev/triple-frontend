@@ -3,7 +3,7 @@ import { useEnv } from '@titicaca/triple-web'
 
 import { FooterInfo } from './type'
 
-const companyInfoUrlPath = '/footer/footer.json'
+const FOOTER_INFO_ASSET_FILE_PATH = '/footer/footer.json'
 
 export function useFooterInfo() {
   const [footerInfo, setFooterInfo] = useState<FooterInfo | null>(null)
@@ -16,7 +16,7 @@ export function useFooterInfo() {
 
     const getFooterInfo = async () => {
       try {
-        const response = await fetch(webAssetsUrl + companyInfoUrlPath)
+        const response = await fetch(webAssetsUrl + FOOTER_INFO_ASSET_FILE_PATH)
         const data = await response.json()
         setFooterInfo(data)
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
