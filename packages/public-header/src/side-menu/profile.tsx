@@ -80,6 +80,10 @@ export function Profile() {
   const returnUrl = encodeURIComponent(location.href)
   const providerIconSrc = user ? PROVIDER_INFO[user.provider].icon : undefined
   const badgeUrl = user ? user.mileage?.badges[0]?.icon.image_url : undefined
+  const providerVisible = user && !user.nolConnected
+  const providerLabel = providerVisible
+    ? PROVIDER_INFO[user.provider].label
+    : ''
 
   const onProfileClick = (
     referrer: keyof typeof PROFILE_EVENT_METADATA_LABEL,
@@ -105,10 +109,10 @@ export function Profile() {
       <Container>
         <UserName onClick={() => onProfileClick('name')}>{user.name}</UserName>
         <UserEmailOrProvider>
-          {providerIconSrc ? (
+          {providerIconSrc && providerVisible ? (
             <SocialIcon src={providerIconSrc} alt="social login icon" />
           ) : null}
-          {user.email || PROVIDER_INFO[user.provider].label}
+          {user.email || providerLabel}
         </UserEmailOrProvider>
       </Container>
 
