@@ -83,7 +83,7 @@ export function Profile() {
   const providerVisible = user && !user.nolConnected
   const providerLabel = providerVisible
     ? PROVIDER_INFO[user.provider].label
-    : ''
+    : null
 
   const onProfileClick = (
     referrer: keyof typeof PROFILE_EVENT_METADATA_LABEL,
