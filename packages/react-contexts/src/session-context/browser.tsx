@@ -20,6 +20,7 @@ import {
   SessionAvailabilityContext,
   SessionControllers,
 } from './context'
+import { getRedirectUrl } from './redirect'
 
 export interface InBrowserSessionContextProviderProps {
   initialSessionAvailability: boolean
@@ -49,9 +50,28 @@ export function InBrowserSessionContextProvider({
   }, [])
 
   const logout = useCallback<SessionControllers['logout']>(async () => {
-    await authGuardedFetchers.put('/api/users/logout')
+    const response = await authGuardedFetchers.put('/api/users/logout')
 
     clearUserState()
+
+    if (response === 'NEED_LOGIN') {
+      return
+    }
+
+    if (response.status === 301 || response.status === 302) {
+      const redirectLocation = response.headers.get('Location')
+
+      if (!redirectLocation) {
+        captureHttpError(response)
+        window.location.reload()
+        return
+      }
+
+      const redirectUrl = getRedirectUrl(redirectLocation)
+
+      window.location.href = redirectUrl
+    }
+
     window.location.reload()
   }, [clearUserState])
 
