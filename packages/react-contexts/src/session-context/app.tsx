@@ -1,7 +1,13 @@
 import { IncomingMessage } from 'http'
 
 import { NextPageContext } from 'next'
-import { PropsWithChildren, useRef, useCallback, useMemo } from 'react'
+import {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import {
   fetcher,
   RequestOptions,
@@ -33,7 +39,11 @@ export function InAppSessionContextProvider({
   const { appUrlScheme } = useEnv()
   const { user, clear: clearUserState } = useUserState(initialUser)
 
-  const sessionAvailableRef = useRef(!!initialSessionId)
+  const [sessionAvailable, setSessionAvailable] = useState(!!initialSessionId)
+
+  useEffect(() => {
+    setSessionAvailable(!!initialSessionId)
+  }, [initialSessionId])
 
   const login = useCallback<SessionControllers['login']>(() => {
     const loginHref = generateUrl({ scheme: appUrlScheme, path: '/login' })
@@ -51,7 +61,7 @@ export function InAppSessionContextProvider({
 
   return (
     <SessionControllerContext.Provider value={controllers}>
-      <SessionAvailabilityContext.Provider value={sessionAvailableRef.current}>
+      <SessionAvailabilityContext.Provider value={sessionAvailable}>
         <UserProvider value={user || null}>{children}</UserProvider>
       </SessionAvailabilityContext.Provider>
     </SessionControllerContext.Provider>
