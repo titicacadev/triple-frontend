@@ -13,14 +13,14 @@ interface ParentMessageInterface {
   id: string
   sender: UserInterface
 }
-export interface TextParentMessage extends ParentMessageInterface {
+interface TextParentMessage extends ParentMessageInterface {
   type: 'text'
   value: {
     message: string
   }
 }
 
-export interface ImageParentMessage extends ParentMessageInterface {
+interface ImageParentMessage extends ParentMessageInterface {
   type: 'image'
   value: {
     images: MetaDataInterface[]

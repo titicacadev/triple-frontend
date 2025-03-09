@@ -4,7 +4,7 @@ import { useLongPress } from 'use-long-press'
 import { Text } from '@titicaca/tds-ui'
 
 import { BubbleCSSProp, BubbleProp } from './type'
-import ParentMessageUI, { ParentMessageUIProp } from './parent/parent-ui'
+import ParentMessageUI, { ParentMessageUIProp } from './parent'
 
 const StyledBubble = styled(Text).attrs({
   textAlign: 'left',

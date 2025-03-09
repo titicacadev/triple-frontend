@@ -4,7 +4,7 @@ import { CSSProp } from 'styled-components'
 
 import { MetaDataInterface } from '../types'
 
-import { ParentMessageUIProp } from './parent/parent-ui'
+import { ParentMessageUIProp } from './parent'
 
 type CustomerBookingStatus =
   | 'BOOKED'
