@@ -73,6 +73,8 @@ const PROFILE_EVENT_METADATA_LABEL = {
   photo: '프로필사진',
 }
 
+const NOL_CONNECTED_LABEL = 'NOL 멤버스 계정'
+
 export function Profile() {
   const user = useUser()
   const { trackEvent } = useEventTrackingContext()
@@ -81,9 +83,9 @@ export function Profile() {
   const providerIconSrc = user ? PROVIDER_INFO[user.provider].icon : undefined
   const badgeUrl = user ? user.mileage?.badges[0]?.icon.image_url : undefined
   const providerVisible = user && !user.nolConnected
-  const providerLabel = providerVisible
-    ? PROVIDER_INFO[user.provider].label
-    : null
+  const profileLabel = providerVisible
+    ? user.email || PROVIDER_INFO[user.provider].label
+    : NOL_CONNECTED_LABEL
 
   const onProfileClick = (
     referrer: keyof typeof PROFILE_EVENT_METADATA_LABEL,
@@ -112,7 +114,7 @@ export function Profile() {
           {providerIconSrc && providerVisible ? (
             <SocialIcon src={providerIconSrc} alt="social login icon" />
           ) : null}
-          {user.email || providerLabel}
+          {profileLabel}
         </UserEmailOrProvider>
       </Container>
 
