@@ -13,7 +13,7 @@ import {
 import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
-import { ParentMessageUIProp } from './parent/parent-ui'
+import { ParentMessageUIProp } from './parent'
 
 export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
 
