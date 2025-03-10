@@ -75,8 +75,8 @@ export type TextBubbleProp = {
   created?: boolean
   fullTextViewAvailable?: boolean
   onOpenMenu?: () => void
-  isFullTextViewOpen?: boolean
-  openFullTextView?: () => void
+  isFullTextViewOpen?: (id: string) => boolean
+  openFullTextView?: (id: string) => void
   closeFullTextView?: () => void
   onParentMessageClick?: (id: string) => void
   onLinkClick?: (href: string) => void

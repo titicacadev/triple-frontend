@@ -81,9 +81,15 @@ export type BubbleUIProps = (
   mediaUrlBase?: string
   hasArrow?: boolean
   alteredTextColor?: string
-  fullTextViewAvailable?: boolean
+
   onOpenMenu?: () => void
-}
+} & Pick<
+    TextBubbleProp,
+    | 'fullTextViewAvailable'
+    | 'isFullTextViewOpen'
+    | 'openFullTextView'
+    | 'closeFullTextView'
+  >
 
 export default function BubbleUI({
   type,
@@ -109,6 +115,9 @@ export default function BubbleUI({
   hasArrow,
   alteredTextColor,
   fullTextViewAvailable = false,
+  isFullTextViewOpen,
+  openFullTextView,
+  closeFullTextView,
   onOpenMenu,
   ...props
 }: BubbleUIProps) {
@@ -145,6 +154,9 @@ export default function BubbleUI({
           onOpenMenu={onOpenMenu}
           hasArrow={hasArrow}
           fullTextViewAvailable={fullTextViewAvailable}
+          isFullTextViewOpen={isFullTextViewOpen}
+          openFullTextView={openFullTextView}
+          closeFullTextView={closeFullTextView}
           onParentMessageClick={onParentMessageClick}
           {...props}
         />
