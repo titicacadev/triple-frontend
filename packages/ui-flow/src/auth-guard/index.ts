@@ -3,12 +3,10 @@ import { get } from '@titicaca/fetcher'
 import { parseTripleClientUserAgent } from '@titicaca/react-triple-client-interfaces'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
-import { getSessionAvailabilityFromRequest } from '@titicaca/react-contexts'
-
-interface UserResponse {
-  uid: string
-  // TODO
-}
+import {
+  getSessionAvailabilityFromRequest,
+  User,
+} from '@titicaca/react-contexts'
 
 interface AuthGuardOptions {
   authType?: string
@@ -25,7 +23,7 @@ const NON_MEMBER_REGEX = /^_PH/
 export function authGuard<Props>(
   gssp: (
     ctx: GetServerSidePropsContext & {
-      customContext?: { user?: UserResponse }
+      customContext?: { user?: User }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
   options?: AuthGuardOptions,
@@ -47,7 +45,7 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const response = await get<UserResponse>('/api/users/me', {
+    const response = await get<User>('/api/users/me', {
       req,
       retryable: true,
     })
