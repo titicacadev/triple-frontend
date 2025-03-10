@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react'
+import { css, CSSProp } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
@@ -41,6 +42,14 @@ interface ContainerBaseProp {
   onReplyClick?: () => void
   /** 메세지 ref에 주입되는 callback 함수 */
   messageRefCallback?: (id: string) => void
+  /** 메세지 부가 정보 (날짜, 프로필 등) 커스텀 스타일 */
+  bubbleInfoStyle?: {
+    dateDivider?: { css?: CSSProp }
+    unreadCount?: { css?: CSSProp }
+    dateTime?: { css?: CSSProp }
+    profile?: { css?: CSSProp }
+    thanks?: { css?: CSSProp }
+  }
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -66,6 +75,7 @@ function SentBubbleContainer({
   onReplyClick,
   messageRefCallback,
   children,
+  bubbleInfoStyle,
   ...props
 }: SentBubbleContainerProp) {
   return (
@@ -96,6 +106,8 @@ function SentBubbleContainer({
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
             css={{ marginRight: 4, textAlign: 'right' }}
+            dateTimeStyle={bubbleInfoStyle?.dateTime}
+            unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
         ) : null}
 
@@ -107,7 +119,13 @@ function SentBubbleContainer({
           count={thanks.count}
           haveMine={thanks.haveMine}
           onClick={onThanksClick}
-          css={{ display: 'inline-flex', marginTop: 6, marginRight: 10 }}
+          css={css`
+            display: inline-flex;
+            margin-top: 6px;
+            margin-right: 10px;
+
+            ${bubbleInfoStyle?.thanks?.css}
+          `}
         />
       ) : null}
     </Container>
@@ -145,6 +163,7 @@ function ReceivedBubbleContainer({
   messageRefCallback,
   onUserClick,
   children,
+  bubbleInfoStyle,
   ...props
 }: ReceivedBubbleContainerProp) {
   return (
@@ -170,7 +189,12 @@ function ReceivedBubbleContainer({
       ) : null}
       <Container css={{ marginLeft: 40 }}>
         {showProfile ? (
-          <ProfileName size="mini" alpha={0.8} margin={{ bottom: 5 }}>
+          <ProfileName
+            size="mini"
+            alpha={0.8}
+            margin={{ bottom: 5 }}
+            css={bubbleInfoStyle?.profile?.css}
+          >
             {user
               ? formatUsername({
                   name: user?.name,
@@ -192,6 +216,8 @@ function ReceivedBubbleContainer({
             onReplyClick={onReplyClick}
             date={createdAt}
             css={{ marginLeft: 4, textAlign: 'left' }}
+            dateTimeStyle={bubbleInfoStyle?.dateTime}
+            unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
         ) : null}
 

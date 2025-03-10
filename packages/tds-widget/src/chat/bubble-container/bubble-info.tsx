@@ -1,5 +1,5 @@
 import { Container, Text } from '@titicaca/tds-ui'
-import { styled } from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 import { format, setDefaultOptions } from 'date-fns'
 import { ko } from 'date-fns/locale'
 
@@ -36,6 +36,8 @@ export function BubbleInfo({
   showTimeInfo = true,
   showDateInfo = false,
   onReplyClick,
+  dateTimeStyle,
+  unreadCountStyle,
   ...props
 }: {
   align: 'left' | 'right'
@@ -44,6 +46,8 @@ export function BubbleInfo({
   showTimeInfo?: boolean
   showDateInfo?: boolean
   onReplyClick?: () => void
+  dateTimeStyle?: { css?: CSSProp }
+  unreadCountStyle?: { css?: CSSProp }
 }) {
   return (
     <BubbleInfoContainer position="relative" display="inline-block" {...props}>
@@ -58,17 +62,19 @@ export function BubbleInfo({
       ) : null}
 
       {unreadCount ? (
-        <UnreadMessageCountText>{unreadCount}</UnreadMessageCountText>
+        <UnreadMessageCountText css={unreadCountStyle?.css}>
+          {unreadCount}
+        </UnreadMessageCountText>
       ) : null}
 
       {showDateInfo ? (
-        <Text size={10} alpha={0.51}>
+        <Text size={10} alpha={0.51} css={dateTimeStyle?.css}>
           {format(new Date(date), 'MM.dd')}
         </Text>
       ) : null}
 
       {showTimeInfo ? (
-        <Text size={10} alpha={0.51}>
+        <Text size={10} alpha={0.51} css={dateTimeStyle?.css}>
           {format(new Date(date), 'a h:mm')}
         </Text>
       ) : null}
