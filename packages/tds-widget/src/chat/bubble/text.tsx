@@ -39,7 +39,9 @@ export function TextBubble({
 }: TextBubbleProp) {
   const aTagNavigator = useATagNavigator(onLinkClick)
   const isEllipsis =
-    fullTextViewAvailable && message.length > MAX_VIEWABLE_TEXT_LENGTH
+    fullTextViewAvailable &&
+    openFullTextView &&
+    message.length > MAX_VIEWABLE_TEXT_LENGTH
 
   return (
     <>
@@ -64,7 +66,7 @@ export function TextBubble({
           onClick={(e) => aTagNavigator(e)}
         />
         {isEllipsis ? (
-          <FullTextViewButton my={my} onClick={openFullTextView}>
+          <FullTextViewButton my={my} onClick={() => openFullTextView?.(id)}>
             전체보기
             <ArrowRight
               color={my ? 'var(--color-white900)' : 'var(--color-gray500)'}
@@ -74,7 +76,9 @@ export function TextBubble({
         ) : null}
       </Bubble>
 
-      {isFullTextViewOpen && closeFullTextView ? (
+      {fullTextViewAvailable &&
+      closeFullTextView &&
+      isFullTextViewOpen?.(id) ? (
         <FullTextMessageView
           open
           onClose={closeFullTextView}
