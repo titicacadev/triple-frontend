@@ -1,10 +1,14 @@
 import { RichItemButton, RichItemImages, RichItemText } from '../bubble/type'
 
-export enum UserType {
-  TRIPLE_USER = 'TRIPLE_USER',
-  TRIPLE_OPERATOR = 'TRIPLE_OPERATOR',
-  TNA_PARTNER = 'TNA_PARTNER',
-}
+export type ValueOf<T> = T[keyof T]
+
+export const UserType = {
+  TRIPLE_USER: 'TRIPLE_USER',
+  TRIPLE_OPERATOR: 'TRIPLE_OPERATOR',
+  TNA_PARTNER: 'TNA_PARTNER',
+} as const
+
+export type UserType = ValueOf<typeof UserType>
 
 export type MessageType =
   | 'WELCOME'
@@ -15,10 +19,12 @@ export type MessageType =
   | 'RICH'
   | 'PRODUCT'
 
-export enum RoomType {
-  DEFAULT = 'default', // 기존 파트너센터 챗
-  EVENT = 'event', // 행사용 그룹 챗
-}
+export const RoomType = {
+  DEFAULT: 'default', // 기존 파트너센터 챗
+  EVENT: 'event', // 행사용 그룹 챗
+} as const
+
+export type RoomType = ValueOf<typeof RoomType>
 
 export type PostMessageType = (
   payload: RichItemText | RichItemImages,
@@ -78,8 +84,8 @@ export interface MessageInterface {
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: RichItemText | RichItemImages | RichPayload
   blindedAt?: string
-  sender: UserInterface
   reactions?: { [type in ReactionType]?: { count: number; haveMine: boolean } }
+  sender: UserInterface
 }
 
 export interface UserInterface {
@@ -92,17 +98,6 @@ export interface UserInterface {
 export interface ProfileInterface {
   name: string
   photo: string
-}
-
-export interface UserAgentProps {
-  userAgent: {
-    isPublic: boolean
-    isMobile: boolean
-    os: {
-      name: string
-      version: string
-    }
-  }
 }
 
 export interface RichPayload {
@@ -155,10 +150,6 @@ export interface RoomMembersInterface {
   others: UserInterface[]
 }
 
-export interface UpdateChatData {
-  message?: MessageInterface
-  otherUnreadInfo?: HasUnreadOfRoomInterface
-}
 /**
  * @alias RoomMembersInterface
  */
