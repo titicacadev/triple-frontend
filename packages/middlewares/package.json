@@ -43,7 +43,8 @@
   "dependencies": {
     "semver": "^7.6.3",
     "set-cookie-parser": "^2.7.1",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@titicaca/fetcher": "workspace:*",
