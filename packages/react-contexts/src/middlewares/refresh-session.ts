@@ -1,20 +1,25 @@
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 
-import { CustomMiddleware } from './types'
 import { TP_SE, TP_TK } from './constants'
 
-export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
+export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
   ) {
+    const response = (await next(request, event)) as NextResponse
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
     if (!isPageUrl) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const allCookies = request.cookies.getAll()
@@ -25,7 +30,7 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
     const cookies = deriveAllCookies(request.cookies.getAll())
 
     if (!isSessionExisted) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const options = {
@@ -36,7 +41,7 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
     const firstTrialResponse = await get('/api/users/me', options)
 
     if (firstTrialResponse.status !== 401) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     /**
@@ -73,10 +78,10 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
 
         response.headers.set('set-cookie', setCookie)
 
-        return customMiddleware(request, event, response)
+        return response
       }
     }
-    return customMiddleware(request, event, NextResponse.next())
+    return response
   }
 }
 
