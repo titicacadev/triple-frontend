@@ -2,33 +2,10 @@ import { MouseEvent } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
-import { MetaDataInterface, ProductItem } from '../types'
+import { MetaDataInterface } from '../types/image'
+import { ProductItem, RichItem } from '../types/message'
 
 import { ParentMessageUIProp } from './parent'
-
-type RichItemType = 'text' | 'images' | 'button'
-
-interface RichItem {
-  type: RichItemType
-}
-
-export interface RichItemText extends RichItem {
-  type: 'text'
-  message: string
-}
-export interface RichItemImages extends RichItem {
-  type: 'images'
-  images: MetaDataInterface[]
-}
-
-export interface RichItemButton extends RichItem {
-  type: 'button'
-  label: string
-  action: {
-    param: string
-    type: 'link'
-  }
-}
 
 export interface BubbleCSSProp {
   maxWidthOffset?: number
@@ -67,7 +44,7 @@ export type TextBubbleProp = {
 
 export type RichBubbleProp = {
   my: boolean
-  blocks: (RichItemText | RichItemImages | RichItemButton)[]
+  blocks: RichItem[]
   cloudinaryName: string
   mediaUrlBase: string
   onImageClick?: (imageInfos: MetaDataInterface[]) => void
