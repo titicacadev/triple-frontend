@@ -59,7 +59,7 @@ export interface RoomMembersInterface {
   others: UserInterface[]
 }
 
-export interface UpdateChatData {
+export interface UpdatedChatData {
   message?: ChatMessageInterface
   otherUnreadInfo?: HasUnreadOfRoomInterface
 }
