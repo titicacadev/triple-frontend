@@ -1,17 +1,23 @@
 import { clientAppRegex } from '@titicaca/triple-web-utils'
-import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
+import {
+  NextRequest,
+  NextResponse,
+  NextFetchEvent,
+  NextMiddleware,
+} from 'next/server'
 import satisfies from 'semver/functions/satisfies'
 
-import { CustomMiddleware } from './types'
-
-export function oldIosCookiesMiddleware(customMiddleware: CustomMiddleware) {
-  return function middleware(request: NextRequest, event: NextFetchEvent) {
-    const response = NextResponse.next()
+export function oldIosCookiesMiddleware(next: NextMiddleware) {
+  return async function middleware(
+    request: NextRequest,
+    event: NextFetchEvent,
+  ) {
+    const response = (await next(request, event)) as NextResponse
 
     const userAgent = request.headers.get('User-Agent')
 
     if (!userAgent) {
-      return customMiddleware(request, event, response)
+      return response
     }
 
     const metadata = clientAppRegex.exec(userAgent)
@@ -36,6 +42,6 @@ export function oldIosCookiesMiddleware(customMiddleware: CustomMiddleware) {
       // semver 파싱 에러가 발생하면 ignore 합니다.
     }
 
-    return customMiddleware(request, event, response)
+    return response
   }
 }
