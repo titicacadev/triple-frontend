@@ -10,7 +10,7 @@ import { getUserIdentifier } from './user'
 export function getProfileImageUrl<T = UserType>(
   user: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
 ) {
-  if (user.profile.thumbnail) {
+  if (user?.profile.thumbnail) {
     return user.profile.thumbnail
   } else {
     let imageNumber = 0
