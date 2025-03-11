@@ -28,7 +28,9 @@ export function setWebDeviceIdMiddleware(next: NextMiddleware) {
 
     if (!hasWebDeviceId && response?.cookies) {
       const randomWebDeviceId = uuidV4()
-      response.cookies.set(X_TRIPLE_WEB_DEVICE_ID, randomWebDeviceId)
+      response.cookies.set(X_TRIPLE_WEB_DEVICE_ID, randomWebDeviceId, {
+        secure: true,
+      })
     }
 
     return response
