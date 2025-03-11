@@ -1,18 +1,24 @@
-import { randomUUID } from 'crypto'
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from 'next/server'
+import { v4 as uuidV4 } from 'uuid'
 
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
-
-import { CustomMiddleware } from './types'
 import { getTripleApp } from './utils/get-triple-app'
 import { X_TRIPLE_WEB_DEVICE_ID } from './constants'
 
-export function setWebDeviceIdMiddleware(customMiddleware: CustomMiddleware) {
-  return function middleware(request: NextRequest, event: NextFetchEvent) {
-    const response = NextResponse.next()
+export function setWebDeviceIdMiddleware(next: NextMiddleware) {
+  return async function middleware(
+    request: NextRequest,
+    event: NextFetchEvent,
+  ) {
+    const response = (await next(request, event)) as NextResponse
     const tripleApp = getTripleApp(request)
 
     if (tripleApp) {
-      return customMiddleware(request, event, response)
+      return response
     }
 
     const allCookies = request.cookies.getAll()
@@ -20,11 +26,11 @@ export function setWebDeviceIdMiddleware(customMiddleware: CustomMiddleware) {
       ({ name }) => name === X_TRIPLE_WEB_DEVICE_ID,
     )
 
-    if (!hasWebDeviceId) {
-      const randomWebDeviceId = randomUUID()
+    if (!hasWebDeviceId && response?.cookies) {
+      const randomWebDeviceId = uuidV4()
       response.cookies.set(X_TRIPLE_WEB_DEVICE_ID, randomWebDeviceId)
     }
 
-    return customMiddleware(request, event, response)
+    return response
   }
 }
