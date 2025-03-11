@@ -1,7 +1,7 @@
 import { ValueOf } from './base'
 import { MetaDataInterface } from './image'
 import { ChatMessageInterface } from './message'
-import { ChatUserInterface, UserInterface } from './user'
+import { ChatUserInterface } from './user'
 
 export const RoomType = {
   DEFAULT: 'default', // 기존 파트너센터 챗
@@ -54,20 +54,10 @@ export interface OtherUnreadInterface {
   lastSeenMessageId: number
 }
 
-export interface RoomMembersInterface {
-  me: UserInterface
-  others: UserInterface[]
-}
-
 export interface UpdatedChatData {
   message?: ChatMessageInterface
   otherUnreadInfo?: HasUnreadOfRoomInterface
 }
-
-/**
- * @alias RoomMembersInterface
- */
-export type UserInfoInterface = RoomMembersInterface
 
 export interface ImageMetadataInterface {
   media: MetaDataInterface[]
