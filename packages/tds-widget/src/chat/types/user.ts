@@ -26,7 +26,7 @@ interface ProfileInterface {
 /**
  * triple-chat/nol-chat 서버 응답으로 받는 UserInterface
  */
-export interface ChatUserInterface<T extends UserType = UserType> {
+export interface ChatUserInterface<T = UserType> {
   id: string
   createdAt: string
   type: T
