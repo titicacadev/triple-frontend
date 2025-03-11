@@ -19,6 +19,10 @@ export interface CloudinaryImageInterface {
   original_filename: string
 }
 
+export interface ImageMetadataInterface {
+  media: MetaDataInterface[]
+}
+
 /**
  * TODO: type-definitions의 ImageMeta와 연관성 조사
  */
