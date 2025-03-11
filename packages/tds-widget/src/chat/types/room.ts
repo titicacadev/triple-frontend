@@ -1,5 +1,4 @@
 import { ValueOf } from './base'
-import { MetaDataInterface } from './image'
 import { ChatMessageInterface } from './message'
 import { ChatUserInterface } from './user'
 
@@ -57,8 +56,4 @@ export interface OtherUnreadInterface {
 export interface UpdatedChatData {
   message?: ChatMessageInterface
   otherUnreadInfo?: HasUnreadOfRoomInterface
-}
-
-export interface ImageMetadataInterface {
-  media: MetaDataInterface[]
 }
