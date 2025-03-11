@@ -1,12 +1,11 @@
-import { NextResponse } from 'next/server'
-import type { NextFetchEvent, NextRequest } from 'next/server'
+import { NextMiddleware, NextResponse } from 'next/server'
 
-import { CustomMiddleware, MiddlewareFactory } from './types'
+import { MiddlewareFactory } from './types'
 
 export function chain(
   functions: MiddlewareFactory[],
   index = 0,
-): CustomMiddleware {
+): NextMiddleware {
   const current = functions[index]
 
   if (current) {
@@ -14,11 +13,7 @@ export function chain(
     return current(next)
   }
 
-  return (
-    request: NextRequest,
-    event: NextFetchEvent,
-    response: NextResponse,
-  ) => {
-    return response
+  return () => {
+    return NextResponse.next()
   }
 }
