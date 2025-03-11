@@ -89,9 +89,12 @@ export interface ChatUser {
   type: UserType
   identifier: string
   code: string
+  unregistered?: boolean
+  unfriended?: boolean
   profile: {
     name: string
     thumbnail: string
+    photo: string
     message: string
   }
 }
