@@ -79,10 +79,7 @@ type ChatAlternativeMessagePayload =
   | ChatTextMessagePayload
   | ChatRichMessagePayload
 
-export interface ChatMessageInterface<
-  T extends UserType = UserType,
-  U extends ChatMessagePayload = ChatMessagePayload,
-> {
+export interface ChatMessageInterface<T = UserType, U = ChatMessagePayload> {
   id: number
   roomId: string
   senderId: string
