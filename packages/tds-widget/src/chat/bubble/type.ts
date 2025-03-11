@@ -2,26 +2,9 @@ import { MouseEvent } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
-import { MetaDataInterface } from '../types'
+import { MetaDataInterface, ProductItem } from '../types'
 
 import { ParentMessageUIProp } from './parent'
-
-type CustomerBookingStatus =
-  | 'BOOKED'
-  | 'ONGOING'
-  | 'COMPLETED'
-  | 'CANCEL_REQUESTED'
-  | 'CANCELED'
-
-interface ProductItem {
-  customerBookingStatus?: CustomerBookingStatus
-  productName: string
-  productThumbnail?: string
-  itemName?: string
-  optionName?: string
-  dateOfUse?: string
-  bookingId?: number
-}
 
 type RichItemType = 'text' | 'images' | 'button'
 
