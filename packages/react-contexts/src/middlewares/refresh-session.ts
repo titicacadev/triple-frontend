@@ -20,12 +20,12 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     event: NextFetchEvent,
   ) {
     const response = (await next(request, event)) as NextResponse
-    const url = request.nextUrl
+    // const url = request.nextUrl
 
-    const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
-    if (!isPageUrl) {
-      return response
-    }
+    // const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
+    // if (!isPageUrl) {
+    //   return response
+    // }
 
     const allCookies = request.cookies.getAll()
 
