@@ -72,7 +72,8 @@
     "semver": "^7.5.4",
     "set-cookie-parser": "^2.7.1",
     "ua-parser-js": "^1.0.37",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/qs": "^6.9.9",
