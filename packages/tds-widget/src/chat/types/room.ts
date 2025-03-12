@@ -98,6 +98,10 @@ export interface CreatedChatRoomDetailInterface<
   V = ChatRoomMetadata<T>,
 > extends BaseChatRoomInterface<T, U, V> {
   room: ChatRoomDetailRoomInterface<U>
+  /**
+   * 채팅방 만료 여부
+   */
+  expired: boolean
 }
 
 interface ChatRoomDetailRoomInterface<T = UserType> {
@@ -143,6 +147,7 @@ export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
       | 'lastMessageId'
       | 'lastMessage'
       | 'type'
+      | 'expired'
     >,
     Pick<Required<CreatedChatRoomInterface<T, U>>, 'members'> {
   unreadCount?: number
