@@ -11,6 +11,10 @@ import {
   TP_TK,
   SESSION_KEY as X_SOTO_SESSION,
 } from '@titicaca/constants'
+import {
+  RequestCookies,
+  ResponseCookies,
+} from 'next/dist/compiled/@edge-runtime/cookies'
 
 import { parseApp } from '../user-agent-context'
 
@@ -85,7 +89,8 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
         request.headers.set('cookie', finalCookie)
 
         response.headers.set('set-cookie', setCookie)
-        response.headers.set('cookie', finalCookie)
+
+        applySetCookie(request, response)
 
         return response
       }
@@ -96,4 +101,23 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
 function deriveAllCookies(cookies: { name: string; value: string }[]) {
   return cookies.map(({ name, value }) => [name, value].join('=')).join('; ')
+}
+
+/** Reference: https://github.com/vercel/next.js/discussions/50374#discussioncomment-6732402 */
+function applySetCookie(req: NextRequest, res: NextResponse) {
+  const setCookies = new ResponseCookies(res.headers)
+  const newReqHeaders = new Headers(req.headers)
+  const newReqCookies = new RequestCookies(newReqHeaders)
+  setCookies.getAll().forEach((cookie) => newReqCookies.set(cookie))
+
+  const dummyRes = NextResponse.next({ request: { headers: newReqHeaders } })
+
+  dummyRes.headers.forEach((value, key) => {
+    if (
+      key === 'x-middleware-override-headers' ||
+      key.startsWith('x-middleware-request-')
+    ) {
+      res.headers.set(key, value)
+    }
+  })
 }

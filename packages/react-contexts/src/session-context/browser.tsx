@@ -144,6 +144,7 @@ InBrowserSessionContextProvider.getInitialProps = async function ({
 export function getWebSessionAvailabilityFromRequest(
   req: IncomingMessage | undefined,
 ) {
+  new Cookies(req?.headers['set-cookie']).get('TP_SE')
   if (process.env.NODE_ENV !== 'production') {
     return !!new Cookies(req?.headers.cookie).get('TP_SE')
   }
