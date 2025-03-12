@@ -76,7 +76,8 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
         }, new Map())
 
         setCookies.forEach((cookie) => {
-          const { name } = parseString(cookie)
+          const { name, value } = parseString(cookie)
+          request.cookies.set(name, value)
           newCookies.set(name, cookie)
         })
 
