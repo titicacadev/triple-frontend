@@ -1,6 +1,11 @@
-import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
+import {
+  InputHTMLAttributes,
+  forwardRef,
+  ReactNode,
+  useImperativeHandle,
+} from 'react'
 import styled from 'styled-components'
-import InputMask, { MaskOptions } from 'react-input-mask'
+import { type MaskOptions, useMask } from '@react-input/mask'
 
 import {
   FormFieldContext,
@@ -10,7 +15,7 @@ import {
   useFormFieldState,
 } from '../form-field'
 
-const BaseInput = styled(InputMask)`
+const BaseInput = styled.input`
   padding: 0 16px;
   font-size: 16px;
   height: 48px;
@@ -42,7 +47,7 @@ export interface InputProps extends HtmlInputElementProps {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, error, help, onBlur, onFocus, ...props },
+  { label, error, help, onBlur, onFocus, mask, onChange, ...props },
   ref,
 ) {
   const formFieldState = useFormFieldState({ onBlur, onFocus })
@@ -50,6 +55,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   const hasHelp = !!help
   const isError = !!error
 
+  const inputMaskRef = useMask({
+    mask,
+    replacement: { 9: /\d/, d: /\d/, m: /\d/, y: /\d/ },
+  })
+
+  useImperativeHandle(ref, () => inputMaskRef.current, [inputMaskRef])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e)
+  }
   return (
     <FormFieldContext.Provider
       value={{
@@ -61,7 +76,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <BaseInput
-        inputRef={ref}
+        ref={inputMaskRef}
         id={formFieldState.inputId}
         aria-describedby={
           hasHelp && !isError ? formFieldState.descriptionId : undefined
@@ -70,6 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={isError}
         onBlur={formFieldState.handleBlur}
         onFocus={formFieldState.handleFocus}
+        onChange={handleChange}
         {...props}
       />
       {error ? (
