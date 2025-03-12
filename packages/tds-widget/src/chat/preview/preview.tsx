@@ -7,32 +7,12 @@ import { ChatRoom } from '../types/list'
 import { getProfileImageUrl } from '../utils'
 
 import { convertDateTime, getTextMessage } from './utils'
-import {
-  ChatRoomCreatedAt,
-  ChatRoomMessage,
-  ChatRoomThumbnail,
-  ChatRoomTitle,
-  ChatRoomUnread,
-  PreviewListItem,
-} from './elements'
+import { ChatRoomMessage, ChatRoomThumbnail, ChatRoomTitle } from './elements'
 
-export function Preview({
-  chatRoom,
-  me,
-  handleRoomClick,
-  containerStyle,
-  titleMessageContainerStyle,
-  Thumbnail = ChatRoomThumbnail,
-  Title = ChatRoomTitle,
-  Message = ChatRoomMessage,
-  CreatedAt = ChatRoomCreatedAt,
-  Unread = ChatRoomUnread,
-  badge,
-}: {
+export interface PreviewProps {
   chatRoom: ChatRoom
   me: ChatUser
   handleRoomClick: (roomId: string) => void
-
   containerStyle?: { css?: CSSProp }
   titleMessageContainerStyle?: { css?: CSSProp }
   Thumbnail?: ComponentType<ImgHTMLAttributes<HTMLImageElement>>
@@ -43,8 +23,24 @@ export function Preview({
     convertDateTime?: (createdAt: string, formatType?: string) => string
   }>
   Unread?: ComponentType<{ unreadCount: number }>
-  badge?: ReactNode
-}) {
+  customTitle?: ReactNode
+  customElement?: ReactNode
+}
+
+export function Preview({
+  chatRoom,
+  me,
+  handleRoomClick,
+  containerStyle,
+  titleMessageContainerStyle,
+  Thumbnail = ChatRoomThumbnail,
+  Title = ChatRoomTitle,
+  Message = ChatRoomMessage,
+  CreatedAt,
+  Unread,
+  customTitle,
+  customElement,
+}: PreviewProps) {
   const { lastMessage, unreadCount, members, id } = chatRoom
   const { payload, createdAt } = lastMessage || {}
 
@@ -53,43 +49,39 @@ export function Preview({
   const profileImageUrl = getProfileImageUrl(others[0])
 
   return (
-    <PreviewListItem>
+    <Container
+      position="relative"
+      onClick={() => handleRoomClick(id)}
+      css={{
+        padding: '20px 0 20px 0',
+        height: 130,
+      }}
+      {...containerStyle}
+    >
+      <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
+
       <Container
-        position="relative"
-        onClick={() => handleRoomClick(id)}
         css={{
-          padding: '20px 0 20px 0',
-          height: 130,
+          margin: '0 80px 0 65px',
+          minHeight: 50,
         }}
-        {...containerStyle}
+        {...titleMessageContainerStyle}
       >
-        <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
+        <Title>{title}</Title>
+        {customTitle}
 
-        <Container
-          css={{
-            margin: '0 80px 0 65px',
-            minHeight: 50,
-          }}
-          {...titleMessageContainerStyle}
-        >
-          <Title>{title}</Title>
+        {payload && Message ? (
+          <Message>{getTextMessage(payload)}</Message>
+        ) : null}
 
-          {payload && Message ? (
-            <Message>{getTextMessage(payload)}</Message>
-          ) : null}
-
-          {createdAt && CreatedAt ? (
-            <CreatedAt
-              createdAt={createdAt}
-              convertDateTime={convertDateTime}
-            />
-          ) : null}
-        </Container>
-
-        {unreadCount && Unread ? <Unread unreadCount={unreadCount} /> : null}
-
-        {badge}
+        {createdAt && CreatedAt ? (
+          <CreatedAt createdAt={createdAt} convertDateTime={convertDateTime} />
+        ) : null}
       </Container>
-    </PreviewListItem>
+
+      {unreadCount && Unread ? <Unread unreadCount={unreadCount} /> : null}
+
+      {customElement}
+    </Container>
   )
 }
