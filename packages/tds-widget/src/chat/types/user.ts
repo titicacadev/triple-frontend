@@ -4,6 +4,7 @@ export const UserType = {
   TRIPLE_USER: 'TRIPLE_USER',
   TRIPLE_OPERATOR: 'TRIPLE_OPERATOR',
   TNA_PARTNER: 'TNA_PARTNER',
+  INTERPARK_USER: 'INTERPARK_USER',
 } as const
 
 export type UserType = ValueOf<typeof UserType>
