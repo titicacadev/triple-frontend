@@ -90,6 +90,7 @@ export interface ChatUser {
   profile: {
     name: string
     photo: string
+    thumbnail: string
   }
 }
 
