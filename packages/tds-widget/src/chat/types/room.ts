@@ -5,8 +5,6 @@ import { ChatUserInterface, UserType } from './user'
 export const RoomType = {
   DEFAULT: 'default', // 기존 파트너센터 챗
   EVENT: 'event', // 행사용 그룹 챗
-  INTERPARK_TNA_PRODUCT: 'interpark-tna-product',
-  INTERPARK_TNA_BOOKING: 'interpark-tna-booking',
 } as const
 
 export type RoomType = ValueOf<typeof RoomType>
@@ -32,11 +30,11 @@ interface EventRoomMetaData extends RoomMetaDataBase, EventMetaData {
   type: 'EVENT'
 }
 
-interface ProductRoomMetaData extends RoomMetaDataBase, ProductMetaData {
+export interface ProductRoomMetaData extends RoomMetaDataBase, ProductMetaData {
   type: 'PRODUCT'
 }
 
-interface BookingRoomMetaData extends RoomMetaDataBase, BookingMetaData {
+export interface BookingRoomMetaData extends RoomMetaDataBase, BookingMetaData {
   type: 'BOOKING'
 }
 
@@ -74,8 +72,6 @@ interface DateOfUseRange {
 
 export interface ChatRoomMetadataMap {
   [RoomType.EVENT]: EventRoomMetaData
-  [RoomType.INTERPARK_TNA_PRODUCT]: ProductRoomMetaData
-  [RoomType.INTERPARK_TNA_BOOKING]: BookingRoomMetaData
 }
 
 type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
@@ -166,18 +162,6 @@ export function isEventRoom(
   room: ChatRoomInterface,
 ): room is ChatRoomInterface<typeof RoomType.EVENT> {
   return room.metadata !== undefined && room.metadata.type === 'EVENT'
-}
-
-export function isProductRoom(
-  room: ChatRoomInterface,
-): room is ChatRoomInterface<typeof RoomType.INTERPARK_TNA_PRODUCT> {
-  return room.metadata !== undefined && room.metadata.type === 'PRODUCT'
-}
-
-export function isBookingRoom(
-  room: ChatRoomInterface,
-): room is ChatRoomInterface<typeof RoomType.INTERPARK_TNA_BOOKING> {
-  return room.metadata !== undefined && room.metadata.type === 'BOOKING'
 }
 
 export function isCreatedChatRoom(
