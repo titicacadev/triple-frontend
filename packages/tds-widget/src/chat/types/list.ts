@@ -51,9 +51,9 @@ export interface ChatRoomMetadata {
   articleId?: string
 }
 
-export interface ChatRoom {
+export interface ChatRoom<T extends ChatRoomType = ChatRoomType> {
   id: string
-  type: ChatRoomType
+  type: T
   name?: string
   lastMessageId: number
   lastMessage: ChatMessage
