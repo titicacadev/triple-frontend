@@ -79,11 +79,11 @@ type ChatAlternativeMessagePayload =
   | ChatTextMessagePayload
   | ChatRichMessagePayload
 
-export interface ChatMessageInterface<T = UserType, U = ChatMessagePayload> {
+export interface ChatMessageInterface<T = UserType> {
   id: number
   roomId: string
   senderId: string
-  payload: U
+  payload: ChatMessagePayload
   createdAt?: string
   displayTarget?: T[] | DisplayTargetAll
   alternative?: ChatAlternativeMessagePayload
