@@ -158,15 +158,11 @@ export type ChatRoomInterface<
   V = ChatRoomMetadata<T>,
 > = BaseChatRoomInterface<T, U, V> | CreatedChatRoomInterface<T, U, V>
 
-export function isEventRoom(
-  room: ChatRoomInterface,
-): room is ChatRoomInterface<typeof RoomType.EVENT> {
-  return room.metadata !== undefined && room.metadata.type === 'EVENT'
-}
-
-export function isCreatedChatRoom(
-  room: ChatRoomInterface,
-): room is CreatedChatRoomInterface {
+export function isCreatedChatRoom<
+  T = RoomType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+>(room: ChatRoomInterface<T, U, V>): room is CreatedChatRoomInterface<T, U, V> {
   return 'id' in room
 }
 
