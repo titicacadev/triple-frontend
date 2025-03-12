@@ -6,7 +6,7 @@ import BubbleContainer, {
   BubbleContainerProp,
 } from '../bubble-container/bubble-container'
 import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
-import { UserInterface } from '../types'
+import { ChatUser } from '../types'
 import AlteredBubble from '../bubble/altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
 
@@ -14,16 +14,14 @@ import { MessageBase, MessageInterface } from './type'
 import { isBubbleType, compareSender, compareDate } from './utils'
 import { DateDivider } from './date-divider'
 
-interface MessagesProp<
-  Message extends MessageBase<User>,
-  User extends UserInterface,
-> extends Pick<BubbleContainerProp, 'bubbleInfoStyle'> {
+interface MessagesProp<Message extends MessageBase<User>, User extends ChatUser>
+  extends Pick<BubbleContainerProp, 'bubbleInfoStyle'> {
   messages: MessageInterface<Message, User>[]
   pendingMessages: MessageInterface<Message, User>[]
   failedMessages: MessageInterface<Message, User>[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customBubble?: { [key: string]: ComponentType<any> }
-  me: UserInterface
+  me: ChatUser
   onRetry?: (message: MessageInterface<Message, User>) => void
   onRetryCancel?: (message: MessageInterface<Message, User>) => void
   onThanksClick?: (message: MessageInterface<Message, User>) => void
@@ -49,7 +47,7 @@ interface MessagesProp<
 
 export default function Messages<
   Message extends MessageBase<User>,
-  User extends UserInterface,
+  User extends ChatUser,
 >({
   messages,
   pendingMessages,
