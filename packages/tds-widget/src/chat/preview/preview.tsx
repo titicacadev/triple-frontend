@@ -20,7 +20,6 @@ export function Preview({
   chatRoom,
   me,
   handleRoomClick,
-
   containerStyle,
   titleMessageContainerStyle,
   Thumbnail = ChatRoomThumbnail,
@@ -35,9 +34,9 @@ export function Preview({
   handleRoomClick: (roomId: string) => void
 
   containerStyle?: { css?: CSSProp }
-  titleMessageContainerStyle: { css?: CSSProp }
-  Thumbnail: ComponentType<ImgHTMLAttributes<HTMLImageElement>>
-  Title: ComponentType<TextProps>
+  titleMessageContainerStyle?: { css?: CSSProp }
+  Thumbnail?: ComponentType<ImgHTMLAttributes<HTMLImageElement>>
+  Title?: ComponentType<TextProps>
   Message?: ComponentType<TextProps>
   CreatedAt?: ComponentType<{
     createdAt: string
