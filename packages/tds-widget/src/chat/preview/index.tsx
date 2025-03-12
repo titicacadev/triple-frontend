@@ -1,38 +1,49 @@
-import { Container, List, Text } from '@titicaca/tds-ui'
-import { styled } from 'styled-components'
-import { ReactNode } from 'react'
+import { Container, TextProps } from '@titicaca/tds-ui'
+import { CSSProp } from 'styled-components'
+import { ComponentType, ImgHTMLAttributes, ReactNode } from 'react'
 
 import { ChatUser } from '../types'
 import { ChatRoom } from '../types/list'
 import { getProfileImageUrl } from '../utils'
 
 import { convertDateTime, getTextMessage } from './utils'
+import {
+  ChatRoomCreatedAt,
+  ChatRoomMessage,
+  ChatRoomThumbnail,
+  ChatRoomTitle,
+  ChatRoomUnread,
+  PreviewListItem,
+} from './elements'
 
-const PreviewListItem = styled(List.Item)`
-  cursor: pointer;
-  padding: 0 20px;
-  border-bottom: 1px solid #f5f5f5;
-`
-
-const ChatRoomThumbnail = styled.img`
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-`
-
-export default function Preview({
+export function Preview({
   chatRoom,
   me,
-  handleSelectRoom,
+  handleRoomClick,
+
+  containerStyle,
+  titleMessageContainerStyle,
+  Thumbnail = ChatRoomThumbnail,
+  Title = ChatRoomTitle,
+  Message = ChatRoomMessage,
+  CreatedAt = ChatRoomCreatedAt,
+  Unread = ChatRoomUnread,
   badge,
-  ...props
 }: {
   chatRoom: ChatRoom
   me: ChatUser
-  handleSelectRoom: (roomId: string) => void
+  handleRoomClick: (roomId: string) => void
+
+  containerStyle?: { css?: CSSProp }
+  titleMessageContainerStyle: { css?: CSSProp }
+  Thumbnail: ComponentType<ImgHTMLAttributes<HTMLImageElement>>
+  Title: ComponentType<TextProps>
+  Message?: ComponentType<TextProps>
+  CreatedAt?: ComponentType<{
+    createdAt: string
+    convertDateTime?: (createdAt: string, formatType?: string) => string
+  }>
+  Unread?: ComponentType<{ unreadCount: number }>
   badge?: ReactNode
 }) {
   const { lastMessage, unreadCount, members, id } = chatRoom
@@ -43,73 +54,40 @@ export default function Preview({
   const profileImageUrl = getProfileImageUrl(others[0])
 
   return (
-    <PreviewListItem {...props}>
+    <PreviewListItem>
       <Container
         position="relative"
-        onClick={() => handleSelectRoom(id)}
+        onClick={() => handleRoomClick(id)}
         css={{
           padding: '20px 0 20px 0',
           height: 130,
         }}
+        {...containerStyle}
       >
-        <ChatRoomThumbnail
-          src={profileImageUrl}
-          role="presentation none"
-          alt=""
-        />
+        <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
 
         <Container
           css={{
             margin: '0 80px 0 65px',
             minHeight: 50,
           }}
+          {...titleMessageContainerStyle}
         >
-          <Text bold size="medium" ellipsis>
-            {title}
-          </Text>
-          {payload ? (
-            <Text
-              color="gray600"
-              size="small"
-              maxLines={2}
-              lineHeight="16px"
-              margin={{ top: 3 }}
-            >
-              {getTextMessage(payload)}
-            </Text>
+          <Title>{title}</Title>
+
+          {payload && Message ? (
+            <Message>{getTextMessage(payload)}</Message>
           ) : null}
-          {createdAt ? (
-            <Container
-              position="absolute"
-              css={{
-                top: '20px',
-                right: 0,
-              }}
-            >
-              <Text size={12} color="gray500" inlineBlock lineHeight="21px">
-                {convertDateTime(createdAt)}
-              </Text>
-            </Container>
+
+          {createdAt && CreatedAt ? (
+            <CreatedAt
+              createdAt={createdAt}
+              convertDateTime={convertDateTime}
+            />
           ) : null}
         </Container>
 
-        {unreadCount ? (
-          <Container
-            position="absolute"
-            backgroundColor="red"
-            borderRadius={20}
-            css={{
-              width: 20,
-              height: 20,
-              top: '44px',
-              right: 0,
-            }}
-          >
-            <Text color="white" lineHeight="20px" textAlign="center">
-              {unreadCount}
-            </Text>
-          </Container>
-        ) : null}
+        {unreadCount && Unread ? <Unread unreadCount={unreadCount} /> : null}
 
         {badge}
       </Container>
