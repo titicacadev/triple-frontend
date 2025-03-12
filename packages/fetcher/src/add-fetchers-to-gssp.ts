@@ -42,7 +42,7 @@ export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
     )
   }
 
-  return function fetchersAddedGssp(ctx) {
+  return async function fetchersAddedGssp(ctx) {
     const ssrFetcherOptions = {
       apiUriBase,
       cookie: ctx.req.headers.cookie,
@@ -67,6 +67,8 @@ export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
           authGuardOptions,
         ),
       )
+
+    await combinedMiddlewares(get)('/api/users/me')
 
     return gssp({
       ...ctx,

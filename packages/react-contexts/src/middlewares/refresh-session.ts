@@ -24,12 +24,12 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     event: NextFetchEvent,
   ) {
     const response = (await next(request, event)) as NextResponse
-    // const url = request.nextUrl
+    const url = request.nextUrl
 
-    // const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
-    // if (!isPageUrl) {
-    //   return response
-    // }
+    const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
+    if (!isPageUrl) {
+      return response
+    }
 
     const allCookies = request.cookies.getAll()
 
@@ -80,16 +80,15 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
         }, new Map())
 
         setCookies.forEach((cookie) => {
-          const { name } = parseString(cookie)
+          const { name, value } = parseString(cookie)
+          response.cookies.set(name, value)
           newCookies.set(name, cookie)
         })
 
         const finalCookie = [...newCookies.values()].join('; ')
 
         request.headers.set('cookie', finalCookie)
-
         response.headers.set('set-cookie', setCookie)
-
         applySetCookie(request, response)
 
         return response
