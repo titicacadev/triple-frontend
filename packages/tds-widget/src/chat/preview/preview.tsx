@@ -52,10 +52,6 @@ export function Preview({
     <Container
       position="relative"
       onClick={() => handleRoomClick(id)}
-      css={{
-        padding: '20px 0 20px 0',
-        height: 130,
-      }}
       {...containerStyle}
     >
       <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
