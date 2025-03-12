@@ -1,19 +1,23 @@
-import { NextRequest, NextResponse, NextFetchEvent } from 'next/server'
+import {
+  NextRequest,
+  NextResponse,
+  NextFetchEvent,
+  NextMiddleware,
+} from 'next/server'
 import satisfies from 'semver/functions/satisfies'
 
 import { parseApp } from '../user-agent-context'
-
-import { CustomMiddleware } from './types'
 
 /**
  * TF 13.42.1의 react-contexts/src/middleware 참고하여 작성
  * https://github.com/titicacadev/triple-frontend/blob/8d002e80f9ff187d6a06b6a2695c48f1d5383662/packages/react-contexts/src/middleware.ts
  */
-export function oldTripleIosCookiesMiddleware(
-  customMiddleware: CustomMiddleware,
-) {
-  return function middleware(request: NextRequest, event: NextFetchEvent) {
-    const response = NextResponse.next()
+export function oldTripleIosCookiesMiddleware(next: NextMiddleware) {
+  return async function middleware(
+    request: NextRequest,
+    event: NextFetchEvent,
+  ) {
+    const response = (await next(request, event)) as NextResponse
 
     const userAgent = request.headers.get('User-Agent')
 
@@ -22,7 +26,7 @@ export function oldTripleIosCookiesMiddleware(
     const tripleApp = userAgent ? parseApp(userAgent) : null
 
     if (!userAgent || (host && !!tripleApp)) {
-      return customMiddleware(request, event, response)
+      return response
     }
 
     try {
@@ -45,6 +49,6 @@ export function oldTripleIosCookiesMiddleware(
       // semver 파싱 에러가 발생하면 ignore 합니다.
     }
 
-    return customMiddleware(request, event, response)
+    return response
   }
 }
