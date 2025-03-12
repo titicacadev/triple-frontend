@@ -74,7 +74,7 @@ export interface ChatRoomMetadataMap {
   [RoomType.EVENT]: EventRoomMetaData
 }
 
-type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
+export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
   ? U[T]
   : undefined
 
