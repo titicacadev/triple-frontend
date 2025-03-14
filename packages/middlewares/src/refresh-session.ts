@@ -67,7 +67,6 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       const setCookie = refreshResponse.headers.get('set-cookie')
 
       if (setCookie) {
-        request.headers.set('x-triple-web-login', 'OK')
         const response = (await next(request, event)) as NextResponse
         const setCookies = splitCookiesString(setCookie)
         setCookies.forEach((cookie) => {
