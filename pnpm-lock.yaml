@@ -840,6 +840,9 @@ importers:
 
   packages/triple-web-nextjs:
     dependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -868,6 +871,9 @@ importers:
 
   packages/triple-web-nextjs-pages:
     dependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
