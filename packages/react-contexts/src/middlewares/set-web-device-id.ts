@@ -5,9 +5,9 @@ import {
   NextResponse,
 } from 'next/server'
 import { v4 as uuidV4 } from 'uuid'
+import { X_TRIPLE_WEB_DEVICE_ID } from '@titicaca/constants'
 
 import { getTripleApp } from './utils/get-triple-app'
-import { X_TRIPLE_WEB_DEVICE_ID } from './constants'
 
 export function setWebDeviceIdMiddleware(next: NextMiddleware) {
   return async function middleware(

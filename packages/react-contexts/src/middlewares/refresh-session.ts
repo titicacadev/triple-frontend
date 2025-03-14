@@ -1,3 +1,4 @@
+import { type ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import {
   NextFetchEvent,
   NextMiddleware,
@@ -6,8 +7,15 @@ import {
 } from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
+import {
+  TP_SE,
+  TP_TK,
+  SESSION_KEY as X_SOTO_SESSION,
+} from '@titicaca/constants'
 
-import { TP_SE, TP_TK } from './constants'
+import { parseApp } from '../user-agent-context'
+
+import { applySetCookie } from './utils/apply-set-cookie'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -24,10 +32,17 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     const allCookies = request.cookies.getAll()
 
-    const isSessionExisted = allCookies.some(
+    const userAgent = request.headers.get('User-Agent')
+    const tripleApp = userAgent ? parseApp(userAgent) : null
+
+    const cookiesWithoutXSotoSession = tripleApp
+      ? allCookies
+      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
+
+    const isSessionExisted = cookiesWithoutXSotoSession.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(request.cookies.getAll())
+    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
 
     if (!isSessionExisted) {
       return response
@@ -53,34 +68,20 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       const setCookie = refreshResponse.headers.get('set-cookie')
 
       if (setCookie) {
-        const oldCookies = splitCookiesString(
-          request.headers.get('cookie') || '',
-        )
+        const response = (await next(request, event)) as NextResponse
         const setCookies = splitCookiesString(setCookie)
-
-        const newCookies = oldCookies.reduce((map, cookie) => {
-          const { name } = parseString(cookie)
-          return map.set(name, cookie)
-        }, new Map())
-
         setCookies.forEach((cookie) => {
-          const { name } = parseString(cookie)
-          newCookies.set(name, cookie)
+          const { name, value, ...rest } = parseString(cookie)
+          if (name !== X_SOTO_SESSION) {
+            response.cookies.set(name, value, { ...(rest as ResponseCookie) })
+          }
         })
-
-        const finalCookie = [...newCookies.values()].join('; ')
-
-        request.headers.set('cookie', finalCookie)
-
-        const response = NextResponse.next({
-          request,
-        })
-
-        response.headers.set('set-cookie', setCookie)
+        applySetCookie(request, response)
 
         return response
       }
     }
+
     return response
   }
 }
