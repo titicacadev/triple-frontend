@@ -4,6 +4,7 @@ export enum UserType {
   TRIPLE_USER = 'TRIPLE_USER',
   TRIPLE_OPERATOR = 'TRIPLE_OPERATOR',
   TNA_PARTNER = 'TNA_PARTNER',
+  INTERPARK_USER = 'INTERPARK_USER',
 }
 
 export type MessageType =
@@ -53,7 +54,7 @@ export interface RoomInterface {
   lastMessageId: number
   lastMessage: MessageInterface
   unreadCount?: number
-  members: UserInterface[]
+  members: ChatUser[]
   isDirect: boolean
   createdAt: string
   metadata?: RoomMetadata
@@ -78,30 +79,18 @@ export interface MessageInterface {
   displayTarget?: UserType[] | DisplayTargetAll
   alternative?: RichItemText | RichItemImages | RichPayload
   blindedAt?: string
-  sender: UserInterface
+  sender: ChatUser
   reactions?: { [type in ReactionType]?: { count: number; haveMine: boolean } }
 }
 
-export interface UserInterface {
+export interface ChatUser {
   id: string
-  profile: ProfileInterface
   unregistered?: boolean
   unfriended?: boolean
-}
-
-export interface ProfileInterface {
-  name: string
-  photo: string
-}
-
-export interface UserAgentProps {
-  userAgent: {
-    isPublic: boolean
-    isMobile: boolean
-    os: {
-      name: string
-      version: string
-    }
+  profile: {
+    name: string
+    photo: string
+    thumbnail: string
   }
 }
 
@@ -151,48 +140,13 @@ export interface OtherUnreadInterface {
 }
 
 export interface RoomMembersInterface {
-  me: UserInterface
-  others: UserInterface[]
+  me: ChatUser
+  others: ChatUser[]
 }
 
 export interface UpdateChatData {
   message?: MessageInterface
   otherUnreadInfo?: HasUnreadOfRoomInterface
-}
-/**
- * @alias RoomMembersInterface
- */
-export type UserInfoInterface = RoomMembersInterface
-
-export interface TokenInterface {
-  signature: string
-  public_id: string
-  api_key: string
-  timestamp: string
-}
-export interface CloudinaryImageInterface {
-  public_id: string
-  version: number
-  signature: string
-  width: number
-  height: number
-  format: string
-  resource_type: string
-  created_at: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  tags: any[]
-  bytes: number
-  type: string
-  etag: string
-  placeholder: boolean
-  url: string
-  secure_url: string
-  backup_url: string
-  original_filename: string
-}
-
-export interface ImageMetadataInterface {
-  media: MetaDataInterface[]
 }
 
 /**

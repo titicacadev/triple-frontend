@@ -1,7 +1,7 @@
 import { isSameDay, isSameMinute } from 'date-fns'
 
 import { BubbleType, BubbleTypeArray } from '../bubble/bubble-ui'
-import { UserInterface } from '../types'
+import { ChatUser } from '../types'
 
 import { MessageBase } from './type'
 
@@ -11,7 +11,7 @@ export function isBubbleType(type: string): type is BubbleType {
 
 export function compareSender<
   Message extends MessageBase<User>,
-  User extends UserInterface,
+  User extends ChatUser,
 >(
   prevMessage: Message | null,
   currentMessage: Message,
@@ -27,7 +27,7 @@ export function compareSender<
 
 export function compareDate<
   Message extends MessageBase<User>,
-  User extends UserInterface,
+  User extends ChatUser,
 >(
   prevMessage: Message | null,
   currentMessage: Message,

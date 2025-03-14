@@ -1,6 +1,6 @@
 import { CSSProp } from 'styled-components'
 
-import { MetaDataInterface, UserInterface } from '../../types'
+import { MetaDataInterface, ChatUser } from '../../types'
 import {
   DEFAULT_MAX_USERNAME_LENGTH,
   formatUsername,
@@ -11,7 +11,7 @@ import ParentMessage from './parent-message'
 
 interface ParentMessageInterface {
   id: string
-  sender: UserInterface
+  sender: ChatUser
 }
 interface TextParentMessage extends ParentMessageInterface {
   type: 'text'
