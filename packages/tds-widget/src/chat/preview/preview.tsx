@@ -3,14 +3,14 @@ import { CSSProp } from 'styled-components'
 import { ComponentType, ImgHTMLAttributes, ReactNode } from 'react'
 
 import { ChatUser } from '../types'
-import { ChatRoom } from '../types/list'
+import { ChatRoom, ChatRoomType } from '../types/list'
 import { getProfileImageUrl } from '../utils'
 
 import { convertDateTime, getTextMessage } from './utils'
 import { ChatRoomMessage, ChatRoomThumbnail, ChatRoomTitle } from './elements'
 
-export interface PreviewProps {
-  chatRoom: ChatRoom
+export interface PreviewProps<T extends ChatRoomType> {
+  chatRoom: ChatRoom<T>
   me: ChatUser
   handleRoomClick: (roomId: string) => void
   containerStyle?: { css?: CSSProp }
@@ -27,7 +27,7 @@ export interface PreviewProps {
   customElement?: ReactNode
 }
 
-export function Preview({
+export function Preview<T extends ChatRoomType>({
   chatRoom,
   me,
   handleRoomClick,
@@ -40,7 +40,7 @@ export function Preview({
   Unread,
   customTitle,
   customElement,
-}: PreviewProps) {
+}: PreviewProps<T>) {
   const { lastMessage, unreadCount, members, id } = chatRoom
   const { payload, createdAt } = lastMessage || {}
 
