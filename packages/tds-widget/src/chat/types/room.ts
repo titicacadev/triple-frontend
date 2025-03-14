@@ -1,4 +1,4 @@
-import { ValueOf } from './base'
+import { ChatChannelInfo, ValueOf } from './base'
 import { ChatMessageInterface } from './message'
 import { ChatUserInterface, UserType } from './user'
 
@@ -108,13 +108,7 @@ interface ChatRoomDetailRoomInterface<T = UserType> {
   isDirect: boolean
   createdAt: string
   privateChannel: boolean
-  channel: ChatRoomChannelInfo
-}
-
-interface ChatRoomChannelInfo {
-  channel: string
-  events: { refresh: string; unread: string; send: string; join: string }
-  needAuth: boolean
+  channel: ChatChannelInfo
 }
 
 export type CreatedChatRoomInterface<
