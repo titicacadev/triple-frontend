@@ -1,4 +1,4 @@
-import { ValueOf } from './base'
+import { ChatChannelInfo, ValueOf } from './base'
 
 export const UserType = {
   TRIPLE_USER: 'TRIPLE_USER',
@@ -33,6 +33,7 @@ export interface ChatUserInterface<T = UserType> {
   identifier: string
   code: string
   profile: ChatUserProfileInterface
+  channel: ChatChannelInfo
 }
 
 interface ChatUserProfileInterface {
