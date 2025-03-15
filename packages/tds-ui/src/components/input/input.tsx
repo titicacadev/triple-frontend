@@ -1,6 +1,11 @@
-import { InputHTMLAttributes, forwardRef, ReactNode } from 'react'
-import { styled } from 'styled-components'
-import InputMask, { Props as InputMaskProps } from 'react-input-mask'
+import {
+  InputHTMLAttributes,
+  forwardRef,
+  ReactNode,
+  useImperativeHandle,
+} from 'react'
+import styled from 'styled-components'
+import { type MaskOptions, useMask } from '@react-input/mask'
 
 import {
   FormFieldContext,
@@ -10,7 +15,7 @@ import {
   useFormFieldState,
 } from '../form-field'
 
-const BaseInput = styled(InputMask)`
+const BaseInput = styled.input`
   padding: 0 16px;
   font-size: 16px;
   height: 48px;
@@ -35,20 +40,31 @@ const BaseInput = styled(InputMask)`
 
 export interface InputProps
   extends InputHTMLAttributes<HTMLInputElement>,
-    Partial<InputMaskProps> {
+    MaskOptions {
   label?: string
   error?: string | boolean
   help?: ReactNode
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { mask = '', label, error, help, onBlur, onFocus, ...props },
+  { label, error, help, onBlur, onFocus, mask, onChange, ...props },
   ref,
 ) {
   const formFieldState = useFormFieldState({ onBlur, onFocus })
 
   const hasHelp = !!help
   const isError = !!error
+
+  const inputMaskRef = useMask({
+    mask,
+    replacement: { 9: /\d/, d: /\d/, m: /\d/, y: /\d/ },
+  })
+
+  useImperativeHandle(ref, () => inputMaskRef.current, [inputMaskRef])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e)
+  }
 
   return (
     <FormFieldContext.Provider
@@ -61,9 +77,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     >
       {label ? <FormFieldLabel>{label}</FormFieldLabel> : null}
       <BaseInput
-        inputRef={ref}
+        ref={inputMaskRef}
         id={formFieldState.inputId}
-        mask={mask}
         aria-describedby={
           hasHelp && !isError ? formFieldState.descriptionId : undefined
         }
@@ -71,6 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={isError}
         onBlur={formFieldState.handleBlur}
         onFocus={formFieldState.handleFocus}
+        onChange={handleChange}
         {...props}
       />
       {error ? (
