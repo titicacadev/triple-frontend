@@ -1,11 +1,17 @@
 import { Container, List, Text } from '@titicaca/tds-ui'
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { convertDateTime as defaultConvertDateTime } from './utils'
 
-export const PreviewListItem = styled(List.Item)`
+export const PreviewListItem = styled(List.Item)<{ isSelected: boolean }>`
   cursor: pointer;
   padding: 0 20px;
+  ${({ isSelected }) =>
+    isSelected
+      ? css`
+          background-color: var(--color-mint100);
+        `
+      : null};
   border-bottom: 1px solid #f5f5f5;
 `
 
