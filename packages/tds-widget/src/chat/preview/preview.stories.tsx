@@ -1,5 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
+import { RoomType, UserType } from '../types'
+
 import { Preview, PreviewProps } from './preview'
 
 export default {
@@ -7,7 +9,9 @@ export default {
   component: Preview,
 } as Meta<typeof Preview>
 
-const Template: StoryFn<PreviewProps> = (args) => <Preview {...args} />
+const Template: StoryFn<PreviewProps<RoomType, UserType>> = (args) => (
+  <Preview {...args} />
+)
 
 export const Default = {
   render: Template,
