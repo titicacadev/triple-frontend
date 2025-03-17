@@ -69,7 +69,7 @@ interface ChatProductMessagePayload extends ChatMessagePayloadBase {
   product: ProductItem
 }
 
-type ChatMessagePayload =
+export type ChatMessagePayload =
   | ChatTextMessagePayload
   | ChatImagesMessagePayload
   | ChatRichMessagePayload

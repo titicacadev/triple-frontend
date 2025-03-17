@@ -1,6 +1,6 @@
-import { MetaDataInterface, ChatUser } from '../types'
+import { ChatUserInterface, MetaDataInterface } from '../types'
 
-export function getProfileImageUrl(user: ChatUser) {
+export function getProfileImageUrl<U>(user: ChatUserInterface<U>) {
   if (user?.profile.thumbnail) {
     return user.profile.thumbnail
   }

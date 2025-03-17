@@ -2,16 +2,20 @@ import { Container, TextProps } from '@titicaca/tds-ui'
 import { CSSProp } from 'styled-components'
 import { ComponentType, ImgHTMLAttributes, ReactNode } from 'react'
 
-import { ChatUser } from '../types'
-import { ChatRoom, ChatRoomType } from '../types/list'
 import { getProfileImageUrl } from '../utils'
+import {
+  ChatRoomListItemInterface,
+  RoomType,
+  UserInterface,
+  UserType,
+} from '../types'
 
 import { convertDateTime, getTextMessage } from './utils'
 import { ChatRoomMessage, ChatRoomThumbnail, ChatRoomTitle } from './elements'
 
-export interface PreviewProps<T extends ChatRoomType> {
-  chatRoom: ChatRoom<T>
-  me: ChatUser
+export interface PreviewProps<T, U> {
+  chatRoom: ChatRoomListItemInterface<T, U>
+  me: UserInterface
   handleRoomClick: (roomId: string) => void
   containerStyle?: { css?: CSSProp }
   titleMessageContainerStyle?: { css?: CSSProp }
@@ -27,7 +31,7 @@ export interface PreviewProps<T extends ChatRoomType> {
   customElement?: ReactNode
 }
 
-export function Preview<T extends ChatRoomType>({
+export function Preview<T = RoomType, U = UserType>({
   chatRoom,
   me,
   handleRoomClick,
@@ -40,7 +44,7 @@ export function Preview<T extends ChatRoomType>({
   Unread,
   customTitle,
   customElement,
-}: PreviewProps<T>) {
+}: PreviewProps<T, U>) {
   const { lastMessage, unreadCount, members, id } = chatRoom
   const { payload, createdAt } = lastMessage || {}
 
