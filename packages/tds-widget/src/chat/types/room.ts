@@ -176,4 +176,5 @@ export interface RoomInterface<T = RoomType, U = UserType> {
   isDirect: boolean
   createdAt: string
   metadata?: EventMetaData
+  channel?: ChatChannelInfo
 }
