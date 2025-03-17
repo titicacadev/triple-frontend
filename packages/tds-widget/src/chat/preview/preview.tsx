@@ -5,8 +5,9 @@ import { ComponentType, ImgHTMLAttributes, ReactNode } from 'react'
 import { getProfileImageUrl } from '../utils'
 import {
   ChatRoomListItemInterface,
+  ChatUserInterface,
+  RoomInterface,
   RoomType,
-  UserInterface,
   UserType,
 } from '../types'
 
@@ -14,8 +15,8 @@ import { convertDateTime, getTextMessage } from './utils'
 import { ChatRoomMessage, ChatRoomThumbnail, ChatRoomTitle } from './elements'
 
 export interface PreviewProps<T, U> {
-  chatRoom: ChatRoomListItemInterface<T, U>
-  me: UserInterface
+  chatRoom: RoomInterface<T, U> | ChatRoomListItemInterface<T, U>
+  me: ChatUserInterface<U>
   handleRoomClick: (roomId: string) => void
   containerStyle?: { css?: CSSProp }
   titleMessageContainerStyle?: { css?: CSSProp }
