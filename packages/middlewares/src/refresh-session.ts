@@ -14,7 +14,6 @@ import {
 } from '@titicaca/constants'
 
 import { getIsTripleApp } from './utils/get-triple-app'
-
 import { applySetCookie } from './utils/apply-set-cookie'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {

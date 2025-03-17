@@ -8,6 +8,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { X_TRIPLE_WEB_DEVICE_ID } from '@titicaca/constants'
 
 import { getIsTripleApp } from './utils/get-triple-app'
+import { applySetCookie } from './utils/apply-set-cookie'
 
 export function setWebDeviceIdMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -31,6 +32,7 @@ export function setWebDeviceIdMiddleware(next: NextMiddleware) {
       response.cookies.set(X_TRIPLE_WEB_DEVICE_ID, randomWebDeviceId, {
         secure: true,
       })
+      applySetCookie(request, response)
     }
 
     return response
