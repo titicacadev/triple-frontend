@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.45.0
+
+```
+### view-utilities
+
+- [KLZT-885] routelist에 static-pages, community, game을 추가합니다. [#3596](https://github.com/titicacadev/triple-frontend/pull/3596)
+```
+
 ## 13.44.0
 
 ```
