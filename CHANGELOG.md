@@ -541,6 +541,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.45.0
+
+### view-utilities
+
+- [KLZT-885] routelist에 static-pages, community, game을 추가합니다. [#3596](https://github.com/titicacadev/triple-frontend/pull/3596)
+
 ## 13.44.0
 
 ### footer
