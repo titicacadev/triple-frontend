@@ -3,6 +3,7 @@ import { checkIfRoutable } from './routelist'
 describe('checkIfRoutable', () => {
   const regionId = '5eb828fe-cb69-482c-bf37-e166d6cce259'
   const hotelId = 'f20c23b6-8eff-47d7-b25a-032be42c1ea6'
+  const communityPostId = '45e178b2-41f1-48f7-94db-0dca71361f27'
 
   it('should allow navigation to login path', () => {
     expect(
@@ -94,6 +95,33 @@ describe('checkIfRoutable', () => {
 
   it('should allow navigation to article', () => {
     const path = `/articles/${hotelId}`
+    expect(
+      checkIfRoutable({
+        href: path,
+      }),
+    ).toBe(true)
+  })
+
+  it('should allow navigation to privacy-policy page', () => {
+    const path = `/pages/privacy-policy.html`
+    expect(
+      checkIfRoutable({
+        href: path,
+      }),
+    ).toBe(true)
+  })
+
+  it('should allow navigation to community', () => {
+    const path = `/community/posts/${communityPostId}`
+    expect(
+      checkIfRoutable({
+        href: path,
+      }),
+    ).toBe(true)
+  })
+
+  it('should allow navigation to game', () => {
+    const path = `/game/my-luggage/${regionId}/missions`
     expect(
       checkIfRoutable({
         href: path,
