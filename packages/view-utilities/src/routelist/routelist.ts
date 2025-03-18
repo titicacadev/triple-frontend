@@ -25,9 +25,9 @@ const PUBLIC_ROUTELIST_REGEXES = [
   /^\/trips\/promotion\/customized-schedule(\/.*)?$/,
   /^\/trips\/plan(\/.*)?$/,
   /^\/reviews\/list(\/.*)?$/,
-  /^\/pages\/.*/,
-  /^\/community\/.*/,
-  /^\/game\/.*/,
+  /^\/pages(\/.*)?$/,
+  /^\/community(\/.*)?$/,
+  /^\/game(\/.*)?$/,
 ]
 
 export function checkIfRoutable({ href }: { href: string }) {
