@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.45.1
+
+```
+### view-utilities
+
+- [view-utilities] routelist의 static-pages 정규식을 수정합니다. [#3598](https://github.com/titicacadev/triple-frontend/pull/3598)
+```
+
 ## 13.45.0
 
 ```
