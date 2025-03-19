@@ -1,10 +1,9 @@
 import { generateUrl, strictQuery } from '@titicaca/view-utilities'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import qs from 'qs'
+import { SESSION_KEY } from '@titicaca/constants'
 
 import { generateUserAgentValues } from '../user-agent-context'
-
-import { SESSION_ID_KEY } from './app'
 
 export function putInvalidSessionIdRemover({
   res: { setHeader },
@@ -22,7 +21,7 @@ export function putInvalidSessionIdRemover({
   const handleInvalidSessionInBrowser = () => {
     setHeader(
       'set-cookie',
-      `${SESSION_ID_KEY}=; path=/; expires=${new Date(0).toUTCString()};`,
+      `${SESSION_KEY}=; path=/; expires=${new Date(0).toUTCString()};`,
     )
 
     throw new Error('유효하지 않은 인증 정보입니다.')
