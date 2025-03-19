@@ -1,6 +1,6 @@
 import { ChatChannelInfo, ValueOf } from './base'
 import { ChatMessageInterface } from './message'
-import { ChatUserInterface, UserType } from './user'
+import { ChatRoomMemberInterface, ChatUserInterface, UserType } from './user'
 
 export const RoomType = {
   DEFAULT: 'default', // 기존 파트너센터 챗
@@ -86,7 +86,7 @@ interface DirectChatRoomInterface<
   U = UserType,
   V = ChatRoomMetadata<T>,
 > extends BaseChatRoomInterface<T, U, V> {
-  members: ChatUserInterface<U>[]
+  members: ChatRoomMemberInterface<U>[]
 }
 
 interface BaseChatRoomInterface<
@@ -144,19 +144,23 @@ export type ChatRoomDetailInterface<
   | CreatedChatRoomDetailInterface<T, U, V>
   | DirectChatRoomInterface<T, U, V>
 
+interface ChatRoomListMemberInterface<T = UserType>
+  extends ChatRoomMemberInterface<T>,
+    Pick<ChatUserInterface<T>, 'id'> {}
+
 export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
   extends Pick<
-      CreatedChatRoomInterface<T, U>,
-      | 'id'
-      | 'createdAt'
-      | 'isDirect'
-      | 'name'
-      | 'lastMessageId'
-      | 'lastMessage'
-      | 'type'
-      | 'expired'
-    >,
-    Pick<Required<CreatedChatRoomInterface<T, U>>, 'members'> {
+    CreatedChatRoomInterface<T, U>,
+    | 'id'
+    | 'createdAt'
+    | 'isDirect'
+    | 'name'
+    | 'lastMessageId'
+    | 'lastMessage'
+    | 'type'
+    | 'expired'
+  > {
+  members: ChatRoomListMemberInterface[]
   unreadCount?: number
 }
 
