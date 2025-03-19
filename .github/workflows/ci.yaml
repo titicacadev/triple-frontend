@@ -13,24 +13,12 @@ env:
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
   NODE_AUTH_TOKEN: ${{ secrets.READ_ONLY_NPM_TOKEN }}
   HUSKY: 0
-  # Slack Notifications
-  SLACK_WEBHOOK: ${{ secrets.GHA_NOTIFICATIONS_WEBHOOK_URL }}
-  SLACK_CHANNEL: '#triple-web-dev-notifications' # 메시지 보낼 채널
-  SLACK_USERNAME: 'Triple Frontend' # 메시지를 보내는 계정 이름
-  SLACK_ICON_EMOJI: ':triple_new:'
-  SLACK_DETAIL_URL: 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
-  SLACK_GITHUB_REPOSITORY: ${{ github.repository }}
-  SLACK_AUTHOR_NAME: ${{ github.event.sender.login }}
-  SLACK_AUTHOR_ICON: ${{ github.event.sender.avatar_url }}
-  SLACK_FOOTER: ${{ github.repository }}
-  SLACK_GITHUB_REF: ${{ github.event.ref }} # 메시지에 ref로 표시되는 값
-  SLACK_GITHUB_EVENT_NAME: ${{ github.event_name }} # 메시지에 Event로 표시되는 값
   # Nx Cloud
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
   check-dependencies:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
 
     steps:
       - uses: actions/checkout@v4
@@ -56,16 +44,8 @@ jobs:
             exit 1
           fi
 
-      - name: Notify checking dependency failure
-        if: failure() && steps.check-working-tree-clean.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Deps check FAILURE'
-          SLACK_TOPIC: '의존성 변경이 있습니다. `pnpm run sync-deps`로 변경을 반영해주세요.'
-        run: pnpm dlx @titicaca/gha-tools notify
-
   lint:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
 
     steps:
       - uses: actions/checkout@v4
@@ -87,16 +67,8 @@ jobs:
         id: lint
         run: pnpm run lint
 
-      - name: Notify linting failure
-        if: failure() && steps.lint.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Lint FAILURE'
-          SLACK_TOPIC: ''
-        run: pnpm dlx @titicaca/gha-tools notify
-
   build:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
 
     steps:
       - uses: actions/checkout@v4
@@ -118,16 +90,8 @@ jobs:
         id: build
         run: pnpm run build
 
-      - name: Notify building failure
-        if: failure() && steps.build.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Build FAILURE'
-          SLACK_TOPIC: ''
-        run: pnpm dlx @titicaca/gha-tools notify
-
   test:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
 
     steps:
       - uses: actions/checkout@v4
@@ -149,14 +113,6 @@ jobs:
         id: test
         run: pnpm run test:coverage -- --ci --reporters github-actions --reporters summary --maxWorkers 2
 
-      - name: Notify testing failure
-        if: failure() && steps.test.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Test FAILURE'
-          SLACK_TOPIC: ''
-        run: pnpm dlx @titicaca/gha-tools notify
-
       - name: Upload coverage to Codecov
         id: upload-coverage-to-codecov
         uses: codecov/codecov-action@v3
@@ -164,16 +120,8 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage
 
-      - name: Notify uploading coverage failure
-        if: failure() && steps.upload-coverage-to-codecov.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Upload coverage FAILURE'
-          SLACK_TOPIC: ''
-        run: pnpm dlx @titicaca/gha-tools notify
-
   chromatic-deployment:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
 
     steps:
       - uses: actions/checkout@v4
@@ -201,14 +149,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
-
-      - name: Notify publishing to Chromatic failure
-        if: failure() && steps.publish-to-chromatic.outcome == 'failure'
-        env:
-          SLACK_COLOR: fail
-          SLACK_TITLE: ':pleading: Publish to Chromatic FAILURE'
-          SLACK_TOPIC: ''
-        run: pnpm dlx @titicaca/gha-tools notify
 
       - name: Publish to Chromatic and auto accept changes
         if: github.ref == 'refs/heads/main'
