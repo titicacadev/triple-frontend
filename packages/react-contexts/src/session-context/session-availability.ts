@@ -1,18 +1,10 @@
 import { IncomingMessage } from 'http'
 
-import { parseApp } from '..'
-
-import { getSessionIdFromRequest } from './app'
-import { getWebSessionAvailabilityFromRequest } from './browser'
+import Cookies from 'universal-cookie'
+import { TP_TK } from '@titicaca/constants'
 
 export default function getSessionAvailabilityFromRequest(
   req: IncomingMessage | undefined,
 ) {
-  const app = parseApp(req?.headers['user-agent'] || '')
-
-  if (!app) {
-    return getWebSessionAvailabilityFromRequest(req)
-  }
-
-  return !!getSessionIdFromRequest(req)
+  return !!new Cookies(req?.headers.cookie).get(TP_TK)
 }
