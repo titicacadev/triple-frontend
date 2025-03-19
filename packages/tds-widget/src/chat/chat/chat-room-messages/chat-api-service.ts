@@ -2,6 +2,7 @@ import qs from 'qs'
 
 import {
   ChatMessageInterface,
+  ChatRoomMemberInterface,
   ChatUserInterface,
   HasUnreadOfRoomInterface,
   ReactionType,
@@ -30,7 +31,8 @@ interface ReactionPayload {
 }
 
 interface Sender {
-  id: ChatUserInterface['id']
+  id?: ChatUserInterface['id']
+  roomMemberId?: ChatRoomMemberInterface['roomMemberId']
   profile: {
     name: ChatUserInterface['profile']['name']
   }
@@ -47,6 +49,14 @@ export class ChatApiService<T = UserType> {
   public constructor(fetcher: ChatFetcher, isTripleChat = false) {
     this.fetcher = fetcher
     this.isTripleChat = isTripleChat
+  }
+
+  public getRoomMemberMe({
+    roomId,
+  }: {
+    roomId: string
+  }): Promise<ChatRoomMemberInterface<T>> {
+    return this.fetcher(`/rooms/${roomId}/members/me`)
   }
 
   public getMessages({
