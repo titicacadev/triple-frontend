@@ -15,7 +15,7 @@ env:
 
 jobs:
   update-changelog:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
     if: ${{ github.event.label.name == 'release' }}
     steps:
       - name: Check if a milestone exists on PR
