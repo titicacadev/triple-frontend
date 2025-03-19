@@ -307,30 +307,30 @@ export function useChatMessages<T = UserType>({
   }
 
   function onRetry(
-    message: UnsentMessage<ChatRoomMessageInterface<T>>,
+    { id, payload }: UnsentMessage<ChatRoomMessageInterface<T>>,
     {
       onComplete,
     }: {
       onComplete?: () => void
     } = {},
   ) {
-    removeUnsentMessages(message)
+    removeUnsentMessages({ id })
 
-    if (message.payload.type !== 'rich') {
-      onSendMessage?.(message.payload)
+    if (payload.type !== 'rich') {
+      onSendMessage?.(payload)
       onComplete?.()
     }
   }
 
   function onRetryCancel(
-    message: ChatRoomMessageInterface<T>,
+    { id }: UnsentMessage<ChatRoomMessageInterface<T>>,
     {
       onComplete,
     }: {
       onComplete?: () => void
     } = {},
   ) {
-    removeUnsentMessages(message)
+    removeUnsentMessages({ id })
     onComplete?.()
   }
 

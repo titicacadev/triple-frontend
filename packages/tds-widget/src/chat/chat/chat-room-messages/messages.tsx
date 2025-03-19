@@ -4,13 +4,14 @@ import DOMPurify from 'dompurify'
 import {
   ChatMessageInterface,
   ChatMessagePayloadType,
-  ChatUserInterface,
+  ChatRoomUser,
   DisplayTargetAll,
   UserInterface,
   UserType,
 } from '../../types'
 import OriginalMessages from '../../messages'
 import { getProfileImageUrl } from '../../utils'
+import { UnsentMessage } from '../messages-reducer'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -32,10 +33,10 @@ export default function Messages<T = UserType>({
   showReactions = false,
   ...props
 }: {
-  me: ChatUserInterface<T>
+  me: ChatRoomUser<T>
   messages: ChatMessageInterface<T>[]
-  pendingMessages: ChatMessageInterface<T>[]
-  failedMessages: ChatMessageInterface<T>[]
+  pendingMessages: UnsentMessage<ChatMessageInterface<T>>[]
+  failedMessages: UnsentMessage<ChatMessageInterface<T>>[]
   displayTarget: T
   showReactions?: boolean
 } & Omit<
@@ -64,8 +65,24 @@ export default function Messages<T = UserType>({
 }
 
 function convertMessages<T = UserType>(
-  me: ChatUserInterface<T>,
+  me: ChatRoomUser<T>,
   messages: ChatMessageInterface<T>[],
+  roomDisplayTarget: T,
+  showReactions?: boolean,
+): OriginalMessagesPropTypes<T>['messages']
+
+function convertMessages<T = UserType>(
+  me: ChatRoomUser<T>,
+  messages: UnsentMessage<ChatMessageInterface<T>>[],
+  roomDisplayTarget: T,
+  showReactions?: boolean,
+): OriginalMessagesPropTypes<T>['pendingMessages']
+
+function convertMessages<T = UserType>(
+  me: ChatRoomUser<T>,
+  messages:
+    | ChatMessageInterface<T>[]
+    | UnsentMessage<ChatMessageInterface<T>>[],
   roomDisplayTarget: T,
   showReactions = false,
 ):
@@ -138,10 +155,10 @@ function getMessageTypeAndValue<T = UserType>(
 }
 
 function convertChatUserToMessageUser<T = UserType>(
-  me: ChatMessageInterface<T>['sender'] | ChatUserInterface<T>,
+  me: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
 ) {
   return {
-    id: me.id,
+    id: 'roomMemberId' in me ? me.roomMemberId : me.id,
     profile: {
       name: me.profile.name,
       photo: me.profile.thumbnail || getProfileImageUrl(me),
