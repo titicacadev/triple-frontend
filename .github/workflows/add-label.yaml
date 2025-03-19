@@ -7,7 +7,7 @@ on:
 jobs:
   label-pr:
     if: ${{ github.event.pull_request.draft == false && github.event.pull_request.user.login != 'triple-bot' && !contains(github.event.pull_request.labels.*.name, 'release') }}
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ${{ vars.NOL_RUNNER }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
