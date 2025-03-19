@@ -54,7 +54,7 @@ export function useUnreadMessages<T = UserType>() {
     return otherReadInfo.reduce(
       (prev, info) =>
         Number(info.lastSeenMessageId) < Number(id) &&
-        info.memberId !== sender.id
+        info.roomMemberId !== sender.id
           ? prev + 1
           : prev,
       0,

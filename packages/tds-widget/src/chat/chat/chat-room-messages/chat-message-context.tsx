@@ -9,6 +9,7 @@ import {
 import {
   type MessagesAction,
   MessagesActions,
+  UnsentMessage,
   useMessagesReducer,
 } from '../messages-reducer'
 import {
@@ -36,8 +37,8 @@ export interface ChatMessagesContextValue<T = UserType> {
    * MessagesReducer의 state 및 dispatch
    */
   messages: ChatMessageInterface<T>[]
-  pendingMessages: ChatMessageInterface<T>[]
-  failedMessages: ChatMessageInterface<T>[]
+  pendingMessages: UnsentMessage<ChatMessageInterface<T>>[]
+  failedMessages: UnsentMessage<ChatMessageInterface<T>>[]
   hasPrevMessage: boolean
   dispatch: Dispatch<
     MessagesAction<ChatMessageInterface<T>, ChatMessageInterface<T>['id']>

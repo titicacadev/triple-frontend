@@ -5,15 +5,17 @@ import {
   ChatMessageInterface,
   ChatMessagePayloadType,
   ChatRoomInterface,
-  ChatUserInterface,
+  ChatRoomMemberInterface,
+  ChatRoomUser,
   CreatedChatRoomInterface,
+  isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
   UpdatedChatData,
   UserType,
 } from '../../types'
 import { useRoom } from '../room-context'
-import { MessagesActions } from '../messages-reducer'
+import { MessagesActions, UnsentMessage } from '../messages-reducer'
 
 import { useScroll } from './use-scroll'
 import { DEFAULT_MESSAGE_PROPERTIES } from './constants'
@@ -34,9 +36,9 @@ export function useChatMessages<T = UserType>({
   >,
   createRoom,
 }: ChatMessagesProps<T> = {}) {
-  const { room, me, updateRoom } = useRoom<
+  const { room, me, updateRoom, updateMe } = useRoom<
     ChatRoomInterface,
-    ChatUserInterface<T>
+    ChatRoomUser<T>
   >()
 
   const { setScrollY, getScrollContainerHeight, triggerScrollToBottom } =
@@ -84,17 +86,16 @@ export function useChatMessages<T = UserType>({
     onError,
   }: {
     roomId: string
-    payload: ChatMessageInterface<T>['payload']
-    sender: ChatMessageInterface<T>['sender']
+    payload: UnsentMessage<ChatMessageInterface<T>>['payload']
+    sender?: UnsentMessage<ChatMessageInterface<T>>['sender']
     tempMessageId?: number
     skipPending?: boolean
     skipFailed?: boolean
     onError?: () => void
   }) {
-    const tempMessage: ChatMessageInterface<T> = {
+    const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
       id: tempMessageId || new Date().getTime(),
       roomId,
-      senderId: sender.id,
       sender,
       payload,
       ...defaultMessageProperties,
@@ -146,8 +147,24 @@ export function useChatMessages<T = UserType>({
     onError?: () => void
   }) {
     const welcomeMessagesInPending = pendingMessages.filter(
-      (message) => message.sender.id !== me.id,
+      (message) => message.sender?.type && message.sender.type !== me.type,
     )
+
+    if (!welcomeMessagesInPending.length) {
+      isWelcomeMessagePendingRef.current = false
+      return
+    }
+
+    /**
+     * 룸이 생성되기 전 생성된 welcomeMessage의 sender 정보는 임시 정보(roomMemberId)를 가지므로 업데이트된 룸의 정보에서 sender를 찾아서 사용합니다.
+     */
+    const sender = ('members' in room ? room.members : []).find(
+      ({ type }) => type === welcomeMessagesInPending[0].sender?.type,
+    ) as ChatRoomMemberInterface<T> | null
+
+    if (!sender) {
+      return
+    }
 
     let allSuccess = true
     for (const { id: tempId, payload, sender } of welcomeMessagesInPending) {
@@ -183,6 +200,18 @@ export function useChatMessages<T = UserType>({
     return room
   }
 
+  async function getChatRoomMemberId({ roomId }: { roomId: string }) {
+    if (isChatRoomMember(me)) {
+      return me.roomMemberId
+    }
+
+    try {
+      const memberMe = await api.getRoomMemberMe({ roomId })
+      updateMe(memberMe)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {}
+  }
+
   async function onSendMessage(
     payload: ChatMessageInterface<T>['payload'],
     { onError }: { onError?: () => void } = {},
@@ -193,12 +222,12 @@ export function useChatMessages<T = UserType>({
     const currentRoom = await getOrCreateRoom()
     const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
 
-    if (!currentRoomId) {
-      const tempMessage: ChatMessageInterface<T> = {
+    const roomMemberId = getChatRoomMemberId({ roomId: currentRoomId })
+
+    if (!currentRoomId || !roomMemberId) {
+      const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
         id: new Date().getTime(),
         roomId: '',
-        senderId: me.id,
-        sender: me,
         payload:
           payload.type === ChatMessagePayloadType.TEXT
             ? { ...payload, message: DOMPurify.sanitize(payload.message) }
@@ -216,7 +245,6 @@ export function useChatMessages<T = UserType>({
 
     const { success } = await handleSendMessageAction({
       roomId: currentRoomId,
-      sender: me,
       payload,
     })
 
@@ -259,7 +287,7 @@ export function useChatMessages<T = UserType>({
   }
 
   function onMessageFailed(
-    tempMessage: ChatMessageInterface<T>,
+    tempMessage: UnsentMessage<ChatMessageInterface<T>>,
     { onError }: { onError?: () => void } = {},
   ) {
     onError?.()
@@ -279,7 +307,7 @@ export function useChatMessages<T = UserType>({
   }
 
   function onRetry(
-    message: ChatRoomMessageInterface<T>,
+    message: UnsentMessage<ChatRoomMessageInterface<T>>,
     {
       onComplete,
     }: {
@@ -318,7 +346,10 @@ export function useChatMessages<T = UserType>({
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
           */
-        if (message.sender.id !== me.id) {
+        if (
+          isChatRoomMember(me) &&
+          message.sender?.roomMemberId !== me.roomMemberId
+        ) {
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
@@ -328,7 +359,7 @@ export function useChatMessages<T = UserType>({
         triggerScrollToBottom()
       }
     },
-    [dispatch, me.id],
+    [dispatch, (me as ChatRoomMemberInterface).roomMemberId],
   )
 
   /**
