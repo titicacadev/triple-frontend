@@ -1,5 +1,9 @@
 import { MetaDataInterface } from './image'
-import { ChatUserInterface, UserType } from './user'
+import {
+  ChatRoomMemberInterface,
+  TripleChatRoomMemberInterface,
+  UserType,
+} from './user'
 
 export type DisplayTargetAll = 'all'
 
@@ -79,17 +83,31 @@ type ChatAlternativeMessagePayload =
   | ChatTextMessagePayload
   | ChatRichMessagePayload
 
+/**
+ * triple-chat 서버 응답으로 받는 ChatMessageInterface
+ */
+export interface TripleChatMessageInterface<T = UserType>
+  extends Omit<ChatMessageInterface<T>, 'sender'> {
+  /**
+   * @deprecated
+   */
+  senderId?: string
+  sender: TripleChatRoomMemberInterface<T>
+}
+
+/**
+ * nol-chat 서버 응답으로 받는 ChatMessageInterface
+ */
 export interface ChatMessageInterface<T = UserType> {
   id: number
   roomId: string
-  senderId: string
   payload: ChatMessagePayload
   createdAt?: string
   displayTarget?: T[] | DisplayTargetAll
   alternative?: ChatAlternativeMessagePayload
   blindedAt?: string
   reactions?: { [type in ReactionType]?: { count: number; haveMine: boolean } }
-  sender: ChatUserInterface<T>
+  sender: ChatRoomMemberInterface<T>
 }
 
 export type WelcomeMessageInterface<T = UserType> = Omit<

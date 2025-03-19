@@ -24,20 +24,61 @@ interface ProfileInterface {
 }
 
 /**
- * triple-chat/nol-chat 서버 응답으로 받는 UserInterface
+ * @deprecated
+ * triple-chat 서버 응답으로 받는 UserInterface
+ */
+export interface TripleChatUserInterface<T = UserType>
+  extends ChatUserInterface<T> {
+  /**
+   * @deprecated
+   */
+  identifier: string
+  /**
+   * @deprecated
+   */
+  code: string
+}
+
+/**
+ * @deprecated
+ * triple-chat 서버 응답으로 받는 RoomMemberInterface
+ */
+export interface TripleChatRoomMemberInterface<T = UserType>
+  extends TripleChatUserInterface<T> {
+  roomMemberId: string
+}
+
+export type ChatRoomUser<T = UserType> =
+  | ChatUserInterface<T>
+  | ChatRoomMemberInterface<T>
+
+/**
+ * nol-chat 서버 응답으로 받는 UserInterface
  */
 export interface ChatUserInterface<T = UserType> {
   id: string
   createdAt: string
   type: T
-  identifier: string
-  code: string
   profile: ChatUserProfileInterface
   channel: ChatChannelInfo
+}
+
+/**
+ * nol-chat 서버 응답으로 받는 RoomMemberInterface
+ */
+export interface ChatRoomMemberInterface<T = UserType>
+  extends Omit<ChatUserInterface<T>, 'id' | 'channel'> {
+  roomMemberId: string
 }
 
 interface ChatUserProfileInterface {
   name: string
   thumbnail: string
   message: string
+}
+
+export function isChatRoomMember<T = UserType>(
+  member: ChatRoomMemberInterface<T> | ChatUserInterface<T>,
+): member is ChatRoomMemberInterface<T> {
+  return 'roomMemberId' in member
 }
