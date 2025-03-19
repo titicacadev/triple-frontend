@@ -541,6 +541,12 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.45.1
+
+### view-utilities
+
+- [view-utilities] routelist의 static-pages 정규식을 수정합니다. [#3598](https://github.com/titicacadev/triple-frontend/pull/3598)
+
 ## 13.45.0
 
 ### view-utilities
