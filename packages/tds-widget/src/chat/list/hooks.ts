@@ -42,7 +42,6 @@ export function useExtensibleReducer<
   A extends { action: string } = { action: string },
 >(
   extension: Extension<F, S, T, U, A> | null = null,
-  initialState: Partial<BaseChatListState<F>>,
 ): ExtensibleReducerResult<BaseChatListState<F, T, U> & S, F, T, U, A> {
   type CombinedState = BaseChatListState<F, T, U> & S
 
@@ -70,14 +69,16 @@ export function useExtensibleReducer<
     }
   }, [extension])
 
-  const mergedInitialState = useMemo<CombinedState>(() => {
-    const baseState = { ...initialChatState } as CombinedState
-    const withExtensionState = extension?.initialState
-      ? { ...baseState, ...extension.initialState }
-      : baseState
-
-    return { ...withExtensionState, ...initialState }
-  }, [extension, initialState])
+  const mergedInitialState = useMemo(() => {
+    return {
+      ...initialChatState,
+      ...extension?.initialState,
+      filter: {
+        ...initialChatState.filter,
+        ...extension?.initialState?.filter,
+      },
+    } as CombinedState
+  }, [extension])
 
   const [state, dispatchBase] = useReducer(combinedReducer, mergedInitialState)
 
