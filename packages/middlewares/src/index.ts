@@ -1,4 +1,9 @@
-export { chain } from './chain'
-export { oldIosCookiesMiddleware } from './old-ios-cookie'
-export { sessionCookieMiddleware } from './session-cookie'
-export { NEED_LOGIN_IDENTIFIER, X_AUTH_STATUS } from './constants'
+import { chain } from './chain'
+import type { MiddlewareFactory } from './types'
+import { refreshSessionMiddleware } from './refresh-session'
+import { setWebDeviceIdMiddleware } from './set-web-device-id'
+
+export const constructMiddleware = (functions: MiddlewareFactory[]) =>
+  chain([...functions, refreshSessionMiddleware, setWebDeviceIdMiddleware])
+
+export * from './types'

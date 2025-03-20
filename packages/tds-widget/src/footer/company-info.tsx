@@ -12,7 +12,9 @@ import {
   useLogin,
   useLogout,
 } from '@titicaca/triple-web'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, Fragment } from 'react'
+
+import { FooterText } from './type'
 
 const MAX_PHONE_WIDTH = 360
 
@@ -76,13 +78,19 @@ const ButtonContainer = styled(FlexBox)`
   }
 `
 
+const LinkContainer = styled.a`
+  text-decoration: underline;
+`
+
 interface CompanyInfoProps {
+  companyTexts: Array<FooterText[]>
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
   setBusinessExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 export function CompanyInfo({
+  companyTexts,
   hideAppDownloadButton = false,
   businessExpanded,
   setBusinessExpanded,
@@ -157,15 +165,27 @@ export function CompanyInfo({
 
       <AccordionContent>
         <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
-          &#12828;놀유니버스 | 대표이사 배보찬, 최휘영 <br />
-          사업자 등록번호 824-81-02515
-          <br />
-          통신판매업 신고번호 2024-성남수정-0912
-          <br />
-          경기도 성남시 수정구 금토로 70 (금토동, 텐엑스타워)
-          <br />
-          항공, 숙소 및 투어·티켓 문의 1588-2539 <br />
-          help.triple@nol-universe.com
+          {companyTexts.map((texts, index) => (
+            <Fragment key={`company-text-line-${index}`}>
+              {texts.map(({ text, url, faEventAction }, index) => (
+                <Fragment key={`company-text-${index}`}>
+                  {url ? (
+                    <LinkContainer
+                      onClick={() =>
+                        trackEvent({ fa: { action: faEventAction } })
+                      }
+                    >
+                      {text}
+                    </LinkContainer>
+                  ) : (
+                    text
+                  )}
+                  {index !== texts.length - 1 ? ' ' : null}
+                </Fragment>
+              ))}
+              {index !== companyTexts.length - 1 ? <br /> : null}
+            </Fragment>
+          ))}
         </Text>
       </AccordionContent>
     </Accordion>
