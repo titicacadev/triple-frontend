@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@titicaca/fetcher": "workspace:*",
+    "@titicaca/constants": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@types/semver": "^7.5.8",
     "@types/set-cookie-parser": "^2.4.10",
