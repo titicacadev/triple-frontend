@@ -31,11 +31,7 @@ export const initialChatState: BaseChatListState<{
 }
 
 export function useExtensibleReducer<
-  F extends {
-    readOnly: boolean
-    searchValue: null | string
-    page: number
-  },
+  F,
   S,
   T = RoomType,
   U = UserType,
