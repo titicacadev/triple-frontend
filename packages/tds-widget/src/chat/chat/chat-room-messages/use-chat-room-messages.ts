@@ -140,43 +140,48 @@ export function useChatMessages<T = UserType>({
   }
 
   async function handleSendWelcomeMessage({
-    roomId,
+    room,
+    me,
     onError,
   }: {
-    roomId: string
+    room: CreatedChatRoomInterface
+    me: ChatRoomMemberInterface<T>
     onError?: () => void
   }) {
     const welcomeMessagesInPending = pendingMessages.filter(
-      (message) => message.sender?.type && message.sender.type !== me.type,
+      (message) =>
+        message.sender && message.sender.roomMemberId !== me.roomMemberId,
     )
 
     if (!welcomeMessagesInPending.length) {
-      isWelcomeMessagePendingRef.current = false
-      return
-    }
-
-    /**
-     * 룸이 생성되기 전 생성된 welcomeMessage의 sender 정보는 임시 정보(roomMemberId)를 가지므로 업데이트된 룸의 정보에서 sender를 찾아서 사용합니다.
-     */
-    const sender = ('members' in room ? room.members : []).find(
-      ({ type }) => type === welcomeMessagesInPending[0].sender?.type,
-    ) as ChatRoomMemberInterface<T> | null
-
-    if (!sender) {
       return
     }
 
     let allSuccess = true
-    for (const { id: tempId, payload, sender } of welcomeMessagesInPending) {
-      const { success } = await handleSendMessageAction({
-        roomId,
-        tempMessageId: tempId,
-        payload,
-        sender,
-        skipPending: true,
-        skipFailed: true,
-        onError,
-      })
+    for (const {
+      id: tempId,
+      payload,
+      sender,
+      roomId,
+    } of welcomeMessagesInPending) {
+      /**
+       * 룸이 생성되기 전 생성된 welcomeMessage의 sender 정보는 임시 정보(roomMemberId)를 가지므로 업데이트된 룸의 정보에서 sender를 찾아서 사용합니다.
+       */
+      const messageSender = roomId
+        ? sender
+        : findSenderFromRoomMembers(room, me, sender)
+
+      const { success } = messageSender
+        ? await handleSendMessageAction({
+            roomId: room.id,
+            tempMessageId: tempId,
+            payload,
+            sender: messageSender,
+            skipPending: true,
+            skipFailed: true,
+            onError,
+          })
+        : { success: false }
 
       if (!success) {
         allSuccess = false
@@ -202,12 +207,13 @@ export function useChatMessages<T = UserType>({
 
   async function getChatRoomMemberId({ roomId }: { roomId: string }) {
     if (isChatRoomMember(me)) {
-      return me.roomMemberId
+      return me
     }
 
     try {
       const memberMe = await api.getRoomMemberMe({ roomId })
       updateMe(memberMe)
+      return memberMe
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {}
   }
@@ -222,9 +228,14 @@ export function useChatMessages<T = UserType>({
     const currentRoom = await getOrCreateRoom()
     const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
 
-    const roomMemberId = getChatRoomMemberId({ roomId: currentRoomId })
+    const roomMemberMe = currentRoomId
+      ? await getChatRoomMemberId({ roomId: currentRoomId })
+      : undefined
 
-    if (!currentRoomId || !roomMemberId) {
+    if (
+      !isCreatedChatRoom(currentRoom) ||
+      !(roomMemberMe && isChatRoomMember(roomMemberMe))
+    ) {
       const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
         id: new Date().getTime(),
         roomId: '',
@@ -240,11 +251,15 @@ export function useChatMessages<T = UserType>({
 
     /** 첫 렌더링 시에만 자동 메세지를 보내도록 합니다. */
     if (isWelcomeMessagePendingRef.current) {
-      await handleSendWelcomeMessage({ roomId: currentRoomId, onError })
+      await handleSendWelcomeMessage({
+        room: currentRoom as CreatedChatRoomInterface,
+        me: roomMemberMe,
+        onError,
+      })
     }
 
     const { success } = await handleSendMessageAction({
-      roomId: currentRoomId,
+      roomId: currentRoom.id,
       payload,
     })
 
@@ -463,5 +478,19 @@ export function useChatMessages<T = UserType>({
     onRetryCancel,
     onThanksClick,
     onSendMessageEvent,
+  }
+}
+
+function findSenderFromRoomMembers<T>(
+  room: CreatedChatRoomInterface,
+  me: ChatRoomMemberInterface<T>,
+  sender?: ChatRoomMemberInterface<T>,
+) {
+  if (sender && 'members' in room) {
+    return room.members.find(
+      ({ roomMemberId }) =>
+        roomMemberId === sender.roomMemberId ||
+        (room.isDirect && roomMemberId !== me.roomMemberId),
+    ) as ChatRoomMemberInterface<T>
   }
 }
