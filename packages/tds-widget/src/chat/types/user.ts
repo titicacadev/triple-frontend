@@ -68,6 +68,9 @@ export interface ChatUserInterface<T = UserType> {
  */
 export interface ChatRoomMemberInterface<T = UserType>
   extends Omit<ChatUserInterface<T>, 'id' | 'channel'> {
+  /**
+   * 룸이 생성되기 전에는 임시 아이디이기 때문에 룸이 생성되면 변경될 수 있습니다.
+   */
   roomMemberId: string
 }
 
