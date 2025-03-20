@@ -384,6 +384,9 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
     devDependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher

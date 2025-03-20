@@ -12,10 +12,13 @@ import {
 } from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
+import {
+  TP_SE,
+  TP_TK,
+  SESSION_KEY as X_SOTO_SESSION,
+} from '@titicaca/constants'
 
-import { parseApp } from '../user-agent-context'
-
-import { TP_SE, TP_TK, X_SOTO_SESSION } from './constants'
+import { getIsTripleApp } from './utils/get-triple-app'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -32,10 +35,9 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     const allCookies = request.cookies.getAll()
 
-    const userAgent = request.headers.get('User-Agent')
-    const tripleApp = userAgent ? parseApp(userAgent) : null
+    const isTripleApp = getIsTripleApp(request)
 
-    const cookiesWithoutXSotoSession = tripleApp
+    const cookiesWithoutXSotoSession = isTripleApp
       ? allCookies
       : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
 
