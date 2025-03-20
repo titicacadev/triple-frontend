@@ -54,10 +54,12 @@ export function useExtensibleReducer<
         const actionKey = action.action as keyof typeof extension.reducers
         const handler = extension.reducers[actionKey]
         if (handler) {
-          return handler(
-            state,
-            action as BaseChatListAction<F, T, U> & ExtensionAction<A>,
-          ) as CombinedState
+          return (
+            handler as (
+              state: CombinedState,
+              action: ExtensionAction<A>,
+            ) => CombinedState
+          )(state, action)
         }
       }
 
