@@ -48,7 +48,7 @@ export type ExtensionAction<T extends { action: string }> = {
 }
 
 type ExtensionReducers<S, T extends { action: string }> = {
-  [action in T['action']]: (state: S, action: T) => S
+  [K in T['action']]: (state: S, action: Extract<T, { action: K }>) => S
 }
 
 export interface Extension<
