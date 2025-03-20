@@ -32,7 +32,7 @@
 ```typescript
 // middleware.ts
 
-import { chain, oldIosCookiesMiddleware } from './middlewares'
+import { constructMiddleware, oldIosCookiesMiddleware } from './middlewares'
 
 export default constructMiddleware([
   oldTripleIosCookiesMiddleware,
