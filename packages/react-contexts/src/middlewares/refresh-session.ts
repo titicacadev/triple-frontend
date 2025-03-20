@@ -53,7 +53,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       withApiUriBase: true,
     }
 
-    const firstTrialResponse = await get('/api/users/me', options)
+    const firstTrialResponse = await get('/api/users/session/verify', options)
 
     if (firstTrialResponse.status !== 401) {
       return response
