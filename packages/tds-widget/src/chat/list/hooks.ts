@@ -39,28 +39,29 @@ export function useExtensibleReducer<
   S,
   T = RoomType,
   U = UserType,
-  A extends ExtensionAction = ExtensionAction,
+  A extends { action: string } = { action: string },
 >(
   extension: Extension<F, S, T, U, A> | null = null,
   initialState: Partial<BaseChatListState<F>>,
-): ExtensibleReducerResult<BaseChatListState<F, T, U> & S, F, T, U> {
+): ExtensibleReducerResult<BaseChatListState<F, T, U> & S, F, T, U, A> {
   type CombinedState = BaseChatListState<F, T, U> & S
 
   const combinedReducer = useMemo(() => {
     return (
       state: CombinedState,
-      action: BaseChatListAction<F, T, U> | ExtensionAction,
+      action: BaseChatListAction<F, T, U> | ExtensionAction<A>,
     ): CombinedState => {
       if (isBaseChatListAction(action)) {
         return ChatListReducer(state, action) as CombinedState
       }
 
       if (extension) {
-        const handler = extension.reducers[action.action]
+        const actionKey = action.action as keyof typeof extension.reducers
+        const handler = extension.reducers[actionKey]
         if (handler) {
           return handler(
             state,
-            action as BaseChatListAction<F, T, U> & A,
+            action as BaseChatListAction<F, T, U> & ExtensionAction<A>,
           ) as CombinedState
         }
       }
@@ -81,7 +82,7 @@ export function useExtensibleReducer<
   const [state, dispatchBase] = useReducer(combinedReducer, mergedInitialState)
 
   const dispatch = useMemo(() => {
-    return (action: BaseChatListAction<F, T, U> | ExtensionAction) => {
+    return (action: BaseChatListAction<F, T, U> | ExtensionAction<A>) => {
       dispatchBase(action)
     }
   }, [dispatchBase])

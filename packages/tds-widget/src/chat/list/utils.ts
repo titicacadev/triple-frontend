@@ -1,3 +1,5 @@
+import { RoomType, UserType } from '../types'
+
 import {
   BaseChatListAction,
   ChatListActions,
@@ -10,18 +12,24 @@ export function createExtension<
   S,
   T,
   U,
-  A extends ExtensionAction = ExtensionAction,
+  A extends { action: string } = { action: string },
 >(config: Extension<F, S, T, U, A>): Extension<F, S, T, U, A> {
   return {
     name: config.name,
     initialState: config.initialState || {},
     reducers: config.reducers,
-    actions: config.actions,
   }
 }
 
-export function isBaseChatListAction<F>(
-  action: BaseChatListAction<F> | ExtensionAction,
-): action is BaseChatListAction<F> {
-  return Object.values(ChatListActions).includes(action.action)
+export function isBaseChatListAction<
+  F,
+  T = RoomType,
+  U = UserType,
+  A extends { action: string } = { action: string },
+>(
+  action: BaseChatListAction<F, T, U> | ExtensionAction<A>,
+): action is BaseChatListAction<F, T, U> {
+  return Object.values<string>(ChatListActions).includes(
+    action.action as string,
+  )
 }

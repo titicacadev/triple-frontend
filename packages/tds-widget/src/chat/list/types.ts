@@ -25,7 +25,7 @@ export const ChatListActions = {
   CHANGE_FILTER: 'CHANGE_FILTER',
 } as const
 
-export type BaseChatListActions = ValueOf<typeof ChatListActions>
+export type ChatListActions = ValueOf<typeof ChatListActions>
 
 export type BaseChatListAction<F, T = RoomType, U = UserType> =
   | ({
@@ -41,22 +41,14 @@ export type BaseChatListAction<F, T = RoomType, U = UserType> =
       action: 'CHANGE_FILTER'
     } & Pick<BaseChatListState<F, T, U>, 'filter'>)
 
-export interface ExtensionAction<
-  T extends BaseChatListActions = BaseChatListActions,
-> {
-  action: T
-  payload?: unknown
+export type ExtensionAction<T extends { action: string }> = {
+  [K in T['action']]: Extract<T, { action: K }>
+}[T['action']] & {
   [key: string]: unknown
 }
 
-interface ExtensionReducers<S, A extends ExtensionAction> {
-  [actionType: string]: (state: S, action: A) => S
-}
-
-type ActionCreator<A> = (...args: unknown[]) => A
-
-interface ActionCreators<A = ExtensionAction> {
-  [actionName: string]: ActionCreator<A>
+type ExtensionReducers<S, T extends { action: string }> = {
+  [action in T['action']]: (state: S, action: ExtensionAction<T>) => S
 }
 
 export interface Extension<
@@ -64,18 +56,19 @@ export interface Extension<
   S,
   T = RoomType,
   U = UserType,
-  A extends ExtensionAction = ExtensionAction,
+  A extends { action: string } = { action: string },
 > {
   name: string
   initialState?: Partial<BaseChatListState<F, T, U> & S>
-  reducers: ExtensionReducers<
-    BaseChatListState<F, T, U> & S,
-    BaseChatListAction<F, T, U> & A
-  >
-  actions?: ActionCreators<BaseChatListAction<F, T, U> & A>
+  reducers:
+    | ExtensionReducers<BaseChatListState<F, T, U>, BaseChatListAction<F, T, U>>
+    | ExtensionReducers<BaseChatListState<F, T, U> & S, ExtensionAction<A>>
 }
 
-export type ExtensibleReducerResult<State, F, T = RoomType, U = UserType> = [
+export type ExtensibleReducerResult<
   State,
-  (action: BaseChatListAction<F, T, U> | ExtensionAction) => void,
-]
+  F,
+  T = RoomType,
+  U = UserType,
+  A extends { action: string } = { action: string },
+> = [State, (action: BaseChatListAction<F, T, U> | ExtensionAction<A>) => void]
