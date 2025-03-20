@@ -115,7 +115,7 @@ export interface CreatedChatRoomDetailInterface<
    */
   expired: boolean
   memberCounts: number
-  members: ChatUserInterface<U>[]
+  members: ChatRoomMemberInterface<U>[]
 }
 
 interface ChatRoomDetailRoomInterface<T = RoomType, U = UserType> {
