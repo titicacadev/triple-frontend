@@ -1,6 +1,11 @@
 import { ChatChannelInfo, ValueOf } from './base'
 import { ChatMessageInterface } from './message'
-import { ChatRoomMemberInterface, ChatUserInterface, UserType } from './user'
+import {
+  ChatRoomMemberInterface,
+  ChatUserInterface,
+  TripleChatUserInterface,
+  UserType,
+} from './user'
 
 export const RoomType = {
   DEFAULT: 'default', // 기존 파트너센터 챗
@@ -196,7 +201,7 @@ export interface RoomInterface<T = RoomType, U = UserType> {
   lastMessageId: number
   lastMessage: ChatMessageInterface<U>
   unreadCount?: number
-  members: ChatUserInterface<U>[]
+  members: TripleChatUserInterface<U>[]
   isDirect: boolean
   createdAt: string
   metadata?: EventMetaData
