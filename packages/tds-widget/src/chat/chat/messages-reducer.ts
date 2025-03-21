@@ -66,7 +66,7 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
     }
   | {
       action: MessagesActions.REMOVE
-      message: Omit<Message, 'createdAt'>
+      message: Pick<Message, 'id'>
     }
   | {
       action: MessagesActions.HAS_PREV

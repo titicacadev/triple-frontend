@@ -1,4 +1,5 @@
 import { ChatMessageInterface } from './message'
+import { UserType } from './user'
 
 export interface HasUnreadInterface {
   hasUnread: boolean
@@ -14,7 +15,7 @@ export interface OtherUnreadInterface {
   lastSeenMessageId: number
 }
 
-export interface UpdatedChatData {
-  message?: ChatMessageInterface
+export interface UpdatedChatData<T = UserType> {
+  message?: ChatMessageInterface<T>
   otherUnreadInfo?: HasUnreadOfRoomInterface
 }
