@@ -39,8 +39,14 @@ interface Sender {
 export class ChatApiService<T = UserType> {
   private fetcher: ChatFetcher
 
-  public constructor(fetcher: ChatFetcher) {
+  /**
+   * legacy API인 triple-chat을 사용하는 경우 true
+   */
+  private isTripleChat: boolean
+
+  public constructor(fetcher: ChatFetcher, isTripleChat = false) {
     this.fetcher = fetcher
+    this.isTripleChat = isTripleChat
   }
 
   public getMessages({
@@ -93,9 +99,9 @@ export class ChatApiService<T = UserType> {
   }: {
     roomId: string
     lastSeenMessageId: number
-  }): Promise<{ result: boolean }> {
+  }): Promise<void> {
     return this.fetcher(`/rooms/${roomId}/last-message`, {
-      method: 'POST',
+      method: this.isTripleChat ? 'POST' : 'PUT',
       body: { lastSeenMessageId },
     })
   }
