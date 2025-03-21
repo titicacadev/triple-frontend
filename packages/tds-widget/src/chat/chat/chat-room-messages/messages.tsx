@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react'
+import DOMPurify from 'dompurify'
 
 import {
   ChatMessageInterface,
@@ -124,7 +125,7 @@ function getMessageTypeAndValue<T = UserType>(
     case ChatMessagePayloadType.TEXT:
       return {
         type: payload.type,
-        value: { message: payload.message }, // TODO: DOMPurify 적용
+        value: { message: DOMPurify.sanitize(payload.message) },
       }
     case ChatMessagePayloadType.IMAGES:
       return { type: payload.type, value: { images: payload.images } }
