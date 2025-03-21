@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
+import DOMPurify from 'dompurify'
 
 import {
   ChatMessageInterface,
+  ChatMessagePayloadType,
   ChatRoomInterface,
   ChatUserInterface,
   CreatedChatRoomInterface,
@@ -197,7 +199,10 @@ export function useChatMessages<T = UserType>({
         roomId: '',
         senderId: me.id,
         sender: me,
-        payload,
+        payload:
+          payload.type === ChatMessagePayloadType.TEXT
+            ? { ...payload, message: DOMPurify.sanitize(payload.message) }
+            : payload,
         displayTarget: 'all',
       }
       onMessageFailed(tempMessage)
