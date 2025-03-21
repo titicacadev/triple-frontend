@@ -14,6 +14,7 @@ import {
   subscribeScrapedChangeEvent,
   unsubscribeScrapedChangeEvent,
 } from '@titicaca/triple-web-to-native-interfaces'
+import { NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { Target } from './types'
 import {
@@ -159,7 +160,10 @@ export function ScrapsProvider({
 
       const response = await nativeScrape({ id, type })
 
-      if (response.ok) {
+      if (response === NEED_LOGIN_IDENTIFIER) {
+        onScrapeFailed?.({ id, type }, false, '로그인이 필요합니다.')
+        dispatch({ type: SCRAPE_FAILED, id })
+      } else if (response.ok) {
         notifyScraped(id)
 
         afterScrapedChange && afterScrapedChange({ id, type }, true)
@@ -196,7 +200,10 @@ export function ScrapsProvider({
 
       const response = await nativeUnscrape({ id, type })
 
-      if (response.ok) {
+      if (response === NEED_LOGIN_IDENTIFIER) {
+        onScrapeFailed?.({ id, type }, true, '로그인이 필요합니다.')
+        dispatch({ type: UNSCRAPE_FAILED, id })
+      } else if (response.ok) {
         notifyUnscraped(id)
 
         afterScrapedChange && afterScrapedChange({ id, type }, false)

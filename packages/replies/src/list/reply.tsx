@@ -10,7 +10,7 @@ import {
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType } from '@titicaca/modals'
+import { TransitionType, useLoginCtaModal } from '@titicaca/modals'
 import { useNavigate } from '@titicaca/router'
 import {
   useUriHash,
@@ -20,7 +20,7 @@ import {
 import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { likeReply, unlikeReply } from '../replies-api-client'
+import { likeReply, SessionError, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
 
 const MoreActionsButton = styled.button`
@@ -142,6 +142,8 @@ export default function Reply({
     focusInput()
   }
 
+  const { show: showLoginCtaModal } = useLoginCtaModal()
+
   const handleDeleteReplyClick = useCallback(
     async ({
       mentionedUserName,
@@ -168,24 +170,35 @@ export default function Reply({
   )
 
   const handleLikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: (prev?.count || 0) + 1,
-        haveMine: true,
-      }))
-      likeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await likeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: (prev?.count || 0) + 1,
+          haveMine: true,
+        }))
+      } catch (e) {
+        if (e instanceof SessionError) {
+          showLoginCtaModal()
+        }
+      }
     },
     false,
   )
 
   const handleUnlikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: Math.max(0, (prev?.count || 0) - 1),
-        haveMine: false,
-      }))
-
-      unlikeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await unlikeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: Math.max(0, (prev?.count || 0) - 1),
+          haveMine: false,
+        }))
+      } catch (e) {
+        if (e instanceof SessionError) {
+          showLoginCtaModal()
+        }
+      }
     },
     false,
   )
