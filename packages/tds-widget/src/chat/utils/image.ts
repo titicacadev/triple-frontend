@@ -1,16 +1,23 @@
-import { UserInterface, MetaDataInterface } from '../types'
+import {
+  MetaDataInterface,
+  UserType,
+  ChatMessageInterface,
+  ChatUserInterface,
+} from '../types'
 
-export function getProfileImageUrl(user: UserInterface) {
-  if (user.profile.photo) {
-    return user.profile.photo
+export function getProfileImageUrl<T = UserType>(
+  user: ChatMessageInterface<T>['sender'] | ChatUserInterface<T>,
+) {
+  if (user.profile.thumbnail) {
+    return user.profile.thumbnail
   } else {
     let imageNumber = 0
     try {
       imageNumber = parseInt(user.id.substr(0, 4), 16) % 5
-    } catch {
-      imageNumber = 0
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`
     }
-
     return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`
   }
 }
