@@ -16,6 +16,7 @@ import {
 } from '../../types'
 import { useRoom } from '../room-context'
 import { MessagesActions, UnsentMessage } from '../messages-reducer'
+import { getUserIdentifier } from '../../utils'
 
 import { useScroll } from './use-scroll'
 import { DEFAULT_MESSAGE_PROPERTIES } from './constants'
@@ -145,12 +146,13 @@ export function useChatMessages<T = UserType>({
     onError,
   }: {
     room: CreatedChatRoomInterface
-    me: ChatRoomMemberInterface<T>
+    me: ChatRoomUser<T>
     onError?: () => void
   }) {
     const welcomeMessagesInPending = pendingMessages.filter(
       (message) =>
-        message.sender && message.sender.roomMemberId !== me.roomMemberId,
+        message.sender &&
+        getUserIdentifier(message.sender) !== getUserIdentifier(me),
     )
 
     if (!welcomeMessagesInPending.length) {
@@ -228,13 +230,19 @@ export function useChatMessages<T = UserType>({
     const currentRoom = await getOrCreateRoom()
     const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
 
-    const roomMemberMe = currentRoomId
-      ? await getChatRoomMemberId({ roomId: currentRoomId })
-      : undefined
+    const skipRoomMemberMe = 'identifier' in me && 'id' in me
+
+    const roomMemberMe =
+      currentRoomId && !skipRoomMemberMe
+        ? await getChatRoomMemberId({ roomId: currentRoomId })
+        : me
 
     if (
-      !isCreatedChatRoom(currentRoom) ||
-      !(roomMemberMe && isChatRoomMember(roomMemberMe))
+      !(
+        isCreatedChatRoom(currentRoom) &&
+        roomMemberMe &&
+        (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
+      )
     ) {
       const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
         id: new Date().getTime(),
@@ -361,10 +369,7 @@ export function useChatMessages<T = UserType>({
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
           */
-        if (
-          isChatRoomMember(me) &&
-          message.sender?.roomMemberId !== me.roomMemberId
-        ) {
+        if (getUserIdentifier(me) !== getUserIdentifier(message.sender)) {
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
@@ -483,14 +488,14 @@ export function useChatMessages<T = UserType>({
 
 function findSenderFromRoomMembers<T>(
   room: CreatedChatRoomInterface,
-  me: ChatRoomMemberInterface<T>,
+  me: ChatRoomUser<T>,
   sender?: ChatRoomMemberInterface<T>,
 ) {
   if (sender && 'members' in room) {
     return room.members.find(
-      ({ roomMemberId }) =>
-        roomMemberId === sender.roomMemberId ||
-        (room.isDirect && roomMemberId !== me.roomMemberId),
+      (member) =>
+        getUserIdentifier(member) === getUserIdentifier(sender) ||
+        (room.isDirect && getUserIdentifier(member) !== getUserIdentifier(me)),
     ) as ChatRoomMemberInterface<T>
   }
 }
