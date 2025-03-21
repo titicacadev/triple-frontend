@@ -2,18 +2,23 @@ import {
   MetaDataInterface,
   UserType,
   ChatMessageInterface,
-  ChatUserInterface,
+  ChatRoomUser,
+  isChatRoomMember,
 } from '../types'
 
 export function getProfileImageUrl<T = UserType>(
-  user: ChatMessageInterface<T>['sender'] | ChatUserInterface<T>,
+  user: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
 ) {
   if (user.profile.thumbnail) {
     return user.profile.thumbnail
   } else {
     let imageNumber = 0
     try {
-      imageNumber = parseInt(user.id.substr(0, 4), 16) % 5
+      imageNumber =
+        parseInt(
+          (isChatRoomMember(user) ? user.roomMemberId : user.id).substr(0, 4),
+          16,
+        ) % 5
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`
