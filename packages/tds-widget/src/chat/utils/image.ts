@@ -1,18 +1,12 @@
-import { UserInterface, MetaDataInterface } from '../types'
+import { ChatUserInterface, MetaDataInterface } from '../types'
 
-export function getProfileImageUrl(user: UserInterface) {
-  if (user.profile.photo) {
-    return user.profile.photo
-  } else {
-    let imageNumber = 0
-    try {
-      imageNumber = parseInt(user.id.substr(0, 4), 16) % 5
-    } catch {
-      imageNumber = 0
-    }
-
-    return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`
+export function getProfileImageUrl<U>(user: ChatUserInterface<U>) {
+  if (user?.profile.thumbnail) {
+    return user.profile.thumbnail
   }
+
+  const imageNumber = parseInt(user?.id?.substring(0, 4) || '0', 16) % 5
+  return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`
 }
 
 export const MAX_CHAT_IMAGE_WIDTH = 224
