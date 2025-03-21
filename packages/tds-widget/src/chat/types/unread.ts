@@ -11,7 +11,11 @@ export interface HasUnreadOfRoomInterface extends HasUnreadInterface {
 }
 
 export interface OtherUnreadInterface {
+  /**
+   * @deprecated
+   */
   memberId: string
+  roomMemberId: string
   lastSeenMessageId: number
 }
 

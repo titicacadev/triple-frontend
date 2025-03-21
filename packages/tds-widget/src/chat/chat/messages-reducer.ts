@@ -13,16 +13,23 @@ export enum MessagesActions {
   HAS_NEXT = 'HAS_NEXT', // 다음 메세지 페이지네이션 플래그 설정
 }
 
-export interface MessageBase<Id = string> {
+export type UnsentMessage<
+  Message extends MessageBase<Id, Sender>,
+  Id = string | number,
+  Sender = unknown,
+> = Omit<Message, 'createdAt' | 'sender'> & { sender?: Message['sender'] }
+
+export interface MessageBase<Id = string | number, Sender = unknown> {
   id: Id
   createdAt?: string
   parentMessage?: MessageBase<Id> | null
+  sender?: Sender
 }
 
 export interface MessagesState<Message extends MessageBase<Id>, Id = string> {
   messages: Message[]
-  pendingMessages: Omit<Message, 'createdAt'>[]
-  failedMessages: Omit<Message, 'createdAt'>[]
+  pendingMessages: UnsentMessage<Message, Id>[]
+  failedMessages: UnsentMessage<Message, Id>[]
   hasPrevMessage: boolean
   hasNextMessage: boolean
 }
@@ -58,11 +65,11 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
     }
   | {
       action: MessagesActions.PENDING
-      message: Omit<Message, 'createdAt'>
+      message: UnsentMessage<Message, Id>
     }
   | {
       action: MessagesActions.FAIL
-      message: Omit<Message, 'createdAt'>
+      message: UnsentMessage<Message, Id>
     }
   | {
       action: MessagesActions.REMOVE
