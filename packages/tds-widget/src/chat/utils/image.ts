@@ -3,8 +3,9 @@ import {
   UserType,
   ChatMessageInterface,
   ChatRoomUser,
-  isChatRoomMember,
 } from '../types'
+
+import { getUserIdentifier } from './user'
 
 export function getProfileImageUrl<T = UserType>(
   user: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
@@ -14,11 +15,7 @@ export function getProfileImageUrl<T = UserType>(
   } else {
     let imageNumber = 0
     try {
-      imageNumber =
-        parseInt(
-          (isChatRoomMember(user) ? user.roomMemberId : user.id).substr(0, 4),
-          16,
-        ) % 5
+      imageNumber = parseInt(getUserIdentifier(user).substr(0, 4), 16) % 5
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return `https://assets.triple.guide/images/ico-random-profile-${imageNumber}@3x.png`

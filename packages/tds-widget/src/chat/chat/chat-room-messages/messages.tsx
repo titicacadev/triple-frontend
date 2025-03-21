@@ -12,6 +12,7 @@ import {
 import OriginalMessages from '../../messages'
 import { getProfileImageUrl } from '../../utils'
 import { UnsentMessage } from '../messages-reducer'
+import { getUserIdentifier } from '../../utils/user'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -155,13 +156,13 @@ function getMessageTypeAndValue<T = UserType>(
 }
 
 function convertChatUserToMessageUser<T = UserType>(
-  me: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
+  user: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
 ) {
   return {
-    id: 'roomMemberId' in me ? me.roomMemberId : me.id,
+    id: getUserIdentifier(user),
     profile: {
-      name: me.profile.name,
-      photo: me.profile.thumbnail || getProfileImageUrl(me),
+      name: user.profile.name,
+      photo: user.profile.thumbnail || getProfileImageUrl(user),
     },
   }
 }
