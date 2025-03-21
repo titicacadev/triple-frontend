@@ -10,6 +10,7 @@ import {
   UserType,
 } from '../../types'
 import OriginalMessages from '../../messages'
+import { getProfileImageUrl } from '../../utils'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -143,7 +144,7 @@ function convertChatUserToMessageUser<T = UserType>(
     id: me.id,
     profile: {
       name: me.profile.name,
-      photo: me.profile.thumbnail,
+      photo: me.profile.thumbnail || getProfileImageUrl(me),
     },
   }
 }
