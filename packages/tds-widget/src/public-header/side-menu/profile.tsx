@@ -66,6 +66,10 @@ const PROVIDER_INFO = {
     label: '네이버',
     icon: 'https://assets.triple.guide/images/header/icon_naver@4x.png',
   },
+  INVALID: {
+    label: '',
+    icon: undefined,
+  },
 }
 
 const PROFILE_EVENT_METADATA_LABEL = {
@@ -80,11 +84,15 @@ export function Profile() {
   const trackEvent = useTrackEvent()
 
   const returnUrl = encodeURIComponent(location.href)
-  const providerIconSrc = user ? PROVIDER_INFO[user.provider].icon : undefined
   const badgeUrl = user ? user.mileage?.badges[0]?.icon.image_url : undefined
-  const providerVisible = user && !user.nolConnected
+
+  const { provider, email, nolConnected } = user || {}
+  const { icon: providerIconSrc, label: providerLabel } =
+    PROVIDER_INFO[provider || 'INVALID'] || {}
+
+  const providerVisible = user && !nolConnected
   const profileLabel = providerVisible
-    ? user.email || PROVIDER_INFO[user.provider].label
+    ? email || providerLabel
     : NOL_CONNECTED_LABEL
 
   const onProfileClick = (
