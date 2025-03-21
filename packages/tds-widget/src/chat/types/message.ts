@@ -92,6 +92,13 @@ export interface ChatMessageInterface<T = UserType> {
   sender: ChatUserInterface<T>
 }
 
+export type WelcomeMessageInterface<T = UserType> = Omit<
+  ChatMessageInterface<T>,
+  'roomId'
+> & {
+  roomId?: string
+}
+
 export type CustomerBookingStatus =
   | 'BOOKED'
   | 'ONGOING'
