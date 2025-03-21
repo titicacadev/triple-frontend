@@ -25,14 +25,10 @@ export function useUnreadMessages<T = UserType>() {
   const handleUnreadEvent = async () => {
     if (lastMessageId && isCreatedChatRoom(room)) {
       try {
-        const { result } = await api.updateLastSeenMessageId({
+        await api.updateLastSeenMessageId({
           roomId: room.id,
           lastSeenMessageId: lastMessageId,
         })
-
-        if (!result) {
-          throw new Error('Failed to update last seen message id')
-        }
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         return

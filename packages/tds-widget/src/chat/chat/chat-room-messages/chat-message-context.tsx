@@ -25,6 +25,10 @@ export interface ChatMessagesProviderProps<T = UserType> {
   messages?: ChatMessageInterface<T>[]
   welcomeMessages?: WelcomeMessageInterface<T>[]
   fetcher: ChatFetcher
+  /**
+   * legacy API인 triple-chat을 사용하는 경우 true
+   */
+  useTripleChat?: boolean
 }
 
 export interface ChatMessagesContextValue<T = UserType> {
@@ -55,13 +59,14 @@ export function ChatMessagesProvider<T = UserType>({
   welcomeMessages = [],
   messages: initialMessages = [],
   fetcher,
+  useTripleChat = false,
   children,
 }: PropsWithChildren<ChatMessagesProviderProps<T>>) {
   const { room } = useRoom()
 
   const chatApiService = useMemo(
-    () => new ChatApiService<T>(fetcher),
-    [fetcher],
+    () => new ChatApiService<T>(fetcher, useTripleChat),
+    [fetcher, useTripleChat],
   )
 
   const [
