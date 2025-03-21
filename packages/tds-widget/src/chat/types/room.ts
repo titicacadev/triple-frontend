@@ -40,7 +40,6 @@ export interface BookingRoomMetaData extends RoomMetaDataBase, BookingMetaData {
 
 export interface EventMetaData {
   name: string
-  memberCounts: number
   articleId?: string
 }
 
@@ -78,13 +77,25 @@ export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
   ? U[T]
   : undefined
 
+/**
+ * @deprecated
+ * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방
+ */
+interface DirectChatRoomInterface<
+  T = RoomType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+> extends BaseChatRoomInterface<T, U, V> {
+  members: ChatUserInterface<U>[]
+}
+
 interface BaseChatRoomInterface<
   T = RoomType,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   U = UserType,
   V = ChatRoomMetadata<T>,
 > {
   type: T
-  members: ChatUserInterface<U>[]
   metadata?: V
 }
 
@@ -93,18 +104,21 @@ export interface CreatedChatRoomDetailInterface<
   U = UserType,
   V = ChatRoomMetadata<T>,
 > extends BaseChatRoomInterface<T, U, V> {
-  room: ChatRoomDetailRoomInterface<U>
+  room: ChatRoomDetailRoomInterface<T, U>
   /**
    * 채팅방 만료 여부
    */
   expired: boolean
+  memberCounts: number
+  members: ChatUserInterface<U>[]
 }
 
-interface ChatRoomDetailRoomInterface<T = UserType> {
+interface ChatRoomDetailRoomInterface<T = RoomType, U = UserType> {
   id: string
+  type: T
   name?: string
   lastMessageId: number
-  lastMessage: ChatMessageInterface<T>
+  lastMessage: ChatMessageInterface<U>
   isDirect: boolean
   createdAt: string
   privateChannel: boolean
@@ -125,7 +139,10 @@ export type ChatRoomDetailInterface<
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
-> = BaseChatRoomInterface<T, U, V> | CreatedChatRoomDetailInterface<T, U, V>
+> =
+  | BaseChatRoomInterface<T, U, V>
+  | CreatedChatRoomDetailInterface<T, U, V>
+  | DirectChatRoomInterface<T, U, V>
 
 export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
   extends Pick<
@@ -150,7 +167,10 @@ export type ChatRoomInterface<
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
-> = BaseChatRoomInterface<T, U, V> | CreatedChatRoomInterface<T, U, V>
+> =
+  | BaseChatRoomInterface<T, U, V>
+  | CreatedChatRoomInterface<T, U, V>
+  | DirectChatRoomInterface<T, U, V>
 
 export function isCreatedChatRoom<
   T = RoomType,
