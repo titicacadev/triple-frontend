@@ -13,6 +13,7 @@ import {
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
 import Cookies from 'universal-cookie'
+import { TP_TK } from '@titicaca/constants'
 
 import { GET_USER_REQUEST_URL, User, UserProvider, useUserState } from './user'
 import {
@@ -132,9 +133,5 @@ InBrowserSessionContextProvider.getInitialProps = async function ({
 export function getWebSessionAvailabilityFromRequest(
   req: IncomingMessage | undefined,
 ) {
-  if (process.env.NODE_ENV !== 'production') {
-    return !!new Cookies(req?.headers.cookie).get('TP_SE')
-  }
-
-  return !!req?.headers['x-triple-web-login']
+  return !!new Cookies(req?.headers.cookie).get(TP_TK)
 }
