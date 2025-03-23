@@ -1,10 +1,12 @@
 import {
   ChatMessageInterface,
+  ChatRoomInterface,
   ChatRoomUser,
   isChatRoomMember,
   UserType,
 } from '../types'
 
+// TODO: nol-chat으로 마이그레이션 후 제거
 export function getUserIdentifier<T = UserType>(
   user: ChatMessageInterface<T>['sender'] | ChatRoomUser<T>,
 ) {
@@ -16,4 +18,13 @@ export function getUserIdentifier<T = UserType>(
   }
 
   return isChatRoomMember(user) ? user.roomMemberId : user.id
+}
+
+// TODO: nol-chat으로 마이그레이션 후 제거
+export function shouldUseLegacyMemberId(room: ChatRoomInterface) {
+  return (
+    'members' in room &&
+    'identifier' in room.members[0] &&
+    'id' in room.members[0]
+  )
 }
