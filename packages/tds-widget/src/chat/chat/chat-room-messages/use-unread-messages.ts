@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 
 import { useRoom } from '../room-context'
 import {
-  ChatRoomInterface,
   CreatedChatRoomInterface,
   isCreatedChatRoom,
   OtherUnreadInterface,
   UserType,
 } from '../../types'
+import { shouldUseLegacyMemberId } from '../../utils'
 
 import { useChatApiService } from './chat-message-context'
 import { ChatRoomMessageInterface } from './messages'
@@ -83,12 +83,4 @@ export function useUnreadMessages<T = UserType>() {
     setLastMessageId,
     // handleUnreadEvent
   }
-}
-
-function shouldUseLegacyMemberId(room: ChatRoomInterface) {
-  return (
-    'members' in room &&
-    'identifier' in room.members[0] &&
-    'id' in room.members[0]
-  )
 }
