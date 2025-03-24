@@ -33,14 +33,19 @@ function handleClientApp() {
 }
 
 async function handleBrowser() {
-  const response = await authGuardedFetchers.put('/api/users/logout')
+  const response = await authGuardedFetchers.put<{ redirectUrl: string }>(
+    '/api/users/logout',
+  )
 
   if (response === 'NEED_LOGIN') {
     return
   }
 
-  if (response.status === 301 || response.status === 302) {
-    const redirectLocation = response.headers.get('Location')
+  const isNolConnectedUser =
+    response.ok && response.status === 200 && !!response.parsedBody.redirectUrl
+
+  if (isNolConnectedUser) {
+    const redirectLocation = response.parsedBody.redirectUrl
 
     if (!redirectLocation) {
       captureHttpError(response)
@@ -51,6 +56,7 @@ async function handleBrowser() {
     const redirectUrl = getRedirectUrl(redirectLocation)
 
     window.location.href = redirectUrl
+    return
   }
 
   window.location.reload()
