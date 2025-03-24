@@ -1,6 +1,8 @@
 import { useState, ForwardedRef, forwardRef } from 'react'
 import { CSSProp } from 'styled-components'
 
+import ArrowTopIcon from '../icons/arrow-top-icon'
+
 import {
   Container,
   ContentContainer,
@@ -60,7 +62,9 @@ function ReservationInfoImpl(
               <ArrowButton
                 expanded={expanded}
                 onClick={() => setExpanded(!expanded)}
-              />
+              >
+                <ArrowTopIcon />
+              </ArrowButton>
             ) : null}
           </TitleContainer>
           {hasDetails && (

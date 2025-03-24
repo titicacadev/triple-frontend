@@ -111,10 +111,11 @@ export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   flex-shrink: 0;
   width: 12px;
   height: 12px;
-  background: url('https://tour-web-assets.interparkcdn.net/assets/btms/web/icon/arrow-down.png')
-    no-repeat center;
-  background-size: 12px 12px;
-  transform: rotate(${({ expanded }) => (expanded ? '180deg' : '0deg')});
+  display: flex;
+
+  & > svg {
+    transform: rotate(${({ expanded }) => (expanded ? '180deg' : '0deg')});
+  }
 `
 
 export type LabelColor = 'blue' | 'red' | 'gray'
