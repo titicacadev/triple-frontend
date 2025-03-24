@@ -1,15 +1,26 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Container as BaseContainer } from '@titicaca/tds-ui'
+
+import TalkIconBase from '../icons/talk-icon'
 
 import { expiredTheme } from './theme-provider'
 
-export const ButtonIcon = styled.div<{ src: string }>`
+const buttonIconCss = css`
   width: 16px;
   height: 16px;
-  background-image: url(${({ src }) => src});
-  background-size: 16px 16px;
   display: inline-block;
   vertical-align: text-top;
+`
+
+export const TalkIcon = styled(TalkIconBase)`
+  ${buttonIconCss}
+`
+
+export const ButtonIcon = styled.div<{ src: string }>`
+  ${buttonIconCss}
+
+  background-image: url(${({ src }) => src});
+  background-size: 16px 16px;
 `
 
 export const Button = styled.button.attrs({ type: 'button' })`
@@ -25,6 +36,10 @@ export const Button = styled.button.attrs({ type: 'button' })`
     (theme.expired || expiredTheme).button.backgroundColor};
 
   ${ButtonIcon} {
+    margin-right: 6px;
+  }
+
+  ${TalkIcon} {
     margin-right: 6px;
   }
 `
