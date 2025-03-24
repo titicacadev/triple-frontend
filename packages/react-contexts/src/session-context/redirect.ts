@@ -7,7 +7,7 @@ export function getRedirectUrl(href: string) {
   const redirectUrl = generateUrl(
     {
       query: qs.stringify({
-        redirect: currentUrl,
+        redirectUrl: currentUrl,
       }),
     },
     href,

@@ -10,7 +10,7 @@ describe('getRedirectUrl', () => {
   it('should return redirect url with redirect query string', () => {
     const result = getRedirectUrl('https://example.com')
     expect(result).toBe(
-      `https://example.com?redirect=${encodeURIComponent(
+      `https://example.com?redirectUrl=${encodeURIComponent(
         window.location.href,
       )}`,
     )
@@ -19,7 +19,7 @@ describe('getRedirectUrl', () => {
   it('should return redirect url with redirect query string and original href query string', () => {
     const result = getRedirectUrl('https://example.com?code=123')
     expect(result).toBe(
-      `https://example.com?code=123&redirect=${encodeURIComponent(
+      `https://example.com?code=123&redirectUrl=${encodeURIComponent(
         window.location.href,
       )}`,
     )
