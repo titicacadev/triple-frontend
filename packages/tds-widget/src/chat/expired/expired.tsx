@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, PropsWithChildren } from 'react'
 
-import { Button, Container, ButtonIcon } from './elements'
+import { Button, Container, TalkIcon } from './elements'
 
 interface ExpiredProps {
   description?: string
@@ -15,7 +15,7 @@ const DEFAULT_DESCRIPTION = `추가 문의가 필요하신 경우\n파트너에�
 export function ExpiredImpl(
   {
     description = DEFAULT_DESCRIPTION,
-    onChatRestart,
+    onChatRestart = () => {},
     children,
     ...props
   }: PropsWithChildren<ExpiredProps>,
@@ -28,7 +28,7 @@ export function ExpiredImpl(
       {onChatRestart ? (
         <Button onClick={onChatRestart}>
           {/* TODO: 아이콘 변경 */}
-          <ButtonIcon src="https://triple-dev.titicaca-corp.com/tna/static/images/icon_chat.svg" />
+          <TalkIcon />
           새로운 채팅 시작
         </Button>
       ) : null}
