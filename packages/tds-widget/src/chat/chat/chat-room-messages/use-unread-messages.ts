@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { useRoom } from '../room-context'
-import {
-  CreatedChatRoomInterface,
-  isCreatedChatRoom,
-  OtherUnreadInterface,
-  UserType,
-} from '../../types'
+import { isCreatedChatRoom, OtherUnreadInterface, UserType } from '../../types'
 import { shouldUseLegacyMemberId } from '../../utils'
 
 import { useChatApiService } from './chat-message-context'
@@ -76,7 +71,7 @@ export function useUnreadMessages<T = UserType>() {
   // TODO pusher unread 이벤트 api 리팩토링 완료시 해당 코드를 삭제합니다.
   useEffect(() => {
     handleUnreadEvent()
-  }, [(room as CreatedChatRoomInterface).id, lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [(room as { id?: string }).id, lastMessageId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     calculateUnreadCount,
