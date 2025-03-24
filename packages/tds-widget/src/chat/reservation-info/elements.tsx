@@ -8,6 +8,7 @@ import styled, { css } from 'styled-components'
 import { reservationInfoTheme } from './theme-provider'
 
 const RESERVATION_INFO_MIN_CONTENT_HEIGHT = 62
+const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 21
 
 export const Container = styled(BaseContainer)`
   padding: 11px 15px;
@@ -67,10 +68,7 @@ export const Details = styled.dl<{ expanded: boolean }>`
 export const ContentContainer = styled(BaseContainer)`
   display: flex;
   flex-direction: row;
-
-  &:not(:has(${Details})) {
-    align-items: center;
-  }
+  position: relative;
 `
 
 export const Thumbnail = styled.img<{ small?: boolean }>`
@@ -82,33 +80,21 @@ export const Thumbnail = styled.img<{ small?: boolean }>`
 
 export const DetailContainer = styled(BaseContainer)<{ expanded: boolean }>`
   max-height: ${({ expanded }) =>
-    expanded ? 'none' : `${RESERVATION_INFO_MIN_CONTENT_HEIGHT}px`};
+    expanded ? 'none' : `${PRODUCT_INFO_MIN_CONTENT_HEIGHT}px`};
   overflow: hidden;
   flex: 1;
-`
 
-export const TitleContainer = styled(BaseContainer)`
-  display: flex;
-  flex-direction: row;
-  gap: 6px;
-`
-
-export const Title = styled(Text).attrs({
-  size: 14,
-  lineHeight: '19px',
-  bold: true,
-})`
-  padding-top: 2px;
-  color: ${({ theme }) =>
-    (theme.reservationInfo || reservationInfoTheme).titleColor};
-  flex-grow: 1;
+  ${Details} {
+    max-height: ${({ expanded }) =>
+      expanded ? 'none' : `${RESERVATION_INFO_MIN_CONTENT_HEIGHT}px`};
+  }
 `
 
 export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   expanded: boolean
 }>`
-  margin-top: 5px;
-  flex-shrink: 0;
+  position: absolute;
+  right: 0;
   width: 12px;
   height: 12px;
   display: flex;
@@ -116,6 +102,27 @@ export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   & > svg {
     transform: rotate(${({ expanded }) => (expanded ? '180deg' : '0deg')});
   }
+`
+
+export const TitleContainer = styled(BaseContainer)`
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+
+  &:has(${ArrowButton}) {
+    padding-right: 16px;
+  }
+`
+
+export const Title = styled(Text).attrs({
+  size: 14,
+  lineHeight: '19px',
+  bold: true,
+})`
+  padding-top: 1.5px;
+  color: ${({ theme }) =>
+    (theme.reservationInfo || reservationInfoTheme).titleColor};
+  flex-grow: 1;
 `
 
 export type LabelColor = 'blue' | 'red' | 'gray'

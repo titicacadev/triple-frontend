@@ -1,4 +1,11 @@
-import { useState, ForwardedRef, forwardRef } from 'react'
+import {
+  useState,
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react'
 import { CSSProp } from 'styled-components'
 
 import ArrowTopIcon from '../icons/arrow-top-icon'
@@ -15,6 +22,9 @@ import {
   Details,
   type LabelColor,
 } from './elements'
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export interface ReservationInfoProps {
   thumbnail?: string
@@ -41,10 +51,23 @@ function ReservationInfoImpl(
   const hasDetails = details.length > 0
 
   const [expanded, setExpanded] = useState(false)
+  const [expandable, setExpandable] = useState(hasDetails)
+
+  const titleRef = useRef<HTMLDivElement>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    if (titleRef.current && !expandable) {
+      setExpandable(
+        titleRef.current.scrollHeight > titleRef.current.clientHeight,
+      )
+    }
+  }, [])
 
   return (
     <Container ref={ref} {...props}>
-      <ContentContainer>
+      <ContentContainer
+        css={{ alignItems: hasDetails || expanded ? 'flex-start' : 'center' }}
+      >
         {thumbnail ? <Thumbnail src={thumbnail} small={!hasDetails} /> : null}
         <DetailContainer expanded={expanded}>
           <TitleContainer>
@@ -54,14 +77,15 @@ function ReservationInfoImpl(
               </Label>
             ) : null}
             {title ? (
-              <Title maxLines={hasDetails ? (expanded ? undefined : 1) : 2}>
+              <Title ref={titleRef} maxLines={expanded ? undefined : 1}>
                 {title}
               </Title>
             ) : null}
-            {hasDetails ? (
+            {expandable ? (
               <ArrowButton
                 expanded={expanded}
                 onClick={() => setExpanded(!expanded)}
+                css={{ top: hasDetails ? '5px' : '10px' }}
               >
                 <ArrowTopIcon />
               </ArrowButton>
