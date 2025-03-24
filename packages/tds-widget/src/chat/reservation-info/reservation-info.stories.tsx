@@ -36,7 +36,8 @@ export const WithDetails: StoryFn<ReservationInfoProps> = () => (
 )
 
 const PRODUCT_INFO: ReservationInfoProps = {
-  title: '누사페나다 데이 크루즈&섬 투어 (발리 출발)',
+  title:
+    '누사페나다 데이 크루즈&섬 투어 (발리 출발)누사페나다 데이 크루즈&섬 투어 (발리 출발)누사페나다 데이 크루즈&섬 투어 (발리 출발)',
   thumbnail:
     'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/42c71ad6-78bd-4f27-b777-cdb508b70ade',
 }
