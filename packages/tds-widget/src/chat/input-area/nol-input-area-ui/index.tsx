@@ -115,6 +115,7 @@ export function NolInputAreaUI({
   color,
   placeholderColor,
   activeButtonColor,
+  ...props
 }: NolInputAreaUIProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -124,7 +125,7 @@ export function NolInputAreaUI({
   }
 
   return (
-    <InputAreaContainer>
+    <InputAreaContainer {...props}>
       <UploadImageButtonWrapper>
         <UploadImageButton htmlFor="image_upload">
           <SelectPhotoIcon />
