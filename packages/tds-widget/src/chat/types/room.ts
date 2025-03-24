@@ -94,6 +94,9 @@ interface PreDirectRoomInterface<T = RoomType, U = UserType> {
   other?: PreDirectRoomMemberInterface<U>
 }
 
+/**
+ * 초대 링크로 진입한 생성되지 않은 RoomInterface
+ */
 export interface InvitationRoomInterface<
   T = RoomType,
   V = ChatRoomMetadata<T>,
@@ -155,6 +158,10 @@ export type ChatRoomInterface<
   | InvitationRoomInterface<T, V>
   | PreDirectRoomInterface<T, U>
 
+/**
+ * @deprecated
+ * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방인지 확인합니다.
+ */
 export function isPreDirectRoom<
   T = RoomType,
   U = UserType,
@@ -163,6 +170,9 @@ export function isPreDirectRoom<
   return !!(room as { preDirectRoom?: boolean }).preDirectRoom
 }
 
+/**
+ * 생성된 채팅방인지 확인합니다.
+ */
 export function isCreatedChatRoom<
   T = RoomType,
   U = UserType,
