@@ -86,7 +86,7 @@ export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
  * @deprecated
  * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방
  */
-interface PreDirectRoomInterface<T = RoomType, U = UserType> {
+export interface PreDirectRoomInterface<T = RoomType, U = UserType> {
   preDirectRoom: true
   type: T
   members: PreDirectRoomMemberInterface<U>[]
