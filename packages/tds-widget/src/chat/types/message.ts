@@ -1,3 +1,5 @@
+import { UnsentMessage } from '../chat'
+
 import { MetaDataInterface } from './image'
 import {
   ChatRoomMemberInterface,
@@ -110,12 +112,11 @@ export interface ChatMessageInterface<T = UserType> {
   sender: ChatRoomMemberInterface<T>
 }
 
-export type WelcomeMessageInterface<T = UserType> = Omit<
-  ChatMessageInterface<T>,
-  'roomId'
-> & {
-  roomId?: string
-}
+export type WelcomeMessageInterface<T = UserType> = UnsentMessage<
+  Omit<ChatMessageInterface<T>, 'roomId'> & {
+    roomId?: string
+  }
+>
 
 export type CustomerBookingStatus =
   | 'BOOKED'
