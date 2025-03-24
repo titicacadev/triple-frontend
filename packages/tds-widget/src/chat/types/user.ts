@@ -71,6 +71,10 @@ export interface ChatRoomMemberInterface<T = UserType>
   roomMemberId: string
 }
 
+/**
+ * @deprecated
+ * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방의 RoomMemberInterface
+ */
 export interface PreDirectRoomMemberInterface<T = UserType>
   extends Pick<ChatUserInterface<T>, 'id' | 'type' | 'profile'> {
   /**
