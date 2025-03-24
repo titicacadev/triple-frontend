@@ -5,6 +5,7 @@ import { Button, Container, TalkIcon } from './elements'
 interface ExpiredProps {
   description?: string
   onChatRestart?: () => void
+  restartButtonText?: string
 }
 
 const DEFAULT_DESCRIPTION = `추가 문의가 필요하신 경우\n파트너에게 새로운 채팅으로 문의해주세요.`
@@ -16,6 +17,7 @@ export function ExpiredImpl(
   {
     description = DEFAULT_DESCRIPTION,
     onChatRestart = () => {},
+    restartButtonText,
     children,
     ...props
   }: PropsWithChildren<ExpiredProps>,
@@ -29,7 +31,7 @@ export function ExpiredImpl(
         <Button onClick={onChatRestart}>
           {/* TODO: 아이콘 변경 */}
           <TalkIcon />
-          새로운 채팅 시작
+          {restartButtonText || '새로운 채팅 시작하기'}
         </Button>
       ) : null}
       {children}
