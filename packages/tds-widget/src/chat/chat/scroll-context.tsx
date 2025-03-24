@@ -3,6 +3,7 @@ import {
   Dispatch,
   MutableRefObject,
   SetStateAction,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -11,6 +12,9 @@ import {
 } from 'react'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from './constants'
+
+const useLayoutEffectSafeInSsr =
+  typeof window === 'undefined' ? useEffect : useLayoutEffect
 
 export interface ScrollOptions {
   /** 최하단으로 이동하기 위해 페이지네이션 fetching이 필요할 경우 true로 설정해주세요. */
@@ -92,7 +96,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     setScrollPrevented(true)
   }
 
-  useLayoutEffect(() => {
+  useLayoutEffectSafeInSsr(() => {
     if (scrollY !== null && chatContainerRef.current && !scrollPrevented) {
       /* 
         iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가합니다.
@@ -109,7 +113,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatContainerRef, scrollY])
 
-  useLayoutEffect(() => {
+  useLayoutEffectSafeInSsr(() => {
     if (scrollBy !== null && chatContainerRef.current && !scrollPrevented) {
       chatContainerRef.current.scrollBy({ top: scrollBy })
       setScrollBy(null)
