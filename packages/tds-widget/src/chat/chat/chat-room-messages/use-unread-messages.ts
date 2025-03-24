@@ -17,7 +17,7 @@ export function useUnreadMessages<T = UserType>() {
   const [lastMessageId, setLastMessageId] = useState<number | undefined>(
     isCreatedChatRoom(room) ? Number(room.lastMessageId) : 0,
   )
-  const [otherReadInfo, setOtherReadInfo] = useState<OtherUnreadInterface[]>([]) // 이벤트 챗에 없음
+  const [otherReadInfo, setOtherReadInfo] = useState<OtherUnreadInterface[]>([])
 
   const api = useChatApiService()
 
