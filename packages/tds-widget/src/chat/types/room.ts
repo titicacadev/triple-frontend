@@ -2,7 +2,7 @@ import { ChatChannelInfo, ValueOf } from './base'
 import { ChatMessageInterface } from './message'
 import {
   ChatRoomMemberInterface,
-  ChatUserInterface,
+  PreDirectRoomMemberInterface,
   TripleChatUserInterface,
   UserType,
 } from './user'
@@ -86,86 +86,60 @@ export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
  * @deprecated
  * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방
  */
-interface DirectChatRoomInterface<
-  T = RoomType,
-  U = UserType,
-  V = ChatRoomMetadata<T>,
-> extends BaseChatRoomInterface<T, U, V> {
-  members: ChatRoomMemberInterface<U>[]
+interface PreDirectRoomInterface<T = RoomType, U = UserType> {
+  preDirectRoom: true
+  type: T
+  members: PreDirectRoomMemberInterface<U>[]
+  me: PreDirectRoomMemberInterface<U>
+  other?: PreDirectRoomMemberInterface<U>
 }
 
-interface BaseChatRoomInterface<
+export interface InvitationRoomInterface<
   T = RoomType,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  U = UserType,
   V = ChatRoomMetadata<T>,
 > {
   type: T
   metadata?: V
 }
 
-export interface CreatedChatRoomDetailInterface<
+/**
+ * nol-chat 서버 응답으로 받는 RoomInterface
+ */
+export interface ChatRoomDetailInterface<
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
-> extends BaseChatRoomInterface<T, U, V> {
-  room: ChatRoomDetailRoomInterface<T, U>
+> {
+  id: string
+  type: T
+  name?: string
+  lastMessageId: number
+  isDirect: boolean
+  createdAt: string
+  privateChannel: boolean
+  channel: ChatChannelInfo
   /**
    * 채팅방 만료 여부
    */
   expired: boolean
   memberCounts: number
   members: ChatRoomMemberInterface<U>[]
+  metadata?: V
 }
-
-interface ChatRoomDetailRoomInterface<T = RoomType, U = UserType> {
-  id: string
-  type: T
-  name?: string
-  lastMessageId: number
-  lastMessage: ChatMessageInterface<U>
-  isDirect: boolean
-  createdAt: string
-  privateChannel: boolean
-  channel: ChatChannelInfo
-}
-
-export type CreatedChatRoomInterface<
-  T = RoomType,
-  U = UserType,
-  V = ChatRoomMetadata<T>,
-> = Omit<CreatedChatRoomDetailInterface<T, U, V>, 'room'> &
-  CreatedChatRoomDetailInterface<T, U, V>['room']
-
-/**
- * nol-chat 서버 응답으로 받는 RoomInterface
- */
-export type ChatRoomDetailInterface<
-  T = RoomType,
-  U = UserType,
-  V = ChatRoomMetadata<T>,
-> =
-  | BaseChatRoomInterface<T, U, V>
-  | CreatedChatRoomDetailInterface<T, U, V>
-  | DirectChatRoomInterface<T, U, V>
-
-interface ChatRoomListMemberInterface<T = UserType>
-  extends ChatRoomMemberInterface<T>,
-    Pick<ChatUserInterface<T>, 'id'> {}
 
 export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
   extends Pick<
-    CreatedChatRoomInterface<T, U>,
+    ChatRoomDetailInterface<T, U>,
     | 'id'
     | 'createdAt'
     | 'isDirect'
     | 'name'
     | 'lastMessageId'
-    | 'lastMessage'
     | 'type'
     | 'expired'
+    | 'members'
   > {
-  members: ChatRoomListMemberInterface[]
+  lastMessage: ChatMessageInterface<U>
   unreadCount?: number
 }
 
@@ -177,15 +151,23 @@ export type ChatRoomInterface<
   U = UserType,
   V = ChatRoomMetadata<T>,
 > =
-  | BaseChatRoomInterface<T, U, V>
-  | CreatedChatRoomInterface<T, U, V>
-  | DirectChatRoomInterface<T, U, V>
+  | ChatRoomDetailInterface<T, U, V>
+  | InvitationRoomInterface<T, V>
+  | PreDirectRoomInterface<T, U>
+
+export function isPreDirectRoom<
+  T = RoomType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+>(room: ChatRoomInterface<T, U, V>): room is PreDirectRoomInterface<T, U> {
+  return !!(room as { preDirectRoom?: boolean }).preDirectRoom
+}
 
 export function isCreatedChatRoom<
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
->(room: ChatRoomInterface<T, U, V>): room is CreatedChatRoomInterface<T, U, V> {
+>(room: ChatRoomInterface<T, U, V>): room is ChatRoomDetailInterface<T, U, V> {
   return 'id' in room
 }
 
