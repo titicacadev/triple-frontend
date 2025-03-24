@@ -3,6 +3,7 @@ import { UnsentMessage } from '../chat'
 import { MetaDataInterface } from './image'
 import {
   ChatRoomMemberInterface,
+  PreDirectRoomMemberInterface,
   TripleChatRoomMemberInterface,
   UserType,
 } from './user'
@@ -113,8 +114,11 @@ export interface ChatMessageInterface<T = UserType> {
 }
 
 export type WelcomeMessageInterface<T = UserType> = UnsentMessage<
-  Omit<ChatMessageInterface<T>, 'roomId'> & {
+  Omit<ChatMessageInterface<T>, 'roomId' | 'sender'> & {
     roomId?: string
+    sender:
+      | ChatMessageInterface<T>['sender']
+      | PreDirectRoomMemberInterface<UserType>
   }
 >
 
