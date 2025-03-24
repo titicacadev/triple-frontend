@@ -67,7 +67,7 @@ export interface ChatUserInterface<T = UserType> {
  * nol-chat 서버 응답으로 받는 RoomMemberInterface
  */
 export interface ChatRoomMemberInterface<T = UserType>
-  extends Omit<ChatUserInterface<T>, 'id' | 'channel'> {
+  extends Omit<ChatUserInterface<T>, 'id' | 'channel' | 'createdAt'> {
   roomMemberId: string
 }
 
