@@ -50,7 +50,9 @@ export function InBrowserSessionContextProvider({
   }, [])
 
   const logout = useCallback<SessionControllers['logout']>(async () => {
-    const response = await authGuardedFetchers.put('/api/users/logout')
+    const response = await authGuardedFetchers.put<{ redirectUrl: string }>(
+      '/api/users/logout',
+    )
 
     clearUserState()
 
@@ -58,8 +60,13 @@ export function InBrowserSessionContextProvider({
       return
     }
 
-    if (response.status === 301 || response.status === 302) {
-      const redirectLocation = response.headers.get('Location')
+    const isNolConnectedUser =
+      response.ok &&
+      response.status === 200 &&
+      !!response.parsedBody.redirectUrl
+
+    if (isNolConnectedUser) {
+      const redirectLocation = response.parsedBody.redirectUrl
 
       if (!redirectLocation) {
         captureHttpError(response)
@@ -70,6 +77,7 @@ export function InBrowserSessionContextProvider({
       const redirectUrl = getRedirectUrl(redirectLocation)
 
       window.location.href = redirectUrl
+      return
     }
 
     window.location.reload()
