@@ -9,13 +9,14 @@ import { InputAreaUIProps } from '../input-area-ui'
 
 const MAX_TEXT_LENGTH = 1000
 const TEXTAREA_MIN_HEIGHT = 22
-const TEXTAREA_MAX_HEIGHT = 100
+const TEXTAREA_MAX_HEIGHT = 110
+export const INPUT_AREA_HEIGHT = 60
 
 const InputAreaContainer = styled(Container)`
   padding: 8px 16px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   gap: 12px;
 `
 
@@ -57,11 +58,18 @@ const SendButton = styled.button<{
   cursor: pointer;
   flex-shrink: 0;
   font-size: 0;
+  align-self: flex-end;
 
   > img {
     width: 20px;
     height: 20px;
   }
+`
+
+const UploadImageButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 44px;
 `
 
 const UploadImageButton = styled.label`
@@ -117,17 +125,19 @@ export function NolInputAreaUI({
 
   return (
     <InputAreaContainer>
-      <UploadImageButton htmlFor="image_upload">
-        <SelectPhotoIcon />
-      </UploadImageButton>
-      <FileInput
-        id="image_upload"
-        type="file"
-        name="file"
-        accept="image/png, image/jpeg"
-        multiple={multipleImageUpload}
-        onChange={onImageUpload}
-      />
+      <UploadImageButtonWrapper>
+        <UploadImageButton htmlFor="image_upload">
+          <SelectPhotoIcon />
+        </UploadImageButton>
+        <FileInput
+          id="image_upload"
+          type="file"
+          name="file"
+          accept="image/png, image/jpeg"
+          multiple={multipleImageUpload}
+          onChange={onImageUpload}
+        />
+      </UploadImageButtonWrapper>
       <InputContainer>
         <TextArea
           onChange={onTextAreaChange}
