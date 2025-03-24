@@ -17,7 +17,7 @@ import {
 } from './elements'
 
 export interface ReservationInfoProps {
-  thumbnail: string
+  thumbnail?: string
   label?: {
     text: string
     color?: LabelColor
