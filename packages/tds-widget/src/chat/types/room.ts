@@ -184,7 +184,7 @@ export function isCreatedChatRoom<
 /**
  * @deprecated
  * 기존 triple-chat에서 사용하는 RoomInterface
- * nol-chat으로 변경 시 ChatRoomInterface를 사용해 주세요.
+ * nol-chat으로 변경 시 ChatRoomDetailInterface를 사용해 주세요.
  */
 export interface RoomInterface<T = RoomType, U = UserType> {
   id: string
