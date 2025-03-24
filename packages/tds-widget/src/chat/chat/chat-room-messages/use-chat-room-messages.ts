@@ -4,10 +4,10 @@ import DOMPurify from 'dompurify'
 import {
   ChatMessageInterface,
   ChatMessagePayloadType,
+  ChatRoomDetailInterface,
   ChatRoomInterface,
   ChatRoomMemberInterface,
   ChatRoomUser,
-  CreatedChatRoomInterface,
   isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
@@ -28,7 +28,7 @@ import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
-  createRoom?: () => Promise<CreatedChatRoomInterface | undefined>
+  createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
 }
 
 export function useChatMessages<T = UserType>({
@@ -145,7 +145,7 @@ export function useChatMessages<T = UserType>({
     me,
     onError,
   }: {
-    room: CreatedChatRoomInterface
+    room: ChatRoomDetailInterface
     me: ChatRoomUser<T>
     onError?: () => void
   }) {
@@ -260,7 +260,7 @@ export function useChatMessages<T = UserType>({
     /** 첫 렌더링 시에만 자동 메세지를 보내도록 합니다. */
     if (isWelcomeMessagePendingRef.current) {
       await handleSendWelcomeMessage({
-        room: currentRoom as CreatedChatRoomInterface,
+        room: currentRoom as ChatRoomDetailInterface,
         me: roomMemberMe,
         onError,
       })
@@ -487,11 +487,11 @@ export function useChatMessages<T = UserType>({
 }
 
 function findSenderFromRoomMembers<T>(
-  room: CreatedChatRoomInterface,
+  room: ChatRoomDetailInterface,
   me: ChatRoomUser<T>,
   sender?: ChatRoomMemberInterface<T>,
 ) {
-  if (sender && 'members' in room) {
+  if (sender) {
     return room.members.find(
       (member) =>
         getUserIdentifier(member) === getUserIdentifier(sender) ||
