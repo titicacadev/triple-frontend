@@ -3,7 +3,7 @@ import { DefaultTheme, ThemeProvider } from 'styled-components'
 
 export const expiredTheme = {
   backgroundColor: 'rgba(41, 41, 45, 0.1)',
-  title: 'rgba(41, 41, 45, 1)',
+  titleColor: 'rgba(41, 41, 45, 1)',
   button: {
     color: 'rgba(41, 41, 45, 1)',
     backgroundColor: 'rgba(255, 255, 255, 1)',
