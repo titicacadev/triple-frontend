@@ -30,7 +30,11 @@ export function clientRefreshSessionMiddleware(next: NextMiddleware) {
       const apiResponse = await fetch(request)
 
       if (apiResponse.status !== 401) {
-        return response
+        return new NextResponse(apiResponse.body, {
+          status: apiResponse.status,
+          statusText: apiResponse.statusText,
+          headers: apiResponse.headers,
+        })
       }
 
       const options: RequestOptions = {
