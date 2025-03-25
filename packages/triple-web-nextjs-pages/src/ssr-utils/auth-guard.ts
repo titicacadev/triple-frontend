@@ -3,13 +3,9 @@ import { get } from '@titicaca/fetcher'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
 import { checkClientApp } from '@titicaca/triple-web-utils'
+import { SessionUser } from '@titicaca/triple-web'
 
 import { getSessionAvailability } from './get-session-availability'
-
-interface UserResponse {
-  uid: string
-  // TODO
-}
 
 interface AuthGuardOptions {
   authType?: string
@@ -26,7 +22,7 @@ const NON_MEMBER_REGEX = /^_PH/
 export function authGuard<Props>(
   gssp: (
     ctx: GetServerSidePropsContext & {
-      customContext?: { user?: UserResponse }
+      customContext?: { user?: SessionUser }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
   options?: AuthGuardOptions,
@@ -48,7 +44,7 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const response = await get<UserResponse>('/api/users/me', {
+    const response = await get<SessionUser>('/api/users/me', {
       req,
       retryable: true,
     })
