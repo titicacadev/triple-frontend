@@ -84,7 +84,7 @@ export const DetailContainer = styled(BaseContainer)<{ expanded: boolean }>`
   overflow: hidden;
   flex: 1;
 
-  ${Details} {
+  &:has(${Details}) {
     max-height: ${({ expanded }) =>
       expanded ? 'none' : `${RESERVATION_INFO_MIN_CONTENT_HEIGHT}px`};
   }
