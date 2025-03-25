@@ -9,7 +9,7 @@ import {
   type ChatMessagesProviderProps,
 } from './chat-message-context'
 
-interface ChatRoomMessagesProviderProps<
+export interface ChatRoomMessagesProviderProps<
   T = ChatRoomInterface,
   U = ChatUserInterface,
   V = UserType,
