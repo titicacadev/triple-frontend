@@ -4,9 +4,18 @@ import styled from 'styled-components'
 
 import { FooterDropdownButton } from '../type'
 
-import { buttonCss } from './button'
+import { buttonCss, buttonFlexItemCss } from './button'
 
 const DROPDOWN_INITIAL_HEIGHT = 174
+
+const DropdownContainer = styled.div`
+  position: relative;
+  ${buttonFlexItemCss}
+
+  > button {
+    width: 100%;
+  }
+`
 
 const DropdownOptions = styled.ul`
   position: absolute;
@@ -71,7 +80,7 @@ export function Dropdown({
 
   const { trackEvent } = useEventTrackingContext()
   return (
-    <div css={{ position: 'relative', flexShrink: 0 }}>
+    <DropdownContainer>
       <button
         ref={buttonRef}
         css={buttonCss}
@@ -112,6 +121,6 @@ export function Dropdown({
           ))}
         </DropdownOptions>
       ) : null}
-    </div>
+    </DropdownContainer>
   )
 }
