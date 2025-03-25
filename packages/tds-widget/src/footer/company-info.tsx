@@ -6,49 +6,17 @@ import {
   FlexBox,
   AccordionTitle,
 } from '@titicaca/tds-ui'
-import {
-  useTrackEvent,
-  useSessionAvailability,
-  useLogin,
-  useLogout,
-} from '@titicaca/triple-web'
+import { useTrackEvent } from '@titicaca/triple-web'
 import { Dispatch, SetStateAction, Fragment } from 'react'
 
-import { FooterText } from './type'
-
-const MAX_PHONE_WIDTH = 360
+import { FooterInfo, FooterText } from './type'
+import { MAX_PHONE_WIDTH } from './constants'
+import { ButtonArea } from './button-area'
 
 const AccordionHeader = styled(FlexBox)`
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
     flex-direction: column-reverse;
     align-items: flex-start;
-  }
-`
-
-const Button = styled.a`
-  height: 32px;
-  padding: 9px 12px;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 13px;
-  color: var(--color-gray600);
-  text-align: center;
-  border: 1px solid var(--color-gray200);
-  border-radius: 4px;
-  background-color: rgba(250, 250, 250, 1);
-
-  &:first-child {
-    margin-right: 6px;
-  }
-
-  img {
-    width: 16px;
-    margin-left: 6px;
-    vertical-align: middle;
-  }
-
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    width: 100%;
   }
 `
 
@@ -71,19 +39,13 @@ const AccordionArrow = styled.img`
   height: 15px;
 `
 
-const ButtonContainer = styled(FlexBox)`
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-`
-
 const LinkContainer = styled.a`
   text-decoration: underline;
 `
 
 interface CompanyInfoProps {
   companyTexts: Array<FooterText[]>
+  buttons?: FooterInfo['buttons']
   hideAppDownloadButton?: boolean
   businessExpanded: boolean
   setBusinessExpanded: Dispatch<SetStateAction<boolean>>
@@ -91,13 +53,11 @@ interface CompanyInfoProps {
 
 export function CompanyInfo({
   companyTexts,
+  buttons,
   hideAppDownloadButton = false,
   businessExpanded,
   setBusinessExpanded,
 }: CompanyInfoProps) {
-  const sessionAvailable = useSessionAvailability()
-  const login = useLogin()
-  const logout = useLogout()
   const trackEvent = useTrackEvent()
 
   return (
@@ -119,47 +79,8 @@ export function CompanyInfo({
           />
         </Title>
 
-        {!hideAppDownloadButton ? (
-          <ButtonContainer flex>
-            <Button
-              as="button"
-              type="button"
-              onClick={() => {
-                if (sessionAvailable) {
-                  logout()
-                  return
-                }
-
-                trackEvent({
-                  ga: ['푸터_로그인'],
-                  fa: {
-                    action: '푸터_로그인',
-                  },
-                })
-                login()
-              }}
-            >
-              {sessionAvailable === true ? '로그아웃' : '로그인'}
-            </Button>
-
-            <Button
-              href="https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain"
-              onClick={() => {
-                trackEvent({
-                  ga: ['푸터_트리플앱설치'],
-                  fa: {
-                    action: '푸터_트리플앱설치',
-                  },
-                })
-              }}
-            >
-              <span>트리플 앱</span>
-              <img
-                src="https://assets.triple.guide/images/ico_download@3x.png"
-                alt="app download"
-              />
-            </Button>
-          </ButtonContainer>
+        {!hideAppDownloadButton && !!buttons?.length ? (
+          <ButtonArea buttons={buttons} />
         ) : null}
       </AccordionHeader>
 
