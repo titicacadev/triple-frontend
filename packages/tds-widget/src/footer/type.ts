@@ -4,6 +4,7 @@ export interface FooterInfo {
   links: FooterLink[]
   extraLinks: FooterLink[]
   awards: FooterAward[]
+  familySites?: FooterLink[]
 }
 
 export interface FooterText {
