@@ -72,7 +72,7 @@ SessionContextProvider.getInitialProps = async function (
     }
   }
 
-  const user = await fetchUser()
+  const user = await fetchUser(req)
 
   return { type, initialSessionAvailability, initialUser: user }
 }
