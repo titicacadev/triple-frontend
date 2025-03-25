@@ -44,26 +44,47 @@
       "imageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg"
     }
   ],
-  "familySites": [
+  "buttons": [
     {
-      "label": "NOL 인터파크",
-      "url": "https://nol.interpark.com"
+      "type": "button",
+      "key": "login",
+      "faEventAction": "푸터_로그인",
+      "hidden": true
     },
     {
-      "label": "트리플",
-      "url": "https://triple.guide"
+      "type": "link",
+      "key": "app-download",
+      "label": "트리플 앱",
+      "href": "https://triple.onelink.me/aZP6?pid=intro_web&af_dp=triple%3A%2F%2F%2Fmain",
+      "faEventAction": "푸터_트리플앱설치",
+      "iconSrc": "https://assets.triple.guide/images/ico_download@3x.png"
     },
     {
-      "label": "인터파크 글로벌",
-      "url": "https://www.globalinterpark.com"
-    },
-    {
-      "label": "NOL 파트너센터",
-      "url": "https://partner.yanolja.com/intro"
-    },
-    {
-      "label": "NOL 광고센터",
-      "url": "https://nol.interpark.com"
+      "type": "dropdown",
+      "key": "family-site",
+      "label": "Family Site",
+      "options": [
+        {
+          "label": "NOL 인터파크",
+          "url": "https://nol.interpark.com"
+        },
+        {
+          "label": "트리플",
+          "url": "https://triple.guide"
+        },
+        {
+          "label": "인터파크 글로벌",
+          "url": "https://www.globalinterpark.com"
+        },
+        {
+          "label": "NOL 파트너센터",
+          "url": "https://partner.yanolja.com/intro"
+        },
+        {
+          "label": "NOL 광고센터",
+          "url": "https://nol.interpark.com"
+        }
+      ]
     }
   ]
 }
