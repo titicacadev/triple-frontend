@@ -43,5 +43,27 @@
       "alt": "국제표준 정보보호 인증마크 ISO27001, ISO 27701",
       "imageUrl": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg"
     }
+  ],
+  "familySites": [
+    {
+      "label": "NOL 인터파크",
+      "url": "https://nol.interpark.com"
+    },
+    {
+      "label": "트리플",
+      "url": "https://triple.guide"
+    },
+    {
+      "label": "인터파크 글로벌",
+      "url": "https://www.globalinterpark.com"
+    },
+    {
+      "label": "NOL 파트너센터",
+      "url": "https://partner.yanolja.com/intro"
+    },
+    {
+      "label": "NOL 광고센터",
+      "url": "https://nol.interpark.com"
+    }
   ]
 }
