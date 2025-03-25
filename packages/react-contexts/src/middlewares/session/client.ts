@@ -1,10 +1,12 @@
-import { RequestOptions } from '@titicaca/fetcher'
+import { isTripleHref, RequestOptions } from '@titicaca/fetcher'
 import {
   NextFetchEvent,
   NextMiddleware,
   NextRequest,
   NextResponse,
 } from 'next/server'
+
+import { getDomain } from '../utils/get-domain'
 
 import { getSessionRefreshResponse } from './refresh-session'
 
@@ -17,11 +19,22 @@ export function clientRefreshSessionMiddleware(next: NextMiddleware) {
     const url = request.nextUrl
     const headers = request.headers
 
-    if (url.pathname.startsWith('/api') && !isServerRequest(headers)) {
+    const requestFromTriple =
+      isTripleHref(request.url) || getDomain(request) === 'localhost'
+
+    if (
+      requestFromTriple &&
+      url.pathname.startsWith('/api') &&
+      !isServerRequest(headers)
+    ) {
       const apiResponse = await fetch(request)
 
       if (apiResponse.status !== 401) {
-        return response
+        return new NextResponse(apiResponse.body, {
+          status: apiResponse.status,
+          statusText: apiResponse.statusText,
+          headers: apiResponse.headers,
+        })
       }
 
       const options: RequestOptions = {

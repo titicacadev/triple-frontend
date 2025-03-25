@@ -4,7 +4,7 @@ import {
   NextRequest,
   NextResponse,
 } from 'next/server'
-import { get } from '@titicaca/fetcher'
+import { get, isTripleHref } from '@titicaca/fetcher'
 import {
   TP_SE,
   TP_TK,
@@ -12,6 +12,7 @@ import {
 } from '@titicaca/constants'
 
 import { parseApp } from '../../user-agent-context'
+import { getDomain } from '../utils/get-domain'
 
 import { getSessionRefreshResponse } from './refresh-session'
 
@@ -24,7 +25,11 @@ export function serverRefreshSessionMiddleware(next: NextMiddleware) {
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
-    if (!isPageUrl) {
+
+    const requestFromTriple =
+      isTripleHref(request.url) || getDomain(request) === 'localhost'
+
+    if (!requestFromTriple || !isPageUrl) {
       return response
     }
 
