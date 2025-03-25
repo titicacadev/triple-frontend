@@ -3,7 +3,10 @@ import deepmerge from 'deepmerge'
 
 import type { ChatUserInterface, ChatRoomInterface } from '../types'
 
-interface RoomProviderProps<T = ChatRoomInterface, U = ChatUserInterface> {
+export interface RoomProviderProps<
+  T = ChatRoomInterface,
+  U = ChatUserInterface,
+> {
   room: T
   me: U
 }
