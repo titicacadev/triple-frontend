@@ -51,10 +51,6 @@ export const ChatApiServiceContext = createContext<ChatApiService | null>(null)
 export const ChatMessagesContext =
   createContext<ChatMessagesContextValue | null>(null)
 
-/**
- *
- * room-context, scroll-context를 사용합니다.
- */
 export function ChatMessagesProvider<T = UserType>({
   welcomeMessages = [],
   messages: initialMessages = [],
