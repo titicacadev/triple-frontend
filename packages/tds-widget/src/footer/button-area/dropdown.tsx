@@ -60,7 +60,7 @@ export function Dropdown({
       const isButtonClicked =
         buttonRef.current && buttonRef.current.contains(event.target as Node)
 
-      if (isOptionsClicked && isButtonClicked) {
+      if (!isOptionsClicked && !isButtonClicked) {
         setDropdownOptionsVisible(false)
       }
     }
