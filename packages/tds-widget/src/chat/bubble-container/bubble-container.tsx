@@ -50,6 +50,7 @@ interface ContainerBaseProp {
     profile?: { css?: CSSProp }
     thanks?: { css?: CSSProp }
   }
+  bubbleInfoGap?: number
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -76,6 +77,7 @@ function SentBubbleContainer({
   messageRefCallback,
   children,
   bubbleInfoStyle,
+  bubbleInfoGap = 4,
   ...props
 }: SentBubbleContainerProp) {
   return (
@@ -105,7 +107,7 @@ function SentBubbleContainer({
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
-            css={{ marginRight: 4, textAlign: 'right' }}
+            css={{ marginRight: bubbleInfoGap, textAlign: 'right' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
@@ -164,6 +166,7 @@ function ReceivedBubbleContainer({
   onUserClick,
   children,
   bubbleInfoStyle,
+  bubbleInfoGap = 4,
   ...props
 }: ReceivedBubbleContainerProp) {
   return (
@@ -215,7 +218,7 @@ function ReceivedBubbleContainer({
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
             date={createdAt}
-            css={{ marginLeft: 4, textAlign: 'left' }}
+            css={{ marginLeft: bubbleInfoGap, textAlign: 'left' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
