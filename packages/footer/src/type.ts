@@ -37,7 +37,6 @@ export interface FooterButtonBase {
 
 export interface FooterDefaultButton extends FooterButtonBase {
   type: 'button'
-  key: string
 }
 
 export interface FooterLinkButton extends FooterButtonBase {
