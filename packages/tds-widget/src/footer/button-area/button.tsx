@@ -20,11 +20,20 @@ export const ButtonContainer = styled(FlexBox)`
   }
 `
 
+export const buttonFlexItemCss = css`
+  flex-shrink: 0;
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    width: 50%;
+  }
+`
+
 export const buttonCss = css`
+  ${buttonFlexItemCss}
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 2px;
-  flex-shrink: 0;
   height: 32px;
   padding: 9px 12px;
   font-size: 11px;
@@ -35,6 +44,12 @@ export const buttonCss = css`
   border: 1px solid var(--color-gray200);
   border-radius: 4px;
   background-color: rgba(250, 250, 250, 1);
+
+  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 16px;
+  }
 
   img {
     width: 16px;
