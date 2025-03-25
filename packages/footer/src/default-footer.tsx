@@ -6,6 +6,7 @@ import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
 import { ExtraLinkGroup } from './extra-link-group'
 import { useFooterInfo } from './use-footer-info'
+import { DEFAULT_FOOTER_MIN_HEIGHT } from './constants'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -25,7 +26,12 @@ function DefaultFooter({
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   if (!footerInfo) {
-    return null
+    return (
+      <FooterFrame
+        {...props}
+        css={{ minHeight: DEFAULT_FOOTER_MIN_HEIGHT, width: '100%' }}
+      />
+    )
   }
 
   return (
