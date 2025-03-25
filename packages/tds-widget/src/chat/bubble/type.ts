@@ -11,6 +11,8 @@ export interface BubbleCSSProp {
   maxWidthOffset?: number
   my: boolean
   hasArrow?: boolean
+  arrowRadius?: number
+  borderRadius?: number
 }
 
 export type BaseBubbleProp = BubbleCSSProp & {
