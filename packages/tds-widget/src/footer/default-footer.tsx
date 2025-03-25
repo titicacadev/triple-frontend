@@ -43,6 +43,7 @@ export function DefaultFooter({
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
+          buttons={footerInfo.buttons}
         />
         <Text
           size={11}
