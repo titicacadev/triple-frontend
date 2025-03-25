@@ -41,3 +41,18 @@ export const NoButtons: StoryObj<typeof Footer> = {
     },
   },
 }
+
+export const SkeletonFooter: StoryObj<typeof Footer> = {
+  parameters: {
+    msw: {
+      handlers: [
+        rest.get(
+          'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
+          async (req, res, ctx) => {
+            return res(ctx.json(null))
+          },
+        ),
+      ],
+    },
+  },
+}
