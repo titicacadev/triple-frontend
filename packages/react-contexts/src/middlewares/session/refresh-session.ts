@@ -10,6 +10,7 @@ import { SESSION_KEY as X_SOTO_SESSION } from '@titicaca/constants'
 import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import { applySetCookie } from '../utils/apply-set-cookie'
+import { getDomain } from '../utils/get-domain'
 
 export async function getSessionRefreshResponse({
   next,
@@ -28,9 +29,13 @@ export async function getSessionRefreshResponse({
   const refreshResponse = await post('/api/users/web-session/token', options)
 
   if (refreshResponse.ok) {
-    const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookieHeader = refreshResponse.headers.get('set-cookie')
 
-    if (setCookie) {
+    if (setCookieHeader) {
+      const setCookie = changeSetCookieDomainOnLocalhost(
+        request,
+        setCookieHeader,
+      )
       const response = (await next(request, event)) as NextResponse
       const setCookies = splitCookiesString(setCookie)
       setCookies.forEach((cookie) => {
@@ -44,4 +49,29 @@ export async function getSessionRefreshResponse({
       return response
     }
   }
+}
+
+function changeSetCookieDomainOnLocalhost(
+  request: NextRequest,
+  setCookie: string,
+) {
+  const domain = getDomain(request)
+  if (domain !== 'localhost') {
+    return setCookie
+  }
+  const setCookies = splitCookiesString(setCookie)
+  const domainChangedSetCookies = setCookies.map((cookie) => {
+    const { domain: cookieDomain, ...rest } = parseString(cookie)
+    return { domain, ...rest }
+  })
+
+  const updatedSetCookie = domainChangedSetCookies
+    .map((cookie) => {
+      const { name, value, ...rest } = cookie
+      return `${name}=${value}; ${Object.entries(rest)
+        .map(([key, val]) => `${key}=${val.toString()}`)
+        .join('; ')}`
+    })
+    .join(', ')
+  return updatedSetCookie
 }
