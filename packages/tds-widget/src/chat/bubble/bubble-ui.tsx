@@ -81,6 +81,8 @@ export type BubbleUIProps = (
   mediaUrlBase?: string
   hasArrow?: boolean
   alteredTextColor?: string
+  arrowRadius?: number
+  borderRadius?: number
 
   onOpenMenu?: () => void
 } & Pick<
