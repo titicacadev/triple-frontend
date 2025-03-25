@@ -100,7 +100,7 @@ export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   display: flex;
 
   & > svg {
-    transform: rotate(${({ expanded }) => (expanded ? '180deg' : '0deg')});
+    transform: rotate(${({ expanded }) => (expanded ? '0deg' : '180deg')});
   }
 `
 
