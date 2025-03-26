@@ -40,7 +40,7 @@ export type TextBubbleProp = {
    * CustomFullTextViewController 제공되는 경우, fullTextViewAvailable, openFullTextView, closeFullTextView, isFullTextViewOpen, onOpenMenu은 무시됩니다.
    */
   CustomFullTextViewController?: ComponentType<
-    PropsWithChildren<{ my: boolean }>
+    PropsWithChildren<{ my: boolean; id: string }>
   >
   fullTextViewAvailable?: boolean
   onOpenMenu?: () => void
