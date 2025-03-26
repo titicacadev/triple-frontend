@@ -147,6 +147,7 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
     showProfile?: boolean
     /** 유저 프로필 클릭 */
     onUserClick?: (userId: string, unregistered: boolean) => void
+    showProfilePhoto?: boolean
   }
 >
 
@@ -167,6 +168,7 @@ function ReceivedBubbleContainer({
   children,
   bubbleInfoStyle,
   bubbleInfoGap = 4,
+  showProfilePhoto = true,
   ...props
 }: ReceivedBubbleContainerProp) {
   return (
@@ -176,7 +178,7 @@ function ReceivedBubbleContainer({
       ref={() => messageRefCallback?.(id)}
       {...props}
     >
-      {showProfile ? (
+      {showProfile && showProfilePhoto ? (
         <ProfileImage
           src={
             user && !user.unregistered && user.photo
@@ -190,7 +192,7 @@ function ReceivedBubbleContainer({
           }
         />
       ) : null}
-      <Container css={{ marginLeft: 40 }}>
+      <Container css={{ marginLeft: showProfilePhoto ? 40 : 0 }}>
         {showProfile ? (
           <ProfileName
             size="mini"
