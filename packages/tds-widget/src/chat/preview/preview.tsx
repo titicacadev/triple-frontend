@@ -12,7 +12,7 @@ import {
 } from '../types'
 
 import { convertDateTime, getTextMessage } from './utils'
-import { ChatRoomMessage, ChatRoomThumbnail, ChatRoomTitle } from './elements'
+import { ChatRoomMessage, ChatRoomTitle } from './elements'
 
 export interface PreviewProps<T, U> {
   chatRoom: RoomInterface<T, U> | ChatRoomListItemInterface<T, U>
@@ -38,7 +38,7 @@ export function Preview<T = RoomType, U = UserType>({
   handleRoomClick,
   containerStyle,
   titleMessageContainerStyle,
-  Thumbnail = ChatRoomThumbnail,
+  Thumbnail,
   Title = ChatRoomTitle,
   Message = ChatRoomMessage,
   CreatedAt,
@@ -60,7 +60,9 @@ export function Preview<T = RoomType, U = UserType>({
       onClick={() => handleRoomClick(id)}
       {...containerStyle}
     >
-      <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
+      {Thumbnail ? (
+        <Thumbnail src={profileImageUrl} role="presentation none" alt="" />
+      ) : null}
 
       <Container
         css={{
