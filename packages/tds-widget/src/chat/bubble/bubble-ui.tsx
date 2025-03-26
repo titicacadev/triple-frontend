@@ -163,6 +163,7 @@ export default function BubbleUI({
           closeFullTextView={closeFullTextView}
           onParentMessageClick={onParentMessageClick}
           CustomFullTextViewController={CustomFullTextViewController}
+          maxWidthOffset={maxWidthOffset}
           {...props}
         />
       )
