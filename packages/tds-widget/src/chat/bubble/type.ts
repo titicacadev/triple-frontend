@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+import { ComponentType, MouseEvent, PropsWithChildren } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
@@ -35,6 +35,11 @@ export type TextBubbleProp = {
   my: boolean
   parentMessage?: ParentMessageUIProp
   created?: boolean
+  /**
+   * TextBubble의 내용을 감싸는 컴포넌트로, 커스텀한 전체보기 동작을 위해 사용합니다.
+   * CustomFullTextViewController 제공되는 경우, fullTextViewAvailable, openFullTextView, closeFullTextView, isFullTextViewOpen, onOpenMenu은 무시됩니다.
+   */
+  CustomFullTextViewController?: ComponentType<PropsWithChildren>
   fullTextViewAvailable?: boolean
   onOpenMenu?: () => void
   isFullTextViewOpen?: (id: string) => boolean
