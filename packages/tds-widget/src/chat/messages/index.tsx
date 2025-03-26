@@ -272,7 +272,7 @@ export default function Messages<
                     ? spacing?.messageGroup || 16
                     : spacing?.message || 5,
               }}
-              bubbleInfoGap={spacing?.bubbleInfo || 4}
+              bubbleInfoGap={spacing?.bubbleInfo}
               onUserClick={onUserClick}
               bubbleInfoStyle={bubbleInfoStyle}
               showProfilePhoto={showProfilePhoto}
