@@ -29,7 +29,6 @@ export function ExpiredImpl(
       <p>{description}</p>
       {onChatRestart ? (
         <Button onClick={onChatRestart}>
-          {/* TODO: 아이콘 변경 */}
           <TalkIcon />
           {restartButtonText || '새로운 채팅 시작하기'}
         </Button>
