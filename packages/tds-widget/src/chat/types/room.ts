@@ -123,11 +123,13 @@ export interface PreDirectRoomInterface<T = RoomType, U = UserType> {
  */
 export interface InvitationRoomInterface<
   T = RoomType,
+  U = UserType,
   V = ChatRoomMetadata<T>,
 > {
   type: T
   metadata?: V
   expirePolicies: ExpirePolicy[]
+  other?: Pick<ChatRoomMemberInterface<U>, 'type' | 'profile'>
 }
 
 /**
