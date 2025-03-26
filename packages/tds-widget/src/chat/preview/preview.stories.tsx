@@ -17,6 +17,11 @@ export const Default = {
   render: Template,
 
   args: {
+    titleMessageContainerStyle: {
+      css: {
+        margin: '0 65px 0 0',
+      },
+    },
     chatRoom: {
       id: 'test1',
       createdAt: '2025-03-12T05:47:38.956Z',
