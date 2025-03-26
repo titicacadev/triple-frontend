@@ -66,11 +66,12 @@ export function Preview<T = RoomType, U = UserType>({
       ) : null}
 
       <Container
-        css={{
-          margin: '0 80px 0 65px',
-          minHeight: 50,
-        }}
-        {...titleMessageContainerStyle}
+        css={
+          titleMessageContainerStyle?.css ?? {
+            margin: '0 80px 0 65px',
+            minHeight: 50,
+          }
+        }
       >
         <Title>{title}</Title>
         {customTitle}
