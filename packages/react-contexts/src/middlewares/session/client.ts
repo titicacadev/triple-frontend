@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { RequestOptions } from '@titicaca/fetcher'
 import {
   NextFetchEvent,
@@ -17,8 +18,16 @@ export function clientRefreshSessionMiddleware(next: NextMiddleware) {
     const url = request.nextUrl
     const headers = request.headers
 
+    console.log(
+      'api 요청?',
+      url.pathname.startsWith('/api'),
+      '클라이언트 요청?',
+      !isServerRequest(headers),
+    )
     if (url.pathname.startsWith('/api') && !isServerRequest(headers)) {
       const apiResponse = await fetch(request)
+
+      console.log(`apiResponse: ${apiResponse.status}`)
 
       if (apiResponse.status !== 401) {
         return new NextResponse(apiResponse.body, {
@@ -43,6 +52,7 @@ export function clientRefreshSessionMiddleware(next: NextMiddleware) {
         options,
       })
 
+      console.log(`sessionRefreshResponse: ${sessionRefreshResponse?.headers}`)
       return sessionRefreshResponse || response
     }
 
