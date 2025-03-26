@@ -49,24 +49,24 @@ export function TextBubble({
     message.length > MAX_VIEWABLE_TEXT_LENGTH
 
   return (
-    <Bubble
-      id={id}
-      css={css`
-        a {
-          color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
-          text-decoration: underline;
-        }
-      `}
-      my={my}
-      onParentMessageClick={onParentMessageClick}
-      {...props}
-    >
-      {CustomFullTextViewController ? (
-        <CustomFullTextViewController my={my}>
-          <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
-        </CustomFullTextViewController>
-      ) : (
-        <>
+    <>
+      <Bubble
+        id={id}
+        css={css`
+          a {
+            color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
+            text-decoration: underline;
+          }
+        `}
+        my={my}
+        onParentMessageClick={onParentMessageClick}
+        {...props}
+      >
+        {CustomFullTextViewController ? (
+          <CustomFullTextViewController my={my}>
+            <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+          </CustomFullTextViewController>
+        ) : (
           <TextItem
             text={
               isEllipsis
@@ -75,22 +75,22 @@ export function TextBubble({
             }
             onClick={(e) => aTagNavigator(e)}
           />
-          {isEllipsis ? (
-            <TextBubbleWithFullTextView
-              id={id}
-              my={my}
-              openFullTextView={openFullTextView}
-              closeFullTextView={closeFullTextView}
-              isFullTextViewOpen={isFullTextViewOpen}
-              created={created}
-              onOpenMenu={onOpenMenu}
-            >
-              <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
-            </TextBubbleWithFullTextView>
-          ) : null}
-        </>
-      )}
-    </Bubble>
+        )}
+      </Bubble>
+      {isEllipsis ? (
+        <TextBubbleWithFullTextView
+          id={id}
+          my={my}
+          openFullTextView={openFullTextView}
+          closeFullTextView={closeFullTextView}
+          isFullTextViewOpen={isFullTextViewOpen}
+          created={created}
+          onOpenMenu={onOpenMenu}
+        >
+          <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+        </TextBubbleWithFullTextView>
+      ) : null}
+    </>
   )
 }
 

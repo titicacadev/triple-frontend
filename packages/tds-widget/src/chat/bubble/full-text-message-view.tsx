@@ -1,5 +1,19 @@
 import type { PropsWithChildren } from 'react'
-import { Popup, Navbar, Container } from '@titicaca/tds-ui'
+import { Popup, Navbar, Container as BaseContainer } from '@titicaca/tds-ui'
+import styled from 'styled-components'
+
+const Container = styled(BaseContainer)`
+  padding: 20;
+  display: block;
+  font-size: 15;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  > a {
+    color: var(--color-blue);
+    line-break: anywhere;
+  }
+`
 
 export function FullTextMessageView({
   open,
@@ -24,14 +38,7 @@ export function FullTextMessageView({
           <Navbar.Item floated="right" icon="more" onClick={openMenu} />
         ) : null}
       </Navbar>
-      <Container
-        css={{
-          padding: 20,
-          display: 'block',
-        }}
-      >
-        {children}
-      </Container>
+      <Container>{children}</Container>
     </Popup>
   )
 }
