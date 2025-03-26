@@ -56,6 +56,7 @@ interface MessagesProp<
   onOpenMenu?: (message: MessageInterface<Message, User>) => void
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
+  showProfilePhoto?: boolean
 }
 
 export default function Messages<
@@ -83,6 +84,7 @@ export default function Messages<
   onUserClick,
   bubbleInfoStyle,
   spacing,
+  showProfilePhoto = true,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -273,6 +275,7 @@ export default function Messages<
               bubbleInfoGap={spacing?.bubbleInfo || 4}
               onUserClick={onUserClick}
               bubbleInfoStyle={bubbleInfoStyle}
+              showProfilePhoto={showProfilePhoto}
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
