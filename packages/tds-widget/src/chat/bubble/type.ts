@@ -39,7 +39,9 @@ export type TextBubbleProp = {
    * TextBubble의 내용을 감싸는 컴포넌트로, 커스텀한 전체보기 동작을 위해 사용합니다.
    * CustomFullTextViewController 제공되는 경우, fullTextViewAvailable, openFullTextView, closeFullTextView, isFullTextViewOpen, onOpenMenu은 무시됩니다.
    */
-  CustomFullTextViewController?: ComponentType<PropsWithChildren>
+  CustomFullTextViewController?: ComponentType<
+    PropsWithChildren<{ my: boolean }>
+  >
   fullTextViewAvailable?: boolean
   onOpenMenu?: () => void
   isFullTextViewOpen?: (id: string) => boolean
