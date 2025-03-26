@@ -82,6 +82,30 @@ export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
   ? U[T]
   : undefined
 
+type ExpirePolicyType = 'AFTER_DATE_OF_USE' | 'AFTER_MESSAGE'
+
+interface ExpirePolicyBase {
+  type: ExpirePolicyType
+  duration: {
+    days: number
+    hours: number
+    minutes: number
+    seconds: number
+    milliSeconds: number
+  }
+}
+
+interface AfterDateOfUsePolicy extends ExpirePolicyBase {
+  type: 'AFTER_DATE_OF_USE'
+  dateOfUseEndsAt: string
+}
+
+interface AfterMessagePolicy extends ExpirePolicyBase {
+  type: 'AFTER_MESSAGE'
+}
+
+type ExpirePolicy = AfterDateOfUsePolicy | AfterMessagePolicy
+
 /**
  * @deprecated
  * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방
@@ -103,6 +127,7 @@ export interface InvitationRoomInterface<
 > {
   type: T
   metadata?: V
+  expirePolicies: ExpirePolicy[]
 }
 
 /**
@@ -125,9 +150,11 @@ export interface ChatRoomDetailInterface<
    * 채팅방 만료 여부
    */
   expired: boolean
+  expireAt?: string
   memberCounts: number
   members: ChatRoomMemberInterface<U>[]
   metadata?: V
+  expirePolicies: ExpirePolicy[]
 }
 
 export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
