@@ -2,7 +2,7 @@ import { Container, TextProps } from '@titicaca/tds-ui'
 import { CSSProp } from 'styled-components'
 import { ComponentType, ImgHTMLAttributes, ReactNode } from 'react'
 
-import { getProfileImageUrl, getUserIdentifier } from '../utils'
+import { getProfileImageUrl } from '../utils'
 import {
   ChatRoomListItemInterface,
   ChatUserInterface,
@@ -49,8 +49,9 @@ export function Preview<T = RoomType, U = UserType>({
   const { lastMessage, unreadCount, members, id } = chatRoom
   const { payload, createdAt } = lastMessage || {}
 
-  const others =
-    members?.filter((member) => me && getUserIdentifier(member) !== me.id) ?? []
+  const others = members.filter(
+    ({ type, profile }) => type !== me.type || profile.name !== me.profile.name,
+  )
   const title = others.map(({ profile: { name } }) => name).join(',')
   const profileImageUrl = getProfileImageUrl(others[0])
 
