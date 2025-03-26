@@ -1,5 +1,5 @@
 export * from './types'
-export { authFetcherize, ssrFetcherize } from './factories'
+export { authFetcherize, ssrFetcherize, isTripleHref } from './factories'
 export { NEED_LOGIN_IDENTIFIER } from './factories'
 export { addFetchersToGssp } from './add-fetchers-to-gssp'
 export { fetcher } from './fetcher'

@@ -84,7 +84,7 @@ export const NEED_LOGIN_IDENTIFIER = 'NEED_LOGIN'
  * @param href
  * @returns
  */
-function isTripleHref(href: string): boolean {
+export function isTripleHref(href: string): boolean {
   const { host } = parseUrl(href)
   const { host: tripleHost } = parseUrl(process.env.NEXT_PUBLIC_WEB_URL_BASE)
   // 클라이언트, 서버 모두에서 유효한 환경 변수가 필요하기 때문에
