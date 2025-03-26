@@ -33,6 +33,7 @@ import {
   TiktokPixelEventType,
   TiktokPixelEventParams,
 } from './types'
+import { useTripleDeviceId } from './utils/get-triple-device-id'
 
 const NOOP = () => {}
 
@@ -177,6 +178,7 @@ export function EventTrackingProvider({
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
   const { query } = useRouter()
+  const tripleDeviceId = useTripleDeviceId()
 
   if (!pageLabel) {
     throw new Error(
@@ -318,8 +320,12 @@ export function EventTrackingProvider({
           {},
         )
 
-      trackScreen(page?.path, pageLabel, utmParams)
+      trackScreen(page?.path, pageLabel, {
+        ...utmParams,
+        ...(tripleDeviceId && { nol_device_id: tripleDeviceId }),
+      })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trackScreen, page?.path, pageLabel, query])
 
   useEffect(() => {
