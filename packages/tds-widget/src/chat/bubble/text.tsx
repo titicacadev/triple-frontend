@@ -82,11 +82,11 @@ export function TextBubble({
         <FullTextMessageView
           open
           onClose={closeFullTextView}
-          text={message}
           openMenu={onOpenMenu}
-          onClick={(e) => aTagNavigator(e)}
           disableMenu={!created}
-        />
+        >
+          <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+        </FullTextMessageView>
       ) : null}
     </>
   )
