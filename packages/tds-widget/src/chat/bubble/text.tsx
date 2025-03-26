@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react'
 import { styled, css } from 'styled-components'
 import { Button } from '@titicaca/tds-ui'
 
@@ -28,6 +29,7 @@ export function TextBubble({
   message,
   my,
   created,
+  CustomFullTextViewController,
   onOpenMenu,
   fullTextViewAvailable,
   openFullTextView,
@@ -39,55 +41,100 @@ export function TextBubble({
 }: TextBubbleProp) {
   const aTagNavigator = useATagNavigator(onLinkClick)
   const isEllipsis =
+    !CustomFullTextViewController &&
     fullTextViewAvailable &&
     openFullTextView &&
+    closeFullTextView &&
+    isFullTextViewOpen &&
     message.length > MAX_VIEWABLE_TEXT_LENGTH
 
   return (
-    <>
-      <Bubble
-        id={id}
-        css={css`
-          a {
-            color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
-            text-decoration: underline;
-          }
-        `}
-        my={my}
-        onParentMessageClick={onParentMessageClick}
-        {...props}
-      >
-        <TextItem
-          text={
-            isEllipsis
-              ? `${message.substring(0, MAX_VIEWABLE_TEXT_LENGTH)}...`
-              : message
-          }
-          onClick={(e) => aTagNavigator(e)}
-        />
-        {isEllipsis ? (
-          <FullTextViewButton my={my} onClick={() => openFullTextView?.(id)}>
-            전체보기
-            <ArrowRight
-              color={my ? 'var(--color-white900)' : 'var(--color-gray500)'}
-              style={{ width: 4, height: 8 }}
-            />
-          </FullTextViewButton>
-        ) : null}
-      </Bubble>
+    <Bubble
+      id={id}
+      css={css`
+        a {
+          color: ${my ? '#B5FFFB' : 'var(--color-blue)'};
+          text-decoration: underline;
+        }
+      `}
+      my={my}
+      onParentMessageClick={onParentMessageClick}
+      {...props}
+    >
+      {CustomFullTextViewController ? (
+        <CustomFullTextViewController>
+          <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+        </CustomFullTextViewController>
+      ) : (
+        <>
+          <TextItem
+            text={
+              isEllipsis
+                ? `${message.substring(0, MAX_VIEWABLE_TEXT_LENGTH)}...`
+                : message
+            }
+            onClick={(e) => aTagNavigator(e)}
+          />
+          {isEllipsis ? (
+            <TextBubbleWithFullTextView
+              id={id}
+              my={my}
+              openFullTextView={openFullTextView}
+              closeFullTextView={closeFullTextView}
+              isFullTextViewOpen={isFullTextViewOpen}
+              created={created}
+              onOpenMenu={onOpenMenu}
+            >
+              <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+            </TextBubbleWithFullTextView>
+          ) : null}
+        </>
+      )}
+    </Bubble>
+  )
+}
 
-      {fullTextViewAvailable &&
-      closeFullTextView &&
-      isFullTextViewOpen?.(id) ? (
+function TextBubbleWithFullTextView({
+  openFullTextView,
+  closeFullTextView,
+  onOpenMenu,
+  created,
+  isFullTextViewOpen,
+  my,
+  id,
+  children,
+}: PropsWithChildren<
+  Required<
+    Pick<
+      TextBubbleProp,
+      | 'my'
+      | 'id'
+      | 'openFullTextView'
+      | 'closeFullTextView'
+      | 'isFullTextViewOpen'
+    >
+  > &
+    Pick<TextBubbleProp, 'onOpenMenu' | 'created'>
+>) {
+  return (
+    <>
+      <FullTextViewButton my={my} onClick={() => openFullTextView(id)}>
+        전체보기
+        <ArrowRight
+          color={my ? 'var(--color-white900)' : 'var(--color-gray500)'}
+          style={{ width: 4, height: 8 }}
+        />
+      </FullTextViewButton>
+      {isFullTextViewOpen(id) && (
         <FullTextMessageView
           open
           onClose={closeFullTextView}
           openMenu={onOpenMenu}
           disableMenu={!created}
         >
-          <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
+          {children}
         </FullTextMessageView>
-      ) : null}
+      )}
     </>
   )
 }
