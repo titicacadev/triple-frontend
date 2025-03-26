@@ -63,7 +63,7 @@ export function TextBubble({
         {...props}
       >
         {CustomFullTextViewController ? (
-          <CustomFullTextViewController my={my}>
+          <CustomFullTextViewController my={my} id={id}>
             <TextItem text={message} onClick={(e) => aTagNavigator(e)} />
           </CustomFullTextViewController>
         ) : (
