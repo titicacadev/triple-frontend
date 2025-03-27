@@ -52,6 +52,7 @@ interface ContainerBaseProp {
     failureHandler?: { css?: CSSProp }
   }
   bubbleInfoGap?: number
+  failureHandlerGap?: number
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -78,7 +79,8 @@ function SentBubbleContainer({
   messageRefCallback,
   children,
   bubbleInfoStyle,
-  bubbleInfoGap,
+  bubbleInfoGap = 4,
+  failureHandlerGap = 6,
   ...props
 }: SentBubbleContainerProp) {
   return (
@@ -92,7 +94,7 @@ function SentBubbleContainer({
         {!createdAt && onRetry && onRetryCancel ? (
           <SendingFailureHandlerContainer
             css={css`
-              margin-right: ${bubbleInfoGap || 6}px;
+              margin-right: ${failureHandlerGap}px;
 
               ${bubbleInfoStyle?.failureHandler?.css}
             `}
@@ -114,7 +116,7 @@ function SentBubbleContainer({
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
-            css={{ marginRight: bubbleInfoGap || 4, textAlign: 'right' }}
+            css={{ marginRight: bubbleInfoGap, textAlign: 'right' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
@@ -227,7 +229,7 @@ function ReceivedBubbleContainer({
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
             date={createdAt}
-            css={{ marginLeft: bubbleInfoGap || 4, textAlign: 'left' }}
+            css={{ marginLeft: bubbleInfoGap, textAlign: 'left' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
