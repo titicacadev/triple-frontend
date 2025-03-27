@@ -227,7 +227,7 @@ export interface RoomInterface<T = RoomType, U = UserType> {
   channel?: ChatChannelInfo
 }
 
-const InvitationType = {
+export const InvitationType = {
   TRIPLE_EVENT: 'triple-event',
   TRIPLE_TNA_PRODUCT: 'triple-tna-product',
   TRIPLE_TNA_BOOKING: 'triple-tna-booking',
