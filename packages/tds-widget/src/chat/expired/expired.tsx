@@ -16,7 +16,7 @@ const DEFAULT_DESCRIPTION = `추가 문의가 필요하신 경우\n파트너에�
 export function ExpiredImpl(
   {
     description = DEFAULT_DESCRIPTION,
-    onChatRestart = () => {},
+    onChatRestart,
     restartButtonText,
     children,
     ...props
@@ -29,7 +29,6 @@ export function ExpiredImpl(
       <p>{description}</p>
       {onChatRestart ? (
         <Button onClick={onChatRestart}>
-          {/* TODO: 아이콘 변경 */}
           <TalkIcon />
           {restartButtonText || '새로운 채팅 시작하기'}
         </Button>
