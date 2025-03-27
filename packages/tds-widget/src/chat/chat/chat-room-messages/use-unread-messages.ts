@@ -76,6 +76,7 @@ export function useUnreadMessages<T = UserType>() {
   return {
     calculateUnreadCount,
     setLastMessageId,
+    lastMessageId,
     // handleUnreadEvent
   }
 }
