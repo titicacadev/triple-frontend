@@ -27,11 +27,13 @@ import {
 import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
+  scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
 }
 
 export function useChatMessages<T = UserType>({
+  scrollToBottomOnNewMessage = true,
   defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
     ChatMessageInterface<T>
   >,
@@ -386,10 +388,16 @@ export function useChatMessages<T = UserType>({
           })
         }
         onComplete?.(message)
-        triggerScrollToBottom()
+        if (scrollToBottomOnNewMessage) {
+          triggerScrollToBottom()
+        }
       }
     },
-    [dispatch, (me as ChatRoomMemberInterface).roomMemberId],
+    [
+      dispatch,
+      (me as ChatRoomMemberInterface).roomMemberId,
+      scrollToBottomOnNewMessage,
+    ],
   )
 
   /**
