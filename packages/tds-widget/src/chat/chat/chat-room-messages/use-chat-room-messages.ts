@@ -374,20 +374,24 @@ export function useChatMessages<T = UserType>({
       { message }: UpdatedChatData<T>,
       {
         onComplete,
-      }: { onComplete?: (message: ChatMessageInterface<T>) => void } = {},
+      }: {
+        onComplete?: (message: ChatMessageInterface<T>, my: boolean) => void
+      } = {},
     ) => {
       if (message && message.payload) {
         /** 
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
           */
-        if (getUserIdentifier(me) !== getUserIdentifier(message.sender)) {
+        const myMessage =
+          getUserIdentifier(me) === getUserIdentifier(message.sender)
+        if (!myMessage) {
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
           })
         }
-        onComplete?.(message)
+        onComplete?.(message, myMessage)
         if (scrollToBottomOnNewMessage) {
           triggerScrollToBottom()
         }
