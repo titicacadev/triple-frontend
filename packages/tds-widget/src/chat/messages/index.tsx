@@ -48,6 +48,7 @@ interface MessagesProp<
     message?: number
     messageGroup?: number
     bubbleInfo?: number
+    failureHandler?: number
     dateDivider?: number
   }
   hasDateDivider?: boolean
@@ -272,7 +273,8 @@ export default function Messages<
                     ? spacing?.messageGroup || 16
                     : spacing?.message || 5,
               }}
-              bubbleInfoGap={spacing?.bubbleInfo}
+              bubbleInfoGap={spacing?.bubbleInfo || 4}
+              failureHandlerGap={spacing?.failureHandler || 6}
               onUserClick={onUserClick}
               bubbleInfoStyle={bubbleInfoStyle}
               showProfilePhoto={showProfilePhoto}
