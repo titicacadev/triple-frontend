@@ -184,7 +184,7 @@ export type ChatRoomInterface<
   V = ChatRoomMetadata<T>,
 > =
   | ChatRoomDetailInterface<T, U, V>
-  | InvitationRoomInterface<T, V>
+  | InvitationRoomInterface<T, U, V>
   | PreDirectRoomInterface<T, U>
 
 /**
