@@ -309,7 +309,7 @@ export function EventTrackingProvider({
   }, [setFirebaseUserId, user?.uid])
 
   useEffect(() => {
-    if (page?.path) {
+    if (page?.path && tripleDeviceId) {
       const utmParams = Object.keys(query || {})
         .filter((key) => key.match(/^utm_/i))
         .reduce(
@@ -325,8 +325,7 @@ export function EventTrackingProvider({
         ...(tripleDeviceId && { nol_device_id: tripleDeviceId }),
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trackScreen, page?.path, pageLabel, query])
+  }, [trackScreen, page?.path, pageLabel, query, tripleDeviceId])
 
   useEffect(() => {
     if (item?.id) {
