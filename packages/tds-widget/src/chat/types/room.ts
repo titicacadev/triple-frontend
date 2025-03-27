@@ -125,11 +125,9 @@ export interface InvitationRoomInterface<
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
-> {
+> extends Pick<InvitationInterface<T, U, V>, 'expirePolicies' | 'other'> {
   type: T
   metadata?: V
-  expirePolicies: ExpirePolicy[]
-  other?: Pick<ChatRoomMemberInterface<U>, 'type' | 'profile'>
 }
 
 /**
@@ -227,4 +225,31 @@ export interface RoomInterface<T = RoomType, U = UserType> {
   createdAt: string
   metadata?: EventMetaData
   channel?: ChatChannelInfo
+}
+
+const InvitationType = {
+  TRIPLE_EVENT: 'triple-event',
+  TRIPLE_TNA_PRODUCT: 'triple-tna-product',
+  TRIPLE_TNA_BOOKING: 'triple-tna-booking',
+} as const
+
+export type InvitationType = ValueOf<typeof InvitationType>
+
+export interface InvitationAcceptInterface {
+  id: string
+  roomId: string
+  acceptedAt: string
+}
+
+export interface InvitationInterface<
+  T = InvitationType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+> {
+  invitationType: T
+  invitationIdentifier: string
+  metadata: V
+  accept?: InvitationAcceptInterface
+  expirePolicies: ExpirePolicy[]
+  other?: Pick<ChatRoomMemberInterface<U>, 'type' | 'profile'>
 }
