@@ -14,8 +14,11 @@ export async function reviewClient<T>(query: Promise<T>) {
     return response
   } catch (e) {
     if (e instanceof ClientError && e.response.status === 401) {
-      await sessionRefresh({})
-      return query
+      const refreshResponse = await sessionRefresh({})
+      if (refreshResponse) {
+        const newResponse = await query
+        return newResponse
+      }
     }
     throw e
   }
