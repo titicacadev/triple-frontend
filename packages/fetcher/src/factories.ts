@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpResponse, RequestOptions } from './types'
+import { captureHttpError } from './response-handler'
 
 export type BaseFetcher<Extending = unknown> = <
   SuccessBody,
@@ -150,6 +151,7 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
 
     if (refreshResponse.ok === false) {
       if (refreshResponse.status === 400 || refreshResponse.status === 401) {
+        captureHttpError(refreshResponse)
         return NEED_LOGIN_IDENTIFIER
       }
 
