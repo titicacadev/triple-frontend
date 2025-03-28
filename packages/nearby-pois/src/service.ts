@@ -1,5 +1,5 @@
 import { measureDistance } from '@titicaca/view-utilities'
-import { post } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { NearByPoiType, ListingPoi } from './types'
 
@@ -22,33 +22,34 @@ export async function fetchPois({
   from?: number
   size?: number
 }): Promise<ListingPoi[]> {
-  const response = await post<ListingPoi[]>('/api/content/pois', {
-    headers: {
-      'content-type': 'application/json',
+  const response = await authGuardedFetchers.post<ListingPoi[]>(
+    '/api/content/pois',
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'same-origin',
+      body: {
+        types: [type],
+        lat,
+        lon,
+        distance,
+        from,
+        size,
+        excludedIds,
+        regionId,
+      },
     },
-    credentials: 'same-origin',
-    body: {
-      types: [type],
-      lat,
-      lon,
-      distance,
-      from,
-      size,
-      excludedIds,
-      regionId,
-    },
-  })
-
-  if (response.ok === true) {
-    const { parsedBody: pois } = response
-    return pois.map((poi) => ({
-      ...poi,
-      distance: measureDistance(poi.source.pointGeolocation, {
-        type: 'Point',
-        coordinates: [lon, lat],
-      }),
-    }))
-  } else {
+  )
+  if (response === NEED_LOGIN_IDENTIFIER || !response.ok) {
     throw new Error(`Failed to fetch nearby POIs: ${type}`)
   }
+  const { parsedBody: pois } = response
+  return pois.map((poi) => ({
+    ...poi,
+    distance: measureDistance(poi.source.pointGeolocation, {
+      type: 'Point',
+      coordinates: [lon, lat],
+    }),
+  }))
 }
