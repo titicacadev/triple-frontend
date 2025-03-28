@@ -32,13 +32,20 @@ interface ChatMessagesProps<T = UserType> {
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
 }
 
-export function useChatMessages<T = UserType>({
-  scrollToBottomOnNewMessage = true,
-  defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
-    ChatMessageInterface<T>
-  >,
-  createRoom,
-}: ChatMessagesProps<T> = {}) {
+export function useChatMessages<T = UserType>(
+  {
+    scrollToBottomOnNewMessage = true,
+    defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
+      ChatMessageInterface<T>
+    >,
+    createRoom,
+  }: ChatMessagesProps<T> = {
+    scrollToBottomOnNewMessage: true,
+    defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
+      ChatMessageInterface<T>
+    >,
+  },
+) {
   const { room, me, updateRoom, updateMe } = useRoom<
     ChatRoomInterface,
     ChatRoomUser<T>
