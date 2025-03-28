@@ -581,6 +581,9 @@ importers:
 
   packages/fetcher:
     dependencies:
+      set-cookie-parser:
+        specifier: ^2.7.1
+        version: 2.7.1
       ts-custom-error:
         specifier: ^3.3.1
         version: 3.3.1
@@ -597,6 +600,9 @@ importers:
       '@types/node-fetch':
         specifier: ^2.6.7
         version: 2.6.7
+      '@types/set-cookie-parser':
+        specifier: ^2.4.10
+        version: 2.4.10
       isomorphic-fetch:
         specifier: ^2.2.1
         version: 2.2.1
@@ -5246,9 +5252,6 @@ packages:
 
   '@types/set-cookie-parser@2.4.10':
     resolution: {integrity: sha512-GGmQVGpQWUe5qglJozEjZV/5dyxbOOZ0LHe/lqyWssB88Y4svNfst0uqBVscdDeIKl5Jy5+aPSvy7mI9tYRguw==}
-
-  '@types/set-cookie-parser@2.4.2':
-    resolution: {integrity: sha512-fBZgytwhYAUkj/jC/FAV4RQ5EerRup1YQsXQCh8rZfiHkc4UahC192oH0smGwsXol3cL3A5oETuAHeQHmhXM4w==}
 
   '@types/stack-utils@2.0.1':
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
@@ -10632,9 +10635,6 @@ packages:
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
-  set-cookie-parser@2.6.0:
-    resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
-
   set-cookie-parser@2.7.1:
     resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
 
@@ -14221,8 +14221,8 @@ snapshots:
 
   '@mswjs/cookies@0.2.2':
     dependencies:
-      '@types/set-cookie-parser': 2.4.2
-      set-cookie-parser: 2.6.0
+      '@types/set-cookie-parser': 2.4.10
+      set-cookie-parser: 2.7.1
 
   '@mswjs/interceptors@0.17.10':
     dependencies:
@@ -16590,10 +16590,6 @@ snapshots:
       '@types/node': 18.18.7
 
   '@types/set-cookie-parser@2.4.10':
-    dependencies:
-      '@types/node': 18.18.7
-
-  '@types/set-cookie-parser@2.4.2':
     dependencies:
       '@types/node': 18.18.7
 
@@ -23415,8 +23411,6 @@ snapshots:
       - supports-color
 
   set-blocking@2.0.0: {}
-
-  set-cookie-parser@2.6.0: {}
 
   set-cookie-parser@2.7.1: {}
 
