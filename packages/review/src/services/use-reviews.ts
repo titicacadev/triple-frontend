@@ -29,7 +29,7 @@ export function useReviewCount(
 ) {
   return useQuery<unknown, unknown, GetReviewsCountQuery>(
     ['reviews/getReviewCount', { ...params }],
-    async () => {
+    () => {
       reviewClient(client.GetReviewsCount(params))
     },
     {
@@ -47,7 +47,7 @@ export function useReviewCount(
 export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
   return useQuery(
     ['review/getReviewSpecification', params],
-    async () => reviewClient(client.GetReviewSpecification(params)),
+    () => reviewClient(client.GetReviewSpecification(params)),
     { refetchOnWindowFocus: false },
   )
 }
@@ -55,7 +55,7 @@ export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
 export function useMyReview(params: GetMyReviewQueryVariables) {
   return useQuery(
     ['review/getMyReview', params],
-    async () => reviewClient(client.GetMyReview(params)),
+    () => reviewClient(client.GetMyReview(params)),
     { refetchOnWindowFocus: false },
   )
 }
@@ -65,7 +65,7 @@ export function useLikeReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (variables: LikeReviewMutationVariables & { resourceId: string }) =>
+    (variables: LikeReviewMutationVariables & { resourceId: string }) =>
       reviewClient(client.LikeReview({ reviewId: variables.reviewId })),
     {
       onSuccess: (data, variables) => {
@@ -170,7 +170,7 @@ export function useUnlikeReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
+    (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
       reviewClient(client.UnlikeReview({ reviewId: variables.reviewId })),
     {
       onSuccess: (data, variables) => {
