@@ -313,6 +313,9 @@ importers:
 
   packages/fetcher:
     dependencies:
+      set-cookie-parser:
+        specifier: ^2.7.1
+        version: 2.7.1
       ts-custom-error:
         specifier: ^3.3.1
         version: 3.3.1
@@ -329,6 +332,9 @@ importers:
       '@types/node-fetch':
         specifier: ^2.6.12
         version: 2.6.12
+      '@types/set-cookie-parser':
+        specifier: ^2.4.10
+        version: 2.4.10
       isomorphic-fetch:
         specifier: ^2.2.1
         version: 2.2.1
