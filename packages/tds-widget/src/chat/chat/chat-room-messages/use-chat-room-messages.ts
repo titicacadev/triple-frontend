@@ -511,6 +511,7 @@ export function useChatMessages<T = UserType>(
     onRetryCancel,
     onThanksClick,
     onSendMessageEvent,
+    hasPrevMessage,
   }
 }
 
