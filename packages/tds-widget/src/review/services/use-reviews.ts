@@ -35,7 +35,7 @@ export function useReviewCount(
 ): UseQueryResult<GetReviewsCountQuery> {
   return useQuery({
     queryKey: ['reviews/getReviewCount', { ...params }],
-    queryFn: () => reviewClient(client.GetReviewsCount(params)),
+    queryFn: () => reviewClient(() => client.GetReviewsCount(params)),
     refetchOnWindowFocus: false,
     initialData: initialValue
       ? {
@@ -51,7 +51,7 @@ export function useDescriptions(
 ): UseQueryResult<GetReviewSpecificationQuery> {
   return useQuery({
     queryKey: ['review/getReviewSpecification', params],
-    queryFn: () => reviewClient(client.GetReviewSpecification(params)),
+    queryFn: () => reviewClient(() => client.GetReviewSpecification(params)),
     refetchOnWindowFocus: false,
   })
 }
@@ -61,7 +61,7 @@ export function useMyReview(
 ): UseQueryResult<GetMyReviewQuery> {
   return useQuery({
     queryKey: ['review/getMyReview', params],
-    queryFn: () => reviewClient(client.GetMyReview(params)),
+    queryFn: () => reviewClient(() => client.GetMyReview(params)),
     refetchOnWindowFocus: false,
   })
 }
@@ -76,7 +76,7 @@ export function useLikeReviewMutation(): UseMutationResult<
 
   return useMutation({
     mutationFn: (variables) =>
-      reviewClient(client.LikeReview({ reviewId: variables.reviewId })),
+      reviewClient(() => client.LikeReview({ reviewId: variables.reviewId })),
     onSuccess: (data, variables) => {
       notifyReviewLiked?.(variables.resourceId, variables.reviewId)
 
@@ -183,7 +183,7 @@ export function useUnlikeReviewMutation(): UseMutationResult<
 
   return useMutation({
     mutationFn: (variables) =>
-      reviewClient(client.UnlikeReview({ reviewId: variables.reviewId })),
+      reviewClient(() => client.UnlikeReview({ reviewId: variables.reviewId })),
     onSuccess: (data, variables) => {
       notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
 
@@ -289,7 +289,7 @@ export function useDeleteReviewMutation() {
         resourceId: string
         resourceType: string
       },
-    ) => reviewClient(client.DeleteReview(variables)),
+    ) => reviewClient(() => client.DeleteReview(variables)),
 
     onSuccess: (data, variables) => {
       notifyReviewDeleted?.(
