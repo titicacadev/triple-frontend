@@ -39,7 +39,6 @@
     ]
   },
   "dependencies": {
-    "set-cookie-parser": "^2.7.1",
     "ts-custom-error": "^3.3.1",
     "universal-cookie": "^4.0.4"
   },
