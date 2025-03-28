@@ -4,19 +4,23 @@ import { sessionRefresh } from '@titicaca/fetcher'
 import { Requester, getSdk } from './generated'
 
 const requester: Requester = (doc, vars) =>
-  request({ document: doc, url: '/api/graphql', variables: vars ?? undefined })
+  request({
+    document: doc,
+    url: '/api/graphql',
+    variables: vars ?? undefined,
+  })
 
 export const client = getSdk(requester)
 
-export async function reviewClient<T>(query: Promise<T>) {
+export async function reviewClient<T>(query: () => Promise<T>) {
   try {
-    const response = await query
+    const response = await query()
     return response
   } catch (e) {
     if (e instanceof ClientError && e.response.status === 401) {
       const refreshResponse = await sessionRefresh({})
       if (refreshResponse) {
-        const newResponse = await query
+        const newResponse = await query()
         return newResponse
       }
     }
