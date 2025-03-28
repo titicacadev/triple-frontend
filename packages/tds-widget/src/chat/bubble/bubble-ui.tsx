@@ -81,6 +81,8 @@ export type BubbleUIProps = (
   mediaUrlBase?: string
   hasArrow?: boolean
   alteredTextColor?: string
+  arrowRadius?: number
+  borderRadius?: number
 
   onOpenMenu?: () => void
 } & Pick<
@@ -89,6 +91,7 @@ export type BubbleUIProps = (
     | 'isFullTextViewOpen'
     | 'openFullTextView'
     | 'closeFullTextView'
+    | 'CustomFullTextViewController'
   >
 
 export default function BubbleUI({
@@ -119,6 +122,7 @@ export default function BubbleUI({
   openFullTextView,
   closeFullTextView,
   onOpenMenu,
+  CustomFullTextViewController,
   ...props
 }: BubbleUIProps) {
   if (blinded || deleted || unfriended) {
@@ -158,6 +162,8 @@ export default function BubbleUI({
           openFullTextView={openFullTextView}
           closeFullTextView={closeFullTextView}
           onParentMessageClick={onParentMessageClick}
+          CustomFullTextViewController={CustomFullTextViewController}
+          maxWidthOffset={maxWidthOffset}
           {...props}
         />
       )

@@ -10,7 +10,6 @@ const StyledBubble = styled(Text).attrs({
   textAlign: 'left',
   inlineBlock: true,
 })<BubbleCSSProp>`
-  border-radius: 20px;
   position: relative;
   margin: 0;
   padding: 11px;
@@ -20,13 +19,16 @@ const StyledBubble = styled(Text).attrs({
     white-space: pre-wrap;
   }
 
+  ${({ borderRadius = 20 }) => `border-radius: ${borderRadius}px;`}
   ${({ maxWidthOffset }) =>
     `max-width: calc(100% - ${maxWidthOffset || 100}px);`}
-  ${({ my, hasArrow = true }) => css`
+  ${({ my, hasArrow = true, arrowRadius = 4 }) => css`
     background-color: ${my ? '#00BB92' : '#F6F6F6'};
     ${my && 'color:  var(--color-white);'}
     ${hasArrow &&
-    (my ? 'border-top-right-radius: 4px;' : 'border-top-left-radius: 4px;')};
+    (my
+      ? `border-top-right-radius: ${arrowRadius}px;`
+      : `border-top-left-radius: ${arrowRadius}px;`)};
   `}
 `
 
