@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { HR2 } from '@titicaca/core-elements'
-import { get } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { TnaProductsResponse } from './types'
 import { Slot } from './slot'
@@ -17,11 +17,11 @@ function useProducts({ slotId }: { slotId?: number }): TnaProductsResponse {
         return
       }
 
-      const response = await get<TnaProductsResponse>(
+      const response = await authGuardedFetchers.get<TnaProductsResponse>(
         `/api/tna-v2/slots/${slotId}`,
       )
 
-      if (response.ok) {
+      if (response !== NEED_LOGIN_IDENTIFIER && response.ok) {
         const {
           parsedBody: { title, products },
         } = response

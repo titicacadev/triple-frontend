@@ -1,6 +1,6 @@
 import qs from 'querystring'
 
-import { get, post } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { Banner } from './typing'
 
@@ -54,20 +54,19 @@ export async function getAdBanners({
     userLocation,
   })
 
-  const response = await get<{ items: Banner[] }>(
+  const response = await authGuardedFetchers.get<{ items: Banner[] }>(
     `/api/inventories/${bannerType}/items?${search}`,
     {
       credentials: 'same-origin',
     },
   )
-  if (response.ok === true) {
-    const {
-      parsedBody: { items },
-    } = response
-    return items
-  } else {
+  if (response === NEED_LOGIN_IDENTIFIER || !response.ok) {
     return []
   }
+  const {
+    parsedBody: { items },
+  } = response
+  return items
 }
 
 /**
@@ -106,13 +105,16 @@ export async function postAdBannerEvent({
     userLocation,
   })
 
-  return post(`/api/inventories/${bannerType}/items/${itemId}/events`, {
-    body,
-    headers: {
-      'content-type': 'application/json',
+  return authGuardedFetchers.post(
+    `/api/inventories/${bannerType}/items/${itemId}/events`,
+    {
+      body,
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'same-origin',
     },
-    credentials: 'same-origin',
-  })
+  )
 }
 
 function getSearchQuery(
