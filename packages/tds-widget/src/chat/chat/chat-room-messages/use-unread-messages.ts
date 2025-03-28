@@ -10,8 +10,6 @@ import { ChatRoomMessageInterface } from './messages'
 export function useUnreadMessages<T = UserType>() {
   const { room } = useRoom()
 
-  const [isBottomIntersecting, setIsBottomIntersecting] = useState(false)
-
   /**
    * 마지막으로 읽은 메시지의 id
    */
@@ -63,10 +61,6 @@ export function useUnreadMessages<T = UserType>() {
     )
   }
 
-  const onNextScroll = ({ isIntersecting }: IntersectionObserverEntry) => {
-    setIsBottomIntersecting(isIntersecting)
-  }
-
   // TODO pusher unread 이벤트 api 리팩토링이 완료시 주석을 해제합니다.
   // const handleUnreadEvent = useCallback(
   //   ({ otherUnreadInfo }: UpdatedChatData) => {
@@ -84,8 +78,6 @@ export function useUnreadMessages<T = UserType>() {
 
   return {
     calculateUnreadCount,
-    onNextScroll,
-    isBottomIntersecting,
     lastMessageId,
     setLastMessageId,
     // handleUnreadEvent
