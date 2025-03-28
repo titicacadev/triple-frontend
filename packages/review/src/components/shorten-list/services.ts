@@ -18,7 +18,7 @@ export function usePopularReviews(
       { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
-      reviewClient(
+      reviewClient(() =>
         client.GetPopularReviews({
           ...params,
           size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
@@ -37,7 +37,7 @@ export function useLatestReviews(
       { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
-      reviewClient(
+      reviewClient(() =>
         client.GetLatestReviews({
           ...params,
           size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
@@ -56,7 +56,7 @@ export function useRatingReviews(
       { ...params, size: SHORTENED_REVIEWS_COUNT_PER_PAGE },
     ],
     () =>
-      reviewClient(
+      reviewClient(() =>
         client.GetReviewsByRating({
           ...params,
           size: SHORTENED_REVIEWS_COUNT_PER_PAGE,
