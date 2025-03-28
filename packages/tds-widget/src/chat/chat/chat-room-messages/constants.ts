@@ -14,3 +14,5 @@ export const REACTION_ENABLED_MESSAGE_PROPERTIES: Partial<ChatMessageInterface> 
       },
     },
   }
+
+export const DEFAULT_MESSAGE_SIZE = 20
