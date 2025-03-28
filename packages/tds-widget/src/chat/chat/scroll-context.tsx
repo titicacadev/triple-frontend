@@ -24,6 +24,7 @@ export interface ScrollOptions {
     페이지네이션 등에 활용할 수 있습니다.
   */
   handleNonExistentMessage?: (messageId?: string | number) => void
+  scrollBehavior?: ScrollBehavior
 }
 
 export interface ScrollContextValue {
@@ -63,13 +64,14 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   const scrollToBottom = ({
     shouldFetchRecentPage,
     handleNonExistentMessage,
+    scrollBehavior = 'smooth',
   }: ScrollOptions = {}) => {
     if (shouldFetchRecentPage) {
       return handleNonExistentMessage?.()
     }
 
     if (bottomRef && bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: 'smooth' })
+      bottomRef.current.scrollIntoView({ behavior: scrollBehavior })
     }
   }
 

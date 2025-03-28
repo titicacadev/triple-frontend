@@ -10,6 +10,9 @@ import { ChatRoomMessageInterface } from './messages'
 export function useUnreadMessages<T = UserType>() {
   const { room } = useRoom()
 
+  /**
+   * 마지막으로 읽은 메시지의 id
+   */
   const [lastMessageId, setLastMessageId] = useState<number | undefined>(
     isCreatedChatRoom(room) ? Number(room.lastMessageId) : 0,
   )
@@ -75,6 +78,7 @@ export function useUnreadMessages<T = UserType>() {
 
   return {
     calculateUnreadCount,
+    lastMessageId,
     setLastMessageId,
     // handleUnreadEvent
   }

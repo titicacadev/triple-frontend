@@ -27,16 +27,25 @@ import {
 import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
+  scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
 }
 
-export function useChatMessages<T = UserType>({
-  defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
-    ChatMessageInterface<T>
-  >,
-  createRoom,
-}: ChatMessagesProps<T> = {}) {
+export function useChatMessages<T = UserType>(
+  {
+    scrollToBottomOnNewMessage = true,
+    defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
+      ChatMessageInterface<T>
+    >,
+    createRoom,
+  }: ChatMessagesProps<T> = {
+    scrollToBottomOnNewMessage: true,
+    defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
+      ChatMessageInterface<T>
+    >,
+  },
+) {
   const { room, me, updateRoom, updateMe } = useRoom<
     ChatRoomInterface,
     ChatRoomUser<T>
@@ -362,24 +371,34 @@ export function useChatMessages<T = UserType>({
       { message }: UpdatedChatData<T>,
       {
         onComplete,
-      }: { onComplete?: (message: ChatMessageInterface<T>) => void } = {},
+      }: {
+        onComplete?: (message: ChatMessageInterface<T>, my: boolean) => void
+      } = {},
     ) => {
       if (message && message.payload) {
         /** 
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
           */
-        if (getUserIdentifier(me) !== getUserIdentifier(message.sender)) {
+        const myMessage =
+          getUserIdentifier(me) === getUserIdentifier(message.sender)
+        if (!myMessage) {
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
           })
         }
-        onComplete?.(message)
-        triggerScrollToBottom()
+        onComplete?.(message, myMessage)
+        if (scrollToBottomOnNewMessage) {
+          triggerScrollToBottom()
+        }
       }
     },
-    [dispatch, (me as ChatRoomMemberInterface).roomMemberId],
+    [
+      dispatch,
+      (me as ChatRoomMemberInterface).roomMemberId,
+      scrollToBottomOnNewMessage,
+    ],
   )
 
   /**
