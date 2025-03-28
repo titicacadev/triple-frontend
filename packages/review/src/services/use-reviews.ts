@@ -19,15 +19,19 @@ import {
   LikeReviewMutationVariables,
   UnlikeReviewMutationVariables,
   client,
+  reviewClient,
+  GetReviewsCountQuery,
 } from '../data/graphql'
 
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
   initialValue?: number,
 ) {
-  return useQuery(
+  return useQuery<unknown, unknown, GetReviewsCountQuery>(
     ['reviews/getReviewCount', { ...params }],
-    () => client.GetReviewsCount(params),
+    async () => {
+      reviewClient(client.GetReviewsCount(params))
+    },
     {
       refetchOnWindowFocus: false,
       initialData: initialValue
@@ -43,7 +47,7 @@ export function useReviewCount(
 export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
   return useQuery(
     ['review/getReviewSpecification', params],
-    () => client.GetReviewSpecification(params),
+    async () => reviewClient(client.GetReviewSpecification(params)),
     { refetchOnWindowFocus: false },
   )
 }
@@ -51,7 +55,7 @@ export function useDescriptions(params: GetReviewSpecificationQueryVariables) {
 export function useMyReview(params: GetMyReviewQueryVariables) {
   return useQuery(
     ['review/getMyReview', params],
-    () => client.GetMyReview(params),
+    async () => reviewClient(client.GetMyReview(params)),
     { refetchOnWindowFocus: false },
   )
 }
@@ -61,8 +65,8 @@ export function useLikeReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (variables: LikeReviewMutationVariables & { resourceId: string }) =>
-      client.LikeReview({ reviewId: variables.reviewId }),
+    async (variables: LikeReviewMutationVariables & { resourceId: string }) =>
+      reviewClient(client.LikeReview({ reviewId: variables.reviewId })),
     {
       onSuccess: (data, variables) => {
         notifyReviewLiked?.(variables.resourceId, variables.reviewId)
@@ -166,8 +170,8 @@ export function useUnlikeReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
-      client.UnlikeReview({ reviewId: variables.reviewId }),
+    async (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
+      reviewClient(client.UnlikeReview({ reviewId: variables.reviewId })),
     {
       onSuccess: (data, variables) => {
         notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
@@ -270,12 +274,12 @@ export function useDeleteReviewMutation() {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (
+    async (
       variables: DeleteReviewMutationVariables & {
         resourceId: string
         resourceType: string
       },
-    ) => client.DeleteReview(variables),
+    ) => reviewClient(client.DeleteReview(variables)),
     {
       onSuccess: (data, variables) => {
         notifyReviewDeleted?.(
