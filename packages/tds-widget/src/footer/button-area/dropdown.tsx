@@ -31,7 +31,7 @@ const DropdownOptions = styled.ul`
   font-size: 12px;
   font-weight: 700;
   background: var(--color-white);
-  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.1));
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 
   a {
     display: block;
