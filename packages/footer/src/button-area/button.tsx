@@ -44,12 +44,6 @@ export const buttonCss = css`
   border-radius: 4px;
   background-color: rgba(250, 250, 250, 1);
 
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
-    display: flex;
-    justify-content: space-between;
-    padding: 9px 16px;
-  }
-
   img {
     width: 16px;
   }
