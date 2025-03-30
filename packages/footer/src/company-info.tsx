@@ -68,7 +68,7 @@ export function CompanyInfo({
     >
       <AccordionHeader flex alignItems="center" justifyContent="space-between">
         <Title>
-          트리플 사업자 정보
+          트리플 사업자정보
           <AccordionArrow
             src={`https://assets.triple.guide/images/${
               businessExpanded

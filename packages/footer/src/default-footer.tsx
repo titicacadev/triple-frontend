@@ -55,7 +55,7 @@ function DefaultFooter({
           size={11}
           lineHeight="17px"
           color="gray500"
-          margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
+          margin={{ top: businessExpanded ? 10 : 20, bottom: 20 }}
         >
           {footerInfo.disclaimer}
         </Text>
