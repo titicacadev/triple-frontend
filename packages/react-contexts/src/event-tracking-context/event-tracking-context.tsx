@@ -41,7 +41,8 @@ export interface EventTrackingContextValue {
   trackScreen: (
     screenPath: string,
     label?: string,
-    additionalMetadata?: { [key: string]: string },
+    additionalMetadataInApp?: { [key: string]: string },
+    additionalMetadataInWeb?: { [key: string]: string },
   ) => void
   trackEvent: (params: {
     ga?: GoogleAnalyticsParams
@@ -190,7 +191,8 @@ export function EventTrackingProvider({
     (
       path: string,
       label?: string,
-      additionalMetadata?: { [key: string]: string },
+      additionalMetadataInApp?: { [key: string]: string },
+      additionalMetadataInWeb?: { [key: string]: string },
     ) => {
       try {
         if (window.ga) {
@@ -208,11 +210,11 @@ export function EventTrackingProvider({
           logFirebaseEvent(firebaseAnalyticsWebInstance, 'page_view', {
             page_path: path,
             category: label,
-            ...additionalMetadata,
+            ...additionalMetadataInWeb,
           })
         }
 
-        nativeTrackScreen(path, label, additionalMetadata)
+        nativeTrackScreen(path, label, additionalMetadataInApp)
       } catch (error) {
         onErrorRef.current?.(error as Error)
       }
@@ -321,9 +323,8 @@ export function EventTrackingProvider({
           {},
         )
 
-      trackScreen(page?.path, pageLabel, {
-        ...utmParams,
-        ...(tripleDeviceId && { nol_device_id: tripleDeviceId }),
+      trackScreen(page?.path, pageLabel, utmParams, {
+        nol_device_id: tripleDeviceId,
       })
     }
   }, [trackScreen, page?.path, pageLabel, query, tripleDeviceId])
