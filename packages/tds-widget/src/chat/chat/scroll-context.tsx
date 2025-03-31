@@ -71,7 +71,19 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     }
 
     if (bottomRef && bottomRef.current) {
+      /* 
+        iOS 스크롤 시 화면이 보이지 않는 현상을 위해 추가합니다.
+        ref: https://github.com/titicacadev/triple-geochat-web/pull/99  
+      */
+      if (scrollBehavior !== 'smooth' && chatContainerRef.current) {
+        chatContainerRef.current.style.overflowY = 'hidden'
+      }
+
       bottomRef.current.scrollIntoView({ behavior: scrollBehavior })
+
+      if (scrollBehavior !== 'smooth' && chatContainerRef.current) {
+        chatContainerRef.current.style.overflowY = 'scroll'
+      }
     }
   }
 
