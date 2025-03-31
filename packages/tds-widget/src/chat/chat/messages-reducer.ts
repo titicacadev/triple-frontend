@@ -46,12 +46,10 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
   | {
       action: MessagesActions.INIT
       messages: Message[]
-      hasPrevMessage?: boolean
     }
   | {
       action: MessagesActions.PAST
       messages: Message[]
-      hasPrevMessage?: boolean
     }
   | {
       action: MessagesActions.NEW
@@ -95,14 +93,13 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
       return {
         ...state,
         messages: action.messages,
-        hasPrevMessage: action.hasPrevMessage ?? state.hasPrevMessage,
       }
 
     case MessagesActions.PAST:
       return {
         ...state,
         messages: [...action.messages, ...state.messages],
-        hasPrevMessage: action.hasPrevMessage ?? action.messages.length > 0,
+        hasPrevMessage: action.messages.length > 0,
       }
 
     case MessagesActions.NEW:

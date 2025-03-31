@@ -21,7 +21,6 @@ import {
 import { useRoom } from '../room-context'
 
 import { ChatFetcher, ChatApiService } from './chat-api-service'
-import { DEFAULT_MESSAGE_SIZE } from './constants'
 
 export interface ChatMessagesProviderProps<T = UserType> {
   messages?: ChatMessageInterface<T>[]
@@ -95,16 +94,10 @@ export function ChatMessagesProvider<T = UserType>({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {}
       }
-      const hasPrevMessage = messages.length >= DEFAULT_MESSAGE_SIZE
-
-      if (hasPrevMessage) {
-        messages.shift()
-      }
 
       dispatch({
         action: MessagesActions.INIT,
         messages,
-        hasPrevMessage,
       })
     }
   }

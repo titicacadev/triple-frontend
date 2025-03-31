@@ -19,7 +19,7 @@ import { MessagesActions, UnsentMessage } from '../messages-reducer'
 import { getUserIdentifier } from '../../utils'
 
 import { useScroll } from './use-scroll'
-import { DEFAULT_MESSAGE_PROPERTIES, DEFAULT_MESSAGE_SIZE } from './constants'
+import { DEFAULT_MESSAGE_PROPERTIES } from './constants'
 import {
   useChatApiService,
   useChatMessagesContext,
@@ -298,7 +298,6 @@ export function useChatMessages<T = UserType>(
     if (scrollable) {
       const prevScrollY = getScrollContainerHeight()
       let pastMessages: ChatMessageInterface<T>[] = []
-      let hasPrevMessage: boolean | undefined
 
       try {
         pastMessages = await api.getMessages({
@@ -306,20 +305,12 @@ export function useChatMessages<T = UserType>(
           lastMessageId: messages[0].id,
           backward: true,
         })
-
-        hasPrevMessage = pastMessages.length >= DEFAULT_MESSAGE_SIZE
-
-        if (hasPrevMessage) {
-          pastMessages.shift()
-        }
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {}
 
       dispatch({
         action: MessagesActions.PAST,
         messages: pastMessages,
-        hasPrevMessage,
       })
       setScrollY(prevScrollY)
     } else if (isIntersecting && firstRenderForPrevScrollRef.current) {
