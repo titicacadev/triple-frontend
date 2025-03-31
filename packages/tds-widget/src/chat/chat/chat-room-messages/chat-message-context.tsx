@@ -24,6 +24,7 @@ import { ChatFetcher, ChatApiService } from './chat-api-service'
 
 export interface ChatMessagesProviderProps<T = UserType> {
   messages?: ChatMessageInterface<T>[]
+  hasPrevMessage?: boolean
   welcomeMessages?: WelcomeMessageInterface<T>[]
   fetcher: ChatFetcher
   /**
@@ -55,6 +56,7 @@ export const ChatMessagesContext =
 export function ChatMessagesProvider<T = UserType>({
   welcomeMessages = [],
   messages: initialMessages = [],
+  hasPrevMessage: initialPrevMessage,
   fetcher,
   useTripleChat = false,
   children,
@@ -82,6 +84,7 @@ export function ChatMessagesProvider<T = UserType>({
       })
     } else {
       let messages = initialMessages
+      let hasPrevMessage: boolean | undefined = initialPrevMessage
 
       if (!initMessages.length) {
         try {
@@ -90,7 +93,12 @@ export function ChatMessagesProvider<T = UserType>({
             backward: true,
             lastMessageId: Number(room.lastMessageId) + 1,
           })
-          messages = result
+          if ('messages' in result) {
+            messages = result.messages
+            hasPrevMessage = result.hasNext
+          } else {
+            messages = result
+          }
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {}
       }
@@ -98,6 +106,7 @@ export function ChatMessagesProvider<T = UserType>({
       dispatch({
         action: MessagesActions.INIT,
         messages,
+        hasPrevMessage: hasPrevMessage ?? messages.length > 0,
       })
     }
   }

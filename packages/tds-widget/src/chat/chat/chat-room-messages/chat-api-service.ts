@@ -67,7 +67,10 @@ export class ChatApiService<T = UserType> {
     roomId: string
     backward?: boolean
     lastMessageId: number | string | null
-  }): Promise<ChatMessageInterface<T>[]> {
+  }): Promise<
+    | { messages: ChatMessageInterface<T>[]; hasNext: boolean }
+    | ChatMessageInterface<T>[] // legacy API
+  > {
     return this.fetcher(
       `/rooms/${roomId}/messages?${qs.stringify({ backward, lastMessageId })}`,
     )
