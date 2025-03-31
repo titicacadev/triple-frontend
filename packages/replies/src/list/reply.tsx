@@ -10,7 +10,7 @@ import {
 } from '@titicaca/core-elements'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
-import { TransitionType, useLoginCtaModal } from '@titicaca/modals'
+import { TransitionType } from '@titicaca/modals'
 import { useNavigate } from '@titicaca/router'
 import {
   useUriHash,
@@ -20,8 +20,9 @@ import {
 import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { likeReply, SessionError, unlikeReply } from '../replies-api-client'
+import { likeReply, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
+import { useHttpResponseError } from '../hook'
 
 const MoreActionsButton = styled.button`
   width: 19px;
@@ -142,7 +143,7 @@ export default function Reply({
     focusInput()
   }
 
-  const { show: showLoginCtaModal } = useLoginCtaModal()
+  const handleHttpResponseError = useHttpResponseError()
 
   const handleDeleteReplyClick = useCallback(
     async ({
@@ -178,8 +179,8 @@ export default function Reply({
           haveMine: true,
         }))
       } catch (e) {
-        if (e instanceof SessionError) {
-          showLoginCtaModal()
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
         }
       }
     },
@@ -195,8 +196,8 @@ export default function Reply({
           haveMine: false,
         }))
       } catch (e) {
-        if (e instanceof SessionError) {
-          showLoginCtaModal()
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
         }
       }
     },
