@@ -258,11 +258,7 @@ export async function likeReply({ messageId }: { messageId: string }) {
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new SessionError()
-  }
-
-  captureHttpError(response)
+  throwResponseError(response)
 }
 
 export async function unlikeReply({ messageId }: { messageId: string }) {
@@ -275,11 +271,7 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
     },
   )
 
-  if (response === 'NEED_LOGIN') {
-    throw new SessionError()
-  }
-
-  captureHttpError(response)
+  throwResponseError(response)
 }
 
 function parseRepliesListResponse(
@@ -328,4 +320,15 @@ function sortChildren(reply: Reply): Reply {
   }
 
   return result
+}
+
+function throwResponseError<S, F>(response: 'NEED_LOGIN' | HttpResponse<S, F>) {
+  if (response === 'NEED_LOGIN') {
+    throw new SessionError()
+  }
+
+  captureHttpError(response)
+  if (!response.ok) {
+    throw new Error('Failed to like the reply')
+  }
 }
