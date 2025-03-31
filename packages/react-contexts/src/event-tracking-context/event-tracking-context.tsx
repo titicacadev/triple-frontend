@@ -208,6 +208,7 @@ export function EventTrackingProvider({
           logFirebaseEvent(firebaseAnalyticsWebInstance, 'page_view', {
             page_path: path,
             category: label,
+            ...additionalMetadata,
           })
         }
 
