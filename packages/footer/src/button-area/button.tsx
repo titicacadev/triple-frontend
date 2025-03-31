@@ -34,7 +34,7 @@ export const buttonCss = css`
   align-items: center;
   gap: 2px;
   height: 32px;
-  padding: 9px 12px;
+  padding: 9px 10px;
   font-size: 11px;
   font-weight: bold;
   line-height: 13px;
