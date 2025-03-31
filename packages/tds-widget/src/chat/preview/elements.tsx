@@ -42,6 +42,7 @@ export const ChatRoomMessage = styled(Text).attrs({
 export const ChatRoomCreatedAt = ({
   createdAt,
   convertDateTime = defaultConvertDateTime,
+  ...props
 }: {
   createdAt: string
   convertDateTime?: (createdAt: string, formatType?: string) => string
@@ -53,6 +54,7 @@ export const ChatRoomCreatedAt = ({
         top: '20px',
         right: 0,
       }}
+      {...props}
     >
       <Text size={12} color="gray500" inlineBlock lineHeight="21px">
         {convertDateTime(createdAt)}
@@ -61,7 +63,12 @@ export const ChatRoomCreatedAt = ({
   )
 }
 
-export const ChatRoomUnread = ({ unreadCount }: { unreadCount: number }) => {
+export const ChatRoomUnread = ({
+  unreadCount,
+  ...props
+}: {
+  unreadCount: number
+}) => {
   return (
     <Container
       position="absolute"
@@ -73,6 +80,7 @@ export const ChatRoomUnread = ({ unreadCount }: { unreadCount: number }) => {
         top: '44px',
         right: 0,
       }}
+      {...props}
     >
       <Text color="white" lineHeight="20px" textAlign="center">
         {unreadCount}
