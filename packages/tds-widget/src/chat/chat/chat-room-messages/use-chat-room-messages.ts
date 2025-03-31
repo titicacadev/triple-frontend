@@ -289,19 +289,29 @@ export function useChatMessages<T = UserType>({
     if (scrollable) {
       const prevScrollY = getScrollContainerHeight()
       let pastMessages: ChatMessageInterface<T>[] = []
+      let hasPrevMessage: boolean | undefined
 
       try {
-        pastMessages = await api.getMessages({
+        const result = await api.getMessages({
           roomId: room.id,
           lastMessageId: messages[0].id,
           backward: true,
         })
+
+        if ('messages' in result) {
+          pastMessages = result.messages
+          hasPrevMessage = result.hasNext
+        } else {
+          pastMessages = result
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {}
 
       dispatch({
         action: MessagesActions.PAST,
         messages: pastMessages,
+        hasPrevMessage,
       })
       setScrollY(prevScrollY)
     } else if (isIntersecting && firstRenderForPrevScrollRef.current) {
