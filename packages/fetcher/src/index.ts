@@ -9,5 +9,5 @@ export { captureHttpError } from './response-handler'
 export {
   sessionRefresh,
   sessionRefreshOnSSR,
-  SetCookie,
+  type SetCookie,
 } from './session-refresh'
