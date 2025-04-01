@@ -2,7 +2,11 @@ import { GetServerSidePropsContext } from 'next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
 import { HttpResponse, RequestOptions } from './types'
-import { captureHttpError } from './response-handler'
+import {
+  captureHttpError,
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from './response-handler'
 
 export type BaseFetcher<Extending = unknown> = <
   SuccessBody,
@@ -140,10 +144,10 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    const { status: firstTrialResponseStatus } =
-      firstTrialResponse as HttpResponse<SuccessBody, FailureBody>
-
-    if (firstTrialResponseStatus !== 401) {
+    const checkFirstTrialResponse = handle401Error<SuccessBody, FailureBody>(
+      firstTrialResponse as HttpResponse<SuccessBody, FailureBody>,
+    )
+    if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       return firstTrialResponse
     }
 
