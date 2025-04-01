@@ -142,7 +142,9 @@ export function NewMessage<T = UserType>({
     <NewMessageContainer {...props}>
       {message && (
         <NewMessageButton onClick={onClick}>
-          <Thumbnail src={message.sender.profile.thumbnail} />
+          {message.sender.profile.thumbnail ? (
+            <Thumbnail src={message.sender.profile.thumbnail} />
+          ) : null}
           <Name>{message.sender.profile.name}</Name>
           <Message>{getTextMessage(message.payload)}</Message>
         </NewMessageButton>
