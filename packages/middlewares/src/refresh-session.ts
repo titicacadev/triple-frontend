@@ -12,6 +12,10 @@ import {
   TP_TK,
   SESSION_KEY as X_SOTO_SESSION,
 } from '@titicaca/constants'
+import {
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from '@titicaca/fetcher/src/response-handler'
 
 import { getIsTripleApp } from './utils/get-triple-app'
 import { applySetCookie } from './utils/apply-set-cookie'
@@ -51,9 +55,20 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       withApiUriBase: true,
     }
 
-    const firstTrialResponse = await get('/api/users/session/verify', options)
+    /**
+     * /users/session/verify는 아래와 같은 상태값을 갖습니다.
+     * 200 : TP_SE와 TP_TK가 모두 유효한 경우
+     * 401 : TP_SE가 유효하지 않고 TP_TK가 유효한 경우
+     * 403 : TP_TK가 모두 유효하지 않은 경우
+     */
+    const firstTrialResponse = await get<
+      unknown,
+      { status: number; exception: string; message: string }
+    >('/api/users/session/verify', options)
 
-    if (firstTrialResponse.status !== 401) {
+    const checkFirstTrialResponse = handle401Error(firstTrialResponse)
+
+    if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       const setCookie = firstTrialResponse.headers.get('set-cookie')
       if (setCookie) {
         const setCookies = splitCookiesString(setCookie)
