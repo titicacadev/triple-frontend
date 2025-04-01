@@ -1,5 +1,5 @@
 import { Container } from '@titicaca/tds-ui'
-import { ChangeEvent, useRef } from 'react'
+import { ChangeEvent, ForwardedRef, forwardRef, useRef } from 'react'
 import styled from 'styled-components'
 
 import SelectPhotoIcon from '../../icons/select-photo-icon'
@@ -101,22 +101,25 @@ export interface NolInputAreaUIProps
   activeButtonColor?: string
 }
 
-export function NolInputAreaUI({
-  buttonDisabled = false,
-  inputValue,
-  setInputValue,
-  placeholder,
-  onImageUpload,
-  onSendMessage,
-  onInputClick,
-  onInputKeydown,
-  maxTextLength = MAX_TEXT_LENGTH,
-  multipleImageUpload = false,
-  color,
-  placeholderColor,
-  activeButtonColor,
-  ...props
-}: NolInputAreaUIProps) {
+export function NolInputAreaUIImpl(
+  {
+    buttonDisabled = false,
+    inputValue,
+    setInputValue,
+    placeholder,
+    onImageUpload,
+    onSendMessage,
+    onInputClick,
+    onInputKeydown,
+    maxTextLength = MAX_TEXT_LENGTH,
+    multipleImageUpload = false,
+    color,
+    placeholderColor,
+    activeButtonColor,
+    ...props
+  }: NolInputAreaUIProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const onTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -125,7 +128,7 @@ export function NolInputAreaUI({
   }
 
   return (
-    <InputAreaContainer {...props}>
+    <InputAreaContainer {...props} ref={ref}>
       <UploadImageButtonWrapper>
         <UploadImageButton htmlFor="image_upload">
           <SelectPhotoIcon />
@@ -169,3 +172,5 @@ export function NolInputAreaUI({
     </InputAreaContainer>
   )
 }
+
+export const NolInputArea = forwardRef(NolInputAreaUIImpl)
