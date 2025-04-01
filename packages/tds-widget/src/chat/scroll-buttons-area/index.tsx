@@ -12,14 +12,15 @@ import { Container } from '@titicaca/tds-ui'
 import { ChatMessageInterface, UserType } from '../types'
 import { useScroll } from '../chat'
 
-import { ScrollButtons } from './scroll-buttons'
+import { ScrollButtons, type ScrollButtonsProps } from './scroll-buttons'
 
 interface InspectionConfig {
   id?: number
   isIntersecting: boolean
 }
 
-interface ScrollButtonsAreaProps<T = UserType> {
+interface ScrollButtonsAreaProps<T = UserType>
+  extends Pick<ScrollButtonsProps<T>, 'scrollButtonsStyle'> {
   lastSeenMessageId?: number
   lastMessage?: ChatMessageInterface<T>
 }
@@ -36,6 +37,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
   {
     lastSeenMessageId,
     lastMessage,
+    scrollButtonsStyle,
     children,
   }: PropsWithChildren<ScrollButtonsAreaProps<T>>,
   ref: ForwardedRef<ScrollButtonsAreaHandler>,
@@ -89,6 +91,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
     <Container>
       {mounted.current && lastMessage !== undefined && (
         <ScrollButtons
+          scrollButtonsStyle={scrollButtonsStyle}
           onClick={onButtonClick}
           message={lastMessage}
           isBottomIntersecting={currentBottomIntersecting.isIntersecting}
