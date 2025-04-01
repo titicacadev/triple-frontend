@@ -4,6 +4,7 @@ import {
   useHashRouter,
   useSessionCallback,
   useClientAppCallback,
+  useLoginCtaModal,
 } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import {
@@ -19,7 +20,7 @@ import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { likeReply, unlikeReply } from '../replies-api-client'
+import { likeReply, SessionError, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
 
 const MoreActionsButton = styled.button`
@@ -141,6 +142,8 @@ export function Reply({
     focusInput()
   }
 
+  const { show: showLoginCtaModal } = useLoginCtaModal()
+
   const handleDeleteReplyClick = useCallback(
     async ({
       mentionedUserName,
@@ -167,24 +170,35 @@ export function Reply({
   )
 
   const handleLikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: (prev?.count || 0) + 1,
-        haveMine: true,
-      }))
-      likeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await likeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: (prev?.count || 0) + 1,
+          haveMine: true,
+        }))
+      } catch (e) {
+        if (e instanceof SessionError) {
+          showLoginCtaModal()
+        }
+      }
     },
     false,
   )
 
   const handleUnlikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: Math.max(0, (prev?.count || 0) - 1),
-        haveMine: false,
-      }))
-
-      unlikeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await unlikeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: Math.max(0, (prev?.count || 0) - 1),
+          haveMine: false,
+        }))
+      } catch (e) {
+        if (e instanceof SessionError) {
+          showLoginCtaModal()
+        }
+      }
     },
     false,
   )
