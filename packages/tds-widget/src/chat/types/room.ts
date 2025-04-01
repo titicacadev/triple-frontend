@@ -48,11 +48,20 @@ export interface EventMetaData {
   articleId?: string
 }
 
+interface UserMetaData {
+  type: string
+  id: string
+}
+
 interface ProductMetaData {
+  productId: string
   productName: string
   productThumbnail?: string
   itemName?: string
+  itemId?: string
   optionName?: string
+  optionId?: string
+  user: UserMetaData
 }
 
 interface BookingMetaData {
@@ -61,6 +70,7 @@ interface BookingMetaData {
   statusDescription: string
   product: ProductMetaData
   dateOfUse?: DateOfUseDate | DateOfUseRange
+  user: UserMetaData
 }
 
 interface DateOfUseDate {
