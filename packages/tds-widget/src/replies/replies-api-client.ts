@@ -242,6 +242,12 @@ export async function deleteReply({
   return reply
 }
 
+export class SessionError extends Error {
+  public constructor() {
+    super('로그인이 필요한 호출입니다.')
+  }
+}
+
 export async function likeReply({ messageId }: { messageId: string }) {
   const response = await authGuardedFetchers.put(
     `/api/reply/messages/${messageId}/like`,
@@ -253,7 +259,7 @@ export async function likeReply({ messageId }: { messageId: string }) {
   )
 
   if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
+    throw new SessionError()
   }
 
   captureHttpError(response)
@@ -270,7 +276,7 @@ export async function unlikeReply({ messageId }: { messageId: string }) {
   )
 
   if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
+    throw new SessionError()
   }
 
   captureHttpError(response)
@@ -303,7 +309,7 @@ function confirmAuthorization<T>(
   response: 'NEED_LOGIN' | HttpResponse<T, unknown>,
 ): HttpResponse<T, unknown> {
   if (response === 'NEED_LOGIN') {
-    throw new Error('로그인이 필요한 호출입니다.')
+    throw new SessionError()
   }
 
   captureHttpError(response)
