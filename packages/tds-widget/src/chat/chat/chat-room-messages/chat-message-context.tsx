@@ -86,7 +86,7 @@ export function ChatMessagesProvider<T = UserType>({
       let messages = initialMessages
       let hasPrevMessage: boolean | undefined = initialPrevMessage
 
-      if (!initMessages.length) {
+      if (!messages.length) {
         try {
           const result = await chatApiService.getMessages({
             roomId: room.id,
