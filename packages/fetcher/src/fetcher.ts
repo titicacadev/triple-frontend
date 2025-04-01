@@ -83,7 +83,7 @@ function makeFetchRetryable({
   }
 }
 
-function readResponseBody(response: Response) {
+export function readResponseBody(response: Response) {
   const contentType = response.headers.get('content-type')
   const jsonParseAvailable = contentType && /json/.test(contentType)
 

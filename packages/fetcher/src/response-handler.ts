@@ -2,6 +2,7 @@ import { withScope, captureException } from '@sentry/nextjs'
 
 import { HttpResponse } from './types'
 import { NEED_LOGIN_IDENTIFIER } from './factories'
+import { readResponseBody } from './fetcher'
 
 export function captureHttpError<
   Response extends HttpResponse<unknown, unknown>,
@@ -18,23 +19,38 @@ export function captureHttpError<
 export const ACCESS_TOKEN_EXPIRED_EXCEPTION = 'AccessTokenExpiredException'
 export const NEED_REFRESH_IDENTIFIER = 'NEED_REFRESH'
 
-type ResponseWithError = Pick<Response, 'headers' | 'ok' | 'status' | 'url'> & {
-  ok: false
-  parsedBody: { exception: string; message: string; status: string }
+interface ErrorResponseBody {
+  exception: string
+  message: string
+  status: string
 }
 
-export function handle401Error<SuccessBody, FailureBody>(
-  response: HttpResponse<SuccessBody, FailureBody>,
+type ResponseWithError = Pick<Response, 'headers' | 'ok' | 'status' | 'url'> & {
+  ok: false
+  parsedBody: ErrorResponseBody
+}
+
+export async function handle401Error<SuccessBody, FailureBody>(
+  response: HttpResponse<SuccessBody, FailureBody> | Response,
 ) {
-  if (!response.ok) {
+  if (response.ok) {
+    return response
+  }
+
+  let exception = ''
+
+  if (response instanceof Response) {
+    const parsedBody = (await readResponseBody(response)) as ErrorResponseBody
+    exception = parsedBody.exception
+  } else {
     const errorResponse = response as ResponseWithError
     if (errorResponse.status === 401) {
-      const { exception } = errorResponse.parsedBody
-      if (exception === ACCESS_TOKEN_EXPIRED_EXCEPTION) {
-        return NEED_REFRESH_IDENTIFIER
-      }
-      return NEED_LOGIN_IDENTIFIER
+      exception = errorResponse.parsedBody.exception
     }
   }
-  return response
+
+  if (exception === ACCESS_TOKEN_EXPIRED_EXCEPTION) {
+    return NEED_REFRESH_IDENTIFIER
+  }
+  return NEED_LOGIN_IDENTIFIER
 }
