@@ -31,6 +31,7 @@ interface MessagesProp<
   onMessageIntersecting?: (
     entry: IntersectionObserverEntry,
     id: MessageInterface<Message, User>['id'],
+    createdMessage: boolean,
   ) => void
   calculateUnreadCount?: (
     message: MessageInterface<Message, User>,
@@ -227,7 +228,8 @@ export default function Messages<
           <IntersectionObserver
             onChange={
               onMessageIntersecting
-                ? (_inView, entry) => onMessageIntersecting(entry, id)
+                ? (_inView, entry) =>
+                    onMessageIntersecting(entry, id, !!createdAt)
                 : undefined
             }
           >
