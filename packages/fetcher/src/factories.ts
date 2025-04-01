@@ -144,9 +144,10 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    const checkFirstTrialResponse = handle401Error<SuccessBody, FailureBody>(
-      firstTrialResponse as HttpResponse<SuccessBody, FailureBody>,
-    )
+    const checkFirstTrialResponse = await handle401Error<
+      SuccessBody,
+      FailureBody
+    >(firstTrialResponse as HttpResponse<SuccessBody, FailureBody>)
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       return firstTrialResponse
     }
