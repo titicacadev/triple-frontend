@@ -1,6 +1,8 @@
 import { ClientError, request } from 'graphql-request'
-import { sessionRefresh } from '@titicaca/fetcher'
-import { ACCESS_TOKEN_EXPIRED_EXCEPTION } from '@titicaca/fetcher/src/response-handler'
+import {
+  sessionRefresh,
+  ACCESS_TOKEN_EXPIRED_EXCEPTION,
+} from '@titicaca/fetcher'
 
 import { Requester, getSdk } from './generated'
 
