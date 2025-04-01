@@ -111,6 +111,14 @@ self.addEventListener('fetch', function (event) {
     return
   }
 
+  // https://github.com/mswjs/msw-storybook-addon/issues/36#issuecomment-1496150729
+  const url = new URL(event.request.url)
+
+  if (!url.pathname.startsWith('/api/')) {
+    // Do not propagate this event to other listeners (from MSW)
+    event.stopImmediatePropagation()
+  }
+
   // Generate unique request ID.
   const requestId = Math.random().toString(16).slice(2)
 
