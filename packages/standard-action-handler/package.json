@@ -38,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "@titicaca/fetcher": "workspace:*",
     "@titicaca/modals": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/scroll-to-element": "workspace:*",
