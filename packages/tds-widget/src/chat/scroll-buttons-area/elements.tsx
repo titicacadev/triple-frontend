@@ -68,7 +68,7 @@ const NewMessageButton = styled.button.attrs({ type: 'button' })`
   border: 1px solid
     ${({ theme }) =>
       (theme.scrollButtons || scrollButtonsTheme).newMessageButton.borderColor};
-  box-shadow: 0px 4px 20px 0px
+  box-shadow: 0 4px 20px 0
     ${({ theme }) =>
       (theme.scrollButtons || scrollButtonsTheme).newMessageButton
         .boxShadowColor};
