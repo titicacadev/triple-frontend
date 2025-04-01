@@ -4,3 +4,4 @@ export {
   NolInputAreaUI,
   INPUT_AREA_HEIGHT as NOL_INPUT_AREA_HEIGHT,
 } from './nol-input-area-ui'
+export * from './nol-input-area-ui/use-input-resize-observer'
