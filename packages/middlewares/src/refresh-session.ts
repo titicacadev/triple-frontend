@@ -66,7 +66,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       { status: number; exception: string; message: string }
     >('/api/users/session/verify', options)
 
-    const checkFirstTrialResponse = handle401Error(firstTrialResponse)
+    const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       const setCookie = firstTrialResponse.headers.get('set-cookie')
