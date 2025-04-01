@@ -5,17 +5,18 @@ import {
   NextRequest,
   NextResponse,
 } from 'next/server'
-import { get, post } from '@titicaca/fetcher'
+import {
+  get,
+  post,
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 import {
   TP_SE,
   TP_TK,
   SESSION_KEY as X_SOTO_SESSION,
 } from '@titicaca/constants'
-import {
-  handle401Error,
-  NEED_REFRESH_IDENTIFIER,
-} from '@titicaca/fetcher/src/response-handler'
 
 import { getIsTripleApp } from './utils/get-triple-app'
 import { applySetCookie } from './utils/apply-set-cookie'
