@@ -117,7 +117,9 @@ export function useChatMessages<T = UserType>(
         action: MessagesActions.PENDING,
         message: tempMessage,
       })
-      triggerScrollToBottom()
+      setTimeout(() => {
+        triggerScrollToBottom()
+      }, 100)
     }
 
     try {
