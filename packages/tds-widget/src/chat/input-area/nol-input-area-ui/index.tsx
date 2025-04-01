@@ -101,7 +101,7 @@ export interface NolInputAreaUIProps
   activeButtonColor?: string
 }
 
-export function NolInputAreaUIImpl(
+function NolInputAreaUIImpl(
   {
     buttonDisabled = false,
     inputValue,
@@ -173,4 +173,4 @@ export function NolInputAreaUIImpl(
   )
 }
 
-export const NolInputArea = forwardRef(NolInputAreaUIImpl)
+export const NolInputAreaUI = forwardRef(NolInputAreaUIImpl)
