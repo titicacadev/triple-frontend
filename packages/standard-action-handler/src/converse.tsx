@@ -1,8 +1,7 @@
 import qs from 'qs'
 import { createRoot } from 'react-dom/client'
 import { Modal } from '@titicaca/tds-ui'
-
-import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '../../fetcher/src'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { ContextOptions, WebActionParams } from './types'
 
