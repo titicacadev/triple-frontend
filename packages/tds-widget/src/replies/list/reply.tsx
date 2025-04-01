@@ -4,7 +4,6 @@ import {
   useHashRouter,
   useSessionCallback,
   useClientAppCallback,
-  useLoginCtaModal,
 } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 import {
@@ -20,8 +19,9 @@ import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
 import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
 
 import { Reply as ReplyType, Writer } from '../types'
-import { likeReply, SessionError, unlikeReply } from '../replies-api-client'
+import { likeReply, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
+import { useHttpResponseError } from '../hook'
 
 const MoreActionsButton = styled.button`
   width: 19px;
@@ -142,7 +142,7 @@ export function Reply({
     focusInput()
   }
 
-  const { show: showLoginCtaModal } = useLoginCtaModal()
+  const handleHttpResponseError = useHttpResponseError()
 
   const handleDeleteReplyClick = useCallback(
     async ({
@@ -178,8 +178,8 @@ export function Reply({
           haveMine: true,
         }))
       } catch (e) {
-        if (e instanceof SessionError) {
-          showLoginCtaModal()
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
         }
       }
     },
@@ -195,8 +195,8 @@ export function Reply({
           haveMine: false,
         }))
       } catch (e) {
-        if (e instanceof SessionError) {
-          showLoginCtaModal()
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
         }
       }
     },
