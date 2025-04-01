@@ -12,6 +12,10 @@ import {
   TP_TK,
   SESSION_KEY as X_SOTO_SESSION,
 } from '@titicaca/constants'
+import {
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from '@titicaca/fetcher/src/response-handler'
 
 import { parseApp } from '../user-agent-context'
 
@@ -59,9 +63,14 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * 401 : TP_SE가 유효하지 않고 TP_TK가 유효한 경우
      * 403 : TP_TK가 모두 유효하지 않은 경우
      */
-    const firstTrialResponse = await get('/api/users/session/verify', options)
+    const firstTrialResponse = await get<
+      unknown,
+      { status: number; exception: string; message: string }
+    >('/api/users/session/verify', options)
 
-    if (firstTrialResponse.status !== 401) {
+    const checkFirstTrialResponse = handle401Error(firstTrialResponse)
+
+    if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       const setCookie = firstTrialResponse.headers.get('set-cookie')
       if (setCookie) {
         const setCookies = splitCookiesString(setCookie)
