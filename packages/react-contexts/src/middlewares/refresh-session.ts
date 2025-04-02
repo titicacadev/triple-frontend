@@ -62,10 +62,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     const firstTrialResponse = await get('/api/users/session/verify', options)
 
-    if (
-      firstTrialResponse.status === 403 ||
-      firstTrialResponse.status !== 401
-    ) {
+    if (firstTrialResponse.status !== 401) {
       const setCookie = firstTrialResponse.headers.get('set-cookie')
       if (setCookie) {
         const setCookies = splitCookiesString(setCookie)
@@ -93,6 +90,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       })
       applySetCookie(request, response)
     }
+    return response
   }
 }
 
