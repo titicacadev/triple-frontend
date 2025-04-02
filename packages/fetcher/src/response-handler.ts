@@ -1,4 +1,5 @@
 import { withScope, captureException } from '@sentry/nextjs'
+import { GraphQLError } from 'graphql'
 
 import { HttpResponse } from './types'
 import { NEED_LOGIN_IDENTIFIER } from './factories'
@@ -53,4 +54,19 @@ export async function handle401Error<SuccessBody, FailureBody>(
     return NEED_REFRESH_IDENTIFIER
   }
   return NEED_LOGIN_IDENTIFIER
+}
+
+interface ErrorResponse401 {
+  status: number
+  code: string
+  name: string
+}
+
+export function handleGql401Error(error: GraphQLError) {
+  if (error.extensions?.originalError) {
+    const originalError = error.extensions.originalError as ErrorResponse401
+    if (originalError.status === 401) {
+      return NEED_LOGIN_IDENTIFIER
+    }
+  }
 }
