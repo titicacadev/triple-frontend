@@ -62,6 +62,7 @@ export function useChatMessages<T = UserType>(
     pendingMessages,
     failedMessages,
     hasPrevMessage,
+    prevToken,
     dispatch,
     initMessages,
     welcomeMessages,
@@ -292,24 +293,24 @@ export function useChatMessages<T = UserType>(
       isCreatedChatRoom(room) &&
       isIntersecting &&
       !firstRenderForPrevScrollRef.current &&
-      hasPrevMessage &&
+      (hasPrevMessage || !!prevToken) &&
       messages.length > 0
 
     if (scrollable) {
       const prevScrollY = getScrollContainerHeight()
       let pastMessages: ChatMessageInterface<T>[] = []
-      let hasPrevMessage: boolean | undefined
+      let prevToken: number | undefined | null
 
       try {
         const result = await api.getMessages({
           roomId: room.id,
-          lastMessageId: messages[0].id,
+          lastMessageId: prevToken ?? messages[0].id,
           backward: true,
         })
 
         if ('messages' in result) {
           pastMessages = result.messages
-          hasPrevMessage = result.hasNext
+          prevToken = result.nextToken
         } else {
           pastMessages = result
         }
@@ -320,7 +321,9 @@ export function useChatMessages<T = UserType>(
       dispatch({
         action: MessagesActions.PAST,
         messages: pastMessages,
-        hasPrevMessage,
+        ...(prevToken !== null && {
+          prevToken,
+        }),
       })
       setScrollY(prevScrollY)
     } else if (isIntersecting && firstRenderForPrevScrollRef.current) {
