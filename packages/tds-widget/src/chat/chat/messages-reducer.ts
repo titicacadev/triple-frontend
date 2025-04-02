@@ -32,6 +32,11 @@ export interface MessagesState<Message extends MessageBase<Id>, Id = string> {
   failedMessages: UnsentMessage<Message, Id>[]
   hasPrevMessage: boolean
   hasNextMessage: boolean
+  /**
+   * [nol-chat] 다음 페이지 요청 cursor
+   * nol-chat에서는 hasPrevMessage 대신 prevToken을 사용
+   */
+  prevToken?: Id
 }
 
 export const initialMessagesState = {
@@ -46,12 +51,12 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
   | {
       action: MessagesActions.INIT
       messages: Message[]
-      hasPrevMessage?: boolean
+      prevToken?: Id
     }
   | {
       action: MessagesActions.PAST
       messages: Message[]
-      hasPrevMessage?: boolean
+      prevToken?: Id
     }
   | {
       action: MessagesActions.NEW
@@ -95,14 +100,19 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
       return {
         ...state,
         messages: action.messages,
-        hasPrevMessage: action.hasPrevMessage ?? state.hasPrevMessage,
+        prevToken: action.prevToken,
+        ...('prevToken' in action && { hasPrevMessage: !!action.prevToken }),
       }
 
     case MessagesActions.PAST:
       return {
         ...state,
         messages: [...action.messages, ...state.messages],
-        hasPrevMessage: action.hasPrevMessage ?? action.messages.length > 0,
+        hasPrevMessage:
+          'prevToken' in action
+            ? !!action.prevToken
+            : action.messages.length > 0,
+        prevToken: action.prevToken,
       }
 
     case MessagesActions.NEW:

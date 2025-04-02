@@ -24,7 +24,7 @@ import { ChatFetcher, ChatApiService } from './chat-api-service'
 
 export interface ChatMessagesProviderProps<T = UserType> {
   messages?: ChatMessageInterface<T>[]
-  hasPrevMessage?: boolean
+  prevToken?: ChatMessageInterface<T>['id']
   welcomeMessages?: WelcomeMessageInterface<T>[]
   fetcher: ChatFetcher
   /**
@@ -41,6 +41,7 @@ export interface ChatMessagesContextValue<T = UserType> {
   pendingMessages: UnsentMessage<ChatMessageInterface<T>>[]
   failedMessages: UnsentMessage<ChatMessageInterface<T>>[]
   hasPrevMessage: boolean
+  prevToken?: ChatMessageInterface<T>['id']
   dispatch: Dispatch<
     MessagesAction<ChatMessageInterface<T>, ChatMessageInterface<T>['id']>
   >
@@ -56,7 +57,7 @@ export const ChatMessagesContext =
 export function ChatMessagesProvider<T = UserType>({
   welcomeMessages = [],
   messages: initialMessages = [],
-  hasPrevMessage: initialPrevMessage,
+  prevToken: initialPrevToken,
   fetcher,
   useTripleChat = false,
   children,
@@ -69,7 +70,7 @@ export function ChatMessagesProvider<T = UserType>({
   )
 
   const [
-    { messages, pendingMessages, failedMessages, hasPrevMessage },
+    { messages, pendingMessages, failedMessages, hasPrevMessage, prevToken },
     dispatch,
   ] = useMessagesReducer<
     ChatMessageInterface<T>,
@@ -84,7 +85,7 @@ export function ChatMessagesProvider<T = UserType>({
       })
     } else {
       let messages = initialMessages
-      let hasPrevMessage: boolean | undefined = initialPrevMessage
+      let prevToken: number | undefined | null = initialPrevToken
 
       if (!messages.length) {
         try {
@@ -95,9 +96,10 @@ export function ChatMessagesProvider<T = UserType>({
           })
           if ('messages' in result) {
             messages = result.messages
-            hasPrevMessage = result.hasNext
+            prevToken = result.nextToken
           } else {
             messages = result
+            prevToken = null
           }
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {}
@@ -106,7 +108,9 @@ export function ChatMessagesProvider<T = UserType>({
       dispatch({
         action: MessagesActions.INIT,
         messages,
-        hasPrevMessage: hasPrevMessage ?? messages.length > 0,
+        ...(prevToken !== null && {
+          prevToken,
+        }),
       })
     }
   }
@@ -115,7 +119,8 @@ export function ChatMessagesProvider<T = UserType>({
     messages,
     pendingMessages,
     failedMessages,
-    hasPrevMessage,
+    hasPrevMessage: hasPrevMessage || !!prevToken,
+    prevToken,
     dispatch,
     welcomeMessages,
     initMessages,

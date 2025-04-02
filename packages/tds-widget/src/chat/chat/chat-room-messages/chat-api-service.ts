@@ -68,7 +68,7 @@ export class ChatApiService<T = UserType> {
     backward?: boolean
     lastMessageId: number | string | null
   }): Promise<
-    | { messages: ChatMessageInterface<T>[]; hasNext: boolean }
+    | { messages: ChatMessageInterface<T>[]; nextToken?: number }
     | ChatMessageInterface<T>[] // legacy API
   > {
     return this.fetcher(
