@@ -48,7 +48,10 @@ export function useLogout({
       const redirectUrl = getRedirectUrl(redirectLocation)
 
       window.location.href = redirectUrl
+      return
     }
+
+    window.location.reload()
   }, [clearUserState])
 
   if (type === 'app') {
