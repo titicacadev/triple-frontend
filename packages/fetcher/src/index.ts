@@ -8,6 +8,7 @@ export { authGuardedFetchers } from './auth-guarded-methods'
 export {
   captureHttpError,
   handle401Error,
+  handleGql401Error,
   NEED_REFRESH_IDENTIFIER,
   ACCESS_TOKEN_EXPIRED_EXCEPTION,
 } from './response-handler'
