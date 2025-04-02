@@ -85,7 +85,6 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const setCookie = refreshResponse.headers.get('set-cookie')
 
     if (setCookie) {
-      const response = (await next(request, event)) as NextResponse
       const setCookies = splitCookiesString(setCookie)
       setCookies.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
