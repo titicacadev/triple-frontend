@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import DOMPurify from 'dompurify'
 
 import {
@@ -57,8 +57,6 @@ export function useChatMessages<T = UserType>(
   const firstRenderForPrevScrollRef = useRef(true)
   const isWelcomeMessagePendingRef = useRef(false)
 
-  const [initComplete, setInitComplete] = useState(false)
-
   const {
     messages,
     pendingMessages,
@@ -84,16 +82,11 @@ export function useChatMessages<T = UserType>(
         isWelcomeMessagePendingRef.current = true
       }
 
-      setInitComplete(true)
+      setTimeout(() => {
+        setScrollY(0)
+      }, 0)
     })()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (initComplete) {
-      setScrollY(0)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initComplete])
 
   async function handleSendMessageAction({
     roomId,
