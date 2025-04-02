@@ -33,7 +33,7 @@ type ResponseWithError = Pick<Response, 'headers' | 'ok' | 'status' | 'url'> & {
 export async function handle401Error<SuccessBody, FailureBody>(
   response: HttpResponse<SuccessBody, FailureBody> | Response,
 ) {
-  if (response.ok) {
+  if (response.ok || response.status !== 401) {
     return response
   }
 
