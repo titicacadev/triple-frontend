@@ -77,7 +77,7 @@ const UploadImageButton = styled.label`
   height: 26px;
 `
 
-export const FileInput = styled.input`
+const FileInput = styled.input`
   position: absolute;
   visibility: hidden;
   width: 260px;
