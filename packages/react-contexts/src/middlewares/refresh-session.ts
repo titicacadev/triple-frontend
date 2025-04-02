@@ -88,13 +88,10 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       const setCookies = splitCookiesString(setCookie)
       setCookies.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
-        if (name !== X_SOTO_SESSION) {
-          response.cookies.set(name, value, { ...(rest as ResponseCookie) })
-        }
+        response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
       applySetCookie(request, response)
     }
-    return response
   }
 }
 
