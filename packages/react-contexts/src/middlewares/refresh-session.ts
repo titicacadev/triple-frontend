@@ -57,7 +57,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * /users/session/verify는 아래와 같은 상태값을 갖습니다.
      * 200 : TP_SE와 TP_TK가 모두 유효한 경우
      * 401 : TP_SE가 유효하지 않고 TP_TK가 유효한 경우
-     * 403 : TP_SE와 TP_TK 모두 유효하지 않은 경우
+     * 403 : TP_TK가 모두 유효하지 않은 경우
      */
     const firstTrialResponse = await get('/api/users/session/verify', options)
 
