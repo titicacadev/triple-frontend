@@ -1,4 +1,4 @@
-import { get } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 export function confirmVerification(type: string): Promise<{
   verified: boolean | undefined
@@ -18,11 +18,12 @@ export function confirmVerification(type: string): Promise<{
 }
 
 async function confirmSmsVerification() {
-  const response = await get<{
+  const response = await authGuardedFetchers.get<{
     phoneNumber: string
   }>('/api/users/smscert')
-
-  if (response.status === 404) {
+  if (response === NEED_LOGIN_IDENTIFIER) {
+    return { verified: undefined, error: NEED_LOGIN_IDENTIFIER }
+  } else if (response.status === 404) {
     return { verified: false }
   } else if (response.ok) {
     const { phoneNumber, ...payload } = response.parsedBody
@@ -34,11 +35,12 @@ async function confirmSmsVerification() {
 }
 
 async function confirmPersonalIdVerificationWithResidence() {
-  const response = await get<{
+  const response = await authGuardedFetchers.get<{
     phoneNumber: string
   }>('/api/users/kto-stay-2021')
-
-  if (response.status === 404) {
+  if (response === NEED_LOGIN_IDENTIFIER) {
+    return { verified: undefined, error: NEED_LOGIN_IDENTIFIER }
+  } else if (response.status === 404) {
     return { verified: false }
   } else if (response.ok) {
     const { phoneNumber, ...payload } = response.parsedBody
@@ -50,11 +52,12 @@ async function confirmPersonalIdVerificationWithResidence() {
 }
 
 async function confirmPersonalIdVerification() {
-  const response = await get<{
+  const response = await authGuardedFetchers.get<{
     mobile: string
   }>('/api/users/namecheck')
-
-  if (response.status === 404) {
+  if (response === NEED_LOGIN_IDENTIFIER) {
+    return { verified: undefined, error: NEED_LOGIN_IDENTIFIER }
+  } else if (response.status === 404) {
     return { verified: false }
   } else if (response.ok) {
     const { mobile: phoneNumber, ...payload } = response.parsedBody
@@ -68,11 +71,13 @@ async function confirmPersonalIdVerification() {
 async function confirmExternalPromotionEligibility(type: string) {
   const externalPromotionId = type.replace(/^external-promotion-/, '')
 
-  const response = await get<{
+  const response = await authGuardedFetchers.get<{
     phoneNumber?: string
   }>(`/api/users/external-promotion/${externalPromotionId}/eligibility`)
 
-  if (response.status === 404) {
+  if (response === NEED_LOGIN_IDENTIFIER) {
+    return { verified: undefined, error: NEED_LOGIN_IDENTIFIER }
+  } else if (response.status === 404) {
     return { verified: false }
   } else if (response.ok) {
     const { phoneNumber, ...payload } = response.parsedBody

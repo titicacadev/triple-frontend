@@ -1,4 +1,4 @@
-import { get } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 import qs from 'qs'
 
 import { ArticleListingData } from './types'
@@ -10,7 +10,7 @@ export async function fetchRecommendedArticles({
   regionId?: string
   zoneId?: string
 }): Promise<ArticleListingData[]> {
-  const response = await get<ArticleListingData[]>(
+  const response = await authGuardedFetchers.get<ArticleListingData[]>(
     `/api/content/articles?${qs.stringify({
       ...((regionId || zoneId) && {
         geotags: [
@@ -22,11 +22,11 @@ export async function fetchRecommendedArticles({
     })}`,
   )
 
-  if (response.ok === true) {
+  if (response !== NEED_LOGIN_IDENTIFIER && response.ok === true) {
     const { parsedBody } = response
     return shuffle(parsedBody.filter(({ source: { image } }) => image))
   } else {
-    throw new Error('Failed to fetch recommended articles')
+    throw new Error(`Failed to fetch recommended articles`)
   }
 }
 

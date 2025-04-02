@@ -9,6 +9,7 @@ import {
   useState,
 } from 'react'
 import { useTrackEvent, useSessionAvailability } from '@titicaca/triple-web'
+import { NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { TripleABExperimentMeta, getTripleABExperiment } from './service'
 
@@ -41,12 +42,14 @@ export function TripleABExperimentProvider({
     async function fetchAndSetMeta() {
       const response = await getTripleABExperiment(slug)
 
-      if (response.ok === false) {
-        const { status, url } = response
-
-        if (onError !== undefined) {
-          onError(new Error(`${status} - ${url}`))
+      if (response === NEED_LOGIN_IDENTIFIER || response.ok === false) {
+        if (response === NEED_LOGIN_IDENTIFIER) {
+          onError?.(new Error(NEED_LOGIN_IDENTIFIER))
+        } else {
+          const { status, url } = response
+          onError?.(new Error(`${status} - ${url}`))
         }
+
         return
       }
 

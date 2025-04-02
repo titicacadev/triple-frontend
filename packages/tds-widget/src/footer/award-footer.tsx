@@ -11,6 +11,7 @@ import { CompanyInfo } from './company-info'
 import { ExtraLinkGroup } from './extra-link-group'
 import { useFooterInfo } from './use-footer-info'
 import { FooterAward } from './type'
+import { AWARD_FOOTER_MIN_HEIGHT } from './constants'
 
 const InfoFlexBox = styled(FlexBox).attrs({
   flex: true,
@@ -62,7 +63,12 @@ export function AwardFooter({
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   if (!footerInfo) {
-    return null
+    return (
+      <FooterFrame
+        {...props}
+        css={{ minHeight: AWARD_FOOTER_MIN_HEIGHT, width: '100%' }}
+      />
+    )
   }
 
   return (
@@ -80,13 +86,14 @@ export function AwardFooter({
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
+          buttons={footerInfo.buttons}
         />
 
         <Text
           size={11}
           lineHeight="17px"
           color="gray500"
-          margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
+          margin={{ top: businessExpanded ? 15 : 20, bottom: 5 }}
           css={{ maxWidth: 280, wordBreak: 'break-word' }}
         >
           {footerInfo.disclaimer}

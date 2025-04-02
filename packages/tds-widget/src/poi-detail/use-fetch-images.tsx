@@ -1,7 +1,11 @@
 import qs from 'qs'
 import { useState } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
-import { captureHttpError, get } from '@titicaca/fetcher'
+import {
+  captureHttpError,
+  authGuardedFetchers,
+  NEED_LOGIN_IDENTIFIER,
+} from '@titicaca/fetcher'
 
 import { ImageCategoryOrder } from './types'
 
@@ -74,7 +78,7 @@ async function sendFetchImages(
   querystring: string,
   endpoint: 'content' | 'reviews',
 ) {
-  const response = await get<
+  const response = await authGuardedFetchers.get<
     {
       data: ImageMeta[]
       total: number
@@ -85,11 +89,13 @@ async function sendFetchImages(
     { message: string }
   >(`/api/${endpoint}/v2/images?${querystring}`)
 
-  if (response.ok === true) {
+  if (response !== NEED_LOGIN_IDENTIFIER && response.ok === true) {
     const { parsedBody } = response
     return parsedBody
   } else {
-    captureHttpError(response)
+    if (response !== NEED_LOGIN_IDENTIFIER) {
+      captureHttpError(response)
+    }
     throw new Error(`Fail to fetch ${endpoint} images`)
   }
 }

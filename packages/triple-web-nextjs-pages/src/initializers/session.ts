@@ -12,7 +12,7 @@ import {
   checkClientApp,
 } from '@titicaca/triple-web-utils'
 
-import { checkClientAppSession, checkWebSession } from '../helpers/session'
+import { checkSession } from '../helpers/session'
 
 /**
  * - app (server-side): refresh X
@@ -39,9 +39,7 @@ async function fetchUser(ctx: NextPageContext, isClientApp: boolean) {
   if (ctx.req) {
     // Server-side
 
-    const hasSession = isClientApp
-      ? checkClientAppSession(ctx.req)
-      : checkWebSession(ctx.req)
+    const hasSession = checkSession(ctx.req)
 
     // 세션이 없으면 fetch를 스킵합니다.
     if (!hasSession) {
