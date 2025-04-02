@@ -32,6 +32,7 @@ export interface ScrollContextValue {
   scrollToBottom: (options?: ScrollOptions) => void
   /** 해당 message로 이동합니다. 사용하기 전, 메세지 노드에 messageIdPrefix를 넣은 id를 추가해야 합니다. */
   scrollToMessage: (messageId: string, options?: ScrollOptions) => void
+  scrollY: number | null
   /** 절대적인 좌표로 스크롤합니다. 페이지네이션, 메세지 이동 등에 사용할 수 있습니다. */
   setScrollY: Dispatch<SetStateAction<number | null>>
   /** 상대적인 좌표로 스크롤합니다. input resize 이벤트, 키보드 이벤트 등에 사용할 수 있습니다. */
@@ -142,6 +143,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   const value = {
     scrollToBottom,
     scrollToMessage,
+    scrollY,
     setScrollY,
     setScrollBy,
     scrollPrevented,

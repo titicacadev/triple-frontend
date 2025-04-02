@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useScroll as useBaseScroll } from '../scroll-context'
 
 export function useScroll() {
-  const { setScrollY, getScrollContainerHeight, scrollToBottom } =
+  const { scrollY, setScrollY, getScrollContainerHeight, scrollToBottom } =
     useBaseScroll()
 
   const [shouldScrollToBottom, setShouldScrollToBottom] =
@@ -18,6 +18,7 @@ export function useScroll() {
   }, [shouldScrollToBottom, scrollToBottom])
 
   return {
+    scrollY,
     setScrollY,
     getScrollContainerHeight,
     triggerScrollToBottom: () => setShouldScrollToBottom(true),
