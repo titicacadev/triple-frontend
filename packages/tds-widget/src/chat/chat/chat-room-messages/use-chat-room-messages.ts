@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react'
 import DOMPurify from 'dompurify'
 
 import {
@@ -31,6 +31,9 @@ interface ChatMessagesProps<T = UserType> {
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
 }
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export function useChatMessages<T = UserType>(
   {
@@ -68,7 +71,7 @@ export function useChatMessages<T = UserType>(
   } = useChatMessagesContext<T>()
   const api = useChatApiService<T>()
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     ;(async function () {
       await initMessages()
 
@@ -82,9 +85,7 @@ export function useChatMessages<T = UserType>(
         isWelcomeMessagePendingRef.current = true
       }
 
-      setTimeout(() => {
-        setScrollY(0)
-      }, 0)
+      setScrollY(0)
     })()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
