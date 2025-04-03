@@ -85,6 +85,15 @@ function ScrollButtonsAreaImpl<T = UserType>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastSeenMessageId])
 
+  const isNewMessageActive = !currentBottomIntersecting.id
+    ? false
+    : !(
+        currentBottomIntersecting.isIntersecting ||
+        !lastMessage ||
+        !lastSeenMessageId ||
+        Number(lastMessage.id) === Number(lastSeenMessageId)
+      )
+
   return (
     <Container>
       {mounted.current && lastMessage !== undefined && (
@@ -93,12 +102,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
           onClick={onButtonClick}
           message={lastMessage}
           isBottomIntersecting={currentBottomIntersecting.isIntersecting}
-          newMessageActive={
-            !currentBottomIntersecting.isIntersecting &&
-            lastMessage !== undefined &&
-            lastSeenMessageId !== undefined &&
-            Number(lastMessage.id) !== Number(lastSeenMessageId)
-          }
+          newMessageActive={isNewMessageActive}
         />
       )}
       {children}
