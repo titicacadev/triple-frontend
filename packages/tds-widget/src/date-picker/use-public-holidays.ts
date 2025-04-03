@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from 'react'
 import moment from 'moment'
+import { NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { fetchPublicHolidays, Holiday } from './service'
 
@@ -23,7 +24,7 @@ export function usePublicHolidays({
       const fetchData = async () => {
         const response = await fetchPublicHolidays({ from, to }, {})
 
-        if (response.ok === true) {
+        if (response !== NEED_LOGIN_IDENTIFIER && response.ok === true) {
           const { parsedBody } = response
 
           setPublicHolidays(parsedBody)

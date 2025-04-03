@@ -46,6 +46,7 @@
     "@sentry/nextjs": "7.120.3",
     "@titicaca/view-utilities": "workspace:*",
     "@types/node-fetch": "^2.6.12",
+    "@types/set-cookie-parser": "^2.4.10",
     "isomorphic-fetch": "^2.2.1",
     "next": "^14.2.24",
     "node-fetch": "^2.7.0"

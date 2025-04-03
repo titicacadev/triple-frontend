@@ -1,7 +1,14 @@
+import { Fragment } from 'react'
 import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
+import { useTrackEvent } from '@titicaca/triple-web'
+
+import { FooterLink } from './type'
 
 const LinksContainer = styled(Container)`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
   font-size: 11px;
   font-weight: bold;
   line-height: 20px;
@@ -10,27 +17,41 @@ const LinksContainer = styled(Container)`
   a {
     color: var(--color-gray);
     text-decoration: none;
-    margin: 6px;
-  }
-
-  a:first-child {
-    margin-left: 0;
+    word-break: keep-all;
+    flex-shrink: 0;
   }
 `
-export function LinkGroup() {
+
+const Divider = styled.div`
+  width: 1px;
+  height: 8px;
+  margin: 0 6px;
+  background: var(--color-gray);
+`
+
+export function LinkGroup({ links }: { links: FooterLink[] }) {
+  const trackEvent = useTrackEvent()
+
   return (
     <LinksContainer>
-      <a href="/pages/tos.html" target="_blank" rel="noreferrer">
-        서비스 이용약관
-      </a>
-      |
-      <a href="/pages/privacy-policy.html" target="_blank" rel="noreferrer">
-        개인정보 처리방침
-      </a>
-      |
-      <a href="/cs-bridge/entry" target="_blank" rel="noreferrer">
-        고객센터
-      </a>
+      {links.map((link, index) => (
+        <Fragment key={`link-${index}`}>
+          <a
+            key={`link-${index}`}
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+            onClick={
+              link.faEventAction
+                ? () => trackEvent({ fa: { action: link.faEventAction } })
+                : undefined
+            }
+          >
+            {link.label}
+          </a>
+          {index < links.length - 1 ? <Divider /> : null}
+        </Fragment>
+      ))}
     </LinksContainer>
   )
 }

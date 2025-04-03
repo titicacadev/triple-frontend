@@ -1,4 +1,4 @@
-import { get, RequestOptions, HttpResponse } from '@titicaca/fetcher'
+import { authGuardedFetchers, RequestOptions } from '@titicaca/fetcher'
 
 export interface Holiday {
   name: string
@@ -10,6 +10,9 @@ export interface Holiday {
 export async function fetchPublicHolidays(
   { from, to }: { from: string; to: string },
   options: RequestOptions,
-): Promise<HttpResponse<Holiday[]>> {
-  return get(`/api/calendar/holidays/KR/${from}/${to}`, options)
+) {
+  return authGuardedFetchers.get<Holiday[]>(
+    `/api/calendar/holidays/KR/${from}/${to}`,
+    options,
+  )
 }
