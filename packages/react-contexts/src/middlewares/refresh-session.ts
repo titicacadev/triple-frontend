@@ -5,7 +5,12 @@ import {
   NextRequest,
   NextResponse,
 } from 'next/server'
-import { get, post } from '@titicaca/fetcher'
+import {
+  get,
+  post,
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
 import {
   TP_SE,
@@ -16,6 +21,7 @@ import {
 import { parseApp } from '../user-agent-context'
 
 import { applySetCookie } from './utils/apply-set-cookie'
+import { getDomain } from './utils/get-domain'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -59,12 +65,20 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * 401 : TP_SE가 유효하지 않고 TP_TK가 유효한 경우
      * 403 : TP_TK가 모두 유효하지 않은 경우
      */
+    const firstTrialResponse = await get<
+      unknown,
+      { status: number; exception: string; message: string }
+    >('/api/users/session/verify', options)
 
-    const firstTrialResponse = await get('/api/users/session/verify', options)
+    const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
 
-    if (firstTrialResponse.status !== 401) {
-      const setCookie = firstTrialResponse.headers.get('set-cookie')
-      if (setCookie) {
+    if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
+      const setCookieHeader = firstTrialResponse.headers.get('set-cookie')
+      if (setCookieHeader) {
+        const setCookie = changeSetCookieDomainOnLocalhost(
+          request,
+          setCookieHeader,
+        )
         const setCookies = splitCookiesString(setCookie)
         setCookies.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
@@ -80,9 +94,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
 
-    const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookieHeader = refreshResponse.headers.get('set-cookie')
 
-    if (setCookie) {
+    if (setCookieHeader) {
+      const setCookie = changeSetCookieDomainOnLocalhost(
+        request,
+        setCookieHeader,
+      )
       const setCookies = splitCookiesString(setCookie)
       setCookies.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
@@ -96,4 +114,29 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
 function deriveAllCookies(cookies: { name: string; value: string }[]) {
   return cookies.map(({ name, value }) => [name, value].join('=')).join('; ')
+}
+
+function changeSetCookieDomainOnLocalhost(
+  request: NextRequest,
+  setCookie: string,
+) {
+  const domain = getDomain(request)
+  if (domain !== 'localhost') {
+    return setCookie
+  }
+  const setCookies = splitCookiesString(setCookie)
+  const domainChangedSetCookies = setCookies.map((cookie) => {
+    const { domain: cookieDomain, ...rest } = parseString(cookie)
+    return { domain, ...rest }
+  })
+
+  const updatedSetCookie = domainChangedSetCookies
+    .map((cookie) => {
+      const { name, value, ...rest } = cookie
+      return `${name}=${value}; ${Object.entries(rest)
+        .map(([key, val]) => `${key}=${val.toString()}`)
+        .join('; ')}`
+    })
+    .join(', ')
+  return updatedSetCookie
 }

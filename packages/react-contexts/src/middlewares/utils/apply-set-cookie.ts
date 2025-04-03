@@ -8,7 +8,11 @@ import { NextRequest, NextResponse } from 'next/server'
  * response.cookies.set 사용 시 response의 set-cookie로 값이 적용되기 때문에 이를 response의 headers.cookie로 설정해주는 함수입니다.
  *
  */
-export function applySetCookie(req: NextRequest, res: NextResponse) {
+export function applySetCookie(
+  req: NextRequest,
+  res: NextResponse,
+  removeEmptySetCookie = true,
+) {
   const setCookies = new ResponseCookies(res.headers)
   const newReqHeaders = new Headers(req.headers)
   const newReqCookies = new RequestCookies(newReqHeaders)
@@ -21,7 +25,11 @@ export function applySetCookie(req: NextRequest, res: NextResponse) {
       key === 'x-middleware-override-headers' ||
       key.startsWith('x-middleware-request-')
     ) {
-      res.headers.set(key, value)
+      if (removeEmptySetCookie && value.length === 0) {
+        res.headers.delete(key)
+      } else {
+        res.headers.set(key, value)
+      }
     }
   })
 }

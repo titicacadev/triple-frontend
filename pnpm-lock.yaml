@@ -1611,6 +1611,9 @@ importers:
 
   packages/standard-action-handler:
     dependencies:
+      '@titicaca/fetcher':
+        specifier: workspace:*
+        version: link:../fetcher
       '@titicaca/modals':
         specifier: workspace:*
         version: link:../modals
