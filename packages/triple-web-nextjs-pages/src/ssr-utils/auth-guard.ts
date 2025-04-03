@@ -1,15 +1,11 @@
-import type { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
-import { get } from '@titicaca/fetcher'
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 import qs from 'qs'
 import { generateUrl, parseUrl, strictQuery } from '@titicaca/view-utilities'
 import { checkClientApp } from '@titicaca/triple-web-utils'
+import { SessionUser } from '@titicaca/triple-web'
 
 import { getSessionAvailability } from './get-session-availability'
-
-interface UserResponse {
-  uid: string
-  // TODO
-}
 
 interface AuthGuardOptions {
   authType?: string
@@ -26,7 +22,7 @@ const NON_MEMBER_REGEX = /^_PH/
 export function authGuard<Props>(
   gssp: (
     ctx: GetServerSidePropsContext & {
-      customContext?: { user?: UserResponse }
+      customContext?: { user?: SessionUser }
     },
   ) => Promise<GetServerSidePropsResult<Props>>,
   options?: AuthGuardOptions,
@@ -48,38 +44,40 @@ export function authGuard<Props>(
       ? options.resolveReturnUrl(ctx)
       : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${resolvedUrl}`
 
-    const response = await get<UserResponse>('/api/users/me', {
-      req,
-      retryable: true,
-    })
+    const response = await authGuardedFetchers.get<SessionUser>(
+      '/api/users/me',
+      {
+        req,
+        retryable: true,
+      },
+    )
 
-    if (response.ok === false) {
+    if (response === NEED_LOGIN_IDENTIFIER) {
+      if (
+        // TODO : WEB, APP 구분 제거
+        userAgentString &&
+        checkClientApp(userAgentString) &&
+        getSessionAvailability(ctx)
+      ) {
+        return refreshInAppSession({ resolvedUrl, returnUrl })
+      }
+
+      return redirectToLogin({ returnUrl, authType: options?.authType })
+    } else if (!response.ok) {
       const { status } = response
 
-      if (status === 401) {
-        if (
-          userAgentString &&
-          checkClientApp(userAgentString) &&
-          getSessionAvailability(ctx)
-        ) {
-          return refreshInAppSession({ resolvedUrl, returnUrl })
-        }
+      throw new Error(`Fail to fetch User: ${status}`)
+    } else {
+      const { parsedBody: user } = response
 
+      const isNonMember = user.uid.match(NON_MEMBER_REGEX)
+
+      if (!options?.allowNonMembers && isNonMember) {
         return redirectToLogin({ returnUrl, authType: options?.authType })
       }
 
-      throw new Error(`Fail to fetch User: ${status}`)
+      return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
     }
-
-    const { parsedBody: user } = response
-
-    const isNonMember = user.uid.match(NON_MEMBER_REGEX)
-
-    if (!options?.allowNonMembers && isNonMember) {
-      return redirectToLogin({ returnUrl, authType: options?.authType })
-    }
-
-    return gssp({ ...ctx, customContext: { ...ctx.customContext, user } })
   }
 }
 

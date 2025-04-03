@@ -329,6 +329,9 @@ importers:
       '@types/node-fetch':
         specifier: ^2.6.12
         version: 2.6.12
+      '@types/set-cookie-parser':
+        specifier: ^2.4.10
+        version: 2.4.10
       isomorphic-fetch:
         specifier: ^2.2.1
         version: 2.2.1
@@ -380,13 +383,22 @@ importers:
       universal-cookie:
         specifier: ^4.0.4
         version: 4.0.4
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
       '@titicaca/triple-web-utils':
         specifier: workspace:*
         version: link:../triple-web-utils
+      '@titicaca/view-utilities':
+        specifier: workspace:*
+        version: link:../view-utilities
       '@types/semver':
         specifier: ^7.5.8
         version: 7.5.8
@@ -824,6 +836,9 @@ importers:
       ua-parser-js:
         specifier: ^1.0.40
         version: 1.0.40
+      universal-cookie:
+        specifier: ^4.0.4
+        version: 4.0.4
     devDependencies:
       '@types/qs':
         specifier: ^6.9.18
@@ -843,6 +858,9 @@ importers:
 
   packages/triple-web-nextjs:
     dependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -871,6 +889,9 @@ importers:
 
   packages/triple-web-nextjs-pages:
     dependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
@@ -10125,6 +10146,10 @@ packages:
   utility-types@3.11.0:
     resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
     engines: {node: '>= 4'}
+
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
 
   uuid@9.0.0:
     resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
@@ -21979,6 +22004,8 @@ snapshots:
   utila@0.4.0: {}
 
   utility-types@3.11.0: {}
+
+  uuid@11.1.0: {}
 
   uuid@9.0.0: {}
 

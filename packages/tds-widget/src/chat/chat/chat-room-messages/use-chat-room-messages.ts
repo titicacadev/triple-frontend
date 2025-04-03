@@ -83,7 +83,9 @@ export function useChatMessages<T = UserType>(
         isWelcomeMessagePendingRef.current = true
       }
 
-      setScrollY(0)
+      setTimeout(() => {
+        setScrollY(0)
+      }, 0)
     })()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
