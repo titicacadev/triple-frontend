@@ -21,6 +21,7 @@ import {
 import { parseApp } from '../user-agent-context'
 
 import { applySetCookie } from './utils/apply-set-cookie'
+import { getDomain } from './utils/get-domain'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -72,8 +73,12 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
-      const setCookie = firstTrialResponse.headers.get('set-cookie')
-      if (setCookie) {
+      const setCookieHeader = firstTrialResponse.headers.get('set-cookie')
+      if (setCookieHeader) {
+        const setCookie = changeSetCookieDomainOnLocalhost(
+          request,
+          setCookieHeader,
+        )
         const setCookies = splitCookiesString(setCookie)
         setCookies.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
@@ -89,9 +94,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
 
-    const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookieHeader = refreshResponse.headers.get('set-cookie')
 
-    if (setCookie) {
+    if (setCookieHeader) {
+      const setCookie = changeSetCookieDomainOnLocalhost(
+        request,
+        setCookieHeader,
+      )
       const setCookies = splitCookiesString(setCookie)
       setCookies.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
@@ -105,4 +114,29 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
 function deriveAllCookies(cookies: { name: string; value: string }[]) {
   return cookies.map(({ name, value }) => [name, value].join('=')).join('; ')
+}
+
+function changeSetCookieDomainOnLocalhost(
+  request: NextRequest,
+  setCookie: string,
+) {
+  const domain = getDomain(request)
+  if (domain !== 'localhost') {
+    return setCookie
+  }
+  const setCookies = splitCookiesString(setCookie)
+  const domainChangedSetCookies = setCookies.map((cookie) => {
+    const { domain: cookieDomain, ...rest } = parseString(cookie)
+    return { domain, ...rest }
+  })
+
+  const updatedSetCookie = domainChangedSetCookies
+    .map((cookie) => {
+      const { name, value, ...rest } = cookie
+      return `${name}=${value}; ${Object.entries(rest)
+        .map(([key, val]) => `${key}=${val.toString()}`)
+        .join('; ')}`
+    })
+    .join(', ')
+  return updatedSetCookie
 }
