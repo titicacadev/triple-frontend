@@ -55,9 +55,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onButtonClick = (behavior: ScrollBehavior = 'smooth') => {
-    setTimeout(() => {
-      scrollToBottom({ scrollBehavior: behavior })
-    }, 100)
+    scrollToBottom({ scrollBehavior: behavior })
   }
 
   useImperativeHandle(ref, () => {
