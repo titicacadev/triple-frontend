@@ -17,13 +17,7 @@ export const AccordionContent = ({
   }
 
   return (
-    <Container
-      id={contentId}
-      css={{
-        margin: '5px 0 0',
-      }}
-      {...props}
-    >
+    <Container id={contentId} {...props}>
       {children}
     </Container>
   )

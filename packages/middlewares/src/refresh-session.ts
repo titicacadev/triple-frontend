@@ -1,31 +1,49 @@
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
+import { type ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from 'next/server'
 import { get, post } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
+import {
+  TP_SE,
+  TP_TK,
+  SESSION_KEY as X_SOTO_SESSION,
+} from '@titicaca/constants'
 
-import { CustomMiddleware } from './types'
-import { TP_SE, TP_TK } from './constants'
+import { getIsTripleApp } from './utils/get-triple-app'
+import { applySetCookie } from './utils/apply-set-cookie'
 
-export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
+export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
   ) {
+    const response = (await next(request, event)) as NextResponse
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
     if (!isPageUrl) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const allCookies = request.cookies.getAll()
 
-    const isSessionExisted = allCookies.some(
+    const isTripleApp = getIsTripleApp(request)
+
+    const cookiesWithoutXSotoSession = isTripleApp
+      ? allCookies
+      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
+
+    const isSessionExisted = cookiesWithoutXSotoSession.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(request.cookies.getAll())
+    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
 
     if (!isSessionExisted) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const options = {
@@ -33,10 +51,10 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
       withApiUriBase: true,
     }
 
-    const firstTrialResponse = await get('/api/users/me', options)
+    const firstTrialResponse = await get('/api/users/session/verify', options)
 
     if (firstTrialResponse.status !== 401) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     /**
@@ -48,35 +66,21 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
       const setCookie = refreshResponse.headers.get('set-cookie')
 
       if (setCookie) {
-        const oldCookies = splitCookiesString(
-          request.headers.get('cookie') || '',
-        )
+        const response = (await next(request, event)) as NextResponse
         const setCookies = splitCookiesString(setCookie)
-
-        const newCookies = oldCookies.reduce((map, cookie) => {
-          const { name } = parseString(cookie)
-          return map.set(name, cookie)
-        }, new Map())
-
         setCookies.forEach((cookie) => {
-          const { name } = parseString(cookie)
-          newCookies.set(name, cookie)
+          const { name, value, ...rest } = parseString(cookie)
+          if (name !== X_SOTO_SESSION) {
+            response.cookies.set(name, value, { ...(rest as ResponseCookie) })
+          }
         })
+        applySetCookie(request, response)
 
-        const finalCookie = [...newCookies.values()].join('; ')
-
-        request.headers.set('cookie', finalCookie)
-
-        const response = NextResponse.next({
-          request,
-        })
-
-        response.headers.set('set-cookie', setCookie)
-
-        return customMiddleware(request, event, response)
+        return response
       }
     }
-    return customMiddleware(request, event, NextResponse.next())
+
+    return response
   }
 }
 
