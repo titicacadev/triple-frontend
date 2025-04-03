@@ -1,6 +1,8 @@
-import { format, isSameDay } from 'date-fns'
+import { differenceInDays, format, isSameDay, parseISO } from 'date-fns'
 
 import { ChatMessagePayload, ChatMessagePayloadType } from '../types'
+
+const DATE_FORMAT = 'yyyy.MM.dd'
 
 export const getTextMessage = (payload: ChatMessagePayload) => {
   const replaceNewlinesWithSpaces = (text: string) =>
@@ -30,11 +32,27 @@ export function convertDateTime(
   formatType?: string,
 ): string {
   const dateTime = new Date(createdAt)
-  const DATE_FORMAT = 'yyyy.MM.dd'
 
   if (isSameDay(dateTime, new Date())) {
     return format(dateTime, 'a h:mm')
   } else {
     return format(dateTime, formatType ?? DATE_FORMAT)
+  }
+}
+
+export function formatRelativeTime(
+  createdAt: string,
+  formatString?: string,
+): string {
+  const dateTime = parseISO(createdAt)
+  const today = new Date()
+  const diff = differenceInDays(today, dateTime)
+
+  if (isSameDay(dateTime, today)) {
+    return format(dateTime, 'a h:mm')
+  } else if (diff <= 7) {
+    return `${diff}일 전`
+  } else {
+    return format(dateTime, formatString ?? DATE_FORMAT)
   }
 }

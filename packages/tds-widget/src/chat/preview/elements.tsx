@@ -1,7 +1,7 @@
 import { Container, List, Text } from '@titicaca/tds-ui'
 import { css, styled } from 'styled-components'
 
-import { convertDateTime as defaultConvertDateTime } from './utils'
+import { formatRelativeTime } from './utils'
 
 export const PreviewListItem = styled(List.Item)<{ isSelected: boolean }>`
   cursor: pointer;
@@ -41,7 +41,7 @@ export const ChatRoomMessage = styled(Text).attrs({
 
 export const ChatRoomCreatedAt = ({
   createdAt,
-  convertDateTime = defaultConvertDateTime,
+  convertDateTime = formatRelativeTime,
   ...props
 }: {
   createdAt: string
