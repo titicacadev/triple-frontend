@@ -56,6 +56,8 @@ export async function handle401Error<SuccessBody, FailureBody>(
   return NEED_LOGIN_IDENTIFIER
 }
 
+const UNAUTHORIZED_CODE = 'UNAUTHORIZED'
+
 interface ErrorResponse401 {
   status: number
   code: string
@@ -65,7 +67,7 @@ interface ErrorResponse401 {
 export function handleGql401Error(error: GraphQLError) {
   if (error.extensions) {
     const extensions = error.extensions as unknown as ErrorResponse401
-    if (extensions.status === 401) {
+    if (extensions.code === UNAUTHORIZED_CODE) {
       return NEED_LOGIN_IDENTIFIER
     }
   }
