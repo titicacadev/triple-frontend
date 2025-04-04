@@ -59,13 +59,13 @@ export async function handle401Error<SuccessBody, FailureBody>(
 interface ErrorResponse401 {
   status: number
   code: string
-  name: string
+  sentryId: string
 }
 
 export function handleGql401Error(error: GraphQLError) {
-  if (error.extensions?.originalError) {
-    const originalError = error.extensions.originalError as ErrorResponse401
-    if (originalError.status === 401) {
+  if (error.extensions) {
+    const extensions = error.extensions as unknown as ErrorResponse401
+    if (extensions.status === 401) {
       return NEED_LOGIN_IDENTIFIER
     }
   }
