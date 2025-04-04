@@ -1,4 +1,4 @@
-import { differenceInDays, format, isSameDay, parseISO } from 'date-fns'
+import { differenceInCalendarDays, format, isSameDay, parseISO } from 'date-fns'
 
 import { ChatMessagePayload, ChatMessagePayloadType } from '../types'
 
@@ -46,7 +46,7 @@ export function formatRelativeTime(
 ): string {
   const dateTime = parseISO(createdAt)
   const today = new Date()
-  const diff = differenceInDays(today, dateTime)
+  const diff = differenceInCalendarDays(today, dateTime)
 
   if (isSameDay(dateTime, today)) {
     return format(dateTime, 'a h:mm')
