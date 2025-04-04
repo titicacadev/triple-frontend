@@ -11,7 +11,7 @@ import {
   UserType,
 } from '../types'
 
-import { convertDateTime, getTextMessage } from './utils'
+import { getTextMessage } from './utils'
 import { ChatRoomMessage, ChatRoomTitle } from './elements'
 
 export interface PreviewProps<T, U> {
@@ -80,9 +80,7 @@ export function Preview<T = RoomType, U = UserType>({
           <Message>{getTextMessage(payload)}</Message>
         ) : null}
 
-        {createdAt && CreatedAt ? (
-          <CreatedAt createdAt={createdAt} convertDateTime={convertDateTime} />
-        ) : null}
+        {createdAt && CreatedAt ? <CreatedAt createdAt={createdAt} /> : null}
       </Container>
 
       {unreadCount && Unread ? <Unread unreadCount={unreadCount} /> : null}
