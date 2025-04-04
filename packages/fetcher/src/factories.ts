@@ -147,7 +147,12 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       return firstTrialResponse
     }
 
-    const refreshResponse = await refresh({ signal: options?.signal })
+    const refreshResponse = await refresh({
+      signal: options?.signal,
+      ...(options?.withApiUriBase && {
+        withApiUriBase: options.withApiUriBase,
+      }),
+    })
 
     if (refreshResponse.ok === false) {
       if (refreshResponse.status === 400 || refreshResponse.status === 401) {
