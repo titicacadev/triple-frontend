@@ -1,31 +1,56 @@
-import { NextFetchEvent, NextRequest, NextResponse } from 'next/server'
-import { get, post } from '@titicaca/fetcher'
+import { type ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+import {
+  NextFetchEvent,
+  NextMiddleware,
+  NextRequest,
+  NextResponse,
+} from 'next/server'
+import {
+  get,
+  post,
+  handle401Error,
+  NEED_REFRESH_IDENTIFIER,
+} from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
+import {
+  TP_SE,
+  TP_TK,
+  SESSION_KEY as X_SOTO_SESSION,
+} from '@titicaca/constants'
 
-import { CustomMiddleware } from './types'
-import { TP_SE, TP_TK } from './constants'
+import { parseApp } from '../user-agent-context'
 
-export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
+import { applySetCookie } from './utils/apply-set-cookie'
+
+export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
     request: NextRequest,
     event: NextFetchEvent,
   ) {
+    const response = (await next(request, event)) as NextResponse
     const url = request.nextUrl
 
     const isPageUrl = url.pathname.match('^/((?!(api|static|.*\\..*|_next)).*)')
     if (!isPageUrl) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const allCookies = request.cookies.getAll()
 
-    const isSessionExisted = allCookies.some(
+    const userAgent = request.headers.get('User-Agent')
+    const tripleApp = userAgent ? parseApp(userAgent) : null
+
+    const cookiesWithoutXSotoSession = tripleApp
+      ? allCookies
+      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
+
+    const isSessionExisted = cookiesWithoutXSotoSession.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(request.cookies.getAll())
+    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
 
     if (!isSessionExisted) {
-      return customMiddleware(request, event, NextResponse.next())
+      return response
     }
 
     const options = {
@@ -33,10 +58,30 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
       withApiUriBase: true,
     }
 
-    const firstTrialResponse = await get('/api/users/me', options)
+    /**
+     * /users/session/verify는 아래와 같은 상태값을 갖습니다.
+     * 200 : TP_SE와 TP_TK가 모두 유효한 경우
+     * 401 : TP_SE가 유효하지 않고 TP_TK가 유효한 경우
+     * 403 : TP_TK가 모두 유효하지 않은 경우
+     */
+    const firstTrialResponse = await get<
+      unknown,
+      { status: number; exception: string; message: string }
+    >('/api/users/session/verify', options)
 
-    if (firstTrialResponse.status !== 401) {
-      return customMiddleware(request, event, NextResponse.next())
+    const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
+
+    if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
+      const setCookie = firstTrialResponse.headers.get('set-cookie')
+      if (setCookie) {
+        const setCookies = splitCookiesString(setCookie)
+        setCookies.forEach((cookie) => {
+          const { name, value, ...rest } = parseString(cookie)
+          response.cookies.set(name, value, { ...(rest as ResponseCookie) })
+        })
+        applySetCookie(request, response)
+      }
+      return response
     }
 
     /**
@@ -44,39 +89,17 @@ export function refreshSessionMiddleware(customMiddleware: CustomMiddleware) {
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
 
-    if (refreshResponse.ok) {
-      const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookie = refreshResponse.headers.get('set-cookie')
 
-      if (setCookie) {
-        const oldCookies = splitCookiesString(
-          request.headers.get('cookie') || '',
-        )
-        const setCookies = splitCookiesString(setCookie)
-
-        const newCookies = oldCookies.reduce((map, cookie) => {
-          const { name } = parseString(cookie)
-          return map.set(name, cookie)
-        }, new Map())
-
-        setCookies.forEach((cookie) => {
-          const { name } = parseString(cookie)
-          newCookies.set(name, cookie)
-        })
-
-        const finalCookie = [...newCookies.values()].join('; ')
-
-        request.headers.set('cookie', finalCookie)
-
-        const response = NextResponse.next({
-          request,
-        })
-
-        response.headers.set('set-cookie', setCookie)
-
-        return customMiddleware(request, event, response)
-      }
+    if (setCookie) {
+      const setCookies = splitCookiesString(setCookie)
+      setCookies.forEach((cookie) => {
+        const { name, value, ...rest } = parseString(cookie)
+        response.cookies.set(name, value, { ...(rest as ResponseCookie) })
+      })
+      applySetCookie(request, response)
     }
-    return customMiddleware(request, event, NextResponse.next())
+    return response
   }
 }
 

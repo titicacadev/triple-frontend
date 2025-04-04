@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 
 export interface User {
   name: string
-  provider: Provider
+  provider: AuthProvider
   country: string
   lang: string
   unregister: boolean | null
@@ -10,9 +10,17 @@ export interface User {
   mileage: Mileage
   uid: string
   email: string
+  nolConnected?: boolean
+  nolConnectedAt?: string
 }
 
-type Provider = 'TRIPLE' | 'NAVER' | 'KAKAO' | 'FACEBOOK' | 'APPLE'
+export type AuthProvider =
+  | 'TRIPLE'
+  | 'NAVER'
+  | 'KAKAO'
+  | 'FACEBOOK'
+  | 'APPLE'
+  | 'INVALID'
 
 interface Mileage {
   badges: {

@@ -1,4 +1,4 @@
-import { get, HttpResponse, RequestOptions } from '@titicaca/fetcher'
+import { authGuardedFetchers, RequestOptions } from '@titicaca/fetcher'
 
 export interface TripleABExperimentMeta {
   testId: number
@@ -8,6 +8,9 @@ export interface TripleABExperimentMeta {
 export async function getTripleABExperiment(
   slug: string,
   options?: RequestOptions,
-): Promise<HttpResponse<TripleABExperimentMeta>> {
-  return get(`/api/abtest/${slug}`, options)
+) {
+  return authGuardedFetchers.get<TripleABExperimentMeta>(
+    `/api/abtest/${slug}`,
+    options,
+  )
 }

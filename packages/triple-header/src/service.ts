@@ -1,4 +1,4 @@
-import { get } from '@titicaca/fetcher'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 export const ARTICLE_ANIMATION_STORAGE_TYPE = 'lottie-animation-v1'
 
@@ -13,11 +13,11 @@ export async function getStorage({
     throw new Error('Id가 없습니다.')
   }
 
-  const response = await get<{ data: string }>(
+  const response = await authGuardedFetchers.get<{ data: string }>(
     `/api/storage/storages/${type}/${id}`,
   )
 
-  if (!response.ok) {
+  if (response === NEED_LOGIN_IDENTIFIER || !response.ok) {
     throw new Error('Request failed')
   }
 

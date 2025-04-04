@@ -22,6 +22,7 @@ import { ActionSheet, ActionSheetItem } from '@titicaca/action-sheet'
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
 import { useRepliesContext } from '../context'
+import { useHttpResponseError } from '../hook'
 
 const MoreActionsButton = styled.button`
   width: 19px;
@@ -142,6 +143,8 @@ export default function Reply({
     focusInput()
   }
 
+  const handleHttpResponseError = useHttpResponseError()
+
   const handleDeleteReplyClick = useCallback(
     async ({
       mentionedUserName,
@@ -168,24 +171,35 @@ export default function Reply({
   )
 
   const handleLikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: (prev?.count || 0) + 1,
-        haveMine: true,
-      }))
-      likeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await likeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: (prev?.count || 0) + 1,
+          haveMine: true,
+        }))
+      } catch (e) {
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
+        }
+      }
     },
     false,
   )
 
   const handleUnlikeReplyClick = useSessionCallback(
-    ({ messageId }: { messageId: string }) => {
-      setLikeReactions((prev) => ({
-        count: Math.max(0, (prev?.count || 0) - 1),
-        haveMine: false,
-      }))
-
-      unlikeReply({ messageId })
+    async ({ messageId }: { messageId: string }) => {
+      try {
+        await unlikeReply({ messageId })
+        setLikeReactions((prev) => ({
+          count: Math.max(0, (prev?.count || 0) - 1),
+          haveMine: false,
+        }))
+      } catch (e) {
+        if (e instanceof Error) {
+          handleHttpResponseError(e)
+        }
+      }
     },
     false,
   )

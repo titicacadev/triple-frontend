@@ -5,7 +5,7 @@ enum AppName {
   Android = 'Triple-Android',
 }
 
-interface App {
+export interface App {
   name: AppName
   version: string
 }

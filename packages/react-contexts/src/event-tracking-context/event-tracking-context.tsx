@@ -33,6 +33,7 @@ import {
   TiktokPixelEventType,
   TiktokPixelEventParams,
 } from './types'
+import { useTripleDeviceId } from './utils/get-triple-device-id'
 
 const NOOP = () => {}
 
@@ -40,7 +41,8 @@ export interface EventTrackingContextValue {
   trackScreen: (
     screenPath: string,
     label?: string,
-    additionalMetadata?: { [key: string]: string },
+    additionalMetadataInApp?: { [key: string]: string },
+    additionalMetadataInWeb?: { [key: string]: string },
   ) => void
   trackEvent: (params: {
     ga?: GoogleAnalyticsParams
@@ -177,6 +179,7 @@ export function EventTrackingProvider({
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
   const { query } = useRouter()
+  const tripleDeviceId = useTripleDeviceId()
 
   if (!pageLabel) {
     throw new Error(
@@ -188,7 +191,8 @@ export function EventTrackingProvider({
     (
       path: string,
       label?: string,
-      additionalMetadata?: { [key: string]: string },
+      additionalMetadataInApp?: { [key: string]: string },
+      additionalMetadataInWeb?: { [key: string]: string },
     ) => {
       try {
         if (window.ga) {
@@ -206,10 +210,11 @@ export function EventTrackingProvider({
           logFirebaseEvent(firebaseAnalyticsWebInstance, 'page_view', {
             page_path: path,
             category: label,
+            ...additionalMetadataInWeb,
           })
         }
 
-        nativeTrackScreen(path, label, additionalMetadata)
+        nativeTrackScreen(path, label, additionalMetadataInApp)
       } catch (error) {
         onErrorRef.current?.(error as Error)
       }
@@ -307,7 +312,7 @@ export function EventTrackingProvider({
   }, [setFirebaseUserId, user?.uid])
 
   useEffect(() => {
-    if (page?.path) {
+    if (page?.path && tripleDeviceId) {
       const utmParams = Object.keys(query || {})
         .filter((key) => key.match(/^utm_/i))
         .reduce(
@@ -318,9 +323,11 @@ export function EventTrackingProvider({
           {},
         )
 
-      trackScreen(page?.path, pageLabel, utmParams)
+      trackScreen(page?.path, pageLabel, utmParams, {
+        nol_device_id: tripleDeviceId,
+      })
     }
-  }, [trackScreen, page?.path, pageLabel, query])
+  }, [trackScreen, page?.path, pageLabel, query, tripleDeviceId])
 
   useEffect(() => {
     if (item?.id) {
