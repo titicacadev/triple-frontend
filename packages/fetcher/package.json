@@ -38,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "graphql": "^16.8.0",
     "ts-custom-error": "^3.3.1",
     "universal-cookie": "^4.0.4"
   },
