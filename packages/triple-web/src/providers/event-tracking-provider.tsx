@@ -8,6 +8,7 @@ import type { EventTrackingValue } from '../event-tracking/types'
 import { getFirebaseAnalytics } from '../event-tracking/libs/firebase-analytics'
 import { trackScreen } from '../event-tracking/utils/track-screen'
 import { useSession } from '../session/use-session'
+import { useTripleWebDeviceId } from '../event-tracking/use-triple-web-device-id'
 
 export type EventTrackingProviderProps = EventTrackingValue & PropsWithChildren
 
@@ -18,6 +19,7 @@ export function EventTrackingProvider({
   onError,
 }: EventTrackingProviderProps) {
   const { user } = useSession()
+  const tripleWebDeviceId = useTripleWebDeviceId()
 
   useEffect(() => {
     const firebaseAnalytics = getFirebaseAnalytics()
@@ -27,9 +29,19 @@ export function EventTrackingProvider({
   }, [user?.uid])
 
   useEffect(() => {
-    trackScreen(page.path, page.label, { ...utm }, { page, utm, onError })
+    if (tripleWebDeviceId) {
+      trackScreen(
+        page.path,
+        page.label,
+        {
+          ...utm,
+          ...(tripleWebDeviceId && { nol_device_id: tripleWebDeviceId }),
+        },
+        { page, utm, onError },
+      )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page])
+  }, [page, tripleWebDeviceId])
 
   return (
     <EventTrackingContext.Provider value={{ page, utm, onError }}>

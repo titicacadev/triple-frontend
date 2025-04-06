@@ -42,6 +42,7 @@ export function trackScreen(
       firebaseLogEvent(firebaseAnalytics, 'page_view', {
         page_path: path,
         category: label,
+        ...additionalMetadata,
       })
     }
 

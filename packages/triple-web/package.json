@@ -40,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "@titicaca/constants": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/i18n": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",

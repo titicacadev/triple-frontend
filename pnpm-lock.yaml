@@ -800,6 +800,9 @@ importers:
 
   packages/triple-web:
     dependencies:
+      '@titicaca/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@titicaca/fetcher':
         specifier: workspace:*
         version: link:../fetcher
