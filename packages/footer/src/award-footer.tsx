@@ -94,7 +94,7 @@ export function AwardFooter({
           lineHeight="17px"
           color="gray500"
           margin={{ top: businessExpanded ? 15 : 20, bottom: 5 }}
-          css={{ maxWidth: 280, wordBreak: 'break-word' }}
+          css={{ wordBreak: 'break-word' }}
         >
           {footerInfo.disclaimer}
         </Text>
