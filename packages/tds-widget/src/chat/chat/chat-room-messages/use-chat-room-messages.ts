@@ -234,8 +234,34 @@ export function useChatMessages<T = UserType>(
 
   async function onSendMessage(
     payload: ChatMessageInterface<T>['payload'],
-    { onError }: { onError?: () => void } = {},
+    {
+      onError,
+      onRoomAndMemberInitialized,
+    }: { onError?: () => void; onRoomAndMemberInitialized?: () => void } = {},
   ) {
+    const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
+      id: new Date().getTime(),
+      roomId: '',
+      payload:
+        payload.type === ChatMessagePayloadType.TEXT
+          ? { ...payload, message: DOMPurify.sanitize(payload.message) }
+          : payload,
+      displayTarget: 'all',
+    }
+
+    let skipPending = false
+
+    if (!isCreatedChatRoom(room)) {
+      dispatch({
+        action: MessagesActions.PENDING,
+        message: tempMessage,
+      })
+      setTimeout(() => {
+        triggerScrollToBottom()
+      }, 100)
+      skipPending = true
+    }
+
     /** roomId 생성 이전에 보낸 메세지는 pusher 이벤트로 받을 수 없기 때문에,
           roomId가 없는 경우에는 먼저 room을 생성하는 과정을 거칩니다.
       */
@@ -249,6 +275,8 @@ export function useChatMessages<T = UserType>(
         ? await getChatRoomMemberId({ roomId: currentRoomId })
         : me
 
+    onRoomAndMemberInitialized?.()
+
     if (
       !(
         isCreatedChatRoom(currentRoom) &&
@@ -256,15 +284,6 @@ export function useChatMessages<T = UserType>(
         (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
       )
     ) {
-      const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
-        id: new Date().getTime(),
-        roomId: '',
-        payload:
-          payload.type === ChatMessagePayloadType.TEXT
-            ? { ...payload, message: DOMPurify.sanitize(payload.message) }
-            : payload,
-        displayTarget: 'all',
-      }
       onMessageFailed(tempMessage)
       return
     }
@@ -280,7 +299,9 @@ export function useChatMessages<T = UserType>(
 
     const { success } = await handleSendMessageAction({
       roomId: currentRoom.id,
+      tempMessageId: tempMessage.id,
       payload,
+      skipPending,
     })
 
     if (!success) {
