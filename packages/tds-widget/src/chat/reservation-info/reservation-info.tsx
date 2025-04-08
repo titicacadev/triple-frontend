@@ -71,15 +71,15 @@ function ReservationInfoImpl(
         {thumbnail ? <Thumbnail src={thumbnail} small={!hasDetails} /> : null}
         <DetailContainer expanded={expanded}>
           <TitleContainer>
-            {label ? (
-              <Label color={label.color} css={label.css}>
-                {label.text}
-              </Label>
-            ) : null}
             {title ? (
               <Title ref={titleRef} maxLines={expanded ? undefined : 1}>
                 {title}
               </Title>
+            ) : null}
+            {label ? (
+              <Label color={label.color} css={label.css}>
+                {label.text}
+              </Label>
             ) : null}
             {expandable ? (
               <ArrowButton

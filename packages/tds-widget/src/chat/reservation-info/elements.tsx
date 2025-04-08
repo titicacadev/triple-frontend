@@ -7,15 +7,15 @@ import styled, { css } from 'styled-components'
 
 import { reservationInfoTheme } from './theme-provider'
 
-const RESERVATION_INFO_MIN_CONTENT_HEIGHT = 62
+const RESERVATION_INFO_MIN_CONTENT_HEIGHT = 40
 const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 21
 
 export const Container = styled(BaseContainer)`
-  padding: 11px 15px;
+  padding: 12px;
   box-shadow: 0 0 20px 0
     ${({ theme }) =>
       (theme.reservationInfo || reservationInfoTheme).shadowColor};
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid
     ${({ theme }) =>
       (theme.reservationInfo || reservationInfoTheme).borderColor};
@@ -25,7 +25,7 @@ export const Container = styled(BaseContainer)`
 `
 
 export const Details = styled.dl<{ expanded: boolean }>`
-  margin-top: 6px;
+  margin-top: ${({ expanded }) => (expanded ? '4px' : '1.5px')};
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -41,14 +41,14 @@ export const Details = styled.dl<{ expanded: boolean }>`
       flex-shrink: 0;
       color: ${({ theme }) =>
         (theme.reservationInfo || reservationInfoTheme).detail.labelColor};
-      margin-right: 14px;
+      margin-right: 8px;
       width: 42px;
     }
 
     dd {
       display: inline;
       color: ${({ theme }) =>
-        (theme.reservationInfo || reservationInfoTheme).valueColor};
+        (theme.reservationInfo || reservationInfoTheme).detail.valueColor};
       ${({ expanded }) => !expanded && maxLinesMixin({ maxLines: 1 })}
 
       & + dd {
@@ -72,8 +72,8 @@ export const ContentContainer = styled(BaseContainer)`
 `
 
 export const Thumbnail = styled.img<{ small?: boolean }>`
-  width: ${({ small = false }) => (small ? '32' : '42')}px;
-  height: ${({ small = false }) => (small ? '32' : '42')}px;
+  width: ${({ small = false }) => (small ? '30' : '40')}px;
+  height: ${({ small = false }) => (small ? '30' : '40')}px;
   border-radius: 6px;
   margin-right: 12px;
 `
@@ -107,10 +107,10 @@ export const ArrowButton = styled.button.attrs({ type: 'button' })<{
 export const TitleContainer = styled(BaseContainer)`
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 16px;
 
   &:has(${ArrowButton}) {
-    padding-right: 16px;
+    padding-right: 18px;
   }
 `
 
