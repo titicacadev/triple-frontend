@@ -13,9 +13,9 @@ export function ButtonArea({ buttons }: { buttons: FooterButton[] }) {
             case 'button':
               return BUTTON_LIST[button.key] || null
             case 'link':
-              return <LinkButton {...button} />
+              return <LinkButton {...button} key={button.key} />
             case 'dropdown':
-              return <Dropdown {...button} />
+              return <Dropdown {...button} key={button.key} />
             default:
               return null
           }
