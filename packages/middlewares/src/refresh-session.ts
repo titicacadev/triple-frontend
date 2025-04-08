@@ -10,15 +10,11 @@ import {
   post,
   handle401Error,
   NEED_REFRESH_IDENTIFIER,
+  captureHttpError,
 } from '@titicaca/fetcher'
 import { parseString, splitCookiesString } from 'set-cookie-parser'
-import {
-  TP_SE,
-  TP_TK,
-  SESSION_KEY as X_SOTO_SESSION,
-} from '@titicaca/constants'
+import { TP_SE, TP_TK } from '@titicaca/constants'
 
-import { getIsTripleApp } from './utils/get-triple-app'
 import { applySetCookie } from './utils/apply-set-cookie'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
@@ -36,16 +32,10 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     const allCookies = request.cookies.getAll()
 
-    const isTripleApp = getIsTripleApp(request)
-
-    const cookiesWithoutXSotoSession = isTripleApp
-      ? allCookies
-      : allCookies.filter(({ name }) => name !== X_SOTO_SESSION)
-
-    const isSessionExisted = cookiesWithoutXSotoSession.some(
+    const isSessionExisted = allCookies.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
-    const cookies = deriveAllCookies(cookiesWithoutXSotoSession)
+    const cookies = deriveAllCookies(allCookies)
 
     if (!isSessionExisted) {
       return response
@@ -66,6 +56,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       unknown,
       { status: number; exception: string; message: string }
     >('/api/users/session/verify', options)
+    captureHttpError(firstTrialResponse)
 
     const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
 
@@ -86,6 +77,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답합니다.
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
+    captureHttpError(refreshResponse)
 
     const setCookie = refreshResponse.headers.get('set-cookie')
 
