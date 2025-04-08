@@ -246,7 +246,7 @@ export function useChatMessages<T = UserType>(
         payload.type === ChatMessagePayloadType.TEXT
           ? { ...payload, message: DOMPurify.sanitize(payload.message) }
           : payload,
-      displayTarget: 'all',
+      ...defaultMessageProperties,
     }
 
     let skipPending = false
