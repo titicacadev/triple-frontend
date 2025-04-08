@@ -55,7 +55,7 @@ export const Button = styled.a`
 `
 
 export const BUTTON_LIST: Record<string, ReactNode> = {
-  login: <LoginLogoutButton />,
+  login: <LoginLogoutButton key="login" />,
 }
 
 function LoginLogoutButton() {
