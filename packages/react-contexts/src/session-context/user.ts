@@ -45,9 +45,16 @@ export const UserProvider = UserContext.Provider
 export function useUserState(initialUser: User | undefined) {
   const [user, setUser] = useState(initialUser)
 
+  const update = useCallback(
+    (user: User | undefined) => {
+      setUser(user)
+    },
+    [setUser],
+  )
+
   const clear = useCallback(() => {
     setUser(undefined)
   }, [])
 
-  return { user, clear }
+  return { user, clear, update }
 }
