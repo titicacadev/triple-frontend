@@ -10,7 +10,7 @@ import {
 import { Container } from '@titicaca/tds-ui'
 
 import { ChatMessageInterface, UserType } from '../types'
-import { useScroll } from '../chat'
+import { useScroll } from '../chat/chat-room-messages/use-scroll'
 
 import { ScrollButtons, type ScrollButtonsProps } from './scroll-buttons'
 
@@ -51,11 +51,11 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   const mounted = useRef(false)
 
-  const { scrollToBottom } = useScroll()
+  const { triggerScrollToBottom } = useScroll()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onButtonClick = (behavior: ScrollBehavior = 'smooth') => {
-    scrollToBottom({ scrollBehavior: behavior })
+    triggerScrollToBottom({ scrollBehavior: behavior })
   }
 
   useImperativeHandle(ref, () => {
