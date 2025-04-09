@@ -1,10 +1,12 @@
 'use client'
 
+import deepEqual from 'deep-equal'
 import {
   type Dispatch,
   type PropsWithChildren,
   type SetStateAction,
   createContext,
+  useEffect,
   useState,
 } from 'react'
 
@@ -26,6 +28,12 @@ export function SessionProvider({
   initialSession,
 }: SessionProviderProps) {
   const [session, setSession] = useState(initialSession)
+
+  useEffect(() => {
+    if (!deepEqual(session, initialSession)) {
+      setSession(initialSession)
+    }
+  }, [initialSession])
 
   return (
     <SessionStateContext.Provider value={session}>
