@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'http'
 
-import { PropsWithChildren, useMemo, useRef } from 'react'
+import { PropsWithChildren, useEffect, useMemo } from 'react'
 import {
   authFetcherize,
   fetcher,
@@ -33,18 +33,24 @@ export default function SessionContextProvider({
   initialUser,
   children,
 }: PropsWithChildren<SessionContextProviderProps>) {
-  const { user, clear: clearUserState } = useUserState(initialUser)
+  const {
+    user,
+    clear: clearUserState,
+    update: updateUserState,
+  } = useUserState(initialUser)
 
   const logout = useLogout({ type, clearUserState })
   const login = useLogin({ type })
 
-  const sessionAvailableRef = useRef(initialSessionAvailability)
+  useEffect(() => {
+    updateUserState(initialUser)
+  }, [initialUser, updateUserState])
 
   const controllers = useMemo(() => ({ login, logout }), [login, logout])
 
   return (
     <SessionControllerContext.Provider value={controllers}>
-      <SessionAvailabilityContext.Provider value={sessionAvailableRef.current}>
+      <SessionAvailabilityContext.Provider value={initialSessionAvailability}>
         <UserProvider value={user || null}>{children}</UserProvider>
       </SessionAvailabilityContext.Provider>
     </SessionControllerContext.Provider>
