@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import DOMPurify from 'dompurify'
 
 import {
@@ -56,9 +56,6 @@ export function useChatMessages<T = UserType>(
 
   const firstRenderForPrevScrollRef = useRef(true)
   const isWelcomeMessagePendingRef = useRef(false)
-  const [onCompleteSendMessage, setOnCompleteSendMessage] = useState<
-    (() => void) | undefined
-  >(undefined)
 
   const {
     messages,
@@ -427,7 +424,7 @@ export function useChatMessages<T = UserType>(
             messages: [message],
           })
         }
-        setOnCompleteSendMessage(() => onComplete?.(message, myMessage))
+        onComplete?.(message, myMessage)
         if (scrollToBottomOnNewMessage) {
           triggerScrollToBottom()
         }
@@ -530,13 +527,6 @@ export function useChatMessages<T = UserType>(
       })
     }
   }
-
-  useEffect(() => {
-    if (onCompleteSendMessage) {
-      onCompleteSendMessage()
-      setOnCompleteSendMessage(undefined)
-    }
-  }, [onCompleteSendMessage])
 
   return {
     messages,
