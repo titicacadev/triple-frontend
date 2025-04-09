@@ -149,7 +149,9 @@ export function authFetcherize<Fetcher extends BaseFetcher>(
       FailureBody
     >(firstTrialResponse as HttpResponse<SuccessBody, FailureBody>)
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
-      return firstTrialResponse
+      return checkFirstTrialResponse === NEED_LOGIN_IDENTIFIER
+        ? NEED_LOGIN_IDENTIFIER
+        : firstTrialResponse
     }
 
     const refreshResponse = await refresh({
