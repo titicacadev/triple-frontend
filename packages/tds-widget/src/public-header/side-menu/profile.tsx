@@ -77,7 +77,7 @@ const PROFILE_EVENT_METADATA_LABEL = {
   photo: '프로필사진',
 }
 
-const NOL_CONNECTED_LABEL = 'NOL 멤버스 계정'
+const NOL_CONNECTED_LABEL = 'NOL 회원'
 
 export function Profile() {
   const { user } = useSession()
