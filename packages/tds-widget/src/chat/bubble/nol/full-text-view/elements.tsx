@@ -13,19 +13,19 @@ const getColorVariable =
     return condition ? colorA : colorB
   }
 
-export const TextContainer = styled.div`
+export const NolFullTextViewText = styled.div`
   max-height: 45.6rem;
   overflow: hidden;
 `
 
-export const Divider = styled.hr<{ color: string }>`
+const Divider = styled.hr<{ color: string }>`
   border: none;
   height: 1px;
   margin: 8px 0;
   background-color: ${({ color }) => color};
 `
 
-export const Button = styled.button.attrs({ type: 'button' })<{
+const Button = styled.button.attrs({ type: 'button' })<{
   color: string
 }>`
   background-color: unset;
@@ -71,7 +71,7 @@ export const NolFullTextViewButton = ({
   )
 }
 
-export const ContentContainer = styled(Container)`
+export const NolFullTextViewContent = styled(Container)`
   padding: 12px 20px;
   font-size: 1.5rem;
   line-height: 1.4;
