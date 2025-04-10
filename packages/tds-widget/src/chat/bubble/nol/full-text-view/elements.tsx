@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { styled, useTheme } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
 import { ButtonHTMLAttributes } from 'react'
 
@@ -48,20 +48,15 @@ export const NolFullTextViewButton = ({
   reverseColor?: boolean
 } & ButtonHTMLAttributes<HTMLButtonElement>) => {
   const getColor = getColorVariable(my, reverseColor)
+  const theme = useTheme()
 
   return (
     <>
       <Divider
-        color={getColor(
-          'var(--color-neutral-w-20)',
-          'var(--color-neutral-b-10)',
-        )}
+        color={getColor(theme.nol.colorNeutralW20, theme.nol.colorNeutralB10)}
       />
       <Button
-        color={getColor(
-          'var(--color-neutral-w-100)',
-          'var(--color-neutral-g-80)',
-        )}
+        color={getColor(theme.nol.colorNeutralW100, theme.nol.colorNeutralG80)}
         {...props}
       >
         전체보기
@@ -75,12 +70,12 @@ export const NolFullTextViewContent = styled(Container)`
   padding: 12px 20px;
   font-size: 1.5rem;
   line-height: 1.4;
-  color: var(--color-neutral-b-100);
+  color: ${({ theme }) => theme.nol.colorNeutralB100};
   white-space: pre-wrap;
   word-break: break-word;
 
   & > a {
-    color: var(--color-primary-nol);
+    color: ${({ theme }) => theme.nol.colorPrimaryNol};
     text-decoration: underline;
     line-break: anywhere;
   }
