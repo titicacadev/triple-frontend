@@ -48,27 +48,31 @@ export const NOL_PARTNER_ROOM_BUBBLE_STYLE = {
   borderRadius: 24,
   arrowRadius: 4,
   white: {
-    alteredTextColor: 'var(--color-neutral-b-80)',
+    alteredTextColor: css`
+      ${({ theme }) => theme.nol.colorNeutralB80}
+    `,
     css: css`
       ${NOL_BUBBLE_BASE_STYLE}
 
-      background-color: var(--color-neutral-w-100);
-      color: var(--color-neutral-b-100);
+      background-color: ${({ theme }) => theme.nol.colorNeutralW100};
+      color: ${({ theme }) => theme.nol.colorNeutralB100};
       box-shadow: 0 0 0 1px #e4e7ff;
 
       a {
-        color: var(--color-primary-nol);
+        color: ${({ theme }) => theme.nol.colorPrimaryNol};
         text-decoration: underline;
       }
     `,
   },
   blue: {
-    alteredTextColor: 'var(--color-neutral-w-100)',
+    alteredTextColor: css`
+      ${({ theme }) => theme.nol.colorNeutralW100}
+    `,
     css: css`
       ${NOL_BUBBLE_BASE_STYLE}
 
-      color: var(--color-neutral-w-100);
-      background-color: var(--color-primary-nol);
+      color: ${({ theme }) => theme.nol.colorNeutralW100};
+      background-color: ${({ theme }) => theme.nol.colorPrimaryNol};
 
       a {
         color: inherit;
@@ -79,7 +83,7 @@ export const NOL_PARTNER_ROOM_BUBBLE_STYLE = {
 }
 
 const NOL_BUBBLE_INFO_BASE_STYLE = css`
-  color: var(--color-neutral-g-60);
+  color: ${({ theme }) => theme.nol.colorNeutralG60};
   font-weight: 400;
 `
 
@@ -87,7 +91,7 @@ export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
   failureHandler: {
     css: css`
       border-radius: 8px;
-      background-color: var(--color-brand-shopping-red-400);
+      background-color: ${({ theme }) => theme.nol.colorBrandShoppingRed400};
       width: auto;
       position: relative;
 
@@ -119,7 +123,7 @@ export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
         transform: translate(-50%, -50%);
         width: 1px;
         height: 16px;
-        background-color: var(--color-neutral-w-20);
+        background-color: ${({ theme }) => theme.nol.colorNeutralW20};
       }
     `,
   },
@@ -141,7 +145,7 @@ export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
   },
   profile: {
     css: css`
-      color: var(--color-neutral-g-60);
+      color: ${({ theme }) => theme.nol.colorNeutralG60};
       font-size: 1.1rem;
       line-height: 1.6rem;
       font-weight: 700;
@@ -150,7 +154,7 @@ export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
   },
   unreadCount: {
     css: css`
-      color: var(--color-primary-nol);
+      color: ${({ theme }) => theme.nol.colorPrimaryNol};
     `,
   },
 }
