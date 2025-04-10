@@ -20,7 +20,7 @@ export const convertKeysToCamelCase = (obj: {
       .join('')
   }
 
-  return Object.entries(obj).reduce<{ [key: string]: V }>(
+  return Object.entries(obj).reduce<{ [key: string]: string }>(
     (accumulator, [key, value]) => {
       const camelKey = toCamelCase(key)
       accumulator[camelKey] = value
