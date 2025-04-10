@@ -20,18 +20,15 @@ import {
   UnlikeReviewMutationVariables,
   client,
   reviewClient,
-  GetReviewsCountQuery,
 } from '../data/graphql'
 
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
   initialValue?: number,
 ) {
-  return useQuery<unknown, unknown, GetReviewsCountQuery>(
+  return useQuery(
     ['reviews/getReviewCount', { ...params }],
-    () => {
-      reviewClient(() => client.GetReviewsCount(params))
-    },
+    () => reviewClient(() => client.GetReviewsCount(params)),
     {
       refetchOnWindowFocus: false,
       initialData: initialValue
