@@ -41,7 +41,7 @@ const NOL_BUBBLE_BASE_STYLE = css`
   font-size: 1.4rem;
   line-height: 1.9rem;
   font-weight: 400;
-  padding: 12px 11px;
+  padding: 12px 16px;
 `
 
 export const NOL_PARTNER_ROOM_BUBBLE_STYLE = {

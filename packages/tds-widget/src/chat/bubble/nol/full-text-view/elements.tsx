@@ -21,7 +21,7 @@ export const TextContainer = styled.div`
 export const Divider = styled.hr<{ color: string }>`
   border: none;
   height: 1px;
-  margin: 8px 5px;
+  margin: 8px 0;
   background-color: ${({ color }) => color};
 `
 
@@ -65,7 +65,7 @@ export const NolFullTextViewButton = ({
         {...props}
       >
         전체보기
-        <TextFullViewArrowIcon color={getColor('#545457', 'white')} />
+        <TextFullViewArrowIcon color={getColor('white', '#545457')} />
       </Button>
     </>
   )
