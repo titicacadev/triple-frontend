@@ -13,7 +13,7 @@ import {
   GET_USER_REQUEST_URL,
   checkClientApp,
 } from '@titicaca/triple-web-utils'
-import { TP_TK } from '@titicaca/constants'
+import { SESSION_KEY, TP_TK } from '@titicaca/constants'
 
 /**
  * - app: refresh X
@@ -43,7 +43,7 @@ export async function getSession(): Promise<SessionValue> {
 function checkSession() {
   const cookiesList = cookies()
 
-  return cookiesList.has(TP_TK)
+  return cookiesList.has(TP_TK) || cookiesList.has(SESSION_KEY)
 }
 
 async function fetchUser(isClientApp: boolean) {
