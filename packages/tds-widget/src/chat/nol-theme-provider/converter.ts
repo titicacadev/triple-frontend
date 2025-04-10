@@ -1,6 +1,6 @@
-export const convertKeysToCamelCase = <V>(obj: {
-  [key: string]: V
-}): { [key: string]: V } => {
+export const convertKeysToCamelCase = (obj: {
+  [key: string]: string
+}): { [key: string]: string } => {
   if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
     throw Error('Invalid input: An object is expected.')
   }
