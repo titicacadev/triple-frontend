@@ -11,6 +11,7 @@ export {
   handleGql401Error,
   NEED_REFRESH_IDENTIFIER,
   ACCESS_TOKEN_EXPIRED_EXCEPTION,
+  UNAUTHORIZED_CODE,
 } from './response-handler'
 export {
   sessionRefresh,
