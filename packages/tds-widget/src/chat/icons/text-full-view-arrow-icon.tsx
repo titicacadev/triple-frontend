@@ -1,6 +1,5 @@
 export function TextFullViewArrowIcon({
   color = '#545457',
-  ...props
 }: {
   color?: string
 }) {
@@ -11,7 +10,7 @@ export function TextFullViewArrowIcon({
       height="12"
       viewBox="0 0 12 12"
       fill="none"
-      {...props}
+      style={{ margin: '0 0 2px' }}
     >
       <path
         d="M4 2L8 5.97649L4 10"
