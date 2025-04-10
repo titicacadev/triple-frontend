@@ -12,10 +12,8 @@ import {
   NEED_REFRESH_IDENTIFIER,
   captureHttpError,
 } from '@titicaca/fetcher'
-import { parseString, splitCookiesString } from 'set-cookie-parser'
+import { parseString } from 'set-cookie-parser'
 import { TP_SE, TP_TK } from '@titicaca/constants'
-
-import { applySetCookie } from './utils/apply-set-cookie'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -61,14 +59,12 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       captureHttpError(firstTrialResponse)
-      const setCookie = firstTrialResponse.headers.get('set-cookie')
+      const setCookie = firstTrialResponse.headers.getSetCookie()
       if (setCookie) {
-        const setCookies = splitCookiesString(setCookie)
-        setCookies.forEach((cookie) => {
+        setCookie.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
           response.cookies.set(name, value, { ...(rest as ResponseCookie) })
         })
-        applySetCookie(request, response)
       }
       return response
     }
@@ -79,15 +75,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const refreshResponse = await post('/api/users/web-session/token', options)
     captureHttpError(refreshResponse)
 
-    const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookie = refreshResponse.headers.getSetCookie()
 
     if (setCookie) {
-      const setCookies = splitCookiesString(setCookie)
-      setCookies.forEach((cookie) => {
+      setCookie.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
-      applySetCookie(request, response)
     }
     return response
   }
