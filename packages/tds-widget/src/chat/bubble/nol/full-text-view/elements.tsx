@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
+import { ButtonHTMLAttributes } from 'react'
 
 import { TextFullViewArrowIcon } from '../../../icons/text-full-view-arrow-icon'
 
@@ -41,10 +42,11 @@ export const Button = styled.button.attrs({ type: 'button' })<{
 export const NolFullTextViewButton = ({
   my,
   reverseColor = false,
+  ...props
 }: {
   my: boolean
   reverseColor?: boolean
-}) => {
+} & ButtonHTMLAttributes<HTMLButtonElement>) => {
   const getColor = getColorVariable(my, reverseColor)
 
   return (
@@ -60,6 +62,7 @@ export const NolFullTextViewButton = ({
           'var(--color-neutral-w-100)',
           'var(--color-neutral-g-80)',
         )}
+        {...props}
       >
         전체보기
         <TextFullViewArrowIcon color={getColor('#545457', 'white')} />
