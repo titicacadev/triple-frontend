@@ -31,7 +31,6 @@ const Button = styled.button.attrs({ type: 'button' })<{
   background-color: unset;
   float: right;
   margin: 0 5px;
-  padding-right: 12px;
   font-size: 1.2rem;
   line-height: 1.6rem;
   position: relative;
