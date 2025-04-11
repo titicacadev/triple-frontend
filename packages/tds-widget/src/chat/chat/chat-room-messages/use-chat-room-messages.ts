@@ -27,6 +27,7 @@ import {
 import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
+  sendMessageScrollBehavior?: ScrollBehavior
   scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
@@ -34,12 +35,14 @@ interface ChatMessagesProps<T = UserType> {
 
 export function useChatMessages<T = UserType>(
   {
+    sendMessageScrollBehavior = 'smooth',
     scrollToBottomOnNewMessage = true,
     defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
     >,
     createRoom,
   }: ChatMessagesProps<T> = {
+    sendMessageScrollBehavior: 'smooth',
     scrollToBottomOnNewMessage: true,
     defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
@@ -118,7 +121,7 @@ export function useChatMessages<T = UserType>(
         message: tempMessage,
       })
       setTimeout(() => {
-        triggerScrollToBottom()
+        triggerScrollToBottom({ scrollBehavior: sendMessageScrollBehavior })
       }, 100)
     }
 
@@ -257,7 +260,7 @@ export function useChatMessages<T = UserType>(
         message: tempMessage,
       })
       setTimeout(() => {
-        triggerScrollToBottom()
+        triggerScrollToBottom({ scrollBehavior: sendMessageScrollBehavior })
       }, 100)
       skipPending = true
     }
