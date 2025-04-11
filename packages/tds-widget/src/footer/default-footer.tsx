@@ -4,7 +4,9 @@ import { Text, Container } from '@titicaca/tds-ui'
 
 import { LinkGroup } from './link-group'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
+import { ExtraLinkGroup } from './extra-link-group'
+import { useFooterInfo } from './use-footer-info'
+import { DEFAULT_FOOTER_MIN_HEIGHT } from './constants'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -12,15 +14,25 @@ export const FooterFrame = styled.footer`
 
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
-  tripleKoreaLinkVisible?: boolean
+  extraLinkVisible?: boolean
 }
 
 export function DefaultFooter({
   hideAppDownloadButton = false,
-  tripleKoreaLinkVisible = false,
+  extraLinkVisible = false,
   ...props
 }: DefaultFooterProps) {
+  const footerInfo = useFooterInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
+
+  if (!footerInfo) {
+    return (
+      <FooterFrame
+        {...props}
+        css={{ minHeight: DEFAULT_FOOTER_MIN_HEIGHT, width: '100%' }}
+      />
+    )
+  }
 
   return (
     <FooterFrame {...props}>
@@ -33,23 +45,26 @@ export function DefaultFooter({
         }}
       >
         <CompanyInfo
+          companyTexts={footerInfo.companyTexts}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
+          buttons={footerInfo.buttons}
         />
         <Text
           size={11}
           lineHeight="17px"
           color="gray500"
-          margin={{ top: businessExpanded ? 10 : 25, bottom: 20 }}
+          margin={{ top: businessExpanded ? 10 : 20, bottom: 20 }}
         >
-          &#12828;놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며 상품
-          거래정보 및 거래 등에 대해 책임을 지지 않습니다.
+          {footerInfo.disclaimer}
         </Text>
 
-        <LinkGroup />
+        <LinkGroup links={footerInfo.links} />
 
-        {tripleKoreaLinkVisible ? <TripleKoreaLink /> : null}
+        {extraLinkVisible ? (
+          <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
+        ) : null}
       </Container>
     </FooterFrame>
   )

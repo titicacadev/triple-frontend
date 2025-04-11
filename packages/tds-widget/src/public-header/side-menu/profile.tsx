@@ -66,6 +66,10 @@ const PROVIDER_INFO = {
     label: '네이버',
     icon: 'https://assets.triple.guide/images/header/icon_naver@4x.png',
   },
+  INVALID: {
+    label: '',
+    icon: undefined,
+  },
 }
 
 const PROFILE_EVENT_METADATA_LABEL = {
@@ -73,13 +77,42 @@ const PROFILE_EVENT_METADATA_LABEL = {
   photo: '프로필사진',
 }
 
+const NOL_CONNECTED_LABEL = 'NOL 회원'
+
 export function Profile() {
   const { user } = useSession()
   const trackEvent = useTrackEvent()
-
   const returnUrl = encodeURIComponent(location.href)
-  const providerIconSrc = user ? PROVIDER_INFO[user.provider].icon : undefined
-  const badgeUrl = user ? user.mileage?.badges[0]?.icon.image_url : undefined
+
+  const onLoginClick = () => {
+    trackEvent({ fa: { category: '메인메뉴', action: '로그인_선택' } })
+  }
+
+  if (!user) {
+    return (
+      <FlexBox flex css={{ padding: '20px 20px 30px', alignItems: 'center' }}>
+        <Link href={`/login?returnUrl=${returnUrl}`} onClick={onLoginClick}>
+          로그인
+        </Link>
+        <Text size={24} bold css={{ marginTop: -3 }}>
+          /
+        </Text>
+        <Link href={`/login?returnUrl=${returnUrl}`} onClick={onLoginClick}>
+          회원가입
+        </Link>
+      </FlexBox>
+    )
+  }
+
+  const { provider, email, nolConnected, mileage } = user
+
+  const { icon: providerIconSrc, label: providerLabel } =
+    PROVIDER_INFO[provider] || {}
+  const profileLabel = nolConnected
+    ? NOL_CONNECTED_LABEL
+    : email || providerLabel
+
+  const badgeUrl = mileage?.badges[0]?.icon.image_url
 
   const onProfileClick = (
     referrer: keyof typeof PROFILE_EVENT_METADATA_LABEL,
@@ -93,11 +126,7 @@ export function Profile() {
     })
   }
 
-  const onLoginClick = () => {
-    trackEvent({ fa: { category: '메인메뉴', action: '로그인_선택' } })
-  }
-
-  return user ? (
+  return (
     <FlexBox
       flex
       css={{ padding: 20, justifyContent: 'space-between', gap: 16 }}
@@ -105,10 +134,10 @@ export function Profile() {
       <Container>
         <UserName onClick={() => onProfileClick('name')}>{user.name}</UserName>
         <UserEmailOrProvider>
-          {providerIconSrc ? (
+          {!nolConnected && providerIconSrc ? (
             <SocialIcon src={providerIconSrc} alt="social login icon" />
           ) : null}
-          {user.email || PROVIDER_INFO[user.provider].label}
+          {profileLabel}
         </UserEmailOrProvider>
       </Container>
 
@@ -119,18 +148,6 @@ export function Profile() {
         <ProfileImage src={user.photo} alt="profile" />
         {badgeUrl ? <Badge src={badgeUrl} alt="badge" /> : null}
       </Container>
-    </FlexBox>
-  ) : (
-    <FlexBox flex css={{ padding: '20px 20px 30px', alignItems: 'center' }}>
-      <Link href={`/login?returnUrl=${returnUrl}`} onClick={onLoginClick}>
-        로그인
-      </Link>
-      <Text size={24} bold css={{ marginTop: -3 }}>
-        /
-      </Text>
-      <Link href={`/login?returnUrl=${returnUrl}`} onClick={onLoginClick}>
-        회원가입
-      </Link>
     </FlexBox>
   )
 }

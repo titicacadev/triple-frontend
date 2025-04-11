@@ -541,6 +541,34 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.45.1
+
+### view-utilities
+
+- [view-utilities] routelist의 static-pages 정규식을 수정합니다. [#3598](https://github.com/titicacadev/triple-frontend/pull/3598)
+
+## 13.45.0
+
+### view-utilities
+
+- [KLZT-885] routelist에 static-pages, community, game을 추가합니다. [#3596](https://github.com/titicacadev/triple-frontend/pull/3596)
+
+## 13.44.0
+
+### footer
+
+- [footer, react-contexts] 푸터 정보를 footer.json으로 관리하도록 수정합니다 [#3577](https://github.com/titicacadev/triple-frontend/pull/3577)
+
+### react-contexts
+
+- [footer, react-contexts] 푸터 정보를 footer.json으로 관리하도록 수정합니다 [#3577](https://github.com/titicacadev/triple-frontend/pull/3577)
+
+## 13.43.0
+
+### react-contexts
+
+- session refresh middleware 추가 [#3564](https://github.com/titicacadev/triple-frontend/pull/3564)
+
 ## 13.42.1
 
 ### chat

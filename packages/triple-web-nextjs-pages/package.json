@@ -42,6 +42,7 @@
     ]
   },
   "dependencies": {
+    "@titicaca/constants": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",

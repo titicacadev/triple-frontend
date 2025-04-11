@@ -1,6 +1,7 @@
 import qs from 'qs'
 import { createRoot } from 'react-dom/client'
 import { Modal } from '@titicaca/tds-ui'
+import { authGuardedFetchers, NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import { ContextOptions, WebActionParams } from './types'
 
@@ -92,15 +93,17 @@ export function OpenModal({
 async function fetchApi(
   url: string,
 ): Promise<{ type: ModalType; title: string; description: string }> {
-  const response = await fetch(url, {
-    method: 'POST',
+  const response = await authGuardedFetchers.post<
+    { title: string; description: string },
+    unknown
+  >(url, {
     headers: {
       'Content-Type': 'application/json',
     },
   })
 
-  if (!response.ok) {
-    if (response.status === 400 || response.status === 401) {
+  if (response === NEED_LOGIN_IDENTIFIER || !response.ok) {
+    if (response === NEED_LOGIN_IDENTIFIER) {
       return NEED_LOGIN_CONTENT
     }
     return {
@@ -110,10 +113,7 @@ async function fetchApi(
         '서비스 이용이 원활하지 않습니다.\n잠시 후 다시 이용해 주세요.',
     }
   } else {
-    const { title, description } = (await response.json()) as {
-      title: string
-      description: string
-    }
+    const { title, description } = response.parsedBody
 
     return { type: 'normal', title, description }
   }

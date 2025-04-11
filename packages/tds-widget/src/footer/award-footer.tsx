@@ -8,17 +8,10 @@ import {
   FooterFrame,
 } from './default-footer'
 import { CompanyInfo } from './company-info'
-import { TripleKoreaLink } from './triple-korea-link'
-
-const AWARD_INFO = [
-  {
-    id: 1,
-    imageUrl:
-      'https://media.triple.guide/triple-cms/c_limit,f_auto,h_2048,w_2048/1060b728-6ef3-477d-a64a-0a38f5c3250e.jpeg',
-    alt: '국제표준 정보보호 인증마크 ISO27001, ISO 27701',
-    text: '국제표준 정보보호 인증 취득\nISO 27001, ISO 27701',
-  },
-]
+import { ExtraLinkGroup } from './extra-link-group'
+import { useFooterInfo } from './use-footer-info'
+import { FooterAward } from './type'
+import { AWARD_FOOTER_MIN_HEIGHT } from './constants'
 
 const InfoFlexBox = styled(FlexBox).attrs({
   flex: true,
@@ -55,6 +48,7 @@ const AwardFlexBox = styled(FlexBox).attrs({
   position: 'relative',
   flex: true,
   gap: '7px',
+  flexShrink: 0,
 })`
   ${AwardImg}:hover + ${Tooltip} {
     display: block;
@@ -65,7 +59,17 @@ export function AwardFooter({
   hideAppDownloadButton = false,
   ...props
 }: AwardFooterProps) {
+  const footerInfo = useFooterInfo()
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
+
+  if (!footerInfo) {
+    return (
+      <FooterFrame
+        {...props}
+        css={{ minHeight: AWARD_FOOTER_MIN_HEIGHT, width: '100%' }}
+      />
+    )
+  }
 
   return (
     <FooterFrame {...props}>
@@ -78,39 +82,41 @@ export function AwardFooter({
         }}
       >
         <CompanyInfo
+          companyTexts={footerInfo.companyTexts}
           hideAppDownloadButton={hideAppDownloadButton}
           businessExpanded={businessExpanded}
           setBusinessExpanded={setBusinessExpanded}
+          buttons={footerInfo.buttons}
         />
 
         <Text
           size={11}
           lineHeight="17px"
           color="gray500"
-          margin={{ top: businessExpanded ? 15 : 18, bottom: 5 }}
+          margin={{ top: businessExpanded ? 15 : 20, bottom: 5 }}
+          css={{ wordBreak: 'break-word' }}
         >
-          &#12828;놀유니버스는 통신판매중개로서 통신판매의 당사자가 아니며
-          <br /> 상품 거래정보 및 거래 등에 대해 책임을 지지 않습니다.
+          {footerInfo.disclaimer}
         </Text>
 
         <InfoFlexBox>
           <Container>
-            <LinkGroupBase />
-            <TripleKoreaLink />
+            <LinkGroupBase links={footerInfo.links} />
+            <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
           </Container>
 
-          <AwardGroup />
+          <AwardGroup awards={footerInfo.awards} />
         </InfoFlexBox>
       </Container>
     </FooterFrame>
   )
 }
 
-function AwardGroup() {
+function AwardGroup({ awards }: { awards: FooterAward[] }) {
   return (
     <AwardFlexBox>
-      {AWARD_INFO.map(({ id, imageUrl, alt, text }) => (
-        <Fragment key={id}>
+      {awards.map(({ imageUrl, alt, text }, index) => (
+        <Fragment key={`award-${index}`}>
           <AwardImg src={imageUrl} alt={alt} />
           <Tooltip>{text}</Tooltip>
         </Fragment>

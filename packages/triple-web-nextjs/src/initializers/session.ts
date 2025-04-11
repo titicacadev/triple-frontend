@@ -13,6 +13,7 @@ import {
   GET_USER_REQUEST_URL,
   checkClientApp,
 } from '@titicaca/triple-web-utils'
+import { SESSION_KEY, TP_TK } from '@titicaca/constants'
 
 /**
  * - app: refresh X
@@ -24,7 +25,7 @@ export async function getSession(): Promise<SessionValue> {
   const userAgent = headersList.get('user-agent') ?? ''
 
   const isClientApp = checkClientApp(userAgent)
-  const hasSession = checkSession(isClientApp)
+  const hasSession = checkSession()
 
   if (!hasSession) {
     return {
@@ -39,23 +40,10 @@ export async function getSession(): Promise<SessionValue> {
   }
 }
 
-function checkSession(isClientApp: boolean) {
-  const headersList = headers()
+function checkSession() {
   const cookiesList = cookies()
 
-  let hasSession = false
-
-  if (isClientApp) {
-    hasSession = cookiesList.has('x-soto-session')
-  } else {
-    hasSession = headersList.has('x-triple-web-login')
-
-    if (process.env.NODE_ENV !== 'production') {
-      hasSession = cookiesList.has('TP_SE')
-    }
-  }
-
-  return hasSession
+  return cookiesList.has(TP_TK) || cookiesList.has(SESSION_KEY)
 }
 
 async function fetchUser(isClientApp: boolean) {

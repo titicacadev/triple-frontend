@@ -40,17 +40,21 @@
     ]
   },
   "dependencies": {
+    "@titicaca/constants": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/i18n": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-web-to-native-interfaces": "1.10.0",
     "@titicaca/view-utilities": "workspace:*",
     "@types/ua-parser-js": "^0.7.39",
+    "deep-equal": "^2.2.3",
     "qs": "^6.14.0",
     "semver": "^7.6.3",
-    "ua-parser-js": "^1.0.40"
+    "ua-parser-js": "^1.0.40",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.4",
     "@types/qs": "^6.9.18",
     "@types/semver": "^7.5.8",
     "firebase": "9.15.0",
