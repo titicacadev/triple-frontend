@@ -41,9 +41,9 @@ interface MessagesProp<
     arrowRadius?: number
     received?: {
       css?: CSSProp
-      alteredTextColor?: string
+      alteredTextColor?: CSSProp
     }
-    sent?: { css?: CSSProp; alteredTextColor?: string }
+    sent?: { css?: CSSProp; alteredTextColor?: CSSProp }
   }
   spacing?: {
     message?: number
