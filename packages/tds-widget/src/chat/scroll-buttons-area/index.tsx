@@ -31,7 +31,7 @@ export interface ScrollButtonsAreaHandler {
 }
 
 /**
- * 색상 변경이 필요한 경우, ScrollButtonsProvider와 함께 사용해 주세요.
+ * nol-theme-provider를 사용하는 컴포넌트 입니다.
  */
 function ScrollButtonsAreaImpl<T = UserType>(
   {
