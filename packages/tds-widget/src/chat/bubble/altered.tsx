@@ -1,12 +1,12 @@
 import { FlexBox } from '@titicaca/tds-ui'
-import { styled, css } from 'styled-components'
+import { styled, css, CSSProp } from 'styled-components'
 
 import ExclamationMarkIcon from '../icons/ExclamationMarkIcon'
 
 import Bubble from './bubble'
 import { BlindedBubbleProp } from './type'
 
-const AlteredText = styled.span<{ color?: string }>`
+const AlteredText = styled.span<{ color?: CSSProp }>`
   ${({ color }) =>
     color &&
     css`
