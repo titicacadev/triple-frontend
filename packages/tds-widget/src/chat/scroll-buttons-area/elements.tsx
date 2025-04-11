@@ -6,8 +6,6 @@ import { ArrowBottom16Icon } from '../icons/arrow-bottom-16-icon'
 import { ChatMessageInterface, UserType } from '../types'
 import { getTextMessage } from '../preview'
 
-import { scrollButtonsTheme } from './theme-provider'
-
 export const Container = styled.div`
   position: relative;
 `
@@ -18,14 +16,9 @@ const ButtonContainer = styled(BaseContainer)`
   top: -52px;
 
   & > button {
-    background-color: ${({ theme }) =>
-      (theme.scrollButtons || scrollButtonsTheme).scrollToBottomButton
-        .backgroundColor};
+    background-color: ${({ theme }) => theme.nol.colorNeutralW100};
     border-radius: 50%;
-    border: 1px solid
-      ${({ theme }) =>
-        (theme.scrollButtons || scrollButtonsTheme).scrollToBottomButton
-          .borderColor};
+    border: 1px solid ${({ theme }) => theme.nol.colorNeutralG10};
     width: 40px;
     height: 40px;
   }
@@ -61,17 +54,10 @@ export function ScrollToBottomButton({
 
 const NewMessageButton = styled.button.attrs({ type: 'button' })`
   padding: 8px 12px;
-  background-color: ${({ theme }) =>
-    (theme.scrollButtons || scrollButtonsTheme).newMessageButton
-      .backgroundColor};
+  background-color: ${({ theme }) => theme.nol.colorNeutralW100};
   border-radius: 8px;
-  border: 1px solid
-    ${({ theme }) =>
-      (theme.scrollButtons || scrollButtonsTheme).newMessageButton.borderColor};
-  box-shadow: 0 4px 20px 0
-    ${({ theme }) =>
-      (theme.scrollButtons || scrollButtonsTheme).newMessageButton
-        .boxShadowColor};
+  border: 1px solid ${({ theme }) => theme.nol.colorNeutralB10};
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,10 +68,7 @@ const Thumbnail = styled.img`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  box-shadow: 0 0 0 1px
-    ${({ theme }) =>
-      (theme.scrollButtons || scrollButtonsTheme).newMessageButton
-        .thumbnailBorderColor};
+  box-shadow: 0 0 0 1px ${({ theme }) => theme.nol.colorNeutralG15};
   object-fit: cover;
   flex-shrink: 0;
 `
@@ -98,8 +81,7 @@ const Name = styled(Text).attrs({
   ellipsis: true,
 })`
   max-width: 70px;
-  color: ${({ theme }) =>
-    (theme.scrollButtons || scrollButtonsTheme).newMessageButton.nameColor};
+  color: ${({ theme }) => theme.nol.colorNeutralG60};
   flex-shrink: 0;
   overflow: hidden;
 `
@@ -110,8 +92,7 @@ const Message = styled(Text).attrs({
   lineHeight: '16px',
   ellipsis: true,
 })`
-  color: ${({ theme }) =>
-    (theme.scrollButtons || scrollButtonsTheme).newMessageButton.messageColor};
+  color: ${({ theme }) => theme.nol.colorNeutralB100};
   overflow: hidden;
   flex-grow: 1;
 `
