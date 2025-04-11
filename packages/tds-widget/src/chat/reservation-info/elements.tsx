@@ -5,22 +5,15 @@ import {
 } from '@titicaca/tds-ui'
 import styled, { css } from 'styled-components'
 
-import { reservationInfoTheme } from './theme-provider'
-
 const RESERVATION_INFO_MIN_CONTENT_HEIGHT = 40
 const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 21
 
 export const Container = styled(BaseContainer)`
   padding: 12px;
-  box-shadow: 0 0 20px 0
-    ${({ theme }) =>
-      (theme.reservationInfo || reservationInfoTheme).shadowColor};
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
   border-radius: 12px;
-  border: 1px solid
-    ${({ theme }) =>
-      (theme.reservationInfo || reservationInfoTheme).borderColor};
-  background-color: ${({ theme }) =>
-    (theme.reservationInfo || reservationInfoTheme).backgroundColor};
+  border: 1px solid ${({ theme }) => theme.nol.colorNeutralG10};
+  background-color: ${({ theme }) => theme.nol.colorNeutralW100};
   margin: 8px 15px 0;
 `
 
@@ -39,16 +32,14 @@ export const Details = styled.dl<{ expanded: boolean }>`
 
     dt {
       flex-shrink: 0;
-      color: ${({ theme }) =>
-        (theme.reservationInfo || reservationInfoTheme).detail.labelColor};
+      color: ${({ theme }) => theme.nol.colorNeutralB50};
       margin-right: 8px;
       width: 42px;
     }
 
     dd {
       display: inline;
-      color: ${({ theme }) =>
-        (theme.reservationInfo || reservationInfoTheme).detail.valueColor};
+      color: ${({ theme }) => theme.nol.colorNeutralB60};
       ${({ expanded }) => !expanded && maxLinesMixin({ maxLines: 1 })}
 
       & + dd {
@@ -120,8 +111,7 @@ export const Title = styled(Text).attrs({
   bold: true,
 })`
   padding-top: 1.5px;
-  color: ${({ theme }) =>
-    (theme.reservationInfo || reservationInfoTheme).titleColor};
+  color: ${({ theme }) => theme.nol.colorNeutralB100};
   flex-grow: 1;
 `
 
@@ -137,14 +127,40 @@ export const Label = styled(Text).attrs({
   border-radius: 6px;
   height: fit-content;
 
-  ${({ color }) =>
-    color &&
-    css`
-      background-color: ${({ theme }) =>
-        (theme.reservationInfo || reservationInfoTheme).label[color]
-          .backgroundColor || 'transparent'};
-      color: ${({ theme }) =>
-        (theme.reservationInfo || reservationInfoTheme).label[color].color ||
-        'inherit'};
-    `}
+  ${({ color, theme: { nol = {} } }) =>
+    color && getLabelColorVariants(color, nol)}
 `
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getLabelColorVariants(color: LabelColor, nolTheme: any) {
+  let colorVariants: {
+    backgroundColor?: string
+    color?: string
+  } = {}
+
+  switch (color) {
+    case 'blue':
+      colorVariants = {
+        backgroundColor: 'rgba(65, 84, 255, 0.1)',
+        color: nolTheme.colorPrimaryNol,
+      }
+      break
+    case 'red':
+      colorVariants = {
+        backgroundColor: 'rgba(255, 50, 46, 0.1)',
+        color: nolTheme.colorPrimaryRed,
+      }
+      break
+    case 'gray':
+      colorVariants = {
+        backgroundColor: nolTheme.colorNeutralG5,
+        color: nolTheme.colorNeutralB60,
+      }
+      break
+  }
+
+  return css`
+    background-color: ${colorVariants.backgroundColor || 'transparent'};
+    color: ${colorVariants.color || 'inherit'};
+  `
+}

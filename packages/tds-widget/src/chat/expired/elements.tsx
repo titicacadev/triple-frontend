@@ -3,8 +3,6 @@ import { Container as BaseContainer } from '@titicaca/tds-ui'
 
 import TalkIconBase from '../icons/talk-icon'
 
-import { expiredTheme } from './theme-provider'
-
 const buttonIconCss = css`
   width: 16px;
   height: 16px;
@@ -25,15 +23,13 @@ export const ButtonIcon = styled.div<{ src: string }>`
 
 export const Button = styled.button.attrs({ type: 'button' })`
   padding: 8px 16px;
-  color: ${({ theme }) => (theme.expired || expiredTheme).button.color};
+  color: ${({ theme }) => theme.nol.colorNeutralB100};
   font-weight: 400;
-  border: 1px solid
-    ${({ theme }) => (theme.expired || expiredTheme).button.borderColor};
+  border: 1px solid ${({ theme }) => theme.nol.colorNeutralB15};
   border-radius: 8px;
   font-size: 14px;
   line-height: 19px;
-  background-color: ${({ theme }) =>
-    (theme.expired || expiredTheme).button.backgroundColor};
+  background-color: ${({ theme }) => theme.nol.colorNeutralW100};
 
   ${ButtonIcon} {
     margin-right: 6px;
@@ -45,8 +41,7 @@ export const Button = styled.button.attrs({ type: 'button' })`
 `
 
 export const Container = styled(BaseContainer)`
-  background-color: ${({ theme }) =>
-    (theme.expired || expiredTheme).backgroundColor};
+  background-color: ${({ theme }) => theme.nol.colorNeutralB10};
   padding: 50px 26px 60px;
   font-size: 14px;
   line-height: 19px;
@@ -60,7 +55,7 @@ export const Container = styled(BaseContainer)`
     font-size: 16px;
     line-height: 22px;
     font-weight: 700;
-    color: ${({ theme }) => (theme.expired || expiredTheme).titleColor};
+    color: ${({ theme }) => theme.nol.colorNeutralB100};
     margin-bottom: 6px;
   }
 
