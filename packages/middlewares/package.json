@@ -41,14 +41,15 @@
     ]
   },
   "dependencies": {
+    "cookie": "^1.0.2",
     "semver": "^7.6.3",
     "set-cookie-parser": "^2.7.1",
     "universal-cookie": "^4.0.4",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@titicaca/fetcher": "workspace:*",
     "@titicaca/constants": "workspace:*",
+    "@titicaca/fetcher": "workspace:*",
     "@titicaca/triple-web-utils": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@types/semver": "^7.5.8",

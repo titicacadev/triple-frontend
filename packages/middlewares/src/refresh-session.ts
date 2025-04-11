@@ -14,6 +14,9 @@ import {
 } from '@titicaca/fetcher'
 import { parseString } from 'set-cookie-parser'
 import { TP_SE, TP_TK } from '@titicaca/constants'
+import { serialize, SerializeOptions } from 'cookie'
+
+import { getDomain } from './utils/get-domain'
 
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -59,8 +62,12 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       captureHttpError(firstTrialResponse)
-      const setCookie = firstTrialResponse.headers.getSetCookie()
-      if (setCookie) {
+      const setCookieHeader = firstTrialResponse.headers.getSetCookie()
+      if (setCookieHeader) {
+        const setCookie = changeSetCookieDomainOnLocalhost(
+          request,
+          setCookieHeader,
+        )
         setCookie.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
           response.cookies.set(name, value, { ...(rest as ResponseCookie) })
@@ -75,9 +82,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const refreshResponse = await post('/api/users/web-session/token', options)
     captureHttpError(refreshResponse)
 
-    const setCookie = refreshResponse.headers.getSetCookie()
+    const setCookieHeader = refreshResponse.headers.getSetCookie()
 
-    if (setCookie) {
+    if (setCookieHeader) {
+      const setCookie = changeSetCookieDomainOnLocalhost(
+        request,
+        setCookieHeader,
+      )
       setCookie.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
@@ -89,4 +100,23 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
 function deriveAllCookies(cookies: { name: string; value: string }[]) {
   return cookies.map(({ name, value }) => [name, value].join('=')).join('; ')
+}
+
+function changeSetCookieDomainOnLocalhost(
+  request: NextRequest,
+  setCookie: string[],
+) {
+  const domain = getDomain(request)
+  if (domain !== 'localhost') {
+    return setCookie
+  }
+
+  const domainChangedSetCookies = setCookie.map((cookie) => {
+    const { domain: originalDomain, ...rest } = parseString(cookie)
+    return { domain, ...rest }
+  })
+
+  return domainChangedSetCookies.map((cookie) => {
+    return serialize(cookie.name, cookie.value, cookie as SerializeOptions)
+  })
 }
