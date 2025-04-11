@@ -86,5 +86,5 @@ export type ProductBubbleProp = {
 export type BlindedBubbleProp = {
   my: boolean
   alternativeText?: string
-  textColor?: string
+  textColor?: CSSProp
 } & BubbleProp
