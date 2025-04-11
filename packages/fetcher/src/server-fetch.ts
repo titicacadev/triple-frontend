@@ -1,10 +1,10 @@
 import { parseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
-import { cookies as getCookies } from 'next/headers'
 import Cookies from 'universal-cookie'
 
 import { fetcher } from './fetcher'
 import { del, get, post, put } from './methods'
 import { BaseFetcher } from './factories'
+import { RequestOptions } from './types'
 
 export const serverFetchers = {
   fetcher: serverFetcherize((href, options) => fetcher(href, options || {})),
@@ -17,15 +17,14 @@ export const serverFetchers = {
 export function serverFetcherize<Fetcher extends BaseFetcher>(
   fetcher: Fetcher,
 ): Fetcher {
-  return ((href, options) => {
-    const { cookie: overridingCookie } = options || {}
-    const finalCookie = removeInvalidCookies(
-      overridingCookie ?? getCookies().toString(),
-    )
+  return ((href, options: RequestOptions & { cookie: string }) => {
+    const { cookie } = options || {}
+
+    const validCookies = cookie ? removeInvalidCookies(cookie) : undefined
 
     return fetcher(href, {
       ...options,
-      ...(finalCookie && { cookie: finalCookie }),
+      ...(validCookies && { cookie: validCookies }),
       withApiUriBase: true,
       headers: {
         ...options?.headers,
@@ -38,7 +37,7 @@ export function serverFetcherize<Fetcher extends BaseFetcher>(
 export function removeInvalidCookies(_cookies: string) {
   const validCookies = new Cookies()
   const cookieMap = parseCookie(_cookies)
-  cookieMap.forEach(([name, value]) => {
+  cookieMap.forEach((value, name) => {
     if (isValidCookieValue(value)) {
       validCookies.set(name, value)
     }
