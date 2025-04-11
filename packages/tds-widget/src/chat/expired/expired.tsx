@@ -11,7 +11,7 @@ interface ExpiredProps {
 const DEFAULT_DESCRIPTION = `추가 문의가 필요하신 경우\n파트너에게 새로운 채팅으로 문의해주세요.`
 
 /**
- * 색상 변경이 필요한 경우, ExpiredThemeProvider와 함께 사용해 주세요.
+ * nol-theme-provider를 사용하는 컴포넌트 입니다.
  */
 export function ExpiredImpl(
   {
