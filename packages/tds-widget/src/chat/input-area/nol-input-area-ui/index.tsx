@@ -1,5 +1,11 @@
 import { Container } from '@titicaca/tds-ui'
-import { ChangeEvent, ForwardedRef, forwardRef, useRef } from 'react'
+import {
+  ChangeEvent,
+  ForwardedRef,
+  forwardRef,
+  TextareaHTMLAttributes,
+  useRef,
+} from 'react'
 import styled from 'styled-components'
 
 import SelectPhotoIcon from '../../icons/select-photo-icon'
@@ -95,7 +101,8 @@ const InputContainer = styled(Container)`
 `
 
 export interface NolInputAreaUIProps
-  extends Omit<InputAreaUIProps, 'buttonText' | 'buttonColor'> {
+  extends Omit<InputAreaUIProps, 'buttonText' | 'buttonColor'>,
+    Pick<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onBlur' | 'onFocus'> {
   color?: string
   placeholderColor?: string
   activeButtonColor?: string
@@ -116,6 +123,8 @@ function NolInputAreaUIImpl(
     color,
     placeholderColor,
     activeButtonColor,
+    onBlur,
+    onFocus,
     ...props
   }: NolInputAreaUIProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -153,6 +162,8 @@ function NolInputAreaUIImpl(
           maxLength={maxTextLength}
           $color={color}
           placeholderColor={placeholderColor}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
         <SendButton
           activeButtonColor={activeButtonColor}
