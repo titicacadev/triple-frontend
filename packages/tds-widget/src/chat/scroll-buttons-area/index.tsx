@@ -23,6 +23,7 @@ interface ScrollButtonsAreaProps<T = UserType>
   extends Pick<ScrollButtonsProps<T>, 'scrollButtonsStyle'> {
   lastSeenMessageId?: number
   lastMessage?: ChatMessageInterface<T>
+  clickActionDelay?: number
 }
 
 export interface ScrollButtonsAreaHandler {
@@ -38,6 +39,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
     lastSeenMessageId,
     lastMessage,
     scrollButtonsStyle,
+    clickActionDelay,
     children,
   }: PropsWithChildren<ScrollButtonsAreaProps<T>>,
   ref: ForwardedRef<ScrollButtonsAreaHandler>,
@@ -56,6 +58,16 @@ function ScrollButtonsAreaImpl<T = UserType>(
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onButtonClick = (behavior: ScrollBehavior = 'smooth') => {
     triggerScrollToBottom({ scrollBehavior: behavior })
+  }
+
+  const handleClickScrollToBottom = (behavior?: ScrollBehavior) => {
+    if (typeof clickActionDelay !== 'undefined') {
+      setTimeout(() => {
+        onButtonClick(behavior)
+      }, clickActionDelay)
+    } else {
+      onButtonClick(behavior)
+    }
   }
 
   useImperativeHandle(ref, () => {
@@ -99,7 +111,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
       {mounted.current && lastMessage !== undefined && (
         <ScrollButtons
           scrollButtonsStyle={scrollButtonsStyle}
-          onClick={onButtonClick}
+          onClick={handleClickScrollToBottom}
           message={lastMessage}
           isBottomIntersecting={currentBottomIntersecting.isIntersecting}
           newMessageActive={isNewMessageActive}
