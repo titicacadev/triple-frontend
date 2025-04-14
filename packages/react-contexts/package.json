@@ -68,6 +68,7 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@types/set-cookie-parser": "^2.4.10",
+    "cookie": "^1.0.2",
     "qs": "^6.11.2",
     "semver": "^7.5.4",
     "set-cookie-parser": "^2.7.1",
