@@ -1,4 +1,7 @@
-import { parseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
+import {
+  parseCookie,
+  stringifyCookie,
+} from 'next/dist/compiled/@edge-runtime/cookies'
 import Cookies from 'universal-cookie'
 
 import { fetcher } from './fetcher'
@@ -52,7 +55,7 @@ export function removeInvalidCookies(_cookies: string) {
       validCookies.set(name, value)
     }
   })
-  return validCookies.getAll<string>()
+  return stringifyCookie(validCookies.getAll<{ name: string; value: string }>())
 }
 
 function isValidCookieValue(value?: string | null) {
