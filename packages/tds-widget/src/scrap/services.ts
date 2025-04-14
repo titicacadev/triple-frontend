@@ -1,4 +1,4 @@
-import { post, del } from '@titicaca/fetcher'
+import { authGuardedFetchers } from '@titicaca/fetcher'
 
 import type { Target } from './types'
 
@@ -22,11 +22,13 @@ interface ScrapFailResponse {
 }
 
 export function fetchScrape({ id, type }: Target) {
-  return post<ScrapSuccessResponse, ScrapFailResponse>(
+  return authGuardedFetchers.post<ScrapSuccessResponse, ScrapFailResponse>(
     `/api/scraps/${mapTypes(type)}/${id}`,
   )
 }
 
 export function fetchUnscrape({ id, type }: Target) {
-  return del<unknown, ScrapFailResponse>(`/api/scraps/${mapTypes(type)}/${id}`)
+  return authGuardedFetchers.del<unknown, ScrapFailResponse>(
+    `/api/scraps/${mapTypes(type)}/${id}`,
+  )
 }

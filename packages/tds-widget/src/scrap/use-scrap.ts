@@ -7,6 +7,7 @@ import {
   useTrackEventWithMetadata,
   useAppInstallCtaModal,
 } from '@titicaca/triple-web'
+import { NEED_LOGIN_IDENTIFIER } from '@titicaca/fetcher'
 
 import type { Target } from './types'
 import { fetchScrape, fetchUnscrape } from './services'
@@ -112,12 +113,16 @@ export function useScrap(param?: { scrapableInApp?: boolean }) {
 
       const response = await fetchScrape({ id, type })
 
-      if (response.ok) {
+      if (response !== NEED_LOGIN_IDENTIFIER && response.ok) {
         notifyScraped?.(id)
         trackEventWithMetadata(eventParams)
         dispatch({ type: SCRAPE, id })
       } else {
-        onScrapeFailed?.({ id, type }, false, response.parsedBody.message)
+        const errorMessage =
+          response === NEED_LOGIN_IDENTIFIER
+            ? '로그인이 필요합니다.'
+            : response.parsedBody.message
+        onScrapeFailed?.({ id, type }, false, errorMessage)
         dispatch({ type: SCRAPE_FAILED, id })
       }
     },
@@ -172,12 +177,16 @@ export function useScrap(param?: { scrapableInApp?: boolean }) {
 
       const response = await fetchUnscrape({ id, type })
 
-      if (response.ok) {
+      if (response !== NEED_LOGIN_IDENTIFIER && response.ok) {
         notifyUnscraped?.(id)
         trackEventWithMetadata(eventParams)
         dispatch({ type: UNSCRAPE, id })
       } else {
-        onScrapeFailed?.({ id, type }, true, response.parsedBody.message)
+        const errorMessage =
+          response === NEED_LOGIN_IDENTIFIER
+            ? '로그인이 필요합니다.'
+            : response.parsedBody.message
+        onScrapeFailed?.({ id, type }, true, errorMessage)
         dispatch({ type: UNSCRAPE_FAILED, id })
       }
     },
