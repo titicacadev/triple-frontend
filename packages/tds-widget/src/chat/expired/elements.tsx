@@ -42,7 +42,7 @@ export const Button = styled.button.attrs({ type: 'button' })`
 
 export const Container = styled(BaseContainer)`
   background-color: ${({ theme }) => theme.nol.colorNeutralB10};
-  padding: 50px 26px 60px;
+  padding: 30px 26px 24px;
   font-size: 14px;
   line-height: 19px;
   align-items: center;
@@ -56,11 +56,11 @@ export const Container = styled(BaseContainer)`
     line-height: 22px;
     font-weight: 700;
     color: ${({ theme }) => theme.nol.colorNeutralB100};
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   ${Button} {
-    margin-top: 16px;
+    margin-top: 12px;
 
     & + ${Button} {
       margin-top: 8px;
