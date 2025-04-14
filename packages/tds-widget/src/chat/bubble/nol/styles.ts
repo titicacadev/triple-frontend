@@ -87,6 +87,20 @@ const NOL_BUBBLE_INFO_BASE_STYLE = css`
   font-weight: 400;
 `
 
+const RETRY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <path d="M12.1765 10.0957C11.4332 11.6604 9.83839 12.7422 7.99089 12.7422C5.43308 12.7422 3.35957 10.6687 3.35957 8.11086C3.35957 5.55305 5.43308 3.47954 7.99089 3.47954C9.96595 3.47954 11.6522 4.71586 12.3181 6.45682" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M10.7359 6.33256L12.7017 6.60742L12.9765 4.64169" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`
+
+const DELETE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <path d="M2 10L10 2" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M2 2L10 10" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+</svg>`
+
+const getSVG = (svg: string) => {
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+}
+
 export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
   failureHandler: {
     css: css`
@@ -105,12 +119,12 @@ export const NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE = {
         }
 
         &:first-of-type {
-          background-image: url('https://assets.triple.guide/images/partners-center/talk_send_16.svg');
+          background-image: url('${getSVG(RETRY_SVG)}');
           background-size: 16px 16px;
         }
 
         &:last-of-type {
-          background-image: url('https://assets.triple.guide/images/partners-center/close_12.svg');
+          background-image: url('${getSVG(DELETE_SVG)}');
           background-size: 12px 12px;
         }
       }
