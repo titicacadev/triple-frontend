@@ -69,7 +69,10 @@ function ReservationInfoImpl(
         css={{ alignItems: hasDetails || expanded ? 'flex-start' : 'center' }}
       >
         {thumbnail ? <Thumbnail src={thumbnail} small={!hasDetails} /> : null}
-        <DetailContainer expanded={expanded}>
+        <DetailContainer
+          expanded={expanded}
+          onClick={() => setExpanded(!expanded)}
+        >
           <TitleContainer>
             {title ? (
               <Title ref={titleRef} maxLines={expanded ? undefined : 1}>
@@ -84,7 +87,6 @@ function ReservationInfoImpl(
             {expandable ? (
               <ArrowButton
                 expanded={expanded}
-                onClick={() => setExpanded(!expanded)}
                 css={{ top: hasDetails ? '5px' : '10px' }}
               >
                 <ArrowTopIcon />
