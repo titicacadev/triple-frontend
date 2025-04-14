@@ -16,8 +16,12 @@ import { parseString } from 'set-cookie-parser'
 import { TP_SE, TP_TK } from '@titicaca/constants'
 import { serialize, SerializeOptions } from 'cookie'
 
-import { getDomain } from './utils/get-domain'
+import { getDomain } from '../utils/get-domain'
 
+/**
+ *
+ * next v14 이상에서 사용하는 refreshSessionMiddleware
+ */
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
     request: NextRequest,
