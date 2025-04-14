@@ -430,11 +430,7 @@ export function useChatMessages<T = UserType>(
         }
       }
     },
-    [
-      dispatch,
-      (me as ChatRoomMemberInterface).roomMemberId,
-      scrollToBottomOnNewMessage,
-    ],
+    [dispatch, me, scrollToBottomOnNewMessage, triggerScrollToBottom],
   )
 
   /**
