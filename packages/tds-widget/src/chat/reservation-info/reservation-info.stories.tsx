@@ -53,13 +53,13 @@ const BOOKING_INFO: ReservationInfoProps = {
   thumbnail:
     'https://media.triple.guide/triple-cms/c_fill,f_auto,h_256,w_256/42c71ad6-78bd-4f27-b777-cdb508b70ade',
   details: [
-    { label: '예약번호', value: '5F72CD' },
+    { label: '예약확인번호', value: '5F72CD' },
     {
       label: '상품정보',
       value: '누사페나다 일일 투어(발리 출발) 아이템명아이템명아이템명',
     },
     { label: '이용예정', value: '2025.02.11(금)' },
-    { label: '옵션정보', value: '성인 1명' },
+    { label: '인원 · 수량', value: '성인 1명' },
   ],
 }
 
