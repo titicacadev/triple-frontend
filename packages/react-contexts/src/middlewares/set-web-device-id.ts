@@ -6,10 +6,10 @@ import {
 } from 'next/server'
 import { v4 as uuidV4 } from 'uuid'
 import { X_TRIPLE_WEB_DEVICE_ID } from '@titicaca/constants'
-import { parseUrl } from '@titicaca/view-utilities'
 
 import { getTripleApp } from './utils/get-triple-app'
 import { applySetCookie } from './utils/apply-set-cookie'
+import { getDomain } from './utils/get-domain'
 
 export function setWebDeviceIdMiddleware(next: NextMiddleware) {
   return async function middleware(
@@ -39,12 +39,4 @@ export function setWebDeviceIdMiddleware(next: NextMiddleware) {
 
     return response
   }
-}
-
-function getDomain(request: NextRequest) {
-  const hostFromRequest = request.headers.get('host')
-  const isLocalhost = hostFromRequest?.split(':')[0] === 'localhost'
-  const { host } = parseUrl(process.env.NEXT_PUBLIC_WEB_URL_BASE)
-
-  return isLocalhost ? 'localhost' : `.${host}`
 }
