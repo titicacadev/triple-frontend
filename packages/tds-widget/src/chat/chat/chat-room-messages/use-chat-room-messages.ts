@@ -300,7 +300,7 @@ export function useChatMessages<T = UserType>(
     const { success } = await handleSendMessageAction({
       roomId: currentRoom.id,
       tempMessageId: tempMessage.id,
-      payload,
+      payload: tempMessage.payload,
       skipPending,
     })
 
