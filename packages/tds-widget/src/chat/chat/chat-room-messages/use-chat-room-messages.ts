@@ -303,7 +303,7 @@ export function useChatMessages<T = UserType>(
     const { success } = await handleSendMessageAction({
       roomId: currentRoom.id,
       tempMessageId: tempMessage.id,
-      payload,
+      payload: tempMessage.payload,
       skipPending,
     })
 
@@ -433,11 +433,7 @@ export function useChatMessages<T = UserType>(
         }
       }
     },
-    [
-      dispatch,
-      (me as ChatRoomMemberInterface).roomMemberId,
-      scrollToBottomOnNewMessage,
-    ],
+    [dispatch, me, scrollToBottomOnNewMessage, triggerScrollToBottom],
   )
 
   /**
