@@ -1,6 +1,13 @@
 import { ComponentProps } from 'react'
+import { createGlobalStyle } from 'styled-components'
 
 import { ScrollProvider } from '../chat'
+import {
+  NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE,
+  NOL_PARTNER_ROOM_BUBBLE_STYLE as BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE,
+} from '../bubble'
+import { NolThemeProvider } from '../nol-theme-provider'
+import { NOL_COLOR } from '../reservation-info/reservation-info.stories'
 
 import MessagesComponent from './'
 
@@ -352,5 +359,155 @@ export const MessagesWithDateDivider = {
       },
     },
     hasDateDivider: true,
+  },
+}
+
+const NolGlobalStyle = createGlobalStyle`
+  html {
+    text-size-adjust: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 62.5%;
+    background-color: #fff;
+  }
+
+  body {
+    font-weight: normal;
+    font-size: 1.3rem;
+    line-height: 1.3;
+
+    * {
+      letter-spacing: 0;
+      word-spacing: 0;
+    }
+}
+`
+
+export const NolMessages = {
+  render: (args: ComponentProps<typeof MessagesComponent>) => (
+    <NolThemeProvider theme={NOL_COLOR}>
+      <ScrollProvider>
+        <NolGlobalStyle />
+        <MessagesComponent {...args} />
+      </ScrollProvider>
+    </NolThemeProvider>
+  ),
+  args: {
+    messages: [
+      {
+        type: 'text',
+        value: { message: '안녕하세요.' },
+        id: 'text message',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'text',
+        value: { message: '안녕하세요.' },
+        id: 'my text message',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+      {
+        type: 'text',
+        value: { message: '연속 두번째로 보내는 메시지 입니다.' },
+        id: 'my text message 2',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+    ],
+    pendingMessages: [
+      {
+        type: 'text',
+        value: { message: '보내는 중인 메시지.' },
+        id: 'text message pending',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+    ],
+    failedMessages: [
+      {
+        type: 'text',
+        value: { message: '실패한 메시지 메시지.' },
+        id: 'text message pending',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+      },
+    ],
+    me: {
+      id: 'test',
+      profile: {
+        name: '테스트',
+        photo:
+          'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+      },
+    },
+    customBubble: {
+      another: (message: { id: string; value: { text: string } }) => {
+        return (
+          <div key={message.id} css={{ display: 'inline-block' }}>
+            {message.value.text}
+          </div>
+        )
+      },
+    },
+    hasDateDivider: true,
+    displayTarget: 'TNA_PARTNER',
+    onRetry: () => {},
+    onRetryCancel: () => {},
+    bubbleStyle: {
+      ...BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE,
+      sent: BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE.white,
+      received: BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE.blue,
+    },
+    bubbleInfoStyle: NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE,
+    showProfilePhoto: false,
+    spacing: { message: 6 },
   },
 }
