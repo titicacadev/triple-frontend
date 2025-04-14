@@ -99,6 +99,7 @@ export const TitleContainer = styled(BaseContainer)`
   display: flex;
   flex-direction: row;
   gap: 16px;
+  cursor: pointer;
 
   &:has(${ArrowButton}) {
     padding-right: 18px;
@@ -126,6 +127,7 @@ export const Label = styled(Text).attrs({
   padding: 3px 6px;
   border-radius: 6px;
   height: fit-content;
+  cursor: pointer;
 
   ${({ color, theme: { nol = {} } }) =>
     color && getLabelColorVariants(color, nol)}
