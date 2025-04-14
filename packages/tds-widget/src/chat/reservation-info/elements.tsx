@@ -33,8 +33,8 @@ export const Details = styled.dl<{ expanded: boolean }>`
     dt {
       flex-shrink: 0;
       color: ${({ theme }) => theme.nol.colorNeutralB50};
-      margin-right: 8px;
-      width: 42px;
+      margin-right: 6px;
+      width: 64px;
     }
 
     dd {
