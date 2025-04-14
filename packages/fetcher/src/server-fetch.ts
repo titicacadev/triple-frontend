@@ -17,10 +17,20 @@ export const serverFetchers = {
 export function serverFetcherize<Fetcher extends BaseFetcher>(
   fetcher: Fetcher,
 ): Fetcher {
-  return ((href, options: RequestOptions & { cookie: string }) => {
-    const { cookie } = options || {}
+  return (async (href, options: RequestOptions) => {
+    const isServer = typeof window === 'undefined'
+    let serverCookie: string | undefined
 
-    const validCookies = cookie ? removeInvalidCookies(cookie) : undefined
+    if (isServer) {
+      const { cookies } = await import('next/headers')
+
+      serverCookie = cookies().toString()
+    }
+
+    const finalCookie = options?.cookie ?? serverCookie
+    const validCookies = finalCookie
+      ? removeInvalidCookies(finalCookie)
+      : undefined
 
     return fetcher(href, {
       ...options,
