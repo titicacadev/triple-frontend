@@ -12,11 +12,16 @@ import {
   NEED_REFRESH_IDENTIFIER,
   captureHttpError,
 } from '@titicaca/fetcher'
-import { parseString, splitCookiesString } from 'set-cookie-parser'
+import { parseString } from 'set-cookie-parser'
 import { TP_SE, TP_TK } from '@titicaca/constants'
+import { serialize, SerializeOptions } from 'cookie'
 
-import { applySetCookie } from './utils/apply-set-cookie'
+import { getDomain } from '../utils/get-domain'
 
+/**
+ *
+ * next v14 이상에서 사용하는 refreshSessionMiddleware
+ */
 export function refreshSessionMiddleware(next: NextMiddleware) {
   return async function middleware(
     request: NextRequest,
@@ -61,14 +66,16 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       captureHttpError(firstTrialResponse)
-      const setCookie = firstTrialResponse.headers.get('set-cookie')
-      if (setCookie) {
-        const setCookies = splitCookiesString(setCookie)
-        setCookies.forEach((cookie) => {
+      const setCookieHeader = firstTrialResponse.headers.getSetCookie()
+      if (setCookieHeader) {
+        const setCookie = changeSetCookieDomainOnLocalhost(
+          request,
+          setCookieHeader,
+        )
+        setCookie.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
           response.cookies.set(name, value, { ...(rest as ResponseCookie) })
         })
-        applySetCookie(request, response)
       }
       return response
     }
@@ -79,15 +86,17 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const refreshResponse = await post('/api/users/web-session/token', options)
     captureHttpError(refreshResponse)
 
-    const setCookie = refreshResponse.headers.get('set-cookie')
+    const setCookieHeader = refreshResponse.headers.getSetCookie()
 
-    if (setCookie) {
-      const setCookies = splitCookiesString(setCookie)
-      setCookies.forEach((cookie) => {
+    if (setCookieHeader) {
+      const setCookie = changeSetCookieDomainOnLocalhost(
+        request,
+        setCookieHeader,
+      )
+      setCookie.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
-      applySetCookie(request, response)
     }
     return response
   }
@@ -95,4 +104,23 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
 function deriveAllCookies(cookies: { name: string; value: string }[]) {
   return cookies.map(({ name, value }) => [name, value].join('=')).join('; ')
+}
+
+function changeSetCookieDomainOnLocalhost(
+  request: NextRequest,
+  setCookie: string[],
+) {
+  const domain = getDomain(request)
+  if (domain !== 'localhost') {
+    return setCookie
+  }
+
+  const domainChangedSetCookies = setCookie.map((cookie) => {
+    const { domain: originalDomain, ...rest } = parseString(cookie)
+    return { domain, ...rest }
+  })
+
+  return domainChangedSetCookies.map((cookie) => {
+    return serialize(cookie.name, cookie.value, cookie as SerializeOptions)
+  })
 }
