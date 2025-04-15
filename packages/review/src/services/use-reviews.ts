@@ -22,6 +22,8 @@ import {
   reviewClient,
 } from '../data/graphql'
 
+import { useShowLoginCtaModalOnAuthError } from './hooks'
+
 export function useReviewCount(
   params: GetReviewsCountQueryVariables,
   initialValue?: number,
@@ -60,11 +62,15 @@ export function useMyReview(params: GetMyReviewQueryVariables) {
 export function useLikeReviewMutation() {
   const { notifyReviewLiked } = useTripleClientActions()
   const queryClient = useQueryClient()
+  const showLoginCtaModalOnAuthError = useShowLoginCtaModalOnAuthError()
 
   return useMutation(
     (variables: LikeReviewMutationVariables & { resourceId: string }) =>
       reviewClient(() => client.LikeReview({ reviewId: variables.reviewId })),
     {
+      onError: (error) => {
+        showLoginCtaModalOnAuthError(error)
+      },
       onSuccess: (data, variables) => {
         notifyReviewLiked?.(variables.resourceId, variables.reviewId)
 
@@ -165,11 +171,15 @@ export function useLikeReviewMutation() {
 export function useUnlikeReviewMutation() {
   const { notifyReviewUnliked } = useTripleClientActions()
   const queryClient = useQueryClient()
+  const showLoginCtaModalOnAuthError = useShowLoginCtaModalOnAuthError()
 
   return useMutation(
     (variables: UnlikeReviewMutationVariables & { resourceId: string }) =>
       reviewClient(() => client.UnlikeReview({ reviewId: variables.reviewId })),
     {
+      onError: (error) => {
+        showLoginCtaModalOnAuthError(error)
+      },
       onSuccess: (data, variables) => {
         notifyReviewUnliked?.(variables.resourceId, variables.reviewId)
 
@@ -269,6 +279,7 @@ export function useUnlikeReviewMutation() {
 export function useDeleteReviewMutation() {
   const { notifyReviewDeleted } = useTripleClientActions()
   const queryClient = useQueryClient()
+  const showLoginCtaModalOnAuthError = useShowLoginCtaModalOnAuthError()
 
   return useMutation(
     async (
@@ -278,6 +289,9 @@ export function useDeleteReviewMutation() {
       },
     ) => reviewClient(() => client.DeleteReview(variables)),
     {
+      onError: (error) => {
+        showLoginCtaModalOnAuthError(error)
+      },
       onSuccess: (data, variables) => {
         notifyReviewDeleted?.(
           variables.resourceId,

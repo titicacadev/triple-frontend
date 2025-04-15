@@ -1,4 +1,5 @@
 import { withScope, captureException } from '@sentry/nextjs'
+import { GraphQLError } from 'graphql'
 
 import { HttpResponse } from './types'
 import { NEED_LOGIN_IDENTIFIER } from './factories'
@@ -53,4 +54,13 @@ export async function handle401Error<SuccessBody, FailureBody>(
     return NEED_REFRESH_IDENTIFIER
   }
   return NEED_LOGIN_IDENTIFIER
+}
+
+export const UNAUTHORIZED_CODE = 'UNAUTHORIZED'
+
+export function handleGql401Error(error: GraphQLError) {
+  const { extensions } = error
+  if ('code' in extensions && extensions.code === UNAUTHORIZED_CODE) {
+    return NEED_LOGIN_IDENTIFIER
+  }
 }
