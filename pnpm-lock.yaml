@@ -818,6 +818,9 @@ importers:
       '@titicaca/triple-web-to-native-interfaces':
         specifier: 1.10.0
         version: 1.10.0
+      '@titicaca/triple-web-utils':
+        specifier: workspace:*
+        version: link:../triple-web-utils
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -833,6 +836,9 @@ importers:
       semver:
         specifier: ^7.6.3
         version: 7.6.3
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       ua-parser-js:
         specifier: ^1.0.40
         version: 1.0.40
