@@ -12,7 +12,7 @@ import {
   NEED_REFRESH_IDENTIFIER,
   captureHttpError,
 } from '@titicaca/fetcher'
-import { parseString } from 'set-cookie-parser'
+import { parseString, splitCookiesString } from 'set-cookie-parser'
 import { TP_SE, TP_TK } from '@titicaca/constants'
 import { serialize, SerializeOptions } from 'cookie'
 
@@ -63,11 +63,11 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
 
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       captureHttpError(firstTrialResponse)
-      const setCookieHeader = firstTrialResponse.headers.getSetCookie()
+      const setCookieHeader = firstTrialResponse.headers.get('set-cookie')
       if (setCookieHeader) {
         const setCookies = changeSetCookieDomainOnLocalhost(
           request,
-          setCookieHeader,
+          splitCookiesString(setCookieHeader),
         )
         setCookies.forEach((cookie) => {
           const { name, value, ...rest } = parseString(cookie)
@@ -84,11 +84,11 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const refreshResponse = await post('/api/users/web-session/token', options)
     captureHttpError(refreshResponse)
 
-    const setCookieHeader = refreshResponse.headers.getSetCookie()
+    const setCookieHeader = refreshResponse.headers.get('set-cookie')
     if (setCookieHeader) {
       const setCookies = changeSetCookieDomainOnLocalhost(
         request,
-        setCookieHeader,
+        splitCookiesString(setCookieHeader),
       )
       setCookies.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
