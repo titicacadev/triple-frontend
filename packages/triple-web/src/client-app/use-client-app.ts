@@ -1,16 +1,24 @@
 import { useContext } from 'react'
 
 import { ClientAppContext } from './context'
+import { getClientApp } from './get-client-app'
 
 /**
  * ClientAppContext 값을 가져옵니다.
  */
 export function useClientApp() {
-  const context = useContext(ClientAppContext)
+  const clientApp =
+    (useContext(ClientAppContext) ?? typeof window !== 'undefined')
+      ? getClientApp({
+          userAgent: undefined,
+          autoplay: undefined,
+          networkType: undefined,
+        })
+      : undefined
 
-  if (context === undefined) {
-    throw new Error('ClientAppContext가 없습니다.')
+  if (clientApp === undefined) {
+    throw new Error('ClientAppContext가 없거나 클라이언트 환경이 아닙니다.')
   }
 
-  return context
+  return clientApp
 }

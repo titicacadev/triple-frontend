@@ -1,5 +1,4 @@
-import { ClientAppName, type ClientAppValue } from '@titicaca/triple-web'
-import { clientAppRegex, macAppRegex } from '@titicaca/triple-web-utils'
+import { getClientApp, type ClientAppValue } from '@titicaca/triple-web'
 
 type AutoplayOption = NonNullable<ClientAppValue>['device']['autoplay']
 
@@ -39,31 +38,16 @@ interface Params {
 
 export function extractClientApp({
   userAgent,
-  autoplay,
-  networkType,
+  autoplay: _autoplay,
+  networkType: _networkType,
 }: Params): ClientAppValue {
-  const metadata = userAgent ? clientAppRegex.exec(userAgent) : null
+  const autoplay = getAutoplayValue(
+    Array.isArray(_autoplay) ? _autoplay[0] : (_autoplay ?? ''),
+  )
 
-  if (!metadata) {
-    return null
-  }
+  const networkType = getNetwork(
+    Array.isArray(_networkType) ? _networkType[0] : (_networkType ?? ''),
+  )
 
-  return {
-    metadata: {
-      name:
-        metadata[1] === 'Triple-Android'
-          ? ClientAppName.Android
-          : ClientAppName.iOS,
-      version: metadata[2],
-      isMacApp: userAgent ? macAppRegex.test(userAgent) : false,
-    },
-    device: {
-      autoplay: getAutoplayValue(
-        Array.isArray(autoplay) ? autoplay[0] : (autoplay ?? ''),
-      ),
-      networkType: getNetwork(
-        Array.isArray(networkType) ? networkType[0] : (networkType ?? ''),
-      ),
-    },
-  }
+  return getClientApp({ userAgent, autoplay, networkType })
 }
