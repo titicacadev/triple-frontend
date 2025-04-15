@@ -9,10 +9,7 @@ import {
   get,
 } from '@titicaca/fetcher'
 import type { SessionUser, SessionValue } from '@titicaca/triple-web'
-import {
-  GET_USER_REQUEST_URL,
-  checkClientApp,
-} from '@titicaca/triple-web-utils'
+import { GET_USER_REQUEST_URL } from '@titicaca/triple-web-utils'
 import { SESSION_KEY, TP_TK } from '@titicaca/constants'
 
 /**
@@ -21,10 +18,6 @@ import { SESSION_KEY, TP_TK } from '@titicaca/constants'
  * @returns
  */
 export async function getSession(): Promise<SessionValue> {
-  const headersList = headers()
-  const userAgent = headersList.get('user-agent') ?? ''
-
-  const isClientApp = checkClientApp(userAgent)
   const hasSession = checkSession()
 
   if (!hasSession) {
@@ -33,7 +26,7 @@ export async function getSession(): Promise<SessionValue> {
     }
   }
 
-  const user = await fetchUser(isClientApp)
+  const user = await fetchUser()
 
   return {
     user,
@@ -46,7 +39,7 @@ function checkSession() {
   return cookiesList.has(TP_TK) || cookiesList.has(SESSION_KEY)
 }
 
-async function fetchUser(isClientApp: boolean) {
+async function fetchUser() {
   const headersList = headers()
 
   const ssrFetcherizeOptions = {
@@ -54,43 +47,27 @@ async function fetchUser(isClientApp: boolean) {
     cookie: headersList.get('cookie') ?? undefined,
   }
 
-  if (isClientApp) {
-    const finalFetcher = ssrFetcherize(get, ssrFetcherizeOptions)
+  const finalFetcher = authFetcherize(
+    ssrFetcherize(get, ssrFetcherizeOptions),
+    {
+      refresh: () =>
+        ssrFetcherize(
+          post,
+          ssrFetcherizeOptions,
+        )('/api/users/web-session/token'),
+    },
+  )
+  const response = await finalFetcher<SessionUser>(GET_USER_REQUEST_URL)
 
-    const response = await finalFetcher<SessionUser>(GET_USER_REQUEST_URL)
-
-    if (response.status !== 401) {
-      captureHttpError(response)
-    }
-
-    if (response.ok === false) {
-      return null
-    }
-
-    return response.parsedBody
-  } else {
-    const finalFetcher = authFetcherize(
-      ssrFetcherize(get, ssrFetcherizeOptions),
-      {
-        refresh: () =>
-          ssrFetcherize(
-            post,
-            ssrFetcherizeOptions,
-          )('/api/users/web-session/token'),
-      },
-    )
-    const response = await finalFetcher<SessionUser>(GET_USER_REQUEST_URL)
-
-    if (response === 'NEED_LOGIN') {
-      return null
-    }
-
-    captureHttpError(response)
-
-    if (response.ok === false) {
-      return null
-    }
-
-    return response.parsedBody
+  if (response === 'NEED_LOGIN') {
+    return null
   }
+
+  captureHttpError(response)
+
+  if (response.ok === false) {
+    return null
+  }
+
+  return response.parsedBody
 }
