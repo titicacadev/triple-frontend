@@ -8,9 +8,10 @@ import { getUserAgent } from './get-user-agent'
  */
 export function useUserAgent() {
   const userAgent =
-    (useContext(UserAgentContext) ?? typeof window !== 'undefined')
+    useContext(UserAgentContext) ??
+    (typeof window !== 'undefined'
       ? getUserAgent(window.navigator.userAgent)
-      : undefined
+      : undefined)
 
   if (userAgent === undefined) {
     throw new Error('UserAgentContext가 없거나 클라이언트 환경이 아닙니다.')
