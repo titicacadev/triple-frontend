@@ -541,6 +541,118 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## 13.46.0
+
+### ab-experiments
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### ad-banners
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### constants
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 세션 리프레쉬 로직을 수정합니다. [#3592](https://github.com/titicacadev/triple-frontend/pull/3592)
+
+### core-elements
+
+- [footer] 푸터에 버튼, 링크, 드롭다운을 원격으로 설정할 수 있도록 수정합니다. [#3615](https://github.com/titicacadev/triple-frontend/pull/3615)
+
+### date-picker
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### fetcher
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+- [fetcher] authFetcherize에서 refresh의 apiUriBase를 fetcher와 통일합니다. [#3645](https://github.com/titicacadev/triple-frontend/pull/3645)
+- [KLZT-910] 서버의 401 에러의 AccessTokenExpiredException를 구분합니다. [#3646](https://github.com/titicacadev/triple-frontend/pull/3646)
+- [ui-flow] authGuard에서 firstTrial시 NEED_LOGIN 응답시 NEED_LOGIN_IDENTIFIER 리턴 [#3655](https://github.com/titicacadev/triple-frontend/pull/3655)
+
+### footer
+
+- [footer] 푸터에 버튼, 링크, 드롭다운을 원격으로 설정할 수 있도록 수정합니다. [#3615](https://github.com/titicacadev/triple-frontend/pull/3615)
+- [footer] footer의 disclaimer maxWidth 삭제 [#3648](https://github.com/titicacadev/triple-frontend/pull/3648)
+- [footer] 푸터 버튼에 key props를 추가합니다. [#3652](https://github.com/titicacadev/triple-frontend/pull/3652)
+
+### nearby-pois
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### poi-detail
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### public-header
+
+- [public-header, react-contexts] NOL 연동 회원의 경우 웹 사이드바 프로필에서 provider를 노출하지 않습니다. [#3580](https://github.com/titicacadev/triple-frontend/pull/3580)
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [public-header] provider 타입 추가에 따른 프로필 변경 [#3607](https://github.com/titicacadev/triple-frontend/pull/3607)
+- [public-header] NOL 멤버스 문구를 NOL 회원으로 변경합니다. [#3659](https://github.com/titicacadev/triple-frontend/pull/3659)
+
+### react-contexts
+
+- [public-header, react-contexts] NOL 연동 회원의 경우 웹 사이드바 프로필에서 provider를 노출하지 않습니다. [#3580](https://github.com/titicacadev/triple-frontend/pull/3580)
+- [react-contexts] NOL 통합 유저일 경우 로그아웃시 redirect합니다. [#3581](https://github.com/titicacadev/triple-frontend/pull/3581)
+- [react-contexts] 트리플 deviceId를 추가하는 미들웨어를 작성합니다. [#3584](https://github.com/titicacadev/triple-frontend/pull/3584)
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 세션 리프레쉬 로직을 수정합니다. [#3592](https://github.com/titicacadev/triple-frontend/pull/3592)
+- [react-contexts] setWebDeviceId 미들웨어에 applySetCookie를 적용합니다. [#3594](https://github.com/titicacadev/triple-frontend/pull/3594)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+- [react-contexts] 세션 체크 API로 변경 [#3605](https://github.com/titicacadev/triple-frontend/pull/3605)
+- [public-header] provider 타입 추가에 따른 프로필 변경 [#3607](https://github.com/titicacadev/triple-frontend/pull/3607)
+- [react-contexts] 미들웨어에 chain 및 기타 미들웨어의 export를 추가합니다. [#3609](https://github.com/titicacadev/triple-frontend/pull/3609)
+- [react-contexts] setWebDeviceId 미들웨어에 domain을 추가합니다. [#3610](https://github.com/titicacadev/triple-frontend/pull/3610)
+- [react-contexts] trackScreen에 nol_device_id를 기록하도록 수정합니다. [#3617](https://github.com/titicacadev/triple-frontend/pull/3617)
+- [react-contexts] 일반 로그아웃시 reload 추가 [#3641](https://github.com/titicacadev/triple-frontend/pull/3641)
+- [KLZT-910] 서버의 401 에러의 AccessTokenExpiredException를 구분합니다. [#3646](https://github.com/titicacadev/triple-frontend/pull/3646)
+
+### replies
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### review
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+- [KLZT-910] 서버의 401 에러의 AccessTokenExpiredException를 구분합니다. [#3646](https://github.com/titicacadev/triple-frontend/pull/3646)
+
+### standard-action-handler
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [KLZT-910] 서버의 401 에러의 AccessTokenExpiredException를 구분합니다. [#3646](https://github.com/titicacadev/triple-frontend/pull/3646)
+
+### triple-document
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### triple-header
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
+### ui-flow
+
+- [public-header, react-contexts] NOL 연동 회원의 경우 웹 사이드바 프로필에서 provider를 노출하지 않습니다. [#3580](https://github.com/titicacadev/triple-frontend/pull/3580)
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+- [ui-flow] authGuard에서 firstTrial시 NEED_LOGIN 응답시 NEED_LOGIN_IDENTIFIER 리턴 [#3655](https://github.com/titicacadev/triple-frontend/pull/3655)
+
+### user-verification
+
+- [Epic] NOL 회원 통합 [#3590](https://github.com/titicacadev/triple-frontend/pull/3590)
+- [react-contexts] 클라이언트 세션 갱신 로직을 추가합니다. [#3595](https://github.com/titicacadev/triple-frontend/pull/3595)
+
 ## 13.45.1
 
 ### view-utilities
