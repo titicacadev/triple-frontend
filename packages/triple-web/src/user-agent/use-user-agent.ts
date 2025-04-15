@@ -1,16 +1,20 @@
 import { useContext } from 'react'
 
 import { UserAgentContext } from './context'
+import { getUserAgent } from './get-user-agent'
 
 /**
  * UserAgentContext 값을 가져옵니다.
  */
 export function useUserAgent() {
-  const context = useContext(UserAgentContext)
+  const userAgent =
+    (useContext(UserAgentContext) ?? typeof window !== 'undefined')
+      ? getUserAgent(window.navigator.userAgent)
+      : undefined
 
-  if (context === undefined) {
-    throw new Error('UserAgentContext가 없습니다.')
+  if (userAgent === undefined) {
+    throw new Error('UserAgentContext가 없거나 클라이언트 환경이 아닙니다.')
   }
 
-  return context
+  return userAgent
 }
