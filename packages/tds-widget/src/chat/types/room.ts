@@ -92,7 +92,7 @@ export type ChatRoomMetadata<T, U = ChatRoomMetadataMap> = T extends keyof U
   ? U[T]
   : undefined
 
-type ExpirePolicyType = 'AFTER_DATE_OF_USE' | 'AFTER_MESSAGE'
+type ExpirePolicyType = 'AFTER_DATE_OF_USE' | 'AFTER_MESSAGE' | 'AFTER_CANCEL'
 
 interface ExpirePolicyBase {
   type: ExpirePolicyType
@@ -103,18 +103,26 @@ interface ExpirePolicyBase {
     seconds: number
     milliSeconds: number
   }
+  baseAt?: string
+  expiredAt?: string
 }
 
 interface AfterDateOfUsePolicy extends ExpirePolicyBase {
   type: 'AFTER_DATE_OF_USE'
-  dateOfUseEndsAt: string
 }
 
 interface AfterMessagePolicy extends ExpirePolicyBase {
   type: 'AFTER_MESSAGE'
 }
 
-type ExpirePolicy = AfterDateOfUsePolicy | AfterMessagePolicy
+interface AfterCancelPolicy extends ExpirePolicyBase {
+  type: 'AFTER_CANCEL'
+}
+
+type ExpirePolicy =
+  | AfterDateOfUsePolicy
+  | AfterMessagePolicy
+  | AfterCancelPolicy
 
 /**
  * @deprecated
