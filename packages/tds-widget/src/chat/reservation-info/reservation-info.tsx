@@ -71,7 +71,7 @@ function ReservationInfoImpl(
         {thumbnail ? <Thumbnail src={thumbnail} small={!hasDetails} /> : null}
         <DetailContainer
           expanded={expanded}
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => expandable && setExpanded(!expanded)}
         >
           <TitleContainer>
             {title ? (
