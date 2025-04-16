@@ -18,7 +18,7 @@ export const Container = styled(BaseContainer)`
 `
 
 export const Details = styled.dl<{ expanded: boolean }>`
-  margin-top: ${({ expanded }) => (expanded ? '4px' : '1.5px')};
+  margin-top: ${({ expanded }) => (expanded ? '8px' : '1.5px')};
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -39,7 +39,7 @@ export const Details = styled.dl<{ expanded: boolean }>`
 
     dd {
       display: inline;
-      color: ${({ theme }) => theme.nol.colorNeutralB60};
+      color: ${({ theme }) => theme.nol.colorNeutralG60};
       ${({ expanded }) => !expanded && maxLinesMixin({ maxLines: 1 })}
 
       & + dd {
