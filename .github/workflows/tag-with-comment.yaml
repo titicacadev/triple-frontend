@@ -11,6 +11,7 @@ env:
   NODE_VERSION: 'lts/*'
   PNPM_VERSION: '9'
   NPM_REGISTRY_URL: 'https://registry.npmjs.org'
+  SLACK_GITHUB_REPOSITORY: ${{ github.repository }}
 
 jobs:
   tag-with-comment:
