@@ -1,5 +1,77 @@
 # CHANGELOG
 
+## 14.0.12
+
+```
+### ab-experiments
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+
+### constants
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+
+### fetcher
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+- [middlware] 세션 갱신 로직을 수정합니다. [#3660](https://github.com/titicacadev/triple-frontend/pull/3660)
+
+### middlewares
+
+- v13.43.0 이후의 변경사항을 적용합니다. [#3603](https://github.com/titicacadev/triple-frontend/pull/3603)
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [middlware] 세션 갱신 로직을 수정합니다. [#3660](https://github.com/titicacadev/triple-frontend/pull/3660)
+
+### router
+
+- [router] openNativeLink에서 href가 아닌 path를 param으로 넘겨주도록 수정 [#3571](https://github.com/titicacadev/triple-frontend/pull/3571)
+
+### standard-action-handler
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+
+### tds-ui
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+
+### tds-widget
+
+- v13.41.0 ~ v13.42.1 변경사항을 반영합니다. [#3562](https://github.com/titicacadev/triple-frontend/pull/3562)
+- v13.43.0 이후의 변경사항을 적용합니다. [#3603](https://github.com/titicacadev/triple-frontend/pull/3603)
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+
+### triple-document
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+
+### triple-header
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+
+### triple-web
+
+- v13.43.0 이후의 변경사항을 적용합니다. [#3603](https://github.com/titicacadev/triple-frontend/pull/3603)
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+
+### triple-web-nextjs
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+
+### triple-web-nextjs-pages
+
+- [Epic] NOL 회원 통합 (v14) [#3604](https://github.com/titicacadev/triple-frontend/pull/3604)
+- [KLZT-882] 클라이언트 세션 갱신 로직을 추가합니다.  [#3631](https://github.com/titicacadev/triple-frontend/pull/3631)
+
+### view-utilities
+
+- v13.43.0 이후의 변경사항을 적용합니다. [#3603](https://github.com/titicacadev/triple-frontend/pull/3603)
+```
+
 ## 14.0.11
 
 ### tds-widget
@@ -5293,11 +5365,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
