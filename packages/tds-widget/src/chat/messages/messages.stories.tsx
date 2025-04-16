@@ -7,7 +7,7 @@ import {
   NOL_PARTNER_ROOM_BUBBLE_STYLE as BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE,
 } from '../bubble'
 import { NolThemeProvider } from '../nol-theme-provider'
-import { NOL_COLOR } from '../reservation-info/reservation-info.stories'
+import { NOL_COLOR } from '../nol-theme-provider/constants'
 
 import MessagesComponent from './'
 
