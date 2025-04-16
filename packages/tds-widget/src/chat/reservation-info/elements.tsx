@@ -14,7 +14,7 @@ export const Container = styled(BaseContainer)`
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.nol.colorNeutralG10};
   background-color: ${({ theme }) => theme.nol.colorNeutralW100};
-  margin: 8px 15px 0;
+  margin: 8px 16px 0;
 `
 
 export const Details = styled.dl<{ expanded: boolean }>`
