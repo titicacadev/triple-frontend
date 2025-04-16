@@ -38,11 +38,11 @@ const TextArea = styled.textarea<{
   box-shadow: none;
   font-size: 16px;
   line-height: ${TEXTAREA_MIN_HEIGHT}px;
-  color: ${({ color }) => color || 'rgba(41, 41, 45, 1)'};
+  color: ${({ color, theme }) => color || theme.nol.colorNeutralB100};
 
   ::placeholder {
-    color: ${({ placeholderColor }) =>
-      placeholderColor || 'rgba(191, 191, 192, 1)'};
+    color: ${({ placeholderColor, theme }) =>
+      placeholderColor || theme.nol.colorNeutralG30};
   }
 
   ::-webkit-scrollbar {
@@ -58,8 +58,9 @@ const SendButton = styled.button<{
   padding: 6px 14px;
   border-radius: 17px;
   background-color: ${({
+    theme,
     disabled,
-    activeButtonColor = 'rgba(65, 84, 255, 1)',
+    activeButtonColor = theme.nol.colorPrimaryNol,
   }) => (disabled ? 'transparent' : activeButtonColor)};
   cursor: pointer;
   flex-shrink: 0;
@@ -92,7 +93,7 @@ const FileInput = styled.input`
 const InputContainer = styled(Container)`
   padding: 6px 6px 6px 16px;
   border-radius: 24px;
-  box-shadow: 0 0 0 1px rgba(223, 223, 224, 1) inset;
+  box-shadow: 0 0 0 1px ${({ theme }) => theme.nol.colorNeutralG15} inset;
   display: flex;
   flex: 1;
   align-items: center;
@@ -177,7 +178,7 @@ function NolInputAreaUIImpl(
             }
           }}
         >
-          <SendIcon color={buttonDisabled ? '#545457' : '#FFF'} />
+          <SendIcon color={buttonDisabled ? '#949496' : '#FFF'} />
         </SendButton>
       </InputContainer>
     </InputAreaContainer>
