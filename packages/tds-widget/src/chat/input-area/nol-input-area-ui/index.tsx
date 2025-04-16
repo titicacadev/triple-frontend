@@ -40,12 +40,12 @@ const TextArea = styled.textarea<{
   line-height: ${TEXTAREA_MIN_HEIGHT}px;
   color: ${({ color, theme }) => color || theme.nol.colorNeutralB100};
 
-  ::placeholder {
+  &::placeholder {
     color: ${({ placeholderColor, theme }) =>
       placeholderColor || theme.nol.colorNeutralG30};
   }
 
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 `
