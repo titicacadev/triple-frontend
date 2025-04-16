@@ -111,7 +111,6 @@ export const Title = styled(Text).attrs({
   lineHeight: '19px',
   bold: true,
 })`
-  padding-top: 1.5px;
   color: ${({ theme }) => theme.nol.colorNeutralB100};
   flex-grow: 1;
 `
