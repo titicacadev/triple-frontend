@@ -1,4 +1,5 @@
 import { NextMiddleware, NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
 import { MiddlewareFactory } from './types'
 
@@ -13,7 +14,7 @@ export function chain(
     return current(next)
   }
 
-  return () => {
-    return NextResponse.next()
+  return (request: NextRequest) => {
+    return NextResponse.next({ request })
   }
 }
