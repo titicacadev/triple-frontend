@@ -4,7 +4,7 @@ import { NolThemeProvider } from '../nol-theme-provider'
 
 import { ReservationInfo, type ReservationInfoProps } from './reservation-info'
 
-export const NOL_COLOR = {
+const NOL_COLOR = {
   // black
   'color-neutral-b-100': 'rgba(41, 41, 45, 1)',
   'color-neutral-b-80': 'rgba(41, 41, 45, 0.8)',
