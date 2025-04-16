@@ -3,9 +3,9 @@ import { Popup, Navbar, Container as BaseContainer } from '@titicaca/tds-ui'
 import styled from 'styled-components'
 
 const Container = styled(BaseContainer)`
-  padding: 20;
+  padding: 20px;
   display: block;
-  font-size: 15;
+  font-size: 15px;
   white-space: pre-wrap;
   word-break: break-word;
 
