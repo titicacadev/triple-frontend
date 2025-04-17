@@ -420,7 +420,7 @@ export function ReviewElement({
                 margin: '2px 0 0',
               }}
             >
-              <>{formatTimestamp(new Date(reviewedAt))}</>
+              <>{formatTimestamp(reviewedAt)}</>
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
                 onClick={handleMenuClick}
