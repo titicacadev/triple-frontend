@@ -1,24 +1,38 @@
-import moment from 'moment'
-import 'moment/locale/ko'
+import {
+  isBefore,
+  subMinutes,
+  formatDistanceToNow,
+  setDefaultOptions,
+  subWeeks,
+  format,
+} from 'date-fns'
+import { ko } from 'date-fns/locale'
 
-moment.updateLocale('ko', {
-  relativeTime: {
-    s: '방금',
+setDefaultOptions({
+  locale: {
+    ...ko,
+    formatDistance: (token, count, options) => {
+      if (token === 'lessThanXMinutes' && count === 1) {
+        return '방금'
+      }
+      if (token === 'xMinutes') {
+        return `${count}분${options?.addSuffix ? ' 전' : ''}`
+      }
+      if (token === 'aboutXHours') {
+        return `${count}시간${options?.addSuffix ? ' 전' : ''}`
+      } else if (token === 'xDays' && count <= 7) {
+        return `${count}일${options?.addSuffix ? ' 전' : ''}`
+      }
+      return ko.formatDistance(token, count, options)
+    },
   },
 })
-moment.relativeTimeRounding(Math.floor)
-moment.relativeTimeThreshold('s', 60)
-moment.relativeTimeThreshold('m', 60)
-moment.relativeTimeThreshold('h', 24)
 
-export function formatTimestamp(date: string) {
-  const createdAt = moment(date)
-
-  if (moment().subtract(1, 'minute').isBefore(createdAt)) {
-    return createdAt.fromNow(true)
-  } else if (moment().subtract(1, 'week').isBefore(createdAt)) {
-    return createdAt.fromNow()
+export function formatTimestamp(date: Date) {
+  if (isBefore(subMinutes(new Date(), 1), date)) {
+    return formatDistanceToNow(date)
+  } else if (isBefore(subWeeks(new Date(), 1), date)) {
+    return formatDistanceToNow(date, { addSuffix: true })
   }
-
-  return createdAt.format('YYYY.M.D')
+  return format(date, 'y.M.d')
 }
