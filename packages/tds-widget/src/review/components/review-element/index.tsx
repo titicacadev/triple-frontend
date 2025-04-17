@@ -9,9 +9,9 @@ import {
   useClientAppActions,
 } from '@titicaca/triple-web'
 import { formatTimestamp } from '@titicaca/view-utilities'
-import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
 import { styled, css } from 'styled-components'
+import { getMonth, getYear } from 'date-fns'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import {
@@ -116,7 +116,7 @@ export function ReviewElement({
     blinded,
     comment,
     recentTrip,
-    reviewedAt: originReviewedAt,
+    reviewedAt,
     rating,
     media,
     replyBoard,
@@ -290,7 +290,6 @@ export function ReviewElement({
     { triggeredEventAction: '리뷰_댓글_선택' },
   )
 
-  const reviewedAt = moment(originReviewedAt).format()
   const reviewExposureAction = `${
     isFullList ? '리뷰_전체보기_노출' : '리뷰_노출'
   }`
@@ -421,7 +420,7 @@ export function ReviewElement({
                 margin: '2px 0 0',
               }}
             >
-              <>{formatTimestamp(reviewedAt)}</>
+              <>{formatTimestamp(new Date(reviewedAt))}</>
               <MoreIcon
                 src="https://assets.triple.guide/images/btn-review-more@4x.png"
                 onClick={handleMenuClick}
@@ -481,8 +480,8 @@ function RateDescription({
 function ReviewDayInfo({ visitDate }: { visitDate: Date }) {
   const t = useTranslation()
 
-  const visitYear = moment(visitDate).year()
-  const visitMonth = moment(visitDate).month() + 1
+  const visitYear = getYear(visitDate)
+  const visitMonth = getMonth(visitDate) + 1
 
   return (
     <Text size={13} color="gray700" lineHeight="13px">
