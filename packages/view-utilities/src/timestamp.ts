@@ -28,7 +28,7 @@ setDefaultOptions({
   },
 })
 
-export function formatTimestamp(date: Date) {
+export function formatTimestamp(date: string | Date) {
   if (isBefore(subMinutes(new Date(), 1), date)) {
     return formatDistanceToNow(date)
   } else if (isBefore(subWeeks(new Date(), 1), date)) {
