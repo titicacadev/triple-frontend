@@ -719,9 +719,9 @@ importers:
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
-      moment:
-        specifier: ^2.30.1
-        version: 2.30.1
+      date-fns:
+        specifier: ^3.6.0
+        version: 3.6.0
       qs:
         specifier: ^6.14.0
         version: 6.14.0
