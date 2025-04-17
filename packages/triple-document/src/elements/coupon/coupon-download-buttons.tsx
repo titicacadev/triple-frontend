@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 import { VerificationType, useUserVerification } from '@titicaca/tds-widget'
 import { authGuardedFetchers, captureHttpError } from '@titicaca/fetcher'
 import { useInterval } from '@titicaca/react-hooks'
-import moment from 'moment'
+import { isAfter, isEqual } from 'date-fns'
 
 import { CouponData } from '../../types'
 
@@ -40,9 +40,8 @@ export const DEFAULT_BUTTON_COLOR = {
 
 function useDownloadTimePassed(time: string | undefined) {
   const calculator = useCallback(() => {
-    return (
-      time === undefined || moment(new Date()).isSameOrAfter(new Date(time))
-    )
+    const now = new Date()
+    return time === undefined || isAfter(now, time) || isEqual(now, time)
   }, [time])
 
   const [passed, setPassed] = useState(calculator())

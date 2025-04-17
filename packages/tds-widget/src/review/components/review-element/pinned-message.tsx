@@ -1,7 +1,7 @@
 import { MouseEventHandler, useEffect, useRef, useState } from 'react'
-import moment from 'moment'
 import { Button, FlexBox, Text } from '@titicaca/tds-ui'
 import { useTranslation } from '@titicaca/triple-web'
+import { format } from 'date-fns'
 
 import { BasePinnedMessageFragment } from '../../data/graphql'
 
@@ -74,7 +74,7 @@ export function PinnedMessage({
             fontWeight: 700,
           }}
         >
-          {moment(updatedAt).format('MM.DD')}
+          {format(new Date(updatedAt), 'M.d')}
         </Text>
       </FlexBox>
       <Text
