@@ -49,7 +49,10 @@ interface ContainerBaseProp {
     dateTime?: { css?: CSSProp }
     profile?: { css?: CSSProp }
     thanks?: { css?: CSSProp }
+    failureHandler?: { css?: CSSProp }
   }
+  bubbleInfoGap?: number
+  failureHandlerGap?: number
 }
 
 type SentBubbleContainerProp = PropsWithChildren<
@@ -76,6 +79,8 @@ function SentBubbleContainer({
   messageRefCallback,
   children,
   bubbleInfoStyle,
+  bubbleInfoGap = 4,
+  failureHandlerGap = 6,
   ...props
 }: SentBubbleContainerProp) {
   return (
@@ -87,7 +92,13 @@ function SentBubbleContainer({
     >
       <div>
         {!createdAt && onRetry && onRetryCancel ? (
-          <SendingFailureHandlerContainer>
+          <SendingFailureHandlerContainer
+            css={css`
+              margin-right: ${failureHandlerGap}px;
+
+              ${bubbleInfoStyle?.failureHandler?.css}
+            `}
+          >
             <RetryButton onClick={onRetry}>
               <RetryIcon />
             </RetryButton>
@@ -105,7 +116,7 @@ function SentBubbleContainer({
             showDateInfo={showDateInfo}
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
-            css={{ marginRight: 4, textAlign: 'right' }}
+            css={{ marginRight: bubbleInfoGap, textAlign: 'right' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />
@@ -145,6 +156,7 @@ type ReceivedBubbleContainerProp = PropsWithChildren<
     showProfile?: boolean
     /** 유저 프로필 클릭 */
     onUserClick?: (userId: string, unregistered: boolean) => void
+    showProfilePhoto?: boolean
   }
 >
 
@@ -164,6 +176,8 @@ function ReceivedBubbleContainer({
   onUserClick,
   children,
   bubbleInfoStyle,
+  bubbleInfoGap = 4,
+  showProfilePhoto = true,
   ...props
 }: ReceivedBubbleContainerProp) {
   return (
@@ -173,7 +187,7 @@ function ReceivedBubbleContainer({
       ref={() => messageRefCallback?.(id)}
       {...props}
     >
-      {showProfile ? (
+      {showProfile && showProfilePhoto ? (
         <ProfileImage
           src={
             user && !user.unregistered && user.photo
@@ -187,7 +201,7 @@ function ReceivedBubbleContainer({
           }
         />
       ) : null}
-      <Container css={{ marginLeft: 40 }}>
+      <Container css={{ marginLeft: showProfilePhoto ? 40 : 0 }}>
         {showProfile ? (
           <ProfileName
             size="mini"
@@ -215,7 +229,7 @@ function ReceivedBubbleContainer({
             showTimeInfo={showTimeInfo}
             onReplyClick={onReplyClick}
             date={createdAt}
-            css={{ marginLeft: 4, textAlign: 'left' }}
+            css={{ marginLeft: bubbleInfoGap, textAlign: 'left' }}
             dateTimeStyle={bubbleInfoStyle?.dateTime}
             unreadCountStyle={bubbleInfoStyle?.unreadCount}
           />

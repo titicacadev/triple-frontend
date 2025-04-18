@@ -1,9 +1,14 @@
-import { MouseEventHandler } from 'react'
-import { Autolinker } from 'autolinker'
-import { styled } from 'styled-components'
-import { Popup, Navbar } from '@titicaca/tds-ui'
+import type { PropsWithChildren } from 'react'
+import { Popup, Navbar, Container as BaseContainer } from '@titicaca/tds-ui'
+import styled from 'styled-components'
 
-const AutoLinkText = styled.span`
+const Container = styled(BaseContainer)`
+  padding: 20px;
+  display: block;
+  font-size: 15px;
+  white-space: pre-wrap;
+  word-break: break-word;
+
   > a {
     color: var(--color-blue);
     line-break: anywhere;
@@ -13,18 +18,15 @@ const AutoLinkText = styled.span`
 export function FullTextMessageView({
   open,
   onClose,
-  text,
   openMenu,
-  onClick,
   disableMenu,
-}: {
+  children,
+}: PropsWithChildren<{
   open: boolean
   onClose: () => void
-  text: string
   openMenu?: () => void
-  onClick?: MouseEventHandler
   disableMenu: boolean
-}) {
+}>) {
   return (
     <Popup open={open} onClose={onClose} noNavbar>
       <Navbar css={{ boxShadow: 'none' }}>
@@ -36,22 +38,7 @@ export function FullTextMessageView({
           <Navbar.Item floated="right" icon="more" onClick={openMenu} />
         ) : null}
       </Navbar>
-      <AutoLinkText
-        css={{
-          padding: 20,
-          display: 'block',
-          fontSize: 15,
-          whiteSpace: 'pre-wrap',
-          wordBreak: 'break-word',
-        }}
-        dangerouslySetInnerHTML={{
-          __html: Autolinker.link(text, {
-            newWindow: true,
-            stripPrefix: false,
-          }),
-        }}
-        onClick={onClick}
-      />
+      <Container>{children}</Container>
     </Popup>
   )
 }
