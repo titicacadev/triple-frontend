@@ -6,7 +6,7 @@ import {
 import styled, { css } from 'styled-components'
 
 const RESERVATION_INFO_MIN_CONTENT_HEIGHT = 40
-const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 21
+const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 24.5
 
 export const Container = styled(BaseContainer)`
   padding: 12px;
