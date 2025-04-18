@@ -20,7 +20,7 @@ export function useOpenNativeLink() {
     }
 
     const href = (window.location.href = `${appUrlScheme}://${path}`)
-
+    alert(href)
     if (href !== `${appUrlScheme}://${path}`) {
       window.open(href)
     }
