@@ -158,7 +158,10 @@ export function ReviewsPlaceholder({
         <FilterPlaceholder
           isMorePage={isMorePage}
           hasReviews={hasReviews}
-          onClick={() => handleClick()}
+          onClick={(e) => {
+            e.stopPropagation()
+            handleClick()
+          }}
         />
       ) : (
         <DefaultPlaceholder placeholderText={placeholderText} />
