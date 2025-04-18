@@ -1,56 +1,18 @@
-import { MouseEvent } from 'react'
+import { ComponentType, MouseEvent, PropsWithChildren } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
-import { MetaDataInterface } from '../types'
+import { MetaDataInterface } from '../types/image'
+import { ProductItem, RichItem } from '../types/message'
 
 import { ParentMessageUIProp } from './parent'
-
-type CustomerBookingStatus =
-  | 'BOOKED'
-  | 'ONGOING'
-  | 'COMPLETED'
-  | 'CANCEL_REQUESTED'
-  | 'CANCELED'
-
-interface ProductItem {
-  customerBookingStatus?: CustomerBookingStatus
-  productName: string
-  productThumbnail?: string
-  itemName?: string
-  optionName?: string
-  dateOfUse?: string
-  bookingId?: number
-}
-
-type RichItemType = 'text' | 'images' | 'button'
-
-interface RichItem {
-  type: RichItemType
-}
-
-export interface RichItemText extends RichItem {
-  type: 'text'
-  message: string
-}
-export interface RichItemImages extends RichItem {
-  type: 'images'
-  images: MetaDataInterface[]
-}
-
-export interface RichItemButton extends RichItem {
-  type: 'button'
-  label: string
-  action: {
-    param: string
-    type: 'link'
-  }
-}
 
 export interface BubbleCSSProp {
   maxWidthOffset?: number
   my: boolean
   hasArrow?: boolean
+  arrowRadius?: number
+  borderRadius?: number
 }
 
 export type BaseBubbleProp = BubbleCSSProp & {
@@ -73,6 +35,13 @@ export type TextBubbleProp = {
   my: boolean
   parentMessage?: ParentMessageUIProp
   created?: boolean
+  /**
+   * TextBubble의 내용을 감싸는 컴포넌트로, 커스텀한 전체보기 동작을 위해 사용합니다.
+   * CustomFullTextViewController 제공되는 경우, fullTextViewAvailable, openFullTextView, closeFullTextView, isFullTextViewOpen, onOpenMenu은 무시됩니다.
+   */
+  CustomFullTextViewController?: ComponentType<
+    PropsWithChildren<{ my: boolean; id: string }>
+  >
   fullTextViewAvailable?: boolean
   onOpenMenu?: () => void
   isFullTextViewOpen?: (id: string) => boolean
@@ -84,7 +53,7 @@ export type TextBubbleProp = {
 
 export type RichBubbleProp = {
   my: boolean
-  blocks: (RichItemText | RichItemImages | RichItemButton)[]
+  blocks: RichItem[]
   cloudinaryName: string
   mediaUrlBase: string
   onImageClick?: (imageInfos: MetaDataInterface[]) => void
@@ -117,5 +86,5 @@ export type ProductBubbleProp = {
 export type BlindedBubbleProp = {
   my: boolean
   alternativeText?: string
-  textColor?: string
+  textColor?: CSSProp
 } & BubbleProp

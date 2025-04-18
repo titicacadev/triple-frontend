@@ -4,7 +4,7 @@ import {
   RichBubbleUIProp,
   TextBubbleUIProp,
 } from '../bubble/bubble-ui'
-import { UserInterface } from '../types'
+import { UserInterface } from '../types/user'
 
 export interface MessageBase<User extends UserInterface> {
   id: string | number

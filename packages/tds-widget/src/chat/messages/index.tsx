@@ -31,13 +31,26 @@ interface MessagesProp<
   onMessageIntersecting?: (
     entry: IntersectionObserverEntry,
     id: MessageInterface<Message, User>['id'],
+    createdMessage: boolean,
   ) => void
   calculateUnreadCount?: (
     message: MessageInterface<Message, User>,
   ) => number | null
   bubbleStyle?: {
-    received?: { css?: CSSProp; alteredTextColor?: string }
-    sent?: { css?: CSSProp; alteredTextColor?: string }
+    borderRadius?: number
+    arrowRadius?: number
+    received?: {
+      css?: CSSProp
+      alteredTextColor?: CSSProp
+    }
+    sent?: { css?: CSSProp; alteredTextColor?: CSSProp }
+  }
+  spacing?: {
+    message?: number
+    messageGroup?: number
+    bubbleInfo?: number
+    failureHandler?: number
+    dateDivider?: number
   }
   hasDateDivider?: boolean
   messageRefCallback?: (id: MessageInterface<Message, User>['id']) => void
@@ -45,6 +58,7 @@ interface MessagesProp<
   onOpenMenu?: (message: MessageInterface<Message, User>) => void
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
+  showProfilePhoto?: boolean
 }
 
 export default function Messages<
@@ -71,6 +85,8 @@ export default function Messages<
   onParentMessageClick,
   onUserClick,
   bubbleInfoStyle,
+  spacing,
+  showProfilePhoto = true,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -149,6 +165,8 @@ export default function Messages<
         onParentMessageClick={onParentMessageClick}
         fullTextViewAvailable={fullTextViewAvailable}
         css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
+        arrowRadius={bubbleStyle?.arrowRadius}
+        borderRadius={bubbleStyle?.borderRadius}
         {...rest}
         {...bubbleProps}
       />
@@ -210,7 +228,8 @@ export default function Messages<
           <IntersectionObserver
             onChange={
               onMessageIntersecting
-                ? (_inView, entry) => onMessageIntersecting(entry, id)
+                ? (_inView, entry) =>
+                    onMessageIntersecting(entry, id, !!createdAt)
                 : undefined
             }
           >
@@ -250,10 +269,17 @@ export default function Messages<
               }
               messageRefCallback={messageRefCallback}
               css={{
-                marginTop: isFirstMessageOfDate ? 20 : showProfile ? 16 : 5,
+                marginTop: isFirstMessageOfDate
+                  ? spacing?.dateDivider || 20
+                  : showProfile
+                    ? spacing?.messageGroup || 16
+                    : spacing?.message || 5,
               }}
+              bubbleInfoGap={spacing?.bubbleInfo || 4}
+              failureHandlerGap={spacing?.failureHandler || 6}
               onUserClick={onUserClick}
               bubbleInfoStyle={bubbleInfoStyle}
+              showProfilePhoto={showProfilePhoto}
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
