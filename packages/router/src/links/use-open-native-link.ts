@@ -19,11 +19,7 @@ export function useOpenNativeLink() {
       return showAppInstallCtaModal()
     }
 
-    const href = (window.location.href = `${appUrlScheme}://${path}`)
-
-    if (href !== `${appUrlScheme}://${path}`) {
-      window.open(href)
-    }
+    window.location.href = `${appUrlScheme}://${path}`
   }
 
   return openNativeLink
