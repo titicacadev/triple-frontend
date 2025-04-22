@@ -51,8 +51,7 @@ export function useChatMessages<T = UserType>(
     ChatRoomUser<T>
   >()
 
-  const { setScrollY, getScrollContainerHeight, triggerScrollToBottom } =
-    useScroll()
+  const { setScrollY, getCurrentScrollY, triggerScrollToBottom } = useScroll()
 
   const firstRenderForPrevScrollRef = useRef(true)
   const isWelcomeMessagePendingRef = useRef(false)
@@ -320,7 +319,7 @@ export function useChatMessages<T = UserType>(
       messages.length > 0
 
     if (scrollable) {
-      const prevScrollY = getScrollContainerHeight()
+      const prevScrollY = getCurrentScrollY()
       let pastMessages: ChatMessageInterface<T>[] = []
       let prevToken: number | undefined | null
 

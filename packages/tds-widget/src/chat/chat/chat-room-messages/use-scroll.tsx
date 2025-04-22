@@ -3,8 +3,12 @@ import { useEffect, useState } from 'react'
 import { useScroll as useBaseScroll, ScrollOptions } from '../scroll-context'
 
 export function useScroll() {
-  const { setScrollY, getScrollContainerHeight, scrollToBottom } =
-    useBaseScroll()
+  const {
+    setScrollY,
+    getScrollContainerHeight,
+    scrollToBottom,
+    chatContainerRef,
+  } = useBaseScroll()
 
   const [shouldScrollToBottom, setShouldScrollToBottom] =
     useState<boolean>(false)
@@ -18,6 +22,13 @@ export function useScroll() {
     }
   }, [shouldScrollToBottom, scrollToBottom, scrollOptions])
 
+  function getCurrentScrollY() {
+    if (chatContainerRef.current) {
+      return getScrollContainerHeight() - chatContainerRef.current.scrollTop
+    }
+    return 0
+  }
+
   return {
     setScrollY,
     getScrollContainerHeight,
@@ -25,5 +36,6 @@ export function useScroll() {
       setShouldScrollToBottom(true)
       options && setScrollOptions(options)
     },
+    getCurrentScrollY,
   }
 }
