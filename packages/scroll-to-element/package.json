@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/scroll-to-element",
-  "version": "14.0.12",
+  "version": "14.0.13",
   "description": "Scroll Functions for Triple service applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/scroll-to-element",
