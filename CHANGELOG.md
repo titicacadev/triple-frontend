@@ -1,5 +1,76 @@
 # CHANGELOG
 
+## 14.0.13
+
+```
+### middlewares
+
+- (Chat) [DMTALK-60] 챗룸 컴포넌트 추가 [#3608](https://github.com/titicacadev/triple-frontend/pull/3608)
+
+### router
+
+- [DMTALK-183] 링크 두번 열리는 오류 수정 [#3681](https://github.com/titicacadev/triple-frontend/pull/3681)
+
+### tds-widget
+
+- (Chat) 채팅 버블 부가 정보 커스텀 스타일 프롭스 추가 [#3574](https://github.com/titicacadev/triple-frontend/pull/3574)
+- (Chat) 누락된 타입 export 및 props 추가 [#3585](https://github.com/titicacadev/triple-frontend/pull/3585)
+- tds-widget/chat에서 triple-web 디펜던시를 제거 [#3586](https://github.com/titicacadev/triple-frontend/pull/3586)
+- (chat) 커스텀이 가능한 채팅 리스트 공통 컴포넌트를 만든다. [#3588](https://github.com/titicacadev/triple-frontend/pull/3588)
+- (Chat) [DMTALK-31] 채팅 공통타입 정리 [#3589](https://github.com/titicacadev/triple-frontend/pull/3589)
+- (Chat) [DMTALK-32] 채팅 메시지 플로우 공통화  [#3593](https://github.com/titicacadev/triple-frontend/pull/3593)
+- (Chat) [DMTALK-51] 사용자 식별자 제외 API 응답 마이그레이션 [#3601](https://github.com/titicacadev/triple-frontend/pull/3601)
+- (Chat) 채팅 리스트 기본 기능 로직을 확장 가능하게 제공한다. [#3602](https://github.com/titicacadev/triple-frontend/pull/3602)
+- (Chat) [DMTALK-60] 챗룸 컴포넌트 추가 [#3608](https://github.com/titicacadev/triple-frontend/pull/3608)
+- [EPIC] tds-widget/chat을 확장하고 서비스간 중복 로직을 공통화 합니다  (v14) - 2/2 [#3614](https://github.com/titicacadev/triple-frontend/pull/3614)
+- [DMTALK-86] Chat 스타일 / 컴포넌트 확장 가능하도록 수정 [#3616](https://github.com/titicacadev/triple-frontend/pull/3616)
+- [DMTALK-88] 초대 및 채팅방 만료 정책 타입 추가 [#3620](https://github.com/titicacadev/triple-frontend/pull/3620)
+- [DMTALK-90] 새로운 메시지 수신 시 bottom scroll 여부 컨트롤 추가 [#3621](https://github.com/titicacadev/triple-frontend/pull/3621)
+- fix: onChatRestart 기본값 제거 [#3623](https://github.com/titicacadev/triple-frontend/pull/3623)
+- (Chat) nol-chat getMessages 응답값 migration [#3626](https://github.com/titicacadev/triple-frontend/pull/3626)
+- [DMTALK-67] ReservationLabel export 및 일부 Preview element css override 되도록 수정 [#3627](https://github.com/titicacadev/triple-frontend/pull/3627)
+- [DMTALK-112] 새로운 메시지 UI 추가 [#3628](https://github.com/titicacadev/triple-frontend/pull/3628)
+- [DMTALK] 조건문 내 오타 수정 [#3629](https://github.com/titicacadev/triple-frontend/pull/3629)
+- [DMTALK] `ProductMetaData, BookingMetaData` type 스웨거와 싱크 [#3633](https://github.com/titicacadev/triple-frontend/pull/3633)
+- [DMTALK] get messages 응답 인터페이스 변경 대응 [#3634](https://github.com/titicacadev/triple-frontend/pull/3634)
+- [DMTALK] refactor: export 네이밍 변경 [#3635](https://github.com/titicacadev/triple-frontend/pull/3635)
+- [DMTALK] get messages 응답 인터페이스 변경 대응 [#3639](https://github.com/titicacadev/triple-frontend/pull/3639)
+- [DMTALK] Preview 날짜 표기 방식 util 추가 [#3644](https://github.com/titicacadev/triple-frontend/pull/3644)
+- [DMTALK-126] 첫 메시지 전송 시 룸 생성 전 pending message 처리 [#3647](https://github.com/titicacadev/triple-frontend/pull/3647)
+- [DMTALK-135] 예약정보 UI 디자인 수정 반영 [#3650](https://github.com/titicacadev/triple-frontend/pull/3650)
+- [DMTALK-133] 상대방 메시지 실시간 받을 경우 스크롤이 올라가도록 수정 [#3653](https://github.com/titicacadev/triple-frontend/pull/3653)
+- [DMTALK] 중복 UI 정리 및 NolThemeProvider 생성 [#3657](https://github.com/titicacadev/triple-frontend/pull/3657)
+- [DMTALK-148] refactor: nol-theme-provider 사용 [#3661](https://github.com/titicacadev/triple-frontend/pull/3661)
+- [DMTALK] 잘못된 간격 수정 [#3662](https://github.com/titicacadev/triple-frontend/pull/3662)
+- [DMTALK-130] 안드로이드 스크롤 오류 관련 프롭스 추가 [#3663](https://github.com/titicacadev/triple-frontend/pull/3663)
+- [DMTALK] 네트워크 없을 경우 실패 아이콘 미노출되는 이슈 수정 [#3665](https://github.com/titicacadev/triple-frontend/pull/3665)
+- [DMTALK-156] 간격 수정 및 문구 변경으로 인한 max-width 수정 [#3666](https://github.com/titicacadev/triple-frontend/pull/3666)
+- [DMTALK-158] 누락된 디펜던시 및 message sanitize 추가 [#3667](https://github.com/titicacadev/triple-frontend/pull/3667)
+- [DMTALK] 채팅창 상세에서 상품/예약정보 접기펼치기 영역 확대 [#3668](https://github.com/titicacadev/triple-frontend/pull/3668)
+- [DMTALK] 취소 후 만료정책 추가 [#3669](https://github.com/titicacadev/triple-frontend/pull/3669)
+- [DMTALK] 상품/예약정보 접기펼치기 영역 - 클릭이벤트 조건 수정 [#3670](https://github.com/titicacadev/triple-frontend/pull/3670)
+- [DMTALK-176] 디자인 QA [#3675](https://github.com/titicacadev/triple-frontend/pull/3675)
+- [DMTALK-177] 전체보기 뷰 지오챗 스타일 오류 수정 [#3678](https://github.com/titicacadev/triple-frontend/pull/3678)
+- moment 라이브러리를 date-fns로 변경합니다.  [#3679](https://github.com/titicacadev/triple-frontend/pull/3679)
+- reservation info min-height 수정 [#3680](https://github.com/titicacadev/triple-frontend/pull/3680)
+- [DMTALK-183] 링크 두번 열리는 오류 수정 [#3681](https://github.com/titicacadev/triple-frontend/pull/3681)
+- [DMTALK-184] 아이콘 오류 수정 [#3683](https://github.com/titicacadev/triple-frontend/pull/3683)
+- [EPIC] tds-widget/chat을 확장하고 서비스간 중복 로직을 공통화 합니다 (v14) - 1 / 2 [#3684](https://github.com/titicacadev/triple-frontend/pull/3684)
+
+### triple-document
+
+- moment 라이브러리를 date-fns로 변경합니다.  [#3679](https://github.com/titicacadev/triple-frontend/pull/3679)
+
+### triple-web
+
+- (Chat) [DMTALK-60] 챗룸 컴포넌트 추가 [#3608](https://github.com/titicacadev/triple-frontend/pull/3608)
+
+### view-utilities
+
+- (Chat) [DMTALK-60] 챗룸 컴포넌트 추가 [#3608](https://github.com/titicacadev/triple-frontend/pull/3608)
+- moment 라이브러리를 date-fns로 변경합니다.  [#3679](https://github.com/titicacadev/triple-frontend/pull/3679)
+```
+
 ## 14.0.12
 
 ```
