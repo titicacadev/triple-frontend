@@ -423,6 +423,9 @@ export function useChatMessages<T = UserType>(
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
+            filterPendingMessages: isWelcomeMessagePendingRef.current
+              ? filterPendingMessage(message)
+              : undefined,
           })
         }
         onComplete?.(message, myMessage)
@@ -555,4 +558,35 @@ function findSenderFromRoomMembers<T>(
         (room.isDirect && getUserIdentifier(member) !== getUserIdentifier(me)),
     ) as ChatRoomMemberInterface<T>
   }
+}
+
+function filterPendingMessage<T>(
+  message: Required<UpdatedChatData<T>>['message'],
+) {
+  return (pendingMessages: UnsentMessage<ChatMessageInterface<T>>[]) => {
+    return pendingMessages.filter(
+      ({ sender, payload }) =>
+        !sender ||
+        getUserIdentifier(sender) !== getUserIdentifier(message.sender) ||
+        !compareChatMessagePayloads(payload, message.payload),
+    )
+  }
+}
+
+/**
+ * welcomeMessage의 타입인 'text'와 'product'의 경우에만 비교합니다.
+ */
+function compareChatMessagePayloads<T extends ChatMessagePayloadType>(
+  payloadA: ChatMessageInterface<T>['payload'],
+  payloadB: ChatMessageInterface<T>['payload'],
+) {
+  if (payloadA.type === 'text' && payloadB.type === 'text') {
+    return payloadA.message === payloadB.message
+  }
+
+  if (payloadA.type === 'product' && payloadB.type === 'product') {
+    return payloadA.product.productName === payloadB.product.productName
+  }
+
+  return false
 }
