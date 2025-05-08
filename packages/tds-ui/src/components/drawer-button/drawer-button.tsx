@@ -35,6 +35,7 @@ export function DrawerButton({
       onEntered={onEntered}
       onExit={onExit}
       onExited={onExited}
+      {...props}
     >
       <Container backgroundColor="white">
         <ButtonWithSafeAreaInset
@@ -42,7 +43,6 @@ export function DrawerButton({
           borderRadius={0}
           fluid
           padding={{ top: 16, right: 25, bottom: 18, left: 25 }}
-          {...props}
         >
           {children}
         </ButtonWithSafeAreaInset>

@@ -49,6 +49,7 @@ export function Drawer({
   onEntered,
   onExit,
   onExited,
+  ...props
 }: DrawerProps) {
   const { context, refs } = useFloating({
     open: active,
@@ -82,6 +83,7 @@ export function Drawer({
           duration={duration}
           overflow={overflow}
           data-transition={status}
+          {...props}
         >
           {children}
         </DrawerContainer>
