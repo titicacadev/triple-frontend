@@ -42,5 +42,5 @@ export const colors = {
   teal: 'rgba(10, 219, 143, 1)',
   teal100: 'rgba(10, 219, 143, 0.1)',
   teal900: 'rgba(10, 219, 143, 0.9)',
-  vermilion: 'rgb(255, 97, 105, 1),',
+  vermilion: 'rgb(255, 97, 105, 1)',
 }
