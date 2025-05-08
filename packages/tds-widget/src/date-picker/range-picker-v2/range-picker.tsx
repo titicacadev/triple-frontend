@@ -5,7 +5,7 @@ import { memo, ReactElement, ReactNode, useCallback, useMemo } from 'react'
 
 import { usePublicHolidays } from '../use-public-holidays'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from '../constants'
-import useDisabledDays, { DislableDaysProps } from '../use-disabled-days'
+import useDisabledDays, { DisableDaysProps } from '../use-disabled-days'
 import { isValidDate, generatePaddedRange } from '../utils'
 import { rangeMixin, dateLabelMixin } from '../mixins'
 
@@ -65,7 +65,7 @@ export function RangePickerV2({
   hideTodayLabel = false,
   renderDay,
   renderCaptionElement,
-}: DislableDaysProps & {
+}: DisableDaysProps & {
   startDate: string | null
   endDate: string | null
   startDateLabel?: string
