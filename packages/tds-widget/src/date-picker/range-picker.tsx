@@ -11,7 +11,7 @@ import { isValidDate, generatePaddedRange } from './utils'
 import { rangeMixin, dateLabelMixin } from './mixins'
 import { PickerFrame, generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
-import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
+import useDisabledDays, { DisableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
 
 const MemoDayPicker = memo(DayPicker)
@@ -69,8 +69,9 @@ export function RangePicker({
   publicHolidays: publicHolidaysFromProps,
   enableSameDay,
   hideTodayLabel = false,
+  canChangeMonth,
   ...props
-}: DislableDaysProps &
+}: DisableDaysProps &
   DayPickerProps & {
     startDate: string | null
     endDate: string | null
@@ -182,6 +183,7 @@ export function RangePicker({
       $endDateLabel={endDateLabel}
       $sameDateLabel={sameDateLabel}
       $hideTodayLabel={hideTodayLabel}
+      $canChangeMonth={canChangeMonth}
     >
       <MemoDayPicker
         locale={LOCALE}
@@ -193,6 +195,7 @@ export function RangePicker({
         numberOfMonths={numberOfMonths}
         modifiers={modifiers}
         disabledDays={disabledDays}
+        canChangeMonth={canChangeMonth}
         {...props}
       />
     </RangeContainer>
