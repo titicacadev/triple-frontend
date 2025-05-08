@@ -1,17 +1,12 @@
 import { Container } from '@titicaca/tds-ui'
-import {
-  ChangeEvent,
-  ForwardedRef,
-  forwardRef,
-  TextareaHTMLAttributes,
-  useRef,
-} from 'react'
+import { ChangeEvent, ForwardedRef, forwardRef, useRef } from 'react'
 import styled from 'styled-components'
 
 import SelectPhotoIcon from '../../icons/select-photo-icon'
 import { textAreaAutoResize } from '../utils'
 import SendIcon from '../../icons/send-icon'
-import { InputAreaUIProps } from '../input-area-ui'
+
+import { NolInputAreaUIProps } from './types'
 
 const MAX_TEXT_LENGTH = 1000
 const TEXTAREA_MIN_HEIGHT = 22
@@ -98,31 +93,22 @@ const InputContainer = styled(Container)`
   flex: 1;
   align-items: center;
   gap: 16px;
-  background-color: #fff;
 `
-
-export interface NolInputAreaUIProps
-  extends Omit<InputAreaUIProps, 'buttonText' | 'buttonColor'>,
-    Pick<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onBlur' | 'onFocus'> {
-  color?: string
-  placeholderColor?: string
-  activeButtonColor?: string
-}
 
 function NolInputAreaUIImpl(
   {
+    disabled = false,
     buttonDisabled = false,
     inputValue,
     setInputValue,
     placeholder,
-    onImageUpload,
     onSendMessage,
     onInputClick,
     onInputKeydown,
     maxTextLength = MAX_TEXT_LENGTH,
-    multipleImageUpload = false,
     color,
     placeholderColor,
+    inputContainerColor,
     activeButtonColor,
     onBlur,
     onFocus,
@@ -137,23 +123,51 @@ function NolInputAreaUIImpl(
     textAreaAutoResize(e, TEXTAREA_MAX_HEIGHT)
   }
 
+  const {
+    CustomSelectActionButton,
+    multipleImageUpload,
+    onImageUpload,
+    ...rest
+  } = {
+    ...props,
+    ...('CustomSelectActionButton' in props
+      ? {
+          CustomSelectActionButton: props.CustomSelectActionButton,
+          onImageUpload: () => {},
+          multipleImageUpload: false,
+        }
+      : {
+          CustomSelectActionButton: null,
+          onImageUpload: props.onImageUpload,
+          multipleImageUpload: props.multipleImageUpload || false,
+        }),
+  }
+
   return (
-    <InputAreaContainer {...props} ref={ref}>
-      <UploadImageButtonWrapper>
-        <UploadImageButton htmlFor="image_upload">
-          <SelectPhotoIcon />
-        </UploadImageButton>
-        <FileInput
-          id="image_upload"
-          type="file"
-          name="file"
-          accept="image/png, image/jpeg"
-          multiple={multipleImageUpload}
-          onChange={onImageUpload}
-        />
-      </UploadImageButtonWrapper>
-      <InputContainer>
+    <InputAreaContainer {...rest} ref={ref}>
+      {CustomSelectActionButton || (
+        <UploadImageButtonWrapper>
+          <UploadImageButton htmlFor="image_upload">
+            <SelectPhotoIcon />
+          </UploadImageButton>
+          <FileInput
+            id="image_upload"
+            type="file"
+            name="file"
+            accept="image/png, image/jpeg"
+            multiple={multipleImageUpload}
+            onChange={onImageUpload}
+            disabled={disabled}
+          />
+        </UploadImageButtonWrapper>
+      )}
+      <InputContainer
+        css={{
+          backgroundColor: inputContainerColor || 'var(--color-neutral-w-100)',
+        }}
+      >
         <TextArea
+          disabled={disabled}
           onChange={onTextAreaChange}
           value={inputValue}
           onKeyDown={onInputKeydown}
@@ -168,7 +182,7 @@ function NolInputAreaUIImpl(
         />
         <SendButton
           activeButtonColor={activeButtonColor}
-          disabled={buttonDisabled}
+          disabled={disabled || buttonDisabled}
           onClick={async () => {
             if (inputValue.trim().length > 0) {
               if (textareaRef.current) {
@@ -178,7 +192,7 @@ function NolInputAreaUIImpl(
             }
           }}
         >
-          <SendIcon color={buttonDisabled ? '#949496' : '#FFF'} />
+          <SendIcon color={disabled || buttonDisabled ? '#949496' : '#FFF'} />
         </SendButton>
       </InputContainer>
     </InputAreaContainer>
