@@ -33,8 +33,9 @@ const CheckboxBaseControl = styled.div<{ variant: CheckboxVariant }>`
 
 const CheckboxBaseSvg = styled.svg`
   position: absolute;
-  top: 8px;
-  left: 6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export interface CheckboxBaseProps

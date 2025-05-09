@@ -13,6 +13,7 @@ import { CheckboxBase, CheckboxBaseProps } from './checkbox-base'
 
 const CheckboxLabel = styled.label`
   display: flex;
+  cursor: pointer;
   align-items: center;
   margin-bottom: 20px;
 
