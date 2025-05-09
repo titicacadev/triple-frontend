@@ -5,7 +5,7 @@ import { memo, ReactNode, useMemo, useCallback } from 'react'
 
 import { PickerFrame, generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
-import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
+import useDisabledDays, { DisableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
 
 const MemoDayPicker = memo(ReactDayPicker)
@@ -42,7 +42,7 @@ export function DayPicker({
   renderDayInfo,
   fromMonth,
   toMonth,
-}: DislableDaysProps & {
+}: DisableDaysProps & {
   day: string | null
   onDateChange: (date: Date) => void
   renderDayInfo?: Record<string, ReactNode>

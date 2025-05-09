@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import moment from 'moment'
 import { BeforeModifier, AfterModifier } from 'react-day-picker'
 
-export interface DislableDaysProps {
+export interface DisableDaysProps {
   disabledDays?: string[]
   beforeBlock?: string
   afterBlock?: string
@@ -12,7 +12,7 @@ export default function useDisabledDays({
   disabledDays,
   beforeBlock,
   afterBlock,
-}: DislableDaysProps) {
+}: DisableDaysProps) {
   return useMemo(
     () => [
       ...(disabledDays || []).map((date) => moment(date).toDate()),

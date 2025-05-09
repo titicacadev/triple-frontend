@@ -1,13 +1,17 @@
 import { memo, useMemo, useCallback } from 'react'
 import moment from 'moment'
 import { styled, css } from 'styled-components'
-import DayPicker, { DayModifiers, Modifiers } from 'react-day-picker'
+import DayPicker, {
+  DayModifiers,
+  DayPickerProps,
+  Modifiers,
+} from 'react-day-picker'
 
 import { isValidDate, generatePaddedRange } from './utils'
 import { rangeMixin, dateLabelMixin } from './mixins'
 import { PickerFrame, generateSelectedCircleStyle } from './picker-frame'
 import { LOCALE, WEEKDAY_SHORT_LABEL, LOCALE_UTILS } from './constants'
-import useDisabledDays, { DislableDaysProps } from './use-disabled-days'
+import useDisabledDays, { DisableDaysProps } from './use-disabled-days'
 import { usePublicHolidays } from './use-public-holidays'
 
 const MemoDayPicker = memo(DayPicker)
@@ -65,26 +69,29 @@ export function RangePicker({
   publicHolidays: publicHolidaysFromProps,
   enableSameDay,
   hideTodayLabel = false,
-}: DislableDaysProps & {
-  startDate: string | null
-  endDate: string | null
-  startDateLabel?: string
-  endDateLabel?: string
-  sameDateLabel?: string
-  hideTodayLabel?: boolean
-  onDatesChange: (params: {
+  canChangeMonth,
+  ...props
+}: DisableDaysProps &
+  DayPickerProps & {
     startDate: string | null
     endDate: string | null
-    nights: number
-  }) => void
-  numberOfMonths?: number
-  height?: string
-  /**
-   * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
-   */
-  publicHolidays?: Date[]
-  enableSameDay?: boolean
-}) {
+    startDateLabel?: string
+    endDateLabel?: string
+    sameDateLabel?: string
+    hideTodayLabel?: boolean
+    onDatesChange: (params: {
+      startDate: string | null
+      endDate: string | null
+      nights: number
+    }) => void
+    numberOfMonths?: number
+    height?: string
+    /**
+     * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
+     */
+    publicHolidays?: Date[]
+    enableSameDay?: boolean
+  }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
     beforeBlock,
@@ -176,6 +183,7 @@ export function RangePicker({
       $endDateLabel={endDateLabel}
       $sameDateLabel={sameDateLabel}
       $hideTodayLabel={hideTodayLabel}
+      $canChangeMonth={canChangeMonth}
     >
       <MemoDayPicker
         locale={LOCALE}
@@ -187,6 +195,8 @@ export function RangePicker({
         numberOfMonths={numberOfMonths}
         modifiers={modifiers}
         disabledDays={disabledDays}
+        canChangeMonth={canChangeMonth}
+        {...props}
       />
     </RangeContainer>
   )
