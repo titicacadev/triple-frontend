@@ -59,6 +59,9 @@ interface MessagesProp<
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
   showProfilePhoto?: boolean
+  extraBubble?: (
+    message: MessageInterface<Message, User>,
+  ) => ComponentType<unknown>
 }
 
 export default function Messages<
@@ -87,6 +90,7 @@ export default function Messages<
   bubbleInfoStyle,
   spacing,
   showProfilePhoto = true,
+  extraBubble,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -145,31 +149,34 @@ export default function Messages<
     }
 
     return (
-      <BubbleUI
-        key={id}
-        id={id.toString()}
-        my={my}
-        created={!!createdAt}
-        blinded={blinded}
-        deleted={deleted}
-        unfriended={sender.unfriended}
-        type={type}
-        value={value}
-        alteredTextColor={
-          my
-            ? bubbleStyle?.sent?.alteredTextColor
-            : bubbleStyle?.received?.alteredTextColor
-        }
-        hasArrow={hasArrow}
-        onOpenMenu={() => onOpenMenu?.(message)}
-        onParentMessageClick={onParentMessageClick}
-        fullTextViewAvailable={fullTextViewAvailable}
-        css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
-        arrowRadius={bubbleStyle?.arrowRadius}
-        borderRadius={bubbleStyle?.borderRadius}
-        {...rest}
-        {...bubbleProps}
-      />
+      <>
+        <BubbleUI
+          key={id}
+          id={id.toString()}
+          my={my}
+          created={!!createdAt}
+          blinded={blinded}
+          deleted={deleted}
+          unfriended={sender.unfriended}
+          type={type}
+          value={value}
+          alteredTextColor={
+            my
+              ? bubbleStyle?.sent?.alteredTextColor
+              : bubbleStyle?.received?.alteredTextColor
+          }
+          hasArrow={hasArrow}
+          onOpenMenu={() => onOpenMenu?.(message)}
+          onParentMessageClick={onParentMessageClick}
+          fullTextViewAvailable={fullTextViewAvailable}
+          css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
+          arrowRadius={bubbleStyle?.arrowRadius}
+          borderRadius={bubbleStyle?.borderRadius}
+          {...rest}
+          {...bubbleProps}
+        />
+        {extraBubble ? extraBubble(message) : null}
+      </>
     )
   }
 
