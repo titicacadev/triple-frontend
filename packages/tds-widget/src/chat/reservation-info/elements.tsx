@@ -38,9 +38,10 @@ export const Details = styled.dl<{ expanded: boolean }>`
     }
 
     dd {
-      display: inline;
       color: ${({ theme }) => theme.nol.colorNeutralG60};
       ${({ expanded }) => !expanded && maxLinesMixin({ maxLines: 1 })}
+      word-break: break-all;
+      display: -webkit-inline-box;
 
       & + dd {
         &::before {
