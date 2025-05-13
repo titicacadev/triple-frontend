@@ -68,7 +68,7 @@ interface BookingMetaData {
   bookingId: string
   status: string
   statusDescription: string
-  product: ProductMetaData
+  product: Omit<ProductMetaData, 'user'>
   dateOfUse?: DateOfUseDate | DateOfUseRange
   user: UserMetaData
 }
