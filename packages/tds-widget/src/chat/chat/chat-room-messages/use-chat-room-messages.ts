@@ -27,11 +27,6 @@ import {
 import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
-  /**
-   * 자동으로 로딩 메시지를 추가할 메시지 ID
-   * 존재하지 않는 경우에는 자동으로 로딩 메시지를 제거하는 로직이 동작하지 않습니다.
-   */
-  autoLoadingMessageId?: number
   scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
@@ -39,7 +34,6 @@ interface ChatMessagesProps<T = UserType> {
 
 export function useChatMessages<T = UserType>(
   {
-    autoLoadingMessageId,
     scrollToBottomOnNewMessage = true,
     defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
@@ -425,9 +419,6 @@ export function useChatMessages<T = UserType>(
         const myMessage =
           getUserIdentifier(me) === getUserIdentifier(message.sender)
         if (!myMessage) {
-          if (autoLoadingMessageId) {
-            removeAutoLoadingMessage()
-          }
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
@@ -439,14 +430,7 @@ export function useChatMessages<T = UserType>(
         }
       }
     },
-    [
-      autoLoadingMessageId,
-      dispatch,
-      me,
-      removeAutoLoadingMessage,
-      scrollToBottomOnNewMessage,
-      triggerScrollToBottom,
-    ],
+    [dispatch, me, scrollToBottomOnNewMessage, triggerScrollToBottom],
   )
 
   /**
@@ -540,33 +524,6 @@ export function useChatMessages<T = UserType>(
     }
   }
 
-  /**
-   * 유저가 메시지를 전송하면 자동으로 상대방의 메시지에 대한 로딩 메시지를 추가합니다.
-   */
-  function appendAutoLoadingMessage(
-    message: UnsentMessage<ChatMessageInterface<T>>,
-  ) {
-    if (!autoLoadingMessageId) {
-      return
-    }
-
-    dispatch({
-      action: MessagesActions.PENDING,
-      message: {
-        ...message,
-        id: autoLoadingMessageId,
-      },
-    })
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function removeAutoLoadingMessage() {
-    if (!autoLoadingMessageId) {
-      return
-    }
-    removeUnsentMessages({ id: autoLoadingMessageId })
-  }
-
   return {
     messages,
     pendingMessages,
@@ -578,8 +535,6 @@ export function useChatMessages<T = UserType>(
     onThanksClick,
     onSendMessageEvent,
     hasPrevMessage,
-    appendAutoLoadingMessage,
-    removeAutoLoadingMessage,
   }
 }
 
