@@ -54,6 +54,7 @@ export type RichItem = RichItemText | RichItemImages | RichItemButton
 
 export interface ChatMessagePayloadBase {
   type: ChatMessagePayloadType
+  extra?: Record<string, unknown>
 }
 
 interface ChatTextMessagePayload extends ChatMessagePayloadBase {
