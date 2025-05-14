@@ -62,6 +62,7 @@ interface MessagesProp<
   ExtraComponent?: ComponentType<
     Required<Pick<MessageInterface<Message, User>, 'extra'>>
   >
+  InteractionStatusSlot?: ComponentType<unknown>
 }
 
 export default function Messages<
@@ -91,6 +92,7 @@ export default function Messages<
   spacing,
   showProfilePhoto = true,
   ExtraComponent,
+  InteractionStatusSlot,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -314,6 +316,7 @@ export default function Messages<
           lastMessageOfPrevList: messages[messages.length - 1],
         })}
       </div>
+      {InteractionStatusSlot && <InteractionStatusSlot />}
       <div id="failed_messages_list">
         {renderMessages({
           listType: 'failed',
