@@ -562,6 +562,10 @@ export function useChatMessages<T = UserType>(
         id: autoLoadingMessageId,
       },
     })
+
+    setTimeout(() => {
+      triggerScrollToBottom()
+    }, 100)
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
