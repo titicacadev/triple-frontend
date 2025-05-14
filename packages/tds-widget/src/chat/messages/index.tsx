@@ -59,7 +59,9 @@ interface MessagesProp<
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
   showProfilePhoto?: boolean
-  ExtraComponent?: ComponentType<Required<Pick<Message, 'extra'>>>
+  ExtraComponent?: ComponentType<
+    Required<Pick<MessageInterface<Message, User>, 'extra'>>
+  >
 }
 
 export default function Messages<
