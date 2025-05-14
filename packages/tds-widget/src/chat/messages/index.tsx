@@ -14,6 +14,11 @@ import { MessageBase, MessageInterface } from './type'
 import { isBubbleType, compareSender, compareDate } from './utils'
 import { DateDivider } from './date-divider'
 
+interface CustomBubbleStyle {
+  css?: CSSProp
+  alteredTextColor?: CSSProp
+}
+
 interface MessagesProp<
   Message extends MessageBase<User>,
   User extends UserInterface,
@@ -39,11 +44,9 @@ interface MessagesProp<
   bubbleStyle?: {
     borderRadius?: number
     arrowRadius?: number
-    received?: {
-      css?: CSSProp
-      alteredTextColor?: CSSProp
-    }
-    sent?: { css?: CSSProp; alteredTextColor?: CSSProp }
+    received?: CustomBubbleStyle
+    sent?: CustomBubbleStyle
+    private?: CustomBubbleStyle
   }
   spacing?: {
     message?: number
@@ -110,8 +113,21 @@ export default function Messages<
     my: boolean
     hasArrow?: boolean
   }) {
-    const { id, sender, type, value, blinded, deleted, createdAt, ...rest } =
-      message
+    const {
+      id,
+      sender,
+      private: isPrivate,
+      type,
+      value,
+      blinded,
+      deleted,
+      createdAt,
+      ...rest
+    } = message
+
+    const customBubbleStyle =
+      (isPrivate && bubbleStyle?.private) ||
+      (my ? bubbleStyle?.sent : bubbleStyle?.received)
 
     const CustomBubble = customBubble?.[type]
     if (CustomBubble) {
@@ -128,11 +144,7 @@ export default function Messages<
                   ? ALTERNATIVE_TEXT_MESSAGE.blinded
                   : ALTERNATIVE_TEXT_MESSAGE.deleted
             }
-            textColor={
-              my
-                ? bubbleStyle?.sent?.alteredTextColor
-                : bubbleStyle?.received?.alteredTextColor
-            }
+            textColor={customBubbleStyle?.alteredTextColor}
             hasArrow={hasArrow}
           />
         )
@@ -155,16 +167,12 @@ export default function Messages<
         unfriended={sender.unfriended}
         type={type}
         value={value}
-        alteredTextColor={
-          my
-            ? bubbleStyle?.sent?.alteredTextColor
-            : bubbleStyle?.received?.alteredTextColor
-        }
+        alteredTextColor={customBubbleStyle?.alteredTextColor}
         hasArrow={hasArrow}
         onOpenMenu={() => onOpenMenu?.(message)}
         onParentMessageClick={onParentMessageClick}
         fullTextViewAvailable={fullTextViewAvailable}
-        css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
+        css={customBubbleStyle?.css}
         arrowRadius={bubbleStyle?.arrowRadius}
         borderRadius={bubbleStyle?.borderRadius}
         {...rest}

@@ -13,6 +13,7 @@ export interface MessageBase<User extends UserInterface> {
   blinded?: boolean
   deleted?: boolean
   thanks?: { count: number; haveMine: boolean }
+  private?: boolean
 }
 
 export type MessageInterface<

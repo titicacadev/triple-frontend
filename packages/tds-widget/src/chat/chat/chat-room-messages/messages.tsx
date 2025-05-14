@@ -96,7 +96,7 @@ function convertMessages<T = UserType>(
         | OriginalMessagesPropTypes<T>['pendingMessages'],
       { displayTarget: messageDisplayTarget, ...message },
     ) => {
-      const payload = getDisplayedPayload({
+      const { payload, privateMessage = false } = getDisplayedPayload({
         payload: message.payload,
         alternativePayload: message.alternative,
         messageDisplayTarget,
@@ -112,6 +112,7 @@ function convertMessages<T = UserType>(
         {
           ...message,
           id: message.id,
+          private: privateMessage,
           sender,
           ...('createdAt' in message && { createdAt: message.createdAt }),
           blinded: !!message.blindedAt,
@@ -140,12 +141,12 @@ function getDisplayedPayload<T = UserType>({
   roomDisplayTarget: T
 }) {
   if (!messageDisplayTarget || messageDisplayTarget === 'all') {
-    return payload
+    return { payload }
   }
   if (messageDisplayTarget.includes(roomDisplayTarget)) {
-    return payload
+    return { payload, privateMessage: true }
   }
-  return alternativePayload
+  return { payload: alternativePayload }
 }
 
 function getMessageTypeAndValue<T = UserType>(
