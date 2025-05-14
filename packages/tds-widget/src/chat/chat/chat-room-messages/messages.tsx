@@ -89,32 +89,43 @@ function convertMessages<T = UserType>(
 ):
   | OriginalMessagesPropTypes<T>['messages']
   | OriginalMessagesPropTypes<T>['pendingMessages'] {
-  return messages.map(({ displayTarget: messageDisplayTarget, ...message }) => {
-    const payload = getDisplayedPayload({
-      payload: message.payload,
-      alternativePayload: message.alternative,
-      messageDisplayTarget,
-      roomDisplayTarget,
-    })
-
-    const { type, value } = getMessageTypeAndValue(payload)
-
-    const sender = convertChatUserToMessageUser(message.sender || me)
-
-    return {
-      ...message,
-      id: message.id,
-      sender,
-      ...('createdAt' in message && { createdAt: message.createdAt }),
-      blinded: !!message.blindedAt,
-      type,
-      value,
-      ...(showReactions &&
-        message.reactions?.thanks && {
-          thanks: message.reactions.thanks,
-        }),
-    }
-  })
+  return messages.reduce(
+    (
+      acc:
+        | OriginalMessagesPropTypes<T>['messages']
+        | OriginalMessagesPropTypes<T>['pendingMessages'],
+      { displayTarget: messageDisplayTarget, ...message },
+    ) => {
+      const payload = getDisplayedPayload({
+        payload: message.payload,
+        alternativePayload: message.alternative,
+        messageDisplayTarget,
+        roomDisplayTarget,
+      })
+      if (!payload) {
+        return acc
+      }
+      const { type, value } = getMessageTypeAndValue(payload)
+      const sender = convertChatUserToMessageUser(message.sender || me)
+      return [
+        ...acc,
+        {
+          ...message,
+          id: message.id,
+          sender,
+          ...('createdAt' in message && { createdAt: message.createdAt }),
+          blinded: !!message.blindedAt,
+          type,
+          value,
+          ...(showReactions &&
+            message.reactions?.thanks && {
+              thanks: message.reactions.thanks,
+            }),
+        },
+      ]
+    },
+    [],
+  )
 }
 
 function getDisplayedPayload<T = UserType>({
@@ -134,7 +145,7 @@ function getDisplayedPayload<T = UserType>({
   if (messageDisplayTarget.includes(roomDisplayTarget)) {
     return payload
   }
-  return alternativePayload ?? payload
+  return alternativePayload
 }
 
 function getMessageTypeAndValue<T = UserType>(
