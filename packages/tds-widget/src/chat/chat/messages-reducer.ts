@@ -118,8 +118,9 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
     case MessagesActions.NEW:
       return {
         ...state,
-        messages: sortMessages<Message, Id>(
-          deduplicateMessages<Message, Id>(state.messages, action.messages),
+        messages: deduplicateAndSortMessages<Message, Id>(
+          state.messages,
+          action.messages,
         ),
       }
 
@@ -156,10 +157,7 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
     case MessagesActions.PENDING:
       return {
         ...state,
-        pendingMessages: deduplicateMessages<Message, Id>(
-          state.pendingMessages,
-          [action.message],
-        ),
+        pendingMessages: [...state.pendingMessages, action.message],
         failedMessages: state.failedMessages.filter(
           (message) => message.id !== action.message.id,
         ),
@@ -211,37 +209,25 @@ export function useMessagesReducer<
   >(MessagesReducer, initialMessagesState)
 }
 
-function deduplicateMessages<Message extends MessageBase<Id>, Id = string>(
-  messagesA: Message[],
-  messagesB: Message[],
-): Message[]
-
-function deduplicateMessages<Message extends MessageBase<Id>, Id = string>(
-  messagesA: UnsentMessage<Message, Id>[],
-  messagesB: UnsentMessage<Message, Id>[],
-): UnsentMessage<Message, Id>[]
-
-function deduplicateMessages<Message extends MessageBase<Id>, Id = string>(
-  messagesA: Message[],
-  messagesB: Message[],
-) {
+function deduplicateAndSortMessages<
+  Message extends MessageBase<Id>,
+  Id = string,
+>(messagesA: Message[], messagesB: Message[]) {
   const copiedMessages = [...messagesA, ...messagesB]
 
-  return copiedMessages.filter(
+  const deduplicatedMessages = copiedMessages.filter(
     (messageInFilter, index) =>
       index ===
       copiedMessages.findIndex(
         (messageInFindIndex) => messageInFilter.id === messageInFindIndex.id,
       ),
   )
-}
 
-function sortMessages<Message extends MessageBase<Id>, Id = string>(
-  messages: Message[],
-) {
-  return messages.sort(
+  deduplicatedMessages.sort(
     (a, b) =>
       new Date(a.createdAt || '').getTime() -
       new Date(b.createdAt || '').getTime(),
   )
+
+  return deduplicatedMessages
 }
