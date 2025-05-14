@@ -47,6 +47,7 @@ const PopupContainer = styled.div`
 `
 
 export interface PopupProps extends PropsWithChildren {
+  id?: string
   /**
    * 팝업을 열지 결정합니다.
    */
@@ -76,6 +77,7 @@ export interface PopupProps extends PropsWithChildren {
  * 밑에서 올라오는 팝업입니다.
  */
 export function Popup({
+  id,
   open = false,
   borderless = false,
   icon = 'close',
@@ -124,6 +126,7 @@ export function Popup({
       <FloatingOverlay lockScroll />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <PopupContainer
+          id={id}
           ref={refs.setFloating}
           data-transition={status}
           aria-modal
