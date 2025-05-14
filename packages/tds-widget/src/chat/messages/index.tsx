@@ -61,6 +61,7 @@ interface MessagesProp<
   showProfilePhoto?: boolean
   /**
    * message.payload의 extra를 렌더하는 컴포넌트
+   * message의 하위에
    */
   BubbleExtra?: ComponentType<
     Required<Pick<MessageInterface<Message, User>, 'extra'>>
@@ -157,34 +158,31 @@ export default function Messages<
     }
 
     return (
-      <>
-        <BubbleUI
-          key={id}
-          id={id.toString()}
-          my={my}
-          created={!!createdAt}
-          blinded={blinded}
-          deleted={deleted}
-          unfriended={sender.unfriended}
-          type={type}
-          value={value}
-          alteredTextColor={
-            my
-              ? bubbleStyle?.sent?.alteredTextColor
-              : bubbleStyle?.received?.alteredTextColor
-          }
-          hasArrow={hasArrow}
-          onOpenMenu={() => onOpenMenu?.(message)}
-          onParentMessageClick={onParentMessageClick}
-          fullTextViewAvailable={fullTextViewAvailable}
-          css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
-          arrowRadius={bubbleStyle?.arrowRadius}
-          borderRadius={bubbleStyle?.borderRadius}
-          {...rest}
-          {...bubbleProps}
-        />
-        {message.extra && BubbleExtra && <BubbleExtra extra={message.extra} />}
-      </>
+      <BubbleUI
+        key={id}
+        id={id.toString()}
+        my={my}
+        created={!!createdAt}
+        blinded={blinded}
+        deleted={deleted}
+        unfriended={sender.unfriended}
+        type={type}
+        value={value}
+        alteredTextColor={
+          my
+            ? bubbleStyle?.sent?.alteredTextColor
+            : bubbleStyle?.received?.alteredTextColor
+        }
+        hasArrow={hasArrow}
+        onOpenMenu={() => onOpenMenu?.(message)}
+        onParentMessageClick={onParentMessageClick}
+        fullTextViewAvailable={fullTextViewAvailable}
+        css={my ? bubbleStyle?.sent?.css : bubbleStyle?.received?.css}
+        arrowRadius={bubbleStyle?.arrowRadius}
+        borderRadius={bubbleStyle?.borderRadius}
+        {...rest}
+        {...bubbleProps}
+      />
     )
   }
 
@@ -298,6 +296,9 @@ export default function Messages<
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
+            {message.extra && BubbleExtra && (
+              <BubbleExtra extra={message.extra} />
+            )}
           </IntersectionObserver>
         </Fragment>
       )
