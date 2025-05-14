@@ -59,9 +59,15 @@ interface MessagesProp<
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
   showProfilePhoto?: boolean
-  ExtraComponent?: ComponentType<
+  /**
+   * message.payload의 extra를 렌더하는 컴포넌트
+   */
+  BubbleExtra?: ComponentType<
     Required<Pick<MessageInterface<Message, User>, 'extra'>>
   >
+  /**
+   * pendingMessages와 failedMessages 사이에 렌더되는 컴포넌트
+   */
   InteractionStatusSlot?: ComponentType<unknown>
 }
 
@@ -91,7 +97,7 @@ export default function Messages<
   bubbleInfoStyle,
   spacing,
   showProfilePhoto = true,
-  ExtraComponent,
+  BubbleExtra,
   InteractionStatusSlot,
   ...bubbleProps
 }: MessagesProp<Message, User> &
@@ -177,9 +183,7 @@ export default function Messages<
           {...rest}
           {...bubbleProps}
         />
-        {message.extra && ExtraComponent && (
-          <ExtraComponent extra={message.extra} />
-        )}
+        {message.extra && BubbleExtra && <BubbleExtra extra={message.extra} />}
       </>
     )
   }
