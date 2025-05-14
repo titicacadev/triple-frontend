@@ -5,7 +5,6 @@ import {
   ChatMessageInterface,
   ChatMessagePayloadType,
   ChatRoomUser,
-  CustomChatMessagePayloadType,
   DisplayTargetAll,
   UserInterface,
   UserType,
@@ -153,8 +152,6 @@ function getMessageTypeAndValue<T = UserType>(
       return { type: payload.type, value: { blocks: payload.items } }
     case ChatMessagePayloadType.PRODUCT:
       return { type: payload.type, value: { product: payload.product } }
-    case CustomChatMessagePayloadType.AUTO_LOADING:
-      return { type: payload.type }
   }
 }
 
