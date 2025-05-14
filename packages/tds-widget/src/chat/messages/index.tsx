@@ -59,7 +59,7 @@ interface MessagesProp<
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
   showProfilePhoto?: boolean
-  renderExtra?: (extra?: Message['extra']) => ComponentType<unknown>
+  ExtraComponent?: ComponentType<Required<Pick<Message, 'extra'>>>
 }
 
 export default function Messages<
@@ -88,7 +88,7 @@ export default function Messages<
   bubbleInfoStyle,
   spacing,
   showProfilePhoto = true,
-  renderExtra,
+  ExtraComponent,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -173,7 +173,9 @@ export default function Messages<
           {...rest}
           {...bubbleProps}
         />
-        {message.extra && renderExtra && renderExtra(message.extra)}
+        {message.extra && ExtraComponent && (
+          <ExtraComponent extra={message.extra} />
+        )}
       </>
     )
   }
