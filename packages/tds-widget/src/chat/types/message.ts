@@ -53,7 +53,7 @@ interface RichItemButton extends RichItemBase {
 export type RichItem = RichItemText | RichItemImages | RichItemButton
 
 export interface ChatMessagePayloadBase {
-  type: ChatMessagePayloadType
+  type: ChatMessagePayloadType | CustomChatMessagePayloadType
   extra?: Record<string, unknown>
 }
 
@@ -77,11 +77,20 @@ interface ChatProductMessagePayload extends ChatMessagePayloadBase {
   product: ProductItem
 }
 
+export enum CustomChatMessagePayloadType {
+  AUTO_LOADING = 'auto-loading',
+}
+
+interface AutoLoadingMessagePayload {
+  type: CustomChatMessagePayloadType.AUTO_LOADING
+}
+
 export type ChatMessagePayload =
   | ChatTextMessagePayload
   | ChatImagesMessagePayload
   | ChatRichMessagePayload
   | ChatProductMessagePayload
+  | AutoLoadingMessagePayload
 
 type ChatAlternativeMessagePayload =
   | ChatTextMessagePayload
