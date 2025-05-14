@@ -8,6 +8,7 @@ import {
   ChatRoomInterface,
   ChatRoomMemberInterface,
   ChatRoomUser,
+  CustomChatMessagePayloadType,
   isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
@@ -544,16 +545,20 @@ export function useChatMessages<T = UserType>(
    * 유저가 메시지를 전송하면 자동으로 상대방의 메시지에 대한 로딩 메시지를 추가합니다.
    */
   function appendAutoLoadingMessage(
-    message: UnsentMessage<ChatMessageInterface<T>>,
+    sender: UnsentMessage<ChatMessageInterface<T>>['sender'],
   ) {
-    if (!autoLoadingMessageId) {
+    if (!isCreatedChatRoom(room) || !autoLoadingMessageId) {
       return
     }
 
     dispatch({
       action: MessagesActions.PENDING,
       message: {
-        ...message,
+        payload: {
+          type: CustomChatMessagePayloadType.AUTO_LOADING,
+        },
+        sender,
+        roomId: room.id,
         id: autoLoadingMessageId,
       },
     })
