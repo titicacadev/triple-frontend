@@ -63,7 +63,7 @@ interface MessagesProp<
    * message.payload의 extra를 렌더하는 컴포넌트
    * message의 하위에
    */
-  BubbleExtra?: ComponentType<NonNullable<Message>['extra']>
+  BubbleExtra?: ComponentType<Required<Pick<MessageBase<User>, 'extra'>>>
 
   /**
    * pendingMessages와 failedMessages 사이에 렌더되는 컴포넌트
