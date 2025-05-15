@@ -61,7 +61,7 @@ interface MessagesProp<
   showProfilePhoto?: boolean
   /**
    * message.payload의 extra를 렌더하는 컴포넌트
-   * message의 하위에
+   * 해당 메시지 하단에 렌더링됨
    */
   BubbleExtra?: ComponentType<Required<Pick<MessageBase<User>, 'extra'>>>
 }
