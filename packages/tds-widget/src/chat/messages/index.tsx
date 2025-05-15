@@ -64,6 +64,10 @@ interface MessagesProp<
    * 해당 메시지 하단에 렌더링됨
    */
   BubbleExtra?: ComponentType<Required<Pick<MessageBase<User>, 'extra'>>>
+  /**
+   * pendingMessages와 failedMessages 사이에 렌더되는 컴포넌트
+   */
+  interactionStatusSlot?: JSX.Element
 }
 
 export default function Messages<
@@ -93,6 +97,7 @@ export default function Messages<
   spacing,
   showProfilePhoto = true,
   BubbleExtra,
+  interactionStatusSlot,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -314,6 +319,7 @@ export default function Messages<
           lastMessageOfPrevList: messages[messages.length - 1],
         })}
       </div>
+      {interactionStatusSlot}
       <div id="failed_messages_list">
         {renderMessages({
           listType: 'failed',
