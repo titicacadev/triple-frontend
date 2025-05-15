@@ -13,6 +13,7 @@ export interface MessageBase<User extends UserInterface> {
   blinded?: boolean
   deleted?: boolean
   thanks?: { count: number; haveMine: boolean }
+  extra?: Record<string, unknown>
 }
 
 export type MessageInterface<

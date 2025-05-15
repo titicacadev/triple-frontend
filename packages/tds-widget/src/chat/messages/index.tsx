@@ -59,6 +59,11 @@ interface MessagesProp<
   onParentMessageClick?: (id: MessageInterface<Message, User>['id']) => void
   onUserClick?: (userId: string, unregistered: boolean) => void
   showProfilePhoto?: boolean
+  /**
+   * message.payload의 extra를 렌더하는 컴포넌트
+   * message의 하위에
+   */
+  BubbleExtra?: ComponentType<Required<Pick<MessageBase<User>, 'extra'>>>
 }
 
 export default function Messages<
@@ -87,6 +92,7 @@ export default function Messages<
   bubbleInfoStyle,
   spacing,
   showProfilePhoto = true,
+  BubbleExtra,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -283,6 +289,9 @@ export default function Messages<
             >
               {getBubble({ message, my, hasArrow: showProfile })}
             </BubbleContainer>
+            {message.extra && BubbleExtra && (
+              <BubbleExtra extra={message.extra} />
+            )}
           </IntersectionObserver>
         </Fragment>
       )
