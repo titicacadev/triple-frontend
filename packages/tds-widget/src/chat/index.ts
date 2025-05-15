@@ -1,6 +1,6 @@
 export * from './types'
 export * from './bubble'
-export * as BubbleContainer from './bubble-container'
+export * from './bubble-container'
 export * from './chat'
 export * from './utils'
 export * from './navbar'
