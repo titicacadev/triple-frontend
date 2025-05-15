@@ -109,6 +109,7 @@ function convertMessages<T = UserType>(
       blinded: !!message.blindedAt,
       type,
       value,
+      extra: message.payload?.extra,
       ...(showReactions &&
         message.reactions?.thanks && {
           thanks: message.reactions.thanks,
