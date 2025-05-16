@@ -11,6 +11,7 @@ export enum MessagesActions {
   REMOVE = 'REMOVE', // 전송 실패 메세지 삭제
   HAS_PREV = 'HAS_PREV', // 이전 메세지 페이지네이션 플래그 설정
   HAS_NEXT = 'HAS_NEXT', // 다음 메세지 페이지네이션 플래그 설정
+  REFRESH = 'REFRESH', // 메세지 초기화
 }
 
 export type UnsentMessage<
@@ -89,6 +90,9 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
   | {
       action: MessagesActions.HAS_NEXT
       hasNextMessage: boolean
+    }
+  | {
+      action: MessagesActions.REFRESH
     }
 
 function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
@@ -194,6 +198,9 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
         ...state,
         hasNextMessage: action.hasNextMessage,
       }
+
+    case MessagesActions.REFRESH:
+      return initialMessagesState
 
     default:
       throw new Error('unexpected action')

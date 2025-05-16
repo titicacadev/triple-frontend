@@ -24,6 +24,7 @@ interface ScrollButtonsAreaProps<T = UserType>
   lastSeenMessageId?: number
   lastMessage?: ChatMessageInterface<T>
   clickActionDelay?: number
+  resetKey?: string
 }
 
 export interface ScrollButtonsAreaHandler {
@@ -36,6 +37,7 @@ export interface ScrollButtonsAreaHandler {
  */
 function ScrollButtonsAreaImpl<T = UserType>(
   {
+    resetKey,
     lastSeenMessageId,
     lastMessage,
     scrollButtonsStyle,
@@ -88,7 +90,18 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   useEffect(() => {
     mounted.current = true
-  }, [])
+
+    return () => {
+      mounted.current = false
+      const bottomIntersecting = {
+        id: lastSeenMessageId,
+        isIntersecting: false,
+      }
+      setCurrentBottomIntersecting(bottomIntersecting)
+      prevBottomIntersecting.current = bottomIntersecting
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey])
 
   useEffect(() => {
     if (lastSeenMessageId !== prevBottomIntersecting.current.id) {
