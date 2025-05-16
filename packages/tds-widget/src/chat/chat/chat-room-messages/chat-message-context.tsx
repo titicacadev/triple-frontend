@@ -46,7 +46,7 @@ export interface ChatMessagesContextValue<T = UserType> {
     MessagesAction<ChatMessageInterface<T>, ChatMessageInterface<T>['id']>
   >
   welcomeMessages: WelcomeMessageInterface<T>[]
-  initMessages: () => Promise<void>
+  initMessages: (force?: boolean) => Promise<void>
 }
 
 export const ChatApiServiceContext = createContext<ChatApiService | null>(null)
