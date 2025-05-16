@@ -535,7 +535,6 @@ export function useChatMessages<T = UserType>(
     onThanksClick,
     onSendMessageEvent,
     hasPrevMessage,
-    initMessages,
     triggerScrollToBottom,
   }
 }
