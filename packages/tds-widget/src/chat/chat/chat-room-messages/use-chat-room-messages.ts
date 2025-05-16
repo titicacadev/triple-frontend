@@ -531,6 +531,12 @@ export function useChatMessages<T = UserType>(
     }
   }
 
+  function refresh() {
+    dispatch({
+      action: MessagesActions.REFRESH,
+    })
+  }
+
   return {
     messages,
     pendingMessages,
@@ -542,7 +548,7 @@ export function useChatMessages<T = UserType>(
     onThanksClick,
     onSendMessageEvent,
     hasPrevMessage,
-    triggerScrollToBottom,
+    refresh,
   }
 }
 
