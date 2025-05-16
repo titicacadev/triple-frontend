@@ -77,15 +77,17 @@ export function ChatMessagesProvider<T = UserType>({
     ChatMessageInterface<T>['id']
   >()
 
-  const initMessages = async () => {
+  const initMessages = async (force: boolean = false) => {
     if (!isCreatedChatRoom(room)) {
       dispatch({
         action: MessagesActions.HAS_PREV,
         hasPrevMessage: false,
       })
     } else {
-      let messages = initialMessages
-      let prevToken: number | undefined | null = initialPrevToken
+      let messages = force ? [] : initialMessages
+      let prevToken: number | undefined | null = force
+        ? undefined
+        : initialPrevToken
 
       if (!messages.length) {
         try {
