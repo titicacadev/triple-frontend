@@ -45,7 +45,7 @@ export function useInputResizeObserver(defaultHeight: number) {
       observer.disconnect()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chatContainerRef])
+  }, [])
 
   return {
     inputContainerRef,
