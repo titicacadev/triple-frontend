@@ -27,6 +27,7 @@ import {
 import { ChatRoomMessageInterface } from './messages'
 
 interface ChatMessagesProps<T = UserType> {
+  autoInitialize?: boolean
   scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
   createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
@@ -34,12 +35,14 @@ interface ChatMessagesProps<T = UserType> {
 
 export function useChatMessages<T = UserType>(
   {
+    autoInitialize = true,
     scrollToBottomOnNewMessage = true,
     defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
     >,
     createRoom,
   }: ChatMessagesProps<T> = {
+    autoInitialize: true,
     scrollToBottomOnNewMessage: true,
     defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
@@ -70,6 +73,10 @@ export function useChatMessages<T = UserType>(
   const api = useChatApiService<T>()
 
   useEffect(() => {
+    if (!autoInitialize) {
+      return
+    }
+
     ;(async function () {
       await initMessages()
 
