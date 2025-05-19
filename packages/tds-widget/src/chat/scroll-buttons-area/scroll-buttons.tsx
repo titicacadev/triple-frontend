@@ -6,7 +6,7 @@ import { ChatMessageInterface, UserType } from '../types'
 import { NewMessage, ScrollToBottomButton } from './elements'
 
 export interface ScrollButtonsProps<T = UserType> {
-  onClick: (behavior: ScrollBehavior) => void
+  onClick: (behavior: ScrollBehavior, message?: ChatMessageInterface<T>) => void
   message?: ChatMessageInterface<T>
   newMessageActive: boolean
   isBottomIntersecting: boolean
@@ -45,7 +45,7 @@ export function ScrollButtons<T = UserType>({
   }, [latestMessage])
 
   const handleClick = () => {
-    onClick('instant')
+    onClick('instant', message ?? undefined)
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }

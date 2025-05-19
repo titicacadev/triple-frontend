@@ -24,6 +24,11 @@ interface ScrollButtonsAreaProps<T = UserType>
   lastSeenMessageId?: number
   lastMessage?: ChatMessageInterface<T>
   clickActionDelay?: number
+  resetKey?: string
+  onClickNewMessage?: (message?: ChatMessageInterface<T>) => void
+  customNewMessageActiveCondition?: (
+    message?: ChatMessageInterface<T>,
+  ) => boolean
 }
 
 export interface ScrollButtonsAreaHandler {
@@ -36,10 +41,13 @@ export interface ScrollButtonsAreaHandler {
  */
 function ScrollButtonsAreaImpl<T = UserType>(
   {
+    customNewMessageActiveCondition,
+    resetKey,
     lastSeenMessageId,
     lastMessage,
     scrollButtonsStyle,
     clickActionDelay,
+    onClickNewMessage,
     children,
   }: PropsWithChildren<ScrollButtonsAreaProps<T>>,
   ref: ForwardedRef<ScrollButtonsAreaHandler>,
@@ -60,12 +68,17 @@ function ScrollButtonsAreaImpl<T = UserType>(
     triggerScrollToBottom({ scrollBehavior: behavior })
   }
 
-  const handleClickScrollToBottom = (behavior?: ScrollBehavior) => {
+  const handleClickScrollToBottom = (
+    behavior?: ScrollBehavior,
+    message?: ChatMessageInterface<T>,
+  ) => {
     if (typeof clickActionDelay !== 'undefined') {
       setTimeout(() => {
+        onClickNewMessage?.(message)
         onButtonClick(behavior)
       }, clickActionDelay)
     } else {
+      onClickNewMessage?.(message)
       onButtonClick(behavior)
     }
   }
@@ -87,8 +100,20 @@ function ScrollButtonsAreaImpl<T = UserType>(
   }, [onButtonClick])
 
   useEffect(() => {
+    const bottomIntersecting = {
+      id: lastSeenMessageId,
+      isIntersecting: false,
+    }
+    setCurrentBottomIntersecting(bottomIntersecting)
+    prevBottomIntersecting.current = bottomIntersecting
+
     mounted.current = true
-  }, [])
+
+    return () => {
+      mounted.current = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey])
 
   useEffect(() => {
     if (lastSeenMessageId !== prevBottomIntersecting.current.id) {
@@ -99,7 +124,8 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   const isNewMessageActive = !currentBottomIntersecting.id
     ? false
-    : !(
+    : customNewMessageActiveCondition?.(lastMessage) ||
+      !(
         currentBottomIntersecting.isIntersecting ||
         !lastMessage ||
         !lastSeenMessageId ||
@@ -110,6 +136,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
     <Container>
       {mounted.current && lastMessage !== undefined && (
         <ScrollButtons
+          key={resetKey}
           scrollButtonsStyle={scrollButtonsStyle}
           onClick={handleClickScrollToBottom}
           message={lastMessage}
@@ -122,4 +149,10 @@ function ScrollButtonsAreaImpl<T = UserType>(
   )
 }
 
-export const ScrollButtonsArea = forwardRef(ScrollButtonsAreaImpl)
+export const ScrollButtonsArea = forwardRef(ScrollButtonsAreaImpl) as <
+  T = UserType,
+>(
+  props: PropsWithChildren<ScrollButtonsAreaProps<T>> & {
+    ref?: React.ForwardedRef<ScrollButtonsAreaHandler>
+  },
+) => ReturnType<typeof ScrollButtonsAreaImpl>
