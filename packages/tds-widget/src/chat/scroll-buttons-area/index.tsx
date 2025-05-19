@@ -26,7 +26,7 @@ interface ScrollButtonsAreaProps<T = UserType>
   clickActionDelay?: number
   resetKey?: string
   onClickNewMessage?: (message?: ChatMessageInterface<T>) => void
-  customNewMessageActiveCondition?: (
+  hasPriorityNewMessageCondition?: (
     message?: ChatMessageInterface<T>,
   ) => boolean
 }
@@ -41,7 +41,7 @@ export interface ScrollButtonsAreaHandler {
  */
 function ScrollButtonsAreaImpl<T = UserType>(
   {
-    customNewMessageActiveCondition,
+    hasPriorityNewMessageCondition,
     resetKey,
     lastSeenMessageId,
     lastMessage,
@@ -124,7 +124,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   const isNewMessageActive = !currentBottomIntersecting.id
     ? false
-    : customNewMessageActiveCondition?.(lastMessage) ||
+    : hasPriorityNewMessageCondition?.(lastMessage) ||
       !(
         currentBottomIntersecting.isIntersecting ||
         !lastMessage ||
