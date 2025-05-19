@@ -525,6 +525,7 @@ export function useChatMessages<T = UserType>(
   }
 
   return {
+    triggerScrollToBottom,
     messages,
     pendingMessages,
     failedMessages,
