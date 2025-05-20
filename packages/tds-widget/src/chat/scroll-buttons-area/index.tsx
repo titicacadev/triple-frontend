@@ -25,10 +25,6 @@ interface ScrollButtonsAreaProps<T = UserType>
   lastMessage?: ChatMessageInterface<T>
   clickActionDelay?: number
   resetKey?: string
-  onClickNewMessage?: (message?: ChatMessageInterface<T>) => void
-  hasPriorityNewMessageCondition?: (
-    message?: ChatMessageInterface<T>,
-  ) => boolean
 }
 
 export interface ScrollButtonsAreaHandler {
@@ -41,13 +37,11 @@ export interface ScrollButtonsAreaHandler {
  */
 function ScrollButtonsAreaImpl<T = UserType>(
   {
-    hasPriorityNewMessageCondition,
     resetKey,
     lastSeenMessageId,
     lastMessage,
     scrollButtonsStyle,
     clickActionDelay,
-    onClickNewMessage,
     children,
   }: PropsWithChildren<ScrollButtonsAreaProps<T>>,
   ref: ForwardedRef<ScrollButtonsAreaHandler>,
@@ -68,17 +62,12 @@ function ScrollButtonsAreaImpl<T = UserType>(
     triggerScrollToBottom({ scrollBehavior: behavior })
   }
 
-  const handleClickScrollToBottom = (
-    behavior?: ScrollBehavior,
-    message?: ChatMessageInterface<T>,
-  ) => {
+  const handleClickScrollToBottom = (behavior?: ScrollBehavior) => {
     if (typeof clickActionDelay !== 'undefined') {
       setTimeout(() => {
-        onClickNewMessage?.(message)
         onButtonClick(behavior)
       }, clickActionDelay)
     } else {
-      onClickNewMessage?.(message)
       onButtonClick(behavior)
     }
   }
@@ -100,13 +89,6 @@ function ScrollButtonsAreaImpl<T = UserType>(
   }, [onButtonClick])
 
   useEffect(() => {
-    const bottomIntersecting = {
-      id: lastSeenMessageId,
-      isIntersecting: false,
-    }
-    setCurrentBottomIntersecting(bottomIntersecting)
-    prevBottomIntersecting.current = bottomIntersecting
-
     mounted.current = true
 
     return () => {
@@ -124,8 +106,7 @@ function ScrollButtonsAreaImpl<T = UserType>(
 
   const isNewMessageActive = !currentBottomIntersecting.id
     ? false
-    : hasPriorityNewMessageCondition?.(lastMessage) ||
-      !(
+    : !(
         currentBottomIntersecting.isIntersecting ||
         !lastMessage ||
         !lastSeenMessageId ||
