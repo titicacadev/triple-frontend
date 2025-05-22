@@ -19,7 +19,8 @@ export function applySetCookie(req: NextRequest, res: NextResponse) {
   dummyRes.headers.forEach((value, key) => {
     if (
       key === 'x-middleware-override-headers' ||
-      key.startsWith('x-middleware-request-')
+      key.startsWith('x-middleware-request-') ||
+      key === 'x-middleware-set-cookie'
     ) {
       res.headers.set(key, value)
     }

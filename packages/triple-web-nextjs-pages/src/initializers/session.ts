@@ -25,12 +25,6 @@ export async function getSession(ctx: NextPageContext): Promise<SessionValue> {
 async function fetchUser(ctx: NextPageContext) {
   if (ctx.req) {
     // Server-side
-    // eslint-disable-next-line no-console
-    console.log(
-      '========initializer/session \n ctx.req.headers.cookie',
-      ctx.req.headers.cookie,
-    )
-
     const hasSession = checkSession(ctx.req)
 
     // 세션이 없으면 fetch를 스킵합니다.

@@ -49,7 +49,7 @@ export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
       cookie: ctx.req.headers.cookie,
     }
 
-    console.log('addFetchersToGssp', ctx)
+    console.log('addFetchersToGssp')
     console.log('ctx.req.headers.cookie', ctx.req.headers.cookie)
 
     const { setCookie, cookieOverrider } = createCookieOverrider()
