@@ -1,6 +1,7 @@
 import { ScrollProvider } from '../chat'
 
 import {
+  CouponBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -8,7 +9,13 @@ import {
 } from './type'
 import AlteredBubble from './altered'
 
-import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
+import {
+  ImageBubble,
+  ProductBubble,
+  RichBubble,
+  TextBubble,
+  CouponBubble,
+} from './index'
 
 export default {
   title: 'tds-widget / chat / Bubble',
@@ -77,6 +84,25 @@ export const Product = {
       itemName: '아이템 이름',
     },
     id: 'product_bubble',
+  },
+}
+
+export const Coupon = {
+  render: (args: CouponBubbleProp) => <CouponBubble {...args} />,
+  args: {
+    my: false,
+    coupon: {
+      name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
+      discount: {
+        type: 'AMOUNT',
+        value: 5000,
+        maxDiscountAmount: 5000,
+      },
+      code: 'X9XWCGGM58N9A499',
+      propertyId: '10003136',
+      type: 'RANDOM',
+    },
+    id: 'coupon_bubble',
   },
 }
 

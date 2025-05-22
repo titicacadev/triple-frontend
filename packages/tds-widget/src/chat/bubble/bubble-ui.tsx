@@ -5,6 +5,7 @@ import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
   BubbleProp,
+  CouponBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -14,8 +15,15 @@ import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 import { ParentMessageUIProp } from './parent'
+import { CouponBubble } from './coupon'
 
-export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
+export const BubbleTypeArray = [
+  'text',
+  'images',
+  'rich',
+  'product',
+  'coupon',
+] as const
 
 export type BubbleType = (typeof BubbleTypeArray)[number]
 
@@ -44,11 +52,17 @@ export interface ProductBubbleUIProp extends BubbleUIPropBase {
   value: Pick<ProductBubbleProp, 'product'>
 }
 
+export interface CouponBubbleUIProp extends BubbleUIPropBase {
+  type: 'coupon'
+  value: Pick<CouponBubbleProp, 'coupon'>
+}
+
 export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
   | ProductBubbleUIProp
+  | CouponBubbleUIProp
 ) & {
   id: string
   my: boolean
@@ -208,6 +222,19 @@ export default function BubbleUI({
           id={id}
           my={my}
           product={value.product}
+          onClick={onBubbleClick}
+          onLongPress={onBubbleLongPress}
+          maxWidthOffset={maxWidthOffset}
+          hasArrow={hasArrow}
+          {...props}
+        />
+      )
+    case 'coupon':
+      return (
+        <CouponBubble
+          id={id}
+          my={my}
+          coupon={value.coupon}
           onClick={onBubbleClick}
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
