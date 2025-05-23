@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import moment from 'moment'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Text } from '@titicaca/tds-ui'
 
@@ -18,6 +19,9 @@ const CouponContainer = styled.div`
 export function CouponBubble({ id, my, coupon, ...props }: CouponBubbleProp) {
   return (
     <CouponContainer>
+      <Text css={{ color: 'white;', fontSize: '12px', fontWeight: 400 }}>
+        {moment(coupon.period.endAt).format('YY.M.D')} 까지 사용
+      </Text>
       <Text css={{ color: 'white;', fontSize: '38px', fontWeight: 700 }}>
         {formatNumber(coupon.discount.value)}
         <span css={{ fontSize: '14px', marginLeft: '3px' }}>원</span>
@@ -28,7 +32,7 @@ export function CouponBubble({ id, my, coupon, ...props }: CouponBubbleProp) {
           fontSize: '12px',
           fontWeight: 700,
           float: 'right',
-          marginTop: '32px',
+          marginTop: '24px',
         }}
       >
         쿠폰 받고 사용하러 가기
