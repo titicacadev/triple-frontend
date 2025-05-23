@@ -10,7 +10,7 @@ const CouponContainer = styled.div`
   background-color: #324b94;
   padding: 20px;
   width: 224px;
-  height: 132px;
+  height: 131px;
   text-align: left;
 `
 
