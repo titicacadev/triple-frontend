@@ -444,6 +444,37 @@ export const NolMessages = {
         },
         createdAt: new Date(2022, 10, 1).toISOString(),
       },
+      {
+        type: 'coupon',
+        id: 'coupon message',
+        value: {
+          coupon: {
+            name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
+            discount: {
+              type: 'AMOUNT',
+              value: 5000,
+              maxDiscountAmount: 5000,
+            },
+            period: {
+              startAt: '2025-05-23T00:00:00+09:00',
+              endAt: '2025-05-23T23:59:59+09:00',
+            },
+            code: 'KYCHS7TFRJ577XLA',
+            propertyId: '10003136',
+            type: 'RANDOM',
+          },
+        },
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+      },
     ],
     pendingMessages: [
       {
