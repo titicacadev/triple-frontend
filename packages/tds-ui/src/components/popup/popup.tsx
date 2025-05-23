@@ -122,11 +122,10 @@ export function Popup({
   }
 
   return (
-    <FloatingPortal>
+    <FloatingPortal id={id}>
       <FloatingOverlay lockScroll />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <PopupContainer
-          id={id}
           ref={refs.setFloating}
           data-transition={status}
           aria-modal
