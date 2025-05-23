@@ -154,6 +154,10 @@ export interface CouponItem {
     value: number
     maxDiscountAmount: number
   }
+  period: {
+    startAt: string
+    endAt: string
+  }
   code: string
   propertyId: string
 }
