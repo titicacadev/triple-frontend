@@ -41,7 +41,7 @@ export const Button = styled.button.attrs({ type: 'button' })`
 `
 
 export const Container = styled(BaseContainer)`
-  background-color: ${({ theme }) => theme.nol.colorNeutralB10};
+  background-color: #eff1fa;
   padding: 30px 26px 24px;
   font-size: 14px;
   line-height: 19px;
