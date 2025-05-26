@@ -98,7 +98,7 @@ function DetailHeaderV2({
         <Text size="tiny" alpha={0.5}>
           {names.local || names.en}
         </Text>
-        {(reviewsRating || scrapsCount > 0) && (
+        {(reviewsRating || scrapsCount > 0 || reviewsCount > 0) && (
           <Container
             css={{
               margin: '14px 0 0',
@@ -115,6 +115,15 @@ function DetailHeaderV2({
                 <Rating score={reviewsRating} />
                 {reviewsCount > 0 && ` ${formatNumber(reviewsCount)}`}
                 <ArrowButton onClick={onReviewsRatingClick}>
+                  {t(['ribyubogi', '리뷰보기'])}
+                </ArrowButton>
+              </Text>
+            ) : reviewsCount > 0 ? (
+              <Text inline bold size="mini" alpha={1}>
+                <ArrowButton
+                  onClick={onReviewsRatingClick}
+                  style={{ paddingLeft: 0, marginLeft: '-4px' }}
+                >
                   {t(['ribyubogi', '리뷰보기'])}
                 </ArrowButton>
               </Text>
