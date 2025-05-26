@@ -9,4 +9,9 @@ export default {
 
 // TODO: 서버에 데이터가 없어서 mocking 해야 할 듯
 export const ExampleVerificationRequest: StoryObj<typeof VerificationRequest> =
-  {}
+  {
+    args: {
+      forceVerification: false,
+      onCancel: () => {},
+    },
+  }
