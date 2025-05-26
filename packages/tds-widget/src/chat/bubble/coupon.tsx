@@ -15,8 +15,7 @@ const CouponContainer = styled.div`
   text-align: left;
 `
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function CouponBubble({ id, my, coupon, ...props }: CouponBubbleProp) {
+export function CouponBubble({ coupon, onDownloadClick }: CouponBubbleProp) {
   return (
     <CouponContainer>
       <Text css={{ color: 'white;', fontSize: '12px', fontWeight: 400 }}>
@@ -34,6 +33,7 @@ export function CouponBubble({ id, my, coupon, ...props }: CouponBubbleProp) {
           float: 'right',
           marginTop: '24px',
         }}
+        onClick={() => onDownloadClick?.(coupon)}
       >
         쿠폰 받고 사용하러 가기
       </Text>

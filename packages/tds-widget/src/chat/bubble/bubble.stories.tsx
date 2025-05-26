@@ -1,4 +1,5 @@
 import { ScrollProvider } from '../chat'
+import { CouponItem } from '../types'
 
 import {
   CouponBubbleProp,
@@ -90,7 +91,6 @@ export const Product = {
 export const Coupon = {
   render: (args: CouponBubbleProp) => <CouponBubble {...args} />,
   args: {
-    my: false,
     coupon: {
       name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
       discount: {
@@ -107,6 +107,9 @@ export const Coupon = {
       type: 'RANDOM',
     },
     id: 'coupon_bubble',
+    onDownloadClick: (coupon: CouponItem) => {
+      alert(`쿠폰 코드 ${coupon.code} 다운로드`)
+    },
   },
 }
 
