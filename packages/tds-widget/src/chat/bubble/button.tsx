@@ -38,7 +38,7 @@ export function ButtonBubble({
           &::after {
             content: '';
             color: inherit;
-            background-color: currentColor;
+            background-color: currentcolor;
             display: inline-block;
             width: 16px;
             height: 16px;
