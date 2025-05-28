@@ -1,6 +1,8 @@
 import { ScrollProvider } from '../chat'
+import { CouponItem } from '../types'
 
 import {
+  CouponBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -8,7 +10,13 @@ import {
 } from './type'
 import AlteredBubble from './altered'
 
-import { ImageBubble, ProductBubble, RichBubble, TextBubble } from './index'
+import {
+  ImageBubble,
+  ProductBubble,
+  RichBubble,
+  TextBubble,
+  CouponBubble,
+} from './index'
 
 export default {
   title: 'tds-widget / chat / Bubble',
@@ -80,6 +88,31 @@ export const Product = {
   },
 }
 
+export const Coupon = {
+  render: (args: CouponBubbleProp) => <CouponBubble {...args} />,
+  args: {
+    coupon: {
+      name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
+      discount: {
+        type: 'AMOUNT',
+        value: 5000,
+        maxDiscountAmount: 5000,
+      },
+      period: {
+        startAt: '2025-05-23T00:00:00+09:00',
+        endAt: '2025-05-23T23:59:59+09:00',
+      },
+      code: 'X9XWCGGM58N9A499',
+      propertyId: '10003136',
+      type: 'RANDOM',
+    },
+    id: 'coupon_bubble',
+    onDownloadClick: (coupon: CouponItem) => {
+      alert(`쿠폰 코드 ${coupon.code} 다운로드`)
+    },
+  },
+}
+
 export const Rich = {
   render: (args: RichBubbleProp) => <RichBubble {...args} />,
   args: {
@@ -89,11 +122,11 @@ export const Rich = {
         type: 'text',
         message: `안녕하세요.
     TNA_BPM입니다. 고객님의 투어·티켓 예약이 확정되었습니다.
-    
+
     • 예약번호: 1111
     • 예약상품: [멀티리전_테스트][부산/가평/통영] 유효기간 상품 | 차량 이용권
     • 예약옵션: 성인x1
-    
+
     예약한 날짜에 TNA_BPM 팀과 만나 투어확정서를 제시해주세요.
     투어확정서의 상세한 내용은 [트리플 앱 > 내 예약 > 예약번호 1111]에서 확인하실 수 있습니다.
     궁금한 점이 있으시면 TNA_BPM 문의를 편하게 이용해주세요.

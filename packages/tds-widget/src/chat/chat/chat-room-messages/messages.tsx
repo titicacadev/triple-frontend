@@ -182,6 +182,8 @@ function getMessageTypeAndValue<T = UserType>(
       return { type: payload.type, value: { blocks: payload.items } }
     case ChatMessagePayloadType.PRODUCT:
       return { type: payload.type, value: { product: payload.product } }
+    case ChatMessagePayloadType.COUPON:
+      return { type: payload.type, value: { coupon: payload.coupon } }
   }
 }
 

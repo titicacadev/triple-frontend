@@ -1,4 +1,5 @@
 import {
+  CouponBubbleUIProp,
   ImageBubbleUIProp,
   ProductBubbleUIProp,
   RichBubbleUIProp,
@@ -25,6 +26,7 @@ export type MessageInterface<
     | ImageBubbleUIProp
     | RichBubbleUIProp
     | ProductBubbleUIProp
+    | CouponBubbleUIProp
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | { type: string; value?: any }
   )
