@@ -13,6 +13,7 @@ import OriginalMessages from '../../messages'
 import { getProfileImageUrl } from '../../utils'
 import { UnsentMessage } from '../messages-reducer'
 import { getUserIdentifier } from '../../utils/user'
+import { RichBubbleUIProp } from '../../bubble/bubble-ui'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -32,6 +33,7 @@ export default function Messages<T = UserType>({
   failedMessages,
   displayTarget,
   showReactions = false,
+  shouldSplitRichMessage = false,
   ...props
 }: {
   me: ChatRoomUser<T>
@@ -40,9 +42,14 @@ export default function Messages<T = UserType>({
   failedMessages: UnsentMessage<ChatMessageInterface<T>>[]
   displayTarget: T
   showReactions?: boolean
+  shouldSplitRichMessage?: boolean
 } & Omit<
   OriginalMessagesPropTypes<T>,
-  'me' | 'messages' | 'pendingMessages' | 'failedMessages'
+  | 'me'
+  | 'messages'
+  | 'pendingMessages'
+  | 'failedMessages'
+  | 'richMessageSplitter'
 >) {
   return (
     <OriginalMessages<ChatRoomMessageInterface<T>, UserInterface>
@@ -60,9 +67,31 @@ export default function Messages<T = UserType>({
         showReactions,
       )}
       me={convertChatUserToMessageUser(me)}
+      richMessageSplitter={
+        shouldSplitRichMessage ? richMessageSplitter : undefined
+      }
       {...props}
     />
   )
+}
+
+function richMessageSplitter<T = UserType>(
+  message: OriginalMessagesPropTypes<T>['messages'][number],
+  block: RichBubbleUIProp['value']['blocks'][number],
+) {
+  return {
+    ...message,
+    type: block.type,
+    ...('message' in block && {
+      value: { message: block.message },
+    }),
+    ...('images' in block && {
+      value: { images: block.images },
+    }),
+    value: {
+      ...block,
+    },
+  }
 }
 
 function convertMessages<T = UserType>(
