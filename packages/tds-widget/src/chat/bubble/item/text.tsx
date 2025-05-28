@@ -12,15 +12,17 @@ const StyledText = styled.span`
 
 export default function TextItem({
   text,
+  href,
   onClick,
 }: {
   text: string
+  href?: string
   onClick?: MouseEventHandler
 }) {
   return (
     <StyledText
       dangerouslySetInnerHTML={{
-        __html: Autolinker.link(text, {
+        __html: Autolinker.link(href ? `<a href=${href}>${text}</a>` : text, {
           newWindow: true,
           stripPrefix: false,
         }),

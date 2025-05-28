@@ -5,7 +5,7 @@ import { InView } from 'react-intersection-observer'
 import BubbleContainer, {
   BubbleContainerProp,
 } from '../bubble-container/bubble-container'
-import BubbleUI, { BubbleUIProps } from '../bubble/bubble-ui'
+import BubbleUI, { BubbleUIProps, RichBubbleUIProp } from '../bubble/bubble-ui'
 import { UserInterface } from '../types'
 import AlteredBubble from '../bubble/altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
@@ -68,6 +68,14 @@ interface MessagesProp<
    * pendingMessages와 failedMessages 사이에 렌더되는 컴포넌트
    */
   interactionStatusSlot?: JSX.Element
+  /**
+   * rich 메시지를 블록 단위로 나누어 렌더링할 때 사용하는 함수
+   * 주의: customBubble > 'button' 전달 필요
+   */
+  richMessageSplitter?: (
+    message: MessageInterface<Message, User>,
+    block: RichBubbleUIProp['value']['blocks'][number],
+  ) => MessageInterface<Message, User>
 }
 
 export default function Messages<
@@ -98,6 +106,7 @@ export default function Messages<
   showProfilePhoto = true,
   BubbleExtra,
   interactionStatusSlot,
+  richMessageSplitter,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -223,6 +232,13 @@ export default function Messages<
 
       const IntersectionObserver = onMessageIntersecting ? InView : Fragment
 
+      const bubbleMessages =
+        richMessageSplitter && message.type === 'rich'
+          ? (message.value as RichBubbleUIProp['value']).blocks.map((block) =>
+              richMessageSplitter(message, block),
+            )
+          : [message]
+
       return (
         <Fragment key={id}>
           {hasDateDivider && isFirstMessageOfDate ? (
@@ -244,56 +260,67 @@ export default function Messages<
                 : undefined
             }
           >
-            <BubbleContainer
-              id={id.toString()}
-              my={my}
-              unreadCount={
-                calculateUnreadCount ? calculateUnreadCount(message) : null
-              }
-              createdAt={createdAt}
-              user={{
-                photo: sender.profile.photo,
-                name: sender.profile.name,
-                userId: sender.id,
-                unregistered: sender.unregistered,
-              }}
-              showInfo={type !== 'product'}
-              showProfile={showProfile}
-              showDateInfo={!hasDateDivider}
-              showTimeInfo={listType === 'normal' && showTimeInfo}
-              {...(listType === 'failed' && {
-                onRetry: () => {
-                  onRetry?.(message)
-                },
-                onRetryCancel: () => {
-                  onRetryCancel?.(message)
-                },
-              })}
-              thanks={thanks}
-              onThanksClick={
-                thanks && onThanksClick
-                  ? () => onThanksClick(message)
-                  : undefined
-              }
-              onReplyClick={
-                onReplyClick ? () => onReplyClick(message) : undefined
-              }
-              messageRefCallback={messageRefCallback}
-              css={{
-                marginTop: isFirstMessageOfDate
-                  ? spacing?.dateDivider || 20
-                  : showProfile
-                    ? spacing?.messageGroup || 16
-                    : spacing?.message || 5,
-              }}
-              bubbleInfoGap={spacing?.bubbleInfo || 4}
-              failureHandlerGap={spacing?.failureHandler || 6}
-              onUserClick={onUserClick}
-              bubbleInfoStyle={bubbleInfoStyle}
-              showProfilePhoto={showProfilePhoto}
-            >
-              {getBubble({ message, my, hasArrow: showProfile })}
-            </BubbleContainer>
+            {bubbleMessages.map((bubbleMessage, index, { length }) => (
+              <BubbleContainer
+                key={`${id}-${index}`}
+                id={id.toString() + `-${index}`}
+                my={my}
+                user={{
+                  photo: sender.profile.photo,
+                  name: sender.profile.name,
+                  userId: sender.id,
+                  unregistered: sender.unregistered,
+                }}
+                unreadCount={null}
+                {...(index === length - 1 && {
+                  unreadCount: calculateUnreadCount
+                    ? calculateUnreadCount(message)
+                    : null,
+                  createdAt,
+                  showInfo: type !== 'product',
+                  showDateInfo: !hasDateDivider,
+                  showTimeInfo: listType === 'normal' && showTimeInfo,
+                  ...(listType === 'failed' && {
+                    onRetry: () => {
+                      onRetry?.(message)
+                    },
+                    onRetryCancel: () => {
+                      onRetryCancel?.(message)
+                    },
+                  }),
+                  thanks,
+                  onThanksClick:
+                    thanks && onThanksClick
+                      ? () => onThanksClick(message)
+                      : undefined,
+                  onReplyClick: onReplyClick
+                    ? () => onReplyClick(message)
+                    : undefined,
+                })}
+                showProfile={showProfile && index === 0}
+                showProfilePhoto={showProfilePhoto}
+                messageRefCallback={messageRefCallback}
+                css={{
+                  marginTop:
+                    isFirstMessageOfDate && index === 0
+                      ? spacing?.dateDivider || 20
+                      : showProfile && index === 0
+                        ? spacing?.messageGroup || 16
+                        : spacing?.message || 5,
+                }}
+                bubbleInfoGap={spacing?.bubbleInfo || 4}
+                failureHandlerGap={spacing?.failureHandler || 6}
+                onUserClick={onUserClick}
+                bubbleInfoStyle={bubbleInfoStyle}
+              >
+                {getBubble({
+                  message: bubbleMessage,
+                  my,
+                  hasArrow: showProfile,
+                })}
+              </BubbleContainer>
+            ))}
+
             {message.extra && BubbleExtra && (
               <BubbleExtra extra={message.extra} />
             )}

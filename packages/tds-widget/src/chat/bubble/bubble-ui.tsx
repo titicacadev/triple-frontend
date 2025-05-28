@@ -5,6 +5,7 @@ import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
   BubbleProp,
+  ButtonBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -14,8 +15,15 @@ import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 import { ParentMessageUIProp } from './parent'
+import { ButtonBubble } from './button'
 
-export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
+export const BubbleTypeArray = [
+  'text',
+  'images',
+  'rich',
+  'product',
+  'button',
+] as const
 
 export type BubbleType = (typeof BubbleTypeArray)[number]
 
@@ -44,11 +52,17 @@ export interface ProductBubbleUIProp extends BubbleUIPropBase {
   value: Pick<ProductBubbleProp, 'product'>
 }
 
+export interface ButtonBubbleUIProp extends BubbleUIPropBase {
+  type: 'button'
+  value: Pick<ButtonBubbleProp, 'label' | 'action'>
+}
+
 export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
   | ProductBubbleUIProp
+  | ButtonBubbleUIProp
 ) & {
   id: string
   my: boolean
@@ -145,6 +159,21 @@ export default function BubbleUI({
     )
   }
   switch (type) {
+    case 'button':
+      return (
+        <ButtonBubble
+          id={id}
+          my={my}
+          label={value.label}
+          action={value.action}
+          onClick={onBubbleClick}
+          onLinkClick={onTextBubbleLinkClick}
+          onLongPress={onBubbleLongPress}
+          hasArrow={hasArrow}
+          maxWidthOffset={maxWidthOffset}
+          {...props}
+        />
+      )
     case 'text':
       return (
         <TextBubble

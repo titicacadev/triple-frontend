@@ -88,3 +88,13 @@ export type BlindedBubbleProp = {
   alternativeText?: string
   textColor?: CSSProp
 } & BubbleProp
+
+export type ButtonBubbleProp = {
+  my: boolean
+  label: string
+  action: {
+    param: string
+    type: 'link'
+  }
+  onLinkClick?: (href: string) => void
+} & BubbleProp
