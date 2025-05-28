@@ -88,10 +88,18 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
     [isAndroid],
   )
 
+  const hasUriHash = useCallback(
+    (hash: string) => {
+      return uriHash.split('&').includes(hash)
+    },
+    [uriHash],
+  )
+
   const value = {
     uriHash,
     addUriHash,
     removeUriHash,
+    hasUriHash,
   }
 
   return (
