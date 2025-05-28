@@ -396,6 +396,26 @@ export const NolMessages = {
   args: {
     messages: [
       {
+        type: 'button',
+        value: {
+          label: '버튼 메시지 바로가기',
+          action: { type: 'link', param: 'https://www.triple.guide' },
+        },
+        id: 'button message',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
         type: 'text',
         value: { message: '안녕하세요.' },
         id: 'text message',
