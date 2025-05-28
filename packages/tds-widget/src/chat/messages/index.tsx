@@ -157,7 +157,7 @@ export default function Messages<
           />
         )
       }
-      return <CustomBubble {...message} />
+      return <CustomBubble {...message} my={my} />
     }
 
     if (!isBubbleType(type)) {
