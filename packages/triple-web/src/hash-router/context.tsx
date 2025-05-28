@@ -44,7 +44,12 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
   const addUriHash = useCallback<HashRouterContextValue['addUriHash']>(
     (hash, type) => {
       const url = new URL(window.location.href)
-      url.hash = hash
+
+      if (window.location.hash) {
+        url.hash = window.location.hash.replace('#', '') + '&' + hash
+      } else {
+        url.hash = hash
+      }
 
       if (type === 'push' || isAndroid) {
         window.history.pushState(null, '', url)
@@ -67,7 +72,16 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
       }
 
       const url = new URL(window.location.href)
-      url.hash = ''
+
+      const currentHash = window.location.hash.replace('#', '')
+      if (currentHash.includes('&')) {
+        const hashArray = currentHash.split('&')
+        hashArray.pop()
+        url.hash = hashArray.join('&')
+      } else {
+        url.hash = ''
+      }
+
       window.history.replaceState(null, '', url)
       window.dispatchEvent(new Event('hashchange'))
     },
