@@ -14,6 +14,7 @@ export interface HashRouterContextValue {
   uriHash: string
   addUriHash: (hash: string, type?: 'push' | 'replace') => void
   removeUriHash: (type?: 'pop' | 'replace') => void
+  hasUriHash: (hash: string) => boolean
 }
 
 export const HashRouterContext = createContext<HashRouterContextValue | null>(
