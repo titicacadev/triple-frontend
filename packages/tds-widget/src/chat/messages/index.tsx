@@ -168,6 +168,7 @@ export default function Messages<
       <BubbleUI
         key={id}
         id={id.toString()}
+        data-bubble-mine={my}
         my={my}
         created={!!createdAt}
         blinded={blinded}
