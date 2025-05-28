@@ -44,9 +44,18 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
   const addUriHash = useCallback<HashRouterContextValue['addUriHash']>(
     (hash, type) => {
       const url = new URL(window.location.href)
+      const currentHash = window.location.hash.replace('#', '')
 
-      if (window.location.hash) {
-        url.hash = window.location.hash.replace('#', '') + '&' + hash
+      if (currentHash) {
+        const hashArray = currentHash.split('&')
+        if (
+          hashArray.includes(hash) &&
+          process.env.NODE_ENV === 'development'
+        ) {
+          // eslint-disable-next-line no-console
+          console.warn(`❗️${hash} already exists in the hash.`)
+        }
+        url.hash = currentHash.replace('#', '') + '&' + hash
       } else {
         url.hash = hash
       }
