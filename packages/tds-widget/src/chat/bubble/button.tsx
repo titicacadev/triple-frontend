@@ -26,6 +26,7 @@ export function ButtonBubble({
         }
       `}
       my={my}
+      data-bubble-type="button"
       {...props}
     >
       <TextItem
