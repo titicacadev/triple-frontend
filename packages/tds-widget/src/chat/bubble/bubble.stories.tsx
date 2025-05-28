@@ -100,7 +100,7 @@ export const Coupon = {
       },
       period: {
         startAt: '2025-05-23T00:00:00+09:00',
-        endAt: '2025-05-23T23:59:59+09:00',
+        endAt: '2025-05-24T00:00:00+09:00',
       },
       code: 'X9XWCGGM58N9A499',
       propertyId: '10003136',
