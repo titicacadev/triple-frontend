@@ -89,6 +89,7 @@ function richMessageSplitter<T = UserType>(
       value: { images: block.images },
     }),
     value: {
+      ...('label' in block && { label: `${block.label} 바로가기` }),
       ...block,
     },
   }
