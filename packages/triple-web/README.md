@@ -48,8 +48,10 @@ addUriHash, removeUriHash 메서드에 별도의 type을 전달하지 않는다�
 
 ```jsx
 function ExampleComponent() {
-  const { uriHash } = useHashRouter()
-  const open = uriHash === 'some.unique.hash'
+  const { uriHash, hasUriHash } = useHashRouter()
+  const open = uriHash.includes('some.unique.hash')
+  // 또는
+  const open = hasUriHash('some.unique.hash')
 
   return <Popup open={open} />
 }
@@ -88,15 +90,23 @@ function ExampleComponent() {
 
 ### 사용 예시
 
+`uriHash`는 `&`로 엮인 해시값을 리턴합니다.
+
+ex) `hash.first&hash.second&hash.third`
+
+`hasUriHash`를 통해 특정 값이 해시에 존재하는지 확인합니다.
+
+ex) `hasUriHash('hash.second')`
+
 ```jsx
 function ExampleComponent() {
   const POPUP_HASH = 'popup.hash'
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
 
   return (
     <div>
       <button onClick={() => addUriHash(POPUP_HASH)}>팝업 열기</button>
-      <Popup open={uriHash === POPUP_HASH} onClose={() => removeUriHash()} />
+      <Popup open={hasUriHash(POPUP_HASH)} onClose={() => removeUriHash()} />
     </div>
   )
 }
@@ -116,3 +126,5 @@ function ExampleComponent() {
   - `type?`
     - `pop` : `window.history.back`을 사용하여 Hash를 제거합니다.
     - `replace` : `window.history.replaceState`를 사용하여 Hash를 제거합니다.
+- `hasUriHash: (hash:string) => boolean` : Hash값이 현재 Hash에 있는지 확인합니다.
+  - `hash`: 값의 존재를 확인할 Hash
