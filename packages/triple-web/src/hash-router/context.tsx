@@ -81,7 +81,7 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
           // eslint-disable-next-line no-console
           console.warn(`❗️${hash} already exists in the hash.`)
         }
-        url.hash = currentHash.replace('#', '') + '&' + hash
+        url.hash = currentHash + '&' + hash
       } else {
         url.hash = hash
       }
