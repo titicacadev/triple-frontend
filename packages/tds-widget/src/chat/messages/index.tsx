@@ -70,7 +70,6 @@ interface MessagesProp<
   interactionStatusSlot?: JSX.Element
   /**
    * rich 메시지를 블록 단위로 나누어 렌더링할 때 사용하는 함수
-   * 주의: customBubble > 'button' 전달 필요
    */
   richMessageSplitter?: (
     message: MessageInterface<Message, User>,
