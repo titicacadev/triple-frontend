@@ -1,10 +1,11 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 import moment from 'moment'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Text } from '@titicaca/tds-ui'
 
 import { CouponBubbleProp } from './type'
 import { nolBackgroundColor } from './nol'
+import { ButtonBubble } from './button'
 
 const CouponContainer = styled.div`
   display: inline-block;
@@ -39,7 +40,7 @@ const Circle = styled.div`
   }
 `
 
-const Divider = styled.div`
+const Divider = styled.div<{ valid: boolean }>`
   position: relative;
 
   &::after {
@@ -50,14 +51,14 @@ const Divider = styled.div`
     transform: translateX(-50%);
     width: 184px;
     height: 1px;
-    background-color: #42599d;
+    background-color: ${({ valid }) => (valid ? '#42599d' : '#C4C4C5')};
   }
 `
 
-const Coupon = styled.div`
+const Coupon = styled.div<{ valid: boolean }>`
   padding: 17px 20px;
   border-radius: 12px;
-  background-color: #324b94;
+  background-color: ${({ valid }) => (valid ? '#324b94' : '#BFBFC0')};
   width: 224px;
   height: 132px;
   text-align: left;
@@ -84,44 +85,77 @@ function Arrow() {
   )
 }
 
-const DownloadButton = styled(Text)`
+const DownloadButton = styled(Text)<{ valid: boolean }>`
   color: white;
   font-size: 12px;
   font-weight: 700;
   float: right;
   margin-top: 27px;
-  cursor: pointer;
   display: inline-block;
+  ${({ valid }) =>
+    valid &&
+    css`
+      cursor: pointer;
+    `};
 
   > svg {
     margin-top: -2px;
-    margin-left: -3px;
     width: 16px;
     height: 16px;
     padding: 3px;
   }
 `
 
-export function CouponBubble({ coupon, onDownloadClick }: CouponBubbleProp) {
+export function CouponBubble({
+  id,
+  my,
+  coupon,
+  onDownloadClick,
+  onProductLinkClick,
+  ...props
+}: CouponBubbleProp) {
+  const valid = moment(coupon.period.endAt).isAfter(moment())
   return (
-    <CouponContainer>
-      <Circle />
-      <Divider />
-      <Coupon>
-        <Text css={{ color: '#ABB5D3', fontSize: '12px', fontWeight: 400 }}>
-          {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')} 까지
-          사용
-        </Text>
-        <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
-          {formatNumber(coupon.discount.value)}
-          <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
-            원
-          </span>
-        </Text>
-        <DownloadButton onClick={() => onDownloadClick?.(coupon)}>
-          쿠폰 받고 사용하러 가기 <Arrow />
-        </DownloadButton>
-      </Coupon>
-    </CouponContainer>
+    <>
+      <CouponContainer>
+        <Circle />
+        <Divider valid={valid} />
+        <Coupon valid={valid}>
+          <Text
+            css={{
+              color: valid ? '#ABB5D3' : '#E5E5E5',
+              fontSize: '12px',
+              fontWeight: 400,
+            }}
+          >
+            {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')}{' '}
+            까지 사용
+          </Text>
+          <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
+            {formatNumber(coupon.discount.value)}
+            <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
+              원
+            </span>
+          </Text>
+          <DownloadButton
+            valid={valid}
+            onClick={() => valid && onDownloadClick?.(coupon)}
+          >
+            {valid ? '쿠폰 받기' : '기한 만료'}
+            {valid && <Arrow />}
+          </DownloadButton>
+        </Coupon>
+      </CouponContainer>
+      <ButtonBubble
+        id={id}
+        my={my}
+        label="쿠폰 바로 사용하기"
+        action={{ type: 'link', param: 'https://pf.kakao.com/_xexnXed' }}
+        onLinkClick={() => valid && onProductLinkClick?.(coupon)}
+        disabled={!valid}
+        hasArrow={false}
+        {...props}
+      />
+    </>
   )
 }
