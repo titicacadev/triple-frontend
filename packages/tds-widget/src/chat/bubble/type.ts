@@ -102,4 +102,5 @@ export type ButtonBubbleProp = {
     type: 'link'
   }
   onLinkClick?: (href: string) => void
+  disabled?: boolean
 } & BubbleProp

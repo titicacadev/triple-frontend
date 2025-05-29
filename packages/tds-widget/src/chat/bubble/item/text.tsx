@@ -2,7 +2,7 @@ import { Autolinker } from 'autolinker'
 import { MouseEventHandler } from 'react'
 import { styled } from 'styled-components'
 
-const StyledText = styled.span`
+export const StyledText = styled.span`
   display: -webkit-box;
   padding-left: 5px;
   padding-right: 5px;

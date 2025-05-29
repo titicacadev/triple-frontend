@@ -58,9 +58,17 @@ export const NOL_PARTNER_ROOM_BUBBLE_STYLE = {
       color: ${({ theme }) => theme.nol.colorNeutralB100};
       box-shadow: 0 0 0 1px #e4e7ff;
 
-      a {
+      a,
+      button {
         color: ${({ theme }) => theme.nol.colorPrimaryNol};
+      }
+
+      a {
         text-decoration: underline;
+      }
+
+      button[disabled] {
+        color: #b6b7bb;
       }
     `,
   },
@@ -74,9 +82,17 @@ export const NOL_PARTNER_ROOM_BUBBLE_STYLE = {
       color: ${({ theme }) => theme.nol.colorNeutralW100};
       background-color: ${({ theme }) => theme.nol.colorPrimaryNol};
 
-      a {
+      a,
+      button {
         color: inherit;
+      }
+
+      a {
         text-decoration: underline;
+      }
+
+      button[disabled] {
+        color: #ffffff80;
       }
     `,
   },
