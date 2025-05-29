@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 import moment from 'moment'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Text } from '@titicaca/tds-ui'
@@ -39,7 +39,7 @@ const Circle = styled.div`
   }
 `
 
-const Divider = styled.div`
+const Divider = styled.div<{ valid: boolean }>`
   position: relative;
 
   &::after {
@@ -50,14 +50,14 @@ const Divider = styled.div`
     transform: translateX(-50%);
     width: 184px;
     height: 1px;
-    background-color: #42599d;
+    background-color: ${({ valid }) => (valid ? '#42599d' : '#C4C4C5')};
   }
 `
 
-const Coupon = styled.div`
+const Coupon = styled.div<{ valid: boolean }>`
   padding: 17px 20px;
   border-radius: 12px;
-  background-color: #324b94;
+  background-color: ${({ valid }) => (valid ? '#324b94' : '#BFBFC0')};
   width: 224px;
   height: 132px;
   text-align: left;
@@ -84,18 +84,21 @@ function Arrow() {
   )
 }
 
-const DownloadButton = styled(Text)`
+const DownloadButton = styled(Text)<{ valid: boolean }>`
   color: white;
   font-size: 12px;
   font-weight: 700;
   float: right;
   margin-top: 27px;
-  cursor: pointer;
   display: inline-block;
+  ${({ valid }) =>
+    valid &&
+    css`
+      cursor: pointer;
+    `};
 
   > svg {
     margin-top: -2px;
-    margin-left: -3px;
     width: 16px;
     height: 16px;
     padding: 3px;
@@ -103,12 +106,19 @@ const DownloadButton = styled(Text)`
 `
 
 export function CouponBubble({ coupon, onDownloadClick }: CouponBubbleProp) {
+  const valid = moment(coupon.period.endAt).isAfter(moment())
   return (
     <CouponContainer>
       <Circle />
-      <Divider />
-      <Coupon>
-        <Text css={{ color: '#ABB5D3', fontSize: '12px', fontWeight: 400 }}>
+      <Divider valid={valid} />
+      <Coupon valid={valid}>
+        <Text
+          css={{
+            color: valid ? '#ABB5D3' : '#E5E5E5',
+            fontSize: '12px',
+            fontWeight: 400,
+          }}
+        >
           {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')} 까지
           사용
         </Text>
@@ -118,8 +128,12 @@ export function CouponBubble({ coupon, onDownloadClick }: CouponBubbleProp) {
             원
           </span>
         </Text>
-        <DownloadButton onClick={() => onDownloadClick?.(coupon)}>
-          쿠폰 받고 사용하러 가기 <Arrow />
+        <DownloadButton
+          valid={valid}
+          onClick={() => valid && onDownloadClick?.(coupon)}
+        >
+          {valid ? '쿠폰 받고 사용하러 가기' : '기한 만료'}
+          {valid && <Arrow />}
         </DownloadButton>
       </Coupon>
     </CouponContainer>
