@@ -14,8 +14,8 @@ export default function useATagNavigator(
     const href =
       eventTarget.tagName === 'A'
         ? (eventTarget.getAttribute('href') ?? '')
-        : eventTarget.tagName === 'BUTTON'
-          ? (eventTarget.getAttribute('data-link') ?? '')
+        : event.currentTarget.tagName === 'BUTTON'
+          ? (event.currentTarget.getAttribute('data-link') ?? '')
           : ''
 
     if (href) {
