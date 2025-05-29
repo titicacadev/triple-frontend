@@ -99,7 +99,6 @@ const DownloadButton = styled(Text)<{ valid: boolean }>`
 
   > svg {
     margin-top: -2px;
-    margin-left: -3px;
     width: 16px;
     height: 16px;
     padding: 3px;
