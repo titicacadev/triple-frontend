@@ -422,11 +422,31 @@ export const NolMessages = {
           action: { type: 'link', param: 'https://www.triple.guide' },
         },
         disabled: true,
-        id: 'button message',
+        id: 'button message disabled',
         sender: {
           id: 'test user',
           profile: {
             name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'button',
+        value: {
+          label: '버튼 메시지 바로가기',
+          action: { type: 'link', param: 'https://www.triple.guide' },
+        },
+        id: 'my button message',
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
             photo:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
@@ -470,26 +490,6 @@ export const NolMessages = {
         createdAt: new Date(2022, 10, 1).toISOString(),
       },
       {
-        type: 'button',
-        value: {
-          label: '버튼 메시지 바로가기',
-          action: { type: 'link', param: 'https://www.triple.guide' },
-        },
-        id: 'button message',
-        sender: {
-          id: 'test',
-          profile: {
-            name: 'test',
-            photo:
-              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
-          },
-          unregistered: false,
-          unfriended: false,
-        },
-        createdAt: new Date(2022, 10, 1).toISOString(),
-        thanks: { count: 1, haveMine: false },
-      },
-      {
         type: 'text',
         value: { message: '연속 두번째로 보내는 메시지 입니다.' },
         id: 'my text message 2',
@@ -507,7 +507,7 @@ export const NolMessages = {
       },
       {
         type: 'coupon',
-        id: 'coupon message',
+        id: 'my coupon message',
         value: {
           coupon: {
             name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
