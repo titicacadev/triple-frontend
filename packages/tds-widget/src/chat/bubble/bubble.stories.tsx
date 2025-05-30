@@ -138,8 +138,8 @@ export const Rich = {
         action: { param: 'link', type: 'link' },
       },
     ],
-    cloudinaryBucket: 'triple-dev',
-    mediaBaseUrl: '',
+    cloudinaryName: 'triple-dev',
+    mediaUrlBase: '',
     id: 'rich_bubble',
   },
 }
