@@ -2,8 +2,7 @@ import { ComponentType, MouseEvent, PropsWithChildren } from 'react'
 import { LongPressCallbackMeta, LongPressReactEvents } from 'use-long-press'
 import { CSSProp } from 'styled-components'
 
-import { MetaDataInterface } from '../types/image'
-import { ProductItem, RichItem } from '../types/message'
+import { CouponItem, ProductItem, RichItem, MetaDataInterface } from '../types'
 
 import { ParentMessageUIProp } from './parent'
 
@@ -83,8 +82,25 @@ export type ProductBubbleProp = {
   product: ProductItem
 } & BubbleProp
 
+export interface CouponBubbleProp {
+  id: string
+  coupon: CouponItem
+  onDownloadClick?: (coupon: CouponItem) => void
+}
+
 export type BlindedBubbleProp = {
   my: boolean
   alternativeText?: string
   textColor?: CSSProp
+} & BubbleProp
+
+export type ButtonBubbleProp = {
+  my: boolean
+  label: string
+  action: {
+    param: string
+    type: 'link'
+  }
+  onLinkClick?: (href: string) => void
+  disabled?: boolean
 } & BubbleProp

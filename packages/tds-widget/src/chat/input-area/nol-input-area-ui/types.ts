@@ -24,6 +24,7 @@ interface NolInputAreaUIBaseProps
   placeholderColor?: string
   activeButtonColor?: string
   disabled?: boolean
+  scrollbarVisible?: boolean
 }
 
 export type NolInputAreaUIProps = NolInputAreaUIBaseProps &

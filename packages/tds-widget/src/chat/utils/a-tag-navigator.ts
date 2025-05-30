@@ -11,15 +11,18 @@ export default function useATagNavigator(
 
     const eventTarget = event.target as HTMLElement
 
-    if (eventTarget.tagName === 'A') {
-      const href = eventTarget.getAttribute('href') ?? ''
+    const href =
+      eventTarget.tagName === 'A'
+        ? (eventTarget.getAttribute('href') ?? '')
+        : event.currentTarget.tagName === 'BUTTON'
+          ? (event.currentTarget.getAttribute('data-link') ?? '')
+          : ''
 
-      if (href) {
-        if (onLinkClick) {
-          onLinkClick(href)
-        } else {
-          window.open(href, '_blank', 'noopener')
-        }
+    if (href) {
+      if (onLinkClick) {
+        onLinkClick(href)
+      } else {
+        window.open(href, '_blank', 'noopener')
       }
     }
   }

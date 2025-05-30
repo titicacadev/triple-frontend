@@ -21,6 +21,7 @@ export enum ChatMessagePayloadType {
   FORM = 'form',
   SUBMIT = 'submit',
   PRODUCT = 'product',
+  COUPON = 'coupon',
 }
 
 type RichItemType =
@@ -77,11 +78,17 @@ interface ChatProductMessagePayload extends ChatMessagePayloadBase {
   product: ProductItem
 }
 
+interface ChatCouponMessagePayload extends ChatMessagePayloadBase {
+  type: ChatMessagePayloadType.COUPON
+  coupon: CouponItem
+}
+
 export type ChatMessagePayload =
   | ChatTextMessagePayload
   | ChatImagesMessagePayload
   | ChatRichMessagePayload
   | ChatProductMessagePayload
+  | ChatCouponMessagePayload
 
 type ChatAlternativeMessagePayload =
   | ChatTextMessagePayload
@@ -138,4 +145,19 @@ export interface ProductItem {
   optionName?: string
   dateOfUse?: string
   bookingId?: number
+}
+
+export interface CouponItem {
+  name: string
+  discount: {
+    type: string
+    value: number
+    maxDiscountAmount: number
+  }
+  period: {
+    startAt: string
+    endAt: string
+  }
+  code: string
+  propertyId: string
 }

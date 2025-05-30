@@ -396,6 +396,47 @@ export const NolMessages = {
   args: {
     messages: [
       {
+        type: 'button',
+        value: {
+          label: '버튼 메시지 바로가기',
+          action: { type: 'link', param: 'https://www.triple.guide' },
+        },
+        id: 'button message',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        type: 'button',
+        value: {
+          label: '버튼 메시지 바로가기 disabled',
+          action: { type: 'link', param: 'https://www.triple.guide' },
+        },
+        disabled: true,
+        id: 'button message',
+        sender: {
+          id: 'test user',
+          profile: {
+            name: 'test user',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
         type: 'text',
         value: { message: '안녕하세요.' },
         id: 'text message',
@@ -443,6 +484,37 @@ export const NolMessages = {
           unfriended: false,
         },
         createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+      {
+        type: 'coupon',
+        id: 'coupon message',
+        value: {
+          coupon: {
+            name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
+            discount: {
+              type: 'AMOUNT',
+              value: 5000,
+              maxDiscountAmount: 5000,
+            },
+            period: {
+              startAt: '2025-05-23T00:00:00+09:00',
+              endAt: '2025-05-24T00:00:00+09:00',
+            },
+            code: 'KYCHS7TFRJ577XLA',
+            propertyId: '10003136',
+            type: 'RANDOM',
+          },
+        },
+        sender: {
+          id: 'test',
+          profile: {
+            name: 'test',
+            photo:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
       },
     ],
     pendingMessages: [
