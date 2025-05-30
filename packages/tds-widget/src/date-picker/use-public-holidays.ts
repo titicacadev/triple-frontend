@@ -8,8 +8,10 @@ const EMPTY_ARRAY: Holiday[] = []
 
 export function usePublicHolidays({
   numberOfMonths,
+  skip = false,
 }: {
   numberOfMonths: number
+  skip?: boolean
 }) {
   const [publicHolidays, setPublicHolidays] = useState<Holiday[]>()
 
@@ -31,9 +33,11 @@ export function usePublicHolidays({
         }
       }
 
-      fetchData()
+      if (!skip) {
+        fetchData()
+      }
     }
-  }, [from, to])
+  }, [from, to, skip])
 
   return useMemo(
     () => (publicHolidays || EMPTY_ARRAY).map(({ date }) => new Date(date)),

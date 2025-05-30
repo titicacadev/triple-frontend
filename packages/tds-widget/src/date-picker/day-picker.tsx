@@ -52,9 +52,6 @@ export function DayPicker({
   canChangeMonth?: boolean
   fromMonth?: string
   toMonth?: string
-  /**
-   * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
-   */
   publicHolidays?: Date[]
 }) {
   const hasRangeMonth = fromMonth && toMonth
@@ -69,6 +66,7 @@ export function DayPicker({
 
   const publicHolidays = usePublicHolidays({
     numberOfMonths,
+    skip: !!publicHolidaysFromProps,
   })
 
   const selectedDay = useMemo(
