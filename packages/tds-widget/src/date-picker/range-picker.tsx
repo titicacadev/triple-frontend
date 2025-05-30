@@ -100,6 +100,7 @@ export function RangePicker({
 
   const publicHolidays = usePublicHolidays({
     numberOfMonths,
+    skip: !!publicHolidaysFromProps,
   })
 
   const initialMonth = useMemo(getInitialMonth, [])
