@@ -5,6 +5,8 @@ import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
   BubbleProp,
+  ButtonBubbleProp,
+  CouponBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -14,8 +16,17 @@ import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 import { ParentMessageUIProp } from './parent'
+import { ButtonBubble } from './button'
+import { CouponBubble } from './coupon'
 
-export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
+export const BubbleTypeArray = [
+  'text',
+  'images',
+  'rich',
+  'product',
+  'button',
+  'coupon',
+] as const
 
 export type BubbleType = (typeof BubbleTypeArray)[number]
 
@@ -44,11 +55,23 @@ export interface ProductBubbleUIProp extends BubbleUIPropBase {
   value: Pick<ProductBubbleProp, 'product'>
 }
 
+export interface ButtonBubbleUIProp extends BubbleUIPropBase {
+  type: 'button'
+  value: Pick<ButtonBubbleProp, 'label' | 'action'>
+}
+
+export interface CouponBubbleUIProp extends BubbleUIPropBase {
+  type: 'coupon'
+  value: Pick<CouponBubbleProp, 'coupon'>
+}
+
 export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
   | ProductBubbleUIProp
+  | ButtonBubbleUIProp
+  | CouponBubbleUIProp
 ) & {
   id: string
   my: boolean
@@ -70,6 +93,10 @@ export type BubbleUIProps = (
   onRichBubbleBlockClick?: {
     image?: RichBubbleProp['onImageClick']
     beforeButtonRouting?: RichBubbleProp['onButtonClickBeforeRouting']
+  }
+  onCouponBubbleClick?: {
+    download?: CouponBubbleProp['onDownloadClick']
+    productLink?: CouponBubbleProp['onProductLinkClick']
   }
   richBubbleStyle?: {
     textItemStyle?: CSSProp
@@ -110,6 +137,7 @@ export default function BubbleUI({
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
+  onCouponBubbleClick,
   onParentMessageClick,
   richBubbleStyle,
   maxWidthOffset,
@@ -145,6 +173,21 @@ export default function BubbleUI({
     )
   }
   switch (type) {
+    case 'button':
+      return (
+        <ButtonBubble
+          id={id}
+          my={my}
+          label={value.label}
+          action={value.action}
+          onClick={onBubbleClick}
+          onLinkClick={onTextBubbleLinkClick}
+          onLongPress={onBubbleLongPress}
+          hasArrow={hasArrow}
+          maxWidthOffset={maxWidthOffset}
+          {...props}
+        />
+      )
     case 'text':
       return (
         <TextBubble
@@ -212,6 +255,17 @@ export default function BubbleUI({
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
           hasArrow={hasArrow}
+          {...props}
+        />
+      )
+    case 'coupon':
+      return (
+        <CouponBubble
+          id={id}
+          my={my}
+          coupon={value.coupon}
+          onDownloadClick={onCouponBubbleClick?.download}
+          onProductLinkClick={onCouponBubbleClick?.productLink}
           {...props}
         />
       )
