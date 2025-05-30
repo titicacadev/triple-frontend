@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 13.46.1
+
+```
+### poi-detail
+
+- [INTTNA-2259] 상세 헤더 TNA 공급사 리뷰로 사용하기 위해 리뷰 개수만 확인하여 리뷰보기 노출 [3705](https://github.com/titicacadev/triple-frontend/pull/3705)
+```
+
 ## 13.46.0
 
 ```
@@ -4808,11 +4816,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
