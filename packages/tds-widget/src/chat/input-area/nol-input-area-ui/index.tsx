@@ -1,6 +1,6 @@
 import { Container } from '@titicaca/tds-ui'
 import { ChangeEvent, ForwardedRef, forwardRef, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import SelectPhotoIcon from '../../icons/select-photo-icon'
 import { textAreaAutoResize } from '../utils'
@@ -24,6 +24,7 @@ const InputAreaContainer = styled(Container)`
 const TextArea = styled.textarea<{
   $color?: string
   placeholderColor?: string
+  scrollbarVisible?: boolean
 }>`
   flex-grow: 1;
   height: ${TEXTAREA_MIN_HEIGHT}px;
@@ -40,9 +41,13 @@ const TextArea = styled.textarea<{
       placeholderColor || theme.nol.colorNeutralG30};
   }
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${({ scrollbarVisible }) =>
+    !scrollbarVisible &&
+    css`
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    `}
 `
 
 const SendButton = styled.button<{
@@ -112,6 +117,7 @@ function NolInputAreaUIImpl(
     activeButtonColor,
     onBlur,
     onFocus,
+    scrollbarVisible,
     ...props
   }: NolInputAreaUIProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -167,6 +173,7 @@ function NolInputAreaUIImpl(
         }}
       >
         <TextArea
+          scrollbarVisible={scrollbarVisible}
           disabled={disabled}
           onChange={onTextAreaChange}
           value={inputValue}
