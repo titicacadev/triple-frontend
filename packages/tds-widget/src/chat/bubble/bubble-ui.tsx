@@ -94,7 +94,10 @@ export type BubbleUIProps = (
     image?: RichBubbleProp['onImageClick']
     beforeButtonRouting?: RichBubbleProp['onButtonClickBeforeRouting']
   }
-  onCouponDownloadClick?: CouponBubbleProp['onDownloadClick']
+  onCouponBubbleClick?: {
+    download?: CouponBubbleProp['onDownloadClick']
+    productLink?: CouponBubbleProp['onProductLinkClick']
+  }
   richBubbleStyle?: {
     textItemStyle?: CSSProp
     imageItemStyle?: CSSProp
@@ -134,7 +137,7 @@ export default function BubbleUI({
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
-  onCouponDownloadClick,
+  onCouponBubbleClick,
   onParentMessageClick,
   richBubbleStyle,
   maxWidthOffset,
@@ -259,8 +262,10 @@ export default function BubbleUI({
       return (
         <CouponBubble
           id={id}
+          my={my}
           coupon={value.coupon}
-          onDownloadClick={onCouponDownloadClick}
+          onDownloadClick={onCouponBubbleClick?.download}
+          onProductLinkClick={onCouponBubbleClick?.productLink}
           {...props}
         />
       )

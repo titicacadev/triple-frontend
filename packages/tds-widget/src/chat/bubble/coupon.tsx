@@ -5,6 +5,7 @@ import { Text } from '@titicaca/tds-ui'
 
 import { CouponBubbleProp } from './type'
 import { nolBackgroundColor } from './nol'
+import { ButtonBubble } from './button'
 
 const CouponContainer = styled.div`
   display: inline-block;
@@ -105,37 +106,56 @@ const DownloadButton = styled(Text)<{ valid: boolean }>`
   }
 `
 
-export function CouponBubble({ coupon, onDownloadClick }: CouponBubbleProp) {
+export function CouponBubble({
+  id,
+  my,
+  coupon,
+  onDownloadClick,
+  onProductLinkClick,
+  ...props
+}: CouponBubbleProp) {
   const valid = moment(coupon.period.endAt).isAfter(moment())
   return (
-    <CouponContainer>
-      <Circle />
-      <Divider valid={valid} />
-      <Coupon valid={valid}>
-        <Text
-          css={{
-            color: valid ? '#ABB5D3' : '#E5E5E5',
-            fontSize: '12px',
-            fontWeight: 400,
-          }}
-        >
-          {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')} 까지
-          사용
-        </Text>
-        <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
-          {formatNumber(coupon.discount.value)}
-          <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
-            원
-          </span>
-        </Text>
-        <DownloadButton
-          valid={valid}
-          onClick={() => valid && onDownloadClick?.(coupon)}
-        >
-          {valid ? '쿠폰 받고 사용하러 가기' : '기한 만료'}
-          {valid && <Arrow />}
-        </DownloadButton>
-      </Coupon>
-    </CouponContainer>
+    <>
+      <CouponContainer>
+        <Circle />
+        <Divider valid={valid} />
+        <Coupon valid={valid}>
+          <Text
+            css={{
+              color: valid ? '#ABB5D3' : '#E5E5E5',
+              fontSize: '12px',
+              fontWeight: 400,
+            }}
+          >
+            {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')}{' '}
+            까지 사용
+          </Text>
+          <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
+            {formatNumber(coupon.discount.value)}
+            <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
+              원
+            </span>
+          </Text>
+          <DownloadButton
+            valid={valid}
+            onClick={() => valid && onDownloadClick?.(coupon)}
+          >
+            {valid ? '쿠폰 받기' : '기한 만료'}
+            {valid && <Arrow />}
+          </DownloadButton>
+        </Coupon>
+      </CouponContainer>
+      <ButtonBubble
+        id={id}
+        my={my}
+        label="쿠폰 바로 사용하기"
+        action={{ type: 'link', param: 'https://pf.kakao.com/_xexnXed' }}
+        onLinkClick={() => valid && onProductLinkClick?.(coupon)}
+        disabled={!valid}
+        hasArrow={false}
+        {...props}
+      />
+    </>
   )
 }
