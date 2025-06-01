@@ -15,7 +15,7 @@ import {
   ProductBubble,
   RichBubble,
   TextBubble,
-  CouponBubble,
+  NolCouponContentBubble,
 } from './index'
 
 export default {
@@ -89,7 +89,7 @@ export const Product = {
 }
 
 export const Coupon = {
-  render: (args: CouponBubbleProp) => <CouponBubble {...args} />,
+  render: (args: CouponBubbleProp) => <NolCouponContentBubble {...args} />,
   args: {
     coupon: {
       name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',

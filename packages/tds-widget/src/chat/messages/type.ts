@@ -1,6 +1,9 @@
 import {
+  ButtonBubbleUIProp,
   CouponBubbleUIProp,
   ImageBubbleUIProp,
+  NolCouponButtonBubbleUIProp,
+  NolCouponContentBubbleUIProp,
   ProductBubbleUIProp,
   RichBubbleUIProp,
   TextBubbleUIProp,
@@ -27,6 +30,22 @@ export type MessageInterface<
     | RichBubbleUIProp
     | ProductBubbleUIProp
     | CouponBubbleUIProp
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | { type: string; value?: any }
+  )
+
+export type BubbleMessageInterface<
+  Message extends MessageBase<User>,
+  User extends UserInterface,
+> = Message &
+  (
+    | TextBubbleUIProp
+    | ImageBubbleUIProp
+    | RichBubbleUIProp
+    | ProductBubbleUIProp
+    | ButtonBubbleUIProp
+    | NolCouponContentBubbleUIProp
+    | NolCouponButtonBubbleUIProp
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | { type: string; value?: any }
   )
