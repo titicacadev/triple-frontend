@@ -88,7 +88,7 @@ export const Product = {
   },
 }
 
-export const Coupon = {
+export const NolCouponContent = {
   render: (args: CouponBubbleProp) => <NolCouponContentBubble {...args} />,
   args: {
     coupon: {
