@@ -1,12 +1,23 @@
 import { isSameDay, isSameMinute } from 'date-fns'
 
-import { BubbleType, BubbleTypeArray } from '../bubble/bubble-ui'
+import {
+  BubbleType,
+  BubbleTypeArray,
+  CompositeBubbleType,
+  CompositeBubbleTypeArray,
+} from '../bubble/bubble-ui'
 import { UserInterface } from '../types'
 
 import { MessageBase } from './type'
 
 export function isBubbleType(type: string): type is BubbleType {
   return BubbleTypeArray.includes(type as BubbleType)
+}
+
+export function isCompositeBubbleType(
+  type: string,
+): type is CompositeBubbleType {
+  return CompositeBubbleTypeArray.includes(type as CompositeBubbleType)
 }
 
 export function compareSender<
