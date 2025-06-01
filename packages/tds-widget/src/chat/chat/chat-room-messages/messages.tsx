@@ -70,6 +70,7 @@ export default function Messages<T = UserType>({
       richMessageSplitter={
         shouldSplitRichMessage ? richMessageSplitter : undefined
       }
+      bubbleMessageConverter={bubbleMessageConverter}
       {...props}
     />
   )
@@ -91,6 +92,23 @@ function richMessageSplitter<T = UserType>(
     value: {
       ...block,
     },
+  }
+}
+
+export function bubbleMessageConverter<T = UserType>(
+  message: OriginalMessagesPropTypes<T>['messages'][number],
+) {
+  if (message.type === 'coupon' && message.value.coupon.type === 'RANDOM') {
+    return [
+      {
+        ...message,
+        type: 'nol-coupon-content',
+      },
+      {
+        ...message,
+        type: 'nol-coupon-button',
+      },
+    ]
   }
 }
 

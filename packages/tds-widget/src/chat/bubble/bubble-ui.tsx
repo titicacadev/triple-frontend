@@ -17,7 +17,11 @@ import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 import { ParentMessageUIProp } from './parent'
 import { ButtonBubble } from './button'
-import { NolCouponButtonBubble, NolCouponContentBubble } from './coupon'
+import NolBubbleUI, {
+  isNolBubbleType,
+  NolBubbleTypeArray,
+  NolBubbleUIProps,
+} from './nol/bubble-ui'
 
 export const BubbleTypeArray = [
   'text',
@@ -25,8 +29,7 @@ export const BubbleTypeArray = [
   'rich',
   'product',
   'button',
-  'nol-coupon-content',
-  'nol-coupon-button',
+  ...NolBubbleTypeArray,
 ] as const
 
 export const CompositeBubbleTypeArray = ['rich', 'coupon'] as const
@@ -34,7 +37,7 @@ export const CompositeBubbleTypeArray = ['rich', 'coupon'] as const
 export type BubbleType = (typeof BubbleTypeArray)[number]
 export type CompositeBubbleType = (typeof CompositeBubbleTypeArray)[number]
 
-interface BubbleUIPropBase {
+export interface BubbleUIPropBase {
   type: BubbleType
   parentMessage?: ParentMessageUIProp | null
 }
@@ -75,24 +78,13 @@ export interface CouponBubbleUIProp extends CompositeBubbleUIPropBase {
   value: Pick<CouponBubbleProp, 'coupon'>
 }
 
-export interface NolCouponContentBubbleUIProp extends BubbleUIPropBase {
-  type: 'nol-coupon-content'
-  value: Pick<CouponBubbleProp, 'coupon'>
-}
-
-export interface NolCouponButtonBubbleUIProp extends BubbleUIPropBase {
-  type: 'nol-coupon-button'
-  value: Pick<CouponBubbleProp, 'coupon'>
-}
-
 export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
   | ProductBubbleUIProp
   | ButtonBubbleUIProp
-  | NolCouponContentBubbleUIProp
-  | NolCouponButtonBubbleUIProp
+  | NolBubbleUIProps
 ) & {
   id: string
   my: boolean
@@ -190,6 +182,18 @@ export default function BubbleUI({
       />
     )
   }
+  if (isNolBubbleType(type)) {
+    return (
+      <NolBubbleUI
+        id={id}
+        my={my}
+        type={type}
+        value={value as NolBubbleUIProps['value']}
+        onCouponBubbleClick={onCouponBubbleClick}
+        {...props}
+      />
+    )
+  }
   switch (type) {
     case 'button':
       return (
@@ -273,26 +277,6 @@ export default function BubbleUI({
           onLongPress={onBubbleLongPress}
           maxWidthOffset={maxWidthOffset}
           hasArrow={hasArrow}
-          {...props}
-        />
-      )
-    case 'nol-coupon-content':
-      return (
-        <NolCouponContentBubble
-          id={id}
-          my={my}
-          coupon={value.coupon}
-          onClick={onCouponBubbleClick}
-          {...props}
-        />
-      )
-    case 'nol-coupon-button':
-      return (
-        <NolCouponButtonBubble
-          id={id}
-          my={my}
-          coupon={value.coupon}
-          onClick={onCouponBubbleClick}
           {...props}
         />
       )

@@ -148,6 +148,7 @@ export interface ProductItem {
 }
 
 export interface CouponItem {
+  type: string
   name: string
   discount: {
     type: string
