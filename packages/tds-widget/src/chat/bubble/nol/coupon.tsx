@@ -3,9 +3,10 @@ import moment from 'moment'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Text } from '@titicaca/tds-ui'
 
-import { CouponBubbleProp } from './type'
-import { nolBackgroundColor } from './nol'
-import { ButtonBubble } from './button'
+import { CouponBubbleProp } from '../type'
+import { ButtonBubble } from '../button'
+
+import { nolBackgroundColor } from './index'
 
 const CouponContainer = styled.div`
   display: inline-block;
