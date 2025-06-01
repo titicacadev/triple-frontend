@@ -80,6 +80,9 @@ interface MessagesProp<
     message: MessageInterface<Message, User>,
     block: RichBubbleUIProp['value']['blocks'][number],
   ) => BubbleMessageInterface<Message, User>
+  bubbleMessageConverter?: (
+    message: MessageInterface<Message, User>,
+  ) => BubbleMessageInterface<Message, User>[] | undefined
 }
 
 export default function Messages<
@@ -111,6 +114,7 @@ export default function Messages<
   BubbleExtra,
   interactionStatusSlot,
   richMessageSplitter,
+  bubbleMessageConverter,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -200,6 +204,11 @@ export default function Messages<
   function convertToBubbleMessages(
     message: MessageInterface<Message, User>,
   ): BubbleMessageInterface<Message, User>[] {
+    const bubbleMessages = bubbleMessageConverter?.(message)
+    if (bubbleMessages) {
+      return bubbleMessages
+    }
+
     const { type } = message
 
     if (!isCompositeBubbleType(type)) {
@@ -215,16 +224,7 @@ export default function Messages<
           : [message]
       }
       case 'coupon': {
-        return [
-          {
-            ...message,
-            type: 'nol-coupon-content',
-          } as BubbleMessageInterface<Message, User>,
-          {
-            ...message,
-            type: 'nol-coupon-button',
-          } as BubbleMessageInterface<Message, User>,
-        ]
+        throw new Error(`${type}에 해당하는 Bubble이 존재하지 않습니다.`)
       }
     }
   }

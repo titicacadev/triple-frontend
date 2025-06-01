@@ -8,6 +8,7 @@ import {
 } from '../bubble'
 import { NolThemeProvider } from '../nol-theme-provider'
 import { NOL_COLOR } from '../nol-theme-provider/constants'
+import { bubbleMessageConverter } from '../chat/chat-room-messages/messages'
 
 import MessagesComponent from './'
 
@@ -381,7 +382,7 @@ const NolGlobalStyle = createGlobalStyle`
       letter-spacing: 0;
       word-spacing: 0;
     }
-}
+  }
 `
 
 export const NolMessages = {
@@ -634,5 +635,6 @@ export const NolMessages = {
     bubbleInfoStyle: NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE,
     showProfilePhoto: false,
     spacing: { message: 6 },
+    bubbleMessageConverter,
   },
 }
