@@ -546,7 +546,7 @@ export const NolMessages = {
             },
             code: 'KYCHS7TFRJ577XLA',
             propertyId: '10003136',
-            type: 'RANDOM',
+            type: 'random',
           },
         },
         sender: {
@@ -578,7 +578,7 @@ export const NolMessages = {
             },
             code: 'KYCHS7TFRJ577XLA',
             propertyId: '10003136',
-            type: 'RANDOM',
+            type: 'random',
           },
         },
         sender: {
