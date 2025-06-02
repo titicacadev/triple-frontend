@@ -121,8 +121,8 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
             fontWeight: 400,
           }}
         >
-          {moment(coupon.period.endAt).subtract(1, 'day').format('YY.M.D')} 까지
-          사용
+          {moment(coupon.period.endAt).subtract(1, 'day').format('YY.MM.DD')}
+          까지 사용가능
         </Text>
         <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
           {formatNumber(coupon.discount.value)}
