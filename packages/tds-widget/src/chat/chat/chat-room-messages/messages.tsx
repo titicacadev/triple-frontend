@@ -14,6 +14,7 @@ import { getProfileImageUrl } from '../../utils'
 import { UnsentMessage } from '../messages-reducer'
 import { getUserIdentifier } from '../../utils/user'
 import { RichBubbleUIProp } from '../../bubble/bubble-ui'
+import { BubbleMessageInterface } from '../../messages/type'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -97,7 +98,9 @@ function richMessageSplitter<T = UserType>(
 
 export function bubbleMessageConverter<T = UserType>(
   message: OriginalMessagesPropTypes<T>['messages'][number],
-) {
+):
+  | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
+  | undefined {
   if (message.type === 'coupon' && message.value.coupon.type === 'RANDOM') {
     return [
       {
