@@ -1,7 +1,7 @@
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 import { format, isAfter, subDays } from 'date-fns'
 import { formatNumber } from '@titicaca/view-utilities'
-import { Text } from '@titicaca/tds-ui'
+import { Button, Text } from '@titicaca/tds-ui'
 
 import { CouponBubbleProp } from '../type'
 import { ButtonBubble } from '../button'
@@ -20,8 +20,8 @@ const Circle = styled.div`
   &::before {
     content: '';
     position: absolute;
-    top: 84px;
-    left: -6px;
+    top: 88px;
+    left: -7px;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -31,8 +31,8 @@ const Circle = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 84px;
-    left: 230px;
+    top: 88px;
+    left: 235px;
     transform: translateX(-100%);
     width: 14px;
     height: 14px;
@@ -47,21 +47,21 @@ const Divider = styled.div<{ valid: boolean }>`
   &::after {
     content: '';
     position: absolute;
-    top: 90px;
+    top: 96px;
     left: 50%;
     transform: translateX(-50%);
-    width: 184px;
+    width: 188px;
     height: 1px;
     background-color: ${({ valid }) => (valid ? '#42599d' : '#C4C4C5')};
   }
 `
 
 const Coupon = styled.div<{ valid: boolean }>`
-  padding: 17px 20px;
+  padding: 16px 20px;
   border-radius: 12px;
   background-color: ${({ valid }) => (valid ? '#324b94' : '#BFBFC0')};
-  width: 224px;
-  height: 132px;
+  width: 228px;
+  height: 140px;
   text-align: left;
   color: white;
 `
@@ -86,18 +86,17 @@ function Arrow() {
   )
 }
 
-const DownloadButton = styled(Text)<{ valid: boolean }>`
+const DownloadButton = styled(Button)`
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 24px;
   float: right;
-  margin-top: 27px;
+  margin-top: 20px;
+  padding: 0;
   display: inline-block;
-  ${({ valid }) =>
-    valid &&
-    css`
-      cursor: pointer;
-    `};
+  border: none;
+  background-color: transparent;
 
   > svg {
     margin-top: -2px;
@@ -116,22 +115,31 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
       <Coupon valid={valid}>
         <Text
           css={{
-            color: valid ? '#ABB5D3' : '#E5E5E5',
-            fontSize: '12px',
+            color: 'white',
+            fontSize: '14px',
             fontWeight: 400,
+            lineHeight: '24px',
           }}
         >
           {format(subDays(new Date(coupon.period.endAt), 1), 'yy.MM.dd')}
           까지 사용가능
         </Text>
-        <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
+        <Text
+          css={{
+            color: 'white',
+            fontSize: '38px',
+            fontWeight: 700,
+            lineHeight: '44px',
+            height: '44px',
+          }}
+        >
           {formatNumber(coupon.discount.value)}
           <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
             원
           </span>
         </Text>
         <DownloadButton
-          valid={valid}
+          disabled={!valid}
           onClick={() => valid && onClick?.(coupon, 'download')}
         >
           {valid ? '쿠폰 받기' : '기한 만료'}
