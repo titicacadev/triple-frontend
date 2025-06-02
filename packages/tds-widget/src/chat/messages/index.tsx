@@ -204,7 +204,13 @@ export default function Messages<
   function convertToBubbleMessages(
     message: MessageInterface<Message, User>,
   ): BubbleMessageInterface<Message, User>[] {
+    // eslint-disable-next-line no-console
+    console.log(message)
+    // eslint-disable-next-line no-console
+    console.log(typeof bubbleMessageConverter)
     const bubbleMessages = bubbleMessageConverter?.(message)
+    // eslint-disable-next-line no-console
+    console.log(bubbleMessages)
     if (bubbleMessages) {
       return bubbleMessages
     }

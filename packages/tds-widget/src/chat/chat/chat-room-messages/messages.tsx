@@ -101,6 +101,10 @@ function bubbleMessageConverter<T = UserType>(
 ):
   | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
   | undefined {
+  // eslint-disable-next-line no-console
+  console.log('bubbleMessageConverter')
+  // eslint-disable-next-line no-console
+  console.log(message)
   if (message.type === 'coupon' && message.value.coupon.type === 'RANDOM') {
     return [
       {
