@@ -96,7 +96,7 @@ function richMessageSplitter<T = UserType>(
   }
 }
 
-export function bubbleMessageConverter<T = UserType>(
+function bubbleMessageConverter<T = UserType>(
   message: OriginalMessagesPropTypes<T>['messages'][number],
 ):
   | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
