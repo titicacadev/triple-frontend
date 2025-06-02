@@ -426,7 +426,9 @@ export function useChatMessages<T = UserType>(
           })
 
           if (myMessage) {
-            triggerScrollToBottom()
+            setTimeout(() => {
+              triggerScrollToBottom()
+            }, 100)
           }
         }
         onComplete?.(message, myMessage)
