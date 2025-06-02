@@ -101,7 +101,7 @@ function bubbleMessageConverter<T = UserType>(
 ):
   | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
   | undefined {
-  if (message.type === 'coupon' && message.value.coupon.type === 'RANDOM') {
+  if (message.type === 'coupon' && message.value.coupon.type === 'random') {
     return [
       {
         ...message,

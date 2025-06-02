@@ -104,7 +104,7 @@ export const NolCouponContent = {
       },
       code: 'X9XWCGGM58N9A499',
       propertyId: '10003136',
-      type: 'RANDOM',
+      type: 'random',
     },
     id: 'coupon_bubble',
     onDownloadClick: (coupon: CouponItem) => {
