@@ -424,6 +424,10 @@ export function useChatMessages<T = UserType>(
             action: MessagesActions.NEW,
             messages: [message],
           })
+
+          if (myMessage) {
+            triggerScrollToBottom()
+          }
         }
         onComplete?.(message, myMessage)
         if (scrollToBottomOnNewMessage) {
