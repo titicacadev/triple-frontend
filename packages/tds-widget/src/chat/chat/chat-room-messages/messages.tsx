@@ -14,6 +14,7 @@ import { getProfileImageUrl } from '../../utils'
 import { UnsentMessage } from '../messages-reducer'
 import { getUserIdentifier } from '../../utils/user'
 import { RichBubbleUIProp } from '../../bubble/bubble-ui'
+import { BubbleMessageInterface } from '../../messages/type'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -70,6 +71,7 @@ export default function Messages<T = UserType>({
       richMessageSplitter={
         shouldSplitRichMessage ? richMessageSplitter : undefined
       }
+      bubbleMessageConverter={bubbleMessageConverter}
       {...props}
     />
   )
@@ -92,6 +94,25 @@ function richMessageSplitter<T = UserType>(
       ...('label' in block && { label: `${block.label} 바로가기` }),
       ...block,
     },
+  }
+}
+
+function bubbleMessageConverter<T = UserType>(
+  message: OriginalMessagesPropTypes<T>['messages'][number],
+):
+  | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
+  | undefined {
+  if (message.type === 'coupon' && message.value.coupon.type === 'RANDOM') {
+    return [
+      {
+        ...message,
+        type: 'nol-coupon-content',
+      },
+      {
+        ...message,
+        type: 'nol-coupon-button',
+      },
+    ]
   }
 }
 

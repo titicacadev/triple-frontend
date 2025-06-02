@@ -1,7 +1,10 @@
 import { ComponentProps } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
-import { ScrollProvider } from '../chat'
+import {
+  ScrollProvider,
+  ChatRoomMessages as NolMessageComponent,
+} from '../chat'
 import {
   NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE,
   NOL_PARTNER_ROOM_BUBBLE_STYLE as BASE_NOL_PARTNER_ROOM_BUBBLE_STYLE,
@@ -381,32 +384,37 @@ const NolGlobalStyle = createGlobalStyle`
       letter-spacing: 0;
       word-spacing: 0;
     }
-}
+  }
 `
 
 export const NolMessages = {
-  render: (args: ComponentProps<typeof MessagesComponent>) => (
+  render: (args: ComponentProps<typeof NolMessageComponent>) => (
     <NolThemeProvider theme={NOL_COLOR}>
       <ScrollProvider>
         <NolGlobalStyle />
-        <MessagesComponent {...args} />
+        <NolMessageComponent {...args} />
       </ScrollProvider>
     </NolThemeProvider>
   ),
   args: {
     messages: [
       {
-        type: 'button',
-        value: {
-          label: '버튼 메시지 바로가기',
-          action: { type: 'link', param: 'https://www.triple.guide' },
+        payload: {
+          type: 'rich',
+          items: [
+            {
+              type: 'button',
+              label: '버튼 메시지 바로가기',
+              action: { type: 'link', param: 'https://www.triple.guide' },
+            },
+          ],
         },
         id: 'button message',
         sender: {
-          id: 'test user',
+          roomMemberId: 'test user',
           profile: {
             name: 'test user',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -416,18 +424,23 @@ export const NolMessages = {
         thanks: { count: 1, haveMine: false },
       },
       {
-        type: 'button',
-        value: {
-          label: '버튼 메시지 바로가기 disabled',
-          action: { type: 'link', param: 'https://www.triple.guide' },
+        payload: {
+          type: 'rich',
+          items: [
+            {
+              type: 'button',
+              label: '버튼 메시지 바로가기 disabled',
+              action: { type: 'link', param: 'https://www.triple.guide' },
+            },
+          ],
         },
         disabled: true,
-        id: 'button message',
+        id: 'button message disabled',
         sender: {
-          id: 'test user',
+          roomMemberId: 'test user',
           profile: {
             name: 'test user',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -437,14 +450,41 @@ export const NolMessages = {
         thanks: { count: 1, haveMine: false },
       },
       {
-        type: 'text',
-        value: { message: '안녕하세요.' },
+        payload: {
+          type: 'rich',
+          items: [
+            {
+              type: 'button',
+              label: '버튼 메시지 바로가기',
+              action: { type: 'link', param: 'https://www.triple.guide' },
+            },
+          ],
+        },
+        id: 'my button message',
+        sender: {
+          roomMemberId: 'test',
+          profile: {
+            name: 'test',
+            thumbnail:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+        thanks: { count: 1, haveMine: false },
+      },
+      {
+        payload: {
+          type: 'text',
+          message: '안녕하세요.',
+        },
         id: 'text message',
         sender: {
-          id: 'test user',
+          roomMemberId: 'test user',
           profile: {
             name: 'test user',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -454,14 +494,16 @@ export const NolMessages = {
         thanks: { count: 1, haveMine: false },
       },
       {
-        type: 'text',
-        value: { message: '안녕하세요.' },
+        payload: {
+          type: 'text',
+          message: '안녕하세요.',
+        },
         id: 'my text message',
         sender: {
-          id: 'test',
+          roomMemberId: 'test',
           profile: {
             name: 'test',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -470,14 +512,16 @@ export const NolMessages = {
         createdAt: new Date(2022, 10, 1).toISOString(),
       },
       {
-        type: 'text',
-        value: { message: '연속 두번째로 보내는 메시지 입니다.' },
+        payload: {
+          type: 'text',
+          message: '연속 두번째로 보내는 메시지 입니다.',
+        },
         id: 'my text message 2',
         sender: {
-          id: 'test',
+          roomMemberId: 'test',
           profile: {
             name: 'test',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -486,9 +530,9 @@ export const NolMessages = {
         createdAt: new Date(2022, 10, 1).toISOString(),
       },
       {
-        type: 'coupon',
-        id: 'coupon message',
-        value: {
+        id: 'my coupon message',
+        payload: {
+          type: 'coupon',
           coupon: {
             name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
             discount: {
@@ -498,7 +542,7 @@ export const NolMessages = {
             },
             period: {
               startAt: '2025-05-23T00:00:00+09:00',
-              endAt: '2025-05-24T00:00:00+09:00',
+              endAt: '2035-05-24T00:00:00+09:00',
             },
             code: 'KYCHS7TFRJ577XLA',
             propertyId: '10003136',
@@ -506,27 +550,62 @@ export const NolMessages = {
           },
         },
         sender: {
-          id: 'test',
+          roomMemberId: 'test',
           profile: {
             name: 'test',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
           unfriended: false,
         },
+        createdAt: new Date(2022, 10, 1).toISOString(),
+      },
+      {
+        id: 'coupon message',
+        payload: {
+          type: 'coupon',
+          coupon: {
+            name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
+            discount: {
+              type: 'AMOUNT',
+              value: 5000,
+              maxDiscountAmount: 5000,
+            },
+            period: {
+              startAt: '2025-05-23T00:00:00+09:00',
+              endAt: '2035-05-24T00:00:00+09:00',
+            },
+            code: 'KYCHS7TFRJ577XLA',
+            propertyId: '10003136',
+            type: 'RANDOM',
+          },
+        },
+        sender: {
+          roomMemberId: 'test user',
+          profile: {
+            name: 'test user',
+            thumbnail:
+              'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
+          },
+          unregistered: false,
+          unfriended: false,
+        },
+        createdAt: new Date(2022, 10, 1).toISOString(),
       },
     ],
     pendingMessages: [
       {
-        type: 'text',
-        value: { message: '보내는 중인 메시지.' },
+        payload: {
+          type: 'text',
+          message: '보내는 중인 메시지.',
+        },
         id: 'text message pending',
         sender: {
-          id: 'test',
+          roomMemberId: 'test',
           profile: {
             name: 'test',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -537,14 +616,16 @@ export const NolMessages = {
     ],
     failedMessages: [
       {
-        type: 'text',
-        value: { message: '실패한 메시지 메시지.' },
+        payload: {
+          type: 'text',
+          message: '실패한 메시지 메시지.',
+        },
         id: 'text message pending',
         sender: {
-          id: 'test',
+          roomMemberId: 'test',
           profile: {
             name: 'test',
-            photo:
+            thumbnail:
               'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
           },
           unregistered: false,
@@ -553,10 +634,10 @@ export const NolMessages = {
       },
     ],
     me: {
-      id: 'test',
+      roomMemberId: 'test',
       profile: {
         name: '테스트',
-        photo:
+        thumbnail:
           'https://assets.triple-dev.titicaca-corp.com/images/app-download@2x.png',
       },
     },
@@ -581,5 +662,6 @@ export const NolMessages = {
     bubbleInfoStyle: NOL_PARTNER_ROOM_BUBBLE_INFO_STYLE,
     showProfilePhoto: false,
     spacing: { message: 6 },
+    shouldSplitRichMessage: true,
   },
 }

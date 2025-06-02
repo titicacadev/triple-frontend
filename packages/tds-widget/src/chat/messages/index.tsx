@@ -10,8 +10,13 @@ import { UserInterface } from '../types'
 import AlteredBubble from '../bubble/altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from '../bubble/constants'
 
-import { MessageBase, MessageInterface } from './type'
-import { isBubbleType, compareSender, compareDate } from './utils'
+import { BubbleMessageInterface, MessageBase, MessageInterface } from './type'
+import {
+  isBubbleType,
+  compareSender,
+  compareDate,
+  isCompositeBubbleType,
+} from './utils'
 import { DateDivider } from './date-divider'
 
 interface MessagesProp<
@@ -74,7 +79,10 @@ interface MessagesProp<
   richMessageSplitter?: (
     message: MessageInterface<Message, User>,
     block: RichBubbleUIProp['value']['blocks'][number],
-  ) => MessageInterface<Message, User>
+  ) => BubbleMessageInterface<Message, User>
+  bubbleMessageConverter?: (
+    message: MessageInterface<Message, User>,
+  ) => BubbleMessageInterface<Message, User>[] | undefined
 }
 
 export default function Messages<
@@ -106,6 +114,7 @@ export default function Messages<
   BubbleExtra,
   interactionStatusSlot,
   richMessageSplitter,
+  bubbleMessageConverter,
   ...bubbleProps
 }: MessagesProp<Message, User> &
   Omit<
@@ -125,7 +134,7 @@ export default function Messages<
     my,
     hasArrow = true,
   }: {
-    message: MessageInterface<Message, User>
+    message: BubbleMessageInterface<Message, User>
     my: boolean
     hasArrow?: boolean
   }) {
@@ -193,6 +202,34 @@ export default function Messages<
     )
   }
 
+  function convertToBubbleMessages(
+    message: MessageInterface<Message, User>,
+  ): BubbleMessageInterface<Message, User>[] {
+    const bubbleMessages = bubbleMessageConverter?.(message)
+    if (bubbleMessages) {
+      return bubbleMessages
+    }
+
+    const { type } = message
+
+    if (!isCompositeBubbleType(type)) {
+      return [message]
+    }
+
+    switch (type) {
+      case 'rich': {
+        return richMessageSplitter
+          ? (message.value as RichBubbleUIProp['value']).blocks.map((block) =>
+              richMessageSplitter(message, block),
+            )
+          : [message]
+      }
+      case 'coupon': {
+        throw new Error(`${type}에 해당하는 Bubble이 존재하지 않습니다.`)
+      }
+    }
+  }
+
   function renderMessages({
     listType,
     messages,
@@ -232,12 +269,7 @@ export default function Messages<
 
       const IntersectionObserver = onMessageIntersecting ? InView : Fragment
 
-      const bubbleMessages =
-        richMessageSplitter && message.type === 'rich'
-          ? (message.value as RichBubbleUIProp['value']).blocks.map((block) =>
-              richMessageSplitter(message, block),
-            )
-          : [message]
+      const bubbleMessages = convertToBubbleMessages(message)
 
       return (
         <Fragment key={id}>
