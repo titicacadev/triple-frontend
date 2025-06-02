@@ -1,5 +1,5 @@
 import { css, styled } from 'styled-components'
-import moment from 'moment'
+import { format, isAfter, subDays } from 'date-fns'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Text } from '@titicaca/tds-ui'
 
@@ -108,7 +108,7 @@ const DownloadButton = styled(Text)<{ valid: boolean }>`
 `
 
 export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
-  const valid = moment(coupon.period.endAt).isAfter(moment())
+  const valid = isAfter(new Date(coupon.period.endAt), new Date())
   return (
     <CouponContainer>
       <Circle />
@@ -121,7 +121,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
             fontWeight: 400,
           }}
         >
-          {moment(coupon.period.endAt).subtract(1, 'day').format('YY.MM.DD')}
+          {format(subDays(new Date(coupon.period.endAt), 1), 'yy.MM.dd')}
           까지 사용가능
         </Text>
         <Text css={{ color: 'white', fontSize: '38px', fontWeight: 700 }}>
@@ -149,7 +149,7 @@ export function NolCouponButtonBubble({
   onClick,
   ...props
 }: CouponBubbleProp) {
-  const valid = moment(coupon.period.endAt).isAfter(moment())
+  const valid = isAfter(new Date(coupon.period.endAt), new Date())
   return (
     <ButtonBubble
       id={id}
