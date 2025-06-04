@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { type ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import {
   NextFetchEvent,
@@ -83,20 +84,24 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     /**
      * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답합니다.
      */
+    console.log('/web-session/token 실행')
     const refreshResponse = await post('/api/users/web-session/token', options)
     captureHttpError(refreshResponse)
 
     const setCookieHeader = refreshResponse.headers.getSetCookie()
 
+    console.log(setCookieHeader)
     if (setCookieHeader) {
       const setCookie = changeSetCookieDomainOnLocalhost(
         request,
         setCookieHeader,
       )
+      console.log('setCookie', setCookie)
       setCookie.forEach((cookie) => {
         const { name, value, ...rest } = parseString(cookie)
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
+      console.log(response)
     }
     return response
   }
