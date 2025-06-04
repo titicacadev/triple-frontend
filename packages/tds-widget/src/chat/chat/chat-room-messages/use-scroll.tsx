@@ -15,6 +15,7 @@ export function useScroll() {
     if (shouldScrollToBottom) {
       scrollToBottom(scrollOptions)
       setShouldScrollToBottom(false)
+      setScrollOptions({})
     }
   }, [shouldScrollToBottom, scrollToBottom, scrollOptions])
 
