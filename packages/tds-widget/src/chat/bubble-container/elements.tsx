@@ -12,6 +12,7 @@ export const ProfileImage = styled.img`
   box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px;
   outline-offset: -1px;
   float: left;
+  object-fit: cover;
 `
 
 export const ProfileName = styled(Text)`

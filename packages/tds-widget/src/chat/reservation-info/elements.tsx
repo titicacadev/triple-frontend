@@ -68,6 +68,7 @@ export const Thumbnail = styled.img<{ small?: boolean }>`
   height: ${({ small = false }) => (small ? '30' : '40')}px;
   border-radius: 6px;
   margin-right: 12px;
+  object-fit: cover;
 `
 
 export const DetailContainer = styled(BaseContainer)<{ expanded: boolean }>`
