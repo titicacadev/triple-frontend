@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useScroll as useBaseScroll, ScrollOptions } from '../scroll-context'
 
@@ -8,22 +8,27 @@ export function useScroll() {
 
   const [shouldScrollToBottom, setShouldScrollToBottom] =
     useState<boolean>(false)
-  const [scrollOptions, setScrollOptions] = useState<ScrollOptions>({})
+  const scrollOptionsRef = useRef<ScrollOptions>({})
 
   /** pusher의 이벤트 핸들러에서 scrollToBottom을 호출할 경우 이벤트가 늦게 발생하여 state로 우회합니다. */
   useEffect(() => {
-    if (shouldScrollToBottom) {
-      scrollToBottom(scrollOptions)
+    const resetScrollOptions = () => {
       setShouldScrollToBottom(false)
+      scrollOptionsRef.current = {}
     }
-  }, [shouldScrollToBottom, scrollToBottom, scrollOptions])
+
+    if (shouldScrollToBottom) {
+      scrollToBottom(scrollOptionsRef.current)
+      resetScrollOptions()
+    }
+  }, [shouldScrollToBottom, scrollToBottom])
 
   return {
     setScrollY,
     getScrollContainerHeight,
     triggerScrollToBottom: (options?: ScrollOptions) => {
       setShouldScrollToBottom(true)
-      options && setScrollOptions(options)
+      scrollOptionsRef.current = options || {}
     },
   }
 }
