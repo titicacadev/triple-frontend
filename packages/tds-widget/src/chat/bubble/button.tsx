@@ -52,8 +52,10 @@ export function ButtonBubble({
         disabled={disabled}
         role="link"
         type="button"
-        data-link={action.param}
-        onClick={(e) => aTagNavigator(e)}
+        {...('param' in action && { 'data-link': action.param })}
+        onClick={(e) =>
+          action.type === 'link' ? aTagNavigator(e) : onLinkClick
+        }
       >
         <Text>{label}</Text>
       </button>
