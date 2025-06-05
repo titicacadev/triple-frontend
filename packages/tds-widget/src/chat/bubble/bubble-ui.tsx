@@ -5,6 +5,8 @@ import { ImageBubble } from './image'
 import { RichBubble } from './rich'
 import {
   BubbleProp,
+  ButtonBubbleProp,
+  CouponBubbleProp,
   ImageBubbleProp,
   ProductBubbleProp,
   RichBubbleProp,
@@ -14,14 +16,34 @@ import { ProductBubble } from './product'
 import AlteredBubble from './altered'
 import { ALTERNATIVE_TEXT_MESSAGE } from './constants'
 import { ParentMessageUIProp } from './parent'
+import { ButtonBubble } from './button'
+import NolBubbleUI, {
+  isNolBubbleType,
+  NolBubbleTypeArray,
+  NolBubbleUIProps,
+} from './nol/bubble-ui'
 
-export const BubbleTypeArray = ['text', 'images', 'rich', 'product'] as const
+export const BubbleTypeArray = [
+  'text',
+  'images',
+  'rich',
+  'product',
+  'button',
+  ...NolBubbleTypeArray,
+] as const
+
+export const CompositeBubbleTypeArray = ['rich', 'coupon'] as const
 
 export type BubbleType = (typeof BubbleTypeArray)[number]
+export type CompositeBubbleType = (typeof CompositeBubbleTypeArray)[number]
 
-interface BubbleUIPropBase {
+export interface BubbleUIPropBase {
   type: BubbleType
   parentMessage?: ParentMessageUIProp | null
+}
+
+type CompositeBubbleUIPropBase = Omit<BubbleUIPropBase, 'type'> & {
+  type: CompositeBubbleType
 }
 
 export interface TextBubbleUIProp extends BubbleUIPropBase {
@@ -34,7 +56,9 @@ export interface ImageBubbleUIProp extends BubbleUIPropBase {
   value: Pick<ImageBubbleProp, 'images'>
 }
 
-export interface RichBubbleUIProp extends BubbleUIPropBase {
+export interface RichBubbleUIProp
+  extends BubbleUIPropBase,
+    CompositeBubbleUIPropBase {
   type: 'rich'
   value: Pick<RichBubbleProp, 'blocks'>
 }
@@ -44,11 +68,23 @@ export interface ProductBubbleUIProp extends BubbleUIPropBase {
   value: Pick<ProductBubbleProp, 'product'>
 }
 
+export interface ButtonBubbleUIProp extends BubbleUIPropBase {
+  type: 'button'
+  value: Pick<ButtonBubbleProp, 'label' | 'action'>
+}
+
+export interface CouponBubbleUIProp extends CompositeBubbleUIPropBase {
+  type: 'coupon'
+  value: Pick<CouponBubbleProp, 'coupon'>
+}
+
 export type BubbleUIProps = (
   | TextBubbleUIProp
   | ImageBubbleUIProp
   | RichBubbleUIProp
   | ProductBubbleUIProp
+  | ButtonBubbleUIProp
+  | NolBubbleUIProps
 ) & {
   id: string
   my: boolean
@@ -71,6 +107,7 @@ export type BubbleUIProps = (
     image?: RichBubbleProp['onImageClick']
     beforeButtonRouting?: RichBubbleProp['onButtonClickBeforeRouting']
   }
+  onCouponBubbleClick?: CouponBubbleProp['onClick']
   richBubbleStyle?: {
     textItemStyle?: CSSProp
     imageItemStyle?: CSSProp
@@ -110,6 +147,7 @@ export default function BubbleUI({
   onBubbleLongPress,
   onImageBubbleLongPress,
   onRichBubbleBlockClick,
+  onCouponBubbleClick,
   onParentMessageClick,
   richBubbleStyle,
   maxWidthOffset,
@@ -144,7 +182,39 @@ export default function BubbleUI({
       />
     )
   }
+  if (isNolBubbleType(type)) {
+    return (
+      <NolBubbleUI
+        id={id}
+        my={my}
+        type={type}
+        value={value as NolBubbleUIProps['value']}
+        onCouponBubbleClick={onCouponBubbleClick}
+        {...props}
+      />
+    )
+  }
   switch (type) {
+    case 'button':
+      if (value.action.type !== 'link') {
+        throw new Error(
+          '버튼 액션 타입이 link가 아닙니다. 현재 지원하지 않습니다.',
+        )
+      }
+      return (
+        <ButtonBubble
+          id={id}
+          my={my}
+          label={value.label}
+          action={value.action}
+          onClick={onBubbleClick}
+          onLinkClick={onTextBubbleLinkClick}
+          onLongPress={onBubbleLongPress}
+          hasArrow={hasArrow}
+          maxWidthOffset={maxWidthOffset}
+          {...props}
+        />
+      )
     case 'text':
       return (
         <TextBubble

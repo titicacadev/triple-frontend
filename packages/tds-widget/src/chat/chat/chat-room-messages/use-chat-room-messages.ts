@@ -412,20 +412,24 @@ export function useChatMessages<T = UserType>(
       } = {},
     ) => {
       if (message && message.payload) {
-        /** 
+        /**
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
+            coupon 메세지는 서버에서 직접 전송되므로 항상 푸셔 이벤트로 dispatch합니다.
           */
         const myMessage =
           getUserIdentifier(me) === getUserIdentifier(message.sender)
-        if (!myMessage) {
+        if (!myMessage || message.payload.type === 'coupon') {
           dispatch({
             action: MessagesActions.NEW,
             messages: [message],
           })
         }
         onComplete?.(message, myMessage)
-        if (scrollToBottomOnNewMessage) {
+        if (
+          scrollToBottomOnNewMessage ||
+          (myMessage && message.payload.type === 'coupon')
+        ) {
           triggerScrollToBottom()
         }
       }
