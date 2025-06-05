@@ -22,6 +22,8 @@ export const getTextMessage = (payload: ChatMessagePayload) => {
           '',
       )
     }
+    case ChatMessagePayloadType.COUPON:
+      return '쿠폰이 발급되었어요.'
     default:
       return ''
   }
