@@ -14,6 +14,7 @@ import { getProfileImageUrl } from '../../utils'
 import { UnsentMessage } from '../messages-reducer'
 import { getUserIdentifier } from '../../utils/user'
 import { RichBubbleUIProp } from '../../bubble/bubble-ui'
+import { BubbleMessageInterface } from '../../messages/type'
 
 export type ChatRoomMessageInterface<T = UserType> = Omit<
   ChatMessageInterface<T>,
@@ -70,6 +71,7 @@ export default function Messages<T = UserType>({
       richMessageSplitter={
         shouldSplitRichMessage ? richMessageSplitter : undefined
       }
+      bubbleMessageConverter={bubbleMessageConverter}
       {...props}
     />
   )
@@ -91,6 +93,25 @@ function richMessageSplitter<T = UserType>(
     value: {
       ...block,
     },
+  }
+}
+
+function bubbleMessageConverter<T = UserType>(
+  message: OriginalMessagesPropTypes<T>['messages'][number],
+):
+  | BubbleMessageInterface<ChatRoomMessageInterface<T>, UserInterface>[]
+  | undefined {
+  if (message.type === 'coupon' && message.value.coupon.type === 'random') {
+    return [
+      {
+        ...message,
+        type: 'nol-coupon-content',
+      },
+      {
+        ...message,
+        type: 'nol-coupon-button',
+      },
+    ]
   }
 }
 
@@ -182,6 +203,8 @@ function getMessageTypeAndValue<T = UserType>(
       return { type: payload.type, value: { blocks: payload.items } }
     case ChatMessagePayloadType.PRODUCT:
       return { type: payload.type, value: { product: payload.product } }
+    case ChatMessagePayloadType.COUPON:
+      return { type: payload.type, value: { coupon: payload.coupon } }
   }
 }
 
