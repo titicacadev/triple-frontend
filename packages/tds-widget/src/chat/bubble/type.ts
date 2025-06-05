@@ -97,13 +97,19 @@ export type BlindedBubbleProp = {
   textColor?: CSSProp
 } & BubbleProp
 
+interface LinkButtonAction {
+  param: string
+  type: 'link'
+}
+
+interface ButtonAction {
+  type: 'button'
+}
+
 export type ButtonBubbleProp = {
   my: boolean
   label: string
-  action: {
-    param: string
-    type: 'link'
-  }
-  onLinkClick?: (href: string) => void
   disabled?: boolean
+  onLinkClick?: (href: string) => void
+  action: LinkButtonAction | ButtonAction
 } & BubbleProp
