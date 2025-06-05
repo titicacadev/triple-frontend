@@ -160,6 +160,11 @@ export default function BubbleUI({
   }
   switch (type) {
     case 'button':
+      if (value.action.type !== 'link') {
+        throw new Error(
+          '버튼 액션 타입이 link가 아닙니다. 현재 지원하지 않습니다.',
+        )
+      }
       return (
         <ButtonBubble
           id={id}
