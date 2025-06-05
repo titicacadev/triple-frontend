@@ -82,11 +82,13 @@ export type ProductBubbleProp = {
   product: ProductItem
 } & BubbleProp
 
+export type CouponBubbleClickType = 'download' | 'product'
+
 export interface CouponBubbleProp {
   id: string
   my: boolean
   coupon: CouponItem
-  onClick?: (coupon: CouponItem, target: string) => void
+  onClick?: (coupon: CouponItem, target: CouponBubbleClickType) => void
 }
 
 export type BlindedBubbleProp = {
