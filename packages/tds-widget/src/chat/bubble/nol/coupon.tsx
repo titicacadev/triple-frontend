@@ -52,7 +52,8 @@ const Divider = styled.div<{ valid: boolean }>`
     transform: translateX(-50%);
     width: 188px;
     height: 1px;
-    background-color: ${({ valid }) => (valid ? '#42599d' : '#C4C4C5')};
+    background-color: ${({ valid }) =>
+      valid ? 'var(--color-primary-darkblue)' : '#C4C4C5'};
   }
 `
 
@@ -163,8 +164,8 @@ export function NolCouponButtonBubble({
       id={id}
       my={my}
       label="쿠폰 바로 사용하기"
-      action={{ type: 'link', param: 'https://pf.kakao.com/_xexnXed' }}
-      onLinkClick={() => valid && onClick?.(coupon, 'product')}
+      action={{ type: 'button' }}
+      onButtonClick={() => valid && onClick?.(coupon, 'product')}
       disabled={!valid}
       hasArrow={false}
       {...props}
