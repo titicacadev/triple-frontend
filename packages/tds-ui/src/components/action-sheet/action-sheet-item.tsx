@@ -47,6 +47,7 @@ const URL_BY_NAMES: { [key: string]: string } = {
   notice: 'https://assets.triple.guide/images/img-action-notice@4x-v2.png',
   url: 'https://assets.triple.guide/images/img-action-url.png',
   phonecall: 'https://assets.triple.guide/images/img-action-phonecall.png',
+  plus: 'https://assets.triple.guide/images/partners-center/img-action-plus.svg',
 }
 
 const CHECKED_ICON_URL = 'https://assets.triple.guide/images/checkbox-on.svg'
