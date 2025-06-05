@@ -106,10 +106,19 @@ interface ButtonAction {
   type: 'button'
 }
 
+interface ButtonProps {
+  onButtonClick?: () => void
+  action: ButtonAction
+}
+
+interface LinkButtonProps {
+  onLinkClick?: (href: string) => void
+  action: LinkButtonAction
+}
+
 export type ButtonBubbleProp = {
   my: boolean
   label: string
   disabled?: boolean
-  onLinkClick?: (href: string) => void
-  action: LinkButtonAction | ButtonAction
-} & BubbleProp
+} & BubbleProp &
+  (ButtonProps | LinkButtonProps)

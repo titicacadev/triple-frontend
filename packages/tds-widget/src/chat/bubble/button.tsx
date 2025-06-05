@@ -36,12 +36,13 @@ export function ButtonBubble({
   id,
   label,
   action,
-  onLinkClick,
   my,
   disabled,
   ...props
 }: ButtonBubbleProp) {
-  const aTagNavigator = useATagNavigator(onLinkClick)
+  const aTagNavigator = useATagNavigator(
+    'onLinkClick' in props ? props.onLinkClick : undefined,
+  )
 
   return (
     <Bubble id={id} my={my} {...props}>
@@ -54,7 +55,11 @@ export function ButtonBubble({
         type="button"
         {...('param' in action && { 'data-link': action.param })}
         onClick={(e) =>
-          action.type === 'link' ? aTagNavigator(e) : onLinkClick
+          action.type === 'link'
+            ? aTagNavigator(e)
+            : 'onButtonClick' in props
+              ? props.onButtonClick?.()
+              : undefined
         }
       >
         <Text>{label}</Text>
