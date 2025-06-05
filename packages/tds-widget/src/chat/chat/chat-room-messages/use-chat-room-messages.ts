@@ -424,15 +424,12 @@ export function useChatMessages<T = UserType>(
             action: MessagesActions.NEW,
             messages: [message],
           })
-
-          if (myMessage) {
-            setTimeout(() => {
-              triggerScrollToBottom()
-            }, 100)
-          }
         }
         onComplete?.(message, myMessage)
-        if (scrollToBottomOnNewMessage) {
+        if (
+          scrollToBottomOnNewMessage ||
+          (myMessage && message.payload.type === 'coupon')
+        ) {
           triggerScrollToBottom()
         }
       }
