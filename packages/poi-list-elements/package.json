@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/poi-list-elements",
-  "version": "13.46.1",
+  "version": "13.47.0-alpha.0",
   "description": "Triple POI UI Elements",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/poi-list-elements",
