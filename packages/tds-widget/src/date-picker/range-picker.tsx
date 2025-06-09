@@ -71,6 +71,7 @@ export function RangePicker({
   hideTodayLabel = false,
   canChangeMonth,
   initialMonth: initialMonthFromProps,
+  ...props
 }: DisableDaysProps &
   DayPickerProps & {
     startDate: string | null
@@ -197,6 +198,7 @@ export function RangePicker({
         modifiers={modifiers}
         disabledDays={disabledDays}
         canChangeMonth={canChangeMonth}
+        {...props}
       />
     </RangeContainer>
   )
