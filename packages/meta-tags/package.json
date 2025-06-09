@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/meta-tags",
-  "version": "13.46.1",
+  "version": "13.47.0-alpha.0",
   "description": "Triple Web Application Meta tag modules",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/meta-tags",

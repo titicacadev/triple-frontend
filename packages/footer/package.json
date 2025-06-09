@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/footer",
-  "version": "13.46.1",
+  "version": "13.47.0-alpha.0",
   "description": "Common Footer for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/footer",

@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/type-definitions",
-  "version": "13.46.1",
+  "version": "13.47.0-alpha.0",
   "description": "triple frontend global type definitions",
   "keywords": [
     "triple",
