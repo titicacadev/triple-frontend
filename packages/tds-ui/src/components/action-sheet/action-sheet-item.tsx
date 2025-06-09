@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { styled } from 'styled-components'
+import * as CSS from 'csstype'
 
 import { useActionSheet } from './action-sheet-context'
 
@@ -9,7 +10,10 @@ export const ActionItemContainer = styled.div`
   height: 54px;
 `
 
-const ItemText = styled.div<{ checked?: boolean }>`
+const ItemText = styled.div<{
+  checked?: boolean
+  overflow?: CSS.Property.Overflow
+}>`
   flex: 1;
   height: 54px;
   line-height: 54px;
@@ -18,7 +22,7 @@ const ItemText = styled.div<{ checked?: boolean }>`
   font-weight: ${({ checked }) => (checked ? 'bold' : 'normal')};
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: ${({ overflow }) => overflow ?? 'hidden'};
 `
 
 const ItemButton = styled.a`
@@ -72,6 +76,7 @@ export interface ActionSheetItemProps extends PropsWithChildren {
   buttonLabel?: string
   icon?: string
   checked?: boolean
+  overflow?: CSS.Property.Overflow
   onClick?: () => unknown
 }
 
@@ -80,6 +85,7 @@ export const ActionSheetItem = ({
   buttonLabel,
   icon,
   checked,
+  overflow,
   onClick,
   ...props
 }: ActionSheetItemProps) => {
@@ -95,7 +101,9 @@ export const ActionSheetItem = ({
       {...props}
     >
       {icon ? <ItemIcon src={URL_BY_NAMES[icon]} /> : null}
-      <ItemText checked={checked}>{children}</ItemText>
+      <ItemText checked={checked} overflow={overflow}>
+        {children}
+      </ItemText>
       {buttonLabel ? (
         <ItemButton onClick={handleClick}>{buttonLabel}</ItemButton>
       ) : null}
