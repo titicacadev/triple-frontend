@@ -65,6 +65,7 @@ export function RangePickerV2({
   hideTodayLabel = false,
   renderDay,
   renderCaptionElement,
+  publicHolidays: publicHolidaysFromProps,
 }: DisableDaysProps & {
   startDate: string | null
   endDate: string | null
@@ -80,6 +81,7 @@ export function RangePickerV2({
   numberOfMonths?: number
   height?: string
   enableSameDay?: boolean
+  publicHolidays?: Date[]
   renderDay?: (date: Date, modifiers?: DayModifiers) => ReactNode
   renderCaptionElement?: ({
     date,
@@ -97,6 +99,7 @@ export function RangePickerV2({
 
   const publicHolidays = usePublicHolidays({
     numberOfMonths,
+    skip: !!publicHolidaysFromProps,
   })
 
   const initialMonth = useMemo(getInitialMonth, [])
