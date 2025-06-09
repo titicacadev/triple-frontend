@@ -22,6 +22,10 @@ export function usePublicHolidays({
     .format('YYYY-MM-DD')
 
   useEffect(() => {
+    if (skip) {
+      return
+    }
+
     if (from && to) {
       const fetchData = async () => {
         const response = await fetchPublicHolidays({ from, to }, {})
@@ -33,9 +37,7 @@ export function usePublicHolidays({
         }
       }
 
-      if (!skip) {
-        fetchData()
-      }
+      fetchData()
     }
   }, [from, to, skip])
 
