@@ -41,7 +41,7 @@ const Circle = styled.div`
   }
 `
 
-const Divider = styled.div<{ valid: boolean }>`
+const Divider = styled.div`
   position: relative;
 
   &::after {
@@ -52,15 +52,15 @@ const Divider = styled.div<{ valid: boolean }>`
     transform: translateX(-50%);
     width: 188px;
     height: 1px;
-    background-color: ${({ valid }) =>
-      valid ? 'var(--color-primary-darkblue)' : '#C4C4C5'};
+    background-color: ${({ theme }) => theme.nol.colorNeutralW8};
   }
 `
 
 const Coupon = styled.div<{ valid: boolean }>`
   padding: 16px 20px;
   border-radius: 12px;
-  background-color: ${({ valid }) => (valid ? '#324b94' : '#BFBFC0')};
+  background-color: ${({ valid, theme }) =>
+    valid ? theme.nol.colorPrimaryDarkblue : '#B6B7BB'};
   width: 228px;
   height: 140px;
   text-align: left;
@@ -112,7 +112,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
   return (
     <CouponContainer>
       <Circle />
-      <Divider valid={valid} />
+      <Divider />
       <Coupon valid={valid}>
         <Text
           css={{

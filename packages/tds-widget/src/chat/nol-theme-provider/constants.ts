@@ -11,6 +11,7 @@ export const NOL_COLOR = {
   // white
   'color-neutral-w-100': 'rgba(255, 255, 255, 1)',
   'color-neutral-w-20': 'rgba(255, 255, 255, 0.2)',
+  'color-neutral-w-8': 'rgba(255, 255, 255, 0.08)',
 
   // gray
   'color-neutral-g-80': 'rgba(84, 84, 87, 1)',

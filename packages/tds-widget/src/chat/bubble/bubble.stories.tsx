@@ -1,5 +1,7 @@
 import { ScrollProvider } from '../chat'
 import { CouponItem } from '../types'
+import { NOL_COLOR } from '../nol-theme-provider/constants'
+import { NolThemeProvider } from '../nol-theme-provider'
 
 import {
   CouponBubbleProp,
@@ -89,7 +91,11 @@ export const Product = {
 }
 
 export const NolCouponContent = {
-  render: (args: CouponBubbleProp) => <NolCouponContentBubble {...args} />,
+  render: (args: CouponBubbleProp) => (
+    <NolThemeProvider theme={NOL_COLOR}>
+      <NolCouponContentBubble {...args} />
+    </NolThemeProvider>
+  ),
   args: {
     coupon: {
       name: '빨리 예약하세요~ 오늘까지만 사용 가능한 쿠폰~',
@@ -100,7 +106,7 @@ export const NolCouponContent = {
       },
       period: {
         startAt: '2025-05-23T00:00:00+09:00',
-        endAt: '2025-05-24T00:00:00+09:00',
+        endAt: '2035-05-24T00:00:00+09:00',
       },
       code: 'X9XWCGGM58N9A499',
       propertyId: '10003136',
