@@ -52,15 +52,15 @@ const Divider = styled.div<{ valid: boolean }>`
     transform: translateX(-50%);
     width: 188px;
     height: 1px;
-    background-color: ${({ valid }) =>
-      valid ? 'var(--color-primary-darkblue)' : '#C4C4C5'};
+    background-color: ${({ valid }) => (valid ? '#42599d' : '#C4C4C5')};
   }
 `
 
 const Coupon = styled.div<{ valid: boolean }>`
   padding: 16px 20px;
   border-radius: 12px;
-  background-color: ${({ valid }) => (valid ? '#324b94' : '#BFBFC0')};
+  background-color: ${({ valid, theme }) =>
+    valid ? theme.nol.colorPrimaryDarkblue : '#BFBFC0'};
   width: 228px;
   height: 140px;
   text-align: left;
