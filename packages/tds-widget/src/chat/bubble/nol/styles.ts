@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-export const nolBackgroundColor = '#f9faff'
+export const nolBackgroundColor = '#F6F8FF'
 
 export const PARTNER_ROOM_BUBBLE_STYLE = {
   received: {
