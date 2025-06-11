@@ -114,6 +114,7 @@ export type BubbleUIProps = (
     buttonItemStyle?: CSSProp
   }
   maxWidthOffset?: BubbleProp['maxWidthOffset']
+  maxWidth?: BubbleProp['maxWidth']
   cloudinaryName?: string
   mediaUrlBase?: string
   hasArrow?: boolean
