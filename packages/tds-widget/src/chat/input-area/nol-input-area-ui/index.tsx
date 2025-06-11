@@ -199,7 +199,7 @@ function NolInputAreaUIImpl(
             }
           }}
         >
-          <SendIcon color={disabled || buttonDisabled ? '#949496' : '#FFF'} />
+          <SendIcon color={disabled || buttonDisabled ? '#BFBFC0' : '#FFF'} />
         </SendButton>
       </InputContainer>
     </InputAreaContainer>
