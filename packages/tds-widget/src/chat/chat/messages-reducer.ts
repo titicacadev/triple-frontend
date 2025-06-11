@@ -61,6 +61,9 @@ export type MessagesAction<Message extends MessageBase<Id>, Id = string> =
   | {
       action: MessagesActions.NEW
       messages: Message[]
+      filterPendingMessages?: (
+        pendingMessages: UnsentMessage<Message, Id>[],
+      ) => UnsentMessage<Message, Id>[]
     }
   | {
       action: MessagesActions.UPDATE
@@ -118,6 +121,9 @@ function MessagesReducer<Message extends MessageBase<Id>, Id = string>(
     case MessagesActions.NEW:
       return {
         ...state,
+        ...(action.filterPendingMessages && {
+          pendingMessages: action.filterPendingMessages(state.pendingMessages),
+        }),
         messages: deduplicateAndSortMessages<Message, Id>(
           state.messages,
           action.messages,
