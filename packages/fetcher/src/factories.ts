@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { GetServerSidePropsContext } from 'next'
 import { generateUrl, parseUrl } from '@titicaca/view-utilities'
 
@@ -68,6 +69,10 @@ export function ssrFetcherize<Fetcher extends BaseFetcher>(
     } = optionsParams || {}
     const finalCookie = overridingCookie ?? cookie
 
+    console.log(
+      'ssrFetcherize - generateUrl',
+      generateUrl({ scheme, host }, href),
+    )
     return fetcher(generateUrl({ scheme, host }, href), {
       ...options,
       ...(finalCookie && { cookie: finalCookie }),

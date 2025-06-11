@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type { NextPageContext } from 'next'
 import type { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
@@ -25,7 +26,6 @@ export async function getSession(ctx: NextPageContext): Promise<SessionValue> {
 async function fetchUser(ctx: NextPageContext) {
   if (ctx.req) {
     // Server-side
-
     const hasSession = checkSession(ctx.req)
 
     // 세션이 없으면 fetch를 스킵합니다.
@@ -38,7 +38,7 @@ async function fetchUser(ctx: NextPageContext) {
       apiUriBase: process.env.API_URI_BASE || '',
       cookie: ctx.req.headers.cookie,
     }
-
+    console.log('fetchUser - ssrFetcherizeOptions', ssrFetcherizeOptions)
     const finalFetcher = authFetcherize(
       ssrFetcherize(get, ssrFetcherizeOptions),
       {

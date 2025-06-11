@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'server-only'
 
 import { cookies, headers } from 'next/headers'
@@ -47,6 +48,7 @@ async function fetchUser() {
     cookie: headersList.get('cookie') ?? undefined,
   }
 
+  console.log('fetchUser - ssrFetcherizeOptions', ssrFetcherizeOptions)
   const finalFetcher = authFetcherize(
     ssrFetcherize(get, ssrFetcherizeOptions),
     {
