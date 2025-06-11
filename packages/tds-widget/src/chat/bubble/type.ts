@@ -13,6 +13,7 @@ export interface BubbleCSSProp {
   hasArrow?: boolean
   arrowRadius?: number
   borderRadius?: number
+  maxWidth?: number
 }
 
 export type BaseBubbleProp = BubbleCSSProp & {
