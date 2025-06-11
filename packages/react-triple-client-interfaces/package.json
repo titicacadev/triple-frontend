@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-triple-client-interfaces",
-  "version": "13.47.0-alpha.0",
+  "version": "13.46.1",
   "description": "React module for Triple native client interfaces",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-triple-client-interfaces",

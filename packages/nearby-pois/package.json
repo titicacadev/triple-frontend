@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/nearby-pois",
-  "version": "13.47.0-alpha.0",
+  "version": "13.46.1",
   "description": "Nearby POIs list",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/nearby-pois",
