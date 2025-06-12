@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { type ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import {
   NextFetchEvent,
@@ -40,12 +41,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     const isSessionExisted = allCookies.some(
       ({ name }) => name === TP_TK || name === TP_SE,
     )
+
     const cookies = deriveAllCookies(allCookies)
 
     if (!isSessionExisted) {
       return response
     }
-
+    console.log('session 존재')
     const options = {
       cookie: cookies,
       withApiUriBase: true,
@@ -61,12 +63,13 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       unknown,
       { status: number; exception: string; message: string }
     >('/api/users/session/verify', options)
-
+    console.log('cookie', cookies)
     const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
-
+    console.log('checkFirstTrialResponse', checkFirstTrialResponse)
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
-      captureHttpError(firstTrialResponse)
       const setCookieHeader = firstTrialResponse.headers.getSetCookie()
+      console.log("checkFirstTrailResponse's setCookieHeader", setCookieHeader)
+      captureHttpError(firstTrialResponse)
       if (setCookieHeader) {
         const setCookie = changeSetCookieDomainOnLocalhost(
           request,
@@ -77,6 +80,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
           response.cookies.set(name, value, { ...(rest as ResponseCookie) })
         })
       }
+      console.log('최종 응답 cookie', response.cookies)
       return response
     }
 
@@ -84,9 +88,11 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답합니다.
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
+    console.log('refreshResponse', refreshResponse)
     captureHttpError(refreshResponse)
 
     const setCookieHeader = refreshResponse.headers.getSetCookie()
+    console.log("refreshResponse's setCookieHeader", setCookieHeader)
 
     if (setCookieHeader) {
       const setCookie = changeSetCookieDomainOnLocalhost(
@@ -98,6 +104,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
     }
+    console.log('최종 응답 cookie', response.cookies)
     return response
   }
 }
