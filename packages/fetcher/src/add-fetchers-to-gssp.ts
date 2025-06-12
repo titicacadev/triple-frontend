@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 
 import {
@@ -47,6 +48,8 @@ export function addFetchersToGssp<Props, CustomContext = Record<string, never>>(
       apiUriBase,
       cookie: ctx.req.headers.cookie,
     }
+
+    console.log('addFetchersToGssp: ssrFetcherOptions', ssrFetcherOptions)
 
     const { setCookie, cookieOverrider } = createCookieOverrider()
 

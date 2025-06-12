@@ -63,10 +63,10 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
       unknown,
       { status: number; exception: string; message: string }
     >('/api/users/session/verify', options)
-    console.log('cookie', cookies)
+    console.log('기존의 cookie', cookies)
     const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
-    console.log('checkFirstTrialResponse', checkFirstTrialResponse)
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
+      console.log('refresh 안 해도 됨')
       const setCookieHeader = firstTrialResponse.headers.getSetCookie()
       console.log("checkFirstTrailResponse's setCookieHeader", setCookieHeader)
       captureHttpError(firstTrialResponse)
@@ -88,7 +88,6 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
      * /web-session/token은 TP-TK의 유효성을 확인해서 TP_TK, TP_SE, x-soto-session 응답합니다.
      */
     const refreshResponse = await post('/api/users/web-session/token', options)
-    console.log('refreshResponse', refreshResponse)
     captureHttpError(refreshResponse)
 
     const setCookieHeader = refreshResponse.headers.getSetCookie()
