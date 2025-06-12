@@ -101,9 +101,9 @@ export const TitleContainer = styled(BaseContainer)`
   display: flex;
   flex-direction: row;
   gap: 16px;
-  cursor: pointer;
 
   &:has(${ArrowButton}) {
+    cursor: pointer;
     padding-right: 18px;
   }
 `
