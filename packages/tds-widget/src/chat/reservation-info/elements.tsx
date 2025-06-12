@@ -103,8 +103,8 @@ export const TitleContainer = styled(BaseContainer)`
   gap: 16px;
 
   &:has(${ArrowButton}) {
-    cursor: pointer;
     padding-right: 18px;
+    cursor: pointer;
   }
 `
 
