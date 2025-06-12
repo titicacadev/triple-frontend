@@ -17,6 +17,7 @@ import { TP_SE, TP_TK } from '@titicaca/constants'
 import { serialize, SerializeOptions } from 'cookie'
 
 import { getDomain } from '../utils/get-domain'
+import { applySetCookie } from '../utils/apply-set-cookie'
 
 /**
  *
@@ -63,7 +64,6 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
     >('/api/users/session/verify', options)
 
     const checkFirstTrialResponse = await handle401Error(firstTrialResponse)
-
     if (checkFirstTrialResponse !== NEED_REFRESH_IDENTIFIER) {
       captureHttpError(firstTrialResponse)
       const setCookieHeader = firstTrialResponse.headers.getSetCookie()
@@ -76,6 +76,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
           const { name, value, ...rest } = parseString(cookie)
           response.cookies.set(name, value, { ...(rest as ResponseCookie) })
         })
+        applySetCookie(request, response)
       }
       return response
     }
@@ -98,6 +99,7 @@ export function refreshSessionMiddleware(next: NextMiddleware) {
         response.cookies.set(name, value, { ...(rest as ResponseCookie) })
       })
     }
+    applySetCookie(request, response)
     return response
   }
 }
