@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v13.47.0
+
+There is no data provided to generate the markdown.
+
 ## 13.46.1
 
 ```
