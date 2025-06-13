@@ -70,6 +70,7 @@ export function RangePicker({
   enableSameDay,
   hideTodayLabel = false,
   canChangeMonth,
+  initialMonth: initialMonthFromProps,
   ...props
 }: DisableDaysProps &
   DayPickerProps & {
@@ -86,9 +87,6 @@ export function RangePicker({
     }) => void
     numberOfMonths?: number
     height?: string
-    /**
-     * @deprecated TF에서 공휴일을 Fetch하고 있습니다.
-     */
     publicHolidays?: Date[]
     enableSameDay?: boolean
   }) {
@@ -100,9 +98,13 @@ export function RangePicker({
 
   const publicHolidays = usePublicHolidays({
     numberOfMonths,
+    skip: !!publicHolidaysFromProps,
   })
 
-  const initialMonth = useMemo(getInitialMonth, [])
+  const initialMonth = useMemo(
+    () => initialMonthFromProps ?? getInitialMonth(),
+    [initialMonthFromProps],
+  )
 
   const from = useMemo(
     () => (startDate ? moment(startDate).toDate() : undefined),
