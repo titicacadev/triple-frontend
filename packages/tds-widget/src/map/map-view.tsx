@@ -77,6 +77,10 @@ export interface WithGoogleMapProps extends GoogleMapProps {
    * Map SDK loaded 콜백 핸들러
    */
   onLoad?: (map: google.maps.Map) => void
+  /**
+   * map의 fitBounds를 비활성화합니다.
+   */
+  disableFitBounds?: boolean
 }
 
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
@@ -94,6 +98,7 @@ export function MapView({
   padding = DEFAULT_BOUNDS_PADDING,
   children,
   onLoad,
+  disableFitBounds = false,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -104,9 +109,27 @@ export function MapView({
   })
 
   const [map, setMap] = useState<google.maps.Map>()
-  const { center, bounds } = getGeometry(coordinates)
+  const [center, setCenter] = useState<google.maps.LatLngLiteral | null>(null)
+  const [bounds, setBounds] = useState<google.maps.LatLngBoundsLiteral | null>(
+    null,
+  )
 
   const coordinateLength = coordinates.length
+
+  useEffect(() => {
+    if (disableFitBounds || coordinates.length === 0) {
+      if (!center || !bounds) {
+        return
+      }
+      setCenter(null)
+      setBounds(null)
+    }
+
+    const { center: newCenter, bounds: newBounds } = getGeometry(coordinates)
+    setCenter(newCenter)
+    setBounds(newBounds)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coordinates, disableFitBounds])
 
   const options = useMemo(() => {
     return {
@@ -134,7 +157,7 @@ export function MapView({
   )
 
   useEffect(() => {
-    if (!bounds || coordinateLength === 0) {
+    if (!bounds || coordinateLength === 0 || disableFitBounds) {
       return
     }
     map?.fitBounds(bounds, padding)
