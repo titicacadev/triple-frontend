@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import type { NextPageContext } from 'next'
 import type { SessionUser, SessionValue } from '@titicaca/triple-web'
 import {
@@ -39,6 +40,10 @@ async function fetchUser(ctx: NextPageContext) {
       cookie: ctx.req.headers.cookie,
     }
 
+    console.log(
+      '[fetchUser-server side] ssrFetcherizeOptions:',
+      ssrFetcherizeOptions,
+    )
     const finalFetcher = authFetcherize(
       ssrFetcherize(get, ssrFetcherizeOptions),
       {
