@@ -26,12 +26,15 @@ export function getGeometry(coordinates: [number, number][]) {
             north,
             east,
           } as google.maps.LatLngBoundsLiteral)
-        : undefined,
+        : null,
   }
 }
 
 export function literalToString(
-  latLngOrBounds?: google.maps.LatLngLiteral | google.maps.LatLngBoundsLiteral,
+  latLngOrBounds:
+    | google.maps.LatLngLiteral
+    | google.maps.LatLngBoundsLiteral
+    | null,
 ) {
   if (!latLngOrBounds) {
     return ''
