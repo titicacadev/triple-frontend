@@ -2,11 +2,9 @@
 
 ## v14.1.6
 
-```
 ### tds-widget
 
 - [DMTALK-555] dismissKeyboardOnSend 옵션 추가 [#3747](https://github.com/titicacadev/triple-frontend/pull/3747)
-```
 
 ## v14.1.5
 
@@ -793,6 +791,10 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - [footer] 리뉴얼된 푸터 UI를 적용합니다. [#3751](https://github.com/titicacadev/triple-frontend/pull/3751)
 
 ## v13.47.0
+
+### action-sheet
+
+- [STAY-1323] ActionSheetItem 이 overflow 속성을 받을 수 있도록 수정(optional) [#3714](https://github.com/titicacadev/triple-frontend/pull/3714)
 
 ## 13.46.1
 
