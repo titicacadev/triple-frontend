@@ -2,7 +2,11 @@
 
 ## v13.47.0
 
-There is no data provided to generate the markdown.
+```
+### action-sheet
+
+- [STAY-1323] ActionSheetItem 이 overflow 속성을 받을 수 있도록 수정(optional) [#3714](https://github.com/titicacadev/triple-frontend/pull/3714)
+```
 
 ## 13.46.1
 
