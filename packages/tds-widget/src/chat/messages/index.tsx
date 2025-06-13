@@ -262,7 +262,7 @@ export default function Messages<
             {bubbleMessages.map((bubbleMessage, index, { length }) => (
               <BubbleContainer
                 key={`${id}-${index}`}
-                id={id.toString() + `-${index}`}
+                id={id.toString() + `${index ? `-${index}` : ''}`}
                 my={my}
                 user={{
                   photo: sender.profile.photo,
