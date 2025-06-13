@@ -20,8 +20,8 @@ const StyledBubble = styled(Text).attrs({
   }
 
   ${({ borderRadius = 20 }) => `border-radius: ${borderRadius}px;`}
-  ${({ maxWidthOffset }) =>
-    `max-width: calc(100% - ${maxWidthOffset || 100}px);`}
+  ${({ maxWidthOffset, maxWidth }) =>
+    `max-width: min(calc(100% - ${maxWidthOffset || 100}px), ${`${maxWidth}px` || '100%'});`}
   ${({ my, hasArrow = true, arrowRadius = 4 }) => css`
     background-color: ${my ? '#00BB92' : '#F6F6F6'};
     ${my && 'color:  var(--color-white);'}
