@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-contexts",
-  "version": "13.46.1",
+  "version": "13.47.0",
   "description": "React context modules for triple web applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-contexts",
