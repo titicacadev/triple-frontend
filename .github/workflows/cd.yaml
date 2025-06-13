@@ -41,7 +41,7 @@ jobs:
         uses: fountainhead/action-wait-for-check@v1.1.0
         id: wait-for-ci
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}
           checkName: build
 
       - name: Shutdown workflow
@@ -203,7 +203,7 @@ jobs:
         run: |
           curl \
             --url $GITHUB_API_URL_BASE/issues/${{ env.PR_NUMBER }}/comments \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.TRIPLE_BOT_GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -f --request POST \
             -d "{\"body\":\"${{ env.DEPLOY_VERSION }} has been published!\"}"
