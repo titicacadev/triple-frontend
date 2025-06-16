@@ -123,6 +123,7 @@ export function MapView({
       }
       setCenter(null)
       setBounds(null)
+      return
     }
 
     const { center: newCenter, bounds: newBounds } = getGeometry(coordinates)
