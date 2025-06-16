@@ -39,7 +39,7 @@ export function useInputResizeObserver(defaultHeight: number) {
       setInputContainerHeight(inputContainer.clientHeight)
     })
 
-    observer.observe(inputContainer)
+    observer.observe(inputContainer, { box: 'border-box' })
 
     return () => {
       observer.disconnect()
