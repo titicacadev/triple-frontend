@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## 14.1.0
+
+```
+### tds-theme
+
+- [tds-theme] vermilion 컬러를 찾지 못하는 오류 수정 [#3691](https://github.com/titicacadev/triple-frontend/pull/3691)
+
+### tds-ui
+
+- [tds-widget] react-day-picker의 props를 받을 수 있도록 추가 [#3689](https://github.com/titicacadev/triple-frontend/pull/3689)
+- [tds-ui] 체크박스 체크 위치 수정 [#3692](https://github.com/titicacadev/triple-frontend/pull/3692)
+- [tds-ui] popup에 id props를 추가합니다. [#3695](https://github.com/titicacadev/triple-frontend/pull/3695)
+- [tds-ui] ActionSheetItem에 plus icon 추가 [#3712](https://github.com/titicacadev/triple-frontend/pull/3712)
+- [tds-ui] carousel-item 추가 prop 받을 수 있도록 수정 [#3716](https://github.com/titicacadev/triple-frontend/pull/3716)
+
+### tds-widget
+
+- [tds-widget] react-day-picker의 props를 받을 수 있도록 추가 [#3689](https://github.com/titicacadev/triple-frontend/pull/3689)
+- [DMTALK-165] chat 컴포넌트 커스텀 필드 추가, 스타일 및 타입 수정 [#3690](https://github.com/titicacadev/triple-frontend/pull/3690)
+- [DMTALK-316] message payload 내 extra 노출 [#3698](https://github.com/titicacadev/triple-frontend/pull/3698)
+- [DMTALK-317] interactionStatusSlot 추가 [#3699](https://github.com/titicacadev/triple-frontend/pull/3699)
+- [DMTALK-234] scroll-bottom-buttons 리셋 로직 추가 [#3700](https://github.com/titicacadev/triple-frontend/pull/3700)
+- [DMTALK-310] ChatChannelEvents 타입 정의 [#3701](https://github.com/titicacadev/triple-frontend/pull/3701)
+- [DMTALK-304] 쿠폰 메시지 추가 [#3703](https://github.com/titicacadev/triple-frontend/pull/3703)
+- chat > expired 컴포넌트 배경색 변경 [#3704](https://github.com/titicacadev/triple-frontend/pull/3704)
+- [DMTALK-374] RICH 버블의 블록을 각각의 버블로 분리하는 옵션을 제공하고 버튼 버블을 추가합니다. [#3707](https://github.com/titicacadev/triple-frontend/pull/3707)
+- [tds-widget] RangePicker에서 publicHoliday를 props로 받아올 수 있도록 수정합니다. [#3710](https://github.com/titicacadev/triple-frontend/pull/3710)
+- [DMTALK-396] 프로필 이미지 object-fit 변경 [#3711](https://github.com/titicacadev/triple-frontend/pull/3711)
+- [DMTALK-374] parent message로 스크롤 되지 않는 오류 수정 [#3718](https://github.com/titicacadev/triple-frontend/pull/3718)
+- [tds-widget] map에서 fitBounds 비활성화 props 추가 [#3720](https://github.com/titicacadev/triple-frontend/pull/3720)
+
+### triple-web
+
+- [triple-web] multiple hash 지원 [#3706](https://github.com/titicacadev/triple-frontend/pull/3706)
+```
+
 ## 14.0.13
 
 ```
