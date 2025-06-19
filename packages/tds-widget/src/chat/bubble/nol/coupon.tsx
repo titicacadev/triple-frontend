@@ -68,7 +68,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
   return (
     <CouponContainer valid={valid}>
       <Coupon valid={valid}>
-        <Badge valid={valid}>쉿!🤫고객님께만 드려요!</Badge>
+        <Badge valid={valid}>쉿! 🤫 고객님께만 드려요!</Badge>
         <Text
           css={{
             color: 'inherit',
@@ -101,7 +101,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
           }}
         >
           {valid
-            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yy.MM.dd(HH.mm)')}까지 사용`
+            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yyyy.MM.dd(HH.mm)')}까지 사용`
             : '쿠폰 사용 기간 만료'}
         </Text>
         <Text
