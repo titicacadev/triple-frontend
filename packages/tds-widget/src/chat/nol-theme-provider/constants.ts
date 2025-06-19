@@ -28,6 +28,5 @@ export const NOL_COLOR = {
   // red
   'color-primary-red': 'rgba(255, 50, 46, 1)',
   'color-brand-shopping-red-400': 'rgba(255, 114, 98, 1)',
-
   'color-primary-darkblue': 'rgba(50, 75, 148, 1)',
 }

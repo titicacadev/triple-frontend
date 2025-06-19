@@ -1,152 +1,118 @@
 import { styled } from 'styled-components'
-import { format, isAfter, subDays } from 'date-fns'
+import { format, isAfter, subMinutes } from 'date-fns'
 import { formatNumber } from '@titicaca/view-utilities'
 import { Button, Text } from '@titicaca/tds-ui'
 
 import { CouponBubbleProp } from '../type'
 import { ButtonBubble } from '../button'
 
-import { nolBackgroundColor } from './index'
-
-const CouponContainer = styled.div`
-  display: inline-block;
-  background-color: inherit;
-`
-
-const Circle = styled.div`
-  position: relative;
-  background-color: inherit;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 88px;
-    left: -7px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: ${nolBackgroundColor};
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 88px;
-    left: 235px;
-    transform: translateX(-100%);
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: ${nolBackgroundColor};
-  }
-`
-
-const Divider = styled.div`
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 96px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 188px;
-    height: 1px;
-    background-color: ${({ theme }) => theme.nol.colorNeutralW8};
-  }
+const CouponContainer = styled.div<{ valid: boolean }>`
+  display: inline-flex;
+  border-radius: 14px;
+  border: 1px solid ${({ valid }) => (valid ? '#B2BAFF' : '#E1E2E7')};
 `
 
 const Coupon = styled.div<{ valid: boolean }>`
-  padding: 16px 20px;
-  border-radius: 12px;
-  background-color: ${({ valid, theme }) =>
-    valid ? theme.nol.colorPrimaryDarkblue : '#B6B7BB'};
-  width: 228px;
-  height: 140px;
+  padding: 15px;
+  width: 213px;
+  height: 144px;
   text-align: left;
-  color: white;
+  display: inline-block;
+  color: ${({ valid }) => (valid ? '#1B1C1F' : '#B6B7BB')};
 `
 
-function Arrow() {
-  return (
-    <svg
-      width="6"
-      height="10"
-      viewBox="0 0 6 10"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1 1L5 4.97649L1 9"
-        stroke="white"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
+const DOWNLOAD_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2.5V11.25" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
+<path d="M5.625 8.75L9.73483 12.8598C9.88128 13.0063 10.1187 13.0063 10.2652 12.8598L14.375 8.75" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
+<path d="M4.375 16.75H15.625" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
+</svg>
+`
+
+const getSVG = (svg: string) => {
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
 }
 
 const DownloadButton = styled(Button)`
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 24px;
-  float: right;
-  margin-top: 20px;
   padding: 0;
+  border-radius: 0 13px 13px 0;
+  border-left: 1px solid #ecedf7;
+  background:
+    no-repeat center url(${getSVG(DOWNLOAD_ICON)}),
+    #f7f7ff;
+  width: 39px;
+  height: 144px;
   display: inline-block;
-  border: none;
-  background-color: transparent;
+`
 
-  > svg {
-    margin-top: -2px;
-    width: 16px;
-    height: 16px;
-    padding: 3px;
-  }
+const Badge = styled.div<{ valid: boolean }>`
+  margin-bottom: 2px;
+  padding: 0 6px;
+  width: fit-content;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 22px;
+  color: ${({ valid, theme }) => (valid ? theme.nol.colorPrimaryNol : 'white')};
+  background-color: ${({ valid }) =>
+    valid ? '#F5F6FF' : 'rgba(0, 0, 0, 0.2)'};
 `
 
 export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
   const valid = isAfter(new Date(coupon.period.endAt), new Date())
   return (
-    <CouponContainer>
-      <Circle />
-      <Divider />
+    <CouponContainer valid={valid}>
       <Coupon valid={valid}>
+        <Badge valid={valid}>쉿!🤫고객님께만 드려요!</Badge>
         <Text
           css={{
-            color: 'white',
-            fontSize: '14px',
-            fontWeight: 400,
-            lineHeight: '24px',
-          }}
-        >
-          {format(subDays(new Date(coupon.period.endAt), 1), 'yy.MM.dd')}
-          까지 사용가능
-        </Text>
-        <Text
-          css={{
-            color: 'white',
-            fontSize: '38px',
+            color: 'inherit',
+            fontSize: '30px',
             fontWeight: 700,
-            lineHeight: '44px',
-            height: '44px',
+            lineHeight: '38px',
+            marginBottom: '6px',
           }}
         >
-          {formatNumber(coupon.discount.value)}
-          <span css={{ color: 'white', fontSize: '14px', marginLeft: '3px' }}>
-            원
-          </span>
+          {formatNumber(coupon.discount.value)}원
         </Text>
-        <DownloadButton
-          disabled={!valid}
-          onClick={() => valid && onClick?.(coupon, 'download')}
+        <Text
+          css={{
+            color: 'inherit',
+            fontSize: '12px',
+            fontWeight: 700,
+            lineHeight: '14px',
+            marginBottom: '2px',
+          }}
         >
-          {valid ? '쿠폰 받기' : '기한 만료'}
-          {valid && <Arrow />}
-        </DownloadButton>
+          중복사용가능
+        </Text>
+        <Text
+          css={{
+            color: 'inherit',
+            fontSize: '12px',
+            fontWeight: 400,
+            lineHeight: '14px',
+            marginBottom: '2px',
+          }}
+        >
+          {valid
+            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yy.MM.dd(HH.mm)')}까지 사용`
+            : '쿠폰 사용 기간 만료'}
+        </Text>
+        <Text
+          css={{
+            color: 'inherit',
+            fontSize: '12px',
+            fontWeight: 400,
+            lineHeight: '14px',
+          }}
+        >
+          {coupon.propertyName}
+        </Text>
       </Coupon>
+      <DownloadButton
+        disabled={!valid}
+        onClick={() => valid && onClick?.(coupon, 'download')}
+      />
     </CouponContainer>
   )
 }
