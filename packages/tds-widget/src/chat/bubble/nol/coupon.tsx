@@ -16,9 +16,11 @@ const Coupon = styled.div<{ valid: boolean }>`
   padding: 15px;
   width: 213px;
   height: 144px;
+  border-radius: 13px 0 0 13px;
   text-align: left;
   display: inline-block;
   color: ${({ valid }) => (valid ? '#1B1C1F' : '#B6B7BB')};
+  background-color: ${({ valid }) => (valid ? 'white' : '#FEFEFF')};
 `
 
 const DOWNLOAD_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,6 +44,10 @@ const DownloadButton = styled(Button)`
   width: 39px;
   height: 144px;
   display: inline-block;
+
+  :disabled {
+    background-color: red;
+  }
 `
 
 const Badge = styled.div<{ valid: boolean }>`
@@ -105,6 +111,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
             fontWeight: 400,
             lineHeight: '14px',
           }}
+          maxLines={1}
         >
           {coupon.propertyName}
         </Text>
