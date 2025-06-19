@@ -27,6 +27,7 @@ const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export interface ReservationInfoProps {
+  onClick?: () => void
   thumbnail?: string
   label?: {
     text: string
@@ -45,7 +46,14 @@ export interface ReservationInfoProps {
  * nol-theme-provider를 사용하는 컴포넌트 입니다.
  */
 function ReservationInfoImpl(
-  { details = [], thumbnail, label, title, ...props }: ReservationInfoProps,
+  {
+    details = [],
+    thumbnail,
+    label,
+    title,
+    onClick,
+    ...props
+  }: ReservationInfoProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const hasDetails = details.length > 0
@@ -69,7 +77,14 @@ function ReservationInfoImpl(
         {thumbnail ? <Thumbnail src={thumbnail} small={!hasDetails} /> : null}
         <DetailContainer
           expanded={expanded}
-          onClick={() => expandable && setExpanded(!expanded)}
+          onClick={
+            expandable
+              ? () => {
+                  setExpanded(!expanded)
+                  onClick?.()
+                }
+              : undefined
+          }
         >
           <TitleContainer>
             {title ? (
