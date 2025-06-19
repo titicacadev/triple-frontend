@@ -110,6 +110,7 @@ export const NolCouponContent = {
       },
       code: 'X9XWCGGM58N9A499',
       propertyId: '10003136',
+      propertyName: '오즈 모텔',
       type: 'random',
     },
     id: 'coupon_bubble',

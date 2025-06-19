@@ -161,4 +161,5 @@ export interface CouponItem {
   }
   code: string
   propertyId: string
+  propertyName: string
 }
