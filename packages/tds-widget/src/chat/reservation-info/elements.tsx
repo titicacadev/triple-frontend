@@ -105,6 +105,7 @@ export const TitleContainer = styled(BaseContainer)`
   &:has(${ArrowButton}) {
     cursor: pointer;
     padding-right: 18px;
+    cursor: pointer;
   }
 `
 
