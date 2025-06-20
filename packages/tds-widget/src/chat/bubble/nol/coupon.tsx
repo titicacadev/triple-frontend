@@ -10,13 +10,12 @@ const CouponContainer = styled.div<{ valid: boolean }>`
   display: inline-flex;
   border-radius: 14px;
   border: 1px solid ${({ valid }) => (valid ? '#B2BAFF' : '#E1E2E7')};
+  overflow: hidden;
 `
 
 const Coupon = styled.div<{ valid: boolean }>`
   padding: 15px;
   width: 213px;
-  height: 144px;
-  border-radius: 13px 0 0 13px;
   text-align: left;
   display: inline-block;
   color: ${({ valid }) => (valid ? '#1B1C1F' : '#B6B7BB')};
@@ -36,13 +35,12 @@ const getSVG = (svg: string) => {
 
 const DownloadButton = styled(Button)`
   padding: 0;
-  border-radius: 0 13px 13px 0;
+  border-radius: 0;
   border-left: 1px solid #ecedf7;
   background:
     no-repeat center url(${getSVG(DOWNLOAD_ICON)}),
     #f7f7ff;
   width: 39px;
-  height: 144px;
   display: inline-block;
 
   :disabled {
@@ -101,7 +99,7 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
           }}
         >
           {valid
-            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yyyy.MM.dd(HH.mm)')}까지 사용`
+            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yyyy.MM.dd(HH:mm)')}까지 사용`
             : '쿠폰 사용 기간 만료'}
         </Text>
         <Text
