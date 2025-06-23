@@ -173,6 +173,10 @@ export interface ChatRoomDetailInterface<
   members: ChatRoomMemberInterface<U>[]
   metadata?: V
   expirePolicies: ExpirePolicy[]
+  /**
+   * 재문의 가능 여부
+   */
+  canReactivation?: boolean
 }
 
 export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
