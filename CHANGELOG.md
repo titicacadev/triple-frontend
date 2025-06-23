@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 14.1.1
+
+```
+### middlewares
+
+- [middleware] next14용 미들웨어에 applySetCookie 적용 [#3717](https://github.com/titicacadev/triple-frontend/pull/3717)
+
+### tds-widget
+
+- [DMTALK-416] 채팅 > 디자인 개선 적용 [#3715](https://github.com/titicacadev/triple-frontend/pull/3715)
+- [DMTALK-425] input resize observer 옵션 변경 [#3722](https://github.com/titicacadev/triple-frontend/pull/3722)
+- [DMTALK-432] 쿠폰 메시지 디자인 변경 [#3723](https://github.com/titicacadev/triple-frontend/pull/3723)
+- [DMTALK-422] 이벤트 로깅을 위한 onClick 핸들러 전달 [#3724](https://github.com/titicacadev/triple-frontend/pull/3724)
+```
+
 ## 14.1.0
 
 ```
