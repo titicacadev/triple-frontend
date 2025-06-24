@@ -19,6 +19,10 @@ export interface OtherUnreadInterface {
   lastSeenMessageId: number
 }
 
+/**
+ * @deprecated
+ * case별로 UnreadChatMessageData, ChatMessageData, JoinedChatData로 분리하여 사용해 주세요.
+ */
 export interface UpdatedChatData<T = UserType> {
   message?: ChatMessageInterface<T>
   otherUnreadInfo?: HasUnreadOfRoomInterface
