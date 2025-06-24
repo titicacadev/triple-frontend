@@ -404,7 +404,7 @@ export function useChatMessages<T = UserType>(
 
   const onSendMessageEvent = useCallback(
     (
-      { message }: ChatMessageData<T>,
+      { message }: Pick<ChatMessageData<T>, 'message'>,
       {
         onComplete,
       }: {
