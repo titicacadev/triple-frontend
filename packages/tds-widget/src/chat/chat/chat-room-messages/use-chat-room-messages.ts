@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import DOMPurify from 'dompurify'
 
 import {
+  ChatMessageData,
   ChatMessageInterface,
   ChatMessagePayloadType,
   ChatRoomDetailInterface,
@@ -11,7 +12,6 @@ import {
   isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
-  UpdatedChatData,
   UserType,
 } from '../../types'
 import { useRoom } from '../room-context'
@@ -414,7 +414,7 @@ export function useChatMessages<T = UserType>(
 
   const onSendMessageEvent = useCallback(
     (
-      { message }: UpdatedChatData<T>,
+      { message }: ChatMessageData<T>,
       {
         onComplete,
       }: {
