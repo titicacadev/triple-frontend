@@ -290,6 +290,15 @@ export function useChatMessages<T = UserType>(
 
     /** 첫 렌더링 시에만 자동 메세지를 보내도록 합니다. */
     if (isWelcomeMessagePendingRef.current) {
+      dispatch({
+        action: MessagesActions.PENDING,
+        message: tempMessage,
+      })
+      setTimeout(() => {
+        triggerScrollToBottom()
+      }, 100)
+      skipPending = true
+
       await handleSendWelcomeMessage({
         room: currentRoom as ChatRoomDetailInterface,
         me: roomMemberMe,
