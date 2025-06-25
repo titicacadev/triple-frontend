@@ -412,26 +412,28 @@ export function useChatMessages<T = UserType>(
       } = {},
     ) => {
       if (message && message.payload) {
+        const messageWithNumberId = ensureMessageWithNumberId(message)
         /**
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
             coupon 메세지는 서버에서 직접 전송되므로 항상 푸셔 이벤트로 dispatch합니다.
           */
         const myMessage =
-          getUserIdentifier(me) === getUserIdentifier(message.sender)
-        if (!myMessage || message.payload.type === 'coupon') {
+          getUserIdentifier(me) ===
+          getUserIdentifier(messageWithNumberId.sender)
+        if (!myMessage || messageWithNumberId.payload.type === 'coupon') {
           dispatch({
             action: MessagesActions.NEW,
-            messages: [message],
+            messages: [messageWithNumberId],
             filterPendingMessages: isWelcomeMessagePendingRef.current
-              ? filterPendingMessage(message)
+              ? filterPendingMessage(messageWithNumberId)
               : undefined,
           })
         }
-        onComplete?.(message, myMessage)
+        onComplete?.(messageWithNumberId, myMessage)
         if (
           scrollToBottomOnNewMessage ||
-          (myMessage && message.payload.type === 'coupon')
+          (myMessage && messageWithNumberId.payload.type === 'coupon')
         ) {
           triggerScrollToBottom()
         }
@@ -589,4 +591,11 @@ function compareChatMessagePayloads<T extends ChatMessagePayloadType>(
   }
 
   return false
+}
+
+function ensureMessageWithNumberId<T>(message: ChatMessageInterface<T>) {
+  return {
+    ...message,
+    id: typeof message.id === 'number' ? message.id : Number(message.id),
+  }
 }
