@@ -66,6 +66,7 @@ export function useChatMessages<T = UserType>(
     dispatch,
     initMessages,
     welcomeMessages,
+    useTripleChat,
   } = useChatMessagesContext<T>()
   const api = useChatApiService<T>()
 
@@ -421,28 +422,29 @@ export function useChatMessages<T = UserType>(
       } = {},
     ) => {
       if (message && message.payload) {
-        const messageWithNumberId = ensureMessageWithNumberId(message)
+        const typeEnsuredMessage = useTripleChat
+          ? message
+          : ensureMessageWithNumberId(message)
         /**
             pendingMessage와 messages 간의 부드러운 UI 전환을 위해
             me의 메세지일 경우 handleSendMessageAction 함수 내에서 dispatch합니다.
             coupon 메세지는 서버에서 직접 전송되므로 항상 푸셔 이벤트로 dispatch합니다.
           */
         const myMessage =
-          getUserIdentifier(me) ===
-          getUserIdentifier(messageWithNumberId.sender)
-        if (!myMessage || messageWithNumberId.payload.type === 'coupon') {
+          getUserIdentifier(me) === getUserIdentifier(typeEnsuredMessage.sender)
+        if (!myMessage || typeEnsuredMessage.payload.type === 'coupon') {
           dispatch({
             action: MessagesActions.NEW,
-            messages: [messageWithNumberId],
+            messages: [typeEnsuredMessage],
             filterPendingMessages: isWelcomeMessagePendingRef.current
-              ? filterPendingMessage(messageWithNumberId)
+              ? filterPendingMessage(typeEnsuredMessage)
               : undefined,
           })
         }
-        onComplete?.(messageWithNumberId, myMessage)
+        onComplete?.(typeEnsuredMessage, myMessage)
         if (
           scrollToBottomOnNewMessage ||
-          (myMessage && messageWithNumberId.payload.type === 'coupon')
+          (myMessage && typeEnsuredMessage.payload.type === 'coupon')
         ) {
           triggerScrollToBottom()
         }

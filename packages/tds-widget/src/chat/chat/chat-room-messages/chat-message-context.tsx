@@ -47,6 +47,7 @@ export interface ChatMessagesContextValue<T = UserType> {
   >
   welcomeMessages: WelcomeMessageInterface<T>[]
   initMessages: () => Promise<void>
+  useTripleChat: boolean
 }
 
 export const ChatApiServiceContext = createContext<ChatApiService | null>(null)
@@ -124,6 +125,7 @@ export function ChatMessagesProvider<T = UserType>({
     dispatch,
     welcomeMessages,
     initMessages,
+    useTripleChat,
   } as unknown as ChatMessagesContextValue
 
   return (
