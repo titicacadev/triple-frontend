@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v14.1.2
+
+```
+### tds-widget
+
+- [DMTALK-217] welcomeMessage 전송시 UI 오류 수정 [#3688](https://github.com/titicacadev/triple-frontend/pull/3688)
+- [DMTALK-249] 재문의 가능여부 타입 정의 [#3727](https://github.com/titicacadev/triple-frontend/pull/3727)
+- [DMTALK-403] refactor: pusher data 타입 분리 [#3728](https://github.com/titicacadev/triple-frontend/pull/3728)
+```
+
 ## 14.1.1
 
 ```
@@ -2015,11 +2025,9 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
-
   - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
 
   - 변경된 컴포넌트:
-
     - action-sheet
     - core-elements/Drawer
     - drawer-button
