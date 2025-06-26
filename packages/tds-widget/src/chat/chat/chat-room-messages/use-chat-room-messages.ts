@@ -574,7 +574,7 @@ function findSenderFromRoomMembers<T>(
 }
 
 function filterPendingMessage<T>(
-  message: Required<UpdatedChatData<T>>['message'],
+  message: Required<ChatMessageData<T>>['message'],
 ) {
   return (pendingMessages: UnsentMessage<ChatMessageInterface<T>>[]) => {
     return pendingMessages.filter(
