@@ -5,14 +5,9 @@ import { visuallyHiddenCss } from '../visually-hidden'
 
 type CheckboxVariant = 'square' | 'round'
 
-const CheckboxBaseWrapper = styled.div`
-  display: inline-block;
-`
-
 const CheckboxBaseInput = styled.input({}, visuallyHiddenCss)
 
 const CheckboxBaseControl = styled.div<{ variant: CheckboxVariant }>`
-  display: inline-block;
   position: relative;
   width: 26px;
   height: 26px;
@@ -46,7 +41,7 @@ export interface CheckboxBaseProps
 export const CheckboxBase = forwardRef<HTMLInputElement, CheckboxBaseProps>(
   function CheckboxBase({ variant = 'square', ...props }, ref) {
     return (
-      <CheckboxBaseWrapper>
+      <div>
         <CheckboxBaseInput ref={ref} type="checkbox" {...props} />
         <CheckboxBaseControl variant={variant}>
           <CheckboxBaseSvg
@@ -64,7 +59,7 @@ export const CheckboxBase = forwardRef<HTMLInputElement, CheckboxBaseProps>(
             />
           </CheckboxBaseSvg>
         </CheckboxBaseControl>
-      </CheckboxBaseWrapper>
+      </div>
     )
   },
 )
