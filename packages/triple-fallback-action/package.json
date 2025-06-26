@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/triple-fallback-action",
-  "version": "14.1.1",
+  "version": "14.1.2",
   "description": "Escape hatch for Javascript file loading failure in web pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/triple-fallback-action",
