@@ -14,6 +14,11 @@ const meta: Meta<typeof Checkbox> = {
       control: 'radio',
       options: ['square', 'round'],
     },
+    checkboxSize: {
+      control: 'number',
+      description: '체크박스의 크기를 지정합니다.',
+      value: 26,
+    },
     checked: { type: 'boolean' },
   },
   parameters: {
