@@ -30,7 +30,16 @@ export interface CheckboxProps extends CheckboxBaseProps, PropsWithChildren {}
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(
-    { children, variant = 'square', name, checked, value, onChange, ...props },
+    {
+      children,
+      variant = 'square',
+      checkboxSize,
+      name,
+      checked,
+      value,
+      onChange,
+      ...props
+    },
     ref,
   ) {
     const group = useContext(CheckboxGroupContext)
@@ -53,6 +62,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           {...props}
           ref={ref}
           variant={variant}
+          checkboxSize={checkboxSize}
           name={name ?? group?.name}
           checked={
             checked ??
