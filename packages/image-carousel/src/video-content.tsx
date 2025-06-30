@@ -33,7 +33,7 @@ const Frame = styled(Container)<{
   overflow: hidden;
   width: 100%;
   height: ${({ height, size }) =>
-    (height && `${height}px`) || (size ? HEIGHT_OPTIONS[size] : '')};
+    (height && `${height}px`) || (size ? HEIGHT_OPTIONS[size] : '100%')};
 `
 
 const Poster = styled.div`
