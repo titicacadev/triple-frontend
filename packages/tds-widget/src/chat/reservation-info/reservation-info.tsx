@@ -92,12 +92,15 @@ function ReservationInfoImpl(
     }
   }, [])
 
-  const handleClick = () => {
-    if (expandable) {
-      setExpanded(!expanded)
-    }
-    onClick?.()
-  }
+  const handleClick =
+    expandable || (type === 'link' && onClick)
+      ? () => {
+          if (expandable) {
+            setExpanded(!expanded)
+          }
+          onClick?.()
+        }
+      : undefined
 
   return (
     <Container ref={ref} {...props}>
@@ -106,7 +109,7 @@ function ReservationInfoImpl(
         <DetailContainer
           expanded={expanded}
           onClick={handleClick}
-          css={expandable || onClick ? { cursor: 'pointer' } : {}}
+          css={handleClick ? { cursor: 'pointer' } : {}}
         >
           <TitleContainer>
             {title ? (
