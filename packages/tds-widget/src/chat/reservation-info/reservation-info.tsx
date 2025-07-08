@@ -41,7 +41,7 @@ interface DefaultReservationInfoActionProps
 interface LinkReservationInfoActionProps
   extends ReservationInfoActionPropsBase {
   type?: 'link'
-  onClick?: () => void
+  onClick: () => void
 }
 
 type ReservationInfoActionProps =
