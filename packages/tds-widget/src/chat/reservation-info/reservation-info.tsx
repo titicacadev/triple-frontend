@@ -5,6 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
   useRef,
+  SyntheticEvent,
 } from 'react'
 import { CSSProp } from 'styled-components'
 
@@ -28,6 +29,7 @@ const useIsomorphicLayoutEffect =
 
 export interface ReservationInfoProps {
   onClick?: () => void
+  onExpand?: () => void
   thumbnail?: string
   label?: {
     text: string
@@ -52,6 +54,7 @@ function ReservationInfoImpl(
     label,
     title,
     onClick,
+    onExpand,
     ...props
   }: ReservationInfoProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -71,11 +74,22 @@ function ReservationInfoImpl(
     }
   }, [])
 
+  const toggleExpand = (e?: SyntheticEvent) => {
+    e?.stopPropagation()
+
+    setExpanded(!expanded)
+    onExpand?.()
+  }
+
   const handleClick = () => {
-    if (expandable) {
-      setExpanded(!expanded)
+    if (onClick) {
+      onClick()
+      return
     }
-    onClick?.()
+
+    if (expandable) {
+      toggleExpand()
+    }
   }
 
   return (
@@ -106,6 +120,7 @@ function ReservationInfoImpl(
             ) : null}
             {expandable ? (
               <ArrowButton
+                onClick={toggleExpand}
                 expanded={expanded}
                 css={{ top: hasDetails ? '5px' : '9.5px' }}
               >
