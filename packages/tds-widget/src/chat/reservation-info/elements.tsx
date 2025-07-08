@@ -85,6 +85,7 @@ export const DetailContainer = styled(BaseContainer)<{ expanded: boolean }>`
 
 export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   expanded: boolean
+  expandable: boolean
 }>`
   position: absolute;
   right: 0;
@@ -93,7 +94,10 @@ export const ArrowButton = styled.button.attrs({ type: 'button' })<{
   display: flex;
 
   & > svg {
-    transform: rotate(${({ expanded }) => (expanded ? '0deg' : '180deg')});
+    transform: rotate(
+      ${({ expandable, expanded }) =>
+        !expandable ? '90deg' : expanded ? '0deg' : '180deg'}
+    );
   }
 `
 
