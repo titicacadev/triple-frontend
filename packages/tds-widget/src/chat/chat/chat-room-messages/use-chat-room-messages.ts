@@ -450,7 +450,13 @@ export function useChatMessages<T = UserType>(
         }
       }
     },
-    [dispatch, me, scrollToBottomOnNewMessage, triggerScrollToBottom],
+    [
+      dispatch,
+      me,
+      scrollToBottomOnNewMessage,
+      triggerScrollToBottom,
+      useTripleChat,
+    ],
   )
 
   /**
