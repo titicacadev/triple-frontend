@@ -23,7 +23,7 @@ const RangeContainer = styled(PickerFrameV2)<{
   ${({ $selectedAll, $startDateLabel, $endDateLabel }) => css`
     ${generateSelectedStyle({ selectedAll: $selectedAll })}
 
-    ${$selectedAll && rangeMixin()}
+    ${$selectedAll && rangeMixin({})}
 
     ${$startDateLabel &&
     dateLabelMixin({

@@ -127,7 +127,7 @@ export const DayPicker: StoryObj = {
 const RangeContainer = styled.tbody`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${rangeMixin()}
+  ${rangeMixin({})}
 
   ${dateLabelMixin({
     selector: '.DayPicker-Day--from',
