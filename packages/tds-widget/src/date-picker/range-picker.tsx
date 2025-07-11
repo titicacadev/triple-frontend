@@ -22,30 +22,42 @@ const RangeContainer = styled(PickerFrame)<{
   $startDateLabel?: string
   $endDateLabel?: string
   $sameDateLabel?: string
+  $defaultColor?: string
+  $backgroundColor?: string
 }>`
   ${generateSelectedCircleStyle('.DayPicker-Day--from,.DayPicker-Day--to')}
 
-  ${({ $selectedAll, $startDateLabel, $endDateLabel, $sameDateLabel }) =>
+  ${({
+    $selectedAll,
+    $startDateLabel,
+    $endDateLabel,
+    $sameDateLabel,
+    $defaultColor,
+    $backgroundColor,
+  }) =>
     $selectedAll &&
     css`
-      ${rangeMixin()}
+      ${rangeMixin({ backgroundColor: $backgroundColor })}
 
       ${$startDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--from',
         label: $startDateLabel,
+        color: $defaultColor,
       })}
 
       ${$endDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--to',
         label: $endDateLabel,
+        color: $defaultColor,
       })}
 
       ${$sameDateLabel &&
       dateLabelMixin({
         selector: '.DayPicker-Day--from.DayPicker-Day--to',
         label: $sameDateLabel,
+        color: $defaultColor,
       })}
     `}
 `
@@ -71,6 +83,8 @@ export function RangePicker({
   hideTodayLabel = false,
   canChangeMonth,
   initialMonth: initialMonthFromProps,
+  defaultColor,
+  backgroundColor,
   ...props
 }: DisableDaysProps &
   DayPickerProps & {
@@ -89,6 +103,8 @@ export function RangePicker({
     height?: string
     publicHolidays?: Date[]
     enableSameDay?: boolean
+    defaultColor?: string
+    backgroundColor?: string
   }) {
   const disabledDays = useDisabledDays({
     disabledDays: disabledDaysFromProps,
@@ -186,6 +202,8 @@ export function RangePicker({
       $sameDateLabel={sameDateLabel}
       $hideTodayLabel={hideTodayLabel}
       $canChangeMonth={canChangeMonth}
+      $defaultColor={defaultColor}
+      $backgroundColor={backgroundColor}
     >
       <MemoDayPicker
         locale={LOCALE}
