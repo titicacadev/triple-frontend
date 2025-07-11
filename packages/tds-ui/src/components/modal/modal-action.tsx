@@ -10,7 +10,7 @@ const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
 
 export const ModalAction = styled.a.withConfig({
   shouldForwardProp,
-})<{ color?: GlobalColors }>`
+})<{ color?: GlobalColors | string; disabled?: boolean }>`
   display: inline-block;
   white-space: nowrap;
   height: 50px;
@@ -18,6 +18,11 @@ export const ModalAction = styled.a.withConfig({
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  color: ${({ color }) => ACTION_COLORS[color || 'gray']};
+  color: ${({ color = 'gray', disabled }) =>
+    disabled
+      ? '#E9EAEF'
+      : color in ACTION_COLORS
+        ? ACTION_COLORS[color as GlobalColors]
+        : color};
   cursor: pointer;
 `
