@@ -34,6 +34,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       children,
       variant = 'square',
       checkboxSize,
+      checkboxColor,
       name,
       checked,
       value,
@@ -63,6 +64,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           variant={variant}
           checkboxSize={checkboxSize}
+          checkboxColor={checkboxColor}
           name={name ?? group?.name}
           checked={
             checked ??
