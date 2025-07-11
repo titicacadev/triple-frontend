@@ -10,6 +10,7 @@ const CheckboxBaseInput = styled.input({}, visuallyHiddenCss)
 const CheckboxBaseControl = styled.div<{
   variant: CheckboxVariant
   checkboxSize: number
+  checkboxColor: string
 }>`
   position: relative;
   width: ${({ checkboxSize }) => checkboxSize}px;
@@ -19,8 +20,8 @@ const CheckboxBaseControl = styled.div<{
   background-color: white;
 
   ${CheckboxBaseInput}:checked + & {
-    border-color: var(--color-blue);
-    background-color: var(--color-blue);
+    border-color: ${({ checkboxColor }) => checkboxColor};
+    background-color: ${({ checkboxColor }) => checkboxColor};
   }
 
   ${CheckboxBaseInput}:focus-visible + & {
@@ -42,17 +43,27 @@ export interface CheckboxBaseProps
   extends InputHTMLAttributes<HTMLInputElement> {
   variant?: CheckboxVariant
   checkboxSize?: number
+  checkboxColor?: string
 }
 
 export const CheckboxBase = forwardRef<HTMLInputElement, CheckboxBaseProps>(
   function CheckboxBase(
-    { variant = 'square', checkboxSize = 26, ...props },
+    {
+      variant = 'square',
+      checkboxSize = 26,
+      checkboxColor = 'var(--color-blue)',
+      ...props
+    },
     ref,
   ) {
     return (
       <div>
         <CheckboxBaseInput ref={ref} type="checkbox" {...props} />
-        <CheckboxBaseControl variant={variant} checkboxSize={checkboxSize}>
+        <CheckboxBaseControl
+          variant={variant}
+          checkboxSize={checkboxSize}
+          checkboxColor={checkboxColor}
+        >
           <CheckboxBaseSvg
             viewBox="0 0 12 11"
             fill="none"
