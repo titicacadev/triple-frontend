@@ -49,26 +49,26 @@ export function todayMixin({
   `
 }
 
-export function rangeMixin() {
+export function rangeMixin({
+  backgroundColor = 'var(--color-blue100)',
+}: {
+  backgroundColor?: string
+}) {
   return css`
     .DayPicker-Day--selected {
-      background: var(--color-blue100);
+      background: ${backgroundColor};
     }
 
     .DayPicker-Day--from {
       background: linear-gradient(
         to right,
         #fafafa 50%,
-        var(--color-blue100) 50%
+        ${backgroundColor} 50%
       );
     }
 
     .DayPicker-Day--to {
-      background: linear-gradient(
-        to left,
-        #fafafa 50%,
-        var(--color-blue100) 50%
-      );
+      background: linear-gradient(to left, #fafafa 50%, ${backgroundColor} 50%);
     }
 
     .DayPicker-Day--from.DayPicker-Day--to {
@@ -79,7 +79,7 @@ export function rangeMixin() {
       background: none;
 
       &.DayPicker-Day--included-range {
-        background: var(--color-100);
+        background: ${backgroundColor};
       }
     }
   `

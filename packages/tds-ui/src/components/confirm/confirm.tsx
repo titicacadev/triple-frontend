@@ -8,6 +8,8 @@ export interface ConfirmProps {
   open?: boolean
   cancelText?: string
   confirmText?: string
+  confirmTextColor?: string
+  disableConfirm?: boolean
   onClose?: () => void
   onCancel?: () => boolean | unknown
   onConfirm?: () => boolean | unknown
@@ -19,6 +21,8 @@ export const Confirm = ({
   open,
   cancelText = '취소',
   confirmText = '확인',
+  confirmTextColor = 'blue',
+  disableConfirm = false,
   onClose,
   onCancel,
   onConfirm,
@@ -29,6 +33,10 @@ export const Confirm = ({
   }
 
   const handleConfirm = () => {
+    if (disableConfirm) {
+      return
+    }
+
     onConfirm ? !onConfirm() && onClose?.() : onClose?.()
   }
 
@@ -42,7 +50,11 @@ export const Confirm = ({
         <Modal.Action color="gray" onClick={handleCancel}>
           {cancelText}
         </Modal.Action>
-        <Modal.Action color="blue" onClick={handleConfirm}>
+        <Modal.Action
+          color={confirmTextColor}
+          onClick={handleConfirm}
+          disabled={disableConfirm}
+        >
           {confirmText}
         </Modal.Action>
       </Modal.Actions>
