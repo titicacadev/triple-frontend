@@ -2,7 +2,10 @@ import { styled, css } from 'styled-components'
 
 import { todayMixin, sideSpacingMixin } from './mixins'
 
-export function generateSelectedCircleStyle(selector: string) {
+export function generateSelectedCircleStyle(
+  selector: string,
+  backgroundColor: string = 'var(--color-blue)',
+) {
   return css`
     /* stylelint-disable selector-class-pattern */
     ${selector} {
@@ -23,7 +26,7 @@ export function generateSelectedCircleStyle(selector: string) {
         bottom: 0;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: var(--color-blue);
+        background-color: ${backgroundColor};
         content: '';
         border-radius: 100%;
       }
@@ -75,6 +78,7 @@ interface PickerFrameProps {
   $monthPadding: string
   $hideTodayLabel: boolean
   $canChangeMonth?: boolean
+  $defaultColor?: string
 }
 
 export const PickerFrame = styled.div<PickerFrameProps>`
@@ -151,7 +155,11 @@ export const PickerFrame = styled.div<PickerFrameProps>`
   .DayPicker-Week {
     display: table-row;
 
-    ${({ $hideTodayLabel }) => !$hideTodayLabel && todayMixin({})}
+    ${({ $hideTodayLabel, $defaultColor }) =>
+      !$hideTodayLabel &&
+      todayMixin({
+        color: $defaultColor,
+      })}
 
     td:first-child {
       margin: 0;

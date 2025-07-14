@@ -4,17 +4,19 @@ export function todayMixin({
   top = '30px',
   fontSize = '11px',
   fontWeight,
+  color = 'var(--color-blue)',
 }: {
   top?: string
   fontSize?: string
   fontWeight?: number
+  color?: string
 }) {
   return css`
     /* stylelint-disable selector-class-pattern */
     .DayPicker-Day--today:not(.DayPicker-Day--selected):not(
         .DayPicker-Day--outside
       ) {
-      color: var(--color-blue);
+      color: ${color};
 
       &::before {
         top: ${top};
@@ -24,7 +26,7 @@ export function todayMixin({
         display: inline-block;
         font-size: ${fontSize};
         width: 100%;
-        color: var(--color-blue);
+        color: ${color};
         ${fontWeight && `font-weight : ${fontWeight};`}
       }
 
