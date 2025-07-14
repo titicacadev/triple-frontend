@@ -25,6 +25,13 @@ const RangeContainer = styled(PickerFrame)<{
   $defaultColor?: string
   $backgroundColor?: string
 }>`
+  ${({ $defaultColor = 'var(--color-blue)' }) => css`
+    ${generateSelectedCircleStyle(
+      '.DayPicker-Day--from,.DayPicker-Day--to',
+      $defaultColor,
+    )}
+  `}
+
   ${({
     $selectedAll,
     $startDateLabel,
@@ -35,11 +42,6 @@ const RangeContainer = styled(PickerFrame)<{
   }) =>
     $selectedAll &&
     css`
-      ${generateSelectedCircleStyle(
-        '.DayPicker-Day--from,.DayPicker-Day--to',
-        $defaultColor,
-      )}
-
       ${rangeMixin({ backgroundColor: $backgroundColor })}
 
       ${$startDateLabel &&
