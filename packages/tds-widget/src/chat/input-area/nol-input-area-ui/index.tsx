@@ -112,6 +112,7 @@ function NolInputAreaUIImpl(
     activeButtonColor,
     onBlur,
     onFocus,
+    CustomEmptyStateButton,
     ...props
   }: NolInputAreaUIProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -180,20 +181,24 @@ function NolInputAreaUIImpl(
           onFocus={onFocus}
           onBlur={onBlur}
         />
-        <SendButton
-          activeButtonColor={activeButtonColor}
-          disabled={disabled || buttonDisabled}
-          onClick={async () => {
-            if (inputValue.trim().length > 0) {
-              if (textareaRef.current) {
-                textareaRef.current.style.height = `${TEXTAREA_MIN_HEIGHT}px`
+        {CustomEmptyStateButton && inputValue.trim().length === 0 ? (
+          CustomEmptyStateButton
+        ) : (
+          <SendButton
+            activeButtonColor={activeButtonColor}
+            disabled={disabled || buttonDisabled}
+            onClick={async () => {
+              if (inputValue.trim().length > 0) {
+                if (textareaRef.current) {
+                  textareaRef.current.style.height = `${TEXTAREA_MIN_HEIGHT}px`
+                }
+                onSendMessage()
               }
-              onSendMessage()
-            }
-          }}
-        >
-          <SendIcon color={disabled || buttonDisabled ? '#BFBFC0' : '#FFF'} />
-        </SendButton>
+            }}
+          >
+            <SendIcon color={disabled || buttonDisabled ? '#BFBFC0' : '#FFF'} />
+          </SendButton>
+        )}
       </InputContainer>
     </InputAreaContainer>
   )
