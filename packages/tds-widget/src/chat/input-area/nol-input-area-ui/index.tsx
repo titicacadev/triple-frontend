@@ -9,7 +9,7 @@ import SendIcon from '../../icons/send-icon'
 import { NolInputAreaUIProps } from './types'
 
 const MAX_TEXT_LENGTH = 1000
-const TEXTAREA_MIN_HEIGHT = 22
+const TEXTAREA_MIN_HEIGHT = 19
 const TEXTAREA_MAX_HEIGHT = 110
 export const INPUT_AREA_HEIGHT = 60
 
@@ -31,7 +31,7 @@ const TextArea = styled.textarea<{
   border: none;
   outline: none;
   box-shadow: none;
-  font-size: 16px;
+  font-size: 14px;
   line-height: ${TEXTAREA_MIN_HEIGHT}px;
   color: ${({ color, theme }) => color || theme.nol.colorNeutralB100};
 
@@ -88,7 +88,7 @@ const FileInput = styled.input`
 const InputContainer = styled(Container)`
   padding: 6px 6px 6px 16px;
   border-radius: 24px;
-  box-shadow: 0 0 0 1px ${({ theme }) => theme.nol.colorNeutralG15} inset;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
   display: flex;
   flex: 1;
   align-items: center;
