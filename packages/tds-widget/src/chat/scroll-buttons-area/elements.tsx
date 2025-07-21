@@ -18,9 +18,9 @@ const ButtonContainer = styled(BaseContainer)`
   & > button {
     background-color: ${({ theme }) => theme.nol.colorNeutralW100};
     border-radius: 50%;
-    border: 1px solid ${({ theme }) => theme.nol.colorNeutralG10};
     width: 40px;
     height: 40px;
+    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.04);
   }
 `
 

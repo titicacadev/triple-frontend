@@ -10,9 +10,8 @@ const PRODUCT_INFO_MIN_CONTENT_HEIGHT = 24.5
 
 export const Container = styled(BaseContainer)`
   padding: 12px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.04);
   border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.nol.colorNeutralG10};
   background-color: ${({ theme }) => theme.nol.colorNeutralW100};
   margin: 8px 16px 0;
 `
