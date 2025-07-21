@@ -24,6 +24,7 @@ interface NolInputAreaUIBaseProps
   placeholderColor?: string
   activeButtonColor?: string
   disabled?: boolean
+  CustomEmptyStateButton?: React.ReactNode
 }
 
 export type NolInputAreaUIProps = NolInputAreaUIBaseProps &
