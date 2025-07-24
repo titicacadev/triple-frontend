@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v14.1.3
+
+### tds-ui
+
+- [tds-ui] 체크박스 사이즈 설정 prop을 추가합니다. [#3732](https://github.com/titicacadev/triple-frontend/pull/3732)
+- [tds-ui, tds-widget] 컴포넌트에 color props 추가 [#3735](https://github.com/titicacadev/triple-frontend/pull/3735)
+
+### tds-widget
+
+- [DMTALK-472] 채팅 디자인 개선사항 반영 [#3734](https://github.com/titicacadev/triple-frontend/pull/3734)
+- [tds-ui, tds-widget] 컴포넌트에 color props 추가 [#3735](https://github.com/titicacadev/triple-frontend/pull/3735)
+- [DMTALK-487] Chat/nol-input-area-ui 디자인 수정사항 반영 [#3736](https://github.com/titicacadev/triple-frontend/pull/3736)
+- [tds-widget] focus tracker에 autoZoomThreshold props 추가 [#3737](https://github.com/titicacadev/triple-frontend/pull/3737)
+
 ## v14.1.2
 
 ```
