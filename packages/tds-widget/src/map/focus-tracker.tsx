@@ -4,19 +4,23 @@ import { PointGeoJson } from '@titicaca/type-definitions'
 
 const AUTO_ZOOM_THRESHOLD = 10
 
+interface FocusTrackerProps {
+  focusGeolocation?: PointGeoJson
+  activeAutoZoom?: boolean
+  autoZoomThreshold?: number
+  disabled?: boolean
+}
+
 export function FocusTracker({
   focusGeolocation,
   activeAutoZoom = false,
   autoZoomThreshold = AUTO_ZOOM_THRESHOLD,
-}: {
-  focusGeolocation?: PointGeoJson
-  activeAutoZoom?: boolean
-  autoZoomThreshold?: number
-}) {
+  disabled = false,
+}: FocusTrackerProps) {
   const map = useGoogleMap()
 
   useEffect(() => {
-    if (!focusGeolocation || !map) {
+    if (!focusGeolocation || !map || disabled) {
       return
     }
 
@@ -28,7 +32,7 @@ export function FocusTracker({
     }
 
     map.panTo({ lat, lng })
-  }, [activeAutoZoom, focusGeolocation, map, autoZoomThreshold])
+  }, [activeAutoZoom, focusGeolocation, map, autoZoomThreshold, disabled])
 
   return null
 }
