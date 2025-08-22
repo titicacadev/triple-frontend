@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v14.1.4
+
+```
+### tds-widget
+
+- [tds-widget] focus tracker에 disabled props를 추가합니다. [#3739](https://github.com/titicacadev/triple-frontend/pull/3739)
+```
+
 ## v14.1.3
 
 ### tds-ui
