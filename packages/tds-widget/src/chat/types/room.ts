@@ -270,6 +270,7 @@ export interface InvitationInterface<
 > {
   invitationType: T
   invitationIdentifier: string
+  validInvitation: boolean
   metadata: V
   accept?: InvitationAcceptInterface
   expirePolicies: ExpirePolicy[]
