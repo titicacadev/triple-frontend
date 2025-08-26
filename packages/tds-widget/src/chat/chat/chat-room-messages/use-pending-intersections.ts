@@ -9,7 +9,7 @@ interface PendingIntersection {
 export function usePendingIntersections(
   processFn: (params: PendingIntersection) => void,
 ) {
-  const isPageVisibleRef = useRef(!document.hidden)
+  const isPageVisibleRef = useRef(true)
   const pendingIntersectionsRef = useRef<PendingIntersection[]>([])
 
   const addPendingIntersection = (
@@ -40,6 +40,8 @@ export function usePendingIntersections(
   const isVisible = () => isPageVisibleRef.current
 
   useEffect(() => {
+    isPageVisibleRef.current = !document.hidden
+
     const handleVisibilityChange = () => {
       const wasHidden = isPageVisibleRef.current === false
       isPageVisibleRef.current = !document.hidden
