@@ -284,8 +284,6 @@ export default function Messages<
           ) : null}
 
           <IntersectionObserver
-            trackVisibility
-            delay={100}
             onChange={
               onMessageIntersecting
                 ? (_inView, entry) =>

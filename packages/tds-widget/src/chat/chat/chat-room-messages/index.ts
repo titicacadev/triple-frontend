@@ -10,3 +10,4 @@ export {
   type ChatRoomMessageInterface,
 } from './messages'
 export * from './chat-room-messages-provider'
+export * from './use-pending-intersections'
