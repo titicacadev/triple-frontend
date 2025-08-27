@@ -22,11 +22,20 @@ interface ChannelRoomMetadata {
   memberCounts: number
 }
 
+interface UnreadChatMessage<T = UserType>
+  extends Pick<
+    ChatMessageInterface<T>,
+    'displayTarget' | 'payload' | 'alternative' | 'createdAt'
+  > {
+  roomId: string
+  senderId: string
+}
+
 /**
  * sendUnreadMessage 이벤트로 전달되는 데이터 타입
  */
 export interface UnreadChatMessageData<T = UserType> {
-  message?: ChatMessageInterface<T>
+  message?: UnreadChatMessage<T>
   otherUnreadInfo?: HasUnreadOfRoomInterface
   roomId: string
 }
