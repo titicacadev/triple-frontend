@@ -1,3 +1,4 @@
+import { useVisibilityChange } from '@titicaca/react-hooks'
 import { useRef, useEffect, useCallback } from 'react'
 
 interface PendingIntersection {
@@ -37,27 +38,23 @@ export function usePendingIntersections(
     pendingIntersectionsRef.current = []
   }
 
-  const isVisible = () => isPageVisibleRef.current
-
   useEffect(() => {
     isPageVisibleRef.current = !document.hidden
+  }, [])
 
-    const handleVisibilityChange = () => {
-      const wasHidden = isPageVisibleRef.current === false
-      isPageVisibleRef.current = !document.hidden
+  const handleVisibilityChange = (visible: boolean) => {
+    const wasHidden = isPageVisibleRef.current === false
+    isPageVisibleRef.current = visible
 
-      // 페이지가 숨겨졌다가 다시 보일 때 pending 작업들 처리
-      if (wasHidden && !document.hidden) {
-        processPendingIntersections()
-      }
+    // 페이지가 숨겨졌다가 다시 보일 때 pending 작업들 처리
+    if (wasHidden && visible) {
+      processPendingIntersections()
     }
+  }
 
-    document.addEventListener('visibilitychange', handleVisibilityChange)
+  useVisibilityChange(handleVisibilityChange, [processPendingIntersections])
 
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange)
-    }
-  }, [processPendingIntersections])
+  const isVisible = () => isPageVisibleRef.current
 
   return {
     isVisible,
