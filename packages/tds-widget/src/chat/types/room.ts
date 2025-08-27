@@ -191,7 +191,7 @@ export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
     | 'expired'
     | 'members'
   > {
-  lastMessage: ChatMessageInterface<U>
+  lastMessage?: ChatMessageInterface<U>
   unreadCount?: number
 }
 
