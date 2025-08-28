@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v14.1.5
+
+```
+### tds-widget
+
+- [TPB-3385] InvitationInterface 에  validInvitation 필드 추가 [#3741](https://github.com/titicacadev/triple-frontend/pull/3741)
+- [DMTALK-533] usePendingIntersections 추가 [#3742](https://github.com/titicacadev/triple-frontend/pull/3742)
+- [DMTALK-505] 타입 업데이트 [#3743](https://github.com/titicacadev/triple-frontend/pull/3743)
+```
+
 ## v14.1.4
 
 ```
