@@ -5,6 +5,7 @@ export const ChatChannelEvents = {
   UNREAD: 'unread',
   SEND: 'send',
   JOIN: 'join',
+  LEFT: 'left',
 } as const
 
 export type ChatChannelEventsType = ValueOf<typeof ChatChannelEvents>
