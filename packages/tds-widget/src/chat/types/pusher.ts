@@ -54,3 +54,10 @@ export interface JoinedChatData<T = RoomType, U = UserType> {
   memberCounts: number
   metadata: ChannelRoomMetadata
 }
+
+export interface LeftChatData<T = RoomType, U = UserType> {
+  room: ChannelRoom<T>
+  members: ChannelUser<U>[]
+  memberCounts: number
+  metadata: ChannelRoomMetadata
+}
