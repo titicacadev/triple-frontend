@@ -188,7 +188,8 @@ function NolInputAreaUIImpl(
           <SendButton
             activeButtonColor={activeButtonColor}
             disabled={disabled || buttonDisabled}
-            onClick={async () => {
+            onClick={async (e) => {
+              e.preventDefault()
               if (!dismissKeyboardOnSend) {
                 textareaRef.current?.focus()
               }
