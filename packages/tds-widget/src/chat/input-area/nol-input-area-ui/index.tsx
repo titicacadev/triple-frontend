@@ -113,7 +113,7 @@ function NolInputAreaUIImpl(
     onBlur,
     onFocus,
     CustomEmptyStateButton,
-    dismissOnSend = true,
+    dismissKeyboardOnSend = true,
     ...props
   }: NolInputAreaUIProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -189,7 +189,7 @@ function NolInputAreaUIImpl(
             activeButtonColor={activeButtonColor}
             disabled={disabled || buttonDisabled}
             onClick={async () => {
-              if (!dismissOnSend) {
+              if (!dismissKeyboardOnSend) {
                 textareaRef.current?.focus()
               }
               if (inputValue.trim().length > 0) {
