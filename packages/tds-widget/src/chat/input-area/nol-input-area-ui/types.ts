@@ -25,6 +25,7 @@ interface NolInputAreaUIBaseProps
   activeButtonColor?: string
   disabled?: boolean
   CustomEmptyStateButton?: React.ReactNode
+  dismissKeyboardOnSend?: boolean
 }
 
 export type NolInputAreaUIProps = NolInputAreaUIBaseProps &

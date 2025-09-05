@@ -113,6 +113,7 @@ function NolInputAreaUIImpl(
     onBlur,
     onFocus,
     CustomEmptyStateButton,
+    dismissKeyboardOnSend = true,
     ...props
   }: NolInputAreaUIProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -187,7 +188,11 @@ function NolInputAreaUIImpl(
           <SendButton
             activeButtonColor={activeButtonColor}
             disabled={disabled || buttonDisabled}
-            onClick={async () => {
+            onClick={async (e) => {
+              e.preventDefault()
+              if (!dismissKeyboardOnSend) {
+                textareaRef.current?.focus()
+              }
               if (inputValue.trim().length > 0) {
                 if (textareaRef.current) {
                   textareaRef.current.style.height = `${TEXTAREA_MIN_HEIGHT}px`
