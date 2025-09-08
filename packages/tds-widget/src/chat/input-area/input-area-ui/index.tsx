@@ -28,6 +28,7 @@ export interface InputAreaUIProps {
   buttonDisabled?: boolean
   maxTextLength?: number
   multipleImageUpload?: boolean
+  dismissKeyboardOnSend?: boolean
 }
 
 export function InputAreaUI({
@@ -43,6 +44,7 @@ export function InputAreaUI({
   onInputKeydown,
   maxTextLength = MAX_TEXT_LENGTH,
   multipleImageUpload = false,
+  dismissKeyboardOnSend = true,
   ...props
 }: InputAreaUIProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -74,7 +76,11 @@ export function InputAreaUI({
         />
         <SendMessageButton
           $color={buttonColor}
-          onClick={async () => {
+          onClick={async (e) => {
+            e.preventDefault()
+            if (!dismissKeyboardOnSend) {
+              textareaRef.current?.focus()
+            }
             if (inputValue.trim().length > 0) {
               if (textareaRef.current) {
                 textareaRef.current.style.height = `${MIN_TEXTAREA_HEIGHT}px`
