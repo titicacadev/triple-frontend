@@ -3,7 +3,7 @@ import { ChangeEvent, ForwardedRef, forwardRef, useRef } from 'react'
 import styled from 'styled-components'
 
 import SelectPhotoIcon from '../../icons/select-photo-icon'
-import { textAreaAutoResize } from '../utils'
+import { handleSendClick, textAreaAutoResize } from '../utils'
 import SendIcon from '../../icons/send-icon'
 
 import { NolInputAreaUIProps } from './types'
@@ -188,18 +188,15 @@ function NolInputAreaUIImpl(
           <SendButton
             activeButtonColor={activeButtonColor}
             disabled={disabled || buttonDisabled}
-            onClick={async (e) => {
-              e.preventDefault()
-              if (!dismissKeyboardOnSend) {
-                textareaRef.current?.focus()
-              }
-              if (inputValue.trim().length > 0) {
-                if (textareaRef.current) {
-                  textareaRef.current.style.height = `${TEXTAREA_MIN_HEIGHT}px`
-                }
-                onSendMessage()
-              }
-            }}
+            onClick={(e) =>
+              handleSendClick(e, {
+                textareaRef,
+                inputValue,
+                onSendMessage,
+                dismissKeyboardOnSend,
+                minHeight: TEXTAREA_MIN_HEIGHT,
+              })
+            }
           >
             <SendIcon color={disabled || buttonDisabled ? '#BFBFC0' : '#FFF'} />
           </SendButton>

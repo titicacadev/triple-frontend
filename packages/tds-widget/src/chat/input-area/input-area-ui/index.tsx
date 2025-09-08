@@ -1,6 +1,6 @@
 import { ChangeEventHandler, KeyboardEventHandler, useRef } from 'react'
 
-import { textAreaAutoResize } from '../utils'
+import { handleSendClick, textAreaAutoResize } from '../utils'
 
 import {
   FileInput,
@@ -76,18 +76,15 @@ export function InputAreaUI({
         />
         <SendMessageButton
           $color={buttonColor}
-          onClick={async (e) => {
-            e.preventDefault()
-            if (!dismissKeyboardOnSend) {
-              textareaRef.current?.focus()
-            }
-            if (inputValue.trim().length > 0) {
-              if (textareaRef.current) {
-                textareaRef.current.style.height = `${MIN_TEXTAREA_HEIGHT}px`
-              }
-              onSendMessage()
-            }
-          }}
+          onClick={(e) =>
+            handleSendClick(e, {
+              textareaRef,
+              inputValue,
+              onSendMessage,
+              dismissKeyboardOnSend,
+              minHeight: MIN_TEXTAREA_HEIGHT,
+            })
+          }
           disabled={buttonDisabled}
         >
           {buttonText || '보내기'}
