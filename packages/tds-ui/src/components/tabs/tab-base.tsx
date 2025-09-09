@@ -45,7 +45,7 @@ function TabBaseComponent<Value extends number | string | symbol>(
     onKeyDown(event)
   }
 
-  useFocusEffect(focused, internalRef)
+  useFocusEffect(focused && isSelected, internalRef)
 
   return (
     <button
