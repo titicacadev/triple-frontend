@@ -5,6 +5,7 @@ import {
   KeyboardEventHandler,
   MouseEventHandler,
   PropsWithChildren,
+  useEffect,
   useRef,
 } from 'react'
 import { useFocusEffect, useRovingTabIndex } from 'react-roving-tabindex'
@@ -26,12 +27,15 @@ function TabBaseComponent<Value extends number | string | symbol>(
 ) {
   const tabs = useTabs<Value>()
   const internalRef = useRef<HTMLButtonElement>(null)
+
   const [tabIndex, focused, onKeyDown, onClick] = useRovingTabIndex(
     internalRef,
     false,
   )
 
   const isSelected = tabs.value === value
+
+  const wasSelected = useRef(isSelected)
 
   const handleClick: MouseEventHandler = () => {
     onClick()
@@ -45,7 +49,14 @@ function TabBaseComponent<Value extends number | string | symbol>(
     onKeyDown(event)
   }
 
-  useFocusEffect(focused && isSelected, internalRef)
+  useEffect(() => {
+    if (isSelected && !wasSelected.current) {
+      internalRef.current?.focus()
+    }
+    wasSelected.current = isSelected
+  }, [isSelected])
+
+  useFocusEffect(focused, internalRef)
 
   return (
     <button
