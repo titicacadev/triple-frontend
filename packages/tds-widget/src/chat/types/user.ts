@@ -69,6 +69,7 @@ export interface ChatUserInterface<T = UserType> {
 export interface ChatRoomMemberInterface<T = UserType>
   extends Omit<ChatUserInterface<T>, 'id' | 'channel' | 'createdAt'> {
   roomMemberId: string
+  leftAt?: string
 }
 
 /**
