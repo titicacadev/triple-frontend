@@ -12,6 +12,7 @@ import { FooterInfo, FooterText } from '../utils/type'
 import { MAX_PHONE_WIDTH } from '../utils/constants'
 
 import { ButtonArea } from './button-area'
+import { Divider } from './divider'
 
 const AccordionHeader = styled(FlexBox)`
   @media (max-width: ${MAX_PHONE_WIDTH}px) {
@@ -47,13 +48,6 @@ const TextList = styled.ul`
   }
 `
 
-const Divider = styled.div`
-  width: 1px;
-  height: 8px;
-  background: #dadbdf;
-  margin: 0 8px;
-`
-
 const LinkContainer = styled.a`
   text-decoration: underline;
 `
@@ -67,7 +61,7 @@ interface CompanyInfoProps {
 }
 
 export function CompanyInfo({
-  companyTexts,
+  companyTexts: rowTexts,
   buttons,
   hideAppDownloadButton = false,
   businessExpanded,
@@ -95,14 +89,16 @@ export function CompanyInfo({
 
       <AccordionContent>
         <TextList>
-          {companyTexts.map((texts, index) => (
+          {rowTexts.map((columnTexts, index) => (
             <li key={`company-text-line-${index}`}>
-              {texts.map(({ text, url, faEventAction }, index) => (
+              {columnTexts.map(({ text, url, faEventAction }, index) => (
                 <Fragment key={`company-text-${index}`}>
                   {url ? (
                     <LinkContainer
-                      onClick={() =>
-                        trackEvent({ fa: { action: faEventAction } })
+                      onClick={
+                        faEventAction
+                          ? () => trackEvent({ fa: { action: faEventAction } })
+                          : undefined
                       }
                     >
                       {text}
@@ -110,10 +106,10 @@ export function CompanyInfo({
                   ) : (
                     text
                   )}
-                  {index !== texts.length - 1 ? <Divider /> : null}
+                  {index !== columnTexts.length - 1 ? <Divider /> : null}
                 </Fragment>
               ))}
-              {index !== companyTexts.length - 1 ? <br /> : null}
+              {index !== rowTexts.length - 1 ? <br /> : null}
             </li>
           ))}
         </TextList>

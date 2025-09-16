@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { FlexBox } from '@titicaca/tds-ui'
 
 import { FooterAward } from '../utils/type'
+import { DESKTOP_MIN_WIDTH } from '../utils/constants'
 
 const AwardImg = styled.img`
   width: 26px;
@@ -12,27 +13,31 @@ const AwardImg = styled.img`
 const Tooltip = styled.div`
   display: none;
   position: absolute;
-  bottom: calc(100% + 4px);
+  bottom: calc(100% + 11px);
   right: 0;
-  border: 1px solid var(--color-brightGray);
-  border-radius: 6px;
+  border: 1px solid #dadbdf;
+  border-radius: 8px;
   padding: 8px 11px;
   background-color: var(--color-white);
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--color-gray800);
+  font-size: 12px;
+  font-weight: 400;
+  color: #6e6f73;
   line-height: 14px;
   white-space: pre;
 `
 
-const AwardFlexBox = styled(FlexBox).attrs({
-  position: 'relative',
-  flex: true,
-  gap: '7px',
-  flexShrink: 0,
-})`
+const AwardFlexBox = styled(FlexBox)`
+  display: flex;
+  position: relative;
+  gap: 8px;
+  flex-shrink: 0;
+
   ${AwardImg}:hover + ${Tooltip} {
     display: block;
+  }
+
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
+    display: none;
   }
 `
 
