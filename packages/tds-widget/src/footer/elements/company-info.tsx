@@ -26,16 +26,21 @@ const AccordionHeader = styled(Container)`
 `
 
 const Title = styled(AccordionTitle)`
-  display: inline-block;
+  display: flex;
+  align-items: center;
   flex: 1;
   color: #1b1c1f !important;
   font-size: 14px !important;
   font-weight: 700;
   line-height: 17px;
-  margin-top: 20px;
+  margin-top: 12px;
 
   &::after {
     display: none;
+  }
+
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
+    margin-top: 20px;
   }
 `
 
@@ -83,7 +88,7 @@ export function CompanyInfo({
       }
     >
       <AccordionHeader>
-        <Title>
+        <Title css={{ marginTop: hideAppDownloadButton ? 0 : undefined }}>
           트리플 사업자정보
           <ArrowIcon businessExpanded={businessExpanded} />
         </Title>

@@ -34,17 +34,16 @@ export const buttonCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
   height: 40px;
-  padding: 16px;
-  font-size: 14px;
+  padding: 0 12px;
+  font-size: 13px;
   font-weight: bold;
   line-height: 17px;
   color: #1b1c1f;
   text-align: center;
   border-radius: 12px;
   border: 1px solid #dadbdf;
-  background: #fff;
+  background: #fafbfd;
 
   span {
     margin: 0 4px;
