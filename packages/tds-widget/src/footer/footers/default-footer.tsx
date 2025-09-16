@@ -19,7 +19,6 @@ export const FooterFrame = styled.footer`
 export const FooterInnerContainer = styled(Container)`
   margin: 0 auto;
   padding: 30px 30px 60px;
-  min-width: 280px;
   max-width: ${DESKTOP_MIN_WIDTH}px;
 `
 
