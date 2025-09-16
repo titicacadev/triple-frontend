@@ -8,22 +8,23 @@ import {
   useTrackEvent,
 } from '@titicaca/triple-web'
 
-import { MAX_PHONE_WIDTH } from '../../utils/constants'
+import { DESKTOP_MIN_WIDTH } from '../../utils/constants'
 import { FooterLinkButton } from '../../utils/type'
 
 export const ButtonContainer = styled(FlexBox)`
+  flex-shrink: 1;
   gap: 6px;
 
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
     width: 100%;
-    margin-bottom: 20px;
   }
 `
 
 export const buttonFlexItemCss = css`
   flex-shrink: 0;
 
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
+    flex-grow: 1;
     width: 50%;
   }
 `
@@ -34,16 +35,20 @@ export const buttonCss = css`
   justify-content: center;
   align-items: center;
   gap: 2px;
-  height: 32px;
-  padding: 9px 10px;
-  font-size: 11px;
+  height: 40px;
+  padding: 16px;
+  font-size: 14px;
   font-weight: bold;
-  line-height: 13px;
-  color: var(--color-gray600);
+  line-height: 17px;
+  color: #1b1c1f;
   text-align: center;
-  border: 1px solid var(--color-gray200);
-  border-radius: 4px;
-  background-color: rgba(250, 250, 250, 1);
+  border-radius: 12px;
+  border: 1px solid #dadbdf;
+  background: #fff;
+
+  span {
+    margin: 0 4px;
+  }
 
   img {
     width: 16px;
