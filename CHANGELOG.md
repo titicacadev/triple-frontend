@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v14.1.6
+
+```
+### tds-widget
+
+- [DMTALK-555] dismissKeyboardOnSend 옵션 추가 [#3747](https://github.com/titicacadev/triple-frontend/pull/3747)
+```
+
 ## v14.1.5
 
 ```
