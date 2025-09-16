@@ -9,8 +9,9 @@ import {
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { Dispatch, Fragment, SetStateAction } from 'react'
 
-import { FooterInfo, FooterText } from './type'
-import { MAX_PHONE_WIDTH } from './constants'
+import { FooterInfo, FooterText } from '../utils/type'
+import { MAX_PHONE_WIDTH } from '../utils/constants'
+
 import { ButtonArea } from './button-area'
 
 const AccordionHeader = styled(FlexBox)`

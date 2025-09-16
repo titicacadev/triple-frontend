@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
-import { FooterLink } from './type'
+import { FooterLink } from '../utils/type'
 
 const Link = styled.a`
   display: block;

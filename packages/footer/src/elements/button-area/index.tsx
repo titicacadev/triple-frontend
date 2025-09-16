@@ -1,4 +1,4 @@
-import { FooterButton } from '../type'
+import { FooterButton } from '../../utils/type'
 
 import { BUTTON_LIST, ButtonContainer, LinkButton } from './button'
 import { Dropdown } from './dropdown'

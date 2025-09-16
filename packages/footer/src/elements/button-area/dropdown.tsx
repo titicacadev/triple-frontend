@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import styled from 'styled-components'
 
-import { FooterDropdownButton } from '../type'
+import { FooterDropdownButton } from '../../utils/type'
 
 import { buttonCss, buttonFlexItemCss } from './button'
 

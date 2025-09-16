@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 
-import { FooterLink } from './type'
+import { FooterLink } from '../utils/type'
 
 const LinksContainer = styled(Container)`
   display: flex;
