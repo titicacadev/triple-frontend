@@ -2,20 +2,24 @@ import styled from 'styled-components'
 import {
   Accordion,
   AccordionContent,
-  FlexBox,
   AccordionTitle,
+  Container,
 } from '@titicaca/core-elements'
 import { useEventTrackingContext } from '@titicaca/react-contexts'
 import { Dispatch, Fragment, SetStateAction } from 'react'
 
 import { FooterInfo, FooterText } from '../utils/type'
-import { MAX_PHONE_WIDTH } from '../utils/constants'
+import { DESKTOP_MIN_WIDTH } from '../utils/constants'
 
 import { ButtonArea } from './button-area'
 import { Divider } from './divider'
 
-const AccordionHeader = styled(FlexBox)`
-  @media (max-width: ${MAX_PHONE_WIDTH}px) {
+const AccordionHeader = styled(Container)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
     flex-direction: column-reverse;
     align-items: flex-start;
   }
@@ -23,10 +27,12 @@ const AccordionHeader = styled(FlexBox)`
 
 const Title = styled(AccordionTitle)`
   display: inline-block;
+  flex: 1;
   color: #1b1c1f !important;
   font-size: 14px !important;
   font-weight: 700;
   line-height: 17px;
+  margin-top: 20px;
 
   &::after {
     display: none;
@@ -75,7 +81,7 @@ export function CompanyInfo({
         setBusinessExpanded((businessExpanded) => !businessExpanded)
       }
     >
-      <AccordionHeader flex alignItems="center" justifyContent="space-between">
+      <AccordionHeader>
         <Title>
           트리플 사업자정보
           <ArrowIcon businessExpanded={businessExpanded} />
