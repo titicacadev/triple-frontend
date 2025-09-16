@@ -8,6 +8,7 @@ const Link = styled.a`
   display: block;
   color: var(--color-gray500);
   font-size: 10px;
+  font-weight: 500;
   text-decoration-line: underline;
   cursor: pointer;
   margin-top: 20px;

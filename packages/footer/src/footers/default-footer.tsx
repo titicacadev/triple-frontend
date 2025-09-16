@@ -6,7 +6,10 @@ import { LinkGroup } from '../elements/link-group'
 import { CompanyInfo } from '../elements/company-info'
 import { ExtraLinkGroup } from '../elements/extra-link-group'
 import { useFooterInfo } from '../utils/use-footer-info'
-import { DEFAULT_FOOTER_MIN_HEIGHT } from '../utils/constants'
+import {
+  DEFAULT_FOOTER_MIN_HEIGHT,
+  DESKTOP_MIN_WIDTH,
+} from '../utils/constants'
 import { AwardGroup } from '../elements/awards'
 
 export const FooterFrame = styled.footer`
@@ -17,7 +20,22 @@ export const FooterInnerContainer = styled(Container)`
   margin: 0 auto;
   padding: 30px 30px 60px;
   min-width: 280px;
-  max-width: 768px;
+  max-width: ${DESKTOP_MIN_WIDTH}px;
+`
+
+const Disclaimer = styled(Text)`
+  font-size: 12px;
+  line-height: 18px;
+  color: #8b8d92;
+  margin-top: 12px;
+  font-weight: 400;
+`
+
+const LinkGroupContainer = styled(Container)`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
 `
 
 export interface DefaultFooterProps {
@@ -54,25 +72,12 @@ function DefaultFooter({
           setBusinessExpanded={setBusinessExpanded}
           buttons={footerInfo.buttons}
         />
-        <Text
-          size={11}
-          lineHeight="17px"
-          color="gray500"
-          margin={{ top: businessExpanded ? 10 : 20, bottom: 20 }}
-        >
-          {footerInfo.disclaimer}
-        </Text>
+        <Disclaimer>{footerInfo.disclaimer}</Disclaimer>
 
-        <Container
-          css={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-          }}
-        >
+        <LinkGroupContainer>
           <LinkGroup links={footerInfo.links} />
           {awardsVisible ? <AwardGroup awards={footerInfo.awards} /> : null}
-        </Container>
+        </LinkGroupContainer>
 
         {extraLinkVisible ? (
           <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
