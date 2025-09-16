@@ -12,6 +12,7 @@ const LinksContainer = styled(Container)`
   flex-flow: row wrap;
   align-items: center;
   margin-top: 20px;
+  row-gap: 8px;
 
   a {
     font-size: 12px;

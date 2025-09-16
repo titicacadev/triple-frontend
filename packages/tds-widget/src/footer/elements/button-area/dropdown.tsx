@@ -6,8 +6,6 @@ import { FooterDropdownButton } from '../../utils/type'
 
 import { buttonCss, buttonFlexItemCss } from './button'
 
-const DROPDOWN_INITIAL_HEIGHT = 174
-
 const DropdownContainer = styled.div`
   position: relative;
   ${buttonFlexItemCss}
@@ -47,12 +45,10 @@ export function Dropdown({
 }: FooterDropdownButton) {
   const [dropdownOptionsVisible, setDropdownOptionsVisible] =
     useState<boolean>(false)
-  const [dropdownOptionsHeight, setDropdownOptionsHeight] = useState<number>(
-    DROPDOWN_INITIAL_HEIGHT,
-  )
+  const trackEvent = useTrackEvent()
+
   const buttonRef = useRef<HTMLButtonElement>(null)
   const optionsRef = useRef<HTMLUListElement>(null)
-  const optionsHeightSettingFlag = useRef<boolean>(false)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -71,16 +67,6 @@ export function Dropdown({
     }
   }, [])
 
-  useEffect(() => {
-    if (optionsRef.current && !optionsHeightSettingFlag.current) {
-      setDropdownOptionsHeight(optionsRef.current.clientHeight)
-      optionsHeightSettingFlag.current = true
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dropdownOptionsVisible])
-
-  const trackEvent = useTrackEvent()
-
   return (
     <DropdownContainer>
       <button
@@ -97,10 +83,7 @@ export function Dropdown({
       </button>
 
       {dropdownOptionsVisible ? (
-        <DropdownOptions
-          ref={optionsRef}
-          css={{ top: (dropdownOptionsHeight + 6) * -1 }}
-        >
+        <DropdownOptions ref={optionsRef}>
           {options.map(({ label, url, faEventAction }) => (
             <li key={label} value={label}>
               <a
