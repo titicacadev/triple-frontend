@@ -11,27 +11,24 @@ export default {
 } as Meta<typeof DefaultFooter>
 
 export const Basic: StoryObj<typeof DefaultFooter> = {
-  args: {
-    extraLinkVisible: true,
-    awardsVisible: true,
-  },
-  parameters: {
-    msw: {
-      handlers: [
-        http.get(
-          'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
-          async () => {
-            return HttpResponse.json(MockFooterInfo)
-          },
-        ),
-      ],
+  argTypes: {
+    hideAppDownloadButton: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    extraLinkVisible: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    awardsVisible: {
+      control: 'boolean',
+      defaultValue: true,
     },
   },
-}
-
-export const NoButtons: StoryObj<typeof DefaultFooter> = {
   args: {
-    hideAppDownloadButton: true,
+    hideAppDownloadButton: false,
+    extraLinkVisible: true,
+    awardsVisible: true,
   },
   parameters: {
     msw: {
