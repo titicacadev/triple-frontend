@@ -5,28 +5,22 @@ import { useTrackEvent } from '@titicaca/triple-web'
 
 import { FooterLink } from '../utils/type'
 
+import { Divider } from './divider'
+
 const LinksContainer = styled(Container)`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  color: var(--color-gray);
+  margin-top: 20px;
 
   a {
-    color: var(--color-gray);
+    font-size: 12px;
+    line-height: 14px;
+    color: #3c3d40;
     text-decoration: none;
     word-break: keep-all;
     flex-shrink: 0;
   }
-`
-
-const Divider = styled.div`
-  width: 1px;
-  height: 8px;
-  margin: 0 6px;
-  background: var(--color-gray);
 `
 
 export function LinkGroup({ links }: { links: FooterLink[] }) {
@@ -46,6 +40,7 @@ export function LinkGroup({ links }: { links: FooterLink[] }) {
                 ? () => trackEvent({ fa: { action: link.faEventAction } })
                 : undefined
             }
+            css={{ fontWeight: link.bold ? 700 : 400 }}
           >
             {link.label}
           </a>
