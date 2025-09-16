@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { FooterLink } from '../utils/type'
 
 const Link = styled.a`
-  display: block;
+  display: inline-block;
   color: var(--color-gray500);
   font-size: 10px;
   font-weight: 500;
