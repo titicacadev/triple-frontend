@@ -116,7 +116,7 @@ function DropdownArrow() {
       fill="none"
     >
       <path
-        d="M5.0625 13.5L10.75 7.8125L5.0625 2.125"
+        d="M6.0625 12.5L10.75 7.8125L6.0625 3.125"
         stroke="#1B1C1F"
         strokeWidth="1.5"
         strokeLinecap="round"

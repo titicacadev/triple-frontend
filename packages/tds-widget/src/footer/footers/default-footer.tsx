@@ -6,19 +6,21 @@ import { LinkGroup } from '../elements/link-group'
 import { CompanyInfo } from '../elements/company-info'
 import { ExtraLinkGroup } from '../elements/extra-link-group'
 import { useFooterInfo } from '../utils/use-footer-info'
-import {
-  DESKTOP_FOOTER_MIN_HEIGHT,
-  DESKTOP_MIN_WIDTH,
-  MOBILE_FOOTER_MIN_HEIGHT,
-} from '../utils/constants'
+import { FOOTER_MIN_HEIGHTS, DESKTOP_MIN_WIDTH } from '../utils/constants'
 import { AwardGroup } from '../elements/awards'
 
-export const FooterFrame = styled.footer`
+export const FooterFrame = styled.footer<{ hideAppDownloadButton?: boolean }>`
   background-color: #fafbfd;
-  min-height: ${DESKTOP_FOOTER_MIN_HEIGHT}px;
+  min-height: ${({ hideAppDownloadButton }) =>
+    hideAppDownloadButton
+      ? FOOTER_MIN_HEIGHTS.DESKTOP_WITHOUT_APP_DOWNLOAD_BUTTON
+      : FOOTER_MIN_HEIGHTS.DESKTOP_WITH_APP_DOWNLOAD_BUTTON}px;
 
   @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
-    min-height: ${MOBILE_FOOTER_MIN_HEIGHT}px;
+    min-height: ${({ hideAppDownloadButton }) =>
+      hideAppDownloadButton
+        ? FOOTER_MIN_HEIGHTS.MOBILE_WITHOUT_APP_DOWNLOAD_BUTTON
+        : FOOTER_MIN_HEIGHTS.MOBILE_WITH_APP_DOWNLOAD_BUTTON}px;
   }
 `
 
@@ -59,11 +61,13 @@ export function DefaultFooter({
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   if (!footerInfo) {
-    return <FooterFrame {...props} />
+    return (
+      <FooterFrame {...props} hideAppDownloadButton={hideAppDownloadButton} />
+    )
   }
 
   return (
-    <FooterFrame {...props}>
+    <FooterFrame {...props} hideAppDownloadButton={hideAppDownloadButton}>
       <FooterInnerContainer>
         <CompanyInfo
           companyTexts={footerInfo.companyTexts}
