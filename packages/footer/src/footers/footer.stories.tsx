@@ -11,6 +11,10 @@ export default {
 } as Meta<typeof Footer>
 
 export const Basic: StoryObj<typeof Footer> = {
+  args: {
+    extraLinkVisible: true,
+    awardsVisible: true,
+  },
   parameters: {
     msw: {
       handlers: [
