@@ -7,6 +7,7 @@ import { CompanyInfo } from '../elements/company-info'
 import { ExtraLinkGroup } from '../elements/extra-link-group'
 import { useFooterInfo } from '../utils/use-footer-info'
 import { DEFAULT_FOOTER_MIN_HEIGHT } from '../utils/constants'
+import { AwardGroup } from '../elements/awards'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);
@@ -15,11 +16,13 @@ export const FooterFrame = styled.footer`
 export interface DefaultFooterProps {
   hideAppDownloadButton?: boolean
   extraLinkVisible?: boolean
+  awardsVisible?: boolean
 }
 
 function DefaultFooter({
   hideAppDownloadButton = false,
   extraLinkVisible = false,
+  awardsVisible = false,
   ...props
 }: DefaultFooterProps) {
   const footerInfo = useFooterInfo()
@@ -60,7 +63,16 @@ function DefaultFooter({
           {footerInfo.disclaimer}
         </Text>
 
-        <LinkGroup links={footerInfo.links} />
+        <Container
+          css={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}
+        >
+          <LinkGroup links={footerInfo.links} />
+          {awardsVisible ? <AwardGroup awards={footerInfo.awards} /> : null}
+        </Container>
 
         {extraLinkVisible ? (
           <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
