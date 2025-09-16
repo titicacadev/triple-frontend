@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import {
   Accordion,
   AccordionContent,
-  Text,
   FlexBox,
   AccordionTitle,
 } from '@titicaca/core-elements'
@@ -23,21 +22,36 @@ const AccordionHeader = styled(FlexBox)`
 
 const Title = styled(AccordionTitle)`
   display: inline-block;
-  color: var(--color-gray500) !important;
-  font-size: 12px !important;
+  color: #1b1c1f !important;
+  font-size: 14px !important;
   font-weight: 700;
-  width: auto;
+  line-height: 17px;
 
-  ::after {
+  &::after {
     display: none;
   }
 `
 
-const AccordionArrow = styled.img`
-  transform: translateY(-2px);
-  margin-left: 3px;
-  width: 15px;
-  height: 15px;
+const TextList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+
+  li {
+    display: flex;
+    align-items: center;
+    color: #6e6f73;
+    font-size: 12px;
+    line-height: 14px;
+  }
+`
+
+const Divider = styled.div`
+  width: 1px;
+  height: 8px;
+  background: #dadbdf;
+  margin: 0 8px;
 `
 
 const LinkContainer = styled.a`
@@ -70,13 +84,7 @@ export function CompanyInfo({
       <AccordionHeader flex alignItems="center" justifyContent="space-between">
         <Title>
           트리플 사업자정보
-          <AccordionArrow
-            src={`https://assets.triple.guide/images/${
-              businessExpanded
-                ? 'ico_arrow_fold@3x.png'
-                : 'ico_arrow_more@3x.png'
-            }`}
-          />
+          <ArrowIcon businessExpanded={businessExpanded} />
         </Title>
 
         {!hideAppDownloadButton && !!buttons?.length ? (
@@ -85,9 +93,9 @@ export function CompanyInfo({
       </AccordionHeader>
 
       <AccordionContent>
-        <Text size={11} lineHeight="17px" color="gray500" padding={{ top: 20 }}>
+        <TextList>
           {companyTexts.map((texts, index) => (
-            <Fragment key={`company-text-line-${index}`}>
+            <li key={`company-text-line-${index}`}>
               {texts.map(({ text, url, faEventAction }, index) => (
                 <Fragment key={`company-text-${index}`}>
                   {url ? (
@@ -101,14 +109,39 @@ export function CompanyInfo({
                   ) : (
                     text
                   )}
-                  {index !== texts.length - 1 ? ' ' : null}
+                  {index !== texts.length - 1 ? <Divider /> : null}
                 </Fragment>
               ))}
               {index !== companyTexts.length - 1 ? <br /> : null}
-            </Fragment>
+            </li>
           ))}
-        </Text>
+        </TextList>
       </AccordionContent>
     </Accordion>
+  )
+}
+
+function ArrowIcon({ businessExpanded }: { businessExpanded: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      style={{
+        marginLeft: '2px',
+        transform: businessExpanded ? 'rotate(0deg)' : 'rotate(180deg)',
+        transition: 'transform 0.3s ease',
+      }}
+    >
+      <path
+        d="M10 8L6 4L2 8"
+        stroke="#1B1C1F"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   )
 }

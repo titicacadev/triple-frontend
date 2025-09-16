@@ -10,7 +10,14 @@ import { DEFAULT_FOOTER_MIN_HEIGHT } from '../utils/constants'
 import { AwardGroup } from '../elements/awards'
 
 export const FooterFrame = styled.footer`
-  background-color: rgba(250, 250, 250, 1);
+  background-color: #fafbfd;
+`
+
+export const FooterInnerContainer = styled(Container)`
+  margin: 0 auto;
+  padding: 30px 30px 60px;
+  min-width: 280px;
+  max-width: 768px;
 `
 
 export interface DefaultFooterProps {
@@ -39,14 +46,7 @@ function DefaultFooter({
 
   return (
     <FooterFrame {...props}>
-      <Container
-        centered
-        css={{
-          minWidth: 280,
-          maxWidth: 768,
-          padding: '30px 30px 40px',
-        }}
-      >
+      <FooterInnerContainer>
         <CompanyInfo
           companyTexts={footerInfo.companyTexts}
           hideAppDownloadButton={hideAppDownloadButton}
@@ -77,7 +77,7 @@ function DefaultFooter({
         {extraLinkVisible ? (
           <ExtraLinkGroup extraLinks={footerInfo.extraLinks} />
         ) : null}
-      </Container>
+      </FooterInnerContainer>
     </FooterFrame>
   )
 }
