@@ -17,6 +17,7 @@ export interface FooterLink {
   label: string
   url: string
   faEventAction?: string
+  bold?: boolean
 }
 
 export interface FooterAward {
