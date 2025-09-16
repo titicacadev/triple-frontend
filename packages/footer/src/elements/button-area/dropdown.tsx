@@ -19,19 +19,20 @@ const DropdownContainer = styled.div`
 
 const DropdownOptions = styled.ul`
   position: absolute;
-  top: 32px;
+  bottom: calc(100% + 18px);
   right: 0;
   list-style: none;
   padding: 12px 0;
   min-width: 135px;
   z-index: 999;
   border-radius: 8px;
-  border: 1px solid var(--color-gray200);
-  color: var(--color-gray);
+  border: 1px solid #dadbdf;
+  color: #1b1c1f;
   font-size: 12px;
   font-weight: 700;
+  line-height: 14px;
   background: var(--color-white);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.05);
 
   a {
     display: block;
@@ -91,11 +92,7 @@ export function Dropdown({
         }}
       >
         <span>{label}</span>
-        <img
-          src="https://assets.triple.guide/images/ico_arrow_more@3x.png"
-          alt="dropdown arrow"
-          css={{ transform: 'rotate(270deg)' }}
-        />
+        <DropdownArrow />
       </button>
 
       {dropdownOptionsVisible ? (
@@ -122,5 +119,25 @@ export function Dropdown({
         </DropdownOptions>
       ) : null}
     </DropdownContainer>
+  )
+}
+
+function DropdownArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+    >
+      <path
+        d="M5.0625 13.5L10.75 7.8125L5.0625 2.125"
+        stroke="#1B1C1F"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   )
 }
