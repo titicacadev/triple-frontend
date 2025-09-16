@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { rest } from 'msw'
 
+import MockFooterInfo from '../mocks/footer.json'
+
 import { AwardFooter } from './award-footer'
-import MockFooterInfo from './footer.json'
 
 export default {
   title: 'footer / AwardFooter',
