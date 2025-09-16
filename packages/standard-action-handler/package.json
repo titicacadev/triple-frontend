@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/standard-action-handler",
-  "version": "14.1.5",
+  "version": "14.1.6",
   "description": "Standard action handler for Triple service applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/standard-action-handler",
