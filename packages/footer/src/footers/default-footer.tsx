@@ -7,13 +7,19 @@ import { CompanyInfo } from '../elements/company-info'
 import { ExtraLinkGroup } from '../elements/extra-link-group'
 import { useFooterInfo } from '../utils/use-footer-info'
 import {
-  DEFAULT_FOOTER_MIN_HEIGHT,
+  DESKTOP_FOOTER_MIN_HEIGHT,
   DESKTOP_MIN_WIDTH,
+  MOBILE_FOOTER_MIN_HEIGHT,
 } from '../utils/constants'
 import { AwardGroup } from '../elements/awards'
 
 export const FooterFrame = styled.footer`
   background-color: #fafbfd;
+  min-height: ${DESKTOP_FOOTER_MIN_HEIGHT}px;
+
+  @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
+    min-height: ${MOBILE_FOOTER_MIN_HEIGHT}px;
+  }
 `
 
 export const FooterInnerContainer = styled(Container)`
@@ -53,12 +59,7 @@ function DefaultFooter({
   const [businessExpanded, setBusinessExpanded] = useState<boolean>(false)
 
   if (!footerInfo) {
-    return (
-      <FooterFrame
-        {...props}
-        css={{ minHeight: DEFAULT_FOOTER_MIN_HEIGHT, width: '100%' }}
-      />
-    )
+    return <FooterFrame {...props} />
   }
 
   return (
