@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { styled } from 'styled-components'
 import { useTrackEvent } from '@titicaca/triple-web'
 
-import { FooterLink } from './type'
+import { FooterLink } from '../utils/type'
 
 const Link = styled.a`
   display: block;

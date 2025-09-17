@@ -2,16 +2,17 @@ import { styled } from 'styled-components'
 import { Container, FlexBox, Text } from '@titicaca/tds-ui'
 import { Fragment, useState } from 'react'
 
-import { LinkGroup as LinkGroupBase } from './link-group'
+import { LinkGroup as LinkGroupBase } from '../elements/link-group'
+import { CompanyInfo } from '../elements/company-info'
+import { ExtraLinkGroup } from '../elements/extra-link-group'
+import { useFooterInfo } from '../utils/use-footer-info'
+import { FooterAward } from '../utils/type'
+import { AWARD_FOOTER_MIN_HEIGHT } from '../utils/constants'
+
 import {
   DefaultFooterProps as AwardFooterProps,
   FooterFrame,
 } from './default-footer'
-import { CompanyInfo } from './company-info'
-import { ExtraLinkGroup } from './extra-link-group'
-import { useFooterInfo } from './use-footer-info'
-import { FooterAward } from './type'
-import { AWARD_FOOTER_MIN_HEIGHT } from './constants'
 
 const InfoFlexBox = styled(FlexBox).attrs({
   flex: true,
