@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
 import { useTrackEvent } from '@titicaca/triple-web'
 
-import { FooterLink } from './type'
+import { FooterLink } from '../utils/type'
 
 const LinksContainer = styled(Container)`
   display: flex;

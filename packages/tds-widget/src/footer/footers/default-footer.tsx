@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { styled } from 'styled-components'
 import { Text, Container } from '@titicaca/tds-ui'
 
-import { LinkGroup } from './link-group'
-import { CompanyInfo } from './company-info'
-import { ExtraLinkGroup } from './extra-link-group'
-import { useFooterInfo } from './use-footer-info'
-import { DEFAULT_FOOTER_MIN_HEIGHT } from './constants'
+import { LinkGroup } from '../elements/link-group'
+import { CompanyInfo } from '../elements/company-info'
+import { ExtraLinkGroup } from '../elements/extra-link-group'
+import { useFooterInfo } from '../utils/use-footer-info'
+import { DEFAULT_FOOTER_MIN_HEIGHT } from '../utils/constants'
 
 export const FooterFrame = styled.footer`
   background-color: rgba(250, 250, 250, 1);

@@ -8,8 +8,8 @@ import {
   useTrackEvent,
 } from '@titicaca/triple-web'
 
-import { MAX_PHONE_WIDTH } from '../constants'
-import { FooterLinkButton } from '../type'
+import { MAX_PHONE_WIDTH } from '../../utils/constants'
+import { FooterLinkButton } from '../../utils/type'
 
 export const ButtonContainer = styled(FlexBox)`
   gap: 6px;

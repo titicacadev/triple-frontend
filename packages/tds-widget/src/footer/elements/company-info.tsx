@@ -9,8 +9,9 @@ import {
 import { useTrackEvent } from '@titicaca/triple-web'
 import { Dispatch, SetStateAction, Fragment } from 'react'
 
-import { FooterInfo, FooterText } from './type'
-import { MAX_PHONE_WIDTH } from './constants'
+import { FooterInfo, FooterText } from '../utils/type'
+import { MAX_PHONE_WIDTH } from '../utils/constants'
+
 import { ButtonArea } from './button-area'
 
 const AccordionHeader = styled(FlexBox)`

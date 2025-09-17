@@ -2,8 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { EventTrackingProvider } from '@titicaca/triple-web'
 import { http, HttpResponse } from 'msw'
 
+import MockFooterInfo from '../mocks/footer.json'
+
 import { AwardFooter } from './award-footer'
-import MockFooterInfo from './footer.json'
 
 export default {
   title: 'tds-widget / footer / AwardFooter',
