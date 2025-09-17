@@ -1,23 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 
 import MockFooterInfo from '../mocks/footer.json'
 
-import Footer from './default-footer'
+import { DefaultFooter } from './default-footer'
 
 export default {
   title: 'footer / Footer',
-  component: Footer,
-} as Meta<typeof Footer>
+  component: DefaultFooter,
+} as Meta<typeof DefaultFooter>
 
-export const Basic: StoryObj<typeof Footer> = {
+export const Basic: StoryObj<typeof DefaultFooter> = {
+  args: {
+    extraLinkVisible: true,
+    awardsVisible: true,
+  },
   parameters: {
     msw: {
       handlers: [
-        rest.get(
+        http.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
-          async (req, res, ctx) => {
-            return res(ctx.json(MockFooterInfo))
+          async () => {
+            return HttpResponse.json(MockFooterInfo)
           },
         ),
       ],
@@ -25,17 +29,17 @@ export const Basic: StoryObj<typeof Footer> = {
   },
 }
 
-export const NoButtons: StoryObj<typeof Footer> = {
+export const NoButtons: StoryObj<typeof DefaultFooter> = {
   args: {
     hideAppDownloadButton: true,
   },
   parameters: {
     msw: {
       handlers: [
-        rest.get(
+        http.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
-          async (req, res, ctx) => {
-            return res(ctx.json(MockFooterInfo))
+          async () => {
+            return HttpResponse.json(MockFooterInfo)
           },
         ),
       ],
@@ -43,14 +47,14 @@ export const NoButtons: StoryObj<typeof Footer> = {
   },
 }
 
-export const SkeletonFooter: StoryObj<typeof Footer> = {
+export const SkeletonFooter: StoryObj<typeof DefaultFooter> = {
   parameters: {
     msw: {
       handlers: [
-        rest.get(
+        http.get(
           'https://assets.triple-dev.titicaca-corp.com/footer/footer.json',
-          async (req, res, ctx) => {
-            return res(ctx.json(null))
+          async () => {
+            return HttpResponse.json(null)
           },
         ),
       ],
