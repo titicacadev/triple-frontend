@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v14.1.7
+
+```
+### tds-ui
+
+- [DMTALK-557] 탭 focused 오류 수정 [#3748](https://github.com/titicacadev/triple-frontend/pull/3748)
+- v13.46.1, v13.47.0, v13.48.1 변경사항을 반영합니다. [#3752](https://github.com/titicacadev/triple-frontend/pull/3752)
+
+### tds-widget
+
+- [DMTALK-526] 채팅방 나가기 [#3746](https://github.com/titicacadev/triple-frontend/pull/3746)
+- v13.46.1, v13.47.0, v13.48.1 변경사항을 반영합니다. [#3752](https://github.com/titicacadev/triple-frontend/pull/3752)
+```
+
 ## v14.1.6
 
 ### tds-widget
@@ -2082,11 +2096,9 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
-
   - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
 
   - 변경된 컴포넌트:
-
     - action-sheet
     - core-elements/Drawer
     - drawer-button
@@ -5554,11 +5566,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
