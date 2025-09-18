@@ -786,6 +786,14 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 - styled-components 6 업그레이드 [#3268](https://github.com/titicacadev/triple-frontend/pull/3268)
 - ES Module 빌드 [#3275](https://github.com/titicacadev/triple-frontend/pull/3275)
 
+## v13.48.0
+
+### footer
+
+- [footer] 리뉴얼된 푸터 UI를 적용합니다. [#3751](https://github.com/titicacadev/triple-frontend/pull/3751)
+
+## v13.47.0
+
 ## 13.46.0
 
 ### ab-experiments
@@ -2066,9 +2074,11 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
+
   - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
 
   - 변경된 컴포넌트:
+
     - action-sheet
     - core-elements/Drawer
     - drawer-button
@@ -5536,11 +5546,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any;
-      liked: boolean;
-      likesCount: number;
-    }) => { liked: boolean; likesCount: number };
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
+      reviewId: any
+      liked: boolean
+      likesCount: number
+    }) => { liked: boolean; likesCount: number }
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
   }
   ```
 
