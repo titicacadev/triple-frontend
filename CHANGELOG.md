@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.48.0
+
+```
+### footer
+
+- [footer] 리뉴얼된 푸터 UI를 적용합니다. [#3751](https://github.com/titicacadev/triple-frontend/pull/3751)
+```
+
 ## v13.47.0
 
 ```
@@ -1364,11 +1372,9 @@
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
-
   - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
 
   - 변경된 컴포넌트:
-
     - action-sheet
     - core-elements/Drawer
     - drawer-button
