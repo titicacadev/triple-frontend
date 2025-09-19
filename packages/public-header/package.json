@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/public-header",
-  "version": "13.48.0",
+  "version": "13.48.1",
   "description": "Common Header for Public Pages",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/public-header",

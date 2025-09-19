@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/action-sheet",
-  "version": "13.48.0",
+  "version": "13.48.1",
   "description": "Action sheet component",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/action-sheet",
