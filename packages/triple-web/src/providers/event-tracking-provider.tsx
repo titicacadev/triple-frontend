@@ -19,7 +19,8 @@ export function EventTrackingProvider({
   onError,
 }: EventTrackingProviderProps) {
   const { user } = useSession()
-  const tripleWebDeviceId = useTripleWebDeviceId()
+  const { tripleWebDeviceId, isLoading: isTripleWebDeviceIdLoading } =
+    useTripleWebDeviceId()
 
   useEffect(() => {
     const firebaseAnalytics = getFirebaseAnalytics()
@@ -29,7 +30,7 @@ export function EventTrackingProvider({
   }, [user?.uid])
 
   useEffect(() => {
-    if (tripleWebDeviceId) {
+    if (!isTripleWebDeviceIdLoading) {
       trackScreen(
         page.path,
         page.label,
@@ -41,7 +42,7 @@ export function EventTrackingProvider({
       )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, tripleWebDeviceId])
+  }, [page, tripleWebDeviceId, isTripleWebDeviceIdLoading])
 
   return (
     <EventTrackingContext.Provider value={{ page, utm, onError }}>

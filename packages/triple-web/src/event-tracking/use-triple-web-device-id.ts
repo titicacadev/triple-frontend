@@ -6,12 +6,14 @@ export function useTripleWebDeviceId() {
   const [tripleWebDeviceId, setTripleWebDeviceId] = useState<
     string | undefined
   >()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     setTripleWebDeviceId(
       new Cookies(document.cookie).get<string>(X_TRIPLE_WEB_DEVICE_ID),
     )
+    setIsLoading(false)
   }, [])
 
-  return tripleWebDeviceId
+  return { tripleWebDeviceId, isLoading }
 }
