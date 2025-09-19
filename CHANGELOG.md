@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v13.48.1
+
+```
+### react-contexts
+
+- [react-contexts] 웹뷰일 때 trackScreen이 호출되지 않는 이슈를 해결합니다.  [#3756](https://github.com/titicacadev/triple-frontend/pull/3756)
+```
+
 ## v13.48.0
 
 ```
