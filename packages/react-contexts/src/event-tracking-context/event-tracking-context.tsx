@@ -23,7 +23,6 @@ import {
 } from 'firebase/analytics'
 import { useRouter } from 'next/router'
 
-import { useTripleClientMetadata } from '../../../react-triple-client-interfaces/src/triple-client-metadata-context'
 import { useUser } from '../session-context'
 
 import {
@@ -176,12 +175,12 @@ export function EventTrackingProvider({
   children,
 }: PropsWithChildren<EventTrackingProviderProps>) {
   const user = useUser()
-  const app = useTripleClientMetadata()
 
   const onErrorRef = useRef(onErrorFromProps)
   const pageLabel = page?.label || legacyPageLabel
   const { query } = useRouter()
-  const tripleDeviceId = useTripleDeviceId()
+  const { tripleDeviceId, isLoading: isTripleDeviceIdLoading } =
+    useTripleDeviceId()
 
   if (!pageLabel) {
     throw new Error(
@@ -314,7 +313,7 @@ export function EventTrackingProvider({
   }, [setFirebaseUserId, user?.uid])
 
   useEffect(() => {
-    if (page?.path) {
+    if (page?.path && !isTripleDeviceIdLoading) {
       const utmParams = Object.keys(query || {})
         .filter((key) => key.match(/^utm_/i))
         .reduce(
@@ -325,15 +324,18 @@ export function EventTrackingProvider({
           {},
         )
 
-      if (app) {
-        trackScreen(page?.path, pageLabel, utmParams)
-      } else if (tripleDeviceId) {
-        trackScreen(page?.path, pageLabel, utmParams, {
-          nol_device_id: tripleDeviceId,
-        })
-      }
+      trackScreen(page?.path, pageLabel, utmParams, {
+        ...(tripleDeviceId && { nol_device_id: tripleDeviceId }),
+      })
     }
-  }, [trackScreen, page?.path, pageLabel, query, tripleDeviceId, app])
+  }, [
+    trackScreen,
+    page?.path,
+    pageLabel,
+    query,
+    tripleDeviceId,
+    isTripleDeviceIdLoading,
+  ])
 
   useEffect(() => {
     if (item?.id) {
