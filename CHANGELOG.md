@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v14.1.8
+
+```
+### triple-web
+
+- v13.48.1 변경사항을 적용합니다. [#3758](https://github.com/titicacadev/triple-frontend/pull/3758)
+```
+
 ## v14.1.7
 
 ```
