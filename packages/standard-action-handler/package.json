@@ -43,7 +43,7 @@
     "@titicaca/router": "workspace:*",
     "@titicaca/scroll-to-element": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.10.0",
+    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
     "@titicaca/view-utilities": "workspace:*",
     "qs": "^6.14.0"
   },
@@ -55,6 +55,7 @@
   },
   "peerDependencies": {
     "@titicaca/triple-web": "*",
+    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
     "react": "^18.0",
     "react-dom": "^18.0"
   }

@@ -48,7 +48,7 @@
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/type-definitions": "workspace:*",
     "framer-motion": "^10.18.0",
-    "lottie-web": "^5.12.2"
+    "lottie-web": "^5.13.0"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",

@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@titicaca/fetcher": "workspace:*",
-    "lottie-web": "^5.12.2",
+    "lottie-web": "^5.13.0",
     "react-fast-compare": "^3.2.2",
     "scroll-to-element": "^2.0.3"
   },
