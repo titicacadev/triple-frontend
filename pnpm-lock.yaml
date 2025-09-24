@@ -1159,8 +1159,8 @@ importers:
         specifier: workspace:*
         version: link:../fetcher
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.10.0
-        version: 1.10.0
+        specifier: 1.11.0
+        version: 1.11.0
       '@titicaca/type-definitions':
         specifier: workspace:*
         version: link:../type-definitions
@@ -1255,8 +1255,8 @@ importers:
         specifier: workspace:*
         version: link:../react-contexts
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.11.0
+        version: 1.11.0
       '@types/qs':
         specifier: ^6.9.9
         version: 6.9.9
@@ -1546,8 +1546,8 @@ importers:
         specifier: workspace:*
         version: link:../react-hooks
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.10.0
-        version: 1.10.0
+        specifier: 1.11.0
+        version: 1.11.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -1627,8 +1627,8 @@ importers:
         specifier: workspace:*
         version: link:../scroll-to-element
       '@titicaca/triple-web-to-native-interfaces':
-        specifier: 1.10.0
-        version: 1.10.0
+        specifier: 1.11.0
+        version: 1.11.0
       '@titicaca/view-utilities':
         specifier: workspace:*
         version: link:../view-utilities
@@ -4971,11 +4971,8 @@ packages:
     peerDependencies:
       stylelint: ^15.10.0
 
-  '@titicaca/triple-web-to-native-interfaces@1.10.0':
-    resolution: {integrity: sha512-nHb+G+ZcS88iEfHIq9KLH8zMWIG8lJN6waIYC0rErRzZHUbSPeJnvlcpAjnGh9ZEOv8xmTEmXK/pdZMzrF72rw==}
-
-  '@titicaca/triple-web-to-native-interfaces@1.9.0':
-    resolution: {integrity: sha512-Sspf/U54nGNdDGsjopEi+dc5hRV4MxsNYvq6XmTidE+/ajx5doHU7OXTaLu/Um8qhKiPKdkmzIWYvhNPcctGMQ==}
+  '@titicaca/triple-web-to-native-interfaces@1.11.0':
+    resolution: {integrity: sha512-mz1Zoop5Z392E5xF7+Zle33k2U02jyQfcMgHld+0w296gH8d/CNKOpt4YqLcRu9eqlHQfmfCM+XWzeGBoLyblA==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -16318,9 +16315,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@titicaca/triple-web-to-native-interfaces@1.10.0': {}
-
-  '@titicaca/triple-web-to-native-interfaces@1.9.0': {}
+  '@titicaca/triple-web-to-native-interfaces@1.11.0': {}
 
   '@tokenizer/token@0.3.0': {}
 

@@ -45,7 +45,7 @@
   "dependencies": {
     "@titicaca/core-elements": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.10.0",
+    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
     "@titicaca/view-utilities": "workspace:*"
   },
   "devDependencies": {
@@ -56,6 +56,7 @@
   "peerDependencies": {
     "@titicaca/react-contexts": "*",
     "react": "^18.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "@titicaca/triple-web-to-native-interfaces": "1.11.0"
   }
 }
