@@ -14,8 +14,8 @@ export const GlobalStyle = createGlobalStyle`
   */
 
   *,
-  ::before,
-  ::after {
+  &::before,
+  &::after {
     box-sizing: inherit; /* 1 */
     border-width: 0; /* 2 */
     border-style: none; /* 2 */
