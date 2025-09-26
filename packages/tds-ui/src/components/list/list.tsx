@@ -42,18 +42,21 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
         padding-left: 0.6em;
       }
 
-      > li::before {
-        content: '·';
-        position: absolute;
-        top: 0;
-        left: -0.6em;
+      & > li {
+        &::before {
+          content: '·';
+          position: absolute;
+          top: 0;
+          left: -0.6em;
+        }
       }
     `}
 
   ${({ clearing }) =>
     clearing
       ? css`
-          > li::after {
+          & > li {
+            &::after {
             content: '';
             display: block;
             clear: both;
@@ -69,13 +72,15 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
   }) =>
     divided
       ? css`
-          > li:not(:last-child)::after {
-            content: '';
-            display: block;
-            height: 0;
-            overflow: hidden;
-            border-bottom: solid ${dividerWeight}px ${dividerColor};
-            margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
+          > li:not(:last-child) {
+            &::after {
+              content: '';
+              display: block;
+              height: 0;
+              overflow: hidden;
+              border-bottom: solid ${dividerWeight}px ${dividerColor};
+              margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
+            }
           }
         `
       : ''}

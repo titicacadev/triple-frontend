@@ -43,7 +43,7 @@ const DownloadButton = styled(Button)`
   width: 39px;
   display: inline-block;
 
-  :disabled {
+  &:disabled {
     background-color: red;
   }
 `
@@ -99,7 +99,10 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
           }}
         >
           {valid
-            ? `${format(subMinutes(new Date(coupon.period.endAt), 1), 'yyyy.MM.dd(HH:mm)')}까지 사용`
+            ? `${format(
+                subMinutes(new Date(coupon.period.endAt), 1),
+                'yyyy.MM.dd(HH:mm)',
+              )}까지 사용`
             : '쿠폰 사용 기간 만료'}
         </Text>
         <Text

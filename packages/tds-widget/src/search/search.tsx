@@ -19,7 +19,7 @@ import {
 import { useDebouncedState } from '@titicaca/react-hooks'
 
 const ContentsContainer = styled(Container)<{ $isIos: boolean }>`
-  > div:first-child {
+  & > div:first-child {
     ${({ $isIos }) =>
       $isIos &&
       css`
