@@ -57,9 +57,10 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
       ? css`
           & > li {
             &::after {
-            content: '';
-            display: block;
-            clear: both;
+              content: '';
+              display: block;
+              clear: both;
+            }
           }
         `
       : ''}
