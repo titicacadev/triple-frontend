@@ -29,7 +29,7 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
 >`
   ${marginMixin}
 
-  > li:not(:first-child) {
+  & > li:not(:first-child) {
     ${({ divided, verticalGap = 0 }) => css`
       margin-top: ${divided ? verticalGap / 2 : verticalGap}px;
     `};
@@ -73,7 +73,7 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
   }) =>
     divided
       ? css`
-          > li:not(:last-child) {
+          & > li:not(:last-child) {
             &::after {
               content: '';
               display: block;
@@ -108,18 +108,11 @@ const ListItem = styled.li.withConfig({
   }) =>
     noDivider &&
     css`
-      &:not(:last-child)::after {
-        border-bottom: 0 none !important;
-        ${marginTop
-          ? `
-        margin-top: ${marginTop}px !important;
-      `
-          : ''}
-        ${marginBottom
-          ? `
-        margin-bottom: ${marginBottom}px !important;
-      `
-          : ''}
+      &:not(:last-child) {
+        &::after {
+          border-bottom: 0 none !important;
+          ${marginTop ? `margin-top: ${marginTop}px !important;` : ''}
+          ${marginBottom ? `margin-bottom: ${marginBottom}px !important;` : ''}
       }
     `}
 `
