@@ -64,7 +64,7 @@
   "dependencies": {
     "@titicaca/constants": "workspace:*",
     "@titicaca/fetcher": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.10.0",
+    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@types/set-cookie-parser": "^2.4.10",
