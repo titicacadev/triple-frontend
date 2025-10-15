@@ -113,6 +113,7 @@ const ListItem = styled.li.withConfig({
           border-bottom: 0 none !important;
           ${marginTop ? `margin-top: ${marginTop}px !important;` : ''}
           ${marginBottom ? `margin-bottom: ${marginBottom}px !important;` : ''}
+        }
       }
     `}
 `
