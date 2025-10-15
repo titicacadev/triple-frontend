@@ -90,7 +90,6 @@
     "firebase": "^9.11.0 || ^10.0.0",
     "next": "^13.0",
     "react": "^18.0",
-    "styled-components": "^5.3.9",
-    "@titicaca/triple-web-to-native-interfaces": "1.11.0"
+    "styled-components": "^5.3.9"
   }
 }
