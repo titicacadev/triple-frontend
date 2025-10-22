@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import {
   useClientApp,
   useEnv,
@@ -9,18 +10,21 @@ export function useOpenNativeLink() {
   const { appUrlScheme } = useEnv()
   const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
 
-  const openNativeLink = (
-    /**
-     * 딥링크 path.
-     */
-    path: string,
-  ) => {
-    if (!app) {
-      return showAppInstallCtaModal()
-    }
+  const openNativeLink = useCallback(
+    (
+      /**
+       * 딥링크 path.
+       */
+      path: string,
+    ) => {
+      if (!app) {
+        return showAppInstallCtaModal()
+      }
 
-    window.location.href = `${appUrlScheme}://${path}`
-  }
+      window.location.href = `${appUrlScheme}://${path}`
+    },
+    [app, appUrlScheme, showAppInstallCtaModal],
+  )
 
   return openNativeLink
 }
