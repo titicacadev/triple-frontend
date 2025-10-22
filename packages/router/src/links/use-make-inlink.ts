@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useClientApp, useEnv } from '@titicaca/triple-web'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
@@ -37,35 +38,38 @@ export function useMakeInlink() {
   const clientApp = useClientApp()
   const { appUrlScheme, basePath } = useEnv()
 
-  const makeInlink = (
-    /**
-     * Inlink로 만들 relative URL.
-     */
-    path: string,
-    options?: MakeInlinkOptions,
-  ) => {
-    if (!clientApp) {
-      return path
-    }
+  const makeInlink = useCallback(
+    (
+      /**
+       * Inlink로 만들 relative URL.
+       */
+      path: string,
+      options?: MakeInlinkOptions,
+    ) => {
+      if (!clientApp) {
+        return path
+      }
 
-    return generateUrl({
-      scheme: appUrlScheme,
-      path: '/inlink',
-      query: qs.stringify({
-        path: generateUrl({
-          path: options?.local ? basePath + path : path,
-          query: qs.stringify({
-            ...(options?.lnb
-              ? getLnb(options.lnb.type, options.lnb.id)
-              : undefined),
-            _triple_no_navbar: options?.noNavbar,
-            _triple_swipe_to_close: options?.swipeToClose,
-            _triple_should_present: options?.shouldPresent,
+      return generateUrl({
+        scheme: appUrlScheme,
+        path: '/inlink',
+        query: qs.stringify({
+          path: generateUrl({
+            path: options?.local ? basePath + path : path,
+            query: qs.stringify({
+              ...(options?.lnb
+                ? getLnb(options.lnb.type, options.lnb.id)
+                : undefined),
+              _triple_no_navbar: options?.noNavbar,
+              _triple_swipe_to_close: options?.swipeToClose,
+              _triple_should_present: options?.shouldPresent,
+            }),
           }),
         }),
-      }),
-    })
-  }
+      })
+    },
+    [clientApp, appUrlScheme, basePath],
+  )
 
   return makeInlink
 }

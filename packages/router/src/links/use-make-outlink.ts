@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useClientApp, useEnv } from '@titicaca/triple-web'
 import { generateUrl } from '@titicaca/view-utilities'
 import qs from 'qs'
@@ -17,27 +18,30 @@ export function useMakeOutlink() {
   const clientApp = useClientApp()
   const { appUrlScheme } = useEnv()
 
-  const makeOutlink = (
-    /**
-     * Outlink로 만들 absolute URL.
-     */
-    url: string,
-    options?: MakeOutlinkOptions,
-  ) => {
-    if (!clientApp) {
-      return url
-    }
+  const makeOutlink = useCallback(
+    (
+      /**
+       * Outlink로 만들 absolute URL.
+       */
+      url: string,
+      options?: MakeOutlinkOptions,
+    ) => {
+      if (!clientApp) {
+        return url
+      }
 
-    return generateUrl({
-      scheme: appUrlScheme,
-      path: '/outlink',
-      query: qs.stringify({
-        url,
-        target: options?.target,
-        title: options?.title,
-      }),
-    })
-  }
+      return generateUrl({
+        scheme: appUrlScheme,
+        path: '/outlink',
+        query: qs.stringify({
+          url,
+          target: options?.target,
+          title: options?.title,
+        }),
+      })
+    },
+    [clientApp, appUrlScheme],
+  )
 
   return makeOutlink
 }
