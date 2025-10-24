@@ -175,7 +175,7 @@ export const WithExtendStyle: Story = {
           background-color: gray;
 
           &.action-sheet-slide-enter-done {
-            > div:last-child {
+            & > div:last-child {
               padding: 0 40px;
             }
           }

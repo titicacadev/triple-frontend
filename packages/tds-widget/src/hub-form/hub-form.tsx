@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 import { CardFrame, CardProps } from '@titicaca/tds-ui'
 
 const HubFormFrame = styled(CardFrame)`
-  > div:not(:last-child) {
+  & > div:not(:last-child) {
     &::after {
       content: '';
       position: absolute;

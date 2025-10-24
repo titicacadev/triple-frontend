@@ -29,7 +29,7 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
 >`
   ${marginMixin}
 
-  > li:not(:first-child) {
+  & > li:not(:first-child) {
     ${({ divided, verticalGap = 0 }) => css`
       margin-top: ${divided ? verticalGap / 2 : verticalGap}px;
     `};
@@ -42,21 +42,25 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
         padding-left: 0.6em;
       }
 
-      > li::before {
-        content: '·';
-        position: absolute;
-        top: 0;
-        left: -0.6em;
+      & > li {
+        &::before {
+          content: '·';
+          position: absolute;
+          top: 0;
+          left: -0.6em;
+        }
       }
     `}
 
   ${({ clearing }) =>
     clearing
       ? css`
-          > li::after {
-            content: '';
-            display: block;
-            clear: both;
+          & > li {
+            &::after {
+              content: '';
+              display: block;
+              clear: both;
+            }
           }
         `
       : ''}
@@ -69,13 +73,15 @@ const ListBase = styled.ul.withConfig({ shouldForwardProp })<
   }) =>
     divided
       ? css`
-          > li:not(:last-child)::after {
-            content: '';
-            display: block;
-            height: 0;
-            overflow: hidden;
-            border-bottom: solid ${dividerWeight}px ${dividerColor};
-            margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
+          & > li:not(:last-child) {
+            &::after {
+              content: '';
+              display: block;
+              height: 0;
+              overflow: hidden;
+              border-bottom: solid ${dividerWeight}px ${dividerColor};
+              margin: ${verticalGap / 2}px 0 ${verticalGap / 2}px 0;
+            }
           }
         `
       : ''}
@@ -102,18 +108,12 @@ const ListItem = styled.li.withConfig({
   }) =>
     noDivider &&
     css`
-      &:not(:last-child)::after {
-        border-bottom: 0 none !important;
-        ${marginTop
-          ? `
-        margin-top: ${marginTop}px !important;
-      `
-          : ''}
-        ${marginBottom
-          ? `
-        margin-bottom: ${marginBottom}px !important;
-      `
-          : ''}
+      &:not(:last-child) {
+        &::after {
+          border-bottom: 0 none !important;
+          ${marginTop ? `margin-top: ${marginTop}px !important;` : ''}
+          ${marginBottom ? `margin-bottom: ${marginBottom}px !important;` : ''}
+        }
       }
     `}
 `
