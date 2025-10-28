@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## v14.1.9
+
+### react-hooks
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+
+### router
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+- [fix] rotuer hook에 usecallback 추가 [#3763](https://github.com/titicacadev/triple-frontend/pull/3763)
+
+### standard-action-handler
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+
+### tds-theme
+
+- [fix] styled-component v6 Pseudoselectors breaking change 반영 [#3762](https://github.com/titicacadev/triple-frontend/pull/3762)
+
+### tds-ui
+
+- [fix] styled-component v6 Pseudoselectors breaking change 반영 [#3762](https://github.com/titicacadev/triple-frontend/pull/3762)
+
+### tds-widget
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+- [fix] styled-component v6 Pseudoselectors breaking change 반영 [#3762](https://github.com/titicacadev/triple-frontend/pull/3762)
+
+### triple-header
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+
+### triple-web
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3761](https://github.com/titicacadev/triple-frontend/pull/3761)
+
 ## v14.1.8
 
 ```
@@ -2112,11 +2148,9 @@ v13.38.1 변경사항을 적용합니다. [#3521](https://github.com/titicacadev
 ## 12.12.0
 
 - Headless UI으로 변경 [#2432](https://github.com/titicacadev/triple-frontend/pull/2432)
-
   - React Aria에 버그가 많아서 Accessible overlay 컴포넌트 라이브러리를 [Headless UI](https://headlessui.com/)로 변경합니다.
 
   - 변경된 컴포넌트:
-
     - action-sheet
     - core-elements/Drawer
     - drawer-button
@@ -5584,11 +5618,11 @@ SingleSlider, RangeSlider
   ```ts
   interface ReviewLikesContextProps {
     deriveCurrentStateAndCount: (currentState: {
-      reviewId: any
-      liked: boolean
-      likesCount: number
-    }) => { liked: boolean; likesCount: number }
-    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void
+      reviewId: any;
+      liked: boolean;
+      likesCount: number;
+    }) => { liked: boolean; likesCount: number };
+    updateLikedStatus: (newLikes: { [reviewId: string]: boolean }) => void;
   }
   ```
 
