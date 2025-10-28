@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/react-hooks",
-  "version": "14.1.8",
+  "version": "14.1.9",
   "description": "triple frontend custom hooks",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/react-hooks",
