@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v13.49.0
+
+```
+### react-contexts
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+
+### react-hooks
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+
+### react-triple-client-interfaces
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+
+### search
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+
+### standard-action-handler
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+
+### triple-header
+
+- [chore] triple-web-to-native-interfaces 및 lottie-web 버전 업데이트 [#3760](https://github.com/titicacadev/triple-frontend/pull/3760)
+```
+
 ## v13.48.1
 
 ```
