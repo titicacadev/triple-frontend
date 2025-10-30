@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/web-storage",
-  "version": "13.48.1",
+  "version": "13.49.0",
   "description": "WebStorage API wrapper for Triple services",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/web-storage",
