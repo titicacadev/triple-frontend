@@ -153,6 +153,7 @@ jobs:
       contents: read
       id-token: write # npm provenance를 위한 OIDC 토큰 발급 권한
       issues: write # PR 코멘트 작성 권한
+      pull-requests: write # PR 코멘트 작성 권한
 
     steps:
       - uses: actions/checkout@v4
