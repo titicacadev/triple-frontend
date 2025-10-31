@@ -317,8 +317,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^8.0.1
+        version: 8.0.1
     devDependencies:
       '@sentry/nextjs':
         specifier: 7.120.3
@@ -381,8 +381,8 @@ importers:
         specifier: ^2.7.1
         version: 2.7.1
       universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^8.0.1
+        version: 8.0.1
       uuid:
         specifier: ^11.1.0
         version: 11.1.0
@@ -846,8 +846,8 @@ importers:
         specifier: ^1.0.40
         version: 1.0.40
       universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^8.0.1
+        version: 8.0.1
     devDependencies:
       '@types/deep-equal':
         specifier: ^1.0.4
@@ -920,8 +920,8 @@ importers:
         specifier: ^1.0.40
         version: 1.0.40
       universal-cookie:
-        specifier: ^4.0.4
-        version: 4.0.4
+        specifier: ^8.0.1
+        version: 8.0.1
     devDependencies:
       '@titicaca/triple-web':
         specifier: workspace:*
@@ -4038,9 +4038,6 @@ packages:
   '@types/concat-stream@2.0.0':
     resolution: {integrity: sha512-t3YCerNM7NTVjLuICZo5gYAXYoDvpuuTceCcFQWcDQz26kxUR5uIWolxbIR5jRNIXpMqhOpW/b8imCR1LEmuJw==}
 
-  '@types/cookie@0.3.3':
-    resolution: {integrity: sha512-LKVP3cgXBT9RYj+t+9FDKwS5tdI+rPBXaNSkma7hvqy35lc7mAokC2zsqWJH0LaqIt3B962nuYI77hsJoT1gow==}
-
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
@@ -5349,10 +5346,6 @@ packages:
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
-
-  cookie@0.4.2:
-    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
-    engines: {node: '>= 0.6'}
 
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
@@ -10095,8 +10088,8 @@ packages:
   unist-util-visit@4.1.2:
     resolution: {integrity: sha512-MSd8OUGISqHdVvfY9TPhyK2VdUrPgxkUtWSuMHF6XAAFuL4LokseigBnZtPnJMu+FbynTkFNnFlyjxpVKujMRg==}
 
-  universal-cookie@4.0.4:
-    resolution: {integrity: sha512-lbRVHoOMtItjWbM7TwDLdl8wug7izB0tq3/YVKhT/ahB4VDvWMyvnADfnJI8y6fSvsjh51Ix7lTGC6Tn4rMPhw==}
+  universal-cookie@8.0.1:
+    resolution: {integrity: sha512-B6ks9FLLnP1UbPPcveOidfvB9pHjP+wekP2uRYB9YDfKVpvcjKgy1W5Zj+cEXJ9KTPnqOKGfVDQBmn8/YCQfRg==}
 
   universal-user-agent@6.0.0:
     resolution: {integrity: sha512-isyNax3wXoKaulPDZWHQqbmIx1k2tb9fb3GGDBRxCscfYV2Ch7WxPArBsFEG8s/safwXTT7H4QGhaIkTp9447w==}
@@ -14402,8 +14395,6 @@ snapshots:
     dependencies:
       '@types/node': 20.17.10
 
-  '@types/cookie@0.3.3': {}
-
   '@types/cookie@0.6.0': {}
 
   '@types/debug@4.1.8':
@@ -16013,8 +16004,6 @@ snapshots:
   convert-source-map@1.9.0: {}
 
   convert-source-map@2.0.0: {}
-
-  cookie@0.4.2: {}
 
   cookie@0.7.2: {}
 
@@ -21949,10 +21938,9 @@ snapshots:
       unist-util-is: 5.2.1
       unist-util-visit-parents: 5.1.3
 
-  universal-cookie@4.0.4:
+  universal-cookie@8.0.1:
     dependencies:
-      '@types/cookie': 0.3.3
-      cookie: 0.4.2
+      cookie: 1.0.2
 
   universal-user-agent@6.0.0: {}
 

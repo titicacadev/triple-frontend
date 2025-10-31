@@ -44,7 +44,7 @@
     "cookie": "^1.0.2",
     "semver": "^7.6.3",
     "set-cookie-parser": "^2.7.1",
-    "universal-cookie": "^4.0.4",
+    "universal-cookie": "^8.0.1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
