@@ -52,6 +52,9 @@ jobs:
     needs: wait-for-ci
     if: startsWith(github.event.ref, 'refs/tags/release-prod-')
     runs-on: ${{ vars.NOL_RUNNER }}
+    permissions:
+      contents: read
+      id-token: write # npm provenance를 위한 OIDC 토큰 발급 권한
 
     steps:
       - uses: actions/checkout@v4
@@ -80,7 +83,7 @@ jobs:
       - name: Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: pnpm -r publish --no-git-checks
+        run: pnpm -r publish --no-git-checks --provenance
 
   tag:
     needs: release
@@ -148,6 +151,10 @@ jobs:
     needs: wait-for-ci
     if: startsWith(github.event.ref, 'refs/tags/release-pr-')
     runs-on: ${{ vars.NOL_RUNNER }}
+    permissions:
+      contents: read
+      id-token: write # npm provenance를 위한 OIDC 토큰 발급 권한
+      issues: write # PR 코멘트 작성 권한
 
     steps:
       - uses: actions/checkout@v4
@@ -197,7 +204,7 @@ jobs:
       - name: Publish as canary
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_WRITE_NPM_TOKEN }}
-        run: pnpm -r publish --tag canary --no-git-checks
+        run: pnpm -r publish --tag canary --no-git-checks --provenance
 
       - name: Notify released version on pull request
         run: |
