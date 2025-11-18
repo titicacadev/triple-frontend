@@ -81,6 +81,10 @@ export interface WithGoogleMapProps extends GoogleMapProps {
    * map의 fitBounds를 비활성화합니다.
    */
   disableFitBounds?: boolean
+  /**
+   * 기본 줌 레벨 설정 (coordinates가 1개 이상일 때만 적용)
+   */
+  defaultZoomLevel?: number
 }
 
 const GOOGLE_MAP_LIBRARIES = ['geometry' as const]
@@ -99,6 +103,7 @@ export function MapView({
   children,
   onLoad,
   disableFitBounds = false,
+  defaultZoomLevel = 17,
   ...props
 }: PropsWithChildren<WithGoogleMapProps>) {
   const { isLoaded, loadError } = useLoadScript({
@@ -136,10 +141,10 @@ export function MapView({
     return {
       ...DEFAULT_MAP_OPTIONS,
       center,
-      ...(coordinateLength === 1 && { zoom: 17 }),
+      ...(coordinateLength === 1 && { zoom: defaultZoomLevel }),
       ...originOptions,
     }
-  }, [center, coordinateLength, originOptions])
+  }, [center, coordinateLength, originOptions, defaultZoomLevel])
 
   const mapContainerStyle: CSSProperties = useMemo(
     () => ({
