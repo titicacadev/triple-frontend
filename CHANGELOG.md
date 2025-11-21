@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v14.2.0
+
+```
+### fetcher
+
+- feat: package version update [#3766](https://github.com/titicacadev/triple-frontend/pull/3766)
+
+### middlewares
+
+- feat: package version update [#3766](https://github.com/titicacadev/triple-frontend/pull/3766)
+
+### react-hooks
+
+- [NACS-686] NPM OIDC trusted publisher 수정 [#3767](https://github.com/titicacadev/triple-frontend/pull/3767)
+
+### tds-widget
+
+- [tds-widget] map-view가 default zoom level props를 받을 수 있도록 수정 [#3768](https://github.com/titicacadev/triple-frontend/pull/3768)
+
+### triple-web
+
+- feat: package version update [#3766](https://github.com/titicacadev/triple-frontend/pull/3766)
+
+### triple-web-nextjs-pages
+
+- feat: package version update [#3766](https://github.com/titicacadev/triple-frontend/pull/3766)
+```
+
 ## v14.1.9
 
 ### react-hooks
