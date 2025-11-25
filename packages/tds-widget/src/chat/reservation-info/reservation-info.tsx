@@ -5,6 +5,7 @@ import {
   useEffect,
   useLayoutEffect,
   useRef,
+  ReactNode,
 } from 'react'
 import { CSSProp } from 'styled-components'
 
@@ -60,6 +61,10 @@ export type ReservationInfoProps = {
     value: string | string[]
   }[]
   title: string
+  /**
+   * 커스텀 액션 영역. ReactNode를 전달하면 자유롭게 버튼이나 다른 요소를 배치할 수 있습니다.
+   */
+  actions?: ReactNode
 } & ReservationInfoActionProps
 
 /**
@@ -73,6 +78,7 @@ function ReservationInfoImpl(
     label,
     title,
     onClick,
+    actions,
     ...props
   }: ReservationInfoProps,
   ref: ForwardedRef<HTMLDivElement>,
@@ -158,6 +164,7 @@ function ReservationInfoImpl(
           )}
         </DetailContainer>
       </ContentContainer>
+      {actions}
     </Container>
   )
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/react'
+import { Button } from '@titicaca/tds-ui'
 
 import { NolThemeProvider } from '../nol-theme-provider'
 import { NOL_COLOR } from '../nol-theme-provider/constants'
@@ -46,4 +47,24 @@ const PRODUCT_INFO: ReservationInfoProps = {
 
 export const WithoutDetails: StoryFn<ReservationInfoProps> = () => (
   <ReservationInfo {...PRODUCT_INFO} />
+)
+
+export const Link: StoryFn<ReservationInfoProps> = () => (
+  <ReservationInfo
+    {...PRODUCT_INFO}
+    type="link"
+    onClick={() => alert('onClick')}
+  />
+)
+
+export const WithActions: StoryFn<ReservationInfoProps> = () => (
+  <ReservationInfo
+    {...BOOKING_INFO}
+    actions={
+      <>
+        <Button onClick={() => alert('상품 보기')}>상품 보기</Button>
+        <Button onClick={() => alert('예약 상세 보기')}>예약 상세 보기</Button>
+      </>
+    }
+  />
 )
