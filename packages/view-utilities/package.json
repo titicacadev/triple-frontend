@@ -1,6 +1,6 @@
 {
   "name": "@titicaca/view-utilities",
-  "version": "14.2.0",
+  "version": "14.2.1",
   "description": "Utilities for Triple view libraries and applications",
   "license": "MIT",
   "homepage": "https://github.com/titicacadev/triple-frontend/tree/main/packages/view-utilities",
