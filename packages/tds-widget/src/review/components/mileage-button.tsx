@@ -62,7 +62,7 @@ export function MileageButton({ resourceId }: Props) {
         if (app) {
           navigateMileageIntro()
         } else {
-          window.location.href = `/pages/mileage-intro.html`
+          window.location.href = `/hybrid/mileage/intro`
         }
       }}
     >
