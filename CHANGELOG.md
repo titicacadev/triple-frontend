@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v14.2.1
+
+```
+### chat
+
+- feat(chat): ReservationInfo에 actions prop 추가 [#3771](https://github.com/titicacadev/triple-frontend/pull/3771)
+
+### tds-widget
+
+- feat(chat): ReservationInfo에 actions prop 추가 [#3771](https://github.com/titicacadev/triple-frontend/pull/3771)
+```
+
 ## v14.2.0
 
 ```
