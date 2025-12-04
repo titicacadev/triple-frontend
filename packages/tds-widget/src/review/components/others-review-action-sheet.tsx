@@ -15,7 +15,7 @@ export function OthersReviewActionSheet({
 }: OthersReviewActionSheetProps) {
   const t = useTranslation()
 
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
   const { reportReview } = useClientActions()
 
   const handleReportClick = () => {
@@ -26,7 +26,7 @@ export function OthersReviewActionSheet({
 
   return (
     <ActionSheet
-      open={uriHash === HASH_REVIEW_ACTION_SHEET}
+      open={hasUriHash(HASH_REVIEW_ACTION_SHEET)}
       onClose={removeUriHash}
     >
       <ActionSheetItem icon="report" onClick={handleReportClick}>

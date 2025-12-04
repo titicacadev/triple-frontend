@@ -515,11 +515,11 @@ function FeatureActionSheet({
   onReportClick: () => void
 }) {
   const t = useTranslation()
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
 
   return (
     <ActionSheet
-      open={uriHash === actionSheetHash}
+      open={hasUriHash(actionSheetHash)}
       onClose={removeUriHash}
       title={title}
     >
