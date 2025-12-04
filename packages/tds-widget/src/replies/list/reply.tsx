@@ -93,7 +93,7 @@ export function Reply({
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
-  const { addUriHash, replaceUriHash, removeUriHash } = useHashRouter()
+  const { addUriHash, removeUriHash } = useHashRouter()
   const { navigate } = useNavigate()
   const likeReactionCount = likeReaction?.count
 
@@ -159,14 +159,12 @@ export function Reply({
         },
       })
 
-      replaceUriHash(
-        `${HASH_MORE_ACTION_SHEET}.${messageId}`,
-        HASH_DELETE_CLOSE_MODAL,
-      )
+      removeUriHash() // action sheet 닫기
+      addUriHash(HASH_DELETE_CLOSE_MODAL)
 
       return true
     },
-    [setEditingMessage, replaceUriHash],
+    [setEditingMessage, removeUriHash, addUriHash],
   )
 
   const handleLikeReplyClick = useSessionCallback(
