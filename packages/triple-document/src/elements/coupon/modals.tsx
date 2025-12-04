@@ -142,11 +142,11 @@ export function CouponAlertModal({
   errorMessage?: string
 }) {
   const t = useTranslation()
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
   return (
     <Alert
       title={t('쿠폰 다운로드 안내')}
-      open={uriHash === `${identifier}.${HASH_ERROR_COUPON}`}
+      open={hasUriHash(`${identifier}.${HASH_ERROR_COUPON}`)}
       onConfirm={removeUriHash}
     >
       {errorMessage}

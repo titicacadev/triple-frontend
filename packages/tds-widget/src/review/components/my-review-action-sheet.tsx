@@ -27,7 +27,7 @@ export function MyReviewActionSheet({
   const t = useTranslation()
 
   const { appUrlScheme } = useEnv()
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
 
   const { mutate } = useDeleteReviewMutation()
 
@@ -55,7 +55,7 @@ export function MyReviewActionSheet({
   return (
     <>
       <ActionSheet
-        open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
+        open={hasUriHash(HASH_MY_REVIEW_ACTION_SHEET)}
         onClose={() => removeUriHash('replace')}
       >
         {!reviewBlinded ? (
@@ -69,7 +69,7 @@ export function MyReviewActionSheet({
       </ActionSheet>
 
       <Confirm
-        open={uriHash === HASH_DELETION_MODAL}
+        open={hasUriHash(HASH_DELETION_MODAL)}
         onClose={() => removeUriHash('replace')}
         onConfirm={handleDeleteReview}
       >

@@ -20,10 +20,10 @@ const IconImage = styled.img`
 export function AppInstallCtaModal() {
   const t = useTranslation()
   const { appInstallCtaModalRef, eventTrackingContextForkRef } = useModal()
-  const { removeUriHash, uriHash } = useHashRouter()
+  const { removeUriHash, hasUriHash } = useHashRouter()
   const { appUrlScheme } = useEnv()
 
-  const open = uriHash === APP_INSTALL_CTA_MODAL_HASH
+  const open = hasUriHash(APP_INSTALL_CTA_MODAL_HASH)
   const eventLabel = appInstallCtaModalRef.current.triggeredEventAction
 
   const handleCancelOrClose = () => removeUriHash()

@@ -130,7 +130,7 @@ export function PublicHeader({
 
   const app = useClientApp()
   const visible = useAutoHide(disableAutoHide)
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
   const onMenuButtonClick = useCallback(() => {
@@ -219,7 +219,7 @@ export function PublicHeader({
 
       {sideMenuItems ? (
         <SideMenu
-          open={uriHash === HEADER_SIDE_MENU_HASH}
+          open={hasUriHash(HEADER_SIDE_MENU_HASH)}
           onClose={onSideMenuClose}
           menus={sideMenuItemsWithEventTracking}
         />

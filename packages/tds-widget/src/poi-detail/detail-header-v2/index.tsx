@@ -76,7 +76,7 @@ export function PoiDetailHeaderV2({
   const t = useTranslation()
 
   const app = useClientApp()
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
   const handleLongClick = useCallback(() => {
@@ -140,7 +140,7 @@ export function PoiDetailHeaderV2({
         />
       </LongClickableSection>
       <CopyActionSheet
-        open={uriHash === HASH_COPY_ACTION_SHEET}
+        open={hasUriHash(HASH_COPY_ACTION_SHEET)}
         names={names}
         onCopy={onCopy}
         onClose={removeUriHash}
