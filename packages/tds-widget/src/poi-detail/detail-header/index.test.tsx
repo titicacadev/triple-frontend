@@ -8,6 +8,7 @@ import { PoiDetailHeader } from './index'
 
 const addUriHashMockFn = jest.fn()
 const removeUriHashMockFn = jest.fn()
+const hasUriHashMockFn = jest.fn().mockReturnValue(false)
 
 jest.mock('@titicaca/triple-web', () => ({
   ...jest.requireActual('@titicaca/triple-web'),
@@ -15,6 +16,7 @@ jest.mock('@titicaca/triple-web', () => ({
   useHashRouter: jest.fn().mockImplementation(() => ({
     addUriHash: addUriHashMockFn,
     removeUriHash: removeUriHashMockFn,
+    hasUriHash: hasUriHashMockFn,
   })),
   useSessionAvailability: jest.fn(),
 }))
@@ -58,7 +60,11 @@ describe('when user is on app', () => {
         wrapper: createTestWrapper({
           clientAppProvider: {
             device: { autoplay: 'always', networkType: 'unknown' },
-            metadata: { name: ClientAppName.iOS, version: '6.5.0' },
+            metadata: {
+              name: ClientAppName.iOS,
+              version: '6.5.0',
+              isMacApp: false,
+            },
           },
         }),
       },
