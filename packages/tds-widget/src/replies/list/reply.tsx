@@ -93,7 +93,7 @@ export function Reply({
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
-  const { addUriHash, removeUriHash } = useHashRouter()
+  const { addUriHash, removeUriHash, replaceUriHash } = useHashRouter()
   const { navigate } = useNavigate()
   const likeReactionCount = likeReaction?.count
 
@@ -159,8 +159,10 @@ export function Reply({
         },
       })
 
-      removeUriHash() // action sheet 닫기
-      addUriHash(HASH_DELETE_CLOSE_MODAL)
+      replaceUriHash(
+        `${HASH_MORE_ACTION_SHEET}.${messageId}`,
+        HASH_DELETE_CLOSE_MODAL,
+      )
 
       return true
     },
