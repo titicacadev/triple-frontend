@@ -8,7 +8,7 @@ export const HASH_SORTING_OPTIONS_ACTION_SHEET =
   'common.sort-options.review-action-sheet'
 
 export function SortingOptionsActionSheet() {
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
   const { selectedOption, sortingOptions, handleOptionSelect } =
     useReviewSortingOptions()
 
@@ -21,7 +21,7 @@ export function SortingOptionsActionSheet() {
   return (
     <ActionSheet
       title="정렬"
-      open={uriHash === HASH_SORTING_OPTIONS_ACTION_SHEET}
+      open={hasUriHash(HASH_SORTING_OPTIONS_ACTION_SHEET)}
       onClose={removeUriHash}
     >
       {sortingOptions.map(({ key, text }, index) => (
