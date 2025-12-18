@@ -29,6 +29,22 @@ const config: StorybookConfig = {
       strictMode: true,
     },
   },
+  babel: async (config) => {
+    return {
+      ...config,
+      presets: [
+        [
+          'next/babel',
+          {
+            'preset-react': {
+              runtime: 'automatic',
+              throwIfNamespace: false,
+            },
+          },
+        ],
+      ],
+    }
+  },
   webpackFinal: async (config) => {
     if (config.resolve) {
       config.resolve.plugins = [
