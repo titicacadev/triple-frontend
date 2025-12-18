@@ -25,12 +25,25 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/nextjs',
     options: {
-      builder: {
-        useSWC: true,
-      },
       fastRefresh: true,
       strictMode: true,
     },
+  },
+  babel: async (config) => {
+    return {
+      ...config,
+      presets: [
+        [
+          'next/babel',
+          {
+            'preset-react': {
+              runtime: 'automatic',
+              throwIfNamespace: false,
+            },
+          },
+        ],
+      ],
+    }
   },
   webpackFinal: async (config) => {
     if (config.resolve) {
