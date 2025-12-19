@@ -44,7 +44,7 @@ const DownloadButton = styled(Button)`
   display: inline-block;
 
   &:disabled {
-    background-color: red;
+    background-color: #f7f8fb;
   }
 `
 
