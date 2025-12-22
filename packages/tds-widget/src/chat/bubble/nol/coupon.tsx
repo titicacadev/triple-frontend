@@ -22,26 +22,40 @@ const Coupon = styled.div<{ valid: boolean }>`
   background-color: ${({ valid }) => (valid ? 'white' : '#FEFEFF')};
 `
 
-const DOWNLOAD_ICON = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 2.5V11.25" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
-<path d="M5.625 8.75L9.73483 12.8598C9.88128 13.0063 10.1187 13.0063 10.2652 12.8598L14.375 8.75" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
-<path d="M4.375 16.75H15.625" stroke="#1B1C1F" stroke-width="1.625" stroke-linecap="round"/>
-</svg>
+const StyledDownloadIcon = styled.svg<{ disabled?: boolean }>`
+  stroke: ${({ disabled }) => (disabled ? '#DADBDF' : '#1B1C1F')};
 `
 
-const getSVG = (svg: string) => {
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
+function DownloadIcon({ disabled }: { disabled?: boolean }) {
+  return (
+    <StyledDownloadIcon
+      disabled={disabled}
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M10 2.5V11.25" strokeWidth="1.625" strokeLinecap="round" />
+      <path
+        d="M5.625 8.75L9.73483 12.8598C9.88128 13.0063 10.1187 13.0063 10.2652 12.8598L14.375 8.75"
+        strokeWidth="1.625"
+        strokeLinecap="round"
+      />
+      <path d="M4.375 16.75H15.625" strokeWidth="1.625" strokeLinecap="round" />
+    </StyledDownloadIcon>
+  )
 }
 
 const DownloadButton = styled(Button)`
   padding: 0;
   border-radius: 0;
   border-left: 1px solid #ecedf7;
-  background:
-    no-repeat center url(${getSVG(DOWNLOAD_ICON)}),
-    #f7f7ff;
+  background-color: #f7f7ff;
   width: 39px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:disabled {
     background-color: #f7f8fb;
@@ -120,7 +134,9 @@ export function NolCouponContentBubble({ coupon, onClick }: CouponBubbleProp) {
       <DownloadButton
         disabled={!valid}
         onClick={() => valid && onClick?.(coupon, 'download')}
-      />
+      >
+        <DownloadIcon disabled={!valid} />
+      </DownloadButton>
     </CouponContainer>
   )
 }
