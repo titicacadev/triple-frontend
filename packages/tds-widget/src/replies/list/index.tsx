@@ -129,11 +129,11 @@ export function ReplyList({
 function ConfirmEditModal({ onConfirm }: { onConfirm: () => void }) {
   const t = useTranslation()
 
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
-      open={uriHash === HASH_EDIT_CLOSE_MODAL}
+      open={hasUriHash(HASH_EDIT_CLOSE_MODAL)}
       onClose={removeUriHash}
       onConfirm={onConfirm}
     >
@@ -149,11 +149,11 @@ function ConfirmDeleteModal({
   description: string
   onConfirm: () => void
 }) {
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
 
   return (
     <Confirm
-      open={uriHash === HASH_DELETE_CLOSE_MODAL}
+      open={hasUriHash(HASH_DELETE_CLOSE_MODAL)}
       onClose={removeUriHash}
       onConfirm={onConfirm}
     >

@@ -27,7 +27,7 @@ export function MyReviewActionSheet({
   const t = useTranslation()
 
   const { appUrlScheme } = useEnv()
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
 
   const { mutate } = useDeleteReviewMutation()
 
@@ -55,7 +55,7 @@ export function MyReviewActionSheet({
   return (
     <>
       <ActionSheet
-        open={uriHash === HASH_MY_REVIEW_ACTION_SHEET}
+        open={hasUriHash(HASH_MY_REVIEW_ACTION_SHEET)}
         onClose={() => removeUriHash('replace')}
       >
         {!reviewBlinded ? (
@@ -69,9 +69,12 @@ export function MyReviewActionSheet({
       </ActionSheet>
 
       <Confirm
-        open={uriHash === HASH_DELETION_MODAL}
+        open={hasUriHash(HASH_DELETION_MODAL)}
         onClose={() => removeUriHash('replace')}
-        onConfirm={handleDeleteReview}
+        onConfirm={() => {
+          removeUriHash('replace')
+          handleDeleteReview()
+        }}
       >
         {t('삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.')}
       </Confirm>
