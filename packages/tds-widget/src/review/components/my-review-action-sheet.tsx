@@ -71,7 +71,10 @@ export function MyReviewActionSheet({
       <Confirm
         open={hasUriHash(HASH_DELETION_MODAL)}
         onClose={() => removeUriHash('replace')}
-        onConfirm={handleDeleteReview}
+        onConfirm={() => {
+          removeUriHash('replace')
+          handleDeleteReview()
+        }}
       >
         {t('삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.')}
       </Confirm>
