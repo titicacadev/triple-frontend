@@ -26,20 +26,23 @@ import {
 } from './chat-message-context'
 import { ChatRoomMessageInterface } from './messages'
 
-interface ChatMessagesProps<T = UserType> {
+interface ChatMessagesProps<T = UserType, U = ChatRoomDetailInterface> {
   scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<T>>
-  createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
+  createRoom?: () => Promise<U | undefined>
 }
 
-export function useChatMessages<T = UserType>(
+export function useChatMessages<
+  T = UserType,
+  U extends ChatRoomDetailInterface = ChatRoomDetailInterface,
+>(
   {
     scrollToBottomOnNewMessage = true,
     defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
     >,
     createRoom,
-  }: ChatMessagesProps<T> = {
+  }: ChatMessagesProps<T, U> = {
     scrollToBottomOnNewMessage: true,
     defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<T>
@@ -233,6 +236,55 @@ export function useChatMessages<T = UserType>(
     } catch (error) {}
   }
 
+  async function initializeRoomAndMember(): Promise<
+    | {
+        currentRoom: U
+        roomMemberMe: ChatRoomUser<T>
+        isValid: true
+      }
+    | {
+        currentRoom: ChatRoomInterface | U
+        roomMemberMe: ChatRoomUser<T> | undefined
+        isValid: false
+      }
+  > {
+    /** roomId 생성 이전에 보낸 메세지는 pusher 이벤트로 받을 수 없기 때문에,
+          roomId가 없는 경우에는 먼저 room을 생성하는 과정을 거칩니다.
+      */
+    const currentRoom = await getOrCreateRoom()
+    const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
+
+    const skipRoomMemberMe = 'identifier' in me && 'id' in me
+
+    const roomMemberMe =
+      currentRoomId && !skipRoomMemberMe
+        ? await getChatRoomMemberId({ roomId: currentRoomId })
+        : me
+
+    /**
+     * room과 member 초기화가 성공적으로 완료되었는지 검증합니다.
+     * - currentRoom이 생성된 ChatRoom인지 (isCreatedChatRoom)
+     * - roomMemberMe가 존재하는지
+     * - member 정보가 유효한지
+     */
+    const isValid =
+      isCreatedChatRoom(currentRoom) &&
+      !!roomMemberMe &&
+      (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
+
+    return isValid
+      ? {
+          currentRoom: currentRoom as U,
+          roomMemberMe,
+          isValid: true as const,
+        }
+      : {
+          currentRoom,
+          roomMemberMe,
+          isValid: false as const,
+        }
+  }
+
   async function onSendMessage(
     payload: ChatMessageInterface<T>['payload'],
     {
@@ -263,31 +315,16 @@ export function useChatMessages<T = UserType>(
       skipPending = true
     }
 
-    /** roomId 생성 이전에 보낸 메세지는 pusher 이벤트로 받을 수 없기 때문에,
-          roomId가 없는 경우에는 먼저 room을 생성하는 과정을 거칩니다.
-      */
-    const currentRoom = await getOrCreateRoom()
-    const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
-
-    const skipRoomMemberMe = 'identifier' in me && 'id' in me
-
-    const roomMemberMe =
-      currentRoomId && !skipRoomMemberMe
-        ? await getChatRoomMemberId({ roomId: currentRoomId })
-        : me
+    const result = await initializeRoomAndMember()
 
     onRoomAndMemberInitialized?.()
 
-    if (
-      !(
-        isCreatedChatRoom(currentRoom) &&
-        roomMemberMe &&
-        (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
-      )
-    ) {
+    if (!result.isValid) {
       onMessageFailed(tempMessage)
       return
     }
+
+    const { currentRoom, roomMemberMe } = result
 
     /** 첫 렌더링 시에만 자동 메세지를 보내도록 합니다. */
     if (isWelcomeMessagePendingRef.current) {
@@ -301,7 +338,7 @@ export function useChatMessages<T = UserType>(
       skipPending = true
 
       await handleSendWelcomeMessage({
-        room: currentRoom as ChatRoomDetailInterface,
+        room: currentRoom,
         me: roomMemberMe,
         onError,
       })
@@ -562,6 +599,7 @@ export function useChatMessages<T = UserType>(
     onThanksClick,
     onSendMessageEvent,
     hasPrevMessage,
+    initializeRoomAndMember,
   }
 }
 
