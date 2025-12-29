@@ -39,7 +39,8 @@ export function MyReviewActionSheet({
 
   const handleDeleteReview = () => {
     mutate({ id: reviewId, resourceId, resourceType })
-
+    // eslint-disable-next-line no-console
+    console.log('Review deleted')
     removeUriHash('replace')
   }
 
@@ -71,7 +72,12 @@ export function MyReviewActionSheet({
       <Confirm
         open={hasUriHash(HASH_DELETION_MODAL)}
         onClose={() => removeUriHash('replace')}
-        onConfirm={handleDeleteReview}
+        onConfirm={() => {
+          // eslint-disable-next-line no-console
+          console.log('Delete review confirmed')
+          removeUriHash('replace')
+          handleDeleteReview()
+        }}
       >
         {t('삭제하겠습니까? 삭제하면 적립된 리뷰 포인트도 함께 사라집니다.')}
       </Confirm>
