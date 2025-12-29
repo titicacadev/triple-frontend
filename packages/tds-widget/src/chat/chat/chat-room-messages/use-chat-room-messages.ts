@@ -8,6 +8,7 @@ import {
   ChatRoomDetailInterface,
   ChatRoomInterface,
   ChatRoomMemberInterface,
+  ChatRoomMetadata,
   ChatRoomUser,
   isChatRoomMember,
   isCreatedChatRoom,
@@ -30,17 +31,19 @@ import { ChatRoomMessageInterface } from './messages'
 interface ChatMessagesProps<
   T = RoomType,
   U = UserType,
-  V extends ChatRoomDetailInterface<T, U> = ChatRoomDetailInterface<T, U>,
+  V = ChatRoomMetadata<T>,
+  R extends ChatRoomDetailInterface<T, U, V> = ChatRoomDetailInterface<T, U, V>,
 > {
   scrollToBottomOnNewMessage?: boolean
   defaultMessageProperties?: Partial<ChatMessageInterface<U>>
-  createRoom?: () => Promise<V | undefined>
+  createRoom?: () => Promise<R | undefined>
 }
 
 export function useChatMessages<
   T = RoomType,
   U = UserType,
-  V extends ChatRoomDetailInterface<T, U> = ChatRoomDetailInterface<T, U>,
+  V = ChatRoomMetadata<T>,
+  R extends ChatRoomDetailInterface<T, U, V> = ChatRoomDetailInterface<T, U, V>,
 >(
   {
     scrollToBottomOnNewMessage = true,
@@ -48,7 +51,7 @@ export function useChatMessages<
       ChatMessageInterface<U>
     >,
     createRoom,
-  }: ChatMessagesProps<T, U, V> = {
+  }: ChatMessagesProps<T, U, V, R> = {
     scrollToBottomOnNewMessage: true,
     defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
       ChatMessageInterface<U>
@@ -56,7 +59,7 @@ export function useChatMessages<
   },
 ) {
   const { room, me, updateRoom, updateMe } = useRoom<
-    ChatRoomInterface<T, U>,
+    ChatRoomInterface<T, U, V>,
     ChatRoomUser<U>
   >()
 
@@ -167,7 +170,7 @@ export function useChatMessages<
     me,
     onError,
   }: {
-    room: ChatRoomDetailInterface<T, U>
+    room: R
     me: ChatRoomUser<U>
     onError?: () => void
   }) {
@@ -244,12 +247,12 @@ export function useChatMessages<
 
   async function initializeRoomAndMember(): Promise<
     | {
-        currentRoom: V
+        currentRoom: R
         roomMemberMe: ChatRoomUser<U>
         isValid: true
       }
     | {
-        currentRoom: ChatRoomInterface<T, U> | V
+        currentRoom: ChatRoomInterface<T, U, V> | R
         roomMemberMe: ChatRoomUser<U> | undefined
         isValid: false
       }
@@ -280,7 +283,7 @@ export function useChatMessages<
 
     return isValid
       ? {
-          currentRoom: currentRoom as V,
+          currentRoom: currentRoom as R,
           roomMemberMe,
           isValid: true as const,
         }
@@ -609,11 +612,12 @@ export function useChatMessages<
   }
 }
 
-function findSenderFromRoomMembers<T, U>(
-  room: ChatRoomDetailInterface<T, U>,
-  me: ChatRoomUser<U>,
-  sender?: ChatRoomMemberInterface<U>,
-) {
+function findSenderFromRoomMembers<
+  T,
+  U,
+  V,
+  R extends ChatRoomDetailInterface<T, U, V>,
+>(room: R, me: ChatRoomUser<U>, sender?: ChatRoomMemberInterface<U>) {
   if (sender) {
     return room.members.find(
       (member) =>
