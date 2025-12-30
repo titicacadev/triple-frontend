@@ -138,14 +138,19 @@ export interface PreDirectRoomInterface<T = RoomType, U = UserType> {
 
 /**
  * 초대 링크로 진입한 생성되지 않은 RoomInterface
+ *
+ * NOTE: invitationType은 현재 분기 처리에 사용되지 않아 string으로 고정.
+ * invitationType별 타입 검증이나 분기가 필요해지면 제네릭으로 변경 필요.
  */
 export interface InvitationRoomInterface<
-  T = InvitationType,
-  R = RoomType,
+  T = RoomType,
   U = UserType,
-  V = ChatRoomMetadata<R>,
-> extends Pick<InvitationInterface<T, R, U, V>, 'expirePolicies' | 'other'> {
-  type: R
+  V = ChatRoomMetadata<T>,
+> extends Pick<
+    InvitationInterface<string, T, U, V>,
+    'expirePolicies' | 'other'
+  > {
+  type: T
   metadata?: V
 }
 
@@ -200,13 +205,12 @@ export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
  * TF/chat 컴포넌트 내에서 사용하는 RoomInterface
  */
 export type ChatRoomInterface<
-  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
 > =
   | ChatRoomDetailInterface<T, U, V>
-  | InvitationRoomInterface<I, T, U, V>
+  | InvitationRoomInterface<T, U, V>
   | PreDirectRoomInterface<T, U>
 
 /**
@@ -214,11 +218,10 @@ export type ChatRoomInterface<
  * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방인지 확인합니다.
  */
 export function isPreDirectRoom<
-  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
->(room: ChatRoomInterface<I, T, U, V>): room is PreDirectRoomInterface<T, U> {
+>(room: ChatRoomInterface<T, U, V>): room is PreDirectRoomInterface<T, U> {
   return !!(room as { preDirectRoom?: boolean }).preDirectRoom
 }
 
@@ -226,13 +229,10 @@ export function isPreDirectRoom<
  * 생성된 채팅방인지 확인합니다.
  */
 export function isCreatedChatRoom<
-  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
->(
-  room: ChatRoomInterface<I, T, U, V>,
-): room is ChatRoomDetailInterface<T, U, V> {
+>(room: ChatRoomInterface<T, U, V>): room is ChatRoomDetailInterface<T, U, V> {
   return 'id' in room
 }
 
