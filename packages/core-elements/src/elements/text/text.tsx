@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 import { Property } from 'csstype'
 import { getColor, Color } from '@titicaca/color-palette'
 
@@ -12,6 +12,7 @@ import {
   paddingMixin,
   textStyleMixin,
 } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 function rgba({ color, alpha }: { color?: string; alpha?: number }) {
   return `rgba(${GetGlobalColor(color || 'gray')}, ${alpha || 1})`
@@ -39,9 +40,10 @@ export type TextProps = PropsWithChildren<{
   underline?: boolean
   whiteSpace?: Property.WhiteSpace
   wordBreak?: Property.WordBreak
+  css?: CSSProp
 }>
 
-export const Text = styled.div<TextProps>(
+export const Text = styled.div.withConfig({ shouldForwardProp })<TextProps>(
   (props) => ({
     boxSizing: 'border-box',
     overflowWrap: 'break-word',
@@ -74,6 +76,7 @@ export const Text = styled.div<TextProps>(
   textStyleMixin,
   ellipsisMixin,
   maxLinesMixin,
+  (props) => props.css,
 )
 
 interface TextTitleBaseProps {

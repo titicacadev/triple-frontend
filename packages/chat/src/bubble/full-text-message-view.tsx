@@ -1,14 +1,17 @@
 import { MouseEventHandler } from 'react'
 import { Autolinker } from 'autolinker'
 import Popup from '@titicaca/popup'
-import styled from 'styled-components'
-import { Navbar } from '@titicaca/core-elements'
+import styled, { CSSProp } from 'styled-components'
+import { Navbar, shouldForwardProp } from '@titicaca/core-elements'
 
-const AutoLinkText = styled.span`
+const AutoLinkText = styled.span.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   > a {
     color: var(--color-blue);
     line-break: anywhere;
   }
+  ${(props) => props.css}
 `
 
 export function FullTextMessageView({

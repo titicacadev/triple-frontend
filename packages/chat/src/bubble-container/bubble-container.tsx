@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react'
+import { CSSProp } from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 
 import { DEFAULT_MESSAGE_ID_PREFIX } from '../chat/constants'
@@ -41,6 +42,8 @@ interface ContainerBaseProp {
   onReplyClick?: () => void
   /** 메세지 ref에 주입되는 callback 함수 */
   messageRefCallback?: (id: string) => void
+  /** 커스텀 CSS 스타일 */
+  css?: CSSProp
 }
 
 type SentBubbleContainerProp = PropsWithChildren<

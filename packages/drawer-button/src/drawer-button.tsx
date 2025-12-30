@@ -7,9 +7,10 @@ import {
   ButtonProps,
   paddingMixin,
   DrawerProps,
+  MarginPadding,
 } from '@titicaca/core-elements'
 
-const ButtonWithSafeAreaInset = styled(Button)`
+const ButtonWithSafeAreaInset = styled(Button)<{ padding?: MarginPadding }>`
   ${paddingMixin}
   ${safeAreaInsetMixin}
 `

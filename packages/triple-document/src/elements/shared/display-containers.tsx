@@ -9,19 +9,20 @@ import {
 
 import DocumentCarousel from './document-carousel'
 
+const BlockContainerStyled = styled(Container)<{ $marginBottom: number }>`
+  margin-top: 40px;
+  margin-bottom: ${({ $marginBottom }) => $marginBottom}px;
+`
+
 function BlockContainer({
   children,
   images,
 }: PropsWithChildren<{ images: ImageMeta[] }>) {
+  const marginBottom = images.some(({ title }) => title) ? 10 : 30
   return (
-    <Container
-      css={{
-        marginTop: 40,
-        marginBottom: images.some(({ title }) => title) ? 10 : 30,
-      }}
-    >
+    <BlockContainerStyled $marginBottom={marginBottom}>
       {children}
-    </Container>
+    </BlockContainerStyled>
   )
 }
 
@@ -29,6 +30,12 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, auto));
 `
+
+function GaplessBlockContainer({
+  children,
+}: PropsWithChildren<{ images: ImageMeta[] }>) {
+  return <Container>{children}</Container>
+}
 
 export function DocumentCarouselContainer({
   children,
@@ -48,7 +55,7 @@ export function DocumentCarouselContainer({
 
 export const IMAGES_CONTAINER_MAP = {
   block: BlockContainer,
-  'gapless-block': Container,
+  'gapless-block': GaplessBlockContainer,
   grid: GridContainer,
   default: DocumentCarouselContainer,
   'default-v2': DocumentCarouselContainer,

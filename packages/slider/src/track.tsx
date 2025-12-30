@@ -1,16 +1,14 @@
-import styled, { StyledComponentProps } from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
+import { ComponentPropsWithoutRef } from 'react'
+import { shouldForwardProp } from '@titicaca/core-elements'
 
-export const TrackContainer = styled.div.attrs<{ left: number; right: number }>(
-  ({ left, right }) => ({
-    style: {
-      left: `${left}%`,
-      right: `${100 - right}%`,
-    },
-  }),
-)`
+export const TrackContainer = styled.div.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   position: absolute;
   padding: 20px 0;
   margin-top: -20px;
+  ${(props) => props.css}
 `
 
 export const ActiveTrack = styled.div`
@@ -22,14 +20,23 @@ export const ActiveTrack = styled.div`
 
 export default function Track({
   active,
+  left,
+  right,
   ...rest
-}: { active: boolean } & StyledComponentProps<
-  'div',
-  object,
-  { left: number; right: number },
-  never
->) {
+}: {
+  active: boolean
+  left: number
+  right: number
+} & ComponentPropsWithoutRef<'div'>) {
   return (
-    <TrackContainer {...rest}>{active ? <ActiveTrack /> : null}</TrackContainer>
+    <TrackContainer
+      {...rest}
+      css={{
+        left: `${left}%`,
+        right: `${100 - right}%`,
+      }}
+    >
+      {active ? <ActiveTrack /> : null}
+    </TrackContainer>
   )
 }

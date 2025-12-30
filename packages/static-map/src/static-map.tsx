@@ -6,6 +6,7 @@ import {
   formatMarginPadding,
   MEDIA_FRAME_OPTIONS,
   marginMixin,
+  MarginPadding,
 } from '@titicaca/core-elements'
 import { FrameRatioAndSizes } from '@titicaca/type-definitions'
 
@@ -27,7 +28,10 @@ const Marker = styled.img`
   height: 30px;
 `
 
-const StaticMapContainer = styled.div<{ frame?: FrameRatioAndSizes }>`
+const StaticMapContainer = styled.div<{
+  frame?: FrameRatioAndSizes
+  margin?: MarginPadding
+}>`
   width: 100%;
   position: relative;
   background: '#f5f5f5';

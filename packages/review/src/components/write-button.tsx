@@ -12,6 +12,10 @@ const WriteIcon = styled.img`
   height: 34px;
 `
 
+const StyledButtonBase = styled(ButtonBase)`
+  margin-left: auto;
+`
+
 interface Props {
   resourceId: string
   resourceType: string
@@ -45,8 +49,8 @@ export const WriteButton = ({ resourceId, resourceType, regionId }: Props) => {
   )
 
   return (
-    <ButtonBase css={{ marginLeft: 'auto' }} onClick={handleClick}>
+    <StyledButtonBase onClick={handleClick}>
       <WriteIcon src="https://assets.triple.guide/images/btn-com-write@2x.png" />
-    </ButtonBase>
+    </StyledButtonBase>
   )
 }

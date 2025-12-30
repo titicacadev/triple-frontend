@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Container } from '@titicaca/core-elements'
 import {
   FloatingFocusManager,
@@ -14,6 +14,16 @@ import {
 
 const TRANSITION_DURATION = 300
 const SIDE_BAR_WIDTH = 325
+
+const StyledFloatingOverlay = styled(FloatingOverlay)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(58, 58, 58, 0.5);
+  z-index: 9999;
+`
 
 const SideBarContainer = styled(Container)`
   position: fixed;
@@ -98,18 +108,7 @@ export function SideMenuOverlay({
 
   return (
     <FloatingPortal>
-      <FloatingOverlay
-        lockScroll
-        css={css`
-          position: fixed;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background-color: rgba(58, 58, 58, 0.5);
-          z-index: 9999;
-        `}
-      />
+      <StyledFloatingOverlay lockScroll />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <SideBarContainer
           id="side-menu-container"

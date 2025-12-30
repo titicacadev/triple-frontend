@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { layeringMixin, LayeringMixinProps } from '../../mixins'
 import { Container } from '../container'
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled(Container)<LayeringMixinProps>`
   position: sticky;
   top: 0;
   ${layeringMixin(0)}

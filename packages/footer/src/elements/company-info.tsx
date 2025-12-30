@@ -25,7 +25,7 @@ const AccordionHeader = styled(Container)`
   }
 `
 
-const Title = styled(AccordionTitle)`
+const Title = styled(AccordionTitle)<{ $hideAppDownloadButton?: boolean }>`
   display: flex;
   align-items: center;
   flex: 1;
@@ -33,14 +33,16 @@ const Title = styled(AccordionTitle)`
   font-size: 14px !important;
   font-weight: 700;
   line-height: 17px;
-  margin-top: 12px;
+  margin-top: ${({ $hideAppDownloadButton }) =>
+    $hideAppDownloadButton ? 0 : 12}px;
 
   &::after {
     display: none;
   }
 
   @media (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
-    margin-top: 20px;
+    margin-top: ${({ $hideAppDownloadButton }) =>
+      $hideAppDownloadButton ? 0 : 20}px;
   }
 `
 
@@ -87,7 +89,7 @@ export function CompanyInfo({
       }
     >
       <AccordionHeader>
-        <Title css={{ marginTop: hideAppDownloadButton ? 0 : undefined }}>
+        <Title $hideAppDownloadButton={hideAppDownloadButton}>
           트리플 사업자정보
           <ArrowIcon businessExpanded={businessExpanded} />
         </Title>

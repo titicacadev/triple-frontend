@@ -7,7 +7,9 @@ const MessageContainer = styled(Container)`
   position: relative;
 `
 
-const Label = styled((props) => <Text {...props} />)<{
+const Label = styled((props: React.ComponentProps<typeof Text>) => (
+  <Text {...props} />
+))<{
   focused?: boolean
   error?: boolean
   absolute?: boolean

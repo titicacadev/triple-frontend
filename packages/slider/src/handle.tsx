@@ -1,17 +1,16 @@
-import styled, { StyledComponentProps } from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
+import { ComponentPropsWithoutRef } from 'react'
+import { shouldForwardProp } from '@titicaca/core-elements'
 
-const HandleContainer = styled.div.attrs<{ percent: number }>(
-  ({ percent }) => ({
-    style: {
-      left: `${percent}%`,
-    },
-  }),
-)`
+const HandleContainer = styled.div.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   position: absolute;
   width: 70px;
   height: 90px;
   transform: translate(-50%, -50%);
   z-index: 1;
+  ${(props) => props.css}
 `
 
 const HandlePeg = styled.div`
@@ -27,11 +26,17 @@ const HandlePeg = styled.div`
   z-index: 1;
 `
 
-export default function Handle(
-  props: StyledComponentProps<'div', object, { percent: number }, never>,
-) {
+export default function Handle({
+  percent,
+  ...props
+}: { percent: number } & ComponentPropsWithoutRef<'div'>) {
   return (
-    <HandleContainer {...props}>
+    <HandleContainer
+      {...props}
+      css={{
+        left: `${percent}%`,
+      }}
+    >
       <HandlePeg />
     </HandleContainer>
   )

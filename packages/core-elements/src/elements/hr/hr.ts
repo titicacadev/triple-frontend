@@ -1,11 +1,14 @@
-import styled, { css } from 'styled-components'
+import styled, { css, CSSProp } from 'styled-components'
+
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 export interface HrProps {
   compact?: boolean
   color?: string
+  css?: CSSProp
 }
 
-export const HR1 = styled.div<HrProps>`
+export const HR1 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
   margin: 50px 30px;
   height: 1px;
   background-color: ${({ color }) => color || '#efefef'};
@@ -15,9 +18,10 @@ export const HR1 = styled.div<HrProps>`
     css`
       margin: 0;
     `};
+  ${(props) => props.css}
 `
 
-export const HR2 = styled.div<HrProps>`
+export const HR2 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
   margin: 50px 0;
   height: 10px;
   background-color: #efefef;
@@ -27,14 +31,17 @@ export const HR2 = styled.div<HrProps>`
     css`
       margin: 0;
     `};
+  ${(props) => props.css}
 `
 
-export const HR3 = styled.div<{ height?: number }>`
+export const HR3 = styled.div.withConfig({ shouldForwardProp })<{
+  height?: number
+}>`
   height: ${({ height }) => height || 10}px;
   background-color: transparent;
 `
 
-export const HR4 = styled.div`
+export const HR4 = styled.div.withConfig({ shouldForwardProp })`
   margin: 40px auto;
   width: 130px;
   height: 37px;
@@ -43,7 +50,7 @@ export const HR4 = styled.div`
   background-image: url('https://assets.triple.guide/images/img-line1@2x.png');
 `
 
-export const HR5 = styled.div`
+export const HR5 = styled.div.withConfig({ shouldForwardProp })`
   margin: 40px auto;
   width: 130px;
   height: 37px;
@@ -52,7 +59,7 @@ export const HR5 = styled.div`
   background-image: url('https://assets.triple.guide/images/img-line2@2x.png');
 `
 
-export const HR6 = styled.div`
+export const HR6 = styled.div.withConfig({ shouldForwardProp })`
   margin: 40px auto;
   width: 130px;
   height: 37px;
@@ -61,7 +68,7 @@ export const HR6 = styled.div`
   background-image: url('https://assets.triple.guide/images/img-line3@2x.png');
 `
 
-export const HR7 = styled.div<HrProps>`
+export const HR7 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
   margin: 30px auto;
   ${({ compact }) =>
     compact &&
@@ -70,4 +77,5 @@ export const HR7 = styled.div<HrProps>`
     `};
   width: 100%;
   border-bottom: dashed 1px #efefef;
+  ${(props) => props.css}
 `

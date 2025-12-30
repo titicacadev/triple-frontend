@@ -1,5 +1,5 @@
-import { SyntheticEvent } from 'react'
-import styled, { css, StyledComponentProps } from 'styled-components'
+import { SyntheticEvent, TextareaHTMLAttributes } from 'react'
+import styled, { css } from 'styled-components'
 
 import withField from '../with-field'
 
@@ -9,15 +9,8 @@ interface BaseTextareaProps {
 }
 
 interface TextareaProps
-  extends Omit<
-    StyledComponentProps<
-      'textarea',
-      Record<string, unknown>,
-      BaseTextareaProps,
-      never
-    >,
-    'onChange'
-  > {
+  extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'>,
+    BaseTextareaProps {
   onChange?: (e: SyntheticEvent, value: string) => void
 }
 

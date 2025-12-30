@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
+import { shouldForwardProp } from '@titicaca/core-elements'
 
 import { generatePreviewImage } from '../utils'
 
@@ -6,7 +7,9 @@ import { ImageItem, TextItem } from './item'
 import Bubble from './bubble'
 import { RichBubbleProp } from './type'
 
-const Button = styled.a`
+const Button = styled.a.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -26,6 +29,7 @@ const Button = styled.a`
     background-image: url('http://assets.triple.guide/images/ico-arrow-right-black@3x.png');
     background-size: 16px 18px;
   }
+  ${(props) => props.css}
 `
 
 export function RichBubble({

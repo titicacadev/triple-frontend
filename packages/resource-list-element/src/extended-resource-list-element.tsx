@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import { useTranslation } from '@titicaca/next-i18next'
-import styled, { css } from 'styled-components'
+import styled, { css, WebTarget } from 'styled-components'
 import { OverlayScrapButton } from '@titicaca/scrap-button'
 import {
   Container,
@@ -8,6 +8,7 @@ import {
   LabelColor,
   Text,
   List,
+  ListItemProps,
   Image,
   FlexBox,
 } from '@titicaca/core-elements'
@@ -51,7 +52,8 @@ export type ResourceListElementProps<R extends ResourceMeta> = {
   areaName?: string
   onClick?: MouseEventHandler<HTMLLIElement>
   optimized?: boolean
-} & Partial<Parameters<typeof List.Item>['0']>
+  as?: WebTarget
+} & ListItemProps
 
 const ResourceListItem = styled(List.Item)`
   position: relative;

@@ -1,7 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import ExtendedResourceListElement, {
-  ResourceListElementProps,
-} from '@titicaca/resource-list-element'
+import { WebTarget } from 'styled-components'
+import ExtendedResourceListElement from '@titicaca/resource-list-element'
 import { useScrapsContext } from '@titicaca/react-contexts'
 
 import { POI_IMAGE_PLACEHOLDERS } from './constants'
@@ -18,8 +17,9 @@ interface ExtendedPoiListElementBaseProps<T extends PoiListElementType>
 }
 
 export type ExtendedPoiListElementProps<T extends PoiListElementType> =
-  ExtendedPoiListElementBaseProps<T> &
-    Partial<Pick<ResourceListElementProps<T>, 'as'>>
+  ExtendedPoiListElementBaseProps<T> & {
+    as?: WebTarget
+  }
 
 export function ExtendedPoiListElement<T extends PoiListElementType>({
   poi,
@@ -92,7 +92,6 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   return (
     <ExtendedResourceListElement
       as={as}
-      scraped={scraped}
       resource={poi}
       image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}

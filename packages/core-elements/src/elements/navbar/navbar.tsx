@@ -1,5 +1,5 @@
 import * as CSS from 'csstype'
-import styled, { css } from 'styled-components'
+import styled, { css, CSSProp } from 'styled-components'
 import { Color, getColor } from '@titicaca/color-palette'
 import {
   PropsWithChildren,
@@ -14,6 +14,7 @@ import { TRIPLE_FALLBACK_ACTION_CLASS_NAME } from '@titicaca/triple-fallback-act
 import { MarginPadding } from '../../commons'
 import { layeringMixin, LayeringMixinProps, paddingMixin } from '../../mixins'
 import { unit } from '../../utils/unit'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 interface NavbarProps {
   maxWidth?: number
@@ -21,6 +22,7 @@ interface NavbarProps {
   backgroundColor?: Color
   position?: CSS.Property.Position
   padding?: MarginPadding
+  css?: CSSProp
 }
 
 const WrapperContainer = styled.div<
@@ -43,7 +45,9 @@ const WrapperContainer = styled.div<
     `};
 `
 
-const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
+const NavbarFrame = styled.div.withConfig({
+  shouldForwardProp,
+})<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)}) `};
   position: ${({ position = 'sticky' }) => position};
@@ -61,9 +65,12 @@ const NavbarFrame = styled.div<NavbarProps & LayeringMixinProps>`
   padding: 9px 12px;
   margin: 0 auto;
   max-width: ${({ maxWidth = '100%' }) => unit(maxWidth)};
+  ${(props) => props.css}
 `
 
-const TitleContainer = styled.div<{ childrenCount?: number }>`
+const TitleContainer = styled.div.withConfig({
+  shouldForwardProp,
+})<{ childrenCount?: number; css?: CSSProp }>`
   position: absolute;
   top: 50%;
   left: 52px;
@@ -78,6 +85,7 @@ const TitleContainer = styled.div<{ childrenCount?: number }>`
   overflow-x: hidden;
   text-overflow: ellipsis;
   line-height: 52px;
+  ${(props) => props.css}
 `
 
 type IconNames =
@@ -127,13 +135,18 @@ interface NavbarItemProps {
   icon?: IconNames
   position?: CSS.Property.Position
   hasTitle?: boolean
+  css?: CSSProp
 }
 
-const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
-  className: ['back', 'close'].includes(icon || '')
-    ? TRIPLE_FALLBACK_ACTION_CLASS_NAME
-    : '',
-}))<NavbarItemProps>`
+const NavbarItem = styled.div
+  .attrs<NavbarItemProps>(({ icon }) => ({
+    className: ['back', 'close'].includes(icon || '')
+      ? TRIPLE_FALLBACK_ACTION_CLASS_NAME
+      : '',
+  }))
+  .withConfig({
+    shouldForwardProp,
+  })<NavbarItemProps>`
   ${({ position }) => position && `position: ${position};`}
   float: ${({ floated }) => floated || 'left'};
   background-image: url(${({ icon }) => (icon ? ICON_URL_BY_NAMES[icon] : '')});
@@ -154,9 +167,12 @@ const NavbarItem = styled.div.attrs<NavbarItemProps>(({ icon }) => ({
       text-overflow: ellipsis;
       overflow-x: hidden;
     `}
+  ${(props) => props.css}
 `
 
-const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
+const SecondaryNavbar = styled.div.withConfig({
+  shouldForwardProp,
+})<NavbarProps & LayeringMixinProps>`
   background-color: ${({ backgroundColor = 'white' }) =>
     `rgba(${getColor(backgroundColor)}) `};
   ${({ position = 'sticky' }) => `
@@ -171,6 +187,7 @@ const SecondaryNavbar = styled.div<NavbarProps & LayeringMixinProps>`
   ${layeringMixin(0)}
   margin: 0 auto;
   max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
+  ${(props) => props.css}
 `
 
 export function NavbarWrapper({

@@ -82,7 +82,7 @@ export const buttonBaseMixin = ({
   }
 `
 
-export const ButtonBase = styled.button.attrs((props) => ({
+export const ButtonBase = styled.button.attrs<ButtonBaseProps>((props) => ({
   /* stylelint-disable-next-line property-no-unknown */
   type: props.type ?? 'button',
-}))(buttonBaseMixin)
+}))<ButtonBaseProps>(buttonBaseMixin)

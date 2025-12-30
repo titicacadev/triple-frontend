@@ -24,6 +24,10 @@ const LinksContainer = styled(Container)`
   }
 `
 
+const StyledLink = styled.a<{ $bold?: boolean }>`
+  font-weight: ${({ $bold }) => ($bold ? 700 : 400)};
+`
+
 export function LinkGroup({ links }: { links: FooterLink[] }) {
   const { trackEvent } = useEventTrackingContext()
 
@@ -31,20 +35,19 @@ export function LinkGroup({ links }: { links: FooterLink[] }) {
     <LinksContainer>
       {links.map((link, index) => (
         <Fragment key={`link-${index}`}>
-          <a
-            key={`link-${index}`}
+          <StyledLink
             href={link.url}
             target="_blank"
             rel="noreferrer"
+            $bold={link.bold}
             onClick={
               link.faEventAction
                 ? () => trackEvent({ fa: { action: link.faEventAction } })
                 : undefined
             }
-            css={{ fontWeight: link.bold ? 700 : 400 }}
           >
             {link.label}
-          </a>
+          </StyledLink>
           {index < links.length - 1 ? <Divider /> : null}
         </Fragment>
       ))}

@@ -1,4 +1,11 @@
-import { Container, FlexBox, List, Rating, Text } from '@titicaca/core-elements'
+import {
+  Container,
+  FlexBox,
+  List,
+  Rating,
+  Text,
+  shouldForwardProp,
+} from '@titicaca/core-elements'
 import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
 import { TransitionType } from '@titicaca/modals'
 import { useTranslation } from '@titicaca/next-i18next'
@@ -11,7 +18,7 @@ import { useAppCallback, useSessionCallback } from '@titicaca/ui-flow'
 import { Timestamp } from '@titicaca/view-utilities'
 import moment from 'moment'
 import { PropsWithChildren, useCallback, useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, CSSProp } from 'styled-components'
 
 import { BaseReviewFragment } from '../../data/graphql'
 import {
@@ -63,7 +70,9 @@ const MessageCount = styled(Container)<{ isCommaVisible?: boolean }>`
     `}
 `
 
-const LikeButton = styled.button<{ liked?: boolean }>`
+const LikeButton = styled.button.withConfig({
+  shouldForwardProp,
+})<{ liked?: boolean; css?: CSSProp }>`
   font-weight: bold;
   text-decoration: none;
   background-size: 18px 18px;
@@ -73,6 +82,7 @@ const LikeButton = styled.button<{ liked?: boolean }>`
     liked
       ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png')"
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
+  ${(props) => props.css}
 `
 
 const ReviewMetadataInfo = styled(FlexBox)`

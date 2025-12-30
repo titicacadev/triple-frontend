@@ -74,6 +74,7 @@ interface Item<T> {
 export interface CheckboxItemProps<T>
   extends InputHTMLAttributes<HTMLInputElement> {
   option: Item<T>
+  marginBottom?: number
 }
 
 export interface CheckboxWrapperProps<T> {
@@ -89,6 +90,7 @@ export function CheckboxItem<T>({
   onChange = () => {},
   name,
   option: { key, label },
+  marginBottom = 20,
   ...props
 }: CheckboxItemProps<T>) {
   const id = `${key}_${label}_${name}`
@@ -97,7 +99,7 @@ export function CheckboxItem<T>({
     <Container
       position="relative"
       css={{
-        marginBottom: 20,
+        marginBottom,
         padding: '0 29px 0 0',
       }}
       {...props}
@@ -152,15 +154,13 @@ export default function Checkbox<T>({
         const { disabled, key } = option
         const isChecked = checkedKeyList.includes(key)
         const isLast = index + 1 === options.length
-        const checkboxMargin = { marginBottom: isLast ? 0 : 20 }
-
         return (
           <CheckboxItem
             key={key}
             option={option}
             name={name}
             checked={isChecked}
-            css={checkboxMargin}
+            marginBottom={isLast ? 0 : 20}
             disabled={disabled}
             onChange={(e) => onCheckboxChange(e.target.value)}
           />

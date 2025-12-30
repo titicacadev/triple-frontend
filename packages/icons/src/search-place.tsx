@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 import { gray as defaultSvgIconColor } from '@titicaca/color-palette'
 
 import { IconBaseProps } from './types'
@@ -13,8 +12,11 @@ export default function SearchPlace({
   opacity = 1,
   ...rest
 }: IconBaseProps) {
-  const { colors } = useContext(ThemeContext) || { colors: {} }
-  const stroke = color || colors.primary || defaultSvgIconColor
+  const theme = useTheme()
+  const stroke =
+    color ||
+    (theme as { colors?: { primary?: string } }).colors?.primary ||
+    defaultSvgIconColor
 
   return (
     <SvgIcon

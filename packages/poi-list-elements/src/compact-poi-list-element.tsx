@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { WebTarget } from 'styled-components'
 import {
   Text,
   SquareImage,
@@ -22,8 +23,9 @@ interface CompactPoiListElementBaseProps<T extends PoiListElementType>
 }
 
 export type CompactPoiListElementProps<T extends PoiListElementType> =
-  CompactPoiListElementBaseProps<T> &
-    Partial<Pick<Parameters<typeof ResourceListItem>['0'], 'as'>>
+  CompactPoiListElementBaseProps<T> & {
+    as?: WebTarget
+  }
 
 const POI_IMAGE_PLACEHOLDERS_SMALL: {
   [key in PoiListElementType['type']]: string

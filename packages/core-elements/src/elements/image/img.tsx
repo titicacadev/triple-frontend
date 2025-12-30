@@ -1,14 +1,19 @@
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 import * as CSS from 'csstype'
+
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 import { useImageState } from './context'
 import { useContentAbsolute } from './fixed-ratio-frame'
 
-const Img = styled.img<{
+const Img = styled.img.withConfig({
+  shouldForwardProp,
+})<{
   borderRadius: number
   dimmed?: boolean
   absolute: boolean
   cursor?: CSS.Property.Cursor
+  css?: CSSProp
 }>`
   width: 100%;
   height: 100%;
@@ -27,12 +32,13 @@ const Img = styled.img<{
     cursor: ${cursor};
   `}
   z-index: 0;
+  ${(props) => props.css}
 `
 
 export function ImageImg(
   props: Omit<
     Parameters<typeof Img>[0],
-    'borderRadius' | 'dimmed' | 'fitHeight'
+    'borderRadius' | 'dimmed' | 'fitHeight' | 'absolute'
   >,
 ) {
   const { borderRadius, overlayMounted } = useImageState()

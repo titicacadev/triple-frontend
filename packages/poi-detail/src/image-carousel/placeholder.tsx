@@ -1,6 +1,6 @@
 import { useTranslation } from '@titicaca/next-i18next'
-import styled, { css } from 'styled-components'
-import { Text, Responsive } from '@titicaca/core-elements'
+import styled, { css, CSSProp } from 'styled-components'
+import { Text, Responsive, shouldForwardProp } from '@titicaca/core-elements'
 import { GuestModeType } from '@titicaca/type-definitions'
 
 import { PoiType } from './carousel-section'
@@ -27,8 +27,11 @@ const ImagePlaceholderContainer = styled.div<{ large?: boolean }>`
         `};
 `
 
-const PlaceholderIcon = styled.img`
+const PlaceholderIcon = styled.img.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   vertical-align: baseline;
+  ${(props) => props.css}
 `
 
 const ImagePlaceholderContent = styled.div<{ large?: boolean }>`

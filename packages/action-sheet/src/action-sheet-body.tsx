@@ -4,7 +4,7 @@ import {
   safeAreaInsetMixin,
 } from '@titicaca/core-elements'
 import { PropsWithChildren, ReactNode, forwardRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, CSSProp } from 'styled-components'
 
 import { ActionSheetTitle } from './action-sheet-title'
 import { TRANSITION_DURATION } from './constants'
@@ -65,6 +65,7 @@ export interface ActionSheetBodyProps extends PropsWithChildren {
   title?: ReactNode
   labelId: string
   transitionStatus: string
+  css?: CSSProp
 }
 
 export const ActionSheetBody = forwardRef<HTMLDivElement, ActionSheetBodyProps>(

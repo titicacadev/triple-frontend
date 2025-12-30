@@ -18,6 +18,16 @@ import { ModalContext } from './modal-context'
 import { ModalDescription } from './modal-description'
 import { ModalTitle } from './modal-title'
 
+const StyledFloatingOverlay = styled(FloatingOverlay)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(58, 58, 58, 0.5);
+  z-index: 9999;
+`
+
 const ModalPanel = styled(Container)<{ $flexible: boolean }>`
   max-height: 100%;
   background-color: #fff;
@@ -72,18 +82,7 @@ export const Modal = ({
     >
       {context.open ? (
         <FloatingPortal>
-          <FloatingOverlay
-            lockScroll
-            css={css`
-              position: fixed;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              background-color: rgba(58, 58, 58, 0.5);
-              z-index: 9999;
-            `}
-          />
+          <StyledFloatingOverlay lockScroll />
           <FlexBox
             flex
             alignItems="center"

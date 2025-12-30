@@ -1,9 +1,13 @@
 import { MouseEventHandler } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
+import { shouldForwardProp } from '@titicaca/core-elements'
 
-const PreviewImage = styled.img`
+const PreviewImage = styled.img.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   object-fit: cover;
   border-radius: 4px;
+  ${(props) => props.css}
 `
 
 export default function ImageItem({
@@ -13,6 +17,7 @@ export default function ImageItem({
 }: {
   src: string
   onClick?: MouseEventHandler
+  css?: CSSProp
 }) {
   return <PreviewImage src={src} onClick={onClick} {...props} />
 }

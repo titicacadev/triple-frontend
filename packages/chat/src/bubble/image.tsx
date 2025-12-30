@@ -1,5 +1,5 @@
-import { Container } from '@titicaca/core-elements'
-import styled from 'styled-components'
+import { Container, shouldForwardProp } from '@titicaca/core-elements'
+import styled, { CSSProp } from 'styled-components'
 import { useLongPress } from 'use-long-press'
 
 import { MetaDataInterface } from '../types'
@@ -9,10 +9,13 @@ import { ImageBubbleProp } from './type'
 
 const DEFAULT_IMAGE_NUM_IN_ROW = 3
 
-const ImageRow = styled.div`
+const ImageRow = styled.div.withConfig({
+  shouldForwardProp,
+})<{ css?: CSSProp }>`
   :not(:last-child) {
     margin-bottom: 5px;
   }
+  ${(props) => props.css}
 `
 
 const MAX_IMAGE_WIDTH = 247

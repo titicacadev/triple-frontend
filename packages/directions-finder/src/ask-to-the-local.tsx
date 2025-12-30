@@ -9,10 +9,11 @@ import {
   Section,
   Text,
   safeAreaInsetMixin,
+  SafeAreaInsetMixinProps,
 } from '@titicaca/core-elements'
 import Popup from '@titicaca/popup'
 
-const DrawerContentContainer = styled(Container)`
+const DrawerContentContainer = styled(Container)<SafeAreaInsetMixinProps>`
   ${safeAreaInsetMixin}
 `
 

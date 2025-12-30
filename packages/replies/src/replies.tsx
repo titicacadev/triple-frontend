@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { Container, safeAreaInsetMixin } from '@titicaca/core-elements'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { fetchReplies, fetchChildReplies } from './replies-api-client'
 import { Reply, ResourceType, Placeholders } from './types'
@@ -26,7 +26,9 @@ const FixedBottom = styled(Container).attrs({
   bottom: 0;
   z-index: 3;
 
-  ${safeAreaInsetMixin}
+  ${css`
+    ${safeAreaInsetMixin}
+  `}
 `
 
 /**

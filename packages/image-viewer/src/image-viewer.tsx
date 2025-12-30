@@ -13,6 +13,10 @@ const Text = styled.span`
   line-height: 34px;
 `
 
+const GrayText = styled(Text)`
+  color: var(--color-gray300);
+`
+
 export interface ImageViewerPopupProps
   extends Pick<
     DetailViewerProp,
@@ -113,9 +117,7 @@ export function DetailViewerContainer({
           }}
         >
           <Text>{imageIndex + 1}</Text>
-          <Text css={{ color: 'var(--color-gray300)' }}>
-            &nbsp;/ {totalCount}
-          </Text>
+          <GrayText>&nbsp;/ {totalCount}</GrayText>
         </Navbar.Item>
       </Navbar>
       <Container

@@ -7,13 +7,13 @@ import ArrowDown from '../arrow-down'
 import { Option } from './types'
 import ActionSheet from './action-sheet'
 
-const FieldContainer = styled.div`
+const FieldContainer = styled.div<{ $error: boolean }>`
   position: relative;
   padding: 16px;
   border: 1px solid #efefef;
 
-  ${({ error }: { error: boolean }) =>
-    error &&
+  ${({ $error }) =>
+    $error &&
     css`
       border: 1px solid var(--color-red);
     `}
@@ -63,7 +63,7 @@ function ActionSheetSelector({
   return (
     <Container position="relative">
       <Container onClick={onOpen}>
-        <FieldContainer error={!!error}>
+        <FieldContainer $error={!!error}>
           <Text size="large" alpha={selected ? 1 : 0.5}>
             {selected ? selected.label : t(['seontaeghagi', '선택하기'])}
           </Text>

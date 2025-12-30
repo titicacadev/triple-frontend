@@ -164,6 +164,7 @@ interface FloatingButtonProps {
   visibility: 1 | 0
   fixed?: 1 | 0
   margin?: MarginPadding
+  padding?: MarginPadding
 }
 export const FloatingButtonContainer = styled.div<
   FloatingButtonProps & LayeringMixinProps

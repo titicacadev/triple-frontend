@@ -133,7 +133,10 @@ export default function LinksView({
                     textAlign: 'center',
                   }}
                 >
-                  <Element href={link.href} ses:tags={`link:${link.id}`}>
+                  <Element
+                    href={link.href}
+                    {...{ 'ses:tags': `link:${link.id}` }}
+                  >
                     {link.label}
                   </Element>
                 </Container>

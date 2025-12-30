@@ -35,7 +35,7 @@ export interface FixedPricingV2Props {
   emptyOverride?: ReactNode
 }
 
-const FloatedFrame = styled(Container)`
+const FloatedFrame = styled(Container)<{ padding?: MarginPadding }>`
   border-top: 1px solid #efefef;
   background: #fff;
 

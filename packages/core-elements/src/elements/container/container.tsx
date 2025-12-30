@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import styled from 'styled-components'
+import styled, { CSSProp } from 'styled-components'
 import { Property } from 'csstype'
 import { Color, getColor } from '@titicaca/color-palette'
 
@@ -11,6 +11,7 @@ import {
   clearingMixin,
   horizontalScrollMixin,
 } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 export type ContainerProps = PropsWithChildren<{
   position?: Property.Position
@@ -23,6 +24,7 @@ export type ContainerProps = PropsWithChildren<{
   horizontalScroll?: boolean
   shadow?: BaseSizes
   backgroundColor?: Color
+  css?: CSSProp
 }>
 
 /**
@@ -30,7 +32,9 @@ export type ContainerProps = PropsWithChildren<{
  *
  * - 제공된 prop 외의 스타일은 css prop을 사용합니다.
  */
-export const Container = styled.div<ContainerProps>(
+export const Container = styled.div.withConfig({
+  shouldForwardProp,
+})<ContainerProps>(
   (props) => ({
     boxSizing: 'border-box',
     position: props.position,
@@ -45,4 +49,5 @@ export const Container = styled.div<ContainerProps>(
   horizontalScrollMixin,
   shadowMixin,
   borderRadiusMixin,
+  (props) => props.css,
 )

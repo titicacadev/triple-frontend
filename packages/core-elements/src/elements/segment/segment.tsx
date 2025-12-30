@@ -1,7 +1,8 @@
 import { PropsWithChildren } from 'react'
-import styled, { css, ThemedStyledProps } from 'styled-components'
+import styled, { css, CSSProp } from 'styled-components'
 
 import { KeyOfShadowSize, shadowMixin, ShadowMixinProps } from '../../mixins'
+import { shouldForwardProp } from '../../utils/should-forward-prop'
 
 export const Segment = styled.div`
   padding: 20px;
@@ -23,21 +24,23 @@ export type CardProps = Partial<
   BoxProps & {
     shadow: KeyOfShadowSize
     shadowValue?: string
+    css?: CSSProp
   }
 >
 
-const borderRadius = ({
-  radius = 0,
-}: ThemedStyledProps<{ radius?: number }, unknown>) => css`
+const borderRadius = ({ radius = 0 }: { radius?: number }) => css`
   border-radius: ${radius}px;
 `
 
 const shadowMixinWithDefault = (props: ShadowMixinProps) =>
   shadowMixin({ shadow: 'medium', ...props })
 
-export const CardFrame = styled.div<CardProps>`
+export const CardFrame = styled.div.withConfig({
+  shouldForwardProp,
+})<CardProps>`
   ${borderRadius}
   ${shadowMixinWithDefault}
+  ${(props) => props.css}
 `
 
 /**

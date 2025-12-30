@@ -15,6 +15,10 @@ const DropdownContainer = styled.div`
   }
 `
 
+const StyledButton = styled.button`
+  ${buttonCss}
+`
+
 const DropdownOptions = styled.ul`
   position: absolute;
   bottom: calc(100% + 18px);
@@ -69,9 +73,8 @@ export function Dropdown({
   const { trackEvent } = useEventTrackingContext()
   return (
     <DropdownContainer>
-      <button
+      <StyledButton
         ref={buttonRef}
-        css={buttonCss}
         onClick={(e) => {
           e.stopPropagation()
           setDropdownOptionsVisible((prev) => !prev)
@@ -80,7 +83,7 @@ export function Dropdown({
       >
         <span>{label}</span>
         <DropdownArrow />
-      </button>
+      </StyledButton>
 
       {dropdownOptionsVisible ? (
         <DropdownOptions ref={optionsRef}>

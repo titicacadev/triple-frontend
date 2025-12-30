@@ -1,6 +1,10 @@
 import { Segment, Text } from '@titicaca/core-elements'
 import styled from 'styled-components'
 
+const StyledSegment = styled(Segment)`
+  margin: 30px;
+`
+
 const NoteBodyText = styled(Text).attrs({
   size: 'small',
   color: 'gray',
@@ -23,7 +27,7 @@ export default function Note({
   value: { title: string; body?: string; rawHTML?: string }
 }) {
   return (
-    <Segment css={{ margin: 30 }}>
+    <StyledSegment>
       <Text bold size="small" color="gray" lineHeight={1.57}>
         {title}
       </Text>
@@ -32,6 +36,6 @@ export default function Note({
       ) : (
         <NoteBodyText>{body}</NoteBodyText>
       )}
-    </Segment>
+    </StyledSegment>
   )
 }
