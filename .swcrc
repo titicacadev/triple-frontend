@@ -3,17 +3,14 @@
   "module": {
     "type": "commonjs"
   },
-  "sourceMaps": true,
   "jsc": {
-    "target": "es5",
     "parser": {
       "syntax": "typescript",
       "tsx": true
     },
     "transform": {
       "react": {
-        "runtime": "automatic",
-        "throwIfNamespace": false
+        "runtime": "automatic"
       }
     },
     "experimental": {
