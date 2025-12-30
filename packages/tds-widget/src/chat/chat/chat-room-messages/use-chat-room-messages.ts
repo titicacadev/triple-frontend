@@ -10,6 +10,7 @@ import {
   ChatRoomMemberInterface,
   ChatRoomMetadata,
   ChatRoomUser,
+  InvitationType,
   isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
@@ -40,6 +41,7 @@ interface ChatMessagesProps<
 }
 
 export function useChatMessages<
+  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
@@ -59,7 +61,7 @@ export function useChatMessages<
   },
 ) {
   const { room, me, updateRoom, updateMe } = useRoom<
-    ChatRoomInterface<T, U, V>,
+    ChatRoomInterface<I, T, U, V>,
     ChatRoomUser<U>
   >()
 
@@ -252,7 +254,7 @@ export function useChatMessages<
         isValid: true
       }
     | {
-        currentRoom: ChatRoomInterface<T, U, V> | R
+        currentRoom: ChatRoomInterface<I, T, U, V> | R
         roomMemberMe: ChatRoomUser<U> | undefined
         isValid: false
       }

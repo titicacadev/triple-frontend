@@ -200,12 +200,13 @@ export interface ChatRoomListItemInterface<T = RoomType, U = UserType>
  * TF/chat 컴포넌트 내에서 사용하는 RoomInterface
  */
 export type ChatRoomInterface<
+  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
 > =
   | ChatRoomDetailInterface<T, U, V>
-  | InvitationRoomInterface<T, U, V>
+  | InvitationRoomInterface<I, T, U, V>
   | PreDirectRoomInterface<T, U>
 
 /**
@@ -213,10 +214,11 @@ export type ChatRoomInterface<
  * 기존 트리플 파트너챗에서 /direct로 진입하는 생성되지 않은 채팅방인지 확인합니다.
  */
 export function isPreDirectRoom<
+  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
->(room: ChatRoomInterface<T, U, V>): room is PreDirectRoomInterface<T, U> {
+>(room: ChatRoomInterface<I, T, U, V>): room is PreDirectRoomInterface<T, U> {
   return !!(room as { preDirectRoom?: boolean }).preDirectRoom
 }
 
@@ -224,10 +226,13 @@ export function isPreDirectRoom<
  * 생성된 채팅방인지 확인합니다.
  */
 export function isCreatedChatRoom<
+  I = InvitationType,
   T = RoomType,
   U = UserType,
   V = ChatRoomMetadata<T>,
->(room: ChatRoomInterface<T, U, V>): room is ChatRoomDetailInterface<T, U, V> {
+>(
+  room: ChatRoomInterface<I, T, U, V>,
+): room is ChatRoomDetailInterface<T, U, V> {
   return 'id' in room
 }
 
