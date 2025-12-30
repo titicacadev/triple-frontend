@@ -8,10 +8,12 @@ import {
   ChatRoomDetailInterface,
   ChatRoomInterface,
   ChatRoomMemberInterface,
+  ChatRoomMetadata,
   ChatRoomUser,
   isChatRoomMember,
   isCreatedChatRoom,
   ReactionType,
+  RoomType,
   UserType,
 } from '../../types'
 import { useRoom } from '../room-context'
@@ -26,29 +28,39 @@ import {
 } from './chat-message-context'
 import { ChatRoomMessageInterface } from './messages'
 
-interface ChatMessagesProps<T = UserType> {
+interface ChatMessagesProps<
+  T = RoomType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+  R extends ChatRoomDetailInterface<T, U, V> = ChatRoomDetailInterface<T, U, V>,
+> {
   scrollToBottomOnNewMessage?: boolean
-  defaultMessageProperties?: Partial<ChatMessageInterface<T>>
-  createRoom?: () => Promise<ChatRoomDetailInterface | undefined>
+  defaultMessageProperties?: Partial<ChatMessageInterface<U>>
+  createRoom?: () => Promise<R | undefined>
 }
 
-export function useChatMessages<T = UserType>(
+export function useChatMessages<
+  T = RoomType,
+  U = UserType,
+  V = ChatRoomMetadata<T>,
+  R extends ChatRoomDetailInterface<T, U, V> = ChatRoomDetailInterface<T, U, V>,
+>(
   {
     scrollToBottomOnNewMessage = true,
     defaultMessageProperties = DEFAULT_MESSAGE_PROPERTIES as Partial<
-      ChatMessageInterface<T>
+      ChatMessageInterface<U>
     >,
     createRoom,
-  }: ChatMessagesProps<T> = {
+  }: ChatMessagesProps<T, U, V, R> = {
     scrollToBottomOnNewMessage: true,
     defaultMessageProperties: DEFAULT_MESSAGE_PROPERTIES as Partial<
-      ChatMessageInterface<T>
+      ChatMessageInterface<U>
     >,
   },
 ) {
   const { room, me, updateRoom, updateMe } = useRoom<
-    ChatRoomInterface,
-    ChatRoomUser<T>
+    ChatRoomInterface<T, U, V>,
+    ChatRoomUser<U>
   >()
 
   const { setScrollY, getScrollContainerHeight, triggerScrollToBottom } =
@@ -67,8 +79,8 @@ export function useChatMessages<T = UserType>(
     initMessages,
     welcomeMessages,
     useTripleChat,
-  } = useChatMessagesContext<T>()
-  const api = useChatApiService<T>()
+  } = useChatMessagesContext<U>()
+  const api = useChatApiService<U>()
 
   useEffect(() => {
     ;(async function () {
@@ -78,7 +90,7 @@ export function useChatMessages<T = UserType>(
         welcomeMessages.forEach((welcomeMessage) => {
           dispatch({
             action: MessagesActions.PENDING,
-            message: welcomeMessage as unknown as ChatMessageInterface<T>, // TODO: TF 내 Pending message 타입 수정 (펜딩 메시지는 id가 옵셔널 할 수 있음)
+            message: welcomeMessage as unknown as ChatMessageInterface<U>, // TODO: TF 내 Pending message 타입 수정 (펜딩 메시지는 id가 옵셔널 할 수 있음)
           })
         })
         isWelcomeMessagePendingRef.current = true
@@ -98,14 +110,14 @@ export function useChatMessages<T = UserType>(
     onError,
   }: {
     roomId: string
-    payload: UnsentMessage<ChatMessageInterface<T>>['payload']
-    sender?: UnsentMessage<ChatMessageInterface<T>>['sender']
+    payload: UnsentMessage<ChatMessageInterface<U>>['payload']
+    sender?: UnsentMessage<ChatMessageInterface<U>>['sender']
     tempMessageId?: number
     skipPending?: boolean
     skipFailed?: boolean
     onError?: () => void
   }) {
-    const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
+    const tempMessage: UnsentMessage<ChatMessageInterface<U>> = {
       id: tempMessageId || new Date().getTime(),
       roomId,
       sender,
@@ -158,8 +170,8 @@ export function useChatMessages<T = UserType>(
     me,
     onError,
   }: {
-    room: ChatRoomDetailInterface
-    me: ChatRoomUser<T>
+    room: R
+    me: ChatRoomUser<U>
     onError?: () => void
   }) {
     const welcomeMessagesInPending = pendingMessages.filter(
@@ -233,14 +245,63 @@ export function useChatMessages<T = UserType>(
     } catch (error) {}
   }
 
+  async function initializeRoomAndMember(): Promise<
+    | {
+        currentRoom: R
+        roomMemberMe: ChatRoomUser<U>
+        isValid: true
+      }
+    | {
+        currentRoom: ChatRoomInterface<T, U, V> | R
+        roomMemberMe: ChatRoomUser<U> | undefined
+        isValid: false
+      }
+  > {
+    /** roomId 생성 이전에 보낸 메세지는 pusher 이벤트로 받을 수 없기 때문에,
+          roomId가 없는 경우에는 먼저 room을 생성하는 과정을 거칩니다.
+      */
+    const currentRoom = await getOrCreateRoom()
+    const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
+
+    const skipRoomMemberMe = 'identifier' in me && 'id' in me
+
+    const roomMemberMe =
+      currentRoomId && !skipRoomMemberMe
+        ? await getChatRoomMemberId({ roomId: currentRoomId })
+        : me
+
+    /**
+     * room과 member 초기화가 성공적으로 완료되었는지 검증합니다.
+     * - currentRoom이 생성된 ChatRoom인지 (isCreatedChatRoom)
+     * - roomMemberMe가 존재하는지
+     * - member 정보가 유효한지
+     */
+    const isValid =
+      isCreatedChatRoom(currentRoom) &&
+      !!roomMemberMe &&
+      (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
+
+    return isValid
+      ? {
+          currentRoom: currentRoom as R,
+          roomMemberMe,
+          isValid: true as const,
+        }
+      : {
+          currentRoom,
+          roomMemberMe,
+          isValid: false as const,
+        }
+  }
+
   async function onSendMessage(
-    payload: ChatMessageInterface<T>['payload'],
+    payload: ChatMessageInterface<U>['payload'],
     {
       onError,
       onRoomAndMemberInitialized,
     }: { onError?: () => void; onRoomAndMemberInitialized?: () => void } = {},
   ) {
-    const tempMessage: UnsentMessage<ChatMessageInterface<T>> = {
+    const tempMessage: UnsentMessage<ChatMessageInterface<U>> = {
       id: new Date().getTime(),
       roomId: '',
       payload:
@@ -263,31 +324,16 @@ export function useChatMessages<T = UserType>(
       skipPending = true
     }
 
-    /** roomId 생성 이전에 보낸 메세지는 pusher 이벤트로 받을 수 없기 때문에,
-          roomId가 없는 경우에는 먼저 room을 생성하는 과정을 거칩니다.
-      */
-    const currentRoom = await getOrCreateRoom()
-    const currentRoomId = 'id' in currentRoom ? currentRoom.id : ''
-
-    const skipRoomMemberMe = 'identifier' in me && 'id' in me
-
-    const roomMemberMe =
-      currentRoomId && !skipRoomMemberMe
-        ? await getChatRoomMemberId({ roomId: currentRoomId })
-        : me
+    const result = await initializeRoomAndMember()
 
     onRoomAndMemberInitialized?.()
 
-    if (
-      !(
-        isCreatedChatRoom(currentRoom) &&
-        roomMemberMe &&
-        (skipRoomMemberMe || isChatRoomMember(roomMemberMe))
-      )
-    ) {
+    if (!result.isValid) {
       onMessageFailed(tempMessage)
       return
     }
+
+    const { currentRoom, roomMemberMe } = result
 
     /** 첫 렌더링 시에만 자동 메세지를 보내도록 합니다. */
     if (isWelcomeMessagePendingRef.current) {
@@ -301,7 +347,7 @@ export function useChatMessages<T = UserType>(
       skipPending = true
 
       await handleSendWelcomeMessage({
-        room: currentRoom as ChatRoomDetailInterface,
+        room: currentRoom,
         me: roomMemberMe,
         onError,
       })
@@ -331,7 +377,7 @@ export function useChatMessages<T = UserType>(
 
     if (scrollable) {
       const prevScrollY = getScrollContainerHeight()
-      let pastMessages: ChatMessageInterface<T>[] = []
+      let pastMessages: ChatMessageInterface<U>[] = []
       let prevToken: number | undefined | null
 
       try {
@@ -365,7 +411,7 @@ export function useChatMessages<T = UserType>(
   }
 
   function onMessageFailed(
-    tempMessage: UnsentMessage<ChatMessageInterface<T>>,
+    tempMessage: UnsentMessage<ChatMessageInterface<U>>,
     { onError }: { onError?: () => void } = {},
   ) {
     onError?.()
@@ -376,7 +422,7 @@ export function useChatMessages<T = UserType>(
   }
 
   function removeUnsentMessages(
-    message: Pick<ChatRoomMessageInterface<T>, 'id'>,
+    message: Pick<ChatRoomMessageInterface<U>, 'id'>,
   ) {
     dispatch({
       action: MessagesActions.REMOVE,
@@ -385,7 +431,7 @@ export function useChatMessages<T = UserType>(
   }
 
   function onRetry(
-    { id, payload }: UnsentMessage<ChatRoomMessageInterface<T>>,
+    { id, payload }: UnsentMessage<ChatRoomMessageInterface<U>>,
     {
       onComplete,
     }: {
@@ -401,7 +447,7 @@ export function useChatMessages<T = UserType>(
   }
 
   function onRetryCancel(
-    { id }: UnsentMessage<ChatRoomMessageInterface<T>>,
+    { id }: UnsentMessage<ChatRoomMessageInterface<U>>,
     {
       onComplete,
     }: {
@@ -414,11 +460,11 @@ export function useChatMessages<T = UserType>(
 
   const onSendMessageEvent = useCallback(
     (
-      { message }: Pick<ChatMessageData<T>, 'message'>,
+      { message }: Pick<ChatMessageData<U>, 'message'>,
       {
         onComplete,
       }: {
-        onComplete?: (message: ChatMessageInterface<T>, my: boolean) => void
+        onComplete?: (message: ChatMessageInterface<U>, my: boolean) => void
       } = {},
     ) => {
       if (message && message.payload) {
@@ -493,7 +539,7 @@ export function useChatMessages<T = UserType>(
   }
 
   async function onThanksClick(
-    message: ChatRoomMessageInterface<T>,
+    message: ChatRoomMessageInterface<U>,
     {
       onAddSuccess,
       onRemoveSuccess,
@@ -526,7 +572,7 @@ export function useChatMessages<T = UserType>(
   }
 
   function updateMessageReaction(
-    messageId: ChatMessageInterface<T>['id'],
+    messageId: ChatMessageInterface<U>['id'],
     add: boolean = true,
   ) {
     const updatedMessage = messages.find((msg) => msg.id === messageId)
@@ -562,20 +608,22 @@ export function useChatMessages<T = UserType>(
     onThanksClick,
     onSendMessageEvent,
     hasPrevMessage,
+    initializeRoomAndMember,
   }
 }
 
-function findSenderFromRoomMembers<T>(
-  room: ChatRoomDetailInterface,
-  me: ChatRoomUser<T>,
-  sender?: ChatRoomMemberInterface<T>,
-) {
+function findSenderFromRoomMembers<
+  T,
+  U,
+  V,
+  R extends ChatRoomDetailInterface<T, U, V>,
+>(room: R, me: ChatRoomUser<U>, sender?: ChatRoomMemberInterface<U>) {
   if (sender) {
     return room.members.find(
       (member) =>
         getUserIdentifier(member) === getUserIdentifier(sender) ||
         (room.isDirect && getUserIdentifier(member) !== getUserIdentifier(me)),
-    ) as ChatRoomMemberInterface<T>
+    ) as ChatRoomMemberInterface<U>
   }
 }
 
