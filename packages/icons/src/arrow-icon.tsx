@@ -29,7 +29,7 @@ export default function ArrowIcon({
   const theme = useTheme()
   const stroke =
     color ||
-    (theme as { colors?: { primary?: string } }).colors?.primary ||
+    (theme as { colors?: { primary?: string } } | undefined)?.colors?.primary ||
     defaultSvgIconColor
 
   return (

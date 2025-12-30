@@ -1,4 +1,5 @@
 import React from 'react'
+import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../packages/core-elements/src'
 import {
   EnvProvider,
@@ -8,12 +9,26 @@ import {
 } from '../packages/react-contexts/src'
 import { TripleClientMetadataProvider } from '../packages/react-triple-client-interfaces/src'
 
+const theme = {
+  colors: {
+    primary: 'rgb(58, 58, 58)',
+  },
+}
+
 export function globalStyleDecorator(Story) {
   return (
     <>
       <GlobalStyle />
       <Story />
     </>
+  )
+}
+
+export function themeProviderDecorator(Story) {
+  return (
+    <ThemeProvider theme={theme}>
+      <Story />
+    </ThemeProvider>
   )
 }
 

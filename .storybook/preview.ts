@@ -4,6 +4,7 @@ import { mockDateDecorator } from 'storybook-mock-date-decorator'
 import { I18nDecorator } from './i18n'
 import {
   globalStyleDecorator,
+  themeProviderDecorator,
   tripleClientMetadataDecorator,
   userAgentProviderDecorator,
   historyProviderDecorator,
@@ -22,6 +23,7 @@ const preview: Preview = {
   decorators: [
     mockDateDecorator,
     globalStyleDecorator,
+    themeProviderDecorator,
     tripleClientMetadataDecorator,
     userAgentProviderDecorator,
     historyProviderDecorator,

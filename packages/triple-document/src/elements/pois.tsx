@@ -90,7 +90,14 @@ function renderPoiListActionButton({
   display: PoisDisplay
   poi: ExtendedPoiListElementData
 }) {
-  const t = getTranslation('common-web')
+  let translatedText = '보기'
+  try {
+    const t = getTranslation('common-web')
+    translatedText = t(['bogi', '보기'])
+  } catch (error) {
+    // i18n이 초기화되지 않은 경우 (예: Storybook) 기본값 사용
+  }
+
   const {
     source: { pricing },
   } = poi
@@ -101,9 +108,7 @@ function renderPoiListActionButton({
     return (
       <PoiPrice>
         <Text bold size="mini">
-          {nightlyPrice
-            ? `₩${nightlyPrice.toLocaleString()}`
-            : t(['bogi', '보기'])}
+          {nightlyPrice ? `₩${nightlyPrice.toLocaleString()}` : translatedText}
         </Text>
       </PoiPrice>
     )

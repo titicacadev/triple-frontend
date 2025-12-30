@@ -15,7 +15,7 @@ export default function Back({
   const theme = useTheme()
   const stroke =
     color ||
-    (theme as { colors?: { primary?: string } }).colors?.primary ||
+    (theme as { colors?: { primary?: string } })?.colors?.primary ||
     defaultSvgIconColor
 
   return (

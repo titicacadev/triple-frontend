@@ -10,8 +10,6 @@ export function generateCoupon({
   applicableCoupon?: TnaCoupon
   expectedApplicableCoupon?: TnaCoupon
 }) {
-  const t = getTranslation('common-web')
-
   const { amountAfterUsingCoupon: applicableAmountAfterUsingCoupon } =
     applicableCoupon || {}
 
@@ -24,17 +22,25 @@ export function generateCoupon({
   const formattedApplicableAmountAfterUsingCoupon = formatNumber(
     applicableAmountAfterUsingCoupon,
   )
-  const displayPricePolicy =
-    applicableCoupon &&
-    t(
-      [
-        'formattedapplicableamountafterusingcoupon-weon',
-        '{{formattedApplicableAmountAfterUsingCoupon}}원',
-      ],
-      {
-        formattedApplicableAmountAfterUsingCoupon,
-      },
-    )
+
+  let displayPricePolicy: string | undefined
+  if (applicableCoupon) {
+    try {
+      const t = getTranslation('common-web')
+      displayPricePolicy = t(
+        [
+          'formattedapplicableamountafterusingcoupon-weon',
+          '{{formattedApplicableAmountAfterUsingCoupon}}원',
+        ],
+        {
+          formattedApplicableAmountAfterUsingCoupon,
+        },
+      )
+    } catch (error) {
+      // i18n이 초기화되지 않은 경우 (예: Storybook) 기본값 사용
+      displayPricePolicy = `${formattedApplicableAmountAfterUsingCoupon}원`
+    }
+  }
 
   return {
     hasCoupon,
