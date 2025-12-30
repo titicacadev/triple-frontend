@@ -140,11 +140,12 @@ export interface PreDirectRoomInterface<T = RoomType, U = UserType> {
  * 초대 링크로 진입한 생성되지 않은 RoomInterface
  */
 export interface InvitationRoomInterface<
-  T = RoomType,
+  T = InvitationType,
+  R = RoomType,
   U = UserType,
-  V = ChatRoomMetadata<T>,
-> extends Pick<InvitationInterface<T, U, V>, 'expirePolicies' | 'other'> {
-  type: T
+  V = ChatRoomMetadata<R>,
+> extends Pick<InvitationInterface<T, R, U, V>, 'expirePolicies' | 'other'> {
+  type: R
   metadata?: V
 }
 
@@ -265,8 +266,9 @@ export interface InvitationAcceptInterface {
 
 export interface InvitationInterface<
   T = InvitationType,
+  R = RoomType,
   U = UserType,
-  V = ChatRoomMetadata<T>,
+  V = ChatRoomMetadata<R>,
 > {
   invitationType: T
   invitationIdentifier: string
@@ -275,4 +277,5 @@ export interface InvitationInterface<
   accept?: InvitationAcceptInterface
   expirePolicies: ExpirePolicy[]
   other?: Pick<ChatRoomMemberInterface<U>, 'type' | 'profile'>
+  roomType: R
 }
