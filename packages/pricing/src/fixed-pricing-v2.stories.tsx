@@ -57,6 +57,7 @@ export const WithTooltip: StoryObj<typeof FixedPricingV2> = {
     buttonText: '객실예약',
     description: '쿠폰적용시 10,000원',
     tooltipLabel: '쿠폰사용시 -15,000원 더 할인!',
+    onTooltipClick: () => {},
     discountRate: '5%',
     maxWidth: 720,
   },

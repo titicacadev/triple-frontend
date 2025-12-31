@@ -15,7 +15,6 @@ const ImageRow = styled.div.withConfig({
   :not(:last-child) {
     margin-bottom: 5px;
   }
-  ${(props) => props.css}
 `
 
 const MAX_IMAGE_WIDTH = 247

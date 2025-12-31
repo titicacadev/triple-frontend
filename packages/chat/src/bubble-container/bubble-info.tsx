@@ -15,7 +15,6 @@ const UnreadMessageCountText = styled.div.withConfig({
 })<{ css?: CSSProp }>`
   color: #26cec2;
   font-size: 10px;
-  ${(props) => props.css}
 `
 
 const ReplyActionButton = styled.button<{

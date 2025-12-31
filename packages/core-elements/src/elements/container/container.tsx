@@ -49,5 +49,4 @@ export const Container = styled.div.withConfig({
   horizontalScrollMixin,
   shadowMixin,
   borderRadiusMixin,
-  (props) => props.css,
 )

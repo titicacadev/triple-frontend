@@ -46,6 +46,7 @@
     ]
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.4.0",
     "@floating-ui/react": "^0.26.6",
     "@titicaca/color-palette": "workspace:*",
     "@titicaca/content-utilities": "8.22.0",

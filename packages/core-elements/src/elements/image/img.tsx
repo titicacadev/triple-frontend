@@ -32,7 +32,6 @@ const Img = styled.img.withConfig({
     cursor: ${cursor};
   `}
   z-index: 0;
-  ${(props) => props.css}
 `
 
 export function ImageImg(

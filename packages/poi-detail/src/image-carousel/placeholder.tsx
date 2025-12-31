@@ -31,7 +31,6 @@ const PlaceholderIcon = styled.img.withConfig({
   shouldForwardProp,
 })<{ css?: CSSProp }>`
   vertical-align: baseline;
-  ${(props) => props.css}
 `
 
 const ImagePlaceholderContent = styled.div<{ large?: boolean }>`

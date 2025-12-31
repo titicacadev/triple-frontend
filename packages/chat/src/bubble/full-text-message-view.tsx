@@ -11,7 +11,6 @@ const AutoLinkText = styled.span.withConfig({
     color: var(--color-blue);
     line-break: anywhere;
   }
-  ${(props) => props.css}
 `
 
 export function FullTextMessageView({

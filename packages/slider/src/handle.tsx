@@ -10,7 +10,6 @@ const HandleContainer = styled.div.withConfig({
   height: 90px;
   transform: translate(-50%, -50%);
   z-index: 1;
-  ${(props) => props.css}
 `
 
 const HandlePeg = styled.div`

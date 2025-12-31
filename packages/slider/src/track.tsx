@@ -8,7 +8,6 @@ export const TrackContainer = styled.div.withConfig({
   position: absolute;
   padding: 20px 0;
   margin-top: -20px;
-  ${(props) => props.css}
 `
 
 export const ActiveTrack = styled.div`

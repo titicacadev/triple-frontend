@@ -92,7 +92,7 @@ export function ExtendedPoiListElement<T extends PoiListElementType>({
   return (
     <ExtendedResourceListElement
       as={as}
-      resource={poi}
+      scrapResource={poi}
       image={image}
       imagePlaceholder={POI_IMAGE_PLACEHOLDERS[type]}
       name={nameOverride || names.ko || names.en || names.local || undefined}

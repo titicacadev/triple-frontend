@@ -29,7 +29,6 @@ const Button = styled.a.withConfig({
     background-image: url('http://assets.triple.guide/images/ico-arrow-right-black@3x.png');
     background-size: 16px 18px;
   }
-  ${(props) => props.css}
 `
 
 export function RichBubble({

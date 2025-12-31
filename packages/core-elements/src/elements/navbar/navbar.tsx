@@ -65,7 +65,6 @@ const NavbarFrame = styled.div.withConfig({
   padding: 9px 12px;
   margin: 0 auto;
   max-width: ${({ maxWidth = '100%' }) => unit(maxWidth)};
-  ${(props) => props.css}
 `
 
 const TitleContainer = styled.div.withConfig({
@@ -85,7 +84,6 @@ const TitleContainer = styled.div.withConfig({
   overflow-x: hidden;
   text-overflow: ellipsis;
   line-height: 52px;
-  ${(props) => props.css}
 `
 
 type IconNames =
@@ -167,7 +165,6 @@ const NavbarItem = styled.div
       text-overflow: ellipsis;
       overflow-x: hidden;
     `}
-  ${(props) => props.css}
 `
 
 const SecondaryNavbar = styled.div.withConfig({
@@ -187,7 +184,6 @@ const SecondaryNavbar = styled.div.withConfig({
   ${layeringMixin(0)}
   margin: 0 auto;
   max-width: ${({ maxWidth }) => unit(maxWidth || 768)};
-  ${(props) => props.css}
 `
 
 export function NavbarWrapper({

@@ -29,36 +29,33 @@ export type ButtonProps = ButtonOwnProps &
 
 export const Button = styled(ButtonBase).withConfig({
   shouldForwardProp,
-})<ButtonProps>(
-  (props) => {
-    if (props.basic) {
-      return basicButtonMixin({
-        ...props,
-        bold: true,
-        size: props.size || 'small',
-        textAlpha: props.textAlpha || 0.5,
-        textColor: props.textColor || 'gray',
-      })
-    }
-
-    if (props.icon) {
-      return iconButtonMixin({
-        ...props,
-        icon: props.icon,
-        size: props.size || 'tiny',
-        textAlpha: props.textAlpha || 0.5,
-        textColor: props.textColor || 'gray',
-      })
-    }
-
-    return normalButtonMixin({
+})<ButtonProps>((props) => {
+  if (props.basic) {
+    return basicButtonMixin({
       ...props,
       bold: true,
-      borderRadius: props.borderRadius ?? 21,
-      size: props.size || 'tiny',
-      textAlpha: props.textAlpha,
-      textColor: props.textColor || 'white',
+      size: props.size || 'small',
+      textAlpha: props.textAlpha || 0.5,
+      textColor: props.textColor || 'gray',
     })
-  },
-  (props) => props.css,
-)
+  }
+
+  if (props.icon) {
+    return iconButtonMixin({
+      ...props,
+      icon: props.icon,
+      size: props.size || 'tiny',
+      textAlpha: props.textAlpha || 0.5,
+      textColor: props.textColor || 'gray',
+    })
+  }
+
+  return normalButtonMixin({
+    ...props,
+    bold: true,
+    borderRadius: props.borderRadius ?? 21,
+    size: props.size || 'tiny',
+    textAlpha: props.textAlpha,
+    textColor: props.textColor || 'white',
+  })
+})

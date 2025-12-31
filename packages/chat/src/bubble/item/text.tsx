@@ -11,7 +11,6 @@ const StyledText = styled.span.withConfig({
   padding-right: 5px;
   user-select: none;
   word-break: break-word;
-  ${(props) => props.css}
 `
 
 export default function TextItem({

@@ -40,7 +40,6 @@ export const CardFrame = styled.div.withConfig({
 })<CardProps>`
   ${borderRadius}
   ${shadowMixinWithDefault}
-  ${(props) => props.css}
 `
 
 /**

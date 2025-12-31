@@ -18,6 +18,8 @@ export const Basic: StoryObj<typeof Actions> = {
     poiId: 'e889ae22-0336-4cf9-8fbb-742b95fd09d0',
     scraped: false,
     reviewed: false,
+    onScrapedChange: () => {},
+    onScheduleAdd: () => {},
   },
 }
 
@@ -26,6 +28,8 @@ export const NoDivider: StoryObj<typeof Actions> = {
     ...Basic.args,
     noDivider: true,
     tooltips: ['SCRAPE', 'REVIEW'],
+    onScrapedChange: () => {},
+    onScheduleAdd: () => {},
   },
 }
 

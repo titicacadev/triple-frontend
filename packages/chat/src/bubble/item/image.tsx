@@ -7,7 +7,6 @@ const PreviewImage = styled.img.withConfig({
 })<{ css?: CSSProp }>`
   object-fit: cover;
   border-radius: 4px;
-  ${(props) => props.css}
 `
 
 export default function ImageItem({

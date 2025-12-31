@@ -18,7 +18,6 @@ export const HR1 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
     css`
       margin: 0;
     `};
-  ${(props) => props.css}
 `
 
 export const HR2 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
@@ -31,7 +30,6 @@ export const HR2 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
     css`
       margin: 0;
     `};
-  ${(props) => props.css}
 `
 
 export const HR3 = styled.div.withConfig({ shouldForwardProp })<{
@@ -77,5 +75,4 @@ export const HR7 = styled.div.withConfig({ shouldForwardProp })<HrProps>`
     `};
   width: 100%;
   border-bottom: dashed 1px #efefef;
-  ${(props) => props.css}
 `

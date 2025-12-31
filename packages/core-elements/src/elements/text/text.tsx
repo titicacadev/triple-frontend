@@ -76,7 +76,6 @@ export const Text = styled.div.withConfig({ shouldForwardProp })<TextProps>(
   textStyleMixin,
   ellipsisMixin,
   maxLinesMixin,
-  (props) => props.css,
 )
 
 interface TextTitleBaseProps {

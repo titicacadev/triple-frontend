@@ -82,7 +82,6 @@ const LikeButton = styled.button.withConfig({
     liked
       ? "url('https://assets.triple.guide/images/btn-lounge-thanks-on@3x.png')"
       : "url('https://assets.triple.guide/images/btn-lounge-thanks-off@3x.png')"};
-  ${(props) => props.css}
 `
 
 const ReviewMetadataInfo = styled(FlexBox)`

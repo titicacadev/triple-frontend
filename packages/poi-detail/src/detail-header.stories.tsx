@@ -35,6 +35,7 @@ export const Basic: StoryObj<typeof DetailHeader> = {
     scrapsCount: 682,
     reviewsCount: 13859,
     reviewsRating: 4.45,
+    onBusinessHoursClick: () => {},
   },
 }
 
@@ -44,5 +45,6 @@ export const WithBusinessHoursNote: StoryObj<typeof DetailHeader> = {
     ...Basic.args,
     todayBusinessHours: '11:00 - 18:00',
     permanentlyClosed: false,
+    onBusinessHoursClick: () => {},
   },
 }

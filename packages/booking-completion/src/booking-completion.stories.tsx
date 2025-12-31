@@ -13,6 +13,7 @@ export const Basic: StoryObj<typeof BookingCompletion> = {
       '공급사 확인 후 예약이 확정됩니다.',
       '예약이 확정되면 이메일로 바우처가 발송됩니다.',
     ],
+    onAddToSchedule: () => {},
   },
 }
 
@@ -30,5 +31,6 @@ export const WithRegion: StoryObj<typeof BookingCompletion> = {
       id: '',
       names: { ko: '바르셀로나', en: 'Barcelona', local: null },
     },
+    onAddToSchedule: () => {},
   },
 }
