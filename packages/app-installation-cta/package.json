@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build": "pnpm run build:cjs && pnpm run build:types",
-    "build:cjs": "swc src -d lib --config-file ../../.swcrc",
+    "build:cjs": "swc src -d lib --strip-leading-paths --config-file ../../.swcrc",
     "build:types": "tsc -p tsconfig.build.json",
     "lint:es": "eslint src",
     "lint:es:fix": "eslint src --fix",
