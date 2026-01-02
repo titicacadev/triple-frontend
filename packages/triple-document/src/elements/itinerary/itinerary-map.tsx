@@ -44,7 +44,6 @@ export default function ItineraryMap({ onClickMarker, items }: Props) {
 
   return (
     <Container
-      className="chromatic-ignore"
       css={{
         width: '100%',
         height: 180,

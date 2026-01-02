@@ -5,11 +5,6 @@ import FloatingButtonCTA from './floating-button-cta'
 export default {
   title: 'app-installation-cta / FloatingButtonCTA',
   component: FloatingButtonCTA,
-  parameters: {
-    chromatic: {
-      viewports: [375],
-    },
-  },
 } as Meta<typeof FloatingButtonCTA>
 
 export const Basic: StoryObj<typeof FloatingButtonCTA> = {

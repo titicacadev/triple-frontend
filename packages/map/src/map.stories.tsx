@@ -47,12 +47,6 @@ export const Basic: StoryObj<typeof MapView> = {
     },
     googleMapLoadOptions: { googleMapsApiKey: GOOGLE_MAPS_API_KEY },
   },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
-  },
 }
 
 export const WithProps: StoryObj<typeof MapView> = {
@@ -84,12 +78,6 @@ export const WithProps: StoryObj<typeof MapView> = {
       bottom: 10,
     },
   },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
-  },
 }
 
 export const WithPolyline: StoryObj<typeof MapView> = {
@@ -114,12 +102,6 @@ export const WithPolyline: StoryObj<typeof MapView> = {
     coordinates: polylinePaths.map((path) => [path.lng, path.lat]),
     googleMapLoadOptions: {
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-    },
-  },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
     },
   },
 }
@@ -160,12 +142,6 @@ export const WithMarker: StoryObj<typeof MapView> = {
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     },
   },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
-  },
 }
 
 export const WithCircleMarker: StoryObj<typeof MapView> = {
@@ -192,12 +168,6 @@ export const WithCircleMarker: StoryObj<typeof MapView> = {
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     },
   },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
-    },
-  },
 }
 
 export const WithWithPolyline: StoryObj<typeof MapView> = {
@@ -222,12 +192,6 @@ export const WithWithPolyline: StoryObj<typeof MapView> = {
     coordinates: polygonLinePath.map(({ lat, lng }) => [lng, lat]),
     googleMapLoadOptions: {
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-    },
-  },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
     },
   },
 }
@@ -266,12 +230,6 @@ export const WithPolylineAndMarker: StoryObj<typeof MapView> = {
     coordinates: polygonPaths.map(({ lat, lng }) => [lng, lat]),
     googleMapLoadOptions: {
       googleMapsApiKey: GOOGLE_MAPS_API_KEY,
-    },
-  },
-
-  parameters: {
-    chromatic: {
-      disableSnapshot: true,
     },
   },
 }
