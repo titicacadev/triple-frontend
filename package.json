@@ -26,8 +26,7 @@
     "lint": "lerna run lint:es,lint:style,lint:etc",
     "lint:fix": "lerna run lint:es:fix,lint:style:fix,lint:etc:fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.3",
@@ -55,7 +54,6 @@
     "@types/styled-components": "^5.1.29",
     "@types/testing-library__jest-dom": "^5.14.9",
     "browser-assert": "^1.2.1",
-    "chromatic": "^6.24.1",
     "csstype": "^3.1.2",
     "eslint": "^8.52.0",
     "eslint-plugin-jest": "^27.6.0",

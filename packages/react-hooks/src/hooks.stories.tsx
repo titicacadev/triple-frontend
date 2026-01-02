@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import isChromatic from 'chromatic/isChromatic'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
@@ -105,7 +104,7 @@ export function Lottie() {
     rendererSettings: {
       viewBoxSize: `0 0 57px 57px`,
     },
-    autoplay: !isChromatic(),
+    autoplay: true,
   })
 
   return <LottieContainer ref={animationRef} />

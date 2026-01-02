@@ -25,7 +25,6 @@ export default function ExternalVideo({
   return provider === 'youtube' ? (
     <VideoContainer borderRadius={6}>
       <VideoPlayer
-        className="chromatic-ignore"
         src={`https://www.youtube.com/embed/${identifier}?rel=0&amp;showinfo=0`}
         frameBorder="0"
         allow="autoplay; encrypted-media"
