@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v14.2.2
+
+```
+### tds-widget
+
+- [fix] legacy mileage 경로 수정 [#3773](https://github.com/titicacadev/triple-frontend/pull/3773)
+- fix: 쿠폰 버튼 컬러 오류 수정 [#3777](https://github.com/titicacadev/triple-frontend/pull/3777)
+- [DMTALK-606] room/member 초기화 로직을 재사용 가능한 함수로 추출 [#3778](https://github.com/titicacadev/triple-frontend/pull/3778)
+```
+
 ## v14.2.1
 
 ```
