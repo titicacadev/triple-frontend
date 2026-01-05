@@ -39,7 +39,8 @@ export function MyReviewActionSheet({
 
   const handleDeleteReview = () => {
     mutate({ id: reviewId, resourceId, resourceType })
-
+    // eslint-disable-next-line no-console
+    console.log('Review deleted')
     removeUriHash('replace')
   }
 
@@ -72,6 +73,8 @@ export function MyReviewActionSheet({
         open={hasUriHash(HASH_DELETION_MODAL)}
         onClose={() => removeUriHash('replace')}
         onConfirm={() => {
+          // eslint-disable-next-line no-console
+          console.log('Delete review confirmed')
           removeUriHash('replace')
           handleDeleteReview()
         }}
