@@ -8,7 +8,7 @@ const ACTION_COLORS: Partial<Record<GlobalColors, string>> = {
   blue: '#368fff',
 }
 
-export const ModalAction = styled.a.withConfig({
+export const ModalAction = styled.button.withConfig({
   shouldForwardProp,
 })<{ color?: GlobalColors | string; disabled?: boolean }>`
   display: inline-block;
