@@ -33,10 +33,13 @@ export const Confirm = ({
   }
 
   const handleConfirm = () => {
+    // eslint-disable-next-line no-console
+    console.log('Confirm clicked')
     if (disableConfirm) {
       return
     }
-
+    // eslint-disable-next-line no-console
+    console.log('Confirm not disabled')
     onConfirm ? !onConfirm() && onClose?.() : onClose?.()
   }
 
