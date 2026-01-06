@@ -66,9 +66,7 @@ export const ActionSheet = ({
 
   const dismiss = useDismiss(context, {
     outsidePress: (event) => {
-      // eslint-disable-next-line no-console
-      console.log('outsidePress event:', event)
-      return true
+      return !!(event.target as HTMLElement).closest?.(`#${portalId}`)
     },
   })
   const role = useRole(context, { role: 'dialog' })
