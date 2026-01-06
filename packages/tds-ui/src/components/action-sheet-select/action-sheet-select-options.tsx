@@ -3,6 +3,7 @@ import {
   FloatingList,
   FloatingPortal,
 } from '@floating-ui/react'
+import { useId } from 'react'
 
 import { ActionSheetOverlay } from '../action-sheet/action-sheet-overlay'
 import {
@@ -32,6 +33,7 @@ export const ActionSheetSelectOptions = ({
   title,
   ...props
 }: ActionSheetSelectOptions) => {
+  const portalId = useId()
   const { floating, interactions, transitionStatus, labelId, listRef } =
     useActionSheetSelect()
 
@@ -44,7 +46,7 @@ export const ActionSheetSelectOptions = ({
   }
 
   return (
-    <FloatingPortal>
+    <FloatingPortal id={portalId}>
       <ActionSheetOverlay transitionStatus={status} />
       <FlexBox
         flex
