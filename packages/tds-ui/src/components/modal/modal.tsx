@@ -50,6 +50,7 @@ export const Modal = ({
   flexible = false,
   onClose,
 }: ModalProps) => {
+  const portalId = useId()
   const labelId = useId()
   const descriptionId = useId()
 
@@ -57,8 +58,12 @@ export const Modal = ({
     open,
     onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
-  // eslint-disable-next-line no-console
-  console.log('Modal render', context)
+
+  if (open) {
+    // eslint-disable-next-line no-console
+    console.log('Modal render', context)
+  }
+
   const dismiss = useDismiss(context)
   const role = useRole(context, { role: 'dialog' })
 
@@ -74,7 +79,7 @@ export const Modal = ({
       }}
     >
       {context.open ? (
-        <FloatingPortal>
+        <FloatingPortal id={portalId}>
           <FloatingOverlay
             lockScroll
             css={css`

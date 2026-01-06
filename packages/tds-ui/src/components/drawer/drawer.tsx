@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren, useEffect, useId } from 'react'
 import {
   FloatingPortal,
   useFloating,
@@ -51,6 +51,7 @@ export function Drawer({
   onExited,
   ...props
 }: DrawerProps) {
+  const portalId = useId()
   const { context, refs } = useFloating({
     open: active,
   })
@@ -76,7 +77,7 @@ export function Drawer({
   }
 
   return (
-    <FloatingPortal preserveTabOrder={false}>
+    <FloatingPortal preserveTabOrder={false} id={portalId}>
       <FlexBox flex justifyContent="center">
         <DrawerContainer
           ref={refs.setFloating}
