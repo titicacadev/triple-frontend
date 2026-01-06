@@ -75,7 +75,7 @@ export function MyReviewActionSheet({
         onConfirm={() => {
           // eslint-disable-next-line no-console
           console.log('Delete review confirmed')
-          removeUriHash('replace')
+          // removeUriHash('replace')
           handleDeleteReview()
         }}
       >
