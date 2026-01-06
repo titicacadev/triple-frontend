@@ -64,7 +64,13 @@ export const ActionSheet = ({
     console.log('ActionSheet render', context, 'portalId', portalId)
   }
 
-  const dismiss = useDismiss(context)
+  const dismiss = useDismiss(context, {
+    outsidePress: (event) => {
+      // eslint-disable-next-line no-console
+      console.log('outsidePress event:', event)
+      return true
+    },
+  })
   const role = useRole(context, { role: 'dialog' })
 
   const { getFloatingProps } = useInteractions([dismiss, role])
