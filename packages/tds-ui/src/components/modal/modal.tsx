@@ -61,7 +61,7 @@ export const Modal = ({
 
   if (open) {
     // eslint-disable-next-line no-console
-    console.log('Modal render', context)
+    console.log('Modal render', context, 'portalId', portalId)
   }
 
   const dismiss = useDismiss(context)

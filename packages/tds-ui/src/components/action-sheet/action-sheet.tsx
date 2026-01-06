@@ -61,7 +61,7 @@ export const ActionSheet = ({
 
   if (open) {
     // eslint-disable-next-line no-console
-    console.log('ActionSheet render', context)
+    console.log('ActionSheet render', context, 'portalId', portalId)
   }
 
   const dismiss = useDismiss(context)
