@@ -57,7 +57,8 @@ export const Modal = ({
     open,
     onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
-
+  // eslint-disable-next-line no-console
+  console.log('Modal render', context)
   const dismiss = useDismiss(context)
   const role = useRole(context, { role: 'dialog' })
 
