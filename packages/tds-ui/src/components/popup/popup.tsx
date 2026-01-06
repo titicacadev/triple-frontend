@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren, useEffect, useId } from 'react'
 import { styled } from 'styled-components'
 import {
   FloatingFocusManager,
@@ -91,6 +91,7 @@ export function Popup({
   onExited,
   ...props
 }: PopupProps) {
+  const portalId = useId()
   const { context, refs } = useFloating({
     open,
     onOpenChange: (open) => (open ? undefined : onClose?.()),
@@ -122,7 +123,7 @@ export function Popup({
   }
 
   return (
-    <FloatingPortal id={id}>
+    <FloatingPortal id={id ?? portalId}>
       <FloatingOverlay lockScroll />
       <FloatingFocusManager context={context} initialFocus={refs.floating}>
         <PopupContainer
