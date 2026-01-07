@@ -66,7 +66,9 @@ export const ActionSheet = ({
 
   const dismiss = useDismiss(context, {
     outsidePress: (event) => {
-      return !!(event.target as HTMLElement).closest?.(`#${portalId}`)
+      return !!(event.target as HTMLElement).closest?.(
+        `#${CSS.escape(portalId)}`,
+      )
     },
   })
   const role = useRole(context, { role: 'dialog' })
