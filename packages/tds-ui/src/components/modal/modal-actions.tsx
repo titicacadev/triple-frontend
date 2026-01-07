@@ -8,7 +8,7 @@ export const ModalActions = styled.div<{ children?: ReactNode }>`
   border-width: 1px;
   border-color: #f5f5f5;
 
-  a {
+  button {
     ${({ children }) => {
       const childrenCount = Children.toArray(children).length
       return css`

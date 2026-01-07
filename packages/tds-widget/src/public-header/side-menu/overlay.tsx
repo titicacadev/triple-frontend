@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren, useEffect, useId } from 'react'
 import { styled, css } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
 import {
@@ -66,6 +66,7 @@ export function SideMenuOverlay({
   onExited,
   ...props
 }: SideMenuOverlayProps) {
+  const portalId = useId()
   const { context, refs } = useFloating({
     open,
     onOpenChange: (open) => (open ? undefined : onClose?.()),
@@ -97,7 +98,7 @@ export function SideMenuOverlay({
   }
 
   return (
-    <FloatingPortal>
+    <FloatingPortal id={portalId}>
       <FloatingOverlay
         lockScroll
         css={css`

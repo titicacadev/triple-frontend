@@ -37,7 +37,7 @@ export function useReviewCount(
     queryKey: ['reviews/getReviewCount', { ...params }],
     queryFn: () => reviewClient(() => client.GetReviewsCount(params)),
     refetchOnWindowFocus: false,
-    initialData: initialValue
+    placeholderData: initialValue
       ? {
           __typename: 'Query',
           reviewsCount: initialValue,

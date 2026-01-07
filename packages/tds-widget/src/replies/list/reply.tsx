@@ -16,7 +16,7 @@ import {
   ActionSheetItem,
 } from '@titicaca/tds-ui'
 import { formatTimestamp, findFoldedPosition } from '@titicaca/view-utilities'
-import { useNavigate, useIsomorphicNavigate } from '@titicaca/router'
+import { useNavigate } from '@titicaca/router'
 
 import { Reply as ReplyType, Writer } from '../types'
 import { likeReply, unlikeReply } from '../replies-api-client'
@@ -93,8 +93,7 @@ export function Reply({
 
   const [likeReaction, setLikeReactions] = useState(reactions.like)
   const { setEditingMessage } = useRepliesContext()
-  const { addUriHash, removeUriHash } = useHashRouter()
-  const { asyncBack } = useIsomorphicNavigate()
+  const { addUriHash, removeUriHash, replaceUriHash } = useHashRouter()
   const { navigate } = useNavigate()
   const likeReactionCount = likeReaction?.count
 
@@ -160,13 +159,14 @@ export function Reply({
         },
       })
 
-      await asyncBack(removeUriHash)
-
-      addUriHash(HASH_DELETE_CLOSE_MODAL)
+      replaceUriHash(
+        `${HASH_MORE_ACTION_SHEET}.${messageId}`,
+        HASH_DELETE_CLOSE_MODAL,
+      )
 
       return true
     },
-    [setEditingMessage, asyncBack, removeUriHash, addUriHash],
+    [setEditingMessage, removeUriHash, addUriHash],
   )
 
   const handleLikeReplyClick = useSessionCallback(
@@ -421,8 +421,8 @@ export function Reply({
             messageId: id,
           })
         }
-        onReportClick={async () => {
-          await asyncBack(removeUriHash)
+        onReportClick={() => {
+          removeUriHash()
           handleReportReplyClick(id)
         }}
       />
@@ -517,11 +517,11 @@ function FeatureActionSheet({
   onReportClick: () => void
 }) {
   const t = useTranslation()
-  const { uriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, removeUriHash } = useHashRouter()
 
   return (
     <ActionSheet
-      open={uriHash === actionSheetHash}
+      open={hasUriHash(actionSheetHash)}
       onClose={removeUriHash}
       title={title}
     >
