@@ -84,10 +84,14 @@ export interface PreDirectRoomMemberInterface<T = UserType>
   roomMemberId: string
 }
 
+enum CustomProfileType {
+  AI_NOLI = 'AI_NOLI',
+}
 interface ChatUserProfileInterface {
   name: string
   thumbnail: string
   message: string
+  customProfile?: CustomProfileType
 }
 
 export function isChatRoomMember<T = UserType>(
