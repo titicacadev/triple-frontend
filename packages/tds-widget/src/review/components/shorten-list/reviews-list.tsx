@@ -67,12 +67,19 @@ export function ReviewsList({
       return []
     }
 
-    let newReviews = reviews.filter(
-      (review) => review.id !== myReviewData.myReview?.id,
-    )
-
-    if (myReviewData.myReview) {
-      newReviews = [myReviewData.myReview].concat(newReviews)
+    // subscribe 이벤트로 인한 refetch 시 내 리뷰가 바뀐 경우를 반영하기 위해
+    // 내 리뷰를 새로 받은 리뷰 목록에서 찾아서 교체한 후에 내 리뷰를 맨 앞으로 보냄
+    let myReview = myReviewData.myReview
+    let newReviews: BaseReviewFragment[] = []
+    reviews.forEach((review) => {
+      if (myReview && review.id === myReview.id) {
+        myReview = review
+      } else {
+        newReviews.push(review)
+      }
+    })
+    if (myReview) {
+      newReviews = [myReview].concat(newReviews)
     }
 
     return newReviews
