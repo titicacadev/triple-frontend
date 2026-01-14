@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ComponentType, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { FlexBox, Section, Container, Text } from '@titicaca/tds-ui'
@@ -120,6 +121,11 @@ function ReviewsComponent({
     )
 
   useEffect(() => {
+    console.log(
+      subscribeReviewUpdateEvent
+        ? 'Subscribe review update event'
+        : 'No refetch function',
+    )
     subscribeReviewUpdateEvent?.(refetchReviewsCount)
 
     return () => unsubscribeReviewUpdateEvent?.(refetchReviewsCount)
