@@ -121,6 +121,12 @@ function ReviewsShortenComponent({
     )
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(
+      subscribeReviewUpdateEvent
+        ? 'Subscribe review update event'
+        : 'No refetch function',
+    )
     subscribeReviewUpdateEvent?.(refetchReviewsCount)
 
     return () => unsubscribeReviewUpdateEvent?.(refetchReviewsCount)
