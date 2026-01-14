@@ -51,7 +51,7 @@
     "@titicaca/router": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-web": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
+    "@titicaca/triple-web-to-native-interfaces": "0.0.0-27ed3c0",
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "autolinker": "^4.1.0",

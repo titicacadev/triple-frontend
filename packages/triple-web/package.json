@@ -44,7 +44,7 @@
     "@titicaca/fetcher": "workspace:*",
     "@titicaca/i18n": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",
-    "@titicaca/triple-web-to-native-interfaces": "1.11.0",
+    "@titicaca/triple-web-to-native-interfaces": "v0.0.0-27ed3c0",
     "@titicaca/view-utilities": "workspace:*",
     "@types/ua-parser-js": "^0.7.39",
     "deep-equal": "^2.2.3",
