@@ -7,7 +7,11 @@ import {
   ButtonGroup,
 } from '@titicaca/tds-ui'
 import { useEffect, useState } from 'react'
-import { useTrackEvent, useTranslation } from '@titicaca/triple-web'
+import {
+  useClientAppActions,
+  useTrackEvent,
+  useTranslation,
+} from '@titicaca/triple-web'
 
 import Tooltip, { useLocalStorageTooltip } from './tooltip/tooltip'
 
@@ -23,12 +27,14 @@ const REVIEW_TOOLTIP_EXPOSED = 'REVIEW_TOOLTIP_EXPOSED'
 const SCRAPE_TOOLTIP_EXPOSED = 'SCRAPE_TOOLTIP_EXPOSED'
 
 export function PoiDetailActions({
+  poiId,
   scraped,
   reviewed,
   onScheduleAdd,
   onScrapedChange,
   onContentShare,
   onReviewEdit,
+  refetchReviewed,
   noDivider = false,
   tooltips = ['REVIEW'],
   ...props
@@ -40,6 +46,7 @@ export function PoiDetailActions({
   onScrapedChange?: () => void
   onContentShare: () => void
   onReviewEdit: () => void
+  refetchReviewed: () => void
   margin?: MarginPadding
   padding?: MarginPadding
   noDivider?: boolean
@@ -64,6 +71,19 @@ export function PoiDetailActions({
   useEffect(() => {
     setShowReviewTooltip(hasReviewTooltip && !isReviewTooltipShownBefore)
   }, [isReviewTooltipShownBefore, hasReviewTooltip])
+
+  const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
+    useClientAppActions()
+
+  useEffect(() => {
+    subscribeReviewUpdateEvent?.(refetchReviewed)
+
+    return () => unsubscribeReviewUpdateEvent?.(refetchReviewed)
+  }, [
+    refetchReviewed,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  ])
 
   return (
     <Section {...props}>
