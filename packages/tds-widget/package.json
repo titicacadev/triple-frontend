@@ -30,7 +30,8 @@
     "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
     "lint:style:fix": "stylelint 'src/**/*.{js,ts,tsx}' --fix",
     "lint:etc": "prettier src --check",
-    "lint:etc:fix": "prettier src --write"
+    "lint:etc:fix": "prettier src --write",
+    "generate": "graphql-codegen"
   },
   "lint-staged": {
     "*": [
