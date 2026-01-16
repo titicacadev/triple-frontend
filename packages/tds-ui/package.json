@@ -46,13 +46,12 @@
     "@emotion/is-prop-valid": "^1.3.1",
     "@floating-ui/react": "^0.27.4",
     "@titicaca/content-utilities": "9.16.0",
-    "@titicaca/intersection-observer": "workspace:*",
-    "@titicaca/tds-ui": "workspace:*",
     "@titicaca/triple-fallback-action": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "@types/react-input-mask": "2.0.5",
     "react-compound-slider": "^3.4.0",
     "react-input-mask": "^2.0.4",
+    "react-intersection-observer": "^9.13.1",
     "react-roving-tabindex": "^3.2.0"
   },
   "devDependencies": {

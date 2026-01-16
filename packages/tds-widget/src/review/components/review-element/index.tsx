@@ -1,5 +1,5 @@
 import { Container, FlexBox, List, Rating, Text } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import {
   useTranslation,
   useTrackEvent,
@@ -295,22 +295,22 @@ export function ReviewElement({
   }`
 
   return (
-    <IntersectionObserver
-      onChange={({ isIntersecting }) => {
-        if (isIntersecting) {
-          trackEvent({
-            ga: [reviewExposureAction, review.id],
-            fa: {
-              action: reviewExposureAction,
-              item_id: review.id,
-              poi_id: resourceId,
-              ...(review.recentTrip && { recent_trip: '최근여행' }),
-            },
-          })
-        }
-      }}
-    >
-      <List.Item style={{ paddingTop: 6 }}>
+    <List.Item style={{ paddingTop: 6 }}>
+      <InView
+        onChange={(inView) => {
+          if (inView) {
+            trackEvent({
+              ga: [reviewExposureAction, review.id],
+              fa: {
+                action: reviewExposureAction,
+                item_id: review.id,
+                poi_id: resourceId,
+                ...(review.recentTrip && { recent_trip: '최근여행' }),
+              },
+            })
+          }
+        }}
+      >
         {user ? <User user={user} onClick={handleUserClick} /> : null}
         {!blinded ? (
           <ReviewMetadataInfo flex css={{ alignItems: 'center' }}>
@@ -428,8 +428,8 @@ export function ReviewElement({
             </Container>
           ) : null}
         </Meta>
-      </List.Item>
-    </IntersectionObserver>
+      </InView>
+    </List.Item>
   )
 }
 

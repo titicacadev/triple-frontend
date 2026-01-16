@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { styled } from 'styled-components'
 import { Container } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 import { Banner } from './typing'
 
@@ -21,17 +21,15 @@ export const VerticalEntity: FC<VerticalEntityProps> = ({
   onClick,
   onIntersect,
 }) => {
-  const handleIntersectionChange = ({
-    isIntersecting,
-  }: IntersectionObserverEntry) => {
-    onIntersect(isIntersecting, banner)
+  const handleIntersectionChange = (inView: boolean) => {
+    onIntersect(inView, banner)
   }
   const handleBannerClick = () => {
     onClick(banner)
   }
 
   return (
-    <IntersectionObserver threshold={0.5} onChange={handleIntersectionChange}>
+    <InView threshold={0.5} onChange={handleIntersectionChange}>
       <Container
         borderRadius={6}
         css={{
@@ -40,6 +38,6 @@ export const VerticalEntity: FC<VerticalEntityProps> = ({
       >
         <BannerImage src={banner.image} onClick={handleBannerClick} />
       </Container>
-    </IntersectionObserver>
+    </InView>
   )
 }

@@ -1,6 +1,6 @@
 import { FC, useRef, useEffect, useState } from 'react'
 import { formatMarginPadding, MarginPadding } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { FlickingOptions } from '@egjs/flicking'
 import Flicking from '@egjs/react-flicking'
 import { css } from 'styled-components'
@@ -78,49 +78,47 @@ export const HorizontalListView: FC<HorizontalListViewProps> = ({
   }
 
   return (
-    <IntersectionObserver
-      onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
-        if (isIntersecting && banners.length > 0) {
+    <InView
+      onChange={(inView) => {
+        if (inView && banners.length > 0) {
           onBannerIntersect(true, banners[visibleIndex], visibleIndex)
         }
       }}
     >
-      <div>
-        <ListSection
-          css={css(
-            {
-              minWidth: 0,
-              paddingTop: padding.top,
-              paddingBottom: padding.bottom,
-            },
-            formatMarginPadding(margin, 'margin'),
-          )}
-        >
-          <Flicking
-            {...FLICKING_CONFIG}
-            ref={flickingRef}
-            onMoveEnd={(e) => {
-              const newIndex = e.index
+      <ListSection
+        css={css(
+          {
+            minWidth: 0,
+            paddingTop: padding.top,
+            paddingBottom: padding.bottom,
+          },
+          formatMarginPadding(margin, 'margin'),
+        )}
+      >
+        <Flicking
+          {...FLICKING_CONFIG}
+          ref={flickingRef}
+          onMoveEnd={(e) => {
+            const newIndex = e.index
 
-              onBannerIntersect(false, banners[visibleIndex], visibleIndex)
-              onBannerIntersect(true, banners[newIndex], newIndex)
-              setVisibleIndex(newIndex)
-            }}
-          >
-            {banners.map((banner, index) => {
-              return (
-                <HorizontalEntity
-                  key={banner.id}
-                  banner={banner}
-                  onClick={makeBannerClickHandler(index)}
-                  onLoad={resizeFlicking}
-                  widthOffset={Number(padding.left || padding.right || 25) * 2}
-                />
-              )
-            })}
-          </Flicking>
-        </ListSection>
-      </div>
-    </IntersectionObserver>
+            onBannerIntersect(false, banners[visibleIndex], visibleIndex)
+            onBannerIntersect(true, banners[newIndex], newIndex)
+            setVisibleIndex(newIndex)
+          }}
+        >
+          {banners.map((banner, index) => {
+            return (
+              <HorizontalEntity
+                key={banner.id}
+                banner={banner}
+                onClick={makeBannerClickHandler(index)}
+                onLoad={resizeFlicking}
+                widthOffset={Number(padding.left || padding.right || 25) * 2}
+              />
+            )
+          })}
+        </Flicking>
+      </ListSection>
+    </InView>
   )
 }

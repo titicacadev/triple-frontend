@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { List } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { useTrackEvent } from '@titicaca/triple-web'
 import { useNavigate } from '@titicaca/router'
 
@@ -28,8 +28,8 @@ export function PoiEntry({
   const { navigate } = useNavigate()
 
   const handleIntersectionChange = useCallback(
-    ({ isIntersecting }: { isIntersecting: boolean }) => {
-      if (isIntersecting) {
+    (inView: boolean) => {
+      if (inView) {
         trackEvent({
           fa: {
             action: '근처추천장소_POI노출',
@@ -57,15 +57,15 @@ export function PoiEntry({
   }, [eventLabel, id, index, navigate, regionId, trackEvent, type])
 
   return (
-    <IntersectionObserver key={id} onChange={handleIntersectionChange}>
-      <List.Item>
+    <List.Item key={id}>
+      <InView onChange={handleIntersectionChange}>
         <PoiListElement
           as="div"
           poi={poi}
           onClick={handleClick}
           optimized={optimized}
         />
-      </List.Item>
-    </IntersectionObserver>
+      </InView>
+    </List.Item>
   )
 }

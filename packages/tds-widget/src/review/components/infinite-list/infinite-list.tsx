@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { List, Spinner } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { useClientAppActions } from '@titicaca/triple-web'
 
 import { useDescriptions, useMyReview } from '../../services'
@@ -120,15 +120,15 @@ export function InfiniteList({
       </List>
 
       {hasNextPage ? (
-        <StaticIntersectionObserver
-          onChange={({ isIntersecting }) => {
-            if (isIntersecting) {
+        <InView
+          onChange={(inView) => {
+            if (inView) {
               fetchNextPage?.()
             }
           }}
         >
           <div />
-        </StaticIntersectionObserver>
+        </InView>
       ) : null}
 
       {myReviewData?.myReview ? (

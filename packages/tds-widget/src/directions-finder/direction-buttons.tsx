@@ -8,7 +8,7 @@ import {
   useTranslation,
 } from '@titicaca/triple-web'
 import { Button, ButtonGroup, Container } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 import { AskToTheLocal } from './ask-to-the-local'
 import { HASH_ASK_TO_LOCALS_POPUP } from './constants'
@@ -35,7 +35,10 @@ export function DirectionButtons({
   phoneNumber?: string
   isDomestic?: boolean
   onCallGrabButtonClick?: () => void
-  onCallGrabButtonIntersecting?: (entry: IntersectionObserverEntry) => void
+  onCallGrabButtonIntersecting?: (
+    inView: boolean,
+    entry: IntersectionObserverEntry,
+  ) => void
 }) {
   const t = useTranslation()
 
@@ -75,8 +78,10 @@ export function DirectionButtons({
         {hasLineBreak ? <LinkBreak /> : null}
 
         {onCallGrabButtonClick ? (
-          <StaticIntersectionObserver
-            onChange={(entry) => onCallGrabButtonIntersecting?.(entry)}
+          <InView
+            onChange={(inView, entry) =>
+              onCallGrabButtonIntersecting?.(inView, entry)
+            }
           >
             <Button
               basic
@@ -87,7 +92,7 @@ export function DirectionButtons({
             >
               {t('grab-hocul')}
             </Button>
-          </StaticIntersectionObserver>
+          </InView>
         ) : null}
 
         <Button

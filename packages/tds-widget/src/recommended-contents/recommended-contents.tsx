@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react'
 import { styled, css } from 'styled-components'
 import { Text, MarginPadding, Responsive, Container } from '@titicaca/tds-ui'
-import { StaticIntersectionObserver as IntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 const RecommendedContentsContainer = styled.section<{
   margin?: MarginPadding
@@ -14,7 +14,7 @@ const RecommendedContentsContainer = styled.section<{
     `};
 `
 
-const RecommendedContentWithDesktopResolution = styled.li<{
+const RecommendedContentWithDesktopResolution = styled.div<{
   backgroundImageUrl: string
 }>`
   display: inline-block;
@@ -51,7 +51,7 @@ const RecommendedContentWithDesktopResolution = styled.li<{
   }
 `
 
-const RecommendedContentWithMobileResolution = styled.li`
+const RecommendedContentWithMobileResolution = styled.div`
   display: inline-block;
   vertical-align: top;
   width: 50%;
@@ -119,52 +119,56 @@ export function RecommendedContents<T extends ContentElementProps>({
           }}
         >
           {contents.map((content, index) => (
-            <IntersectionObserver
+            <InView
               key={index}
-              onChange={({ isIntersecting }) =>
-                isIntersecting &&
-                onContentIntersect &&
-                onContentIntersect(content)
+              onChange={(inView) =>
+                inView && onContentIntersect && onContentIntersect(content)
               }
             >
-              <RecommendedContentWithMobileResolution
-                onClick={onContentClick && ((e) => onContentClick(e, content))}
-              >
-                <Image src={content.backgroundImageUrl} />
-                <ImageColorOverlay />
-                <Text
-                  lineHeight="20px"
-                  color="white"
-                  bold
-                  maxLines={3}
-                  padding={{ top: 20, left: 15, right: 15 }}
+              {({ ref }) => (
+                <RecommendedContentWithMobileResolution
+                  ref={ref}
+                  onClick={
+                    onContentClick && ((e) => onContentClick(e, content))
+                  }
                 >
-                  {content.title}
-                </Text>
-              </RecommendedContentWithMobileResolution>
-            </IntersectionObserver>
+                  <Image src={content.backgroundImageUrl} />
+                  <ImageColorOverlay />
+                  <Text
+                    lineHeight="20px"
+                    color="white"
+                    bold
+                    maxLines={3}
+                    padding={{ top: 20, left: 15, right: 15 }}
+                  >
+                    {content.title}
+                  </Text>
+                </RecommendedContentWithMobileResolution>
+              )}
+            </InView>
           ))}
         </Container>
       </Responsive>
       <Responsive as="ul" minWidth={768}>
         {contents.map((content, index) => (
-          <IntersectionObserver
+          <InView
             key={index}
-            onChange={({ isIntersecting }) =>
-              isIntersecting &&
-              onContentIntersect &&
-              onContentIntersect(content)
+            onChange={(inView) =>
+              inView && onContentIntersect && onContentIntersect(content)
             }
           >
-            <RecommendedContentWithDesktopResolution
-              backgroundImageUrl={content.backgroundImageUrl}
-              onClick={onContentClick && ((e) => onContentClick(e, content))}
-            >
-              <Text lineHeight="20px" color="white" bold maxLines={3}>
-                {content.title}
-              </Text>
-            </RecommendedContentWithDesktopResolution>
-          </IntersectionObserver>
+            {({ ref }) => (
+              <RecommendedContentWithDesktopResolution
+                ref={ref}
+                backgroundImageUrl={content.backgroundImageUrl}
+                onClick={onContentClick && ((e) => onContentClick(e, content))}
+              >
+                <Text lineHeight="20px" color="white" bold maxLines={3}>
+                  {content.title}
+                </Text>
+              </RecommendedContentWithDesktopResolution>
+            )}
+          </InView>
         ))}
       </Responsive>
     </RecommendedContentsContainer>

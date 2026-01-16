@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { styled } from 'styled-components'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { generateImageUrl, Version, Quality } from '@titicaca/content-utilities'
 
 import { useImageState } from './context'
@@ -76,10 +76,8 @@ export function ImageOptimizedImg({
   const absolute = useContentAbsolute()
 
   const handleLazyLoad = useCallback(
-    (event: IntersectionObserverEntry, unobserve: () => void) => {
-      if (event.isIntersecting) {
-        unobserve()
-
+    (inView: boolean) => {
+      if (inView) {
         const srcSet = deviceSizes
           .sort((a, b) => a - b)
           .map(
@@ -97,7 +95,7 @@ export function ImageOptimizedImg({
           )
           .join(', ')
 
-        setIsLoad(event.isIntersecting)
+        setIsLoad(true)
 
         setImgAttributes((prev) => ({
           ...prev,
@@ -118,7 +116,7 @@ export function ImageOptimizedImg({
   )
 
   return (
-    <StaticIntersectionObserver rootMargin="200px" onChange={handleLazyLoad}>
+    <InView rootMargin="200px" triggerOnce onChange={handleLazyLoad}>
       {!isLoad ? (
         <Placeholder absolute={absolute} />
       ) : (
@@ -129,6 +127,6 @@ export function ImageOptimizedImg({
           absolute={absolute}
         />
       )}
-    </StaticIntersectionObserver>
+    </InView>
   )
 }

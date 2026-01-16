@@ -43,7 +43,6 @@
   "dependencies": {
     "@titicaca/content-type-definitions": "9.16.0",
     "@titicaca/fetcher": "workspace:*",
-    "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/standard-action-handler": "workspace:*",
@@ -53,7 +52,8 @@
     "@titicaca/type-definitions": "workspace:*",
     "@titicaca/view-utilities": "workspace:*",
     "date-fns": "^3.6.0",
-    "qs": "^6.14.0"
+    "qs": "^6.14.0",
+    "react-intersection-observer": "^9.13.1"
   },
   "devDependencies": {
     "@titicaca/triple-web": "workspace:*",

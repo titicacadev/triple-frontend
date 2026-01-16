@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren } from 'react'
 import { styled } from 'styled-components'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 import { CarouselSizes } from '../../commons'
 
@@ -47,16 +47,16 @@ export function CarouselItem({
   if (onImpress) {
     return (
       <Item onClick={onClick} size={size} {...props}>
-        <StaticIntersectionObserver
+        <InView
           threshold={threshold || 0.5}
-          onChange={({ isIntersecting }: { isIntersecting: boolean }) => {
-            if (isIntersecting) {
+          onChange={(inView) => {
+            if (inView) {
               onImpress()
             }
           }}
         >
-          <div>{children}</div>
-        </StaticIntersectionObserver>
+          {children}
+        </InView>
       </Item>
     )
   }
