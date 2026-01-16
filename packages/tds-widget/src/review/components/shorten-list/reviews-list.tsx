@@ -42,10 +42,14 @@ export function ReviewsList({
   const [selectedReviewId, setSelectedReviewId] = useState<string | undefined>(
     undefined,
   )
-  const { subscribeLikedChangeEvent, unsubscribeLikedChangeEvent } =
-    useClientAppActions()
+  const {
+    subscribeLikedChangeEvent,
+    unsubscribeLikedChangeEvent,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  } = useClientAppActions()
 
-  const { data: myReviewData } = useMyReview({
+  const { data: myReviewData, refetch: refetchMyReview } = useMyReview({
     resourceId,
     resourceType,
   })
@@ -79,6 +83,21 @@ export function ReviewsList({
 
     return () => unsubscribeLikedChangeEvent?.(refetch)
   }, [refetch, subscribeLikedChangeEvent, unsubscribeLikedChangeEvent])
+
+  useEffect(() => {
+    const handleReviewUpdate = () => {
+      refetch()
+      refetchMyReview()
+    }
+    subscribeReviewUpdateEvent?.(handleReviewUpdate)
+
+    return () => unsubscribeReviewUpdateEvent?.(handleReviewUpdate)
+  }, [
+    refetch,
+    refetchMyReview,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  ])
 
   if (!myReviewData || !descriptionsData || !sortedReviews) {
     return <Spinner />

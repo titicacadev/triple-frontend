@@ -29,7 +29,7 @@ export function Media({ media, reviewId }: Props) {
   const app = useClientApp()
   const sessionAvailable = useSessionAvailability()
   const { show: showLoginCtaModal } = useLoginCtaModal()
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
 
   const [imageIndex, setImageIndex] = useState<number | null>(null)
 
@@ -119,9 +119,9 @@ export function Media({ media, reviewId }: Props) {
         ))}
       </MediaWrapper>
 
-      {imageIndex != null && uriHash === HASH_IMAGE_VIEWER_POPUP ? (
+      {imageIndex != null && hasUriHash(HASH_IMAGE_VIEWER_POPUP) ? (
         <ImageViewerPopup
-          open={uriHash === HASH_IMAGE_VIEWER_POPUP}
+          open={hasUriHash(HASH_IMAGE_VIEWER_POPUP)}
           images={sortedMedia}
           totalCount={sortedMedia.length}
           defaultImageIndex={imageIndex}

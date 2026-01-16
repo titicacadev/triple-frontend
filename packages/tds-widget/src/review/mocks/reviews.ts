@@ -239,11 +239,23 @@ export const handlers = {
   getReviewsCount: graphql.query<
     GetReviewsCountQuery,
     GetReviewsCountQueryVariables
-  >('GetReviewsCount', () => {
+  >('GetReviewsCount', ({ variables }) => {
+    const { recentTrip, hasMedia } = variables
+
+    // 필터에 따라 다른 카운트 반환
+    let count = 100 // 기본값: 전체 리뷰
+    if (recentTrip && hasMedia) {
+      count = 25 // 최근 여행 + 사진/영상 필터
+    } else if (recentTrip) {
+      count = 60 // 최근 여행 필터만
+    } else if (hasMedia) {
+      count = 45 // 사진/영상 필터만
+    }
+
     return HttpResponse.json({
       data: {
         __typename: 'Query',
-        reviewsCount: 100,
+        reviewsCount: count,
       },
     })
   }),

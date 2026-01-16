@@ -12,8 +12,8 @@ import { useTranslation } from '../../i18n'
 export function LoginCtaModal() {
   const t = useTranslation()
   const { loginCtaModalRef, eventTrackingContextForkRef } = useModal()
-  const { removeUriHash, uriHash } = useHashRouter()
-  const open = uriHash === LOGIN_CTA_MODAL_HASH
+  const { removeUriHash, hasUriHash } = useHashRouter()
+  const open = hasUriHash(LOGIN_CTA_MODAL_HASH)
 
   const handleCancelOrClose = () => {
     removeUriHash()

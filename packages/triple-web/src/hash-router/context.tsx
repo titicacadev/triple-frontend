@@ -74,19 +74,19 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
 
       if (currentHash) {
         const hashArray = currentHash.split('&')
-        if (
-          hashArray.includes(hash) &&
-          process.env.NODE_ENV === 'development'
-        ) {
-          // eslint-disable-next-line no-console
-          console.warn(`❗️${hash} already exists in the hash.`)
+        if (hashArray.includes(hash)) {
+          if (process.env.NODE_ENV === 'development') {
+            // eslint-disable-next-line no-console
+            console.warn(`❗️${hash} already exists in the hash.`)
+          }
+          return
         }
         url.hash = currentHash + '&' + hash
       } else {
         url.hash = hash
       }
 
-      if (type === 'push' || isAndroid) {
+      if (type === 'push' || (isAndroid && !type)) {
         window.history.pushState(null, '', url)
       } else {
         window.history.replaceState(null, '', url)
@@ -102,7 +102,7 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
         return
       }
 
-      if (type === 'pop' || isAndroid) {
+      if (type === 'pop' || (isAndroid && !type)) {
         return window.history.back()
       }
 
@@ -146,7 +146,11 @@ export function HashRouterProvider({ children }: { children: ReactNode }) {
 
   const hasUriHash = useCallback(
     (hash: string) => {
-      return uriHash.split('&').includes(hash)
+      if (!uriHash) {
+        return false
+      }
+      const hasHash = uriHash.split('&').some((val) => val.startsWith(hash))
+      return hasHash
     },
     [uriHash],
   )

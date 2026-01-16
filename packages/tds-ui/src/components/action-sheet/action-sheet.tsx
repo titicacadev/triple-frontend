@@ -51,6 +51,7 @@ export const ActionSheet = ({
   onExited,
   ...props
 }: ActionSheetProps) => {
+  const portalId = useId()
   const labelId = useId()
 
   const { context, refs } = useFloating({
@@ -58,7 +59,13 @@ export const ActionSheet = ({
     onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
 
-  const dismiss = useDismiss(context)
+  const dismiss = useDismiss(context, {
+    outsidePress: (event) => {
+      return !!(event.target as HTMLElement).closest?.(
+        `#${CSS.escape(portalId)}`,
+      )
+    },
+  })
   const role = useRole(context, { role: 'dialog' })
 
   const { getFloatingProps } = useInteractions([dismiss, role])
@@ -82,7 +89,7 @@ export const ActionSheet = ({
   return (
     <ActionSheetContext.Provider value={{ open, onClose }}>
       {isMounted ? (
-        <FloatingPortal>
+        <FloatingPortal id={portalId}>
           {lockScroll && (
             <ActionSheetOverlay
               transitionStatus={status}

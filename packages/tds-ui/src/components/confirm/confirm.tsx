@@ -36,7 +36,6 @@ export const Confirm = ({
     if (disableConfirm) {
       return
     }
-
     onConfirm ? !onConfirm() && onClose?.() : onClose?.()
   }
 

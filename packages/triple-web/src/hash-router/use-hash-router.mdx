@@ -21,8 +21,8 @@ addUriHash, removeUriHash 메서드에 별도의 type을 전달하지 않는다�
 
 ```jsx
 function ExampleComponent() {
-  const { uriHash } = useHashRouter()
-  const open = uriHash === 'some.unique.hash'
+  const { hasUriHash } = useHashRouter()
+  const open = hasUriHash()'some.unique.hash')
 
   return <Popup open={open} />
 }
@@ -62,12 +62,12 @@ function ExampleComponent() {
 ```jsx
 function ExampleComponent() {
   const POPUP_HASH = 'popup.hash'
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
 
   return (
     <div>
       <button onClick={() => addUriHash(POPUP_HASH)}>팝업 열기</button>
-      <Popup open={uriHash === POPUP_HASH} onClose={() => removeUriHash()} />
+      <Popup open={hasUriHash(POPUP_HASH)} onClose={() => removeUriHash()} />
     </div>
   )
 }

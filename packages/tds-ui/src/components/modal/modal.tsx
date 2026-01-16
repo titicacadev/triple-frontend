@@ -50,6 +50,7 @@ export const Modal = ({
   flexible = false,
   onClose,
 }: ModalProps) => {
+  const portalId = useId()
   const labelId = useId()
   const descriptionId = useId()
 
@@ -73,7 +74,7 @@ export const Modal = ({
       }}
     >
       {context.open ? (
-        <FloatingPortal>
+        <FloatingPortal id={portalId}>
           <FloatingOverlay
             lockScroll
             css={css`

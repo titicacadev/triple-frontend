@@ -40,7 +40,7 @@ export function DirectionButtons({
   const t = useTranslation()
 
   const app = useClientApp()
-  const { uriHash, addUriHash, removeUriHash } = useHashRouter()
+  const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
   const { show: showAppInstallCtaModal } = useAppInstallCtaModal()
   const trackEvent = useTrackEvent()
 
@@ -103,7 +103,7 @@ export function DirectionButtons({
 
       {hasAskToLocalsButton ? (
         <AskToTheLocal
-          open={uriHash === HASH_ASK_TO_LOCALS_POPUP}
+          open={hasUriHash(HASH_ASK_TO_LOCALS_POPUP)}
           onClose={removeUriHash}
           localName={localName}
           localAddress={localAddress}
