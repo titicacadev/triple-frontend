@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ImageMeta } from '@titicaca/type-definitions'
 import { Container } from '@titicaca/tds-ui'
-import { useIntersection } from '@titicaca/intersection-observer'
+import { useInView } from 'react-intersection-observer'
 import { useClientApp } from '@titicaca/triple-web'
 import { styled } from 'styled-components'
 
@@ -58,7 +58,8 @@ const PlayPauseButtonBase = styled.span`
 
 export function Video({ medium }: Props) {
   const [isOncePlayed, setIsOncePlayed] = useState(false)
-  const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const { ref: inViewRef, inView: isIntersecting } = useInView({
     threshold: 0.5,
   })
 
@@ -73,18 +74,18 @@ export function Video({ medium }: Props) {
 
   useEffect(() => {
     async function togglePlay() {
-      if (!videoAutoplay || !ref.current) {
+      if (!videoAutoplay || !videoRef.current) {
         return
       }
 
-      ref.current.playsInline = true
-      ref.current.muted = true
+      videoRef.current.playsInline = true
+      videoRef.current.muted = true
 
       try {
         if (isIntersecting) {
-          ref.current.play()
+          videoRef.current.play()
         } else {
-          ref.current.pause()
+          videoRef.current.pause()
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
@@ -94,15 +95,15 @@ export function Video({ medium }: Props) {
     }
 
     togglePlay()
-  }, [isIntersecting, ref, videoAutoplay])
+  }, [isIntersecting, videoAutoplay])
 
   return (
-    <Container borderRadius={6}>
+    <Container borderRadius={6} ref={inViewRef}>
       <StyledPoster
         style={{ backgroundImage: `url("${medium.sizes.large.url}")` }}
       />
       <StyledVideo
-        ref={ref}
+        ref={videoRef}
         src={medium.video?.large.url}
         controls={false}
         loop

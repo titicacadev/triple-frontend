@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Image } from '@titicaca/tds-ui'
 import { useTrackEvent } from '@titicaca/triple-web'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 import { InventoryItemMeta } from '@titicaca/type-definitions'
 
 export function ArticleCardCta({
@@ -28,17 +28,11 @@ export function ArticleCardCta({
     onClick && onClick()
   }, [cta, onClick, trackEvent])
 
-  const handleIntersectionChange = ({
-    isIntersecting,
-  }: {
-    isIntersecting: boolean
-  }) => isIntersecting && handleCtaIntersect()
+  const handleIntersectionChange = (inView: boolean) =>
+    inView && handleCtaIntersect()
 
   return (
-    <StaticIntersectionObserver
-      threshold={0.7}
-      onChange={handleIntersectionChange}
-    >
+    <InView threshold={0.7} onChange={handleIntersectionChange}>
       <a href={href}>
         <Image borderRadius={6}>
           <Image.FixedRatioFrame frame="big" onClick={handleCtaClick}>
@@ -46,6 +40,6 @@ export function ArticleCardCta({
           </Image.FixedRatioFrame>
         </Image>
       </a>
-    </StaticIntersectionObserver>
+    </InView>
   )
 }

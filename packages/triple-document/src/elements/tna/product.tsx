@@ -3,7 +3,7 @@ import { useTranslation, useClientApp } from '@titicaca/triple-web'
 import { Text, Tag, Container, Image, Rating } from '@titicaca/tds-ui'
 import { OverlayScrapButton } from '@titicaca/tds-widget'
 import { formatNumber } from '@titicaca/view-utilities'
-import { StaticIntersectionObserver } from '@titicaca/intersection-observer'
+import { InView } from 'react-intersection-observer'
 
 import { TnaProductData, DomesticArea } from './types'
 import { useGenerateCoupon } from './use-generate-coupon'
@@ -125,8 +125,8 @@ export function TnaProductWithPrice({
   const hasSelfPackageBenefit = !!bestSelfPackageDiscountSpec
 
   const handleIntersectionChange = useCallback(
-    ({ isIntersecting }: IntersectionObserverEntry) => {
-      if (isIntersecting) {
+    (inView: boolean) => {
+      if (inView) {
         onIntersect(product, index)
       }
     },
@@ -141,7 +141,7 @@ export function TnaProductWithPrice({
   )
 
   return (
-    <StaticIntersectionObserver onChange={handleIntersectionChange}>
+    <InView onChange={handleIntersectionChange}>
       <Container onClick={handleClick} clearing>
         <Image>
           <Image.FixedDimensionsFrame size="small" width={90} floated="left">
@@ -251,6 +251,6 @@ export function TnaProductWithPrice({
           )}
         </Container>
       </Container>
-    </StaticIntersectionObserver>
+    </InView>
   )
 }

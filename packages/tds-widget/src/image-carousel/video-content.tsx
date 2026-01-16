@@ -1,9 +1,15 @@
 import { Container } from '@titicaca/tds-ui'
 import { FrameRatioAndSizes, GlobalSizes } from '@titicaca/type-definitions'
-import { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
+import {
+  MouseEventHandler,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { styled } from 'styled-components'
 import { useClientApp } from '@titicaca/triple-web'
-import { useIntersection } from '@titicaca/intersection-observer'
+import { useInView } from 'react-intersection-observer'
 
 import { CarouselImageMeta } from './types'
 
@@ -92,7 +98,8 @@ export function VideoContent({
   onClick,
 }: Props) {
   const [isOncePlayed, setIsOncePlayed] = useState(false)
-  const { ref, isIntersecting } = useIntersection<HTMLVideoElement>({
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const { ref: inViewRef, inView: isIntersecting } = useInView({
     threshold: 0.5,
   })
   const clientApp = useClientApp()
@@ -106,18 +113,18 @@ export function VideoContent({
 
   useEffect(() => {
     async function togglePlay() {
-      if (!videoAutoplay || !ref.current) {
+      if (!videoAutoplay || !videoRef.current) {
         return
       }
 
-      ref.current.playsInline = true
-      ref.current.muted = true
+      videoRef.current.playsInline = true
+      videoRef.current.muted = true
 
       try {
         if (isIntersecting) {
-          ref.current.play()
+          videoRef.current.play()
         } else {
-          ref.current.pause()
+          videoRef.current.pause()
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === 'NotAllowedError') {
@@ -127,17 +134,23 @@ export function VideoContent({
     }
 
     togglePlay()
-  }, [isIntersecting, ref, videoAutoplay])
+  }, [isIntersecting, videoAutoplay])
 
   const { frame: imageFrame, size: imageSize } = medium
   const size = globalSize || imageSize
   const frame = size ? undefined : globalFrame || imageFrame
 
   return (
-    <Frame $size={size} $height={height} $frame={frame} onClick={onClick}>
+    <Frame
+      $size={size}
+      $height={height}
+      $frame={frame}
+      onClick={onClick}
+      ref={inViewRef}
+    >
       <Poster style={{ backgroundImage: `url("${medium.sizes.large.url}")` }} />
       <Video
-        ref={ref}
+        ref={videoRef}
         src={medium.video?.large.url}
         controls={false}
         loop

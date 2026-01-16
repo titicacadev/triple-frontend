@@ -46,7 +46,6 @@
     "@floating-ui/react": "^0.27.4",
     "@react-google-maps/api": "^2.20.6",
     "@titicaca/fetcher": "workspace:*",
-    "@titicaca/intersection-observer": "workspace:*",
     "@titicaca/react-hooks": "workspace:*",
     "@titicaca/router": "workspace:*",
     "@titicaca/tds-ui": "workspace:*",

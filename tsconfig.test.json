@@ -7,9 +7,6 @@
       "@titicaca/constants": ["./packages/constants/src"],
       "@titicaca/fetcher": ["./packages/fetcher/src"],
       "@titicaca/i18n": ["./packages/i18n/src"],
-      "@titicaca/intersection-observer": [
-        "./packages/intersection-observer/src"
-      ],
       "@titicaca/meta-tags": ["./packages/meta-tags/src"],
       "@titicaca/react-hooks": ["./packages/react-hooks/src"],
       "@titicaca/router": ["./packages/router/src"],
