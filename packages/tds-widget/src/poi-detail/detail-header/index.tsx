@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import {
   Section,
   Container,
@@ -12,6 +12,7 @@ import {
   useTrackEvent,
   useHashRouter,
   useClientApp,
+  useClientAppActions,
 } from '@titicaca/triple-web'
 import { TranslatedProperty } from '@titicaca/type-definitions'
 import { formatNumber } from '@titicaca/view-utilities'
@@ -37,6 +38,7 @@ export function PoiDetailHeader({
   reviewsCount,
   reviewsRating,
   onReviewsRatingClick,
+  refetchReviewData,
   onCopy,
   vicinity,
   currentBusinessHours,
@@ -55,6 +57,7 @@ export function PoiDetailHeader({
   reviewsCount: number
   reviewsRating: number
   onReviewsRatingClick: () => void
+  refetchReviewData: () => void
   onCopy: (value: string) => void
   /**
    * @deprecated areaName 으로 통합됩니다.
@@ -69,10 +72,24 @@ export function PoiDetailHeader({
   const { hasUriHash, addUriHash, removeUriHash } = useHashRouter()
   const trackEvent = useTrackEvent()
 
+  const { subscribeReviewUpdateEvent, unsubscribeReviewUpdateEvent } =
+    useClientAppActions()
+
   const handleLongClick = useCallback(() => {
     trackEvent({ fa: { action: '장소명_복사하기_노출' } })
     addUriHash(HASH_COPY_ACTION_SHEET)
   }, [addUriHash, trackEvent])
+
+  useEffect(() => {
+    subscribeReviewUpdateEvent?.(refetchReviewData)
+    return () => {
+      unsubscribeReviewUpdateEvent?.(refetchReviewData)
+    }
+  }, [
+    refetchReviewData,
+    subscribeReviewUpdateEvent,
+    unsubscribeReviewUpdateEvent,
+  ])
 
   return (
     <>
