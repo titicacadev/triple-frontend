@@ -59,11 +59,6 @@ export const ActionSheet = ({
     onOpenChange: (open) => (open ? undefined : onClose?.()),
   })
 
-  if (open) {
-    // eslint-disable-next-line no-console
-    console.log('ActionSheet render', context, 'portalId', portalId)
-  }
-
   const dismiss = useDismiss(context, {
     outsidePress: (event) => {
       return !!(event.target as HTMLElement).closest?.(
